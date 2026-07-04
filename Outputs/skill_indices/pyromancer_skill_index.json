@@ -1,0 +1,5753 @@
+{
+  "class": "Pyromancer",
+  "schemaVersion": 2,
+  "laneTaxonomy": {
+    "DMG": "Damage",
+    "STATS": "Primary/secondary stats",
+    "CRIT": "Crit chance/damage",
+    "CDR": "Cooldown",
+    "CAST": "Cast time",
+    "HASTE": "Haste",
+    "SPEED": "Movement speed",
+    "HEAL": "Healing",
+    "SHIELD": "Shield/absorb",
+    "MITIGATION": "Damage mitigation",
+    "RESOURCE": "Resource generation",
+    "COST": "Resource cost",
+    "DURATION": "Duration",
+    "AOE": "AoE / target count",
+    "CC": "Crowd control",
+    "ARMOR": "Armor",
+    "SUMMON": "Summon / pet",
+    "MISC": "Other"
+  },
+  "note": "Per-skill index: for each observed skill/ability, lists every talent that modifies it, where it sits in the tree, its parsed stat modification, and a mock value showing that modification applied to a normalized baseline of 10. Each modifying talent is tagged with one or more lanes from laneTaxonomy (DMG/CRIT/CDR/CAST/HASTE/SPEED/HEAL/SHIELD/MITIGATION/RESOURCE/COST/DURATION/AOE/CC/ARMOR/SUMMON/MISC), plus cross-cutting behavior flags (PROC, STACK) that describe how the effect triggers rather than what stat it touches. A handful of nodes have unresolved \"$xx\" template descriptions in the source export - these are flagged rather than guessed at.",
+  "mockBaseline": 10,
+  "skills": {
+    "Ascension of Thaurissan": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Fiery Demeanor",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 17.25,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Reduces spell pushback suffered from damaging attacks by 50% and increases the pushback resistance provided by Ascension of Thaurissan by 15%."
+        }
+      ]
+    },
+    "Aspect of Earth": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$8c",
+      "baseTree": "Draconic",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Aspect of Time": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Aspect's Blessing",
+          "tree": "Draconic",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your next Echo of Nozdormu or Flames of Neltharion is guaranteed to critically strike and triggers Aspect of Time, casting an additional time for 30% of the damage dealt. Lasts 15 seconds.\n\nDamage dealt in this way can trigger up to 3 additional times."
+        },
+        {
+          "talent": "Lifebringer's Blessing",
+          "tree": "Draconic",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Aspect of Time now heals you equal to 200% of the damage dealt."
+        },
+        {
+          "talent": "Aspect of Eternity",
+          "tree": "Draconic",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 25.0,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Allows the periodic damage of Blaze to critically strike.\n\nIn addition, damage dealt by Echo of Nozdormu or Aspect of Time now has a 20% chance to guarantee your next Blaze within 8 seconds to critically strike and increase its critical damage by 100% and duration by 25%."
+        }
+      ]
+    },
+    "Aspect's Blessing": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Flames of Fate",
+          "tree": "Draconic",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Aspect's Blessing now affects 2 additional casts of Echo of Nozdormu, but its cooldown is doubled, and its mana cost is increased by 50%."
+        },
+        {
+          "talent": "Expediting Power",
+          "tree": "Draconic",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Echo of Nozdormu now reduces the cooldown of Aspect's Blessing by an additional 5%."
+        }
+      ]
+    },
+    "Blaze": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HASTE",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Hellscape",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Blaze by 4 sec."
+        },
+        {
+          "talent": "Agonizing Burns",
+          "tree": "Draconic",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "HASTE",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Blaze by 20% and allows it to benefit from your spell haste."
+        },
+        {
+          "talent": "Overwhelming Flames",
+          "tree": "Draconic",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Lava Shard now spreads Blaze to up to 1 additional enemy within 8 yds of the primary target."
+        },
+        {
+          "talent": "Perpetual Burning",
+          "tree": "Draconic",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "The duration of Blaze is now increased by 1 sec for each Ember you have when you cast it."
+        },
+        {
+          "talent": "Flames of Execution",
+          "tree": "Draconic",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Blaze is increased by 25% on enemies below 35% of their maximum health."
+        },
+        {
+          "talent": "Draconic Rage",
+          "tree": "Draconic",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Consuming Embers now has a 25% chance to trigger Dragon's Wrath on all enemies affected by Blaze."
+        },
+        {
+          "talent": "Aspect of Eternity",
+          "tree": "Draconic",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 25.0,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Allows the periodic damage of Blaze to critically strike.\n\nIn addition, damage dealt by Echo of Nozdormu or Aspect of Time now has a 20% chance to guarantee your next Blaze within 8 seconds to critically strike and increase its critical damage by 100% and duration by 25%."
+        },
+        {
+          "talent": "Embrace the Fire",
+          "tree": "Incineration",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Blaze and Ignite by 20%."
+        },
+        {
+          "talent": "Explosive",
+          "tree": "Incineration",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the tick rate of Blaze and Ignite by -20%."
+        },
+        {
+          "talent": "Destroyer's Legacy",
+          "tree": "Incineration",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Lava Shard on enemies affected by Blaze now blasts nearby enemies for 20% of the damage dealt as Fire damage."
+        }
+      ]
+    },
+    "Breath of Neltharion": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Breath superheated flames in a cone in front of you that melts the weapons of affected enemies, disarming their melee and ranged weapons for 6 seconds.",
+      "baseTree": "Draconic",
+      "basePosition": {
+        "x": 2,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Burn": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Infernus",
+          "tree": "Incineration",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 1,
+          "specialRequirement": [
+            "Meteor"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Lava Shard now applies Infernus, causing enemies to Burn, dealing an additional 1122 + 72% SP Fire damage over 18 seconds."
+        }
+      ]
+    },
+    "Burn Impurities": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Burn away 1 harmful magic effect and 1 disease effect from an ally.",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 6,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Burned": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 50 Passive\nDirect Fire damage dealt now applies Burned to the target for 15 seconds.Burned (Proc)Increases the targets damage taken from your periodic effects by 3% stacking 5 times.",
+      "baseTree": "Incineration",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Burning": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Dragon's Bane",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Lava Shard and Cinderheart by 6% against Burning targets."
+        },
+        {
+          "talent": "Scorched",
+          "tree": "Incineration",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 20 Passive\nDirect critical strikes with Ember spenders now Scorch the target, Burning them for an additional 30% of the damage dealt over 3 seconds."
+        },
+        {
+          "talent": "Pyromantic Accelerants",
+          "tree": "Incineration",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Flames of Neltharion and Explode now deal 15% increased damage to Burning targets."
+        },
+        {
+          "talent": "Pyroclasm",
+          "tree": "Incineration",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Consumes 1 Ember\nCreate a pyroclasm instantly consuming your Burning effects on a target to deal the two times total periodic damage plus an additional 2100 to 2220 over 10 seconds, piercing absorption effects and resistances."
+        }
+      ]
+    },
+    "Cataclysm": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Launch into the air, dealing 11 Fire damage, knocking back enemies within 6 yds and dazing them for 6 sec.\n\nUpon landing, deal -5 Fire damage, knock back enemies within 6 yds and daze them for 6 sec.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Fiery Intent",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Cataclysm by 30 sec."
+        }
+      ]
+    },
+    "Cindergrip": {
+      "lanes": [
+        "CAST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Chains of Fire",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.25,
+              "unit": "sec"
+            },
+            {
+              "value": 10.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Cindergrip by 0.25 sec and increases its range by 10 yds."
+        }
+      ]
+    },
+    "Cinderheart": {
+      "lanes": [
+        "CRIT",
+        "CAST",
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Dragon's Bane",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Lava Shard and Cinderheart by 6% against Burning targets."
+        },
+        {
+          "talent": "Soothing Flames",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing done by Kindle and Cinderheart now additionally heals the target for 30% of the healing done over 3 seconds."
+        },
+        {
+          "talent": "Ember Charm",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Cinderheart and Kindle by -15%."
+        },
+        {
+          "talent": "Sunstrider Array",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "For 15 seconds, you generate 1 Ember every 3 sec and your Cinderheart generates double the amount of Heat with each cast."
+        },
+        {
+          "talent": "Sageweaving",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Consuming an Ember now reduces the cast time of your next Cinderheart or Kindle by -15% for 12 seconds, stacking 2 times."
+        },
+        {
+          "talent": "Touched by Fire",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Cinderheart, Ember Touch, and Kindle now gains an additional 30% of your bonus healing spell power."
+        }
+      ]
+    },
+    "Circle of Fire": {
+      "lanes": [
+        "DMG",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Creates a circle of fire at the target location for 10 seconds, dealing 223 + 31% fire SP Fire damage and incapacitating all enemies inside for 6 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 8
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Hot Headed",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            },
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Circle of Fire by -30 sec and increases its disorient duration by 1 sec. \n\nEnemies disoriented by Circle of Fire cannot receive any healing."
+        }
+      ]
+    },
+    "Cleansing Flames": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 10 Heat Each Tick\nSpread cleansing flames on 5 allies and enemies in front of you, damaging or healing for 87 + 44.4% SP over 3 seconds.",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 5,
+        "y": 1
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Unfathomably Hot!",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Each tick of Cleansing Flames now generates 5 additional Heat."
+        },
+        {
+          "talent": "Concentrated Fire",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the damage and healing of Cleansing Flames by 20%."
+        }
+      ]
+    },
+    "Critical Pressure": {
+      "lanes": [
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Intellect and critical strike chance by 6%.",
+      "baseTree": "Draconic",
+      "basePosition": {
+        "x": 6,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Death From Above": {
+      "lanes": [
+        "DMG",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Root enemies in a 40 yd line for 3 seconds and then soar forward in a blaze of glory, dealing 776 + 100% fire SP Fire damage every 1 sec to enemies beneath you for 10 seconds.",
+      "baseTree": "Draconic",
+      "basePosition": {
+        "x": 4,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Destroyer's Maw": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 30 Heat\nUnleash a vicious draconic maw on an enemy, dealing 103 + 100% fire SP Fire damage that cannot be resisted.",
+      "baseTree": "Draconic",
+      "basePosition": {
+        "x": 7,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Mad Aspect's Scepter",
+          "tree": "Draconic",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Destroyer's Maw by 40%."
+        },
+        {
+          "talent": "Flames of the Aspects",
+          "tree": "Draconic",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "HASTE",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Destroyer's Maw now grants 2 stacks of Flamecasting.FlamecastingIncreases your spell haste by 5% for 15 seconds. Stacks 5 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Legacy of Deathwing",
+          "tree": "Draconic",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 40 Passive\nConsuming Embers now has a 30% chance to reset the cooldown of Destroyer's Maw and Firefall and grant you Legacy of Deathwing.Legacy of DeathwingYour next Destroyer's Maw or Firefall within 10 seconds is instant cast and free of cost."
+        },
+        {
+          "talent": "Blackflight Resurgence",
+          "tree": "Draconic",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nLegacy of Deathwing now also increases the damage of your next Destroyer's Maw or Firefall by 25%."
+        }
+      ]
+    },
+    "Draconic Aspect": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$8e",
+      "baseTree": "Draconic",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Earthwarder",
+          "tree": "Draconic",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Being struck by a melee attack while Draconic Aspect is active now has a 20% chance to make your next Flare Bolt within 8 seconds instant cast."
+        }
+      ]
+    },
+    "Draconic Invocation": {
+      "lanes": [
+        "CDR",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Black Magic",
+          "tree": "Draconic",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Generating Heat now reduces the cooldown of Draconic Invocation and Essence of Malygos by 3%. \n\nCan only occur once per sec."
+        },
+        {
+          "talent": "Invocation of Flames",
+          "tree": "Draconic",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Draconic Invocation now grants 5 stacks of Flamecasting.\n\nIn addition, allows Flamecasting to stack 5 additional times and increases its duration by 5 sec."
+        }
+      ]
+    },
+    "Dragon Leap": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Leap to a target location and come crashing down, dealing 29 + 30% fire SP Fire damage to up to 10 nearby enemies.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Heated",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Dragon Leap now generates 10 Heat."
+        },
+        {
+          "talent": "Blessing of the Firelands",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Each stack of Heat now increases the damage dealt by Dragon Leap by 6%."
+        },
+        {
+          "talent": "Ascender",
+          "tree": "Draconic",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Dragon Leap by -5 sec."
+        }
+      ]
+    },
+    "Dragon's Wrath": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Draconic Tempest",
+          "tree": "Draconic",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Dragon's Wrath now melts enemies, increasing their chance to be hit by spells by 3% for 10 seconds."
+        },
+        {
+          "talent": "Draconic Rage",
+          "tree": "Draconic",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Consuming Embers now has a 25% chance to trigger Dragon's Wrath on all enemies affected by Blaze."
+        },
+        {
+          "talent": "Wild Magic",
+          "tree": "Draconic",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Dragon's Wrath now has a 50% chance to become unstable, dealing 50 + 16.5% Intellect% additional damage as Magic damage, but burning 85 + 40% Intellect mana.\n\nBoth the damage dealt and mana burned scale with your Intellect."
+        },
+        {
+          "talent": "Aspect of Magic",
+          "tree": "Draconic",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 2.0,
+              "unit": "%"
+            },
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.93,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Damage dealt by Dragon's Wrath now increases your Intellect by 3% for 20 seconds, stacking 10 times.\n\nConsuming an Ember now increases your critical strike chance by 2% and your critical damage by 4% for 20 seconds, stacking 5 times."
+        }
+      ]
+    },
+    "Dragonscales": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "When you are stunned, damage taken is reduced by -20% for 3 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 8,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Echo of Nozdormu": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Aspect's Blessing",
+          "tree": "Draconic",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your next Echo of Nozdormu or Flames of Neltharion is guaranteed to critically strike and triggers Aspect of Time, casting an additional time for 30% of the damage dealt. Lasts 15 seconds.\n\nDamage dealt in this way can trigger up to 3 additional times."
+        },
+        {
+          "talent": "Aspect of Time",
+          "tree": "Draconic",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 20 Passive\nDamage dealt by Echo of Nozdormu and Flames of Neltharion now has a 33% chance to cast an additional time for 30% of the damage dealt.\n\nDamage dealt in this way can trigger this effect up to 3 additional times."
+        },
+        {
+          "talent": "Flames of Fate",
+          "tree": "Draconic",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Aspect's Blessing now affects 2 additional casts of Echo of Nozdormu, but its cooldown is doubled, and its mana cost is increased by 50%."
+        },
+        {
+          "talent": "Expediting Power",
+          "tree": "Draconic",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Echo of Nozdormu now reduces the cooldown of Aspect's Blessing by an additional 5%."
+        },
+        {
+          "talent": "Aspect of Eternity",
+          "tree": "Draconic",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 25.0,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Allows the periodic damage of Blaze to critically strike.\n\nIn addition, damage dealt by Echo of Nozdormu or Aspect of Time now has a 20% chance to guarantee your next Blaze within 8 seconds to critically strike and increase its critical damage by 100% and duration by 25%."
+        }
+      ]
+    },
+    "Ember": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "CAST",
+        "HEAL",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Shazzrah's Boon",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Consuming an Ember now regenerates 2% of your maximum mana."
+        },
+        {
+          "talent": "Superheated",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Consuming or generating an Ember now has a 10% chance to superheat you, increasing all damage and healing done by 10% for 6 sec."
+        },
+        {
+          "talent": "Alexstrasza's Gift",
+          "tree": "Draconic",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the damage and healing of your Ember spenders by 15%."
+        },
+        {
+          "talent": "Fire and Brimstone",
+          "tree": "Draconic",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Generating an Ember now increases the damage and healing of Ember spenders by 1% for 10 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Perpetual Burning",
+          "tree": "Draconic",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "The duration of Blaze is now increased by 1 sec for each Ember you have when you cast it."
+        },
+        {
+          "talent": "Aspect of Magic",
+          "tree": "Draconic",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 2.0,
+              "unit": "%"
+            },
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.93,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Damage dealt by Dragon's Wrath now increases your Intellect by 3% for 20 seconds, stacking 10 times.\n\nConsuming an Ember now increases your critical strike chance by 2% and your critical damage by 4% for 20 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Sunstrider Array",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "For 15 seconds, you generate 1 Ember every 3 sec and your Cinderheart generates double the amount of Heat with each cast."
+        },
+        {
+          "talent": "Lifebinder's Fire",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Generating an Ember now increases your healing done by 3% for 8 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Sageweaving",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Consuming an Ember now reduces the cast time of your next Cinderheart or Kindle by -15% for 12 seconds, stacking 2 times."
+        },
+        {
+          "talent": "Residual Power",
+          "tree": "Incineration",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -8.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.2,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Each active Ember now reduces the cast time of Explode by -8%."
+        },
+        {
+          "talent": "Arsonist",
+          "tree": "Incineration",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of your Ember spenders by 10%."
+        },
+        {
+          "talent": "Scorched",
+          "tree": "Incineration",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 20 Passive\nDirect critical strikes with Ember spenders now Scorch the target, Burning them for an additional 30% of the damage dealt over 3 seconds."
+        },
+        {
+          "talent": "Fired Up!",
+          "tree": "Incineration",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Ember spenders are now instant and have a 30% chance to refund their cost and increases your chance to critically strike by 20% for 15 seconds."
+        },
+        {
+          "talent": "Pyromaniac",
+          "tree": "Incineration",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Ember spenders by 5%."
+        }
+      ]
+    },
+    "Ember Touch": {
+      "lanes": [
+        "STATS",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Consumes 1 Ember\nWarm an ally with everliving flames, healing them for 83 + 45% SP + 100% Spirit, additonally scaling with your Spirit.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Living Flame",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Ember Touch by 10%."
+        },
+        {
+          "talent": "Touched by Fire",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Cinderheart, Ember Touch, and Kindle now gains an additional 30% of your bonus healing spell power."
+        },
+        {
+          "talent": "Cauterizing Wounds",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "HASTE",
+            "HEAL",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Healing done by Ember Touch now grants you Flamecasting.FlamecastingIncreases your spell haste by 5% for 15 seconds. Stacks 5 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Tender Touch",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Effective healing done by Ember Touch now heals up to 3 of the lowest health allies near your target for an additional 30% of the amount healed."
+        },
+        {
+          "talent": "Fueling the Fire",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "STATS",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Using Ember Touch on your Roaring Pyre or Phoenix will cause them to erupt in flames, healing 12 allies within 30 yds for 232 + 100% Spirit, additionally scaling with Spirit.\n\nAllied Pyromancers can also fuel the fire with your Roaring Pyre and Phoenix."
+        }
+      ]
+    },
+    "Emberheart": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$86",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Embers": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Draconic Invocation",
+          "tree": "Draconic",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Invoke all of the Dragon Aspects, instantly generating 5 Embers."
+        },
+        {
+          "talent": "Legacy of Deathwing",
+          "tree": "Draconic",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 40 Passive\nConsuming Embers now has a 30% chance to reset the cooldown of Destroyer's Maw and Firefall and grant you Legacy of Deathwing.Legacy of DeathwingYour next Destroyer's Maw or Firefall within 10 seconds is instant cast and free of cost."
+        },
+        {
+          "talent": "Draconic Rage",
+          "tree": "Draconic",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Consuming Embers now has a 25% chance to trigger Dragon's Wrath on all enemies affected by Blaze."
+        },
+        {
+          "talent": "Rapid Incineration",
+          "tree": "Incineration",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Consuming Embers now reduces the cooldown of Lava Shard and Pillar of Flame by 10%."
+        }
+      ]
+    },
+    "Eruption": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HASTE",
+        "SPEED",
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Obliteration",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "HASTE",
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Eruption now also increases spell haste and movement speed by 20% for 10 seconds."
+        },
+        {
+          "talent": "Blackrock Mountaineer",
+          "tree": "Draconic",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Eruption by -30 sec."
+        },
+        {
+          "talent": "Molten Fury",
+          "tree": "Draconic",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            },
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.75,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the damage and healing provided by Eruption by 15%, but reduces its duration by -50%."
+        },
+        {
+          "talent": "Flames of the Firelord",
+          "tree": "Incineration",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your periodic damage dealt now has a 5% chance to grant you Eruption for 5 sec."
+        }
+      ]
+    },
+    "Essence of Malygos": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Imbue an ally with the essence of Malygos, restoring 4% of their maximum mana every 1 sec for 6 seconds.\n\nIf used on yourself this effect is doubled.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Purifying Flames",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Essence of Malygos by 3 sec."
+        },
+        {
+          "talent": "Binding Flames",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "When you use Essence of Malygos on an ally other than yourself, you now instantly regenerate 25% of your missing mana."
+        },
+        {
+          "talent": "Black Magic",
+          "tree": "Draconic",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Generating Heat now reduces the cooldown of Draconic Invocation and Essence of Malygos by 3%. \n\nCan only occur once per sec."
+        }
+      ]
+    },
+    "Explode": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CAST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Echo of Nozdormu",
+          "tree": "Draconic",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Dragon Leap",
+            "Dragon's Edge"
+          ],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Transforms your Explode into Echo of Nozdormu.Echo of NozdormuObliterate an enemy, dealing 120 + 105% SP Chromatic Damage and reducing all spell and ability cooldowns by 5%."
+        },
+        {
+          "talent": "Combustion",
+          "tree": "Incineration",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Explode is now increased by 15% for each of your Pyromancer periodic effects on the target."
+        },
+        {
+          "talent": "Residual Power",
+          "tree": "Incineration",
+          "position": {
+            "x": 3,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -8.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.2,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Each active Ember now reduces the cast time of Explode by -8%."
+        },
+        {
+          "talent": "Flamespiller",
+          "tree": "Incineration",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Explode or Flames of Neltharion now extend the duration of Fired Up by 0.5 sec."
+        },
+        {
+          "talent": "Pyromantic Accelerants",
+          "tree": "Incineration",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Flames of Neltharion and Explode now deal 15% increased damage to Burning targets."
+        },
+        {
+          "talent": "Dark Iron Legacy",
+          "tree": "Incineration",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Targets affected by the disorient from Meteor take an additional 40% increased damage from the next Explode or Lava Shard."
+        },
+        {
+          "talent": "Pyroclastic Flow",
+          "tree": "Incineration",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.61,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Flare Bolt now increases the damage of subsequent Flare Bolts by 3% for 10 seconds, stacking 5 times.\n\nFlames of Neltharion and Explode now increase the damage of subsequent Explodes or Flames of Neltharion by 3% for 5 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Heat Wave",
+          "tree": "Incineration",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Flamecasting stacks now also increase the damage of Explode and Flames of Neltharion by 4% per stack."
+        }
+      ]
+    },
+    "Explodes": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Pyroclastic Flow",
+          "tree": "Incineration",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.61,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Flare Bolt now increases the damage of subsequent Flare Bolts by 3% for 10 seconds, stacking 5 times.\n\nFlames of Neltharion and Explode now increase the damage of subsequent Explodes or Flames of Neltharion by 3% for 5 seconds, stacking 5 times."
+        }
+      ]
+    },
+    "Fiery Faith": {
+      "lanes": [
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 40 Passive\nIncreases your spell critical strike rating by 15% of your Spirit.",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 10,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Fiery Passion": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, your spell haste is increased by 3%.",
+      "baseTree": "Incineration",
+      "basePosition": {
+        "x": 7,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Fire Safety": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Fire damage and healing by 4% and reduces your threat generated by -20%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Fired Up": {
+      "lanes": [
+        "CRIT",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Flamespiller",
+          "tree": "Incineration",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Explode or Flames of Neltharion now extend the duration of Fired Up by 0.5 sec."
+        },
+        {
+          "talent": "Roasted Alive",
+          "tree": "Incineration",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger Fired Up by 20%."
+        }
+      ]
+    },
+    "Firefall": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 10 Heat Per Target\nCall down streaks of fire upon an enemy and up to 8 enemies within 15 yds of them, dealing 79 + 31.24% fire SP Fire damage.",
+      "baseTree": "Draconic",
+      "basePosition": {
+        "x": 1,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Cinderstorm",
+          "tree": "Draconic",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.25,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Reduces all threat generated by Firefall by -25% and increases its critical strike chance by 10%."
+        },
+        {
+          "talent": "Legacy of Deathwing",
+          "tree": "Draconic",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 40 Passive\nConsuming Embers now has a 30% chance to reset the cooldown of Destroyer's Maw and Firefall and grant you Legacy of Deathwing.Legacy of DeathwingYour next Destroyer's Maw or Firefall within 10 seconds is instant cast and free of cost."
+        },
+        {
+          "talent": "Blackflight Resurgence",
+          "tree": "Draconic",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nLegacy of Deathwing now also increases the damage of your next Destroyer's Maw or Firefall by 25%."
+        }
+      ]
+    },
+    "Firestorm": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Create a fiery tornado at a location for 10 seconds.\n\nEnemies who enter its radius suffer 313 + 40% fire SP Fire damage and are knocked back slightly.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Flame Step": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Hasty Incantation",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the range of Flame Step by 10 yds."
+        }
+      ]
+    },
+    "Flamecasting": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "HASTE",
+        "HEAL",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Ignis Ultimatus",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Channel for 2 seconds, gathering a surge of fiery power before unleashing it in a 50 yd line, dealing 1094 + 100% fire SP Fire damage to enemies while also healing allies for 814 + 200% healing.\n\nIgnores invulnerabilities, immunities, and resistances.\n\nConsumes Flamecasting stacks to increase this spell's damage and healing by 15% per stack."
+        },
+        {
+          "talent": "Flames of the Aspects",
+          "tree": "Draconic",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "HASTE",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Destroyer's Maw now grants 2 stacks of Flamecasting.FlamecastingIncreases your spell haste by 5% for 15 seconds. Stacks 5 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Invocation of Flames",
+          "tree": "Draconic",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Draconic Invocation now grants 5 stacks of Flamecasting.\n\nIn addition, allows Flamecasting to stack 5 additional times and increases its duration by 5 sec."
+        },
+        {
+          "talent": "Cauterizing Wounds",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "HASTE",
+            "HEAL",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Healing done by Ember Touch now grants you Flamecasting.FlamecastingIncreases your spell haste by 5% for 15 seconds. Stacks 5 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Brilliance",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "HASTE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Flamecasting can now stack 2 additional times.FlamecastingIncreases your spell haste by 5% for 15 seconds. Stacks 5 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Veins of Fire",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "STATS",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Flamecasting now also grants 3% increased Spirit per stack."
+        },
+        {
+          "talent": "Wreath of Flames",
+          "tree": "Incineration",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "HASTE",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Periodic Fire damage now has a 10% chance to grant a stack of Flamecasting, or 2 stacks if they critically strike.FlamecastingIncreases your spell haste by 5% for 15 seconds. Stacks 5 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Sizzle",
+          "tree": "Incineration",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "When Flamecasting expires your active Pyromancer periodic effects flare up on all enemies, instantly striking them with Flare Bolts.Flare BoltGenerates 20 Heat\nInvoke flames upon an enemy, dealing 19 + 57.1% fire SP Fire damage."
+        },
+        {
+          "talent": "Flames of Focus",
+          "tree": "Incineration",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Adds 1 additional stack to Flamecasting and increases its duration by 5 sec."
+        },
+        {
+          "talent": "Heat Wave",
+          "tree": "Incineration",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Flamecasting stacks now also increase the damage of Explode and Flames of Neltharion by 4% per stack."
+        }
+      ]
+    },
+    "Flamer": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your spell haste by 8%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Flames of Neltharion": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Aspect's Blessing",
+          "tree": "Draconic",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your next Echo of Nozdormu or Flames of Neltharion is guaranteed to critically strike and triggers Aspect of Time, casting an additional time for 30% of the damage dealt. Lasts 15 seconds.\n\nDamage dealt in this way can trigger up to 3 additional times."
+        },
+        {
+          "talent": "Aspect of Time",
+          "tree": "Draconic",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 20 Passive\nDamage dealt by Echo of Nozdormu and Flames of Neltharion now has a 33% chance to cast an additional time for 30% of the damage dealt.\n\nDamage dealt in this way can trigger this effect up to 3 additional times."
+        },
+        {
+          "talent": "Flamespiller",
+          "tree": "Incineration",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Explode or Flames of Neltharion now extend the duration of Fired Up by 0.5 sec."
+        },
+        {
+          "talent": "Pyromantic Accelerants",
+          "tree": "Incineration",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Flames of Neltharion and Explode now deal 15% increased damage to Burning targets."
+        },
+        {
+          "talent": "Pyroclastic Flow",
+          "tree": "Incineration",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.61,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Flare Bolt now increases the damage of subsequent Flare Bolts by 3% for 10 seconds, stacking 5 times.\n\nFlames of Neltharion and Explode now increase the damage of subsequent Explodes or Flames of Neltharion by 3% for 5 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Heat Wave",
+          "tree": "Incineration",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Flamecasting stacks now also increase the damage of Explode and Flames of Neltharion by 4% per stack."
+        }
+      ]
+    },
+    "Flare Bolt": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Earthwarder",
+          "tree": "Draconic",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Being struck by a melee attack while Draconic Aspect is active now has a 20% chance to make your next Flare Bolt within 8 seconds instant cast."
+        },
+        {
+          "talent": "Soul of the Dragon",
+          "tree": "Draconic",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Flare Bolt now has a 15% chance to cast it again free of cost."
+        },
+        {
+          "talent": "Magnitude 10",
+          "tree": "Incineration",
+          "position": {
+            "x": 5,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Flare Bolt by 10%."
+        },
+        {
+          "talent": "Cataclysmic Power",
+          "tree": "Incineration",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 3,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 9.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.9,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Flare Bolt by 9% for each periodic effect you have on the target."
+        },
+        {
+          "talent": "Searing Power",
+          "tree": "Incineration",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell power scaling of Flare Bolt by 20%."
+        },
+        {
+          "talent": "Pyroclastic Flow",
+          "tree": "Incineration",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.61,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Flare Bolt now increases the damage of subsequent Flare Bolts by 3% for 10 seconds, stacking 5 times.\n\nFlames of Neltharion and Explode now increase the damage of subsequent Explodes or Flames of Neltharion by 3% for 5 seconds, stacking 5 times."
+        }
+      ]
+    },
+    "Flare Bolts": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sizzle",
+          "tree": "Incineration",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "When Flamecasting expires your active Pyromancer periodic effects flare up on all enemies, instantly striking them with Flare Bolts.Flare BoltGenerates 20 Heat\nInvoke flames upon an enemy, dealing 19 + 57.1% fire SP Fire damage."
+        },
+        {
+          "talent": "Pyroclastic Flow",
+          "tree": "Incineration",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.61,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Flare Bolt now increases the damage of subsequent Flare Bolts by 3% for 10 seconds, stacking 5 times.\n\nFlames of Neltharion and Explode now increase the damage of subsequent Explodes or Flames of Neltharion by 3% for 5 seconds, stacking 5 times."
+        }
+      ]
+    },
+    "From The Ashes": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your healing done to allies below 35% health by 25%.",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 3,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Gaze of Ysera": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Set Ysera's gaze upon an enemy, putting them to sleep for 40 seconds (8 sec vs players).\n\nDirect damage dealt may interrupt this effect.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Ysera's Blessing",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CAST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Reduces the cast time of Gaze of Ysera by -0.5 sec and causes it to have a -10% reduced chance to break from damage."
+        },
+        {
+          "talent": "Al Dente",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Targets affected by Gaze of Ysera now take 15% increased Fire damage."
+        }
+      ]
+    },
+    "Grace of Alexstrasza": {
+      "lanes": [
+        "AOE",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Burns off all movement impairing effects from all allies in a 20 yd radius around you and grants them stun, slow and root immunity for 4 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Heat": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "HASTE",
+        "HEAL",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Flamecasting",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "HASTE",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Generating Heat now has a 25% chance to grant Flamecasting.FlamecastingIncreases your spell haste by 5% for 15 seconds. Stacks 5 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Heated",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Dragon Leap now generates 10 Heat."
+        },
+        {
+          "talent": "Blessing of the Firelands",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Each stack of Heat now increases the damage dealt by Dragon Leap by 6%."
+        },
+        {
+          "talent": "Dragon's Edge",
+          "tree": "Draconic",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 1,
+          "specialRequirement": [
+            "Dragon Leap"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nDirect critical strikes now generate an additional 20 Heat."
+        },
+        {
+          "talent": "Black Magic",
+          "tree": "Draconic",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Generating Heat now reduces the cooldown of Draconic Invocation and Essence of Malygos by 3%. \n\nCan only occur once per sec."
+        },
+        {
+          "talent": "Unfathomably Hot!",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Each tick of Cleansing Flames now generates 5 additional Heat."
+        },
+        {
+          "talent": "Sunstrider Array",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "For 15 seconds, you generate 1 Ember every 3 sec and your Cinderheart generates double the amount of Heat with each cast."
+        },
+        {
+          "talent": "Invigoration",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing done by your Phoenix now generates you 5 Heat."
+        },
+        {
+          "talent": "Burning Passion",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nEffective healing critical strikes now generate 10 Heat."
+        },
+        {
+          "talent": "To Ashes",
+          "tree": "Incineration",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Damaging critical strikes now generate 10 Heat and restore 3% of your base mana."
+        }
+      ]
+    },
+    "Ignis Ultimatus": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Ignis Fatalis",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Ignis Ultimatus is now guaranteed to critically strike, has 20% more critical damage, and channels 0.5 sec faster."
+        }
+      ]
+    },
+    "Ignite": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 10 Heat Per Tick\nBurn an enemy, inflicting 119 Fire damage over 21 seconds. If Ignite is dispelled it will cause 437 + 150% fire SP Fire damage to the dispeller.\n\nCastable while moving.",
+      "baseTree": "Incineration",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Embrace the Fire",
+          "tree": "Incineration",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Blaze and Ignite by 20%."
+        },
+        {
+          "talent": "Explosive",
+          "tree": "Incineration",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the tick rate of Blaze and Ignite by -20%."
+        },
+        {
+          "talent": "Stoke",
+          "tree": "Incineration",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Ignite and Infernus now extend their own duration on the target by 3 sec, up to a maximum of 12 sec."
+        }
+      ]
+    },
+    "Incinerator": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 40 Passive\nIncreases your spell penetration by 30, scaling with your level.",
+      "baseTree": "Incineration",
+      "basePosition": {
+        "x": 10,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Inferno": {
+      "lanes": [
+        "CRIT",
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Direct healing critical strikes have a 50% chance to create an Inferno around the target. Can only occur once every 5 sec.InfernoEngulf an ally in cleansing flames for 5 seconds, healing them for 161 and party and raid members within 40 yds of them for 91 every 1 sec.\n\nAt the end of the duration, party and raid members are healed for 383 to 403.",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 6,
+        "y": 8
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Scepter of Fire",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Inferno by 5 sec, causing its end of duration explosion of healing to trigger every 5 sec instead."
+        },
+        {
+          "talent": "Blessing of the Inferno",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            },
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Reduces the healing done by Inferno by -20%, but increases its chance to trigger by 50%."
+        }
+      ]
+    },
+    "Inferno Barrier": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 30 Heat\nShield an ally with molten lava, absorbing 84 + 55% fire SP damage. While active, attackers take 4 + 10% Spirit Fire damage each time they deal damage to them. Lasts 30 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 0,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Bright Flames",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.6,
+          "lanes": [
+            "DMG",
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Increases the amount absorbed by Inferno Barrier by 20% and the damage it deals by 30%."
+        },
+        {
+          "talent": "Flame Bonding",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Level 20 Passive\nYour Inferno Barrier now triggers a -15 sec reduced cooldown when used on an ally other than yourself."
+        }
+      ]
+    },
+    "Infernus": {
+      "lanes": [
+        "CRIT",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Stoke",
+          "tree": "Incineration",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Ignite and Infernus now extend their own duration on the target by 3 sec, up to a maximum of 12 sec."
+        }
+      ]
+    },
+    "Inner Flame": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases critical strike chance of all party and raid members by 3%.\n\nDoes not stack with similar effects.",
+      "baseTree": "Draconic",
+      "basePosition": {
+        "x": 8,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Kindle": {
+      "lanes": [
+        "CAST",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Soothing Flames",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing done by Kindle and Cinderheart now additionally heals the target for 30% of the healing done over 3 seconds."
+        },
+        {
+          "talent": "Ember Charm",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Cinderheart and Kindle by -15%."
+        },
+        {
+          "talent": "Rekindle",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Healing done by Kindle now increases your healing done on the target 5% for 20 seconds, stacking 2 times."
+        },
+        {
+          "talent": "Sageweaving",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Consuming an Ember now reduces the cast time of your next Cinderheart or Kindle by -15% for 12 seconds, stacking 2 times."
+        },
+        {
+          "talent": "Touched by Fire",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Cinderheart, Ember Touch, and Kindle now gains an additional 30% of your bonus healing spell power."
+        }
+      ]
+    },
+    "Lava Shard": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Dragon's Bane",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Lava Shard and Cinderheart by 6% against Burning targets."
+        },
+        {
+          "talent": "Overwhelming Flames",
+          "tree": "Draconic",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Lava Shard now spreads Blaze to up to 1 additional enemy within 8 yds of the primary target."
+        },
+        {
+          "talent": "Searing Flames",
+          "tree": "Draconic",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the spell bonus scaling of Lava Shard by 30%."
+        },
+        {
+          "talent": "Infernus",
+          "tree": "Incineration",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 1,
+          "specialRequirement": [
+            "Meteor"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Lava Shard now applies Infernus, causing enemies to Burn, dealing an additional 1122 + 72% SP Fire damage over 18 seconds."
+        },
+        {
+          "talent": "Molten Storm",
+          "tree": "Incineration",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance and damage of Lava Shard by 10%."
+        },
+        {
+          "talent": "Rapid Incineration",
+          "tree": "Incineration",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Consuming Embers now reduces the cooldown of Lava Shard and Pillar of Flame by 10%."
+        },
+        {
+          "talent": "Dark Iron Legacy",
+          "tree": "Incineration",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Targets affected by the disorient from Meteor take an additional 40% increased damage from the next Explode or Lava Shard."
+        },
+        {
+          "talent": "Destroyer's Legacy",
+          "tree": "Incineration",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Lava Shard on enemies affected by Blaze now blasts nearby enemies for 20% of the damage dealt as Fire damage."
+        }
+      ]
+    },
+    "Lava Shards": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Legacy of Ragnaros",
+          "tree": "Incineration",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Pyroclasm now causes your next 3 Lava Shards within 12 seconds to trigger no cooldown and be free of cost."
+        }
+      ]
+    },
+    "Lava-Drenched": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the chance for your spells to be dispelled by -30%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 0,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Legacy of Deathwing": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Blackflight Resurgence",
+          "tree": "Draconic",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nLegacy of Deathwing now also increases the damage of your next Destroyer's Maw or Firefall by 25%."
+        }
+      ]
+    },
+    "Lighting the Fuse": {
+      "lanes": [
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 30 Passive\nAllows your periodic effects to critically strike and increases your spell critical strike chance by 15% of your Intellect.",
+      "baseTree": "Incineration",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Magmatic": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$8a",
+      "baseTree": "Incineration",
+      "basePosition": {
+        "x": 2,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Melting Point": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Critical strikes with Fire spells now increases the chance for the enemy to by critically hit with spells by 3% for 12 seconds.",
+      "baseTree": "Incineration",
+      "basePosition": {
+        "x": 8,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Meteor": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 50 Heat\nCall down a meteor in an 8 yd area, dealing 122 + 125% fire SP Fire damage to 8 enemies and disorienting them for 4 seconds. Direct damage dealt will break the effect.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Dark Iron Legacy",
+          "tree": "Incineration",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Targets affected by the disorient from Meteor take an additional 40% increased damage from the next Explode or Lava Shard."
+        }
+      ]
+    },
+    "Neltharion's Resolve": {
+      "lanes": [
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Place Neltharion's resolve on all party members, warding them against fear. The next fear effect used against the target will fail, using up the ward. Lasts 1 minute.",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 2,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Phoenix": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "HEAL",
+        "SHIELD",
+        "AOE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Phoenix Egg",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Spirit of the Phoenix",
+            "Ember Touch"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Summon a Phoenix for 1 minute at the target location that heals nearby party members for 117 + 15% healing every 5 sec.\n\nYou may only have 1 Phoenix active at a time."
+        },
+        {
+          "talent": "Phoenix Dive",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Command your Phoenix to swoop to the target ally and shield allies in their path with fire, absorbing 175 + 50% SP + 100% Spirit damage for 30 seconds, scaling with your Spirit."
+        },
+        {
+          "talent": "Kael's Command",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Generates 50 Heat\nCommand your Phoenix to go dormant for 10 seconds. \n\nWhile dormant, it radiates healing to nearby allies for 611 + 100% healing every 2 sec."
+        },
+        {
+          "talent": "Lucifron's Rage",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Effective healing done by your Phoenix now causes allies to deal additional Fire damage with all attacks for 6 seconds."
+        },
+        {
+          "talent": "Offering of Executus",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "When your Phoenix dies or expires, it now heals all allies within 30 yds equal to its maximum health."
+        },
+        {
+          "talent": "Invigoration",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing done by your Phoenix now generates you 5 Heat."
+        },
+        {
+          "talent": "Fueling the Fire",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "STATS",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Using Ember Touch on your Roaring Pyre or Phoenix will cause them to erupt in flames, healing 12 allies within 30 yds for 232 + 100% Spirit, additionally scaling with Spirit.\n\nAllied Pyromancers can also fuel the fire with your Roaring Pyre and Phoenix."
+        }
+      ]
+    },
+    "Phoenix Egg": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Burning Crescendo",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the tick rate of your Phoenix Egg by -2 sec."
+        }
+      ]
+    },
+    "Pillar of Flame": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 20 Heat Per Target\nCreate a pillar of lava beneath an enemy, dealing 36 + 31.24% fire SP Fire damage.\n\nDeals an additional 92 + 34.36% fire SP Fire damage to enemies near the primary target.",
+      "baseTree": "Incineration",
+      "basePosition": {
+        "x": 2,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Rapid Incineration",
+          "tree": "Incineration",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Consuming Embers now reduces the cooldown of Lava Shard and Pillar of Flame by 10%."
+        }
+      ]
+    },
+    "Pyroclasm": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Legacy of Ragnaros",
+          "tree": "Incineration",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Pyroclasm now causes your next 3 Lava Shards within 12 seconds to trigger no cooldown and be free of cost."
+        }
+      ]
+    },
+    "Pyromancy": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical damage by 100%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Replenishment": {
+      "lanes": [
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Ashen Priest",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nYour critical heals now grant allies Replenishment.\n\nIn addition, 20% of your mana regeneration continues while in combat. ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+        }
+      ]
+    },
+    "Roaring Pyre": {
+      "lanes": [
+        "STATS",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Conjure a Roaring Pyre at the target location for 20 seconds. \n\nAllies within 30 yds of the bonfire are healed for 35 + 10% healing + 50% Spirit, scaling with your Spirit and healing spell power, every 2 sec and their Spirit is increased by 10%.",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 2,
+        "y": 8
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Fueling the Fire",
+          "tree": "Flameweaving",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "STATS",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Using Ember Touch on your Roaring Pyre or Phoenix will cause them to erupt in flames, healing 12 allies within 30 yds for 232 + 100% Spirit, additionally scaling with Spirit.\n\nAllied Pyromancers can also fuel the fire with your Roaring Pyre and Phoenix."
+        }
+      ]
+    },
+    "Scorch": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Scorched",
+          "tree": "Incineration",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 20 Passive\nDirect critical strikes with Ember spenders now Scorch the target, Burning them for an additional 30% of the damage dealt over 3 seconds."
+        }
+      ]
+    },
+    "Scorching Spirit": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Spirit by 20%.",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 5,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Seal": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Flaming Finesse",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Seal spells by 20%."
+        }
+      ]
+    },
+    "Searing Speed": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Dealing periodic damage or healing now has a 15% chance to grant you Searing Speed.Searing SpeedIncreases your movement speed by 50% for 2 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Shielded by Flames": {
+      "lanes": [
+        "CRIT",
+        "HEAL",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Healing critical strikes now apply an absorption shield to allies equal to 30% of the healing done for 8 seconds.",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 8,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Skin": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Magma Guardian",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Skin spells by 50%."
+        }
+      ]
+    },
+    "Spellburn": {
+      "lanes": [
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Constant Burning",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            },
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Spellburn by -4 sec and increases its duration by 1 sec."
+        }
+      ]
+    },
+    "Spirit of Fire": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the effectiveness of your absorption effects by 40%.",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 1,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Spirit of the Phoenix": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 10 Passive\nUpon taking damage that would otherwise kill you, you are instead transformed into the Spirit of the Phoenix for 15 seconds.\n\nWhile transformed, your spells have no mana cost and your Spirit is increased by 100%. At the end of the duration, you will be reborn. Can only occur once every 10 min.",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": []
+    },
+    "Sulfuron Harbinger": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$88",
+      "baseTree": "Incineration",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Timed Attacks": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your spell haste by 8%.",
+      "baseTree": "Draconic",
+      "basePosition": {
+        "x": 3,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Volcanic Shell": {
+      "lanes": [
+        "DMG",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 50 Heat\nConjure a shield of magma and fire around you, absorbing 500 + 200% fire SP damage. Lasts 10 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Warmth": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "You now radiate warmth to nearby allies, healing the lowest health nearby ally equal to 25% of your periodic damage dealt.",
+      "baseTree": "Flameweaving",
+      "basePosition": {
+        "x": 3,
+        "y": 6
+      },
+      "modifyingTalents": []
+    }
+  }
+}

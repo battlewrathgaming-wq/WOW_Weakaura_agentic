@@ -1,0 +1,41 @@
+{
+  "$id": "buff_uptime_aurabar.schema.json",
+  "opportunity_type": "buff_uptime",
+  "title": "Buff uptime (aurabar, countdown)",
+  "description": "A buff/debuff with a positive, finite durationMs - a countdown bar rather than a toggle icon.",
+  "region_type": "aurabar",
+  "trigger": "Aura",
+  "type": "object",
+  "required": [
+    "name",
+    "spell_id",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "spell_id": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 127.5
+    },
+    "height": {
+      "type": "number",
+      "default": 15
+    }
+  },
+  "verified": "aurabar default fields from RegionTypes/AuraBar.lua; aura2 trigger shape shared with buff_uptime_icon above."
+}

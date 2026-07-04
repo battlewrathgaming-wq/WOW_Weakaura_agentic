@@ -1,0 +1,6479 @@
+{
+  "class": "Runemaster",
+  "schemaVersion": 2,
+  "laneTaxonomy": {
+    "DMG": "Damage",
+    "STATS": "Primary/secondary stats",
+    "CRIT": "Crit chance/damage",
+    "CDR": "Cooldown",
+    "CAST": "Cast time",
+    "HASTE": "Haste",
+    "SPEED": "Movement speed",
+    "HEAL": "Healing",
+    "SHIELD": "Shield/absorb",
+    "MITIGATION": "Damage mitigation",
+    "RESOURCE": "Resource generation",
+    "COST": "Resource cost",
+    "DURATION": "Duration",
+    "AOE": "AoE / target count",
+    "CC": "Crowd control",
+    "ARMOR": "Armor",
+    "SUMMON": "Summon / pet",
+    "MISC": "Other"
+  },
+  "note": "Per-skill index: for each observed skill/ability, lists every talent that modifies it, where it sits in the tree, its parsed stat modification, and a mock value showing that modification applied to a normalized baseline of 10. Each modifying talent is tagged with one or more lanes from laneTaxonomy (DMG/CRIT/CDR/CAST/HASTE/SPEED/HEAL/SHIELD/MITIGATION/RESOURCE/COST/DURATION/AOE/CC/ARMOR/SUMMON/MISC), plus cross-cutting behavior flags (PROC, STACK) that describe how the effect triggers rather than what stat it touches. A handful of nodes have unresolved \"$xx\" template descriptions in the source export - these are flagged rather than guessed at.",
+  "mockBaseline": 10,
+  "skills": {
+    "Burning": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Fracture",
+          "tree": "Riftblade",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Strike an enemy with frozen fury, dealing 1021 + 100% AP Frost damage and Burning 25 + 35% AP of the target's mana.\n\nDamage dealt is guaranteed to critically strike against frozen targets."
+        }
+      ]
+    },
+    "Concentrated Magic": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Spirit by 10% and reduces spell pushback suffered from damaging attacks by 70%.",
+      "baseTree": "Arcane",
+      "basePosition": {
+        "x": 7,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Cryobrand": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Cryomagi",
+          "tree": "Arcane",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the range of Cryobrand by 10 yds."
+        }
+      ]
+    },
+    "Earthen Fists": {
+      "lanes": [
+        "CRIT",
+        "HASTE",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Fists of Power",
+          "tree": "Runic",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.33,
+          "lanes": [
+            "HASTE",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Engrave your fists for 15 seconds, causing auto attacks to grant Earthen Fists for 10 seconds, increasing melee haste by 3% and the chance to trigger Weapon Engraving: Earth by 10%, stacking 5 times."
+        },
+        {
+          "talent": "Stone Savant",
+          "tree": "Runic",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "While Earthen Fists is active, critical strikes with Weapon Engraving: Earth now causes you to strike twice with your next auto attack."
+        }
+      ]
+    },
+    "Echo Rune": {
+      "lanes": [
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Mark your current location with an echo rune for 20 seconds.\n\nAt the end of the duration or upon reactivation, warp back to the marked location and heal for 880 + 150% AP health.",
+      "baseTree": "Riftblade",
+      "basePosition": {
+        "x": 1,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Elemental Acuity": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases all Fire, Frost, and Nature damage dealt by 10%.",
+      "baseTree": "Riftblade",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Elemental Assassin": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your spell damage by 20% of your Agility, your spell critical strike chance by 10% of your Agility, and your hit rating by 5% of your Agility.",
+      "baseTree": "Riftblade",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Elemental Burst": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "CAST",
+        "SPEED",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Frost Glyph",
+          "tree": "Arcane",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 10,
+          "specialRequirement": [
+            "Glacial Rune"
+          ],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "DMG",
+            "SPEED",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nUsing Elemental Burst and Primordial Blast now grants you Frost Glyph. \n\nFrost GlyphUnleash: Deals 437 Frost Damage and slows movement speed by -30% for 4 seconds."
+        },
+        {
+          "talent": "Flame Glyph",
+          "tree": "Arcane",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Using Elemental Burst or Primordial Blast while Frost Glyph is active now grants you a Flame Glyph.Flame GlyphUnleash: Deals 250 + 65% fire SP Fire Damage and an additional 750 + 30% SP Fire Damage over 6 seconds."
+        },
+        {
+          "talent": "Arcane Glyph",
+          "tree": "Arcane",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Using Elemental Burst or Primordial Blast while Flame Glyph is active now grants you Arcane Glyph.Arcane GlyphUnleash: Deals 276 + 18% arcane SP Arcane Damage to up to 0 enemies near the primary target."
+        },
+        {
+          "talent": "Expert Elementalist",
+          "tree": "Arcane",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.5,
+              "unit": "sec"
+            },
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Reduces the cast time of Elemental Burst and Glyphic Ruin by 0.5 sec and increases your chance to hit by 3%."
+        },
+        {
+          "talent": "Cold Elements",
+          "tree": "Arcane",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt with Elemental Burst and Primordial Blast now has a 20% chance to reset the cooldown of Frigid Blast and make its next use within 10 seconds instant cast."
+        },
+        {
+          "talent": "Advanced Magi",
+          "tree": "Arcane",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell power scaling of Elemental Burst by 25%."
+        },
+        {
+          "talent": "Unleashed Power",
+          "tree": "Arcane",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.1,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nIncreases the spell power scaling of your Unleashed Glyphs by 10%.\n\nIn addition, dealing damage with Elemental Burst now increases the target's spell damage taken by 10% for 12 seconds."
+        },
+        {
+          "talent": "Harnessing Leylines",
+          "tree": "Arcane",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "You now gain a stack of Harnessed Leylines every 1 sec for until cancelled. After the duration, the stacks reset.\nHarnessed Leylines (Proc)Increases the damage of your Runeblade and Elemental Burst by 3%, stacking up to 10 times.\n\nAdditional applications do not refresh the effect."
+        },
+        {
+          "talent": "Burned Etching",
+          "tree": "Arcane",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Weapon Engraving: Fire is active, your Elemental Burst now deals 10% increased damage as Fire damage and your chance to trigger Weapon Engraving: Fire is increased by 5%."
+        },
+        {
+          "talent": "Decoder",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Elemental Burst and Runeblade now have a 20% chance to instantly trigger your Weapon Engravings."
+        }
+      ]
+    },
+    "Elemental Carvings": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$de",
+      "baseTree": "Runic",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Elemental Strikes": {
+      "lanes": [
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical strike chance with Fire, Frost, and Nature spells by 3% and your expertise by 4.",
+      "baseTree": "Runic",
+      "basePosition": {
+        "x": 7,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Etching of the Dextrous": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Ancient Teachings",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Etching of the Dextrous by 20%."
+        }
+      ]
+    },
+    "Eye of the Beholder": {
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Kirin Tor Agent",
+          "tree": "Arcane",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Eye of the Beholder now rapidly reduces the coldown of your Rune spells and Phase Out for the duration."
+        }
+      ]
+    },
+    "Fist of the Ancients": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Ancient Warrior",
+          "tree": "Runic",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Fist of the Ancients by -2 sec whenever you use Runeblade or Primordial Blast."
+        },
+        {
+          "talent": "Uncovered Engravings",
+          "tree": "Runic",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Using Fist of the Ancients now increases your chance to trigger Weapon Engravings by 20% for 5 sec."
+        },
+        {
+          "talent": "Symbols of Power",
+          "tree": "Runic",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Fist of the Ancients while you have Weapon Engraving: Fire active by 30%."
+        },
+        {
+          "talent": "Runic Tempest",
+          "tree": "Runic",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Harness the power of your runic tattoos, resetting the cooldown of Fist of the Ancients and allowing the use of abilities that require Runeshroud and making them able to be cast while moving for 8 seconds."
+        }
+      ]
+    },
+    "Flame Glyph": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Arcane Glyph",
+          "tree": "Arcane",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Using Elemental Burst or Primordial Blast while Flame Glyph is active now grants you Arcane Glyph.Arcane GlyphUnleash: Deals 276 + 18% arcane SP Arcane Damage to up to 0 enemies near the primary target."
+        }
+      ]
+    },
+    "Focusing Crystals": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Magic Damage dealt by 6% and allows 60% of your mana regeneration to continue while in combat.",
+      "baseTree": "Arcane",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Frigid Blast": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "CAST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Frigid Elements",
+          "tree": "Arcane",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG",
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Increases the spell power scaling of Frigid Blast by 50%, but the cast time is increased by 1 sec.\n\nAdditionally, Frigid Fusion now accumulates 10% more damage on the target."
+        },
+        {
+          "talent": "Cold Elements",
+          "tree": "Arcane",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt with Elemental Burst and Primordial Blast now has a 20% chance to reset the cooldown of Frigid Blast and make its next use within 10 seconds instant cast."
+        }
+      ]
+    },
+    "Frigid Fusion": {
+      "lanes": [
+        "DMG",
+        "CAST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Frigid Blast",
+          "tree": "Arcane",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Blast an enemy with frigid runic magic, dealing cond(gt(SPFR, SPA), 40+0+SPFR*0.65, 40+0+SPA*0.65) Frost damage and applying Frigid Fusion. Frigid Fusion (Aura)Accumulate 20% of your damage dealt to the target over 6 seconds.\n\nAfter the duration, deal it as Frost Damage to the target."
+        },
+        {
+          "talent": "Frigid Elements",
+          "tree": "Arcane",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG",
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Increases the spell power scaling of Frigid Blast by 50%, but the cast time is increased by 1 sec.\n\nAdditionally, Frigid Fusion now accumulates 10% more damage on the target."
+        },
+        {
+          "talent": "Primordial Power",
+          "tree": "Arcane",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Frigid Fusion by 2 sec."
+        }
+      ]
+    },
+    "Frost Glyph": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Flame Glyph",
+          "tree": "Arcane",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Using Elemental Burst or Primordial Blast while Frost Glyph is active now grants you a Flame Glyph.Flame GlyphUnleash: Deals 250 + 65% fire SP Fire Damage and an additional 750 + 30% SP Fire Damage over 6 seconds."
+        }
+      ]
+    },
+    "Frozen": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Glyphic Destruction",
+          "tree": "Arcane",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Glyphic Ruin by 100% against Frozen targets."
+        },
+        {
+          "talent": "Permafrost Rune",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Requires Frozen Target\nInscribe a rune of permafrost and unleash it on an enemy, incapacitating them for 40 seconds (8 sec vs players). Damage taken will end the effect. \n\nAffected enemies are considered Frozen.\n\nUsing this while in Runeshroud causes it to incur an -80% reduced cooldown."
+        },
+        {
+          "talent": "Melting Runes",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Weapon Engraving: Fire now deals 25% increased damage against Frozen enemies."
+        },
+        {
+          "talent": "Frost Spectre",
+          "tree": "Riftblade",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance and critical damage of Smolder and Primordial Blast against Frozen targets by 50%."
+        },
+        {
+          "talent": "Leyfrost",
+          "tree": "Riftblade",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Hoarfrost now cause your next spell within 15 seconds to cast as if the target were Frozen."
+        }
+      ]
+    },
+    "Glacial Rune": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Place a rune at the target location that explodes after 1 sec with frigid magic, dealing 128 + 30% SP Frost damage to enemies inside and freezing them in place for 40 seconds (8 sec vs players).\n\nDamage caused may interrupt the effect.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Frostburn",
+          "tree": "Riftblade",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Removes the cast time of Glacial Rune and Permafrost Rune."
+        }
+      ]
+    },
+    "Glyph": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Glyphic Ruin",
+          "tree": "Arcane",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Frost Glyph",
+            "Glacial Rune"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Unleash your active Glyph effect on an enemy and deal 82 + 100% SP Elemental Damage."
+        },
+        {
+          "talent": "Primordial Salvos",
+          "tree": "Arcane",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Unleashing a Glyph now deals an additional 115 + 6% SP damage of the same magic school to all enemies within 8 yds of the target."
+        },
+        {
+          "talent": "Thaumaturgy",
+          "tree": "Arcane",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Blast an enemy for 67 + 41% arcane SP + 10% AP Arcane damage and unleash your active Glyph effect."
+        },
+        {
+          "talent": "Scroll of Magic",
+          "tree": "Arcane",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Unleashing a Glyph increases the damage of your Unleashed Glyphs by 5% for 15 seconds, stacking 3 times."
+        }
+      ]
+    },
+    "Glyphic Overload": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$da",
+      "baseTree": "Arcane",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Arcane Student",
+          "tree": "Arcane",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "While Glyphic Overload is active, your Glyphic Ruin is guaranteed to critically strike."
+        },
+        {
+          "talent": "Glyph God",
+          "tree": "Arcane",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Glyphic Overload by -15 sec."
+        }
+      ]
+    },
+    "Glyphic Ruin": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CAST",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Expert Elementalist",
+          "tree": "Arcane",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.5,
+              "unit": "sec"
+            },
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Reduces the cast time of Elemental Burst and Glyphic Ruin by 0.5 sec and increases your chance to hit by 3%."
+        },
+        {
+          "talent": "Unleashed Tattoos",
+          "tree": "Arcane",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "DMG",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nWhile Runic Tattoos: Fire is active, your Glyphic Ruin now has 30% increased critical damage.\n\nWhile Runic Tattoos: Water is active, the cost of your Glyphic Ruin is now reduced by -50%."
+        },
+        {
+          "talent": "Glyphic Destruction",
+          "tree": "Arcane",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Glyphic Ruin by 100% against Frozen targets."
+        },
+        {
+          "talent": "Arcane Student",
+          "tree": "Arcane",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "While Glyphic Overload is active, your Glyphic Ruin is guaranteed to critically strike."
+        },
+        {
+          "talent": "Eye of the Beholder",
+          "tree": "Arcane",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.62,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases your spell critical strike chance by 25% for 15 seconds.\n\nWhile active, the damage of your Glyphic Ruin and Primordial Blast is increased by 25%."
+        }
+      ]
+    },
+    "Glyphs of Power": {
+      "lanes": [
+        "DMG",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your direct damage dealt has a 10% chance to restore 3% of your maximum mana.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Graceful": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your haste by 10%.",
+      "baseTree": "Runic",
+      "basePosition": {
+        "x": 1,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Granite Resolve": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Become hard as stone, reducing your Physical damage taken by -30% for 8 seconds.\n\nUsable while stunned.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Primal Rune",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Granite Resolve now reduces damage taken by an additional -10%."
+        }
+      ]
+    },
+    "Guarding Rune": {
+      "lanes": [
+        "DMG",
+        "AOE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Inscribe a defensive rune beneath you in a 10 yd radius, summoning a barrier that causes allies within the radius to take -40% reduced Magic damage. Lasts 15 seconds.",
+      "baseTree": "Runic",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Harnessed Leylines": {
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Harnessing Leylines",
+          "tree": "Arcane",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "You now gain a stack of Harnessed Leylines every 1 sec for until cancelled. After the duration, the stacks reset.\nHarnessed Leylines (Proc)Increases the damage of your Runeblade and Elemental Burst by 3%, stacking up to 10 times.\n\nAdditional applications do not refresh the effect."
+        }
+      ]
+    },
+    "Hoarfrost": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Slash in a frozen fury in front of you, dealing 7 + 33% AP Frost Damage to up to 3 nearby enemies, plus an additional 7 + 33% AP every 3 sec for 21 seconds.\n\nEnemies hit by the initial strike are frozen in place for 3 seconds.",
+      "baseTree": "Riftblade",
+      "basePosition": {
+        "x": 7,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Runic Invocation",
+          "tree": "Riftblade",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Hoarfrost by 10% and allows its periodic damage to critically strike."
+        },
+        {
+          "talent": "Leyfrost",
+          "tree": "Riftblade",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Hoarfrost now cause your next spell within 15 seconds to cast as if the target were Frozen."
+        },
+        {
+          "talent": "Elements, Heed My Call!",
+          "tree": "Riftblade",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of Smolder, Hurricane, and Hoarfrost by 15%."
+        }
+      ]
+    },
+    "Hurricane": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Strike an enemy 5 times over 2 seconds, each strike dealing 125% Weapon Damage as Nature Damage, scaling with level.\n\nWhile striking your target, your chance to dodge is increased by 100%, but you cannot use any spells or abilities.",
+      "baseTree": "Riftblade",
+      "basePosition": {
+        "x": 1,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Cinderstorm Runes",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Hurricane and Smolder now deal 50% more damage against enemies below 20% maximum health."
+        },
+        {
+          "talent": "Wind Runes",
+          "tree": "Riftblade",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Hurricane by 1 sec, allowing it to strike 2 additional times."
+        },
+        {
+          "talent": "Water Runes",
+          "tree": "Riftblade",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Each strike from Hurricane is now guaranteed to apply Weapon Engraving: Water or Weapon Engraving: Ice to your target while they are active."
+        },
+        {
+          "talent": "Elements, Heed My Call!",
+          "tree": "Riftblade",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of Smolder, Hurricane, and Hoarfrost by 15%."
+        },
+        {
+          "talent": "Windbreaker",
+          "tree": "Riftblade",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "While Weapon Engraving: Air is active, the damage of each strike of your Hurricane is increased by 30%."
+        },
+        {
+          "talent": "Magebreaker",
+          "tree": "Riftblade",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Dealing damage with Hurricane now also reduces the targets Magic damage dealt by -15% for 8 seconds and dispels 1 harmful magic effect from you with each strike."
+        },
+        {
+          "talent": "Swift Etching",
+          "tree": "Riftblade",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.65,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "After Hurricane ends, your melee attack speed is increased by 15% and critical strike chance by 10% for 10 seconds."
+        },
+        {
+          "talent": "Waveforged",
+          "tree": "Riftblade",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "After Hurricane ends, you may now use abilties that require Runeshroud for 5 seconds."
+        }
+      ]
+    },
+    "Ice Rune": {
+      "lanes": [
+        "CDR",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Frozen Earth",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Ice Rune and the stun effect from Palm Sigil: Earth by 1 sec."
+        },
+        {
+          "talent": "Freezing Codex",
+          "tree": "Riftblade",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "sec"
+            },
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": -10.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Ice Rune by -20 sec and increases the mana cost by 50%, but reduces its range by -10 yds."
+        }
+      ]
+    },
+    "Ley Constitution": {
+      "lanes": [
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your Armor contribution from items is increased by 30%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Ley Lock": {
+      "lanes": [
+        "CAST",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Mind Over Matter",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Ley Lock by 0.5 sec."
+        },
+        {
+          "talent": "Mind Wrath",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Ley Lock now interrupts 1 additional enemy near your primary target."
+        },
+        {
+          "talent": "Battle Engravings",
+          "tree": "Riftblade",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Removes the cast time from Ley Lock, but reduces its duration by 0.5 sec."
+        }
+      ]
+    },
+    "Ley Magician": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your spell damage by 30% of Spirit and 10% of your Intellect, and spell hit rating by 6% of your Spirit.",
+      "baseTree": "Arcane",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Ley Power": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$dc",
+      "baseTree": "Runic",
+      "basePosition": {
+        "x": 3,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Leyfeed": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Magic Feeder",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Leyfeed now steals 1 additional magic effect from the target."
+        }
+      ]
+    },
+    "Leyline Disturbance": {
+      "lanes": [
+        "HASTE",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases melee and ranged haste of party and raid members within 100 yds by 10%.\n\nDoes not stack with similar effects.\n\nAdditionally, the duration of stun effects on you is reduced by -20%.",
+      "baseTree": "Runic",
+      "basePosition": {
+        "x": 3,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Manuscription": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$d8",
+      "baseTree": "Arcane",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Marked: Runic Brand": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Leyborn",
+          "tree": "Runic",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Marked: Runic Brand now stacks 3 times."
+        }
+      ]
+    },
+    "Mystical Etchings": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces all Fire, Nature, Frost, and Arcane damage taken by -15%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Palm Sigil": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CAST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sigilist",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": -0.5,
+              "unit": "sec"
+            },
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 18.0,
+          "lanes": [
+            "CAST",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "After using a Palm Sigil, the duration of your crowd control effects is increased by 20%.\n\nReduces the cast time of all Palm Sigils by -0.5 sec and increases the duration of your Palm Sigil buffs by 50%."
+        },
+        {
+          "talent": "Earthen Codex",
+          "tree": "Riftblade",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "When you active a Palm Sigil, you are now guaranteed to critically strike for 20% increased critical damage for 10 seconds or your next 3 attacks."
+        }
+      ]
+    },
+    "Palm Sigil: Earth": {
+      "lanes": [
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Frozen Earth",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Ice Rune and the stun effect from Palm Sigil: Earth by 1 sec."
+        }
+      ]
+    },
+    "Palm Sigils": {
+      "lanes": [
+        "DMG",
+        "CAST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Elements of Fury",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Palm Sigils now affect 1 additional instance of damage."
+        },
+        {
+          "talent": "Sigilist",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": -0.5,
+              "unit": "sec"
+            },
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 18.0,
+          "lanes": [
+            "CAST",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "After using a Palm Sigil, the duration of your crowd control effects is increased by 20%.\n\nReduces the cast time of all Palm Sigils by -0.5 sec and increases the duration of your Palm Sigil buffs by 50%."
+        }
+      ]
+    },
+    "Permafrost Rune": {
+      "lanes": [
+        "CAST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Frostburn",
+          "tree": "Riftblade",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Removes the cast time of Glacial Rune and Permafrost Rune."
+        }
+      ]
+    },
+    "Phase Out": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "SPEED",
+        "DURATION",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Kirin Tor Agent",
+          "tree": "Arcane",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Eye of the Beholder now rapidly reduces the coldown of your Rune spells and Phase Out for the duration."
+        },
+        {
+          "talent": "Prismatic Flow",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Phase Out now increases your movement speed by 40% for 2 seconds."
+        },
+        {
+          "talent": "Phaser",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Phase Out by -30 sec and removes its mana cost."
+        },
+        {
+          "talent": "Rift Clones",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Casting Phase Out now summons 10 clones of yourself that run in a random direction for 5 seconds.\n\nRift Clones periodically explode dealing 1 + 19.5% AP Arcane damage to all enemies within 5 yds of them."
+        },
+        {
+          "talent": "Glyph of Disappearance",
+          "tree": "Riftblade",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nYour Phase Out can now be used 1 additional time within 15 seconds before incurring a cooldown."
+        }
+      ]
+    },
+    "Power Engraving": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Create a Power Engraving beneath you for 20 seconds, granting 20% increased Magic Damage dealt and 20% increased critical strike chance to up to 5 allies standing in the area.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Power Overwhelming": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Branded",
+          "tree": "Runic",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nGaining Power Overwhelming now also guarantees your next Runic Brand to critically strike."
+        }
+      ]
+    },
+    "Primordial Blast": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "SPEED",
+        "RESOURCE",
+        "CC",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Frost Glyph",
+          "tree": "Arcane",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 10,
+          "specialRequirement": [
+            "Glacial Rune"
+          ],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "DMG",
+            "SPEED",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nUsing Elemental Burst and Primordial Blast now grants you Frost Glyph. \n\nFrost GlyphUnleash: Deals 437 Frost Damage and slows movement speed by -30% for 4 seconds."
+        },
+        {
+          "talent": "Flame Glyph",
+          "tree": "Arcane",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Using Elemental Burst or Primordial Blast while Frost Glyph is active now grants you a Flame Glyph.Flame GlyphUnleash: Deals 250 + 65% fire SP Fire Damage and an additional 750 + 30% SP Fire Damage over 6 seconds."
+        },
+        {
+          "talent": "Arcane Glyph",
+          "tree": "Arcane",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Using Elemental Burst or Primordial Blast while Flame Glyph is active now grants you Arcane Glyph.Arcane GlyphUnleash: Deals 276 + 18% arcane SP Arcane Damage to up to 0 enemies near the primary target."
+        },
+        {
+          "talent": "Cold Elements",
+          "tree": "Arcane",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt with Elemental Burst and Primordial Blast now has a 20% chance to reset the cooldown of Frigid Blast and make its next use within 10 seconds instant cast."
+        },
+        {
+          "talent": "Leyline Magician",
+          "tree": "Arcane",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Primordial Blast now reduces the cooldown of Primordial Pulse by -5 sec."
+        },
+        {
+          "talent": "Glyph Seeker",
+          "tree": "Arcane",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Primordial Blast and Thaumaturgy by 20%."
+        },
+        {
+          "talent": "Eye of the Beholder",
+          "tree": "Arcane",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.62,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases your spell critical strike chance by 25% for 15 seconds.\n\nWhile active, the damage of your Glyphic Ruin and Primordial Blast is increased by 25%."
+        },
+        {
+          "talent": "Riftblade",
+          "tree": "Riftblade",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Warpdagger"
+          ],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour Primordial Blast and Smolder now refresh a charge of Runeblade.\n\nIn addition, every 3rd Runeblade now restores 388 + 30% AP mana, increased by 20% while Runic Tattoos: Water is active."
+        },
+        {
+          "talent": "Frost Spectre",
+          "tree": "Riftblade",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance and critical damage of Smolder and Primordial Blast against Frozen targets by 50%."
+        },
+        {
+          "talent": "Primordial Echoes",
+          "tree": "Riftblade",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your critical strikes dealt with Primordial Blast now have a 40% chance to strike an additional time."
+        },
+        {
+          "talent": "Eternal Magic",
+          "tree": "Runic",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Primordial Blast by -4 sec and it now refreshes 3 charges of Runeblade."
+        },
+        {
+          "talent": "Elemental Mastery",
+          "tree": "Runic",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Runic Brand now has a 33% chance to transform your Primordial Blast into a random unique elemental version of itself."
+        },
+        {
+          "talent": "Ancient Warrior",
+          "tree": "Runic",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Fist of the Ancients by -2 sec whenever you use Runeblade or Primordial Blast."
+        },
+        {
+          "talent": "Mark of Strength",
+          "tree": "Runic",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell power scaling of Primordial Blast by 30%."
+        },
+        {
+          "talent": "Power Overwhelming",
+          "tree": "Runic",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 40 Passive\nYour Runeblade and Primordial Blast now have a 35% chance to grant you Power Overwhelming, resetting the cooldown of Runic Brand."
+        },
+        {
+          "talent": "Magic Etchings",
+          "tree": "Runic",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.6,
+          "lanes": [
+            "DMG",
+            "ARMOR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Dealing damage with Primordial Blast now reduces the affected target's armor by -4% for 12 seconds, stacking 5 times."
+        }
+      ]
+    },
+    "Primordial Fury": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Elemental Inscription",
+          "tree": "Riftblade",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            },
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Smolder now reduces the cooldown of Primordial Fury by -10 sec and Zenith by -5 sec."
+        }
+      ]
+    },
+    "Primordial Pulse": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Inscribe an area with runes for 2 seconds, dealing 23 + 30% SP Elemental Damage every 0 sec to up to 5 enemies inside.",
+      "baseTree": "Arcane",
+      "basePosition": {
+        "x": 8,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Leyline Magician",
+          "tree": "Arcane",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Primordial Blast now reduces the cooldown of Primordial Pulse by -5 sec."
+        },
+        {
+          "talent": "Bursting Pulses",
+          "tree": "Arcane",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            },
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Each weapon enchanted by Weapon Engraving: Earth now reduces the cooldown of Primordial Pulse by -4 sec and increases it's damage by 15%."
+        }
+      ]
+    },
+    "Primordial Strength": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your spell damage by 25% of your attack power, your chance to hit by 3% of your Agility and your spell hit rating by 3% of your Agility.",
+      "baseTree": "Runic",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Replenishment": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Flowing Rivers",
+          "tree": "Runic",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.75,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger Replenishment with Runic Tattoos: Water by 10% and its mana restored by 25%."
+        }
+      ]
+    },
+    "Requires Frozen Target": {
+      "lanes": [
+        "CDR",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Permafrost Rune",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Requires Frozen Target\nInscribe a rune of permafrost and unleash it on an enemy, incapacitating them for 40 seconds (8 sec vs players). Damage taken will end the effect. \n\nAffected enemies are considered Frozen.\n\nUsing this while in Runeshroud causes it to incur an -80% reduced cooldown."
+        }
+      ]
+    },
+    "Rune": {
+      "lanes": [
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Kirin Tor Agent",
+          "tree": "Arcane",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Eye of the Beholder now rapidly reduces the coldown of your Rune spells and Phase Out for the duration."
+        },
+        {
+          "talent": "Wind Walker",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While Runic Tattoos: Air is active, the cooldown of Rune spells is reduced by 5% every 5 sec."
+        },
+        {
+          "talent": "Master of Runes",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Rune spells by -25%."
+        }
+      ]
+    },
+    "Rune of Guarding": {
+      "lanes": [
+        "CDR",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Protective Warding",
+          "tree": "Runic",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CDR",
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Critical damage taken reduces the cooldown of Rune of Guarding by 10%."
+        }
+      ]
+    },
+    "Runeblade": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "RESOURCE",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Harnessing Leylines",
+          "tree": "Arcane",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "You now gain a stack of Harnessed Leylines every 1 sec for until cancelled. After the duration, the stacks reset.\nHarnessed Leylines (Proc)Increases the damage of your Runeblade and Elemental Burst by 3%, stacking up to 10 times.\n\nAdditional applications do not refresh the effect."
+        },
+        {
+          "talent": "Decoder",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Elemental Burst and Runeblade now have a 20% chance to instantly trigger your Weapon Engravings."
+        },
+        {
+          "talent": "Riftblade",
+          "tree": "Riftblade",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Warpdagger"
+          ],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour Primordial Blast and Smolder now refresh a charge of Runeblade.\n\nIn addition, every 3rd Runeblade now restores 388 + 30% AP mana, increased by 20% while Runic Tattoos: Water is active."
+        },
+        {
+          "talent": "Runic Omen",
+          "tree": "Riftblade",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Every 3rd cast of Runeblade now deals 30% increased damage."
+        },
+        {
+          "talent": "Primordial Fury",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your runic tattoos flare up for 15 seconds, causing Runeblade to strike up to 5 additional enemies.\n\nFor the duration, your Runic Tattoos have 100% increased effectiveness."
+        },
+        {
+          "talent": "Spellfire Runes",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Runeblade now has a 20% chance, and Warpdagger a 100% chance, to reset the cooldown of Smolder, and increase the damage of your next Smolder by 20%."
+        },
+        {
+          "talent": "Surging Slash",
+          "tree": "Riftblade",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nEvery 3rd cast of Runeblade now transforms your next Runeblade within 15 seconds into Surging Slash.\nSurging Slash (Transform)Strike an enemy with a rune-infused weapon, dealing 110% Weapon Damage plus 60 Elemental Damage, bouncing to up to 4 additional enemies, dealing less damage with each bounce."
+        },
+        {
+          "talent": "Runic Brand",
+          "tree": "Runic",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Brand an enemy, dealing 10 + 26% AP Fire damage with each weapon, and marking the enemy for 8 seconds.Marked: Runic BrandYour next Runeblade on the enemy causes a Runic Explosion, dealing an additional 121 + 18.5% AP Spellfire Damage to nearby enemies."
+        },
+        {
+          "talent": "Fists of Power",
+          "tree": "Runic",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 10,
+          "specialRequirement": [
+            "Zenith"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nRuneblade now strikes your target an additional time for 50% of the damage dealt with your offhand weapon."
+        },
+        {
+          "talent": "Eternal Magic",
+          "tree": "Runic",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Primordial Blast by -4 sec and it now refreshes 3 charges of Runeblade."
+        },
+        {
+          "talent": "Ancient Warrior",
+          "tree": "Runic",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Fist of the Ancients by -2 sec whenever you use Runeblade or Primordial Blast."
+        },
+        {
+          "talent": "Tempo",
+          "tree": "Runic",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Runeblade by 20%."
+        },
+        {
+          "talent": "Power Overwhelming",
+          "tree": "Runic",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 40 Passive\nYour Runeblade and Primordial Blast now have a 35% chance to grant you Power Overwhelming, resetting the cooldown of Runic Brand."
+        }
+      ]
+    },
+    "Runeblades": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Windsage",
+          "tree": "Riftblade",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nSmolder now envelops you in wind, causing your next 3 Runeblades to strike an additional time equal to 30% of the damage dealt as Nature damage."
+        }
+      ]
+    },
+    "Runes of Quickness": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, the range of your Glyphic spells is increased by 6 yds.",
+      "baseTree": "Arcane",
+      "basePosition": {
+        "x": 6,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Runeshroud": {
+      "lanes": [
+        "CRIT",
+        "CDR",
+        "CAST",
+        "SPEED",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Phase Out",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Disappear from sight, entering an improved stealth for 6 seconds and applying Runeshroud."
+        },
+        {
+          "talent": "Shroudwalker",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Warpdagger now incurs no cooldown if used while your Runeshroud is active."
+        },
+        {
+          "talent": "Permafrost Rune",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Requires Frozen Target\nInscribe a rune of permafrost and unleash it on an enemy, incapacitating them for 40 seconds (8 sec vs players). Damage taken will end the effect. \n\nAffected enemies are considered Frozen.\n\nUsing this while in Runeshroud causes it to incur an -80% reduced cooldown."
+        },
+        {
+          "talent": "Primordialism",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases your critical strike chance by 10% for 5 seconds after leaving Runeshroud."
+        },
+        {
+          "talent": "Runic Breakout",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Abilities requiring Runeshroud can now be used for 3 sec and have no cast time after Runeshroud breaks."
+        },
+        {
+          "talent": "Waveforged",
+          "tree": "Riftblade",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "After Hurricane ends, you may now use abilties that require Runeshroud for 5 seconds."
+        },
+        {
+          "talent": "Runebound Surge",
+          "tree": "Runic",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 75.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 17.5,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Casting Runeshroud now increases your movement speed by 75% for 3 seconds."
+        },
+        {
+          "talent": "Runic Tempest",
+          "tree": "Runic",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Harness the power of your runic tattoos, resetting the cooldown of Fist of the Ancients and allowing the use of abilities that require Runeshroud and making them able to be cast while moving for 8 seconds."
+        }
+      ]
+    },
+    "Runeslinger": {
+      "lanes": [
+        "DMG",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Direct damage dealt has a 5% chance to increase your spell haste by 20% for 5 seconds.",
+      "baseTree": "Arcane",
+      "basePosition": {
+        "x": 5,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Runic Brand": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Elemental Mastery",
+          "tree": "Runic",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Runic Brand now has a 33% chance to transform your Primordial Blast into a random unique elemental version of itself."
+        },
+        {
+          "talent": "Brandmaster",
+          "tree": "Runic",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases your critical strike chance with Runic Brand's explosion effect by 10%."
+        },
+        {
+          "talent": "Power Overwhelming",
+          "tree": "Runic",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 40 Passive\nYour Runeblade and Primordial Blast now have a 35% chance to grant you Power Overwhelming, resetting the cooldown of Runic Brand."
+        },
+        {
+          "talent": "Branded",
+          "tree": "Runic",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nGaining Power Overwhelming now also guarantees your next Runic Brand to critically strike."
+        },
+        {
+          "talent": "Runelord",
+          "tree": "Runic",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "After activating Zenith, deal 900 + 33% AP Elemental Damage to your target and increase the damage dealt by your Runic Brand and Weapon Engravings by 30% for 8 seconds."
+        }
+      ]
+    },
+    "Runic Explosion": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Runic Brand",
+          "tree": "Runic",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Brand an enemy, dealing 10 + 26% AP Fire damage with each weapon, and marking the enemy for 8 seconds.Marked: Runic BrandYour next Runeblade on the enemy causes a Runic Explosion, dealing an additional 121 + 18.5% AP Spellfire Damage to nearby enemies."
+        },
+        {
+          "talent": "Earth, Wind, and Fire",
+          "tree": "Runic",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Striking at least 5 enemies with Runic Explosion now unleashes Wild Steam.Wild Steam (Transform)Stomp the ground in a 5 yd radius around you and release steam, dealing 128 + 25% AP Frostfire Damage to nearby enemies."
+        }
+      ]
+    },
+    "Runic Obliteration": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$d6",
+      "baseTree": "Arcane",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Runic Power": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the all damage dealt by party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, critical strikes now increase the chance for the target to be critically struck by your spells by 3% for 10 seconds.",
+      "baseTree": "Riftblade",
+      "basePosition": {
+        "x": 3,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Runic Tattoos": {
+      "lanes": [
+        "COST"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the resource costs of your spells and abilities by -10%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 1
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Speedy Attuner",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            },
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.75,
+          "lanes": [
+            "SPEED",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Increases your movement speed by 15% and reduces the mana cost of your Runic Tattoos by -50%."
+        },
+        {
+          "talent": "Primordial Fury",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your runic tattoos flare up for 15 seconds, causing Runeblade to strike up to 5 additional enemies.\n\nFor the duration, your Runic Tattoos have 100% increased effectiveness."
+        },
+        {
+          "talent": "Alteration",
+          "tree": "Runic",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Runic Tattoos by 50%."
+        }
+      ]
+    },
+    "Runic Tattoos: Air": {
+      "lanes": [
+        "CDR",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Nomad's Scroll",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CC"
+          ],
+          "flags": [],
+          "description": "Swapping to Runic Tattoos: Air now instantly dispels 1 movement slowing effect on you."
+        },
+        {
+          "talent": "Wind Walker",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While Runic Tattoos: Air is active, the cooldown of Rune spells is reduced by 5% every 5 sec."
+        }
+      ]
+    },
+    "Runic Tattoos: Earth": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Stone Petroglyph",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "While in Runic Tattoos: Earth, you now heal for 3% of your maximum health every 4 sec and you become immune to knockbacks."
+        },
+        {
+          "talent": "Granite Shield",
+          "tree": "Runic",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "While Runic Tattoos: Earth is active, you now periodically gain Granite Shield every 20 sec.Granite ShieldAbsorbs 780 + 10% AP + 30% SP damage for 20 seconds."
+        }
+      ]
+    },
+    "Runic Tattoos: Fire": {
+      "lanes": [
+        "DMG",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Unleashed Tattoos",
+          "tree": "Arcane",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "DMG",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nWhile Runic Tattoos: Fire is active, your Glyphic Ruin now has 30% increased critical damage.\n\nWhile Runic Tattoos: Water is active, the cost of your Glyphic Ruin is now reduced by -50%."
+        }
+      ]
+    },
+    "Runic Tattoos: Water": {
+      "lanes": [
+        "DMG",
+        "RESOURCE",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Unleashed Tattoos",
+          "tree": "Arcane",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "DMG",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nWhile Runic Tattoos: Fire is active, your Glyphic Ruin now has 30% increased critical damage.\n\nWhile Runic Tattoos: Water is active, the cost of your Glyphic Ruin is now reduced by -50%."
+        },
+        {
+          "talent": "Riftblade",
+          "tree": "Riftblade",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Warpdagger"
+          ],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour Primordial Blast and Smolder now refresh a charge of Runeblade.\n\nIn addition, every 3rd Runeblade now restores 388 + 30% AP mana, increased by 20% while Runic Tattoos: Water is active."
+        },
+        {
+          "talent": "Leystone Springs",
+          "tree": "Runic",
+          "position": {
+            "x": 5,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 200.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 30.0,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your melee auto attacks now have a 15% chance to restore 49 + 5% AP mana. \n\nWhile Runic Tattoos: Water is active, the mana restored is increased by 200%."
+        },
+        {
+          "talent": "Flowing Rivers",
+          "tree": "Runic",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.75,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger Replenishment with Runic Tattoos: Water by 10% and its mana restored by 25%."
+        }
+      ]
+    },
+    "Scroll of Magic": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Glyph Master",
+          "tree": "Arcane",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Scroll of Magic now also increases the critical damage and critical strike chance of Unleashed Glyphs by 5% for 15 seconds, stacking 3 times."
+        }
+      ]
+    },
+    "Silencing Rune": {
+      "lanes": [
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Inscribe a rune in a 5 yd radius at target location that activates after 1 sec, silencing all enemies within for 10 seconds.",
+      "baseTree": "Arcane",
+      "basePosition": {
+        "x": 2,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Smolder": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Ignite your blade and strike an enemy, dealing 140% Weapon Damage plus 19 Fire Damage.",
+      "baseTree": "Riftblade",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Riftblade",
+          "tree": "Riftblade",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Warpdagger"
+          ],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour Primordial Blast and Smolder now refresh a charge of Runeblade.\n\nIn addition, every 3rd Runeblade now restores 388 + 30% AP mana, increased by 20% while Runic Tattoos: Water is active."
+        },
+        {
+          "talent": "Cinderstorm Runes",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Hurricane and Smolder now deal 50% more damage against enemies below 20% maximum health."
+        },
+        {
+          "talent": "Frost Spectre",
+          "tree": "Riftblade",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance and critical damage of Smolder and Primordial Blast against Frozen targets by 50%."
+        },
+        {
+          "talent": "Windsage",
+          "tree": "Riftblade",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nSmolder now envelops you in wind, causing your next 3 Runeblades to strike an additional time equal to 30% of the damage dealt as Nature damage."
+        },
+        {
+          "talent": "Elements, Heed My Call!",
+          "tree": "Riftblade",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of Smolder, Hurricane, and Hoarfrost by 15%."
+        },
+        {
+          "talent": "Spellfire Runes",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Runeblade now has a 20% chance, and Warpdagger a 100% chance, to reset the cooldown of Smolder, and increase the damage of your next Smolder by 20%."
+        },
+        {
+          "talent": "Elemental Inscription",
+          "tree": "Riftblade",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            },
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Smolder now reduces the cooldown of Primordial Fury by -10 sec and Zenith by -5 sec."
+        }
+      ]
+    },
+    "Speed Rune": {
+      "lanes": [
+        "SPEED",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Conjure a path of runes in the direction you are facing for 10 seconds, increasing the movement speed of allies by 70%.\n\nThis effect can persist for a short duration after leaving the runic path.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Elemental Secrets",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the cooldown of Speed Rune by 30 sec, but it now applies stealth to allies who walk on the pathway for the duration."
+        }
+      ]
+    },
+    "Spellblade": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Agility and Intellect by 10%.",
+      "baseTree": "Riftblade",
+      "basePosition": {
+        "x": 1,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Thaumaturgy": {
+      "lanes": [
+        "DMG",
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Phase Rush",
+          "tree": "Arcane",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Casting Thaumaturgy now grants you 25% increased movement speed for 5 seconds."
+        },
+        {
+          "talent": "Glyph Seeker",
+          "tree": "Arcane",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Primordial Blast and Thaumaturgy by 20%."
+        }
+      ]
+    },
+    "Turbulent Spiral": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Turbulence",
+          "tree": "Riftblade",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Send out a gust of wind from your weapon that strikes nearby enemies in a 6 yd radius for 200% Weapon Damage as Nature damage every 1 sec for 3 seconds.\n\nWhile active, you leave behind a Turbulent Spiral every 1 sec for 6 seconds.\nTurbulent Spiral (Damage)Enemies in the area take an additional 97 + 13.5% AP Nature Damage every 1 sec."
+        }
+      ]
+    },
+    "Unbound": {
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the duration of harmful magic and curse effects on you by -20%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Unbound Energy": {
+      "lanes": [
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical strike chance by 6% and your expertise by 8.",
+      "baseTree": "Riftblade",
+      "basePosition": {
+        "x": 6,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Unleash": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Frost Glyph",
+          "tree": "Arcane",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 10,
+          "specialRequirement": [
+            "Glacial Rune"
+          ],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "DMG",
+            "SPEED",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nUsing Elemental Burst and Primordial Blast now grants you Frost Glyph. \n\nFrost GlyphUnleash: Deals 437 Frost Damage and slows movement speed by -30% for 4 seconds."
+        },
+        {
+          "talent": "Flame Glyph",
+          "tree": "Arcane",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Using Elemental Burst or Primordial Blast while Frost Glyph is active now grants you a Flame Glyph.Flame GlyphUnleash: Deals 250 + 65% fire SP Fire Damage and an additional 750 + 30% SP Fire Damage over 6 seconds."
+        },
+        {
+          "talent": "Arcane Glyph",
+          "tree": "Arcane",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Using Elemental Burst or Primordial Blast while Flame Glyph is active now grants you Arcane Glyph.Arcane GlyphUnleash: Deals 276 + 18% arcane SP Arcane Damage to up to 0 enemies near the primary target."
+        }
+      ]
+    },
+    "Unleashed Glyphs": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Unleashed Power",
+          "tree": "Arcane",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.1,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nIncreases the spell power scaling of your Unleashed Glyphs by 10%.\n\nIn addition, dealing damage with Elemental Burst now increases the target's spell damage taken by 10% for 12 seconds."
+        },
+        {
+          "talent": "Scroll of Magic",
+          "tree": "Arcane",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Unleashing a Glyph increases the damage of your Unleashed Glyphs by 5% for 15 seconds, stacking 3 times."
+        },
+        {
+          "talent": "Glyph Master",
+          "tree": "Arcane",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Scroll of Magic now also increases the critical damage and critical strike chance of Unleashed Glyphs by 5% for 15 seconds, stacking 3 times."
+        }
+      ]
+    },
+    "Warding Rune": {
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Engrave anti-magic runes around you, removing all harmful magic effects and causing harmful magic effects to have no duration when cast on you for 6 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Warpdagger": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Toss an enchanted dagger forward in a line. Upon reactivation, you instantly teleport to the location of the dagger and deal 124 + 44% SP + 20% AP Elemental Damage to nearby enemies.\n\nUsable while stealthed.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Ley Walker",
+          "tree": "Arcane",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CC"
+          ],
+          "flags": [],
+          "description": "Casting or reactivating Warpdagger now removes all root and snare effects from you."
+        },
+        {
+          "talent": "Warpmaster",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Warpdagger by -5 sec."
+        },
+        {
+          "talent": "Blade Rift",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "While stealthed, using Warpdagger now increases your Magic Damage dealt by 10% for 8 seconds."
+        },
+        {
+          "talent": "Shroudwalker",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Warpdagger now incurs no cooldown if used while your Runeshroud is active."
+        },
+        {
+          "talent": "Spellfire Runes",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Runeblade now has a 20% chance, and Warpdagger a 100% chance, to reset the cooldown of Smolder, and increase the damage of your next Smolder by 20%."
+        }
+      ]
+    },
+    "Weapon Engraving": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Genesis",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Apply a runic brand to an enemy for 8 seconds, accumulating 50% of your damage dealt, and unleashing after 8 seconds as Elemental Damage.\n\nWhen this deals damage, it triggers your Weapon Engraving."
+        },
+        {
+          "talent": "Fist of the Ancients",
+          "tree": "Runic",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Smash an enemy and 1 nearby enemy with your rune-engraved fists, dealing 40 + 40% AP Elemental Damage and triggering your Weapon Engraving."
+        }
+      ]
+    },
+    "Weapon Engraving: Air": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Residual Power",
+          "tree": "Riftblade",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage replicated by Weapon Engraving: Air by 15%."
+        },
+        {
+          "talent": "Windbreaker",
+          "tree": "Riftblade",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "While Weapon Engraving: Air is active, the damage of each strike of your Hurricane is increased by 30%."
+        },
+        {
+          "talent": "Wind Surge",
+          "tree": "Runic",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Weapon Engraving: Air will now strike 2 additional enemies near its target."
+        },
+        {
+          "talent": "Sky and Stone",
+          "tree": "Runic",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Weapon Engraving: Air and Weapon Engraving: Earth now have a 10% chance to increase the melee attack speed of your next 10 attacks within 10 seconds by 10%."
+        }
+      ]
+    },
+    "Weapon Engraving: Earth": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "HASTE",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Terraglyphs",
+          "tree": "Arcane",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger Weapon Engraving: Earth by 4%."
+        },
+        {
+          "talent": "Bursting Pulses",
+          "tree": "Arcane",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            },
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Each weapon enchanted by Weapon Engraving: Earth now reduces the cooldown of Primordial Pulse by -4 sec and increases it's damage by 15%."
+        },
+        {
+          "talent": "Volcanic Etching",
+          "tree": "Runic",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger Weapon Engraving: Fire and Weapon Engraving: Earth by 5%."
+        },
+        {
+          "talent": "Sky and Stone",
+          "tree": "Runic",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Weapon Engraving: Air and Weapon Engraving: Earth now have a 10% chance to increase the melee attack speed of your next 10 attacks within 10 seconds by 10%."
+        },
+        {
+          "talent": "Fists of Power",
+          "tree": "Runic",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.33,
+          "lanes": [
+            "HASTE",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Engrave your fists for 15 seconds, causing auto attacks to grant Earthen Fists for 10 seconds, increasing melee haste by 3% and the chance to trigger Weapon Engraving: Earth by 10%, stacking 5 times."
+        },
+        {
+          "talent": "Steam Conjurer",
+          "tree": "Runic",
+          "position": {
+            "x": 5,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Weapon Engraving: Earth now has a 5% chance to cast Wild Steam. Can only occur once every 3 sec.Wild Steam (Transform)Stomp the ground in a 5 yd radius around you and release steam, dealing 128 + 25% AP Frostfire Damage to nearby enemies."
+        },
+        {
+          "talent": "Stone Savant",
+          "tree": "Runic",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "While Earthen Fists is active, critical strikes with Weapon Engraving: Earth now causes you to strike twice with your next auto attack."
+        }
+      ]
+    },
+    "Weapon Engraving: Fire": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Burned Etching",
+          "tree": "Arcane",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Weapon Engraving: Fire is active, your Elemental Burst now deals 10% increased damage as Fire damage and your chance to trigger Weapon Engraving: Fire is increased by 5%."
+        },
+        {
+          "talent": "Melting Runes",
+          "tree": "Riftblade",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Weapon Engraving: Fire now deals 25% increased damage against Frozen enemies."
+        },
+        {
+          "talent": "Volcanic Etching",
+          "tree": "Runic",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger Weapon Engraving: Fire and Weapon Engraving: Earth by 5%."
+        },
+        {
+          "talent": "Devastating Flames",
+          "tree": "Runic",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage dealt of Weapon Engraving: Fire by 20%."
+        },
+        {
+          "talent": "Explosive Runes",
+          "tree": "Runic",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Weapon Engraving: Fire now detonates after 2 sec and its critical damage is increased by 10%."
+        },
+        {
+          "talent": "Symbols of Power",
+          "tree": "Runic",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Fist of the Ancients while you have Weapon Engraving: Fire active by 30%."
+        }
+      ]
+    },
+    "Weapon Engraving: Ice": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Water Runes",
+          "tree": "Riftblade",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Each strike from Hurricane is now guaranteed to apply Weapon Engraving: Water or Weapon Engraving: Ice to your target while they are active."
+        }
+      ]
+    },
+    "Weapon Engraving: Water": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Water Runes",
+          "tree": "Riftblade",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Each strike from Hurricane is now guaranteed to apply Weapon Engraving: Water or Weapon Engraving: Ice to your target while they are active."
+        }
+      ]
+    },
+    "Weapon Engravings": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Zenith",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "For 6 seconds, your runic tattoos flare up, increasing your chance to trigger your Weapon Engravings by 100%."
+        },
+        {
+          "talent": "Master Engraver",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger your Weapon Engravings by 5%."
+        },
+        {
+          "talent": "Decoder",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Elemental Burst and Runeblade now have a 20% chance to instantly trigger your Weapon Engravings."
+        },
+        {
+          "talent": "Convergence",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "For 15 seconds, the next 10 Weapon Engravings you trigger will now deal an additional 348 + 30% SP + 20% AP Elemental Damage."
+        },
+        {
+          "talent": "Uncovered Engravings",
+          "tree": "Runic",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Using Fist of the Ancients now increases your chance to trigger Weapon Engravings by 20% for 5 sec."
+        },
+        {
+          "talent": "Forbidden Engraving",
+          "tree": "Runic",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Weapon Engravings by 20%."
+        },
+        {
+          "talent": "Echoes of Eternity",
+          "tree": "Runic",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Zenith now has 2 charges.Zenith2 Charges, 45 sec recharge\nFor 6 seconds, your runic tattoos flare up, increasing your chance to trigger your Weapon Engravings by 100%."
+        },
+        {
+          "talent": "Runelord",
+          "tree": "Runic",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "After activating Zenith, deal 900 + 33% AP Elemental Damage to your target and increase the damage dealt by your Runic Brand and Weapon Engravings by 30% for 8 seconds."
+        }
+      ]
+    },
+    "Wild Steam": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Earth, Wind, and Fire",
+          "tree": "Runic",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Striking at least 5 enemies with Runic Explosion now unleashes Wild Steam.Wild Steam (Transform)Stomp the ground in a 5 yd radius around you and release steam, dealing 128 + 25% AP Frostfire Damage to nearby enemies."
+        },
+        {
+          "talent": "Steam Conjurer",
+          "tree": "Runic",
+          "position": {
+            "x": 5,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Weapon Engraving: Earth now has a 5% chance to cast Wild Steam. Can only occur once every 3 sec.Wild Steam (Transform)Stomp the ground in a 5 yd radius around you and release steam, dealing 128 + 25% AP Frostfire Damage to nearby enemies."
+        }
+      ]
+    },
+    "Wizardry": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Intellect by 10% and increases the mana gained for each point of Intellect by 10%.",
+      "baseTree": "Arcane",
+      "basePosition": {
+        "x": 3,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Zenith": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Runic Affinity",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Zenith by 6 sec."
+        },
+        {
+          "talent": "Elemental Inscription",
+          "tree": "Riftblade",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            },
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Smolder now reduces the cooldown of Primordial Fury by -10 sec and Zenith by -5 sec."
+        },
+        {
+          "talent": "Echoes of Eternity",
+          "tree": "Runic",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Zenith now has 2 charges.Zenith2 Charges, 45 sec recharge\nFor 6 seconds, your runic tattoos flare up, increasing your chance to trigger your Weapon Engravings by 100%."
+        },
+        {
+          "talent": "Runelord",
+          "tree": "Runic",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "After activating Zenith, deal 900 + 33% AP Elemental Damage to your target and increase the damage dealt by your Runic Brand and Weapon Engravings by 30% for 8 seconds."
+        }
+      ]
+    }
+  }
+}

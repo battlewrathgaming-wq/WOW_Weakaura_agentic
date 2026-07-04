@@ -1,0 +1,45 @@
+{
+  "$id": "buff_uptime_icon.schema.json",
+  "opportunity_type": "buff_uptime",
+  "title": "Buff uptime (icon, permanent on/off)",
+  "description": "A buff/debuff with durationMs negative ('Until cancelled') - a toggle state, not a timer.",
+  "region_type": "icon",
+  "trigger": "Aura",
+  "type": "object",
+  "required": [
+    "name",
+    "spell_id",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "spell_id": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 30
+    },
+    "height": {
+      "type": "number",
+      "default": 20
+    },
+    "own_only": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "verified": "Trigger type 'aura2' confirmed live-tested (Buffs/Utility static slots in Template_shadow.py). BuffTrigger2.lua registers 'aura2' (line 3798)."
+}

@@ -1,0 +1,6641 @@
+{
+  "class": "Cultist",
+  "schemaVersion": 2,
+  "laneTaxonomy": {
+    "DMG": "Damage",
+    "STATS": "Primary/secondary stats",
+    "CRIT": "Crit chance/damage",
+    "CDR": "Cooldown",
+    "CAST": "Cast time",
+    "HASTE": "Haste",
+    "SPEED": "Movement speed",
+    "HEAL": "Healing",
+    "SHIELD": "Shield/absorb",
+    "MITIGATION": "Damage mitigation",
+    "RESOURCE": "Resource generation",
+    "COST": "Resource cost",
+    "DURATION": "Duration",
+    "AOE": "AoE / target count",
+    "CC": "Crowd control",
+    "ARMOR": "Armor",
+    "SUMMON": "Summon / pet",
+    "MISC": "Other"
+  },
+  "note": "Per-skill index: for each observed skill/ability, lists every talent that modifies it, where it sits in the tree, its parsed stat modification, and a mock value showing that modification applied to a normalized baseline of 10. Each modifying talent is tagged with one or more lanes from laneTaxonomy (DMG/CRIT/CDR/CAST/HASTE/SPEED/HEAL/SHIELD/MITIGATION/RESOURCE/COST/DURATION/AOE/CC/ARMOR/SUMMON/MISC), plus cross-cutting behavior flags (PROC, STACK) that describe how the effect triggers rather than what stat it touches. A handful of nodes have unresolved \"$xx\" template descriptions in the source export - these are flagged rather than guessed at.",
+  "mockBaseline": 10,
+  "skills": {
+    "Abyssal Covenant": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Link yourself to an ally for 30 minutes, transfering 10% of all damage taken by them to you and causing 20% of all damage you deal to be converted into healing for them.\n\nCan only be applied to 1 ally at a time.",
+      "baseTree": "Heretic",
+      "basePosition": {
+        "x": 4,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Dark Protection",
+          "tree": "Heretic",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Allies affected by Abyssal Covenant now also take 20% increased healing from you."
+        },
+        {
+          "talent": "Lead the Covenant",
+          "tree": "Heretic",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "50% of all healing done to allies through Abyssal Covenant is now replicated to you."
+        },
+        {
+          "talent": "Visions of the Empire",
+          "tree": "Heretic",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the damage converted into healing through Abyssal Covenant by 10%."
+        },
+        {
+          "talent": "Dark Prophet",
+          "tree": "Heretic",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Healing done by Abyssal Covenant now heals 5 of the lowest health nearby allies and healing done by Black Blood can now critically strike."
+        }
+      ]
+    },
+    "Abyssal Ward": {
+      "lanes": [
+        "MITIGATION",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Coalesce an Abyssal Ward reducing your damage taken by 50% for 10 seconds or 5 attacks. For the duration, each attack received will decrease the value by -10%.\n\nUsable while stunned.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Shroud of Pride",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Abyssal Ward now stacks 3 additional times."
+        },
+        {
+          "talent": "Void Tolerance",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Abyssal Ward by -30 sec."
+        }
+      ]
+    },
+    "Adaptive Combatant": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your parry chance by 6% and dodge chance by 4%.",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 2,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Ancient Curse": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 20 Insanity\nCurse an enemy, dealing 326 + 100% SP Shadow damage and increasing all Shadow damage they take from you by 10% for 10 seconds.\n\nUpon expiration, it deals an additional 1233 + 100% shadow SP Shadow damage to the target.",
+      "baseTree": "Corruption",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Apocalyptic Skies": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sunderer of Realities",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Wrath of the Black Empire now causes your subsequent Wraths of the Black Empire, within 15 seconds, to deal 15% more damage each and unleash Apocalyptic Skies upon the enemy.Apocalyptic SkiesSpawns a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        }
+      ]
+    },
+    "Black Blood": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CAST",
+        "HEAL",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Malevolence",
+          "tree": "Heretic",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Herald of the Depths",
+            "Void Shield"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Generates 10 Insanity\nSmash an enemy with eldritch force, dealing 40 + 10% AP + 52% SP Shadow damage and applying Black Blood to 5 nearby allies, healing them for 25 + 10% AP, repeating every 3 sec for 15 seconds.\n\nUsable while moving."
+        },
+        {
+          "talent": "Shadow Pennant",
+          "tree": "Heretic",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "You now heal the lowest health ally affected by Black Blood for 100% of your auto attack damage."
+        },
+        {
+          "talent": "Twisted Sanity",
+          "tree": "Heretic",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Allies affected by your Black Blood are now healed for 30% of the damage dealt by your Tentacles."
+        },
+        {
+          "talent": "Prophetic Compulsion",
+          "tree": "Heretic",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Black Blood is active on an ally, healing done to them by your Gaze of C'Thun has a 15% increased chance to critically strike."
+        },
+        {
+          "talent": "Ancient Rituals",
+          "tree": "Heretic",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Satiate now refreshes the duration of Black Blood on all allies within 30 yds.\n\nDark Infusion bounces one additional time after its third infusion, expanding to the three lowest-health nearby party or raid members."
+        },
+        {
+          "talent": "Dark Chants",
+          "tree": "Heretic",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Reduces the cast time of Forbidden Ritual by 1 sec and allows Black Blood to stack up to 2 times."
+        },
+        {
+          "talent": "Dark Prophet",
+          "tree": "Heretic",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Healing done by Abyssal Covenant now heals 5 of the lowest health nearby allies and healing done by Black Blood can now critically strike."
+        }
+      ]
+    },
+    "Black Prayer": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "All direct damage dealt now has a 5% chance to unleash a Black Prayer on all enemies near the target for 9 seconds.Black PrayerDeals 136 + 12% shadow SP + 0.5% AP Shadow Damage every 3 sec and reduces attack speed by -20%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Blade of the Empire": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HASTE",
+        "HEAL",
+        "SHIELD",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Bulwark of Horror",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Avoiding an attack now has a 40% chance to refresh a charge of Blade of the Empire."
+        },
+        {
+          "talent": "Void Reaver",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SHIELD",
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Avoiding or absorbing an attack now has a 20% chance to make your next Blade of the Empire deal 20% more damage and hit an additional nearby enemy."
+        },
+        {
+          "talent": "Void Strikes",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Blade of the Empire and Entropic Slam is now increased based on your defense rating."
+        },
+        {
+          "talent": "Hand of N'Zoth",
+          "tree": "Godblade",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Hammer of Twilight, Entropic Slam, and Gaze of C'Thun now refreshes a charge of Blade of the Empire."
+        },
+        {
+          "talent": "Abyssal Edge",
+          "tree": "Godblade",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            },
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.2,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Blade of the Empire by 4% and reduces its mana cost by -50%."
+        },
+        {
+          "talent": "Shadow Strikes",
+          "tree": "Godblade",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Blade of the Empire now has a 30% chance to cause your next auto attack to hit twice."
+        },
+        {
+          "talent": "Hysterical Momentum",
+          "tree": "Godblade",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG",
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Blade of the Empire increases your melee haste by 3% for 8 seconds, stacking 3 times."
+        },
+        {
+          "talent": "End Times",
+          "tree": "Godblade",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "yds"
+            },
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the range of Blade of the Empire, Netherstrike, and Hammer of Twilight by 25 yds and reduces their mana costs by -50% for 15 seconds."
+        },
+        {
+          "talent": "Blade of Yogg-Saron",
+          "tree": "Heretic",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Blade of the Empire now heals the lowest health ally for 70% of the damage dealt plus 198 + 20% healing + 5% AP."
+        },
+        {
+          "talent": "As The Prophecy Foretold",
+          "tree": "Heretic",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Melee critical strikes now refresh a charge of Blade of the Empire and restore 3% of your base mana."
+        },
+        {
+          "talent": "Forbidden Strength",
+          "tree": "Heretic",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Herald of the Depths is active, the critical strike chance of Blade of the Empire is increased by 10%."
+        }
+      ]
+    },
+    "Blessing of N'Zoth": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 50 Passive\nIncreases your attack power by 100% of your Intellect.",
+      "baseTree": "Godblade",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Blessing of Y'Shaarj": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 50 Passive\nWhile transformed into a void monstrosity your damage dealt is now also increased by 20%.",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Blessing of Yogg-Saron": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 50 Passive\nIncreases your attack power by an amount equal to 3 times your spell critical strike rating.",
+      "baseTree": "Heretic",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Boon of Y'shaarj": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "You now gain an additional 4 mana per point of Intellect.",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 6,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Corrupt Mind": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 10 Insanity\nCorrupt the mind of an enemy and spread madness, fearing them in place for 40 seconds (8 sec vs players), bouncing to up to 2 nearby enemies.\n\nDamage dealt may end this effect.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Stare Into The Abyss",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Removes the cast time of your Corrupt Mind."
+        },
+        {
+          "talent": "Eldritch Screams",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.39,
+          "lanes": [
+            "CRIT",
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Corrupt Mind now also applies Mind Rot to nearby enemies.Mind Rot (Trigger)Increases the chance for allies to hit with all spells against the afflicted enemy by 3% for 10 seconds.\n\nIf this effect is dispelled, your critical strike chance is increased by 30% for 5 seconds."
+        }
+      ]
+    },
+    "Corrupting Whispers": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Foulness",
+          "tree": "Corruption",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage bonus provided by your Corrupting Whispers by 5%."
+        }
+      ]
+    },
+    "Crushing Dissonance": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Unleash a wave of maddening resonance, interrupting the current spell cast of all enemies around you and preventing any spell in that school from being cast for 2 seconds.",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 7,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Cunning Nature": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your chance to hit by 6% and reduces threat generated by Shadow damage spells by -30%.",
+      "baseTree": "Corruption",
+      "basePosition": {
+        "x": 4,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Dark Infusion": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "3 Charges, 30 sec recharge\nInfuse an ally with dark energy, healing them for 44 the next time they take damage. When the heal occurs, Dark Infusion is consumed and expands to the two lowest-health nearby party or raid members. Each secondary infusion heals when triggered, then expands to three nearby allies.",
+      "baseTree": "Heretic",
+      "basePosition": {
+        "x": 1,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Ancient Rituals",
+          "tree": "Heretic",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Satiate now refreshes the duration of Black Blood on all allies within 30 yds.\n\nDark Infusion bounces one additional time after its third infusion, expanding to the three lowest-health nearby party or raid members."
+        }
+      ]
+    },
+    "Dark Magician": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your critical damage dealt by 50% and your spell power by 30% of your Intellect.",
+      "baseTree": "Corruption",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Dark Revelation": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Horrific Visions",
+          "tree": "Corruption",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While above 40 Insanity, your chance to trigger Dark Revelation is now increased by 10%."
+        }
+      ]
+    },
+    "Dark Veil": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "SHIELD",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Channel a shield of void energies upon an ally, causing both you and them to absorb 875 + 100% healing + 25% AP damage, stacking 5 times, every 1 sec for 5 seconds.\n\nAt the end of the duration, if the shield holds, you teleport to them.\n\nWhile channeling you are immune to stuns and silences.",
+      "baseTree": "Heretic",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Corrupt Fate",
+          "tree": "Heretic",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Dark Veil by -60 sec."
+        },
+        {
+          "talent": "Tales of Woe",
+          "tree": "Heretic",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Dark Veil now performs its effect -50% faster."
+        }
+      ]
+    },
+    "Dark Whispers": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$90",
+      "baseTree": "Corruption",
+      "basePosition": {
+        "x": 2,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Darkward": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the effectiveness of your damage absorption effects by 20%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Darkwither": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 10 Insanity\nWither an enemy, dealing 135 Shadow damage over 15 seconds. Each instance of damage reduces their periodic healing taken by -5%, stacking up to 4 times.",
+      "baseTree": "Corruption",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Call of C'Thun",
+          "tree": "Corruption",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Darkwither's healing reduction now stacks 3 additional times and its tick rate is increased by -25%."
+        },
+        {
+          "talent": "Call of N'Zoth",
+          "tree": "Corruption",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 9.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Darkwither by 9 sec."
+        },
+        {
+          "talent": "Dread",
+          "tree": "Corruption",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Darkwither by 30%."
+        },
+        {
+          "talent": "Blessing of C'Thun",
+          "tree": "Corruption",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "STATS",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nYour Darkwither can now critically strike and your spell hit rating is increased by 5% of your Intellect."
+        }
+      ]
+    },
+    "Devour Curse": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Devour dark magic on an ally, dispelling 2 curse effects from them and healing you for 90 + 65% SP.",
+      "baseTree": "Heretic",
+      "basePosition": {
+        "x": 7,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Devour Magic": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Devourer",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Devour Magic now dispels 1 additional magic effect."
+        }
+      ]
+    },
+    "Dreadfall": {
+      "lanes": [
+        "DMG",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Raise your shield and charge towards an enemy, dealing 50% AP Shadow damage to enemies you pass through, generating additional threat.",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 1,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Dreadful",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Increases your critical strike rating equal to your block rating.\n\nIn addition, critical strikes now reduce the cooldown of Dreadfall and Dreadnought by 1 sec."
+        }
+      ]
+    },
+    "Dreadnought": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$94",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Strength of the Black Empire",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nDreadnought now sheds your mortal form, transforming you into a void monstrosity, reducing your damage taken by -10%"
+        },
+        {
+          "talent": "Dreadful",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Increases your critical strike rating equal to your block rating.\n\nIn addition, critical strikes now reduce the cooldown of Dreadfall and Dreadnought by 1 sec."
+        },
+        {
+          "talent": "Void Augmentation",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While Dreadnought is active, your Twilight Shieldtoss has a -3 sec reduced cooldown."
+        }
+      ]
+    },
+    "Eldritch Bastion": {
+      "lanes": [
+        "SHIELD",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Armor contribution from your shield by 30%.",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 5,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Eldritch Devastation": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Channel upon an enemy, chaining to nearby enemies, dealing 60 + 132% shadow SP Shadow damage over 6 seconds, dealing less damage with each enemy struck.",
+      "baseTree": "Corruption",
+      "basePosition": {
+        "x": 2,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Eldritch Eye": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Saronite Mind",
+          "tree": "Heretic",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Eldritch Eye now has 1 additional charge."
+        }
+      ]
+    },
+    "Eldritch Mending": {
+      "lanes": [
+        "HEAL",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Malevolent Power",
+          "tree": "Heretic",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Every 3rd melee ability you cast now causes your next Eldritch Mending to become instant cast and cost -20% less mana."
+        },
+        {
+          "talent": "Shadow Training",
+          "tree": "Heretic",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 30.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Level 20 Passive\nIncreases the healing done by Eldritch Mending by 50% and Gaze of C'Thun by 100%.\n\nIn addition, you are now unable to miss your attacks and you cannot be parried or dodged."
+        },
+        {
+          "talent": "Dark Reservoir",
+          "tree": "Heretic",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the bonus healing power scaling of Eldritch Mending by 25%."
+        }
+      ]
+    },
+    "Eldritch Mendings": {
+      "lanes": [
+        "CRIT",
+        "CAST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Eldritch Eye",
+          "tree": "Heretic",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Invoke the Old Gods for 15 seconds, removing the cast time of your next 3 Eldritch Mendings or Malevolences and causing them to critically strike."
+        }
+      ]
+    },
+    "Eldritch Obelisk": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Twilight Domination",
+          "tree": "Godblade",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Damage dealt by your Tentacles reduces the cooldown of Eldritch Obelisk by -2 sec.\n\nIn addition, increases the effectiveness of Eldritch Obelisk by 25%."
+        }
+      ]
+    },
+    "Embrace the Void": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Become one with the void, preventing you from dying for 6 seconds, or until you take damage equal to a maximum of 100% of your total health.\n\nWhen the effect ends you instantly regenerate health equal to 50% of the damage taken while active.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Lost in the Void",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "sec"
+            },
+            {
+              "value": -60.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "HEAL",
+            "MITIGATION",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Embrace the Void by 4 sec and it now heals you for an additional 50% of the damage taken while active and its cooldown is reduced by -60 sec."
+        }
+      ]
+    },
+    "Empire Commander": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases all primary attributes by 12%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Empire's Grasp": {
+      "lanes": [
+        "SPEED",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Teleport an enemy to your position and slow their movement speed by -60% for 4 seconds.",
+      "baseTree": "Godblade",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Seething Void",
+          "tree": "Godblade",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Empire's Grasp by -5 sec."
+        }
+      ]
+    },
+    "Entropic Retaliation": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Blocking an attack now increases your critical strike chance by 2% for 6 seconds, stacking up to 5 times.",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 0,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Entropic Singularity": {
+      "lanes": [
+        "SPEED",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Create a void zone for 5 seconds at target location that slows enemies' movement speed while inside.\n\nThe slow increases in intensity based on how close to the middle of the zone the enemy is.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Entropic Slam": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Eldritch Strength",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Hammer of Twilight and Entropic Slam by 25% and they now generates a large amount of threat."
+        },
+        {
+          "talent": "Void Strikes",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Blade of the Empire and Entropic Slam is now increased based on your defense rating."
+        },
+        {
+          "talent": "Hand of N'Zoth",
+          "tree": "Godblade",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Hammer of Twilight, Entropic Slam, and Gaze of C'Thun now refreshes a charge of Blade of the Empire."
+        },
+        {
+          "talent": "Warrior of the Old Gods",
+          "tree": "Godblade",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the Weapon Damage dealt by Hammer of Twilight and Entropic Slam by 20%."
+        }
+      ]
+    },
+    "Faceless Monstrosity": {
+      "lanes": [
+        "CRIT",
+        "HEAL",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Blessing of Yogg-Saron",
+          "tree": "Heretic",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "CRIT",
+            "HEAL",
+            "DURATION",
+            "CC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Herald of the Depths is active, you now transform into a Faceless Monstrosity, increasing your critical healing and critical strike chance by 20%, but reducing its duration by -5 sec.\n\nIn addition, while active you are now immune to fear, horrify, and polymorph effects."
+        }
+      ]
+    },
+    "Feeding Darkness": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the range of your Corruption spells by 6 yds and their chance to critically strike by 4%.",
+      "baseTree": "Corruption",
+      "basePosition": {
+        "x": 6,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Forbidden Ritual": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "SHIELD",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Chant a forbidden ritual that places a shield on all nearby allies that absorbs 225 + 50% healing damage for 10 seconds.",
+      "baseTree": "Heretic",
+      "basePosition": {
+        "x": 6,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Persistent Prayers",
+          "tree": "Heretic",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "SHIELD",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration and absorption amount of Void Shield and Forbidden Ritual by 50%."
+        },
+        {
+          "talent": "Blade of the Depths",
+          "tree": "Heretic",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While Herald of the Depths is active, your Forbidden Ritual will cooldown faster."
+        },
+        {
+          "talent": "Dark Chants",
+          "tree": "Heretic",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Reduces the cast time of Forbidden Ritual by 1 sec and allows Black Blood to stack up to 2 times."
+        }
+      ]
+    },
+    "Gaze of C'Thun": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "SPEED",
+        "HEAL",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Eyes of Eternity",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing an ally with Gaze of C'Thun now additionally reveals nearby stealthed enemies for 8 seconds."
+        },
+        {
+          "talent": "Whispers of C'Thun",
+          "tree": "Corruption",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nYour Gaze of C'Thun now generates 10 Insanity."
+        },
+        {
+          "talent": "Dark Revelation",
+          "tree": "Corruption",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 40 Passive\nGrants all periodic damage and damage dealt a 6% chance to reset the cooldown of Gaze of C'Thun and generate 5 Insanity."
+        },
+        {
+          "talent": "Misery",
+          "tree": "Corruption",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Gaze of C'Thun now reduces the cooldown of Psychic Suppression and Grasp of Zek'voz by -1 sec."
+        },
+        {
+          "talent": "Depths of Madness",
+          "tree": "Corruption",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Gaze of C'Thun now has a 15% to chance to spawn a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        },
+        {
+          "talent": "Eldritch Force",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Every 5th critical strike with abilities now transforms your next Gaze of C'Thun into Eldritch Force.Eldritch ForceGenerates 30 Insanity\nSend out a wave of force, dealing 631 + 76.26% SP + 12.5% AP Shadow damage to enemies in front of you and reducing their movement speed by -30% for 10 seconds."
+        },
+        {
+          "talent": "Obliteration",
+          "tree": "Godblade",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 1,
+          "specialRequirement": [
+            "Abyssal Ward"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour Gaze of C'Thun now gains an additional 15 base damage and healing."
+        },
+        {
+          "talent": "Hand of N'Zoth",
+          "tree": "Godblade",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Hammer of Twilight, Entropic Slam, and Gaze of C'Thun now refreshes a charge of Blade of the Empire."
+        },
+        {
+          "talent": "Encroaching Presence",
+          "tree": "Godblade",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your melee critical strikes reduce the cooldown of Rift and Gaze of C'Thun by -3 sec."
+        },
+        {
+          "talent": "Abyssal Cleave",
+          "tree": "Godblade",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Gaze of C'Thun now strikes 1 additional nearby enemy."
+        },
+        {
+          "talent": "Instilling Fear",
+          "tree": "Godblade",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While above 60 Insanity, your Netherstrike and Gaze of C'Thun now gain 10% increased critical strike chance."
+        },
+        {
+          "talent": "Shadow Training",
+          "tree": "Heretic",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 30.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Level 20 Passive\nIncreases the healing done by Eldritch Mending by 50% and Gaze of C'Thun by 100%.\n\nIn addition, you are now unable to miss your attacks and you cannot be parried or dodged."
+        },
+        {
+          "talent": "Prophetic Compulsion",
+          "tree": "Heretic",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Black Blood is active on an ally, healing done to them by your Gaze of C'Thun has a 15% increased chance to critically strike."
+        },
+        {
+          "talent": "Void-Touched",
+          "tree": "Heretic",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 30 Passive\nDirect healing done now applies Void-Touched.Void-Touched (Stacks)Marks the ally for 30 seconds, stacking 10 times.\n\nWhen you cast Gaze of C'Thun, all stacks are consumed to heal all allies affected by Void-Touched for 304 + 35% healing, increased based on how many stacks were on them."
+        }
+      ]
+    },
+    "Gaze of C'thun": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CDR",
+        "HASTE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Eldritch Command",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Gaze of C'thun now has a 30% chance to cause your Tentacles to blast the enemy with eldritch energy, dealing 81 + 22.5% shadow SP + 10% AP Shadow damage."
+        },
+        {
+          "talent": "Servant of C'Thun",
+          "tree": "Corruption",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Casting Gaze of C'thun now always triggers your Presence of C'Thun while it is active.Presence of C'Thun (Buff)Increases your haste by 20% for 6 seconds."
+        },
+        {
+          "talent": "Dark Revelation",
+          "tree": "Corruption",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Grants your Horrorbolt and Wrath of the Black Empire a 20% chance to reset the cooldown of Gaze of C'thun."
+        },
+        {
+          "talent": "Glimpse of Madness",
+          "tree": "Corruption",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.0,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Reduces the cooldown of Obliteration Beam by -40% and it now applies Madness to all targets struck. \nMadnessYour Gaze of C'thun causes 3% increased damage, stacks up to 5 times."
+        },
+        {
+          "talent": "Depths of Madness",
+          "tree": "Corruption",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Gaze of C'Thun now has a 15% to chance to spawn a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        },
+        {
+          "talent": "Apocalyptic Skies",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Wrath of the Black Empire now spawns a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        },
+        {
+          "talent": "Sunderer of Realities",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Wrath of the Black Empire now causes your subsequent Wraths of the Black Empire, within 15 seconds, to deal 15% more damage each and unleash Apocalyptic Skies upon the enemy.Apocalyptic SkiesSpawns a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        },
+        {
+          "talent": "Tentacle of Y'shaarj",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Summon a Tentacle of Y'shaarj near you for 30 seconds.\n\nWhen summoned and whenever Gaze of C'thun is used, it slams the ground dealing Physical damage, scaling with Stamina, to all enemies in a 10 yd frontal cone."
+        },
+        {
+          "talent": "Wavering Hope",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While above 60 Insanity, the cooldown of your Twilight Shieldtoss and Gaze of C'thun is reduced by -25%."
+        }
+      ]
+    },
+    "Gift of C'Thun": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Shadow damage dealt by 4% and healing done by 4%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Grasp of Zek'voz": {
+      "lanes": [
+        "SPEED",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Hinder an enemies momentum with void chains, slowing their movement speed by -30% for 10 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Dismay",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "SPEED",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Increases the movement speed slowed by Grasp of Zek'voz by -20%."
+        },
+        {
+          "talent": "Disdain",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Removes the cooldown of Grasp of Zek'voz, but increases its mana cost by 25%."
+        },
+        {
+          "talent": "Misery",
+          "tree": "Corruption",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Gaze of C'Thun now reduces the cooldown of Psychic Suppression and Grasp of Zek'voz by -1 sec."
+        }
+      ]
+    },
+    "Hallucination": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Create 3 copies of yourself that run in a random direction for 3 seconds and may briefly trick enemies into ignoring you. \n\nSignificantly reduces your threat and removes all movement impairing effects from you.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Mind Games",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            },
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Hallucination by -5 sec and reduces its mana cost by -20%."
+        }
+      ]
+    },
+    "Hammer of Twilight": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL",
+        "SHIELD",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Eldritch Strength",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Hammer of Twilight and Entropic Slam by 25% and they now generates a large amount of threat."
+        },
+        {
+          "talent": "Rift",
+          "tree": "Godblade",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Obliteration"
+          ],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Apply a dark boon to yourself for 15 seconds, causing your next Hammer of Twilight to deal an additional 80% of its damage dealt as Shadow damage.\n\nCreates a rift in front of you that absorbs the next 690 + 150% AP healing taken by enemies that step inside and reduces their periodic healing received by -50% for 10 seconds while inside."
+        },
+        {
+          "talent": "Hand of N'Zoth",
+          "tree": "Godblade",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Hammer of Twilight, Entropic Slam, and Gaze of C'Thun now refreshes a charge of Blade of the Empire."
+        },
+        {
+          "talent": "Warrior of the Old Gods",
+          "tree": "Godblade",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the Weapon Damage dealt by Hammer of Twilight and Entropic Slam by 20%."
+        },
+        {
+          "talent": "Touch of the Void",
+          "tree": "Godblade",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.33,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases your Magic damage dealt by 3% and Hammer of Twilight now increases the target's spell damage taken by 10% for 15 seconds."
+        },
+        {
+          "talent": "Twilight's Call",
+          "tree": "Godblade",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nCritical strikes with Hammer of Twilight now refund 20 Insanity."
+        },
+        {
+          "talent": "God Blade",
+          "tree": "Godblade",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your Rift now guarantees your next Hammer of Twilight to critically strike."
+        },
+        {
+          "talent": "End Times",
+          "tree": "Godblade",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "yds"
+            },
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the range of Blade of the Empire, Netherstrike, and Hammer of Twilight by 25 yds and reduces their mana costs by -50% for 15 seconds."
+        },
+        {
+          "talent": "Oblivion's Embrace",
+          "tree": "Godblade",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of your Hammer of Twilight by 25%."
+        }
+      ]
+    },
+    "Hand of Yogg-Saron": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Tether yourself to an ally for 15 seconds, increasing all damage they deal and reducing all damage they take by 15%.",
+      "baseTree": "Heretic",
+      "basePosition": {
+        "x": 4,
+        "y": 8
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Horrific Revelations",
+          "tree": "Heretic",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Every 1 sec while Hand of Yogg-Saron is active, you now trigger a Horrific Revelation on the target and generate 5 Insanity.Horrific RevelationHeals a friendly target for 144 + 67.85% SP, scaling with Insanity, and increases their critical strike chance by 1%, stacking 15 times, for 15 seconds."
+        }
+      ]
+    },
+    "Herald of the Depths": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$92",
+      "baseTree": "Heretic",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Dark Rites",
+          "tree": "Heretic",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "While Herald of the Depths is active, your movement speed cannot be reduced below 100% of normal value."
+        },
+        {
+          "talent": "Forbidden Resilience",
+          "tree": "Heretic",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Herald of the Depths is active, you now take -15% less damage and have a 25% increased chance to resist dispel effects."
+        },
+        {
+          "talent": "Forbidden Strength",
+          "tree": "Heretic",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Herald of the Depths is active, the critical strike chance of Blade of the Empire is increased by 10%."
+        },
+        {
+          "talent": "Blade of the Depths",
+          "tree": "Heretic",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While Herald of the Depths is active, your Forbidden Ritual will cooldown faster."
+        },
+        {
+          "talent": "Void Barrier",
+          "tree": "Heretic",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Casting Herald of the Depths now increases the absorption of your next Void Shield within 10 seconds by 100%."
+        },
+        {
+          "talent": "Blessing of Yogg-Saron",
+          "tree": "Heretic",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "CRIT",
+            "HEAL",
+            "DURATION",
+            "CC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Herald of the Depths is active, you now transform into a Faceless Monstrosity, increasing your critical healing and critical strike chance by 20%, but reducing its duration by -5 sec.\n\nIn addition, while active you are now immune to fear, horrify, and polymorph effects."
+        }
+      ]
+    },
+    "Horrific Revelation": {
+      "lanes": [
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Horrific Revelations",
+          "tree": "Heretic",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Every 1 sec while Hand of Yogg-Saron is active, you now trigger a Horrific Revelation on the target and generate 5 Insanity.Horrific RevelationHeals a friendly target for 144 + 67.85% SP, scaling with Insanity, and increases their critical strike chance by 1%, stacking 15 times, for 15 seconds."
+        }
+      ]
+    },
+    "Horrorbolt": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "CAST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Absolute Horror",
+          "tree": "Corruption",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.3,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Horrorbolt and Wrath of the Black Empire by 0.3 sec."
+        },
+        {
+          "talent": "Dark Revelation",
+          "tree": "Corruption",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Grants your Horrorbolt and Wrath of the Black Empire a 20% chance to reset the cooldown of Gaze of C'thun."
+        },
+        {
+          "talent": "Terror",
+          "tree": "Corruption",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell damage bonus of Horrorbolt by 10% and Wrath of the Empire by 20%."
+        },
+        {
+          "talent": "Yawning Decay",
+          "tree": "Corruption",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Every 3rd Horrorbolt cast causes your next successful Horrorbolt to deal an additional 50% of the initial damage to the target over 3 seconds."
+        },
+        {
+          "talent": "Depths of Madness",
+          "tree": "Corruption",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Gaze of C'Thun now has a 15% to chance to spawn a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        },
+        {
+          "talent": "Apocalyptic Skies",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Wrath of the Black Empire now spawns a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        },
+        {
+          "talent": "Sunderer of Realities",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Wrath of the Black Empire now causes your subsequent Wraths of the Black Empire, within 15 seconds, to deal 15% more damage each and unleash Apocalyptic Skies upon the enemy.Apocalyptic SkiesSpawns a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        }
+      ]
+    },
+    "Horrorbolts": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Horrorbolt Volley",
+          "tree": "Corruption",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "After casting 3 Horrorbolts, it transforms into Horrorbolt Volley for 15 seconds.\nHorrorbolt VolleyGenerates 10 Insanity\nInflict sheer horror on up to 5 enemies, dealing 607 + 28% shadow SP Shadow damage."
+        }
+      ]
+    },
+    "In And Out of Insanity": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the effectiveness of your damage absorption effects by 20%.",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 6,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Inner Darkness": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Blocking an attack now generates 3 Insanity.",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 2,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Insanity": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "HASTE",
+        "SHIELD",
+        "MITIGATION",
+        "RESOURCE",
+        "COST",
+        "AOE",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Mind Leak",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "While above 60 Insanity, you gain -5% reduced damage taken."
+        },
+        {
+          "talent": "Rapid Incantations",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "While above 60 Insanity, you gain 5% increased haste."
+        },
+        {
+          "talent": "Overwhelming Void",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Mass Nightmare now triggers a 60 sec reduced cooldown when used at or above 80 Insanity."
+        },
+        {
+          "talent": "Corrupting Whispers",
+          "tree": "Corruption",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 10,
+          "specialRequirement": [
+            "Corrupt Mind"
+          ],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.4,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt has a 15% chance to grant you Corrupting Whispers.\nCorrupting Whispers (Aura)Increases your Magic Damage dealt by 20%, reduces your mana costs by -30%, and prevents Insanity from decaying for 8 seconds."
+        },
+        {
+          "talent": "Obliteration Beam",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Generates 10 Insanity\nUnleash a beam of eldritch energy, dealing 126 + 65% shadow SP Shadow damage to an enemy and all nearby enemies.\n\nWhile above 60 Insanity, deals 20% more damage."
+        },
+        {
+          "talent": "Whispers of C'Thun",
+          "tree": "Corruption",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nYour Gaze of C'Thun now generates 10 Insanity."
+        },
+        {
+          "talent": "Horrific Visions",
+          "tree": "Corruption",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While above 40 Insanity, your chance to trigger Dark Revelation is now increased by 10%."
+        },
+        {
+          "talent": "Dark Revelation",
+          "tree": "Corruption",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 40 Passive\nGrants all periodic damage and damage dealt a 6% chance to reset the cooldown of Gaze of C'Thun and generate 5 Insanity."
+        },
+        {
+          "talent": "Embrace the Void",
+          "tree": "Corruption",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Reaching 60 Insanity increases your damage dealt by 10% for 10 seconds."
+        },
+        {
+          "talent": "Twilight Shieldtoss",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.12,
+          "lanes": [
+            "DMG",
+            "SHIELD"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Hurl a cursed shield, dealing 40 Shadow damage to up to 3 enemies, reduced by 20% with each jump.\n\nDamage increased by 1% for each stack of Insanity."
+        },
+        {
+          "talent": "Bulwark of Y'shaarj",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases your block chance by 5%, plus an additional 10% while above 40 Insanity."
+        },
+        {
+          "talent": "Bouncing Thoughts",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Twilight Shieldtoss now hits an additional enemy for every 20 Insanity you have."
+        },
+        {
+          "talent": "Twilight Incarnate",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Twilight Shieldtoss now generates 3 Insanity."
+        },
+        {
+          "talent": "Deep Secrets",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nEach point of Insanity now reduces mana costs of your instant cast spells and abilities by 1%."
+        },
+        {
+          "talent": "Wavering Hope",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While above 60 Insanity, the cooldown of your Twilight Shieldtoss and Gaze of C'thun is reduced by -25%."
+        },
+        {
+          "talent": "Void-Enhanced Shield",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases your block value by 20%.\n\nWhile above 60 Insanity, the value of this effect is doubled."
+        },
+        {
+          "talent": "Bulwark of Shadow",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "While above 80 Insanity, your Void Shield has 30% increased value."
+        },
+        {
+          "talent": "Shadowy Symbiosis",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your successful blocks now have a 20% chance to critically block for twice the normal amount.\n\nThis effect is doubled while above 60 Insanity."
+        },
+        {
+          "talent": "Shadow of the Void",
+          "tree": "Godblade",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 20 Passive\nWhile above 40 Insanity, melee attacks and abilities trigger Shadow of the Void.Shadow of the VoidRestores 5% of your maximum mana and increases your Shadow Damage dealt by 10% for 8 seconds."
+        },
+        {
+          "talent": "Twilight's Call",
+          "tree": "Godblade",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nCritical strikes with Hammer of Twilight now refund 20 Insanity."
+        },
+        {
+          "talent": "Who Needs Sanity?",
+          "tree": "Godblade",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Each stack of Insanity increases the critical damage of your Netherstrike by 1%."
+        },
+        {
+          "talent": "Instilling Fear",
+          "tree": "Godblade",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While above 60 Insanity, your Netherstrike and Gaze of C'Thun now gain 10% increased critical strike chance."
+        },
+        {
+          "talent": "Voidborne",
+          "tree": "Godblade",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "CC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Tap into your inner voidborne rage, increasing your damage dealt and critical strike chance by 25%, and granting you immunity to stun effects for 15 seconds.\n\nGenerates 1 Insanity every 1 sec."
+        },
+        {
+          "talent": "Horrific Revelations",
+          "tree": "Heretic",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Every 1 sec while Hand of Yogg-Saron is active, you now trigger a Horrific Revelation on the target and generate 5 Insanity.Horrific RevelationHeals a friendly target for 144 + 67.85% SP, scaling with Insanity, and increases their critical strike chance by 1%, stacking 15 times, for 15 seconds."
+        }
+      ]
+    },
+    "Madness": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Glimpse of Madness",
+          "tree": "Corruption",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.0,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Reduces the cooldown of Obliteration Beam by -40% and it now applies Madness to all targets struck. \nMadnessYour Gaze of C'thun causes 3% increased damage, stacks up to 5 times."
+        }
+      ]
+    },
+    "Malevolences": {
+      "lanes": [
+        "CRIT",
+        "CAST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Eldritch Eye",
+          "tree": "Heretic",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Invoke the Old Gods for 15 seconds, removing the cast time of your next 3 Eldritch Mendings or Malevolences and causing them to critically strike."
+        }
+      ]
+    },
+    "Malignant Armor": {
+      "lanes": [
+        "DMG",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your attack power by 2 for every 100 armor value you have.",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 4,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Manifestation of Y'shaarj": {
+      "lanes": [
+        "CRIT",
+        "HEAL",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Eldritch Entities",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "HEAL",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Critical strikes with abilities now summon a Manifestation of Y'shaarj for 10 seconds, which will attack enemies and heal you for 2% of your base health."
+        }
+      ]
+    },
+    "Manifestations of Y'shaarj": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Dark Calling",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Taking damage while below 35% health now summons 3 Manifestations of Y'shaarj for 10 sec, which will attack enemies and heal you for 2% of your base health.\n\nCan ony occur once every 2 minutes."
+        }
+      ]
+    },
+    "Mass Nightmare": {
+      "lanes": [
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Spread nightmares of the black empire to up to 5 nearby enemies, horrifying them for 5 seconds and interrupting non-player spellcasting for 3 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Overwhelming Void",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Mass Nightmare now triggers a 60 sec reduced cooldown when used at or above 80 Insanity."
+        }
+      ]
+    },
+    "Mind Rot": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Periodic or channeled damage dealt now has a 25% chance to curse your target, applying Mind Rot.Mind Rot (Trigger)Increases the chance for allies to hit with all spells against the afflicted enemy by 3% for 10 seconds.\n\nIf this effect is dispelled, your critical strike chance is increased by 30% for 5 seconds.",
+      "baseTree": "Corruption",
+      "basePosition": {
+        "x": 1,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Eldritch Screams",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.39,
+          "lanes": [
+            "CRIT",
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Corrupt Mind now also applies Mind Rot to nearby enemies.Mind Rot (Trigger)Increases the chance for allies to hit with all spells against the afflicted enemy by 3% for 10 seconds.\n\nIf this effect is dispelled, your critical strike chance is increased by 30% for 5 seconds."
+        }
+      ]
+    },
+    "Netherstrike": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 10 Insanity\nStrike an enemy quickly for 125% Weapon Damage plus 48 Shadow damage, purging 1 beneficial magic effect from them.\n\nOnly usable on enemies below 35% health.",
+      "baseTree": "Godblade",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Voidseeker",
+          "tree": "Godblade",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Melee attacks now have a 10% chance to reset the cooldown of your Netherstrike, allowing the next use regardless of the target's health for 8 seconds."
+        },
+        {
+          "talent": "End Times",
+          "tree": "Godblade",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "yds"
+            },
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the range of Blade of the Empire, Netherstrike, and Hammer of Twilight by 25 yds and reduces their mana costs by -50% for 15 seconds."
+        },
+        {
+          "talent": "Netherborne",
+          "tree": "Godblade",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of Netherstrike by 25%."
+        },
+        {
+          "talent": "Who Needs Sanity?",
+          "tree": "Godblade",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Each stack of Insanity increases the critical damage of your Netherstrike by 1%."
+        },
+        {
+          "talent": "Instilling Fear",
+          "tree": "Godblade",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While above 60 Insanity, your Netherstrike and Gaze of C'Thun now gain 10% increased critical strike chance."
+        }
+      ]
+    },
+    "Obliteration Beam": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Glimpse of Madness",
+          "tree": "Corruption",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.0,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Reduces the cooldown of Obliteration Beam by -40% and it now applies Madness to all targets struck. \nMadnessYour Gaze of C'thun causes 3% increased damage, stacks up to 5 times."
+        },
+        {
+          "talent": "Depths of Madness",
+          "tree": "Corruption",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Gaze of C'Thun now has a 15% to chance to spawn a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        },
+        {
+          "talent": "Abyssal Destruction",
+          "tree": "Corruption",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            },
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Periodic or channeled damage dealt now reduces the cooldown of your Obliteration Beam by -1 sec and grants 1 stack of Abyssal Destruction.Abyssal DestructionIncreases the damage dealt of your next Obliteration Beam by 5%, stacking 10 times, for 15 seconds."
+        },
+        {
+          "talent": "Apocalyptic Skies",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Wrath of the Black Empire now spawns a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        },
+        {
+          "talent": "Sunderer of Realities",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Wrath of the Black Empire now causes your subsequent Wraths of the Black Empire, within 15 seconds, to deal 15% more damage each and unleash Apocalyptic Skies upon the enemy.Apocalyptic SkiesSpawns a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        }
+      ]
+    },
+    "Presence of C'Thun": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Servant of C'Thun",
+          "tree": "Corruption",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Casting Gaze of C'thun now always triggers your Presence of C'Thun while it is active.Presence of C'Thun (Buff)Increases your haste by 20% for 6 seconds."
+        }
+      ]
+    },
+    "Presence of N'Zoth": {
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Teachings of Mythrax",
+          "tree": "Godblade",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Presence of N'Zoth and Presence of Y'Shaarj by 25%."
+        }
+      ]
+    },
+    "Presence of Y'Shaarj": {
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Teachings of Mythrax",
+          "tree": "Godblade",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Presence of N'Zoth and Presence of Y'Shaarj by 25%."
+        }
+      ]
+    },
+    "Presences": {
+      "lanes": [
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Embodied Presences",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger your Presences by 5%."
+        },
+        {
+          "talent": "Doomsayer",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost of your Presences by -50%."
+        },
+        {
+          "talent": "Everpresent",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger Presences by 10%."
+        }
+      ]
+    },
+    "Protection From Light": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces all damage taken by party and raid members by -3%.\n\nIn addition, your Holy damage taken is reduced by -10%.",
+      "baseTree": "Heretic",
+      "basePosition": {
+        "x": 0,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Psychic Suppression": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Lift an enemy into the air, stunning them and dealing 30 + 55% shadow SP + 10% AP Shadow damage every 1 sec for 5 seconds. \n\nThe target takes 15% more spell damage from all sources while you are channeling this spell.",
+      "baseTree": "Corruption",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Misery",
+          "tree": "Corruption",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Gaze of C'Thun now reduces the cooldown of Psychic Suppression and Grasp of Zek'voz by -1 sec."
+        }
+      ]
+    },
+    "Rift": {
+      "lanes": [
+        "CRIT",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Encroaching Presence",
+          "tree": "Godblade",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your melee critical strikes reduce the cooldown of Rift and Gaze of C'Thun by -3 sec."
+        },
+        {
+          "talent": "God Blade",
+          "tree": "Godblade",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your Rift now guarantees your next Hammer of Twilight to critically strike."
+        }
+      ]
+    },
+    "Sanity Tap": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Moment of Clarity",
+          "tree": "Corruption",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 70.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 18.7,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Reduces spell pushback suffered from damaging attacks by 70% and increases mana generated by Sanity Tap by 10%."
+        }
+      ]
+    },
+    "Saronite Blessing": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Melee critical strikes now apply Saronite Blessing to you.Saronite Blessing (Buff)Your melee attack speed is increased by 25% and your melee auto attacks heal the lowest health ally for an additional 100% of the damage dealt. Lasts for 15 seconds or 10 attacks.",
+      "baseTree": "Heretic",
+      "basePosition": {
+        "x": 2,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Satiate": {
+      "lanes": [
+        "HEAL",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Void Hunger",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Satiate now also regenerates an additional 1% mana per tick and no longer increases damage taken during the channel."
+        },
+        {
+          "talent": "Dark Matter",
+          "tree": "Heretic",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Channeling Satiate now heals all allies within 30 yds for 208 + 20% healing every 1 sec for 10 seconds."
+        },
+        {
+          "talent": "Ancient Rituals",
+          "tree": "Heretic",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Satiate now refreshes the duration of Black Blood on all allies within 30 yds.\n\nDark Infusion bounces one additional time after its third infusion, expanding to the three lowest-health nearby party or raid members."
+        }
+      ]
+    },
+    "Sermon of Dread": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Improved Sermon of Dread",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Sermon of Dread by 40%."
+        }
+      ]
+    },
+    "Shadow of the Void": {
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Residual Energy",
+          "tree": "Godblade",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Doubles the duration of Shadow of the Void."
+        },
+        {
+          "talent": "Void Rage",
+          "tree": "Godblade",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the Shadow damage increased through Shadow of the Void by 5%."
+        },
+        {
+          "talent": "Glory to N'Zoth",
+          "tree": "Godblade",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "While Shadow of the Void is active, you now take -15% reduced damage."
+        },
+        {
+          "talent": "Nutcase",
+          "tree": "Godblade",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Shadow of the Void now also increases your critical damage dealt by 10%."
+        },
+        {
+          "talent": "Book of N'Zoth",
+          "tree": "Godblade",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Shadow of the Void now stacks 1 additional time."
+        }
+      ]
+    },
+    "Strength of the Sha": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your spell damage by 25% of your Strength and your spell hit rating by 6% of your Intellect.",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Tentacle of N'Zoth": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CC",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Target an enemy and summon a Tentacle of N'Zoth on the ground near them that will silence them and deal 117 + 75% SP Shadow damage every 2 sec for 8 seconds. If your target runs out of range, the tentacle will seek a new target.\n\nThe tentacle gains health based on your Stamina. If the tentacle dies, the silence effect will end.",
+      "baseTree": "Godblade",
+      "basePosition": {
+        "x": 2,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Tentacles": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "SPEED",
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Eternal Grasp",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of your Tentacles by 50%."
+        },
+        {
+          "talent": "Eldritch Command",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Gaze of C'thun now has a 30% chance to cause your Tentacles to blast the enemy with eldritch energy, dealing 81 + 22.5% shadow SP + 10% AP Shadow damage."
+        },
+        {
+          "talent": "Corruptor's Gaze",
+          "tree": "Corruption",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of your Tentacles by 20%."
+        },
+        {
+          "talent": "Eye of N'zoth",
+          "tree": "Godblade",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance and critical damage of your Tentacles by 10%."
+        },
+        {
+          "talent": "Eldritch Obelisk",
+          "tree": "Godblade",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            },
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 28.0,
+          "lanes": [
+            "DMG",
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Create an Eldritch Obelisk beneath you for 20 seconds, increasing the damage of your Tentacles by 100% and the movement speed of allies by 40% while near it."
+        },
+        {
+          "talent": "Twilight Domination",
+          "tree": "Godblade",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Damage dealt by your Tentacles reduces the cooldown of Eldritch Obelisk by -2 sec.\n\nIn addition, increases the effectiveness of Eldritch Obelisk by 25%."
+        },
+        {
+          "talent": "Twisted Sanity",
+          "tree": "Heretic",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Allies affected by your Black Blood are now healed for 30% of the damage dealt by your Tentacles."
+        }
+      ]
+    },
+    "Twilight Shieldtoss": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HEAL",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Y'Shaarj's Enforcer",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage dealt by your Twilight Shieldtoss by 100% but it to no longer bounces."
+        },
+        {
+          "talent": "Bouncing Thoughts",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Twilight Shieldtoss now hits an additional enemy for every 20 Insanity you have."
+        },
+        {
+          "talent": "Twilight Incarnate",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Twilight Shieldtoss now generates 3 Insanity."
+        },
+        {
+          "talent": "Wavering Hope",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While above 60 Insanity, the cooldown of your Twilight Shieldtoss and Gaze of C'thun is reduced by -25%."
+        },
+        {
+          "talent": "General of Y'shaarj",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Dealing damage with Twilight Shieldtoss now heals you for 10% of the damage dealt."
+        },
+        {
+          "talent": "Twilight Guardian",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Twilight Shieldtoss now shields you for 50% of the damage dealt for 8 seconds."
+        },
+        {
+          "talent": "Void Augmentation",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While Dreadnought is active, your Twilight Shieldtoss has a -3 sec reduced cooldown."
+        }
+      ]
+    },
+    "Twisted Seal": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Create a warped sigil that bends hostile force away from you, deflecting all spells for 5 seconds, but making you unable to attack or cast spells.\n\nCasters whose magic is deflected are silenced for 3 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Ungodly Blessing": {
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the duration of curse effects on you by -40%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Unrelenting Void": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Periodic or channeled damage now increases the damage the enemy takes from you by 2% for 10 seconds, stacking 10 times.",
+      "baseTree": "Corruption",
+      "basePosition": {
+        "x": 1,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Vision of Doom": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Behold a vision of doom, causing direct damage or healing done to apply Vision of Doom to nearby targets for 3 seconds. Can only occur once every 3 sec.\n\nAt the end of the duration, they are damaged or healed for 100% of the damage or healing that doomed them. Lasts for 1 minute or 5 instances of damage or healing.\n\nDoomed enemies are unable to be healed and the damage or healing done by this effect can critically strike.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Visions": {
+      "lanes": [
+        "DMG",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, your Shadow damage is increased by 3%.",
+      "baseTree": "Corruption",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Void Power": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your healing power is increased based on your main-hand weapon damage.",
+      "baseTree": "Heretic",
+      "basePosition": {
+        "x": 10,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Void Shield": {
+      "lanes": [
+        "DMG",
+        "SHIELD",
+        "COST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Empire's Blessing",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "SHIELD",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost of Void Shield by -20%."
+        },
+        {
+          "talent": "Crystalline Reflection",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "DMG",
+            "SHIELD"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance for Void Shield to resist dispel effects on allies by -50% and it now also reflects 50% of the damage absorbed."
+        },
+        {
+          "talent": "Split Mind",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "SHIELD",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Void Shield now applies to an additional nearby ally but its duration is reduced by -30%.\n\nKilling an opponent that yields experience or honor removes Wracked Mind from you."
+        },
+        {
+          "talent": "Bulwark of Shadow",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "While above 80 Insanity, your Void Shield has 30% increased value."
+        },
+        {
+          "talent": "Embodiment of Y'shaarj",
+          "tree": "Dreadnought",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "DMG",
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Increases the amount that Void Shield absorbs by 100%.\n\nAbsorbing damage grants you 20% of the absorbed value as spell power for 8 seconds."
+        },
+        {
+          "talent": "Persistent Prayers",
+          "tree": "Heretic",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "SHIELD",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration and absorption amount of Void Shield and Forbidden Ritual by 50%."
+        },
+        {
+          "talent": "Void Barrier",
+          "tree": "Heretic",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Casting Herald of the Depths now increases the absorption of your next Void Shield within 10 seconds by 100%."
+        }
+      ]
+    },
+    "Void Strength": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 40 Passive\nIncreases your Shadow spell damage by 50% of your Strength and your spell hit chance by 5% of your Strength.",
+      "baseTree": "Godblade",
+      "basePosition": {
+        "x": 10,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Void-Enchanted Armor": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your chance to resist dispel effects by -20%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Voidborne": {
+      "lanes": [
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Shadow Fiend",
+          "tree": "Godblade",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -90.0,
+              "unit": "sec"
+            },
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Voidborne by -90 sec and increases its duration by 5 sec."
+        }
+      ]
+    },
+    "Voidforged Edge": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your auto attacks now deal an additional 30% of the damage dealt as Shadow damage.",
+      "baseTree": "Godblade",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Voidwarding": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces damage taken by party and raid members by -3%. Does not stack with similar effects.\n\nIn addition, increases all of your resistances by 5, scaling with level.",
+      "baseTree": "Dreadnought",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Whispers": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Shadow Words",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Whispers by 25%."
+        }
+      ]
+    },
+    "Wicked Thoughts": {
+      "lanes": [
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your maximum mana, your movement speed, and mounted movement speed by 15%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Worrysome Idol": {
+      "lanes": [
+        "HASTE",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your spell haste by 4% and causes you to regenerate mana equal to 1% of your missing mana every 10 sec.",
+      "baseTree": "Corruption",
+      "basePosition": {
+        "x": 6,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Wracked Mind": {
+      "lanes": [
+        "DMG",
+        "SHIELD",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Void Shield",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Shields an ally, absorbing 195 + 60% SP damage for 30 seconds and applying Wracked Mind.\nWracked MindCannot be affected by Void Shield. Lasts for 15 seconds."
+        },
+        {
+          "talent": "Split Mind",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "SHIELD",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Void Shield now applies to an additional nearby ally but its duration is reduced by -30%.\n\nKilling an opponent that yields experience or honor removes Wracked Mind from you."
+        },
+        {
+          "talent": "Saronite Cube",
+          "tree": "Heretic",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Melee ability damage now reduces the duration of Wracked Mind by -1 sec on all allies within 30 yds."
+        }
+      ]
+    },
+    "Wrath of the Black Empire": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "CAST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Absolute Horror",
+          "tree": "Corruption",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.3,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Horrorbolt and Wrath of the Black Empire by 0.3 sec."
+        },
+        {
+          "talent": "Dark Revelation",
+          "tree": "Corruption",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Grants your Horrorbolt and Wrath of the Black Empire a 20% chance to reset the cooldown of Gaze of C'thun."
+        },
+        {
+          "talent": "Inner Turmoil",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Wrath of the Black Empire by 25%."
+        },
+        {
+          "talent": "Occultism",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Wrath of the Black Empire by 10%."
+        },
+        {
+          "talent": "Apocalyptic Skies",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Wrath of the Black Empire now spawns a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        },
+        {
+          "talent": "Sunderer of Realities",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Wrath of the Black Empire now causes your subsequent Wraths of the Black Empire, within 15 seconds, to deal 15% more damage each and unleash Apocalyptic Skies upon the enemy.Apocalyptic SkiesSpawns a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        }
+      ]
+    },
+    "Wrath of the Empire": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Terror",
+          "tree": "Corruption",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell damage bonus of Horrorbolt by 10% and Wrath of the Empire by 20%."
+        }
+      ]
+    },
+    "Wraths of the Black Empire": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sunderer of Realities",
+          "tree": "Corruption",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Wrath of the Black Empire now causes your subsequent Wraths of the Black Empire, within 15 seconds, to deal 15% more damage each and unleash Apocalyptic Skies upon the enemy.Apocalyptic SkiesSpawns a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+        }
+      ]
+    },
+    "Yogg-Saron's Embrace": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your attack power and your maximum mana by 10%.",
+      "baseTree": "Heretic",
+      "basePosition": {
+        "x": 5,
+        "y": 5
+      },
+      "modifyingTalents": []
+    }
+  }
+}

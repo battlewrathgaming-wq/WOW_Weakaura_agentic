@@ -1,0 +1,63 @@
+{
+  "$id": "cooldown_tracker_icon.schema.json",
+  "opportunity_type": "cooldown_tracker",
+  "title": "Cooldown tracker (icon)",
+  "description": "A first-class ability with a real cooldown - Rotation or Power-button tier icon.",
+  "region_type": "icon",
+  "trigger": "Cooldown Progress (Spell)",
+  "type": "object",
+  "required": [
+    "name",
+    "spell_id",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Aura id/label."
+    },
+    "spell_id": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 40
+    },
+    "height": {
+      "type": "number",
+      "default": 30
+    },
+    "accent_color": {
+      "type": "array",
+      "default": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "description": "subborder's color - class accent (theme.json's accent_rgba) recommended for the design language's consistent border language; defaults to Border.lua's own real white default if omitted."
+    },
+    "glow_source": {
+      "$ref": "glow_source.schema.json",
+      "description": "Optional - see glow-source fragment."
+    },
+    "stack_counter": {
+      "$ref": "stack_counter_overlay.schema.json"
+    },
+    "power_threshold": {
+      "$ref": "power_threshold_effect.schema.json",
+      "description": "Optional - see power-threshold-effect fragment. Desaturate-on-insufficient-power and/or afford-glow, never visibility."
+    }
+  },
+  "verified": "Icon default fields from RegionTypes/Icon.lua; trigger fields from Prototypes.lua's 'Cooldown Progress (Spell)' entry (line 3742). Field shape confirmed live-tested in Template_shadow.py's own Rotation/Power-button icons (regionType=icon, cooldown=true). Extended 2026-07-06 with a subborder (icon-variant fields live-confirmed via the real Test_Board_validation export) and the optional power_threshold fragment, promoting ROTATION_ICON_PATTERN.md from a documented-but-unwired design into an actual reusable capability - first real consumers: Necromancer's Lichfrost/Crypt Swarm/Command: Undead."
+}

@@ -1,0 +1,46 @@
+{
+  "$id": "pet_summon_countdown_icon.schema.json",
+  "opportunity_type": "pet_summon_countdown",
+  "title": "Pet/minion summon countdown (icon)",
+  "description": "Time-since-summon countdown for a minion with no stable per-unit token (Necromancer Animate spells, Wild Imps, Army of the Dead). Not a real HP query - a known-duration countdown, per USE_CASE.md's 'Tracking non-directly-controlled pets' research and the real db.ascension.gg Necromancer Temp-Summon Tracker it's modeled on.",
+  "region_type": "icon",
+  "trigger": "Cooldown Progress (Spell), keyed to a SPELL_..._SUMMON combat-log event",
+  "type": "object",
+  "required": [
+    "name",
+    "summon_spell_id",
+    "duration_seconds",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "summon_spell_id": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
+    "duration_seconds": {
+      "type": "number",
+      "description": "Hardcoded known duration for this minion type (e.g. 15/30/35s per the community aura's own per-type values)."
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 30
+    },
+    "height": {
+      "type": "number",
+      "default": 20
+    }
+  },
+  "verified": "Pattern confirmed against a real, currently-used community aura (Walmartpjs' Necromancer Temp-Summon Tracker, db.ascension.gg) - see USE_CASE.md. Not yet built or live-tested by this project directly."
+}

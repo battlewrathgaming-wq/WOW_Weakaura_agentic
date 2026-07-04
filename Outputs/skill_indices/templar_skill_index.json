@@ -1,0 +1,5826 @@
+{
+  "class": "Templar",
+  "schemaVersion": 2,
+  "laneTaxonomy": {
+    "DMG": "Damage",
+    "STATS": "Primary/secondary stats",
+    "CRIT": "Crit chance/damage",
+    "CDR": "Cooldown",
+    "CAST": "Cast time",
+    "HASTE": "Haste",
+    "SPEED": "Movement speed",
+    "HEAL": "Healing",
+    "SHIELD": "Shield/absorb",
+    "MITIGATION": "Damage mitigation",
+    "RESOURCE": "Resource generation",
+    "COST": "Resource cost",
+    "DURATION": "Duration",
+    "AOE": "AoE / target count",
+    "CC": "Crowd control",
+    "ARMOR": "Armor",
+    "SUMMON": "Summon / pet",
+    "MISC": "Other"
+  },
+  "note": "Per-skill index: for each observed skill/ability, lists every talent that modifies it, where it sits in the tree, its parsed stat modification, and a mock value showing that modification applied to a normalized baseline of 10. Each modifying talent is tagged with one or more lanes from laneTaxonomy (DMG/CRIT/CDR/CAST/HASTE/SPEED/HEAL/SHIELD/MITIGATION/RESOURCE/COST/DURATION/AOE/CC/ARMOR/SUMMON/MISC), plus cross-cutting behavior flags (PROC, STACK) that describe how the effect triggers rather than what stat it touches. A handful of nodes have unresolved \"$xx\" template descriptions in the source export - these are flagged rather than guessed at.",
+  "mockBaseline": 10,
+  "skills": {
+    "Absolution": {
+      "lanes": [
+        "SPEED",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Taunt all enemies within 8 yds for 4 seconds and increase your movement speed by 50% for 4 seconds.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 4,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Aggramar's Rage": {
+      "lanes": [
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Holy critical strike chance by 6% and your expertise by 10.",
+      "baseTree": "Crusader",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Argent Blade": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "COST",
+        "DURATION",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Warrior of Dawn",
+          "tree": "Crusader",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "DMG",
+            "COST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Melee damage dealt now has a 10% chance to reduce the Energy cost of your next Argent Blade by -50%."
+        },
+        {
+          "talent": "Paladin Training",
+          "tree": "Crusader",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Righteous Lunge and Argent Blade by 20%."
+        },
+        {
+          "talent": "Scarlet Secrets",
+          "tree": "Crusader",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Every 2nd cast of Argent Blade now grants you Oath: Retribution.Oath: RetributionCritical damage increased by 5%."
+        },
+        {
+          "talent": "Scourge-Defense Training",
+          "tree": "Crusader",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Warrior of Dawn now also increases the damage and critical strike chance of your next Argent Blade by 20%."
+        },
+        {
+          "talent": "Scarlet Training",
+          "tree": "Crusader",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 555.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nCasting Argent Blade while Warrior of Dawn is active now transforms your next Chastise into Scarlet Hammer.Scarlet HammerDrop a scarlet hammer on an enemy for 155% Weapon Damage plus 35 as Holy Damage and reduce their Armor by 555 for 10 seconds."
+        },
+        {
+          "talent": "Light's Echo",
+          "tree": "Crusader",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Argent Blade now has a 20% chance to strike an additional time."
+        },
+        {
+          "talent": "Holy Combatant",
+          "tree": "Crusader",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Your Argent Blade now also extends the duration of Interdict on your target by 1 sec."
+        },
+        {
+          "talent": "Divine Strikes",
+          "tree": "Crusader",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Scourgebane now increases the damage of Argent Blade by 5% for 6 seconds, stacking 10 times."
+        },
+        {
+          "talent": "Legacy of the Silver Hand",
+          "tree": "Crusader",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Casting Argent Blade or Scarlet Hammer now guarantees your next 2 instances of damage dealt by Scourgebane to critically strike.\n\nIncreases the critical damage of Scourgebane by 15%."
+        }
+      ]
+    },
+    "Barrier of Light": {
+      "lanes": [
+        "HEAL",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Emit saving light, increasing the healing received by nearby allies by 40% for 15 seconds.\n\nFor the duration, threat generated by your allies is redirected to you.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Battlepriest": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "While above 80% health or below 20% health, you now take 20% reduced Magic damage.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 6,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Bells of Light": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Agility, Intellect, and hit chance by 6%",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 7,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Benediction": {
+      "lanes": [
+        "STATS",
+        "CDR",
+        "CAST",
+        "HEAL",
+        "COST",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Improved Benediction",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "STATS",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Benediction now grants your target armor based on your Agility and Stamina for 15 sec."
+        },
+        {
+          "talent": "Disciplined Mind",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the healing of Benediction by 30% and causes it to dispel 1 poison and disease effect."
+        },
+        {
+          "talent": "Justicar of the Light",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Removes the cooldown from Benediction."
+        },
+        {
+          "talent": "Guardian of the Light",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Casting Benediction now reduces the cost of your next Temple Guardian by -50% for 6 seconds."
+        },
+        {
+          "talent": "Light's Guidance",
+          "tree": "Zealot",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing with Benediction now causes your next Benediction to heal for 25% more for 30 seconds."
+        },
+        {
+          "talent": "Holy Light",
+          "tree": "Zealot",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Benediction now has a 1.5 sec cast time, but now heals for 100% more."
+        }
+      ]
+    },
+    "Binding Scripture": {
+      "lanes": [
+        "HEAL",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Healing an ally now redirects 10% of their damage taken to you and reduces your damage taken by -5% for 10 seconds, stacking 3 times.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Blade of Faith": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Focused",
+          "tree": "Crusader",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Blade of Faith and Righteous Tempest by 25%."
+        },
+        {
+          "talent": "Transcending Strikes",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Divine Force will now trigger a -30 sec reduced cooldown when used on enemies affected by Blade of Faith."
+        },
+        {
+          "talent": "Condemnation",
+          "tree": "Zealot",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Dealing damage with Condemn, Holy Cleave, or Blade of Faith now has a 15% chance to trigger Zealotry if you are within melee range of your target.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        },
+        {
+          "talent": "Fervent Castigation",
+          "tree": "Zealot",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Righteous Upheaval or Blade of Faith now grants you Oath: Retribution and starts your Oath Chain.Oath: RetributionCritical damage increased by 5%."
+        },
+        {
+          "talent": "Might of Aggramar",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Physical damage dealt now has a 25% chance to increase the tick rate and reduce cooldown of your next Blade of Faith by -10%, stacking 5 times."
+        }
+      ]
+    },
+    "Blessed Padding": {
+      "lanes": [
+        "MITIGATION",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Armor contribution from mail items by 100% and reduces damage taken from area of effect attacks by -20%.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 2,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Bursting Impact": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your off-hand weapon damage by 25%.",
+      "baseTree": "Zealot",
+      "basePosition": {
+        "x": 2,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Call of the Monastery": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the attack power of all party and raid members 5%. Does not stack with similar effects.\n\nIn addition, increases your attack power by 5%.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 3,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Calm Combatant": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your Holy spell damage by 30% of your attack power.",
+      "baseTree": "Zealot",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Chakra of Power": {
+      "lanes": [
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Melee attacks now restore 1 Energy, plus an additional 2 Energy when they critically strike.",
+      "baseTree": "Zealot",
+      "basePosition": {
+        "x": 6,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Chastise": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Righteousness",
+          "tree": "Crusader",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Chastise now always triggers Scourgebane on your target."
+        },
+        {
+          "talent": "Scarlet Training",
+          "tree": "Crusader",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 555.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nCasting Argent Blade while Warrior of Dawn is active now transforms your next Chastise into Scarlet Hammer.Scarlet HammerDrop a scarlet hammer on an enemy for 155% Weapon Damage plus 35 as Holy Damage and reduce their Armor by 555 for 10 seconds."
+        },
+        {
+          "talent": "Templar's Might",
+          "tree": "Crusader",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Righteous Lunge and Chastise used on enemies affected by your Condemn now deal 6% increased damage per stack."
+        },
+        {
+          "talent": "Martial Training",
+          "tree": "Crusader",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nYour Chastise now deals an additional 50% Weapon Damage."
+        },
+        {
+          "talent": "Scarlet Champion",
+          "tree": "Crusader",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your damaging critical strikes now increase your Holy damage dealt by 2% for 20 seconds. stacking 5 times. Can only occur once per sec.\n\nAt 5 stacks, you are granted High General.High GeneralYour next Chastise consumes all stacks of Scarlet Champion to deal 25% increased direct damage, and be guaranteed to critically strike."
+        },
+        {
+          "talent": "Faith Guard",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "While under the effect of a Libram, your Chastise will now unleash an 8 yd line of holy power, dealing 112 + 25% AP Holy damage."
+        },
+        {
+          "talent": "Pious Sweep",
+          "tree": "Zealot",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Chastise by 25% on enemies above 75% health or affected by Tranquil Circle."
+        },
+        {
+          "talent": "Norgannon's Wrath",
+          "tree": "Zealot",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Target an enemy and leap into the air. After a short delay, you blast them with immense holy force, dealing 1506 + 100% holy SP + 100% AP Holy damage to up to 10 enemies within 5 yds and reduces their damage and healing done by -10% for 5 seconds.\n\nDamage dealt pierces all immunities, resistances, and damage absorption effects.\n\nScales with modifiers to Chastise."
+        }
+      ]
+    },
+    "Chivalric": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical damage with Holy spells and abilities by 15%.",
+      "baseTree": "Crusader",
+      "basePosition": {
+        "x": 2,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Condemn": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL",
+        "MITIGATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Pulverizing",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Condemn now has a 15% chance to consecrate the earth around you with holy fervor, dealing 91 + 22.5% holy SP + 10% AP Holy damage to nearby enemies."
+        },
+        {
+          "talent": "Holy Tempest",
+          "tree": "Crusader",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Righteous Tempest now spreads Condemn on affected enemies to a nearby enemy."
+        },
+        {
+          "talent": "Tyr's Blessing",
+          "tree": "Crusader",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Condemn now stacks 1 additional time."
+        },
+        {
+          "talent": "Templar's Might",
+          "tree": "Crusader",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Righteous Lunge and Chastise used on enemies affected by your Condemn now deal 6% increased damage per stack."
+        },
+        {
+          "talent": "Argent Knight",
+          "tree": "Crusader",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            },
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "DMG",
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Increases the damage dealt by Righteous Tempest and Condemn by 30%.\n\nAdditionally, Righteous Tempest now reduces all damage taken by -20% while active."
+        },
+        {
+          "talent": "Uther's Legacy",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Condemn now heals you for 75% of the damage dealt."
+        },
+        {
+          "talent": "Lightkeeper",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Periodic damage dealt by Condemn now has a 15% chance to increase your parry chance by 2% for 8 seconds, stacking 3 times.\n\nPeriodic damage dealt by Condemn also has a 15% chance to burst, dealing 100 + 22% AP Holy damage to up to 5 enemies within 5 yds of the target."
+        },
+        {
+          "talent": "Condemnation",
+          "tree": "Zealot",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance gained through Condemn by 3%."
+        },
+        {
+          "talent": "Condemnation",
+          "tree": "Zealot",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Dealing damage with Condemn, Holy Cleave, or Blade of Faith now has a 15% chance to trigger Zealotry if you are within melee range of your target.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        }
+      ]
+    },
+    "Courage": {
+      "lanes": [
+        "SPEED",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your movement speed and reduces the duration of movement slowing effects on you by -20%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Crusader's Brand": {
+      "lanes": [
+        "DMG",
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Brand an enemy for 20 seconds, preventing them from mounting, fleeing, or increasing their movement speed above normal movement speed and when they deal direct damage they take 243 + 27.5% holy SP + 18.5% AP Holy Damage.\n\nWhile marked enemies can always be seen by the Crusader even while stealthed or invisible.",
+      "baseTree": "Crusader",
+      "basePosition": {
+        "x": 2,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Disciplined Blows": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "HEAL",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your healing done triggers a holy pulse around healed targets, dealing 89 + 5% AP + 20% Agility Holy damage to nearby enemies.\n\nCnly occur once every 0.5 sec.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 2,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Divine Charge": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "You and your party members leap upon a divine steed, increasing their movement speed by 100% and causing them to trample nearby enemies for 119 + 20% AP + 40% holy SP Holy Damage every 1 sec for 15 seconds.\n\nWhile active, casting does not dismount you or your allies. Can only be used outdoors.",
+      "baseTree": "Crusader",
+      "basePosition": {
+        "x": 6,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Divine Force": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Leap at an enemy with divine force, stunning them for 6 seconds, dealing 20 + 100% SP + 55% AP Holy damage, and interrupting non-player spellcasting for 3 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Holy Crusader",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Divine Force by -30 sec."
+        },
+        {
+          "talent": "Scarlet Judicator",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Divine Force now strikes 2 additional enemies near the primary target."
+        },
+        {
+          "talent": "Transcending Strikes",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Divine Force will now trigger a -30 sec reduced cooldown when used on enemies affected by Blade of Faith."
+        }
+      ]
+    },
+    "Divine Fury": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$66",
+      "baseTree": "Zealot",
+      "basePosition": {
+        "x": 10,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Unbroken Creed",
+          "tree": "Zealot",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 50 Passive\nDamaging abilities now grants you Unbroken Creed for 15 seconds, stacking up to 3 times.\n\nWhen you use a damaging Oath Breaker or Divine Fury you now consume the stacks and auto attack your target an amount of times equal to your stack count."
+        }
+      ]
+    },
+    "Eternal Blessing": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Eternally Devoted",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Damage dealt through Eternal Blessing now reduces the cooldown of Libram spells by -4 sec."
+        }
+      ]
+    },
+    "Finesse": {
+      "lanes": [
+        "CRIT",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical strike chance by 4% and reduces the duration of disarm effects against you by -30%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Force of Golganneth": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "One With The Light",
+          "tree": "Zealot",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Oath Breakers now triggers Zealotry on your target and reduces the cooldown of Librams, Force of Golganneth, and Mortal Abdication by -1 sec.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        }
+      ]
+    },
+    "Fortified Body": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Allies within 40 yds receive 6% more healing. Does not stack with similar effects.\n\nAdditionally, increases your maximum health by 6%.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 5,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Gift of Zeal": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Martyr",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Gift of Zeal by 20%."
+        }
+      ]
+    },
+    "Glory": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$68",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Graceful Fighter": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your parry rating by 20% of Agility and your dodge rating by 20% of Intellect.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Heaven's Finest": {
+      "lanes": [
+        "SPEED",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Damaging abilities now grant Heaven's Finest for 12 seconds, stacking 6 times.Heaven's FinestIncreases your movement speed by 5%.\n\nAt 6 stacks, increases your Energy regeneration by 100% for 8 seconds.\n\nAdditional applications do not refresh the duration.",
+      "baseTree": "Zealot",
+      "basePosition": {
+        "x": 2,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "High General": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Scarlet Champion",
+          "tree": "Crusader",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your damaging critical strikes now increase your Holy damage dealt by 2% for 20 seconds. stacking 5 times. Can only occur once per sec.\n\nAt 5 stacks, you are granted High General.High GeneralYour next Chastise consumes all stacks of Scarlet Champion to deal 25% increased direct damage, and be guaranteed to critically strike."
+        }
+      ]
+    },
+    "Holy Cleave": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Condemnation",
+          "tree": "Zealot",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Dealing damage with Condemn, Holy Cleave, or Blade of Faith now has a 15% chance to trigger Zealotry if you are within melee range of your target.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        }
+      ]
+    },
+    "Holy Constitution": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your damage dealt versus Undead by 5, scaling with level, and increases your chance to resist disease effects by 30%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Interdict": {
+      "lanes": [
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Forbid an enemy from sinning, silencing them for 6 seconds. If they are an Undead or Demon they are unable to be healed for the duration.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 8,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Holy Combatant",
+          "tree": "Crusader",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Your Argent Blade now also extends the duration of Interdict on your target by 1 sec."
+        },
+        {
+          "talent": "Patience",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "sec"
+            },
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Interdict by 2 sec and its cooldown by -5 sec."
+        },
+        {
+          "talent": "Justice",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Interdict now strikes 1 additional nearby target."
+        }
+      ]
+    },
+    "Judicator": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your parry and dodge chance by 3%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Libram": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HASTE",
+        "HEAL",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Liberty",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Libram spells by -30 sec."
+        },
+        {
+          "talent": "Sanctify",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Your Libram spells now grant you 10% increased melee haste for 20 seconds."
+        },
+        {
+          "talent": "Faith Guard",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "While under the effect of a Libram, your Chastise will now unleash an 8 yd line of holy power, dealing 112 + 25% AP Holy damage."
+        },
+        {
+          "talent": "Holy Books",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nUsing a Libram now removes 70% of the delayed damage from Oathkeeper.\nOathkeeper40% of damage taken is now delayed and dealt to you over 8 seconds."
+        },
+        {
+          "talent": "Eternally Devoted",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Damage dealt through Eternal Blessing now reduces the cooldown of Libram spells by -4 sec."
+        },
+        {
+          "talent": "Devotion of Khaz'goroth",
+          "tree": "Zealot",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": -0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Increases all party and raid member's melee and ranged haste by 10%. Does not stack with similar effects.\n\nDamage dealt with auto attacks reduce the cooldown of Libram spells by -0.5 sec."
+        },
+        {
+          "talent": "Blessing of Eonar",
+          "tree": "Zealot",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Using Libram spells now increases your damage dealt and healing done by 10% for 15 seconds."
+        }
+      ]
+    },
+    "Libram of Consecration": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Fury of Aggramar",
+          "tree": "Zealot",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 25.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage dealt by Libram of Consecration by 100% and the effectiveness of your Librams by 25%."
+        }
+      ]
+    },
+    "Libram of Fervor": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Read from your Libram of Fervor, granting you spell power equal to 30% of your Agility and attack power equal to 30% of your Intellect for 20 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Libram of Mortal Abdication": {
+      "lanes": [
+        "CDR",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Libram of Zeal",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "CDR",
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Read from your Libram of Mortal Abdication, increasing your melee haste by 20% and causes your damaging abilities to reduce the cooldown of Righteous Upheaval by -2 sec for 20 seconds."
+        }
+      ]
+    },
+    "Libram of Tenacity": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Read from your Libram of Tenacity, reducing your Physical Damage taken by -30% for 20 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Tenacious Defender",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Casting Libram of Tenacity now also heals you for 20% of your maximum health."
+        }
+      ]
+    },
+    "Librams": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Deep Secrets",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of your Librams and Testaments by 10 sec."
+        },
+        {
+          "talent": "Lorescribe",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nCasting Oath Breaker abilities now reduce the cooldown of Librams by -4 sec."
+        },
+        {
+          "talent": "One With The Light",
+          "tree": "Zealot",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Oath Breakers now triggers Zealotry on your target and reduces the cooldown of Librams, Force of Golganneth, and Mortal Abdication by -1 sec.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        },
+        {
+          "talent": "Fury of Aggramar",
+          "tree": "Zealot",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 25.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage dealt by Libram of Consecration by 100% and the effectiveness of your Librams by 25%."
+        }
+      ]
+    },
+    "Light's Chosen": {
+      "lanes": [
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your spell power by 30% of your Agility and your critical strike rating by 15% of your Intellect.",
+      "baseTree": "Crusader",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Light's Ward": {
+      "lanes": [
+        "STATS",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 50 Passive\nIncreases all magic resistances equal to 10% of your dodge rating and reduces your damage taken from periodic effects by -15%.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Martial Paladin": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Agility by 10% and your chance to hit by 6%.",
+      "baseTree": "Zealot",
+      "basePosition": {
+        "x": 7,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Mortal Abdication": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "One With The Light",
+          "tree": "Zealot",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Oath Breakers now triggers Zealotry on your target and reduces the cooldown of Librams, Force of Golganneth, and Mortal Abdication by -1 sec.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        }
+      ]
+    },
+    "Oath": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Duty Calls",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG",
+            "SPEED",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting abilities that grant an Oath now increases your damage dealt and movement speed by 2% for 15 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Vindication",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Zealotry",
+            "Blade of Faith"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Strike an enemy with zeal, dealing 31 + 28.5% AP + 35% SP Physical damage, triggering Zealotry, and granting an Oath.\n\nOath: Your damaging abilities have a 10% chance to trigger Zealotry.\nZealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        }
+      ]
+    },
+    "Oath Breaker": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "CDR",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Blade of Faith",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Unleash a devastating Oath Breaker on an enemy dealing 119 + 140% SP + 70% AP Holy damage over 21 seconds. This ability can critically strike.\n\nConsumes your Oaths, dealing additional damage for each consumed."
+        },
+        {
+          "talent": "Righteous Tempest",
+          "tree": "Crusader",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Scourgebane",
+            "Divine Force"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Unleash a whirling Oath Breaker, dealing Weapon Damage plus 7 + 25% SP damage to nearby enemies, scaling with spell power, every 1 sec for 3 seconds.\n\nConsumes your Oaths, dealing additional damage for each consumed."
+        },
+        {
+          "talent": "Reckoning",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS"
+          ],
+          "flags": [],
+          "description": "Unleash a powerful Oath Breaker, dealing 27 + 17.5% AP + 50% Stamina Holy damage and restoring 15 Energy for each enemy struck.\n\nConsumes your Oaths, dealing additional damage for each consumed."
+        },
+        {
+          "talent": "Lorescribe",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nCasting Oath Breaker abilities now reduce the cooldown of Librams by -4 sec."
+        },
+        {
+          "talent": "Righteous Upheaval",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Unleash a dominating Oath Breaker, dealing 31 + 45% AP + 45% SP Physical damage, increased by 3% for each time you triggered Zealotry during your Oath Chain.\n\nConsumes your Oaths, dealing additional damage for each consumed."
+        },
+        {
+          "talent": "Unbroken Creed",
+          "tree": "Zealot",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 50 Passive\nDamaging abilities now grants you Unbroken Creed for 15 seconds, stacking up to 3 times.\n\nWhen you use a damaging Oath Breaker or Divine Fury you now consume the stacks and auto attack your target an amount of times equal to your stack count."
+        }
+      ]
+    },
+    "Oath Breakers": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CDR",
+        "HEAL",
+        "RESOURCE",
+        "COST",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Blessed Strikes",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Energy cost of your Oath Breakers by -10."
+        },
+        {
+          "talent": "Keeping the Oath",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 1,
+          "specialRequirement": [
+            "Testament of Fortitude"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYou now delay 40% of direct damage taken, instead taking it over 8 seconds.\n\nIn addition, you no longer consume your Oaths with Oath Breakers."
+        },
+        {
+          "talent": "Eternal Blessing",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Increases your Holy damage and healing done by 15% for 30 seconds.\n\nWhile active, Oath Breakers deal an additional 141 + 12% AP Holy damage to nearby enemies."
+        },
+        {
+          "talent": "Mending Ward",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "STATS",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Oath Breakers now grant you a stack of Mending Ward for 15 seconds, stacking 3 times.Mending WardNext instance of direct damage taken while below 35% maximum health will consume these stacks to heal you for 395 + 25% Stamina. \n\nHealing scales with your Stamina and parry rating."
+        },
+        {
+          "talent": "One-Punch Man",
+          "tree": "Zealot",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the the damage of Oath Breakers and Titanstrike by 20%."
+        },
+        {
+          "talent": "Chakra of Light",
+          "tree": "Zealot",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Testaments by -60 sec and Oath Breakers now heal allies around the target for 50 + 35% SP."
+        },
+        {
+          "talent": "One With The Light",
+          "tree": "Zealot",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Oath Breakers now triggers Zealotry on your target and reduces the cooldown of Librams, Force of Golganneth, and Mortal Abdication by -1 sec.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        }
+      ]
+    },
+    "Oath Chain": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Deep Meditation",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of your Oath Chain by 5 sec."
+        },
+        {
+          "talent": "Argent Blade",
+          "tree": "Crusader",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Crush an enemy with argent fervor, dealing 160% Weapon Damage plus 15 + 35% AP + 100% holy SP, healing you equal to the damage dealt, and extending the duration of your Oath Chain by 3 sec."
+        },
+        {
+          "talent": "Righteous Upheaval",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Unleash a dominating Oath Breaker, dealing 31 + 45% AP + 45% SP Physical damage, increased by 3% for each time you triggered Zealotry during your Oath Chain.\n\nConsumes your Oaths, dealing additional damage for each consumed."
+        },
+        {
+          "talent": "Oath Flow",
+          "tree": "Zealot",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Oath Chain by 2 sec."
+        },
+        {
+          "talent": "Fervent Castigation",
+          "tree": "Zealot",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Righteous Upheaval or Blade of Faith now grants you Oath: Retribution and starts your Oath Chain.Oath: RetributionCritical damage increased by 5%."
+        }
+      ]
+    },
+    "Oath:": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Vindication",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Zealotry",
+            "Blade of Faith"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Strike an enemy with zeal, dealing 31 + 28.5% AP + 35% SP Physical damage, triggering Zealotry, and granting an Oath.\n\nOath: Your damaging abilities have a 10% chance to trigger Zealotry.\nZealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        }
+      ]
+    },
+    "Oath: Condemn": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Teachings of the Cathedral",
+          "tree": "Crusader",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Oath: Condemn now provides 5% additional critical strike chance."
+        }
+      ]
+    },
+    "Oath: Retribution": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Scarlet Secrets",
+          "tree": "Crusader",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Every 2nd cast of Argent Blade now grants you Oath: Retribution.Oath: RetributionCritical damage increased by 5%."
+        },
+        {
+          "talent": "Fervent Castigation",
+          "tree": "Zealot",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Righteous Upheaval or Blade of Faith now grants you Oath: Retribution and starts your Oath Chain.Oath: RetributionCritical damage increased by 5%."
+        }
+      ]
+    },
+    "Oath: Righteous Lunge": {
+      "lanes": [
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Radiant Blade",
+          "tree": "Crusader",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Oath: Righteous Lunge by 50%."
+        },
+        {
+          "talent": "Blessing of Aggramar",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Righteous Lunge now has a 25% chance to generate an additional stack of Oath: Righteous Lunge."
+        }
+      ]
+    },
+    "Oathkeeper": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sacred Oath",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Critical strikes now remove 1 sec from the duration of Oathkeeper when used.Oathkeeper40% of damage taken is now delayed and dealt to you over 8 seconds."
+        },
+        {
+          "talent": "Holy Books",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nUsing a Libram now removes 70% of the delayed damage from Oathkeeper.\nOathkeeper40% of damage taken is now delayed and dealt to you over 8 seconds."
+        }
+      ]
+    },
+    "Oaths": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Blade of Faith",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Unleash a devastating Oath Breaker on an enemy dealing 119 + 140% SP + 70% AP Holy damage over 21 seconds. This ability can critically strike.\n\nConsumes your Oaths, dealing additional damage for each consumed."
+        },
+        {
+          "talent": "Righteous Tempest",
+          "tree": "Crusader",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Scourgebane",
+            "Divine Force"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Unleash a whirling Oath Breaker, dealing Weapon Damage plus 7 + 25% SP damage to nearby enemies, scaling with spell power, every 1 sec for 3 seconds.\n\nConsumes your Oaths, dealing additional damage for each consumed."
+        },
+        {
+          "talent": "Keeping the Oath",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 1,
+          "specialRequirement": [
+            "Testament of Fortitude"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYou now delay 40% of direct damage taken, instead taking it over 8 seconds.\n\nIn addition, you no longer consume your Oaths with Oath Breakers."
+        },
+        {
+          "talent": "Reckoning",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS"
+          ],
+          "flags": [],
+          "description": "Unleash a powerful Oath Breaker, dealing 27 + 17.5% AP + 50% Stamina Holy damage and restoring 15 Energy for each enemy struck.\n\nConsumes your Oaths, dealing additional damage for each consumed."
+        },
+        {
+          "talent": "Righteous Upheaval",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Unleash a dominating Oath Breaker, dealing 31 + 45% AP + 45% SP Physical damage, increased by 3% for each time you triggered Zealotry during your Oath Chain.\n\nConsumes your Oaths, dealing additional damage for each consumed."
+        },
+        {
+          "talent": "Combat Training",
+          "tree": "Zealot",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Oaths by 20%."
+        }
+      ]
+    },
+    "Paragon": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Stamina by 10, plus an additional amount equal to 10% of your Agility.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 1,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Parry Dance": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "When you critically strike with auto attacks or parry an attack, your chance to parry is now increased by 3% for 5 seconds, stacking 5 times.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 7,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Pious": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases all primary attributes by 5%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Reckoning": {
+      "lanes": [
+        "DMG",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sacred Resistance",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Casting Reckoning now increases your Armor by 15% for 15 seconds."
+        },
+        {
+          "talent": "Way of the Monk",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Sacred Swing and Reckoning now reduces casting speed by -10% for 10 seconds, stacking 2 times."
+        },
+        {
+          "talent": "Holy Warstaff",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Reckoning by 20%."
+        }
+      ]
+    },
+    "Retribution": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Melee damage dealt now has a 20% chance to strike 2 additional times for 30% of the damage dealt as Holy Damage.",
+      "baseTree": "Crusader",
+      "basePosition": {
+        "x": 3,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Righteous Lunge": {
+      "lanes": [
+        "DMG",
+        "RESOURCE",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Paladin Training",
+          "tree": "Crusader",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Righteous Lunge and Argent Blade by 20%."
+        },
+        {
+          "talent": "Templar's Might",
+          "tree": "Crusader",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Righteous Lunge and Chastise used on enemies affected by your Condemn now deal 6% increased damage per stack."
+        },
+        {
+          "talent": "Grace of Aman'thul",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "flat"
+            },
+            {
+              "value": -10.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Energy cost of Righteous Lunge by -5 and Sacred Swing by -10."
+        },
+        {
+          "talent": "Deliverance",
+          "tree": "Zealot",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Critically striking with Vindication or Righteous Lunge now deals 50% additional Physical damage."
+        },
+        {
+          "talent": "Blessing of Aggramar",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Righteous Lunge now has a 25% chance to generate an additional stack of Oath: Righteous Lunge."
+        }
+      ]
+    },
+    "Righteous Tempest": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "MITIGATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Holy Tempest",
+          "tree": "Crusader",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Righteous Tempest now spreads Condemn on affected enemies to a nearby enemy."
+        },
+        {
+          "talent": "Whirling Tempest",
+          "tree": "Crusader",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "While Righteous Tempest is active you gain 20% increased movement speed."
+        },
+        {
+          "talent": "Focused",
+          "tree": "Crusader",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Blade of Faith and Righteous Tempest by 25%."
+        },
+        {
+          "talent": "Argent Knight",
+          "tree": "Crusader",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            },
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "DMG",
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Increases the damage dealt by Righteous Tempest and Condemn by 30%.\n\nAdditionally, Righteous Tempest now reduces all damage taken by -20% while active."
+        },
+        {
+          "talent": "Templar Rituals",
+          "tree": "Crusader",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Righteous Tempest now deals an additional 35 + 10% holy SP + 8.5% AP Holy damage, and upon dealing damage, you pull enemies within 15 yds towards you."
+        }
+      ]
+    },
+    "Righteous Upheaval": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Upheave!",
+          "tree": "Zealot",
+          "position": {
+            "x": 5,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of Righteous Upheaval by 20%."
+        },
+        {
+          "talent": "Battle Hardened",
+          "tree": "Zealot",
+          "position": {
+            "x": 5,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Righteous Upheaval by -5 sec."
+        },
+        {
+          "talent": "Libram of Zeal",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "CDR",
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Read from your Libram of Mortal Abdication, increasing your melee haste by 20% and causes your damaging abilities to reduce the cooldown of Righteous Upheaval by -2 sec for 20 seconds."
+        },
+        {
+          "talent": "Holy Upheaval",
+          "tree": "Zealot",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nIncreases the effectiveness Righteous Upheaval gains per trigger of Zealotry by 100%."
+        },
+        {
+          "talent": "Fervent Castigation",
+          "tree": "Zealot",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Righteous Upheaval or Blade of Faith now grants you Oath: Retribution and starts your Oath Chain.Oath: RetributionCritical damage increased by 5%."
+        }
+      ]
+    },
+    "Sacred Defense": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "When you take Physical damage you now strike back at enemies for 15% of the damage dealt as Holy damage. Can only occur once per sec.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Sacred Restraint": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HEAL",
+        "MITIGATION",
+        "DURATION",
+        "AOE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Testament of Fortitude",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Meditate for 15 seconds, restoring 5% of your maximum health every 1 sec and reducing damage taken by -50%.\n\nEach second you will also remove 1 disease effect from yourself. \n\nApplies Sacred Restraint for 1 minute.Sacred RestraintCannot be targeted by Testaments."
+        },
+        {
+          "talent": "Testament of Hope",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "DMG",
+            "MITIGATION",
+            "AOE",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Summons 2 copies of yourself that charge at a nearby enemy and aid you in combat for 20 seconds.\n\nWhile within 15 yds of you, each copy reduces all damage you take by -10%. \n\nApplies Sacred Restraint for 1 minute.Sacred RestraintCannot be targeted by Testaments."
+        },
+        {
+          "talent": "Sacred Candle",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "sec"
+            },
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Testament of Faith by -60 sec and the duration of Sacred Restraint by -30 sec."
+        },
+        {
+          "talent": "Testament of Will",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Break an ally free of worldly constraints, making them immune to all movement impairing effects for 10 seconds.\n\nApplies Sacred Restraint for 1 minute.Sacred RestraintCannot be targeted by Testaments."
+        },
+        {
+          "talent": "Silverhand Incantation",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Chant a silverhand incantation and toss a holy hammer at your target, charging you to them and removing Sacred Restraint from you and them if they are an ally.\n\nUpon reaching your target you deal 300 + 200% AP Holy damage to all nearby enemies and heal nearby allies for the same amount."
+        },
+        {
+          "talent": "Testament of Strength",
+          "tree": "Crusader",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your next 3 Titanstrikes are usable regardless of your target's health percentage and deal 25% increased damage. Lasts 1 minute.\n\nApplies Sacred Restraint for 1 minute.Sacred RestraintCannot be targeted by Testaments."
+        }
+      ]
+    },
+    "Sacred Style": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Holy healing done and received by 8%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Sacred Swing": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Swing at enemies in front of you, dealing 125% Weapon Damage plus 9, slowing their attack and movement speed by -20% for 10 seconds.\n\nOnly usable after avoiding an attack.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Staffguard",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Casting Sacred Swing now grants you Staffguard, absorbing 125 + 30% Stamina damage, scaling with Stamina, parry and dodge rating, for 8 seconds."
+        },
+        {
+          "talent": "Grace of Aman'thul",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "flat"
+            },
+            {
+              "value": -10.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Energy cost of Righteous Lunge by -5 and Sacred Swing by -10."
+        },
+        {
+          "talent": "Conviction",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Sacred Swing now increases your melee haste by 5% for 15 seconds, stacking 4 times."
+        },
+        {
+          "talent": "Way of the Monk",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Sacred Swing and Reckoning now reduces casting speed by -10% for 10 seconds, stacking 2 times."
+        }
+      ]
+    },
+    "Scarlet Hammer": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "RESOURCE",
+        "AOE",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Scarlet Training",
+          "tree": "Crusader",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 555.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nCasting Argent Blade while Warrior of Dawn is active now transforms your next Chastise into Scarlet Hammer.Scarlet HammerDrop a scarlet hammer on an enemy for 155% Weapon Damage plus 35 as Holy Damage and reduce their Armor by 555 for 10 seconds."
+        },
+        {
+          "talent": "Judgement",
+          "tree": "Crusader",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Scourgebane, Scarlet Hammer, and Titanstrike by 25% on enemies below 20% health."
+        },
+        {
+          "talent": "Improved Scarlet Hammer",
+          "tree": "Crusader",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nCasting Scarlet Hammer now generates 30 Energy."
+        },
+        {
+          "talent": "Holy Edge",
+          "tree": "Crusader",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Scourgebane and Scarlet Hammer now strikes 2 additional nearby enemy."
+        },
+        {
+          "talent": "Legacy of the Silver Hand",
+          "tree": "Crusader",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Casting Argent Blade or Scarlet Hammer now guarantees your next 2 instances of damage dealt by Scourgebane to critically strike.\n\nIncreases the critical damage of Scourgebane by 15%."
+        }
+      ]
+    },
+    "Scourgebane": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 10 Passive\nDirect damage dealt now has a 20% chance to strike an enemy with Scourgebane, dealing an additional 162 + 25% SP + 15% AP Holyflame Damage.",
+      "baseTree": "Crusader",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Pure Focus",
+          "tree": "Crusader",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.44,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger Scourgebane by 10% and your chance to hit by 4%."
+        },
+        {
+          "talent": "Righteousness",
+          "tree": "Crusader",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Chastise now always triggers Scourgebane on your target."
+        },
+        {
+          "talent": "Judgement",
+          "tree": "Crusader",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Scourgebane, Scarlet Hammer, and Titanstrike by 25% on enemies below 20% health."
+        },
+        {
+          "talent": "Holy Edge",
+          "tree": "Crusader",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Scourgebane and Scarlet Hammer now strikes 2 additional nearby enemy."
+        },
+        {
+          "talent": "Divine Strikes",
+          "tree": "Crusader",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Scourgebane now increases the damage of Argent Blade by 5% for 6 seconds, stacking 10 times."
+        },
+        {
+          "talent": "Legacy of the Silver Hand",
+          "tree": "Crusader",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Casting Argent Blade or Scarlet Hammer now guarantees your next 2 instances of damage dealt by Scourgebane to critically strike.\n\nIncreases the critical damage of Scourgebane by 15%."
+        }
+      ]
+    },
+    "Serendipity": {
+      "lanes": [
+        "DMG",
+        "COST"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the all damage dealt by party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, reduces the cost of your spells and abilities by -5%.",
+      "baseTree": "Crusader",
+      "basePosition": {
+        "x": 5,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Solemn Soldier": {
+      "lanes": [
+        "STATS",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your melee haste by 10% and expertise by 10.",
+      "baseTree": "Zealot",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Spiritual": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Energy regeneration by 20%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Spiritual Abdication": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Spiritual Abdicator",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Your Spiritual Abdication now reduces damage taken by an additional -5% per copy."
+        }
+      ]
+    },
+    "Staffguard": {
+      "lanes": [
+        "DMG",
+        "SHIELD",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Armor of Faith",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SHIELD",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Whenever the absorption shield from Staffguard breaks, inflict 207 + 20% AP + 50% holy SP High Threat Holy damage to nearby enemies."
+        }
+      ]
+    },
+    "Sturdy": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your maximum health and Energy by 10%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Temple Guardian": {
+      "lanes": [
+        "DMG",
+        "COST",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Determined",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Temple Guardian now makes your next ability within 5 seconds free of cost."
+        },
+        {
+          "talent": "Guardian of the Light",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Casting Benediction now reduces the cost of your next Temple Guardian by -50% for 6 seconds."
+        },
+        {
+          "talent": "Transcendent Guardian",
+          "tree": "Oathkeeper",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Charging to an ally with Temple Guardian now has a 40% chance to refresh a charge."
+        },
+        {
+          "talent": "Force of Golganneth",
+          "tree": "Zealot",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "DMG",
+            "COST",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Explode with holy power, dealing 310 + 25% AP + 25% holy SP Holy damage and triggering Zealotry every 1 sec to nearby enemies for 5 seconds.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage.\n\nWhile active, your Temple Guardian spell has its Energy cost reduced by -50%."
+        }
+      ]
+    },
+    "Testament of Faith": {
+      "lanes": [
+        "CDR",
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sacred Candle",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "sec"
+            },
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Testament of Faith by -60 sec and the duration of Sacred Restraint by -30 sec."
+        },
+        {
+          "talent": "Final Prayer",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Doubles the healing done to you by Testament of Fortitude and Testament of Faith."
+        }
+      ]
+    },
+    "Testament of Fortitude": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Final Prayer",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Doubles the healing done to you by Testament of Fortitude and Testament of Faith."
+        }
+      ]
+    },
+    "Testament of Hope": {
+      "lanes": [
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Tyr's Guard",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Testament of Hope now summons an additional copy of yourself."
+        }
+      ]
+    },
+    "Testaments": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HEAL",
+        "MITIGATION",
+        "COST",
+        "DURATION",
+        "AOE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Testament of Fortitude",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Meditate for 15 seconds, restoring 5% of your maximum health every 1 sec and reducing damage taken by -50%.\n\nEach second you will also remove 1 disease effect from yourself. \n\nApplies Sacred Restraint for 1 minute.Sacred RestraintCannot be targeted by Testaments."
+        },
+        {
+          "talent": "Testament of Hope",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "DMG",
+            "MITIGATION",
+            "AOE",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Summons 2 copies of yourself that charge at a nearby enemy and aid you in combat for 20 seconds.\n\nWhile within 15 yds of you, each copy reduces all damage you take by -10%. \n\nApplies Sacred Restraint for 1 minute.Sacred RestraintCannot be targeted by Testaments."
+        },
+        {
+          "talent": "Deep Secrets",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of your Librams and Testaments by 10 sec."
+        },
+        {
+          "talent": "Testament of Will",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Break an ally free of worldly constraints, making them immune to all movement impairing effects for 10 seconds.\n\nApplies Sacred Restraint for 1 minute.Sacred RestraintCannot be targeted by Testaments."
+        },
+        {
+          "talent": "Mark of Aggramar",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Energy cost of your Testaments by -50%."
+        },
+        {
+          "talent": "Profound Enlightenment",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Attain enlightenment, reducing the remaining cooldown of Testaments by 50%."
+        },
+        {
+          "talent": "Testament of Strength",
+          "tree": "Crusader",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your next 3 Titanstrikes are usable regardless of your target's health percentage and deal 25% increased damage. Lasts 1 minute.\n\nApplies Sacred Restraint for 1 minute.Sacred RestraintCannot be targeted by Testaments."
+        },
+        {
+          "talent": "Chakra of Light",
+          "tree": "Zealot",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Testaments by -60 sec and Oath Breakers now heal allies around the target for 50 + 35% SP."
+        }
+      ]
+    },
+    "Titanstrike": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Judgement of the Gods",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Titanstrike by 50%."
+        },
+        {
+          "talent": "Judgement",
+          "tree": "Crusader",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Scourgebane, Scarlet Hammer, and Titanstrike by 25% on enemies below 20% health."
+        },
+        {
+          "talent": "Titanfall",
+          "tree": "Crusader",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Titanstrike now heals you for twice the damage dealt."
+        },
+        {
+          "talent": "One-Punch Man",
+          "tree": "Zealot",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the the damage of Oath Breakers and Titanstrike by 20%."
+        }
+      ]
+    },
+    "Titanstrikes": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Testament of Strength",
+          "tree": "Crusader",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your next 3 Titanstrikes are usable regardless of your target's health percentage and deal 25% increased damage. Lasts 1 minute.\n\nApplies Sacred Restraint for 1 minute.Sacred RestraintCannot be targeted by Testaments."
+        }
+      ]
+    },
+    "Tome of Light": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$64",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Tranquil Circle": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Pious Sweep",
+          "tree": "Zealot",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Chastise by 25% on enemies above 75% health or affected by Tranquil Circle."
+        }
+      ]
+    },
+    "Untainted": {
+      "lanes": [
+        "STATS",
+        "HEAL",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Effectively healing yourself now reduces your Physical damage taken by -10 + 10% Stamina for 8 seconds.\n\nCan only occur every 15 sec.",
+      "baseTree": "Oathkeeper",
+      "basePosition": {
+        "x": 2,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Vindication": {
+      "lanes": [
+        "DMG",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Radiance",
+          "tree": "Zealot",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Energy cost of Vindication by -5."
+        },
+        {
+          "talent": "Deliverance",
+          "tree": "Zealot",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Critically striking with Vindication or Righteous Lunge now deals 50% additional Physical damage."
+        }
+      ]
+    },
+    "Warrior of Dawn": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Scourge-Defense Training",
+          "tree": "Crusader",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Warrior of Dawn now also increases the damage and critical strike chance of your next Argent Blade by 20%."
+        },
+        {
+          "talent": "Scarlet Training",
+          "tree": "Crusader",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 555.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nCasting Argent Blade while Warrior of Dawn is active now transforms your next Chastise into Scarlet Hammer.Scarlet HammerDrop a scarlet hammer on an enemy for 155% Weapon Damage plus 35 as Holy Damage and reduce their Armor by 555 for 10 seconds."
+        }
+      ]
+    },
+    "Warrior of Tyr": {
+      "lanes": [
+        "DMG",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Periodic damage dealt now has a 10% chance to generate 5 Energy.",
+      "baseTree": "Crusader",
+      "basePosition": {
+        "x": 1,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Zealotry": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 10 Passive\nYour off-hand auto attacks now trigger Zealotry.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage.",
+      "baseTree": "Zealot",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Vindication",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Zealotry",
+            "Blade of Faith"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Strike an enemy with zeal, dealing 31 + 28.5% AP + 35% SP Physical damage, triggering Zealotry, and granting an Oath.\n\nOath: Your damaging abilities have a 10% chance to trigger Zealotry.\nZealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        },
+        {
+          "talent": "Righteous Upheaval",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Unleash a dominating Oath Breaker, dealing 31 + 45% AP + 45% SP Physical damage, increased by 3% for each time you triggered Zealotry during your Oath Chain.\n\nConsumes your Oaths, dealing additional damage for each consumed."
+        },
+        {
+          "talent": "Holy Upheaval",
+          "tree": "Zealot",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nIncreases the effectiveness Righteous Upheaval gains per trigger of Zealotry by 100%."
+        },
+        {
+          "talent": "Blade Sermon",
+          "tree": "Zealot",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the Weapon Damage dealt by Zealotry by 20%."
+        },
+        {
+          "talent": "Priest Training",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Triggering Zealotry now also heals you for 3% of your missing health.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        },
+        {
+          "talent": "Paladin Training",
+          "tree": "Zealot",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Triggering Zealotry now has an 8% chance to grant you an additional auto attack on your next strike.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        },
+        {
+          "talent": "Force of Golganneth",
+          "tree": "Zealot",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "DMG",
+            "COST",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Explode with holy power, dealing 310 + 25% AP + 25% holy SP Holy damage and triggering Zealotry every 1 sec to nearby enemies for 5 seconds.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage.\n\nWhile active, your Temple Guardian spell has its Energy cost reduced by -50%."
+        },
+        {
+          "talent": "Iron Penance",
+          "tree": "Zealot",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Dealing damage with Zealotry now applies Iron Penance to the target, increasing their Physical damage taken by you by 1% for 3 seconds, stacking 10 times."
+        },
+        {
+          "talent": "Condemnation",
+          "tree": "Zealot",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Dealing damage with Condemn, Holy Cleave, or Blade of Faith now has a 15% chance to trigger Zealotry if you are within melee range of your target.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        },
+        {
+          "talent": "One With The Light",
+          "tree": "Zealot",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Oath Breakers now triggers Zealotry on your target and reduces the cooldown of Librams, Force of Golganneth, and Mortal Abdication by -1 sec.Zealotry (Proc)Deals 40% off-hand Weapon Damage as Holy Damage."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$id": "backing_plate_aurabar.schema.json",
+  "opportunity_type": "backing_plate",
+  "title": "Backing plate (aurabar, always shown)",
+  "description": "A plain, always-visible dim plate that sits BEHIND a trigger-gated bar (Cast Bar or Swing Timer) at the exact same position/size, so the element's footprint stays visible even while the real bar is hidden between casts/swings. Added 2026-07-06 to replace an earlier, more complicated fix: a second 'always-true' trigger plus a Condition directly on the Cast Bar/Swing Timer auras themselves (see player_cast_aurabar.schema.json's 'IDLE-SHADOW MECHANISM' note) - live-tested by Battlewrath and found backwards (bar hid once actually triggered). Battlewrath's own diagnosis: 'I think the fix is just a backing plate that maintains their footprint, and sits behind the bars as far as the layers go... rather than over complicate the auras.' This template is that plate: a separate, structurally simple aura, not a modification of the real bar's own trigger/condition logic.",
+  "region_type": "aurabar",
+  "trigger": "Unit Characteristics",
+  "type": "object",
+  "required": [
+    "name",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 127.5
+    },
+    "height": {
+      "type": "number",
+      "default": 15
+    }
+  },
+  "verified": "Trigger: 'Unit Characteristics' (unit=player, no optional checks ticked) is unconditionally true whenever the player unit exists - confirmed directly in Prototypes.lua (line 1622+): every base field (name/realm) has test='true' with nothing else enabled, so the whole trigger is always active. Used here as the aura's SOLE trigger (no second trigger, no activeTriggerMode combination, no Condition) - deliberately as simple as possible, since the withdrawn idle-shadow mechanism's bug lived specifically in the multi-trigger 'first_active' combination logic, not in the always-true trigger itself. Since this trigger never sets duration/expirationTime, AuraBar.lua's own fallback ('duration ~= 0 and remaining/duration or 0') reads progress as 0% - so the plate shows its backgroundColor/border only, never a colored fill, which is exactly the flat 'plate' look wanted (no subtext either - the real bar on top already carries the value/timer text). frameStrata=2 ('BACKGROUND', confirmed in Types.lua's frame_strata_types - 1=Inherited, 2=BACKGROUND, 3=LOW, 4=MEDIUM, 5=HIGH, 6=DIALOG, 7=FULLSCREEN, 8=FULLSCREEN_DIALOG, 9=TOOLTIP) is set explicitly so it renders behind the real bar (which stays at frameStrata=1/Inherited, same as every other template in this project) - not yet independently confirmed live that Inherited actually renders above BACKGROUND in every case, but it's the correct directional choice per WeakAuras' own documented strata ordering. ALPHA CORRECTED 2026-07-06 (ninth pass), after live-testing v8: Battlewrath's first live look at the idle state ('the backing plate doesn't match the darkness of the runic bar colour... currently empty as the runic power is low... same darkness is seen [for mana]... cohesive between both bars as a background colour') surfaced that this template's alpha=0.35 was compounding with backgroundColor's own 0.5 alpha, landing around 0.175 effective darkness - visibly lighter than Mana/Runic Power's natural empty look (which sits at region alpha=1, so their backgroundColor's 0.5 IS the effective darkness, unmultiplied). Confirmed aligned with a second screenshot showing Mana/Runic Power and Cast Bar/Swing Timer already cohesive with each other when actively in use - so the mismatch was isolated to this template's alpha, not a broader color problem. Fixed: alpha 1 (matching the real bars), relying solely on the existing backgroundColor=[0,0,0,0.5] for the dimming - now the identical mechanism the real bars use for their own empty/low look, not a second, different one. Not yet live-tested since this correction."
+}

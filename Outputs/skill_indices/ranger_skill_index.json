@@ -1,0 +1,5919 @@
+{
+  "class": "Ranger",
+  "schemaVersion": 2,
+  "laneTaxonomy": {
+    "DMG": "Damage",
+    "STATS": "Primary/secondary stats",
+    "CRIT": "Crit chance/damage",
+    "CDR": "Cooldown",
+    "CAST": "Cast time",
+    "HASTE": "Haste",
+    "SPEED": "Movement speed",
+    "HEAL": "Healing",
+    "SHIELD": "Shield/absorb",
+    "MITIGATION": "Damage mitigation",
+    "RESOURCE": "Resource generation",
+    "COST": "Resource cost",
+    "DURATION": "Duration",
+    "AOE": "AoE / target count",
+    "CC": "Crowd control",
+    "ARMOR": "Armor",
+    "SUMMON": "Summon / pet",
+    "MISC": "Other"
+  },
+  "note": "Per-skill index: for each observed skill/ability, lists every talent that modifies it, where it sits in the tree, its parsed stat modification, and a mock value showing that modification applied to a normalized baseline of 10. Each modifying talent is tagged with one or more lanes from laneTaxonomy (DMG/CRIT/CDR/CAST/HASTE/SPEED/HEAL/SHIELD/MITIGATION/RESOURCE/COST/DURATION/AOE/CC/ARMOR/SUMMON/MISC), plus cross-cutting behavior flags (PROC, STACK) that describe how the effect triggers rather than what stat it touches. A handful of nodes have unresolved \"$xx\" template descriptions in the source export - these are flagged rather than guessed at.",
+  "mockBaseline": 10,
+  "skills": {
+    "Adaptations": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Outlaw",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Adaptations by 20%."
+        }
+      ]
+    },
+    "Adrenaline Rush": {
+      "lanes": [
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Surge with vitality, dispeling all harmful effects from yourself and increasing your movement speed by 40% for 10 seconds.\n\nUsable while stealthed.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Pathfinder",
+          "tree": "Archery",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Adrenaline Rush now incurs a -90% reduced cooldown when used while Elude is active."
+        },
+        {
+          "talent": "Surefooted",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Adrenaline Rush by -30 sec."
+        },
+        {
+          "talent": "Heightened Senses",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.0,
+          "lanes": [
+            "SPEED",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Focus cost Adrenaline Rush by -50% and increases the movement speed granted by 20%."
+        }
+      ]
+    },
+    "Advantage": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "CAST",
+        "SPEED",
+        "HEAL",
+        "RESOURCE",
+        "DURATION",
+        "AOE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Precision Shot",
+          "tree": "Archery",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Skirmisher",
+            "Crippling Shot"
+          ],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Precisely shoot an enemy from a great distance, inflicting 24 + 48.5% ranged AP Physical damage.\n\nDamage increased by 25% for each stack of Advantage.\n\nUsable while in Elude."
+        },
+        {
+          "talent": "Sniper's Focus",
+          "tree": "Archery",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Consuming Advantage now has a 20% chance per Archery Point spent to refund 20 Focus."
+        },
+        {
+          "talent": "Hunting Shot",
+          "tree": "Archery",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Fire a shot that ricochets between 3 enemies, dealing Ranged Weapon Damage plus 6 to each enemy.\n\nGenerates 1 stack of Advantage for each enemy hit."
+        },
+        {
+          "talent": "Skirmish",
+          "tree": "Archery",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            },
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.62,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Increases your critical strike chance by 15% and reduces your Focus costs by -25%.\n\nLasts 4 sec for each stack of Advantage."
+        },
+        {
+          "talent": "Neurotoxin Arrow",
+          "tree": "Archery",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Shoot at an enemy's throat with a toxin-laced arrow, dealing 25 + 36.07% ranged AP Nature damage and silencing them for 1 seconds.\n\nDuration increased by 1 sec per stack of Advantage."
+        },
+        {
+          "talent": "Maximum Power",
+          "tree": "Archery",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Abilities used with 5 stacks of Advantage now refresh the duration of your active Skirmish by 5 sec."
+        },
+        {
+          "talent": "Archery Master",
+          "tree": "Archery",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Critical strikes with Quick Shot now generate an additional stack of Advantage."
+        },
+        {
+          "talent": "Incendiary Shot",
+          "tree": "Archery",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Shoot a burning arrow dealing 791 + 35% ranged AP + 45% fire SP Fire damage to an enemy and up to 5 enemies within 6 yds, and causing your next 3 direct damage Advantage spenders to deal 50% of their damage to nearby enemies.\n\nDirect damage increased by 20% for each stack of Advantage."
+        },
+        {
+          "talent": "Sharpshooter",
+          "tree": "Archery",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 50 Passive\nAdds 25% to the bonuses that your stacks of Advantage provide."
+        },
+        {
+          "talent": "Ravager",
+          "tree": "Brigand",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Knockout"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour Wild Strike now generates 1 additional Advantage.\n\nRemoves the minimum range of your ranged abilities."
+        },
+        {
+          "talent": "Assault",
+          "tree": "Brigand",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Assault a low health enemy, dealing 100% Weapon Damage (175% with a dagger equipped) plus an additional 8 + 100% AP Physical damage. If the target is bleeding, this deals 50% increased damage.\n\nDamage increased by 30% for each stack of Advantage.\n\nOnly usable on enemies below 20% health."
+        },
+        {
+          "talent": "Dirty Blades",
+          "tree": "Brigand",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            },
+            {
+              "value": 4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "For 4 seconds, your melee auto attacks deal an additional 30% (doubled with a dagger equipped) of the damage dealt as Nature damage and reduces your target's healing received by -20% for 8 seconds, stacking 2 times.\n\nDuration increased by 4 sec for each stack of Advantage.\n\nUsable while in Elude."
+        },
+        {
+          "talent": "Bounty Hunter",
+          "tree": "Brigand",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Flank and Rusty Shiv now increases the target's damage taken from your Advantage spenders by 25% for 8 seconds."
+        },
+        {
+          "talent": "Hookshot",
+          "tree": "Brigand",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Launch a hook at a target attempting to lodge it into an open wound, dealing 66 + 100% AP Physical damage. \n\nIf the target is bleeding, you can reactivate this to pull yourself to them, dealing 150% Weapon Damage and generating 2 Advantage"
+        },
+        {
+          "talent": "Rub It In",
+          "tree": "Brigand",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Level 30 Passive\nEach stack of Advantage spent now gives you a 20% chance to refund 1 stack of Advantage."
+        },
+        {
+          "talent": "Quills",
+          "tree": "Brigand",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Launch darts at up to 5 nearby enemies, dealing 15 + 30% AP Ranged Physical damage.\n\nDeals 50% additional damage and strikes 1 additional target for each stack of Advantage."
+        },
+        {
+          "talent": "Stonemason's Secret",
+          "tree": "Brigand",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Skullpiercer used with 5 stacks of Advantage now extends the duration of Dirty Blades by 6 sec."
+        },
+        {
+          "talent": "Cutthroat",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Shoot a powerful arrow that deals Weapon Damage plus 40 and stuns the target for 1 seconds. \n\nDuration increased by 1 sec per stack of Advantage."
+        },
+        {
+          "talent": "Sly",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Woodland Adept now triggers a -10% reduced cooldown for each stack of Advantage active when cast."
+        },
+        {
+          "talent": "Lethal Cunning",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Entering Elude generates 1 stack of Advantage and 10 Focus every 5 sec for 30 seconds."
+        },
+        {
+          "talent": "Guise",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Instantly generates 5 stacks of Advantage and allows you see nearby stealthed enemies for 5 seconds.\n\nUsable while stealthed."
+        },
+        {
+          "talent": "Elven Tactics",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "You now have a -20% chance to not consume Advantage on cast."
+        },
+        {
+          "talent": "Onslaught",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your senses heighten, causing you to instantly generate 5 Advantage and allowing the use of abilities that require Elude for 15 seconds."
+        },
+        {
+          "talent": "Woodland Arrow",
+          "tree": "Farstrider",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "sec"
+            },
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Shoot a magical arrow, dealing 38 + 35% ranged AP Physical damage and reducing the cooldown of active Horn spells by -15 sec.\n\nDamage increased by 30% for each stack of Advantage."
+        },
+        {
+          "talent": "Emerald Arrow",
+          "tree": "Farstrider",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Set up a powerful magical arrow and then shoot it, dealing 10 + 20% ranged AP Nature damage to the target, increased by 30% for each stack of Advantage.\n\nCreates an enchanted flare on the ground, causing nearby enemies to take 224 + 20% ranged AP Nature damage every 2 sec, lasting 2 sec for each stack of Advantage."
+        },
+        {
+          "talent": "Forest Fighter",
+          "tree": "Farstrider",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Skullpiercers or Emerald Arrows used with 5 stacks of Advantage now reduce the cooldown of Woodland Arrow by -5 sec."
+        },
+        {
+          "talent": "Forest Herald",
+          "tree": "Farstrider",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SPEED",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Casting Toxic Dart and abilities that spend stacks of Advantage now have a 20% chance to spawn a green Dreamflower at a random location nearby within 15 yds of you.Dream Flower (Spawner)When an ally runs over the flower, they consume it to heal for 3% maximum health and gain 40% increased movement speed for 5 seconds."
+        },
+        {
+          "talent": "Phoenix Plumes",
+          "tree": "Farstrider",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Skullpiercers and Woodland Arrows used with 5 stacks of Advantage now restore 3% Focus and summon a War Falcon for 6 seconds."
+        },
+        {
+          "talent": "Thread The Needle",
+          "tree": "Farstrider",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -34.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.6,
+          "lanes": [
+            "CRIT",
+            "CAST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Critical strikes with Quick Shot or Falconstrike now reduce the cast time and cost of your next ability that consumes Advantage by -34% for 15 seconds, stacking 3 times."
+        },
+        {
+          "talent": "Whipvine Arrow",
+          "tree": "Farstrider",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Launch an arrow with magical vines attached to it at your target, dealing 78 + 33% ranged AP Nature damage and rooting them for 40 seconds (8 sec vs players). Damage caused may interrupt the effect.\n\nHits 1 additional nearby target per stack of Advantage."
+        }
+      ]
+    },
+    "Archery Point": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sniper's Focus",
+          "tree": "Archery",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Consuming Advantage now has a 20% chance per Archery Point spent to refund 20 Focus."
+        }
+      ]
+    },
+    "Assault": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Dice Games",
+          "tree": "Brigand",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Wild Strike and Assault by 5%."
+        }
+      ]
+    },
+    "Assaults": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Instinctual Combatant",
+          "tree": "Brigand",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Casting Instinct now also restores 40 extra Focus and guarantees your next 3 Skullpiercers or Assaults within 20 seconds to critically strike.\n\nIn addition, Instinct now grants you an additional 10% of your Agility as melee attack power."
+        }
+      ]
+    },
+    "Auto Shot": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Deadeye",
+          "tree": "Archery",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the range of your ranged abilities and Auto Shot by 5 yds."
+        },
+        {
+          "talent": "Superb Shot",
+          "tree": "Archery",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Auto Shot now restores 4 Focus."
+        }
+      ]
+    },
+    "Backstep": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Leap backwards up to 10 yds.",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 4,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Banditry": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical strike chance by 4% and Focus regeneration by 30%.",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 2,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Battle Prowess": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases chance to hit with all spells and attacks by 1% for you and party and raid members.\n\nDoes not stack with similar effects.",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Battle Screech": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Empower party and raid members within 40 yds, increasing their attack or spell power by 65 for 15 seconds.\n\nDoes not stack with similar effects.",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Falcon Guide",
+          "tree": "Farstrider",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Falconstrike and Battle Screech now increase your movement speed by 30% for 3 seconds."
+        },
+        {
+          "talent": "Scavenger",
+          "tree": "Farstrider",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Battle Screech and reduces the cooldown of Snapseed by 5 sec."
+        }
+      ]
+    },
+    "Beatdown": {
+      "lanes": [
+        "DMG",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nAuto attacks now have a 5% chance to reveal a fault in the enemy's defenses, causing your next instance of Physical ability damage to ignore Armor.\n\nChance increased by 15% while wielding a polearm.",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Blackjack": {
+      "lanes": [
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Focused Fighter",
+          "tree": "Brigand",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Focus cost of Flank, Blackjack, and Wild Strike by -10%."
+        }
+      ]
+    },
+    "Blur": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your chance to dodge and parry by 4%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Boots of Elvenkind": {
+      "lanes": [
+        "STATS",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Agility by 5% and reduces the duration of movement slowing effects on you by -20%.",
+      "baseTree": "Archery",
+      "basePosition": {
+        "x": 3,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Briar Veil": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Thorns and leaves swirl around you, masking your movements for 10 seconds, increasing your dodge chance by 50% and causing dodging attacks to restore 2% maximum health and 5 Focus.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Survival Expert",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the dodge chance provided by Briar Veil by 25%."
+        }
+      ]
+    },
+    "Bushcraft": {
+      "lanes": [
+        "CAST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Camper",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of your Bushcraft abilities by -50%."
+        }
+      ]
+    },
+    "Bushcraft Glider": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "To The Skies!",
+          "tree": "Farstrider",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Bushcraft Glider by -30 sec."
+        }
+      ]
+    },
+    "Bushwhack": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "'Tactical' Advantage",
+          "tree": "Brigand",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Knockout and Bushwhack now increases your damage dealt against the target by 10% for 5 seconds."
+        }
+      ]
+    },
+    "Close Quarters": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your attack power and Agility by 6%.",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 7,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Crippling Shot": {
+      "lanes": [
+        "SPEED",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Fire a crippling shot at an enemy slowing movement speed by -50% and knocking them off their mounts, making them unable to mount again for 5 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Mortal Shots",
+          "tree": "Archery",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Crippling Shot by -4 sec."
+        },
+        {
+          "talent": "Assassin",
+          "tree": "Brigand",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Knockout and Crippling Shot by 1 sec."
+        },
+        {
+          "talent": "Resourceful",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Crippling Shot and Snapseed by -20%."
+        }
+      ]
+    },
+    "Cunning": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Focus regeneration by 30%.",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 2,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Cutthroat": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Stalker",
+          "tree": "Brigand",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "sec"
+            },
+            {
+              "value": -10.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Cutthroat by -15 sec, but reduces the range of Cutthroat by -10 yds."
+        }
+      ]
+    },
+    "Dastardly": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 50 Passive\nIncreases your critical damage dealt by 15% on enemies above 80% health or below 20% health.",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Deadshot": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 2 Advantage\nShoot a powerful arrow at the target dealing 250% Ranged Weapon Damage plus 20.1.\n\nOnly usable on enemies below 20% health.",
+      "baseTree": "Archery",
+      "basePosition": {
+        "x": 6,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "One Shot, One Kill",
+          "tree": "Archery",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 75.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 17.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Deadshot by 75%."
+        },
+        {
+          "talent": "Silent, But Deadly",
+          "tree": "Archery",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Direct Physical damage dealt now has an 8% chance to allow you to use Deadshot regardless of the targets health for 8 seconds."
+        }
+      ]
+    },
+    "Defense of the Ancients": {
+      "lanes": [
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "You now emanate an aura around you, increasing the Armor of party and raid members by 390.\n\nDoes not stack with similar effects.",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 10,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Deft Hands": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your melee and ranged haste by 5%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Devastating Shots": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical strike chance by 4% and your hit chance by 2%.",
+      "baseTree": "Archery",
+      "basePosition": {
+        "x": 2,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Dirty Blades": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Pilfering",
+          "tree": "Brigand",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Adds 10% to the damage dealt by Dirty Blades and causes its damage dealt to heal you equal to 50% of the value."
+        },
+        {
+          "talent": "Stonemason's Secret",
+          "tree": "Brigand",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Skullpiercer used with 5 stacks of Advantage now extends the duration of Dirty Blades by 6 sec."
+        }
+      ]
+    },
+    "Dirty Fighter": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$80",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 2,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Double The Pace": {
+      "lanes": [
+        "CRIT",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases all party and raid member's melee and ranged haste by 10%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 2%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Dragonhawk": {
+      "lanes": [
+        "DMG",
+        "MITIGATION",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Dragonhawk Tamer",
+          "tree": "Farstrider",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Using a Horn now summons a Dragonhawk to assist you in combat for 15 seconds."
+        },
+        {
+          "talent": "Wingman",
+          "tree": "Farstrider",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.8,
+          "lanes": [
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Reduces all damage taken by -2% for each War Falcon or Dragonhawk you have active."
+        },
+        {
+          "talent": "Guidance",
+          "tree": "Farstrider",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases your Physical and Nature damage dealt by 1% for each War Falcon or Dragonhawk you have active."
+        }
+      ]
+    },
+    "Dragonhawks": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "MITIGATION",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Gutpiercer",
+          "tree": "Farstrider",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 75.0,
+              "unit": "flat"
+            },
+            {
+              "value": -2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.8,
+          "lanes": [
+            "DMG",
+            "MITIGATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by War Falcons and Dragonhawks now has a 15% chance to reduce the enemy's resistances by 75 and increase their Magic damage taken by -2% for 15 seconds."
+        },
+        {
+          "talent": "Pecking",
+          "tree": "Farstrider",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your War Falcons and Dragonhawks now have a 25% chance to deal additional Physical damage to 3 nearby enemies."
+        },
+        {
+          "talent": "Coordination",
+          "tree": "Farstrider",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Your War Falcons and Dragonhawks now grant you a stack of Coordination when they deal damage.\nCoordination (Proc)Increases your critical strike chance and critical damage by 1% for 15 seconds, stacking 10 times."
+        }
+      ]
+    },
+    "Dream Flower": {
+      "lanes": [
+        "CRIT",
+        "SPEED",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Dream Flowers",
+          "tree": "Farstrider",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Survival Potion"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "SPEED",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour damaging critical strikes now spawn a green Dream Flower at a random location within 15 yds of you. Dream Flower (Spawner)When an ally runs over the flower, they consume it to heal for 3% maximum health and gain 40% increased movement speed for 5 seconds.Can only occur once per sec."
+        }
+      ]
+    },
+    "Dreamflower": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Forest Herald",
+          "tree": "Farstrider",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SPEED",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Casting Toxic Dart and abilities that spend stacks of Advantage now have a 20% chance to spawn a green Dreamflower at a random location nearby within 15 yds of you.Dream Flower (Spawner)When an ally runs over the flower, they consume it to heal for 3% maximum health and gain 40% increased movement speed for 5 seconds."
+        },
+        {
+          "talent": "Highlander",
+          "tree": "Farstrider",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.0,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Each time you spawn a green Dreamflower you are granted 1 stack of Highlander.Highlander (Stacks)At 3 stacks, your next Falconstrike within 10 seconds deals 25% increased damage and reduces the enemy's healing received by -40% for 8 seconds."
+        }
+      ]
+    },
+    "Elude": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "SPEED",
+        "HEAL",
+        "RESOURCE",
+        "DURATION",
+        "CC",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Precision Shot",
+          "tree": "Archery",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Skirmisher",
+            "Crippling Shot"
+          ],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Precisely shoot an enemy from a great distance, inflicting 24 + 48.5% ranged AP Physical damage.\n\nDamage increased by 25% for each stack of Advantage.\n\nUsable while in Elude."
+        },
+        {
+          "talent": "Masterful Archery",
+          "tree": "Archery",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "While in Elude, gain a stack of Masterful Archery every 2 sec.Masterful Archery (Aura)Your next Precision Shot now deals 10% increased damage for 10 seconds, stacking up to 5 times."
+        },
+        {
+          "talent": "Pathfinder",
+          "tree": "Archery",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Adrenaline Rush now incurs a -90% reduced cooldown when used while Elude is active."
+        },
+        {
+          "talent": "Excessive But Necessary",
+          "tree": "Brigand",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Elude and Knockout by -4 sec."
+        },
+        {
+          "talent": "Dirty Blades",
+          "tree": "Brigand",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            },
+            {
+              "value": 4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "For 4 seconds, your melee auto attacks deal an additional 30% (doubled with a dagger equipped) of the damage dealt as Nature damage and reduces your target's healing received by -20% for 8 seconds, stacking 2 times.\n\nDuration increased by 4 sec for each stack of Advantage.\n\nUsable while in Elude."
+        },
+        {
+          "talent": "Marked for Death",
+          "tree": "Brigand",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While you have daggers equipped, direct critical strikes on enemies below 35% health now have a chance to allow the use of abilities as if you were in Elude for 5 sec."
+        },
+        {
+          "talent": "Outmaneuver",
+          "tree": "Brigand",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Teleport to an enemy, summon a decoy beneath them, and mark them for 8 seconds. Dealing melee damage to them adds a stack to this effect, up to 20 stacks.\n\nReactivating this ability within 8 seconds deals 1 + 55% AP Physical damage to your target, increased by 20% for each stack on the target, and then teleports you back to your decoy.\n\nUsable while in Elude."
+        },
+        {
+          "talent": "Knockout",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Knock an enemy out, incapacitating them for 4 seconds and removing bleed and poison effects from them. Damage caused will interrupt this effect.\n\nUsable while in Elude."
+        },
+        {
+          "talent": "Elusive Character",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases your damage dealt by 10% for 12 seconds after leaving Elude."
+        },
+        {
+          "talent": "Woodland Adept",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Slip into the shadows, entering an improved stealth mode, increases your movement speed by 25% for 10 seconds, and applies Elude."
+        },
+        {
+          "talent": "Lethal Cunning",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Entering Elude generates 1 stack of Advantage and 10 Focus every 5 sec for 30 seconds."
+        },
+        {
+          "talent": "Woodland Stalker",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While in Elude, your critical strike chance is now increased by 20%."
+        },
+        {
+          "talent": "Forest Dweller",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "While in Elude, gain 20% increased movement speed and regenerate 3% maximum health every 3 sec."
+        },
+        {
+          "talent": "Onslaught",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your senses heighten, causing you to instantly generate 5 Advantage and allowing the use of abilities that require Elude for 15 seconds."
+        }
+      ]
+    },
+    "Elven Enchantments": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$7e",
+      "baseTree": "Archery",
+      "basePosition": {
+        "x": 2,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Emerald Arrow": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Quel'dorei Poison",
+          "tree": "Farstrider",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Woodland Arrow and Emerald Arrow now poison enemies for 3 seconds, dealing 91 + 10% ranged AP Nature damage every 1 sec."
+        },
+        {
+          "talent": "Plumes of War",
+          "tree": "Farstrider",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            },
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.08,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Increases the critical strike chance of Falconstrike and Emerald Arrow by 15%.\n\nIn addition, critical strikes with Falconstrike now increase the damage of subsequent Falconstrikes by 5% for 15 seconds, stacking 5 times."
+        }
+      ]
+    },
+    "Emerald Arrows": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Forest Fighter",
+          "tree": "Farstrider",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Skullpiercers or Emerald Arrows used with 5 stacks of Advantage now reduce the cooldown of Woodland Arrow by -5 sec."
+        },
+        {
+          "talent": "Razorquills",
+          "tree": "Farstrider",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the tick rate of Toxic Dart and Emerald Arrows by -20%."
+        }
+      ]
+    },
+    "Endurance Training": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your maximum Focus by 20.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Exhaustion": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Command Aura",
+          "tree": "Farstrider",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Emanate an aura for 15 seconds, causing allied players to deal 35% ranged AP additional damage as Stormstrike Damage when they deal direct damage.\n\nApplies Exhaustion, preventing you from benefiting from similar effects for 1 minute."
+        }
+      ]
+    },
+    "Falcon": {
+      "lanes": [
+        "CC",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Falcon's Call",
+          "tree": "Farstrider",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 4.0,
+          "lanes": [
+            "CC",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Call down war falcons upon a targeted area, slowing up to 8 enemies within the area by -60% for 5 seconds.\n\nA Falcon is summoned for each enemy affected for 12 seconds."
+        }
+      ]
+    },
+    "Falcon's Call": {
+      "lanes": [
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "War Falconer",
+          "tree": "Farstrider",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldowns of Falcon's Call by -30 sec."
+        },
+        {
+          "talent": "Aerial Assault",
+          "tree": "Farstrider",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Removes the Focus cost of Falcon's Call, allows it to strike 2 additional targets, and increases its range by 10 yds."
+        }
+      ]
+    },
+    "Falconstrike": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$38",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Falcon Guide",
+          "tree": "Farstrider",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Falconstrike and Battle Screech now increase your movement speed by 30% for 3 seconds."
+        },
+        {
+          "talent": "Highlander",
+          "tree": "Farstrider",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.0,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Each time you spawn a green Dreamflower you are granted 1 stack of Highlander.Highlander (Stacks)At 3 stacks, your next Falconstrike within 10 seconds deals 25% increased damage and reduces the enemy's healing received by -40% for 8 seconds."
+        },
+        {
+          "talent": "Thread The Needle",
+          "tree": "Farstrider",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -34.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.6,
+          "lanes": [
+            "CRIT",
+            "CAST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Critical strikes with Quick Shot or Falconstrike now reduce the cast time and cost of your next ability that consumes Advantage by -34% for 15 seconds, stacking 3 times."
+        },
+        {
+          "talent": "Plumes of War",
+          "tree": "Farstrider",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            },
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.08,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Increases the critical strike chance of Falconstrike and Emerald Arrow by 15%.\n\nIn addition, critical strikes with Falconstrike now increase the damage of subsequent Falconstrikes by 5% for 15 seconds, stacking 5 times."
+        }
+      ]
+    },
+    "Falconstrikes": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Plumes of War",
+          "tree": "Farstrider",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            },
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.08,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Increases the critical strike chance of Falconstrike and Emerald Arrow by 15%.\n\nIn addition, critical strikes with Falconstrike now increase the damage of subsequent Falconstrikes by 5% for 15 seconds, stacking 5 times."
+        }
+      ]
+    },
+    "Flank": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "MITIGATION",
+        "COST",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Bounty Hunter",
+          "tree": "Brigand",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Flank and Rusty Shiv now increases the target's damage taken from your Advantage spenders by 25% for 8 seconds."
+        },
+        {
+          "talent": "Ambuscade",
+          "tree": "Brigand",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Skullpiercer and Flank by 20%, plus an additional 35% if you have a polearm equipped."
+        },
+        {
+          "talent": "Focused Fighter",
+          "tree": "Brigand",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Focus cost of Flank, Blackjack, and Wild Strike by -10%."
+        },
+        {
+          "talent": "Dirty Fighter",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 18.75,
+          "lanes": [
+            "CRIT",
+            "CC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance for Flank to critically strike by 50% and increases your chance to resist root effects by 25%."
+        },
+        {
+          "talent": "No Mercy",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of Flank by 10%."
+        }
+      ]
+    },
+    "Freedom": {
+      "lanes": [
+        "CRIT",
+        "SPEED",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Free up to 10 nearby allies within 15 yds of you for 8 seconds, causing them to become immune to roots and snares, and allowing their critical strikes to increase their movement speed by 30% for 5 seconds.",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Frenzy": {
+      "lanes": [
+        "HASTE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Enrage all nearby allies, increasing their haste by 30% for 20 seconds.\n\nAfter being affected by this spell, allies cannot benefit from similar effects for 5 minutes.",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Grace": {
+      "lanes": [
+        "STATS",
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Agility and movement speed by 10%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Guile of the Cutthroat": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases party and raid member's melee and ranged attack power by 5%. Does not stack with similar effects.\n\nIn addition, increases your damage dealt by 3%.",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 7,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Highwayman": {
+      "lanes": [
+        "CRIT",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Direct critical strikes while behind your target increase your haste by 15% for 5 seconds, or for your next 2 attacks.",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 6,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Horn": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Blow the Horns!",
+          "tree": "Farstrider",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Horn spells by -50%."
+        },
+        {
+          "talent": "Woodland Arrow",
+          "tree": "Farstrider",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "sec"
+            },
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Shoot a magical arrow, dealing 38 + 35% ranged AP Physical damage and reducing the cooldown of active Horn spells by -15 sec.\n\nDamage increased by 30% for each stack of Advantage."
+        },
+        {
+          "talent": "Dragonhawk Tamer",
+          "tree": "Farstrider",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Using a Horn now summons a Dragonhawk to assist you in combat for 15 seconds."
+        }
+      ]
+    },
+    "Horn of Alacrity": {
+      "lanes": [
+        "HASTE",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 1 Advantage\nEmanate an aura for 30 seconds that grants 5% increased haste to party and raid members. Does not stack with similar effects.\n\nWhile active, you generate 3 Focus every 1 sec.",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 10,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Horn of War": {
+      "lanes": [
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 1 Advantage\nEmanate an aura for 30 seconds that grants 5% increased critical strike chance to party and raid members. Does not stack with similar effects.\n\nWhile active, you generate 3 Focus every 1 sec.",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Hunting Shot": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Hunting with Precision",
+          "tree": "Archery",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Hunting Shot now deals 25% increased damage for each subsequent target it ricochets to."
+        },
+        {
+          "talent": "Hawkeye",
+          "tree": "Archery",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "You now fire an arrow every 3 sec at enemies within 30 yds affected by your Hunting Shot, dealing 75% Ranged Weapon Damage.\n\nScales with Hunting Shot modifiers."
+        }
+      ]
+    },
+    "Instinct": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Assassin",
+          "tree": "Brigand",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Instinct by 25%."
+        },
+        {
+          "talent": "Instinctual Combatant",
+          "tree": "Brigand",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Casting Instinct now also restores 40 extra Focus and guarantees your next 3 Skullpiercers or Assaults within 20 seconds to critically strike.\n\nIn addition, Instinct now grants you an additional 10% of your Agility as melee attack power."
+        },
+        {
+          "talent": "Guile of the Ranger",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "STATS",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your Instinct now additionally increases your critical strike rating by 20% of your Agility."
+        }
+      ]
+    },
+    "Knockout": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Excessive But Necessary",
+          "tree": "Brigand",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Elude and Knockout by -4 sec."
+        },
+        {
+          "talent": "Assassin",
+          "tree": "Brigand",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Knockout and Crippling Shot by 1 sec."
+        },
+        {
+          "talent": "'Tactical' Advantage",
+          "tree": "Brigand",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Knockout and Bushwhack now increases your damage dealt against the target by 10% for 5 seconds."
+        }
+      ]
+    },
+    "Knuckleduster": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Periodic damage dealt now generates 5 Focus.",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 6,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Lethal Wounds": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the tick rate of your periodic damage effects by -20%.",
+      "baseTree": "Archery",
+      "basePosition": {
+        "x": 1,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Natural Disguise": {
+      "lanes": [
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Instantly dispels all movement slowing effects from allies within 30 yds and transforms them into a bush, stealthing them for 20 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Nimble": {
+      "lanes": [
+        "STATS",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 30 Passive\nIncreases your ranged haste by 20% of your Agility.",
+      "baseTree": "Archery",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Petalkeeper": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$36",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 6,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Pinpoint Accuracy": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Critical strikes with direct damaging abilities now generate 4 Focus.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Poisoned": {
+      "lanes": [
+        "DMG",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Serrations",
+          "tree": "Archery",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases your damage against bleeding or Poisoned targets by 10%."
+        },
+        {
+          "talent": "Corrosive Poison",
+          "tree": "Archery",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Your ranged abilities against Poisoned targets now ignores 25% of enemy armor."
+        },
+        {
+          "talent": "Hunting Tactics",
+          "tree": "Farstrider",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Skullpiercer is increased by 30% against Poisoned targets."
+        }
+      ]
+    },
+    "Precision Shot": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Swiftshot",
+          "tree": "Archery",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Precision Shot now increases enemy Physical damage taken by 4% for 10 seconds."
+        },
+        {
+          "talent": "Opportunist",
+          "tree": "Archery",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Precision Shot by 50% on enemies above 80% health."
+        },
+        {
+          "talent": "New-Age Archery",
+          "tree": "Archery",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Skullpiercer and Precision Shot by 20%."
+        },
+        {
+          "talent": "Light Arrows",
+          "tree": "Archery",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Precision Shot by 20% when used from 40 yds or further away from your target."
+        },
+        {
+          "talent": "Masterful Archery",
+          "tree": "Archery",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "While in Elude, gain a stack of Masterful Archery every 2 sec.Masterful Archery (Aura)Your next Precision Shot now deals 10% increased damage for 10 seconds, stacking up to 5 times."
+        },
+        {
+          "talent": "Pierced",
+          "tree": "Archery",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Skullpiercer and Precision Shot cause the enemy to bleed for an additional 50% damage of the damage dealt over 4 seconds."
+        },
+        {
+          "talent": "Headshots Only",
+          "tree": "Archery",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Periodic damage dealt with Serrated Shot and Toxic Dart now increases the damage of your next Precision Shot within 8 seconds by 10%, stacking 10 times."
+        }
+      ]
+    },
+    "Quick Shot": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CAST",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Studded Arrows",
+          "tree": "Archery",
+          "position": {
+            "x": 5,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the ranged weapon damage dealt by Quick Shot by 20%."
+        },
+        {
+          "talent": "Archery Master",
+          "tree": "Archery",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Critical strikes with Quick Shot now generate an additional stack of Advantage."
+        },
+        {
+          "talent": "Thread The Needle",
+          "tree": "Farstrider",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -34.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.6,
+          "lanes": [
+            "CRIT",
+            "CAST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Critical strikes with Quick Shot or Falconstrike now reduce the cast time and cost of your next ability that consumes Advantage by -34% for 15 seconds, stacking 3 times."
+        }
+      ]
+    },
+    "Quick-Witted": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Avoiding an attack now causes you to quickly stab an enemy with one of the arrows from your quiver, dealing 1 + 100% AP Physical damage and reducing their attack speed by -20% for 8 seconds.",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 1,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Quills": {
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Barbed Quills",
+          "tree": "Brigand",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Wild Strike and Quills will now tear into enemies, causing them to bleed for 78 Physical damage over 9 seconds, stacking 4 times.\n\nDamage dealt by Quills now spreads your periodic effects to 5 enemies within 10 yds and extends their duration by 2 sec."
+        }
+      ]
+    },
+    "Quivers": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "An Arrow for Everything",
+          "tree": "Archery",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Quivers by 25%."
+        }
+      ]
+    },
+    "Rapid Strikes": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Melee and ranged auto attacks now have a 25% chance to strike an additional time for 50% of the damage dealt.\n\nCan only occur once per sec.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Ravage": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 1 Advantage\nRavage an enemy, causing them to bleed out dealing 112 + 23.72% AP Physical damage over 12 seconds.",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Jagged Cuts",
+          "tree": "Brigand",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the damage and duration of Toxic Dart and Ravage by 25%."
+        },
+        {
+          "talent": "Lacerations",
+          "tree": "Brigand",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nAllows the periodic damage dealt by Ravage to critically strike."
+        }
+      ]
+    },
+    "Rusty Shiv": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Bounty Hunter",
+          "tree": "Brigand",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Flank and Rusty Shiv now increases the target's damage taken from your Advantage spenders by 25% for 8 seconds."
+        }
+      ]
+    },
+    "Serrated Shot": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Improved Serrated Shot",
+          "tree": "Archery",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Serrated Shot by 30%."
+        },
+        {
+          "talent": "A Quick Demise",
+          "tree": "Archery",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Auto shots now have a 20% chance to extend the duration of your Serrated Shot by 2 sec."
+        },
+        {
+          "talent": "Bleeding Edge",
+          "tree": "Archery",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nAllows the periodic damage dealt by Serrated Shot to critically strike."
+        },
+        {
+          "talent": "Headshots Only",
+          "tree": "Archery",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Periodic damage dealt with Serrated Shot and Toxic Dart now increases the damage of your next Precision Shot within 8 seconds by 10%, stacking 10 times."
+        }
+      ]
+    },
+    "Skirmish": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "DURATION",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Maximum Power",
+          "tree": "Archery",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Abilities used with 5 stacks of Advantage now refresh the duration of your active Skirmish by 5 sec."
+        },
+        {
+          "talent": "Brutal Shot",
+          "tree": "Archery",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Fire a volley of powerful shots that pierce through Armor, dealing 450% Ranged Weapon Damage plus 300 to all targets in a 40 yd line.\n\nWhile Skirmish is active this ability is guaranteed to critically strike."
+        }
+      ]
+    },
+    "Skullpiercer": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "New-Age Archery",
+          "tree": "Archery",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Skullpiercer and Precision Shot by 20%."
+        },
+        {
+          "talent": "Pierced",
+          "tree": "Archery",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Skullpiercer and Precision Shot cause the enemy to bleed for an additional 50% damage of the damage dealt over 4 seconds."
+        },
+        {
+          "talent": "Ambuscade",
+          "tree": "Brigand",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Skullpiercer and Flank by 20%, plus an additional 35% if you have a polearm equipped."
+        },
+        {
+          "talent": "Underhanded",
+          "tree": "Brigand",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the attack power scaling of Skullpiercer by 30%."
+        },
+        {
+          "talent": "Stonemason's Secret",
+          "tree": "Brigand",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Skullpiercer used with 5 stacks of Advantage now extends the duration of Dirty Blades by 6 sec."
+        },
+        {
+          "talent": "Hunting Tactics",
+          "tree": "Farstrider",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Skullpiercer is increased by 30% against Poisoned targets."
+        }
+      ]
+    },
+    "Skullpiercers": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "CDR",
+        "RESOURCE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Instinctual Combatant",
+          "tree": "Brigand",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Casting Instinct now also restores 40 extra Focus and guarantees your next 3 Skullpiercers or Assaults within 20 seconds to critically strike.\n\nIn addition, Instinct now grants you an additional 10% of your Agility as melee attack power."
+        },
+        {
+          "talent": "Forest Fighter",
+          "tree": "Farstrider",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Skullpiercers or Emerald Arrows used with 5 stacks of Advantage now reduce the cooldown of Woodland Arrow by -5 sec."
+        },
+        {
+          "talent": "Phoenix Plumes",
+          "tree": "Farstrider",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Skullpiercers and Woodland Arrows used with 5 stacks of Advantage now restore 3% Focus and summon a War Falcon for 6 seconds."
+        }
+      ]
+    },
+    "Snapseed": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Toss a snapseed at an enemy, dealing 27 + 30% ranged AP Physical damage and knocking them back.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Resourceful",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Crippling Shot and Snapseed by -20%."
+        },
+        {
+          "talent": "Scavenger",
+          "tree": "Farstrider",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Battle Screech and reduces the cooldown of Snapseed by 5 sec."
+        },
+        {
+          "talent": "Venom-Coated Seeds",
+          "tree": "Farstrider",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Snapseed now reduces the enemy's chance to hit by -15% for 10 seconds."
+        }
+      ]
+    },
+    "Snatch": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Snatch an enemy's melee weapons, disarming them for 4 seconds.\n\nIf you are disarmed, you also return your weapon to yourself.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Whats Yours Is Mine",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Removes the Focus cost of Snatch."
+        },
+        {
+          "talent": "Grappling Arrows",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the range of Snatch by 15 yds."
+        }
+      ]
+    },
+    "Strike Where It Hurts": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your ability critical strikes now increase the damage the target takes from bleeds by 30% for 15 seconds.",
+      "baseTree": "Archery",
+      "basePosition": {
+        "x": 2,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Survival Potion": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Drink a survival potion, dispelling all poison and disease effects and removing 1 poison and disease effect every 3 sec for 9 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Survival Kit",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Survival Potion now also heals you for 10% of your maximum health with each tick."
+        },
+        {
+          "talent": "Survivalist",
+          "tree": "Farstrider",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Survival Potion by -25%."
+        }
+      ]
+    },
+    "Thalassian Brand": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Mark an enemy for total destruction, increasing your allies ranged attack power against the target by 300 and dealing 1120 Nature damage every 3 sec for 15 seconds.\n\nThe marked target can always be seen by the Ranger whether it stealths or turns invisible",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Throatpunch": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Punch an enemy in the throat, interrupting the enemy's spellcast, preventing any spell from that school of magic from being cast for 2 seconds.",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 1,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Toxic Dart": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "HEAL",
+        "COST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Skirmisher",
+          "tree": "Archery",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Crippling Shot"
+          ],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            },
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 4.9,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nIncreases the damage and tick rate of Toxic Dart by -30%, but reduces the duration of its damaging effect by -30%."
+        },
+        {
+          "talent": "Headshots Only",
+          "tree": "Archery",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Periodic damage dealt with Serrated Shot and Toxic Dart now increases the damage of your next Precision Shot within 8 seconds by 10%, stacking 10 times."
+        },
+        {
+          "talent": "Jagged Cuts",
+          "tree": "Brigand",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the damage and duration of Toxic Dart and Ravage by 25%."
+        },
+        {
+          "talent": "Bloody Focus",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Focus cost of Toxic Dart by -15."
+        },
+        {
+          "talent": "Forest Herald",
+          "tree": "Farstrider",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SPEED",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Casting Toxic Dart and abilities that spend stacks of Advantage now have a 20% chance to spawn a green Dreamflower at a random location nearby within 15 yds of you.Dream Flower (Spawner)When an ally runs over the flower, they consume it to heal for 3% maximum health and gain 40% increased movement speed for 5 seconds."
+        },
+        {
+          "talent": "Razorquills",
+          "tree": "Farstrider",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the tick rate of Toxic Dart and Emerald Arrows by -20%."
+        }
+      ]
+    },
+    "Trueshot Lodge Training": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your off-hand weapon damage by 50%.\n\nWhile wielding a polearm, your Physical damage dealt is increased by 6%.",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 3,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Viper's Bite": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Generates 2 Advantage\nUnleash 4 quick strikes over 1 seconds to an enemy, each dealing 85% Weapon Damage.\n\nIf the target is bleeding, each strike deals an additional 400 + 25% AP Physical damage.\n\nIf the target is poisoned, each strike deals Nature damage instead of Physical damage.",
+      "baseTree": "Brigand",
+      "basePosition": {
+        "x": 1,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "War Falcon": {
+      "lanes": [
+        "DMG",
+        "MITIGATION",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Falcon Diving",
+          "tree": "Farstrider",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Killing an enemy that yields experience or honor now summons a War Falcon to aid you in combat for 12 seconds. Can only occur once every 4 sec."
+        },
+        {
+          "talent": "Wingman",
+          "tree": "Farstrider",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.8,
+          "lanes": [
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Reduces all damage taken by -2% for each War Falcon or Dragonhawk you have active."
+        },
+        {
+          "talent": "Guidance",
+          "tree": "Farstrider",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases your Physical and Nature damage dealt by 1% for each War Falcon or Dragonhawk you have active."
+        },
+        {
+          "talent": "Falcon's Aid",
+          "tree": "Farstrider",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Periodic damage dealt now has a 10% chance to summon a War Falcon to aid you in battle for 6 seconds."
+        },
+        {
+          "talent": "Phoenix Plumes",
+          "tree": "Farstrider",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Skullpiercers and Woodland Arrows used with 5 stacks of Advantage now restore 3% Focus and summon a War Falcon for 6 seconds."
+        }
+      ]
+    },
+    "War Falcons": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "MITIGATION",
+        "RESOURCE",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Falcon Charmer",
+          "tree": "Farstrider",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of War Falcons by 3 sec."
+        },
+        {
+          "talent": "Gutpiercer",
+          "tree": "Farstrider",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 75.0,
+              "unit": "flat"
+            },
+            {
+              "value": -2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.8,
+          "lanes": [
+            "DMG",
+            "MITIGATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by War Falcons and Dragonhawks now has a 15% chance to reduce the enemy's resistances by 75 and increase their Magic damage taken by -2% for 15 seconds."
+        },
+        {
+          "talent": "Pecking",
+          "tree": "Farstrider",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your War Falcons and Dragonhawks now have a 25% chance to deal additional Physical damage to 3 nearby enemies."
+        },
+        {
+          "talent": "Coordination",
+          "tree": "Farstrider",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Your War Falcons and Dragonhawks now grant you a stack of Coordination when they deal damage.\nCoordination (Proc)Increases your critical strike chance and critical damage by 1% for 15 seconds, stacking 10 times."
+        }
+      ]
+    },
+    "Waterskins": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Improved Waterskins",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Waterskins by 25%."
+        }
+      ]
+    },
+    "Weapon Crafts": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Polearm Craft",
+          "tree": "Brigand",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While a polearm is equipped, your chance to trigger your Weapon Crafts and their damage dealt is increased by 25%."
+        }
+      ]
+    },
+    "Wild Strike": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "COST",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Ravager",
+          "tree": "Brigand",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Knockout"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour Wild Strike now generates 1 additional Advantage.\n\nRemoves the minimum range of your ranged abilities."
+        },
+        {
+          "talent": "Dice Games",
+          "tree": "Brigand",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Wild Strike and Assault by 5%."
+        },
+        {
+          "talent": "Wild Man",
+          "tree": "Brigand",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Wild Strike now strikes 2 additional nearby enemies, but deals reduced damage with each enemy struck."
+        },
+        {
+          "talent": "Focused Fighter",
+          "tree": "Brigand",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Focus cost of Flank, Blackjack, and Wild Strike by -10%."
+        },
+        {
+          "talent": "Tip of the Spear",
+          "tree": "Brigand",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While you have a polearm equipped, your Wild Strike now has a 15% chance to strike 3 additional times."
+        },
+        {
+          "talent": "Barbed Quills",
+          "tree": "Brigand",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Wild Strike and Quills will now tear into enemies, causing them to bleed for 78 Physical damage over 9 seconds, stacking 4 times.\n\nDamage dealt by Quills now spreads your periodic effects to 5 enemies within 10 yds and extends their duration by 2 sec."
+        }
+      ]
+    },
+    "Windrunner's Reach": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the range of your ranged abilities by 10 yds.\n\nIn addition, your critical strike chance against Undead, Beasts, and Dragonkin is increased by 4%.",
+      "baseTree": "Farstrider",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Woodland Adept": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sly",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Woodland Adept now triggers a -10% reduced cooldown for each stack of Advantage active when cast."
+        }
+      ]
+    },
+    "Woodland Arrow": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Quel'dorei Poison",
+          "tree": "Farstrider",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Woodland Arrow and Emerald Arrow now poison enemies for 3 seconds, dealing 91 + 10% ranged AP Nature damage every 1 sec."
+        },
+        {
+          "talent": "Forest Fighter",
+          "tree": "Farstrider",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Skullpiercers or Emerald Arrows used with 5 stacks of Advantage now reduce the cooldown of Woodland Arrow by -5 sec."
+        }
+      ]
+    },
+    "Woodland Arrows": {
+      "lanes": [
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Phoenix Plumes",
+          "tree": "Farstrider",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Skullpiercers and Woodland Arrows used with 5 stacks of Advantage now restore 3% Focus and summon a War Falcon for 6 seconds."
+        }
+      ]
+    }
+  }
+}

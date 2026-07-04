@@ -1,0 +1,53 @@
+{
+  "regionType": "aurabar",
+  "width": "{{width}}",
+  "height": "{{height}}",
+  "orientation": "HORIZONTAL",
+  "inverse": false,
+  "alpha": 1,
+  "frameStrata": 2,
+  "barColor": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "backgroundColor": [
+    0.0,
+    0.0,
+    0.0,
+    0.5
+  ],
+  "texture": "Blizzard",
+  "textureSource": "LSM",
+  "icon": false,
+  "desaturate": false,
+  "iconSource": -1,
+  "displayIcon": "",
+  "zoom": 0,
+  "progressSource": [
+    -1,
+    ""
+  ],
+  "adjustedMax": "",
+  "adjustedMin": "",
+  "useAdjustededMax": false,
+  "useAdjustededMin": false,
+  "spark": false,
+  "subRegions": [
+    {
+      "type": "subbackground"
+    }
+  ],
+  "triggers": {
+    "1": {
+      "trigger": {
+        "type": "unit",
+        "event": "Unit Characteristics",
+        "unit": "player"
+      },
+      "untrigger": {}
+    },
+    "activeTriggerMode": -10
+  }
+}

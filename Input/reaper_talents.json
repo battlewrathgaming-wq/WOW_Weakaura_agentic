@@ -1,0 +1,5345 @@
+{
+  "class": "Reaper",
+  "classId": 30,
+  "realm": "voljin-alpha",
+  "source": "https://ascension.gg/en/v2/coa-builder/voljin-alpha",
+  "extracted": "2026-07-01",
+  "schemaVersion": 3,
+  "trees": [
+    "Class",
+    "Domination",
+    "Harvest",
+    "Soul"
+  ],
+  "totalTalents": 153,
+  "budget": {
+    "abilityEssence": 26,
+    "talentEssence": 25
+  },
+  "rules": {
+    "specExclusivity": "Only one spec tree (Sanguine/Accursed/Eternal/Fleshweaver-equivalent) can be active at a time in-game. You commit to ONE non-Class tree and spend your full Talent Essence budget within it (plus the separate Class tree spent with Ability Essence). Treat trees other than 'Class' as mutually exclusive choices, not a blend.",
+    "partialRanksCount": "A node only needs 1 point invested (not maxPoints) to count as 'connected' for prerequisite checks and to contribute toward the reqTreeAbilityEssence/reqTreeTalentEssence row-unlock thresholds.",
+    "budgetCurrencies": "Ability Essence (AE) is spent only in the Class tree. Talent Essence (TE) is spent only in whichever single spec tree you commit to. A node's abilityEssenceCost/talentEssenceCost fields show which currency it draws from (never both).",
+    "rowGating": "reqTreeAbilityEssence / reqTreeTalentEssence on a node is the minimum essence already spent within that SAME tree required to unlock it - not total across trees.",
+    "levelGates": "Some nodes (mostly entryType Ability) cost 0 essence and unlock automatically at requiredLevel instead of being a budget choice.",
+    "prerequisiteFieldsCorrected": "'prerequisites' is the OR-logic grid-connection requirement (matches tooltip 'requires one connected node: A or B or C') - need at least 1 point in ANY ONE listed node. 'specialRequirement' is a separate, rare, AND-logic hard requirement used only by a handful of free/level-gated bonus nodes - ALL listed nodes must already have a point.",
+    "budgetTotalsAssumed": "Verified live for Bloodmage: 26 Ability Essence (Class tree) / 25 Talent Essence (spec tree) as the spendable caps. Assumed identical for all classes since this is tied to character leveling, not class design - not independently verified per class. Override in the toolkit if a specific class differs.",
+    "referencedTerms": "Extracted from colored in-line spans in the raw tooltip HTML (e.g. a description that highlights 'Cursed Blood' or 'Bloodbolt'). These are explicit developer-authored callouts to another spell/buff/mechanic name, and are the strongest available signal for detecting mechanical synergy between talents - stronger than plain keyword text matching."
+  },
+  "talents": [
+    {
+      "id": 30107,
+      "name": "Wraithblade",
+      "tree": "Class",
+      "x": 2,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_archaeology_orcclans_tattooknife",
+      "spellId": 805258,
+      "description": "Generates 3 Reaped Souls\nStrike for 150% Weapon Damage plus 36 + 62.5% SP + 18% AP Shadow damage, ignoring resistances, absorption, and invulnerability effects.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 3 Reaped Souls\nStrike for 150% Weapon Damage plus 36 + 62.5% SP + 18% AP Shadow damage, ignoring resistances, absorption, and invulnerability effects."
+        }
+      ]
+    },
+    {
+      "id": 29248,
+      "name": "Scythe Rush",
+      "tree": "Class",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_bladedance",
+      "spellId": 500359,
+      "description": "Rush towards an enemy and generate 15 Runic Power.\n\nCannot be used on the same target more than once every 20 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Rush towards an enemy and generate 15 Runic Power.\n\nCannot be used on the same target more than once every 20 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30113,
+      "name": "Tormented Souls",
+      "tree": "Class",
+      "x": 6,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_SoulsDevourer_Blue",
+      "spellId": 500483,
+      "description": "Create 1 Tormented Soul and generate Runic Power for each Reaped Soul active.\n\nConsumes Reaped Souls and Soul Infusion.\nTormented SoulsReduces all direct damage you take by -10% and heals you for 35 + 5.8% AP + 24% Stamina, removing 1 stack. Lasts 20 seconds.",
+      "referencedTerms": [
+        "Reaped Soul",
+        "Reaped Souls",
+        "Soul Infusion",
+        "Tormented Soul"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Create 1 Tormented Soul and generate Runic Power for each Reaped Soul active.\n\nConsumes Reaped Souls and Soul Infusion.\nTormented SoulsReduces all direct damage you take by -10% and heals you for 35 + 5.8% AP + 24% Stamina, removing 1 stack. Lasts 20 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30109,
+      "name": "Mysterious Omen",
+      "tree": "Class",
+      "x": 0,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_frozenghost_Border",
+      "spellId": 561108,
+      "description": "Increases the range of Murder and Soul Shock by 5 yds.",
+      "referencedTerms": [
+        "Murder",
+        "Soul Shock"
+      ],
+      "prerequisites": [
+        "Wraithblade"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the range of Murder and Soul Shock by 5 yds."
+        }
+      ]
+    },
+    {
+      "id": 6708,
+      "name": "Backswing",
+      "tree": "Class",
+      "x": 3,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\novart_magicspell_(32)_Border",
+      "spellId": 706790,
+      "description": "Increases the Runic Power generated by Reap by 5.",
+      "referencedTerms": [
+        "Reap"
+      ],
+      "prerequisites": [
+        "Scythe Rush",
+        "Wraithblade"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the Runic Power generated by Reap by 5."
+        }
+      ]
+    },
+    {
+      "id": 6722,
+      "name": "Soul Harvester",
+      "tree": "Class",
+      "x": 5,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_deathknight_soulreaper",
+      "spellId": 804311,
+      "description": "Landing the killing blow on a target that yields experience or honor now grants Soul Harvester for 10 seconds.Soul HarvesterAfter killing an enemy you generate 2 Runic Power every 1 sec.",
+      "referencedTerms": [
+        "Soul Harvester"
+      ],
+      "prerequisites": [
+        "Scythe Rush",
+        "Tormented Souls"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Landing the killing blow on a target that yields experience or honor now grants Soul Harvester for 10 seconds.Soul HarvesterAfter killing an enemy you generate 2 Runic Power every 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 34461,
+      "name": "Soulfused Constitution",
+      "tree": "Class",
+      "x": 8,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_IceBoundFortitude",
+      "spellId": 561100,
+      "description": "Your Tormented Souls now creates 1 additional soul for each Reaped Soul active.",
+      "referencedTerms": [
+        "Reaped Soul",
+        "Tormented Souls"
+      ],
+      "prerequisites": [
+        "Tormented Souls"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Tormented Souls now creates 1 additional soul for each Reaped Soul active."
+        }
+      ]
+    },
+    {
+      "id": 6719,
+      "name": "Veilwalk",
+      "tree": "Class",
+      "x": 1,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_Diablo3_Thunderclap_Warlock",
+      "spellId": 803990,
+      "description": "2 Charges, 60 sec recharge\nMove with spectral agility, gaining 50% increased movement speed for 5 seconds, stacking 2 times.\n\nRemoves all movement impairing effects. Usable while stealthed.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Backswing",
+        "Mysterious Omen"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "2 Charges, 60 sec recharge\nMove with spectral agility, gaining 50% increased movement speed for 5 seconds, stacking 2 times.\n\nRemoves all movement impairing effects. Usable while stealthed."
+        }
+      ]
+    },
+    {
+      "id": 34510,
+      "name": "Soul Warden",
+      "tree": "Class",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_GhostLand_Border",
+      "spellId": 560419,
+      "description": "Increases your melee attack power by 1 for every 100 Armor you have.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Backswing",
+        "Soul Harvester"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your melee attack power by 1 for every 100 Armor you have."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your melee attack power by 1 for every 50 Armor you have."
+        }
+      ]
+    },
+    {
+      "id": 9322,
+      "name": "Jailer's Bargain",
+      "tree": "Class",
+      "x": 7,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_spiritarmor_Border",
+      "spellId": 805718,
+      "description": "Beckon the jailer, gaining a shield that absorbs damage equal to 30% of your maximum health for 10 seconds.\n\nWhile this is active you are considered Undead and are immune to fear, sleep, and charm effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Soul Harvester",
+        "Soulfused Constitution"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Beckon the jailer, gaining a shield that absorbs damage equal to 30% of your maximum health for 10 seconds.\n\nWhile this is active you are considered Undead and are immune to fear, sleep, and charm effects."
+        }
+      ]
+    },
+    {
+      "id": 6778,
+      "name": "Ghastly Form",
+      "tree": "Class",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_argus_deathfog",
+      "spellId": 704357,
+      "description": "After using Spectre Stride, Scythe Rush, or Veilwalk you now gain a shield that absorbs 114 + 33% AP damage for 6 seconds.",
+      "referencedTerms": [
+        "Scythe Rush",
+        "Spectre Stride",
+        "Veilwalk"
+      ],
+      "prerequisites": [
+        "Veilwalk"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "After using Spectre Stride, Scythe Rush, or Veilwalk you now gain a shield that absorbs 114 + 33% AP damage for 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34495,
+      "name": "Withering Touch",
+      "tree": "Class",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_D3spiritbarrage",
+      "spellId": 573071,
+      "description": "Your touch rots armor and resolve, reducing the target\u2019s armor by -20% and increasing their Magic damage taken by 10% for 1 minute, and generates Runic Power.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Soul Warden"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your touch rots armor and resolve, reducing the target\u2019s armor by -20% and increasing their Magic damage taken by 10% for 1 minute, and generates Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 34505,
+      "name": "Harvester's Scythe",
+      "tree": "Class",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_rogue_restlessblades",
+      "spellId": 805188,
+      "description": "Increases the amount leeched by Soul Strike by 15%.",
+      "referencedTerms": [
+        "Soul Strike"
+      ],
+      "prerequisites": [
+        "Jailer's Bargain"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the amount leeched by Soul Strike by 15%."
+        }
+      ]
+    },
+    {
+      "id": 5495,
+      "name": "Soulstrider",
+      "tree": "Class",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\spell_shaman_spiritwalkersgrace",
+      "spellId": 572340,
+      "description": "Increases the movement speed granted by Veilwalk by 20%.",
+      "referencedTerms": [
+        "Veilwalk"
+      ],
+      "prerequisites": [
+        "Ghastly Form"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the movement speed granted by Veilwalk by 20%."
+        }
+      ]
+    },
+    {
+      "id": 7945,
+      "name": "From the Shadows",
+      "tree": "Class",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_priest_cascade_shadow",
+      "spellId": 561099,
+      "description": "Exiting Underwalk increases your critical strike chance by 10% for 5 seconds.",
+      "referencedTerms": [
+        "Underwalk"
+      ],
+      "prerequisites": [
+        "Ghastly Form",
+        "Withering Touch"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Exiting Underwalk increases your critical strike chance by 10% for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 7271,
+      "name": "Dominion",
+      "tree": "Class",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_warlock_demonwrath",
+      "spellId": 803999,
+      "description": "Gaining Soul Infusion now increases your Armor by 585 for 6 seconds.",
+      "referencedTerms": [
+        "Soul Infusion"
+      ],
+      "prerequisites": [
+        "Withering Touch",
+        "Harvester's Scythe"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Gaining Soul Infusion now increases your Armor by 585 for 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6780,
+      "name": "Burial Rites",
+      "tree": "Class",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_raid_torghast_thenine",
+      "spellId": 560422,
+      "description": "Increases the effectiveness of your Rites by 20%.",
+      "referencedTerms": [
+        "Rites"
+      ],
+      "prerequisites": [
+        "Harvester's Scythe"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Rites by 20%."
+        }
+      ]
+    },
+    {
+      "id": 9321,
+      "name": "Ghastly Screech",
+      "tree": "Class",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_D3horrify",
+      "spellId": 806146,
+      "description": "Screech with ghastly intent, silencing all nearby enemies for 4 seconds, and dealing 90 + 25% AP Shadowfrost Damage at the end of the duration.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Soulstrider",
+        "From the Shadows"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Screech with ghastly intent, silencing all nearby enemies for 4 seconds, and dealing 90 + 25% AP Shadowfrost Damage at the end of the duration."
+        }
+      ]
+    },
+    {
+      "id": 34489,
+      "name": "Spectre Strength",
+      "tree": "Class",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_zone_ghostlands",
+      "spellId": 804671,
+      "description": "Increases your Strength by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Dominion",
+        "From the Shadows"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Strength by 5%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Strength by 10%."
+        }
+      ]
+    },
+    {
+      "id": 5600,
+      "name": "Limbo",
+      "tree": "Class",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ability_Rogue_ShadowDance",
+      "spellId": 800845,
+      "description": "Rip out of your mortal shell for 5 seconds, making you immune to all harmful spell effects and instantly restoring 30% of your maximum health and Runic Power.\n\nUsable while stunned, feared, or polymorphed.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Burial Rites",
+        "Dominion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Rip out of your mortal shell for 5 seconds, making you immune to all harmful spell effects and instantly restoring 30% of your maximum health and Runic Power.\n\nUsable while stunned, feared, or polymorphed."
+        }
+      ]
+    },
+    {
+      "id": 34492,
+      "name": "Ghastly Advance",
+      "tree": "Class",
+      "x": 0,
+      "y": 6,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_AuraOfDarkness",
+      "spellId": 805192,
+      "description": "Increases the range of Spectre Stride by 5 yds and causes it to generate 5 more Runic Power.",
+      "referencedTerms": [
+        "Spectre Stride"
+      ],
+      "prerequisites": [
+        "Ghastly Screech"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the range of Spectre Stride by 5 yds and causes it to generate 5 more Runic Power."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the range of Spectre Stride by 10 yds and causes it to generate 10 more Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 7272,
+      "name": "Damned",
+      "tree": "Class",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_magicspell_(12)_Border",
+      "spellId": 706786,
+      "description": "When you gain Soul Infusion, you are protected from being slowed below 100% of normal speed for 5 seconds.",
+      "referencedTerms": [
+        "Soul Infusion"
+      ],
+      "prerequisites": [
+        "Ghastly Screech",
+        "Spectre Strength"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "When you gain Soul Infusion, you are protected from being slowed below 100% of normal speed for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29564,
+      "name": "Soul Tap",
+      "tree": "Class",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_D3soulharvest",
+      "spellId": 807397,
+      "description": "Chip away at the very essence of your own soul, generating 50 Runic Power.\n\nUsable while stealthed.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Spectre Strength"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Chip away at the very essence of your own soul, generating 50 Runic Power.\n\nUsable while stealthed."
+        }
+      ]
+    },
+    {
+      "id": 34497,
+      "name": "Soul Protector",
+      "tree": "Class",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_helmet_146",
+      "spellId": 300553,
+      "description": "Increases Armor contribution from items by 25% and increases your magic resistances by 21.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Limbo",
+        "Spectre Strength"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases Armor contribution from items by 25% and increases your magic resistances by 21."
+        }
+      ]
+    },
+    {
+      "id": 6726,
+      "name": "Dark Passage",
+      "tree": "Class",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_artifact_stolenpower",
+      "spellId": 704558,
+      "description": "Dealing direct critical strikes with Shadow damage reduce the cooldown of Limbo by -2 sec.",
+      "referencedTerms": [
+        "Limbo"
+      ],
+      "prerequisites": [
+        "Limbo"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dealing direct critical strikes with Shadow damage reduce the cooldown of Limbo by -2 sec."
+        }
+      ]
+    },
+    {
+      "id": 34500,
+      "name": "Between Shadows",
+      "tree": "Class",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\5_shadowworld_Border",
+      "spellId": 560412,
+      "description": "Casting Spectre Stride now generates 1 Reaped Soul.",
+      "referencedTerms": [
+        "Reaped Soul",
+        "Spectre Stride"
+      ],
+      "prerequisites": [
+        "Damned",
+        "Ghastly Advance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Spectre Stride now generates 1 Reaped Soul."
+        }
+      ]
+    },
+    {
+      "id": 13500,
+      "name": "Into The Shadow Realm",
+      "tree": "Class",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\5_spirit_Border",
+      "spellId": 561342,
+      "description": "Reduces the cooldown of Deathstalker, Soulstone Lure, and Soul Shear by -25%.",
+      "referencedTerms": [
+        "Deathstalker",
+        "Soul Shear",
+        "Soulstone Lure"
+      ],
+      "prerequisites": [
+        "Damned",
+        "Ghastly Advance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Deathstalker, Soulstone Lure, and Soul Shear by -25%."
+        }
+      ]
+    },
+    {
+      "id": 31125,
+      "name": "Mawborn",
+      "tree": "Class",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Warlock_siphonlife",
+      "spellId": 805203,
+      "description": "Reduces the duration of disarm and incapacitate effects against you by -20%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Soul Tap"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the duration of disarm and incapacitate effects against you by -20%."
+        }
+      ]
+    },
+    {
+      "id": 30324,
+      "name": "Essence Invigoration",
+      "tree": "Class",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_misc_lesseressence",
+      "spellId": 805186,
+      "description": "Casting abilities that require Soul Infusion now has a 50% chance to restore 5% of your missing health.",
+      "referencedTerms": [
+        "Soul Infusion"
+      ],
+      "prerequisites": [
+        "Dark Passage",
+        "Soul Protector"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting abilities that require Soul Infusion now has a 50% chance to restore 5% of your missing health."
+        }
+      ]
+    },
+    {
+      "id": 5464,
+      "name": "Sinister Litany",
+      "tree": "Class",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_scrollofsoulbending_Border",
+      "spellId": 805185,
+      "description": "Embrace your sinister thoughts, instantly generating 3 Reaped Souls.",
+      "referencedTerms": [
+        "Reaped Souls"
+      ],
+      "prerequisites": [
+        "Into The Shadow Realm",
+        "Between Shadows"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Embrace your sinister thoughts, instantly generating 3 Reaped Souls."
+        }
+      ]
+    },
+    {
+      "id": 30535,
+      "name": "Masochistic Rage",
+      "tree": "Class",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_rogue_vendetta",
+      "spellId": 803030,
+      "description": "After a 1 sec delay, you suffer 660 + 36% AP damage, enraging you and increasing your damage dealt by 20% for 15 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Into The Shadow Realm",
+        "Essence Invigoration",
+        "Mawborn",
+        "Between Shadows"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "After a 1 sec delay, you suffer 660 + 36% AP damage, enraging you and increasing your damage dealt by 20% for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34502,
+      "name": "Soul Harvest",
+      "tree": "Class",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_spiritfire_Border",
+      "spellId": 504012,
+      "description": "Generating Reaped Souls now triggers Soul Harvest. Soul Harvest (Damage)Blasts your target for 1 + 5% AP + 10% shadow SP Shadow Damage, healing for 100% of the damage dealt.",
+      "referencedTerms": [
+        "Reaped Souls",
+        "Soul Harvest"
+      ],
+      "prerequisites": [
+        "Essence Invigoration"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generating Reaped Souls now triggers Soul Harvest. Soul Harvest (Damage)Blasts your target for 1 + 5% AP + 10% shadow SP Shadow Damage, healing for 100% of the damage dealt."
+        }
+      ]
+    },
+    {
+      "id": 7783,
+      "name": "Ghost",
+      "tree": "Class",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_SoulsDevourer_Purple",
+      "spellId": 705426,
+      "description": "Sinister Litany now increases the damage of your next spell or ability within 10 sec by 50% and casting it now grants you Ghost for 3 seconds.Ghost (Proc)Enter an enhanced stealth mode that does not break on damage dealt or taken.",
+      "referencedTerms": [
+        "Ghost",
+        "Sinister Litany"
+      ],
+      "prerequisites": [
+        "Sinister Litany"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Sinister Litany now increases the damage of your next spell or ability within 10 sec by 50% and casting it now grants you Ghost for 3 seconds.Ghost (Proc)Enter an enhanced stealth mode that does not break on damage dealt or taken."
+        }
+      ]
+    },
+    {
+      "id": 30534,
+      "name": "Painbringer",
+      "tree": "Class",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_reaperscythe_Border",
+      "spellId": 680995,
+      "description": "Generating Reaped Souls now has a 10% chance to trigger Masochistic Rage for 5 sec.\n\nIf Masochistic Rage is already active, it will instead extend the duration by 3 sec.",
+      "referencedTerms": [
+        "Masochistic Rage",
+        "Reaped Souls"
+      ],
+      "prerequisites": [
+        "Masochistic Rage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generating Reaped Souls now has a 10% chance to trigger Masochistic Rage for 5 sec.\n\nIf Masochistic Rage is already active, it will instead extend the duration by 3 sec."
+        }
+      ]
+    },
+    {
+      "id": 34499,
+      "name": "Soul Furnace",
+      "tree": "Class",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_spiritamulet_Border",
+      "spellId": 805184,
+      "description": "Increases the amount leeched from Soul Harvest by an additional 50%.",
+      "referencedTerms": [
+        "Soul Harvest"
+      ],
+      "prerequisites": [
+        "Soul Harvest"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the amount leeched from Soul Harvest by an additional 50%."
+        }
+      ]
+    },
+    {
+      "id": 30720,
+      "name": "Dreadwake",
+      "tree": "Domination",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_argus_edgeofobliteration",
+      "spellId": 803992,
+      "description": "Generates 1 Reaped Soul\nUnleash a wave of souls upon enemies in a 12 yd cone, causing 80% Weapon Damage plus 5 Frost damage.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 1 Reaped Soul\nUnleash a wave of souls upon enemies in a 12 yd cone, causing 80% Weapon Damage plus 5 Frost damage."
+        }
+      ]
+    },
+    {
+      "id": 4057,
+      "name": "Tormentor",
+      "tree": "Domination",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_ghosthand_Border",
+      "spellId": 92147,
+      "description": "Level 10 Passive\nConsuming Soul Infusion now reduces the cooldown of Tormented Souls by -3 sec.",
+      "referencedTerms": [
+        "Soul Infusion",
+        "Tormented Souls"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Tormented Souls"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nConsuming Soul Infusion now reduces the cooldown of Tormented Souls by -3 sec."
+        }
+      ]
+    },
+    {
+      "id": 34515,
+      "name": "Empyrean Fortitude",
+      "tree": "Domination",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_magicspell_(20)_Border",
+      "spellId": 706795,
+      "description": "Increases your parry chance by 5% and parrying an attack now generates 2 Runic Power.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Dreadwake"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your parry chance by 5% and parrying an attack now generates 2 Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 6710,
+      "name": "Dark Soldier",
+      "tree": "Domination",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_sword_1h_artifactthunderfury_d_01",
+      "spellId": 560490,
+      "description": "Increases your hit chance by 3% and reduces your Magic damage taken by -2%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Dreadwake"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your hit chance by 3% and reduces your Magic damage taken by -2%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your hit chance by 6% and reduces your Magic damage taken by -4%."
+        }
+      ]
+    },
+    {
+      "id": 6768,
+      "name": "Soultaker",
+      "tree": "Domination",
+      "x": 1,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_soulbarrier",
+      "spellId": 704356,
+      "description": "Damage dealt with Dreadwake now reduces the cooldown of Tormented Souls by -1 sec.",
+      "referencedTerms": [
+        "Dreadwake",
+        "Tormented Souls"
+      ],
+      "prerequisites": [
+        "Empyrean Fortitude"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt with Dreadwake now reduces the cooldown of Tormented Souls by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 8293,
+      "name": "Requiem",
+      "tree": "Domination",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_supersoulash",
+      "spellId": 805717,
+      "description": "Swing at enemies around you in a fury of souls, dealing 67 + 40% AP Shadowfrost Damage, reducing their melee and ranged attack speed by -20% for 15 seconds, and generating Runic Power.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Dark Soldier",
+        "Empyrean Fortitude"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Swing at enemies around you in a fury of souls, dealing 67 + 40% AP Shadowfrost Damage, reducing their melee and ranged attack speed by -20% for 15 seconds, and generating Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 5722,
+      "name": "Lifestealer",
+      "tree": "Domination",
+      "x": 7,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_Metamorphosis",
+      "spellId": 301366,
+      "description": "Increases the missing health generated by Soul Strike by 3%.",
+      "referencedTerms": [
+        "Soul Strike"
+      ],
+      "prerequisites": [
+        "Dark Soldier"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the missing health generated by Soul Strike by 3%."
+        }
+      ]
+    },
+    {
+      "id": 30722,
+      "name": "Dominator",
+      "tree": "Domination",
+      "x": 7,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_archerskill33_Border",
+      "spellId": 301213,
+      "description": "Reduces the Runic Power cost of Soul Strike by $/10s;s1.",
+      "referencedTerms": [
+        "Soul Strike"
+      ],
+      "prerequisites": [
+        "Dark Soldier"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Runic Power cost of Soul Strike by $/10s;s1."
+        }
+      ]
+    },
+    {
+      "id": 9271,
+      "name": "Behemoth",
+      "tree": "Domination",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3spectralblade",
+      "spellId": 573041,
+      "description": "Level 20 Passive\nIncreases your Stamina by 20% and your Armor penetration by 10% of your Strength.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Tormentor"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nIncreases your Stamina by 20% and your Armor penetration by 10% of your Strength."
+        }
+      ]
+    },
+    {
+      "id": 31289,
+      "name": "Bolstered Form",
+      "tree": "Domination",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_raid_torghast_shadowscourge_prisonofnerzhul",
+      "spellId": 680337,
+      "description": "Assume a bolstered form for 15 seconds, generating 30 Runic Power, increasing your Armor by 25%, and increasing your parry chance by 25%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Soultaker"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Assume a bolstered form for 15 seconds, generating 30 Runic Power, increasing your Armor by 25%, and increasing your parry chance by 25%."
+        }
+      ]
+    },
+    {
+      "id": 7946,
+      "name": "Dreadknight",
+      "tree": "Domination",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_spiritualarmor_Border",
+      "spellId": 300560,
+      "description": "Increases your armor contribution from mail and plate items by 20% and reduces the chance for spells to hit you by -2%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Requiem"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your armor contribution from mail and plate items by 20% and reduces the chance for spells to hit you by -2%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your armor contribution from mail and plate items by 40% and reduces the chance for spells to hit you by -4%."
+        }
+      ]
+    },
+    {
+      "id": 29249,
+      "name": "Spectral Scythe",
+      "tree": "Domination",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_archaeology_80_witch_bonescythe",
+      "spellId": 500484,
+      "description": "Summons 1 Spectral Scythe for each Reaped Soul active which attack a nearby enemy for 20 seconds.\n\nStriking enemies with Soul Strike causes the Spectral Scythe to attack that enemy and 5 nearby enemies. \n\nConsumes Reaped Souls and Soul Infusion.",
+      "referencedTerms": [
+        "Reaped Soul",
+        "Reaped Souls",
+        "Soul Infusion",
+        "Soul Strike",
+        "Spectral Scythe"
+      ],
+      "prerequisites": [
+        "Dominator",
+        "Lifestealer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Summons 1 Spectral Scythe for each Reaped Soul active which attack a nearby enemy for 20 seconds.\n\nStriking enemies with Soul Strike causes the Spectral Scythe to attack that enemy and 5 nearby enemies. \n\nConsumes Reaped Souls and Soul Infusion."
+        }
+      ]
+    },
+    {
+      "id": 34520,
+      "name": "Intimidating Presence",
+      "tree": "Domination",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_soulgrave_Border",
+      "spellId": 560478,
+      "description": "Bolstered Form now increases the damage nearby enemies take from you by 15% for 15 seconds.",
+      "referencedTerms": [
+        "Bolstered Form"
+      ],
+      "prerequisites": [
+        "Bolstered Form"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Bolstered Form now increases the damage nearby enemies take from you by 15% for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34473,
+      "name": "Essence Binder",
+      "tree": "Domination",
+      "x": 3,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_magicspell_(53)_Border",
+      "spellId": 560919,
+      "description": "Soul Strike now steals some of the target's health and Strength for 12 seconds, granting it to you at increased value.",
+      "referencedTerms": [
+        "Soul Strike"
+      ],
+      "prerequisites": [
+        "Dreadknight",
+        "Bolstered Form"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Soul Strike now steals some of the target's health and Strength for 12 seconds, granting it to you at increased value."
+        }
+      ]
+    },
+    {
+      "id": 34521,
+      "name": "Soulsight",
+      "tree": "Domination",
+      "x": 5,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_eyes_02_Border",
+      "spellId": 300565,
+      "description": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, dealing direct damage now has a 15% chance to generate a Soul Fragment.",
+      "referencedTerms": [
+        "Soul Fragment"
+      ],
+      "prerequisites": [
+        "Dreadknight",
+        "Spectral Scythe"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, dealing direct damage now has a 15% chance to generate a Soul Fragment."
+        }
+      ]
+    },
+    {
+      "id": 6730,
+      "name": "Well of Souls",
+      "tree": "Domination",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_magicspell_(22)_Border",
+      "spellId": 706792,
+      "description": "Damage dealt by Soul Strike and Murder now reduces the cooldown of Spectral Scythe by -1 sec.",
+      "referencedTerms": [
+        "Murder",
+        "Soul Strike",
+        "Spectral Scythe"
+      ],
+      "prerequisites": [
+        "Spectral Scythe"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Soul Strike and Murder now reduces the cooldown of Spectral Scythe by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 12330,
+      "name": "Well of Eternity",
+      "tree": "Domination",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_reaperscythe_Border",
+      "spellId": 706793,
+      "description": "Increases the duration of your Spectral Scythes by 10 sec.",
+      "referencedTerms": [
+        "Spectral Scythes"
+      ],
+      "prerequisites": [
+        "Spectral Scythe"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of your Spectral Scythes by 10 sec."
+        }
+      ]
+    },
+    {
+      "id": 4272,
+      "name": "Soul Slip",
+      "tree": "Domination",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_soulrage_Border",
+      "spellId": 500286,
+      "description": "Level 30 Passive\nAvoiding attacks now has a 50% chance to harvest a Soul Fragment from the attacker.",
+      "referencedTerms": [
+        "Soul Fragment"
+      ],
+      "prerequisites": [
+        "Behemoth"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nAvoiding attacks now has a 50% chance to harvest a Soul Fragment from the attacker."
+        }
+      ]
+    },
+    {
+      "id": 34474,
+      "name": "Harnessed Life",
+      "tree": "Domination",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_scrollofsouls_Border",
+      "spellId": 705406,
+      "description": "Your Tormented Souls now has a -25% chance to not consume a stack from damage taken.",
+      "referencedTerms": [
+        "Tormented Souls"
+      ],
+      "prerequisites": [
+        "Essence Binder",
+        "Intimidating Presence"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Tormented Souls now has a -25% chance to not consume a stack from damage taken."
+        }
+      ]
+    },
+    {
+      "id": 7876,
+      "name": "Ethereal Guard",
+      "tree": "Domination",
+      "x": 3,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_racial_etherealconnection",
+      "spellId": 300969,
+      "description": "Reduces the damage taken by party and raid members by -3%. Does not stack with similar effects.\n\nIn addition, increases your melee haste by 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Essence Binder"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the damage taken by party and raid members by -3%. Does not stack with similar effects.\n\nIn addition, increases your melee haste by 10%."
+        }
+      ]
+    },
+    {
+      "id": 34472,
+      "name": "Fatesealer",
+      "tree": "Domination",
+      "x": 5,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_deathknight_hungeringruneblade",
+      "spellId": 705442,
+      "description": "Generating a Reaped Soul now reduces damage taken by -2% for 15 seconds, stacking 3 times.",
+      "referencedTerms": [
+        "Reaped Soul"
+      ],
+      "prerequisites": [
+        "Soulsight"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generating a Reaped Soul now reduces damage taken by -2% for 15 seconds, stacking 3 times."
+        }
+      ]
+    },
+    {
+      "id": 6703,
+      "name": "Jailer's Will",
+      "tree": "Domination",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_dungeon_soulboundgoliath",
+      "spellId": 524939,
+      "description": "Soul Strike now deals 30% Strength increased damage, scaling with Strength.",
+      "referencedTerms": [
+        "Soul Strike"
+      ],
+      "prerequisites": [
+        "Well of Souls",
+        "Well of Eternity",
+        "Soulsight"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Soul Strike now deals 30% Strength increased damage, scaling with Strength."
+        }
+      ]
+    },
+    {
+      "id": 4111,
+      "name": "To The Shadowlands",
+      "tree": "Domination",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_NightOfTheDead",
+      "spellId": 707909,
+      "description": "Increases the duration of Soulslam by 1 sec.",
+      "referencedTerms": [
+        "Soulslam"
+      ],
+      "prerequisites": [
+        "Ethereal Guard",
+        "Harnessed Life"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Soulslam by 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 34516,
+      "name": "Spirit Realm",
+      "tree": "Domination",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_ShadowEmbrace",
+      "spellId": 705404,
+      "description": "Your Deathwind now also increases your healing taken by 10% while you stand within its radius.",
+      "referencedTerms": [
+        "Deathwind"
+      ],
+      "prerequisites": [
+        "Ethereal Guard",
+        "Fatesealer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Deathwind now also increases your healing taken by 10% while you stand within its radius."
+        }
+      ]
+    },
+    {
+      "id": 30550,
+      "name": "Spectral Warden",
+      "tree": "Domination",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_SpiritualArmor_Border",
+      "spellId": 805716,
+      "description": "Summon a spectral guardian to fight along side you for 20 seconds and apply an absorption shield to up to 8 allies within 20 yds, absorbing 199 + 150% Stamina damage.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Jailer's Will",
+        "Fatesealer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Summon a spectral guardian to fight along side you for 20 seconds and apply an absorption shield to up to 8 allies within 20 yds, absorbing 199 + 150% Stamina damage."
+        }
+      ]
+    },
+    {
+      "id": 9272,
+      "name": "Dark Soul",
+      "tree": "Domination",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_physical_ability_(26)_Border",
+      "spellId": 706784,
+      "description": "Level 40 Passive\nIncreases your Stamina equal to your Armor penetration rating.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Soul Slip"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nIncreases your Stamina equal to your Armor penetration rating."
+        }
+      ]
+    },
+    {
+      "id": 6779,
+      "name": "Hard Bargain",
+      "tree": "Domination",
+      "x": 0,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_trinket_mawraid_04_blue",
+      "spellId": 300569,
+      "description": "While Tormented Souls is active on you, your melee attack speed is increased by 30% and your Dreadwake costs -5 less Runic Power.",
+      "referencedTerms": [
+        "Dreadwake",
+        "Tormented Souls"
+      ],
+      "prerequisites": [
+        "Harnessed Life"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Tormented Souls is active on you, your melee attack speed is increased by 30% and your Dreadwake costs -5 less Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 6839,
+      "name": "Final Requiem",
+      "tree": "Domination",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_argus_soulbombdebuffsmall",
+      "spellId": 560486,
+      "description": "Increases your critical strike chance with abilities that deal Shadow damage by 15% against enemies below 20% health.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "To The Shadowlands"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical strike chance with abilities that deal Shadow damage by 15% against enemies below 20% health."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your critical strike chance with abilities that deal Shadow damage by 30% against enemies below 20% health."
+        }
+      ]
+    },
+    {
+      "id": 30116,
+      "name": "Soulstorm",
+      "tree": "Domination",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_shadow_soulleech_2",
+      "spellId": 705403,
+      "description": "Requiem and Soulrend now have a 40% chance to refund a Reaped Soul.",
+      "referencedTerms": [
+        "Reaped Soul",
+        "Requiem",
+        "Soulrend"
+      ],
+      "prerequisites": [
+        "To The Shadowlands",
+        "Spectral Warden",
+        "Spirit Realm"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Requiem and Soulrend now have a 40% chance to refund a Reaped Soul."
+        }
+      ]
+    },
+    {
+      "id": 13784,
+      "name": "Spirit Army",
+      "tree": "Domination",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\epic_rpg_icon_pack_death_icon_0000s_0000_spirits_Border",
+      "spellId": 707634,
+      "description": "Your Spectral Warden now causes you to summon 2 additional Spectral Wardens, but their duration is reduced by -8 sec.\n\nIn addition, increases the amount absorbed by the shield granted by Spectral Warden by 100%.",
+      "referencedTerms": [
+        "Spectral Warden",
+        "Spectral Wardens"
+      ],
+      "prerequisites": [
+        "Spectral Warden"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Spectral Warden now causes you to summon 2 additional Spectral Wardens, but their duration is reduced by -8 sec.\n\nIn addition, increases the amount absorbed by the shield granted by Spectral Warden by 100%."
+        }
+      ]
+    },
+    {
+      "id": 7784,
+      "name": "Life Tap",
+      "tree": "Domination",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_physical_ability_(41)_Border",
+      "spellId": 706788,
+      "description": "Reduces the cooldown of Spectral Warden by -60 sec and it now heals you equal to 200% of the damage it deals.",
+      "referencedTerms": [
+        "Spectral Warden"
+      ],
+      "prerequisites": [
+        "Spectral Warden"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Spectral Warden by -60 sec and it now heals you equal to 200% of the damage it deals."
+        }
+      ]
+    },
+    {
+      "id": 30119,
+      "name": "Soul Splinters",
+      "tree": "Domination",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\oshugun_crystalfragments",
+      "spellId": 805719,
+      "description": "Erupt with ghastly force whenever you harvest a Reaped Soul, dealing 47 + 10.5% Stamina + 15% AP Spellshadow Damage to nearby enemies over 6 seconds.",
+      "referencedTerms": [
+        "Reaped Soul"
+      ],
+      "prerequisites": [
+        "Jailer's Will"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Erupt with ghastly force whenever you harvest a Reaped Soul, dealing 47 + 10.5% Stamina + 15% AP Spellshadow Damage to nearby enemies over 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29379,
+      "name": "Soul Knight",
+      "tree": "Domination",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_sword_2h_artifactashbringerlightning_d_03",
+      "spellId": 560487,
+      "description": "Your successful parries and dodges increase all healing you receive by 2% and reduce all Magic damage taken by -2% for 10 seconds, stacking 5 times.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Hard Bargain",
+        "Final Requiem",
+        "Soulstorm"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your successful parries and dodges increase all healing you receive by 2% and reduce all Magic damage taken by -2% for 10 seconds, stacking 5 times."
+        }
+      ]
+    },
+    {
+      "id": 4223,
+      "name": "Warden of the Lost",
+      "tree": "Domination",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_spiritualskull_Border",
+      "spellId": 707116,
+      "description": "Damage dealt by Spectral Scythes and Spectral Wardens now reduces the cooldown of Spectral Warden by -0.5 sec.",
+      "referencedTerms": [
+        "Spectral Scythes",
+        "Spectral Warden",
+        "Spectral Wardens"
+      ],
+      "prerequisites": [
+        "Soulstorm"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Spectral Scythes and Spectral Wardens now reduces the cooldown of Spectral Warden by -0.5 sec."
+        }
+      ]
+    },
+    {
+      "id": 6777,
+      "name": "Siphon Anima",
+      "tree": "Domination",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_animabastion_debuff",
+      "spellId": 504309,
+      "description": "When you summon a Spectral Scythe, you now heal for 5% of your damage dealt for 10 seconds.",
+      "referencedTerms": [
+        "Spectral Scythe"
+      ],
+      "prerequisites": [
+        "Life Tap",
+        "Spirit Army",
+        "Soulstorm",
+        "Soul Splinters"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "When you summon a Spectral Scythe, you now heal for 5% of your damage dealt for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 9672,
+      "name": "Decimation",
+      "tree": "Domination",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_plate_raiddeathknight_o_01buckle",
+      "spellId": 704193,
+      "description": "$c1",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Dark Soul"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$c2"
+        }
+      ]
+    },
+    {
+      "id": 29693,
+      "name": "Painmail",
+      "tree": "Domination",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_shoulder_armor_maw_c_14",
+      "spellId": 801325,
+      "description": "Dealing damage with Reap, Dreadwake and Soul Strike now grants a stack of Painmail for 15 seconds, stacking up to 8 times. Additional applications do not refresh the effect.\n\nWhen Painmail stacks expire naturally, you are healed for 2% of your maximum health and reduce the cooldown of Bolstered Form by -0.5 sec for each stack.",
+      "referencedTerms": [
+        "Bolstered Form",
+        "Dreadwake",
+        "Painmail",
+        "Reap",
+        "Soul Strike"
+      ],
+      "prerequisites": [
+        "Soul Knight"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dealing damage with Reap, Dreadwake and Soul Strike now grants a stack of Painmail for 15 seconds, stacking up to 8 times. Additional applications do not refresh the effect.\n\nWhen Painmail stacks expire naturally, you are healed for 2% of your maximum health and reduce the cooldown of Bolstered Form by -0.5 sec for each stack."
+        }
+      ]
+    },
+    {
+      "id": 31262,
+      "name": "Spirit Culling",
+      "tree": "Domination",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_Haunting",
+      "spellId": 301986,
+      "description": "For the duration of Spectral Scythe, the damage of Soul Strike is increased by 20%.\n\nIn addition, generating a Reaped Soul now has a 10% chance to summon a Spectral Scythe to fight alongside you for 10 sec.",
+      "referencedTerms": [
+        "Reaped Soul",
+        "Soul Strike",
+        "Spectral Scythe"
+      ],
+      "prerequisites": [
+        "Warden of the Lost",
+        "Siphon Anima",
+        "Soul Knight"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "For the duration of Spectral Scythe, the damage of Soul Strike is increased by 20%.\n\nIn addition, generating a Reaped Soul now has a 10% chance to summon a Spectral Scythe to fight alongside you for 10 sec."
+        }
+      ]
+    },
+    {
+      "id": 30533,
+      "name": "Eater of Souls",
+      "tree": "Domination",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_DevouringPlague.",
+      "spellId": 805181,
+      "description": "Reaching 3 Reaped Souls now reduces your Physical damage taken by -10% and you regain 1% of your maximum health every 2 sec for 10 seconds. This will not trigger while already active.\n\nIn addition, the healing done by Deathwind is increased by 10%.",
+      "referencedTerms": [
+        "Deathwind",
+        "Reaped Souls"
+      ],
+      "prerequisites": [
+        "Siphon Anima"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reaching 3 Reaped Souls now reduces your Physical damage taken by -10% and you regain 1% of your maximum health every 2 sec for 10 seconds. This will not trigger while already active.\n\nIn addition, the healing done by Deathwind is increased by 10%."
+        }
+      ]
+    },
+    {
+      "id": 29378,
+      "name": "Doomrend",
+      "tree": "Harvest",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_knife_1h_revendrethquest_b_03",
+      "spellId": 800172,
+      "description": "Rend an enemy dealing 140% Weapon Damage plus 17 + 35% AP, causing you to apply a dark shield to them that absorbs the next 75 + 100% Strength healing done to them for 5 seconds, and generates Runic Power.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Rend an enemy dealing 140% Weapon Damage plus 17 + 35% AP, causing you to apply a dark shield to them that absorbs the next 75 + 100% Strength healing done to them for 5 seconds, and generates Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 4055,
+      "name": "Harvester",
+      "tree": "Harvest",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_revendreth_deathknight",
+      "spellId": 92145,
+      "description": "Level 10 Passive\nYou now heal yourself equal to 15% of all damage dealt.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Scythe Rush"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nYou now heal yourself equal to 15% of all damage dealt."
+        }
+      ]
+    },
+    {
+      "id": 29246,
+      "name": "Maw Knight",
+      "tree": "Harvest",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helmet_plate_deathknight_m_01",
+      "spellId": 805204,
+      "description": "Increases the critical strike chance of Doomrend by 5%.",
+      "referencedTerms": [
+        "Doomrend"
+      ],
+      "prerequisites": [
+        "Doomrend"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Doomrend by 5%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the critical strike chance of Doomrend by 10%."
+        }
+      ]
+    },
+    {
+      "id": 9270,
+      "name": "Bountiful Harvest",
+      "tree": "Harvest",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_harvestgolempet",
+      "spellId": 706576,
+      "description": "Increases the damage of Reap and Murder by 25%.",
+      "referencedTerms": [
+        "Murder",
+        "Reap"
+      ],
+      "prerequisites": [
+        "Doomrend"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Reap and Murder by 25%."
+        }
+      ]
+    },
+    {
+      "id": 34480,
+      "name": "Crow's Harvest",
+      "tree": "Harvest",
+      "x": 1,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_polearm_2h_warfrontshorde_c_01red",
+      "spellId": 504011,
+      "description": "Strike all nearby enemies for 55% Weapon Damage plus 6.\n\nDamage dealt harvests a Soul Fragment, up to a maximum of 3.",
+      "referencedTerms": [
+        "Soul Fragment"
+      ],
+      "prerequisites": [
+        "Maw Knight"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Strike all nearby enemies for 55% Weapon Damage plus 6.\n\nDamage dealt harvests a Soul Fragment, up to a maximum of 3."
+        }
+      ]
+    },
+    {
+      "id": 31371,
+      "name": "Slaughter",
+      "tree": "Harvest",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_revendreth_warrior",
+      "spellId": 500373,
+      "description": "Generates 1 Reaped Soul\nEradicate an enemy with your scythe, dealing 130% Weapon Damage plus 14.\n\nOnly usable on enemies below 35% health.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Bountiful Harvest",
+        "Maw Knight"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 1 Reaped Soul\nEradicate an enemy with your scythe, dealing 130% Weapon Damage plus 14.\n\nOnly usable on enemies below 35% health."
+        }
+      ]
+    },
+    {
+      "id": 5767,
+      "name": "Haunter",
+      "tree": "Harvest",
+      "x": 7,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_vengefulretreat",
+      "spellId": 705410,
+      "description": "Increases the duration of Soulrend by 10 sec.",
+      "referencedTerms": [
+        "Soulrend"
+      ],
+      "prerequisites": [
+        "Bountiful Harvest"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Soulrend by 10 sec."
+        }
+      ]
+    },
+    {
+      "id": 9269,
+      "name": "Extinction",
+      "tree": "Harvest",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_sword_2h_revendreth_d_01",
+      "spellId": 573039,
+      "description": "Level 20 Passive\nDirect Physical damage dealt now has a 5% chance to grant you Extinction for 10 seconds.\n\nChance to trigger this effect is increased by 10% for each Reaped Soul active.ExtinctionYour next Slaughter is usable regardless of the target's health and costs -10 less Runic Power.",
+      "referencedTerms": [
+        "Extinction",
+        "Reaped Soul",
+        "Slaughter"
+      ],
+      "prerequisites": [
+        "Harvester"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nDirect Physical damage dealt now has a 5% chance to grant you Extinction for 10 seconds.\n\nChance to trigger this effect is increased by 10% for each Reaped Soul active.ExtinctionYour next Slaughter is usable regardless of the target's health and costs -10 less Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 34481,
+      "name": "Dark Fate",
+      "tree": "Harvest",
+      "x": 0,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\uico_blood_spell_10_Border",
+      "spellId": 504037,
+      "description": "Reduces the cost of Crow's Harvest by -10 Runic Power.",
+      "referencedTerms": [
+        "Crow's Harvest"
+      ],
+      "prerequisites": [
+        "Crow's Harvest"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cost of Crow's Harvest by -10 Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 5762,
+      "name": "Red Wake",
+      "tree": "Harvest",
+      "x": 2,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_revendreth_shaman",
+      "spellId": 707707,
+      "description": "Direct damage critical strikes now generate an additional Soul Fragment.",
+      "referencedTerms": [
+        "Soul Fragment"
+      ],
+      "prerequisites": [
+        "Slaughter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Direct damage critical strikes now generate an additional Soul Fragment."
+        }
+      ]
+    },
+    {
+      "id": 30551,
+      "name": "Crimson Death",
+      "tree": "Harvest",
+      "x": 6,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_revendreth_rogue",
+      "spellId": 705414,
+      "description": "Your Slaughter now has a 20% chance to cast an additional time free of cost.",
+      "referencedTerms": [
+        "Slaughter"
+      ],
+      "prerequisites": [
+        "Slaughter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Slaughter now has a 20% chance to cast an additional time free of cost."
+        }
+      ]
+    },
+    {
+      "id": 7259,
+      "name": "Callous Soul",
+      "tree": "Harvest",
+      "x": 8,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_animarevendreth_orb",
+      "spellId": 705418,
+      "description": "Increases the amount of armor Soulrend causes you to ignore by 10%.",
+      "referencedTerms": [
+        "Soulrend"
+      ],
+      "prerequisites": [
+        "Haunter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the amount of armor Soulrend causes you to ignore by 10%."
+        }
+      ]
+    },
+    {
+      "id": 6766,
+      "name": "Hungering Scythe",
+      "tree": "Harvest",
+      "x": 1,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_artifact_thalkielsdiscord",
+      "spellId": 801335,
+      "description": "Increases the duration of Deathwind by 4 sec and Crow's Harvest now deals 15% additional damage to enemies inside.",
+      "referencedTerms": [
+        "Crow's Harvest",
+        "Deathwind"
+      ],
+      "prerequisites": [
+        "Red Wake",
+        "Dark Fate"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Deathwind by 4 sec and Crow's Harvest now deals 15% additional damage to enemies inside."
+        }
+      ]
+    },
+    {
+      "id": 34476,
+      "name": "Blood Fueled",
+      "tree": "Harvest",
+      "x": 3,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_BloodTap",
+      "spellId": 705416,
+      "description": "Increases the healing absorbed by Doomrend by 30%.",
+      "referencedTerms": [
+        "Doomrend"
+      ],
+      "prerequisites": [
+        "Red Wake"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the healing absorbed by Doomrend by 30%."
+        }
+      ]
+    },
+    {
+      "id": 30715,
+      "name": "Genocide",
+      "tree": "Harvest",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_physical_ability_(2)_Border",
+      "spellId": 560924,
+      "description": "Increases the critical damage and critical strike chance of Slaughter by 10%.",
+      "referencedTerms": [
+        "Slaughter"
+      ],
+      "prerequisites": [
+        "Slaughter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical damage and critical strike chance of Slaughter by 10%."
+        }
+      ]
+    },
+    {
+      "id": 6838,
+      "name": "Hemorrhage",
+      "tree": "Harvest",
+      "x": 5,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_bloodsplatter",
+      "spellId": 705432,
+      "description": "Increases the damage and critical strike chance of your abilities by 10% against enemies below 35% health.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Crimson Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage and critical strike chance of your abilities by 10% against enemies below 35% health."
+        }
+      ]
+    },
+    {
+      "id": 30517,
+      "name": "Sanguine Harvester",
+      "tree": "Harvest",
+      "x": 7,
+      "y": 4,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_bloodhand_Border",
+      "spellId": 560892,
+      "description": "Increases your melee haste by 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Callous Soul",
+        "Crimson Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your melee haste by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your melee haste by 20%."
+        }
+      ]
+    },
+    {
+      "id": 12269,
+      "name": "Mortal's End",
+      "tree": "Harvest",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_hunter_murderofcrows",
+      "spellId": 705437,
+      "description": "Level 30 Passive\nAllows Extinction to stack an additional time and allows Wraithblade to grant you Extinction.ExtinctionYour next Slaughter is usable regardless of the target's health and costs -10 less Runic Power.",
+      "referencedTerms": [
+        "Extinction",
+        "Slaughter",
+        "Wraithblade"
+      ],
+      "prerequisites": [
+        "Extinction"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nAllows Extinction to stack an additional time and allows Wraithblade to grant you Extinction.ExtinctionYour next Slaughter is usable regardless of the target's health and costs -10 less Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 31370,
+      "name": "Crimson Wraith",
+      "tree": "Harvest",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_arcanewraith_Border",
+      "spellId": 504560,
+      "description": "Increases your critical stike damage by 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Hungering Scythe",
+        "Blood Fueled"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical stike damage by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your critical stike damage by 20%."
+        }
+      ]
+    },
+    {
+      "id": 31373,
+      "name": "Harvest Time",
+      "tree": "Harvest",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_mace_1h_revendreth_d_01",
+      "spellId": 803995,
+      "description": "Increases your damage and critical strike chance by 15% and gives your spells that require Soul Infusion a -50% to not consume the effect for 15 seconds.",
+      "referencedTerms": [
+        "Soul Infusion"
+      ],
+      "prerequisites": [
+        "Hemorrhage",
+        "Genocide",
+        "Blood Fueled"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your damage and critical strike chance by 15% and gives your spells that require Soul Infusion a -50% to not consume the effect for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29250,
+      "name": "Souls for the Slaughter",
+      "tree": "Harvest",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_helmet_(7)_Border",
+      "spellId": 705428,
+      "description": "Critical strikes with Slaughter now cause your auto attacks to deal an additional 85% Shadow damage for 5 seconds.",
+      "referencedTerms": [
+        "Slaughter"
+      ],
+      "prerequisites": [
+        "Hemorrhage",
+        "Sanguine Harvester"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Slaughter now cause your auto attacks to deal an additional 85% Shadow damage for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 31369,
+      "name": "Harvesting Grounds",
+      "tree": "Harvest",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_shoulder_plate_raiddeathknightmythic_s_01",
+      "spellId": 705413,
+      "description": "Create a harvesting ground at the target location for 10 seconds, enemies inside have their melee and ranged haste and movement speed reduced by -20%\n\nFor the duration, enemies that try to exit the harvesting ground will be pulled back to its center.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Crimson Wraith",
+        "Harvest Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Create a harvesting ground at the target location for 10 seconds, enemies inside have their melee and ranged haste and movement speed reduced by -20%\n\nFor the duration, enemies that try to exit the harvesting ground will be pulled back to its center."
+        }
+      ]
+    },
+    {
+      "id": 29617,
+      "name": "Blood Harvester",
+      "tree": "Harvest",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_ironmaidens_whirlofblood",
+      "spellId": 300889,
+      "description": "Increases critical strike chance of all party and raid members by 3%.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Harvest Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases critical strike chance of all party and raid members by 3%.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 34477,
+      "name": "The Time Has Come",
+      "tree": "Harvest",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_Subversion",
+      "spellId": 572879,
+      "description": "Your abilities now deal 10% more damage against slowed targets.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Harvest Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your abilities now deal 10% more damage against slowed targets."
+        }
+      ]
+    },
+    {
+      "id": 6684,
+      "name": "Sever",
+      "tree": "Harvest",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Virus_Red",
+      "spellId": 806125,
+      "description": "Attempt to drain an enemies vitals, leeching 22 + 31.03% AP health, interrupting casting and preventing any spell from that school from being cast for 3 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Souls for the Slaughter",
+        "Harvest Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Attempt to drain an enemies vitals, leeching 22 + 31.03% AP health, interrupting casting and preventing any spell from that school from being cast for 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 9268,
+      "name": "Executioner",
+      "tree": "Harvest",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Sword_2H_Blood_C_01",
+      "spellId": 500542,
+      "description": "Level 40 Passive\nIncreases your critical strike rating by 20% of your Strength.\n\nIn addition, increases your Armor penetration by 30% against enemies below 35% health.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Mortal's End"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nIncreases your critical strike rating by 20% of your Strength.\n\nIn addition, increases your Armor penetration by 30% against enemies below 35% health."
+        }
+      ]
+    },
+    {
+      "id": 6762,
+      "name": "Blood Knight",
+      "tree": "Harvest",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_bloodstrike_Border",
+      "spellId": 704552,
+      "description": "Critical strikes with Doomrend now refund a Reaped Soul.",
+      "referencedTerms": [
+        "Doomrend",
+        "Reaped Soul"
+      ],
+      "prerequisites": [
+        "Harvesting Grounds",
+        "Crimson Wraith"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Doomrend now refund a Reaped Soul."
+        }
+      ]
+    },
+    {
+      "id": 29247,
+      "name": "Blood Wraith",
+      "tree": "Harvest",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_deathwing_bloodcorruption_death",
+      "spellId": 707305,
+      "description": "Wraithblade now deals an additional 100% Weapon Damage and its Runic Power cost is reduced by -20.",
+      "referencedTerms": [
+        "Wraithblade"
+      ],
+      "prerequisites": [
+        "Harvesting Grounds",
+        "Crimson Wraith"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Wraithblade now deals an additional 100% Weapon Damage and its Runic Power cost is reduced by -20."
+        }
+      ]
+    },
+    {
+      "id": 30545,
+      "name": "Doomer",
+      "tree": "Harvest",
+      "x": 3,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_sword_1h_warfrontshorde_c_01",
+      "spellId": 704556,
+      "description": "Increases the damage of Doomrend and Slaughter by 30%.",
+      "referencedTerms": [
+        "Doomrend",
+        "Slaughter"
+      ],
+      "prerequisites": [
+        "Blood Harvester",
+        "Harvesting Grounds",
+        "The Time Has Come"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Doomrend and Slaughter by 30%."
+        }
+      ]
+    },
+    {
+      "id": 7266,
+      "name": "Unbound",
+      "tree": "Harvest",
+      "x": 5,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_magicspell_(2)_Border",
+      "spellId": 706785,
+      "description": "Your Reliquary of the Lost is now guaranteed to critically strike for 25% increased damage on enemies below 20% health.",
+      "referencedTerms": [
+        "Reliquary of the Lost"
+      ],
+      "prerequisites": [
+        "Sever",
+        "Blood Harvester",
+        "The Time Has Come"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Reliquary of the Lost is now guaranteed to critically strike for 25% increased damage on enemies below 20% health."
+        }
+      ]
+    },
+    {
+      "id": 29604,
+      "name": "Ravenous Thirst",
+      "tree": "Harvest",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_SoulHarvest2__Red",
+      "spellId": 705409,
+      "description": "Reduces the Runic Power cost of Ghastly Screech and Soul Strike by -10.",
+      "referencedTerms": [
+        "Ghastly Screech",
+        "Soul Strike"
+      ],
+      "prerequisites": [
+        "Sever",
+        "Souls for the Slaughter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Runic Power cost of Ghastly Screech and Soul Strike by -10."
+        }
+      ]
+    },
+    {
+      "id": 7267,
+      "name": "The Grim Reaper",
+      "tree": "Harvest",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_bloodrage_Border",
+      "spellId": 504269,
+      "description": "Your Ghost Claw transforms into Wraith Claw and now has 2 charges.Wraith Claw2 Charges,15 sec recharge\nChill an enemy with a ghostly claw, slowing and stealing -50% of their movement speed for 8 seconds.\n\nWhenever you kill an enemy, refund a charge of this ability. Scales with modifiers to Ghost Claw.",
+      "referencedTerms": [
+        "Ghost Claw",
+        "Wraith Claw"
+      ],
+      "prerequisites": [
+        "Sever",
+        "Souls for the Slaughter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Ghost Claw transforms into Wraith Claw and now has 2 charges.Wraith Claw2 Charges,15 sec recharge\nChill an enemy with a ghostly claw, slowing and stealing -50% of their movement speed for 8 seconds.\n\nWhenever you kill an enemy, refund a charge of this ability. Scales with modifiers to Ghost Claw."
+        }
+      ]
+    },
+    {
+      "id": 30038,
+      "name": "Darkrend Scythe",
+      "tree": "Harvest",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_staff_114",
+      "spellId": 805205,
+      "description": "Damage dealt by Doomrend and Crow's Harvest now applies a bleed, dealing 56 + 8.5% AP Physical damage every 2 sec for 10 seconds, stacking 5 times.\n\nAdditional applications do not refresh the duration.",
+      "referencedTerms": [
+        "Crow's Harvest",
+        "Doomrend"
+      ],
+      "prerequisites": [
+        "Blood Knight",
+        "Blood Wraith",
+        "Doomer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Doomrend and Crow's Harvest now applies a bleed, dealing 56 + 8.5% AP Physical damage every 2 sec for 10 seconds, stacking 5 times.\n\nAdditional applications do not refresh the duration."
+        }
+      ]
+    },
+    {
+      "id": 29688,
+      "name": "Blood Frenzy",
+      "tree": "Harvest",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3mantraofretribution",
+      "spellId": 707899,
+      "description": "Casting Harvest Time with an enemy targeted within 20 yds of you now unleashes a Blood Frenzy.Blood FrenzyDeals 1 + 36% AP Shadow Damage to your target every 0.75 sec for 7.5 seconds. At the end of the duration, the target takes an additional 457 + 45% AP Shadow Damage.",
+      "referencedTerms": [
+        "Blood Frenzy",
+        "Harvest Time"
+      ],
+      "prerequisites": [
+        "Unbound",
+        "Doomer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Harvest Time with an enemy targeted within 20 yds of you now unleashes a Blood Frenzy.Blood FrenzyDeals 1 + 36% AP Shadow Damage to your target every 0.75 sec for 7.5 seconds. At the end of the duration, the target takes an additional 457 + 45% AP Shadow Damage."
+        }
+      ]
+    },
+    {
+      "id": 31368,
+      "name": "Ruin",
+      "tree": "Harvest",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Rogue_Rupture",
+      "spellId": 805198,
+      "description": "$bd",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Unbound",
+        "The Grim Reaper",
+        "Ravenous Thirst"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$be"
+        }
+      ]
+    },
+    {
+      "id": 11268,
+      "name": "This Is My Domain",
+      "tree": "Harvest",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_bloodsplatter",
+      "spellId": 500584,
+      "description": "Level 50 Passive\nIncreases the amount healed through the Harvest - Level 10 Passive by 10% and causes being in your Harvesting Grounds to increase this effect by an additional 25%.",
+      "referencedTerms": [
+        "Harvesting Grounds"
+      ],
+      "prerequisites": [
+        "Executioner"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nIncreases the amount healed through the Harvest - Level 10 Passive by 10% and causes being in your Harvesting Grounds to increase this effect by an additional 25%."
+        }
+      ]
+    },
+    {
+      "id": 30546,
+      "name": "Redshade",
+      "tree": "Harvest",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_sword_2h_blood_c_02",
+      "spellId": 524735,
+      "description": "$bf",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Blood Frenzy",
+        "Darkrend Scythe"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$c0"
+        }
+      ]
+    },
+    {
+      "id": 6765,
+      "name": "Deathbringer",
+      "tree": "Harvest",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_bloodsword_Border",
+      "spellId": 573040,
+      "description": "Increases the duration of Blood Frenzy and Harvest Time by 100%.",
+      "referencedTerms": [
+        "Blood Frenzy",
+        "Harvest Time"
+      ],
+      "prerequisites": [
+        "Blood Frenzy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Blood Frenzy and Harvest Time by 100%."
+        }
+      ]
+    },
+    {
+      "id": 5562,
+      "name": "Shudder Scythe",
+      "tree": "Harvest",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_xavius_crushingshadows",
+      "spellId": 805708,
+      "description": "Your Murder is transformed into Shudder Scythe, which costs additional Runic Power but deals increased damage and generates Soul Fragments.Shudder Scythe (Transform)Strike an enemy 5 times, each dealing 30% Weapon Damage, scaling with level, and granting you a Soul Fragment with each strike.",
+      "referencedTerms": [
+        "Murder",
+        "Shudder Scythe",
+        "Soul Fragment",
+        "Soul Fragments"
+      ],
+      "prerequisites": [
+        "Blood Frenzy",
+        "Ruin"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Murder is transformed into Shudder Scythe, which costs additional Runic Power but deals increased damage and generates Soul Fragments.Shudder Scythe (Transform)Strike an enemy 5 times, each dealing 30% Weapon Damage, scaling with level, and granting you a Soul Fragment with each strike."
+        }
+      ]
+    },
+    {
+      "id": 11262,
+      "name": "Crimson Thirst",
+      "tree": "Harvest",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_engineerskill03_Border",
+      "spellId": 807415,
+      "description": "Your Physical damage dealt to enemies now grants Crimson Thirst for 20 seconds, stacking 5 times.Crimson Thirst (Stacks)Your next Murder within 15 seconds deals 10% increased damage and costs -10% less Runic Power per stack. At 5 stacks, it also heals you equal to 50% of the damage dealt.",
+      "referencedTerms": [
+        "Crimson Thirst",
+        "Murder"
+      ],
+      "prerequisites": [
+        "Blood Frenzy",
+        "Ruin"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Physical damage dealt to enemies now grants Crimson Thirst for 20 seconds, stacking 5 times.Crimson Thirst (Stacks)Your next Murder within 15 seconds deals 10% increased damage and costs -10% less Runic Power per stack. At 5 stacks, it also heals you equal to 50% of the damage dealt."
+        }
+      ]
+    },
+    {
+      "id": 29689,
+      "name": "Deathchaser",
+      "tree": "Soul",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_spiritstab_Border",
+      "spellId": 805190,
+      "description": "Force death upon an enemy, dealing 13 + 8% AP Shadowfrost Damage, repeating every 0 sec for 1 seconds, and generates Runic Power.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Force death upon an enemy, dealing 13 + 8% AP Shadowfrost Damage, repeating every 0 sec for 1 seconds, and generates Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 4056,
+      "name": "Weakened Souls",
+      "tree": "Soul",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_souldarkening_Border",
+      "spellId": 92146,
+      "description": "Level 10 Passive\nYour Soulrend now also applies Weakened Soul, increasing the target's Shadow and Frost damage taken from you by 10%.",
+      "referencedTerms": [
+        "Soulrend",
+        "Weakened Soul"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Wraithblade"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nYour Soulrend now also applies Weakened Soul, increasing the target's Shadow and Frost damage taken from you by 10%."
+        }
+      ]
+    },
+    {
+      "id": 6716,
+      "name": "Soulforged Weaponry",
+      "tree": "Soul",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_weapon_shortblade_105",
+      "spellId": 561127,
+      "description": "Increases your off-hand weapon damage by 25%.\n\nWhile dual-wielding, your auto attacks now have a 8% chance to make your next Murder free of cost.",
+      "referencedTerms": [
+        "Murder"
+      ],
+      "prerequisites": [
+        "Deathchaser"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your off-hand weapon damage by 25%.\n\nWhile dual-wielding, your auto attacks now have a 8% chance to make your next Murder free of cost."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your off-hand weapon damage by 50%.\n\nWhile dual-wielding, your auto attacks now have a 15% chance to make your next Murder free of cost."
+        }
+      ]
+    },
+    {
+      "id": 34466,
+      "name": "Mark of Death",
+      "tree": "Soul",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_ghoststone_Border",
+      "spellId": 560917,
+      "description": "Increases the damage dealt by Deathchaser by 15% and your hit chance by 3%.",
+      "referencedTerms": [
+        "Deathchaser"
+      ],
+      "prerequisites": [
+        "Deathchaser"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage dealt by Deathchaser by 15% and your hit chance by 3%."
+        }
+      ]
+    },
+    {
+      "id": 9831,
+      "name": "Dirge",
+      "tree": "Soul",
+      "x": 1,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_soulcleave4",
+      "spellId": 801328,
+      "description": "Generates 2 Soul Fragments\nStrike the enemy with both weapons, dealing 70% (130% if a dagger is equipped) Weapon Damage as Shadowfrost Damage with each, and generates Runic Power.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Soulforged Weaponry"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 2 Soul Fragments\nStrike the enemy with both weapons, dealing 70% (130% if a dagger is equipped) Weapon Damage as Shadowfrost Damage with each, and generates Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 6643,
+      "name": "Ghostly Weapon",
+      "tree": "Soul",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_66_spirit_sword_Border",
+      "spellId": 803997,
+      "description": "2 Charges, 40 sec recharge\nImbue your weapon with ghostly power for 15 seconds, causing melee attacks to deal 25% additional damage as Frost damage.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Soulforged Weaponry",
+        "Mark of Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "2 Charges, 40 sec recharge\nImbue your weapon with ghostly power for 15 seconds, causing melee attacks to deal 25% additional damage as Frost damage."
+        }
+      ]
+    },
+    {
+      "id": 6723,
+      "name": "Shattered Souls",
+      "tree": "Soul",
+      "x": 7,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_RagedSpirit_Border",
+      "spellId": 705441,
+      "description": "Your Wraithblade now deals double damage to enemies affected by Soulrend.",
+      "referencedTerms": [
+        "Soulrend",
+        "Wraithblade"
+      ],
+      "prerequisites": [
+        "Mark of Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Wraithblade now deals double damage to enemies affected by Soulrend."
+        }
+      ]
+    },
+    {
+      "id": 9430,
+      "name": "Spirit Render",
+      "tree": "Soul",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_trinket_mawraid_01_blue",
+      "spellId": 570338,
+      "description": "Level 20 Passive\nIncreases your spell penetration by 20, scaling with your level.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Weakened Souls"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nIncreases your spell penetration by 20, scaling with your level."
+        }
+      ]
+    },
+    {
+      "id": 30315,
+      "name": "Soul Generator",
+      "tree": "Soul",
+      "x": 2,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\item_icecrownringd",
+      "spellId": 520056,
+      "description": "Critical strikes with Dirge now generate 10 Runic Power.\n\nCritical strikes with Murder now generate 1 additional Reaped Soul.",
+      "referencedTerms": [
+        "Dirge",
+        "Murder",
+        "Reaped Soul"
+      ],
+      "prerequisites": [
+        "Ghostly Weapon",
+        "Dirge"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Dirge now generate 10 Runic Power.\n\nCritical strikes with Murder now generate 1 additional Reaped Soul."
+        }
+      ]
+    },
+    {
+      "id": 34464,
+      "name": "Lamenting",
+      "tree": "Soul",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_PsychicScream",
+      "spellId": 705397,
+      "description": "Damage dealt by Ghostly Weapon now heals for 50% of the damage dealt.",
+      "referencedTerms": [
+        "Ghostly Weapon"
+      ],
+      "prerequisites": [
+        "Ghostly Weapon"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Ghostly Weapon now heals for 50% of the damage dealt."
+        }
+      ]
+    },
+    {
+      "id": 34465,
+      "name": "Death Dealer",
+      "tree": "Soul",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_TwistedFaith",
+      "spellId": 705401,
+      "description": "Increases the duration of Ghostly Weapon and Soulrend by 5 sec.",
+      "referencedTerms": [
+        "Ghostly Weapon",
+        "Soulrend"
+      ],
+      "prerequisites": [
+        "Ghostly Weapon"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Ghostly Weapon and Soulrend by 5 sec."
+        }
+      ]
+    },
+    {
+      "id": 30111,
+      "name": "Deathwail",
+      "tree": "Soul",
+      "x": 6,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_spirit_Border",
+      "spellId": 300791,
+      "description": "Reduces the Runic Power cost of Wraithblade by -50%.",
+      "referencedTerms": [
+        "Wraithblade"
+      ],
+      "prerequisites": [
+        "Shattered Souls",
+        "Ghostly Weapon"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Runic Power cost of Wraithblade by -50%."
+        }
+      ]
+    },
+    {
+      "id": 30118,
+      "name": "Ghostly Magic",
+      "tree": "Soul",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warlock_shadowfurytga",
+      "spellId": 803998,
+      "description": "Increases the damage of Reap, Dirge, and Reliquary of the Lost by 10%.",
+      "referencedTerms": [
+        "Dirge",
+        "Reap",
+        "Reliquary of the Lost"
+      ],
+      "prerequisites": [
+        "Soul Generator",
+        "Lamenting",
+        "Death Dealer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Reap, Dirge, and Reliquary of the Lost by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the damage of Reap, Dirge, and Reliquary of the Lost by 20%."
+        }
+      ]
+    },
+    {
+      "id": 34507,
+      "name": "Ghastly Hilt",
+      "tree": "Soul",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_qiraj_hiltornate",
+      "spellId": 560927,
+      "description": "Ghostly Weapon now causes your melee abilities to strike up to 2 additional targets near the primary target.",
+      "referencedTerms": [
+        "Ghostly Weapon"
+      ],
+      "prerequisites": [
+        "Lamenting",
+        "Death Dealer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Ghostly Weapon now causes your melee abilities to strike up to 2 additional targets near the primary target."
+        }
+      ]
+    },
+    {
+      "id": 6755,
+      "name": "Soulbender",
+      "tree": "Soul",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_spirittranquility_Border",
+      "spellId": 804004,
+      "description": "Significantly increases the Runic Power generated by Deathchaser.",
+      "referencedTerms": [
+        "Deathchaser"
+      ],
+      "prerequisites": [
+        "Deathwail",
+        "Lamenting",
+        "Death Dealer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Significantly increases the Runic Power generated by Deathchaser."
+        }
+      ]
+    },
+    {
+      "id": 9267,
+      "name": "Spectre",
+      "tree": "Soul",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_WispSplode",
+      "spellId": 561170,
+      "description": "Level 30 Passive\nReduces the cooldown of Underwalk by -10 sec.\n\nIn addition, Withering Touch will now always apply Ghost Claw to the target.Ghost Claw (Speed)Chill an enemy with a ghostly claw, slowing and stealing -50% of their movement speed for 8 seconds.",
+      "referencedTerms": [
+        "Ghost Claw",
+        "Underwalk",
+        "Withering Touch"
+      ],
+      "prerequisites": [
+        "Spirit Render"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nReduces the cooldown of Underwalk by -10 sec.\n\nIn addition, Withering Touch will now always apply Ghost Claw to the target.Ghost Claw (Speed)Chill an enemy with a ghostly claw, slowing and stealing -50% of their movement speed for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30112,
+      "name": "Anima Ambusher",
+      "tree": "Soul",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warlock_darkarts",
+      "spellId": 705424,
+      "description": "Spectre Stride now deals an additional 125% of its damage dealt over 5 seconds.",
+      "referencedTerms": [
+        "Spectre Stride"
+      ],
+      "prerequisites": [
+        "Ghostly Magic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Spectre Stride now deals an additional 125% of its damage dealt over 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 10543,
+      "name": "Fleeting Soul",
+      "tree": "Soul",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Magic_LesserInvisibilty",
+      "spellId": 712683,
+      "description": "Reduces the cooldown of Soulslam by -15 sec.",
+      "referencedTerms": [
+        "Soulslam"
+      ],
+      "prerequisites": [
+        "Ghostly Magic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Soulslam by -15 sec."
+        }
+      ]
+    },
+    {
+      "id": 30543,
+      "name": "Soul Piercer",
+      "tree": "Soul",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_soulbats_Border",
+      "spellId": 712484,
+      "description": "Striking at least 1 enemy with Soulslam now refunds its Reaped Souls.",
+      "referencedTerms": [
+        "Reaped Souls",
+        "Soulslam"
+      ],
+      "prerequisites": [
+        "Ghostly Magic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Striking at least 1 enemy with Soulslam now refunds its Reaped Souls."
+        }
+      ]
+    },
+    {
+      "id": 34469,
+      "name": "Reaver",
+      "tree": "Soul",
+      "x": 3,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_spiritualsummoning_Border",
+      "spellId": 807419,
+      "description": "Reduces the cooldown of Deathstalker, Soul Shear, and Soulstone Lure by -50%.",
+      "referencedTerms": [
+        "Deathstalker",
+        "Soul Shear",
+        "Soulstone Lure"
+      ],
+      "prerequisites": [
+        "Ghastly Hilt"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Deathstalker, Soul Shear, and Soulstone Lure by -50%."
+        }
+      ]
+    },
+    {
+      "id": 6390,
+      "name": "Essence Harvest",
+      "tree": "Soul",
+      "x": 5,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_alchemist_81_spiritedalchemiststone",
+      "spellId": 707908,
+      "description": "Increases the additional Frost damage dealt by Ghostly Weapon by 10%.",
+      "referencedTerms": [
+        "Ghostly Weapon"
+      ],
+      "prerequisites": [
+        "Ghastly Hilt"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the additional Frost damage dealt by Ghostly Weapon by 10%."
+        }
+      ]
+    },
+    {
+      "id": 6709,
+      "name": "Chasing Death",
+      "tree": "Soul",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Ice_Lament",
+      "spellId": 707455,
+      "description": "Deathchaser used against a target below 20% health will now reapply itself at the end of its duration until they die or until 5 seconds passes.",
+      "referencedTerms": [
+        "Deathchaser"
+      ],
+      "prerequisites": [
+        "Soulbender"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Deathchaser used against a target below 20% health will now reapply itself at the end of its duration until they die or until 5 seconds passes."
+        }
+      ]
+    },
+    {
+      "id": 5470,
+      "name": "Spirit Chaser",
+      "tree": "Soul",
+      "x": 8,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_spiritwraith_Border",
+      "spellId": 560434,
+      "description": "Increases the critical strike chance and critical damage of Reap, Deathchaser, and Wraithblade by 10%.",
+      "referencedTerms": [
+        "Deathchaser",
+        "Reap",
+        "Wraithblade"
+      ],
+      "prerequisites": [
+        "Soulbender"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance and critical damage of Reap, Deathchaser, and Wraithblade by 10%."
+        }
+      ]
+    },
+    {
+      "id": 7315,
+      "name": "Apparition",
+      "tree": "Soul",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_NightOfTheDead",
+      "spellId": 705389,
+      "description": "Increases the damage of Spectre Stride by 30% and reduces the chance for enemies to see you while stealthed.",
+      "referencedTerms": [
+        "Spectre Stride"
+      ],
+      "prerequisites": [
+        "Fleeting Soul",
+        "Anima Ambusher",
+        "Soul Piercer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Spectre Stride by 30% and reduces the chance for enemies to see you while stealthed."
+        }
+      ]
+    },
+    {
+      "id": 12843,
+      "name": "Shade",
+      "tree": "Soul",
+      "x": 3,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Shadow_LightBlue",
+      "spellId": 573038,
+      "description": "Become a shade, entering an improved stealth mode for 10 seconds and entering Underwalk. Removes all movement impairing effects.",
+      "referencedTerms": [
+        "Underwalk"
+      ],
+      "prerequisites": [
+        "Fleeting Soul",
+        "Soul Piercer",
+        "Reaver"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Become a shade, entering an improved stealth mode for 10 seconds and entering Underwalk. Removes all movement impairing effects."
+        }
+      ]
+    },
+    {
+      "id": 6521,
+      "name": "Purgatory",
+      "tree": "Soul",
+      "x": 5,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warlock_improvedsoulleech",
+      "spellId": 504046,
+      "description": "When you gain Soul Infusion, the damage of your Soulrend and Reliquary of the Lost is increased by 20% for 6 seconds, stacking 2 times.",
+      "referencedTerms": [
+        "Reliquary of the Lost",
+        "Soul Infusion",
+        "Soulrend"
+      ],
+      "prerequisites": [
+        "Essence Harvest",
+        "Chasing Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "When you gain Soul Infusion, the damage of your Soulrend and Reliquary of the Lost is increased by 20% for 6 seconds, stacking 2 times."
+        }
+      ]
+    },
+    {
+      "id": 34470,
+      "name": "Soul Bane",
+      "tree": "Soul",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_shadow_detectlesserinvisibility",
+      "spellId": 705392,
+      "description": "Reduces the cooldown of Reliquary of the Lost by -5 sec.",
+      "referencedTerms": [
+        "Reliquary of the Lost"
+      ],
+      "prerequisites": [
+        "Spirit Chaser",
+        "Chasing Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Reliquary of the Lost by -5 sec."
+        }
+      ]
+    },
+    {
+      "id": 4267,
+      "name": "Beyond the Veil",
+      "tree": "Soul",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_SoulHarvest2_Blue",
+      "spellId": 804053,
+      "description": "Level 40 Passive\nEntering Underwalk now grants you Beyond the Veil, increasing movement speed by 30% and allowing you to walk on water.",
+      "referencedTerms": [
+        "Beyond the Veil",
+        "Underwalk"
+      ],
+      "prerequisites": [
+        "Spectre"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nEntering Underwalk now grants you Beyond the Veil, increasing movement speed by 30% and allowing you to walk on water."
+        }
+      ]
+    },
+    {
+      "id": 30536,
+      "name": "The Jailer's Call",
+      "tree": "Soul",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_mawrat",
+      "spellId": 805195,
+      "description": "Attacks against enemies below 20% health deal an additional 140 + 18% AP Shadow damage.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Apparition",
+        "Fleeting Soul",
+        "Soul Piercer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Attacks against enemies below 20% health deal an additional 140 + 18% AP Shadow damage."
+        }
+      ]
+    },
+    {
+      "id": 8292,
+      "name": "Spiritual Reflexes",
+      "tree": "Soul",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_curseweak_Border",
+      "spellId": 705436,
+      "description": "While below 35% maximum health, your chance to dodge attacks is increased by 25% and dodging an attack unleashes Soul Harvest on the target.Soul Harvest (Damage)Blasts your target for 1 + 5% AP + 10% shadow SP Shadow Damage, healing for 100% of the damage dealt.",
+      "referencedTerms": [
+        "Soul Harvest"
+      ],
+      "prerequisites": [
+        "Purgatory",
+        "Shade"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While below 35% maximum health, your chance to dodge attacks is increased by 25% and dodging an attack unleashes Soul Harvest on the target.Soul Harvest (Damage)Blasts your target for 1 + 5% AP + 10% shadow SP Shadow Damage, healing for 100% of the damage dealt."
+        }
+      ]
+    },
+    {
+      "id": 30549,
+      "name": "Death's Presence",
+      "tree": "Soul",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_spiritamulet_Border",
+      "spellId": 520371,
+      "description": "Increases all damage dealt by party and raid members by 3%.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Purgatory",
+        "Shade"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases all damage dealt by party and raid members by 3%.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 6724,
+      "name": "Spectre's Call",
+      "tree": "Soul",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_ghostlycharger",
+      "spellId": 705386,
+      "description": "Increases the damage of Deathwind, Murder, and Soul Strike by 15%.",
+      "referencedTerms": [
+        "Deathwind",
+        "Murder",
+        "Soul Strike"
+      ],
+      "prerequisites": [
+        "Chasing Death",
+        "Soul Bane"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Deathwind, Murder, and Soul Strike by 15%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the damage of Deathwind, Murder, and Soul Strike by 30%."
+        }
+      ]
+    },
+    {
+      "id": 29601,
+      "name": "Endbringer",
+      "tree": "Soul",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_frozenghost_Border",
+      "spellId": 800922,
+      "description": "Become an Endbringer for 15 seconds, increasing the damage of Dirge by 30%, the range by 20 yds, and causes it to generate 3 Reaped Souls.\n\nFor the duration, Dirge will heal you for 75% of its damage dealt.",
+      "referencedTerms": [
+        "Dirge",
+        "Endbringer",
+        "Reaped Souls"
+      ],
+      "prerequisites": [
+        "Spiritual Reflexes",
+        "The Jailer's Call",
+        "Death's Presence"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Become an Endbringer for 15 seconds, increasing the damage of Dirge by 30%, the range by 20 yds, and causes it to generate 3 Reaped Souls.\n\nFor the duration, Dirge will heal you for 75% of its damage dealt."
+        }
+      ]
+    },
+    {
+      "id": 31366,
+      "name": "The End Is Near",
+      "tree": "Soul",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warlock_soullink",
+      "spellId": 680996,
+      "description": "Wraithblade now creates a spectral version of yourself for 12 seconds that casts Dirge and Murder on enemies.",
+      "referencedTerms": [
+        "Dirge",
+        "Murder",
+        "Wraithblade"
+      ],
+      "prerequisites": [
+        "Spiritual Reflexes",
+        "Death's Presence"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Wraithblade now creates a spectral version of yourself for 12 seconds that casts Dirge and Murder on enemies."
+        }
+      ]
+    },
+    {
+      "id": 30548,
+      "name": "Lord of Death",
+      "tree": "Soul",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helm_cloth_raidpriest_r_01",
+      "spellId": 805194,
+      "description": "Abilities affected by Ghostly Weapon now deal 25% more damage per additional target.",
+      "referencedTerms": [
+        "Ghostly Weapon"
+      ],
+      "prerequisites": [
+        "Spectre's Call",
+        "Spiritual Reflexes",
+        "Death's Presence"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Abilities affected by Ghostly Weapon now deal 25% more damage per additional target."
+        }
+      ]
+    },
+    {
+      "id": 4266,
+      "name": "Sepulchral Renewal",
+      "tree": "Soul",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_soulblessing_Border",
+      "spellId": 561102,
+      "description": "Resets the cooldown of Limbo, Soulslam, and Shade.\n\nUsable while stealthed.",
+      "referencedTerms": [
+        "Limbo",
+        "Shade",
+        "Soulslam"
+      ],
+      "prerequisites": [
+        "Beyond the Veil"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Resets the cooldown of Limbo, Soulslam, and Shade.\n\nUsable while stealthed."
+        }
+      ]
+    },
+    {
+      "id": 5182,
+      "name": "Gravesite",
+      "tree": "Soul",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_soulgrave_Border",
+      "spellId": 572213,
+      "description": "Casting Endbringer now marks the ground beneath you as your Gravesite for 15 seconds.\n\nDirect critical strikes made against enemies within a Gravesite now deals 530 + 36% AP Shadow damage.",
+      "referencedTerms": [
+        "Endbringer",
+        "Gravesite"
+      ],
+      "prerequisites": [
+        "Endbringer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Endbringer now marks the ground beneath you as your Gravesite for 15 seconds.\n\nDirect critical strikes made against enemies within a Gravesite now deals 530 + 36% AP Shadow damage."
+        }
+      ]
+    },
+    {
+      "id": 7782,
+      "name": "Soulrot",
+      "tree": "Soul",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_souldrain_Border",
+      "spellId": 805196,
+      "description": "Damage dealt by Deathchaser now applies Soulrot.SoulrotRot the soul of your target, cursing them for 15 seconds. At the end of the duration the enemy will take damage based on the number of stacks accrued. \n\nEach instance of damage from Deathchaser adds 1 stack to this effect, up to 20 stacks. Dispelling this effect causes the dispeller to instantly take 1200 + 200% AP Shadow Damage.",
+      "referencedTerms": [
+        "Deathchaser",
+        "Soulrot"
+      ],
+      "prerequisites": [
+        "The End Is Near"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Deathchaser now applies Soulrot.SoulrotRot the soul of your target, cursing them for 15 seconds. At the end of the duration the enemy will take damage based on the number of stacks accrued. \n\nEach instance of damage from Deathchaser adds 1 stack to this effect, up to 20 stacks. Dispelling this effect causes the dispeller to instantly take 1200 + 200% AP Shadow Damage."
+        }
+      ]
+    },
+    {
+      "id": 34460,
+      "name": "Beyond Death",
+      "tree": "Soul",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_shadowentagle_Border",
+      "spellId": 301193,
+      "description": "Dealing damage with Reliquary of the Lost now has a 8% chance to launch an additional Soul Bolt.",
+      "referencedTerms": [
+        "Reliquary of the Lost",
+        "Soul Bolt"
+      ],
+      "prerequisites": [
+        "Lord of Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dealing damage with Reliquary of the Lost now has a 8% chance to launch an additional Soul Bolt."
+        }
+      ]
+    }
+  ]
+}

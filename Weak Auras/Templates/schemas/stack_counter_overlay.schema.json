@@ -1,0 +1,23 @@
+{
+  "$id": "stack_counter_overlay.schema.json",
+  "title": "Stack-counter overlay fragment",
+  "description": "Not a standalone template - a subtext overlay layered on whichever trigger-bearing template (cooldown_tracker, buff_uptime, missing_buff, ...) already applies, per WEAKAURA_INDEX.md's stack_counter row: 'not a trigger of its own.'",
+  "type": "object",
+  "required": [
+    "enabled"
+  ],
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "anchor_point": {
+      "type": "string",
+      "default": "BOTTOMRIGHT"
+    },
+    "font_size": {
+      "type": "integer",
+      "default": 12
+    }
+  },
+  "verified": "Field names confirmed directly from SubRegionTypes/SubText.lua's default table."
+}

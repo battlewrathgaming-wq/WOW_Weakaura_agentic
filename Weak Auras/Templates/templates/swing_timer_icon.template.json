@@ -1,0 +1,43 @@
+{
+  "regionType": "icon",
+  "width": "{{width}}",
+  "height": "{{height}}",
+  "color": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "desaturate": false,
+  "iconSource": -1,
+  "displayIcon": "",
+  "cooldown": true,
+  "cooldownEdge": false,
+  "inverse": false,
+  "zoom": 0,
+  "keepAspectRatio": false,
+  "progressSource": [
+    -1,
+    ""
+  ],
+  "adjustedMax": "",
+  "adjustedMin": "",
+  "useAdjustededMax": false,
+  "useAdjustededMin": false,
+  "subRegions": [
+    {
+      "type": "subbackground"
+    }
+  ],
+  "triggers": {
+    "1": {
+      "trigger": {
+        "type": "unit",
+        "event": "Swing Timer",
+        "hand": "{{hand}}"
+      },
+      "untrigger": {}
+    },
+    "activeTriggerMode": -10
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$id": "resource_threshold_aurabar.schema.json",
+  "opportunity_type": "resource_threshold",
+  "title": "Resource threshold (aurabar + tick marker)",
+  "description": "A unit-resource bar (mana/rage/energy/runic power/etc.) with a marker at a fixed threshold value - not spell-based.",
+  "region_type": "aurabar",
+  "trigger": "Power",
+  "type": "object",
+  "required": [
+    "name",
+    "power_type",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "power_type": {
+      "type": "integer",
+      "description": "CORRECTED 2026-07-06 against a real live capture (Necromancer's own 'Mana'/'Runic power' auras, decoded via weakaura_codec.py) - this was originally documented as a string enum name (e.g. 'MANA', 'RUNIC_POWER'), which was wrong. WeakAuras' real Power trigger field is 'powertype' (no underscore) and its value is the RAW NUMERIC WoW PowerType enum, not a string. Confirmed live: 0 = Mana, 6 = Runic Power (the same enum value Death Knights use - direct confirmation of the 'DK's version, re-used' hypothesis, not just corroborated by a display name). Other values not yet individually confirmed live, but follow the same standard WoW enum: 1 = Rage, 2 = Focus, 3 = Energy, 4 = Combo Points, 5 = Runes."
+    },
+    "threshold_value": {
+      "type": "number",
+      "description": "OPTIONAL, fixed 2026-07-06 (later same day) - the value the subtick marker is placed at (e.g. 80 for '80 Runic Power'). Previously this was baked into the static template unconditionally as a '{{threshold_value}}' placeholder, which was NEVER substituted for Mana/Runic Power (neither was ever given a threshold) and shipped as a literal, broken string in both real built auras - caught while adding the value-readout subtext below. Fixed: template_filler.py now only appends a subtick subRegion when this param is actually supplied, same pattern as stack_counter/glow_source. Omit entirely for a plain bar with no threshold marker."
+    },
+    "bar_color": {
+      "type": "array",
+      "description": "OPTIONAL, added 2026-07-06 (fourth revision) - RGBA override for barColor, e.g. [0.129, 0.910, 1, 1]. Needed because Mana and Runic Power share this one template but Battlewrath gave them different in-game colors (Runic Power recolored to a cyan, #21E8FF; Mana left at the template's own default blue). Applied as a direct fill-time override (template_filler.py), same non-placeholder pattern as threshold_value, so omitting it just keeps the template's default barColor - no unresolved-placeholder risk."
+    },
+    "end_cap_color": {
+      "type": "array",
+      "description": "OPTIONAL, added 2026-07-06 (tenth pass) - RGBA color for a PERMANENT end-cap marker at the bar's own 100% position, distinct from threshold_value's subtick. Problem this solves: once the backing plate's darkness was matched to the real bars (ninth pass), Mana/Runic Power visually fused with their adjacent Cast Bar/Swing Timer backing plate into one continuous strip, erasing the seam that used to mark where the resource bar's own max extent was - so at rest (not casting), a 50%-full bar had no reference point to gauge fill against. Backed by the shared 'class_accent_tick_end' FRAGMENT (see FRAGMENTS/FRAGMENT_TEMPLATES below) - a named, reusable design-language element intended for any aurabar across any class's UI, not just this one. Uses tick_placement_mode='AtPercent' (not 'AtValue', which threshold_value uses) - confirmed in Tick.lua's UpdateTickPlacementOne: AtPercent resolves 'minValue + placements[i]*valueRange/100' against GetMinMaxProgress() at render time, so placements=['100'] always lands at the CURRENT true max (whatever max mana/RP actually is at the player's level/gear) - no hardcoded number needed, unlike AtValue. CORRECTED 2026-07-06 (eleventh pass) after a real live-test bug: the first version of this fragment (and threshold_value's, sharing the same defect) omitted 3 fields present in Tick.lua's own default() table - progressSources, automatic_length, tick_texture - and stored tick_placements as a JSON number instead of the string WeakAuras itself uses. Battlewrath reported the in-game tick_placements read '50' (Tick.lua's own stock default) until manually re-entered as 100; decoding Battlewrath's real re-exported aura confirmed the missing-fields/string-type gap exactly. Fixed by matching Tick.lua's default() shape completely."
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 127.5
+    },
+    "height": {
+      "type": "number",
+      "default": 15
+    }
+  },
+  "verified": "aurabar fields as above. subtick fields from SubRegionTypes/Tick.lua's default table (tick_placement_mode='AtValue'). Power trigger category confirmed in Prototypes.lua (line 2674). UPGRADED 2026-07-06 from name-only to fully live-verified: decoded two real Necromancer captures ('Mana', 'Runic power' - both plain WeakAuras-native Progress Bar quick-auras, 200x30, unpositioned) via weakaura_codec.py. Confirmed real trigger shape: {type: 'unit', event: 'Power', unit: 'player', use_powertype: true, powertype: <int>} - matches this template exactly except power_type's type (see its own field description). The trigger dict also carries several inert leftover fields (debuffType, names, spellIds, subeventPrefix/Suffix, use_absorbMode, use_showAbsorb, use_showIncomingHeal) that don't apply to a Power-event trigger - harmless WeakAuras UI defaults from its aggregate trigger-config table, not something this template needs to reproduce. VALUE READOUT (added 2026-07-06, later same day, per Battlewrath: 'have the resource bars on the left most side show a static read out of their current value'): a subtext, text '%p', anchored INNER_LEFT. Power trigger has progressType='static' (Prototypes.lua line 2676) with state.value/state.total set from 'power'/'total' (current/max) locals (lines 2866-2891) - Private.dynamic_texts['p'] (WeakAuras.lua) returns state.value UNFORMATTED whenever progressType isn't 'timed', so '%p' resolves to the plain current power number here, exactly the readout asked for (not a percentage or a countdown - those only apply on the Cast/Swing Timer triggers' progressType='timed' path). END-CAP MARKER (added 2026-07-06, tenth/eleventh pass, discussed with Battlewrath before building per CLAUDE.md's working agreement): see end_cap_color property description above and the class_accent_tick_end FRAGMENT's own verified note for the full technical trail, including the real live-tested field-parity bug and its fix."
+}

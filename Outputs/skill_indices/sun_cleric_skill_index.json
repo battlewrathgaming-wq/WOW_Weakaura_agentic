@@ -1,0 +1,6896 @@
+{
+  "class": "Sun Cleric",
+  "schemaVersion": 2,
+  "laneTaxonomy": {
+    "DMG": "Damage",
+    "STATS": "Primary/secondary stats",
+    "CRIT": "Crit chance/damage",
+    "CDR": "Cooldown",
+    "CAST": "Cast time",
+    "HASTE": "Haste",
+    "SPEED": "Movement speed",
+    "HEAL": "Healing",
+    "SHIELD": "Shield/absorb",
+    "MITIGATION": "Damage mitigation",
+    "RESOURCE": "Resource generation",
+    "COST": "Resource cost",
+    "DURATION": "Duration",
+    "AOE": "AoE / target count",
+    "CC": "Crowd control",
+    "ARMOR": "Armor",
+    "SUMMON": "Summon / pet",
+    "MISC": "Other"
+  },
+  "note": "Per-skill index: for each observed skill/ability, lists every talent that modifies it, where it sits in the tree, its parsed stat modification, and a mock value showing that modification applied to a normalized baseline of 10. Each modifying talent is tagged with one or more lanes from laneTaxonomy (DMG/CRIT/CDR/CAST/HASTE/SPEED/HEAL/SHIELD/MITIGATION/RESOURCE/COST/DURATION/AOE/CC/ARMOR/SUMMON/MISC), plus cross-cutting behavior flags (PROC, STACK) that describe how the effect triggers rather than what stat it touches. A handful of nodes have unresolved \"$xx\" template descriptions in the source export - these are flagged rather than guessed at.",
+  "mockBaseline": 10,
+  "skills": {
+    "An'she's Blessing": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Soul of Light",
+          "tree": "Piety",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of An'she's Blessing by -60 sec."
+        }
+      ]
+    },
+    "An'she's Guidance": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Holy critical strike chance by 4% and reduces spell pushback suffered from damaging attacks by 100%.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 2,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Ancient Rites": {
+      "lanes": [
+        "STATS",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Intellect by 6% and causes you to regenerate mana equal to 3% of your maximum mana every 20 sec.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 2,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Angelic Presence": {
+      "lanes": [
+        "CRIT",
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sacred Vessel",
+          "tree": "Seraphim",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "CRIT",
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Expending Angelic Presence increases your critical strike chance and healing by 1% for 20 seconds, stacking up to 10 times.\n\nAdditional applications do not refresh the duration."
+        }
+      ]
+    },
+    "Bastion of Hope": {
+      "lanes": [
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Critical strikes now bless you, regenerating 41 + 15% SP mana and increasing all of your primary stats by 10% for 5 seconds.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 2,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Bless": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Bless an ally, restoring 5% of their maximum health every 10 sec for 5 minutes.\n\nCan only affect 1 ally at a time.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Sanctified",
+          "tree": "Blessings",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing a target affected by Bless refunds 25% of the mana cost of the spell."
+        },
+        {
+          "talent": "Sun Strength",
+          "tree": "Blessings",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Radiant Cascade is now guaranteed to critically strike on allies affected by Bless."
+        },
+        {
+          "talent": "Lead Me Not Astray",
+          "tree": "Blessings",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Doubles the healing done by Bless."
+        }
+      ]
+    },
+    "Blessed": {
+      "lanes": [
+        "DMG",
+        "HASTE",
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Blessing of Absolution",
+          "tree": "Blessings",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Empower a Blessed ally to unleash a burst of holy energy in front of them, dealing 32 + 150% healing Holy damage enemies in a 10 yd frontal cone and generating additional threat."
+        },
+        {
+          "talent": "Blessing of Purity",
+          "tree": "Blessings",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Protect a Blessed ally, making them immune to all damage for 4 seconds but reducing their damage and healing done by -25%."
+        },
+        {
+          "talent": "Blessing of Retribution",
+          "tree": "Blessings",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Guard a Blessed ally, deflecting the next harmful spell cast on them within 1 minute."
+        },
+        {
+          "talent": "Blessing of Triumph",
+          "tree": "Blessings",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HASTE",
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Redeem a Blessed ally for 20 seconds, granting 25% increased haste and 10% increased damage.\n\nIf the ally falls below 35% maximum health they are healed for 10% of their direct damage dealt for the remaining duration."
+        }
+      ]
+    },
+    "Blessed Armor": {
+      "lanes": [
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your spell power by 1 for every 125 Armor you have.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Blessed Bulwark": {
+      "lanes": [
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Avoiding an attack now has a 25% chance to regenerate 5% of your base mana.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 4,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Blessed One": {
+      "lanes": [
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your chance to block by 5% and reduces the duration of movement slowing effects by -20%.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 7,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Blessing of Absolution": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Touch of Light",
+          "tree": "Blessings",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Enemies struck by Blessing of Absolution now deal -20% reduced damage for 5 seconds."
+        }
+      ]
+    },
+    "Blessing of Purity": {
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Pure Heart",
+          "tree": "Blessings",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Removes the damage penalty provided by Blessing of Purity."
+        },
+        {
+          "talent": "Lightward",
+          "tree": "Blessings",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Blessing of Purity by 2 sec."
+        }
+      ]
+    },
+    "Burning": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Flames of the Father",
+          "tree": "Piety",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Fire damage dealt is increased by 10% against Burning targets."
+        }
+      ]
+    },
+    "Burning Heat": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$9e",
+      "baseTree": "Piety",
+      "basePosition": {
+        "x": 1,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Calm": {
+      "lanes": [
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Calm an enemy, disarming their melee and ranged weapons for 6 seconds.\n\nIf your target is an Undead or Demon, they are also unable to attack or move for 6 seconds. \n\nEnemies that are immune to silence effects cannot be affected by this.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 4,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Chains of Light": {
+      "lanes": [
+        "DMG",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Censure",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Dealing direct damage to an enemy affected by Chains of Light will now cause it to chain to a nearby enemy. Can only occur once per sec."
+        },
+        {
+          "talent": "Champion's Arrival",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Champion of the Sun and Chains of Light by 5 sec."
+        }
+      ]
+    },
+    "Champion of the Sun": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Become a champion of An'she, causing your melee auto attacks to deal an additional 50% of the damage dealt as Holy damage. Lasts 20 seconds.",
+      "baseTree": "Valkyrie",
+      "basePosition": {
+        "x": 4,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Champion's Arrival",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Champion of the Sun and Chains of Light by 5 sec."
+        },
+        {
+          "talent": "Radiant Halberd",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Direct Physical damage dealt now reduces the cooldown of Champion of the Sun by -1 sec."
+        }
+      ]
+    },
+    "Chosen of the Light": {
+      "lanes": [
+        "CDR",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Holy Conquest",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost of Paragon, Chosen of the Light, and Judgement Day by -50%."
+        },
+        {
+          "talent": "New Day",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Start anew, reseting the cooldown of Paragon, Chosen of the Light, and Judgement Day."
+        }
+      ]
+    },
+    "Circle of Valor": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Place a 10 yd holy circle at target location for 15 seconds. Allies that stand inside of it will divert 30% of all damage taken to the caster, and will be healed for 50 + 42.5% SP + 12.5% AP every 2 sec.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Clarity of the Heavens": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 50 Passive\nIncreases your block value by 50% of your Intellect.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Dawn": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "CAST",
+        "HEAL",
+        "SHIELD",
+        "COST",
+        "DURATION",
+        "AOE",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Gateway to Heaven",
+          "tree": "Blessings",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Whenever you use Dawn you now apply Radiance to yourself for 6 sec.RadianceEvery 2 sec you burst with light, healing nearby allies for 36 + 20% SP + 10% AP and damaging nearby enemies for 37 + 40% SP + 15% AP. Lasts 10 seconds."
+        },
+        {
+          "talent": "Guiding Glow",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Allows Dawn to affect 5 additional casts."
+        },
+        {
+          "talent": "Nysoni's Blessing",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Dawn will now provide an additional effect based on your specialization."
+        },
+        {
+          "talent": "Solar Conduit",
+          "tree": "Piety",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Dawnsear by -20% while Dawn is active."
+        },
+        {
+          "talent": "Harsh Lessons",
+          "tree": "Piety",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Dawn now grants Scorch Marks.Scorch MarksYour next Radiant Flame has no mana cost, ticks -50% faster, and its duration is reduced by -50%."
+        },
+        {
+          "talent": "The Coming Dawn",
+          "tree": "Piety",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While Dawn is active, damage dealt by Radiant Flame now reduces the cooldown of Dawnfall and Solar Concord by -1 sec."
+        },
+        {
+          "talent": "Shining Shield",
+          "tree": "Seraphim",
+          "position": {
+            "x": 5,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "SHIELD",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Activating Dawn now grants Shining Shield for 8 seconds.Shining ShieldIncreases your Armor contribution from your shield by 50%."
+        },
+        {
+          "talent": "Sunslam",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Slam an enemy every 1 sec with the might of the sun, dealing 28 + 15.94% AP Holy damage and stunning them for 1 seconds. Lasts 3 seconds.\n\nOnly usable while Dawn is active. Usable while moving."
+        },
+        {
+          "talent": "It's Always Sunny",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Activating Dawn now reduces the cooldowns of Radiance, Valkyr's Calling, and Sunslam by 10%."
+        },
+        {
+          "talent": "Pendant of the Sun",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Activate your pendant of the sun, refreshing the duration and all charges of Dawn."
+        }
+      ]
+    },
+    "Dawnbreak": {
+      "lanes": [
+        "DMG",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Radiate holy light from your shield on enemies in front of you, dealing 23 + 25% SP + 10% AP Holyfire Damage, scaling with your block value.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Solar Eclipse",
+          "tree": "Seraphim",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Dawnbreak now unleashes a burst of holy energy after a 1 seconds delay, dealing 22 + 12.5% holy SP + 10% AP Holy damage to nearby enemies."
+        },
+        {
+          "talent": "Sun Warrior's Guidance",
+          "tree": "Seraphim",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Gavels and Dawnbreak by 5%."
+        },
+        {
+          "talent": "Paying The Tithe",
+          "tree": "Seraphim",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Dawnbreak by 20% and your Seraphic Bulwark now lasts for 4 additional blocks."
+        },
+        {
+          "talent": "Dawn's Arrival",
+          "tree": "Seraphim",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Dawnbreak now has a 40% chance to reset the cooldown of Gavels and causes the next one to not incur a cooldown."
+        },
+        {
+          "talent": "Sun Strider",
+          "tree": "Seraphim",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.65,
+          "lanes": [
+            "CRIT",
+            "SPEED",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Critical strikes with Gavels or Dawnbreak now increases the healing of your next Illumination within 20 seconds by 15%, stacking up to 3 times.\n\nConsuming the stacks increases your critical block chance and movement speed by 10% for 8 seconds."
+        }
+      ]
+    },
+    "Dawnfall": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "The Coming Dawn",
+          "tree": "Piety",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While Dawn is active, damage dealt by Radiant Flame now reduces the cooldown of Dawnfall and Solar Concord by -1 sec."
+        }
+      ]
+    },
+    "Dawnsear": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Blast an enemy with burning light, dealing 88 + 100% fire SP Fire damage.",
+      "baseTree": "Piety",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Scorch Marks",
+          "tree": "Piety",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Dawnsear and Sunflare now have a 40% chance to grant Scorch Marks for 10 seconds.Scorch MarksYour next Radiant Flame has no mana cost, ticks -50% faster, and its duration is reduced by -50%."
+        },
+        {
+          "talent": "Solar Conduit",
+          "tree": "Piety",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Dawnsear by -20% while Dawn is active."
+        },
+        {
+          "talent": "Burning Cascade",
+          "tree": "Piety",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time and mana cost of Dawnsear and Sunflare by -20%."
+        },
+        {
+          "talent": "Wrath of God",
+          "tree": "Piety",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            },
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 21.2,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Sunflare and Dawnsear by 6% and reduces spell pushback suffered from damaging attacks by 100%."
+        },
+        {
+          "talent": "Grace",
+          "tree": "Piety",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell damage bonus of Dawnsear by 20% and Sunflare by 10%."
+        },
+        {
+          "talent": "Adjudication",
+          "tree": "Piety",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Rapture now causes your next Dawnsear within 10 seconds to strike your target twice and launch a Solar Flare at the target.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "Spears of Glory",
+          "tree": "Piety",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Radiant Flame now has an 15% chance to grant you Spears of Glory.Spears of GloryYour next Dawnsear within 10 seconds is instant cast and deals 25% increased damage."
+        }
+      ]
+    },
+    "Daybreak": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Make a prayer, healing an ally for 155 + 59.5% healing.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 2,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Hot Spot",
+          "tree": "Blessings",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Casting Daybreak now causes your next 2 Shines within 10 seconds to have a -25% reduced cast time."
+        },
+        {
+          "talent": "Gleaming Light",
+          "tree": "Blessings",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases healing of Illumination and Daybreak by 10%."
+        }
+      ]
+    },
+    "Devotions": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Devotee",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Devotions by 20%."
+        }
+      ]
+    },
+    "Divine Retribution": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Accumulates 25% of your damage dealt to on the target and unleashes it after 8 seconds, damaging enemies within 10 yds as Holy damage.",
+      "baseTree": "Valkyrie",
+      "basePosition": {
+        "x": 6,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Divine Right": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your chance to critically strike and to parry attacks by 4% and your spell hit chance by 10%.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Divine Vision": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Holy damage and healing done by 8%.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 6,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Duality of Light": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$a2",
+      "baseTree": "Piety",
+      "basePosition": {
+        "x": 7,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Enveloped in Light": {
+      "lanes": [
+        "MITIGATION",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your armor contribution from mail and plate items by 20% and reduces Shadow damage taken by -6%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Faith": {
+      "lanes": [
+        "HEAL",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Direct healing done now increases the target's Armor by 10% for 20 seconds.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 7,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Fervor of the Sun": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Atone, Or Else",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Fervor of the Sun now stacks up to 3 additional times."
+        }
+      ]
+    },
+    "Fulfilling": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Trial of Valor",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Fulfilling a Vow now reduces the cooldown of Horusath Blast by -2 sec."
+        }
+      ]
+    },
+    "Fulfillment": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Heaven\u2019s Appraisal",
+          "tree": "Blessings",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nIncreases the effectiveness of your Fulfillment effects by 25%.\n\nIn addition, the Fulfillment effect granted by Vow of Dawn now triples the amount of targets struck."
+        },
+        {
+          "talent": "Twilight",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            },
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 18.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Applying Vow of the Eclipse now blinds enemies struck, increasing their chance to miss their next attack by -10% for 6 seconds, stacking 5 times. Does not work on bosses.\n\nIn addition, increases the effectiveness of the Fulfillment effect of Vow of the Eclipse by 100%."
+        },
+        {
+          "talent": "Vow of the Valkyr",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Auto attacks generate 1 Solar Power and deal 10% increased damage.\n\nFulfillment: Melee ability damage triggers an auto attack with each weapon.\n\nOnly 1 Vow can be active at a time."
+        }
+      ]
+    },
+    "Gavel of Light": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Arbiter of Light",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "While Vow of Light is active, your Gavel of Light now restores an additional 100% health equal to the damage dealt."
+        }
+      ]
+    },
+    "Gavels": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "SPEED",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Unbreakable Focus",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Gavels and Horusath Blast by -20%."
+        },
+        {
+          "talent": "Sun Warrior's Guidance",
+          "tree": "Seraphim",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Gavels and Dawnbreak by 5%."
+        },
+        {
+          "talent": "Glorious Defender",
+          "tree": "Seraphim",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Gavels by 25%."
+        },
+        {
+          "talent": "Dawn's Arrival",
+          "tree": "Seraphim",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Dawnbreak now has a 40% chance to reset the cooldown of Gavels and causes the next one to not incur a cooldown."
+        },
+        {
+          "talent": "Judgement",
+          "tree": "Seraphim",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of Gavels by 15% and they are now guaranteed to critically strike against Undead enemies."
+        },
+        {
+          "talent": "Sun Strider",
+          "tree": "Seraphim",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.65,
+          "lanes": [
+            "CRIT",
+            "SPEED",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Critical strikes with Gavels or Dawnbreak now increases the healing of your next Illumination within 20 seconds by 15%, stacking up to 3 times.\n\nConsuming the stacks increases your critical block chance and movement speed by 10% for 8 seconds."
+        },
+        {
+          "talent": "Fanaticism",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Gavels and Horusath Blast and reduces their mana cost by -20%."
+        }
+      ]
+    },
+    "Gift of the Sun": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical strike chance with Holy spells and abilities by 50% on enemies above 80% health.",
+      "baseTree": "Valkyrie",
+      "basePosition": {
+        "x": 0,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Glare": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Flash powerful light that deals 20 + 27.41% SP Holy damage and stuns enemies within 8 yds for 5 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Fortuitous",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Removes the cast time of Glare while above 80% health."
+        },
+        {
+          "talent": "Angelic Light",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Glare by -30 sec."
+        }
+      ]
+    },
+    "Glaring Rays": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the spell haste of all party and raid members by 3% and your spell haste by an additional 3%.\n\nDoes not stack with similar effects.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 8,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Gleaming Armor": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces your spell damage taken by -5%, plus an additional -5% while above 80% health.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 5,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Gleaming Vigil": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces your Physical damage taken by -5%, plus an additional 5% while above 80% health.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 8,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Glorious Execution": {
+      "lanes": [
+        "DMG",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Strike with both weapons dealing Weapon Damage plus 8 Physical damage and regenerate mana equal to 5% of the damage dealt.",
+      "baseTree": "Valkyrie",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Odyn's Vanguard",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Melee attacks now have a 20% chance to reset the cooldown of Glorious Execution."
+        },
+        {
+          "talent": "Arbiter of Grace",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "While Vow of Grace is active, your Glorious Execution now regenerates an additional 15% mana equal to the damage dealt."
+        },
+        {
+          "talent": "Blessed Magic",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Horusath Blast now resets the cooldown of Glorious Execution."
+        },
+        {
+          "talent": "Vindicator",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Your Glorious Execution now ignores -20% of the target's armor while Vow of the Valkyr is active."
+        },
+        {
+          "talent": "Knight of Dawn",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Glorious Execution now has a 20% chance to strike 1 additional time."
+        }
+      ]
+    },
+    "Grace": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your chance to dodge by 5%.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 0,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Hammer of Kings": {
+      "lanes": [
+        "DMG",
+        "AOE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Become anointed by the light, summoning a blessed hammer that encircles you dealing 43 + 12% AP + 22% holy SP Holyfire Damage to nearby enemies every 3 sec for 12 seconds.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "The Chosen King",
+          "tree": "Seraphim",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Hammer of Kings now also increases your critical strike chance by 10% for 10 seconds."
+        },
+        {
+          "talent": "Blessing of Kings",
+          "tree": "Seraphim",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Critical strikes now reduce the cooldown of Hammer of Kings and Solar Prayer by -1."
+        },
+        {
+          "talent": "Sunflare Aegis",
+          "tree": "Seraphim",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION",
+            "AOE",
+            "SUMMON"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Blocking attacks now has a 30% chance to grant you Hammer of Kings for 4 sec. \n\nIf Hammer of Kings is already active, you increase the duration by 4 sec.Hammer of KingsBecome anointed by the light, summoning a blessed hammer that encircles you dealing 43 + 12% AP + 22% holy SP Holyfire Damage to nearby enemies every 3 sec for 12 seconds."
+        }
+      ]
+    },
+    "Holy Form": {
+      "lanes": [
+        "CRIT",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Ascend into a holy form, increasing your healing done by 10%, increasing your Holy critical strike chance by 5%, and reducing your threat generated by -50%.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Empowered Holy Form",
+          "tree": "Blessings",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Doubles the effectiveness of your Holy Form."
+        }
+      ]
+    },
+    "Holy Strength": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 30 Passive\nIncreases your spell power by 100% of your Strength.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Horusath Blast": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Blast an enemy with the power of the sun, dealing 73 + 100% holy SP Holy damage and reducing their attack power by 235 for 15 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Unbreakable Focus",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Gavels and Horusath Blast by -20%."
+        },
+        {
+          "talent": "Solar Concord",
+          "tree": "Piety",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Resets the cooldown of Horusath Blast while in Sunrise and Rapture while in Sunset and causes their damage dealt to launch a Solar Flare. Lasts 15 seconds.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "Lights of Absolution",
+          "tree": "Piety",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Horusath Blast now grants you Light of Absolution for 10 seconds.Lights of AbsolutionDamage dealt by Solar Flares now restores 2% missing health, Energy, Focus, Runic Power, and Rage to allies within 40 yds. Can only occur once every 0.5 sec."
+        },
+        {
+          "talent": "Flames of Absolution",
+          "tree": "Piety",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Horusath Blast now launches a Solar Flare at up to 5 enemies within 5 yds of your target.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "A Pious Life",
+          "tree": "Piety",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Horusath Blast and Rapture by 30%."
+        },
+        {
+          "talent": "Moment of Triumph",
+          "tree": "Piety",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Horusath Blast or Rapture now have a 20% chance to not incur a cooldown on cast."
+        },
+        {
+          "talent": "Day Cycles",
+          "tree": "Piety",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.1,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nWhile in Sunrise, the remaining cooldown of Horusath Blast is reduced by 10% every 1 sec.\n\nWhile in Sunset, the remaining cooldown of Rapture is reduced by 10% every 1 sec."
+        },
+        {
+          "talent": "Fanaticism",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Gavels and Horusath Blast and reduces their mana cost by -20%."
+        },
+        {
+          "talent": "Sun's Gift",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nYour Horusath Blast now deals additional damage scaling with your attack power and grants allies Replenishment.ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+        },
+        {
+          "talent": "Trial of Valor",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Fulfilling a Vow now reduces the cooldown of Horusath Blast by -2 sec."
+        },
+        {
+          "talent": "Blessed Magic",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Horusath Blast now resets the cooldown of Glorious Execution."
+        }
+      ]
+    },
+    "Illumination": {
+      "lanes": [
+        "CRIT",
+        "CDR",
+        "CAST",
+        "SPEED",
+        "HEAL",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Angelic",
+          "tree": "Blessings",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.25,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Illumination by 0.25 sec."
+        },
+        {
+          "talent": "Gleaming Light",
+          "tree": "Blessings",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases healing of Illumination and Daybreak by 10%."
+        },
+        {
+          "talent": "Heat Wave",
+          "tree": "Blessings",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Healing with Illumination and Shine now additionally heals the target's nearby allies for 10% of the value."
+        },
+        {
+          "talent": "Cultivate Divinity",
+          "tree": "Blessings",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.4,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Effectively healing with Radiant Cascade has a 20% chance to increase the healing of your next Illumination by 20%. \n\nEffectively healing with Illumination has a 40% chance to increase the healing of your next Radiant Cascade by 20%."
+        },
+        {
+          "talent": "Solar Priest",
+          "tree": "Blessings",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Solar Invigoration by -30 sec.\n\nIn addition, whenever allies effectively heal with Shine they now cast Illumination. Can only occur once every 6 sec.Illumination (Rank 11)Illuminate an ally, healing them for 1373 + 68% healing."
+        },
+        {
+          "talent": "Light The Way",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "SPEED",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing done by Shine or Illumination now increases the targets movement speed by 20% for 3 seconds."
+        },
+        {
+          "talent": "Angelic Presence",
+          "tree": "Seraphim",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Solar Prayer"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 10 Passive\nAvoiding an attack now has a 20% chance to grant you Angelic Presence.Angelic PresenceYour next Illumination within 15 seconds is instant cast and free of cost."
+        },
+        {
+          "talent": "The Chosen",
+          "tree": "Seraphim",
+          "position": {
+            "x": 3,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Illumination now shields you for 30% of the amount healed."
+        },
+        {
+          "talent": "Sun Disc",
+          "tree": "Seraphim",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "You now emit an aura that causes all nearby allies to receive 6% increased healing. Does not stack with similar effects.\n\nIn addition, the healing done by Illumination is increased by 20%."
+        },
+        {
+          "talent": "Together In Conquest",
+          "tree": "Seraphim",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Solar Invocation spells now causes your Illumination to heal an additional nearby ally at 70% effectiveness for 10 seconds.\n\nIn addition, Illumination now reduces the cooldown of Solar Invocation spells by -1 sec."
+        },
+        {
+          "talent": "Sun Strider",
+          "tree": "Seraphim",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.65,
+          "lanes": [
+            "CRIT",
+            "SPEED",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Critical strikes with Gavels or Dawnbreak now increases the healing of your next Illumination within 20 seconds by 15%, stacking up to 3 times.\n\nConsuming the stacks increases your critical block chance and movement speed by 10% for 8 seconds."
+        }
+      ]
+    },
+    "Impartial": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Strength and maximum mana by 10% and your expertise by 10.",
+      "baseTree": "Valkyrie",
+      "basePosition": {
+        "x": 3,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Judgement Day": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "COST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Suncharged",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Judgement Day now applies Suncharged to the target every 1 sec, stacking 10 times.\n\nAt the end of the duration, or when Judgement Day ends, the enemy takes 487 + 30% AP + 50% holy SP Holy damage, increased for each stack on the target."
+        },
+        {
+          "talent": "Holy Conquest",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost of Paragon, Chosen of the Light, and Judgement Day by -50%."
+        },
+        {
+          "talent": "New Day",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Start anew, reseting the cooldown of Paragon, Chosen of the Light, and Judgement Day."
+        },
+        {
+          "talent": "Judgement of the Valkyrie",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Judgement Day by -15 sec."
+        }
+      ]
+    },
+    "Justicar's Wrath": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Bring holy wrath down upon an enemy, dealing 508 + 55% SP + 25% AP High Threat Holy damage and increasing the target's spell damage taken by 10% for 15 seconds.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 2,
+        "y": 8
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Adjudicator",
+          "tree": "Seraphim",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Justicar's Wrath now deals an additional 50% of its damage dealt to the target and enemies around them, healing you for 10% of the damage dealt."
+        }
+      ]
+    },
+    "Justice": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Spin and strike with both weapons dealing 40% Weapon Damage plus 6 + 20% fire SP to up to 5 enemies within 5 yds.\n\nYour main-hand strike will deal Fire damage and your off-hand strike will deal Physical damage.",
+      "baseTree": "Valkyrie",
+      "basePosition": {
+        "x": 8,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Herald of Purity",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Justice now has an 8% chance to reset its own cooldown."
+        }
+      ]
+    },
+    "Light of Absolution": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Lights of Absolution",
+          "tree": "Piety",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Horusath Blast now grants you Light of Absolution for 10 seconds.Lights of AbsolutionDamage dealt by Solar Flares now restores 2% missing health, Energy, Focus, Runic Power, and Rage to allies within 40 yds. Can only occur once every 0.5 sec."
+        }
+      ]
+    },
+    "Light of the Sun": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Parrying an attack now restores 3% of your maximum health and increases your chance to parry the next attack by 30%.",
+      "baseTree": "Valkyrie",
+      "basePosition": {
+        "x": 5,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "March of the Valkyr": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the all damage dealt by party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, your chance to parry is increased by 5%.",
+      "baseTree": "Valkyrie",
+      "basePosition": {
+        "x": 6,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Mercy": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Grant mercy to an ally, abolishing 2 disease effects, repeating every 3 sec for 12 seconds.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 6,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Blightbreaker",
+          "tree": "Blessings",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            },
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the tick rate of Mercy by -50%, but increases its mana cost by 100%."
+        },
+        {
+          "talent": "Harmonious Bells",
+          "tree": "Blessings",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Mercy now affects 4 additional allies near the primary target."
+        }
+      ]
+    },
+    "Paragon": {
+      "lanes": [
+        "CDR",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Holy Conquest",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost of Paragon, Chosen of the Light, and Judgement Day by -50%."
+        },
+        {
+          "talent": "New Day",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Start anew, reseting the cooldown of Paragon, Chosen of the Light, and Judgement Day."
+        }
+      ]
+    },
+    "Pendant of the Sun": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Light's Blessing",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Sunslam now reduces the cooldown of Pendant of the Sun by -10 sec."
+        }
+      ]
+    },
+    "Photosynthetic": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your spell haste by 9%, plus an additional 3% during the day.",
+      "baseTree": "Piety",
+      "basePosition": {
+        "x": 7,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Protector of the Flame": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Avoiding an attack now also deals 648% fire SP + 3% AP Fire damage to the attacker.\n\nCan only occur once per sec.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 2,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Pure Light": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "While above 80% health you now deal 10% increased damage and healing.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Radiance": {
+      "lanes": [
+        "HEAL",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Every 2 sec you burst with light, healing nearby allies for 36 + 20% SP + 10% AP and damaging nearby enemies for 37 + 40% SP + 15% AP. Lasts 10 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Blazing Chariot",
+          "tree": "Blessings",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 125.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 22.5,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the healing and damage of Radiance by 125%."
+        },
+        {
+          "talent": "Gateway to Heaven",
+          "tree": "Blessings",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Whenever you use Dawn you now apply Radiance to yourself for 6 sec.RadianceEvery 2 sec you burst with light, healing nearby allies for 36 + 20% SP + 10% AP and damaging nearby enemies for 37 + 40% SP + 15% AP. Lasts 10 seconds."
+        },
+        {
+          "talent": "Zealous ",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            },
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Radiance by -30 sec, but reduces its duration by -4 sec."
+        },
+        {
+          "talent": "Hegemony",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Radiance by 5 sec."
+        },
+        {
+          "talent": "It's Always Sunny",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Activating Dawn now reduces the cooldowns of Radiance, Valkyr's Calling, and Sunslam by 10%."
+        }
+      ]
+    },
+    "Radiant Cascade": {
+      "lanes": [
+        "CRIT",
+        "CAST",
+        "HEAL",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sun Strength",
+          "tree": "Blessings",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Radiant Cascade is now guaranteed to critically strike on allies affected by Bless."
+        },
+        {
+          "talent": "Everglow",
+          "tree": "Blessings",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Radiant Cascade now bounces to 2 additional allies."
+        },
+        {
+          "talent": "Sunbeams",
+          "tree": "Blessings",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Radiant Cascade by -15%."
+        },
+        {
+          "talent": "Improved Radiant Cascade",
+          "tree": "Blessings",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "HEAL",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Increases the healing done and reduces the mana cost of Radiant Cascade by -15%."
+        },
+        {
+          "talent": "Cultivate Divinity",
+          "tree": "Blessings",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.4,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Effectively healing with Radiant Cascade has a 20% chance to increase the healing of your next Illumination by 20%. \n\nEffectively healing with Illumination has a 40% chance to increase the healing of your next Radiant Cascade by 20%."
+        }
+      ]
+    },
+    "Radiant Flame": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Launch radiant spheres at an enemy each dealing 31 + 20.69% SP Holyflame Damage, repeating every 1 sec for 4 seconds.",
+      "baseTree": "Piety",
+      "basePosition": {
+        "x": 4,
+        "y": 1
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Scorch Marks",
+          "tree": "Piety",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Dawnsear and Sunflare now have a 40% chance to grant Scorch Marks for 10 seconds.Scorch MarksYour next Radiant Flame has no mana cost, ticks -50% faster, and its duration is reduced by -50%."
+        },
+        {
+          "talent": "Fire from the Heavens",
+          "tree": "Piety",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 20 Passive\nDamage dealt by Radiant Flame now has a 10% chance to launch a Solar Flare at your target.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "Purgation",
+          "tree": "Piety",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Dealing damage with Radiant Flame now increases the target's Holy and Fire damage taken from you by 1% for 8 seconds, stacking 8 times."
+        },
+        {
+          "talent": "Radiant Fury",
+          "tree": "Piety",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Radiant Flame is now increased by 10% on enemies below 35% health."
+        },
+        {
+          "talent": "City of Light",
+          "tree": "Piety",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Radiant Flame now restores 3% of your missing health and mana."
+        },
+        {
+          "talent": "Harsh Lessons",
+          "tree": "Piety",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Dawn now grants Scorch Marks.Scorch MarksYour next Radiant Flame has no mana cost, ticks -50% faster, and its duration is reduced by -50%."
+        },
+        {
+          "talent": "The Coming Dawn",
+          "tree": "Piety",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While Dawn is active, damage dealt by Radiant Flame now reduces the cooldown of Dawnfall and Solar Concord by -1 sec."
+        },
+        {
+          "talent": "Spears of Glory",
+          "tree": "Piety",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Radiant Flame now has an 15% chance to grant you Spears of Glory.Spears of GloryYour next Dawnsear within 10 seconds is instant cast and deals 25% increased damage."
+        }
+      ]
+    },
+    "Rapture": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Call down a streak of sun light to smite your target, dealing 111 + 200% fire SP Fire damage to them and nearby enemies, piercing all immunities, but dealing less damage with each enemy struck.",
+      "baseTree": "Piety",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Solar Concord",
+          "tree": "Piety",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Resets the cooldown of Horusath Blast while in Sunrise and Rapture while in Sunset and causes their damage dealt to launch a Solar Flare. Lasts 15 seconds.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "A Pious Life",
+          "tree": "Piety",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Horusath Blast and Rapture by 30%."
+        },
+        {
+          "talent": "Sunburn",
+          "tree": "Piety",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Rapture by -0.5 sec."
+        },
+        {
+          "talent": "Adjudication",
+          "tree": "Piety",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Rapture now causes your next Dawnsear within 10 seconds to strike your target twice and launch a Solar Flare at the target.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "Moment of Triumph",
+          "tree": "Piety",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Horusath Blast or Rapture now have a 20% chance to not incur a cooldown on cast."
+        },
+        {
+          "talent": "Day Cycles",
+          "tree": "Piety",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.1,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nWhile in Sunrise, the remaining cooldown of Horusath Blast is reduced by 10% every 1 sec.\n\nWhile in Sunset, the remaining cooldown of Rapture is reduced by 10% every 1 sec."
+        }
+      ]
+    },
+    "Replenishment": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Pious",
+          "tree": "Piety",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 150.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 25.0,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nIncreases your critical damage dealt by 150% and your critical strikes grant allies Replenishment.ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+        },
+        {
+          "talent": "Sun's Gift",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nYour Horusath Blast now deals additional damage scaling with your attack power and grants allies Replenishment.ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+        }
+      ]
+    },
+    "Sanctify": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Exorcism",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Sanctify now dispels 1 additional effect."
+        }
+      ]
+    },
+    "Savior": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your healing on targets below 20% health by 30%.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 6,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Scorch Marks": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "COST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Harsh Lessons",
+          "tree": "Piety",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Dawn now grants Scorch Marks.Scorch MarksYour next Radiant Flame has no mana cost, ticks -50% faster, and its duration is reduced by -50%."
+        },
+        {
+          "talent": "Burn The Heretics",
+          "tree": "Piety",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases your damage and healing by 10% against targets below 35% health.\n\nAdditionally, when Scorch Marks are consumed you now gain 10% increased Magic damage for 8 seconds."
+        }
+      ]
+    },
+    "Scroll of Hope": {
+      "lanes": [
+        "HEAL",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Read from a scroll of hope, reducing Magic damage taken by party and raid members within 15 yds by -30% for 10 seconds.\n\nIf any ally falls below 35% of their maximum health while this is active they are instantly healed once for 15% of their maximum health.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Seraphic Bulwark": {
+      "lanes": [
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "2 Charges, 25 sec recharge\nRaise your blessed shield, increasing your block value by 100%. Lasts for 5 blocks or 10 seconds.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 6,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Paying The Tithe",
+          "tree": "Seraphim",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Dawnbreak by 20% and your Seraphic Bulwark now lasts for 4 additional blocks."
+        }
+      ]
+    },
+    "Shine": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "CAST",
+        "SPEED",
+        "HEAL",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Heat Wave",
+          "tree": "Blessings",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Healing with Illumination and Shine now additionally heals the target's nearby allies for 10% of the value."
+        },
+        {
+          "talent": "Solar Invigoration",
+          "tree": "Blessings",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "For 15 seconds, your allies take 20% increased healing and their direct damage dealt now causes them to cast Shine. Can only occur once every 2 sec.Shine (Rank 8)Shine holy light upon an ally, healing for 511 + 29.47% SP."
+        },
+        {
+          "talent": "Solar Priest",
+          "tree": "Blessings",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Solar Invigoration by -30 sec.\n\nIn addition, whenever allies effectively heal with Shine they now cast Illumination. Can only occur once every 6 sec.Illumination (Rank 11)Illuminate an ally, healing them for 1373 + 68% healing."
+        },
+        {
+          "talent": "Light The Way",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "SPEED",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing done by Shine or Illumination now increases the targets movement speed by 20% for 3 seconds."
+        },
+        {
+          "talent": "Sunwalker",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "DMG",
+            "CAST",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Dealing melee damage now generates a stack of Sunwalker.SunwalkerReduces the cast time and mana cost of your next Shine by -20% for 30 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Radiant Power",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Each stack of Sunwalker now increases the critical strike chance of Shine by 3%."
+        }
+      ]
+    },
+    "Shines": {
+      "lanes": [
+        "CAST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Hot Spot",
+          "tree": "Blessings",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Casting Daybreak now causes your next 2 Shines within 10 seconds to have a -25% reduced cast time."
+        }
+      ]
+    },
+    "Sintorcher": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your damage and healing done by 3% and your critical strike chance against Undead by 2%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Solar Champion": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the range of your Piety spells by 20% and reduces the threat generated by them by -20%.",
+      "baseTree": "Piety",
+      "basePosition": {
+        "x": 2,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Solar Concord": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "The Coming Dawn",
+          "tree": "Piety",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "While Dawn is active, damage dealt by Radiant Flame now reduces the cooldown of Dawnfall and Solar Concord by -1 sec."
+        }
+      ]
+    },
+    "Solar Discernment": {
+      "lanes": [
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 40 Passive\nIncreases your critical strike rating and expertise rating by 12% of your Intellect.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 10,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Solar Eclipse": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Heat Death",
+          "tree": "Seraphim",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Solar Eclipse now reduces the enemies chance to hit by -3% for 15 sec."
+        }
+      ]
+    },
+    "Solar Flare": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Fire from the Heavens",
+          "tree": "Piety",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 20 Passive\nDamage dealt by Radiant Flame now has a 10% chance to launch a Solar Flare at your target.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "Solar Concord",
+          "tree": "Piety",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Resets the cooldown of Horusath Blast while in Sunrise and Rapture while in Sunset and causes their damage dealt to launch a Solar Flare. Lasts 15 seconds.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "Flames of Absolution",
+          "tree": "Piety",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Horusath Blast now launches a Solar Flare at up to 5 enemies within 5 yds of your target.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "Adjudication",
+          "tree": "Piety",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Rapture now causes your next Dawnsear within 10 seconds to strike your target twice and launch a Solar Flare at the target.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        }
+      ]
+    },
+    "Solar Flares": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sun's Hope",
+          "tree": "Piety",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.99,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Solar Flares now grants you 1 Solar Power and increase the targets chance to be critically struck by spells by 3% for 8 seconds.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "Lights of Absolution",
+          "tree": "Piety",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Horusath Blast now grants you Light of Absolution for 10 seconds.Lights of AbsolutionDamage dealt by Solar Flares now restores 2% missing health, Energy, Focus, Runic Power, and Rage to allies within 40 yds. Can only occur once every 0.5 sec."
+        }
+      ]
+    },
+    "Solar Guardian": {
+      "lanes": [
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the duration of stun effects on you by -20%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Solar Invigoration": {
+      "lanes": [
+        "CDR",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Solar Priest",
+          "tree": "Blessings",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Solar Invigoration by -30 sec.\n\nIn addition, whenever allies effectively heal with Shine they now cast Illumination. Can only occur once every 6 sec.Illumination (Rank 11)Illuminate an ally, healing them for 1373 + 68% healing."
+        }
+      ]
+    },
+    "Solar Invocation": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "HEAL",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Hope",
+          "tree": "Blessings",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your critical heals now reduce the cooldown of Solar Invocation spells by -1 sec.\n\nCan occur only once per sec."
+        },
+        {
+          "talent": "Devoted to the Light",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Removes the cost of your Solar Invocation spells and they now generate 5% of your missing mana when cast."
+        },
+        {
+          "talent": "Devoted to the Sun",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Solar Invocation spells by -5 sec."
+        },
+        {
+          "talent": "Solar Nova",
+          "tree": "Seraphim",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "CDR",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Emit a powerful holy light in an 8 yd radius, dealing 93 + 50% holy SP + 5.06% AP Holy damage to all nearby enemies. \n\nReduces the cooldown of your Solar Invocation spells by -1 sec for each target struck.\n\nThis ability is guaranteed to critically strike against Undead or Demons."
+        },
+        {
+          "talent": "Together In Conquest",
+          "tree": "Seraphim",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Solar Invocation spells now causes your Illumination to heal an additional nearby ally at 70% effectiveness for 10 seconds.\n\nIn addition, Illumination now reduces the cooldown of Solar Invocation spells by -1 sec."
+        },
+        {
+          "talent": "Blessed Hammer",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Solar Invocation spells by -10 sec."
+        }
+      ]
+    },
+    "Solar Invocation: Revelation": {
+      "lanes": [
+        "SPEED",
+        "HEAL",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Invoke An'she to root an enemy for 4 seconds with holy shackles or heal an ally for 10% maximum health and increase their movement speed by 50% for 4 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Solar Might": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Strength and Intellect by 10%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Solar Power": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Solar Invocation: Conquest",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "STATS",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Invoke the spirit of An'she to instantly generate 10 Solar Power and refunds 10% of your maximum mana."
+        },
+        {
+          "talent": "Sun's Hope",
+          "tree": "Piety",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.99,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Solar Flares now grants you 1 Solar Power and increase the targets chance to be critically struck by spells by 3% for 8 seconds.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "Vow of the Valkyr",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Auto attacks generate 1 Solar Power and deal 10% increased damage.\n\nFulfillment: Melee ability damage triggers an auto attack with each weapon.\n\nOnly 1 Vow can be active at a time."
+        }
+      ]
+    },
+    "Solar Prayer": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Recite a solar prayer, instantly healing you for 25% of your maximum health plus an additional 100 + 100% SP, scaling with spell power.\n\nUsable while stunned.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Blessing of Kings",
+          "tree": "Seraphim",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Critical strikes now reduce the cooldown of Hammer of Kings and Solar Prayer by -1."
+        }
+      ]
+    },
+    "Stalwart": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Melee critical strikes against you prevent you from being critically struck again for 4 seconds.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 6,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Stand Against Darkness": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "During the day you now deal -10% more Holy damage and take -10% reduced periodic damage.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 2,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Struck by the Sun": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 30 Passive\nIncreases your Holy and Fire spell damage by 30% and your spell hit rating by 6% of your Intellect.",
+      "baseTree": "Piety",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Sun Down": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$9c",
+      "baseTree": "Piety",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Sun Gate": {
+      "lanes": [
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Shift 25 yds forward at light speed, removing all root effects.\n\nThis leaves behind a Sun Gate for 15 seconds that allies can interact with to blink themselves the same distance forward. Allies can only use Sun Gate every 90 seconds.",
+      "baseTree": "Piety",
+      "basePosition": {
+        "x": 1,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Sun Shield": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces your chance to be hit by spells by -3%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Sun Stride": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Rush forward at a high speed for 2 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Leap of the Valkyrie",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Sun Stride by -4 sec."
+        }
+      ]
+    },
+    "Sun Worship": {
+      "lanes": [
+        "STATS",
+        "HASTE",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your healing power by 15% of your Intellect and your spell haste rating by 25% of your Intellect.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Sun-Touched Armor": {
+      "lanes": [
+        "STATS",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your Armor by 150% of your Strength and Intellect and increases your total Stamina by 15%.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Sunflare": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CAST",
+        "COST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Scorch Marks",
+          "tree": "Piety",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Dawnsear and Sunflare now have a 40% chance to grant Scorch Marks for 10 seconds.Scorch MarksYour next Radiant Flame has no mana cost, ticks -50% faster, and its duration is reduced by -50%."
+        },
+        {
+          "talent": "Burning Cascade",
+          "tree": "Piety",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time and mana cost of Dawnsear and Sunflare by -20%."
+        },
+        {
+          "talent": "Wrath of God",
+          "tree": "Piety",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            },
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 21.2,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Sunflare and Dawnsear by 6% and reduces spell pushback suffered from damaging attacks by 100%."
+        },
+        {
+          "talent": "Grace",
+          "tree": "Piety",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell damage bonus of Dawnsear by 20% and Sunflare by 10%."
+        }
+      ]
+    },
+    "Sunrise": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Solar Concord",
+          "tree": "Piety",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Resets the cooldown of Horusath Blast while in Sunrise and Rapture while in Sunset and causes their damage dealt to launch a Solar Flare. Lasts 15 seconds.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "Holy Fervor",
+          "tree": "Piety",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Sunrise and Sunset by 20%."
+        },
+        {
+          "talent": "Learning Light",
+          "tree": "Piety",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Entering Sunset or Sunrise increases your spell haste by 20%. Lasts for 10 seconds or 3 casts."
+        },
+        {
+          "talent": "Day Cycles",
+          "tree": "Piety",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.1,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nWhile in Sunrise, the remaining cooldown of Horusath Blast is reduced by 10% every 1 sec.\n\nWhile in Sunset, the remaining cooldown of Rapture is reduced by 10% every 1 sec."
+        }
+      ]
+    },
+    "Sunrise and Sunset": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$a0",
+      "baseTree": "Piety",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": []
+    },
+    "Sunset": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Solar Concord",
+          "tree": "Piety",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Resets the cooldown of Horusath Blast while in Sunrise and Rapture while in Sunset and causes their damage dealt to launch a Solar Flare. Lasts 15 seconds.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+        },
+        {
+          "talent": "Holy Fervor",
+          "tree": "Piety",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Sunrise and Sunset by 20%."
+        },
+        {
+          "talent": "Learning Light",
+          "tree": "Piety",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Entering Sunset or Sunrise increases your spell haste by 20%. Lasts for 10 seconds or 3 casts."
+        },
+        {
+          "talent": "Day Cycles",
+          "tree": "Piety",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.1,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nWhile in Sunrise, the remaining cooldown of Horusath Blast is reduced by 10% every 1 sec.\n\nWhile in Sunset, the remaining cooldown of Rapture is reduced by 10% every 1 sec."
+        }
+      ]
+    },
+    "Sunslam": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Radiant Marks",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Reduces the channel time of Sunslam by 1 sec."
+        },
+        {
+          "talent": "Fervor of the Sun",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Fulfilling a Vow now increases the damage of your Sunslam by 10% for 1 minute, stacking 5 times."
+        },
+        {
+          "talent": "It's Always Sunny",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Activating Dawn now reduces the cooldowns of Radiance, Valkyr's Calling, and Sunslam by 10%."
+        },
+        {
+          "talent": "Light's Blessing",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Sunslam now reduces the cooldown of Pendant of the Sun by -10 sec."
+        }
+      ]
+    },
+    "Sunsworn": {
+      "lanes": [
+        "DMG",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Physical damage dealt by 6% and auto attacks now have a 10% chance to restore 3% of your maximum mana.",
+      "baseTree": "Valkyrie",
+      "basePosition": {
+        "x": 6,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Sunwalker": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Radiant Power",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Each stack of Sunwalker now increases the critical strike chance of Shine by 3%."
+        }
+      ]
+    },
+    "Sunwell": {
+      "lanes": [
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Become an embodiment of the sun for 30 seconds that periodically dispels fear, sleep, and charm effects every 3 sec from allies within 40 yds.",
+      "baseTree": "Piety",
+      "basePosition": {
+        "x": 7,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Swift Justice": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your haste by 6%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "The Chosen": {
+      "lanes": [
+        "DMG",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Hope",
+          "tree": "Seraphim",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "When the absorption shield from The Chosen is depleted, it explodes for 80 + 25% AP + 45% holy SP Holy damage, split between enemies within 8 yds."
+        }
+      ]
+    },
+    "The Redeemer": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 50 Passive\nWhen you critically heal your target, they will be healed for 30% of the amount originally healed the next time they take damage. Lasts 15 seconds.",
+      "baseTree": "Blessings",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Valiance": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your melee attack speed by 15% and your first auto attack on a target hits twice.",
+      "baseTree": "Seraphim",
+      "basePosition": {
+        "x": 3,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Valkyr's Calling": {
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Target an enemy and leap into the air, becoming immune to all physical attacks and spells for 2 seconds. \n\nAt the end of the duration, you charge back down, dealing 428 + 100% AP + 22.5% SP Holy damage to all enemies within 8 yds.",
+      "baseTree": "Valkyrie",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "It's Always Sunny",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Activating Dawn now reduces the cooldowns of Radiance, Valkyr's Calling, and Sunslam by 10%."
+        },
+        {
+          "talent": "Last Call",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Valkyr's Calling by 1 sec."
+        },
+        {
+          "talent": "By The Light",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Valkyr's Calling by 50%."
+        }
+      ]
+    },
+    "Valkyr's Grip": {
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your off-hand Weapon Damage dealt by 40% and reduces the duration of disarm effects by -30%.",
+      "baseTree": "Valkyrie",
+      "basePosition": {
+        "x": 3,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Valkyrie's Watch": {
+      "lanes": [
+        "DMG",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Damage that would take you below 35% health and damage taken while below 35% health is reduced by 25%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Valorous Champion": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your attack power by 25% and your spell hit rating by 5% of your Strength.",
+      "baseTree": "Valkyrie",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Vow": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HEAL",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sunlight",
+          "tree": "Blessings",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Solar Invocation: Resplendence"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nFulfilling your Vow now unleashes Sunlight restoring 25 + 15% healing health to up to 5 allies within 40 yds, prioritizing the lowest health allies."
+        },
+        {
+          "talent": "Dawnguard",
+          "tree": "Seraphim",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Fulfilling a Vow now increases your block chance by 2% for 15 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Fervor of the Sun",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Fulfilling a Vow now increases the damage of your Sunslam by 10% for 1 minute, stacking 5 times."
+        },
+        {
+          "talent": "Trial of Valor",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Fulfilling a Vow now reduces the cooldown of Horusath Blast by -2 sec."
+        },
+        {
+          "talent": "Vow of the Valkyr",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Auto attacks generate 1 Solar Power and deal 10% increased damage.\n\nFulfillment: Melee ability damage triggers an auto attack with each weapon.\n\nOnly 1 Vow can be active at a time."
+        },
+        {
+          "talent": "Solar Empowerment",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Fulfilling your Vow now unleashes a chain of light at your target, dealing 91 + 23% holy SP + 10% AP Holy damage and then bouncing to up to 5 additional enemies, dealing reduced damage with each strike."
+        }
+      ]
+    },
+    "Vow of Dawn": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Heaven\u2019s Appraisal",
+          "tree": "Blessings",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nIncreases the effectiveness of your Fulfillment effects by 25%.\n\nIn addition, the Fulfillment effect granted by Vow of Dawn now triples the amount of targets struck."
+        }
+      ]
+    },
+    "Vow of Grace": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Final Vows",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Fulfilling your Vow of Grace now also reduces the cooldown of the triggered ability by 10%."
+        },
+        {
+          "talent": "Luminary Mendicant",
+          "tree": "Seraphim",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the mana restored by Vow of Grace by 100%."
+        },
+        {
+          "talent": "Arbiter of Grace",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "While Vow of Grace is active, your Glorious Execution now regenerates an additional 15% mana equal to the damage dealt."
+        }
+      ]
+    },
+    "Vow of Light": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Taking Vows",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Vow of Light now heals for an additional 5% of damage taken or direct healing done by you."
+        },
+        {
+          "talent": "Arbiter of Light",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "While Vow of Light is active, your Gavel of Light now restores an additional 100% health equal to the damage dealt."
+        }
+      ]
+    },
+    "Vow of the Eclipse": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Twilight",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            },
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 18.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Applying Vow of the Eclipse now blinds enemies struck, increasing their chance to miss their next attack by -10% for 6 seconds, stacking 5 times. Does not work on bosses.\n\nIn addition, increases the effectiveness of the Fulfillment effect of Vow of the Eclipse by 100%."
+        }
+      ]
+    },
+    "Vow of the Valkyr": {
+      "lanes": [
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Vindicator",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Your Glorious Execution now ignores -20% of the target's armor while Vow of the Valkyr is active."
+        },
+        {
+          "talent": "Holy Giant",
+          "tree": "Valkyrie",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nDoubles the effectiveness of Vow of the Valkyr."
+        }
+      ]
+    },
+    "Warmth": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Direct healing now increases the target's health by 300 for 15 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "llluminations": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Solar Invocation: Resplendence",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Invoke the grace of An'she for 8 seconds, causing your llluminations to be instant cast and guaranteed to critically strike, but cost 100% more mana."
+        }
+      ]
+    }
+  }
+}

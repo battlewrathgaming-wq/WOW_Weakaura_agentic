@@ -1,0 +1,41 @@
+{
+  "$id": "proc_alert_icon.schema.json",
+  "opportunity_type": "proc_alert",
+  "title": "Proc alert (icon, standalone)",
+  "description": "A second-order (talent/passive) ability with ProcChance < 100, used as its OWN icon. Per HUD_DESIGN.md, only use this template when the procced ability has no existing Rotation button to react in place - otherwise use this same opportunity type as a glow_source on a cooldown_tracker_icon instead.",
+  "region_type": "icon",
+  "trigger": "Combat Log (Spell Cast Success / Aura Applied)",
+  "type": "object",
+  "required": [
+    "name",
+    "spell_id",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "spell_id": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 40
+    },
+    "height": {
+      "type": "number",
+      "default": 20
+    }
+  },
+  "verified": "Trigger category confirmed in Prototypes.lua ('Combat Log', line 3157); the specific Spell Cast Success/Aura Applied sub-filter matches WEAKAURA_INDEX.md's existing proc_alert row, not independently re-verified field-by-field this pass."
+}

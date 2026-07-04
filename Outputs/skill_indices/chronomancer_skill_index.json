@@ -1,0 +1,6401 @@
+{
+  "class": "Chronomancer",
+  "schemaVersion": 2,
+  "laneTaxonomy": {
+    "DMG": "Damage",
+    "STATS": "Primary/secondary stats",
+    "CRIT": "Crit chance/damage",
+    "CDR": "Cooldown",
+    "CAST": "Cast time",
+    "HASTE": "Haste",
+    "SPEED": "Movement speed",
+    "HEAL": "Healing",
+    "SHIELD": "Shield/absorb",
+    "MITIGATION": "Damage mitigation",
+    "RESOURCE": "Resource generation",
+    "COST": "Resource cost",
+    "DURATION": "Duration",
+    "AOE": "AoE / target count",
+    "CC": "Crowd control",
+    "ARMOR": "Armor",
+    "SUMMON": "Summon / pet",
+    "MISC": "Other"
+  },
+  "note": "Per-skill index: for each observed skill/ability, lists every talent that modifies it, where it sits in the tree, its parsed stat modification, and a mock value showing that modification applied to a normalized baseline of 10. Each modifying talent is tagged with one or more lanes from laneTaxonomy (DMG/CRIT/CDR/CAST/HASTE/SPEED/HEAL/SHIELD/MITIGATION/RESOURCE/COST/DURATION/AOE/CC/ARMOR/SUMMON/MISC), plus cross-cutting behavior flags (PROC, STACK) that describe how the effect triggers rather than what stat it touches. A handful of nodes have unresolved \"$xx\" template descriptions in the source export - these are flagged rather than guessed at.",
+  "mockBaseline": 10,
+  "skills": {
+    "Accelerate": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Hands of Time",
+          "tree": "Artificer",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Accelerate and Decelerate spells by 25%."
+        }
+      ]
+    },
+    "Accelerated Recovery": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Accelerates the bodies natural healing process, healing the target for 60 + 115% healing over 15 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Fortify Timeline",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Fortify the current timeline, instantly healing all allies for 100 + 40% SP and extending the duration of Accelerated Recovery on them by 5 sec."
+        },
+        {
+          "talent": "Eternal",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "sec"
+            },
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of your Accelerated Recovery by 6 sec and Decomposition by 3 sec."
+        },
+        {
+          "talent": "Keep Accelerating",
+          "tree": "Time",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Accelerated Recovery now applies to an additional nearby target."
+        },
+        {
+          "talent": "Chronicler",
+          "tree": "Time",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Fortify Timeline now extends the duration of Accelerated Recovery on all targets within 40 yds by an additional 10 sec."
+        },
+        {
+          "talent": "Epic Recovery",
+          "tree": "Time",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "When you cast Epoch you now also cast a Rank 1 Epoch on up to 5 allies affected by Accelerated Recovery."
+        }
+      ]
+    },
+    "Aeon": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "CDR",
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Fabric of Time",
+          "tree": "Time",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Alter the fabric of time, healing an ally for 158 + 64% healing.\n\nYour next Aeon used within 8 seconds will trigger with no cooldown or cost."
+        },
+        {
+          "talent": "Shimmering Shard",
+          "tree": "Time",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Activating Aeon spells now grants you 4% increased damage and healing for 20 seconds, stacking 3 times."
+        },
+        {
+          "talent": "Through The Aeons",
+          "tree": "Time",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "STATS"
+          ],
+          "flags": [],
+          "description": "Activating an Aeon now increases your mana regeneration from Spirit by 100% for 8 seconds."
+        },
+        {
+          "talent": "Timeblender",
+          "tree": "Time",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Guarantees healing done by Fabric of Time to critically strike and gives it an additional charge.Fabric of Time (Timeblender)2 Charges, 15 sec recharge\nAlter the fabric of time, healing an ally for 529 + 64% healing.\n\nYour next Aeon used within 8 seconds will trigger with no cooldown."
+        }
+      ]
+    },
+    "Aeons": {
+      "lanes": [
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Time Beacon",
+          "tree": "Time",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 8.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of effects applied by your Aeons by 8 sec."
+        },
+        {
+          "talent": "Cycling Aeons",
+          "tree": "Time",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Aeons by -50%."
+        }
+      ]
+    },
+    "Ahead of the Game": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Every 10th instance of your damage dealt or healing now gives you 60 increased spell power for 10 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Anomaly Spike": {
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Anomaly Spikes",
+          "tree": "Infinite",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Periodic damage dealt now has a 15% chance to launch an Anomaly Spike at your target.\nAnomaly SpikeDeals cond(gt(SPA, SPS), 161*1+SPA*0.25, 161*1+SPS*0.25) Chromatic Damage."
+        },
+        {
+          "talent": "End of Time",
+          "tree": "Infinite",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "At the end of the duration of Clasp of Infinity, you launch an Anomaly Spike at affected enemies and their damage dealt is reduced by -10% for 4 seconds.Anomaly SpikeDeals cond(gt(SPA, SPS), 161*1+SPA*0.25, 161*1+SPS*0.25) Chromatic Damage."
+        }
+      ]
+    },
+    "Anomaly Spikes": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CAST",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Chromatic Shard",
+          "tree": "Infinite",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "DMG",
+            "CAST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Fling a shard of chaos at an enemy, dealing 209 + 150% SP Chromatic Damage, piercing immunities and resistances.\n\nDealing damage with Anomaly Spikes reduces the cast time of this ability by -10% for 30 seconds, stacking 10 times."
+        },
+        {
+          "talent": "Unearthed Power",
+          "tree": "Infinite",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Damage dealt by Anomaly Spikes now also increases your damage and critical strike chance with Chromatic Shard by 6% per stack."
+        },
+        {
+          "talent": "Shifting Chaos",
+          "tree": "Infinite",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Chromatic Shard and Anomaly Spikes now deal an additional 20% their damage dealt as Chromatic Damage all nearby enemies."
+        },
+        {
+          "talent": "Erasion",
+          "tree": "Infinite",
+          "position": {
+            "x": 3,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.6,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger Anomaly Spikes by 5% and their damage by 20%."
+        },
+        {
+          "talent": "Null Orbs",
+          "tree": "Infinite",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Periodic critical damage dealt now has a 20% chance to grant a Null Orb for 15 seconds.Null Orb (Proc)Increases the critical damage of Chromatic Shard and Anomaly Spikes based on your spell critical strike rating.\n\nCritically striking with Chromatic Shard removes Null Orb."
+        }
+      ]
+    },
+    "Artificer's Empowerment": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Spirit by 25%.",
+      "baseTree": "Artificer",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Artificer's Wand": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CDR",
+        "CAST",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Wand Master",
+          "tree": "Artificer",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Wand of Time and Artificer's Wand by 20%."
+        },
+        {
+          "talent": "Discovery",
+          "tree": "Artificer",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Artificers's Wand and Wand of Time now grants Discovery for 30 seconds, stacking 4 times. DiscoveryAt 3 stacks, your next Wand of Time or Artificer's Wand causes an additional 1 + 21.2% arcane SP + 25% Spirit + 10% ranged AP Arcane Damage, scaling with Spirit."
+        },
+        {
+          "talent": "Bronze Echoes",
+          "tree": "Artificer",
+          "position": {
+            "x": 5,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -0.2,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Artificer's Wand by -0.2 sec."
+        },
+        {
+          "talent": "Elder Wand",
+          "tree": "Artificer",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Your Wand attacks now have a 30% chance to increase the damage of Artificer's Wand against the target by 3% for 15 seconds, stacking 10 times."
+        },
+        {
+          "talent": "Clocked In",
+          "tree": "Artificer",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Discordance now makes your next Artificer's Wand within 10 seconds instant cast and causes it to generate an additional Echo Fragment."
+        },
+        {
+          "talent": "Resonance",
+          "tree": "Artificer",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Artificer's Wand or Crystal Cannon now has a 35% chance to reduce the cooldown of Hasten by -1 sec."
+        },
+        {
+          "talent": "Aether Compression",
+          "tree": "Artificer",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nArtificer's Wand and Reverse Wound can be cast while moving for 5 seconds.\n\nDuration increased by 5 sec per Echo Fragment.\n\nCan only have 1 Continuum spell active at a time."
+        }
+      ]
+    },
+    "Artificers's Wand": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Discovery",
+          "tree": "Artificer",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Artificers's Wand and Wand of Time now grants Discovery for 30 seconds, stacking 4 times. DiscoveryAt 3 stacks, your next Wand of Time or Artificer's Wand causes an additional 1 + 21.2% arcane SP + 25% Spirit + 10% ranged AP Arcane Damage, scaling with Spirit."
+        }
+      ]
+    },
+    "Babify": {
+      "lanes": [
+        "DMG",
+        "CAST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Life Cycles",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.25,
+              "unit": "sec"
+            },
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of your Babify by 0.25 sec and its mana cost by -15%."
+        },
+        {
+          "talent": "Mass Babify",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Instantly transform all enemies within 10 yds into a baby, preventing them from acting for 40 seconds, damage dealt will interrupt this effect. \n\nWhile babified, enemies will rapidly regenerate health. \n\nScales with modifiers to Babify."
+        }
+      ]
+    },
+    "Backtrack": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Tripping the Rift",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Clasp of Infinity now reduces the cooldown of Backtrack by -10 sec."
+        }
+      ]
+    },
+    "Borrowed Time": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Taking Physical damage now heals you equal to 10% of the damage dealt. Can only occur once per sec.",
+      "baseTree": "Artificer",
+      "basePosition": {
+        "x": 1,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Chromatic Shard": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "DURATION",
+        "AOE",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Unearthed Power",
+          "tree": "Infinite",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Damage dealt by Anomaly Spikes now also increases your damage and critical strike chance with Chromatic Shard by 6% per stack."
+        },
+        {
+          "talent": "Time Means Nothing",
+          "tree": "Infinite",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Chromatic Shard now increases the target's spell damage taken by 10% for 30 seconds."
+        },
+        {
+          "talent": "Incarnation of Chaos",
+          "tree": "Infinite",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Transform into an Incarnate of Chaos, instantly resetting the cooldown of Chromatic Shard and causing your next cast to not incur a cooldown.\n\nIn addition, your damage dealt is increased by 15% for 15 seconds."
+        },
+        {
+          "talent": "Infinity Crash",
+          "tree": "Infinite",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of Discordance and Chromatic Shard by 50%."
+        },
+        {
+          "talent": "Black Hole",
+          "tree": "Infinite",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Chromatic Shard, Melt Reality and Unmake by 15% against slowed enemies."
+        },
+        {
+          "talent": "Chaos Fusion",
+          "tree": "Infinite",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "While Incarnation of Chaos is active, you may now cast Chromatic Shard while moving, but the duration of Incarnation of Chaos is reduced by -3 sec."
+        },
+        {
+          "talent": "Pure Chaos",
+          "tree": "Infinite",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Incarnation of Chaos is active, all damage dealt now has a 10% chance to lock yourself in a time loop for 3 seconds, making you unable to cast any spells other than Chromatic Shard.\n\nWhile active, you cast Chromatic Shard free of cost, repeating every 1 sec."
+        },
+        {
+          "talent": "Shifting Chaos",
+          "tree": "Infinite",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Chromatic Shard and Anomaly Spikes now deal an additional 20% their damage dealt as Chromatic Damage all nearby enemies."
+        },
+        {
+          "talent": "Aeon Rend",
+          "tree": "Infinite",
+          "position": {
+            "x": 5,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Chromatic Shard now has a 25% chance to strike again and incur no cooldown."
+        },
+        {
+          "talent": "Null Orbs",
+          "tree": "Infinite",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Periodic critical damage dealt now has a 20% chance to grant a Null Orb for 15 seconds.Null Orb (Proc)Increases the critical damage of Chromatic Shard and Anomaly Spikes based on your spell critical strike rating.\n\nCritically striking with Chromatic Shard removes Null Orb."
+        }
+      ]
+    },
+    "Chronological": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Excruciating Discord",
+          "tree": "Infinite",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your Discordances used with Chronological are now guaranteed to critically strike."
+        }
+      ]
+    },
+    "Chronostasis": {
+      "lanes": [
+        "SPEED",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Temporal Dissonance",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SPEED",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Chronostasis now slows your target's movement speed by an additional -10%."
+        }
+      ]
+    },
+    "Clasp of Infinity": {
+      "lanes": [
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Conjure a magical binding upon an enemy that bounces to nearby enemies, rooting them in place for 4 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Tripping the Rift",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Clasp of Infinity now reduces the cooldown of Backtrack by -10 sec."
+        },
+        {
+          "talent": "Eternity",
+          "tree": "Infinite",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Clasp of Infinity now increases your damage dealt to the target by 15%."
+        },
+        {
+          "talent": "End of Time",
+          "tree": "Infinite",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "At the end of the duration of Clasp of Infinity, you launch an Anomaly Spike at affected enemies and their damage dealt is reduced by -10% for 4 seconds.Anomaly SpikeDeals cond(gt(SPA, SPS), 161*1+SPA*0.25, 161*1+SPS*0.25) Chromatic Damage."
+        }
+      ]
+    },
+    "Continuum": {
+      "lanes": [
+        "DMG",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Echo Fragments",
+          "tree": "Artificer",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Waves of Time"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nWand of Time now generates an Echo Fragment, which can be used to unleash Distortion and Continuum spells.\n\nDecomposition is now a Distortion spell, dealing increased damage based on how many Echo Fragments you have."
+        },
+        {
+          "talent": "Singularity Core",
+          "tree": "Artificer",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nEmpower your Wand attacks to deal an additional 50% Ranged Weapon Damage plus 2 + 25% SP + 12% ranged AP additional Arcane damage for 3 sec plus 5 sec per Echo Fragment.\n\nCan only have 1 Continuum spell active at a time."
+        },
+        {
+          "talent": "Conduction Burst",
+          "tree": "Artificer",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Shatter Echo now deals 20% additional damage while a Continuum spell is active."
+        },
+        {
+          "talent": "Flux Emitter",
+          "tree": "Artificer",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nEmpower Wand attacks to affect up to 2 additional nearby enemies for 3 sec plus 5 sec per Echo Fragment. \n\nAffected attacks deal less damage per additional enemy hit.\n\nCan only have 1 Continuum spell active at a time."
+        },
+        {
+          "talent": "Paradox Cannon",
+          "tree": "Artificer",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nGenerate 1 Echo Fragment every 3 sec for 5 seconds, plus an additional 5 sec per Echo Fragment consumed.\n\nCan only have 1 Continuum spell active at a time."
+        },
+        {
+          "talent": "Tamed Incantations",
+          "tree": "Artificer",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Continuum spells per Echo Fragment consumed by 0.5 sec."
+        },
+        {
+          "talent": "Time Is A Circle",
+          "tree": "Artificer",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nCasting Wand of Time now extends the duration of your Continuum spells by 3 sec.\n\nContinuum spells cannot be extended beyond their maximum duration."
+        },
+        {
+          "talent": "Aether Compression",
+          "tree": "Artificer",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nArtificer's Wand and Reverse Wound can be cast while moving for 5 seconds.\n\nDuration increased by 5 sec per Echo Fragment.\n\nCan only have 1 Continuum spell active at a time."
+        }
+      ]
+    },
+    "Continuum Restoration": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Restore the continuum at target location for all allies and enemies, removing all beneficial magic effects from enemies and harmful magic effects from allies.\n\nThis dispel is potent enough to remove magic effects that are normally undispellable",
+      "baseTree": "Time",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Continuum Spell": {
+      "lanes": [
+        "DMG",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Singularity Core",
+          "tree": "Artificer",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nEmpower your Wand attacks to deal an additional 50% Ranged Weapon Damage plus 2 + 25% SP + 12% ranged AP additional Arcane damage for 3 sec plus 5 sec per Echo Fragment.\n\nCan only have 1 Continuum spell active at a time."
+        },
+        {
+          "talent": "Flux Emitter",
+          "tree": "Artificer",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nEmpower Wand attacks to affect up to 2 additional nearby enemies for 3 sec plus 5 sec per Echo Fragment. \n\nAffected attacks deal less damage per additional enemy hit.\n\nCan only have 1 Continuum spell active at a time."
+        },
+        {
+          "talent": "Paradox Cannon",
+          "tree": "Artificer",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nGenerate 1 Echo Fragment every 3 sec for 5 seconds, plus an additional 5 sec per Echo Fragment consumed.\n\nCan only have 1 Continuum spell active at a time."
+        },
+        {
+          "talent": "Aether Compression",
+          "tree": "Artificer",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nArtificer's Wand and Reverse Wound can be cast while moving for 5 seconds.\n\nDuration increased by 5 sec per Echo Fragment.\n\nCan only have 1 Continuum spell active at a time."
+        }
+      ]
+    },
+    "Correct the Mistake": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Retell the fate of party members within 30 yds, healing them for 91 + 68.57% healing.",
+      "baseTree": "Time",
+      "basePosition": {
+        "x": 4,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Time Wizard",
+          "tree": "Time",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of your Reverse Wound, Epoch, and Correct the Mistake by 15%."
+        },
+        {
+          "talent": "Overcorrection",
+          "tree": "Time",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Overhealing done by Correct the Mistake now applies a heal over time effect to the ally equal to 30% of the healing done over 5 seconds."
+        },
+        {
+          "talent": "Bronze Timeways",
+          "tree": "Time",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CAST",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Correct the Mistake now grants 2 stacks of Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times."
+        },
+        {
+          "talent": "Converge the Infinite",
+          "tree": "Time",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 8.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.8,
+          "lanes": [
+            "CRIT",
+            "CDR",
+            "CAST",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Casting Fortify Timeline now grants you Converge the Infinite.Converge the InfiniteYour next Correct the Mistake has a 1 sec increased cast time, but heals for 30% more and is guaranteed to critically strike.\n\nSuccessfully healing an ally in this way reduces the cooldown of Fortify Timeline by 8%."
+        }
+      ]
+    },
+    "Crystal Cannon": {
+      "lanes": [
+        "STATS",
+        "CDR",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Splitting Time",
+          "tree": "Artificer",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Crystal Cannon now strikes 2 additional nearby enemies."
+        },
+        {
+          "talent": "Resonance",
+          "tree": "Artificer",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Artificer's Wand or Crystal Cannon now has a 35% chance to reduce the cooldown of Hasten by -1 sec."
+        },
+        {
+          "talent": "Wand Mastery",
+          "tree": "Artificer",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "STATS"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Wand of Time and Shatter Echo now have a 25% chance to unleash Crystal Cannon, launching 2 quick lesser Wand auto attacks at the enemy over 1 seconds, scaling with Spirit.\n\nWhile Paradox Cannon is active, the chance to trigger this effect is increased by 10%."
+        }
+      ]
+    },
+    "Decelerate": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Hands of Time",
+          "tree": "Artificer",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Accelerate and Decelerate spells by 25%."
+        }
+      ]
+    },
+    "Decomposition": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Echo Fragments",
+          "tree": "Artificer",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Waves of Time"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nWand of Time now generates an Echo Fragment, which can be used to unleash Distortion and Continuum spells.\n\nDecomposition is now a Distortion spell, dealing increased damage based on how many Echo Fragments you have."
+        },
+        {
+          "talent": "Eternal",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "sec"
+            },
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of your Accelerated Recovery by 6 sec and Decomposition by 3 sec."
+        },
+        {
+          "talent": "Distorted Time",
+          "tree": "Infinite",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            },
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Timerend by -2 sec and increases the duration of Decomposition by 3 sec."
+        },
+        {
+          "talent": "Magic Erosion",
+          "tree": "Infinite",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Decomposition now applies Magic Erosion to the target, increasing attackers chance to hit the target with spells by 3% for 30 seconds."
+        }
+      ]
+    },
+    "Destabilize Time": {
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces enemy casting speed by -10% for 20 seconds, increasing by -10% every time they cast.\n\nGaining stacks does not extend the duration of the spell.",
+      "baseTree": "Infinite",
+      "basePosition": {
+        "x": 7,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Desynchronization": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Shift an enemy out of sync with the present, causing their grip to fail, disarming their melee and ranged weapons for 6 seconds.\n\nUpon removal, they are resynced, preventing them from regenerating their health for 6 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Dimensional Divergence": {
+      "lanes": [
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Swap places with a target.\n\nIf they're an enemy, you steal -80% of their movement speed for 3 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": [
+        {
+          "talent": "The Bieko Effect",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "While Hasten is active the cooldowns of Dimensional Divergence, Temporal Anomaly, and Temporal Focus are reduced by 10% every 2 sec."
+        }
+      ]
+    },
+    "Discordance": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Caverns of Time",
+          "tree": "Artificer",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Discordance now generates 1 Echo Fragment."
+        },
+        {
+          "talent": "Crystal Cannon",
+          "tree": "Artificer",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "STATS"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nCasting Discordance now unleashes the Crystal Cannon, launching 2 quick lesser Wand attacks at the enemy over 1 seconds, scaling with Spirit."
+        },
+        {
+          "talent": "Clocked In",
+          "tree": "Artificer",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Discordance now makes your next Artificer's Wand within 10 seconds instant cast and causes it to generate an additional Echo Fragment."
+        },
+        {
+          "talent": "Chronological",
+          "tree": "Infinite",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Every 20 sec, your next Discordance within 10 seconds is instant cast."
+        },
+        {
+          "talent": "Timelost Power",
+          "tree": "Infinite",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Discordance now strikes 3 additional enemies."
+        },
+        {
+          "talent": "Infinity Crash",
+          "tree": "Infinite",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of Discordance and Chromatic Shard by 50%."
+        }
+      ]
+    },
+    "Discordances": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Excruciating Discord",
+          "tree": "Infinite",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your Discordances used with Chronological are now guaranteed to critically strike."
+        }
+      ]
+    },
+    "Discovery": {
+      "lanes": [
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Archaeology",
+          "tree": "Artificer",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Your Discovery now also generates 3% of your base mana and health."
+        }
+      ]
+    },
+    "Displacement": {
+      "lanes": [
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Displaces a party or raid member and pulls them to you, dispelling root and snare effects from them.",
+      "baseTree": "Time",
+      "basePosition": {
+        "x": 0,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Distortion": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Echo Fragments",
+          "tree": "Artificer",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Waves of Time"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nWand of Time now generates an Echo Fragment, which can be used to unleash Distortion and Continuum spells.\n\nDecomposition is now a Distortion spell, dealing increased damage based on how many Echo Fragments you have."
+        }
+      ]
+    },
+    "Distortion Spell": {
+      "lanes": [
+        "DMG",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Shatter Echo",
+          "tree": "Artificer",
+          "position": {
+            "x": 3,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Echo Fragments",
+            "Waves of Time"
+          ],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Distortion Spell\nLaunch a distorted echo from your wand at an enemy, dealing 90% Ranged Weapon damage plus cond(gt(SPA, SPH), 4+0+SPA*0.3, 4+0+SPH*0.3) Arcane damage.\n\nDamage increased by 40% for each Echo Fragment consumed."
+        },
+        {
+          "talent": "Arc Collision",
+          "tree": "Artificer",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Distortion Spell\nCreate a timestorm around an enemy that causes them and up to 2 nearby enemies to take 270 + 24% SP Arcane damage, repeating over 4 seconds. \n\nDuration increased by 2 sec for each Echo Fragment consumed."
+        }
+      ]
+    },
+    "Echo Fragment": {
+      "lanes": [
+        "DMG",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Shatter Echo",
+          "tree": "Artificer",
+          "position": {
+            "x": 3,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Echo Fragments",
+            "Waves of Time"
+          ],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Distortion Spell\nLaunch a distorted echo from your wand at an enemy, dealing 90% Ranged Weapon damage plus cond(gt(SPA, SPH), 4+0+SPA*0.3, 4+0+SPH*0.3) Arcane damage.\n\nDamage increased by 40% for each Echo Fragment consumed."
+        },
+        {
+          "talent": "Artificer's Wand",
+          "tree": "Artificer",
+          "position": {
+            "x": 5,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Echo Fragments",
+            "Waves of Time"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Transforms your Unmake into Artificer's Wand.Artificer's WandFocus to unleash 2 wand attacks dealing Ranged Weapon damage plus 5 over 1 seconds.\n\nGenerates 1 Echo Fragment."
+        },
+        {
+          "talent": "Echo Fragments",
+          "tree": "Artificer",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Waves of Time"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nWand of Time now generates an Echo Fragment, which can be used to unleash Distortion and Continuum spells.\n\nDecomposition is now a Distortion spell, dealing increased damage based on how many Echo Fragments you have."
+        },
+        {
+          "talent": "Caverns of Time",
+          "tree": "Artificer",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Discordance now generates 1 Echo Fragment."
+        },
+        {
+          "talent": "Singularity Core",
+          "tree": "Artificer",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nEmpower your Wand attacks to deal an additional 50% Ranged Weapon Damage plus 2 + 25% SP + 12% ranged AP additional Arcane damage for 3 sec plus 5 sec per Echo Fragment.\n\nCan only have 1 Continuum spell active at a time."
+        },
+        {
+          "talent": "Clocked In",
+          "tree": "Artificer",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Discordance now makes your next Artificer's Wand within 10 seconds instant cast and causes it to generate an additional Echo Fragment."
+        },
+        {
+          "talent": "Flux Emitter",
+          "tree": "Artificer",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nEmpower Wand attacks to affect up to 2 additional nearby enemies for 3 sec plus 5 sec per Echo Fragment. \n\nAffected attacks deal less damage per additional enemy hit.\n\nCan only have 1 Continuum spell active at a time."
+        },
+        {
+          "talent": "Paradox Cannon",
+          "tree": "Artificer",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nGenerate 1 Echo Fragment every 3 sec for 5 seconds, plus an additional 5 sec per Echo Fragment consumed.\n\nCan only have 1 Continuum spell active at a time."
+        },
+        {
+          "talent": "Tamed Incantations",
+          "tree": "Artificer",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Continuum spells per Echo Fragment consumed by 0.5 sec."
+        },
+        {
+          "talent": "Aether Compression",
+          "tree": "Artificer",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nArtificer's Wand and Reverse Wound can be cast while moving for 5 seconds.\n\nDuration increased by 5 sec per Echo Fragment.\n\nCan only have 1 Continuum spell active at a time."
+        },
+        {
+          "talent": "Arc Collision",
+          "tree": "Artificer",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Distortion Spell\nCreate a timestorm around an enemy that causes them and up to 2 nearby enemies to take 270 + 24% SP Arcane damage, repeating over 4 seconds. \n\nDuration increased by 2 sec for each Echo Fragment consumed."
+        }
+      ]
+    },
+    "Echo Fragments": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Concentrated Fate",
+          "tree": "Artificer",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Echo Fragments by 20%."
+        }
+      ]
+    },
+    "Endless Sands": {
+      "lanes": [
+        "CAST",
+        "HASTE",
+        "HEAL",
+        "RESOURCE",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Timeless",
+          "tree": "Time",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "While Endless Sands is active, the mana costs of your spells and abilities is reduced by -3% per stack."
+        },
+        {
+          "talent": "Bronze Timeways",
+          "tree": "Time",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CAST",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Correct the Mistake now grants 2 stacks of Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times."
+        },
+        {
+          "talent": "Wonders of Time",
+          "tree": "Time",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.24,
+          "lanes": [
+            "CAST",
+            "HASTE",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Increases the spell haste of all party and raid members by 3%.\n\nDoes not stack with similar effects.\n\nAdditionally, all healing done now has a 10% chance to grant you Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times."
+        }
+      ]
+    },
+    "Entropy Overload": {
+      "lanes": [
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your chance to resist movement slowing effects by 20%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Entropy Reversal": {
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the duration of disease effects by -40%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Epoch": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "CAST",
+        "HEAL",
+        "SHIELD",
+        "MITIGATION",
+        "RESOURCE",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Aeon of Resilience",
+          "tree": "Time",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 1,
+          "specialRequirement": [
+            "Accelerated Recovery"
+          ],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            },
+            {
+              "value": -10.0,
+              "unit": "%"
+            },
+            {
+              "value": -5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.41,
+          "lanes": [
+            "CAST",
+            "HEAL",
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nTeaches you Aeon of Resilience.Aeon of ResilienceReduces Epoch's cast time by -25% and it's mana cost by -10%, and healing done by it now reduces the target's damage taken by -5% for 6 seconds."
+        },
+        {
+          "talent": "Endless Sands",
+          "tree": "Time",
+          "position": {
+            "x": 5,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CAST",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Epoch now grants you Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times."
+        },
+        {
+          "talent": "Aeon of Protection",
+          "tree": "Time",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 15,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            },
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.22,
+          "lanes": [
+            "DMG",
+            "CAST",
+            "HEAL",
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Increases Epoch's cast time by 15%, healing done by 15%, and causes it to apply a damage absorption shield equal to 30% of the amount healed for 8 seconds."
+        },
+        {
+          "talent": "Time Wizard",
+          "tree": "Time",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of your Reverse Wound, Epoch, and Correct the Mistake by 15%."
+        },
+        {
+          "talent": "Cadence of Time",
+          "tree": "Time",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your critical strikes with Epoch now grant Cadence of Time, increasing the healing of Ripple by 10% for 15 seconds. Stacks 5 times."
+        },
+        {
+          "talent": "Carbon Dating",
+          "tree": "Time",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Each stack of Sands of Time now also increases the healing of your Epoch by 10%."
+        },
+        {
+          "talent": "Aeon of Renewal",
+          "tree": "Time",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Reduces Epoch's healing by -30%, but causes it to heal for an additional 50% of the amount healed over 3 seconds."
+        },
+        {
+          "talent": "Orderly Protector",
+          "tree": "Time",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Healing done by your Epoch now increases the healing of Fabric of Time by 10% for 10 seconds, stacking 10 times.\n\nEach stack gives you a 2% chance when you cast Fabric of Time to reset its own cooldown."
+        },
+        {
+          "talent": "Aeon of Oblivion",
+          "tree": "Time",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 15.0,
+              "unit": "%"
+            },
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 16.94,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases Epoch's mana cost by 30%, critical strike chance by 10%, and healing done by 15%. \n\nIn addition, healing with Epoch now increases the target's damage dealt by 3% for 15 seconds."
+        },
+        {
+          "talent": "Epic Recovery",
+          "tree": "Time",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "When you cast Epoch you now also cast a Rank 1 Epoch on up to 5 allies affected by Accelerated Recovery."
+        }
+      ]
+    },
+    "Erode Armaments": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your Wand attacks now reduce enemy attack power by 208 for 5 seconds.",
+      "baseTree": "Artificer",
+      "basePosition": {
+        "x": 7,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Eternity Warper": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$84",
+      "baseTree": "Time",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Fabric of Time": {
+      "lanes": [
+        "CRIT",
+        "CDR",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Orderly Protector",
+          "tree": "Time",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Healing done by your Epoch now increases the healing of Fabric of Time by 10% for 10 seconds, stacking 10 times.\n\nEach stack gives you a 2% chance when you cast Fabric of Time to reset its own cooldown."
+        },
+        {
+          "talent": "Timeblender",
+          "tree": "Time",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Guarantees healing done by Fabric of Time to critically strike and gives it an additional charge.Fabric of Time (Timeblender)2 Charges, 15 sec recharge\nAlter the fabric of time, healing an ally for 529 + 64% healing.\n\nYour next Aeon used within 8 seconds will trigger with no cooldown."
+        }
+      ]
+    },
+    "Flux Emitter": {
+      "lanes": [
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sporadic Incantations",
+          "tree": "Artificer",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Flux Emitter now strikes 1 additional enemy."
+        },
+        {
+          "talent": "Cheating Time",
+          "tree": "Artificer",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Shatter Echo now extends the duration of your Flux Emitter by 4 sec.\n\nCannot be extended beyond maximum duration."
+        }
+      ]
+    },
+    "Fortify Timeline": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "CAST",
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Mark of Order",
+          "tree": "Time",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Healing done by Fortify Timeline now applies Mark of Order.Mark of OrderIncreases the healing of your next Reverse Wound on the target by 10% for 20 seconds. \n\nEvery 1 sec for the duration, they gain an additional stack of this effect, up to 5."
+        },
+        {
+          "talent": "Chronicler",
+          "tree": "Time",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Fortify Timeline now extends the duration of Accelerated Recovery on all targets within 40 yds by an additional 10 sec."
+        },
+        {
+          "talent": "Timeline Tether",
+          "tree": "Time",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your periodic damage and healing reduces the cooldown of your Fortify Timeline by -1 sec."
+        },
+        {
+          "talent": "Converge the Infinite",
+          "tree": "Time",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 8.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.8,
+          "lanes": [
+            "CRIT",
+            "CDR",
+            "CAST",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Casting Fortify Timeline now grants you Converge the Infinite.Converge the InfiniteYour next Correct the Mistake has a 1 sec increased cast time, but heals for 30% more and is guaranteed to critically strike.\n\nSuccessfully healing an ally in this way reduces the cooldown of Fortify Timeline by 8%."
+        }
+      ]
+    },
+    "Gift of the Infinite Dragonflight": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your spell damage by 40% of your Spirit and your spell hit rating by 3% of your Spirit.",
+      "baseTree": "Infinite",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Gravity Bomb": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Place a gravity bomb on the target. After 6 seconds they explode for 979 + 120% SP + 30% ranged AP Chromatic Damage in a 10 yds radius.\n\nDirectly before the explosion occurs, all enemies within 15 yds are teleported to the initial target.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 8
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Chaos Omen",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Gravity Bomb by -30 sec, and its explosion occurs -3 sec faster."
+        },
+        {
+          "talent": "Charm of Power",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage dealt by Gravity Bomb by 50%."
+        }
+      ]
+    },
+    "Hasten": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "CAST",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Resonance",
+          "tree": "Artificer",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Artificer's Wand or Crystal Cannon now has a 35% chance to reduce the cooldown of Hasten by -1 sec."
+        },
+        {
+          "talent": "Unmaker of Realities",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Hasten is active the ally now has a 25% chance when they deal damage to strike the target an additional time equal to 30% of the damage dealt."
+        },
+        {
+          "talent": "Maker of Realities",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Casting Hasten now also always reduces the cast time of your healing spells by an additional -20%."
+        },
+        {
+          "talent": "The Bieko Effect",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "While Hasten is active the cooldowns of Dimensional Divergence, Temporal Anomaly, and Temporal Focus are reduced by 10% every 2 sec."
+        }
+      ]
+    },
+    "Hourglass of Eternity": {
+      "lanes": [
+        "DMG",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Periodic damage dealt now has a 5% chance to grant you 25% increased haste for 5 seconds.",
+      "baseTree": "Infinite",
+      "basePosition": {
+        "x": 4,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Ideal Time": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Every 30 sec, your next ability is guaranteed to critically strike.",
+      "baseTree": "Time",
+      "basePosition": {
+        "x": 2,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Impeccable Timing": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your periodic damage and healing effects can now critically strike.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Incarnate of Chaos": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Incarnation of Chaos",
+          "tree": "Infinite",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Transform into an Incarnate of Chaos, instantly resetting the cooldown of Chromatic Shard and causing your next cast to not incur a cooldown.\n\nIn addition, your damage dealt is increased by 15% for 15 seconds."
+        }
+      ]
+    },
+    "Incarnation of Chaos": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Chaos Fusion",
+          "tree": "Infinite",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "While Incarnation of Chaos is active, you may now cast Chromatic Shard while moving, but the duration of Incarnation of Chaos is reduced by -3 sec."
+        },
+        {
+          "talent": "Pure Chaos",
+          "tree": "Infinite",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Incarnation of Chaos is active, all damage dealt now has a 10% chance to lock yourself in a time loop for 3 seconds, making you unable to cast any spells other than Chromatic Shard.\n\nWhile active, you cast Chromatic Shard free of cost, repeating every 1 sec."
+        },
+        {
+          "talent": "Chaotic Time",
+          "tree": "Infinite",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Incarnation of Chaos is active, your Melt Reality deals 30% increased damage and replicates an additional 20% \n\nIn addition, periodic damage dealt now has a 5% chance to reduce the cooldown of Incarnation of Chaos by -1 sec."
+        }
+      ]
+    },
+    "Infinite Clone": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Infinite Sands",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Infinite Clone by -60 sec."
+        }
+      ]
+    },
+    "Infinite Power": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 10 Passive\nCasting damaging spells now reduces your damaging spell cooldowns by 10% of their remaining cooldown.",
+      "baseTree": "Infinite",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": []
+    },
+    "Infinite Shield": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Shield an ally with 10 charges of Infinite Shield for 30 seconds. Each time they take damage, they will be healed for 190 + 25% SP and lose 1 charge.\n\nCan only occur once per sec and can only affect 1 target at a time.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 8
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Infinity",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Removes the cooldown of Infinite Shield."
+        }
+      ]
+    },
+    "Infinity Stone": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 3%.",
+      "baseTree": "Artificer",
+      "basePosition": {
+        "x": 3,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Intuition": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 50 Passive\nIncreases your critical damage by 25%.",
+      "baseTree": "Artificer",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Luck": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Allows 80% of your mana regeneration to continue while in combat.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Melt Reality": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Melt the target's reality, dealing cond(gt(SPFR, SPS), 48+0+SPFR*0.23, 48+0+SPS*0.23) Chromatic Damage every 3 sec for 30 seconds.\n\nWhile active, periodic damage dealt to the target is replicated for 20% of the value to all enemies near them.",
+      "baseTree": "Infinite",
+      "basePosition": {
+        "x": 4,
+        "y": 1
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Mind Melt",
+          "tree": "Infinite",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.7,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Melt Reality now also reduces the target's primary attributes by -3% for 15 sec, stacking 5 times."
+        },
+        {
+          "talent": "Warping Reality",
+          "tree": "Infinite",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nCasting Waves of Time now grants you Warped Reality for 10 seconds.\nWarped Reality (Proc)Allows you to cast Unmake and Melt Reality while moving for 10 seconds."
+        },
+        {
+          "talent": "Black Hole",
+          "tree": "Infinite",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Chromatic Shard, Melt Reality and Unmake by 15% against slowed enemies."
+        },
+        {
+          "talent": "Paradox",
+          "tree": "Infinite",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Casting Melt Reality now causes your next Unmake or Reverse Wound within 6 seconds to become instant and cost -50% less mana."
+        },
+        {
+          "talent": "Gift of the Timeways",
+          "tree": "Infinite",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Casting Melt Reality now causes your Timerend and Unmake's periodic damage to benefit from haste for 10 seconds."
+        },
+        {
+          "talent": "Crown of Power",
+          "tree": "Infinite",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the tick rate of Melt Reality by -25%."
+        },
+        {
+          "talent": "Chaotic Time",
+          "tree": "Infinite",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While Incarnation of Chaos is active, your Melt Reality deals 30% increased damage and replicates an additional 20% \n\nIn addition, periodic damage dealt now has a 5% chance to reduce the cooldown of Incarnation of Chaos by -1 sec."
+        }
+      ]
+    },
+    "Mind Melt": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "End of Time",
+          "tree": "Infinite",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 50 Passive\nMind Melt now also increases the target's periodic damage taken from you by 6% per stack."
+        }
+      ]
+    },
+    "Null Orb": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Null Orbs",
+          "tree": "Infinite",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Periodic critical damage dealt now has a 20% chance to grant a Null Orb for 15 seconds.Null Orb (Proc)Increases the critical damage of Chromatic Shard and Anomaly Spikes based on your spell critical strike rating.\n\nCritically striking with Chromatic Shard removes Null Orb."
+        }
+      ]
+    },
+    "Paradox Cannon": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Wand Mastery",
+          "tree": "Artificer",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "STATS"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Wand of Time and Shatter Echo now have a 25% chance to unleash Crystal Cannon, launching 2 quick lesser Wand auto attacks at the enemy over 1 seconds, scaling with Spirit.\n\nWhile Paradox Cannon is active, the chance to trigger this effect is increased by 10%."
+        }
+      ]
+    },
+    "Perfect Timing": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your haste by 8% and reduces your spell pushback suffered from damaging attacks by 70%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Replenishment": {
+      "lanes": [
+        "DMG",
+        "HASTE",
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Reverse Engineering",
+          "tree": "Artificer",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "HASTE",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Periodic damage and healing now has a 15% chance to increase your haste by 15% for 6 seconds and grant allies Replenishment.ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+        }
+      ]
+    },
+    "Reverse Wound": {
+      "lanes": [
+        "CRIT",
+        "CAST",
+        "HEAL",
+        "COST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Aether Compression",
+          "tree": "Artificer",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Continuum Spell\nArtificer's Wand and Reverse Wound can be cast while moving for 5 seconds.\n\nDuration increased by 5 sec per Echo Fragment.\n\nCan only have 1 Continuum spell active at a time."
+        },
+        {
+          "talent": "Improved Reverse Wound",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -0.3,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Reverse Wound by -0.3 sec."
+        },
+        {
+          "talent": "Constant Recovery",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing done by Reverse Wound now increases all healing taken the target receives by 6% for 10 seconds."
+        },
+        {
+          "talent": "Paradox",
+          "tree": "Infinite",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Casting Melt Reality now causes your next Unmake or Reverse Wound within 6 seconds to become instant and cost -50% less mana."
+        },
+        {
+          "talent": "Time Wizard",
+          "tree": "Time",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of your Reverse Wound, Epoch, and Correct the Mistake by 15%."
+        },
+        {
+          "talent": "Mark of Order",
+          "tree": "Time",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Healing done by Fortify Timeline now applies Mark of Order.Mark of OrderIncreases the healing of your next Reverse Wound on the target by 10% for 20 seconds. \n\nEvery 1 sec for the duration, they gain an additional stack of this effect, up to 5."
+        }
+      ]
+    },
+    "Reverse Wounds": {
+      "lanes": [
+        "CAST",
+        "HASTE",
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Endless Sands",
+          "tree": "Time",
+          "position": {
+            "x": 5,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CAST",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Epoch now grants you Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times."
+        },
+        {
+          "talent": "Bronze Timeways",
+          "tree": "Time",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CAST",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Correct the Mistake now grants 2 stacks of Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times."
+        },
+        {
+          "talent": "Wonders of Time",
+          "tree": "Time",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.24,
+          "lanes": [
+            "CAST",
+            "HASTE",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Increases the spell haste of all party and raid members by 3%.\n\nDoes not stack with similar effects.\n\nAdditionally, all healing done now has a 10% chance to grant you Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times."
+        }
+      ]
+    },
+    "Ripple": {
+      "lanes": [
+        "HEAL",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Channel for up to 5 seconds. When the channel ends, if you channeled for at least 1.5 sec, allies within 40 yds are healed based on the duration of the channel.\n\nWhile channeling, you are immune to stun effects.",
+      "baseTree": "Time",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Cadence of Time",
+          "tree": "Time",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your critical strikes with Epoch now grant Cadence of Time, increasing the healing of Ripple by 10% for 15 seconds. Stacks 5 times."
+        },
+        {
+          "talent": "A Ripple In Time",
+          "tree": "Time",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your damaging and healing critical strikes now reduce the remaining cooldown of Ripple by -1 sec."
+        }
+      ]
+    },
+    "Rippling Power": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Spirit by 15%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Roll Back": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Time Skip",
+          "tree": "Time",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Roll Back now removes 1 additional harmful effect."
+        }
+      ]
+    },
+    "Sands of Life": {
+      "lanes": [
+        "STATS",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your healing power by 50% of your Spirit.",
+      "baseTree": "Time",
+      "basePosition": {
+        "x": 3,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Sands of Time": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Carbon Dating",
+          "tree": "Time",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Each stack of Sands of Time now also increases the healing of your Epoch by 10%."
+        }
+      ]
+    },
+    "Shatter Echo": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Hyperwand",
+          "tree": "Artificer",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage and critical damage of your Shatter Echo by 30%."
+        },
+        {
+          "talent": "Conduction Burst",
+          "tree": "Artificer",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Shatter Echo now deals 20% additional damage while a Continuum spell is active."
+        },
+        {
+          "talent": "Magic Sensitivity",
+          "tree": "Artificer",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Shatter Echo now increases the enemy's damage taken from you by 10% for 8 seconds."
+        },
+        {
+          "talent": "Pulse Driver",
+          "tree": "Artificer",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Singularity Core now increases the damage of Shatter Echo while its active by 30% and allows Shatter Echo to trigger its damage."
+        },
+        {
+          "talent": "Cheating Time",
+          "tree": "Artificer",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Shatter Echo now extends the duration of your Flux Emitter by 4 sec.\n\nCannot be extended beyond maximum duration."
+        },
+        {
+          "talent": "Wand Mastery",
+          "tree": "Artificer",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "STATS"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Wand of Time and Shatter Echo now have a 25% chance to unleash Crystal Cannon, launching 2 quick lesser Wand auto attacks at the enemy over 1 seconds, scaling with Spirit.\n\nWhile Paradox Cannon is active, the chance to trigger this effect is increased by 10%."
+        }
+      ]
+    },
+    "Shield of the Ages": {
+      "lanes": [
+        "CRIT",
+        "HEAL",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "When hit by a damaging critical strike, your damage taken is reduced by -3%, and healing received is increased by 5% for 3 seconds, stacking 3 times.",
+      "baseTree": "Time",
+      "basePosition": {
+        "x": 2,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Singularity Core": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Pulse Driver",
+          "tree": "Artificer",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Singularity Core now increases the damage of Shatter Echo while its active by 30% and allows Shatter Echo to trigger its damage."
+        }
+      ]
+    },
+    "Slipstream": {
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Target an enemy and slip them into a pocket dimension for 5 seconds, banishing them and making them immune to damage.\n\nActivate this ability again before the duration expires to choose a new location to place that enemy within 20 yds.",
+      "baseTree": "Infinite",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Temporal Anomaly": {
+      "lanes": [
+        "HEAL",
+        "SHIELD",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Augment reality for 10 seconds, causing 50% of the damage taken to be absorbed and converted into healing at the end of the duration.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "The Bieko Effect",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "While Hasten is active the cooldowns of Dimensional Divergence, Temporal Anomaly, and Temporal Focus are reduced by 10% every 2 sec."
+        }
+      ]
+    },
+    "Temporal Focus": {
+      "lanes": [
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "You lock yourself into a perfect moment, removing and becoming immune to banish, silence, and interrupt effects for 10 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "The Bieko Effect",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "While Hasten is active the cooldowns of Dimensional Divergence, Temporal Anomaly, and Temporal Focus are reduced by 10% every 2 sec."
+        }
+      ]
+    },
+    "Temporal Resilience": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Infinite Guard",
+          "tree": "Infinite",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nIncreases the effectiveness of your Temporal Resilience, Temporal Swiftness, and Temporal Restoration spells by 100%."
+        }
+      ]
+    },
+    "Temporal Restoration": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Infinite Guard",
+          "tree": "Infinite",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nIncreases the effectiveness of your Temporal Resilience, Temporal Swiftness, and Temporal Restoration spells by 100%."
+        }
+      ]
+    },
+    "Temporal Swiftness": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Infinite Guard",
+          "tree": "Infinite",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nIncreases the effectiveness of your Temporal Resilience, Temporal Swiftness, and Temporal Restoration spells by 100%."
+        }
+      ]
+    },
+    "The Vast Infinite": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "All party and raid members become one, equally sharing 25% of all damage dealt to them for 10 seconds, up to a maximum of 100% of their total health.\n\nAt the end of the duration, all affected allies are healed equal to the total damage shared split evenly amongst all allies.",
+      "baseTree": "Time",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Threads of Eternity": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$82",
+      "baseTree": "Artificer",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Time Out!": {
+      "lanes": [
+        "DMG",
+        "MITIGATION",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Expediting Time",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Reduces the channel time of your Time Out! by -40%."
+        },
+        {
+          "talent": "Nozdormu's Gaze",
+          "tree": "Time",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Your Time Out! now regenerates -2% less mana per tick, but casting it now instantly restores 15% of your maximum mana."
+        },
+        {
+          "talent": "Titan's Gaze",
+          "tree": "Time",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Your Time Out! no longer breaks on damage, but now only reduces damage taken by 15%."
+        }
+      ]
+    },
+    "Timeguard": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Place a magical guard on an ally for 2 minutes, causing the next 3 instances of direct damage that would reduce the target below 35% health to deal 40% less damage.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Timekeeper",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Timeguard by 25%."
+        },
+        {
+          "talent": "Procrastination",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Timeguard by -30 sec."
+        }
+      ]
+    },
+    "Timemage": {
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the duration of harmful magic effects on you by -30%.",
+      "baseTree": "Artificer",
+      "basePosition": {
+        "x": 8,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Timerend": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HASTE",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Gift of the Timeways",
+          "tree": "Infinite",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Casting Melt Reality now causes your Timerend and Unmake's periodic damage to benefit from haste for 10 seconds."
+        },
+        {
+          "talent": "Distorted Time",
+          "tree": "Infinite",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            },
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Timerend by -2 sec and increases the duration of Decomposition by 3 sec."
+        },
+        {
+          "talent": "Infinite Horizon",
+          "tree": "Infinite",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Increases the all damage dealt by party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, your Unmake and Timerend gain an additional 20% bonus spell scaling."
+        },
+        {
+          "talent": "Infinite Keeper",
+          "tree": "Infinite",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Using Unmake on an enemy affected by your Timerend now causes the enemy to erupt in a vortex of sand, dealing 81 Chromatic Damage every 1 sec to up to 8 enemies for 6 seconds in an 8 yd radius."
+        }
+      ]
+    },
+    "Unmake": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CAST",
+        "HASTE",
+        "RESOURCE",
+        "COST",
+        "AOE",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Artificer's Wand",
+          "tree": "Artificer",
+          "position": {
+            "x": 5,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Echo Fragments",
+            "Waves of Time"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Transforms your Unmake into Artificer's Wand.Artificer's WandFocus to unleash 2 wand attacks dealing Ranged Weapon damage plus 5 over 1 seconds.\n\nGenerates 1 Echo Fragment."
+        },
+        {
+          "talent": "Unearthed Pools",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.35,
+          "lanes": [
+            "CAST",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Unmake by -15% and reduces the mana cost of your instant spells by 10%."
+        },
+        {
+          "talent": "Deconstruction",
+          "tree": "Infinite",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Unmake by 10%."
+        },
+        {
+          "talent": "Warping Reality",
+          "tree": "Infinite",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nCasting Waves of Time now grants you Warped Reality for 10 seconds.\nWarped Reality (Proc)Allows you to cast Unmake and Melt Reality while moving for 10 seconds."
+        },
+        {
+          "talent": "Black Hole",
+          "tree": "Infinite",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Chromatic Shard, Melt Reality and Unmake by 15% against slowed enemies."
+        },
+        {
+          "talent": "Paradox",
+          "tree": "Infinite",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Casting Melt Reality now causes your next Unmake or Reverse Wound within 6 seconds to become instant and cost -50% less mana."
+        },
+        {
+          "talent": "Gift of the Timeways",
+          "tree": "Infinite",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Casting Melt Reality now causes your Timerend and Unmake's periodic damage to benefit from haste for 10 seconds."
+        },
+        {
+          "talent": "Infinite Horizon",
+          "tree": "Infinite",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Increases the all damage dealt by party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, your Unmake and Timerend gain an additional 20% bonus spell scaling."
+        },
+        {
+          "talent": "Infinite Keeper",
+          "tree": "Infinite",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Using Unmake on an enemy affected by your Timerend now causes the enemy to erupt in a vortex of sand, dealing 81 Chromatic Damage every 1 sec to up to 8 enemies for 6 seconds in an 8 yd radius."
+        },
+        {
+          "talent": "Buy Time",
+          "tree": "Time",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Put all enemies and allies in an 8 yd radius in target area into a stasis, banishing them for 6 seconds, making them invulnerable to all effects but unable to move.\n\nCasting Unmake on a target will remove this effect."
+        }
+      ]
+    },
+    "Unstable Chronoglass": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Place an Unstable Chronoglass at target location for 30 seconds that will redirect the next 3 offensive enemy spell casts onto itself.",
+      "baseTree": "Artificer",
+      "basePosition": {
+        "x": 1,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Fate Twister",
+          "tree": "Artificer",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Unstable Chronoglass by -30 sec."
+        }
+      ]
+    },
+    "Wand Expert": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your ranged attack power by 100% of your Spirit.",
+      "baseTree": "Artificer",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Wand of Time": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CDR",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Echo Fragments",
+          "tree": "Artificer",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Waves of Time"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nWand of Time now generates an Echo Fragment, which can be used to unleash Distortion and Continuum spells.\n\nDecomposition is now a Distortion spell, dealing increased damage based on how many Echo Fragments you have."
+        },
+        {
+          "talent": "Wand Master",
+          "tree": "Artificer",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Wand of Time and Artificer's Wand by 20%."
+        },
+        {
+          "talent": "Discovery",
+          "tree": "Artificer",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Artificers's Wand and Wand of Time now grants Discovery for 30 seconds, stacking 4 times. DiscoveryAt 3 stacks, your next Wand of Time or Artificer's Wand causes an additional 1 + 21.2% arcane SP + 25% Spirit + 10% ranged AP Arcane Damage, scaling with Spirit."
+        },
+        {
+          "talent": "Temporal Convergence",
+          "tree": "Artificer",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Wand of Time now has a 40% chance to reset its own cooldown."
+        },
+        {
+          "talent": "Time Is A Circle",
+          "tree": "Artificer",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nCasting Wand of Time now extends the duration of your Continuum spells by 3 sec.\n\nContinuum spells cannot be extended beyond their maximum duration."
+        },
+        {
+          "talent": "Wand Mastery",
+          "tree": "Artificer",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "STATS"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Wand of Time and Shatter Echo now have a 25% chance to unleash Crystal Cannon, launching 2 quick lesser Wand auto attacks at the enemy over 1 seconds, scaling with Spirit.\n\nWhile Paradox Cannon is active, the chance to trigger this effect is increased by 10%."
+        },
+        {
+          "talent": "Timerend",
+          "tree": "Infinite",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Infinite Power",
+            "Clasp of Infinity"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Transforms your Wand of Time into Timerend.TimerendRend the fabric of time, dealing 36 Chromatic Damage over 6 seconds."
+        }
+      ]
+    },
+    "Warped Reality": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Warping Reality",
+          "tree": "Infinite",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nCasting Waves of Time now grants you Warped Reality for 10 seconds.\nWarped Reality (Proc)Allows you to cast Unmake and Melt Reality while moving for 10 seconds."
+        }
+      ]
+    },
+    "Warpstriker": {
+      "lanes": [
+        "COST"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the cost of your spells by -10% and the chance for your spells to be dispelled by 20%.",
+      "baseTree": "Infinite",
+      "basePosition": {
+        "x": 5,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Waves of Time": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Blast enemies in a frontal cone with time fractals, knocking them back slightly.\n\nThe knockback repeats 1 additional time after 2 sec.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Timewalking",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Waves of Time by -4 sec."
+        },
+        {
+          "talent": "Warping Reality",
+          "tree": "Infinite",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nCasting Waves of Time now grants you Warped Reality for 10 seconds.\nWarped Reality (Proc)Allows you to cast Unmake and Melt Reality while moving for 10 seconds."
+        }
+      ]
+    },
+    "Wisdom": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Mind Over Matter",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Wisdom spells by 20%."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$id": "swing_timer_icon.schema.json",
+  "opportunity_type": "swing_timer",
+  "title": "Swing timer (icon)",
+  "description": "Melee auto-attack swing/rhythm tracker - sits outside the five tiers (HUD_DESIGN.md, settled 2026-07-06), same category as enemy_cast. Uses WeakAuras' own NATIVE 'Swing Timer' trigger (Prototypes.lua line 4969) - no external addon dependency. An earlier assumption that this needed a separate library addon (SwingTimerAPI by Ralgathor, referenced by a live Wago pack) was checked directly against this project's installed WeakAuras source and found wrong - the native trigger is fully self-contained. Icon region type is the settled choice here (not aurabar) - see ELEMENT_INVENTORY.md's Row D note and Template_shadow.py v0.12's changelog.",
+  "region_type": "icon",
+  "trigger": "Swing Timer",
+  "type": "object",
+  "required": [
+    "name",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "hand": {
+      "type": "string",
+      "enum": [
+        "main",
+        "off",
+        "ranged"
+      ],
+      "default": "main",
+      "description": "Which weapon slot to track - Types.lua's swing_types (main=MAINHANDSLOT, off=SECONDARYHANDSLOT, ranged=RANGEDSLOT). Defaults to main-hand; only one mask slot exists for this element so far - dual-wield off-hand tracking (a second icon) is a stretch enhancement for melee-class builds later, not needed for Necromancer."
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 127.5
+    },
+    "height": {
+      "type": "number",
+      "default": 15
+    }
+  },
+  "verified": "Trigger type and 'hand' field confirmed directly from this project's own installed WeakAuras source (Prototypes.lua lines 4969-5030, Types.lua's swing_types line 2350), not inferred from a community pack. WeakAuras' own UI text warns results are 'inaccurate in edge cases' due to Blizzard API limitations (CAPABILITY_INVENTORY.md) - accepted as-is per Battlewrath, this is a baseline, not a final answer. NOT independently verified: whether 'inverse' or other cooldown-sweep fields need non-default values for the fill direction to read correctly - left at cooldown_tracker_icon's own defaults pending a live test."
+}

@@ -1,0 +1,51 @@
+{
+  "$id": "enemy_cast_aurabar.schema.json",
+  "opportunity_type": "enemy_cast",
+  "title": "Enemy/target cast bar",
+  "description": "unit=target/focus Cast trigger. Deliberately OUTSIDE HUD_DESIGN.md's five fixed tiers - variable-count (0-N enemies), planned as a separate DynamicGroup module, not a fixed HUD slot. This template is a structural stub for that future module, not wired into Template_shadow.py.",
+  "region_type": "aurabar",
+  "trigger": "Cast",
+  "type": "object",
+  "required": [
+    "name",
+    "unit",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "unit": {
+      "type": "string",
+      "enum": [
+        "target",
+        "focus"
+      ],
+      "default": "target"
+    },
+    "spell_id_filter": {
+      "type": [
+        "string",
+        "integer",
+        "null"
+      ],
+      "description": "Optional - restrict to specific dangerous casts; null shows any cast."
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 127.5
+    },
+    "height": {
+      "type": "number",
+      "default": 15
+    }
+  },
+  "verified": "Cast trigger with unit=target/focus confirmed directly in Prototypes.lua (line 7010) and Types.lua's actual_unit_types_cast. NOT built or live-tested - structural only, per WEAKAURA_INDEX.md's status for this row."
+}

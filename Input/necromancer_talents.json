@@ -1,0 +1,5603 @@
+{
+  "class": "Necromancer",
+  "classId": 23,
+  "realm": "voljin-alpha",
+  "source": "https://ascension.gg/en/v2/coa-builder/voljin-alpha",
+  "extracted": "2026-07-01",
+  "schemaVersion": 3,
+  "trees": [
+    "Animation",
+    "Class",
+    "Death",
+    "Rime"
+  ],
+  "totalTalents": 160,
+  "budget": {
+    "abilityEssence": 26,
+    "talentEssence": 25
+  },
+  "rules": {
+    "specExclusivity": "Only one spec tree (Sanguine/Accursed/Eternal/Fleshweaver-equivalent) can be active at a time in-game. You commit to ONE non-Class tree and spend your full Talent Essence budget within it (plus the separate Class tree spent with Ability Essence). Treat trees other than 'Class' as mutually exclusive choices, not a blend.",
+    "partialRanksCount": "A node only needs 1 point invested (not maxPoints) to count as 'connected' for prerequisite checks and to contribute toward the reqTreeAbilityEssence/reqTreeTalentEssence row-unlock thresholds.",
+    "budgetCurrencies": "Ability Essence (AE) is spent only in the Class tree. Talent Essence (TE) is spent only in whichever single spec tree you commit to. A node's abilityEssenceCost/talentEssenceCost fields show which currency it draws from (never both).",
+    "rowGating": "reqTreeAbilityEssence / reqTreeTalentEssence on a node is the minimum essence already spent within that SAME tree required to unlock it - not total across trees.",
+    "levelGates": "Some nodes (mostly entryType Ability) cost 0 essence and unlock automatically at requiredLevel instead of being a budget choice.",
+    "prerequisiteFieldsCorrected": "'prerequisites' is the OR-logic grid-connection requirement (matches tooltip 'requires one connected node: A or B or C') - need at least 1 point in ANY ONE listed node. 'specialRequirement' is a separate, rare, AND-logic hard requirement used only by a handful of free/level-gated bonus nodes - ALL listed nodes must already have a point.",
+    "budgetTotalsAssumed": "Verified live for Bloodmage: 26 Ability Essence (Class tree) / 25 Talent Essence (spec tree) as the spendable caps. Assumed identical for all classes since this is tied to character leveling, not class design - not independently verified per class. Override in the toolkit if a specific class differs.",
+    "referencedTerms": "Extracted from colored in-line spans in the raw tooltip HTML (e.g. a description that highlights 'Cursed Blood' or 'Bloodbolt'). These are explicit developer-authored callouts to another spell/buff/mechanic name, and are the strongest available signal for detecting mechanical synergy between talents - stronger than plain keyword text matching."
+  },
+  "talents": [
+    {
+      "id": 7345,
+      "name": "Animate: Skeletal Archer",
+      "tree": "Animation",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\SkeletalArcher",
+      "spellId": 805040,
+      "description": "Animate 3 Skeletal Archers to aid you in combat for 15 seconds.",
+      "referencedTerms": [
+        "Skeletal Archers"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Animate 3 Skeletal Archers to aid you in combat for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 4036,
+      "name": "Summoning Adept",
+      "tree": "Animation",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_Undead_03",
+      "spellId": 92123,
+      "description": "Level 10 Passive\nIncreases your maximum Life Force by 1.",
+      "referencedTerms": [
+        "Life Force"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Raise: Abomination"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nIncreases your maximum Life Force by 1."
+        }
+      ]
+    },
+    {
+      "id": 7143,
+      "name": "Bone King",
+      "tree": "Animation",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_custom_bonetattoo_green",
+      "spellId": 707175,
+      "description": "Casting Command spells now has a 15% chance to make your next Lichfrost within 5 seconds instant cast.",
+      "referencedTerms": [
+        "Command",
+        "Lichfrost"
+      ],
+      "prerequisites": [
+        "Animate: Skeletal Archer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Command spells now has a 15% chance to make your next Lichfrost within 5 seconds instant cast."
+        }
+      ]
+    },
+    {
+      "id": 30022,
+      "name": "Graverobber",
+      "tree": "Animation",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_deathknight_deathsiphon",
+      "spellId": 503757,
+      "description": "Reduces the mana cost and cast time of your Raise and Animate spells by -30%.",
+      "referencedTerms": [
+        "Animate",
+        "Raise"
+      ],
+      "prerequisites": [
+        "Animate: Skeletal Archer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the mana cost and cast time of your Raise and Animate spells by -30%."
+        }
+      ]
+    },
+    {
+      "id": 33774,
+      "name": "Summoning Prodigy",
+      "tree": "Animation",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_Requiem",
+      "spellId": 704682,
+      "description": "Increases the duration of Skeletal Archers by 3 sec.",
+      "referencedTerms": [
+        "Skeletal Archers"
+      ],
+      "prerequisites": [
+        "Bone King"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Skeletal Archers by 3 sec."
+        }
+      ]
+    },
+    {
+      "id": 12165,
+      "name": "Sepulchral Might",
+      "tree": "Animation",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3markedfordeath",
+      "spellId": 706472,
+      "description": "Increases your Stamina by 5%.\n\nIncreases your spell damage by an amount equal to 15% of the total of your Raised minion's Stamina.",
+      "referencedTerms": [
+        "Raised"
+      ],
+      "prerequisites": [
+        "Bone King",
+        "Graverobber"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Stamina by 5%.\n\nIncreases your spell damage by an amount equal to 15% of the total of your Raised minion's Stamina."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Stamina by 10%.\n\nIncreases your spell damage by an amount equal to 30% of the total of your Raised minion's Stamina."
+        }
+      ]
+    },
+    {
+      "id": 30497,
+      "name": "Forbidden Technique",
+      "tree": "Animation",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_EmpowerRuneBlade",
+      "spellId": 561215,
+      "description": "Casting Command spells now reduces the cooldown of your Animates by -1 sec.",
+      "referencedTerms": [
+        "Animates",
+        "Command"
+      ],
+      "prerequisites": [
+        "Graverobber"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Command spells now reduces the cooldown of your Animates by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 4236,
+      "name": "Deadly Bond",
+      "tree": "Animation",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\INV_QirajIdol_Death",
+      "spellId": 704724,
+      "description": "Level 20 Passive\nCasting Command spells now has a 30% chance to cause their next use within 6 seconds to be free of cost.",
+      "referencedTerms": [
+        "Command"
+      ],
+      "prerequisites": [
+        "Summoning Adept"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nCasting Command spells now has a 30% chance to cause their next use within 6 seconds to be free of cost."
+        }
+      ]
+    },
+    {
+      "id": 7347,
+      "name": "Scourge Disciple",
+      "tree": "Animation",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_rottenflesh_Border",
+      "spellId": 531126,
+      "description": "Each active Skeletal Archer now increases your haste by 5%.",
+      "referencedTerms": [
+        "Skeletal Archer"
+      ],
+      "prerequisites": [
+        "Summoning Prodigy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each active Skeletal Archer now increases your haste by 5%."
+        }
+      ]
+    },
+    {
+      "id": 33775,
+      "name": "Raise: Ghoul",
+      "tree": "Animation",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ghoul",
+      "spellId": 500971,
+      "description": "Raise a Ghoul to aid you in combat occupying 1 Life Force. \n\nIts auto attacks restore 21 + 3.53% Intellect + 3.53% SP health to you.\n\nCommand: Expels leeching plague that strikes up to 5 nearby enemies, dealing 30 + 37.5% SP + 50% Intellect Plague damage, and healing you for 35 + 22% SP + 50% Intellect for each Ghoul.",
+      "referencedTerms": [
+        "Command",
+        "Ghoul",
+        "Life Force"
+      ],
+      "prerequisites": [
+        "Sepulchral Might",
+        "Forbidden Technique",
+        "Summoning Prodigy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Raise a Ghoul to aid you in combat occupying 1 Life Force. \n\nIts auto attacks restore 21 + 3.53% Intellect + 3.53% SP health to you.\n\nCommand: Expels leeching plague that strikes up to 5 nearby enemies, dealing 30 + 37.5% SP + 50% Intellect Plague damage, and healing you for 35 + 22% SP + 50% Intellect for each Ghoul."
+        }
+      ]
+    },
+    {
+      "id": 7145,
+      "name": "Runic Animation",
+      "tree": "Animation",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_dungeon_thenecroticwake_stitchflesh",
+      "spellId": 707445,
+      "description": "Reduces the cooldown of Animate: Skeletal Archers and Command: Hook by -20%.",
+      "referencedTerms": [
+        "Animate: Skeletal Archers",
+        "Command: Hook"
+      ],
+      "prerequisites": [
+        "Forbidden Technique"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Animate: Skeletal Archers and Command: Hook by -20%."
+        }
+      ]
+    },
+    {
+      "id": 30487,
+      "name": "Summoner",
+      "tree": "Animation",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_necklacea7",
+      "spellId": 706953,
+      "description": "Reduces the mana cost and cooldown of Sacrifice Undead by -20%.",
+      "referencedTerms": [
+        "Sacrifice Undead"
+      ],
+      "prerequisites": [
+        "Scourge Disciple"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the mana cost and cooldown of Sacrifice Undead by -20%."
+        }
+      ]
+    },
+    {
+      "id": 30495,
+      "name": "Animate: Tomb King",
+      "tree": "Animation",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\KingofTombs1",
+      "spellId": 805044,
+      "description": "Animate a Tomb King to aid you in combat for 15 seconds.\n\nWhile active, all of your Undead minion's attacks deal an additional 10% of the damage dealt as Plague damage.",
+      "referencedTerms": [
+        "Tomb King"
+      ],
+      "prerequisites": [
+        "Scourge Disciple"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Animate a Tomb King to aid you in combat for 15 seconds.\n\nWhile active, all of your Undead minion's attacks deal an additional 10% of the damage dealt as Plague damage."
+        }
+      ]
+    },
+    {
+      "id": 10495,
+      "name": "Animate: Bone Wraith",
+      "tree": "Animation",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_lordmarrowgar",
+      "spellId": 805032,
+      "description": "Animate a Bone Wraith to aid you in combat for 15 seconds.\n\nWhile active, it will periodically unleash a Bonestorm, striking up to 5 nearby enemies for 30 + 40% SP Physical damage every 1 sec for 5 seconds.",
+      "referencedTerms": [
+        "Bone Wraith",
+        "Bonestorm"
+      ],
+      "prerequisites": [
+        "Scourge Disciple"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Animate a Bone Wraith to aid you in combat for 15 seconds.\n\nWhile active, it will periodically unleash a Bonestorm, striking up to 5 nearby enemies for 30 + 40% SP Physical damage every 1 sec for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 7119,
+      "name": "Ghoul Mastery",
+      "tree": "Animation",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_reversemagic",
+      "spellId": 503740,
+      "description": "Damage dealt by your Ghouls now has a 15% chance to transform them into a Frenzied Ghoul.Frenzied Ghoul (Proc)Transformed into a Frenzied Ghoul, increasing haste by 40% for 10 seconds. Immune to movement slowing effects.",
+      "referencedTerms": [
+        "Frenzied Ghoul",
+        "Ghouls"
+      ],
+      "prerequisites": [
+        "Raise: Ghoul"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by your Ghouls now has a 15% chance to transform them into a Frenzied Ghoul.Frenzied Ghoul (Proc)Transformed into a Frenzied Ghoul, increasing haste by 40% for 10 seconds. Immune to movement slowing effects."
+        }
+      ]
+    },
+    {
+      "id": 7146,
+      "name": "Skeletal Artillery",
+      "tree": "Animation",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_trinket6oog_cyclopianpig1",
+      "spellId": 302518,
+      "description": "Your Animate: Skeletal Archers now summons 1 additional Skeletal Archer.",
+      "referencedTerms": [
+        "Animate: Skeletal Archers",
+        "Skeletal Archer"
+      ],
+      "prerequisites": [
+        "Runic Animation"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Animate: Skeletal Archers now summons 1 additional Skeletal Archer."
+        },
+        {
+          "rank": 2,
+          "description": "Your Animate: Skeletal Archers now summons 2 additional Skeletal Archer."
+        }
+      ]
+    },
+    {
+      "id": 2174,
+      "name": "Putrifier",
+      "tree": "Animation",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_DeathCoil",
+      "spellId": 302923,
+      "description": "Increases the durations of Ghoulify and Mass Grave by 25%.",
+      "referencedTerms": [
+        "Ghoulify",
+        "Mass Grave"
+      ],
+      "prerequisites": [
+        "Runic Animation"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the durations of Ghoulify and Mass Grave by 25%."
+        }
+      ]
+    },
+    {
+      "id": 4237,
+      "name": "Summoning Expert",
+      "tree": "Animation",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_BeastTaming_Undead",
+      "spellId": 807494,
+      "description": "Level 30 Passive\nIncreases your maximum Life Force by 1 and your Undead minion's Stamina by 10%.",
+      "referencedTerms": [
+        "Life Force"
+      ],
+      "prerequisites": [
+        "Deadly Bond"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nIncreases your maximum Life Force by 1 and your Undead minion's Stamina by 10%."
+        }
+      ]
+    },
+    {
+      "id": 6887,
+      "name": "Unrelenting Army",
+      "tree": "Animation",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_ArmyOfTheDead",
+      "spellId": 705747,
+      "description": "Damage dealt by Harvest Plague now has a 20% chance to summon a Lesser Zombie to aid you in combat for 15 seconds.",
+      "referencedTerms": [
+        "Harvest Plague",
+        "Lesser Zombie"
+      ],
+      "prerequisites": [
+        "Animate: Bone Wraith",
+        "Summoner",
+        "Animate: Tomb King"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Harvest Plague now has a 20% chance to summon a Lesser Zombie to aid you in combat for 15 seconds."
+        },
+        {
+          "rank": 2,
+          "description": "Damage dealt by Harvest Plague now has a 40% chance to summon a Lesser Zombie to aid you in combat for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 33748,
+      "name": "Animate: Plaguefather",
+      "tree": "Animation",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helm_leather_maldraxxus_d_01",
+      "spellId": 805048,
+      "description": "Animate a Plaguefather to aid you in combat for 15 seconds. \n\nDamage dealt by this minion will emit Zombie Plague, dealing 79 + 10% SP Plague damage to nearby enemies, and reducing their attack power by 223.",
+      "referencedTerms": [
+        "Plaguefather",
+        "Zombie Plague"
+      ],
+      "prerequisites": [
+        "Ghoul Mastery",
+        "Skeletal Artillery",
+        "Animate: Bone Wraith",
+        "Animate: Tomb King"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Animate a Plaguefather to aid you in combat for 15 seconds. \n\nDamage dealt by this minion will emit Zombie Plague, dealing 79 + 10% SP Plague damage to nearby enemies, and reducing their attack power by 223."
+        }
+      ]
+    },
+    {
+      "id": 29943,
+      "name": "March of the Dead",
+      "tree": "Animation",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_DeadofNight",
+      "spellId": 707007,
+      "description": "Beckon the restless dead to rise and march forward.\n\nWhen they reach an enemy they explode, dealing 700 + 75% SP Plague damage to nearby enemies and slowing their movement speed by -70% for 3 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Putrifier",
+        "Skeletal Artillery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Beckon the restless dead to rise and march forward.\n\nWhen they reach an enemy they explode, dealing 700 + 75% SP Plague damage to nearby enemies and slowing their movement speed by -70% for 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 33766,
+      "name": "Mindless Fury",
+      "tree": "Animation",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_fiegndead",
+      "spellId": 805674,
+      "description": "Casting Animate or Command spells now increases your haste by 1% for 10 seconds, stacking 5 times.",
+      "referencedTerms": [
+        "Animate",
+        "Command"
+      ],
+      "prerequisites": [
+        "Unrelenting Army"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Animate or Command spells now increases your haste by 1% for 10 seconds, stacking 5 times."
+        }
+      ]
+    },
+    {
+      "id": 5766,
+      "name": "Depravity",
+      "tree": "Animation",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_mace_1h_warfrontsforsaken_d_01",
+      "spellId": 638403,
+      "description": "Increases the melee haste of your Undead minions by 5% and gives their critical melee auto attacks an 50% chance to trigger Bone Club, dealing 40% of the damage dealt as Shadow Damage.",
+      "referencedTerms": [
+        "Bone Club"
+      ],
+      "prerequisites": [
+        "Unrelenting Army"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the melee haste of your Undead minions by 5% and gives their critical melee auto attacks an 50% chance to trigger Bone Club, dealing 40% of the damage dealt as Shadow Damage."
+        }
+      ]
+    },
+    {
+      "id": 7112,
+      "name": "Crypt Keeper",
+      "tree": "Animation",
+      "x": 3,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Undead_02",
+      "spellId": 560596,
+      "description": "Your Crypt Swarm now bounces to 2 additional nearby enemies, at 30% reduced value per enemy struck.",
+      "referencedTerms": [
+        "Crypt Swarm"
+      ],
+      "prerequisites": [
+        "Animate: Plaguefather"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Crypt Swarm now bounces to 2 additional nearby enemies, at 30% reduced value per enemy struck."
+        }
+      ]
+    },
+    {
+      "id": 11112,
+      "name": "Unrelenting",
+      "tree": "Animation",
+      "x": 3,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_Subversion",
+      "spellId": 704718,
+      "description": "Reduces the channel time of your Crypt Swarm by -25%.",
+      "referencedTerms": [
+        "Crypt Swarm"
+      ],
+      "prerequisites": [
+        "Animate: Plaguefather"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the channel time of your Crypt Swarm by -25%."
+        }
+      ]
+    },
+    {
+      "id": 33773,
+      "name": "Unstoppable Frenzy",
+      "tree": "Animation",
+      "x": 5,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_UnholyStone_Border",
+      "spellId": 573426,
+      "description": "Reduces the cooldown of your Unholy Frenzy by -60 sec.",
+      "referencedTerms": [
+        "Unholy Frenzy"
+      ],
+      "prerequisites": [
+        "Animate: Plaguefather"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of your Unholy Frenzy by -60 sec."
+        }
+      ]
+    },
+    {
+      "id": 7298,
+      "name": "Army of the Dead",
+      "tree": "Animation",
+      "x": 5,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3graspofthedead",
+      "spellId": 525600,
+      "description": "While only 1 Abomination is active, the critical strike chance of your Ghouls is increased by 10% and haste by 10%.",
+      "referencedTerms": [
+        "Abomination",
+        "Ghouls"
+      ],
+      "prerequisites": [
+        "Animate: Plaguefather"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While only 1 Abomination is active, the critical strike chance of your Ghouls is increased by 10% and haste by 10%."
+        }
+      ]
+    },
+    {
+      "id": 33772,
+      "name": "Lich's Prodigy",
+      "tree": "Animation",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_herb_ancientlichen",
+      "spellId": 302519,
+      "description": "Your Glacial Tap now generates an additional 20 Runic Power, but its cost is increased by 25%.",
+      "referencedTerms": [
+        "Glacial Tap"
+      ],
+      "prerequisites": [
+        "March of the Dead"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Glacial Tap now generates an additional 20 Runic Power, but its cost is increased by 25%."
+        }
+      ]
+    },
+    {
+      "id": 4235,
+      "name": "Diabolical",
+      "tree": "Animation",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\spell_necro_inevitableend",
+      "spellId": 704723,
+      "description": "Level 40 Passive\nCasting spells now grants you 1 stack of Diabolical, stacking up to 15 times, for 20 seconds.\n\nDamage dealt by your Crypt Swarm will consume a stack to deal 10% increased damage per stack.",
+      "referencedTerms": [
+        "Crypt Swarm",
+        "Diabolical"
+      ],
+      "prerequisites": [
+        "Summoning Expert"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nCasting spells now grants you 1 stack of Diabolical, stacking up to 15 times, for 20 seconds.\n\nDamage dealt by your Crypt Swarm will consume a stack to deal 10% increased damage per stack."
+        }
+      ]
+    },
+    {
+      "id": 30488,
+      "name": "Anti-Magic Shell",
+      "tree": "Animation",
+      "x": 0,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_AntiMagicShell",
+      "spellId": 504866,
+      "description": "When you summon a Raised minion, it now raises with a shield absorbing Magic damage equal to 40% of their maximum health.",
+      "referencedTerms": [
+        "Raised"
+      ],
+      "prerequisites": [
+        "Depravity",
+        "Mindless Fury"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "When you summon a Raised minion, it now raises with a shield absorbing Magic damage equal to 40% of their maximum health."
+        }
+      ]
+    },
+    {
+      "id": 7141,
+      "name": "Summoning Ritual",
+      "tree": "Animation",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_deathgolem_Border",
+      "spellId": 805038,
+      "description": "Summon a ritual circle at your location for 1 minute. While active, you may cast Ritual Return to return to it.\n\nRitual ReturnTeleport back to the position of your Scourge Transporter and remove all movement slowing effects from you.",
+      "referencedTerms": [
+        "Ritual Return",
+        "Scourge Transporter"
+      ],
+      "prerequisites": [
+        "Depravity",
+        "Mindless Fury"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Summon a ritual circle at your location for 1 minute. While active, you may cast Ritual Return to return to it.\n\nRitual ReturnTeleport back to the position of your Scourge Transporter and remove all movement slowing effects from you."
+        }
+      ]
+    },
+    {
+      "id": 7350,
+      "name": "Corpse Wagon",
+      "tree": "Animation",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_shadow_corpseexplode",
+      "spellId": 503738,
+      "description": "Increases all damage dealt by party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases the damage of Corpse Explosion by 25%.",
+      "referencedTerms": [
+        "Corpse Explosion"
+      ],
+      "prerequisites": [
+        "Crypt Keeper",
+        "Army of the Dead",
+        "Unrelenting",
+        "Unstoppable Frenzy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases all damage dealt by party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases the damage of Corpse Explosion by 25%."
+        }
+      ]
+    },
+    {
+      "id": 7346,
+      "name": "Plague Protection",
+      "tree": "Animation",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Deathknight_ClassIcon",
+      "spellId": 570046,
+      "description": "Increases the effectiveness of your Wards by 25%.",
+      "referencedTerms": [
+        "Wards"
+      ],
+      "prerequisites": [
+        "Lich's Prodigy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Wards by 25%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the effectiveness of your Wards by 50%."
+        }
+      ]
+    },
+    {
+      "id": 6290,
+      "name": "Fetid Mark",
+      "tree": "Animation",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_pet_inquisitoreye",
+      "spellId": 706948,
+      "description": "Dealing Shadow damage now increases the damage the target takes from your Skeletal Warriors by 1% for 10 seconds, stacking 10 times.",
+      "referencedTerms": [
+        "Skeletal Warriors"
+      ],
+      "prerequisites": [
+        "Lich's Prodigy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dealing Shadow damage now increases the damage the target takes from your Skeletal Warriors by 1% for 10 seconds, stacking 10 times."
+        }
+      ]
+    },
+    {
+      "id": 5290,
+      "name": "Chomp",
+      "tree": "Animation",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_necrodrain_Border",
+      "spellId": 707283,
+      "description": "Critical strikes dealt by your Abominations and Decaying Collosi now Chomp your target, dealing 150 + 112.5% SP damage to them.",
+      "referencedTerms": [
+        "Abominations",
+        "Chomp",
+        "Decaying Collosi"
+      ],
+      "prerequisites": [
+        "Lich's Prodigy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes dealt by your Abominations and Decaying Collosi now Chomp your target, dealing 150 + 112.5% SP damage to them."
+        }
+      ]
+    },
+    {
+      "id": 4619,
+      "name": "Flesh Symbiosis",
+      "tree": "Animation",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ReforgedAbomination",
+      "spellId": 301207,
+      "description": "Each Abomination or Decaying Colossus active now increases your total Armor and magic resistance by 30% and causes you to periodically regenerate 2% maximum health every 5 sec.",
+      "referencedTerms": [
+        "Abomination",
+        "Decaying Colossus"
+      ],
+      "prerequisites": [
+        "Summoning Ritual",
+        "Anti-Magic Shell"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each Abomination or Decaying Colossus active now increases your total Armor and magic resistance by 30% and causes you to periodically regenerate 2% maximum health every 5 sec."
+        }
+      ]
+    },
+    {
+      "id": 4238,
+      "name": "Plague Horde",
+      "tree": "Animation",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_belt_pvpwarlock_e_01",
+      "spellId": 802986,
+      "description": "Damage dealt by your Undead minions now has a 10% chance to cast Plague Horde on themselves for 5 seconds and emit Zombie Plague, dealing 79 + 10% SP Plague damage to their target.Plague HordeEnrage for 5 seconds, increasing their critical strike chance by 10%.",
+      "referencedTerms": [
+        "Plague Horde",
+        "Zombie Plague"
+      ],
+      "prerequisites": [
+        "Summoning Ritual",
+        "Plague Protection",
+        "Corpse Wagon"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by your Undead minions now has a 10% chance to cast Plague Horde on themselves for 5 seconds and emit Zombie Plague, dealing 79 + 10% SP Plague damage to their target.Plague HordeEnrage for 5 seconds, increasing their critical strike chance by 10%."
+        }
+      ]
+    },
+    {
+      "id": 30238,
+      "name": "Long March",
+      "tree": "Animation",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_deathknight_iceboundfortitude",
+      "spellId": 704717,
+      "description": "Removes the cooldown from March of the Dead, but gives it a 1 sec cast time.",
+      "referencedTerms": [
+        "March of the Dead"
+      ],
+      "prerequisites": [
+        "Chomp",
+        "Fetid Mark",
+        "Plague Protection"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Removes the cooldown from March of the Dead, but gives it a 1 sec cast time."
+        }
+      ]
+    },
+    {
+      "id": 9934,
+      "name": "Grave Mastery",
+      "tree": "Animation",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_deathscythe_Border",
+      "spellId": 504439,
+      "description": "Level 50 Passive\nReduces the cost of all Animates, Raises, and Command spells by -20%.",
+      "referencedTerms": [
+        "Animates",
+        "Command",
+        "Raises"
+      ],
+      "prerequisites": [
+        "Diabolical"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nReduces the cost of all Animates, Raises, and Command spells by -20%."
+        }
+      ]
+    },
+    {
+      "id": 7117,
+      "name": "Master Animator",
+      "tree": "Animation",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\epic_rpg_icon_pack_death_icon_0004s_0000_shadow_Border",
+      "spellId": 504431,
+      "description": "Increases your maximum Life Force by 1.",
+      "referencedTerms": [
+        "Life Force"
+      ],
+      "prerequisites": [
+        "Plague Horde",
+        "Flesh Symbiosis"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your maximum Life Force by 1."
+        }
+      ]
+    },
+    {
+      "id": 33749,
+      "name": "Underking",
+      "tree": "Animation",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_sumzombie_Border",
+      "spellId": 704701,
+      "description": "Casting Command spells now grants you a stack of Underking for 20 seconds.\n\nAt 10 stacks, the cooldown of Animate: Tomb King, Animate: Bone Wraith or Animate: Plaguefather is reduced by -15 sec at random.",
+      "referencedTerms": [
+        "Animate: Bone Wraith",
+        "Animate: Plaguefather",
+        "Animate: Tomb King",
+        "Command",
+        "Underking"
+      ],
+      "prerequisites": [
+        "Plague Horde"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Command spells now grants you a stack of Underking for 20 seconds.\n\nAt 10 stacks, the cooldown of Animate: Tomb King, Animate: Bone Wraith or Animate: Plaguefather is reduced by -15 sec at random."
+        }
+      ]
+    },
+    {
+      "id": 11619,
+      "name": "Animate: Bone Construct",
+      "tree": "Animation",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Bone_Construct",
+      "spellId": 531130,
+      "description": "Animate a Bone Construct to aid you in combat for 20 seconds.\n\nIt moves at a slow speed, but upon reaching an enemy, deals 1560 + 200% SP + 50% AP Shadow damage, piercing all invulnerabilities, resistances, and immunities.",
+      "referencedTerms": [
+        "Bone Construct"
+      ],
+      "prerequisites": [
+        "Plague Horde",
+        "Plague Protection"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Animate a Bone Construct to aid you in combat for 20 seconds.\n\nIt moves at a slow speed, but upon reaching an enemy, deals 1560 + 200% SP + 50% AP Shadow damage, piercing all invulnerabilities, resistances, and immunities."
+        }
+      ]
+    },
+    {
+      "id": 29364,
+      "name": "Raise: Abomination",
+      "tree": "Class",
+      "x": 2,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ui_darkshore_warfront_horde_abomination",
+      "spellId": 500335,
+      "description": "Raise an Abomination to aid you in combat, occupying 3 Life Force.\n\nIt is surrounded by a disease cloud, dealing 9 + 25% SP Nature damage to enemies when they deal damage and reducing their attack speed by -20% for 15 seconds.\n\nCommand: Instantly unleashes an empowered disease cloud around it.",
+      "referencedTerms": [
+        "Abomination",
+        "Command",
+        "Life Force"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Raise an Abomination to aid you in combat, occupying 3 Life Force.\n\nIt is surrounded by a disease cloud, dealing 9 + 25% SP Nature damage to enemies when they deal damage and reducing their attack speed by -20% for 15 seconds.\n\nCommand: Instantly unleashes an empowered disease cloud around it."
+        }
+      ]
+    },
+    {
+      "id": 29244,
+      "name": "Fetid Ward",
+      "tree": "Class",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_icon_shadowcouncilorb_green",
+      "spellId": 680388,
+      "description": "Activate a Fetid Ward on yourself and your Undead minions for 30 minutes.\n\nWhile active, 30% of your damage dealt heals you and your minions, split evenly amongst them, and healing received is increased by 10%.",
+      "referencedTerms": [
+        "Fetid Ward"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Activate a Fetid Ward on yourself and your Undead minions for 30 minutes.\n\nWhile active, 30% of your damage dealt heals you and your minions, split evenly amongst them, and healing received is increased by 10%."
+        }
+      ]
+    },
+    {
+      "id": 29787,
+      "name": "Glacial Tap",
+      "tree": "Class",
+      "x": 6,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_SkullCurse2_Blue",
+      "spellId": 805369,
+      "description": "Tap into necrotic energies, instantly regenerating 30 Runic Power.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Tap into necrotic energies, instantly regenerating 30 Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 5314,
+      "name": "Command: Hook",
+      "tree": "Class",
+      "x": 1,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\INV_MISC_HOOK_01",
+      "spellId": 504316,
+      "description": "Command your Abominations to hook an enemy to their location, slowing their movement speed to a halt for 2 seconds.",
+      "referencedTerms": [
+        "Abominations"
+      ],
+      "prerequisites": [
+        "Raise: Abomination"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Command your Abominations to hook an enemy to their location, slowing their movement speed to a halt for 2 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6885,
+      "name": "Hulking Hordes",
+      "tree": "Class",
+      "x": 3,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\uico_unholy_spell_08_Border",
+      "spellId": 300748,
+      "description": "Increases your maximum health and the maximum health of your summons by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Fetid Ward",
+        "Raise: Abomination"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your maximum health and the maximum health of your summons by 5%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your maximum health and the maximum health of your summons by 10%."
+        }
+      ]
+    },
+    {
+      "id": 7785,
+      "name": "Lich Essence",
+      "tree": "Class",
+      "x": 5,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\WC3LichReforged",
+      "spellId": 802988,
+      "description": "Reduces the cast time of Lichfrost by -15% and reduces your spell pushback suffered from taking damage by 50%.",
+      "referencedTerms": [
+        "Lichfrost"
+      ],
+      "prerequisites": [
+        "Fetid Ward",
+        "Glacial Tap"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cast time of Lichfrost by -15% and reduces your spell pushback suffered from taking damage by 50%."
+        }
+      ]
+    },
+    {
+      "id": 6459,
+      "name": "Icecrown Scriptures",
+      "tree": "Class",
+      "x": 7,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_ScrollOfSpeed_LightBlue",
+      "spellId": 300234,
+      "description": "Increases your Shadow and Frost damage dealt against Humanoids and Undead by 4%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Glacial Tap"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Shadow and Frost damage dealt against Humanoids and Undead by 4%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Shadow and Frost damage dealt against Humanoids and Undead by 8%."
+        }
+      ]
+    },
+    {
+      "id": 6458,
+      "name": "Vampiric Aura",
+      "tree": "Class",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\spell_shadow_vampiricaura",
+      "spellId": 300241,
+      "description": "While you are below 50% health, your Undead minions now heal you for 10% of their damage dealt.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Command: Hook",
+        "Hulking Hordes"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While you are below 50% health, your Undead minions now heal you for 10% of their damage dealt."
+        }
+      ]
+    },
+    {
+      "id": 30833,
+      "name": "Living Dead",
+      "tree": "Class",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_zone_deadwindpass",
+      "spellId": 302888,
+      "description": "Reduces the mana cost of Lichfrost and Crypt Swarm by -10%.",
+      "referencedTerms": [
+        "Crypt Swarm",
+        "Lichfrost"
+      ],
+      "prerequisites": [
+        "Hulking Hordes",
+        "Lich Essence"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the mana cost of Lichfrost and Crypt Swarm by -10%."
+        },
+        {
+          "rank": 2,
+          "description": "Reduces the mana cost of Lichfrost and Crypt Swarm by -20%."
+        }
+      ]
+    },
+    {
+      "id": 34980,
+      "name": "Create Frozen Reliquary",
+      "tree": "Class",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\FrozenUrn",
+      "spellId": 803772,
+      "description": "Create 1 Frozen Reliquary that restores 30% of your missing mana.\n\nAllies may only use a Frozen Reliquary once per minute.",
+      "referencedTerms": [
+        "Frozen Reliquary"
+      ],
+      "prerequisites": [
+        "Icecrown Scriptures",
+        "Lich Essence"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Create 1 Frozen Reliquary that restores 30% of your missing mana.\n\nAllies may only use a Frozen Reliquary once per minute."
+        }
+      ]
+    },
+    {
+      "id": 6903,
+      "name": "Life For Power",
+      "tree": "Class",
+      "x": 2,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_CreepingPlague",
+      "spellId": 705746,
+      "description": "You absorb 20% of healing taken and gain a shield for the amount absorbed, lasting 10 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Vampiric Aura"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "You absorb 20% of healing taken and gain a shield for the amount absorbed, lasting 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29774,
+      "name": "Bone Tithe",
+      "tree": "Class",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ossuary_Bond",
+      "spellId": 802121,
+      "description": "Siphon life from your undead minions, sacrificing 40% of their health to grant yourself an absorb shield equal to half of the health stolen for 20 seconds.\n\nUsable while stunned.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Vampiric Aura",
+        "Living Dead",
+        "Create Frozen Reliquary"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Siphon life from your undead minions, sacrificing 40% of their health to grant yourself an absorb shield equal to half of the health stolen for 20 seconds.\n\nUsable while stunned."
+        }
+      ]
+    },
+    {
+      "id": 31143,
+      "name": "Ner'zhul's Blessing",
+      "tree": "Class",
+      "x": 6,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_raid_torghast_shadowscourge_prisonofnerzhul",
+      "spellId": 704729,
+      "description": "Increases your maximum Runic Power by 20%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Create Frozen Reliquary"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your maximum Runic Power by 20%."
+        }
+      ]
+    },
+    {
+      "id": 7371,
+      "name": "Phylactery",
+      "tree": "Class",
+      "x": 1,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_frost_phylactery_Border",
+      "spellId": 500933,
+      "description": "Create a Phylactery near you for 2 minutes.\n\nUpon taking damage which would bring you below 10% health, become a Shade, protecting you from all physical attacks and spells, but during that time you cannot attack or cast spells.\n\nReaching your Phylactery in this state revives you with 40% of your maximum health. If you do not reach it in time you will die.",
+      "referencedTerms": [
+        "Phylactery",
+        "Shade"
+      ],
+      "prerequisites": [
+        "Life For Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Create a Phylactery near you for 2 minutes.\n\nUpon taking damage which would bring you below 10% health, become a Shade, protecting you from all physical attacks and spells, but during that time you cannot attack or cast spells.\n\nReaching your Phylactery in this state revives you with 40% of your maximum health. If you do not reach it in time you will die."
+        }
+      ]
+    },
+    {
+      "id": 29196,
+      "name": "Tears of Lordaeron",
+      "tree": "Class",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Warlock_siphonlife",
+      "spellId": 705752,
+      "description": "Direct critical strikes now generates 5 Runic Power.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Life For Power",
+        "Bone Tithe",
+        "Ner'zhul's Blessing"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Direct critical strikes now generates 5 Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 6897,
+      "name": "Overwhelming Force",
+      "tree": "Class",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_raisedead_Border",
+      "spellId": 531128,
+      "description": "Damage dealt by your Undead minions now has a 5% chance to restore 2 Runic Power and 2% of your maximum mana.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Life For Power",
+        "Bone Tithe",
+        "Ner'zhul's Blessing"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by your Undead minions now has a 5% chance to restore 2 Runic Power and 2% of your maximum mana."
+        }
+      ]
+    },
+    {
+      "id": 29788,
+      "name": "Death's Due",
+      "tree": "Class",
+      "x": 7,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\nhi_deathpickaxe_Border",
+      "spellId": 807796,
+      "description": "Force a target to accept the reality of death, removing any invulnerability or immunity effects from them and cursing them for 5 seconds.\n\nIf the target's health is below 20% at the end of duration, they take 800 + 200% SP Shadowfrost Damage.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Ner'zhul's Blessing"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Force a target to accept the reality of death, removing any invulnerability or immunity effects from them and cursing them for 5 seconds.\n\nIf the target's health is below 20% at the end of duration, they take 800 + 200% SP Shadowfrost Damage."
+        }
+      ]
+    },
+    {
+      "id": 29865,
+      "name": "Gravedigger",
+      "tree": "Class",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_bg_xkills_avgraveyard",
+      "spellId": 704715,
+      "description": "Reduces the cast time of Sacrifice Undead by -0.5 sec.",
+      "referencedTerms": [
+        "Sacrifice Undead"
+      ],
+      "prerequisites": [
+        "Phylactery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cast time of Sacrifice Undead by -0.5 sec."
+        }
+      ]
+    },
+    {
+      "id": 31048,
+      "name": "Reclaimed Life",
+      "tree": "Class",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_CallToArms_Forsaken_Green",
+      "spellId": 707670,
+      "description": "Reduces the cast time of your Raise spells by -15%.",
+      "referencedTerms": [
+        "Raise"
+      ],
+      "prerequisites": [
+        "Overwhelming Force",
+        "Phylactery",
+        "Tears of Lordaeron"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cast time of your Raise spells by -15%."
+        }
+      ]
+    },
+    {
+      "id": 33778,
+      "name": "Mass Grave",
+      "tree": "Class",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\spell_necro_deathlyecho",
+      "spellId": 803741,
+      "description": "Transform up to 5 nearby enemies into a ghoul, fearing them for 40 seconds (8). Only affects Humanoids.\n\nWhile above 50 Runic Power this spell is instant cast.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Overwhelming Force",
+        "Tears of Lordaeron"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Transform up to 5 nearby enemies into a ghoul, fearing them for 40 seconds (8). Only affects Humanoids.\n\nWhile above 50 Runic Power this spell is instant cast."
+        }
+      ]
+    },
+    {
+      "id": 33784,
+      "name": "Disciple of Kel'thuzad",
+      "tree": "Class",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_belt_plate_raiddeathknightmythic_q_01",
+      "spellId": 560615,
+      "description": "Increases your spell haste by 4%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Overwhelming Force",
+        "Tears of Lordaeron",
+        "Death's Due"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your spell haste by 4%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your spell haste by 8%."
+        }
+      ]
+    },
+    {
+      "id": 34977,
+      "name": "Improved Mandates",
+      "tree": "Class",
+      "x": 8,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\epic_rpg_icon_pack_death_icon_0001s_0000_soul_Border",
+      "spellId": 560613,
+      "description": "Increases the effectiveness of your Mandates by 20%.",
+      "referencedTerms": [
+        "Mandates"
+      ],
+      "prerequisites": [
+        "Death's Due"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Mandates by 20%."
+        }
+      ]
+    },
+    {
+      "id": 29520,
+      "name": "Game of Bones",
+      "tree": "Class",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\icon_petfamily_undead",
+      "spellId": 301198,
+      "description": "Reduces the cooldown of your Champion spells by -60 sec.",
+      "referencedTerms": [
+        "Champion"
+      ],
+      "prerequisites": [
+        "Gravedigger",
+        "Reclaimed Life"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of your Champion spells by -60 sec."
+        }
+      ]
+    },
+    {
+      "id": 12381,
+      "name": "Corpse Commander",
+      "tree": "Class",
+      "x": 3,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\icon_upgradestone_undead_rare",
+      "spellId": 707739,
+      "description": "Reduces the Runic Power cost of Corpse Explosion by -20.",
+      "referencedTerms": [
+        "Corpse Explosion"
+      ],
+      "prerequisites": [
+        "Mass Grave"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Runic Power cost of Corpse Explosion by -20."
+        }
+      ]
+    },
+    {
+      "id": 5781,
+      "name": "Lich Commander",
+      "tree": "Class",
+      "x": 3,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_7af_deathknight_frostmournefragment",
+      "spellId": 704713,
+      "description": "Reduces the cost of your Command spells by -15%.",
+      "referencedTerms": [
+        "Command"
+      ],
+      "prerequisites": [
+        "Mass Grave"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cost of your Command spells by -15%."
+        }
+      ]
+    },
+    {
+      "id": 33751,
+      "name": "Dead Man Walking",
+      "tree": "Class",
+      "x": 5,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_plate_pvpdeathknight_g_01_boot",
+      "spellId": 300233,
+      "description": "Reduces the duration of root and slow effects against you by -25%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Mass Grave"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the duration of root and slow effects against you by -25%."
+        }
+      ]
+    },
+    {
+      "id": 33780,
+      "name": "Naxxramas Prodigy",
+      "tree": "Class",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_mummypet",
+      "spellId": 560622,
+      "description": "Increases your Shadow and Frost resistances by 0.5 per level.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Disciple of Kel'thuzad",
+        "Improved Mandates"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Shadow and Frost resistances by 0.5 per level."
+        }
+      ]
+    },
+    {
+      "id": 6555,
+      "name": "Cobalt-Plated Armor",
+      "tree": "Class",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_frost_knight_Border",
+      "spellId": 300945,
+      "description": "Increases the Armor of your Undead minions by 300, scaling with your level.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Disciple of Kel'thuzad",
+        "Improved Mandates"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the Armor of your Undead minions by 300, scaling with your level."
+        }
+      ]
+    },
+    {
+      "id": 6886,
+      "name": "Putrid Summoner",
+      "tree": "Class",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_D3wallofzombies",
+      "spellId": 560595,
+      "description": "Each Undead Stance now provides an additional bonus:\n\nUndead: Assault: Increases your critical strike chance against Humanoids by 5%.\n\nUndead: Protect: Reduces your threat generated by -75%.\n\nUndead: Pacify: Reduces your damage taken by -10%.",
+      "referencedTerms": [
+        "Undead Stance",
+        "Undead: Assault",
+        "Undead: Pacify",
+        "Undead: Protect"
+      ],
+      "prerequisites": [
+        "Lich Commander",
+        "Corpse Commander",
+        "Game of Bones"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each Undead Stance now provides an additional bonus:\n\nUndead: Assault: Increases your critical strike chance against Humanoids by 5%.\n\nUndead: Protect: Reduces your threat generated by -75%.\n\nUndead: Pacify: Reduces your damage taken by -10%."
+        }
+      ]
+    },
+    {
+      "id": 33740,
+      "name": "Deadly Defense",
+      "tree": "Class",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\custom_04_summon_skeleton_army_Border",
+      "spellId": 300580,
+      "description": "Each of your summons now reduces your damage taken by 1%, up to a maximum of 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Lich Commander",
+        "Corpse Commander",
+        "Dead Man Walking"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each of your summons now reduces your damage taken by 1%, up to a maximum of 10%."
+        }
+      ]
+    },
+    {
+      "id": 33733,
+      "name": "Winds of Northrend",
+      "tree": "Class",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Ice_Lament",
+      "spellId": 301333,
+      "description": "Increases the amount slowed by Lichfrost by -15%.",
+      "referencedTerms": [
+        "Lichfrost"
+      ],
+      "prerequisites": [
+        "Cobalt-Plated Armor",
+        "Dead Man Walking",
+        "Naxxramas Prodigy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the amount slowed by Lichfrost by -15%."
+        }
+      ]
+    },
+    {
+      "id": 7348,
+      "name": "Raise: Decaying Colossus",
+      "tree": "Class",
+      "x": 1,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_dungeon_grimbatol_drahga_the_shadowburner",
+      "spellId": 500989,
+      "description": "Raise a Decaying Colossus to aid you in combat, occupying 3 Life Force. \n\nWhile active, 25% of all damage taken by the caster is taken by the Decaying Colossus.\n\nCommand: Unleash a powerful attack dealing Weapon Damage plus 100 to all enemies in front of it.",
+      "referencedTerms": [
+        "Command",
+        "Decaying Colossus",
+        "Life Force"
+      ],
+      "prerequisites": [
+        "Putrid Summoner"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Raise a Decaying Colossus to aid you in combat, occupying 3 Life Force. \n\nWhile active, 25% of all damage taken by the caster is taken by the Decaying Colossus.\n\nCommand: Unleash a powerful attack dealing Weapon Damage plus 100 to all enemies in front of it."
+        }
+      ]
+    },
+    {
+      "id": 33732,
+      "name": "Foul Invocation",
+      "tree": "Class",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_boss_festergutrotface",
+      "spellId": 804371,
+      "description": "Transform into an undead monstrosity for 20 seconds, increasing your maximum health by 30%.\n\nWhile transformed you are immune to Fear, Sleep, Charm, and Disease effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Putrid Summoner",
+        "Winds of Northrend",
+        "Deadly Defense"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Transform into an undead monstrosity for 20 seconds, increasing your maximum health by 30%.\n\nWhile transformed you are immune to Fear, Sleep, Charm, and Disease effects."
+        }
+      ]
+    },
+    {
+      "id": 33771,
+      "name": "Frost Runes",
+      "tree": "Class",
+      "x": 7,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_deathknight_empowerruneblade2",
+      "spellId": 705750,
+      "description": "Dealing Magic damage now has a 15% chance to increase your haste by 10% for 12 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Winds of Northrend"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dealing Magic damage now has a 15% chance to increase your haste by 10% for 12 seconds."
+        }
+      ]
+    },
+    {
+      "id": 33764,
+      "name": "Command: Blight",
+      "tree": "Class",
+      "x": 1,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\spell_necro_deathrift",
+      "spellId": 504050,
+      "description": "Command your Decaying Colossus to blight the ground in a 10 yd radius beneath it, reducing healing received by -60% for enemies inside for 20 seconds.",
+      "referencedTerms": [
+        "Decaying Colossus"
+      ],
+      "prerequisites": [
+        "Raise: Decaying Colossus"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Command your Decaying Colossus to blight the ground in a 10 yd radius beneath it, reducing healing received by -60% for enemies inside for 20 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34981,
+      "name": "Study of Death",
+      "tree": "Class",
+      "x": 3,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_misc_book_06",
+      "spellId": 704721,
+      "description": "When you cast Unholy Frenzy you now summon 3 Greater Zombies to aid you in combat for 14 seconds.\n\nDamage dealt by your Undead minions now reduces the cooldown of Unholy Frenzy by -0.5 sec.",
+      "referencedTerms": [
+        "Greater Zombies",
+        "Unholy Frenzy"
+      ],
+      "prerequisites": [
+        "Raise: Decaying Colossus",
+        "Foul Invocation"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "When you cast Unholy Frenzy you now summon 3 Greater Zombies to aid you in combat for 14 seconds.\n\nDamage dealt by your Undead minions now reduces the cooldown of Unholy Frenzy by -0.5 sec."
+        }
+      ]
+    },
+    {
+      "id": 33777,
+      "name": "Raise: Banshee",
+      "tree": "Class",
+      "x": 5,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ui_darkshore_warfront_horde_banshee",
+      "spellId": 504861,
+      "description": "Raise a Banshee to aid you in combat, occupying 2 Life Force.\n\nIt will channel on your target, dealing damage and draining their mana over time.\n\nCommand: Drains 20% of your target's mana (up to a maximum of 40% of their own maximum mana) and deals Frost damage equal to the mana drained.",
+      "referencedTerms": [
+        "Banshee",
+        "Command",
+        "Life Force"
+      ],
+      "prerequisites": [
+        "Foul Invocation",
+        "Frost Runes"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Raise a Banshee to aid you in combat, occupying 2 Life Force.\n\nIt will channel on your target, dealing damage and draining their mana over time.\n\nCommand: Drains 20% of your target's mana (up to a maximum of 40% of their own maximum mana) and deals Frost damage equal to the mana drained."
+        }
+      ]
+    },
+    {
+      "id": 30600,
+      "name": "Animate: Frost Wyrm",
+      "tree": "Class",
+      "x": 7,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\5_dragoncoldbreath_Border",
+      "spellId": 805428,
+      "description": "Animate a Frost Wyrm that flies behind the Necromancer that blasts nearby enemies every 2 sec for 30 seconds, dealing 1500 + 14.88% frost SP + 14.88% Intellect Frost damage.",
+      "referencedTerms": [
+        "Frost Wyrm"
+      ],
+      "prerequisites": [
+        "Frost Runes"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Animate a Frost Wyrm that flies behind the Necromancer that blasts nearby enemies every 2 sec for 30 seconds, dealing 1500 + 14.88% frost SP + 14.88% Intellect Frost damage."
+        }
+      ]
+    },
+    {
+      "id": 29866,
+      "name": "Flesh to Worms",
+      "tree": "Death",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_pet_batpetmaldraxxus",
+      "spellId": 500338,
+      "description": "Disease an enemy, dealing 15 + 11.06% shadow SP Plague damage and generating Runic Power every 3 sec for 18 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Disease an enemy, dealing 15 + 11.06% shadow SP Plague damage and generating Runic Power every 3 sec for 18 seconds."
+        }
+      ]
+    },
+    {
+      "id": 4034,
+      "name": "Crypt Plague",
+      "tree": "Death",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 1,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_PlagueCloud",
+      "spellId": 92121,
+      "description": "Level 10 Passive\nDamage dealt by Crypt Swarm now applies 1 stack of Crypt Plague and Lichfrost applies 2 stacks.Crypt Plague (Damage)Deals 2 + 6% SP Plague Damage every 2 sec for 10 seconds, stacking 10 times.\n\nAdditional applications do not refresh duration.",
+      "referencedTerms": [
+        "Crypt Plague",
+        "Crypt Swarm",
+        "Lichfrost"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Fetid Ward"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nDamage dealt by Crypt Swarm now applies 1 stack of Crypt Plague and Lichfrost applies 2 stacks.Crypt Plague (Damage)Deals 2 + 6% SP Plague Damage every 2 sec for 10 seconds, stacking 10 times.\n\nAdditional applications do not refresh duration."
+        }
+      ]
+    },
+    {
+      "id": 11904,
+      "name": "Cycle of Death",
+      "tree": "Death",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_holy_turnundead",
+      "spellId": 560727,
+      "description": "Increases your spell haste by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Flesh to Worms"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your spell haste by 5%."
+        }
+      ]
+    },
+    {
+      "id": 33752,
+      "name": "Master of Death",
+      "tree": "Death",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_DeathAndDecay",
+      "spellId": 806328,
+      "description": "Casting Command spells on an enemy now applies Crypt Plague.",
+      "referencedTerms": [
+        "Command",
+        "Crypt Plague"
+      ],
+      "prerequisites": [
+        "Flesh to Worms"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Command spells on an enemy now applies Crypt Plague."
+        }
+      ]
+    },
+    {
+      "id": 7808,
+      "name": "Rotting Flesh",
+      "tree": "Death",
+      "x": 1,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_RaiseDead",
+      "spellId": 301304,
+      "description": "Increases the damage of Flesh to Worms by 25% and allows its periodic damage to scale with your spell haste.",
+      "referencedTerms": [
+        "Flesh to Worms"
+      ],
+      "prerequisites": [
+        "Cycle of Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Flesh to Worms by 25% and allows its periodic damage to scale with your spell haste."
+        }
+      ]
+    },
+    {
+      "id": 6904,
+      "name": "Swarmer",
+      "tree": "Death",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_DarkSummoning",
+      "spellId": 704528,
+      "description": "Increases the Runic Power generated by Crypt Swarm by 2 per tick.",
+      "referencedTerms": [
+        "Crypt Swarm"
+      ],
+      "prerequisites": [
+        "Cycle of Death",
+        "Master of Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the Runic Power generated by Crypt Swarm by 2 per tick."
+        }
+      ]
+    },
+    {
+      "id": 6863,
+      "name": "Damnation",
+      "tree": "Death",
+      "x": 7,
+      "y": 2,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_deathcoil_Border",
+      "spellId": 806149,
+      "description": "Increases your Shadow damage by 5%, doubled against enemies below 35% health.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Master of Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Shadow damage by 5%, doubled against enemies below 35% health."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Shadow damage by 10%, doubled against enemies below 35% health."
+        }
+      ]
+    },
+    {
+      "id": 19222,
+      "name": "Plague Science",
+      "tree": "Death",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_pet_diseasedsquirrel",
+      "spellId": 704163,
+      "description": "Level 20 Passive\nYour diseases and Crypt Swarm now deal 100% increased damage to enemies below 20% health.",
+      "referencedTerms": [
+        "Crypt Swarm"
+      ],
+      "prerequisites": [
+        "Crypt Plague"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nYour diseases and Crypt Swarm now deal 100% increased damage to enemies below 20% health."
+        }
+      ]
+    },
+    {
+      "id": 31245,
+      "name": "Plague of Undeath",
+      "tree": "Death",
+      "x": 2,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\epic_rpg_icon_pack_death_icon_0000s_0000_spirits_Border",
+      "spellId": 801945,
+      "description": "Disease an enemy dealing 32 + 25% shadow SP Plague damage every 3 sec and reduces the targets Holy healing received by -40% for 20 seconds.\n\nIf Plague of Undeath is dispelled, the enemy takes 456 + 125% shadow SP Plague damage and is stunned for 5 seconds.",
+      "referencedTerms": [
+        "Plague of Undeath"
+      ],
+      "prerequisites": [
+        "Rotting Flesh"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Disease an enemy dealing 32 + 25% shadow SP Plague damage every 3 sec and reduces the targets Holy healing received by -40% for 20 seconds.\n\nIf Plague of Undeath is dispelled, the enemy takes 456 + 125% shadow SP Plague damage and is stunned for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6295,
+      "name": "Creeping Crypt",
+      "tree": "Death",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_deathwing_sealarmorbreachgreen",
+      "spellId": 300960,
+      "description": "Increases the critical strike chance of Flesh to Worms by 25% against enemies below 35% maximum health.",
+      "referencedTerms": [
+        "Flesh to Worms"
+      ],
+      "prerequisites": [
+        "Swarmer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Flesh to Worms by 25% against enemies below 35% maximum health."
+        }
+      ]
+    },
+    {
+      "id": 30821,
+      "name": "Dark Harvester",
+      "tree": "Death",
+      "x": 6,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_AuraOfDarkness",
+      "spellId": 807960,
+      "description": "Increases your critical strike and hit chance by 3%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Damnation"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical strike and hit chance by 3%."
+        }
+      ]
+    },
+    {
+      "id": 34982,
+      "name": "Expunge",
+      "tree": "Death",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3acidcloud",
+      "spellId": 705754,
+      "description": "Casting Command spells on an enemy now applies Expunge if they are Diseased.Expunge (Talent)Increases the target's damage taken from your Necromancer diseases by 10% for 10 seconds, stacking 2 times.",
+      "referencedTerms": [
+        "Command",
+        "Diseased",
+        "Expunge"
+      ],
+      "prerequisites": [
+        "Plague of Undeath"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Command spells on an enemy now applies Expunge if they are Diseased.Expunge (Talent)Increases the target's damage taken from your Necromancer diseases by 10% for 10 seconds, stacking 2 times."
+        }
+      ]
+    },
+    {
+      "id": 30804,
+      "name": "Virulency",
+      "tree": "Death",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_maldraxxus_shaman",
+      "spellId": 801938,
+      "description": "Reinvigorate your diseases, refreshing all diseases on the target enemy and copying them, preserving their power and duration.\n\nYou may use this abilty again within 10 sec to Infest another target, applying the copied diseases.",
+      "referencedTerms": [
+        "Infest"
+      ],
+      "prerequisites": [
+        "Creeping Crypt",
+        "Dark Harvester",
+        "Plague of Undeath"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reinvigorate your diseases, refreshing all diseases on the target enemy and copying them, preserving their power and duration.\n\nYou may use this abilty again within 10 sec to Infest another target, applying the copied diseases."
+        }
+      ]
+    },
+    {
+      "id": 30835,
+      "name": "Necrosis",
+      "tree": "Death",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\artifactability_unholydeathknight_flagellation",
+      "spellId": 802990,
+      "description": "Increases the duration of your diseases by 25%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Dark Harvester"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of your diseases by 25%."
+        }
+      ]
+    },
+    {
+      "id": 6960,
+      "name": "Foul Contagion",
+      "tree": "Death",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_Explode_Ghoul",
+      "spellId": 300965,
+      "description": "Applying Crypt Plague now extends the duration of Flesh to Worms on the target by 1 sec.",
+      "referencedTerms": [
+        "Crypt Plague",
+        "Flesh to Worms"
+      ],
+      "prerequisites": [
+        "Dark Harvester"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Applying Crypt Plague now extends the duration of Flesh to Worms on the target by 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 9223,
+      "name": "Rotting Flesh",
+      "tree": "Death",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_deathknight_decomposingaura",
+      "spellId": 574138,
+      "description": "Level 30 Passive\nApplying Crypt Plague to an enemy now additionally adds Rotting Flesh to your Undead minions, increasing their damage dealt by 2% per stack for 5 sec.",
+      "referencedTerms": [
+        "Crypt Plague",
+        "Rotting Flesh"
+      ],
+      "prerequisites": [
+        "Plague Science"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nApplying Crypt Plague to an enemy now additionally adds Rotting Flesh to your Undead minions, increasing their damage dealt by 2% per stack for 5 sec."
+        }
+      ]
+    },
+    {
+      "id": 6965,
+      "name": "Touch of Death",
+      "tree": "Death",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_druideskill47_Border",
+      "spellId": 707113,
+      "description": "Allows Expunge to stack an additional time and increases the range of your Death spells by 20%.",
+      "referencedTerms": [
+        "Expunge"
+      ],
+      "prerequisites": [
+        "Expunge"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Allows Expunge to stack an additional time and increases the range of your Death spells by 20%."
+        }
+      ]
+    },
+    {
+      "id": 29241,
+      "name": "Crypt Explosion",
+      "tree": "Death",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_necrolord_fleshcraft",
+      "spellId": 500572,
+      "description": "Casting Command spells on an enemy now applies Crypt Plague to 3 enemies near the primary target.",
+      "referencedTerms": [
+        "Command",
+        "Crypt Plague"
+      ],
+      "prerequisites": [
+        "Expunge"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Command spells on an enemy now applies Crypt Plague to 3 enemies near the primary target."
+        }
+      ]
+    },
+    {
+      "id": 30917,
+      "name": "Creeping Plagues",
+      "tree": "Death",
+      "x": 3,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_necro_necroticsmash",
+      "spellId": 572130,
+      "description": "You may now Infest an additional target after using Virulency.",
+      "referencedTerms": [
+        "Infest",
+        "Virulency"
+      ],
+      "prerequisites": [
+        "Virulency"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "You may now Infest an additional target after using Virulency."
+        }
+      ]
+    },
+    {
+      "id": 33759,
+      "name": "Pandemic",
+      "tree": "Death",
+      "x": 5,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_nature_sicklypolymorph",
+      "spellId": 560798,
+      "description": "Damage dealt by your Undead minions now reduces the cooldown of Virulency by -1 sec.",
+      "referencedTerms": [
+        "Virulency"
+      ],
+      "prerequisites": [
+        "Virulency"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by your Undead minions now reduces the cooldown of Virulency by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 6961,
+      "name": "Festering Decay",
+      "tree": "Death",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_DeathCoilV2_Cyan",
+      "spellId": 806324,
+      "description": "Reduces the cost of Command spells by -15% and causes them to increase the target's spell damage taken by 10% for 15 seconds.",
+      "referencedTerms": [
+        "Command"
+      ],
+      "prerequisites": [
+        "Foul Contagion",
+        "Necrosis"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cost of Command spells by -15% and causes them to increase the target's spell damage taken by 10% for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 33753,
+      "name": "Unholy Runes",
+      "tree": "Death",
+      "x": 8,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_EmpowerRuneBlade",
+      "spellId": 561353,
+      "description": "Increases the damage of Crypt Swarm by 15%.",
+      "referencedTerms": [
+        "Crypt Swarm"
+      ],
+      "prerequisites": [
+        "Foul Contagion",
+        "Necrosis"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Crypt Swarm by 15%."
+        }
+      ]
+    },
+    {
+      "id": 33763,
+      "name": "Expediting Death",
+      "tree": "Death",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_fishing_bait_spineworm",
+      "spellId": 300236,
+      "description": "Each stack of Expunge now increases the target's damage taken from your Plague of Undeath by an additional 5%.",
+      "referencedTerms": [
+        "Expunge",
+        "Plague of Undeath"
+      ],
+      "prerequisites": [
+        "Touch of Death",
+        "Crypt Explosion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each stack of Expunge now increases the target's damage taken from your Plague of Undeath by an additional 5%."
+        }
+      ]
+    },
+    {
+      "id": 4620,
+      "name": "Mutation",
+      "tree": "Death",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_dungeon_plaguefall_stradamamargrave",
+      "spellId": 500342,
+      "description": "For the next 15 seconds your diseases mutate causing them to act with accelerated lethality, allowing your freshly applied diseases to tick -50% faster.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Creeping Plagues",
+        "Pandemic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "For the next 15 seconds your diseases mutate causing them to act with accelerated lethality, allowing your freshly applied diseases to tick -50% faster."
+        }
+      ]
+    },
+    {
+      "id": 29864,
+      "name": "Plague Revenant",
+      "tree": "Death",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helm_cloth_raidwarlockmythic_s_01",
+      "spellId": 806321,
+      "description": "Critical strikes now apply a stack of Crypt Plague.",
+      "referencedTerms": [
+        "Crypt Plague"
+      ],
+      "prerequisites": [
+        "Festering Decay",
+        "Unholy Runes"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes now apply a stack of Crypt Plague."
+        }
+      ]
+    },
+    {
+      "id": 4623,
+      "name": "Withering",
+      "tree": "Death",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_DeathCoil",
+      "spellId": 301250,
+      "description": "Level 40 Passive\nAllows Crypt Plague to stack 5 additional times.",
+      "referencedTerms": [
+        "Crypt Plague"
+      ],
+      "prerequisites": [
+        "Rotting Flesh"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nAllows Crypt Plague to stack 5 additional times."
+        }
+      ]
+    },
+    {
+      "id": 29946,
+      "name": "Parasite Plague",
+      "tree": "Death",
+      "x": 0,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Creature_Disease_01",
+      "spellId": 560730,
+      "description": "Damage dealt now has a 5% chance to apply Parasites for 8 seconds.ParasitesYour Undead minions feast upon the parasites on hit, leeching 15% of their damage dealt as Plague Damage to the target.",
+      "referencedTerms": [
+        "Parasites"
+      ],
+      "prerequisites": [
+        "Expediting Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt now has a 5% chance to apply Parasites for 8 seconds.ParasitesYour Undead minions feast upon the parasites on hit, leeching 15% of their damage dealt as Plague Damage to the target."
+        }
+      ]
+    },
+    {
+      "id": 33761,
+      "name": "Fleshcrafting",
+      "tree": "Death",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_unholybird_Border",
+      "spellId": 300941,
+      "description": "Increases the duration Unholy Frenzy by 5 sec and casting Command spells now reduces its cooldown by -1 sec.",
+      "referencedTerms": [
+        "Command",
+        "Unholy Frenzy"
+      ],
+      "prerequisites": [
+        "Expediting Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration Unholy Frenzy by 5 sec and casting Command spells now reduces its cooldown by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 30919,
+      "name": "Apothecary's Cauldron",
+      "tree": "Death",
+      "x": 3,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_nature_nullifydisease",
+      "spellId": 560537,
+      "description": "Increases the spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your Magic damage dealt by 3%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Mutation",
+        "Crypt Explosion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your Magic damage dealt by 3%."
+        }
+      ]
+    },
+    {
+      "id": 10918,
+      "name": "Death Commander",
+      "tree": "Death",
+      "x": 5,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\epic_rpg_icon_pack_death_icon_0005s_0000_grave_Border",
+      "spellId": 300235,
+      "description": "Periodic damage dealt now has a 10% chance to increase your and your Undead minion's haste by 20% for 8 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Mutation",
+        "Festering Decay"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Periodic damage dealt now has a 10% chance to increase your and your Undead minion's haste by 20% for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 7807,
+      "name": "Fiend",
+      "tree": "Death",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_Thrash_Ghoul",
+      "spellId": 707627,
+      "description": "Increases the damage and critical damage of Lichfrost by 20% against diseased targets.",
+      "referencedTerms": [
+        "Lichfrost"
+      ],
+      "prerequisites": [
+        "Plague Revenant"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage and critical damage of Lichfrost by 20% against diseased targets."
+        }
+      ]
+    },
+    {
+      "id": 29242,
+      "name": "Putricide's Formula",
+      "tree": "Death",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_profputricide",
+      "spellId": 707001,
+      "description": "Damage dealt by Undead minions has a 10% chance to blast up to 3 nearby enemies for 71 + 30% SP Plague damage.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Plague Revenant"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Undead minions has a 10% chance to blast up to 3 nearby enemies for 71 + 30% SP Plague damage."
+        },
+        {
+          "rank": 2,
+          "description": "Damage dealt by Undead minions has a 20% chance to blast up to 3 nearby enemies for 71 + 30% SP Plague damage."
+        }
+      ]
+    },
+    {
+      "id": 30912,
+      "name": "Lichplague",
+      "tree": "Death",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_warlock09_Border",
+      "spellId": 802132,
+      "description": "Disease an enemy, dealing 151 + 22% SP Plague damage every 3 sec for 18 seconds. \n\nDamage increased by 4% for each Necromancer disease on the enemy.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Parasite Plague",
+        "Fleshcrafting"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Disease an enemy, dealing 151 + 22% SP Plague damage every 3 sec for 18 seconds. \n\nDamage increased by 4% for each Necromancer disease on the enemy."
+        }
+      ]
+    },
+    {
+      "id": 29861,
+      "name": "Rot Fetishist",
+      "tree": "Death",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_rotting_breath",
+      "spellId": 805675,
+      "description": "Your Virulency now applies Rot Fetishist for 10 seconds, causing you to replicate 20% of your periodic damage dealt as direct damage.",
+      "referencedTerms": [
+        "Rot Fetishist",
+        "Virulency"
+      ],
+      "prerequisites": [
+        "Death Commander",
+        "Apothecary's Cauldron"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Virulency now applies Rot Fetishist for 10 seconds, causing you to replicate 20% of your periodic damage dealt as direct damage."
+        }
+      ]
+    },
+    {
+      "id": 33760,
+      "name": "Wormfood",
+      "tree": "Death",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_worm_b_01_Border",
+      "spellId": 560800,
+      "description": "Upon fully channeling Crypt Swarm, you summon a Rotling that will run towards the enemy and explode after 5 sec for 320 + 33.5% SP Plague damage.",
+      "referencedTerms": [
+        "Crypt Swarm",
+        "Rotling"
+      ],
+      "prerequisites": [
+        "Fiend",
+        "Putricide's Formula"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Upon fully channeling Crypt Swarm, you summon a Rotling that will run towards the enemy and explode after 5 sec for 320 + 33.5% SP Plague damage."
+        }
+      ]
+    },
+    {
+      "id": 11623,
+      "name": "Unholy Erosion",
+      "tree": "Death",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_Cripple",
+      "spellId": 807700,
+      "description": "Level 50 Passive\nIncreases your spell penetration by 50, scaling with your level.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Withering"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nIncreases your spell penetration by 50, scaling with your level."
+        }
+      ]
+    },
+    {
+      "id": 33750,
+      "name": "Waking Crypts",
+      "tree": "Death",
+      "x": 1,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_maldraxxus",
+      "spellId": 570136,
+      "description": "Increases the damage of Crypt Plague by 50% and Crypt Swarm now deals 4% more damage for each Necromancer disease you have on the target.",
+      "referencedTerms": [
+        "Crypt Plague",
+        "Crypt Swarm"
+      ],
+      "prerequisites": [
+        "Lichplague"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Crypt Plague by 50% and Crypt Swarm now deals 4% more damage for each Necromancer disease you have on the target."
+        }
+      ]
+    },
+    {
+      "id": 30822,
+      "name": "Raise: Gargoyle",
+      "tree": "Death",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_deathknight_summongargoyle",
+      "spellId": 500329,
+      "description": "Raise a fallen Gargoyle to aid you in combat, occupying 3 Life Force. \n\nCommand: Shoots necrotic bile at an enemy, dealing 73 + 65% SP Plague damage, dealing 50% increased damage for each of your diseases on the target.",
+      "referencedTerms": [
+        "Command",
+        "Gargoyle",
+        "Life Force"
+      ],
+      "prerequisites": [
+        "Rot Fetishist",
+        "Lichplague",
+        "Wormfood"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Raise a fallen Gargoyle to aid you in combat, occupying 3 Life Force. \n\nCommand: Shoots necrotic bile at an enemy, dealing 73 + 65% SP Plague damage, dealing 50% increased damage for each of your diseases on the target."
+        }
+      ]
+    },
+    {
+      "id": 30915,
+      "name": "Muck Summoner",
+      "tree": "Death",
+      "x": 7,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_fishing_lure_worm",
+      "spellId": 806086,
+      "description": "Periodic damage dealt now has an 5% chance to summon 2 to 3 Rotlings that will run towards the enemy and explode after 5 sec for 320 + 33.5% SP Plague damage.",
+      "referencedTerms": [
+        "Rotlings"
+      ],
+      "prerequisites": [
+        "Wormfood"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Periodic damage dealt now has an 5% chance to summon 2 to 3 Rotlings that will run towards the enemy and explode after 5 sec for 320 + 33.5% SP Plague damage."
+        }
+      ]
+    },
+    {
+      "id": 31185,
+      "name": "Ice Barrage",
+      "tree": "Rime",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\uico_frost_spell_09_Border",
+      "spellId": 801760,
+      "description": "Unleash a relentless volley of glacial shards, dealing 19 + 35% SP Frost damage every 0 sec for 1 seconds.\n\nAt the end of the duration, you entomb your target in ice, freezing them for 4 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Tundra Warriors",
+        "Glacial Tap"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Unleash a relentless volley of glacial shards, dealing 19 + 35% SP Frost damage every 0 sec for 1 seconds.\n\nAt the end of the duration, you entomb your target in ice, freezing them for 4 seconds."
+        }
+      ]
+    },
+    {
+      "id": 4035,
+      "name": "Tundra Warriors",
+      "tree": "Rime",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 1,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\WC3LichOriginal",
+      "spellId": 92122,
+      "description": "Level 10 Passive\nCasting any spell now has a 25% chance to grant you Tundra Warriors.Tundra Warriors (Proc)For 10 seconds, the critical strike chance of your Undead minions is increased by 4%, stacking 3 times.",
+      "referencedTerms": [
+        "Tundra Warriors"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Glacial Tap"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nCasting any spell now has a 25% chance to grant you Tundra Warriors.Tundra Warriors (Proc)For 10 seconds, the critical strike chance of your Undead minions is increased by 4%, stacking 3 times."
+        }
+      ]
+    },
+    {
+      "id": 6901,
+      "name": "Refreshing Chill",
+      "tree": "Rime",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_mageskill32_Border",
+      "spellId": 300940,
+      "description": "Casting Command spells now has a 20% chance to reset the cooldown of Ice Barrage and make your cast next within 15 seconds free of cost.",
+      "referencedTerms": [
+        "Command",
+        "Ice Barrage"
+      ],
+      "prerequisites": [
+        "Ice Barrage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Command spells now has a 20% chance to reset the cooldown of Ice Barrage and make your cast next within 15 seconds free of cost."
+        }
+      ]
+    },
+    {
+      "id": 7213,
+      "name": "Frigid Winds",
+      "tree": "Rime",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_IceWave_Border",
+      "spellId": 504357,
+      "description": "Increases the chance to trigger Refreshing Chill by 5%.",
+      "referencedTerms": [
+        "Refreshing Chill"
+      ],
+      "prerequisites": [
+        "Refreshing Chill"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the chance to trigger Refreshing Chill by 5%."
+        }
+      ]
+    },
+    {
+      "id": 34976,
+      "name": "Piercing Icicles",
+      "tree": "Rime",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_IceSpear_Border",
+      "spellId": 524687,
+      "description": "Increases the damage of Ice Barrage by 20%.",
+      "referencedTerms": [
+        "Ice Barrage"
+      ],
+      "prerequisites": [
+        "Refreshing Chill"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Ice Barrage by 20%."
+        }
+      ]
+    },
+    {
+      "id": 6893,
+      "name": "Glacial Impact",
+      "tree": "Rime",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\skill_icon_skill23_Border",
+      "spellId": 704355,
+      "description": "Requires Frozen Target\nCall down icy boulders onto a Frozen enemy, dealing 84 + 100% frost SP Frost damage.",
+      "referencedTerms": [
+        "Frozen",
+        "Requires Frozen Target"
+      ],
+      "prerequisites": [
+        "Refreshing Chill"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Requires Frozen Target\nCall down icy boulders onto a Frozen enemy, dealing 84 + 100% frost SP Frost damage."
+        }
+      ]
+    },
+    {
+      "id": 4436,
+      "name": "Ice Mastery",
+      "tree": "Rime",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_AuraCloak_Ice",
+      "spellId": 560045,
+      "description": "Level 20 Passive\nIncreases your spell power by 30% of your Intellect.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Tundra Warriors"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nIncreases your spell power by 30% of your Intellect."
+        }
+      ]
+    },
+    {
+      "id": 33725,
+      "name": "Bone Legion",
+      "tree": "Rime",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_physical_ability_(38)_Border",
+      "spellId": 707006,
+      "description": "Increases the damage of Lichfrost by 10% and its Runic Power generated by 25%.",
+      "referencedTerms": [
+        "Lichfrost"
+      ],
+      "prerequisites": [
+        "Frigid Winds",
+        "Piercing Icicles"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Lichfrost by 10% and its Runic Power generated by 25%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the damage of Lichfrost by 20% and its Runic Power generated by 50%."
+        }
+      ]
+    },
+    {
+      "id": 34978,
+      "name": "Curse of the Lich",
+      "tree": "Rime",
+      "x": 2,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_CasterCloak_Ice",
+      "spellId": 300240,
+      "description": "Increases the range of your Rime spells by 6 yds and increases the Frost critical strike chance of you and your summons by 3%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Frigid Winds",
+        "Piercing Icicles"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the range of your Rime spells by 6 yds and increases the Frost critical strike chance of you and your summons by 3%."
+        }
+      ]
+    },
+    {
+      "id": 33720,
+      "name": "Runic Reservoir",
+      "tree": "Rime",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_frostemblem_01",
+      "spellId": 704670,
+      "description": "Increases your Frost damage by 5% and your maximum Runic Power by 15.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Glacial Impact",
+        "Frigid Winds",
+        "Piercing Icicles"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Frost damage by 5% and your maximum Runic Power by 15."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Frost damage by 10% and your maximum Runic Power by 30."
+        }
+      ]
+    },
+    {
+      "id": 6488,
+      "name": "Hoarfrost Hands",
+      "tree": "Rime",
+      "x": 6,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Call_of_the_Sepulcher_64x64",
+      "spellId": 803291,
+      "description": "Increases the duration of Lichfrost's movement speed slow by 4 sec and your hit chance by 4%.",
+      "referencedTerms": [
+        "Lichfrost's"
+      ],
+      "prerequisites": [
+        "Glacial Impact"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Lichfrost's movement speed slow by 4 sec and your hit chance by 4%."
+        }
+      ]
+    },
+    {
+      "id": 5605,
+      "name": "Frigid Death",
+      "tree": "Rime",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Ice_Lament",
+      "spellId": 560851,
+      "description": "Increases the damage of Glacial Impact by 20%.",
+      "referencedTerms": [
+        "Glacial Impact"
+      ],
+      "prerequisites": [
+        "Glacial Impact"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Glacial Impact by 20%."
+        }
+      ]
+    },
+    {
+      "id": 30605,
+      "name": "Freeze Dry",
+      "tree": "Rime",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_mage_coldasice",
+      "spellId": 704680,
+      "description": "Your Glacial Impact now generates 20 Runic Power.",
+      "referencedTerms": [
+        "Glacial Impact"
+      ],
+      "prerequisites": [
+        "Glacial Impact"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Glacial Impact now generates 20 Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 7214,
+      "name": "Heartchill",
+      "tree": "Rime",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_deathknight_heartstopaura",
+      "spellId": 801739,
+      "description": "Chill an enemy's heart, interrupting their current spell cast.\n\nSuccessfully interrupting a spell also reduces their movement speed and haste by -80% for 3 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Bone Legion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Chill an enemy's heart, interrupting their current spell cast.\n\nSuccessfully interrupting a spell also reduces their movement speed and haste by -80% for 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6891,
+      "name": "Necrotic Chains",
+      "tree": "Rime",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_lichking",
+      "spellId": 801733,
+      "description": "Every 3rd Command spell now freezes the target in place for 5 seconds. Damage dealt may end this effect.",
+      "referencedTerms": [
+        "Command"
+      ],
+      "prerequisites": [
+        "Bone Legion",
+        "Curse of the Lich"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Every 3rd Command spell now freezes the target in place for 5 seconds. Damage dealt may end this effect."
+        }
+      ]
+    },
+    {
+      "id": 12891,
+      "name": "Ner'zhul's Blessing",
+      "tree": "Rime",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_mage_freeze",
+      "spellId": 803797,
+      "description": "Every 3rd Command spell now makes your next Lichfrost within 10 seconds guaranteed to critically strike.",
+      "referencedTerms": [
+        "Command",
+        "Lichfrost"
+      ],
+      "prerequisites": [
+        "Bone Legion",
+        "Curse of the Lich"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Every 3rd Command spell now makes your next Lichfrost within 10 seconds guaranteed to critically strike."
+        }
+      ]
+    },
+    {
+      "id": 29778,
+      "name": "Giant Bones",
+      "tree": "Rime",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_dungeon_ulduarraid_icegiant_01",
+      "spellId": 805427,
+      "description": "Casting Unholy Frenzy now summons a Rotting Frost Giant to aid you in combat for the duration.",
+      "referencedTerms": [
+        "Rotting Frost Giant",
+        "Unholy Frenzy"
+      ],
+      "prerequisites": [
+        "Hoarfrost Hands",
+        "Runic Reservoir",
+        "Curse of the Lich"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Unholy Frenzy now summons a Rotting Frost Giant to aid you in combat for the duration."
+        }
+      ]
+    },
+    {
+      "id": 29773,
+      "name": "Glacier Lord",
+      "tree": "Rime",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\uico_frost_spell_03_Border",
+      "spellId": 560852,
+      "description": "Your Glacial Impact is now guaranteed to critically strike against Frozen targets.",
+      "referencedTerms": [
+        "Frozen",
+        "Glacial Impact"
+      ],
+      "prerequisites": [
+        "Frigid Death",
+        "Hoarfrost Hands",
+        "Freeze Dry"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Glacial Impact is now guaranteed to critically strike against Frozen targets."
+        }
+      ]
+    },
+    {
+      "id": 30621,
+      "name": "Icecrown",
+      "tree": "Rime",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helm_eternalwinter_d_01",
+      "spellId": 531135,
+      "description": "Your Frost damage dealt now increases your allies' critical strike chance against the enemy by 1% for 10 seconds, stacking 3 times.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Frigid Death",
+        "Freeze Dry"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Frost damage dealt now increases your allies' critical strike chance against the enemy by 1% for 10 seconds, stacking 3 times."
+        }
+      ]
+    },
+    {
+      "id": 4437,
+      "name": "Frozen Power",
+      "tree": "Rime",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\custom_T_IceSkull_Border",
+      "spellId": 301303,
+      "description": "Level 30 Passive\nIncreases your critical damage with Frost spells by 50%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Ice Mastery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nIncreases your critical damage with Frost spells by 50%."
+        }
+      ]
+    },
+    {
+      "id": 30622,
+      "name": "Raise: Skeletal Mage",
+      "tree": "Rime",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\SkeletalIceMage2",
+      "spellId": 500331,
+      "description": "Raise a Skeletal Mage to aid you in combat, occupying 2 Life Force.\n\nCommand: Unleashes ice at your target and enemies within 6 yds, dealing 51 + 80% frost SP Frost damage.",
+      "referencedTerms": [
+        "Command",
+        "Life Force",
+        "Skeletal Mage"
+      ],
+      "prerequisites": [
+        "Necrotic Chains",
+        "Heartchill",
+        "Ner'zhul's Blessing"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Raise a Skeletal Mage to aid you in combat, occupying 2 Life Force.\n\nCommand: Unleashes ice at your target and enemies within 6 yds, dealing 51 + 80% frost SP Frost damage."
+        }
+      ]
+    },
+    {
+      "id": 30599,
+      "name": "Dominion of Frost",
+      "tree": "Rime",
+      "x": 3,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Frost_FreezingBreath",
+      "spellId": 537208,
+      "description": "Critical strikes dealt by your Undead minions now reduce the cooldown of Unholy Frenzy by -3 sec.",
+      "referencedTerms": [
+        "Unholy Frenzy"
+      ],
+      "prerequisites": [
+        "Giant Bones"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes dealt by your Undead minions now reduce the cooldown of Unholy Frenzy by -3 sec."
+        }
+      ]
+    },
+    {
+      "id": 29779,
+      "name": "Frigidness",
+      "tree": "Rime",
+      "x": 5,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_forgemaster",
+      "spellId": 704669,
+      "description": "Increases your critical damage by 50% against Frozen targets.",
+      "referencedTerms": [
+        "Frozen"
+      ],
+      "prerequisites": [
+        "Giant Bones"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical damage by 50% against Frozen targets."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your critical damage by 100% against Frozen targets."
+        }
+      ]
+    },
+    {
+      "id": 33731,
+      "name": "Frigid Power",
+      "tree": "Rime",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Frost_Frostbolt",
+      "spellId": 560620,
+      "description": "Increases the spell power scaling of Lichfrost and Ice Barrage by 20%.",
+      "referencedTerms": [
+        "Ice Barrage",
+        "Lichfrost"
+      ],
+      "prerequisites": [
+        "Glacier Lord",
+        "Icecrown"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the spell power scaling of Lichfrost and Ice Barrage by 20%."
+        }
+      ]
+    },
+    {
+      "id": 12212,
+      "name": "Command: Bonefreeze",
+      "tree": "Rime",
+      "x": 0,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_DarkRitual",
+      "spellId": 504489,
+      "description": "Command your Skeletal Mages to freeze enemies at target location for 40 seconds (8 sec vs players). Damage taken may end the effect.",
+      "referencedTerms": [
+        "Skeletal Mages"
+      ],
+      "prerequisites": [
+        "Raise: Skeletal Mage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Command your Skeletal Mages to freeze enemies at target location for 40 seconds (8 sec vs players). Damage taken may end the effect."
+        }
+      ]
+    },
+    {
+      "id": 4615,
+      "name": "Blood and Ice",
+      "tree": "Rime",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_herb_frostweedbranch",
+      "spellId": 561164,
+      "description": "Each Skeletal Warrior or Skeletal Rogue now increases the damage of your Ice Barrage by 8%.",
+      "referencedTerms": [
+        "Ice Barrage",
+        "Skeletal Rogue",
+        "Skeletal Warrior"
+      ],
+      "prerequisites": [
+        "Dominion of Frost",
+        "Raise: Skeletal Mage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each Skeletal Warrior or Skeletal Rogue now increases the damage of your Ice Barrage by 8%."
+        }
+      ]
+    },
+    {
+      "id": 30355,
+      "name": "Death and Ice",
+      "tree": "Rime",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_mage_frostjaw",
+      "spellId": 560012,
+      "description": "While a Skeletal Mage is active the critical strike chance of your Undead minions is now increased by 10%.",
+      "referencedTerms": [
+        "Skeletal Mage"
+      ],
+      "prerequisites": [
+        "Dominion of Frost",
+        "Raise: Skeletal Mage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While a Skeletal Mage is active the critical strike chance of your Undead minions is now increased by 10%."
+        }
+      ]
+    },
+    {
+      "id": 19778,
+      "name": "Frozen Bodies",
+      "tree": "Rime",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_holy_senseundead",
+      "spellId": 707562,
+      "description": "When you kill an enemy that yields experience or honor or critically strike with Frost damage you now gain a stack of Frozen Bodies.Frozen BodiesIncreases the damage of your next Glacial Impact by 3% for 20 seconds, stacking 10 times.\n\nReaching 10 stacks causes your next Glacial Impact within until cancelled to critically strike for 50% increased damage.",
+      "referencedTerms": [
+        "Frozen Bodies",
+        "Glacial Impact"
+      ],
+      "prerequisites": [
+        "Frigidness",
+        "Dominion of Frost"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "When you kill an enemy that yields experience or honor or critically strike with Frost damage you now gain a stack of Frozen Bodies.Frozen BodiesIncreases the damage of your next Glacial Impact by 3% for 20 seconds, stacking 10 times.\n\nReaching 10 stacks causes your next Glacial Impact within until cancelled to critically strike for 50% increased damage."
+        }
+      ]
+    },
+    {
+      "id": 29772,
+      "name": "Permafrost",
+      "tree": "Rime",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_ManaBurn_Frost",
+      "spellId": 704681,
+      "description": "Gives your spells a 15% chance to grant you the Permafrost, which treats your next 2 spells cast as if the target were Frozen. Lasts 12 seconds.",
+      "referencedTerms": [
+        "Frozen",
+        "Permafrost"
+      ],
+      "prerequisites": [
+        "Frigidness",
+        "Frigid Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Gives your spells a 15% chance to grant you the Permafrost, which treats your next 2 spells cast as if the target were Frozen. Lasts 12 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30619,
+      "name": "Deathly Chill",
+      "tree": "Rime",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_frost_beam_Border",
+      "spellId": 805424,
+      "description": "Reduces the channel and cast time of Ice Barrage by -25%.",
+      "referencedTerms": [
+        "Ice Barrage"
+      ],
+      "prerequisites": [
+        "Frigid Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the channel and cast time of Ice Barrage by -25%."
+        }
+      ]
+    },
+    {
+      "id": 4438,
+      "name": "Lich Form",
+      "tree": "Rime",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Achievement_Boss_Amnennar_the_Coldbringer",
+      "spellId": 500981,
+      "description": "Transform into a Lich, becoming Undead increasing your Frost damage dealt by 10%.\n\nWhile active you generate 3 Runic Power every 5 sec.",
+      "referencedTerms": [
+        "Lich"
+      ],
+      "prerequisites": [
+        "Frozen Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Transform into a Lich, becoming Undead increasing your Frost damage dealt by 10%.\n\nWhile active you generate 3 Runic Power every 5 sec."
+        }
+      ]
+    },
+    {
+      "id": 30617,
+      "name": "Crown's Call",
+      "tree": "Rime",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\expansionicon_wrathofthelichking",
+      "spellId": 805429,
+      "description": "Increases your Intellect by 5% and the Frost damage dealt by your Undead minions by 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Blood and Ice",
+        "Command: Bonefreeze",
+        "Death and Ice"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Intellect by 5% and the Frost damage dealt by your Undead minions by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Intellect by 10% and the Frost damage dealt by your Undead minions by 20%."
+        }
+      ]
+    },
+    {
+      "id": 33723,
+      "name": "Chilling Presence",
+      "tree": "Rime",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_IceBoundFortitude",
+      "spellId": 300958,
+      "description": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases the critical strike chance of Ice Barrage by 20% against Frozen targets.",
+      "referencedTerms": [
+        "Frozen",
+        "Ice Barrage"
+      ],
+      "prerequisites": [
+        "Blood and Ice",
+        "Frozen Bodies",
+        "Permafrost",
+        "Death and Ice"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases the critical strike chance of Ice Barrage by 20% against Frozen targets."
+        }
+      ]
+    },
+    {
+      "id": 8100,
+      "name": "Arch Lich",
+      "tree": "Rime",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_food_109_honeylichen",
+      "spellId": 707588,
+      "description": "Critical strikes with Frost spells now refund 3% of your maximum mana.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Permafrost",
+        "Deathly Chill"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Frost spells now refund 3% of your maximum mana."
+        }
+      ]
+    },
+    {
+      "id": 6892,
+      "name": "Raising the Kirin Tor",
+      "tree": "Rime",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_Brilliance",
+      "spellId": 805649,
+      "description": "Your Command spells now have a 40% chance to refund a portion of their Runic Power cost.",
+      "referencedTerms": [
+        "Command"
+      ],
+      "prerequisites": [
+        "Crown's Call",
+        "Chilling Presence"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Command spells now have a 40% chance to refund a portion of their Runic Power cost."
+        }
+      ]
+    },
+    {
+      "id": 30620,
+      "name": "Harrowing Winds",
+      "tree": "Rime",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_14_big_frost_arrow_Border",
+      "spellId": 705745,
+      "description": "Damage dealt by Glacial Impact now deals an additional 50% of the damage dealt as Frost damage to enemies within 6 yds of the primary target.",
+      "referencedTerms": [
+        "Glacial Impact"
+      ],
+      "prerequisites": [
+        "Chilling Presence"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Glacial Impact now deals an additional 50% of the damage dealt as Frost damage to enemies within 6 yds of the primary target."
+        }
+      ]
+    },
+    {
+      "id": 29317,
+      "name": "Soulfreeze",
+      "tree": "Rime",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_mage_rayoffrost",
+      "spellId": 572023,
+      "description": "All Frost damage you deal to Frozen targets now has a 25% chance to unleash Soulfreeze on them.SoulfreezeLaunch a chain of frost at an enemy, dealing 354 + 35% frost SP Frost Damage every 1 sec for 3 seconds.\n\nEach tick generates 3 to 8 Runic Power.",
+      "referencedTerms": [
+        "Frozen",
+        "Soulfreeze"
+      ],
+      "prerequisites": [
+        "Arch Lich",
+        "Chilling Presence"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "All Frost damage you deal to Frozen targets now has a 25% chance to unleash Soulfreeze on them.SoulfreezeLaunch a chain of frost at an enemy, dealing 354 + 35% frost SP Frost Damage every 1 sec for 3 seconds.\n\nEach tick generates 3 to 8 Runic Power."
+        }
+      ]
+    },
+    {
+      "id": 11438,
+      "name": "Champion of Kel'thuzad",
+      "tree": "Rime",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\uico_frost_spell_06_Border",
+      "spellId": 704676,
+      "description": "Level 50 Passive\nWhile your Lich Form is active, your Champion spells will now cooldown faster.",
+      "referencedTerms": [
+        "Champion",
+        "Lich Form"
+      ],
+      "prerequisites": [
+        "Lich Form"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nWhile your Lich Form is active, your Champion spells will now cooldown faster."
+        }
+      ]
+    },
+    {
+      "id": 6900,
+      "name": "Champion of Kel'Thuzad",
+      "tree": "Rime",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_MindFreeze",
+      "spellId": 807937,
+      "description": "Your Skeletal Mages now only cost 1 Life Force.",
+      "referencedTerms": [
+        "Life Force",
+        "Skeletal Mages"
+      ],
+      "prerequisites": [
+        "Raising the Kirin Tor"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Skeletal Mages now only cost 1 Life Force."
+        }
+      ]
+    },
+    {
+      "id": 5892,
+      "name": "Army of the North",
+      "tree": "Rime",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_frost_runedweapon_Border",
+      "spellId": 561138,
+      "description": "Chant a powerful ritual that brings forth 1 Rotting Frost Giant near you to aid you in combat for 30 seconds and generate 30 Runic Power, repeating every 3 sec for 15 seconds.\n\nFor the duration, your Undead minions are guaranteed to critically strike.",
+      "referencedTerms": [
+        "Rotting Frost Giant"
+      ],
+      "prerequisites": [
+        "Raising the Kirin Tor",
+        "Soulfreeze",
+        "Harrowing Winds"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Chant a powerful ritual that brings forth 1 Rotting Frost Giant near you to aid you in combat for 30 seconds and generate 30 Runic Power, repeating every 3 sec for 15 seconds.\n\nFor the duration, your Undead minions are guaranteed to critically strike."
+        }
+      ]
+    },
+    {
+      "id": 33738,
+      "name": "Master Lich",
+      "tree": "Rime",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\epic_rpg_icon_pack_frost_0000s_0000_figure_Border",
+      "spellId": 560848,
+      "description": "Soulfreeze now increases the enemy's Frost damage taken by you by 5% per tick for 8 sec, stacking 3 times.",
+      "referencedTerms": [
+        "Soulfreeze"
+      ],
+      "prerequisites": [
+        "Soulfreeze"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Soulfreeze now increases the enemy's Frost damage taken by you by 5% per tick for 8 sec, stacking 3 times."
+        }
+      ]
+    }
+  ]
+}

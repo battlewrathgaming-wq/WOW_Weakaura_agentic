@@ -1,0 +1,31 @@
+{
+  "$id": "power_threshold_effect.schema.json",
+  "title": "Power-threshold effect fragment",
+  "description": "Not a standalone template - an OPTIONAL extra trigger (Power, unit player) attachable to any icon-shaped template, driving 'effects on the button' (never visibility - Battlewrath's explicit correction, 2026-07-06: rotation slots are fixed/always-visible, triggers only drive desaturate/glow/etc). Two effects, either or both: desaturate when the player can't afford the ability (always applied when this fragment is present), and an optional 'afford glow' brightening the button's subglow once enough power is banked - the inverse comparison on the same trigger, no proc needed. Built from Necromancer's real Lichfrost/Crypt Swarm/Command: Undead (2026-07-06) - the first two cost a PERCENT of base mana, the third a FLAT Runic Power amount, hence cost_is_percent choosing between the Power trigger's 'percentpower' and 'power' state fields rather than assuming one shape.",
+  "type": "object",
+  "required": [
+    "powertype",
+    "cost"
+  ],
+  "properties": {
+    "powertype": {
+      "type": "integer",
+      "description": "WeakAuras power type index (Mana = 0, Runic Power = 6 - confirmed Necromancer values, Necromancer/slot_assignment.md)."
+    },
+    "cost": {
+      "type": "number",
+      "description": "The ability's real cost - a percent (0-100) if cost_is_percent, otherwise a flat power amount."
+    },
+    "cost_is_percent": {
+      "type": "boolean",
+      "default": false,
+      "description": "True for a percent-of-base-mana cost (checks the Power trigger's 'percentpower' field); false for a flat amount (checks 'power')."
+    },
+    "include_afford_glow": {
+      "type": "boolean",
+      "default": false,
+      "description": "If true, also glows the subglow subRegion once power >= cost (the inverse of the desaturate check) - e.g. Command: Undead's 'enough Runic Power banked' signal. Requires a subglow entry in the template's subRegions."
+    }
+  },
+  "verified": "Trigger fields (power/total/percentpower/deficit/maxpower, all conditionType='number') confirmed directly from Prototypes.lua's ['Power'] entry (line 2674). The generated condition code shape (cType=='number' branch) confirmed directly from Conditions.lua's CreateTestForCondition - not inferred by analogy, unlike glow_source's original caveat. Real cost data (Lichfrost/Crypt Swarm 10% base mana, Command: Undead 30 flat Runic Power) pulled from db.ascension.gg, 2026-07-06, cross-checked against the 30 RP figure already independently confirmed in slot_assignment.md."
+}

@@ -1,0 +1,5724 @@
+{
+  "class": "Ranger",
+  "classId": 21,
+  "realm": "voljin-alpha",
+  "source": "https://ascension.gg/en/v2/coa-builder/voljin-alpha",
+  "extracted": "2026-07-01",
+  "schemaVersion": 3,
+  "trees": [
+    "Archery",
+    "Brigand",
+    "Class",
+    "Farstrider"
+  ],
+  "totalTalents": 164,
+  "budget": {
+    "abilityEssence": 26,
+    "talentEssence": 25
+  },
+  "rules": {
+    "specExclusivity": "Only one spec tree (Sanguine/Accursed/Eternal/Fleshweaver-equivalent) can be active at a time in-game. You commit to ONE non-Class tree and spend your full Talent Essence budget within it (plus the separate Class tree spent with Ability Essence). Treat trees other than 'Class' as mutually exclusive choices, not a blend.",
+    "partialRanksCount": "A node only needs 1 point invested (not maxPoints) to count as 'connected' for prerequisite checks and to contribute toward the reqTreeAbilityEssence/reqTreeTalentEssence row-unlock thresholds.",
+    "budgetCurrencies": "Ability Essence (AE) is spent only in the Class tree. Talent Essence (TE) is spent only in whichever single spec tree you commit to. A node's abilityEssenceCost/talentEssenceCost fields show which currency it draws from (never both).",
+    "rowGating": "reqTreeAbilityEssence / reqTreeTalentEssence on a node is the minimum essence already spent within that SAME tree required to unlock it - not total across trees.",
+    "levelGates": "Some nodes (mostly entryType Ability) cost 0 essence and unlock automatically at requiredLevel instead of being a budget choice.",
+    "prerequisiteFieldsCorrected": "'prerequisites' is the OR-logic grid-connection requirement (matches tooltip 'requires one connected node: A or B or C') - need at least 1 point in ANY ONE listed node. 'specialRequirement' is a separate, rare, AND-logic hard requirement used only by a handful of free/level-gated bonus nodes - ALL listed nodes must already have a point.",
+    "budgetTotalsAssumed": "Verified live for Bloodmage: 26 Ability Essence (Class tree) / 25 Talent Essence (spec tree) as the spendable caps. Assumed identical for all classes since this is tied to character leveling, not class design - not independently verified per class. Override in the toolkit if a specific class differs.",
+    "referencedTerms": "Extracted from colored in-line spans in the raw tooltip HTML (e.g. a description that highlights 'Cursed Blood' or 'Bloodbolt'). These are explicit developer-authored callouts to another spell/buff/mechanic name, and are the strongest available signal for detecting mechanical synergy between talents - stronger than plain keyword text matching."
+  },
+  "talents": [
+    {
+      "id": 31178,
+      "name": "Precision Shot",
+      "tree": "Archery",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_archerskill07_Border",
+      "spellId": 500075,
+      "description": "Precisely shoot an enemy from a great distance, inflicting 24 + 48.5% ranged AP Physical damage.\n\nDamage increased by 25% for each stack of Advantage.\n\nUsable while in Elude.",
+      "referencedTerms": [
+        "Advantage",
+        "Elude"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Skirmisher",
+        "Crippling Shot"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Precisely shoot an enemy from a great distance, inflicting 24 + 48.5% ranged AP Physical damage.\n\nDamage increased by 25% for each stack of Advantage.\n\nUsable while in Elude."
+        }
+      ]
+    },
+    {
+      "id": 4028,
+      "name": "Skirmisher",
+      "tree": "Archery",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_archaeology_70_tauren_stonewoodbow",
+      "spellId": 92115,
+      "description": "Level 10 Passive\nIncreases the damage and tick rate of Toxic Dart by -30%, but reduces the duration of its damaging effect by -30%.",
+      "referencedTerms": [
+        "Toxic Dart"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Crippling Shot"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nIncreases the damage and tick rate of Toxic Dart by -30%, but reduces the duration of its damaging effect by -30%."
+        }
+      ]
+    },
+    {
+      "id": 34151,
+      "name": "Devastating Shots",
+      "tree": "Archery",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_trickshot",
+      "spellId": 705032,
+      "description": "Increases your critical strike chance by 2% and your hit chance by 1%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Precision Shot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical strike chance by 2% and your hit chance by 1%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your critical strike chance by 4% and your hit chance by 2%."
+        }
+      ]
+    },
+    {
+      "id": 29447,
+      "name": "Deadeye",
+      "tree": "Archery",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_bloodyeye",
+      "spellId": 300700,
+      "description": "Increases the range of your ranged abilities and Auto Shot by 5 yds.",
+      "referencedTerms": [
+        "Auto Shot"
+      ],
+      "prerequisites": [
+        "Precision Shot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the range of your ranged abilities and Auto Shot by 5 yds."
+        }
+      ]
+    },
+    {
+      "id": 34153,
+      "name": "Improved Serrated Shot",
+      "tree": "Archery",
+      "x": 1,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_hunter_assassinate2",
+      "spellId": 707888,
+      "description": "Increases the damage of Serrated Shot by 30%.",
+      "referencedTerms": [
+        "Serrated Shot"
+      ],
+      "prerequisites": [
+        "Devastating Shots"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Serrated Shot by 30%."
+        }
+      ]
+    },
+    {
+      "id": 7787,
+      "name": "Swiftshot",
+      "tree": "Archery",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_combatexpertise",
+      "spellId": 705028,
+      "description": "Damage dealt by Precision Shot now increases enemy Physical damage taken by 4% for 10 seconds.",
+      "referencedTerms": [
+        "Precision Shot"
+      ],
+      "prerequisites": [
+        "Deadeye",
+        "Devastating Shots"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Precision Shot now increases enemy Physical damage taken by 4% for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 31284,
+      "name": "Superb Shot",
+      "tree": "Archery",
+      "x": 7,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_ammo_arrow_04",
+      "spellId": 301249,
+      "description": "Damage dealt by Auto Shot now restores 4 Focus.",
+      "referencedTerms": [
+        "Auto Shot"
+      ],
+      "prerequisites": [
+        "Deadeye"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Auto Shot now restores 4 Focus."
+        }
+      ]
+    },
+    {
+      "id": 4429,
+      "name": "Sniper's Focus",
+      "tree": "Archery",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_crossbow_2h_kultirasquest_b_01",
+      "spellId": 680470,
+      "description": "Consuming Advantage now has a 20% chance per Archery Point spent to refund 20 Focus.",
+      "referencedTerms": [
+        "Advantage",
+        "Archery Point"
+      ],
+      "prerequisites": [
+        "Skirmisher"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Consuming Advantage now has a 20% chance per Archery Point spent to refund 20 Focus."
+        }
+      ]
+    },
+    {
+      "id": 7788,
+      "name": "Boots of Elvenkind",
+      "tree": "Archery",
+      "x": 3,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ivn_boot_cloth_warfrontshorde_b_01",
+      "spellId": 704317,
+      "description": "Increases your Agility by 5% and reduces the duration of movement slowing effects on you by -20%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Swiftshot",
+        "Improved Serrated Shot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Agility by 5% and reduces the duration of movement slowing effects on you by -20%."
+        }
+      ]
+    },
+    {
+      "id": 31283,
+      "name": "Studded Arrows",
+      "tree": "Archery",
+      "x": 5,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3hungeringarrow",
+      "spellId": 300706,
+      "description": "Increases the ranged weapon damage dealt by Quick Shot by 10%.",
+      "referencedTerms": [
+        "Quick Shot"
+      ],
+      "prerequisites": [
+        "Swiftshot",
+        "Superb Shot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the ranged weapon damage dealt by Quick Shot by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the ranged weapon damage dealt by Quick Shot by 20%."
+        }
+      ]
+    },
+    {
+      "id": 29660,
+      "name": "Hunting Shot",
+      "tree": "Archery",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\uico_arrow_spell_01_Border",
+      "spellId": 801191,
+      "description": "Fire a shot that ricochets between 3 enemies, dealing Ranged Weapon Damage plus 6 to each enemy.\n\nGenerates 1 stack of Advantage for each enemy hit.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Improved Serrated Shot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Fire a shot that ricochets between 3 enemies, dealing Ranged Weapon Damage plus 6 to each enemy.\n\nGenerates 1 stack of Advantage for each enemy hit."
+        }
+      ]
+    },
+    {
+      "id": 8009,
+      "name": "A Quick Demise",
+      "tree": "Archery",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_hunter_mongoosebite",
+      "spellId": 560810,
+      "description": "Auto shots now have a 20% chance to extend the duration of your Serrated Shot by 2 sec.",
+      "referencedTerms": [
+        "Serrated Shot"
+      ],
+      "prerequisites": [
+        "Improved Serrated Shot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Auto shots now have a 20% chance to extend the duration of your Serrated Shot by 2 sec."
+        }
+      ]
+    },
+    {
+      "id": 29914,
+      "name": "Skirmish",
+      "tree": "Archery",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Hunter_RunningShot",
+      "spellId": 802039,
+      "description": "Increases your critical strike chance by 15% and reduces your Focus costs by -25%.\n\nLasts 4 sec for each stack of Advantage.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Boots of Elvenkind",
+        "Studded Arrows"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical strike chance by 15% and reduces your Focus costs by -25%.\n\nLasts 4 sec for each stack of Advantage."
+        }
+      ]
+    },
+    {
+      "id": 34136,
+      "name": "Deadshot",
+      "tree": "Archery",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_bloodarrow_Border",
+      "spellId": 520227,
+      "description": "Generates 2 Advantage\nShoot a powerful arrow at the target dealing 250% Ranged Weapon Damage plus 20.1.\n\nOnly usable on enemies below 20% health.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Superb Shot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 2 Advantage\nShoot a powerful arrow at the target dealing 250% Ranged Weapon Damage plus 20.1.\n\nOnly usable on enemies below 20% health."
+        }
+      ]
+    },
+    {
+      "id": 34148,
+      "name": "Neurotoxin Arrow",
+      "tree": "Archery",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_naturearrow_Border",
+      "spellId": 500071,
+      "description": "Shoot at an enemy's throat with a toxin-laced arrow, dealing 25 + 36.07% ranged AP Nature damage and silencing them for 1 seconds.\n\nDuration increased by 1 sec per stack of Advantage.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Superb Shot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Shoot at an enemy's throat with a toxin-laced arrow, dealing 25 + 36.07% ranged AP Nature damage and silencing them for 1 seconds.\n\nDuration increased by 1 sec per stack of Advantage."
+        }
+      ]
+    },
+    {
+      "id": 4430,
+      "name": "Nimble",
+      "tree": "Archery",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\INV_Weapon_Bow_02",
+      "spellId": 301066,
+      "description": "Level 30 Passive\nIncreases your ranged haste by 20% of your Agility.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Sniper's Focus"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nIncreases your ranged haste by 20% of your Agility."
+        }
+      ]
+    },
+    {
+      "id": 29148,
+      "name": "Hunting with Precision",
+      "tree": "Archery",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_archerskill28_Border",
+      "spellId": 524867,
+      "description": "Your Hunting Shot now deals 25% increased damage for each subsequent target it ricochets to.",
+      "referencedTerms": [
+        "Hunting Shot"
+      ],
+      "prerequisites": [
+        "Hunting Shot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Hunting Shot now deals 25% increased damage for each subsequent target it ricochets to."
+        }
+      ]
+    },
+    {
+      "id": 30350,
+      "name": "Serrations",
+      "tree": "Archery",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_knife_1h_thunderisleraid_d_02",
+      "spellId": 705050,
+      "description": "Increases your damage against bleeding or Poisoned targets by 5%.",
+      "referencedTerms": [
+        "Poisoned"
+      ],
+      "prerequisites": [
+        "A Quick Demise"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your damage against bleeding or Poisoned targets by 5%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your damage against bleeding or Poisoned targets by 10%."
+        }
+      ]
+    },
+    {
+      "id": 7789,
+      "name": "Maximum Power",
+      "tree": "Archery",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Hunter_SniperTraining",
+      "spellId": 560688,
+      "description": "Abilities used with 5 stacks of Advantage now refresh the duration of your active Skirmish by 5 sec.",
+      "referencedTerms": [
+        "Advantage",
+        "Skirmish"
+      ],
+      "prerequisites": [
+        "Skirmish"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Abilities used with 5 stacks of Advantage now refresh the duration of your active Skirmish by 5 sec."
+        }
+      ]
+    },
+    {
+      "id": 30046,
+      "name": "Corrosive Poison",
+      "tree": "Archery",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Hunter_PiercingShots",
+      "spellId": 572372,
+      "description": "Your ranged abilities against Poisoned targets now ignores 25% of enemy armor.",
+      "referencedTerms": [
+        "Poisoned"
+      ],
+      "prerequisites": [
+        "Deadshot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your ranged abilities against Poisoned targets now ignores 25% of enemy armor."
+        }
+      ]
+    },
+    {
+      "id": 34155,
+      "name": "Opportunist",
+      "tree": "Archery",
+      "x": 8,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_archerskill03_Border",
+      "spellId": 807493,
+      "description": "Increases the critical strike chance of Precision Shot by 50% on enemies above 80% health.",
+      "referencedTerms": [
+        "Precision Shot"
+      ],
+      "prerequisites": [
+        "Neurotoxin Arrow"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Precision Shot by 50% on enemies above 80% health."
+        }
+      ]
+    },
+    {
+      "id": 30180,
+      "name": "Lethal Wounds",
+      "tree": "Archery",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\uico_blood_spell_02_Border",
+      "spellId": 705055,
+      "description": "Increases the tick rate of your periodic damage effects by -20%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Hunting with Precision",
+        "Serrations"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the tick rate of your periodic damage effects by -20%."
+        }
+      ]
+    },
+    {
+      "id": 7905,
+      "name": "Mortal Shots",
+      "tree": "Archery",
+      "x": 3,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\uico_arrow_spell_02_Border",
+      "spellId": 707380,
+      "description": "Reduces the cooldown of Crippling Shot by -4 sec.",
+      "referencedTerms": [
+        "Crippling Shot"
+      ],
+      "prerequisites": [
+        "Maximum Power",
+        "Serrations"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Crippling Shot by -4 sec."
+        }
+      ]
+    },
+    {
+      "id": 6944,
+      "name": "An Arrow for Everything",
+      "tree": "Archery",
+      "x": 5,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Diablo3_ArrowRain_Hunter",
+      "spellId": 560812,
+      "description": "Increases the effectiveness of Quivers by 25%.",
+      "referencedTerms": [
+        "Quivers"
+      ],
+      "prerequisites": [
+        "Maximum Power",
+        "Corrosive Poison"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of Quivers by 25%."
+        }
+      ]
+    },
+    {
+      "id": 34152,
+      "name": "New-Age Archery",
+      "tree": "Archery",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_goldenarrow_Border",
+      "spellId": 704312,
+      "description": "Increases the damage of Skullpiercer and Precision Shot by 20%.",
+      "referencedTerms": [
+        "Precision Shot",
+        "Skullpiercer"
+      ],
+      "prerequisites": [
+        "Corrosive Poison",
+        "Opportunist"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Skullpiercer and Precision Shot by 20%."
+        }
+      ]
+    },
+    {
+      "id": 4431,
+      "name": "Bleeding Edge",
+      "tree": "Archery",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_misc_thornnecklace",
+      "spellId": 300460,
+      "description": "Level 40 Passive\nAllows the periodic damage dealt by Serrated Shot to critically strike.",
+      "referencedTerms": [
+        "Serrated Shot"
+      ],
+      "prerequisites": [
+        "Sniper's Focus"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nAllows the periodic damage dealt by Serrated Shot to critically strike."
+        }
+      ]
+    },
+    {
+      "id": 34137,
+      "name": "Hawkeye",
+      "tree": "Archery",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Hunter_SilentHunter",
+      "spellId": 800358,
+      "description": "You now fire an arrow every 3 sec at enemies within 30 yds affected by your Hunting Shot, dealing 75% Ranged Weapon Damage.\n\nScales with Hunting Shot modifiers.",
+      "referencedTerms": [
+        "Hunting Shot"
+      ],
+      "prerequisites": [
+        "Lethal Wounds"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "You now fire an arrow every 3 sec at enemies within 30 yds affected by your Hunting Shot, dealing 75% Ranged Weapon Damage.\n\nScales with Hunting Shot modifiers."
+        }
+      ]
+    },
+    {
+      "id": 34133,
+      "name": "Strike Where It Hurts",
+      "tree": "Archery",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Hunter_KillCommand",
+      "spellId": 804178,
+      "description": "Your ability critical strikes now increase the damage the target takes from bleeds by 30% for 15 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Mortal Shots",
+        "Lethal Wounds"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your ability critical strikes now increase the damage the target takes from bleeds by 30% for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6348,
+      "name": "Archery Master",
+      "tree": "Archery",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\artifactability_marksmanhunter_legacyofthewindrunners",
+      "spellId": 706281,
+      "description": "Critical strikes with Quick Shot now generate an additional stack of Advantage.",
+      "referencedTerms": [
+        "Advantage",
+        "Quick Shot"
+      ],
+      "prerequisites": [
+        "Maximum Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Quick Shot now generate an additional stack of Advantage."
+        }
+      ]
+    },
+    {
+      "id": 4794,
+      "name": "Light Arrows",
+      "tree": "Archery",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3elementalarrow",
+      "spellId": 681292,
+      "description": "Increases the damage of Precision Shot by 20% when used from 40 yds or further away from your target.",
+      "referencedTerms": [
+        "Precision Shot"
+      ],
+      "prerequisites": [
+        "An Arrow for Everything",
+        "New-Age Archery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Precision Shot by 20% when used from 40 yds or further away from your target."
+        }
+      ]
+    },
+    {
+      "id": 7794,
+      "name": "Masterful Archery",
+      "tree": "Archery",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_hunter_mastermarksman",
+      "spellId": 680469,
+      "description": "While in Elude, gain a stack of Masterful Archery every 2 sec.Masterful Archery (Aura)Your next Precision Shot now deals 10% increased damage for 10 seconds, stacking up to 5 times.",
+      "referencedTerms": [
+        "Elude",
+        "Masterful Archery",
+        "Precision Shot"
+      ],
+      "prerequisites": [
+        "An Arrow for Everything",
+        "New-Age Archery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While in Elude, gain a stack of Masterful Archery every 2 sec.Masterful Archery (Aura)Your next Precision Shot now deals 10% increased damage for 10 seconds, stacking up to 5 times."
+        }
+      ]
+    },
+    {
+      "id": 6941,
+      "name": "Pierced",
+      "tree": "Archery",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_blood_shot_Border",
+      "spellId": 705033,
+      "description": "Critical strikes with Skullpiercer and Precision Shot cause the enemy to bleed for an additional 50% damage of the damage dealt over 4 seconds.",
+      "referencedTerms": [
+        "Precision Shot",
+        "Skullpiercer"
+      ],
+      "prerequisites": [
+        "New-Age Archery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Skullpiercer and Precision Shot cause the enemy to bleed for an additional 50% damage of the damage dealt over 4 seconds."
+        }
+      ]
+    },
+    {
+      "id": 7904,
+      "name": "Incendiary Shot",
+      "tree": "Archery",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_fire_shot_Border",
+      "spellId": 524870,
+      "description": "Shoot a burning arrow dealing 791 + 35% ranged AP + 45% fire SP Fire damage to an enemy and up to 5 enemies within 6 yds, and causing your next 3 direct damage Advantage spenders to deal 50% of their damage to nearby enemies.\n\nDirect damage increased by 20% for each stack of Advantage.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Strike Where It Hurts",
+        "Hawkeye"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Shoot a burning arrow dealing 791 + 35% ranged AP + 45% fire SP Fire damage to an enemy and up to 5 enemies within 6 yds, and causing your next 3 direct damage Advantage spenders to deal 50% of their damage to nearby enemies.\n\nDirect damage increased by 20% for each stack of Advantage."
+        }
+      ]
+    },
+    {
+      "id": 31281,
+      "name": "Pathfinder",
+      "tree": "Archery",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_zone_jadeforest",
+      "spellId": 706284,
+      "description": "Your Adrenaline Rush now incurs a -90% reduced cooldown when used while Elude is active.",
+      "referencedTerms": [
+        "Adrenaline Rush",
+        "Elude"
+      ],
+      "prerequisites": [
+        "Light Arrows",
+        "Archery Master",
+        "Masterful Archery",
+        "Strike Where It Hurts"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Adrenaline Rush now incurs a -90% reduced cooldown when used while Elude is active."
+        }
+      ]
+    },
+    {
+      "id": 7793,
+      "name": "Headshots Only",
+      "tree": "Archery",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_headshot_Border",
+      "spellId": 680931,
+      "description": "Periodic damage dealt with Serrated Shot and Toxic Dart now increases the damage of your next Precision Shot within 8 seconds by 10%, stacking 10 times.",
+      "referencedTerms": [
+        "Precision Shot",
+        "Serrated Shot",
+        "Toxic Dart"
+      ],
+      "prerequisites": [
+        "Light Arrows",
+        "Pierced",
+        "Masterful Archery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Periodic damage dealt with Serrated Shot and Toxic Dart now increases the damage of your next Precision Shot within 8 seconds by 10%, stacking 10 times."
+        }
+      ]
+    },
+    {
+      "id": 7952,
+      "name": "Sharpshooter",
+      "tree": "Archery",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ability_TrueShot",
+      "spellId": 582855,
+      "description": "Level 50 Passive\nAdds 25% to the bonuses that your stacks of Advantage provide.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Bleeding Edge"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nAdds 25% to the bonuses that your stacks of Advantage provide."
+        }
+      ]
+    },
+    {
+      "id": 31280,
+      "name": "Elven Enchantments",
+      "tree": "Archery",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_character_nightelf_female",
+      "spellId": 705054,
+      "description": "$7d",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Incendiary Shot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$7e"
+        }
+      ]
+    },
+    {
+      "id": 12551,
+      "name": "One Shot, One Kill",
+      "tree": "Archery",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_revendreth_demonhunter",
+      "spellId": 525048,
+      "description": "Increases the damage of Deadshot by 75%.",
+      "referencedTerms": [
+        "Deadshot"
+      ],
+      "prerequisites": [
+        "Headshots Only",
+        "Incendiary Shot",
+        "Pathfinder"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Deadshot by 75%."
+        }
+      ]
+    },
+    {
+      "id": 7551,
+      "name": "Silent, But Deadly",
+      "tree": "Archery",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_archerskill13_Border",
+      "spellId": 524873,
+      "description": "Direct Physical damage dealt now has an 8% chance to allow you to use Deadshot regardless of the targets health for 8 seconds.",
+      "referencedTerms": [
+        "Deadshot"
+      ],
+      "prerequisites": [
+        "Headshots Only",
+        "Incendiary Shot",
+        "Pathfinder"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Direct Physical damage dealt now has an 8% chance to allow you to use Deadshot regardless of the targets health for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 7792,
+      "name": "Brutal Shot",
+      "tree": "Archery",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_archerskill31_Border",
+      "spellId": 570014,
+      "description": "Fire a volley of powerful shots that pierce through Armor, dealing 450% Ranged Weapon Damage plus 300 to all targets in a 40 yd line.\n\nWhile Skirmish is active this ability is guaranteed to critically strike.",
+      "referencedTerms": [
+        "Skirmish"
+      ],
+      "prerequisites": [
+        "Headshots Only"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Fire a volley of powerful shots that pierce through Armor, dealing 450% Ranged Weapon Damage plus 300 to all targets in a 40 yd line.\n\nWhile Skirmish is active this ability is guaranteed to critically strike."
+        }
+      ]
+    },
+    {
+      "id": 31179,
+      "name": "Ravage",
+      "tree": "Brigand",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_hunter_mongoosebite",
+      "spellId": 803851,
+      "description": "Generates 1 Advantage\nRavage an enemy, causing them to bleed out dealing 112 + 23.72% AP Physical damage over 12 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Ravager",
+        "Knockout"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 1 Advantage\nRavage an enemy, causing them to bleed out dealing 112 + 23.72% AP Physical damage over 12 seconds."
+        }
+      ]
+    },
+    {
+      "id": 4029,
+      "name": "Ravager",
+      "tree": "Brigand",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_rogue_energeticrecovery",
+      "spellId": 92116,
+      "description": "Level 10 Passive\nYour Wild Strike now generates 1 additional Advantage.\n\nRemoves the minimum range of your ranged abilities.",
+      "referencedTerms": [
+        "Advantage",
+        "Wild Strike"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Knockout"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nYour Wild Strike now generates 1 additional Advantage.\n\nRemoves the minimum range of your ranged abilities."
+        }
+      ]
+    },
+    {
+      "id": 1389,
+      "name": "Banditry",
+      "tree": "Brigand",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Rogue_CheatDeath",
+      "spellId": 520574,
+      "description": "Increases your critical strike chance by 2% and Focus regeneration by 15%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Ravage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical strike chance by 2% and Focus regeneration by 15%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your critical strike chance by 4% and Focus regeneration by 30%."
+        }
+      ]
+    },
+    {
+      "id": 29328,
+      "name": "Knuckleduster",
+      "tree": "Brigand",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_leather_a_03defias",
+      "spellId": 806957,
+      "description": "Periodic damage dealt now generates 5 Focus.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Ravage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Periodic damage dealt now generates 5 Focus."
+        }
+      ]
+    },
+    {
+      "id": 34166,
+      "name": "Jagged Cuts",
+      "tree": "Brigand",
+      "x": 1,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Hunter_SwiftStrike",
+      "spellId": 807668,
+      "description": "Increases the damage and duration of Toxic Dart and Ravage by 25%.",
+      "referencedTerms": [
+        "Ravage",
+        "Toxic Dart"
+      ],
+      "prerequisites": [
+        "Banditry"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage and duration of Toxic Dart and Ravage by 25%."
+        }
+      ]
+    },
+    {
+      "id": 29449,
+      "name": "Excessive But Necessary",
+      "tree": "Brigand",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_MindSteal",
+      "spellId": 804939,
+      "description": "Reduces the cooldown of Elude and Knockout by -4 sec.",
+      "referencedTerms": [
+        "Elude",
+        "Knockout"
+      ],
+      "prerequisites": [
+        "Banditry",
+        "Knuckleduster"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Elude and Knockout by -4 sec."
+        }
+      ]
+    },
+    {
+      "id": 12449,
+      "name": "Assassin",
+      "tree": "Brigand",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_deadliness",
+      "spellId": 807626,
+      "description": "Increases the duration of Knockout and Crippling Shot by 1 sec.",
+      "referencedTerms": [
+        "Crippling Shot",
+        "Knockout"
+      ],
+      "prerequisites": [
+        "Banditry",
+        "Knuckleduster"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Knockout and Crippling Shot by 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 6672,
+      "name": "Close Quarters",
+      "tree": "Brigand",
+      "x": 7,
+      "y": 2,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_Cleave",
+      "spellId": 301146,
+      "description": "Increases your attack power and Agility by 3%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Knuckleduster"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your attack power and Agility by 3%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your attack power and Agility by 6%."
+        }
+      ]
+    },
+    {
+      "id": 31357,
+      "name": "Beatdown",
+      "tree": "Brigand",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Rogue_KidneyShot",
+      "spellId": 705047,
+      "description": "Level 20 Passive\nAuto attacks now have a 5% chance to reveal a fault in the enemy's defenses, causing your next instance of Physical ability damage to ignore Armor.\n\nChance increased by 15% while wielding a polearm.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Ravager"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nAuto attacks now have a 5% chance to reveal a fault in the enemy's defenses, causing your next instance of Physical ability damage to ignore Armor.\n\nChance increased by 15% while wielding a polearm."
+        }
+      ]
+    },
+    {
+      "id": 5430,
+      "name": "Assault",
+      "tree": "Brigand",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_ruthlessness",
+      "spellId": 803108,
+      "description": "Assault a low health enemy, dealing 100% Weapon Damage (175% with a dagger equipped) plus an additional 8 + 100% AP Physical damage. If the target is bleeding, this deals 50% increased damage.\n\nDamage increased by 30% for each stack of Advantage.\n\nOnly usable on enemies below 20% health.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Jagged Cuts"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Assault a low health enemy, dealing 100% Weapon Damage (175% with a dagger equipped) plus an additional 8 + 100% AP Physical damage. If the target is bleeding, this deals 50% increased damage.\n\nDamage increased by 30% for each stack of Advantage.\n\nOnly usable on enemies below 20% health."
+        }
+      ]
+    },
+    {
+      "id": 30049,
+      "name": "Dirty Blades",
+      "tree": "Brigand",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_rollthebones02",
+      "spellId": 680276,
+      "description": "For 4 seconds, your melee auto attacks deal an additional 30% (doubled with a dagger equipped) of the damage dealt as Nature damage and reduces your target's healing received by -20% for 8 seconds, stacking 2 times.\n\nDuration increased by 4 sec for each stack of Advantage.\n\nUsable while in Elude.",
+      "referencedTerms": [
+        "Advantage",
+        "Elude"
+      ],
+      "prerequisites": [
+        "Close Quarters"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "For 4 seconds, your melee auto attacks deal an additional 30% (doubled with a dagger equipped) of the damage dealt as Nature damage and reduces your target's healing received by -20% for 8 seconds, stacking 2 times.\n\nDuration increased by 4 sec for each stack of Advantage.\n\nUsable while in Elude."
+        }
+      ]
+    },
+    {
+      "id": 6673,
+      "name": "Bounty Hunter",
+      "tree": "Brigand",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_polearm_2h_pandariaquest_b_01",
+      "spellId": 803114,
+      "description": "Damage dealt by Flank and Rusty Shiv now increases the target's damage taken from your Advantage spenders by 25% for 8 seconds.",
+      "referencedTerms": [
+        "Advantage",
+        "Flank",
+        "Rusty Shiv"
+      ],
+      "prerequisites": [
+        "Assault"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Flank and Rusty Shiv now increases the target's damage taken from your Advantage spenders by 25% for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34139,
+      "name": "Dice Games",
+      "tree": "Brigand",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_rollthebones",
+      "spellId": 801438,
+      "description": "Increases the critical strike chance of Wild Strike and Assault by 5%.",
+      "referencedTerms": [
+        "Assault",
+        "Wild Strike"
+      ],
+      "prerequisites": [
+        "Assault"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Wild Strike and Assault by 5%."
+        }
+      ]
+    },
+    {
+      "id": 30461,
+      "name": "Hookshot",
+      "tree": "Brigand",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_versatility",
+      "spellId": 800360,
+      "description": "Launch a hook at a target attempting to lodge it into an open wound, dealing 66 + 100% AP Physical damage. \n\nIf the target is bleeding, you can reactivate this to pull yourself to them, dealing 150% Weapon Damage and generating 2 Advantage",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Assassin",
+        "Excessive But Necessary"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Launch a hook at a target attempting to lodge it into an open wound, dealing 66 + 100% AP Physical damage. \n\nIf the target is bleeding, you can reactivate this to pull yourself to them, dealing 150% Weapon Damage and generating 2 Advantage"
+        }
+      ]
+    },
+    {
+      "id": 6671,
+      "name": "Highwayman",
+      "tree": "Brigand",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_druideskill44_Border",
+      "spellId": 707744,
+      "description": "Direct critical strikes while behind your target increase your haste by 15% for 5 seconds, or for your next 2 attacks.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Dirty Blades"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Direct critical strikes while behind your target increase your haste by 15% for 5 seconds, or for your next 2 attacks."
+        }
+      ]
+    },
+    {
+      "id": 30459,
+      "name": "Ambuscade",
+      "tree": "Brigand",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warrior_throwdown_2",
+      "spellId": 705053,
+      "description": "Increases the damage of Skullpiercer and Flank by 20%, plus an additional 35% if you have a polearm equipped.",
+      "referencedTerms": [
+        "Flank",
+        "Skullpiercer"
+      ],
+      "prerequisites": [
+        "Dirty Blades"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Skullpiercer and Flank by 20%, plus an additional 35% if you have a polearm equipped."
+        }
+      ]
+    },
+    {
+      "id": 3871,
+      "name": "Rub It In",
+      "tree": "Brigand",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_Warriorskill_02_Border",
+      "spellId": 705085,
+      "description": "Level 30 Passive\nEach stack of Advantage spent now gives you a 20% chance to refund 1 stack of Advantage.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Beatdown"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nEach stack of Advantage spent now gives you a 20% chance to refund 1 stack of Advantage."
+        }
+      ]
+    },
+    {
+      "id": 7428,
+      "name": "Throatpunch",
+      "tree": "Brigand",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\custom_Warriorskill_05_Border",
+      "spellId": 500617,
+      "description": "Punch an enemy in the throat, interrupting the enemy's spellcast, preventing any spell from that school of magic from being cast for 2 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Bounty Hunter",
+        "Dice Games"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Punch an enemy in the throat, interrupting the enemy's spellcast, preventing any spell from that school of magic from being cast for 2 seconds."
+        }
+      ]
+    },
+    {
+      "id": 8010,
+      "name": "Trueshot Lodge Training",
+      "tree": "Brigand",
+      "x": 3,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_druid_improvedmoonkinform",
+      "spellId": 803113,
+      "description": "Increases your off-hand weapon damage by 25%.\n\nWhile wielding a polearm, your Physical damage dealt is increased by 3%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Hookshot",
+        "Dice Games"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your off-hand weapon damage by 25%.\n\nWhile wielding a polearm, your Physical damage dealt is increased by 3%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your off-hand weapon damage by 50%.\n\nWhile wielding a polearm, your Physical damage dealt is increased by 6%."
+        }
+      ]
+    },
+    {
+      "id": 34175,
+      "name": "Wild Man",
+      "tree": "Brigand",
+      "x": 5,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_druid_supriseattack",
+      "spellId": 560344,
+      "description": "Your Wild Strike now strikes 2 additional nearby enemies, but deals reduced damage with each enemy struck.",
+      "referencedTerms": [
+        "Wild Strike"
+      ],
+      "prerequisites": [
+        "Highwayman",
+        "Hookshot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Wild Strike now strikes 2 additional nearby enemies, but deals reduced damage with each enemy struck."
+        }
+      ]
+    },
+    {
+      "id": 6676,
+      "name": "Focused Fighter",
+      "tree": "Brigand",
+      "x": 5,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_CheapShot",
+      "spellId": 807206,
+      "description": "Reduces the Focus cost of Flank, Blackjack, and Wild Strike by -10%.",
+      "referencedTerms": [
+        "Blackjack",
+        "Flank",
+        "Wild Strike"
+      ],
+      "prerequisites": [
+        "Highwayman",
+        "Hookshot"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Focus cost of Flank, Blackjack, and Wild Strike by -10%."
+        }
+      ]
+    },
+    {
+      "id": 7048,
+      "name": "Assassin",
+      "tree": "Brigand",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_hunter_assassinate",
+      "spellId": 803871,
+      "description": "Increases the effectiveness of Instinct by 25%.",
+      "referencedTerms": [
+        "Instinct"
+      ],
+      "prerequisites": [
+        "Highwayman",
+        "Ambuscade"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of Instinct by 25%."
+        }
+      ]
+    },
+    {
+      "id": 34141,
+      "name": "Stalker",
+      "tree": "Brigand",
+      "x": 0,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Diablo3_Execute_Hunter",
+      "spellId": 561110,
+      "description": "Reduces the cooldown of Cutthroat by -15 sec, but reduces the range of Cutthroat by -10 yds.",
+      "referencedTerms": [
+        "Cutthroat"
+      ],
+      "prerequisites": [
+        "Throatpunch"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Cutthroat by -15 sec, but reduces the range of Cutthroat by -10 yds."
+        }
+      ]
+    },
+    {
+      "id": 6675,
+      "name": "'Tactical' Advantage",
+      "tree": "Brigand",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_passivemastery_(10)_Border",
+      "spellId": 706748,
+      "description": "Knockout and Bushwhack now increases your damage dealt against the target by 10% for 5 seconds.",
+      "referencedTerms": [
+        "Bushwhack",
+        "Knockout"
+      ],
+      "prerequisites": [
+        "Throatpunch",
+        "Dice Games"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Knockout and Bushwhack now increases your damage dealt against the target by 10% for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29701,
+      "name": "Quills",
+      "tree": "Brigand",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_FanOfKnives_Yellow",
+      "spellId": 560966,
+      "description": "Launch darts at up to 5 nearby enemies, dealing 15 + 30% AP Ranged Physical damage.\n\nDeals 50% additional damage and strikes 1 additional target for each stack of Advantage.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Focused Fighter",
+        "Trueshot Lodge Training",
+        "Wild Man"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Launch darts at up to 5 nearby enemies, dealing 15 + 30% AP Ranged Physical damage.\n\nDeals 50% additional damage and strikes 1 additional target for each stack of Advantage."
+        }
+      ]
+    },
+    {
+      "id": 34140,
+      "name": "Underhanded",
+      "tree": "Brigand",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_hunter_cobrashot",
+      "spellId": 705061,
+      "description": "Increases the attack power scaling of Skullpiercer by 15%.",
+      "referencedTerms": [
+        "Skullpiercer"
+      ],
+      "prerequisites": [
+        "Highwayman",
+        "Assassin"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the attack power scaling of Skullpiercer by 15%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the attack power scaling of Skullpiercer by 30%."
+        }
+      ]
+    },
+    {
+      "id": 13164,
+      "name": "Polearm Craft",
+      "tree": "Brigand",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Spear_02",
+      "spellId": 707885,
+      "description": "While a polearm is equipped, your chance to trigger your Weapon Crafts and their damage dealt is increased by 25%.",
+      "referencedTerms": [
+        "Weapon Crafts"
+      ],
+      "prerequisites": [
+        "Assassin"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While a polearm is equipped, your chance to trigger your Weapon Crafts and their damage dealt is increased by 25%."
+        }
+      ]
+    },
+    {
+      "id": 34164,
+      "name": "Pilfering",
+      "tree": "Brigand",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_edwinvancleef",
+      "spellId": 705087,
+      "description": "Adds 10% to the damage dealt by Dirty Blades and causes its damage dealt to heal you equal to 50% of the value.",
+      "referencedTerms": [
+        "Dirty Blades"
+      ],
+      "prerequisites": [
+        "Assassin"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Adds 10% to the damage dealt by Dirty Blades and causes its damage dealt to heal you equal to 50% of the value."
+        }
+      ]
+    },
+    {
+      "id": 9275,
+      "name": "Lacerations",
+      "tree": "Brigand",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_CriticalStrike",
+      "spellId": 573044,
+      "description": "Level 40 Passive\nAllows the periodic damage dealt by Ravage to critically strike.",
+      "referencedTerms": [
+        "Ravage"
+      ],
+      "prerequisites": [
+        "Rub It In"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nAllows the periodic damage dealt by Ravage to critically strike."
+        }
+      ]
+    },
+    {
+      "id": 11349,
+      "name": "Quick-Witted",
+      "tree": "Brigand",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_quiver_05",
+      "spellId": 704311,
+      "description": "Avoiding an attack now causes you to quickly stab an enemy with one of the arrows from your quiver, dealing 1 + 100% AP Physical damage and reducing their attack speed by -20% for 8 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Stalker",
+        "'Tactical' Advantage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Avoiding an attack now causes you to quickly stab an enemy with one of the arrows from your quiver, dealing 1 + 100% AP Physical damage and reducing their attack speed by -20% for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 11167,
+      "name": "Tip of the Spear",
+      "tree": "Brigand",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_spear_01",
+      "spellId": 807023,
+      "description": "While you have a polearm equipped, your Wild Strike now has a 15% chance to strike 3 additional times.",
+      "referencedTerms": [
+        "Wild Strike"
+      ],
+      "prerequisites": [
+        "'Tactical' Advantage",
+        "Quills",
+        "Underhanded"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While you have a polearm equipped, your Wild Strike now has a 15% chance to strike 3 additional times."
+        }
+      ]
+    },
+    {
+      "id": 34167,
+      "name": "Marked for Death",
+      "tree": "Brigand",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_thiefsbargain",
+      "spellId": 806973,
+      "description": "While you have daggers equipped, direct critical strikes on enemies below 35% health now have a chance to allow the use of abilities as if you were in Elude for 5 sec.",
+      "referencedTerms": [
+        "Elude"
+      ],
+      "prerequisites": [
+        "'Tactical' Advantage",
+        "Quills",
+        "Underhanded"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While you have daggers equipped, direct critical strikes on enemies below 35% health now have a chance to allow the use of abilities as if you were in Elude for 5 sec."
+        }
+      ]
+    },
+    {
+      "id": 1387,
+      "name": "Guile of the Cutthroat",
+      "tree": "Brigand",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_shoulder_mail_raidhunter_l_01",
+      "spellId": 560531,
+      "description": "Increases party and raid member's melee and ranged attack power by 5%. Does not stack with similar effects.\n\nIn addition, increases your damage dealt by 3%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Polearm Craft",
+        "Underhanded",
+        "Pilfering"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases party and raid member's melee and ranged attack power by 5%. Does not stack with similar effects.\n\nIn addition, increases your damage dealt by 3%."
+        }
+      ]
+    },
+    {
+      "id": 1388,
+      "name": "Dirty Fighter",
+      "tree": "Brigand",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_monk_quipunch",
+      "spellId": 806978,
+      "description": "$7f",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Quick-Witted",
+        "Marked for Death"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$80"
+        }
+      ]
+    },
+    {
+      "id": 5045,
+      "name": "Outmaneuver",
+      "tree": "Brigand",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_findweakness",
+      "spellId": 557325,
+      "description": "Teleport to an enemy, summon a decoy beneath them, and mark them for 8 seconds. Dealing melee damage to them adds a stack to this effect, up to 20 stacks.\n\nReactivating this ability within 8 seconds deals 1 + 55% AP Physical damage to your target, increased by 20% for each stack on the target, and then teleports you back to your decoy.\n\nUsable while in Elude.",
+      "referencedTerms": [
+        "Elude"
+      ],
+      "prerequisites": [
+        "Marked for Death",
+        "Tip of the Spear"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Teleport to an enemy, summon a decoy beneath them, and mark them for 8 seconds. Dealing melee damage to them adds a stack to this effect, up to 20 stacks.\n\nReactivating this ability within 8 seconds deals 1 + 55% AP Physical damage to your target, increased by 20% for each stack on the target, and then teleports you back to your decoy.\n\nUsable while in Elude."
+        }
+      ]
+    },
+    {
+      "id": 34176,
+      "name": "Stonemason's Secret",
+      "tree": "Brigand",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_inscription_runescrolloffortitude_green",
+      "spellId": 524654,
+      "description": "Your Skullpiercer used with 5 stacks of Advantage now extends the duration of Dirty Blades by 6 sec.",
+      "referencedTerms": [
+        "Advantage",
+        "Dirty Blades",
+        "Skullpiercer"
+      ],
+      "prerequisites": [
+        "Guile of the Cutthroat",
+        "Marked for Death",
+        "Tip of the Spear"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Skullpiercer used with 5 stacks of Advantage now extends the duration of Dirty Blades by 6 sec."
+        }
+      ]
+    },
+    {
+      "id": 9277,
+      "name": "Dastardly",
+      "tree": "Brigand",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Rogue_HungerforBlood",
+      "spellId": 706483,
+      "description": "Level 50 Passive\nIncreases your critical damage dealt by 15% on enemies above 80% health or below 20% health.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Lacerations"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nIncreases your critical damage dealt by 15% on enemies above 80% health or below 20% health."
+        }
+      ]
+    },
+    {
+      "id": 7429,
+      "name": "Viper's Bite",
+      "tree": "Brigand",
+      "x": 1,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_poisonedknife",
+      "spellId": 803104,
+      "description": "Generates 2 Advantage\nUnleash 4 quick strikes over 1 seconds to an enemy, each dealing 85% Weapon Damage.\n\nIf the target is bleeding, each strike deals an additional 400 + 25% AP Physical damage.\n\nIf the target is poisoned, each strike deals Nature damage instead of Physical damage.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Dirty Fighter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 2 Advantage\nUnleash 4 quick strikes over 1 seconds to an enemy, each dealing 85% Weapon Damage.\n\nIf the target is bleeding, each strike deals an additional 400 + 25% AP Physical damage.\n\nIf the target is poisoned, each strike deals Nature damage instead of Physical damage."
+        }
+      ]
+    },
+    {
+      "id": 30045,
+      "name": "Instinctual Combatant",
+      "tree": "Brigand",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_MirrorImage",
+      "spellId": 707319,
+      "description": "Casting Instinct now also restores 40 extra Focus and guarantees your next 3 Skullpiercers or Assaults within 20 seconds to critically strike.\n\nIn addition, Instinct now grants you an additional 10% of your Agility as melee attack power.",
+      "referencedTerms": [
+        "Assaults",
+        "Instinct",
+        "Skullpiercers"
+      ],
+      "prerequisites": [
+        "Dirty Fighter",
+        "Outmaneuver",
+        "Stonemason's Secret"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Instinct now also restores 40 extra Focus and guarantees your next 3 Skullpiercers or Assaults within 20 seconds to critically strike.\n\nIn addition, Instinct now grants you an additional 10% of your Agility as melee attack power."
+        }
+      ]
+    },
+    {
+      "id": 30462,
+      "name": "Barbed Quills",
+      "tree": "Brigand",
+      "x": 7,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Gouge",
+      "spellId": 800077,
+      "description": "Damage dealt by Wild Strike and Quills will now tear into enemies, causing them to bleed for 78 Physical damage over 9 seconds, stacking 4 times.\n\nDamage dealt by Quills now spreads your periodic effects to 5 enemies within 10 yds and extends their duration by 2 sec.",
+      "referencedTerms": [
+        "Quills",
+        "Wild Strike"
+      ],
+      "prerequisites": [
+        "Stonemason's Secret"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Wild Strike and Quills will now tear into enemies, causing them to bleed for 78 Physical damage over 9 seconds, stacking 4 times.\n\nDamage dealt by Quills now spreads your periodic effects to 5 enemies within 10 yds and extends their duration by 2 sec."
+        }
+      ]
+    },
+    {
+      "id": 29144,
+      "name": "Crippling Shot",
+      "tree": "Class",
+      "x": 2,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Custom_dismounting_Shot",
+      "spellId": 804725,
+      "description": "Fire a crippling shot at an enemy slowing movement speed by -50% and knocking them off their mounts, making them unable to mount again for 5 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Fire a crippling shot at an enemy slowing movement speed by -50% and knocking them off their mounts, making them unable to mount again for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30352,
+      "name": "Survival Potion",
+      "tree": "Class",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_naturecocktail_Border",
+      "spellId": 802839,
+      "description": "Drink a survival potion, dispelling all poison and disease effects and removing 1 poison and disease effect every 3 sec for 9 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Drink a survival potion, dispelling all poison and disease effects and removing 1 poison and disease effect every 3 sec for 9 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29337,
+      "name": "Knockout",
+      "tree": "Class",
+      "x": 6,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_monk_blackoutkick",
+      "spellId": 801435,
+      "description": "Knock an enemy out, incapacitating them for 4 seconds and removing bleed and poison effects from them. Damage caused will interrupt this effect.\n\nUsable while in Elude.",
+      "referencedTerms": [
+        "Elude"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Knock an enemy out, incapacitating them for 4 seconds and removing bleed and poison effects from them. Damage caused will interrupt this effect.\n\nUsable while in Elude."
+        }
+      ]
+    },
+    {
+      "id": 30351,
+      "name": "Improved Waterskins",
+      "tree": "Class",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_drink_waterskin_03",
+      "spellId": 573057,
+      "description": "Increases the effectiveness of your Waterskins by 25%.",
+      "referencedTerms": [
+        "Waterskins"
+      ],
+      "prerequisites": [
+        "Crippling Shot",
+        "Survival Potion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Waterskins by 25%."
+        }
+      ]
+    },
+    {
+      "id": 7258,
+      "name": "Survival Kit",
+      "tree": "Class",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Ascend_bag_06_b",
+      "spellId": 504329,
+      "description": "Your Survival Potion now also heals you for 10% of your maximum health with each tick.",
+      "referencedTerms": [
+        "Survival Potion"
+      ],
+      "prerequisites": [
+        "Survival Potion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Survival Potion now also heals you for 10% of your maximum health with each tick."
+        }
+      ]
+    },
+    {
+      "id": 6670,
+      "name": "Elusive Character",
+      "tree": "Class",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\custom_16_shadow_swords_Border",
+      "spellId": 560340,
+      "description": "Increases your damage dealt by 10% for 12 seconds after leaving Elude.",
+      "referencedTerms": [
+        "Elude"
+      ],
+      "prerequisites": [
+        "Knockout",
+        "Survival Potion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your damage dealt by 10% for 12 seconds after leaving Elude."
+        }
+      ]
+    },
+    {
+      "id": 34169,
+      "name": "Snapseed",
+      "tree": "Class",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\twisted_seed",
+      "spellId": 804027,
+      "description": "Toss a snapseed at an enemy, dealing 27 + 30% ranged AP Physical damage and knocking them back.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Improved Waterskins"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Toss a snapseed at an enemy, dealing 27 + 30% ranged AP Physical damage and knocking them back."
+        }
+      ]
+    },
+    {
+      "id": 29416,
+      "name": "Grace",
+      "tree": "Class",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 3,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\5_archerskill10_Border",
+      "spellId": 705092,
+      "description": "Increases your Agility and movement speed by 4%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Elusive Character",
+        "Survival Kit",
+        "Improved Waterskins"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Agility and movement speed by 4%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Agility and movement speed by 7%."
+        },
+        {
+          "rank": 3,
+          "description": "Increases your Agility and movement speed by 10%."
+        }
+      ]
+    },
+    {
+      "id": 34172,
+      "name": "Cutthroat",
+      "tree": "Class",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_Archerskill_04_nobg_Border",
+      "spellId": 800359,
+      "description": "Shoot a powerful arrow that deals Weapon Damage plus 40 and stuns the target for 1 seconds. \n\nDuration increased by 1 sec per stack of Advantage.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Elusive Character"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Shoot a powerful arrow that deals Weapon Damage plus 40 and stuns the target for 1 seconds. \n\nDuration increased by 1 sec per stack of Advantage."
+        }
+      ]
+    },
+    {
+      "id": 34171,
+      "name": "Resourceful",
+      "tree": "Class",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Nature_HealingTouch",
+      "spellId": 504008,
+      "description": "Reduces the cooldown of Crippling Shot and Snapseed by -20%.",
+      "referencedTerms": [
+        "Crippling Shot",
+        "Snapseed"
+      ],
+      "prerequisites": [
+        "Snapseed"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Crippling Shot and Snapseed by -20%."
+        }
+      ]
+    },
+    {
+      "id": 29331,
+      "name": "Briar Veil",
+      "tree": "Class",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_natureempower_Border",
+      "spellId": 800084,
+      "description": "Thorns and leaves swirl around you, masking your movements for 10 seconds, increasing your dodge chance by 50% and causing dodging attacks to restore 2% maximum health and 5 Focus.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Grace",
+        "Snapseed",
+        "Cutthroat"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Thorns and leaves swirl around you, masking your movements for 10 seconds, increasing your dodge chance by 50% and causing dodging attacks to restore 2% maximum health and 5 Focus."
+        }
+      ]
+    },
+    {
+      "id": 34159,
+      "name": "Deft Hands",
+      "tree": "Class",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_paladin_handoflight",
+      "spellId": 707417,
+      "description": "Increases your melee and ranged haste by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Cutthroat"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your melee and ranged haste by 5%."
+        }
+      ]
+    },
+    {
+      "id": 34168,
+      "name": "Camper",
+      "tree": "Class",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_racial_makecamp",
+      "spellId": 705026,
+      "description": "Reduces the cast time of your Bushcraft abilities by -50%.",
+      "referencedTerms": [
+        "Bushcraft"
+      ],
+      "prerequisites": [
+        "Resourceful"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cast time of your Bushcraft abilities by -50%."
+        }
+      ]
+    },
+    {
+      "id": 34157,
+      "name": "Pinpoint Accuracy",
+      "tree": "Class",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_weapon_bow_01",
+      "spellId": 801468,
+      "description": "Critical strikes with direct damaging abilities now generate 4 Focus.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Snapseed"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with direct damaging abilities now generate 4 Focus."
+        }
+      ]
+    },
+    {
+      "id": 7791,
+      "name": "Survival Expert",
+      "tree": "Class",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Druid_NaturalPerfection",
+      "spellId": 560959,
+      "description": "Increases the dodge chance provided by Briar Veil by 25%.",
+      "referencedTerms": [
+        "Briar Veil"
+      ],
+      "prerequisites": [
+        "Briar Veil"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the dodge chance provided by Briar Veil by 25%."
+        }
+      ]
+    },
+    {
+      "id": 30051,
+      "name": "Dirty Fighter",
+      "tree": "Class",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_rogue_plunderarmor",
+      "spellId": 705044,
+      "description": "Increases the chance for Flank to critically strike by 50% and increases your chance to resist root effects by 25%.",
+      "referencedTerms": [
+        "Flank"
+      ],
+      "prerequisites": [
+        "Cutthroat"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the chance for Flank to critically strike by 50% and increases your chance to resist root effects by 25%."
+        }
+      ]
+    },
+    {
+      "id": 6682,
+      "name": "Outlaw",
+      "tree": "Class",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_Human_04",
+      "spellId": 706277,
+      "description": "Increases the effectiveness of your Adaptations by 20%.",
+      "referencedTerms": [
+        "Adaptations"
+      ],
+      "prerequisites": [
+        "Deft Hands"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Adaptations by 20%."
+        }
+      ]
+    },
+    {
+      "id": 30053,
+      "name": "Woodland Adept",
+      "tree": "Class",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_naturepoisonedstep_Border",
+      "spellId": 570015,
+      "description": "Slip into the shadows, entering an improved stealth mode, increases your movement speed by 25% for 10 seconds, and applies Elude.",
+      "referencedTerms": [
+        "Elude"
+      ],
+      "prerequisites": [
+        "Pinpoint Accuracy",
+        "Camper",
+        "Resourceful"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Slip into the shadows, entering an improved stealth mode, increases your movement speed by 25% for 10 seconds, and applies Elude."
+        }
+      ]
+    },
+    {
+      "id": 5908,
+      "name": "Bloody Focus",
+      "tree": "Class",
+      "x": 3,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Gouge",
+      "spellId": 520804,
+      "description": "Reduces the Focus cost of Toxic Dart by -15.",
+      "referencedTerms": [
+        "Toxic Dart"
+      ],
+      "prerequisites": [
+        "Survival Expert",
+        "Pinpoint Accuracy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Focus cost of Toxic Dart by -15."
+        }
+      ]
+    },
+    {
+      "id": 7908,
+      "name": "No Mercy",
+      "tree": "Class",
+      "x": 3,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Rogue_BloodyEye",
+      "spellId": 520581,
+      "description": "Increases the critical damage of Flank by 10%.",
+      "referencedTerms": [
+        "Flank"
+      ],
+      "prerequisites": [
+        "Survival Expert",
+        "Pinpoint Accuracy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical damage of Flank by 10%."
+        }
+      ]
+    },
+    {
+      "id": 7790,
+      "name": "Blur",
+      "tree": "Class",
+      "x": 5,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_Invisibilty",
+      "spellId": 520369,
+      "description": "Increases your chance to dodge and parry by 4%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Survival Expert",
+        "Dirty Fighter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your chance to dodge and parry by 4%."
+        }
+      ]
+    },
+    {
+      "id": 34188,
+      "name": "Snatch",
+      "tree": "Class",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\rogue_subterfuge",
+      "spellId": 803115,
+      "description": "Snatch an enemy's melee weapons, disarming them for 4 seconds.\n\nIf you are disarmed, you also return your weapon to yourself.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Outlaw",
+        "Dirty Fighter",
+        "Deft Hands"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Snatch an enemy's melee weapons, disarming them for 4 seconds.\n\nIf you are disarmed, you also return your weapon to yourself."
+        }
+      ]
+    },
+    {
+      "id": 6347,
+      "name": "Sly",
+      "tree": "Class",
+      "x": 0,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_disgustingpizza",
+      "spellId": 560339,
+      "description": "Your Woodland Adept now triggers a -10% reduced cooldown for each stack of Advantage active when cast.",
+      "referencedTerms": [
+        "Advantage",
+        "Woodland Adept"
+      ],
+      "prerequisites": [
+        "Woodland Adept"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Woodland Adept now triggers a -10% reduced cooldown for each stack of Advantage active when cast."
+        }
+      ]
+    },
+    {
+      "id": 5311,
+      "name": "Endurance Training",
+      "tree": "Class",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_recuperate",
+      "spellId": 705039,
+      "description": "Increases your maximum Focus by 20.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Bloody Focus",
+        "No Mercy",
+        "Woodland Adept"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your maximum Focus by 20."
+        }
+      ]
+    },
+    {
+      "id": 6946,
+      "name": "Adrenaline Rush",
+      "tree": "Class",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_archerskill19_Border",
+      "spellId": 520578,
+      "description": "Surge with vitality, dispeling all harmful effects from yourself and increasing your movement speed by 40% for 10 seconds.\n\nUsable while stealthed.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Bloody Focus",
+        "Blur",
+        "No Mercy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Surge with vitality, dispeling all harmful effects from yourself and increasing your movement speed by 40% for 10 seconds.\n\nUsable while stealthed."
+        }
+      ]
+    },
+    {
+      "id": 4936,
+      "name": "Lethal Cunning",
+      "tree": "Class",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_AimedShot_Red",
+      "spellId": 704320,
+      "description": "Entering Elude generates 1 stack of Advantage and 10 Focus every 5 sec for 30 seconds.",
+      "referencedTerms": [
+        "Advantage",
+        "Elude"
+      ],
+      "prerequisites": [
+        "Blur",
+        "Snatch"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Entering Elude generates 1 stack of Advantage and 10 Focus every 5 sec for 30 seconds."
+        }
+      ]
+    },
+    {
+      "id": 1906,
+      "name": "Guise",
+      "tree": "Class",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ability_Rogue_StayofExecution",
+      "spellId": 520753,
+      "description": "Instantly generates 5 stacks of Advantage and allows you see nearby stealthed enemies for 5 seconds.\n\nUsable while stealthed.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Blur",
+        "Snatch"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Instantly generates 5 stacks of Advantage and allows you see nearby stealthed enemies for 5 seconds.\n\nUsable while stealthed."
+        }
+      ]
+    },
+    {
+      "id": 6782,
+      "name": "Whats Yours Is Mine",
+      "tree": "Class",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_boss_edwinvancleef",
+      "spellId": 560495,
+      "description": "Removes the Focus cost of Snatch.",
+      "referencedTerms": [
+        "Snatch"
+      ],
+      "prerequisites": [
+        "Snatch"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Removes the Focus cost of Snatch."
+        }
+      ]
+    },
+    {
+      "id": 9782,
+      "name": "Grappling Arrows",
+      "tree": "Class",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\custom_21_Light_arrow_Border",
+      "spellId": 561106,
+      "description": "Increases the range of Snatch by 15 yds.",
+      "referencedTerms": [
+        "Snatch"
+      ],
+      "prerequisites": [
+        "Snatch"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the range of Snatch by 15 yds."
+        }
+      ]
+    },
+    {
+      "id": 4186,
+      "name": "Double The Pace",
+      "tree": "Class",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Diablo3_ArrowRain_Hunter",
+      "spellId": 705031,
+      "description": "Increases all party and raid member's melee and ranged haste by 10%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 2%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Endurance Training",
+        "Sly"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases all party and raid member's melee and ranged haste by 10%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 2%."
+        }
+      ]
+    },
+    {
+      "id": 6938,
+      "name": "Surefooted",
+      "tree": "Class",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_zone_hillsbradfoothills",
+      "spellId": 560814,
+      "description": "Reduces the cooldown of Adrenaline Rush by -30 sec.",
+      "referencedTerms": [
+        "Adrenaline Rush"
+      ],
+      "prerequisites": [
+        "Adrenaline Rush"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Adrenaline Rush by -30 sec."
+        }
+      ]
+    },
+    {
+      "id": 12938,
+      "name": "Heightened Senses",
+      "tree": "Class",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Racial_BearForm",
+      "spellId": 561320,
+      "description": "Reduces the Focus cost Adrenaline Rush by -50% and increases the movement speed granted by 20%.",
+      "referencedTerms": [
+        "Adrenaline Rush"
+      ],
+      "prerequisites": [
+        "Adrenaline Rush"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Focus cost Adrenaline Rush by -50% and increases the movement speed granted by 20%."
+        }
+      ]
+    },
+    {
+      "id": 30050,
+      "name": "Woodland Stalker",
+      "tree": "Class",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_StrangleVines",
+      "spellId": 705034,
+      "description": "While in Elude, your critical strike chance is now increased by 20%.",
+      "referencedTerms": [
+        "Elude"
+      ],
+      "prerequisites": [
+        "Guise",
+        "Lethal Cunning",
+        "Whats Yours Is Mine",
+        "Grappling Arrows"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While in Elude, your critical strike chance is now increased by 20%."
+        }
+      ]
+    },
+    {
+      "id": 6945,
+      "name": "Natural Disguise",
+      "tree": "Class",
+      "x": 1,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_natureambush_Border",
+      "spellId": 520585,
+      "description": "Instantly dispels all movement slowing effects from allies within 30 yds and transforms them into a bush, stealthing them for 20 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Double The Pace",
+        "Sly"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Instantly dispels all movement slowing effects from allies within 30 yds and transforms them into a bush, stealthing them for 20 seconds."
+        }
+      ]
+    },
+    {
+      "id": 7906,
+      "name": "Guile of the Ranger",
+      "tree": "Class",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\5_archerskill27_Border",
+      "spellId": 520353,
+      "description": "Your Instinct now additionally increases your critical strike rating by 20% of your Agility.",
+      "referencedTerms": [
+        "Instinct"
+      ],
+      "prerequisites": [
+        "Double The Pace",
+        "Surefooted",
+        "Heightened Senses",
+        "Woodland Stalker"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Instinct now additionally increases your critical strike rating by 20% of your Agility."
+        }
+      ]
+    },
+    {
+      "id": 6947,
+      "name": "Forest Dweller",
+      "tree": "Class",
+      "x": 7,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_druid_manatree",
+      "spellId": 524864,
+      "description": "While in Elude, gain 20% increased movement speed and regenerate 3% maximum health every 3 sec.",
+      "referencedTerms": [
+        "Elude"
+      ],
+      "prerequisites": [
+        "Whats Yours Is Mine",
+        "Grappling Arrows",
+        "Woodland Stalker"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While in Elude, gain 20% increased movement speed and regenerate 3% maximum health every 3 sec."
+        }
+      ]
+    },
+    {
+      "id": 4156,
+      "name": "Elven Tactics",
+      "tree": "Class",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ui_darkshore_warfront_alliance_archer",
+      "spellId": 560701,
+      "description": "You now have a -20% chance to not consume Advantage on cast.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Natural Disguise",
+        "Guile of the Ranger"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "You now have a -20% chance to not consume Advantage on cast."
+        }
+      ]
+    },
+    {
+      "id": 34156,
+      "name": "Rapid Strikes",
+      "tree": "Class",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_CrossingSwords_ColorsGreen",
+      "spellId": 560341,
+      "description": "Melee and ranged auto attacks now have a 25% chance to strike an additional time for 50% of the damage dealt.\n\nCan only occur once per sec.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Guile of the Ranger"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Melee and ranged auto attacks now have a 25% chance to strike an additional time for 50% of the damage dealt.\n\nCan only occur once per sec."
+        }
+      ]
+    },
+    {
+      "id": 6952,
+      "name": "Onslaught",
+      "tree": "Class",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_FocusedMind",
+      "spellId": 801951,
+      "description": "Your senses heighten, causing you to instantly generate 5 Advantage and allowing the use of abilities that require Elude for 15 seconds.",
+      "referencedTerms": [
+        "Advantage",
+        "Elude"
+      ],
+      "prerequisites": [
+        "Forest Dweller",
+        "Guile of the Ranger"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your senses heighten, causing you to instantly generate 5 Advantage and allowing the use of abilities that require Elude for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 31133,
+      "name": "Falconstrike",
+      "tree": "Farstrider",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_felarakkoa_focusedblast",
+      "spellId": 573060,
+      "description": "$37",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$38"
+        }
+      ]
+    },
+    {
+      "id": 4030,
+      "name": "Dream Flowers",
+      "tree": "Farstrider",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_legion_faction_dreamweavers",
+      "spellId": 92117,
+      "description": "Level 10 Passive\nYour damaging critical strikes now spawn a green Dream Flower at a random location within 15 yds of you. Dream Flower (Spawner)When an ally runs over the flower, they consume it to heal for 3% maximum health and gain 40% increased movement speed for 5 seconds.Can only occur once per sec.",
+      "referencedTerms": [
+        "Dream Flower"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Survival Potion"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nYour damaging critical strikes now spawn a green Dream Flower at a random location within 15 yds of you. Dream Flower (Spawner)When an ally runs over the flower, they consume it to heal for 3% maximum health and gain 40% increased movement speed for 5 seconds.Can only occur once per sec."
+        }
+      ]
+    },
+    {
+      "id": 30926,
+      "name": "Cunning",
+      "tree": "Farstrider",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\misc_legionfall_hunter",
+      "spellId": 520615,
+      "description": "Increases your Focus regeneration by 15%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Falconstrike"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Focus regeneration by 15%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Focus regeneration by 30%."
+        }
+      ]
+    },
+    {
+      "id": 7050,
+      "name": "Blow the Horns!",
+      "tree": "Farstrider",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Ascend_horn_b_01",
+      "spellId": 573042,
+      "description": "Reduces the cooldown of Horn spells by -25%.",
+      "referencedTerms": [
+        "Horn"
+      ],
+      "prerequisites": [
+        "Falconstrike"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Horn spells by -25%."
+        },
+        {
+          "rank": 2,
+          "description": "Reduces the cooldown of Horn spells by -50%."
+        }
+      ]
+    },
+    {
+      "id": 34181,
+      "name": "Falcon's Call",
+      "tree": "Farstrider",
+      "x": 1,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_skyreach_castdown",
+      "spellId": 804715,
+      "description": "Call down war falcons upon a targeted area, slowing up to 8 enemies within the area by -60% for 5 seconds.\n\nA Falcon is summoned for each enemy affected for 12 seconds.",
+      "referencedTerms": [
+        "Falcon"
+      ],
+      "prerequisites": [
+        "Cunning"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Call down war falcons upon a targeted area, slowing up to 8 enemies within the area by -60% for 5 seconds.\n\nA Falcon is summoned for each enemy affected for 12 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34184,
+      "name": "Backstep",
+      "tree": "Farstrider",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_karoz_leap",
+      "spellId": 800685,
+      "description": "Leap backwards up to 10 yds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Blow the Horns!",
+        "Cunning"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Leap backwards up to 10 yds."
+        }
+      ]
+    },
+    {
+      "id": 30932,
+      "name": "Woodland Arrow",
+      "tree": "Farstrider",
+      "x": 7,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_naturegoldenarrow_Border",
+      "spellId": 806368,
+      "description": "Shoot a magical arrow, dealing 38 + 35% ranged AP Physical damage and reducing the cooldown of active Horn spells by -15 sec.\n\nDamage increased by 30% for each stack of Advantage.",
+      "referencedTerms": [
+        "Advantage",
+        "Horn"
+      ],
+      "prerequisites": [
+        "Blow the Horns!"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Shoot a magical arrow, dealing 38 + 35% ranged AP Physical damage and reducing the cooldown of active Horn spells by -15 sec.\n\nDamage increased by 30% for each stack of Advantage."
+        }
+      ]
+    },
+    {
+      "id": 6955,
+      "name": "Horn of War",
+      "tree": "Farstrider",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Misc_Horn_03",
+      "spellId": 800086,
+      "description": "Generates 1 Advantage\nEmanate an aura for 30 seconds that grants 5% increased critical strike chance to party and raid members. Does not stack with similar effects.\n\nWhile active, you generate 3 Focus every 1 sec.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Dream Flowers"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 1 Advantage\nEmanate an aura for 30 seconds that grants 5% increased critical strike chance to party and raid members. Does not stack with similar effects.\n\nWhile active, you generate 3 Focus every 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 11255,
+      "name": "Battle Prowess",
+      "tree": "Farstrider",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\skill_icon_skill105_Border",
+      "spellId": 805888,
+      "description": "Increases chance to hit with all spells and attacks by 1% for you and party and raid members.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Dream Flowers"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases chance to hit with all spells and attacks by 1% for you and party and raid members.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 8358,
+      "name": "Falcon Charmer",
+      "tree": "Farstrider",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\trade_archaeology_carved_wildhammer_gryphon_figurine",
+      "spellId": 705076,
+      "description": "Increases the duration of War Falcons by 3 sec.",
+      "referencedTerms": [
+        "War Falcons"
+      ],
+      "prerequisites": [
+        "Falcon's Call"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of War Falcons by 3 sec."
+        }
+      ]
+    },
+    {
+      "id": 4631,
+      "name": "Survivalist",
+      "tree": "Farstrider",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_NatureTouchGrow",
+      "spellId": 707418,
+      "description": "Reduces the cooldown of Survival Potion by -25%.",
+      "referencedTerms": [
+        "Survival Potion"
+      ],
+      "prerequisites": [
+        "Backstep"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Survival Potion by -25%."
+        }
+      ]
+    },
+    {
+      "id": 34147,
+      "name": "Quel'dorei Poison",
+      "tree": "Farstrider",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_SpiritualArrow_Border",
+      "spellId": 560802,
+      "description": "Damage dealt by Woodland Arrow and Emerald Arrow now poison enemies for 3 seconds, dealing 91 + 10% ranged AP Nature damage every 1 sec.",
+      "referencedTerms": [
+        "Emerald Arrow",
+        "Woodland Arrow"
+      ],
+      "prerequisites": [
+        "Woodland Arrow"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Woodland Arrow and Emerald Arrow now poison enemies for 3 seconds, dealing 91 + 10% ranged AP Nature damage every 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 6436,
+      "name": "War Falconer",
+      "tree": "Farstrider",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_hunter_eagleeye",
+      "spellId": 705067,
+      "description": "Reduces the cooldowns of Falcon's Call by -30 sec.",
+      "referencedTerms": [
+        "Falcon's Call"
+      ],
+      "prerequisites": [
+        "Falcon Charmer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldowns of Falcon's Call by -30 sec."
+        }
+      ]
+    },
+    {
+      "id": 11336,
+      "name": "Aerial Assault",
+      "tree": "Farstrider",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\icon_orangebird_toy",
+      "spellId": 705068,
+      "description": "Removes the Focus cost of Falcon's Call, allows it to strike 2 additional targets, and increases its range by 10 yds.",
+      "referencedTerms": [
+        "Falcon's Call"
+      ],
+      "prerequisites": [
+        "Falcon Charmer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Removes the Focus cost of Falcon's Call, allows it to strike 2 additional targets, and increases its range by 10 yds."
+        }
+      ]
+    },
+    {
+      "id": 6437,
+      "name": "Falcon Guide",
+      "tree": "Farstrider",
+      "x": 3,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_redbird",
+      "spellId": 520586,
+      "description": "Falconstrike and Battle Screech now increase your movement speed by 30% for 3 seconds.",
+      "referencedTerms": [
+        "Battle Screech",
+        "Falconstrike"
+      ],
+      "prerequisites": [
+        "Survivalist",
+        "Falcon Charmer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Falconstrike and Battle Screech now increase your movement speed by 30% for 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 11437,
+      "name": "Scavenger",
+      "tree": "Farstrider",
+      "x": 3,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_DryadDispelMagic",
+      "spellId": 520834,
+      "description": "Increases the duration of Battle Screech and reduces the cooldown of Snapseed by 5 sec.",
+      "referencedTerms": [
+        "Battle Screech",
+        "Snapseed"
+      ],
+      "prerequisites": [
+        "Survivalist",
+        "Falcon Charmer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Battle Screech and reduces the cooldown of Snapseed by 5 sec."
+        }
+      ]
+    },
+    {
+      "id": 19631,
+      "name": "Emerald Arrow",
+      "tree": "Farstrider",
+      "x": 5,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_emerald_staff_b_Border",
+      "spellId": 804712,
+      "description": "Set up a powerful magical arrow and then shoot it, dealing 10 + 20% ranged AP Nature damage to the target, increased by 30% for each stack of Advantage.\n\nCreates an enchanted flare on the ground, causing nearby enemies to take 224 + 20% ranged AP Nature damage every 2 sec, lasting 2 sec for each stack of Advantage.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "Survivalist",
+        "Quel'dorei Poison"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Set up a powerful magical arrow and then shoot it, dealing 10 + 20% ranged AP Nature damage to the target, increased by 30% for each stack of Advantage.\n\nCreates an enchanted flare on the ground, causing nearby enemies to take 224 + 20% ranged AP Nature damage every 2 sec, lasting 2 sec for each stack of Advantage."
+        }
+      ]
+    },
+    {
+      "id": 29631,
+      "name": "Falcon Diving",
+      "tree": "Farstrider",
+      "x": 5,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_unholybird_Border",
+      "spellId": 520783,
+      "description": "Killing an enemy that yields experience or honor now summons a War Falcon to aid you in combat for 12 seconds. Can only occur once every 4 sec.",
+      "referencedTerms": [
+        "War Falcon"
+      ],
+      "prerequisites": [
+        "Survivalist",
+        "Quel'dorei Poison"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Killing an enemy that yields experience or honor now summons a War Falcon to aid you in combat for 12 seconds. Can only occur once every 4 sec."
+        }
+      ]
+    },
+    {
+      "id": 34201,
+      "name": "Forest Fighter",
+      "tree": "Farstrider",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_accurate_bow_b_Border",
+      "spellId": 706282,
+      "description": "Your Skullpiercers or Emerald Arrows used with 5 stacks of Advantage now reduce the cooldown of Woodland Arrow by -5 sec.",
+      "referencedTerms": [
+        "Advantage",
+        "Emerald Arrows",
+        "Skullpiercers",
+        "Woodland Arrow"
+      ],
+      "prerequisites": [
+        "Quel'dorei Poison"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Skullpiercers or Emerald Arrows used with 5 stacks of Advantage now reduce the cooldown of Woodland Arrow by -5 sec."
+        }
+      ]
+    },
+    {
+      "id": 11955,
+      "name": "Gutpiercer",
+      "tree": "Farstrider",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_bloodsplatter",
+      "spellId": 573059,
+      "description": "Damage dealt by War Falcons and Dragonhawks now has a 15% chance to reduce the enemy's resistances by 75 and increase their Magic damage taken by -2% for 15 seconds.",
+      "referencedTerms": [
+        "Dragonhawks",
+        "War Falcons"
+      ],
+      "prerequisites": [
+        "Horn of War",
+        "Battle Prowess"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by War Falcons and Dragonhawks now has a 15% chance to reduce the enemy's resistances by 75 and increase their Magic damage taken by -2% for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 11956,
+      "name": "Battle Screech",
+      "tree": "Farstrider",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_druidflightzandalaritroll",
+      "spellId": 705070,
+      "description": "Empower party and raid members within 40 yds, increasing their attack or spell power by 65 for 15 seconds.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Horn of War",
+        "Battle Prowess"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Empower party and raid members within 40 yds, increasing their attack or spell power by 65 for 15 seconds.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 34199,
+      "name": "Dragonhawk Tamer",
+      "tree": "Farstrider",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_hunter_pet_dragonhawk",
+      "spellId": 573056,
+      "description": "Using a Horn now summons a Dragonhawk to assist you in combat for 15 seconds.",
+      "referencedTerms": [
+        "Dragonhawk",
+        "Horn"
+      ],
+      "prerequisites": [
+        "War Falconer",
+        "Falcon Guide",
+        "Aerial Assault",
+        "Scavenger"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Using a Horn now summons a Dragonhawk to assist you in combat for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34192,
+      "name": "Windrunner's Reach",
+      "tree": "Farstrider",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_HighElf_01",
+      "spellId": 573043,
+      "description": "Increases the range of your ranged abilities by 5 yds.\n\nIn addition, your critical strike chance against Undead, Beasts, and Dragonkin is increased by 2%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Falcon Guide",
+        "Scavenger",
+        "Emerald Arrow",
+        "Falcon Diving"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the range of your ranged abilities by 5 yds.\n\nIn addition, your critical strike chance against Undead, Beasts, and Dragonkin is increased by 2%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the range of your ranged abilities by 10 yds.\n\nIn addition, your critical strike chance against Undead, Beasts, and Dragonkin is increased by 4%."
+        }
+      ]
+    },
+    {
+      "id": 34185,
+      "name": "Forest Herald",
+      "tree": "Farstrider",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_druid_treeoflife_Red",
+      "spellId": 800150,
+      "description": "Casting Toxic Dart and abilities that spend stacks of Advantage now have a 20% chance to spawn a green Dreamflower at a random location nearby within 15 yds of you.Dream Flower (Spawner)When an ally runs over the flower, they consume it to heal for 3% maximum health and gain 40% increased movement speed for 5 seconds.",
+      "referencedTerms": [
+        "Advantage",
+        "Dreamflower",
+        "Toxic Dart"
+      ],
+      "prerequisites": [
+        "Emerald Arrow",
+        "Falcon Diving",
+        "Forest Fighter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Toxic Dart and abilities that spend stacks of Advantage now have a 20% chance to spawn a green Dreamflower at a random location nearby within 15 yds of you.Dream Flower (Spawner)When an ally runs over the flower, they consume it to heal for 3% maximum health and gain 40% increased movement speed for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 5431,
+      "name": "Wingman",
+      "tree": "Farstrider",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_icon_wing04d",
+      "spellId": 705098,
+      "description": "Reduces all damage taken by -2% for each War Falcon or Dragonhawk you have active.",
+      "referencedTerms": [
+        "Dragonhawk",
+        "War Falcon"
+      ],
+      "prerequisites": [
+        "Dragonhawk Tamer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces all damage taken by -2% for each War Falcon or Dragonhawk you have active."
+        }
+      ]
+    },
+    {
+      "id": 11431,
+      "name": "Guidance",
+      "tree": "Farstrider",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_garrison_orangebird",
+      "spellId": 532261,
+      "description": "Increases your Physical and Nature damage dealt by 1% for each War Falcon or Dragonhawk you have active.",
+      "referencedTerms": [
+        "Dragonhawk",
+        "War Falcon"
+      ],
+      "prerequisites": [
+        "Dragonhawk Tamer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Physical and Nature damage dealt by 1% for each War Falcon or Dragonhawk you have active."
+        }
+      ]
+    },
+    {
+      "id": 5054,
+      "name": "Venom-Coated Seeds",
+      "tree": "Farstrider",
+      "x": 3,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_Druideskill_01_Border",
+      "spellId": 807459,
+      "description": "Damage dealt by Snapseed now reduces the enemy's chance to hit by -15% for 10 seconds.",
+      "referencedTerms": [
+        "Snapseed"
+      ],
+      "prerequisites": [
+        "Falcon Guide",
+        "Scavenger"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Snapseed now reduces the enemy's chance to hit by -15% for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 4554,
+      "name": "Freedom",
+      "tree": "Farstrider",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_tournaments_symbol_bloodelf",
+      "spellId": 520628,
+      "description": "Free up to 10 nearby allies within 15 yds of you for 8 seconds, causing them to become immune to roots and snares, and allowing their critical strikes to increase their movement speed by 30% for 5 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Windrunner's Reach"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Free up to 10 nearby allies within 15 yds of you for 8 seconds, causing them to become immune to roots and snares, and allowing their critical strikes to increase their movement speed by 30% for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34195,
+      "name": "Falcon's Aid",
+      "tree": "Farstrider",
+      "x": 5,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_hunter_aspectoftheironhawk",
+      "spellId": 705075,
+      "description": "Periodic damage dealt now has a 10% chance to summon a War Falcon to aid you in battle for 6 seconds.",
+      "referencedTerms": [
+        "War Falcon"
+      ],
+      "prerequisites": [
+        "Emerald Arrow",
+        "Falcon Diving"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Periodic damage dealt now has a 10% chance to summon a War Falcon to aid you in battle for 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30924,
+      "name": "Highlander",
+      "tree": "Farstrider",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_zone_jadeforest",
+      "spellId": 707534,
+      "description": "Each time you spawn a green Dreamflower you are granted 1 stack of Highlander.Highlander (Stacks)At 3 stacks, your next Falconstrike within 10 seconds deals 25% increased damage and reduces the enemy's healing received by -40% for 8 seconds.",
+      "referencedTerms": [
+        "Dreamflower",
+        "Falconstrike",
+        "Highlander"
+      ],
+      "prerequisites": [
+        "Forest Herald"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each time you spawn a green Dreamflower you are granted 1 stack of Highlander.Highlander (Stacks)At 3 stacks, your next Falconstrike within 10 seconds deals 25% increased damage and reduces the enemy's healing received by -40% for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 11930,
+      "name": "Defense of the Ancients",
+      "tree": "Farstrider",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\skill_icon_skill118_Border",
+      "spellId": 705094,
+      "description": "You now emanate an aura around you, increasing the Armor of party and raid members by 390.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Gutpiercer",
+        "Battle Screech"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "You now emanate an aura around you, increasing the Armor of party and raid members by 390.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 30930,
+      "name": "Horn of Alacrity",
+      "tree": "Farstrider",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\FarstriderHorn",
+      "spellId": 806360,
+      "description": "Generates 1 Advantage\nEmanate an aura for 30 seconds that grants 5% increased haste to party and raid members. Does not stack with similar effects.\n\nWhile active, you generate 3 Focus every 1 sec.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Gutpiercer",
+        "Battle Screech"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 1 Advantage\nEmanate an aura for 30 seconds that grants 5% increased haste to party and raid members. Does not stack with similar effects.\n\nWhile active, you generate 3 Focus every 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 34179,
+      "name": "Phoenix Plumes",
+      "tree": "Farstrider",
+      "x": 0,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_icon_feather06a",
+      "spellId": 705074,
+      "description": "Your Skullpiercers and Woodland Arrows used with 5 stacks of Advantage now restore 3% Focus and summon a War Falcon for 6 seconds.",
+      "referencedTerms": [
+        "Advantage",
+        "Skullpiercers",
+        "War Falcon",
+        "Woodland Arrows"
+      ],
+      "prerequisites": [
+        "Wingman",
+        "Guidance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Skullpiercers and Woodland Arrows used with 5 stacks of Advantage now restore 3% Focus and summon a War Falcon for 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34196,
+      "name": "Razorquills",
+      "tree": "Farstrider",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_archerskill43_Border",
+      "spellId": 705072,
+      "description": "Increases the tick rate of Toxic Dart and Emerald Arrows by -20%.",
+      "referencedTerms": [
+        "Emerald Arrows",
+        "Toxic Dart"
+      ],
+      "prerequisites": [
+        "Venom-Coated Seeds",
+        "Wingman",
+        "Guidance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the tick rate of Toxic Dart and Emerald Arrows by -20%."
+        }
+      ]
+    },
+    {
+      "id": 9274,
+      "name": "Thread The Needle",
+      "tree": "Farstrider",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_spiritualarrow_Border",
+      "spellId": 524831,
+      "description": "Critical strikes with Quick Shot or Falconstrike now reduce the cast time and cost of your next ability that consumes Advantage by -34% for 15 seconds, stacking 3 times.",
+      "referencedTerms": [
+        "Advantage",
+        "Falconstrike",
+        "Quick Shot"
+      ],
+      "prerequisites": [
+        "Freedom",
+        "Venom-Coated Seeds",
+        "Falcon's Aid"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Quick Shot or Falconstrike now reduce the cast time and cost of your next ability that consumes Advantage by -34% for 15 seconds, stacking 3 times."
+        }
+      ]
+    },
+    {
+      "id": 3924,
+      "name": "To The Skies!",
+      "tree": "Farstrider",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_pet_butterfly_green",
+      "spellId": 301365,
+      "description": "Reduces the cooldown of Bushcraft Glider by -30 sec.",
+      "referencedTerms": [
+        "Bushcraft Glider"
+      ],
+      "prerequisites": [
+        "Highlander",
+        "Falcon's Aid"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Bushcraft Glider by -30 sec."
+        }
+      ]
+    },
+    {
+      "id": 6346,
+      "name": "Hunting Tactics",
+      "tree": "Farstrider",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_druideskill08_Border",
+      "spellId": 300897,
+      "description": "Damage dealt by Skullpiercer is increased by 30% against Poisoned targets.",
+      "referencedTerms": [
+        "Poisoned",
+        "Skullpiercer"
+      ],
+      "prerequisites": [
+        "Highlander"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Skullpiercer is increased by 30% against Poisoned targets."
+        }
+      ]
+    },
+    {
+      "id": 30931,
+      "name": "Pecking",
+      "tree": "Farstrider",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\artifactability_survivalhunter_eaglesbite",
+      "spellId": 570737,
+      "description": "Your War Falcons and Dragonhawks now have a 25% chance to deal additional Physical damage to 3 nearby enemies.",
+      "referencedTerms": [
+        "Dragonhawks",
+        "War Falcons"
+      ],
+      "prerequisites": [
+        "Phoenix Plumes",
+        "Razorquills"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your War Falcons and Dragonhawks now have a 25% chance to deal additional Physical damage to 3 nearby enemies."
+        }
+      ]
+    },
+    {
+      "id": 30925,
+      "name": "Plumes of War",
+      "tree": "Farstrider",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Hunter_AnimalHandler",
+      "spellId": 705071,
+      "description": "Increases the critical strike chance of Falconstrike and Emerald Arrow by 15%.\n\nIn addition, critical strikes with Falconstrike now increase the damage of subsequent Falconstrikes by 5% for 15 seconds, stacking 5 times.",
+      "referencedTerms": [
+        "Emerald Arrow",
+        "Falconstrike",
+        "Falconstrikes"
+      ],
+      "prerequisites": [
+        "To The Skies!",
+        "Thread The Needle",
+        "Razorquills"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Falconstrike and Emerald Arrow by 15%.\n\nIn addition, critical strikes with Falconstrike now increase the damage of subsequent Falconstrikes by 5% for 15 seconds, stacking 5 times."
+        }
+      ]
+    },
+    {
+      "id": 30929,
+      "name": "Whipvine Arrow",
+      "tree": "Farstrider",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_herb_nightmarevine",
+      "spellId": 806342,
+      "description": "Launch an arrow with magical vines attached to it at your target, dealing 78 + 33% ranged AP Nature damage and rooting them for 40 seconds (8 sec vs players). Damage caused may interrupt the effect.\n\nHits 1 additional nearby target per stack of Advantage.",
+      "referencedTerms": [
+        "Advantage"
+      ],
+      "prerequisites": [
+        "To The Skies!",
+        "Hunting Tactics"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Launch an arrow with magical vines attached to it at your target, dealing 78 + 33% ranged AP Nature damage and rooting them for 40 seconds (8 sec vs players). Damage caused may interrupt the effect.\n\nHits 1 additional nearby target per stack of Advantage."
+        }
+      ]
+    },
+    {
+      "id": 10054,
+      "name": "Frenzy",
+      "tree": "Farstrider",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_druid_treeoflife_Red",
+      "spellId": 520492,
+      "description": "Enrage all nearby allies, increasing their haste by 30% for 20 seconds.\n\nAfter being affected by this spell, allies cannot benefit from similar effects for 5 minutes.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Horn of Alacrity",
+        "Defense of the Ancients"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Enrage all nearby allies, increasing their haste by 30% for 20 seconds.\n\nAfter being affected by this spell, allies cannot benefit from similar effects for 5 minutes."
+        }
+      ]
+    },
+    {
+      "id": 30054,
+      "name": "Command Aura",
+      "tree": "Farstrider",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_trueshot",
+      "spellId": 524600,
+      "description": "Emanate an aura for 15 seconds, causing allied players to deal 35% ranged AP additional damage as Stormstrike Damage when they deal direct damage.\n\nApplies Exhaustion, preventing you from benefiting from similar effects for 1 minute.",
+      "referencedTerms": [
+        "Exhaustion"
+      ],
+      "prerequisites": [
+        "Horn of Alacrity",
+        "Defense of the Ancients"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Emanate an aura for 15 seconds, causing allied players to deal 35% ranged AP additional damage as Stormstrike Damage when they deal direct damage.\n\nApplies Exhaustion, preventing you from benefiting from similar effects for 1 minute."
+        }
+      ]
+    },
+    {
+      "id": 34182,
+      "name": "Coordination",
+      "tree": "Farstrider",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Hunter_BeastWithin",
+      "spellId": 520621,
+      "description": "Your War Falcons and Dragonhawks now grant you a stack of Coordination when they deal damage.\nCoordination (Proc)Increases your critical strike chance and critical damage by 1% for 15 seconds, stacking 10 times.",
+      "referencedTerms": [
+        "Coordination",
+        "Dragonhawks",
+        "War Falcons"
+      ],
+      "prerequisites": [
+        "Plumes of War",
+        "Pecking"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your War Falcons and Dragonhawks now grant you a stack of Coordination when they deal damage.\nCoordination (Proc)Increases your critical strike chance and critical damage by 1% for 15 seconds, stacking 10 times."
+        }
+      ]
+    },
+    {
+      "id": 34180,
+      "name": "Thalassian Brand",
+      "tree": "Farstrider",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_naturetarget_Border",
+      "spellId": 560805,
+      "description": "Mark an enemy for total destruction, increasing your allies ranged attack power against the target by 300 and dealing 1120 Nature damage every 3 sec for 15 seconds.\n\nThe marked target can always be seen by the Ranger whether it stealths or turns invisible",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Plumes of War"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Mark an enemy for total destruction, increasing your allies ranged attack power against the target by 300 and dealing 1120 Nature damage every 3 sec for 15 seconds.\n\nThe marked target can always be seen by the Ranger whether it stealths or turns invisible"
+        }
+      ]
+    },
+    {
+      "id": 9454,
+      "name": "Petalkeeper",
+      "tree": "Farstrider",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_magicflower_Border",
+      "spellId": 520925,
+      "description": "$35",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Plumes of War",
+        "Whipvine Arrow"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$36"
+        }
+      ]
+    }
+  ]
+}

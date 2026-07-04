@@ -1,0 +1,5498 @@
+{
+  "class": "Chronomancer",
+  "classId": 22,
+  "realm": "voljin-alpha",
+  "source": "https://ascension.gg/en/v2/coa-builder/voljin-alpha",
+  "extracted": "2026-07-01",
+  "schemaVersion": 3,
+  "trees": [
+    "Artificer",
+    "Class",
+    "Infinite",
+    "Time"
+  ],
+  "totalTalents": 157,
+  "budget": {
+    "abilityEssence": 26,
+    "talentEssence": 25
+  },
+  "rules": {
+    "specExclusivity": "Only one spec tree (Sanguine/Accursed/Eternal/Fleshweaver-equivalent) can be active at a time in-game. You commit to ONE non-Class tree and spend your full Talent Essence budget within it (plus the separate Class tree spent with Ability Essence). Treat trees other than 'Class' as mutually exclusive choices, not a blend.",
+    "partialRanksCount": "A node only needs 1 point invested (not maxPoints) to count as 'connected' for prerequisite checks and to contribute toward the reqTreeAbilityEssence/reqTreeTalentEssence row-unlock thresholds.",
+    "budgetCurrencies": "Ability Essence (AE) is spent only in the Class tree. Talent Essence (TE) is spent only in whichever single spec tree you commit to. A node's abilityEssenceCost/talentEssenceCost fields show which currency it draws from (never both).",
+    "rowGating": "reqTreeAbilityEssence / reqTreeTalentEssence on a node is the minimum essence already spent within that SAME tree required to unlock it - not total across trees.",
+    "levelGates": "Some nodes (mostly entryType Ability) cost 0 essence and unlock automatically at requiredLevel instead of being a budget choice.",
+    "prerequisiteFieldsCorrected": "'prerequisites' is the OR-logic grid-connection requirement (matches tooltip 'requires one connected node: A or B or C') - need at least 1 point in ANY ONE listed node. 'specialRequirement' is a separate, rare, AND-logic hard requirement used only by a handful of free/level-gated bonus nodes - ALL listed nodes must already have a point.",
+    "budgetTotalsAssumed": "Verified live for Bloodmage: 26 Ability Essence (Class tree) / 25 Talent Essence (spec tree) as the spendable caps. Assumed identical for all classes since this is tied to character leveling, not class design - not independently verified per class. Override in the toolkit if a specific class differs.",
+    "referencedTerms": "Extracted from colored in-line spans in the raw tooltip HTML (e.g. a description that highlights 'Cursed Blood' or 'Bloodbolt'). These are explicit developer-authored callouts to another spell/buff/mechanic name, and are the strongest available signal for detecting mechanical synergy between talents - stronger than plain keyword text matching."
+  },
+  "talents": [
+    {
+      "id": 31183,
+      "name": "Shatter Echo",
+      "tree": "Artificer",
+      "x": 3,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ShatterEcho",
+      "spellId": 804503,
+      "description": "Distortion Spell\nLaunch a distorted echo from your wand at an enemy, dealing 90% Ranged Weapon damage plus cond(gt(SPA, SPH), 4+0+SPA*0.3, 4+0+SPH*0.3) Arcane damage.\n\nDamage increased by 40% for each Echo Fragment consumed.",
+      "referencedTerms": [
+        "Distortion Spell",
+        "Echo Fragment"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Echo Fragments",
+        "Waves of Time"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Distortion Spell\nLaunch a distorted echo from your wand at an enemy, dealing 90% Ranged Weapon damage plus cond(gt(SPA, SPH), 4+0+SPA*0.3, 4+0+SPH*0.3) Arcane damage.\n\nDamage increased by 40% for each Echo Fragment consumed."
+        }
+      ]
+    },
+    {
+      "id": 12853,
+      "name": "Artificer's Wand",
+      "tree": "Artificer",
+      "x": 5,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_wand_16",
+      "spellId": 804478,
+      "description": "Transforms your Unmake into Artificer's Wand.Artificer's WandFocus to unleash 2 wand attacks dealing Ranged Weapon damage plus 5 over 1 seconds.\n\nGenerates 1 Echo Fragment.",
+      "referencedTerms": [
+        "Artificer's Wand",
+        "Echo Fragment",
+        "Unmake"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Echo Fragments",
+        "Waves of Time"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Transforms your Unmake into Artificer's Wand.Artificer's WandFocus to unleash 2 wand attacks dealing Ranged Weapon damage plus 5 over 1 seconds.\n\nGenerates 1 Echo Fragment."
+        }
+      ]
+    },
+    {
+      "id": 4033,
+      "name": "Echo Fragments",
+      "tree": "Artificer",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_guildperk_workingovertime",
+      "spellId": 92120,
+      "description": "Level 10 Passive\nWand of Time now generates an Echo Fragment, which can be used to unleash Distortion and Continuum spells.\n\nDecomposition is now a Distortion spell, dealing increased damage based on how many Echo Fragments you have.",
+      "referencedTerms": [
+        "Continuum",
+        "Decomposition",
+        "Distortion",
+        "Echo Fragment",
+        "Echo Fragments",
+        "Wand of Time"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Waves of Time"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nWand of Time now generates an Echo Fragment, which can be used to unleash Distortion and Continuum spells.\n\nDecomposition is now a Distortion spell, dealing increased damage based on how many Echo Fragments you have."
+        }
+      ]
+    },
+    {
+      "id": 7853,
+      "name": "Caverns of Time",
+      "tree": "Artificer",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_elementalearth2",
+      "spellId": 520166,
+      "description": "Your Discordance now generates 1 Echo Fragment.",
+      "referencedTerms": [
+        "Discordance",
+        "Echo Fragment"
+      ],
+      "prerequisites": [
+        "Artificer's Wand",
+        "Shatter Echo"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Discordance now generates 1 Echo Fragment."
+        }
+      ]
+    },
+    {
+      "id": 7391,
+      "name": "Artificer's Empowerment",
+      "tree": "Artificer",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 3,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_azeritedebuff",
+      "spellId": 806167,
+      "description": "Increases your Spirit by 8%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Caverns of Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Spirit by 8%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Spirit by 16%."
+        },
+        {
+          "rank": 3,
+          "description": "Increases your Spirit by 25%."
+        }
+      ]
+    },
+    {
+      "id": 30256,
+      "name": "Wand Master",
+      "tree": "Artificer",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_Brilliance",
+      "spellId": 707551,
+      "description": "Increases the damage of Wand of Time and Artificer's Wand by 10%.",
+      "referencedTerms": [
+        "Artificer's Wand",
+        "Wand of Time"
+      ],
+      "prerequisites": [
+        "Caverns of Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Wand of Time and Artificer's Wand by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the damage of Wand of Time and Artificer's Wand by 20%."
+        }
+      ]
+    },
+    {
+      "id": 9175,
+      "name": "Wand Expert",
+      "tree": "Artificer",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_cloth_raidpriestdragon_d_01_helm_blue",
+      "spellId": 574308,
+      "description": "Level 20 Passive\nIncreases your ranged attack power by 100% of your Spirit.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Echo Fragments"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nIncreases your ranged attack power by 100% of your Spirit."
+        }
+      ]
+    },
+    {
+      "id": 6576,
+      "name": "Discovery",
+      "tree": "Artificer",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_wandshot_(2)_Border",
+      "spellId": 500116,
+      "description": "Casting Artificers's Wand and Wand of Time now grants Discovery for 30 seconds, stacking 4 times. DiscoveryAt 3 stacks, your next Wand of Time or Artificer's Wand causes an additional 1 + 21.2% arcane SP + 25% Spirit + 10% ranged AP Arcane Damage, scaling with Spirit.",
+      "referencedTerms": [
+        "Artificer's Wand",
+        "Artificers's Wand",
+        "Discovery",
+        "Wand of Time"
+      ],
+      "prerequisites": [
+        "Artificer's Empowerment"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Artificers's Wand and Wand of Time now grants Discovery for 30 seconds, stacking 4 times. DiscoveryAt 3 stacks, your next Wand of Time or Artificer's Wand causes an additional 1 + 21.2% arcane SP + 25% Spirit + 10% ranged AP Arcane Damage, scaling with Spirit."
+        }
+      ]
+    },
+    {
+      "id": 6574,
+      "name": "Concentrated Fate",
+      "tree": "Artificer",
+      "x": 3,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_wand_1h_warfrontsalliance_c_01",
+      "spellId": 706122,
+      "description": "Increases the effectiveness of your Echo Fragments by 20%.",
+      "referencedTerms": [
+        "Echo Fragments"
+      ],
+      "prerequisites": [
+        "Artificer's Empowerment"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Echo Fragments by 20%."
+        }
+      ]
+    },
+    {
+      "id": 30265,
+      "name": "Bronze Echoes",
+      "tree": "Artificer",
+      "x": 5,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_challengemode_bronze",
+      "spellId": 520800,
+      "description": "Reduces the cast time of Artificer's Wand by -0.2 sec.",
+      "referencedTerms": [
+        "Artificer's Wand"
+      ],
+      "prerequisites": [
+        "Wand Master"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cast time of Artificer's Wand by -0.2 sec."
+        }
+      ]
+    },
+    {
+      "id": 7854,
+      "name": "Singularity Core",
+      "tree": "Artificer",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_staff_2h_jaina_d_01",
+      "spellId": 804438,
+      "description": "Continuum Spell\nEmpower your Wand attacks to deal an additional 50% Ranged Weapon Damage plus 2 + 25% SP + 12% ranged AP additional Arcane damage for 3 sec plus 5 sec per Echo Fragment.\n\nCan only have 1 Continuum spell active at a time.",
+      "referencedTerms": [
+        "Continuum",
+        "Continuum Spell",
+        "Echo Fragment"
+      ],
+      "prerequisites": [
+        "Wand Master"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Continuum Spell\nEmpower your Wand attacks to deal an additional 50% Ranged Weapon Damage plus 2 + 25% SP + 12% ranged AP additional Arcane damage for 3 sec plus 5 sec per Echo Fragment.\n\nCan only have 1 Continuum spell active at a time."
+        }
+      ]
+    },
+    {
+      "id": 6170,
+      "name": "Archaeology",
+      "tree": "Artificer",
+      "x": 1,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\trade_archaeology_dwarf_artifactfragment",
+      "spellId": 560130,
+      "description": "Your Discovery now also generates 3% of your base mana and health.",
+      "referencedTerms": [
+        "Discovery"
+      ],
+      "prerequisites": [
+        "Discovery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Discovery now also generates 3% of your base mana and health."
+        }
+      ]
+    },
+    {
+      "id": 30250,
+      "name": "Hyperwand",
+      "tree": "Artificer",
+      "x": 3,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_cat_trinket10",
+      "spellId": 706071,
+      "description": "Increases the damage and critical damage of your Shatter Echo by 30%.",
+      "referencedTerms": [
+        "Shatter Echo"
+      ],
+      "prerequisites": [
+        "Concentrated Fate"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage and critical damage of your Shatter Echo by 30%."
+        }
+      ]
+    },
+    {
+      "id": 6575,
+      "name": "Elder Wand",
+      "tree": "Artificer",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_wandshot_Border",
+      "spellId": 560129,
+      "description": "Your Wand attacks now have a 30% chance to increase the damage of Artificer's Wand against the target by 3% for 15 seconds, stacking 10 times.",
+      "referencedTerms": [
+        "Artificer's Wand"
+      ],
+      "prerequisites": [
+        "Concentrated Fate",
+        "Bronze Echoes"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Wand attacks now have a 30% chance to increase the damage of Artificer's Wand against the target by 3% for 15 seconds, stacking 10 times."
+        }
+      ]
+    },
+    {
+      "id": 6171,
+      "name": "Temporal Convergence",
+      "tree": "Artificer",
+      "x": 5,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Holy_MindVision",
+      "spellId": 807588,
+      "description": "Your Wand of Time now has a 40% chance to reset its own cooldown.",
+      "referencedTerms": [
+        "Wand of Time"
+      ],
+      "prerequisites": [
+        "Bronze Echoes"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Wand of Time now has a 40% chance to reset its own cooldown."
+        }
+      ]
+    },
+    {
+      "id": 30844,
+      "name": "Conduction Burst",
+      "tree": "Artificer",
+      "x": 7,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_monk_chiexplosion",
+      "spellId": 804452,
+      "description": "Your Shatter Echo now deals 20% additional damage while a Continuum spell is active.",
+      "referencedTerms": [
+        "Continuum",
+        "Shatter Echo"
+      ],
+      "prerequisites": [
+        "Singularity Core"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Shatter Echo now deals 20% additional damage while a Continuum spell is active."
+        }
+      ]
+    },
+    {
+      "id": 6172,
+      "name": "Crystal Cannon",
+      "tree": "Artificer",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_evoker_eternitysurge",
+      "spellId": 806204,
+      "description": "Level 30 Passive\nCasting Discordance now unleashes the Crystal Cannon, launching 2 quick lesser Wand attacks at the enemy over 1 seconds, scaling with Spirit.",
+      "referencedTerms": [
+        "Crystal Cannon",
+        "Discordance"
+      ],
+      "prerequisites": [
+        "Wand Expert"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nCasting Discordance now unleashes the Crystal Cannon, launching 2 quick lesser Wand attacks at the enemy over 1 seconds, scaling with Spirit."
+        }
+      ]
+    },
+    {
+      "id": 6175,
+      "name": "Unstable Chronoglass",
+      "tree": "Artificer",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_arcanesandwatch_Border",
+      "spellId": 503836,
+      "description": "Place an Unstable Chronoglass at target location for 30 seconds that will redirect the next 3 offensive enemy spell casts onto itself.",
+      "referencedTerms": [
+        "Unstable Chronoglass"
+      ],
+      "prerequisites": [
+        "Archaeology",
+        "Hyperwand"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Place an Unstable Chronoglass at target location for 30 seconds that will redirect the next 3 offensive enemy spell casts onto itself."
+        }
+      ]
+    },
+    {
+      "id": 7937,
+      "name": "Clocked In",
+      "tree": "Artificer",
+      "x": 3,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_racial_timeismoney",
+      "spellId": 706076,
+      "description": "Casting Discordance now makes your next Artificer's Wand within 10 seconds instant cast and causes it to generate an additional Echo Fragment.",
+      "referencedTerms": [
+        "Artificer's Wand",
+        "Discordance",
+        "Echo Fragment"
+      ],
+      "prerequisites": [
+        "Hyperwand"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Discordance now makes your next Artificer's Wand within 10 seconds instant cast and causes it to generate an additional Echo Fragment."
+        }
+      ]
+    },
+    {
+      "id": 30856,
+      "name": "Flux Emitter",
+      "tree": "Artificer",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_wand_25",
+      "spellId": 804435,
+      "description": "Continuum Spell\nEmpower Wand attacks to affect up to 2 additional nearby enemies for 3 sec plus 5 sec per Echo Fragment. \n\nAffected attacks deal less damage per additional enemy hit.\n\nCan only have 1 Continuum spell active at a time.",
+      "referencedTerms": [
+        "Continuum",
+        "Continuum Spell",
+        "Echo Fragment"
+      ],
+      "prerequisites": [
+        "Temporal Convergence",
+        "Elder Wand",
+        "Hyperwand"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Continuum Spell\nEmpower Wand attacks to affect up to 2 additional nearby enemies for 3 sec plus 5 sec per Echo Fragment. \n\nAffected attacks deal less damage per additional enemy hit.\n\nCan only have 1 Continuum spell active at a time."
+        }
+      ]
+    },
+    {
+      "id": 30857,
+      "name": "Hands of Time",
+      "tree": "Artificer",
+      "x": 5,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_HolyRain_Border",
+      "spellId": 524856,
+      "description": "Increases the effectiveness of your Accelerate and Decelerate spells by 25%.",
+      "referencedTerms": [
+        "Accelerate",
+        "Decelerate"
+      ],
+      "prerequisites": [
+        "Temporal Convergence"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Accelerate and Decelerate spells by 25%."
+        }
+      ]
+    },
+    {
+      "id": 6174,
+      "name": "Paradox Cannon",
+      "tree": "Artificer",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_staff_2h_artifactaegwynsstaff_d_06",
+      "spellId": 806203,
+      "description": "Continuum Spell\nGenerate 1 Echo Fragment every 3 sec for 5 seconds, plus an additional 5 sec per Echo Fragment consumed.\n\nCan only have 1 Continuum spell active at a time.",
+      "referencedTerms": [
+        "Continuum",
+        "Continuum Spell",
+        "Echo Fragment"
+      ],
+      "prerequisites": [
+        "Temporal Convergence",
+        "Conduction Burst"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Continuum Spell\nGenerate 1 Echo Fragment every 3 sec for 5 seconds, plus an additional 5 sec per Echo Fragment consumed.\n\nCan only have 1 Continuum spell active at a time."
+        }
+      ]
+    },
+    {
+      "id": 6173,
+      "name": "Borrowed Time",
+      "tree": "Artificer",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_wand_29",
+      "spellId": 680373,
+      "description": "Taking Physical damage now heals you equal to 10% of the damage dealt. Can only occur once per sec.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Unstable Chronoglass"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Taking Physical damage now heals you equal to 10% of the damage dealt. Can only occur once per sec."
+        }
+      ]
+    },
+    {
+      "id": 1803,
+      "name": "Sporadic Incantations",
+      "tree": "Artificer",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_SunDarkening_Border",
+      "spellId": 570061,
+      "description": "Your Flux Emitter now strikes 1 additional enemy.",
+      "referencedTerms": [
+        "Flux Emitter"
+      ],
+      "prerequisites": [
+        "Flux Emitter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Flux Emitter now strikes 1 additional enemy."
+        }
+      ]
+    },
+    {
+      "id": 6884,
+      "name": "Tamed Incantations",
+      "tree": "Artificer",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\novart_magicspell_(56)_Border",
+      "spellId": 706077,
+      "description": "Increases the duration of Continuum spells per Echo Fragment consumed by 0.5 sec.",
+      "referencedTerms": [
+        "Continuum",
+        "Echo Fragment"
+      ],
+      "prerequisites": [
+        "Flux Emitter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Continuum spells per Echo Fragment consumed by 0.5 sec."
+        }
+      ]
+    },
+    {
+      "id": 12279,
+      "name": "Reverse Engineering",
+      "tree": "Artificer",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Engineering_TanarisTP",
+      "spellId": 520875,
+      "description": "Periodic damage and healing now has a 15% chance to increase your haste by 15% for 6 seconds and grant allies Replenishment.ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds.",
+      "referencedTerms": [
+        "Replenishment"
+      ],
+      "prerequisites": [
+        "Paradox Cannon"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Periodic damage and healing now has a 15% chance to increase your haste by 15% for 6 seconds and grant allies Replenishment.ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30279,
+      "name": "Erode Armaments",
+      "tree": "Artificer",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Hunter_DisarmingShot",
+      "spellId": 520386,
+      "description": "Your Wand attacks now reduce enemy attack power by 208 for 5 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Paradox Cannon"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Wand attacks now reduce enemy attack power by 208 for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 11472,
+      "name": "Time Is A Circle",
+      "tree": "Artificer",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_wand_1h_maldraxxusquest_b_01",
+      "spellId": 806206,
+      "description": "Level 40 Passive\nCasting Wand of Time now extends the duration of your Continuum spells by 3 sec.\n\nContinuum spells cannot be extended beyond their maximum duration.",
+      "referencedTerms": [
+        "Continuum",
+        "Wand of Time"
+      ],
+      "prerequisites": [
+        "Crystal Cannon"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nCasting Wand of Time now extends the duration of your Continuum spells by 3 sec.\n\nContinuum spells cannot be extended beyond their maximum duration."
+        }
+      ]
+    },
+    {
+      "id": 7914,
+      "name": "Fate Twister",
+      "tree": "Artificer",
+      "x": 0,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Arcane_Blast",
+      "spellId": 706133,
+      "description": "Reduces the cooldown of Unstable Chronoglass by -30 sec.",
+      "referencedTerms": [
+        "Unstable Chronoglass"
+      ],
+      "prerequisites": [
+        "Borrowed Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Unstable Chronoglass by -30 sec."
+        }
+      ]
+    },
+    {
+      "id": 30282,
+      "name": "Magic Sensitivity",
+      "tree": "Artificer",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_EnslaveSpell_Arcane",
+      "spellId": 520171,
+      "description": "Critical strikes with Shatter Echo now increases the enemy's damage taken from you by 10% for 8 seconds.",
+      "referencedTerms": [
+        "Shatter Echo"
+      ],
+      "prerequisites": [
+        "Borrowed Time",
+        "Clocked In"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Shatter Echo now increases the enemy's damage taken from you by 10% for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 31332,
+      "name": "Infinity Stone",
+      "tree": "Artificer",
+      "x": 3,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Ascend_Gems_64",
+      "spellId": 300873,
+      "description": "Increases the critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 3%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Sporadic Incantations",
+        "Tamed Incantations"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 3%."
+        }
+      ]
+    },
+    {
+      "id": 6178,
+      "name": "Splitting Time",
+      "tree": "Artificer",
+      "x": 5,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_mage_arcanebarrage_nightborne",
+      "spellId": 706130,
+      "description": "Your Crystal Cannon now strikes 2 additional nearby enemies.",
+      "referencedTerms": [
+        "Crystal Cannon"
+      ],
+      "prerequisites": [
+        "Sporadic Incantations",
+        "Tamed Incantations"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Crystal Cannon now strikes 2 additional nearby enemies."
+        }
+      ]
+    },
+    {
+      "id": 4520,
+      "name": "Resonance",
+      "tree": "Artificer",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_6_2raid_trinket_4a",
+      "spellId": 706079,
+      "description": "Casting Artificer's Wand or Crystal Cannon now has a 35% chance to reduce the cooldown of Hasten by -1 sec.",
+      "referencedTerms": [
+        "Artificer's Wand",
+        "Crystal Cannon",
+        "Hasten"
+      ],
+      "prerequisites": [
+        "Reverse Engineering",
+        "Erode Armaments",
+        "Hands of Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Artificer's Wand or Crystal Cannon now has a 35% chance to reduce the cooldown of Hasten by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 31120,
+      "name": "Timemage",
+      "tree": "Artificer",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helm_goggles_draenortradeskill_d_01",
+      "spellId": 806753,
+      "description": "Reduces the duration of harmful magic effects on you by -30%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Reverse Engineering",
+        "Erode Armaments"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the duration of harmful magic effects on you by -30%."
+        }
+      ]
+    },
+    {
+      "id": 7855,
+      "name": "Aether Compression",
+      "tree": "Artificer",
+      "x": 1,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ui_profession_enchanting",
+      "spellId": 804436,
+      "description": "Continuum Spell\nArtificer's Wand and Reverse Wound can be cast while moving for 5 seconds.\n\nDuration increased by 5 sec per Echo Fragment.\n\nCan only have 1 Continuum spell active at a time.",
+      "referencedTerms": [
+        "Artificer's Wand",
+        "Continuum",
+        "Continuum Spell",
+        "Echo Fragment",
+        "Reverse Wound"
+      ],
+      "prerequisites": [
+        "Fate Twister",
+        "Magic Sensitivity"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Continuum Spell\nArtificer's Wand and Reverse Wound can be cast while moving for 5 seconds.\n\nDuration increased by 5 sec per Echo Fragment.\n\nCan only have 1 Continuum spell active at a time."
+        }
+      ]
+    },
+    {
+      "id": 7856,
+      "name": "Arc Collision",
+      "tree": "Artificer",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_arcaneburst_Border",
+      "spellId": 524853,
+      "description": "Distortion Spell\nCreate a timestorm around an enemy that causes them and up to 2 nearby enemies to take 270 + 24% SP Arcane damage, repeating over 4 seconds. \n\nDuration increased by 2 sec for each Echo Fragment consumed.",
+      "referencedTerms": [
+        "Distortion Spell",
+        "Echo Fragment"
+      ],
+      "prerequisites": [
+        "Splitting Time",
+        "Infinity Stone"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Distortion Spell\nCreate a timestorm around an enemy that causes them and up to 2 nearby enemies to take 270 + 24% SP Arcane damage, repeating over 4 seconds. \n\nDuration increased by 2 sec for each Echo Fragment consumed."
+        }
+      ]
+    },
+    {
+      "id": 30859,
+      "name": "Pulse Driver",
+      "tree": "Artificer",
+      "x": 7,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_wand_33",
+      "spellId": 706121,
+      "description": "Singularity Core now increases the damage of Shatter Echo while its active by 30% and allows Shatter Echo to trigger its damage.",
+      "referencedTerms": [
+        "Shatter Echo",
+        "Singularity Core"
+      ],
+      "prerequisites": [
+        "Resonance",
+        "Timemage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Singularity Core now increases the damage of Shatter Echo while its active by 30% and allows Shatter Echo to trigger its damage."
+        }
+      ]
+    },
+    {
+      "id": 11273,
+      "name": "Intuition",
+      "tree": "Artificer",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_lightning_timewarp_Border",
+      "spellId": 807589,
+      "description": "Level 50 Passive\nIncreases your critical damage by 25%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Time Is A Circle"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nIncreases your critical damage by 25%."
+        }
+      ]
+    },
+    {
+      "id": 7873,
+      "name": "Cheating Time",
+      "tree": "Artificer",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_wand_18",
+      "spellId": 524945,
+      "description": "Casting Shatter Echo now extends the duration of your Flux Emitter by 4 sec.\n\nCannot be extended beyond maximum duration.",
+      "referencedTerms": [
+        "Flux Emitter",
+        "Shatter Echo"
+      ],
+      "prerequisites": [
+        "Aether Compression",
+        "Arc Collision"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Shatter Echo now extends the duration of your Flux Emitter by 4 sec.\n\nCannot be extended beyond maximum duration."
+        }
+      ]
+    },
+    {
+      "id": 31333,
+      "name": "Threads of Eternity",
+      "tree": "Artificer",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_tailoring_80_nylonthread",
+      "spellId": 806209,
+      "description": "$81",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Arc Collision"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$82"
+        }
+      ]
+    },
+    {
+      "id": 30861,
+      "name": "Wand Mastery",
+      "tree": "Artificer",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_wandshot_Border",
+      "spellId": 806216,
+      "description": "Wand of Time and Shatter Echo now have a 25% chance to unleash Crystal Cannon, launching 2 quick lesser Wand auto attacks at the enemy over 1 seconds, scaling with Spirit.\n\nWhile Paradox Cannon is active, the chance to trigger this effect is increased by 10%.",
+      "referencedTerms": [
+        "Crystal Cannon",
+        "Paradox Cannon",
+        "Shatter Echo",
+        "Wand of Time"
+      ],
+      "prerequisites": [
+        "Arc Collision",
+        "Pulse Driver"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Wand of Time and Shatter Echo now have a 25% chance to unleash Crystal Cannon, launching 2 quick lesser Wand auto attacks at the enemy over 1 seconds, scaling with Spirit.\n\nWhile Paradox Cannon is active, the chance to trigger this effect is increased by 10%."
+        }
+      ]
+    },
+    {
+      "id": 30277,
+      "name": "Accelerated Recovery",
+      "tree": "Class",
+      "x": 1,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Holy_HealingFocus",
+      "spellId": 800857,
+      "description": "Accelerates the bodies natural healing process, healing the target for 60 + 115% healing over 15 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Accelerates the bodies natural healing process, healing the target for 60 + 115% healing over 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30249,
+      "name": "Clasp of Infinity",
+      "tree": "Class",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "interface\\icons\\HandBeamBlackHand",
+      "spellId": 805847,
+      "description": "Conjure a magical binding upon an enemy that bounces to nearby enemies, rooting them in place for 4 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Conjure a magical binding upon an enemy that bounces to nearby enemies, rooting them in place for 4 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30855,
+      "name": "Waves of Time",
+      "tree": "Class",
+      "x": 7,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\5_healingwave_Border",
+      "spellId": 801277,
+      "description": "Blast enemies in a frontal cone with time fractals, knocking them back slightly.\n\nThe knockback repeats 1 additional time after 2 sec.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Blast enemies in a frontal cone with time fractals, knocking them back slightly.\n\nThe knockback repeats 1 additional time after 2 sec."
+        }
+      ]
+    },
+    {
+      "id": 6697,
+      "name": "Improved Reverse Wound",
+      "tree": "Class",
+      "x": 0,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\spell_holy_blessedrecovery",
+      "spellId": 706053,
+      "description": "Reduces the cast time of Reverse Wound by -0.3 sec.",
+      "referencedTerms": [
+        "Reverse Wound"
+      ],
+      "prerequisites": [
+        "Accelerated Recovery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cast time of Reverse Wound by -0.3 sec."
+        }
+      ]
+    },
+    {
+      "id": 7911,
+      "name": "Luck",
+      "tree": "Class",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Racial_Dwarf_FindTreasure",
+      "spellId": 706085,
+      "description": "Allows 40% of your mana regeneration to continue while in combat.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Clasp of Infinity",
+        "Accelerated Recovery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Allows 40% of your mana regeneration to continue while in combat."
+        },
+        {
+          "rank": 2,
+          "description": "Allows 80% of your mana regeneration to continue while in combat."
+        }
+      ]
+    },
+    {
+      "id": 30280,
+      "name": "Unearthed Pools",
+      "tree": "Class",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\novart_magicspell_(48)_Border",
+      "spellId": 574309,
+      "description": "Reduces the cast time of Unmake by -15% and reduces the mana cost of your instant spells by 10%.",
+      "referencedTerms": [
+        "Unmake"
+      ],
+      "prerequisites": [
+        "Clasp of Infinity"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cast time of Unmake by -15% and reduces the mana cost of your instant spells by 10%."
+        }
+      ]
+    },
+    {
+      "id": 6226,
+      "name": "Perfect Timing",
+      "tree": "Class",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_misc_head_dragon_bronze",
+      "spellId": 520164,
+      "description": "Increases your haste by 4% and reduces your spell pushback suffered from damaging attacks by 35%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Clasp of Infinity",
+        "Waves of Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your haste by 4% and reduces your spell pushback suffered from damaging attacks by 35%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your haste by 8% and reduces your spell pushback suffered from damaging attacks by 70%."
+        }
+      ]
+    },
+    {
+      "id": 30251,
+      "name": "Temporal Dissonance",
+      "tree": "Class",
+      "x": 8,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_ManaBurn",
+      "spellId": 520922,
+      "description": "Chronostasis now slows your target's movement speed by an additional -10%.",
+      "referencedTerms": [
+        "Chronostasis"
+      ],
+      "prerequisites": [
+        "Waves of Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Chronostasis now slows your target's movement speed by an additional -10%."
+        }
+      ]
+    },
+    {
+      "id": 6228,
+      "name": "Fortify Timeline",
+      "tree": "Class",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_guildperk_workingovertime_rank2",
+      "spellId": 804491,
+      "description": "Fortify the current timeline, instantly healing all allies for 100 + 40% SP and extending the duration of Accelerated Recovery on them by 5 sec.",
+      "referencedTerms": [
+        "Accelerated Recovery"
+      ],
+      "prerequisites": [
+        "Improved Reverse Wound",
+        "Luck"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Fortify the current timeline, instantly healing all allies for 100 + 40% SP and extending the duration of Accelerated Recovery on them by 5 sec."
+        }
+      ]
+    },
+    {
+      "id": 7917,
+      "name": "Impeccable Timing",
+      "tree": "Class",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Holy_DispelMagic",
+      "spellId": 560949,
+      "description": "Your periodic damage and healing effects can now critically strike.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Perfect Timing",
+        "Luck",
+        "Unearthed Pools"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your periodic damage and healing effects can now critically strike."
+        }
+      ]
+    },
+    {
+      "id": 30269,
+      "name": "Timeguard",
+      "tree": "Class",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_belt_armor_waistoftime_d_01",
+      "spellId": 804441,
+      "description": "Place a magical guard on an ally for 2 minutes, causing the next 3 instances of direct damage that would reduce the target below 35% health to deal 40% less damage.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Perfect Timing",
+        "Temporal Dissonance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Place a magical guard on an ally for 2 minutes, causing the next 3 instances of direct damage that would reduce the target below 35% health to deal 40% less damage."
+        }
+      ]
+    },
+    {
+      "id": 6162,
+      "name": "Rippling Power",
+      "tree": "Class",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_bossmagistrix_timewarp1",
+      "spellId": 806300,
+      "description": "Increases your Spirit by 8%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Fortify Timeline",
+        "Impeccable Timing",
+        "Timeguard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Spirit by 8%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Spirit by 15%."
+        }
+      ]
+    },
+    {
+      "id": 30260,
+      "name": "Temporal Anomaly",
+      "tree": "Class",
+      "x": 1,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\novart_magicspell_(39)_Border",
+      "spellId": 806315,
+      "description": "Augment reality for 10 seconds, causing 50% of the damage taken to be absorbed and converted into healing at the end of the duration.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Fortify Timeline"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Augment reality for 10 seconds, causing 50% of the damage taken to be absorbed and converted into healing at the end of the duration."
+        }
+      ]
+    },
+    {
+      "id": 7198,
+      "name": "Eternal",
+      "tree": "Class",
+      "x": 3,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_ArcaneVision_Border",
+      "spellId": 706777,
+      "description": "Increases the duration of your Accelerated Recovery by 6 sec and Decomposition by 3 sec.",
+      "referencedTerms": [
+        "Accelerated Recovery",
+        "Decomposition"
+      ],
+      "prerequisites": [
+        "Rippling Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of your Accelerated Recovery by 6 sec and Decomposition by 3 sec."
+        }
+      ]
+    },
+    {
+      "id": 32547,
+      "name": "Infinite Sands",
+      "tree": "Class",
+      "x": 5,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_priest_voidshift",
+      "spellId": 500115,
+      "description": "Reduces the cooldown of Infinite Clone by -60 sec.",
+      "referencedTerms": [
+        "Infinite Clone"
+      ],
+      "prerequisites": [
+        "Rippling Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Infinite Clone by -60 sec."
+        }
+      ]
+    },
+    {
+      "id": 6696,
+      "name": "Desynchronization",
+      "tree": "Class",
+      "x": 7,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\novart_magicspell_(11)_Border",
+      "spellId": 561310,
+      "description": "Shift an enemy out of sync with the present, causing their grip to fail, disarming their melee and ranged weapons for 6 seconds.\n\nUpon removal, they are resynced, preventing them from regenerating their health for 6 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Timeguard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Shift an enemy out of sync with the present, causing their grip to fail, disarming their melee and ranged weapons for 6 seconds.\n\nUpon removal, they are resynced, preventing them from regenerating their health for 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30276,
+      "name": "Constant Recovery",
+      "tree": "Class",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Holy_Purify",
+      "spellId": 555729,
+      "description": "Healing done by Reverse Wound now increases all healing taken the target receives by 6% for 10 seconds.",
+      "referencedTerms": [
+        "Reverse Wound"
+      ],
+      "prerequisites": [
+        "Temporal Anomaly"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Healing done by Reverse Wound now increases all healing taken the target receives by 6% for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 9198,
+      "name": "Mind Over Matter",
+      "tree": "Class",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Hibernation",
+      "spellId": 520923,
+      "description": "Increases the effectiveness of your Wisdom spells by 20%.",
+      "referencedTerms": [
+        "Wisdom"
+      ],
+      "prerequisites": [
+        "Temporal Anomaly"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Wisdom spells by 20%."
+        }
+      ]
+    },
+    {
+      "id": 6698,
+      "name": "Temporal Focus",
+      "tree": "Class",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_D3serenity",
+      "spellId": 806165,
+      "description": "You lock yourself into a perfect moment, removing and becoming immune to banish, silence, and interrupt effects for 10 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Eternal",
+        "Infinite Sands"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "You lock yourself into a perfect moment, removing and becoming immune to banish, silence, and interrupt effects for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 7226,
+      "name": "Entropy Overload",
+      "tree": "Class",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\novart_magicspell_(39)_Border",
+      "spellId": 706084,
+      "description": "Increases your chance to resist movement slowing effects by 20%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Desynchronization"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your chance to resist movement slowing effects by 20%."
+        }
+      ]
+    },
+    {
+      "id": 6213,
+      "name": "Expediting Time",
+      "tree": "Class",
+      "x": 8,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Holy_AshesToAshes",
+      "spellId": 706055,
+      "description": "Reduces the channel time of your Time Out! by -40%.",
+      "referencedTerms": [
+        "Time Out!"
+      ],
+      "prerequisites": [
+        "Desynchronization"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the channel time of your Time Out! by -40%."
+        }
+      ]
+    },
+    {
+      "id": 5122,
+      "name": "Unmaker of Realities",
+      "tree": "Class",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_dungeon_arakkoaspires",
+      "spellId": 706107,
+      "description": "While Hasten is active the ally now has a 25% chance when they deal damage to strike the target an additional time equal to 30% of the damage dealt.",
+      "referencedTerms": [
+        "Hasten"
+      ],
+      "prerequisites": [
+        "Mind Over Matter",
+        "Constant Recovery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Hasten is active the ally now has a 25% chance when they deal damage to strike the target an additional time equal to 30% of the damage dealt."
+        }
+      ]
+    },
+    {
+      "id": 11122,
+      "name": "Maker of Realities",
+      "tree": "Class",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_racial_haymaker",
+      "spellId": 707656,
+      "description": "Casting Hasten now also always reduces the cast time of your healing spells by an additional -20%.",
+      "referencedTerms": [
+        "Hasten"
+      ],
+      "prerequisites": [
+        "Mind Over Matter",
+        "Constant Recovery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Hasten now also always reduces the cast time of your healing spells by an additional -20%."
+        }
+      ]
+    },
+    {
+      "id": 6214,
+      "name": "Ahead of the Game",
+      "tree": "Class",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_bg_win_av_x_times",
+      "spellId": 560948,
+      "description": "Every 10th instance of your damage dealt or healing now gives you 60 increased spell power for 10 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Temporal Focus",
+        "Entropy Overload",
+        "Mind Over Matter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Every 10th instance of your damage dealt or healing now gives you 60 increased spell power for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6215,
+      "name": "Timekeeper",
+      "tree": "Class",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_eng_unstabletemporaltimeshifter",
+      "spellId": 680845,
+      "description": "Increases the effectiveness of Timeguard by 25%.",
+      "referencedTerms": [
+        "Timeguard"
+      ],
+      "prerequisites": [
+        "Expediting Time",
+        "Entropy Overload"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of Timeguard by 25%."
+        }
+      ]
+    },
+    {
+      "id": 12215,
+      "name": "Procrastination",
+      "tree": "Class",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\INV_Ascend_brain_b_01",
+      "spellId": 520854,
+      "description": "Reduces the cooldown of Timeguard by -30 sec.",
+      "referencedTerms": [
+        "Timeguard"
+      ],
+      "prerequisites": [
+        "Expediting Time",
+        "Entropy Overload"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Timeguard by -30 sec."
+        }
+      ]
+    },
+    {
+      "id": 6199,
+      "name": "Entropy Reversal",
+      "tree": "Class",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_SpectralSight",
+      "spellId": 520780,
+      "description": "Reduces the duration of disease effects by -40%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Unmaker of Realities",
+        "Maker of Realities"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the duration of disease effects by -40%."
+        }
+      ]
+    },
+    {
+      "id": 30267,
+      "name": "Tripping the Rift",
+      "tree": "Class",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Holy_Dizzy",
+      "spellId": 520173,
+      "description": "Casting Clasp of Infinity now reduces the cooldown of Backtrack by -10 sec.",
+      "referencedTerms": [
+        "Backtrack",
+        "Clasp of Infinity"
+      ],
+      "prerequisites": [
+        "Ahead of the Game"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Clasp of Infinity now reduces the cooldown of Backtrack by -10 sec."
+        }
+      ]
+    },
+    {
+      "id": 9547,
+      "name": "Timewalking",
+      "tree": "Class",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Holy_DivineProvidence",
+      "spellId": 572527,
+      "description": "Reduces the cooldown of Waves of Time by -4 sec.",
+      "referencedTerms": [
+        "Waves of Time"
+      ],
+      "prerequisites": [
+        "Ahead of the Game"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Waves of Time by -4 sec."
+        }
+      ]
+    },
+    {
+      "id": 31335,
+      "name": "Life Cycles",
+      "tree": "Class",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_pet_babymurlocs_white",
+      "spellId": 680808,
+      "description": "Reduces the cast time of your Babify by 0.25 sec and its mana cost by -15%.",
+      "referencedTerms": [
+        "Babify"
+      ],
+      "prerequisites": [
+        "Timekeeper",
+        "Procrastination"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cast time of your Babify by 0.25 sec and its mana cost by -15%."
+        }
+      ]
+    },
+    {
+      "id": 7915,
+      "name": "Infinite Shield",
+      "tree": "Class",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\sha_spell_fire_felfireward",
+      "spellId": 520457,
+      "description": "Shield an ally with 10 charges of Infinite Shield for 30 seconds. Each time they take damage, they will be healed for 190 + 25% SP and lose 1 charge.\n\nCan only occur once per sec and can only affect 1 target at a time.",
+      "referencedTerms": [
+        "Infinite Shield"
+      ],
+      "prerequisites": [
+        "Entropy Reversal",
+        "Timewalking",
+        "Tripping the Rift"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Shield an ally with 10 charges of Infinite Shield for 30 seconds. Each time they take damage, they will be healed for 190 + 25% SP and lose 1 charge.\n\nCan only occur once per sec and can only affect 1 target at a time."
+        }
+      ]
+    },
+    {
+      "id": 6194,
+      "name": "The Bieko Effect",
+      "tree": "Class",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_60pvp_trinket3b",
+      "spellId": 706099,
+      "description": "While Hasten is active the cooldowns of Dimensional Divergence, Temporal Anomaly, and Temporal Focus are reduced by 10% every 2 sec.",
+      "referencedTerms": [
+        "Dimensional Divergence",
+        "Hasten",
+        "Temporal Anomaly",
+        "Temporal Focus"
+      ],
+      "prerequisites": [
+        "Timewalking",
+        "Tripping the Rift"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Hasten is active the cooldowns of Dimensional Divergence, Temporal Anomaly, and Temporal Focus are reduced by 10% every 2 sec."
+        }
+      ]
+    },
+    {
+      "id": 30257,
+      "name": "Gravity Bomb",
+      "tree": "Class",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\skill_icon_skill42_Border",
+      "spellId": 801281,
+      "description": "Place a gravity bomb on the target. After 6 seconds they explode for 979 + 120% SP + 30% ranged AP Chromatic Damage in a 10 yds radius.\n\nDirectly before the explosion occurs, all enemies within 15 yds are teleported to the initial target.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Timewalking",
+        "Tripping the Rift",
+        "Life Cycles"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Place a gravity bomb on the target. After 6 seconds they explode for 979 + 120% SP + 30% ranged AP Chromatic Damage in a 10 yds radius.\n\nDirectly before the explosion occurs, all enemies within 15 yds are teleported to the initial target."
+        }
+      ]
+    },
+    {
+      "id": 7916,
+      "name": "Infinity",
+      "tree": "Class",
+      "x": 1,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_zone_thousandneedles_01",
+      "spellId": 706128,
+      "description": "Removes the cooldown of Infinite Shield.",
+      "referencedTerms": [
+        "Infinite Shield"
+      ],
+      "prerequisites": [
+        "Infinite Shield"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Removes the cooldown of Infinite Shield."
+        }
+      ]
+    },
+    {
+      "id": 6221,
+      "name": "Mass Babify",
+      "tree": "Class",
+      "x": 3,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\MassBabify",
+      "spellId": 520855,
+      "description": "Instantly transform all enemies within 10 yds into a baby, preventing them from acting for 40 seconds, damage dealt will interrupt this effect. \n\nWhile babified, enemies will rapidly regenerate health. \n\nScales with modifiers to Babify.",
+      "referencedTerms": [
+        "Babify"
+      ],
+      "prerequisites": [
+        "Infinite Shield"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Instantly transform all enemies within 10 yds into a baby, preventing them from acting for 40 seconds, damage dealt will interrupt this effect. \n\nWhile babified, enemies will rapidly regenerate health. \n\nScales with modifiers to Babify."
+        }
+      ]
+    },
+    {
+      "id": 29684,
+      "name": "Dimensional Divergence",
+      "tree": "Class",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_dragonriding_bronzerewind01",
+      "spellId": 802790,
+      "description": "Swap places with a target.\n\nIf they're an enemy, you steal -80% of their movement speed for 3 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "The Bieko Effect"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Swap places with a target.\n\nIf they're an enemy, you steal -80% of their movement speed for 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6223,
+      "name": "Chaos Omen",
+      "tree": "Class",
+      "x": 5,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_misc_starmetal",
+      "spellId": 706063,
+      "description": "Reduces the cooldown of your Gravity Bomb by -30 sec, and its explosion occurs -3 sec faster.",
+      "referencedTerms": [
+        "Gravity Bomb"
+      ],
+      "prerequisites": [
+        "Gravity Bomb"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of your Gravity Bomb by -30 sec, and its explosion occurs -3 sec faster."
+        }
+      ]
+    },
+    {
+      "id": 6195,
+      "name": "Charm of Power",
+      "tree": "Class",
+      "x": 7,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_inscription_trinket_healer",
+      "spellId": 706100,
+      "description": "Increases the damage dealt by Gravity Bomb by 50%.",
+      "referencedTerms": [
+        "Gravity Bomb"
+      ],
+      "prerequisites": [
+        "Gravity Bomb"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage dealt by Gravity Bomb by 50%."
+        }
+      ]
+    },
+    {
+      "id": 3997,
+      "name": "Timerend",
+      "tree": "Infinite",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_animamaw_beam",
+      "spellId": 707430,
+      "description": "Transforms your Wand of Time into Timerend.TimerendRend the fabric of time, dealing 36 Chromatic Damage over 6 seconds.",
+      "referencedTerms": [
+        "Timerend",
+        "Wand of Time"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Infinite Power",
+        "Clasp of Infinity"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Transforms your Wand of Time into Timerend.TimerendRend the fabric of time, dealing 36 Chromatic Damage over 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 4031,
+      "name": "Infinite Power",
+      "tree": "Infinite",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_boss_infinitecorruptor",
+      "spellId": 92118,
+      "description": "Level 10 Passive\nCasting damaging spells now reduces your damaging spell cooldowns by 10% of their remaining cooldown.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Clasp of Infinity"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nCasting damaging spells now reduces your damaging spell cooldowns by 10% of their remaining cooldown."
+        }
+      ]
+    },
+    {
+      "id": 7200,
+      "name": "Melt Reality",
+      "tree": "Infinite",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_timewarp_Border",
+      "spellId": 806335,
+      "description": "Melt the target's reality, dealing cond(gt(SPFR, SPS), 48+0+SPFR*0.23, 48+0+SPS*0.23) Chromatic Damage every 3 sec for 30 seconds.\n\nWhile active, periodic damage dealt to the target is replicated for 20% of the value to all enemies near them.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Timerend"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Melt the target's reality, dealing cond(gt(SPFR, SPS), 48+0+SPFR*0.23, 48+0+SPS*0.23) Chromatic Damage every 3 sec for 30 seconds.\n\nWhile active, periodic damage dealt to the target is replicated for 20% of the value to all enemies near them."
+        }
+      ]
+    },
+    {
+      "id": 6156,
+      "name": "Anomaly Spikes",
+      "tree": "Infinite",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_ingot_titansteel_dark",
+      "spellId": 503825,
+      "description": "Periodic damage dealt now has a 8% chance to launch an Anomaly Spike at your target.\nAnomaly SpikeDeals cond(gt(SPA, SPS), 161*1+SPA*0.25, 161*1+SPS*0.25) Chromatic Damage.",
+      "referencedTerms": [
+        "Anomaly Spike"
+      ],
+      "prerequisites": [
+        "Melt Reality"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Periodic damage dealt now has a 8% chance to launch an Anomaly Spike at your target.\nAnomaly SpikeDeals cond(gt(SPA, SPS), 161*1+SPA*0.25, 161*1+SPS*0.25) Chromatic Damage."
+        },
+        {
+          "rank": 2,
+          "description": "Periodic damage dealt now has a 15% chance to launch an Anomaly Spike at your target.\nAnomaly SpikeDeals cond(gt(SPA, SPS), 161*1+SPA*0.25, 161*1+SPS*0.25) Chromatic Damage."
+        }
+      ]
+    },
+    {
+      "id": 31139,
+      "name": "Mind Melt",
+      "tree": "Infinite",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_shadow_brainwash",
+      "spellId": 572771,
+      "description": "Damage dealt by Melt Reality now also reduces the target's primary attributes by -3% for 15 sec, stacking 5 times.",
+      "referencedTerms": [
+        "Melt Reality"
+      ],
+      "prerequisites": [
+        "Melt Reality"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Melt Reality now also reduces the target's primary attributes by -3% for 15 sec, stacking 5 times."
+        }
+      ]
+    },
+    {
+      "id": 9185,
+      "name": "Gift of the Infinite Dragonflight",
+      "tree": "Infinite",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_Skull",
+      "spellId": 706114,
+      "description": "Level 20 Passive\nIncreases your spell damage by 40% of your Spirit and your spell hit rating by 3% of your Spirit.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Infinite Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nIncreases your spell damage by 40% of your Spirit and your spell hit rating by 3% of your Spirit."
+        }
+      ]
+    },
+    {
+      "id": 7201,
+      "name": "Chromatic Shard",
+      "tree": "Infinite",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_enchanting_wod_crystalshard2",
+      "spellId": 801292,
+      "description": "Fling a shard of chaos at an enemy, dealing 209 + 150% SP Chromatic Damage, piercing immunities and resistances.\n\nDealing damage with Anomaly Spikes reduces the cast time of this ability by -10% for 30 seconds, stacking 10 times.",
+      "referencedTerms": [
+        "Anomaly Spikes"
+      ],
+      "prerequisites": [
+        "Anomaly Spikes"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Fling a shard of chaos at an enemy, dealing 209 + 150% SP Chromatic Damage, piercing immunities and resistances.\n\nDealing damage with Anomaly Spikes reduces the cast time of this ability by -10% for 30 seconds, stacking 10 times."
+        }
+      ]
+    },
+    {
+      "id": 29680,
+      "name": "Deconstruction",
+      "tree": "Infinite",
+      "x": 3,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_chest_armor_voidelf_d_01",
+      "spellId": 805851,
+      "description": "Increases the critical strike chance of Unmake by 5%.",
+      "referencedTerms": [
+        "Unmake"
+      ],
+      "prerequisites": [
+        "Anomaly Spikes"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Unmake by 5%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the critical strike chance of Unmake by 10%."
+        }
+      ]
+    },
+    {
+      "id": 7216,
+      "name": "Warpstriker",
+      "tree": "Infinite",
+      "x": 5,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_jewelcrafting_shadowsongamethyst_02",
+      "spellId": 707556,
+      "description": "Reduces the cost of your spells by -5% and the chance for your spells to be dispelled by 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Mind Melt"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cost of your spells by -5% and the chance for your spells to be dispelled by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Reduces the cost of your spells by -10% and the chance for your spells to be dispelled by 20%."
+        }
+      ]
+    },
+    {
+      "id": 30776,
+      "name": "Chronological",
+      "tree": "Infinite",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_62_light_Border",
+      "spellId": 592008,
+      "description": "Every 20 sec, your next Discordance within 10 seconds is instant cast.",
+      "referencedTerms": [
+        "Discordance"
+      ],
+      "prerequisites": [
+        "Mind Melt"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Every 20 sec, your next Discordance within 10 seconds is instant cast."
+        }
+      ]
+    },
+    {
+      "id": 31336,
+      "name": "Unearthed Power",
+      "tree": "Infinite",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_ChillTouch",
+      "spellId": 503831,
+      "description": "Damage dealt by Anomaly Spikes now also increases your damage and critical strike chance with Chromatic Shard by 6% per stack.",
+      "referencedTerms": [
+        "Anomaly Spikes",
+        "Chromatic Shard"
+      ],
+      "prerequisites": [
+        "Chromatic Shard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Anomaly Spikes now also increases your damage and critical strike chance with Chromatic Shard by 6% per stack."
+        }
+      ]
+    },
+    {
+      "id": 1802,
+      "name": "Time Means Nothing",
+      "tree": "Infinite",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_animamaw_groundstate",
+      "spellId": 572357,
+      "description": "Damage dealt by Chromatic Shard now increases the target's spell damage taken by 10% for 30 seconds.",
+      "referencedTerms": [
+        "Chromatic Shard"
+      ],
+      "prerequisites": [
+        "Chromatic Shard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Chromatic Shard now increases the target's spell damage taken by 10% for 30 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6200,
+      "name": "Hourglass of Eternity",
+      "tree": "Infinite",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_relics_hourglass",
+      "spellId": 806337,
+      "description": "Periodic damage dealt now has a 5% chance to grant you 25% increased haste for 5 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Warpstriker",
+        "Deconstruction"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Periodic damage dealt now has a 5% chance to grant you 25% increased haste for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 11175,
+      "name": "Excruciating Discord",
+      "tree": "Infinite",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_hunter_pet_warpstalker",
+      "spellId": 582356,
+      "description": "Your Discordances used with Chronological are now guaranteed to critically strike.",
+      "referencedTerms": [
+        "Chronological",
+        "Discordances"
+      ],
+      "prerequisites": [
+        "Chronological"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Discordances used with Chronological are now guaranteed to critically strike."
+        }
+      ]
+    },
+    {
+      "id": 12184,
+      "name": "Timelost Power",
+      "tree": "Infinite",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_motorcyclefelreavermount_shadow",
+      "spellId": 807754,
+      "description": "Your Discordance now strikes 3 additional enemies.",
+      "referencedTerms": [
+        "Discordance"
+      ],
+      "prerequisites": [
+        "Chronological"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Discordance now strikes 3 additional enemies."
+        }
+      ]
+    },
+    {
+      "id": 11685,
+      "name": "Warping Reality",
+      "tree": "Infinite",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_archaeology_70_highborne_violetglassvessel",
+      "spellId": 504602,
+      "description": "Level 30 Passive\nCasting Waves of Time now grants you Warped Reality for 10 seconds.\nWarped Reality (Proc)Allows you to cast Unmake and Melt Reality while moving for 10 seconds.",
+      "referencedTerms": [
+        "Melt Reality",
+        "Unmake",
+        "Warped Reality",
+        "Waves of Time"
+      ],
+      "prerequisites": [
+        "Gift of the Infinite Dragonflight"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nCasting Waves of Time now grants you Warped Reality for 10 seconds.\nWarped Reality (Proc)Allows you to cast Unmake and Melt Reality while moving for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 5168,
+      "name": "Incarnation of Chaos",
+      "tree": "Infinite",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_belt_armor_voidelf_d_01",
+      "spellId": 570067,
+      "description": "Transform into an Incarnate of Chaos, instantly resetting the cooldown of Chromatic Shard and causing your next cast to not incur a cooldown.\n\nIn addition, your damage dealt is increased by 15% for 15 seconds.",
+      "referencedTerms": [
+        "Chromatic Shard",
+        "Incarnate of Chaos"
+      ],
+      "prerequisites": [
+        "Time Means Nothing",
+        "Unearthed Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Transform into an Incarnate of Chaos, instantly resetting the cooldown of Chromatic Shard and causing your next cast to not incur a cooldown.\n\nIn addition, your damage dealt is increased by 15% for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29677,
+      "name": "Infinity Crash",
+      "tree": "Infinite",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_AuraOfDarkness",
+      "spellId": 706040,
+      "description": "Increases the critical damage of Discordance and Chromatic Shard by 50%.",
+      "referencedTerms": [
+        "Chromatic Shard",
+        "Discordance"
+      ],
+      "prerequisites": [
+        "Time Means Nothing",
+        "Hourglass of Eternity",
+        "Excruciating Discord"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical damage of Discordance and Chromatic Shard by 50%."
+        }
+      ]
+    },
+    {
+      "id": 6522,
+      "name": "Destabilize Time",
+      "tree": "Infinite",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_nzinsanity_desynchronized",
+      "spellId": 680971,
+      "description": "Reduces enemy casting speed by -10% for 20 seconds, increasing by -10% every time they cast.\n\nGaining stacks does not extend the duration of the spell.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Excruciating Discord",
+        "Timelost Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces enemy casting speed by -10% for 20 seconds, increasing by -10% every time they cast.\n\nGaining stacks does not extend the duration of the spell."
+        }
+      ]
+    },
+    {
+      "id": 5367,
+      "name": "Black Hole",
+      "tree": "Infinite",
+      "x": 0,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_MindTwisting",
+      "spellId": 707557,
+      "description": "Increases the damage of Chromatic Shard, Melt Reality and Unmake by 15% against slowed enemies.",
+      "referencedTerms": [
+        "Chromatic Shard",
+        "Melt Reality",
+        "Unmake"
+      ],
+      "prerequisites": [
+        "Incarnation of Chaos",
+        "Unearthed Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Chromatic Shard, Melt Reality and Unmake by 15% against slowed enemies."
+        }
+      ]
+    },
+    {
+      "id": 11170,
+      "name": "Chaos Fusion",
+      "tree": "Infinite",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_shadowsun_Border",
+      "spellId": 807578,
+      "description": "While Incarnation of Chaos is active, you may now cast Chromatic Shard while moving, but the duration of Incarnation of Chaos is reduced by -3 sec.",
+      "referencedTerms": [
+        "Chromatic Shard",
+        "Incarnation of Chaos"
+      ],
+      "prerequisites": [
+        "Incarnation of Chaos"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Incarnation of Chaos is active, you may now cast Chromatic Shard while moving, but the duration of Incarnation of Chaos is reduced by -3 sec."
+        }
+      ]
+    },
+    {
+      "id": 11176,
+      "name": "Pure Chaos",
+      "tree": "Infinite",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_UnstableAffliction_1",
+      "spellId": 807569,
+      "description": "While Incarnation of Chaos is active, all damage dealt now has a 10% chance to lock yourself in a time loop for 3 seconds, making you unable to cast any spells other than Chromatic Shard.\n\nWhile active, you cast Chromatic Shard free of cost, repeating every 1 sec.",
+      "referencedTerms": [
+        "Chromatic Shard",
+        "Incarnation of Chaos"
+      ],
+      "prerequisites": [
+        "Incarnation of Chaos"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Incarnation of Chaos is active, all damage dealt now has a 10% chance to lock yourself in a time loop for 3 seconds, making you unable to cast any spells other than Chromatic Shard.\n\nWhile active, you cast Chromatic Shard free of cost, repeating every 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 7159,
+      "name": "Paradox",
+      "tree": "Infinite",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_ShadowMend",
+      "spellId": 680946,
+      "description": "Casting Melt Reality now causes your next Unmake or Reverse Wound within 6 seconds to become instant and cost -50% less mana.",
+      "referencedTerms": [
+        "Melt Reality",
+        "Reverse Wound",
+        "Unmake"
+      ],
+      "prerequisites": [
+        "Incarnation of Chaos"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Melt Reality now causes your next Unmake or Reverse Wound within 6 seconds to become instant and cost -50% less mana."
+        }
+      ]
+    },
+    {
+      "id": 7209,
+      "name": "Slipstream",
+      "tree": "Infinite",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_priest_void_blast",
+      "spellId": 707555,
+      "description": "Target an enemy and slip them into a pocket dimension for 5 seconds, banishing them and making them immune to damage.\n\nActivate this ability again before the duration expires to choose a new location to place that enemy within 20 yds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Infinity Crash"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Target an enemy and slip them into a pocket dimension for 5 seconds, banishing them and making them immune to damage.\n\nActivate this ability again before the duration expires to choose a new location to place that enemy within 20 yds."
+        }
+      ]
+    },
+    {
+      "id": 6514,
+      "name": "Gift of the Timeways",
+      "tree": "Infinite",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_holy_persecution",
+      "spellId": 704487,
+      "description": "Casting Melt Reality now causes your Timerend and Unmake's periodic damage to benefit from haste for 10 seconds.",
+      "referencedTerms": [
+        "Melt Reality",
+        "Timerend",
+        "Unmake"
+      ],
+      "prerequisites": [
+        "Destabilize Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Melt Reality now causes your Timerend and Unmake's periodic damage to benefit from haste for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6161,
+      "name": "Eternity",
+      "tree": "Infinite",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_enchant_dreamshard_01",
+      "spellId": 805844,
+      "description": "Your Clasp of Infinity now increases your damage dealt to the target by 15%.",
+      "referencedTerms": [
+        "Clasp of Infinity"
+      ],
+      "prerequisites": [
+        "Destabilize Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Clasp of Infinity now increases your damage dealt to the target by 15%."
+        }
+      ]
+    },
+    {
+      "id": 4161,
+      "name": "End of Time",
+      "tree": "Infinite",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_infinitedragonmount",
+      "spellId": 807690,
+      "description": "At the end of the duration of Clasp of Infinity, you launch an Anomaly Spike at affected enemies and their damage dealt is reduced by -10% for 4 seconds.Anomaly SpikeDeals cond(gt(SPA, SPS), 161*1+SPA*0.25, 161*1+SPS*0.25) Chromatic Damage.",
+      "referencedTerms": [
+        "Anomaly Spike",
+        "Clasp of Infinity"
+      ],
+      "prerequisites": [
+        "Destabilize Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "At the end of the duration of Clasp of Infinity, you launch an Anomaly Spike at affected enemies and their damage dealt is reduced by -10% for 4 seconds.Anomaly SpikeDeals cond(gt(SPA, SPS), 161*1+SPA*0.25, 161*1+SPS*0.25) Chromatic Damage."
+        }
+      ]
+    },
+    {
+      "id": 6164,
+      "name": "Distorted Time",
+      "tree": "Infinite",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_ShadowPower",
+      "spellId": 707553,
+      "description": "Reduces the cooldown of Timerend by -2 sec and increases the duration of Decomposition by 3 sec.",
+      "referencedTerms": [
+        "Decomposition",
+        "Timerend"
+      ],
+      "prerequisites": [
+        "Destabilize Time",
+        "Timelost Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Timerend by -2 sec and increases the duration of Decomposition by 3 sec."
+        }
+      ]
+    },
+    {
+      "id": 9186,
+      "name": "Infinite Guard",
+      "tree": "Infinite",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_infinitedragonmount",
+      "spellId": 574312,
+      "description": "Level 40 Passive\nIncreases the effectiveness of your Temporal Resilience, Temporal Swiftness, and Temporal Restoration spells by 100%.",
+      "referencedTerms": [
+        "Temporal Resilience",
+        "Temporal Restoration",
+        "Temporal Swiftness"
+      ],
+      "prerequisites": [
+        "Warping Reality"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nIncreases the effectiveness of your Temporal Resilience, Temporal Swiftness, and Temporal Restoration spells by 100%."
+        }
+      ]
+    },
+    {
+      "id": 6159,
+      "name": "Shifting Chaos",
+      "tree": "Infinite",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_jewelcrafting_shadowspirit_02",
+      "spellId": 706059,
+      "description": "Your Chromatic Shard and Anomaly Spikes now deal an additional 20% their damage dealt as Chromatic Damage all nearby enemies.",
+      "referencedTerms": [
+        "Anomaly Spikes",
+        "Chromatic Shard"
+      ],
+      "prerequisites": [
+        "Black Hole",
+        "Paradox",
+        "Chaos Fusion",
+        "Pure Chaos"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Chromatic Shard and Anomaly Spikes now deal an additional 20% their damage dealt as Chromatic Damage all nearby enemies."
+        }
+      ]
+    },
+    {
+      "id": 31334,
+      "name": "Crown of Power",
+      "tree": "Infinite",
+      "x": 3,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helm_crown_c_01_purple white",
+      "spellId": 805854,
+      "description": "Increases the tick rate of Melt Reality by -25%.",
+      "referencedTerms": [
+        "Melt Reality"
+      ],
+      "prerequisites": [
+        "Paradox",
+        "Slipstream"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the tick rate of Melt Reality by -25%."
+        }
+      ]
+    },
+    {
+      "id": 6158,
+      "name": "Infinite Horizon",
+      "tree": "Infinite",
+      "x": 5,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_triumvirate_shadowguardetherealmelee",
+      "spellId": 560528,
+      "description": "Increases the all damage dealt by party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, your Unmake and Timerend gain an additional 20% bonus spell scaling.",
+      "referencedTerms": [
+        "Timerend",
+        "Unmake"
+      ],
+      "prerequisites": [
+        "Gift of the Timeways",
+        "Slipstream"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the all damage dealt by party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, your Unmake and Timerend gain an additional 20% bonus spell scaling."
+        }
+      ]
+    },
+    {
+      "id": 7920,
+      "name": "Magic Erosion",
+      "tree": "Infinite",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_Charm",
+      "spellId": 706046,
+      "description": "Your Decomposition now applies Magic Erosion to the target, increasing attackers chance to hit the target with spells by 3% for 30 seconds.",
+      "referencedTerms": [
+        "Decomposition",
+        "Magic Erosion"
+      ],
+      "prerequisites": [
+        "End of Time",
+        "Eternity",
+        "Distorted Time",
+        "Gift of the Timeways"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Decomposition now applies Magic Erosion to the target, increasing attackers chance to hit the target with spells by 3% for 30 seconds."
+        }
+      ]
+    },
+    {
+      "id": 2125,
+      "name": "Erasion",
+      "tree": "Infinite",
+      "x": 3,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_animamaw_wave",
+      "spellId": 704489,
+      "description": "Increases the chance to trigger Anomaly Spikes by 5% and their damage by 20%.",
+      "referencedTerms": [
+        "Anomaly Spikes"
+      ],
+      "prerequisites": [
+        "Shifting Chaos",
+        "Crown of Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the chance to trigger Anomaly Spikes by 5% and their damage by 20%."
+        }
+      ]
+    },
+    {
+      "id": 4316,
+      "name": "Aeon Rend",
+      "tree": "Infinite",
+      "x": 5,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_animamaw_orb",
+      "spellId": 583248,
+      "description": "Your Chromatic Shard now has a 25% chance to strike again and incur no cooldown.",
+      "referencedTerms": [
+        "Chromatic Shard"
+      ],
+      "prerequisites": [
+        "Infinite Horizon",
+        "Magic Erosion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Chromatic Shard now has a 25% chance to strike again and incur no cooldown."
+        }
+      ]
+    },
+    {
+      "id": 11861,
+      "name": "End of Time",
+      "tree": "Infinite",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_priest_divinestar_shadow2",
+      "spellId": 704490,
+      "description": "Level 50 Passive\nMind Melt now also increases the target's periodic damage taken from you by 6% per stack.",
+      "referencedTerms": [
+        "Mind Melt"
+      ],
+      "prerequisites": [
+        "Infinite Guard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nMind Melt now also increases the target's periodic damage taken from you by 6% per stack."
+        }
+      ]
+    },
+    {
+      "id": 30908,
+      "name": "Null Orbs",
+      "tree": "Infinite",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\scifi_skills_p_03_Border",
+      "spellId": 572722,
+      "description": "Periodic critical damage dealt now has a 20% chance to grant a Null Orb for 15 seconds.Null Orb (Proc)Increases the critical damage of Chromatic Shard and Anomaly Spikes based on your spell critical strike rating.\n\nCritically striking with Chromatic Shard removes Null Orb.",
+      "referencedTerms": [
+        "Anomaly Spikes",
+        "Chromatic Shard",
+        "Null Orb"
+      ],
+      "prerequisites": [
+        "Erasion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Periodic critical damage dealt now has a 20% chance to grant a Null Orb for 15 seconds.Null Orb (Proc)Increases the critical damage of Chromatic Shard and Anomaly Spikes based on your spell critical strike rating.\n\nCritically striking with Chromatic Shard removes Null Orb."
+        }
+      ]
+    },
+    {
+      "id": 5486,
+      "name": "Chaotic Time",
+      "tree": "Infinite",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_chest_dragonblue_infinite",
+      "spellId": 583245,
+      "description": "While Incarnation of Chaos is active, your Melt Reality deals 30% increased damage and replicates an additional 20% \n\nIn addition, periodic damage dealt now has a 5% chance to reduce the cooldown of Incarnation of Chaos by -1 sec.",
+      "referencedTerms": [
+        "Incarnation of Chaos",
+        "Melt Reality"
+      ],
+      "prerequisites": [
+        "Erasion",
+        "Aeon Rend"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Incarnation of Chaos is active, your Melt Reality deals 30% increased damage and replicates an additional 20% \n\nIn addition, periodic damage dealt now has a 5% chance to reduce the cooldown of Incarnation of Chaos by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 5861,
+      "name": "Infinite Keeper",
+      "tree": "Infinite",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_inscription_armorscroll02",
+      "spellId": 806312,
+      "description": "Using Unmake on an enemy affected by your Timerend now causes the enemy to erupt in a vortex of sand, dealing 81 Chromatic Damage every 1 sec to up to 8 enemies for 6 seconds in an 8 yd radius.",
+      "referencedTerms": [
+        "Timerend",
+        "Unmake"
+      ],
+      "prerequisites": [
+        "Aeon Rend"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Using Unmake on an enemy affected by your Timerend now causes the enemy to erupt in a vortex of sand, dealing 81 Chromatic Damage every 1 sec to up to 8 enemies for 6 seconds in an 8 yd radius."
+        }
+      ]
+    },
+    {
+      "id": 31182,
+      "name": "Ripple",
+      "tree": "Time",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_staff_2h_nazmirraid_d_01",
+      "spellId": 806296,
+      "description": "Channel for up to 5 seconds. When the channel ends, if you channeled for at least 1.5 sec, allies within 40 yds are healed based on the duration of the channel.\n\nWhile channeling, you are immune to stun effects.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Aeon of Resilience",
+        "Accelerated Recovery"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Channel for up to 5 seconds. When the channel ends, if you channeled for at least 1.5 sec, allies within 40 yds are healed based on the duration of the channel.\n\nWhile channeling, you are immune to stun effects."
+        }
+      ]
+    },
+    {
+      "id": 4032,
+      "name": "Aeon of Resilience",
+      "tree": "Time",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 1,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_trinket_80_kultiras02a",
+      "spellId": 92119,
+      "description": "Level 10 Passive\nTeaches you Aeon of Resilience.Aeon of ResilienceReduces Epoch's cast time by -25% and it's mana cost by -10%, and healing done by it now reduces the target's damage taken by -5% for 6 seconds.",
+      "referencedTerms": [
+        "Aeon of Resilience",
+        "Epoch"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Accelerated Recovery"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nTeaches you Aeon of Resilience.Aeon of ResilienceReduces Epoch's cast time by -25% and it's mana cost by -10%, and healing done by it now reduces the target's damage taken by -5% for 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 19979,
+      "name": "Sands of Life",
+      "tree": "Time",
+      "x": 3,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_quicksand",
+      "spellId": 560383,
+      "description": "Increases your healing power by 25% of your Spirit.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Ripple"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your healing power by 25% of your Spirit."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your healing power by 50% of your Spirit."
+        }
+      ]
+    },
+    {
+      "id": 6700,
+      "name": "Endless Sands",
+      "tree": "Time",
+      "x": 5,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_enchant_dustspirit",
+      "spellId": 806338,
+      "description": "Casting Epoch now grants you Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times.",
+      "referencedTerms": [
+        "Endless Sands",
+        "Epoch",
+        "Reverse Wounds"
+      ],
+      "prerequisites": [
+        "Ripple"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Epoch now grants you Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times."
+        }
+      ]
+    },
+    {
+      "id": 19980,
+      "name": "Correct the Mistake",
+      "tree": "Time",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_heal_Border",
+      "spellId": 572352,
+      "description": "Retell the fate of party members within 30 yds, healing them for 91 + 68.57% healing.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Endless Sands",
+        "Sands of Life"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Retell the fate of party members within 30 yds, healing them for 91 + 68.57% healing."
+        }
+      ]
+    },
+    {
+      "id": 9177,
+      "name": "Aeon of Protection",
+      "tree": "Time",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 15,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_trinket_80_kultiras02d",
+      "spellId": 806292,
+      "description": "Increases Epoch's cast time by 15%, healing done by 15%, and causes it to apply a damage absorption shield equal to 30% of the amount healed for 8 seconds.",
+      "referencedTerms": [
+        "Epoch"
+      ],
+      "prerequisites": [
+        "Aeon of Resilience"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases Epoch's cast time by 15%, healing done by 15%, and causes it to apply a damage absorption shield equal to 30% of the amount healed for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6183,
+      "name": "Time Wizard",
+      "tree": "Time",
+      "x": 2,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Holy_FlashHeal",
+      "spellId": 706779,
+      "description": "Increases the critical strike chance of your Reverse Wound, Epoch, and Correct the Mistake by 8%.",
+      "referencedTerms": [
+        "Correct the Mistake",
+        "Epoch",
+        "Reverse Wound"
+      ],
+      "prerequisites": [
+        "Correct the Mistake"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of your Reverse Wound, Epoch, and Correct the Mistake by 8%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the critical strike chance of your Reverse Wound, Epoch, and Correct the Mistake by 15%."
+        }
+      ]
+    },
+    {
+      "id": 6190,
+      "name": "Keep Accelerating",
+      "tree": "Time",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\paladin_icon_speedoflight",
+      "spellId": 520042,
+      "description": "Your Accelerated Recovery now applies to an additional nearby target.",
+      "referencedTerms": [
+        "Accelerated Recovery"
+      ],
+      "prerequisites": [
+        "Correct the Mistake"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Accelerated Recovery now applies to an additional nearby target."
+        }
+      ]
+    },
+    {
+      "id": 6187,
+      "name": "Time Beacon",
+      "tree": "Time",
+      "x": 6,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_HolyWhirlpool_Border",
+      "spellId": 574310,
+      "description": "Increases the duration of effects applied by your Aeons by 4 sec.",
+      "referencedTerms": [
+        "Aeons"
+      ],
+      "prerequisites": [
+        "Correct the Mistake"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of effects applied by your Aeons by 4 sec."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the duration of effects applied by your Aeons by 8 sec."
+        }
+      ]
+    },
+    {
+      "id": 29681,
+      "name": "Cadence of Time",
+      "tree": "Time",
+      "x": 1,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_racial_timeismoney",
+      "spellId": 560397,
+      "description": "Your critical strikes with Epoch now grant Cadence of Time, increasing the healing of Ripple by 10% for 15 seconds. Stacks 5 times.",
+      "referencedTerms": [
+        "Cadence of Time",
+        "Epoch",
+        "Ripple"
+      ],
+      "prerequisites": [
+        "Time Wizard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your critical strikes with Epoch now grant Cadence of Time, increasing the healing of Ripple by 10% for 15 seconds. Stacks 5 times."
+        }
+      ]
+    },
+    {
+      "id": 6699,
+      "name": "Carbon Dating",
+      "tree": "Time",
+      "x": 3,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\trade_archaeology",
+      "spellId": 706102,
+      "description": "Each stack of Sands of Time now also increases the healing of your Epoch by 10%.",
+      "referencedTerms": [
+        "Epoch",
+        "Sands of Time"
+      ],
+      "prerequisites": [
+        "Keep Accelerating"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each stack of Sands of Time now also increases the healing of your Epoch by 10%."
+        }
+      ]
+    },
+    {
+      "id": 6196,
+      "name": "Timeless",
+      "tree": "Time",
+      "x": 5,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_nature_mentalquickness",
+      "spellId": 706131,
+      "description": "While Endless Sands is active, the mana costs of your spells and abilities is reduced by -3% per stack.",
+      "referencedTerms": [
+        "Endless Sands"
+      ],
+      "prerequisites": [
+        "Keep Accelerating"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Endless Sands is active, the mana costs of your spells and abilities is reduced by -3% per stack."
+        }
+      ]
+    },
+    {
+      "id": 19978,
+      "name": "Fabric of Time",
+      "tree": "Time",
+      "x": 7,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_monk_diffusemagic",
+      "spellId": 806299,
+      "description": "Alter the fabric of time, healing an ally for 158 + 64% healing.\n\nYour next Aeon used within 8 seconds will trigger with no cooldown or cost.",
+      "referencedTerms": [
+        "Aeon"
+      ],
+      "prerequisites": [
+        "Time Beacon"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Alter the fabric of time, healing an ally for 158 + 64% healing.\n\nYour next Aeon used within 8 seconds will trigger with no cooldown or cost."
+        }
+      ]
+    },
+    {
+      "id": 9181,
+      "name": "Aeon of Renewal",
+      "tree": "Time",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_trinket_80_kultiras02b",
+      "spellId": 806290,
+      "description": "Reduces Epoch's healing by -30%, but causes it to heal for an additional 50% of the amount healed over 3 seconds.",
+      "referencedTerms": [
+        "Epoch"
+      ],
+      "prerequisites": [
+        "Aeon of Protection"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces Epoch's healing by -30%, but causes it to heal for an additional 50% of the amount healed over 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30901,
+      "name": "A Ripple In Time",
+      "tree": "Time",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Paladin_RighteousVengeance",
+      "spellId": 706096,
+      "description": "Your damaging and healing critical strikes now reduce the remaining cooldown of Ripple by -1 sec.",
+      "referencedTerms": [
+        "Ripple"
+      ],
+      "prerequisites": [
+        "Cadence of Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your damaging and healing critical strikes now reduce the remaining cooldown of Ripple by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 30903,
+      "name": "Ideal Time",
+      "tree": "Time",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_corruptionknowledge_Border",
+      "spellId": 807036,
+      "description": "Every 30 sec, your next ability is guaranteed to critically strike.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Carbon Dating",
+        "Cadence of Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Every 30 sec, your next ability is guaranteed to critically strike."
+        }
+      ]
+    },
+    {
+      "id": 7912,
+      "name": "Continuum Restoration",
+      "tree": "Time",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_evoker_timedilation",
+      "spellId": 801271,
+      "description": "Restore the continuum at target location for all allies and enemies, removing all beneficial magic effects from enemies and harmful magic effects from allies.\n\nThis dispel is potent enough to remove magic effects that are normally undispellable",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Timeless",
+        "Carbon Dating"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Restore the continuum at target location for all allies and enemies, removing all beneficial magic effects from enemies and harmful magic effects from allies.\n\nThis dispel is potent enough to remove magic effects that are normally undispellable"
+        }
+      ]
+    },
+    {
+      "id": 29571,
+      "name": "Time Skip",
+      "tree": "Time",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_arcanespeed_Border",
+      "spellId": 804451,
+      "description": "Your Roll Back now removes 1 additional harmful effect.",
+      "referencedTerms": [
+        "Roll Back"
+      ],
+      "prerequisites": [
+        "Timeless",
+        "Fabric of Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Roll Back now removes 1 additional harmful effect."
+        }
+      ]
+    },
+    {
+      "id": 30264,
+      "name": "Orderly Protector",
+      "tree": "Time",
+      "x": 8,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\icon_dragonflygold",
+      "spellId": 806162,
+      "description": "Healing done by your Epoch now increases the healing of Fabric of Time by 10% for 10 seconds, stacking 10 times.\n\nEach stack gives you a 2% chance when you cast Fabric of Time to reset its own cooldown.",
+      "referencedTerms": [
+        "Epoch",
+        "Fabric of Time"
+      ],
+      "prerequisites": [
+        "Fabric of Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Healing done by your Epoch now increases the healing of Fabric of Time by 10% for 10 seconds, stacking 10 times.\n\nEach stack gives you a 2% chance when you cast Fabric of Time to reset its own cooldown."
+        }
+      ]
+    },
+    {
+      "id": 30902,
+      "name": "Displacement",
+      "tree": "Time",
+      "x": 0,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_teleport_Border",
+      "spellId": 806727,
+      "description": "Displaces a party or raid member and pulls them to you, dispelling root and snare effects from them.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "A Ripple In Time",
+        "Ideal Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Displaces a party or raid member and pulls them to you, dispelling root and snare effects from them."
+        }
+      ]
+    },
+    {
+      "id": 30780,
+      "name": "Mark of Order",
+      "tree": "Time",
+      "x": 3,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_inscription_80_vantusrune_uldir",
+      "spellId": 704488,
+      "description": "Healing done by Fortify Timeline now applies Mark of Order.Mark of OrderIncreases the healing of your next Reverse Wound on the target by 10% for 20 seconds. \n\nEvery 1 sec for the duration, they gain an additional stack of this effect, up to 5.",
+      "referencedTerms": [
+        "Fortify Timeline",
+        "Mark of Order",
+        "Reverse Wound"
+      ],
+      "prerequisites": [
+        "Continuum Restoration",
+        "Ideal Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Healing done by Fortify Timeline now applies Mark of Order.Mark of OrderIncreases the healing of your next Reverse Wound on the target by 10% for 20 seconds. \n\nEvery 1 sec for the duration, they gain an additional stack of this effect, up to 5."
+        }
+      ]
+    },
+    {
+      "id": 6702,
+      "name": "Cycling Aeons",
+      "tree": "Time",
+      "x": 5,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\skill_icon_skill42_Border",
+      "spellId": 570149,
+      "description": "Reduces the cooldown of your Aeons by -50%.",
+      "referencedTerms": [
+        "Aeons"
+      ],
+      "prerequisites": [
+        "Continuum Restoration",
+        "Time Skip"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of your Aeons by -50%."
+        }
+      ]
+    },
+    {
+      "id": 29570,
+      "name": "Shimmering Shard",
+      "tree": "Time",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_gem_x4_uncommon_perfectcut_yellow",
+      "spellId": 806302,
+      "description": "Activating Aeon spells now grants you 4% increased damage and healing for 20 seconds, stacking 3 times.",
+      "referencedTerms": [
+        "Aeon"
+      ],
+      "prerequisites": [
+        "Time Skip",
+        "Orderly Protector"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Activating Aeon spells now grants you 4% increased damage and healing for 20 seconds, stacking 3 times."
+        }
+      ]
+    },
+    {
+      "id": 6841,
+      "name": "Aeon of Oblivion",
+      "tree": "Time",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_trinket_80_kultiras02e",
+      "spellId": 806293,
+      "description": "Increases Epoch's mana cost by 30%, critical strike chance by 10%, and healing done by 15%. \n\nIn addition, healing with Epoch now increases the target's damage dealt by 3% for 15 seconds.",
+      "referencedTerms": [
+        "Epoch"
+      ],
+      "prerequisites": [
+        "Aeon of Renewal"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases Epoch's mana cost by 30%, critical strike chance by 10%, and healing done by 15%. \n\nIn addition, healing with Epoch now increases the target's damage dealt by 3% for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 10728,
+      "name": "Nozdormu's Gaze",
+      "tree": "Time",
+      "x": 0,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "interface\\icons\\inv_misc_head_dragon_bronze",
+      "spellId": 807691,
+      "description": "Your Time Out! now regenerates -2% less mana per tick, but casting it now instantly restores 15% of your maximum mana.",
+      "referencedTerms": [
+        "Time Out!"
+      ],
+      "prerequisites": [
+        "Displacement"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Time Out! now regenerates -2% less mana per tick, but casting it now instantly restores 15% of your maximum mana."
+        }
+      ]
+    },
+    {
+      "id": 30268,
+      "name": "Titan's Gaze",
+      "tree": "Time",
+      "x": 0,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_archaeology_ogres_hargunn_eye",
+      "spellId": 804462,
+      "description": "Your Time Out! no longer breaks on damage, but now only reduces damage taken by 15%.",
+      "referencedTerms": [
+        "Time Out!"
+      ],
+      "prerequisites": [
+        "Displacement"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Time Out! no longer breaks on damage, but now only reduces damage taken by 15%."
+        }
+      ]
+    },
+    {
+      "id": 10922,
+      "name": "Overcorrection",
+      "tree": "Time",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_priestskill27_Border",
+      "spellId": 707657,
+      "description": "Overhealing done by Correct the Mistake now applies a heal over time effect to the ally equal to 30% of the healing done over 5 seconds.",
+      "referencedTerms": [
+        "Correct the Mistake"
+      ],
+      "prerequisites": [
+        "Ideal Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Overhealing done by Correct the Mistake now applies a heal over time effect to the ally equal to 30% of the healing done over 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30922,
+      "name": "Bronze Timeways",
+      "tree": "Time",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_progenitorbeetlebronze",
+      "spellId": 807309,
+      "description": "Casting Correct the Mistake now grants 2 stacks of Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times.",
+      "referencedTerms": [
+        "Correct the Mistake",
+        "Endless Sands",
+        "Reverse Wounds"
+      ],
+      "prerequisites": [
+        "Ideal Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Correct the Mistake now grants 2 stacks of Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times."
+        }
+      ]
+    },
+    {
+      "id": 29670,
+      "name": "Wonders of Time",
+      "tree": "Time",
+      "x": 3,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_hunter_readiness",
+      "spellId": 560541,
+      "description": "Increases the spell haste of all party and raid members by 3%.\n\nDoes not stack with similar effects.\n\nAdditionally, all healing done now has a 10% chance to grant you Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times.",
+      "referencedTerms": [
+        "Endless Sands",
+        "Reverse Wounds"
+      ],
+      "prerequisites": [
+        "Mark of Order"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the spell haste of all party and raid members by 3%.\n\nDoes not stack with similar effects.\n\nAdditionally, all healing done now has a 10% chance to grant you Endless Sands.Endless SandsCast time of your next Reverse Wounds within 15 seconds is reduced by -20%, stacking up to 5 times."
+        }
+      ]
+    },
+    {
+      "id": 6652,
+      "name": "Through The Aeons",
+      "tree": "Time",
+      "x": 5,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_timewarp_Border",
+      "spellId": 560310,
+      "description": "Activating an Aeon now increases your mana regeneration from Spirit by 100% for 8 seconds.",
+      "referencedTerms": [
+        "Aeon"
+      ],
+      "prerequisites": [
+        "Cycling Aeons"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Activating an Aeon now increases your mana regeneration from Spirit by 100% for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30905,
+      "name": "Chronicler",
+      "tree": "Time",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_priest_bindingprayers",
+      "spellId": 706134,
+      "description": "Casting Fortify Timeline now extends the duration of Accelerated Recovery on all targets within 40 yds by an additional 10 sec.",
+      "referencedTerms": [
+        "Accelerated Recovery",
+        "Fortify Timeline"
+      ],
+      "prerequisites": [
+        "Time Skip"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Fortify Timeline now extends the duration of Accelerated Recovery on all targets within 40 yds by an additional 10 sec."
+        }
+      ]
+    },
+    {
+      "id": 6184,
+      "name": "Timeline Tether",
+      "tree": "Time",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_EnslaveSpell_Holy",
+      "spellId": 804505,
+      "description": "Your periodic damage and healing reduces the cooldown of your Fortify Timeline by -1 sec.",
+      "referencedTerms": [
+        "Fortify Timeline"
+      ],
+      "prerequisites": [
+        "Shimmering Shard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your periodic damage and healing reduces the cooldown of your Fortify Timeline by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 29682,
+      "name": "Shield of the Ages",
+      "tree": "Time",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\custom_T_Nhance_RPG_Icons_HolyWatch_Border",
+      "spellId": 804444,
+      "description": "When hit by a damaging critical strike, your damage taken is reduced by -3%, and healing received is increased by 5% for 3 seconds, stacking 3 times.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Nozdormu's Gaze",
+        "Overcorrection",
+        "Wonders of Time",
+        "Titan's Gaze",
+        "Bronze Timeways"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "When hit by a damaging critical strike, your damage taken is reduced by -3%, and healing received is increased by 5% for 3 seconds, stacking 3 times."
+        }
+      ]
+    },
+    {
+      "id": 7826,
+      "name": "Converge the Infinite",
+      "tree": "Time",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\nhi_arcanetwist_Border",
+      "spellId": 520045,
+      "description": "Casting Fortify Timeline now grants you Converge the Infinite.Converge the InfiniteYour next Correct the Mistake has a 1 sec increased cast time, but heals for 30% more and is guaranteed to critically strike.\n\nSuccessfully healing an ally in this way reduces the cooldown of Fortify Timeline by 8%.",
+      "referencedTerms": [
+        "Converge the Infinite",
+        "Correct the Mistake",
+        "Fortify Timeline"
+      ],
+      "prerequisites": [
+        "Through The Aeons",
+        "Wonders of Time"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Fortify Timeline now grants you Converge the Infinite.Converge the InfiniteYour next Correct the Mistake has a 1 sec increased cast time, but heals for 30% more and is guaranteed to critically strike.\n\nSuccessfully healing an ally in this way reduces the cooldown of Fortify Timeline by 8%."
+        }
+      ]
+    },
+    {
+      "id": 6192,
+      "name": "Epic Recovery",
+      "tree": "Time",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_shield_1h_bastionquest_b_01",
+      "spellId": 706098,
+      "description": "When you cast Epoch you now also cast a Rank 1 Epoch on up to 5 allies affected by Accelerated Recovery.",
+      "referencedTerms": [
+        "Accelerated Recovery",
+        "Epoch"
+      ],
+      "prerequisites": [
+        "Timeline Tether",
+        "Through The Aeons",
+        "Chronicler"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "When you cast Epoch you now also cast a Rank 1 Epoch on up to 5 allies affected by Accelerated Recovery."
+        }
+      ]
+    },
+    {
+      "id": 9182,
+      "name": "Eternity Warper",
+      "tree": "Time",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_bossmagistrix_timewarp2",
+      "spellId": 806301,
+      "description": "$83",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Aeon of Oblivion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$84"
+        }
+      ]
+    },
+    {
+      "id": 9986,
+      "name": "Timeblender",
+      "tree": "Time",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_guild_timeoff",
+      "spellId": 555737,
+      "description": "Guarantees healing done by Fabric of Time to critically strike and gives it an additional charge.Fabric of Time (Timeblender)2 Charges, 15 sec recharge\nAlter the fabric of time, healing an ally for 529 + 64% healing.\n\nYour next Aeon used within 8 seconds will trigger with no cooldown.",
+      "referencedTerms": [
+        "Aeon",
+        "Fabric of Time"
+      ],
+      "prerequisites": [
+        "Converge the Infinite",
+        "Shield of the Ages"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Guarantees healing done by Fabric of Time to critically strike and gives it an additional charge.Fabric of Time (Timeblender)2 Charges, 15 sec recharge\nAlter the fabric of time, healing an ally for 529 + 64% healing.\n\nYour next Aeon used within 8 seconds will trigger with no cooldown."
+        }
+      ]
+    },
+    {
+      "id": 6182,
+      "name": "The Vast Infinite",
+      "tree": "Time",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_racial_chillofnight",
+      "spellId": 706083,
+      "description": "All party and raid members become one, equally sharing 25% of all damage dealt to them for 10 seconds, up to a maximum of 100% of their total health.\n\nAt the end of the duration, all affected allies are healed equal to the total damage shared split evenly amongst all allies.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Converge the Infinite"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "All party and raid members become one, equally sharing 25% of all damage dealt to them for 10 seconds, up to a maximum of 100% of their total health.\n\nAt the end of the duration, all affected allies are healed equal to the total damage shared split evenly amongst all allies."
+        }
+      ]
+    },
+    {
+      "id": 30261,
+      "name": "Buy Time",
+      "tree": "Time",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_racial_timeismoney",
+      "spellId": 520188,
+      "description": "Put all enemies and allies in an 8 yd radius in target area into a stasis, banishing them for 6 seconds, making them invulnerable to all effects but unable to move.\n\nCasting Unmake on a target will remove this effect.",
+      "referencedTerms": [
+        "Unmake"
+      ],
+      "prerequisites": [
+        "Epic Recovery",
+        "Converge the Infinite"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Put all enemies and allies in an 8 yd radius in target area into a stasis, banishing them for 6 seconds, making them invulnerable to all effects but unable to move.\n\nCasting Unmake on a target will remove this effect."
+        }
+      ]
+    }
+  ]
+}

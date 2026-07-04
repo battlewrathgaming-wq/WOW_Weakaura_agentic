@@ -1,0 +1,6721 @@
+{
+  "class": "Necromancer",
+  "schemaVersion": 3,
+  "laneTaxonomy": {
+    "DMG": "Damage",
+    "STATS": "Primary/secondary stats",
+    "CRIT": "Crit chance/damage",
+    "CDR": "Cooldown",
+    "CAST": "Cast time",
+    "HASTE": "Haste",
+    "SPEED": "Movement speed",
+    "HEAL": "Healing",
+    "SHIELD": "Shield/absorb",
+    "MITIGATION": "Damage mitigation",
+    "RESOURCE": "Resource generation",
+    "COST": "Resource cost",
+    "DURATION": "Duration",
+    "AOE": "AoE / target count",
+    "CC": "Crowd control",
+    "ARMOR": "Armor",
+    "SUMMON": "Summon / pet",
+    "MISC": "Other"
+  },
+  "note": "Per-skill index: for each observed skill/ability, lists every talent that modifies it, where it sits in the tree, its parsed stat modification, and a mock value showing that modification applied to a normalized baseline of 10. Each modifying talent is tagged with one or more lanes from laneTaxonomy (DMG/CRIT/CDR/CAST/HASTE/SPEED/HEAL/SHIELD/MITIGATION/RESOURCE/COST/DURATION/AOE/CC/ARMOR/SUMMON/MISC), plus cross-cutting behavior flags (PROC, STACK) that describe how the effect triggers rather than what stat it touches. A handful of nodes have unresolved \"$xx\" template descriptions in the source export - these are flagged rather than guessed at. Skills also carry a \"kind\" of \"family\" (a header covering several specific spells, e.g. \"Animate\") or \"spell\" (everything else, including a family's specific members) - family talents are copied onto each of their children and marked with \"sharedFromFamily\".",
+  "mockBaseline": 10,
+  "skills": {
+    "Abomination": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HASTE",
+        "SPEED",
+        "CC",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Army of the Dead",
+          "tree": "Animation",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.1,
+          "lanes": [
+            "CRIT",
+            "HASTE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While only 1 Abomination is active, the critical strike chance of your Ghouls is increased by 10% and haste by 10%."
+        },
+        {
+          "talent": "Flesh Symbiosis",
+          "tree": "Animation",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Each Abomination or Decaying Colossus active now increases your total Armor and magic resistance by 30% and causes you to periodically regenerate 2% maximum health every 5 sec."
+        },
+        {
+          "talent": "Raise: Abomination",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise an Abomination to aid you in combat, occupying 3 Life Force.\n\nIt is surrounded by a disease cloud, dealing 9 + 25% SP Nature damage to enemies when they deal damage and reducing their attack speed by -20% for 15 seconds.\n\nCommand: Instantly unleashes an empowered disease cloud around it."
+        },
+        {
+          "talent": "Chomp",
+          "tree": "Animation",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Critical strikes dealt by your Abominations and Decaying Collosi now Chomp your target, dealing 150 + 112.5% SP damage to them."
+        },
+        {
+          "talent": "Command: Hook",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SPEED",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Command your Abominations to hook an enemy to their location, slowing their movement speed to a halt for 2 seconds."
+        }
+      ]
+    },
+    "Animate": {
+      "kind": "family",
+      "familyChildren": [
+        "Animate: Bone Wraith",
+        "Animate: Plaguefather",
+        "Animate: Skeletal Archers",
+        "Animate: Tomb King"
+      ],
+      "lanes": [
+        "CDR",
+        "CAST",
+        "HASTE",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Graverobber",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "CAST",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost and cast time of your Raise and Animate spells by -30%."
+        },
+        {
+          "talent": "Mindless Fury",
+          "tree": "Animation",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Animate or Command spells now increases your haste by 1% for 10 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Forbidden Technique",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Command spells now reduces the cooldown of your Animates by -1 sec."
+        },
+        {
+          "talent": "Grave Mastery",
+          "tree": "Animation",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nReduces the cost of all Animates, Raises, and Command spells by -20%."
+        }
+      ]
+    },
+    "Animate: Bone Wraith": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CDR",
+        "CAST",
+        "HASTE",
+        "RESOURCE",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Underking",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Command spells now grants you a stack of Underking for 20 seconds.\n\nAt 10 stacks, the cooldown of Animate: Tomb King, Animate: Bone Wraith or Animate: Plaguefather is reduced by -15 sec at random."
+        },
+        {
+          "talent": "Graverobber",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "CAST",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost and cast time of your Raise and Animate spells by -30%.",
+          "sharedFromFamily": "Animate"
+        },
+        {
+          "talent": "Mindless Fury",
+          "tree": "Animation",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Animate or Command spells now increases your haste by 1% for 10 seconds, stacking 5 times.",
+          "sharedFromFamily": "Animate"
+        },
+        {
+          "talent": "Forbidden Technique",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Command spells now reduces the cooldown of your Animates by -1 sec.",
+          "sharedFromFamily": "Animate"
+        },
+        {
+          "talent": "Grave Mastery",
+          "tree": "Animation",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nReduces the cost of all Animates, Raises, and Command spells by -20%.",
+          "sharedFromFamily": "Animate"
+        }
+      ]
+    },
+    "Animate: Plaguefather": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CDR",
+        "CAST",
+        "HASTE",
+        "RESOURCE",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Underking",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Command spells now grants you a stack of Underking for 20 seconds.\n\nAt 10 stacks, the cooldown of Animate: Tomb King, Animate: Bone Wraith or Animate: Plaguefather is reduced by -15 sec at random."
+        },
+        {
+          "talent": "Graverobber",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "CAST",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost and cast time of your Raise and Animate spells by -30%.",
+          "sharedFromFamily": "Animate"
+        },
+        {
+          "talent": "Mindless Fury",
+          "tree": "Animation",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Animate or Command spells now increases your haste by 1% for 10 seconds, stacking 5 times.",
+          "sharedFromFamily": "Animate"
+        },
+        {
+          "talent": "Forbidden Technique",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Command spells now reduces the cooldown of your Animates by -1 sec.",
+          "sharedFromFamily": "Animate"
+        },
+        {
+          "talent": "Grave Mastery",
+          "tree": "Animation",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nReduces the cost of all Animates, Raises, and Command spells by -20%.",
+          "sharedFromFamily": "Animate"
+        }
+      ]
+    },
+    "Animate: Skeletal Archers": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CDR",
+        "CAST",
+        "HASTE",
+        "COST",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Runic Animation",
+          "tree": "Animation",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Animate: Skeletal Archers and Command: Hook by -20%."
+        },
+        {
+          "talent": "Skeletal Artillery",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Your Animate: Skeletal Archers now summons 2 additional Skeletal Archer."
+        },
+        {
+          "talent": "Graverobber",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "CAST",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost and cast time of your Raise and Animate spells by -30%.",
+          "sharedFromFamily": "Animate"
+        },
+        {
+          "talent": "Mindless Fury",
+          "tree": "Animation",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Animate or Command spells now increases your haste by 1% for 10 seconds, stacking 5 times.",
+          "sharedFromFamily": "Animate"
+        },
+        {
+          "talent": "Forbidden Technique",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Command spells now reduces the cooldown of your Animates by -1 sec.",
+          "sharedFromFamily": "Animate"
+        },
+        {
+          "talent": "Grave Mastery",
+          "tree": "Animation",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nReduces the cost of all Animates, Raises, and Command spells by -20%.",
+          "sharedFromFamily": "Animate"
+        }
+      ]
+    },
+    "Animate: Tomb King": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CDR",
+        "CAST",
+        "HASTE",
+        "RESOURCE",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Underking",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Command spells now grants you a stack of Underking for 20 seconds.\n\nAt 10 stacks, the cooldown of Animate: Tomb King, Animate: Bone Wraith or Animate: Plaguefather is reduced by -15 sec at random."
+        },
+        {
+          "talent": "Graverobber",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "CAST",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost and cast time of your Raise and Animate spells by -30%.",
+          "sharedFromFamily": "Animate"
+        },
+        {
+          "talent": "Mindless Fury",
+          "tree": "Animation",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Animate or Command spells now increases your haste by 1% for 10 seconds, stacking 5 times.",
+          "sharedFromFamily": "Animate"
+        },
+        {
+          "talent": "Forbidden Technique",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Command spells now reduces the cooldown of your Animates by -1 sec.",
+          "sharedFromFamily": "Animate"
+        },
+        {
+          "talent": "Grave Mastery",
+          "tree": "Animation",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nReduces the cost of all Animates, Raises, and Command spells by -20%.",
+          "sharedFromFamily": "Animate"
+        }
+      ]
+    },
+    "Apothecary's Cauldron": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your Magic damage dealt by 3%.",
+      "baseTree": "Death",
+      "basePosition": {
+        "x": 3,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Arch Lich": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Critical strikes with Frost spells now refund 3% of your maximum mana.",
+      "baseTree": "Rime",
+      "basePosition": {
+        "x": 7,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Banshee": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Raise: Banshee",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise a Banshee to aid you in combat, occupying 2 Life Force.\n\nIt will channel on your target, dealing damage and draining their mana over time.\n\nCommand: Drains 20% of your target's mana (up to a maximum of 40% of their own maximum mana) and deals Frost damage equal to the mana drained."
+        }
+      ]
+    },
+    "Bone Club": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Depravity",
+          "tree": "Animation",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG",
+            "HASTE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the melee haste of your Undead minions by 5% and gives their critical melee auto attacks an 50% chance to trigger Bone Club, dealing 40% of the damage dealt as Shadow Damage."
+        }
+      ]
+    },
+    "Bone Construct": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Animate: Bone Construct",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Animate a Bone Construct to aid you in combat for 20 seconds.\n\nIt moves at a slow speed, but upon reaching an enemy, deals 1560 + 200% SP + 50% AP Shadow damage, piercing all invulnerabilities, resistances, and immunities."
+        }
+      ]
+    },
+    "Bone Tithe": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "HEAL",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Siphon life from your undead minions, sacrificing 40% of their health to grant yourself an absorb shield equal to half of the health stolen for 20 seconds.\n\nUsable while stunned.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Bone Wraith": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Animate: Bone Wraith",
+          "tree": "Animation",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Animate a Bone Wraith to aid you in combat for 15 seconds.\n\nWhile active, it will periodically unleash a Bonestorm, striking up to 5 nearby enemies for 30 + 40% SP Physical damage every 1 sec for 5 seconds."
+        }
+      ]
+    },
+    "Bonestorm": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Animate: Bone Wraith",
+          "tree": "Animation",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Animate a Bone Wraith to aid you in combat for 15 seconds.\n\nWhile active, it will periodically unleash a Bonestorm, striking up to 5 nearby enemies for 30 + 40% SP Physical damage every 1 sec for 5 seconds."
+        }
+      ]
+    },
+    "Champion": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Game of Bones",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Champion spells by -60 sec."
+        },
+        {
+          "talent": "Champion of Kel'thuzad",
+          "tree": "Rime",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nWhile your Lich Form is active, your Champion spells will now cooldown faster."
+        }
+      ]
+    },
+    "Cobalt-Plated Armor": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the Armor of your Undead minions by 300, scaling with your level.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Command: Hook": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "CDR",
+        "HASTE",
+        "HEAL",
+        "MITIGATION",
+        "RESOURCE",
+        "COST",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Runic Animation",
+          "tree": "Animation",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Animate: Skeletal Archers and Command: Hook by -20%."
+        },
+        {
+          "talent": "Bone King",
+          "tree": "Animation",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Command spells now has a 15% chance to make your next Lichfrost within 5 seconds instant cast.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Forbidden Technique",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Command spells now reduces the cooldown of your Animates by -1 sec.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Deadly Bond",
+          "tree": "Animation",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 20 Passive\nCasting Command spells now has a 30% chance to cause their next use within 6 seconds to be free of cost.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Raise: Ghoul",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Raise a Ghoul to aid you in combat occupying 1 Life Force. \n\nIts auto attacks restore 21 + 3.53% Intellect + 3.53% SP health to you.\n\nCommand: Expels leeching plague that strikes up to 5 nearby enemies, dealing 30 + 37.5% SP + 50% Intellect Plague damage, and healing you for 35 + 22% SP + 50% Intellect for each Ghoul.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Mindless Fury",
+          "tree": "Animation",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Animate or Command spells now increases your haste by 1% for 10 seconds, stacking 5 times.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Grave Mastery",
+          "tree": "Animation",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nReduces the cost of all Animates, Raises, and Command spells by -20%.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Underking",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Command spells now grants you a stack of Underking for 20 seconds.\n\nAt 10 stacks, the cooldown of Animate: Tomb King, Animate: Bone Wraith or Animate: Plaguefather is reduced by -15 sec at random.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Raise: Abomination",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise an Abomination to aid you in combat, occupying 3 Life Force.\n\nIt is surrounded by a disease cloud, dealing 9 + 25% SP Nature damage to enemies when they deal damage and reducing their attack speed by -20% for 15 seconds.\n\nCommand: Instantly unleashes an empowered disease cloud around it.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Lich Commander",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the cost of your Command spells by -15%.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Raise: Decaying Colossus",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise a Decaying Colossus to aid you in combat, occupying 3 Life Force. \n\nWhile active, 25% of all damage taken by the caster is taken by the Decaying Colossus.\n\nCommand: Unleash a powerful attack dealing Weapon Damage plus 100 to all enemies in front of it.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Raise: Banshee",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise a Banshee to aid you in combat, occupying 2 Life Force.\n\nIt will channel on your target, dealing damage and draining their mana over time.\n\nCommand: Drains 20% of your target's mana (up to a maximum of 40% of their own maximum mana) and deals Frost damage equal to the mana drained.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Master of Death",
+          "tree": "Death",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Command spells on an enemy now applies Crypt Plague.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Expunge",
+          "tree": "Death",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Command spells on an enemy now applies Expunge if they are Diseased.Expunge (Talent)Increases the target's damage taken from your Necromancer diseases by 10% for 10 seconds, stacking 2 times.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Crypt Explosion",
+          "tree": "Death",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Command spells on an enemy now applies Crypt Plague to 3 enemies near the primary target.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Festering Decay",
+          "tree": "Death",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.35,
+          "lanes": [
+            "MITIGATION",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the cost of Command spells by -15% and causes them to increase the target's spell damage taken by 10% for 15 seconds.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Fleshcrafting",
+          "tree": "Death",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            },
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration Unholy Frenzy by 5 sec and casting Command spells now reduces its cooldown by -1 sec.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Raise: Gargoyle",
+          "tree": "Death",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise a fallen Gargoyle to aid you in combat, occupying 3 Life Force. \n\nCommand: Shoots necrotic bile at an enemy, dealing 73 + 65% SP Plague damage, dealing 50% increased damage for each of your diseases on the target.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Refreshing Chill",
+          "tree": "Rime",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Command spells now has a 20% chance to reset the cooldown of Ice Barrage and make your cast next within 15 seconds free of cost.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Necrotic Chains",
+          "tree": "Rime",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Every 3rd Command spell now freezes the target in place for 5 seconds. Damage dealt may end this effect.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Ner'zhul's Blessing",
+          "tree": "Rime",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Every 3rd Command spell now makes your next Lichfrost within 10 seconds guaranteed to critically strike.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Raise: Skeletal Mage",
+          "tree": "Rime",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise a Skeletal Mage to aid you in combat, occupying 2 Life Force.\n\nCommand: Unleashes ice at your target and enemies within 6 yds, dealing 51 + 80% frost SP Frost damage.",
+          "sharedFromFamily": "Command"
+        },
+        {
+          "talent": "Raising the Kirin Tor",
+          "tree": "Rime",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Command spells now have a 40% chance to refund a portion of their Runic Power cost.",
+          "sharedFromFamily": "Command"
+        }
+      ]
+    },
+    "Corpse Explosion": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Corpse Wagon",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.88,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Increases all damage dealt by party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases the damage of Corpse Explosion by 25%."
+        },
+        {
+          "talent": "Corpse Commander",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Reduces the Runic Power cost of Corpse Explosion by -20."
+        }
+      ]
+    },
+    "Crown's Call": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Intellect by 10% and the Frost damage dealt by your Undead minions by 20%.",
+      "baseTree": "Rime",
+      "basePosition": {
+        "x": 1,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Crypt Plague": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Master of Death",
+          "tree": "Death",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Command spells on an enemy now applies Crypt Plague."
+        },
+        {
+          "talent": "Foul Contagion",
+          "tree": "Death",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Applying Crypt Plague now extends the duration of Flesh to Worms on the target by 1 sec."
+        },
+        {
+          "talent": "Rotting Flesh",
+          "tree": "Death",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 30 Passive\nApplying Crypt Plague to an enemy now additionally adds Rotting Flesh to your Undead minions, increasing their damage dealt by 2% per stack for 5 sec."
+        },
+        {
+          "talent": "Crypt Explosion",
+          "tree": "Death",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Command spells on an enemy now applies Crypt Plague to 3 enemies near the primary target."
+        },
+        {
+          "talent": "Plague Revenant",
+          "tree": "Death",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Critical strikes now apply a stack of Crypt Plague."
+        },
+        {
+          "talent": "Withering",
+          "tree": "Death",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 40 Passive\nAllows Crypt Plague to stack 5 additional times."
+        },
+        {
+          "talent": "Waking Crypts",
+          "tree": "Death",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Crypt Plague by 50% and Crypt Swarm now deals 4% more damage for each Necromancer disease you have on the target."
+        }
+      ]
+    },
+    "Crypt Swarm": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "RESOURCE",
+        "COST",
+        "DURATION",
+        "AOE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Crypt Keeper",
+          "tree": "Animation",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Crypt Swarm now bounces to 2 additional nearby enemies, at 30% reduced value per enemy struck."
+        },
+        {
+          "talent": "Unrelenting",
+          "tree": "Animation",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Reduces the channel time of your Crypt Swarm by -25%."
+        },
+        {
+          "talent": "Diabolical",
+          "tree": "Animation",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 40 Passive\nCasting spells now grants you 1 stack of Diabolical, stacking up to 15 times, for 20 seconds.\n\nDamage dealt by your Crypt Swarm will consume a stack to deal 10% increased damage per stack."
+        },
+        {
+          "talent": "Living Dead",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost of Lichfrost and Crypt Swarm by -20%."
+        },
+        {
+          "talent": "Crypt Plague",
+          "tree": "Death",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 1,
+          "specialRequirement": [
+            "Fetid Ward"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 10 Passive\nDamage dealt by Crypt Swarm now applies 1 stack of Crypt Plague and Lichfrost applies 2 stacks.Crypt Plague (Damage)Deals 2 + 6% SP Plague Damage every 2 sec for 10 seconds, stacking 10 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Swarmer",
+          "tree": "Death",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the Runic Power generated by Crypt Swarm by 2 per tick."
+        },
+        {
+          "talent": "Plague Science",
+          "tree": "Death",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 20 Passive\nYour diseases and Crypt Swarm now deal 100% increased damage to enemies below 20% health."
+        },
+        {
+          "talent": "Unholy Runes",
+          "tree": "Death",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Crypt Swarm by 15%."
+        },
+        {
+          "talent": "Wormfood",
+          "tree": "Death",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Upon fully channeling Crypt Swarm, you summon a Rotling that will run towards the enemy and explode after 5 sec for 320 + 33.5% SP Plague damage."
+        },
+        {
+          "talent": "Waking Crypts",
+          "tree": "Death",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Crypt Plague by 50% and Crypt Swarm now deals 4% more damage for each Necromancer disease you have on the target."
+        }
+      ]
+    },
+    "Curse of the Lich": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CRIT",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the range of your Rime spells by 6 yds and increases the Frost critical strike chance of you and your summons by 3%.",
+      "baseTree": "Rime",
+      "basePosition": {
+        "x": 2,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Cycle of Death": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your spell haste by 5%.",
+      "baseTree": "Death",
+      "basePosition": {
+        "x": 2,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Damnation": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Shadow damage by 10%, doubled against enemies below 35% health.",
+      "baseTree": "Death",
+      "basePosition": {
+        "x": 7,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Dark Harvester": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical strike and hit chance by 3%.",
+      "baseTree": "Death",
+      "basePosition": {
+        "x": 6,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Dead Man Walking": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the duration of root and slow effects against you by -25%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Deadly Defense": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MITIGATION",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Each of your summons now reduces your damage taken by 1%, up to a maximum of 10%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Death Commander": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Periodic damage dealt now has a 10% chance to increase your and your Undead minion's haste by 20% for 8 seconds.",
+      "baseTree": "Death",
+      "basePosition": {
+        "x": 5,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Death's Due": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Force a target to accept the reality of death, removing any invulnerability or immunity effects from them and cursing them for 5 seconds.\n\nIf the target's health is below 20% at the end of duration, they take 800 + 200% SP Shadowfrost Damage.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Decaying Collosi": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Chomp",
+          "tree": "Animation",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Critical strikes dealt by your Abominations and Decaying Collosi now Chomp your target, dealing 150 + 112.5% SP damage to them."
+        }
+      ]
+    },
+    "Decaying Colossus": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "AOE",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Flesh Symbiosis",
+          "tree": "Animation",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Each Abomination or Decaying Colossus active now increases your total Armor and magic resistance by 30% and causes you to periodically regenerate 2% maximum health every 5 sec."
+        },
+        {
+          "talent": "Raise: Decaying Colossus",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise a Decaying Colossus to aid you in combat, occupying 3 Life Force. \n\nWhile active, 25% of all damage taken by the caster is taken by the Decaying Colossus.\n\nCommand: Unleash a powerful attack dealing Weapon Damage plus 100 to all enemies in front of it."
+        },
+        {
+          "talent": "Command: Blight",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 4.0,
+          "lanes": [
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Command your Decaying Colossus to blight the ground in a 10 yd radius beneath it, reducing healing received by -60% for enemies inside for 20 seconds."
+        }
+      ]
+    },
+    "Disciple of Kel'thuzad": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your spell haste by 8%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Diseased": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Expunge",
+          "tree": "Death",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Command spells on an enemy now applies Expunge if they are Diseased.Expunge (Talent)Increases the target's damage taken from your Necromancer diseases by 10% for 10 seconds, stacking 2 times."
+        }
+      ]
+    },
+    "Expunge": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Touch of Death",
+          "tree": "Death",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Allows Expunge to stack an additional time and increases the range of your Death spells by 20%."
+        },
+        {
+          "talent": "Expediting Death",
+          "tree": "Death",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Each stack of Expunge now increases the target's damage taken from your Plague of Undeath by an additional 5%."
+        }
+      ]
+    },
+    "Fetid Ward": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Activate a Fetid Ward on yourself and your Undead minions for 30 minutes.\n\nWhile active, 30% of your damage dealt heals you and your minions, split evenly amongst them, and healing received is increased by 10%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": []
+    },
+    "Flesh to Worms": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Disease an enemy, dealing 15 + 11.06% shadow SP Plague damage and generating Runic Power every 3 sec for 18 seconds.",
+      "baseTree": "Death",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Rotting Flesh",
+          "tree": "Death",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG",
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Flesh to Worms by 25% and allows its periodic damage to scale with your spell haste."
+        },
+        {
+          "talent": "Creeping Crypt",
+          "tree": "Death",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Flesh to Worms by 25% against enemies below 35% maximum health."
+        },
+        {
+          "talent": "Foul Contagion",
+          "tree": "Death",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Applying Crypt Plague now extends the duration of Flesh to Worms on the target by 1 sec."
+        }
+      ]
+    },
+    "Foul Invocation": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Transform into an undead monstrosity for 20 seconds, increasing your maximum health by 30%.\n\nWhile transformed you are immune to Fear, Sleep, Charm, and Disease effects.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Frenzied Ghoul": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "HASTE",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Ghoul Mastery",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "DMG",
+            "HASTE",
+            "CC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by your Ghouls now has a 15% chance to transform them into a Frenzied Ghoul.Frenzied Ghoul (Proc)Transformed into a Frenzied Ghoul, increasing haste by 40% for 10 seconds. Immune to movement slowing effects."
+        }
+      ]
+    },
+    "Frost Runes": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Dealing Magic damage now has a 15% chance to increase your haste by 10% for 12 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Frost Wyrm": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "STATS",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Animate: Frost Wyrm",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Animate a Frost Wyrm that flies behind the Necromancer that blasts nearby enemies every 2 sec for 30 seconds, dealing 1500 + 14.88% frost SP + 14.88% Intellect Frost damage."
+        }
+      ]
+    },
+    "Frozen": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Glacial Impact",
+          "tree": "Rime",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Requires Frozen Target\nCall down icy boulders onto a Frozen enemy, dealing 84 + 100% frost SP Frost damage."
+        },
+        {
+          "talent": "Glacier Lord",
+          "tree": "Rime",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your Glacial Impact is now guaranteed to critically strike against Frozen targets."
+        },
+        {
+          "talent": "Frigidness",
+          "tree": "Rime",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases your critical damage by 100% against Frozen targets."
+        },
+        {
+          "talent": "Permafrost",
+          "tree": "Rime",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Gives your spells a 15% chance to grant you the Permafrost, which treats your next 2 spells cast as if the target were Frozen. Lasts 12 seconds."
+        },
+        {
+          "talent": "Chilling Presence",
+          "tree": "Rime",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.36,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases the critical strike chance of Ice Barrage by 20% against Frozen targets."
+        },
+        {
+          "talent": "Soulfreeze",
+          "tree": "Rime",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "All Frost damage you deal to Frozen targets now has a 25% chance to unleash Soulfreeze on them.SoulfreezeLaunch a chain of frost at an enemy, dealing 354 + 35% frost SP Frost Damage every 1 sec for 3 seconds.\n\nEach tick generates 3 to 8 Runic Power."
+        }
+      ]
+    },
+    "Frozen Power": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 30 Passive\nIncreases your critical damage with Frost spells by 50%.",
+      "baseTree": "Rime",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Frozen Reliquary": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Create Frozen Reliquary",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Create 1 Frozen Reliquary that restores 30% of your missing mana.\n\nAllies may only use a Frozen Reliquary once per minute."
+        }
+      ]
+    },
+    "Gargoyle": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Raise: Gargoyle",
+          "tree": "Death",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise a fallen Gargoyle to aid you in combat, occupying 3 Life Force. \n\nCommand: Shoots necrotic bile at an enemy, dealing 73 + 65% SP Plague damage, dealing 50% increased damage for each of your diseases on the target."
+        }
+      ]
+    },
+    "Ghoul": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "HASTE",
+        "HEAL",
+        "AOE",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Raise: Ghoul",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Raise a Ghoul to aid you in combat occupying 1 Life Force. \n\nIts auto attacks restore 21 + 3.53% Intellect + 3.53% SP health to you.\n\nCommand: Expels leeching plague that strikes up to 5 nearby enemies, dealing 30 + 37.5% SP + 50% Intellect Plague damage, and healing you for 35 + 22% SP + 50% Intellect for each Ghoul."
+        },
+        {
+          "talent": "Ghoul Mastery",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "DMG",
+            "HASTE",
+            "CC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by your Ghouls now has a 15% chance to transform them into a Frenzied Ghoul.Frenzied Ghoul (Proc)Transformed into a Frenzied Ghoul, increasing haste by 40% for 10 seconds. Immune to movement slowing effects."
+        },
+        {
+          "talent": "Army of the Dead",
+          "tree": "Animation",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.1,
+          "lanes": [
+            "CRIT",
+            "HASTE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While only 1 Abomination is active, the critical strike chance of your Ghouls is increased by 10% and haste by 10%."
+        }
+      ]
+    },
+    "Ghoulify": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Putrifier",
+          "tree": "Animation",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the durations of Ghoulify and Mass Grave by 25%."
+        }
+      ]
+    },
+    "Glacial Impact": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Frigid Death",
+          "tree": "Rime",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Glacial Impact by 20%."
+        },
+        {
+          "talent": "Freeze Dry",
+          "tree": "Rime",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Glacial Impact now generates 20 Runic Power."
+        },
+        {
+          "talent": "Glacier Lord",
+          "tree": "Rime",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your Glacial Impact is now guaranteed to critically strike against Frozen targets."
+        },
+        {
+          "talent": "Frozen Bodies",
+          "tree": "Rime",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "When you kill an enemy that yields experience or honor or critically strike with Frost damage you now gain a stack of Frozen Bodies.Frozen BodiesIncreases the damage of your next Glacial Impact by 3% for 20 seconds, stacking 10 times.\n\nReaching 10 stacks causes your next Glacial Impact within until cancelled to critically strike for 50% increased damage."
+        },
+        {
+          "talent": "Harrowing Winds",
+          "tree": "Rime",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Glacial Impact now deals an additional 50% of the damage dealt as Frost damage to enemies within 6 yds of the primary target."
+        }
+      ]
+    },
+    "Glacial Tap": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Tap into necrotic energies, instantly regenerating 30 Runic Power.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Lich's Prodigy",
+          "tree": "Animation",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Glacial Tap now generates an additional 20 Runic Power, but its cost is increased by 25%."
+        }
+      ]
+    },
+    "Greater Zombies": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CDR",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Study of Death",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "When you cast Unholy Frenzy you now summon 3 Greater Zombies to aid you in combat for 14 seconds.\n\nDamage dealt by your Undead minions now reduces the cooldown of Unholy Frenzy by -0.5 sec."
+        }
+      ]
+    },
+    "Harvest Plague": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Unrelenting Army",
+          "tree": "Animation",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Harvest Plague now has a 40% chance to summon a Lesser Zombie to aid you in combat for 15 seconds."
+        }
+      ]
+    },
+    "Heartchill": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "HASTE",
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Chill an enemy's heart, interrupting their current spell cast.\n\nSuccessfully interrupting a spell also reduces their movement speed and haste by -80% for 3 seconds.",
+      "baseTree": "Rime",
+      "basePosition": {
+        "x": 0,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Hulking Hordes": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your maximum health and the maximum health of your summons by 10%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Ice Barrage": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Unleash a relentless volley of glacial shards, dealing 19 + 35% SP Frost damage every 0 sec for 1 seconds.\n\nAt the end of the duration, you entomb your target in ice, freezing them for 4 seconds.",
+      "baseTree": "Rime",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Refreshing Chill",
+          "tree": "Rime",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Command spells now has a 20% chance to reset the cooldown of Ice Barrage and make your cast next within 15 seconds free of cost."
+        },
+        {
+          "talent": "Piercing Icicles",
+          "tree": "Rime",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Ice Barrage by 20%."
+        },
+        {
+          "talent": "Frigid Power",
+          "tree": "Rime",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell power scaling of Lichfrost and Ice Barrage by 20%."
+        },
+        {
+          "talent": "Blood and Ice",
+          "tree": "Rime",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 8.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.8,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Each Skeletal Warrior or Skeletal Rogue now increases the damage of your Ice Barrage by 8%."
+        },
+        {
+          "talent": "Deathly Chill",
+          "tree": "Rime",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the channel and cast time of Ice Barrage by -25%."
+        },
+        {
+          "talent": "Chilling Presence",
+          "tree": "Rime",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.36,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases the critical strike chance of Ice Barrage by 20% against Frozen targets."
+        }
+      ]
+    },
+    "Ice Mastery": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your spell power by 30% of your Intellect.",
+      "baseTree": "Rime",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Icecrown": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your Frost damage dealt now increases your allies' critical strike chance against the enemy by 1% for 10 seconds, stacking 3 times.",
+      "baseTree": "Rime",
+      "basePosition": {
+        "x": 8,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Icecrown Scriptures": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Shadow and Frost damage dealt against Humanoids and Undead by 8%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Infest": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Virulency",
+          "tree": "Death",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Reinvigorate your diseases, refreshing all diseases on the target enemy and copying them, preserving their power and duration.\n\nYou may use this abilty again within 10 sec to Infest another target, applying the copied diseases."
+        },
+        {
+          "talent": "Creeping Plagues",
+          "tree": "Death",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "You may now Infest an additional target after using Virulency."
+        }
+      ]
+    },
+    "Lesser Zombie": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Unrelenting Army",
+          "tree": "Animation",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Harvest Plague now has a 40% chance to summon a Lesser Zombie to aid you in combat for 15 seconds."
+        }
+      ]
+    },
+    "Lich": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Lich Form",
+          "tree": "Rime",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Transform into a Lich, becoming Undead increasing your Frost damage dealt by 10%.\n\nWhile active you generate 3 Runic Power every 5 sec."
+        }
+      ]
+    },
+    "Lich Form": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Champion of Kel'thuzad",
+          "tree": "Rime",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nWhile your Lich Form is active, your Champion spells will now cooldown faster."
+        }
+      ]
+    },
+    "Lichfrost": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CAST",
+        "RESOURCE",
+        "COST",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Bone King",
+          "tree": "Animation",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Command spells now has a 15% chance to make your next Lichfrost within 5 seconds instant cast."
+        },
+        {
+          "talent": "Lich Essence",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            },
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.75,
+          "lanes": [
+            "DMG",
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Lichfrost by -15% and reduces your spell pushback suffered from taking damage by 50%."
+        },
+        {
+          "talent": "Living Dead",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost of Lichfrost and Crypt Swarm by -20%."
+        },
+        {
+          "talent": "Winds of Northrend",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "CC"
+          ],
+          "flags": [],
+          "description": "Increases the amount slowed by Lichfrost by -15%."
+        },
+        {
+          "talent": "Crypt Plague",
+          "tree": "Death",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 1,
+          "specialRequirement": [
+            "Fetid Ward"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 10 Passive\nDamage dealt by Crypt Swarm now applies 1 stack of Crypt Plague and Lichfrost applies 2 stacks.Crypt Plague (Damage)Deals 2 + 6% SP Plague Damage every 2 sec for 10 seconds, stacking 10 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Fiend",
+          "tree": "Death",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage and critical damage of Lichfrost by 20% against diseased targets."
+        },
+        {
+          "talent": "Bone Legion",
+          "tree": "Rime",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 18.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Lichfrost by 20% and its Runic Power generated by 50%."
+        },
+        {
+          "talent": "Ner'zhul's Blessing",
+          "tree": "Rime",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Every 3rd Command spell now makes your next Lichfrost within 10 seconds guaranteed to critically strike."
+        },
+        {
+          "talent": "Frigid Power",
+          "tree": "Rime",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell power scaling of Lichfrost and Ice Barrage by 20%."
+        }
+      ]
+    },
+    "Lichfrost's": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "SPEED",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Hoarfrost Hands",
+          "tree": "Rime",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "sec"
+            },
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "SPEED",
+            "DURATION",
+            "CC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the duration of Lichfrost's movement speed slow by 4 sec and your hit chance by 4%."
+        }
+      ]
+    },
+    "Lichplague": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Disease an enemy, dealing 151 + 22% SP Plague damage every 3 sec for 18 seconds. \n\nDamage increased by 4% for each Necromancer disease on the enemy.",
+      "baseTree": "Death",
+      "basePosition": {
+        "x": 2,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Life For Power": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "HEAL",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "You absorb 20% of healing taken and gain a shield for the amount absorbed, lasting 10 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Life Force": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "STATS",
+        "HEAL",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Summoning Adept",
+          "tree": "Animation",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Raise: Abomination"
+          ],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nIncreases your maximum Life Force by 1."
+        },
+        {
+          "talent": "Raise: Ghoul",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Raise a Ghoul to aid you in combat occupying 1 Life Force. \n\nIts auto attacks restore 21 + 3.53% Intellect + 3.53% SP health to you.\n\nCommand: Expels leeching plague that strikes up to 5 nearby enemies, dealing 30 + 37.5% SP + 50% Intellect Plague damage, and healing you for 35 + 22% SP + 50% Intellect for each Ghoul."
+        },
+        {
+          "talent": "Summoning Expert",
+          "tree": "Animation",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "flat"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "STATS"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nIncreases your maximum Life Force by 1 and your Undead minion's Stamina by 10%."
+        },
+        {
+          "talent": "Master Animator",
+          "tree": "Animation",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases your maximum Life Force by 1."
+        },
+        {
+          "talent": "Raise: Abomination",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise an Abomination to aid you in combat, occupying 3 Life Force.\n\nIt is surrounded by a disease cloud, dealing 9 + 25% SP Nature damage to enemies when they deal damage and reducing their attack speed by -20% for 15 seconds.\n\nCommand: Instantly unleashes an empowered disease cloud around it."
+        },
+        {
+          "talent": "Raise: Decaying Colossus",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise a Decaying Colossus to aid you in combat, occupying 3 Life Force. \n\nWhile active, 25% of all damage taken by the caster is taken by the Decaying Colossus.\n\nCommand: Unleash a powerful attack dealing Weapon Damage plus 100 to all enemies in front of it."
+        },
+        {
+          "talent": "Raise: Banshee",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise a Banshee to aid you in combat, occupying 2 Life Force.\n\nIt will channel on your target, dealing damage and draining their mana over time.\n\nCommand: Drains 20% of your target's mana (up to a maximum of 40% of their own maximum mana) and deals Frost damage equal to the mana drained."
+        },
+        {
+          "talent": "Raise: Gargoyle",
+          "tree": "Death",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise a fallen Gargoyle to aid you in combat, occupying 3 Life Force. \n\nCommand: Shoots necrotic bile at an enemy, dealing 73 + 65% SP Plague damage, dealing 50% increased damage for each of your diseases on the target."
+        },
+        {
+          "talent": "Raise: Skeletal Mage",
+          "tree": "Rime",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise a Skeletal Mage to aid you in combat, occupying 2 Life Force.\n\nCommand: Unleashes ice at your target and enemies within 6 yds, dealing 51 + 80% frost SP Frost damage."
+        },
+        {
+          "talent": "Champion of Kel'Thuzad",
+          "tree": "Rime",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Skeletal Mages now only cost 1 Life Force."
+        }
+      ]
+    },
+    "Mandates": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Improved Mandates",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Mandates by 20%."
+        }
+      ]
+    },
+    "March of the Dead": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "AOE",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Beckon the restless dead to rise and march forward.\n\nWhen they reach an enemy they explode, dealing 700 + 75% SP Plague damage to nearby enemies and slowing their movement speed by -70% for 3 seconds.",
+      "baseTree": "Animation",
+      "basePosition": {
+        "x": 7,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Long March",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Removes the cooldown from March of the Dead, but gives it a 1 sec cast time."
+        }
+      ]
+    },
+    "Mass Grave": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Transform up to 5 nearby enemies into a ghoul, fearing them for 40 seconds (8). Only affects Humanoids.\n\nWhile above 50 Runic Power this spell is instant cast.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Putrifier",
+          "tree": "Animation",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the durations of Ghoulify and Mass Grave by 25%."
+        }
+      ]
+    },
+    "Mutation": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "For the next 15 seconds your diseases mutate causing them to act with accelerated lethality, allowing your freshly applied diseases to tick -50% faster.",
+      "baseTree": "Death",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Naxxramas Prodigy": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Shadow and Frost resistances by 0.5 per level.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Necrosis": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the duration of your diseases by 25%.",
+      "baseTree": "Death",
+      "basePosition": {
+        "x": 6,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Ner'zhul's Blessing": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your maximum Runic Power by 20%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Overwhelming Force": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Damage dealt by your Undead minions now has a 5% chance to restore 2 Runic Power and 2% of your maximum mana.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Parasites": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Parasite Plague",
+          "tree": "Death",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt now has a 5% chance to apply Parasites for 8 seconds.ParasitesYour Undead minions feast upon the parasites on hit, leeching 15% of their damage dealt as Plague Damage to the target."
+        }
+      ]
+    },
+    "Plague of Undeath": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Disease an enemy dealing 32 + 25% shadow SP Plague damage every 3 sec and reduces the targets Holy healing received by -40% for 20 seconds.\n\nIf Plague of Undeath is dispelled, the enemy takes 456 + 125% shadow SP Plague damage and is stunned for 5 seconds.",
+      "baseTree": "Death",
+      "basePosition": {
+        "x": 2,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Expediting Death",
+          "tree": "Death",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Each stack of Expunge now increases the target's damage taken from your Plague of Undeath by an additional 5%."
+        }
+      ]
+    },
+    "Plaguefather": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Animate: Plaguefather",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 223.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Animate a Plaguefather to aid you in combat for 15 seconds. \n\nDamage dealt by this minion will emit Zombie Plague, dealing 79 + 10% SP Plague damage to nearby enemies, and reducing their attack power by 223."
+        }
+      ]
+    },
+    "Putricide's Formula": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Damage dealt by Undead minions has a 20% chance to blast up to 3 nearby enemies for 71 + 30% SP Plague damage.",
+      "baseTree": "Death",
+      "basePosition": {
+        "x": 8,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Raise": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CAST",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Graverobber",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "CAST",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost and cast time of your Raise and Animate spells by -30%."
+        },
+        {
+          "talent": "Reclaimed Life",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of your Raise spells by -15%."
+        },
+        {
+          "talent": "Grave Mastery",
+          "tree": "Animation",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nReduces the cost of all Animates, Raises, and Command spells by -20%."
+        }
+      ]
+    },
+    "Raised": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "STATS",
+        "SHIELD",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sepulchral Might",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "STATS"
+          ],
+          "flags": [],
+          "description": "Increases your Stamina by 10%.\n\nIncreases your spell damage by an amount equal to 30% of the total of your Raised minion's Stamina."
+        },
+        {
+          "talent": "Anti-Magic Shell",
+          "tree": "Animation",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SHIELD",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "When you summon a Raised minion, it now raises with a shield absorbing Magic damage equal to 40% of their maximum health."
+        }
+      ]
+    },
+    "Refreshing Chill": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Frigid Winds",
+          "tree": "Rime",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger Refreshing Chill by 5%."
+        }
+      ]
+    },
+    "Requires Frozen Target": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Glacial Impact",
+          "tree": "Rime",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Requires Frozen Target\nCall down icy boulders onto a Frozen enemy, dealing 84 + 100% frost SP Frost damage."
+        }
+      ]
+    },
+    "Ritual Return": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CC",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Summoning Ritual",
+          "tree": "Animation",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CC",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Summon a ritual circle at your location for 1 minute. While active, you may cast Ritual Return to return to it.\n\nRitual ReturnTeleport back to the position of your Scourge Transporter and remove all movement slowing effects from you."
+        }
+      ]
+    },
+    "Rotling": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Wormfood",
+          "tree": "Death",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Upon fully channeling Crypt Swarm, you summon a Rotling that will run towards the enemy and explode after 5 sec for 320 + 33.5% SP Plague damage."
+        },
+        {
+          "talent": "Muck Summoner",
+          "tree": "Death",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Periodic damage dealt now has an 5% chance to summon 2 to 3 Rotlings that will run towards the enemy and explode after 5 sec for 320 + 33.5% SP Plague damage."
+        }
+      ]
+    },
+    "Rotting Frost Giant": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CRIT",
+        "DURATION",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Giant Bones",
+          "tree": "Rime",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Casting Unholy Frenzy now summons a Rotting Frost Giant to aid you in combat for the duration."
+        },
+        {
+          "talent": "Army of the North",
+          "tree": "Rime",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Chant a powerful ritual that brings forth 1 Rotting Frost Giant near you to aid you in combat for 30 seconds and generate 30 Runic Power, repeating every 3 sec for 15 seconds.\n\nFor the duration, your Undead minions are guaranteed to critically strike."
+        }
+      ]
+    },
+    "Runic Reservoir": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Frost damage by 10% and your maximum Runic Power by 30.",
+      "baseTree": "Rime",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Sacrifice Undead": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CDR",
+        "CAST",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Summoner",
+          "tree": "Animation",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CDR",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost and cooldown of Sacrifice Undead by -20%."
+        },
+        {
+          "talent": "Gravedigger",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Sacrifice Undead by -0.5 sec."
+        }
+      ]
+    },
+    "Scourge Transporter": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CC",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Summoning Ritual",
+          "tree": "Animation",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CC",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Summon a ritual circle at your location for 1 minute. While active, you may cast Ritual Return to return to it.\n\nRitual ReturnTeleport back to the position of your Scourge Transporter and remove all movement slowing effects from you."
+        }
+      ]
+    },
+    "Shade": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Phylactery",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Create a Phylactery near you for 2 minutes.\n\nUpon taking damage which would bring you below 10% health, become a Shade, protecting you from all physical attacks and spells, but during that time you cannot attack or cast spells.\n\nReaching your Phylactery in this state revives you with 40% of your maximum health. If you do not reach it in time you will die."
+        }
+      ]
+    },
+    "Skeletal Archer": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "HASTE",
+        "DURATION",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Scourge Disciple",
+          "tree": "Animation",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Each active Skeletal Archer now increases your haste by 5%."
+        },
+        {
+          "talent": "Skeletal Artillery",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Your Animate: Skeletal Archers now summons 2 additional Skeletal Archer."
+        },
+        {
+          "talent": "Animate: Skeletal Archer",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Animate 3 Skeletal Archers to aid you in combat for 15 seconds."
+        },
+        {
+          "talent": "Summoning Prodigy",
+          "tree": "Animation",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Skeletal Archers by 3 sec."
+        }
+      ]
+    },
+    "Skeletal Mage": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Raise: Skeletal Mage",
+          "tree": "Rime",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Raise a Skeletal Mage to aid you in combat, occupying 2 Life Force.\n\nCommand: Unleashes ice at your target and enemies within 6 yds, dealing 51 + 80% frost SP Frost damage."
+        },
+        {
+          "talent": "Death and Ice",
+          "tree": "Rime",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While a Skeletal Mage is active the critical strike chance of your Undead minions is now increased by 10%."
+        },
+        {
+          "talent": "Command: Bonefreeze",
+          "tree": "Rime",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Command your Skeletal Mages to freeze enemies at target location for 40 seconds (8 sec vs players). Damage taken may end the effect."
+        },
+        {
+          "talent": "Champion of Kel'Thuzad",
+          "tree": "Rime",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Skeletal Mages now only cost 1 Life Force."
+        }
+      ]
+    },
+    "Skeletal Rogue": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Blood and Ice",
+          "tree": "Rime",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 8.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.8,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Each Skeletal Warrior or Skeletal Rogue now increases the damage of your Ice Barrage by 8%."
+        }
+      ]
+    },
+    "Skeletal Warrior": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Blood and Ice",
+          "tree": "Rime",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 8.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.8,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Each Skeletal Warrior or Skeletal Rogue now increases the damage of your Ice Barrage by 8%."
+        },
+        {
+          "talent": "Fetid Mark",
+          "tree": "Animation",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Dealing Shadow damage now increases the damage the target takes from your Skeletal Warriors by 1% for 10 seconds, stacking 10 times."
+        }
+      ]
+    },
+    "Soulfreeze": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Master Lich",
+          "tree": "Rime",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Soulfreeze now increases the enemy's Frost damage taken by you by 5% per tick for 8 sec, stacking 3 times."
+        }
+      ]
+    },
+    "Tears of Lordaeron": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Direct critical strikes now generates 5 Runic Power.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Tomb King": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Animate: Tomb King",
+          "tree": "Animation",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Animate a Tomb King to aid you in combat for 15 seconds.\n\nWhile active, all of your Undead minion's attacks deal an additional 10% of the damage dealt as Plague damage."
+        }
+      ]
+    },
+    "Tundra Warriors": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 10 Passive\nCasting any spell now has a 25% chance to grant you Tundra Warriors.Tundra Warriors (Proc)For 10 seconds, the critical strike chance of your Undead minions is increased by 4%, stacking 3 times.",
+      "baseTree": "Rime",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": []
+    },
+    "Undead Stance": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CRIT",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Putrid Summoner",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            },
+            {
+              "value": -75.0,
+              "unit": "%"
+            },
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 2.36,
+          "lanes": [
+            "CRIT",
+            "MITIGATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Each Undead Stance now provides an additional bonus:\n\nUndead: Assault: Increases your critical strike chance against Humanoids by 5%.\n\nUndead: Protect: Reduces your threat generated by -75%.\n\nUndead: Pacify: Reduces your damage taken by -10%."
+        }
+      ]
+    },
+    "Undead: Assault": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CRIT",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Putrid Summoner",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            },
+            {
+              "value": -75.0,
+              "unit": "%"
+            },
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 2.36,
+          "lanes": [
+            "CRIT",
+            "MITIGATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Each Undead Stance now provides an additional bonus:\n\nUndead: Assault: Increases your critical strike chance against Humanoids by 5%.\n\nUndead: Protect: Reduces your threat generated by -75%.\n\nUndead: Pacify: Reduces your damage taken by -10%."
+        }
+      ]
+    },
+    "Undead: Pacify": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CRIT",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Putrid Summoner",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            },
+            {
+              "value": -75.0,
+              "unit": "%"
+            },
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 2.36,
+          "lanes": [
+            "CRIT",
+            "MITIGATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Each Undead Stance now provides an additional bonus:\n\nUndead: Assault: Increases your critical strike chance against Humanoids by 5%.\n\nUndead: Protect: Reduces your threat generated by -75%.\n\nUndead: Pacify: Reduces your damage taken by -10%."
+        }
+      ]
+    },
+    "Undead: Protect": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "CRIT",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Putrid Summoner",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            },
+            {
+              "value": -75.0,
+              "unit": "%"
+            },
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 2.36,
+          "lanes": [
+            "CRIT",
+            "MITIGATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Each Undead Stance now provides an additional bonus:\n\nUndead: Assault: Increases your critical strike chance against Humanoids by 5%.\n\nUndead: Protect: Reduces your threat generated by -75%.\n\nUndead: Pacify: Reduces your damage taken by -10%."
+        }
+      ]
+    },
+    "Unholy Erosion": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 50 Passive\nIncreases your spell penetration by 50, scaling with your level.",
+      "baseTree": "Death",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Unholy Frenzy": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "DURATION",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Unstoppable Frenzy",
+          "tree": "Animation",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Unholy Frenzy by -60 sec."
+        },
+        {
+          "talent": "Study of Death",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "When you cast Unholy Frenzy you now summon 3 Greater Zombies to aid you in combat for 14 seconds.\n\nDamage dealt by your Undead minions now reduces the cooldown of Unholy Frenzy by -0.5 sec."
+        },
+        {
+          "talent": "Fleshcrafting",
+          "tree": "Death",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            },
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration Unholy Frenzy by 5 sec and casting Command spells now reduces its cooldown by -1 sec."
+        },
+        {
+          "talent": "Giant Bones",
+          "tree": "Rime",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Casting Unholy Frenzy now summons a Rotting Frost Giant to aid you in combat for the duration."
+        },
+        {
+          "talent": "Dominion of Frost",
+          "tree": "Rime",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Critical strikes dealt by your Undead minions now reduce the cooldown of Unholy Frenzy by -3 sec."
+        }
+      ]
+    },
+    "Vampiric Aura": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "While you are below 50% health, your Undead minions now heal you for 10% of their damage dealt.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Virulency": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CDR",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Creeping Plagues",
+          "tree": "Death",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "You may now Infest an additional target after using Virulency."
+        },
+        {
+          "talent": "Pandemic",
+          "tree": "Death",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Damage dealt by your Undead minions now reduces the cooldown of Virulency by -1 sec."
+        },
+        {
+          "talent": "Rot Fetishist",
+          "tree": "Death",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Virulency now applies Rot Fetishist for 10 seconds, causing you to replicate 20% of your periodic damage dealt as direct damage."
+        }
+      ]
+    },
+    "Wards": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Plague Protection",
+          "tree": "Animation",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Wards by 50%."
+        }
+      ]
+    },
+    "Zombie Plague": {
+      "kind": "spell",
+      "familyChildren": [],
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Animate: Plaguefather",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 223.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Animate a Plaguefather to aid you in combat for 15 seconds. \n\nDamage dealt by this minion will emit Zombie Plague, dealing 79 + 10% SP Plague damage to nearby enemies, and reducing their attack power by 223."
+        },
+        {
+          "talent": "Plague Horde",
+          "tree": "Animation",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by your Undead minions now has a 10% chance to cast Plague Horde on themselves for 5 seconds and emit Zombie Plague, dealing 79 + 10% SP Plague damage to their target.Plague HordeEnrage for 5 seconds, increasing their critical strike chance by 10%."
+        }
+      ]
+    }
+  }
+}

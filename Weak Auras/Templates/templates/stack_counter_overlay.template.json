@@ -1,0 +1,30 @@
+{
+  "type": "subtext",
+  "text_text": "%s",
+  "text_color": [
+    1,
+    1,
+    1,
+    1
+  ],
+  "text_font": "Friz Quadrata TT",
+  "text_fontSize": "{{font_size}}",
+  "text_fontType": "OUTLINE",
+  "text_visible": true,
+  "text_justify": "CENTER",
+  "text_selfPoint": "AUTO",
+  "anchor_point": "{{anchor_point}}",
+  "anchorXOffset": 0,
+  "anchorYOffset": 0,
+  "text_shadowColor": [
+    0,
+    0,
+    0,
+    1
+  ],
+  "text_shadowXOffset": 0,
+  "text_shadowYOffset": 0,
+  "text_automaticWidth": "Auto",
+  "text_fixedWidth": 64,
+  "text_wordWrap": "WordWrap"
+}

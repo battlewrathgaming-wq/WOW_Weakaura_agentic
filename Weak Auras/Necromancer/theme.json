@@ -1,0 +1,12 @@
+{
+  "class": "Necromancer",
+  "source": "Outputs/readout_html/necromancer_readout.html's --accent CSS variable, cross-confirmed against Outputs/class_sheets/ability_sheets_all_classes.html's embedded per-class JSON. Part of an already-established per-class accent system covering all 21 classes (spot-checked: Reaper #0a876b, Pyromancer #ff6112, Chronomancer #ffed4a all differ) - not invented for this folder.",
+  "accent_hex": "#45db9c",
+  "accent_rgba": [0.2706, 0.8588, 0.6118, 1.0],
+  "accent_rgba_note": "0-1 float conversion of accent_hex (45/db/9c / 255), ready to plug directly into a WeakAuras color field (e.g. a Class Accent icon's 'color', or an aurabar's 'barColor') - no manual hex-to-float conversion needed at fill time.",
+  "usage": [
+    "Class Accent Left/Right icons (Template_shadow.py's Row C.5, currently generic placeholders)",
+    "Any Necromancer-specific aurabar's barColor, if a class-tinted resource bar is ever wanted over the default red/white scheme",
+    "subglow's glowColor, if a class-tinted proc glow is ever wanted over the default white"
+  ]
+}

@@ -1,0 +1,6673 @@
+{
+  "class": "Starcaller",
+  "schemaVersion": 2,
+  "laneTaxonomy": {
+    "DMG": "Damage",
+    "STATS": "Primary/secondary stats",
+    "CRIT": "Crit chance/damage",
+    "CDR": "Cooldown",
+    "CAST": "Cast time",
+    "HASTE": "Haste",
+    "SPEED": "Movement speed",
+    "HEAL": "Healing",
+    "SHIELD": "Shield/absorb",
+    "MITIGATION": "Damage mitigation",
+    "RESOURCE": "Resource generation",
+    "COST": "Resource cost",
+    "DURATION": "Duration",
+    "AOE": "AoE / target count",
+    "CC": "Crowd control",
+    "ARMOR": "Armor",
+    "SUMMON": "Summon / pet",
+    "MISC": "Other"
+  },
+  "note": "Per-skill index: for each observed skill/ability, lists every talent that modifies it, where it sits in the tree, its parsed stat modification, and a mock value showing that modification applied to a normalized baseline of 10. Each modifying talent is tagged with one or more lanes from laneTaxonomy (DMG/CRIT/CDR/CAST/HASTE/SPEED/HEAL/SHIELD/MITIGATION/RESOURCE/COST/DURATION/AOE/CC/ARMOR/SUMMON/MISC), plus cross-cutting behavior flags (PROC, STACK) that describe how the effect triggers rather than what stat it touches. A handful of nodes have unresolved \"$xx\" template descriptions in the source export - these are flagged rather than guessed at.",
+  "mockBaseline": 10,
+  "skills": {
+    "Aegis": {
+      "lanes": [
+        "COST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Moonlight Ripple",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost of your Aegis spells by -10%."
+        },
+        {
+          "talent": "Cosmic Crown",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Aegis spells by 6 sec."
+        }
+      ]
+    },
+    "Aspect of the Cosmos": {
+      "lanes": [
+        "SPEED",
+        "RESOURCE",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Universal Power",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Aspect of the Cosmos now stacks 1 additional time."
+        },
+        {
+          "talent": "Cosmic Strides",
+          "tree": "Sentinel",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SPEED",
+            "RESOURCE",
+            "CC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Aspect of the Cosmos no longer slows enemy movement speed. Instead, your melee and ranged attacks now grant you 5% increased movement speed for 4 seconds, stacking 3 times."
+        },
+        {
+          "talent": "Moon Runner",
+          "tree": "Sentinel",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.5,
+          "lanes": [
+            "CC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Increases the movement slowing effect of Aspect of the Cosmos by -5% per stack."
+        }
+      ]
+    },
+    "Aspect of the Goddess": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Goddess Watch Over",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Aspect of the Goddess by 25%."
+        },
+        {
+          "talent": "Tear Drops",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Healing through Aspect of the Goddess now increases the target's healing taken from you by 1% for 10 sec, stacking up to 10 times."
+        },
+        {
+          "talent": "Phase Guider",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the bonus healing scaling of Moonwell Splash and the healing done through Aspect of the Goddess by 20%."
+        }
+      ]
+    },
+    "Aspect of the Huntress": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Hunter's Sight",
+          "tree": "Sentinel",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Aspect of the Huntress now increases your chance to hit by 3%."
+        }
+      ]
+    },
+    "Aspect of the Stars": {
+      "lanes": [
+        "DMG",
+        "HASTE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Continual Starfall",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Astral Flares called down by Aspect of the Stars now increase your haste by 3% for 5 seconds, stacking 3 times."
+        },
+        {
+          "talent": "Will of Elune",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Aspect of the Stars now strikes 2 additional nearby enemies."
+        }
+      ]
+    },
+    "Aspect of the Warden": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Scattering Blades",
+          "tree": "Warden",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Warden's Blade now increases the chance to trigger Aspect of the Warden by 10% for 8 seconds."
+        },
+        {
+          "talent": "Moontouched Weapons",
+          "tree": "Warden",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Aspect of the Warden by POWER1*0.01, scaling with maximum mana."
+        }
+      ]
+    },
+    "Aspects": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Star-Charged",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Aspects by -5 sec."
+        },
+        {
+          "talent": "Moonblessed Aspects",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Aspects by 15%."
+        },
+        {
+          "talent": "Aspect Mastery",
+          "tree": "Warden",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.2,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the effectiveness of your Aspects by 20% and their chance to trigger by 10%."
+        }
+      ]
+    },
+    "Asteroid Belt": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nEvery 15 sec, you now gain Asteroid Belt.\n\nIn addition, your hit rating is increased by 5% of your Intellect and your expertise is increased by 8.Asteroid BeltBlock rating, parry rating, and block value increased based on how much mana you had when this was applied for 15 seconds.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Astral Aegis": {
+      "lanes": [
+        "DMG",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Drains 30% Maximum Mana\nFor 10 seconds, direct Magic damage taken will silence the attacker for 1 seconds and deal 57 + 18% arcane SP Arcane damage to them.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Astral Blade": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Drains 25% Maximum Mana\nStrike an enemy with precision, dealing 16 + 100% SP + 20% AP Arcane damage, increased further based on your maximum mana.\n\nIncreases your dealt to the enemy by 15% for 5 seconds.",
+      "baseTree": "Warden",
+      "basePosition": {
+        "x": 4,
+        "y": 1
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Fury of the Stars",
+          "tree": "Warden",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Astral Blade by 20%."
+        },
+        {
+          "talent": "Astral Finesse",
+          "tree": "Warden",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Astral Blade by -4 sec."
+        },
+        {
+          "talent": "Astral Onslaught",
+          "tree": "Warden",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 7.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Astral Blade by 7 sec."
+        },
+        {
+          "talent": "Maiev's Guard",
+          "tree": "Warden",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Astral Blade now strike 2 additional times, one for 40% of the damage dealt and the other for 20% of the damage dealt."
+        },
+        {
+          "talent": "Stellar Amplification",
+          "tree": "Warden",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Dealing damage with Scattered Stars now has a 15% chance to make your next Astral Blade free of cost."
+        },
+        {
+          "talent": "Infused Blades",
+          "tree": "Warden",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Astral Blade now has a 30% chance to reset its own cooldown and refund its maximum mana cost."
+        },
+        {
+          "talent": "Spirit of Vengeance",
+          "tree": "Warden",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Fan of Knives now marks enemies with Vengeance for 10 seconds. Successfully marking an enemy increases the range of your next Astral Blade by 25 yards.\n\nCasting Astral Blade on a marked enemy causes it to deal 30% more damage."
+        },
+        {
+          "talent": "Avatar of Vengeance",
+          "tree": "Warden",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            },
+            {
+              "value": 30.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Transform into an Avatar of Vengeance, teleporting to your target and increasing your Intellect by 25% for 30 seconds. \n\nFor the duration, the range of Astral Blade is increased by 30 yards and will teleport you to your target.\n\nIf your target is an enemy, you strike them dealing 50 + 22% Intellect + 6.5% arcane SP Arcane damage per 1 sec for 8 seconds, scaling with Intellect."
+        }
+      ]
+    },
+    "Astral Flares": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Continual Starfall",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Astral Flares called down by Aspect of the Stars now increase your haste by 3% for 5 seconds, stacking 3 times."
+        }
+      ]
+    },
+    "Astral Reconstitution": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Surround yourself with lunar light, causing 30% of damage taken to be converted into mana for 10 seconds.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 4,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Blanket of Stars": {
+      "lanes": [
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Cover your shield in a blanket of stars for 8 seconds, increasing your block chance and block value by 100%.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 3,
+        "y": 1
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Dance In The Starlight",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Blanket of Stars by -10 sec."
+        },
+        {
+          "talent": "Starcovered Night",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Blanket of Stars by 4 sec."
+        }
+      ]
+    },
+    "Bonds of Justice": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Send forth bonds of justice to an enemy, tethering them to you for 8 seconds.\n\nIf the tether is broken through expiration or the target runs at least 10 yds from you, they are gripped back towards you, taking 441 + 120% arcane SP Arcane damage.",
+      "baseTree": "Warden",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Burning": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Tyrande's Training",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance and critical damage of Starfire Shot by 10% against Burning targets."
+        }
+      ]
+    },
+    "Celestial Cleave": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Pulsar Explosion",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Celestial Cleave by 20% and allows it to affect 2 additional enemies."
+        }
+      ]
+    },
+    "Celestial Divination": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your chance to dodge by 5%.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 8,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Celestial Mind": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Star Citizen",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases effectiveness of Celestial Mind by 20%."
+        }
+      ]
+    },
+    "Celestial Strike": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "RESOURCE",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Astral Projection",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Energy cost of Celestial Strike and Moon Arrow by -10."
+        },
+        {
+          "talent": "Blade of the Moon",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Consuming Scattered Stars now has a 15% chance to transform Celestial Strike into Moonblade for 8 seconds.MoonbladeDevastate an enemy, dealing 130% Weapon Damage plus 100% Intellect Arcane damage and regenerating 15% missing mana."
+        },
+        {
+          "talent": "Lunar Charge",
+          "tree": "Warden",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "After using Shooting Star, your next Celestial Strike, Starsunder or auto attack ends the effect to deal 87 + 28.75% arcane SP + 4.65% AP Arcane damage, increased based on distance travelled."
+        }
+      ]
+    },
+    "Chosen of the Moon": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Become the chosen of the moon, reducing all Physical damage taken by -60% and taunting all enemies within 8 yds for 10 seconds.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 2,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Coalesced Resilience": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces your damage taken by an amount equal to 1% of your maximum mana.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 2,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Constellation Barrier": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces all Magic damage taken by -5%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Consumes Scattered Stars": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Starsweep",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 5,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "RESOURCE",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Consumes Scattered Stars\nSweep an enemy and all nearby enemies with your astral blade, dealing 30 + 30% AP + 35% SP Arcane damage.\n\nEvery Scattered Star consumed reduces the cooldown of this spell by -3 sec.Consume Scattered StarsDeals 7 + 18.22% SP Arcane Damage and restores 8% maximum mana for each Scattered Star."
+        },
+        {
+          "talent": "Starfire Shot",
+          "tree": "Sentinel",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Consumes Scattered Stars\nFire an enchanted arrow, dealing 100% Ranged Weapon Damage plus 62+66+POWER1*0.01 Arcane damage, scaling further based on your maximum mana.Consume Scattered StarsDeals 7 + 18.22% SP Arcane Damage and restores 8% maximum mana for each Scattered Star."
+        },
+        {
+          "talent": "Umbral Blade",
+          "tree": "Warden",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Consumes Scattered Stars\nSlash an enemy, dealing 97 + 63.5% arcane SP + 20% AP Arcane damage to them and nearby enemies. Each additional enemy beyond the first takes 20% less damage."
+        }
+      ]
+    },
+    "Cosmic Harmony": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Cosmic Duality",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            },
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.03,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Dealing damage grants you Cosmic Harmony, increasing the healing of your next ability within 6 seconds by 5%.\n\nEffective healing grants you Cosmic Wrath, increasing the damage of your next ability within 6 seconds by 5%."
+        }
+      ]
+    },
+    "Cosmic Shift": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Shift the target ally out of the physical plane, granting improved stealth for 10 seconds.\n\nDoes not break on damage taken.",
+      "baseTree": "Moon Priest",
+      "basePosition": {
+        "x": 2,
+        "y": 8
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Lunar Phasing",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Cosmic Shift now dispels all harmful effects from the target."
+        }
+      ]
+    },
+    "Cosmic Wrath": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Cosmic Duality",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            },
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.03,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Dealing damage grants you Cosmic Harmony, increasing the healing of your next ability within 6 seconds by 5%.\n\nEffective healing grants you Cosmic Wrath, increasing the damage of your next ability within 6 seconds by 5%."
+        }
+      ]
+    },
+    "Crystal Shield": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 30 Passive\nIncreases your Stamina by 10% and increases your spell damage by 25% of your attack power.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Dancing in the Moonlight": {
+      "lanes": [
+        "DMG",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 50 Passive\nParrying an attack now regenerates 15 of your Energy and deals 65% Weapon Damage to the attacker.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Diseased": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Lunar Blessing",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases your healing done by 6%, plus an additional 6% on Poisoned or Diseased targets."
+        }
+      ]
+    },
+    "Drawstring of Elune": {
+      "lanes": [
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Starfire Power",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Casting Starfire Shot now has a 20% chance to grant you Drawstring of Elune for 5 sec.Drawstring of Elune (SLS)Huntress Shot and Starcall apply an additional stack of Scattered Stars and your ranged ability attack range is increased to 50 yds."
+        }
+      ]
+    },
+    "Eclipse of Fury": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Improved Eclipse of Fury",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Eclipse of Fury by 40%."
+        }
+      ]
+    },
+    "Eclipsing Arrows": {
+      "lanes": [
+        "CRIT",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Stellar Convergence",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Applies Eclipsing Arrows to all party and raid members within 40 yds."
+        },
+        {
+          "talent": "Lunar Cascade",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Moonflow and Prayer of Elune now apply Eclipsing Arrows to the target for 20 seconds.\n\nCasting Huntress Shot heals marked allies for 235 + 30% SP."
+        }
+      ]
+    },
+    "Elune's Blessing": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases party and raid member's melee and ranged haste by 10%.\n\nDoes not stack with similar effects.",
+      "baseTree": "Sentinel",
+      "basePosition": {
+        "x": 4,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Elune's Presence": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Gain the blessing of a goddess, granting all party or raid members within 40 yds 20% temporary maximum health for 10 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Enchanted Aegis": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your successful blocks now have a 50% chance to critically block for twice the normal amount.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 5,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Enduring Moon": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Critical strikes now increase the target's spell damage taken by 10% for 15 seconds.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 5,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Explosive Moonlight": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 30 Passive\nIncreases your ranged attack power by 30% of your Intellect and your hit rating by 3% of your Intellect.",
+      "baseTree": "Sentinel",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Eye of Elune": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical strike chance by 5%.",
+      "baseTree": "Sentinel",
+      "basePosition": {
+        "x": 5,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Fan of Knives": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Lethal Pursuit",
+          "tree": "Warden",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Fan of Knives by -5 sec."
+        },
+        {
+          "talent": "Pierce The Night",
+          "tree": "Warden",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Fan of Knives now applies an additional stack of Scattered Stars to each enemy struck."
+        },
+        {
+          "talent": "Spirit of Vengeance",
+          "tree": "Warden",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Fan of Knives now marks enemies with Vengeance for 10 seconds. Successfully marking an enemy increases the range of your next Astral Blade by 25 yards.\n\nCasting Astral Blade on a marked enemy causes it to deal 30% more damage."
+        }
+      ]
+    },
+    "Flow of Mana": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Intellect and Strength by 10%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Flow of Waters": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 3%.",
+      "baseTree": "Moon Priest",
+      "basePosition": {
+        "x": 5,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Font of Magic": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Each time you spend a cumulative 100% of your maximum mana, you heal for 4% of your maximum health.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 4,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Full Moon": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Cycle of the Moon",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Every 10 seconds, you cycle between Full Moon and New Moon.Full MoonIncreases your critical strike chance by 5%.New MoonDamage dealt has a 25% chance to apply Scattered Stars."
+        },
+        {
+          "talent": "Full Cycle",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.9,
+          "lanes": [
+            "HEAL",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Hand of Elune gains the following Full Moon and New Moon effects.\n\nFull Moon: Healing increased by 10%.\n\nNew Moon: Cost reduced by -10%."
+        }
+      ]
+    },
+    "Full Moon:": {
+      "lanes": [
+        "HEAL",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Full Cycle",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.9,
+          "lanes": [
+            "HEAL",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Hand of Elune gains the following Full Moon and New Moon effects.\n\nFull Moon: Healing increased by 10%.\n\nNew Moon: Cost reduced by -10%."
+        }
+      ]
+    },
+    "Halt": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Teleport to a target location, silencing all enemies around you for 4 seconds.",
+      "baseTree": "Warden",
+      "basePosition": {
+        "x": 0,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Hand of Elune": {
+      "lanes": [
+        "CAST",
+        "HEAL",
+        "COST",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Lunar Swiftness",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Moon Arrow now reduces the cast time of the next Hand of Elune within 8 seconds by -20%, stacking 5 times."
+        },
+        {
+          "talent": "Eclipsing Arrows",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing done by Hand of Elune or Touch of Moonlight now marks allies for 20 seconds.\n\nCasting Huntress Shot now heals marked allies for 235 + 30% SP."
+        },
+        {
+          "talent": "Teachings of Elune",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the healing of Hand of Elune and Moonflow by 20%."
+        },
+        {
+          "talent": "Elune's Grace",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "HEAL",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Critical heals with Hand of Elune now increase the target's armor by 10% for 10 seconds."
+        },
+        {
+          "talent": "Full Cycle",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.9,
+          "lanes": [
+            "HEAL",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Hand of Elune gains the following Full Moon and New Moon effects.\n\nFull Moon: Healing increased by 10%.\n\nNew Moon: Cost reduced by -10%."
+        },
+        {
+          "talent": "Elune's Favor",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Hand of Elune and Touch of Moonlight now heal for an additional 50% of their value over 10 seconds."
+        },
+        {
+          "talent": "Enchanted Stream",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the critical healing of Hand of Elune and Moonflow by 15%."
+        },
+        {
+          "talent": "Elune's Blessing",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nYour Hand of Elune now gains an additional 30% of your bonus healing."
+        }
+      ]
+    },
+    "Huntress Saber": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Night Hunter",
+          "tree": "Sentinel",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Huntress Saber by -60 sec."
+        }
+      ]
+    },
+    "Huntress Shot": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL",
+        "RESOURCE",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Moon Priest",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Touch of Moonlight"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour Huntress Shot now has a Lunar Eclipse effect.\n\nHuntress Shot: Applies 2 additional Scattered Stars."
+        },
+        {
+          "talent": "Eclipsing Arrows",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing done by Hand of Elune or Touch of Moonlight now marks allies for 20 seconds.\n\nCasting Huntress Shot now heals marked allies for 235 + 30% SP."
+        },
+        {
+          "talent": "Lunar Cascade",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Moonflow and Prayer of Elune now apply Eclipsing Arrows to the target for 20 seconds.\n\nCasting Huntress Shot heals marked allies for 235 + 30% SP."
+        },
+        {
+          "talent": "Drawstring of Elune",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Huntress Shot and Starcall apply an additional stack of Scattered Stars and your ranged ability attack range is increased to 50 yds for 20 seconds."
+        },
+        {
+          "talent": "Sentinel's Focus",
+          "tree": "Sentinel",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Starfire Shot now has a 20% chance to fire a free Huntress Shot at the target."
+        },
+        {
+          "talent": "Enduring Hunt",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost of Huntress Shot and Trueshot by -30%."
+        },
+        {
+          "talent": "On The Hunt",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Starfire Shot now increases the damage the enemy takes from your Huntress Shot by 10% for 8 seconds, stacking 2 times."
+        },
+        {
+          "talent": "Starfire Power",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Casting Starfire Shot now has a 20% chance to grant you Drawstring of Elune for 5 sec.Drawstring of Elune (SLS)Huntress Shot and Starcall apply an additional stack of Scattered Stars and your ranged ability attack range is increased to 50 yds."
+        }
+      ]
+    },
+    "Huntress Shots": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Arrows In The Night",
+          "tree": "Sentinel",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Huntress Shots now strike 3 additional enemies and explode with astral energy for 10 seconds, dealing 30 + 8.14% arcane SP + 3% ranged AP Arcane damage.\n\nDamage dealt by Starcall reduces the cooldown of this ability by -2 sec."
+        }
+      ]
+    },
+    "Huntress Training": {
+      "lanes": [
+        "STATS",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 10 Passive\nIncreases your haste rating by 8% of your Intellect.",
+      "baseTree": "Sentinel",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": []
+    },
+    "Huntress of Elune": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your damage dealt by 10% on enemies further than 30 yds.",
+      "baseTree": "Sentinel",
+      "basePosition": {
+        "x": 3,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Infused Aegis": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Drains 30% Maximum Mana\nInstantly counterattack any enemy that strikes you from the front in melee for Arcane damage, lasting 10 seconds. Can only occur once per sec per enemy.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 0
+      },
+      "modifyingTalents": []
+    },
+    "Lunar Eclipse": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HEAL",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Moon Priest",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Touch of Moonlight"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour Huntress Shot now has a Lunar Eclipse effect.\n\nHuntress Shot: Applies 2 additional Scattered Stars."
+        },
+        {
+          "talent": "Moonflow",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "HEAL",
+            "RESOURCE",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Send forth moonwell waters to all nearby allies, healing them for 49 + 22.86% healing.\n\nLunar Eclipse: Triggers with no cooldown and consumes Scattered Stars from enemies you are in combat with within 40 yds.Consume Scattered StarsDeals 7 + 18.22% SP Arcane Damage and restores 8% maximum mana for each Scattered Star."
+        },
+        {
+          "talent": "Moonwell Acuity",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nThe Lunar Eclipse effect of Moonwell Splash now causes it to affect 3 targets."
+        }
+      ]
+    },
+    "Lunar Lance": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Lunar Anomaly",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Lunar Lance by 50%."
+        },
+        {
+          "talent": "Moonlit Lancer",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Lunar Lance now deals additional Arcane damage over 20 sec."
+        },
+        {
+          "talent": "Astral Lancer",
+          "tree": "Sentinel",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 20 Passive\nIncreases the critical damage of Lunar Lance by 50%."
+        },
+        {
+          "talent": "Celestial Prowess",
+          "tree": "Sentinel",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Lunar Lance and Starfire Shot by 10%."
+        },
+        {
+          "talent": "Moonstone",
+          "tree": "Warden",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Lunar Lance by 20%."
+        },
+        {
+          "talent": "Astral Combatant",
+          "tree": "Warden",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Lunar Lance and Umbral Blade increase the enemy damage taken from Scattered Stars by 10% for 10 seconds."
+        }
+      ]
+    },
+    "Lunar Lances": {
+      "lanes": [
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Omnipresent Moon",
+          "tree": "Sentinel",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Lunar Lances now strikes an additional nearby enemy."
+        }
+      ]
+    },
+    "Lunar Phase": {
+      "lanes": [
+        "CRIT",
+        "HASTE",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Bright Moon",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Allows Lunar Phase to stack 4 additional times."
+        },
+        {
+          "talent": "Celestial Mind",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 20 Passive\nYou now passively gain 1 stack of Lunar Phase 1 sec faster."
+        },
+        {
+          "talent": "Rapid Cycle",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Lunar Phase now increases your ranged haste by 4% per stack."
+        },
+        {
+          "talent": "Moon Gazing",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 40 Passive\nYour critical strikes now generate a stack of Lunar Phase. Can only occur once per sec."
+        }
+      ]
+    },
+    "Lunar Resplendence": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your healing done to allies below 20% health by 30%.",
+      "baseTree": "Moon Priest",
+      "basePosition": {
+        "x": 4,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Maiev's Discipline": {
+      "lanes": [
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your critical strike rating by 12% of your Intellect and your expertise by 10% of your Intellect.",
+      "baseTree": "Warden",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Moon Arrow": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "CAST",
+        "MITIGATION",
+        "RESOURCE",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Astral Projection",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Energy cost of Celestial Strike and Moon Arrow by -10."
+        },
+        {
+          "talent": "Lunar Swiftness",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Moon Arrow now reduces the cast time of the next Hand of Elune within 8 seconds by -20%, stacking 5 times."
+        },
+        {
+          "talent": "Lunar Prophecy",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Moon Arrow now reduces the cooldown of Prayer of Elune by -3 sec."
+        },
+        {
+          "talent": "Exemplary Draw",
+          "tree": "Sentinel",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Moon Arrow deals 20% more damage and increases the target's spell damage taken by 10% for 12 seconds."
+        },
+        {
+          "talent": "Ishnu-alah",
+          "tree": "Sentinel",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Moon Arrow restores an additional 4% of your maximum mana."
+        }
+      ]
+    },
+    "Moon Guard": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 10 Passive\nYou now gain Intellect equal to your Strength.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": []
+    },
+    "Moonblade": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Blade of the Moon",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Consuming Scattered Stars now has a 15% chance to transform Celestial Strike into Moonblade for 8 seconds.MoonbladeDevastate an enemy, dealing 130% Weapon Damage plus 100% Intellect Arcane damage and regenerating 15% missing mana."
+        },
+        {
+          "talent": "Lunar Knight",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 18.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the damage of your Moonblade and Starsweep by 50% and their chance to critically strike by 20%."
+        }
+      ]
+    },
+    "Moonflare": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Moonflares",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Avoiding melee attacks will call down a Moonflare at the attacker, dealing 66 Arcane damage.\n\nCan occur only once per second."
+        },
+        {
+          "talent": "Moonveil Screen",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Starsunder and Moonflare by 20%."
+        }
+      ]
+    },
+    "Moonflow": {
+      "lanes": [
+        "CRIT",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Lunar Revelation",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Moonflow by 10%."
+        },
+        {
+          "talent": "Teachings of Elune",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the healing of Hand of Elune and Moonflow by 20%."
+        },
+        {
+          "talent": "Enchanted Stream",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the critical healing of Hand of Elune and Moonflow by 15%."
+        },
+        {
+          "talent": "Lunar Cascade",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Moonflow and Prayer of Elune now apply Eclipsing Arrows to the target for 20 seconds.\n\nCasting Huntress Shot heals marked allies for 235 + 30% SP."
+        }
+      ]
+    },
+    "Moonlit Bulwark": {
+      "lanes": [
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Grants you a shield for an amount equal to your maximum mana for 10 seconds. \n\nUsable while stunned.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Moonlit Impaler": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Arcane damage by 10% and your hit chance by 4%.",
+      "baseTree": "Warden",
+      "basePosition": {
+        "x": 6,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Moonlit Slumber": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Put an enemy to sleep for 30 seconds (6 sec vs players). Damage dealt will end the effect.\n\nWhile sleeping, you drain 98 mana from them every 3 sec.",
+      "baseTree": "Moon Priest",
+      "basePosition": {
+        "x": 0,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Moonstone Hilt": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your parry chance by 5% and block value by 30%.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 4,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Moonwalk": {
+      "lanes": [
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your movement speed by 20% at night.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Warrior of Elune",
+          "tree": "Warden",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.55,
+          "lanes": [
+            "HASTE",
+            "SPEED"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Increases your melee haste by 5% and movement speed by 10%.\n\nMovement speed granted by this talent stacks with Moonwalk."
+        }
+      ]
+    },
+    "Moonwater": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Rippling Moonwater",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your healing effects now apply Moonwater to the target, stacking 5 times.MoonwaterDealing damage will consume a stack to heal you."
+        }
+      ]
+    },
+    "Moonwell": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Creates a zone blessed by moonwell waters for 15 seconds at the target location. \n\nAll allied players standing within the well receive 25% more healing, and their mana regeneration is increased by 100%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Moonwell Splash": {
+      "lanes": [
+        "CRIT",
+        "CAST",
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Enchanted Well",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -0.3,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Moonwell Splash by -0.3 sec."
+        },
+        {
+          "talent": "Moonwell Acuity",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nThe Lunar Eclipse effect of Moonwell Splash now causes it to affect 3 targets."
+        },
+        {
+          "talent": "Phase Guider",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the bonus healing scaling of Moonwell Splash and the healing done through Aspect of the Goddess by 20%."
+        },
+        {
+          "talent": "Star Pupil",
+          "tree": "Warden",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "CRIT",
+            "CAST",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your damaging critical strikes now grant you a stack of Star Pupil.Star PupilReduces the cast time of Moonwell Splash by -25% for 8 seconds, stacking 4 times.\n\nWhile this is active, Moonwell Splash is castable while moving."
+        }
+      ]
+    },
+    "Mu'sha's Resilience": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces Arcane damage taken by -15%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "New Moon": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Cycle of the Moon",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Every 10 seconds, you cycle between Full Moon and New Moon.Full MoonIncreases your critical strike chance by 5%.New MoonDamage dealt has a 25% chance to apply Scattered Stars."
+        },
+        {
+          "talent": "Full Cycle",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.9,
+          "lanes": [
+            "HEAL",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Hand of Elune gains the following Full Moon and New Moon effects.\n\nFull Moon: Healing increased by 10%.\n\nNew Moon: Cost reduced by -10%."
+        }
+      ]
+    },
+    "New Moon:": {
+      "lanes": [
+        "HEAL",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Full Cycle",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.9,
+          "lanes": [
+            "HEAL",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Hand of Elune gains the following Full Moon and New Moon effects.\n\nFull Moon: Healing increased by 10%.\n\nNew Moon: Cost reduced by -10%."
+        }
+      ]
+    },
+    "Nightborne Armaments": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "While below 35% health, your damage taken is reduced by -10%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Poisoned": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Lunar Blessing",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases your healing done by 6%, plus an additional 6% on Poisoned or Diseased targets."
+        }
+      ]
+    },
+    "Prayer of Elune": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Say a prayer to Elune, healing up to 12 allies within 40 yds for 77 + 27.57% healing, and dispel 1 harmful magic effect from them.",
+      "baseTree": "Moon Priest",
+      "basePosition": {
+        "x": 6,
+        "y": 1
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Last Prayer",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Stellar Convergence now resets the cooldown of Prayer of Elune."
+        },
+        {
+          "talent": "Lunar Prophecy",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Moon Arrow now reduces the cooldown of Prayer of Elune by -3 sec."
+        },
+        {
+          "talent": "Healing Prayers",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Prayer of Elune gains an additional 20% of your bonus healing effects."
+        },
+        {
+          "talent": "Final Prayer",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Prayer of Elune now dispels 1 additional effect."
+        },
+        {
+          "talent": "Lunar Cascade",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Moonflow and Prayer of Elune now apply Eclipsing Arrows to the target for 20 seconds.\n\nCasting Huntress Shot heals marked allies for 235 + 30% SP."
+        }
+      ]
+    },
+    "Protected by the Stars": {
+      "lanes": [
+        "STATS",
+        "DURATION",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Armor by 300% of your Intellect and reduces the duration of stuns and disarms against you by -25%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Reverse Magic": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reverse the next spell cast on you within 3 seconds, reflecting it back to its caster.\n\nReversing a spell in this way drains 600 + 20% SP of the attacker's mana.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Scattered Star": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "HEAL",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Starshatter",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Call down the power of the stars, sending forth Elune\u2019s astral light in a line outward from you, stunning enemies struck for 5 seconds and applying a Scattered Star."
+        },
+        {
+          "talent": "Second Moon",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Every 10th Scattered Star consumed now launches a comet at an enemy dealing 304 + 30% arcane SP Arcane damage to 5 enemies within 5 yds."
+        },
+        {
+          "talent": "Starburst",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            },
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Applies 1 Scattered Star Per Hit\nSmash up to 8 enemies, dealing 2 + 30% arcane SP + 15% AP Arcane damage, scaling with block value and maximum mana and reducing their attack speed by -20% for 10 seconds.\n\nConsuming a Scattered Star reduces the remaining cooldown of Starburst by -2 sec."
+        },
+        {
+          "talent": "Starsweep",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 5,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "RESOURCE",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Consumes Scattered Stars\nSweep an enemy and all nearby enemies with your astral blade, dealing 30 + 30% AP + 35% SP Arcane damage.\n\nEvery Scattered Star consumed reduces the cooldown of this spell by -3 sec.Consume Scattered StarsDeals 7 + 18.22% SP Arcane Damage and restores 8% maximum mana for each Scattered Star."
+        },
+        {
+          "talent": "Vengeful Inspiration",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Increases your attack speed by 10% and causes critical strikes with melee attacks to apply a Scattered Star."
+        },
+        {
+          "talent": "Moonflow",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "HEAL",
+            "RESOURCE",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Send forth moonwell waters to all nearby allies, healing them for 49 + 22.86% healing.\n\nLunar Eclipse: Triggers with no cooldown and consumes Scattered Stars from enemies you are in combat with within 40 yds.Consume Scattered StarsDeals 7 + 18.22% SP Arcane Damage and restores 8% maximum mana for each Scattered Star."
+        },
+        {
+          "talent": "Blessed By The Stars",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your ranged damage dealt now has a 15% chance to unleash a Scattered Star."
+        },
+        {
+          "talent": "Celestial Form",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.1,
+          "lanes": [
+            "CRIT",
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Ascend into a celestial form for 15 seconds, increasing your critical strike chance by 10%.\n\nWhile active, critical strikes now reduce the remaining cooldown of all healing spells by 10% and apply a Scattered Star to your target and up to 4 enemies within 5 yds of them."
+        },
+        {
+          "talent": "Starfire Shot",
+          "tree": "Sentinel",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Consumes Scattered Stars\nFire an enchanted arrow, dealing 100% Ranged Weapon Damage plus 62+66+POWER1*0.01 Arcane damage, scaling further based on your maximum mana.Consume Scattered StarsDeals 7 + 18.22% SP Arcane Damage and restores 8% maximum mana for each Scattered Star."
+        },
+        {
+          "talent": "Starcall",
+          "tree": "Sentinel",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Blast the target enemy and all enemies near them with lunar fire that deals 70 + 33% arcane SP Arcane damage, applying Scattered Stars.\n\nConsuming a Scattered Star reduces the remaining cooldown by -1.5 sec.\nScattered StarsCan be consumed by spells to deal additional Arcane Damage. Lasts 30 seconds, stacking 4 times."
+        },
+        {
+          "talent": "Cascade",
+          "tree": "Sentinel",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Every 8th Scattered Star you consume increases the damage of your next Starcall by 50%."
+        },
+        {
+          "talent": "Fan of Knives",
+          "tree": "Warden",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "AOE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Applies 1 Scattered Star Per Hit\nUnleash hidden blades upon nearby enemies, dealing 10 + 30% SP Arcane damage scaling with maximum mana.\n\nConsuming a Scattered Star reduces the remaining cooldown of Fan of Knives by -2 sec.Scattered StarsCan be consumed by spells to deal additional Arcane Damage. Lasts 30 seconds, stacking 4 times."
+        },
+        {
+          "talent": "Rally The Sentinels",
+          "tree": "Warden",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Sentinel Glaive now restores 20% of your maximum mana and applies a Scattered Star to the enemy."
+        }
+      ]
+    },
+    "Scattered Stars": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "CDR",
+        "SPEED",
+        "HEAL",
+        "RESOURCE",
+        "AOE",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Galaxy",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Scattered Stars can now stack 2 additional times."
+        },
+        {
+          "talent": "Aspect of the Cosmos",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "DMG",
+            "SPEED",
+            "CC"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Melee and ranged damage dealt has a 40% chance to slow enemy movement speed by -20% for 10 seconds, stacking 2 times and apply Scattered Stars.Scattered StarsCan be consumed by spells to deal additional Arcane Damage. Lasts 30 seconds, stacking 4 times."
+        },
+        {
+          "talent": "Pouch of Stardust",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance and critical damage of consumed Scattered Stars by 10%."
+        },
+        {
+          "talent": "Nebula",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Blocking enemy attacks now applies Scattered Stars to the attacker."
+        },
+        {
+          "talent": "Blade of the Moon",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Consuming Scattered Stars now has a 15% chance to transform Celestial Strike into Moonblade for 8 seconds.MoonbladeDevastate an enemy, dealing 130% Weapon Damage plus 100% Intellect Arcane damage and regenerating 15% missing mana."
+        },
+        {
+          "talent": "Celestial Guard",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nIncreases the effectiveness of consuming Scattered Stars by 50%."
+        },
+        {
+          "talent": "Aspect of the Goddess",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "While active, your healing done is increased by 10% and your spells and abilities will not be able to miss.\n\nIn addition, consuming Scattered Stars now heals up to 5 allies around the target for 73 + 14.97% healing."
+        },
+        {
+          "talent": "Moon Priest",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Touch of Moonlight"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour Huntress Shot now has a Lunar Eclipse effect.\n\nHuntress Shot: Applies 2 additional Scattered Stars."
+        },
+        {
+          "talent": "Moonflow",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "HEAL",
+            "RESOURCE",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Send forth moonwell waters to all nearby allies, healing them for 49 + 22.86% healing.\n\nLunar Eclipse: Triggers with no cooldown and consumes Scattered Stars from enemies you are in combat with within 40 yds.Consume Scattered StarsDeals 7 + 18.22% SP Arcane Damage and restores 8% maximum mana for each Scattered Star."
+        },
+        {
+          "talent": "Cycle of the Moon",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Every 10 seconds, you cycle between Full Moon and New Moon.Full MoonIncreases your critical strike chance by 5%.New MoonDamage dealt has a 25% chance to apply Scattered Stars."
+        },
+        {
+          "talent": "Rampaging Waters",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            },
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Damage dealt by Scattered Stars now increases your healing by 1% and critical strike chance by 1% for 10 seconds, stacking 10 times."
+        },
+        {
+          "talent": "Starcrash",
+          "tree": "Sentinel",
+          "position": {
+            "x": 5,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage dealt by consuming Scattered Stars by 20%."
+        },
+        {
+          "talent": "Drawstring of Elune",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Huntress Shot and Starcall apply an additional stack of Scattered Stars and your ranged ability attack range is increased to 50 yds for 20 seconds."
+        },
+        {
+          "talent": "Starcall",
+          "tree": "Sentinel",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Blast the target enemy and all enemies near them with lunar fire that deals 70 + 33% arcane SP Arcane damage, applying Scattered Stars.\n\nConsuming a Scattered Star reduces the remaining cooldown by -1.5 sec.\nScattered StarsCan be consumed by spells to deal additional Arcane Damage. Lasts 30 seconds, stacking 4 times."
+        },
+        {
+          "talent": "Star-Guided Arrows",
+          "tree": "Sentinel",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Scattered Stars now has a 25% chance to refresh a charge of Trueshot."
+        },
+        {
+          "talent": "Celestial Shot",
+          "tree": "Sentinel",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nIncreases the effectiveness of consuming Scattered Stars by 40%."
+        },
+        {
+          "talent": "Lunar Splinters",
+          "tree": "Sentinel",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of consuming Scattered Stars by 10%."
+        },
+        {
+          "talent": "Starfire Power",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Casting Starfire Shot now has a 20% chance to grant you Drawstring of Elune for 5 sec.Drawstring of Elune (SLS)Huntress Shot and Starcall apply an additional stack of Scattered Stars and your ranged ability attack range is increased to 50 yds."
+        },
+        {
+          "talent": "Lo'sho Amplification",
+          "tree": "Sentinel",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nScattered Stars now burn enemy mana equal to 10% of the damage dealt."
+        },
+        {
+          "talent": "Arrow of the Goddess",
+          "tree": "Sentinel",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Fire a star-infused arrow hitting enemies in a line, dealing 400% Ranged Weapon Damage plus POWER1*0.25 Arcane damage, scaling with maximum mana and applying Scattered Stars to them.Scattered StarsCan be consumed by spells to deal additional Arcane Damage. Lasts 30 seconds, stacking 4 times."
+        },
+        {
+          "talent": "Unleashed Wisps",
+          "tree": "Sentinel",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Dealing damage with Scattered Stars has a 30% chance to launch a Wisp at your target, dealing 80 + 13.5% arcane SP Arcane damage to nearby enemies."
+        },
+        {
+          "talent": "Warden Training",
+          "tree": "Warden",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Warden's Blade"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 10 Passive\nCritically striking with Starsunder now applies an additional stack of Scattered Stars.Scattered StarsCan be consumed by spells to deal additional Arcane Damage. Lasts 30 seconds, stacking 4 times."
+        },
+        {
+          "talent": "Celestial Surge",
+          "tree": "Warden",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage dealt by consuming Scattered Stars by 10%."
+        },
+        {
+          "talent": "Celestial Glaives",
+          "tree": "Warden",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 30 Passive\nYour Scattered Stars can now stack 2 additional times."
+        },
+        {
+          "talent": "Astral Combatant",
+          "tree": "Warden",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Lunar Lance and Umbral Blade increase the enemy damage taken from Scattered Stars by 10% for 10 seconds."
+        },
+        {
+          "talent": "Stellar Amplification",
+          "tree": "Warden",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Dealing damage with Scattered Stars now has a 15% chance to make your next Astral Blade free of cost."
+        },
+        {
+          "talent": "Lunar Combatant",
+          "tree": "Warden",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nIncreases the effectiveness of consuming Scattered Stars by 50%."
+        },
+        {
+          "talent": "Pierce The Night",
+          "tree": "Warden",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Fan of Knives now applies an additional stack of Scattered Stars to each enemy struck."
+        }
+      ]
+    },
+    "Sentinel Glaive": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Throw a sentinel glaive at an enemy, dealing Weapon Damage plus 53 as Arcane damage, increased further based on your maximum mana, and increasing their resource costs by 15% for 8 seconds.",
+      "baseTree": "Warden",
+      "basePosition": {
+        "x": 7,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Rally The Sentinels",
+          "tree": "Warden",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Sentinel Glaive now restores 20% of your maximum mana and applies a Scattered Star to the enemy."
+        },
+        {
+          "talent": "Wrath of Elune",
+          "tree": "Warden",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Sentinel Glaive by -5 sec."
+        }
+      ]
+    },
+    "Shadowsong's Mandate": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Highest Order",
+          "tree": "Warden",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            },
+            {
+              "value": 60.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Reduces the cooldown of Shadowsong's Mandate by -25% and increases the chance to trigger Warden's Blade by 60%."
+        }
+      ]
+    },
+    "Shooting Star": {
+      "lanes": [
+        "SPEED",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Sprint forward with astral magic at your feet, increasing your movement speed by 60% for 4 seconds. \n\nWhile active, you cannot be slowed and cannot stop moving.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Twinkle Toes",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Increases the movement speed granted by Shooting Star by 20%."
+        },
+        {
+          "talent": "Lunar Charge",
+          "tree": "Warden",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "After using Shooting Star, your next Celestial Strike, Starsunder or auto attack ends the effect to deal 87 + 28.75% arcane SP + 4.65% AP Arcane damage, increased based on distance travelled."
+        }
+      ]
+    },
+    "Shrouded Stars": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces damage taken by all party and raid members by -3%.\n\nDoes not stack with similar effects.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Starbarian": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your haste by 6%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Starbound": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your healing done and received by 10%, doubled while below 20% health.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 3,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Starburst": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Tyrande's Guidance",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of your Starburst by 10%."
+        }
+      ]
+    },
+    "Starburst Invigoration": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Energy regeneration by 15%.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 1,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Starcall": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Drawstring of Elune",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Huntress Shot and Starcall apply an additional stack of Scattered Stars and your ranged ability attack range is increased to 50 yds for 20 seconds."
+        },
+        {
+          "talent": "Cascade",
+          "tree": "Sentinel",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Every 8th Scattered Star you consume increases the damage of your next Starcall by 50%."
+        },
+        {
+          "talent": "Arrows In The Night",
+          "tree": "Sentinel",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Huntress Shots now strike 3 additional enemies and explode with astral energy for 10 seconds, dealing 30 + 8.14% arcane SP + 3% ranged AP Arcane damage.\n\nDamage dealt by Starcall reduces the cooldown of this ability by -2 sec."
+        },
+        {
+          "talent": "Moonmancer",
+          "tree": "Sentinel",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Starcall by -50%."
+        },
+        {
+          "talent": "Starfire Power",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Casting Starfire Shot now has a 20% chance to grant you Drawstring of Elune for 5 sec.Drawstring of Elune (SLS)Huntress Shot and Starcall apply an additional stack of Scattered Stars and your ranged ability attack range is increased to 50 yds."
+        }
+      ]
+    },
+    "Starfire Barrage": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$96",
+      "baseTree": "Sentinel",
+      "basePosition": {
+        "x": 1,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Starfire Shot": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CAST",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Tyrande's Training",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance and critical damage of Starfire Shot by 10% against Burning targets."
+        },
+        {
+          "talent": "Sentinel's Focus",
+          "tree": "Sentinel",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Starfire Shot now has a 20% chance to fire a free Huntress Shot at the target."
+        },
+        {
+          "talent": "Tyrande's Vigilance",
+          "tree": "Sentinel",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Starfire Shot by -0.5 sec."
+        },
+        {
+          "talent": "Tyrande's Guidance",
+          "tree": "Sentinel",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage dealt by Starfire Shot by 20%."
+        },
+        {
+          "talent": "Celestial Prowess",
+          "tree": "Sentinel",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Lunar Lance and Starfire Shot by 10%."
+        },
+        {
+          "talent": "On The Hunt",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Starfire Shot now increases the damage the enemy takes from your Huntress Shot by 10% for 8 seconds, stacking 2 times."
+        },
+        {
+          "talent": "Starfire Power",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Casting Starfire Shot now has a 20% chance to grant you Drawstring of Elune for 5 sec.Drawstring of Elune (SLS)Huntress Shot and Starcall apply an additional stack of Scattered Stars and your ranged ability attack range is increased to 50 yds."
+        }
+      ]
+    },
+    "Starlight Duelist": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Blocking or parrying an attack now increases your damage dealt by 10% for 6 seconds.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 7,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Starlit Finesse": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your hit and critical strike chance by 3%.",
+      "baseTree": "Moon Guard",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Starshatter": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Shattered Stars",
+          "tree": "Sentinel",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the range of Starshatter by 10 yds."
+        }
+      ]
+    },
+    "Starsunder": {
+      "lanes": [
+        "DMG",
+        "COST",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Moonveil Screen",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Starsunder and Moonflare by 20%."
+        },
+        {
+          "talent": "Mooncharged Blades",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Blocking an attack allows your next Starsunder to hit an additional nearby enemy and cost -30% less mana."
+        },
+        {
+          "talent": "Warden Training",
+          "tree": "Warden",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Warden's Blade"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 10 Passive\nCritically striking with Starsunder now applies an additional stack of Scattered Stars.Scattered StarsCan be consumed by spells to deal additional Arcane Damage. Lasts 30 seconds, stacking 4 times."
+        },
+        {
+          "talent": "Lunar Charge",
+          "tree": "Warden",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "After using Shooting Star, your next Celestial Strike, Starsunder or auto attack ends the effect to deal 87 + 28.75% arcane SP + 4.65% AP Arcane damage, increased based on distance travelled."
+        }
+      ]
+    },
+    "Starsunders": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Pulverizing Blade",
+          "tree": "Warden",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Warden's Blade now grants you Pulverizing Blade.\nPulverizing BladeNext 5 Starsunders within 20 seconds deal increasing damage, scaling with 10% of Intellect, with each subsequent use, stacking 5 times."
+        }
+      ]
+    },
+    "Starsweep": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Lunar Knight",
+          "tree": "Moon Guard",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 18.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the damage of your Moonblade and Starsweep by 50% and their chance to critically strike by 20%."
+        }
+      ]
+    },
+    "Stellar Convergence": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Mending Surge",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Stellar Convergence by -30 sec."
+        },
+        {
+          "talent": "Last Prayer",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Stellar Convergence now resets the cooldown of Prayer of Elune."
+        }
+      ]
+    },
+    "The Stars Align": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your maximum mana by 10%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 0,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Touch of Moonlight": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Drains 10% Maximum Mana\nQuickly heal an ally with Elune's touch, scaling with maximum mana.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Eclipsing Arrows",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing done by Hand of Elune or Touch of Moonlight now marks allies for 20 seconds.\n\nCasting Huntress Shot now heals marked allies for 235 + 30% SP."
+        },
+        {
+          "talent": "Enchanted Water",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 70.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.4,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Increases the healing of Touch of Moonlight by 20% and reduces spell pushback suffered from damaging attacks by 70%."
+        },
+        {
+          "talent": "Elune's Favor",
+          "tree": "Moon Priest",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Hand of Elune and Touch of Moonlight now heal for an additional 50% of their value over 10 seconds."
+        }
+      ]
+    },
+    "Trueshot": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$98",
+      "baseTree": "Sentinel",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Enduring Hunt",
+          "tree": "Sentinel",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost of Huntress Shot and Trueshot by -30%."
+        },
+        {
+          "talent": "Star-Guided Arrows",
+          "tree": "Sentinel",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Scattered Stars now has a 25% chance to refresh a charge of Trueshot."
+        },
+        {
+          "talent": "Lunar Amplification",
+          "tree": "Sentinel",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Trueshot by 25%."
+        }
+      ]
+    },
+    "Umbral Blade": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Astral Combatant",
+          "tree": "Warden",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Lunar Lance and Umbral Blade increase the enemy damage taken from Scattered Stars by 10% for 10 seconds."
+        }
+      ]
+    },
+    "Vengeance": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Spirit of Vengeance",
+          "tree": "Warden",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Fan of Knives now marks enemies with Vengeance for 10 seconds. Successfully marking an enemy increases the range of your next Astral Blade by 25 yards.\n\nCasting Astral Blade on a marked enemy causes it to deal 30% more damage."
+        }
+      ]
+    },
+    "Vial of Moonwell Water": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Drink from your enchanted moonwell vial, instantly removing all crowd control effects and making you immune to them for 3 seconds.\n\nUsable while stunned, feared, or polymorphed.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Moonwell Tides",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Casting Vial of Moonwell Water now additionally heals you equal to 25% of your current mana."
+        }
+      ]
+    },
+    "Vigil of the Watchers": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases critical strike chance of all party and raid members by 3%.\n\nDoes not stack with similar effects.",
+      "baseTree": "Warden",
+      "basePosition": {
+        "x": 1,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Warden's Blade": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$9a",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Guided Blades",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Warden's Blade by -5 sec."
+        },
+        {
+          "talent": "Glaive Tossing",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the range of Warden's Blade by 20 yds."
+        },
+        {
+          "talent": "Warden Training",
+          "tree": "Warden",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Warden's Blade by -25%."
+        },
+        {
+          "talent": "Scattering Blades",
+          "tree": "Warden",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Warden's Blade now increases the chance to trigger Aspect of the Warden by 10% for 8 seconds."
+        },
+        {
+          "talent": "Warden's Precision",
+          "tree": "Warden",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Warden's Blade now launches an additional 2 blades at the target, dealing 49 + 24.5% SP Spellstrike Damage."
+        },
+        {
+          "talent": "Shadowsong's Mandate",
+          "tree": "Warden",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases your critical strike chance by 15% for 10 seconds.\n\nWhile active, your damaging critical strikes have a 40% chance to trigger Warden's Blade."
+        },
+        {
+          "talent": "Astral Blessing",
+          "tree": "Warden",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nDamaging critical strikes now reduce the cooldown of Warden's Blade by -1 sec."
+        },
+        {
+          "talent": "Pulverizing Blade",
+          "tree": "Warden",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Warden's Blade now grants you Pulverizing Blade.\nPulverizing BladeNext 5 Starsunders within 20 seconds deal increasing damage, scaling with 10% of Intellect, with each subsequent use, stacking 5 times."
+        },
+        {
+          "talent": "Highest Order",
+          "tree": "Warden",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            },
+            {
+              "value": 60.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Reduces the cooldown of Shadowsong's Mandate by -25% and increases the chance to trigger Warden's Blade by 60%."
+        }
+      ]
+    },
+    "Way of the Goddess": {
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the duration of harmful magic effects on you by -25%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Wisp": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Unleashed Wisps",
+          "tree": "Sentinel",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Dealing damage with Scattered Stars has a 30% chance to launch a Wisp at your target, dealing 80 + 13.5% arcane SP Arcane damage to nearby enemies."
+        }
+      ]
+    },
+    "Wrath of the Moon": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Arcane critical damage dealt by 20%.",
+      "baseTree": "Warden",
+      "basePosition": {
+        "x": 2,
+        "y": 7
+      },
+      "modifyingTalents": []
+    }
+  }
+}

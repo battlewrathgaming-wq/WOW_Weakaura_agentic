@@ -1,0 +1,14 @@
+{
+  "$id": "class_accent_tick_end.schema.json",
+  "title": "Class accent tick - permanent end-cap marker",
+  "description": "A permanent subtick, placed at the bar's own 100% (AtPercent) position, colored with the owning class's accent - marks a resource bar's own max extent/range of travel so its fill % has a reference point even when it visually abuts another element (e.g. a backing plate) with matching background darkness. Distinct from a threshold_value marker (AtValue, a specific number) - this one is always 'the end of this bar,' not tied to any particular resource value.",
+  "type": "object",
+  "properties": {
+    "end_cap_color": {
+      "type": "array",
+      "description": "RGBA, typically the owning class's theme.json accent_rgba."
+    }
+  },
+  "usage_rule": "Scoped 2026-07-06 (twelfth pass), per Battlewrath: only belongs on a bar that sits at a console's outer position and touches ANOTHER element at the console's shared center seam (e.g. Mana/Runic Power on the left touching Cast Bar/Swing Timer's backing plates at the middle) - confirmed live with a real screenshot (Mana's bar: green tick at its own max extent, distinct from the blue current-value fill). NOT a blanket default for every aurabar - a standalone bar with open space/game background on both sides has no adjacent element to visually fuse into in the first place, so it doesn't need a reference marker. Cast Bar/Swing Timer are the concrete counter-example: they already end cleanly against their own backing plate and then the game background, so they get no end-cap at all.",
+  "verified": "SubRegionTypes/Tick.lua read directly. tick_placement_mode='AtPercent' resolves 'minValue + tick_placements[i]*valueRange/100' against the bar's live GetMinMaxProgress() (UpdateTickPlacementOne, ~line 272) - placement 100 always lands at the bar's own current true max, independent of any other region (confirmed: the width scaled against is self.parentMajorSize, from self.parent.bar:GetRealSize(), where self.parent is THIS aurabar - no shared reference with a backing plate or any sibling element). FIELD-PARITY BUG, found and fixed 2026-07-06 (eleventh pass) via a real live-test round-trip: Battlewrath imported a fragment missing progressSources/automatic_length/tick_texture (present in Tick.lua's default()) and with tick_placements as a number; in-game the tick showed the stock default placement (50) until manually re-entered, and Battlewrath's own re-exported aura (decoded via weakaura_codec.py) confirmed real WeakAuras stores tick_placements as a string once committed through its options UI. This fragment now matches Tick.lua's default() table field-for-field, with tick_placements pre-set as the string '100' (not user-configurable - this fragment is always 'the end of the bar', unlike threshold_value)."
+}

@@ -1,0 +1,5805 @@
+{
+  "class": "Stormbringer",
+  "schemaVersion": 2,
+  "laneTaxonomy": {
+    "DMG": "Damage",
+    "STATS": "Primary/secondary stats",
+    "CRIT": "Crit chance/damage",
+    "CDR": "Cooldown",
+    "CAST": "Cast time",
+    "HASTE": "Haste",
+    "SPEED": "Movement speed",
+    "HEAL": "Healing",
+    "SHIELD": "Shield/absorb",
+    "MITIGATION": "Damage mitigation",
+    "RESOURCE": "Resource generation",
+    "COST": "Resource cost",
+    "DURATION": "Duration",
+    "AOE": "AoE / target count",
+    "CC": "Crowd control",
+    "ARMOR": "Armor",
+    "SUMMON": "Summon / pet",
+    "MISC": "Other"
+  },
+  "note": "Per-skill index: for each observed skill/ability, lists every talent that modifies it, where it sits in the tree, its parsed stat modification, and a mock value showing that modification applied to a normalized baseline of 10. Each modifying talent is tagged with one or more lanes from laneTaxonomy (DMG/CRIT/CDR/CAST/HASTE/SPEED/HEAL/SHIELD/MITIGATION/RESOURCE/COST/DURATION/AOE/CC/ARMOR/SUMMON/MISC), plus cross-cutting behavior flags (PROC, STACK) that describe how the effect triggers rather than what stat it touches. A handful of nodes have unresolved \"$xx\" template descriptions in the source export - these are flagged rather than guessed at.",
+  "mockBaseline": 10,
+  "skills": {
+    "Aegis": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Spellstorm Mastery",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Aegis spells by 30%."
+        }
+      ]
+    },
+    "Aeroblast": {
+      "lanes": [
+        "DMG",
+        "CAST",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Air Flow",
+          "tree": "Wind",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -0.3,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Aeroblast by -0.3 sec."
+        },
+        {
+          "talent": "Invigoration",
+          "tree": "Wind",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Aeroblast now grants your Air Elemental a stack of Invigoration.\nInvigorationIncreases the damage of your Air Elemental by 3% for 15 seconds, stacking 10 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Master Elementalist",
+          "tree": "Wind",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell damage scaling of Shock by 10% and Aeroblast by 20%."
+        }
+      ]
+    },
+    "Aerodynamics": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Depletes 40 Static\nEnvelop party and raid members within 40 yds in magical mist, increasing their attack or spell power by 95 for 15 seconds.\n\nDoes not stack with similar effects.",
+      "baseTree": "Wind",
+      "basePosition": {
+        "x": 10,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Aether Mastery": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Allows 60% of your mana regeneration to continue while casting and increases your critical strike chance by 4%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Air Elemental": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$50",
+      "baseTree": "Wind",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Power the Elements",
+          "tree": "Wind",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.48,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage dealt by your Air Elemental's spells by 20% and your Nature damage dealt by 4%."
+        },
+        {
+          "talent": "Storm Bond",
+          "tree": "Wind",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by your Air Elemental now generates you 2 Static."
+        },
+        {
+          "talent": "Invigoration",
+          "tree": "Wind",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Aeroblast now grants your Air Elemental a stack of Invigoration.\nInvigorationIncreases the damage of your Air Elemental by 3% for 15 seconds, stacking 10 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Unshackle",
+          "tree": "Wind",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            },
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 16.25,
+          "lanes": [
+            "DMG",
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Depletes 50 Static\nTransforms your Air Elemental into a more powerful form for 15 seconds, increasing damage dealt by 25% and spell haste by 30%."
+        },
+        {
+          "talent": "Enveloping Winds",
+          "tree": "Wind",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 390.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "ARMOR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Gale now causes your Air Elemental to cast Gale.\n\nAdditionally, you now emanate an aura around you, increasing the Armor of party and raid members by 390.\n\nDoes not stack with similar effects."
+        },
+        {
+          "talent": "Gift of Air",
+          "tree": "Wind",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.5,
+              "unit": "sec"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.8,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "HASTE",
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Kiss of the Clouds now empowers your Air Elemental with Gift of Air for 30 seconds.\n\nIn addition, your critical strikes now extend the duration of your Tailwind by 1.5 sec.\nGift of AirIncreases damage dealt by 20%, spell haste by 15%, and heals for 13.75 every 2 sec."
+        },
+        {
+          "talent": "Aeromancy",
+          "tree": "Wind",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Updraft will now cause your Air Elemental to cast its own Updraft beneath you."
+        },
+        {
+          "talent": "Windsurf",
+          "tree": "Wind",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Command your Air Elemental to windsurf to you, intercepting the next melee or ranged attack made against you, and allowing you to cast Shock and Call Lightning while moving for 15 seconds."
+        },
+        {
+          "talent": "Flurry",
+          "tree": "Wind",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 75.0,
+              "unit": "flat"
+            },
+            {
+              "value": -2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.8,
+          "lanes": [
+            "DMG",
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Depletes 10 Static\nCommand your Air Elemental, causing its next instance of damage to unleash a flurry of air on your target, dealing 763 + 140% nature SP Nature damage over 21 seconds, and reducing their resistances by 75, and increasing their Magic damage taken by -2%."
+        },
+        {
+          "talent": "Comforting Winds",
+          "tree": "Wind",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            },
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG",
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your damage dealt now increases the haste of your Air Elemental by 1% for 10 seconds, stacking 5 times.\n\nDamage dealt by your Air Elemental now increases your haste by 1% for 10 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Skyfall",
+          "tree": "Wind",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG",
+            "SPEED",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Depletes 40 Static\nCommand your Air Elemental, causing its next instance of damage within 8 seconds to strike an enemy, dealing 1349 + 100% arcane SP Nature damage and increasing the movement speed of all nearby allies by 30% for 15 seconds."
+        }
+      ]
+    },
+    "Airing Out": {
+      "lanes": [
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the duration of incapacitate and disorient effects by -20%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 0,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Arcane Lightning": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Intellect and Spirit by 5%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Arm of Thorim": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Superconductor",
+          "tree": "Lightning",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of your Arm of Thorim by an additional 1% per Static depleted."
+        },
+        {
+          "talent": "Thorim's Gift",
+          "tree": "Lightning",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Arm of Thorim now leaves unstable electricity beneath the target, dealing damage equal to 10% of its damage dealt to enemies within every 1 sec for 3 seconds."
+        },
+        {
+          "talent": "Fulmination",
+          "tree": "Lightning",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Call Lightning and Arm of Thorim by 30% against targets affected by your Volt."
+        },
+        {
+          "talent": "Electric Energy",
+          "tree": "Lightning",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of your Shock, Call Lightning, and Arm of Thorim by 20%."
+        },
+        {
+          "talent": "Invoking Storms",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell power scaling of Shock, Call Lightning, and Arm of Thorim by 30%."
+        },
+        {
+          "talent": "Sparks",
+          "tree": "Lightning",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Electrocute and Arm of Thorim now increase the target's chance to be critically hit by spells by 3% for 10 seconds."
+        },
+        {
+          "talent": "Titanstorm",
+          "tree": "Lightning",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Call Lightning or Electrocute now reduces the cooldown of Arm of Thorim and Lightning Cage by -1.5 sec."
+        },
+        {
+          "talent": "Flux Arc",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Forked Lightning and Arm of Thorim now marks enemies for 6 sec. \n\nYour Call Lightning against marked enemies deals an additional 15% of its damage to them and nearby enemies."
+        }
+      ]
+    },
+    "Arm of Thorim's": {
+      "lanes": [
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "High Voltage",
+          "tree": "Lightning",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Arm of Thorim's stun effect by 1 sec."
+        }
+      ]
+    },
+    "Binder of Storms": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$56",
+      "baseTree": "Maelstrom",
+      "basePosition": {
+        "x": 2,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Body of Lightning": {
+      "lanes": [
+        "DMG",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Depletes 25 Static\nInfuse an ally with lightning for 12 seconds, regenerating 15% of their maximum mana plus 1% every 1 sec. \n\nWhile active, damage dealt deals an additional 75 + 15% nature SP Nature damage to nearby enemies",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Surge Overload",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Your Body of Lightning now regenerates 1% additional maximum mana per tick."
+        },
+        {
+          "talent": "Improved Body of Lightning",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Body of Lightning by -30 sec."
+        },
+        {
+          "talent": "Lingering Storm",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of your Stormcloak, Conjure Storm and Body of Lightning by 30%."
+        },
+        {
+          "talent": "Storm Clouds",
+          "tree": "Wind",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Body of Lightning is now automatically cast on you when you cast it on an ally."
+        }
+      ]
+    },
+    "Call Lightning": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "CAST",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Storm Chaser",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "DMG",
+            "CAST"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Dealing direct spell damage now has a 33% chance to reduce the cast time of your next Call Lightning by -15% for 10 seconds, stacking 2 times."
+        },
+        {
+          "talent": "Fulmination",
+          "tree": "Lightning",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Call Lightning and Arm of Thorim by 30% against targets affected by your Volt."
+        },
+        {
+          "talent": "Electric Energy",
+          "tree": "Lightning",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of your Shock, Call Lightning, and Arm of Thorim by 20%."
+        },
+        {
+          "talent": "Invoking Storms",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell power scaling of Shock, Call Lightning, and Arm of Thorim by 30%."
+        },
+        {
+          "talent": "Titanstorm",
+          "tree": "Lightning",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Call Lightning or Electrocute now reduces the cooldown of Arm of Thorim and Lightning Cage by -1.5 sec."
+        },
+        {
+          "talent": "Flux Arc",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Forked Lightning and Arm of Thorim now marks enemies for 6 sec. \n\nYour Call Lightning against marked enemies deals an additional 15% of its damage to them and nearby enemies."
+        },
+        {
+          "talent": "Lord of Lightning",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Storm Ascendance now additionally grants you Lord of Lightning for 20 seconds.Lord of LightningIncreases the damage dealt by Forked Lightning, Call Lightning, and Electrocute by an additional 30% and allows Electrocute to strike 3 additional enemies."
+        },
+        {
+          "talent": "Focal Point",
+          "tree": "Wind",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 15,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Casting Call Lightning now increases the critical strike chance of party and raid members by 5% for 10 seconds.\n\nDoes not stack with similar effects."
+        },
+        {
+          "talent": "Evergale",
+          "tree": "Wind",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Call Lightning now refreshes a charge of Gale."
+        },
+        {
+          "talent": "Windsurf",
+          "tree": "Wind",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Command your Air Elemental to windsurf to you, intercepting the next melee or ranged attack made against you, and allowing you to cast Shock and Call Lightning while moving for 15 seconds."
+        }
+      ]
+    },
+    "Call of the Storm": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Storm Sorcery",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Call of the Winds and Call of the Storm by 20%."
+        }
+      ]
+    },
+    "Call of the Winds": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Storm Sorcery",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Call of the Winds and Call of the Storm by 20%."
+        }
+      ]
+    },
+    "Clear Skies": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases chance to hit with all spells and attacks by 1% for you and party and raid members.\n\nDoes not stack with similar effects.",
+      "baseTree": "Wind",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Cloudburst": {
+      "lanes": [
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Create a mighty gust of wind that knocks away all nearby enemies.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Storm Rider",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Gale Guard and Cloudburst by -5 sec."
+        },
+        {
+          "talent": "Child of the Storm",
+          "tree": "Wind",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Cloudburst and Windsurf by -20%."
+        }
+      ]
+    },
+    "Conduction": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Shockingly Powerful",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Conduction now has a -25% chance to not consume Conductive."
+        }
+      ]
+    },
+    "Conductive": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$58",
+      "baseTree": "Maelstrom",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Drown",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Attempt to drown an enemy, reducing their healing received by -20% for 8 seconds. At the end of the duration, unleash a creature from the depths dealing cond(gt(SPFR, SPN), 83+0+SPFR*1, 83+0+SPN*1) Frost Damage.\n\nEach time you generate a stack of Conductive you increase their damage taken from this effect, stacking up to 5 times."
+        },
+        {
+          "talent": "Voltaic Mastery",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Deluge is increased by 5% for each stack of Conductive."
+        },
+        {
+          "talent": "Kinetic Energy",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "CRIT",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Casting a spell that consumes Conductive now grants you a stack of Kinetic Energy.Kinetic EnergyCritical strike chance increased by 2%, stacking 3 times, for 10 seconds.\n\nAdditional applications do not refresh the duration."
+        },
+        {
+          "talent": "Hydromatic",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 50 Passive\nYour Electrocute is now affected by Conductive, increasing its damage by 10% per stack."
+        },
+        {
+          "talent": "Shockingly Powerful",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Conduction now has a -25% chance to not consume Conductive."
+        }
+      ]
+    },
+    "Conductor In Charge": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases all damage dealt by party and raid members by 3% and your Frost damage dealt by 5%.\n\nDoes not stack with similar effects.",
+      "baseTree": "Maelstrom",
+      "basePosition": {
+        "x": 5,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Conjure Storm": {
+      "lanes": [
+        "CRIT",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Conjuration Mastery",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Conjure Storm now refunds 10 Static."
+        },
+        {
+          "talent": "Lingering Storm",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of your Stormcloak, Conjure Storm and Body of Lightning by 30%."
+        },
+        {
+          "talent": "Titanic Thunderbolt",
+          "tree": "Lightning",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 8.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.8,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Shock, Conjure Storm, and Eye of the Storm by 8%."
+        },
+        {
+          "talent": "Stormy Days",
+          "tree": "Lightning",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the tick rate of Conjure Storm by -25%."
+        }
+      ]
+    },
+    "Dark Skies": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "When your direct damage spells fail to critically strike, your critical strike chance is increased by 2% for 10 seconds, stacking up to 5 times.\n\nCritically striking removes this effect.",
+      "baseTree": "Lightning",
+      "basePosition": {
+        "x": 7,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Deluge": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$52",
+      "baseTree": "Maelstrom",
+      "basePosition": {
+        "x": 1,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Voltaic Mastery",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Deluge is increased by 5% for each stack of Conductive."
+        }
+      ]
+    },
+    "Depletes All Static": {
+      "lanes": [
+        "DMG",
+        "CAST",
+        "SHIELD",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Arm of Thorim",
+          "tree": "Lightning",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Electrocutioner",
+            "Body of Lightning"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Depletes All Static\nCall down a terrible beam of lightning upon an enemy, dealing 135 + 120% nature SP Nature damage and stunning them for 1 seconds.\n\nDamage and cast time increased based on Static level."
+        },
+        {
+          "talent": "Thunder Ward",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SHIELD",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Depletes All Static\nEncase yourself in an electrical shield, removing and making you immune to all physical attacks and spells for 10 seconds.\n\nCannot generate Static for the duration."
+        }
+      ]
+    },
+    "Discharge": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Concentrated Static",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Casting Discharge now restores 5% more mana."
+        },
+        {
+          "talent": "Altered Course",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Discharge now increases your movement speed by 20% for 6 seconds, stacking 2 times."
+        },
+        {
+          "talent": "Ride the Lightning",
+          "tree": "Lightning",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Depletes 40 Static\nInfuse yourself with lightning and blink forward a long distance, dealing 540 + 50% SP Nature damage to all enemies in your path.\n\nScales with modifiers to Discharge"
+        }
+      ]
+    },
+    "Drown": {
+      "lanes": [
+        "CRIT",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Flow of Wrath",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases your critical strike chance by 15% against enemies affected by Drown."
+        },
+        {
+          "talent": "Undertow",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Drown by 50%."
+        },
+        {
+          "talent": "Washed Away",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Drown by -15 sec."
+        },
+        {
+          "talent": "Static Electricity",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Torrential Wrath now spawn an Electrified Water Elemental to aid you in combat for 20 sec.\n\nWhen an Electrified Water Elemental dissipates, the cooldown of your Drown is reduced by -1.5 sec."
+        },
+        {
+          "talent": "Electrified Waters",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your direct critical strikes against an enemy affected by Drown spawn an Electrified Water Elemental to aid you in combat for 20 seconds.\n\nWhen an Electrified Water Elemental dissipates, the cooldown of your Drown is reduced by -1.5 sec."
+        }
+      ]
+    },
+    "Drowning": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Bursting",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Increases the stack value of Drowning by 20%."
+        }
+      ]
+    },
+    "Electrified Water Elemental": {
+      "lanes": [
+        "CRIT",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Static Electricity",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Torrential Wrath now spawn an Electrified Water Elemental to aid you in combat for 20 sec.\n\nWhen an Electrified Water Elemental dissipates, the cooldown of your Drown is reduced by -1.5 sec."
+        },
+        {
+          "talent": "Electrified Waters",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your direct critical strikes against an enemy affected by Drown spawn an Electrified Water Elemental to aid you in combat for 20 seconds.\n\nWhen an Electrified Water Elemental dissipates, the cooldown of your Drown is reduced by -1.5 sec."
+        }
+      ]
+    },
+    "Electrifying Aura": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases critical strike chance of all party and raid members by 3%.\n\nDoes not stack with similar effects.",
+      "baseTree": "Lightning",
+      "basePosition": {
+        "x": 5,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Electrocute": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Electrocutioner",
+          "tree": "Lightning",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 1,
+          "specialRequirement": [
+            "Body of Lightning"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 10 Passive\nDealing spell damage now has a 5% chance to grant you Electrocutioner.Electrocutioner (Proc)Resets the cooldown of Electrocute and makes your next usable regardless of the target's health percentage.\n\nChance increases based on Static level."
+        },
+        {
+          "talent": "Fast as Lightning",
+          "tree": "Lightning",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nWhile Electrocutioner is active, your Electrocute now gains 20% increased damage."
+        },
+        {
+          "talent": "Never Strikes Twice?",
+          "tree": "Lightning",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Electrocute now has a 25% chance to strike again."
+        },
+        {
+          "talent": "Jolt",
+          "tree": "Lightning",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the damage and critical strike chance of Electrocute by 20%."
+        },
+        {
+          "talent": "Sparks",
+          "tree": "Lightning",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Electrocute and Arm of Thorim now increase the target's chance to be critically hit by spells by 3% for 10 seconds."
+        },
+        {
+          "talent": "Titanstorm",
+          "tree": "Lightning",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Call Lightning or Electrocute now reduces the cooldown of Arm of Thorim and Lightning Cage by -1.5 sec."
+        },
+        {
+          "talent": "Crackling Devastation",
+          "tree": "Lightning",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of Electrocute by 30%."
+        },
+        {
+          "talent": "Lord of Lightning",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Storm Ascendance now additionally grants you Lord of Lightning for 20 seconds.Lord of LightningIncreases the damage dealt by Forked Lightning, Call Lightning, and Electrocute by an additional 30% and allows Electrocute to strike 3 additional enemies."
+        },
+        {
+          "talent": "Conduit",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Dealing Frost damage now has a 60% chance to increase the damage the target takes from Electrocute by 15% for 10 seconds, stacking up to 4 times."
+        },
+        {
+          "talent": "Raining and Pouring",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of your Torrential Wrath and Electrocute by 30%."
+        },
+        {
+          "talent": "Lethal Current",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 60.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 16.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Electrocute by 60% against enemies below 20% health."
+        },
+        {
+          "talent": "Storm Synergy",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nYour Electrocute can now be used while channeling Stormflow."
+        },
+        {
+          "talent": "Hydromatic",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 50 Passive\nYour Electrocute is now affected by Conductive, increasing its damage by 10% per stack."
+        },
+        {
+          "talent": "Cyclone's Recharge",
+          "tree": "Wind",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Shock, Gale or Electrocute now reduces the remaining cooldown of your Kiss of the Clouds by -1 sec."
+        }
+      ]
+    },
+    "Electrocutioner": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Fast as Lightning",
+          "tree": "Lightning",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nWhile Electrocutioner is active, your Electrocute now gains 20% increased damage."
+        }
+      ]
+    },
+    "Evacuate": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Nimbus",
+          "tree": "Wind",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Instantly resets the cooldown of your Evacuate, Windsurf, and Unshackle."
+        }
+      ]
+    },
+    "Exhale": {
+      "lanes": [
+        "AOE",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Depletes 20 Static\nRelease the pressure from nearby allies, dispelling 1 movement slowing effect, repeating every 3 sec for 9 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Exhaustion": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Surge of Might",
+          "tree": "Wind",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Emanate an aura around you for 15 seconds, causing allied players within 100 yds to deal 70% nature SP additional damage as Nature damage when they deal direct damage.\n\nApplies Exhaustion, preventing you from benefiting from similar effects for 1 minute."
+        }
+      ]
+    },
+    "Eye of the Storm": {
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Mark an enemy for 4 seconds. Every 1 sec, enemies near them take cond(gt(SPFR, SPN), 11+0+SPFR*0.42, 11+0+SPN*0.42) Nature damage.\n\nAt the end of the duration, enemies near them also take cond(gt(SPFR, SPN), 42+0+SPFR*0.64, 42+0+SPN*0.64) Nature damage and are rooted for 4 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Titanic Thunderbolt",
+          "tree": "Lightning",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 8.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.8,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Shock, Conjure Storm, and Eye of the Storm by 8%."
+        },
+        {
+          "talent": "Thundershocker",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "While rooted by Eye of the Storm, affected enemies now take 30% increased damage from you."
+        },
+        {
+          "talent": "Stormcaller",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown and mana cost of Eye of the Storm by -30%."
+        }
+      ]
+    },
+    "Fog": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Concentrate elemental magic to create an 8 yd wide cloudy barrier at your feet for 8 seconds.\n\nEnemies are unable to target into or out of the Fog.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Forked Lightning": {
+      "lanes": [
+        "DMG",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Improved Forked Lightning",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Forked Lightning now affects 1 additional enemy."
+        },
+        {
+          "talent": "Lightning Rod",
+          "tree": "Lightning",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Forked Lightning now has a 20% chance to spread an active Volt on your target to each affected enemy.\n\nChance increases based on Static level."
+        },
+        {
+          "talent": "Flux Arc",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Forked Lightning and Arm of Thorim now marks enemies for 6 sec. \n\nYour Call Lightning against marked enemies deals an additional 15% of its damage to them and nearby enemies."
+        },
+        {
+          "talent": "Lord of Lightning",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Storm Ascendance now additionally grants you Lord of Lightning for 20 seconds.Lord of LightningIncreases the damage dealt by Forked Lightning, Call Lightning, and Electrocute by an additional 30% and allows Electrocute to strike 3 additional enemies."
+        },
+        {
+          "talent": "Thunder Wave",
+          "tree": "Lightning",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION",
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Forked Lightning has a 5% chance to transform it into Thunder Wave.Thunder Wave (Spell)Bring lightning down upon an enemy and nearby enemies, dealing 206 + 65% arcane SP Spellstorm Damage and refreshing the duration of Volt on enemies struck.\n\nDeals 30% increased damage to enemies affected by Volt."
+        }
+      ]
+    },
+    "Gale": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "3 Charges, 10 sec recharge\nGenerates 20 Static\nBlast an enemy and up to 2 nearby enemies with a powerful gust of wind for 53 + 42% nature SP Nature damage.",
+      "baseTree": "Wind",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Evergale",
+          "tree": "Wind",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Call Lightning now refreshes a charge of Gale."
+        },
+        {
+          "talent": "Unrelenting Winds",
+          "tree": "Wind",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Gale by 15%."
+        },
+        {
+          "talent": "Master Airbender",
+          "tree": "Wind",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Gale now reduces the cooldown of abilities that deplete Static by -1 sec."
+        },
+        {
+          "talent": "Enveloping Winds",
+          "tree": "Wind",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 390.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "ARMOR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Gale now causes your Air Elemental to cast Gale.\n\nAdditionally, you now emanate an aura around you, increasing the Armor of party and raid members by 390.\n\nDoes not stack with similar effects."
+        },
+        {
+          "talent": "Cyclone's Recharge",
+          "tree": "Wind",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Shock, Gale or Electrocute now reduces the remaining cooldown of your Kiss of the Clouds by -1 sec."
+        }
+      ]
+    },
+    "Gale Guard": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Storm Rider",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Gale Guard and Cloudburst by -5 sec."
+        }
+      ]
+    },
+    "Geyser": {
+      "lanes": [
+        "DMG",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Stormcloud",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Summon a cloud above an enemy target's head for 15 seconds, causing them to take 20% additional damage from your spells.\n\nUsing Torrential Wrath on an enemy affected by Stormcloud causes a Geyser to erupt beneath them, dealing 571 + 25% frost SP Frost damage and knocking them up slightly."
+        }
+      ]
+    },
+    "Gust of Wind": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Aviana's Blessing",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            },
+            {
+              "value": 3.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Reduces your total threat generated by -30% and increases the range of Gust of Wind by 3 yds."
+        }
+      ]
+    },
+    "Hydro Powered": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your spell critical damage by 35%.",
+      "baseTree": "Maelstrom",
+      "basePosition": {
+        "x": 7,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Invigorating Surge": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Aethermancy",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of your Invigorating Surge by 40%."
+        }
+      ]
+    },
+    "Invigorating Winds": {
+      "lanes": [
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Envelop an ally in invigorating winds, granting them immunity to silence and interrupt effects and causes them to take no pushback from damaging attacks for 20 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Invigoration": {
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Flow",
+          "tree": "Wind",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Your Invigoration now stacks 5 additional times."
+        },
+        {
+          "talent": "Everlasting Invigoration",
+          "tree": "Wind",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Invigoration by 10 sec."
+        },
+        {
+          "talent": "Aurat Scripts",
+          "tree": "Wind",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Increases the damage gained per stack of Invigoration by 2%."
+        }
+      ]
+    },
+    "Ionic Aura": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the maximum mana, Rage, Energy, Focus, and Runic Power of allies within 40 yds by 3%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Kiss of the Clouds": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Depletes 40 Static\nGrant all party and raid members a shield that absorbs 101 + 100% Intellect damage, scaling with Intellect, for 10 seconds.\n\nWhile active, the target suffers no spell pushback from taking damage.",
+      "baseTree": "Wind",
+      "basePosition": {
+        "x": 1,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Gift of Air",
+          "tree": "Wind",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.5,
+              "unit": "sec"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.8,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "HASTE",
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Kiss of the Clouds now empowers your Air Elemental with Gift of Air for 30 seconds.\n\nIn addition, your critical strikes now extend the duration of your Tailwind by 1.5 sec.\nGift of AirIncreases damage dealt by 20%, spell haste by 15%, and heals for 13.75 every 2 sec."
+        },
+        {
+          "talent": "Cyclone's Recharge",
+          "tree": "Wind",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Shock, Gale or Electrocute now reduces the remaining cooldown of your Kiss of the Clouds by -1 sec."
+        },
+        {
+          "talent": "Cyclone's Embrace",
+          "tree": "Wind",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Increases the base amount absorbed by your Kiss of the Clouds by 100%."
+        }
+      ]
+    },
+    "Lightning Cage": {
+      "lanes": [
+        "CDR",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Storm Barrier",
+          "tree": "Lightning",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "While Lightning Cage is active your Magic Damage taken is now reduced by -25% and you are unable to be hit by ranged attacks."
+        },
+        {
+          "talent": "Titanstorm",
+          "tree": "Lightning",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Call Lightning or Electrocute now reduces the cooldown of Arm of Thorim and Lightning Cage by -1.5 sec."
+        }
+      ]
+    },
+    "Mystic Thunder": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Interrupt the target's current spell cast and then mark them for 5 seconds.\n\nIf they cast again while marked they are silenced for 3 seconds.",
+      "baseTree": "Maelstrom",
+      "basePosition": {
+        "x": 7,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Power Sphere": {
+      "lanes": [
+        "DMG",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Spheres of Power",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your direct damage dealt now has a 25% chance to summon a Power Sphere that will move towards your target. Can only have 1 Power Sphere up at a time.\n\nPower Sphere will redirect its movement towards enemies you cast Stormflow on.\n\nUpon reaching the target, it deals cond(gt(SPA, SPN), 697+33+SPA*0.485, 697+33+SPN*0.485) Spellstorm Damage to them and enemies within 5 yds."
+        }
+      ]
+    },
+    "Residual Power": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces your Magic damage taken by -10%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Shock": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "CAST",
+        "HASTE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Studious",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Shock by -15%."
+        },
+        {
+          "talent": "Titanic Thunderbolt",
+          "tree": "Lightning",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 8.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.8,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Shock, Conjure Storm, and Eye of the Storm by 8%."
+        },
+        {
+          "talent": "Electric Energy",
+          "tree": "Lightning",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of your Shock, Call Lightning, and Arm of Thorim by 20%."
+        },
+        {
+          "talent": "Invoking Storms",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell power scaling of Shock, Call Lightning, and Arm of Thorim by 30%."
+        },
+        {
+          "talent": "Voltaic Bursts",
+          "tree": "Lightning",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the periodic damage of Shock by 50%."
+        },
+        {
+          "talent": "Stormflow",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Depletes 20 Static\nChannel a storm beam upon an enemy, dealing 112 + 160% SP Frost Damage over 8 seconds, scaling with your spell haste.\n\nShock can be instantly cast while channeling."
+        },
+        {
+          "talent": "Unbridled Flow",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nDamage dealt by Shock is now increased by 15% while channeling Stormflow."
+        },
+        {
+          "talent": "Cloudsurfer",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Shock by 20%."
+        },
+        {
+          "talent": "Amped Flow",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "While channeling Stormflow, your Shock now strikes 1 additional target at 75% value."
+        },
+        {
+          "talent": "Cyclone's Recharge",
+          "tree": "Wind",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Shock, Gale or Electrocute now reduces the remaining cooldown of your Kiss of the Clouds by -1 sec."
+        },
+        {
+          "talent": "Windsurf",
+          "tree": "Wind",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Command your Air Elemental to windsurf to you, intercepting the next melee or ranged attack made against you, and allowing you to cast Shock and Call Lightning while moving for 15 seconds."
+        },
+        {
+          "talent": "Master Elementalist",
+          "tree": "Wind",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell damage scaling of Shock by 10% and Aeroblast by 20%."
+        }
+      ]
+    },
+    "Stabilizing Pressure": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Heavy Winds",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the pushback reduction provided by Stabilizing Pressure by 15%."
+        }
+      ]
+    },
+    "Static": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "CAST",
+        "HASTE",
+        "SHIELD",
+        "MITIGATION",
+        "RESOURCE",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Charge",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Charge yourself with electricity, generating 100 Static and increasing your spell haste by 30% for your next cast. Lasts 10 seconds."
+        },
+        {
+          "talent": "Conjuration Mastery",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Conjure Storm now refunds 10 Static."
+        },
+        {
+          "talent": "Eye of the Tornado",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your damaging critical strikes now refund 5 Static."
+        },
+        {
+          "talent": "Stormcloak",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Cover yourself in a barrier of volatile energy for 15 seconds, causing all attacks against you to have a 50% chance to deal half damage and generate 10 Static.\n\nStormcloak has a 60% chance to resist dispel effects."
+        },
+        {
+          "talent": "Storm Ascendance",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.0,
+          "lanes": [
+            "DMG",
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Transform into a storm elemental for 15 seconds, increasing your Magic damage dealt by 20% and reducing your Magic damage taken by -50%.\n\nIn addition, your damaging spells now generate an additional 10 Static. Can only occur once every sec."
+        },
+        {
+          "talent": "Arm of Thorim",
+          "tree": "Lightning",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Electrocutioner",
+            "Body of Lightning"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Depletes All Static\nCall down a terrible beam of lightning upon an enemy, dealing 135 + 120% nature SP Nature damage and stunning them for 1 seconds.\n\nDamage and cast time increased based on Static level."
+        },
+        {
+          "talent": "Electrocutioner",
+          "tree": "Lightning",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 1,
+          "specialRequirement": [
+            "Body of Lightning"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 10 Passive\nDealing spell damage now has a 5% chance to grant you Electrocutioner.Electrocutioner (Proc)Resets the cooldown of Electrocute and makes your next usable regardless of the target's health percentage.\n\nChance increases based on Static level."
+        },
+        {
+          "talent": "Superconductor",
+          "tree": "Lightning",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of your Arm of Thorim by an additional 1% per Static depleted."
+        },
+        {
+          "talent": "Forked Lightning",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Shoot lightning at an enemy, dealing 69 + 49% SP Nature damage, bouncing to up to 4 enemies.\n\nGenerates 5 Static for each enemy struck."
+        },
+        {
+          "talent": "Volt",
+          "tree": "Lightning",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 6.0,
+          "lanes": [
+            "DMG",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Fuse lightning into an enemy, dealing 150 + 114% nature SP Nature damage over 18 seconds and slowing them by -40%.\n\nGenerates 2 Static per tick."
+        },
+        {
+          "talent": "Lightning Cage",
+          "tree": "Lightning",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Generates 50 Static\nAscend into the air and cage yourself in lightning for 30 seconds, locking yourself in place.\n\nWhile inside the cage, damaging spells generate 20 Static and their range is doubled."
+        },
+        {
+          "talent": "Lightning Rod",
+          "tree": "Lightning",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Forked Lightning now has a 20% chance to spread an active Volt on your target to each affected enemy.\n\nChance increases based on Static level."
+        },
+        {
+          "talent": "Critical Circuit",
+          "tree": "Lightning",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Direct critical strikes with Static spenders now refund 10 Static."
+        },
+        {
+          "talent": "Electrical Charge",
+          "tree": "Lightning",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "HASTE",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Standing still grants you Electrical Charge every second, increasing your haste by 1%. Upon reaching 20 stacks, your spells dont deplete Static for 10 seconds, after which the charges are depleted."
+        },
+        {
+          "talent": "Thunder Ward",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SHIELD",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Depletes All Static\nEncase yourself in an electrical shield, removing and making you immune to all physical attacks and spells for 10 seconds.\n\nCannot generate Static for the duration."
+        },
+        {
+          "talent": "Storm Bond",
+          "tree": "Wind",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by your Air Elemental now generates you 2 Static."
+        },
+        {
+          "talent": "Master Airbender",
+          "tree": "Wind",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Casting Gale now reduces the cooldown of abilities that deplete Static by -1 sec."
+        },
+        {
+          "talent": "Wrath of Al'Akir",
+          "tree": "Wind",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Depleting Static extends the duration of your Unshackle by 3 sec."
+        }
+      ]
+    },
+    "Storm Alert": {
+      "lanes": [
+        "CAST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Storm Warning",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Storm Alert by -0.5 sec."
+        },
+        {
+          "talent": "Predictable Weather",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Every 30 sec, your next Storm Alert or Torrential Wrath is instant cast."
+        }
+      ]
+    },
+    "Storm Ascendance": {
+      "lanes": [
+        "DMG",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Power Surge",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Storm Ascendance now increases Nature damage dealt by an additional 10%."
+        },
+        {
+          "talent": "Ascension",
+          "tree": "Lightning",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nIncreases the duration of your Storm Ascendance by 10 sec."
+        },
+        {
+          "talent": "Lord of Lightning",
+          "tree": "Lightning",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Storm Ascendance now additionally grants you Lord of Lightning for 20 seconds.Lord of LightningIncreases the damage dealt by Forked Lightning, Call Lightning, and Electrocute by an additional 30% and allows Electrocute to strike 3 additional enemies."
+        }
+      ]
+    },
+    "Stormbreaker": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Magic Elimination",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "flat"
+            },
+            {
+              "value": 10.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the amount of beneficial magic effects purged by your Stormbreaker by 1 and its range by 10 yds."
+        },
+        {
+          "talent": "Pulse Conversion",
+          "tree": "Class",
+          "position": {
+            "x": 6,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Dispelling a magic effect with Stormbreaker now heals you for 3% of your maximum health."
+        },
+        {
+          "talent": "Piercing Lightning",
+          "tree": "Lightning",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nIncreases your Nature spell penetration by 20, scaling with your level.\n\nIn addition, Stormbreaker now dispels 1 additional magic effect."
+        }
+      ]
+    },
+    "Stormcloak": {
+      "lanes": [
+        "STATS",
+        "DURATION",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Storm Channeling",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 500.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 60.0,
+          "lanes": [
+            "STATS",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "While Stormcloak is active your Armor is now increased by 500% of your Intellect."
+        },
+        {
+          "talent": "Lingering Storm",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of your Stormcloak, Conjure Storm and Body of Lightning by 30%."
+        }
+      ]
+    },
+    "Stormflow": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL",
+        "AOE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Torrential Rage",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Torrential Wrath and Stormflow by 30%."
+        },
+        {
+          "talent": "Blessing of Lei Shen",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Stormflow now heals you equal to the damage dealt."
+        },
+        {
+          "talent": "Prodigy of Lei Shen",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Allows your Stormflow to critically strike."
+        },
+        {
+          "talent": "Unbridled Flow",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nDamage dealt by Shock is now increased by 15% while channeling Stormflow."
+        },
+        {
+          "talent": "Unstable",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your direct damage critical strikes cause your Stormflow to tick -20% faster for 3 seconds."
+        },
+        {
+          "talent": "Storm Synergy",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nYour Electrocute can now be used while channeling Stormflow."
+        },
+        {
+          "talent": "Amped Flow",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "While channeling Stormflow, your Shock now strikes 1 additional target at 75% value."
+        },
+        {
+          "talent": "Spheres of Power",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your direct damage dealt now has a 25% chance to summon a Power Sphere that will move towards your target. Can only have 1 Power Sphere up at a time.\n\nPower Sphere will redirect its movement towards enemies you cast Stormflow on.\n\nUpon reaching the target, it deals cond(gt(SPA, SPN), 697+33+SPA*0.485, 697+33+SPN*0.485) Spellstorm Damage to them and enemies within 5 yds."
+        }
+      ]
+    },
+    "Stormfury": {
+      "lanes": [
+        "DMG",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Depletes 50 Static\nSummon a flurry of rain, wind, and lightning from the sky for 20 seconds. Every 2 sec, enemies within 30 yds of the caster are zapped with lightning, dealing 540 + 55% nature SP Nature damage.",
+      "baseTree": "Maelstrom",
+      "basePosition": {
+        "x": 6,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Summon: Air Elemental": {
+      "lanes": [
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Lexicon of Servitude",
+          "tree": "Wind",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Read from your ancient lexicon, causing your next Summon: Air Elemental to be instant cast and cost no mana. Lasts 15 seconds."
+        }
+      ]
+    },
+    "Tailwind": {
+      "lanes": [
+        "DMG",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Depletes 20 Static\nTap into the swift winds, increasing your damage by 10% and granting all allied players 5% increased haste for 15 seconds.\n\nDoes not stack with similar effects.",
+      "baseTree": "Wind",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Gift of Air",
+          "tree": "Wind",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.5,
+              "unit": "sec"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.8,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "HASTE",
+            "HEAL",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Kiss of the Clouds now empowers your Air Elemental with Gift of Air for 30 seconds.\n\nIn addition, your critical strikes now extend the duration of your Tailwind by 1.5 sec.\nGift of AirIncreases damage dealt by 20%, spell haste by 15%, and heals for 13.75 every 2 sec."
+        }
+      ]
+    },
+    "Tempest Calling": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$4e",
+      "baseTree": "Wind",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": []
+    },
+    "Tempest Sovereign": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$54",
+      "baseTree": "Maelstrom",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": []
+    },
+    "Tempest's Call": {
+      "lanes": [
+        "HASTE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Bring the power of wind and storm to all nearby allies, increasing haste by 30% for 20 seconds.\n\nAfter being affected by this spell, allies cannot benefit from similar effects for 5 minutes.",
+      "baseTree": "Wind",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Thunder Grip": {
+      "lanes": [
+        "DMG",
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Direct damage dealt now has a 30% chance to apply Thunder Grip to enemies.Thunder GripPrevents enemies from mounting, fleeing, and increasing their movement speed above normal movement speed for 8 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Thunder King": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$5a",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Thunderous": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases the critical damage of your spells by 150%.",
+      "baseTree": "Lightning",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Tome of Lightning": {
+      "lanes": [
+        "CRIT",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical strike chance by 2% and reduces the duration of interrupt and silence effects against you by -20%.",
+      "baseTree": "Lightning",
+      "basePosition": {
+        "x": 5,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Torrential Wrath": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "CAST",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Predictable Weather",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Every 30 sec, your next Storm Alert or Torrential Wrath is instant cast."
+        },
+        {
+          "talent": "Torrential Rage",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Torrential Wrath and Stormflow by 30%."
+        },
+        {
+          "talent": "Disciple of Thorim",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 3,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -0.6,
+              "unit": "sec"
+            },
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Reduces the cast time of your Torrential Wrath by -0.6 sec and increases your hit chance by 6%."
+        },
+        {
+          "talent": "Raining and Pouring",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of your Torrential Wrath and Electrocute by 30%."
+        },
+        {
+          "talent": "Static Electricity",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Torrential Wrath now spawn an Electrified Water Elemental to aid you in combat for 20 sec.\n\nWhen an Electrified Water Elemental dissipates, the cooldown of your Drown is reduced by -1.5 sec."
+        },
+        {
+          "talent": "Stormcloud",
+          "tree": "Maelstrom",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Summon a cloud above an enemy target's head for 15 seconds, causing them to take 20% additional damage from your spells.\n\nUsing Torrential Wrath on an enemy affected by Stormcloud causes a Geyser to erupt beneath them, dealing 571 + 25% frost SP Frost damage and knocking them up slightly."
+        }
+      ]
+    },
+    "Unshackle": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Wrath of Al'Akir",
+          "tree": "Wind",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Depleting Static extends the duration of your Unshackle by 3 sec."
+        },
+        {
+          "talent": "Unbound Elementalist",
+          "tree": "Wind",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Unshackle by 20%."
+        },
+        {
+          "talent": "Hurricanes",
+          "tree": "Wind",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Unshackle now unshackles you, increasing your damage dealt by 15% for 15 seconds."
+        },
+        {
+          "talent": "Nimbus",
+          "tree": "Wind",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Instantly resets the cooldown of your Evacuate, Windsurf, and Unshackle."
+        }
+      ]
+    },
+    "Updraft": {
+      "lanes": [
+        "SPEED",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Quickdraft",
+          "tree": "Wind",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "sec"
+            },
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of your Updraft by 6 sec and increases its tick rate by -30%."
+        },
+        {
+          "talent": "Aeromancy",
+          "tree": "Wind",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Updraft will now cause your Air Elemental to cast its own Updraft beneath you."
+        },
+        {
+          "talent": "Clearsky Pendant",
+          "tree": "Wind",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Ally movement speed is increased by an additional 25% to allies within your Updraft."
+        }
+      ]
+    },
+    "Volt": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Fulmination",
+          "tree": "Lightning",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Call Lightning and Arm of Thorim by 30% against targets affected by your Volt."
+        },
+        {
+          "talent": "Lightning Rod",
+          "tree": "Lightning",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Forked Lightning now has a 20% chance to spread an active Volt on your target to each affected enemy.\n\nChance increases based on Static level."
+        },
+        {
+          "talent": "Thunder Wave",
+          "tree": "Lightning",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION",
+            "AOE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Forked Lightning has a 5% chance to transform it into Thunder Wave.Thunder Wave (Spell)Bring lightning down upon an enemy and nearby enemies, dealing 206 + 65% arcane SP Spellstorm Damage and refreshing the duration of Volt on enemies struck.\n\nDeals 30% increased damage to enemies affected by Volt."
+        }
+      ]
+    },
+    "Waterfall": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Dealing critical damage now reduces all of your cooldowns by -0.5 sec.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Whirling Maelstrom": {
+      "lanes": [
+        "STATS",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your spell haste by 20% of your Intellect.",
+      "baseTree": "Maelstrom",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Whirlpool": {
+      "lanes": [
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Raging Zephyr",
+          "tree": "Wind",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Transforms your Whirlpool into Raging Zephyr.Raging Zephyr3 Charges, 35 sec recharge\nSummon a Raging Zephyr at the targeted location for 12 seconds.\n\nEvery 4 sec, it will pull all enemies within 10 yds inside of it."
+        }
+      ]
+    },
+    "Wicked Storms": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Nature damage dealt by 5%.",
+      "baseTree": "Lightning",
+      "basePosition": {
+        "x": 6,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Wind Gate: Evacuate": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Wind Gate",
+          "tree": "Wind",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Place a Wind Gate at target location for 1 minute. \n\nYou may cast Wind Gate: Evacuate on an ally to pull them to your Wind Gate."
+        }
+      ]
+    },
+    "Wind Shift": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your spell haste by 4% and reduces spell pushback suffered from damaging attacks by 50%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Windrunner": {
+      "lanes": [
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "The wind is always at your back, pushing you to move faster, increasing your movement speed and mounted movement speed by 15%.",
+      "baseTree": "Wind",
+      "basePosition": {
+        "x": 6,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Windsurf": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Child of the Storm",
+          "tree": "Wind",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Cloudburst and Windsurf by -20%."
+        },
+        {
+          "talent": "Nimbus",
+          "tree": "Wind",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Instantly resets the cooldown of your Evacuate, Windsurf, and Unshackle."
+        }
+      ]
+    }
+  }
+}

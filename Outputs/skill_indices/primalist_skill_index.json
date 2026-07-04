@@ -1,0 +1,6664 @@
+{
+  "class": "Primalist",
+  "schemaVersion": 2,
+  "laneTaxonomy": {
+    "DMG": "Damage",
+    "STATS": "Primary/secondary stats",
+    "CRIT": "Crit chance/damage",
+    "CDR": "Cooldown",
+    "CAST": "Cast time",
+    "HASTE": "Haste",
+    "SPEED": "Movement speed",
+    "HEAL": "Healing",
+    "SHIELD": "Shield/absorb",
+    "MITIGATION": "Damage mitigation",
+    "RESOURCE": "Resource generation",
+    "COST": "Resource cost",
+    "DURATION": "Duration",
+    "AOE": "AoE / target count",
+    "CC": "Crowd control",
+    "ARMOR": "Armor",
+    "SUMMON": "Summon / pet",
+    "MISC": "Other"
+  },
+  "note": "Per-skill index: for each observed skill/ability, lists every talent that modifies it, where it sits in the tree, its parsed stat modification, and a mock value showing that modification applied to a normalized baseline of 10. Each modifying talent is tagged with one or more lanes from laneTaxonomy (DMG/CRIT/CDR/CAST/HASTE/SPEED/HEAL/SHIELD/MITIGATION/RESOURCE/COST/DURATION/AOE/CC/ARMOR/SUMMON/MISC), plus cross-cutting behavior flags (PROC, STACK) that describe how the effect triggers rather than what stat it touches. A handful of nodes have unresolved \"$xx\" template descriptions in the source export - these are flagged rather than guessed at.",
+  "mockBaseline": 10,
+  "skills": {
+    "Aftershock": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Grove Training",
+          "tree": "Life",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Grip"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "COST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 10 Passive\nAll melee damage, or healing done, now has a 10% chance to grant you Aftershock for 15 seconds.AftershockYour next Geode Barrage or Earthquake within 15 seconds is now instant cast and costs -75% less."
+        },
+        {
+          "talent": "Mountain Giant",
+          "tree": "Mountain King",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Primal Rush"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 10 Passive\nAuto attacks now have a 20% chance to grant you Aftershock.AftershockYour next Geode Barrage or Earthquake within 15 seconds is now instant cast and costs -75% less."
+        }
+      ]
+    },
+    "Ancient Power": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Strength by 10% and your hit chance by 6%.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 6,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Ancient of Lore": {
+      "lanes": [
+        "SPEED",
+        "COST"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Funnel nature's energies into yourself, transforming into an Ancient of Lore for 20 seconds.\n\nWhile active, your stats are increased by 20% and nearby party members have their costs reduced by -30%.\n\nWhile transformed, your movement speed is reduced by -30%.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 2,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Bash": {
+      "lanes": [
+        "DMG",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your auto attacks have a 30% chance to deal 50% Weapon Damage and stun them for 1 seconds.",
+      "baseTree": "Mountain King",
+      "basePosition": {
+        "x": 1,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Tilling the Earth",
+          "tree": "Mountain King",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 6.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": 10.6,
+          "lanes": [
+            "STATS"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the chance to trigger Bash by 6% and increases your expertise by 10."
+        }
+      ]
+    },
+    "Battleweaver": {
+      "lanes": [
+        "DMG",
+        "HASTE",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Effective healing now increases your melee haste and damage by 2% for 5 seconds, stacking 3 times.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 1,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Bearskin": {
+      "lanes": [
+        "MITIGATION",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces all damage taken by -60% and reduces the duration of root, stun, and incapacitate effects on you by -30% for 10 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Protector of the Grove",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Dealing direct damage now reduces the cooldown of Bearskin, Primal Convergence, and Boulder Dash by -1 sec."
+        },
+        {
+          "talent": "Primal Guardian",
+          "tree": "Mountain King",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "When Earthen Avatar, Bearskin or Rock Barrier is removed or expires, you now gain 10% melee haste and parry chance for 15 seconds."
+        }
+      ]
+    },
+    "Bestial Wrath": {
+      "lanes": [
+        "CRIT",
+        "RESOURCE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "When you critically strike, your pet restores 10 Focus. \n\nWhen your pet critically strikes, you restore 2% maximum mana and increase the target's Physical damage taken by 4% for 10 seconds.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 4,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Bloody Claws": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Damage dealt by your pet now reduces the enemies periodic healing received by -10% for 15 seconds, stacking 3 times.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 3,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Boon": {
+      "lanes": [
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Fury of the Wild",
+          "tree": "Primal",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "When you cast a Boon, you cast the same Boon on your pet at 50% effectiveness."
+        }
+      ]
+    },
+    "Boon of the Bear": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Totem Warrior",
+          "tree": "Primal",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "While you have Boon of the Bear active, Wildclaw will now strike an additional time for 40% of the damage dealt with both weapons."
+        }
+      ]
+    },
+    "Boon of the Turtle": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Stonebound",
+          "tree": "Mountain King",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Boon of the Turtle and Earth's Rage by 50%."
+        }
+      ]
+    },
+    "Boons": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Bountiful Boons",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Boons and Instincts by 20%."
+        },
+        {
+          "talent": "Primal Convergence",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Ascend into a primal convergence, increasing the effectiveness of your Boons by 100% for 30 seconds."
+        }
+      ]
+    },
+    "Boulder Dash": {
+      "lanes": [
+        "DMG",
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Raise a boulder out of the ground and encase yourself within it, preventing you from attacking or casting spells.\n\nFor 10 seconds, you roll forward at 70% increased movement speed, dealing 1 + 50% AP + 100% SP Physical damage to enemies you roll over, and you are immune to crowd control effects.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Tectonic Flow",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Primal Rush and Boulder Dash by -20%."
+        },
+        {
+          "talent": "Rage Rolling",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Casting Boulder Dash now instantly generates 50 Rage."
+        },
+        {
+          "talent": "Rolling Momentum",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Increases the movement speed granted by Boulder Dash by 30%."
+        },
+        {
+          "talent": "Protector of the Grove",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Dealing direct damage now reduces the cooldown of Bearskin, Primal Convergence, and Boulder Dash by -1 sec."
+        }
+      ]
+    },
+    "Bramblepatch": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Grow a patch of brambles at your location for 12 seconds.\n\nAllies in the area are immune to grip and knockback effects.\n\nEnemies in the area are unable to leap, dash, or charge.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Keeper of the Grove",
+          "tree": "Life",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Bramblepatch by -30 sec."
+        },
+        {
+          "talent": "Grove Tender",
+          "tree": "Life",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "While inside your Bramblepatch your Seismic abilities now have a -80% reduced cooldown.\n\nIn addition, the duration of Bramblepatch is doubled."
+        }
+      ]
+    },
+    "Bring Me Their Bones": {
+      "lanes": [
+        "DMG",
+        "ARMOR",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Mark an enemy for 15 seconds, causing damage dealt by your pet's abilities to the target to add a stack of Bring Me Their Bones.\n\nAt 5 stacks, your pet consumes this buff to deal 310 + 50% AP damage to the target, ignoring Armor.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 6,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Cave Dweller": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your maximum Rage by 30 and reduces spell pushback suffered from damaging attacks by 100%.",
+      "baseTree": "Geomancy",
+      "basePosition": {
+        "x": 6,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Crushing the Earth": {
+      "lanes": [
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 40 Passive\nYou now gain spell power equal to 50% of your armor penetration rating.",
+      "baseTree": "Geomancy",
+      "basePosition": {
+        "x": 10,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Earth's Embrace": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Encapsulate your body in amber, becoming immune to all Physical attacks and spells for 8 seconds, and healing you for 300 + 50% SP every 2 sec, but making you unable to move or act.\n\nUsable while stunned, feared, or polymorphed.",
+      "baseTree": "Geomancy",
+      "basePosition": {
+        "x": 2,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Embraced By Earth!",
+          "tree": "Geomancy",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "At the end of the duration of Earth's Embrace, you now disorient all nearby enemies for 6 seconds. Damage dealt will end the effect."
+        },
+        {
+          "talent": "Cragforming",
+          "tree": "Geomancy",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Earth's Embrace by 4 sec."
+        }
+      ]
+    },
+    "Earth's Rage": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "HASTE",
+        "SPEED",
+        "MITIGATION",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Stonefaced",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            },
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.61,
+          "lanes": [
+            "HASTE",
+            "SPEED",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Seismic abilities now also grants 2 stacks of Earth's Rage.Earth's RageIncreases movement speed by 4% and haste by 2% for 8 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Blessed by the Earth",
+          "tree": "Mountain King",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            },
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.61,
+          "lanes": [
+            "DMG",
+            "HASTE",
+            "SPEED",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Primal Rush and Quake now grant Earth's Rage.Earth's RageIncreases movement speed by 4% and haste by 2% for 8 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Stonebound",
+          "tree": "Mountain King",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Boon of the Turtle and Earth's Rage by 50%."
+        },
+        {
+          "talent": "Mountain Thane",
+          "tree": "Mountain King",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "STATS"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Increases your Stamina by 10% and causes Earth's Rage to stack 1 additional time."
+        },
+        {
+          "talent": "Call of the Mountain",
+          "tree": "Mountain King",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            },
+            {
+              "value": -5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.97,
+          "lanes": [
+            "MITIGATION"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Level 40 Passive\nReaching 5 stacks of Earth's Rage now grants Call of the Mountain.Call of the MountainIncreases your parry chance by 5% and reduces damage taken by -5%."
+        }
+      ]
+    },
+    "Earthbreaker": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your melee haste by 10%.",
+      "baseTree": "Mountain King",
+      "basePosition": {
+        "x": 1,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Earthen Avatar": {
+      "lanes": [
+        "DMG",
+        "MITIGATION",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Become an avatar of the earth, increasing your damage dealt and reducing your damage taken by 15%, and increasing your attack speed by 20% for 20 seconds.\n\nImmune to stuns, roots, and snares for the duration.\n\nUsable while stunned.",
+      "baseTree": "Mountain King",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Primal Guardian",
+          "tree": "Mountain King",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "When Earthen Avatar, Bearskin or Rock Barrier is removed or expires, you now gain 10% melee haste and parry chance for 15 seconds."
+        },
+        {
+          "talent": "Legacy of the Bronzebeards",
+          "tree": "Mountain King",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Earthen Avatar by 100%."
+        },
+        {
+          "talent": "Earthmaker",
+          "tree": "Mountain King",
+          "position": {
+            "x": 5,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            },
+            {
+              "value": -3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Seismic abilities and Quake now reduces the cooldown of Earthen Avatar by -1 sec.\n\nAdditionally, the cooldown of Seismic abilities is reduced by -3 sec."
+        }
+      ]
+    },
+    "Earthmother's Binding": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Envelop a target in the Earthmother's love, healing them for 501 + 100% healing + 100% AP. \n\nIf used on an ally, 30% of their damage taken is redirected to you for 6 seconds.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 1,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Earthmother's Blessing": {
+      "lanes": [
+        "HEAL",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Attacks which would otherwise kill you now instead reform you in stone, healing for 30% maximum health and reducing your Physical damage taken by -70% for 3 seconds.\n\nCan only occur once every 2 min.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Earthmother's Pendant": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "With every strike, the Earthmother\u2019s pendant restores what was lost, healing you equal to 10% of your damage dealt.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Earthquake": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HEAL",
+        "COST",
+        "DURATION",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Tectonic Power",
+          "tree": "Geomancy",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration Earthquake by 3 sec and increases its damage dealt by 25%."
+        },
+        {
+          "talent": "Tectonic Resonance",
+          "tree": "Geomancy",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "CC"
+          ],
+          "flags": [],
+          "description": "Increases the amount that Earthquake slows enemies by -30%."
+        },
+        {
+          "talent": "Therazane's Blessing",
+          "tree": "Geomancy",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nAllows the periodic damage dealt by Seismic Tremor, Seismic Crash, and Earthquake to critically strike."
+        },
+        {
+          "talent": "Grove Training",
+          "tree": "Life",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Grip"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "COST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 10 Passive\nAll melee damage, or healing done, now has a 10% chance to grant you Aftershock for 15 seconds.AftershockYour next Geode Barrage or Earthquake within 15 seconds is now instant cast and costs -75% less."
+        },
+        {
+          "talent": "Mountain Giant",
+          "tree": "Mountain King",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Primal Rush"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 10 Passive\nAuto attacks now have a 20% chance to grant you Aftershock.AftershockYour next Geode Barrage or Earthquake within 15 seconds is now instant cast and costs -75% less."
+        }
+      ]
+    },
+    "Earthshaping": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "RESOURCE",
+        "DURATION",
+        "CC",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Seismic Tremor",
+          "tree": "Geomancy",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE",
+            "CC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Send a tremor through the earth at an enemy, dealing 54 + 50% nature SP Physical damage, plus an additional 336 over 24 seconds. Damage is dealt slowly at first, and builds up over time.\n\nDamage dealt generates 1 Rage. \n\nGenerates 2 stacks of Earthshaping."
+        },
+        {
+          "talent": "Terrasurge",
+          "tree": "Geomancy",
+          "position": {
+            "x": 4,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "DMG",
+            "ARMOR"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Unleash a massive globule of earth at an enemy, dealing 140 + 130% nature SP Physical damage and reducing their Armor by -50% for 10 sec.\n\nPierces through absorption, deflection, and reflection effects.\n\nDeals 5% additional damage for each Earthshaping stack."
+        },
+        {
+          "talent": "Cataclysm",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Generating Earthshaping or casting Stoneshard now has a 10% chance to reset the cooldown of your Seismic abilities."
+        },
+        {
+          "talent": "Dream",
+          "tree": "Geomancy",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Generating Earthshaping while at or above 10 stacks now grants Dream.DreamIncreases the critical strike chance of your Seismic abilities and Lithic Lance by 10% for 3 seconds."
+        },
+        {
+          "talent": "Nature's Will",
+          "tree": "Geomancy",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Seismic spells now extends the duration of Earthshaping by 4 sec."
+        },
+        {
+          "talent": "Cave In",
+          "tree": "Geomancy",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Cave in your target, interrupting spellcasting and preventing any spell in that school from being cast for 4 seconds.\n\nSuccessfully interrupting a target generates 1 stack of Earthshaping."
+        },
+        {
+          "talent": "Blessing of Therazane",
+          "tree": "Geomancy",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Each stack of Earthshaping now increases your critical damage dealt by 5%."
+        },
+        {
+          "talent": "Eruption",
+          "tree": "Geomancy",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.2,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Launch 1 Magma Geode at your target every 0 sec for 0.2 seconds, dealing cond(gt(SPFI, SPN), 58+200+SPFI*0.2, 58+200+SPN*0.2) Firestorm Damage. \n\nDuration increased by 0.2 sec for each stack of Earthshaping."
+        },
+        {
+          "talent": "Rupturer",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Seismic Spike or Seismic Crash now generates a stack of Geomolding. \n\nCritically striking with Seismic Spike or Seismic Crash now generates an additional stack of Geomolding plus a stack of Earthshaping.\n\nCasting Lithic Lance now reduces the cooldown of Terrasurge by -4 sec."
+        }
+      ]
+    },
+    "Emerald Dream": {
+      "lanes": [
+        "DMG",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Dreamslip",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Shifts a party member into the Emerald Dream for 15 seconds, making them immune to damage and unable to attack or cast spells.\n\nWhile active, the target quickly regenerates health and mana and cannot be seen by other players or creatures.\n\nCannot be used on self."
+        }
+      ]
+    },
+    "Empowered Boons": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$c6",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Environmentalist": {
+      "lanes": [
+        "COST"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the cost of your spells and abilities by -5%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Eruption": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Magmatism",
+          "tree": "Geomancy",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Eruption by -15 sec and causes Magma Geodes to deal 30% more damage to enemies above 75% health."
+        }
+      ]
+    },
+    "Exhaustion": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Neptulon's Wrath",
+          "tree": "Life",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Emanate an aura for 15 seconds, causing allied players to deal 35% AP additional damage as Froststorm Damage when they deal direct damage.\n\nApplies Exhaustion, preventing you from benefiting from similar effects for 1 minute."
+        }
+      ]
+    },
+    "Fae Dust": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Fae Presence",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Removes the reagent cost from Fae Dust and causes it to increase the target's stealth detection."
+        }
+      ]
+    },
+    "Flourishing Growth": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Empower party and raid members within 40 yds with verdant strength, increasing their attack or spell power by 95 for 20 seconds.\n\nDoes not stack with similar effects.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 10,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Focus": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Intellect and Stamina by 10%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Frenzied Roar": {
+      "lanes": [
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Roar with bestial fervor, generating 20 Rage and granting you 20% increased attack speed for 15 seconds.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 5,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Geode": {
+      "lanes": [
+        "DMG",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Primal Shaman's Mask",
+          "tree": "Geomancy",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Direct damage dealt now has a 10% chance to launch a Geode at the enemyGeodeHurl an enchanted stone at the target, dealing 173 + 34.9% SP + 8.5% AP Physical Damage and generating 5 Rage.."
+        },
+        {
+          "talent": "Terrasmash",
+          "tree": "Mountain King",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by your off hand weapon now has a 30% chance to launch a Geode at the enemy.GeodeHurl an enchanted stone at the target, dealing 173 + 34.9% SP + 8.5% AP Physical Damage and generating 5 Rage."
+        }
+      ]
+    },
+    "Geode Barrage": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "CAST",
+        "HASTE",
+        "HEAL",
+        "RESOURCE",
+        "COST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Earthshaping",
+          "tree": "Geomancy",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Boulder Dash"
+          ],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "HASTE",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 10 Passive\nCasting Geode Barrage and your Seismic abilities now generate Earthshaping.EarthshapingEmpowers some of your abilities and increases your spell haste by 1% for 20 seconds, stacking 15 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Whispers of the Earth",
+          "tree": "Geomancy",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.3,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Geode Barrage and Stoneshard by 0.3 sec."
+        },
+        {
+          "talent": "One With The Earth",
+          "tree": "Geomancy",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Stoneshard and Geode Barrage by 20% and Stoneshard now restores 4% of your maximum mana."
+        },
+        {
+          "talent": "Stone Tosser",
+          "tree": "Geomancy",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases spell bonus damage scaling of Geode Barrage, Stoneshard, and Seismic Crash by 25%."
+        },
+        {
+          "talent": "Earth Pummeling",
+          "tree": "Geomancy",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Geode Barrage and Geodes to increase the chance for the enemy to be critically hit with spells by 3% for 12 seconds."
+        },
+        {
+          "talent": "Grove Training",
+          "tree": "Life",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Grip"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "COST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 10 Passive\nAll melee damage, or healing done, now has a 10% chance to grant you Aftershock for 15 seconds.AftershockYour next Geode Barrage or Earthquake within 15 seconds is now instant cast and costs -75% less."
+        },
+        {
+          "talent": "Druid Training",
+          "tree": "Life",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Geode Barrage now heals all allies within 20 yds equal to 10% of the damage dealt."
+        },
+        {
+          "talent": "Mountain Giant",
+          "tree": "Mountain King",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Primal Rush"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 10 Passive\nAuto attacks now have a 20% chance to grant you Aftershock.AftershockYour next Geode Barrage or Earthquake within 15 seconds is now instant cast and costs -75% less."
+        },
+        {
+          "talent": "Stone Skin",
+          "tree": "Mountain King",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nYou are now immune to bleeds and your Geode Barrage and Seismic ability damage now additionally scales with your parry rating."
+        },
+        {
+          "talent": "Fury of the Earthmother",
+          "tree": "Mountain King",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Geode Barrage or Geodes now generates increased threat and have a 15% chance to add 1 charge to an active Rock Barrier and extend its duration by 1 sec."
+        }
+      ]
+    },
+    "Geodes": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Earth Pummeling",
+          "tree": "Geomancy",
+          "position": {
+            "x": 5,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Geode Barrage and Geodes to increase the chance for the enemy to be critically hit with spells by 3% for 12 seconds."
+        },
+        {
+          "talent": "Fury of the Earthmother",
+          "tree": "Mountain King",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Geode Barrage or Geodes now generates increased threat and have a 15% chance to add 1 charge to an active Rock Barrier and extend its duration by 1 sec."
+        }
+      ]
+    },
+    "Geomolding": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Rupturer",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Seismic Spike or Seismic Crash now generates a stack of Geomolding. \n\nCritically striking with Seismic Spike or Seismic Crash now generates an additional stack of Geomolding plus a stack of Earthshaping.\n\nCasting Lithic Lance now reduces the cooldown of Terrasurge by -4 sec."
+        }
+      ]
+    },
+    "Golem Form": {
+      "lanes": [
+        "HASTE",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Transform into a being made of stone and earth for 20 seconds, increasing your haste by 20% and your Armor by 50%, and allowing you to cast damaging spells while moving.",
+      "baseTree": "Geomancy",
+      "basePosition": {
+        "x": 4,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Grip": {
+      "lanes": [
+        "DMG",
+        "CC",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Summon a stone hand to grip the target, incapacitating them for 40 seconds (8 sec vs. players). Damage dealt will break the effect.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 0
+      },
+      "modifyingTalents": []
+    },
+    "Grove": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "HEAL",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Grove Guardian",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.0,
+          "lanes": [
+            "DMG",
+            "SPEED",
+            "HEAL",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Mark a location as your Grove for 20 seconds.\n\nAllies within gain 30% movement speed and are healed for 404 + 25% AP every 5 sec, removing 1 poison and disease effect.\n\nEnemies within are slowed by -30% and take 504 + 45% AP Nature damage every 5 sec and are rooted for 2 seconds."
+        }
+      ]
+    },
+    "Grovekeeper's Presence": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases chance to hit with all spells and attacks by 1% for you and party and raid members.\n\nDoes not stack with similar effects.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Hammer of Life": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your melee attacks and abilities now heal nearby allies and damage nearby enemies equal to 20% of the damage dealt.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Infused With Power",
+          "tree": "Life",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "CRIT",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Effectively healing allies with Hammer of Life or Hand of the Earthmother now has a 20% chance to apply Infused With Power.Infused With PowerIncreases the critical strike chance of all party and raid members by 5% for 10 seconds.\n\nDoes not stack with similar effects."
+        },
+        {
+          "talent": "Ancient of War",
+          "tree": "Life",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            },
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": -30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.92,
+          "lanes": [
+            "CRIT",
+            "SPEED"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Funnel nature's fury into yourself, transforming into an Ancient of War for 20 seconds.\n\nWhile active, your Hammer of Life effectiveness is increased by 30% and nearby party members have their critical strike chance increased by 20%.\n\nWhile transformed, your movement speed is reduced by -30%."
+        }
+      ]
+    },
+    "Hand of the Earthmother": {
+      "lanes": [
+        "CRIT",
+        "HEAL",
+        "COST",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Heavy Handed",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Hand of the Earthmother now increases the Armor of yourself and your target by 10% for 10 seconds."
+        },
+        {
+          "talent": "Blessing of Neptulon",
+          "tree": "Life",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Hand of the Earthmother now bounces to 1 ally near the primary target."
+        },
+        {
+          "talent": "Hand of a God",
+          "tree": "Life",
+          "position": {
+            "x": 2,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Rage cost of Hand of the Earthmother by -5."
+        },
+        {
+          "talent": "Infused With Power",
+          "tree": "Life",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "CRIT",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Effectively healing allies with Hammer of Life or Hand of the Earthmother now has a 20% chance to apply Infused With Power.Infused With PowerIncreases the critical strike chance of all party and raid members by 5% for 10 seconds.\n\nDoes not stack with similar effects."
+        },
+        {
+          "talent": "Primal Power",
+          "tree": "Life",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Casting Seismic Wave now causes your next Hand of the Earthmother within 8 seconds to cost -50% less Rage."
+        },
+        {
+          "talent": "Earthmother's Empowerment",
+          "tree": "Life",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Hand of the Earthmother now increases the target's dodge chance by 15% for 5 seconds."
+        },
+        {
+          "talent": "Earthmother's Protection",
+          "tree": "Mountain King",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "While your Rock Barrier is active, the Rage cost of Hand of the Earthmother is reduced by -50%."
+        }
+      ]
+    },
+    "Heavy Earth": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$ca",
+      "baseTree": "Geomancy",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Infusion of Neptulon": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Critically healing an ally now increases your attack power by 15% for your next 3 attacks. Lasts 12 seconds.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 2,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Instincts": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Bountiful Boons",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Boons and Instincts by 20%."
+        }
+      ]
+    },
+    "Journey To The Core": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$ce",
+      "baseTree": "Geomancy",
+      "basePosition": {
+        "x": 4,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Judgment of The Three Hammers": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Shattering",
+          "tree": "Mountain King",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Damage dealt by each hammer triggered by Judgment of The Three Hammers now grants you 1% increased critical strike chance and damage for 10 seconds, stacking up to 10 times."
+        }
+      ]
+    },
+    "Keen Senses": {
+      "lanes": [
+        "CRIT",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical strike chance and haste by 3%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Killer's Path": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the attack power of party and raid members by 5%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 3%.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 2,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "King of the Mountain": {
+      "lanes": [
+        "STATS",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your parry, dodge, and haste rating by 15% of your Strength.",
+      "baseTree": "Mountain King",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Lacerations": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Melee critical strikes now increase the effectiveness of bleed effects on the target by 30% for 15 seconds.\n\nDoes not stack with similar effects.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 8,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Legacy of Rexxar": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$c4",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 6,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Lithic Lance": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$cc",
+      "baseTree": "Geomancy",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Dream",
+          "tree": "Geomancy",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Generating Earthshaping while at or above 10 stacks now grants Dream.DreamIncreases the critical strike chance of your Seismic abilities and Lithic Lance by 10% for 3 seconds."
+        },
+        {
+          "talent": "Rupturer",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Seismic Spike or Seismic Crash now generates a stack of Geomolding. \n\nCritically striking with Seismic Spike or Seismic Crash now generates an additional stack of Geomolding plus a stack of Earthshaping.\n\nCasting Lithic Lance now reduces the cooldown of Terrasurge by -4 sec."
+        }
+      ]
+    },
+    "Magma Fissure": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Stomp the ground and unleash a wave of earth and stone in a 20 yd line that knocks all enemies to the side and deals cond(gt(SPFI, SPN), 684+0+SPFI*1, 684+0+SPN*1) Fire damage, piercing absorption effects.\n\nYour next spell within 6 seconds is instant cast.",
+      "baseTree": "Geomancy",
+      "basePosition": {
+        "x": 6,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Magma Geode": {
+      "lanes": [
+        "DMG",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Eruption",
+          "tree": "Geomancy",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.2,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Launch 1 Magma Geode at your target every 0 sec for 0.2 seconds, dealing cond(gt(SPFI, SPN), 58+200+SPFI*0.2, 58+200+SPN*0.2) Firestorm Damage. \n\nDuration increased by 0.2 sec for each stack of Earthshaping."
+        }
+      ]
+    },
+    "Magma Geodes": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Magmatism",
+          "tree": "Geomancy",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Eruption by -15 sec and causes Magma Geodes to deal 30% more damage to enemies above 75% health."
+        }
+      ]
+    },
+    "Mineralization": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "While at or below 35% health, your spells and abilities will increase your healing received by 10% for 6 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Molten Fervor": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your spell haste by 5%.",
+      "baseTree": "Geomancy",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Mountain Avatar": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$d4",
+      "baseTree": "Mountain King",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Mountain Fury": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Move the earth, dealing 502 + 65% SP + 17% AP + 125% Stamina Physical damage to up to 12 enemies in a 10 yd frontal cone, pulling them toward you, repeating every 2 sec for 4 seconds.\n\nEach time an enemy is pulled toward you, you gain -2% reduced damage taken for 3 seconds, stacking 5 times.",
+      "baseTree": "Mountain King",
+      "basePosition": {
+        "x": 7,
+        "y": 8
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Earth Destroyer",
+          "tree": "Mountain King",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "sec"
+            },
+            {
+              "value": 4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Mountain Fury by -20 sec and increases the duration by 4 sec."
+        }
+      ]
+    },
+    "Mountain Hammer": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Throw a hammer at an enemy dealing 49 + 35.5% nature SP + 15.5% AP Physical damage and stunning them for 5 seconds.",
+      "baseTree": "Mountain King",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Hammer Time!",
+          "tree": "Mountain King",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Mountain Hammer now strikes up to 5 enemies."
+        },
+        {
+          "talent": "Everythings A Nail",
+          "tree": "Mountain King",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Mountain Hammer by 50%."
+        },
+        {
+          "talent": "Thane's Guidance",
+          "tree": "Mountain King",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Auto attacks now reduce the cooldown of Mountain Hammer by -1 sec."
+        },
+        {
+          "talent": "Judgement of The Three Hammers",
+          "tree": "Mountain King",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While active, dealing direct damage has a 20% chance to hurl 3 hammers over 2 seconds, each dealing 100 + 32.5% SP + 27.8% AP Physical damage. Lasts for 15 seconds. \n\nDamage scales with modifiers to Mountain Hammer."
+        },
+        {
+          "talent": "Quaking Thane",
+          "tree": "Mountain King",
+          "position": {
+            "x": 3,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.2,
+          "lanes": [
+            "DMG",
+            "STATS"
+          ],
+          "flags": [],
+          "description": "Striking at least 5 enemies with Quake or casting Mountain Hammer now grants you Thane's Rage.Thane's RageIncreases your attack power by 20% of your Stamina and your Stamina by 10% of your Strength for 15 seconds."
+        }
+      ]
+    },
+    "Natural Efficiency": {
+      "lanes": [
+        "HEAL",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Whenever you are struck by a root, stun, or incapacitate effect you are now instantly healed for 4% of your maximum health.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 8,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Nature's Call": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your healing done and received by 12%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Nature's Fury": {
+      "lanes": [
+        "DMG",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Auto attacks now have a 20% chance to deal Weapon Damage and restore 5% of your maximum mana.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 4,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Power Hammer": {
+      "lanes": [
+        "DMG",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "You now generate 10% more Rage from damage dealt, increased by 15% while a two-handed weapon is equipped.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Primal Awakening": {
+      "lanes": [
+        "HASTE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Enrage all nearby allies, increasing their haste by 30% for 20 seconds.\n\nAfter being affected by this spell, allies cannot benefit from similar effects for 5 minutes.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Primal Convergence": {
+      "lanes": [
+        "DMG",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Protector of the Grove",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Dealing direct damage now reduces the cooldown of Bearskin, Primal Convergence, and Boulder Dash by -1 sec."
+        }
+      ]
+    },
+    "Primal Fury": {
+      "lanes": [
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "You now passively generate 4 Rage every 5 sec.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Primal Rush": {
+      "lanes": [
+        "DMG",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Rush forward 20 yd through enemies in a line, dealing 40 Nature damage.\n\nGenerates 20 Rage.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Tectonic Flow",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Primal Rush and Boulder Dash by -20%."
+        },
+        {
+          "talent": "Untamed",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the range of Primal Rush by 3 yds."
+        },
+        {
+          "talent": "Fury of the Elements",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Your Primal Rush now generates 10 additional Rage."
+        },
+        {
+          "talent": "Running on Instinct",
+          "tree": "Life",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Passing through allies with Primal Rush now heals up to 5 of them for 166 + 25% AP + 35% SP and grants a stack of Running on Instinct.Running on Instinct (Proc)Damage of Wildclaw and Seismic spells is increased by 5% for 20 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Verdant Chase",
+          "tree": "Life",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "STATS",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Spirit Charge and Primal Rush now cooldown faster."
+        },
+        {
+          "talent": "Eternally Chosen",
+          "tree": "Life",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "HEAL",
+            "AOE",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Spirit Charge and Primal Rush now summons 2 Spirits of Life that immediately cast a lesser Spirit Charge on the nearest ally, healing them for 397 + 20% nature SP + 20% AP and dealing 404 + 20% nature SP + 20% AP Nature damage to nearby enemies."
+        },
+        {
+          "talent": "Blessed by the Earth",
+          "tree": "Mountain King",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            },
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.61,
+          "lanes": [
+            "DMG",
+            "HASTE",
+            "SPEED",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Primal Rush and Quake now grant Earth's Rage.Earth's RageIncreases movement speed by 4% and haste by 2% for 8 seconds, stacking 5 times."
+        }
+      ]
+    },
+    "Primal Shred": {
+      "lanes": [
+        "DMG",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Command your pet to shred up to 5 enemies within 8 yds, causing them to bleed, dealing 53 + 56% AP Physical damage over 21 seconds.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 6,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Spiritual Frenzy",
+          "tree": "Primal",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Casting Primal Shred now empowers your pet, causing its auto attacks to strike up to 4 nearby enemies for 21 seconds."
+        }
+      ]
+    },
+    "Primal Strikes": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Critical strikes with abilities that deal Physical damage now generate 3 Rage.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Primal Totem": {
+      "lanes": [
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Summon a Primal Totem that increases the primary stats of party and raid members by 20% within 40 yds for 15 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Primal Weapons": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$c8",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Protective Roar": {
+      "lanes": [
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Roar with noble tenacity, generating 20 Rage and granting 10% increased maximum health to all allies for 12 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Earthmother's Roar",
+          "tree": "Life",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Your Protective Roar now also heals allies equal to 20% of their missing health."
+        }
+      ]
+    },
+    "Protector's Hand": {
+      "lanes": [
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "You now emanate an aura around you, increasing the Armor of party and raid members by 390.\n\nDoes not stack with similar effects.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Quake": {
+      "lanes": [
+        "DMG",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "2 Charges, 8 sec recharge\nStomp the ground, dealing Weapon Damage plus 13 + 20% nature SP + 10% AP Nature damage to enemies within 8 yds and reduces their melee and ranged haste by -20% for 10 seconds.",
+      "baseTree": "Mountain King",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Blessed by the Earth",
+          "tree": "Mountain King",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            },
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.61,
+          "lanes": [
+            "DMG",
+            "HASTE",
+            "SPEED",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Primal Rush and Quake now grant Earth's Rage.Earth's RageIncreases movement speed by 4% and haste by 2% for 8 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Raging Earth",
+          "tree": "Mountain King",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Quake now creates a fissure beneath you that deals an additional 73 + 8% AP Nature damage every 2 sec for 6 seconds."
+        },
+        {
+          "talent": "Quakeformer",
+          "tree": "Mountain King",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Wildclaw and Seismic abilities now has a 25% chance to refresh a charge of Quake."
+        },
+        {
+          "talent": "Quaking Thane",
+          "tree": "Mountain King",
+          "position": {
+            "x": 3,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.2,
+          "lanes": [
+            "DMG",
+            "STATS"
+          ],
+          "flags": [],
+          "description": "Striking at least 5 enemies with Quake or casting Mountain Hammer now grants you Thane's Rage.Thane's RageIncreases your attack power by 20% of your Stamina and your Stamina by 10% of your Strength for 15 seconds."
+        },
+        {
+          "talent": "Earthmaker",
+          "tree": "Mountain King",
+          "position": {
+            "x": 5,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            },
+            {
+              "value": -3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Seismic abilities and Quake now reduces the cooldown of Earthen Avatar by -1 sec.\n\nAdditionally, the cooldown of Seismic abilities is reduced by -3 sec."
+        }
+      ]
+    },
+    "Raptor Talons": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Strength by 10% and your expertise by 8.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 5,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Replenishment": {
+      "lanes": [
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Resources of the Earth",
+          "tree": "Mountain King",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Critical strikes now grant allies Replenishment.ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+        }
+      ]
+    },
+    "Rexxar's Might": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your physical critical strikes now cause your pet's next attack to apply a bleed, dealing 93 + 15% AP Physical damage every 2 sec for 6 seconds.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 7,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Ring of Life": {
+      "lanes": [
+        "HEAL",
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Allies within 40 yds receive 6% increased healing. Does not stack with similar effects.\n\nIn addition, your Magic damage taken is reduced by -10%.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 2,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Rips and Tears": {
+      "lanes": [
+        "DMG",
+        "RESOURCE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Periodic damage dealt by you or your pet now generates 2 Rage for you and 5 Focus for your pet.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 2,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Rock Barrier": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$d0",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Primal Guardian",
+          "tree": "Mountain King",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HASTE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "When Earthen Avatar, Bearskin or Rock Barrier is removed or expires, you now gain 10% melee haste and parry chance for 15 seconds."
+        },
+        {
+          "talent": "Earthenforged Barrier",
+          "tree": "Mountain King",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.25,
+          "lanes": [
+            "COST",
+            "DURATION",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Increases the Armor provided by Rock Barrier by 50% and it now reduces the cost of your spells and abilities by -25% for the duration."
+        },
+        {
+          "talent": "Rock Solid",
+          "tree": "Mountain King",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the amount of charges of Rock Barrier by 5."
+        },
+        {
+          "talent": "Fury of the Earthmother",
+          "tree": "Mountain King",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Geode Barrage or Geodes now generates increased threat and have a 15% chance to add 1 charge to an active Rock Barrier and extend its duration by 1 sec."
+        },
+        {
+          "talent": "Earthmother's Protection",
+          "tree": "Mountain King",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "While your Rock Barrier is active, the Rage cost of Hand of the Earthmother is reduced by -50%."
+        }
+      ]
+    },
+    "Rylak's Bite": {
+      "lanes": [
+        "DMG",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "2 Charges, 10 sec recharge\nYou and your pet rush towards an enemy and strike them, dealing 120% Weapon Damage plus 8.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Torn to Shreds",
+          "tree": "Primal",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Totemic Smash and Rylak's Bite now causes enemies to bleed for 155 + 4.5% AP over 12 seconds, stacking 2 times."
+        },
+        {
+          "talent": "Wild Rage",
+          "tree": "Primal",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Removes the Rage cost of Rylak's Bite."
+        },
+        {
+          "talent": "Primal Rage",
+          "tree": "Primal",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Totemic Smash now refreshes a charge of Rylak's Bite."
+        },
+        {
+          "talent": "Rush of the Hunt",
+          "tree": "Primal",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Wildclaw and Rylak's Bite by 15% against bleeding enemies."
+        },
+        {
+          "talent": "Rylak's Blessing",
+          "tree": "Primal",
+          "position": {
+            "x": 6,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "SUMMON"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Damage dealt by Rylak's Bite now increases your pet's damage and critical strike chance by 2%, stacking 2 times, for 10 seconds."
+        }
+      ]
+    },
+    "Sacred Grove": {
+      "lanes": [
+        "HEAL",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Create a Sacred Grove in a 15 yd radius around you for 16 seconds, instantly healing all nearby allies for 2002 + 100% AP.\n\nWhile active, up to 12 allies in the grove receive 25% increased healing, and regain 3% of their missing health, Rage, and mana every 2 sec.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Savage Frenzy": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Enrage you and your pet for 18 seconds, increasing damage dealt by 20%, and attack speed and movement speed by 30%.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Son of Ursoc",
+          "tree": "Primal",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": -60.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Savage Frenzy now transforms you into a feast beast, freeing you of all movement impairing effects.\n\nIn addition, increases the effectiveness of Savage Frenzy by 50%, and reduces its cooldown by -60 sec."
+        }
+      ]
+    },
+    "Seismic": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "CDR",
+        "HASTE",
+        "SPEED",
+        "HEAL",
+        "MITIGATION",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Stonefaced",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            },
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.61,
+          "lanes": [
+            "HASTE",
+            "SPEED",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Seismic abilities now also grants 2 stacks of Earth's Rage.Earth's RageIncreases movement speed by 4% and haste by 2% for 8 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Earthshaping",
+          "tree": "Geomancy",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Boulder Dash"
+          ],
+          "statModification": [
+            {
+              "value": 1.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.1,
+          "lanes": [
+            "HASTE",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Level 10 Passive\nCasting Geode Barrage and your Seismic abilities now generate Earthshaping.EarthshapingEmpowers some of your abilities and increases your spell haste by 1% for 20 seconds, stacking 15 times.\n\nAdditional applications do not refresh duration."
+        },
+        {
+          "talent": "Gaze of Therazane",
+          "tree": "Geomancy",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 16.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the range of your Geomancy spells by 20% and of Seismic spells by 16 yds."
+        },
+        {
+          "talent": "Cataclysm",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Generating Earthshaping or casting Stoneshard now has a 10% chance to reset the cooldown of your Seismic abilities."
+        },
+        {
+          "talent": "Dream",
+          "tree": "Geomancy",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Generating Earthshaping while at or above 10 stacks now grants Dream.DreamIncreases the critical strike chance of your Seismic abilities and Lithic Lance by 10% for 3 seconds."
+        },
+        {
+          "talent": "Nature's Will",
+          "tree": "Geomancy",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Casting Seismic spells now extends the duration of Earthshaping by 4 sec."
+        },
+        {
+          "talent": "Earth's Guidance",
+          "tree": "Life",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage and healing done by Seismic spells now has a 20% chance to reduce the cooldown of all Seismic spells by -1 sec."
+        },
+        {
+          "talent": "Running on Instinct",
+          "tree": "Life",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Passing through allies with Primal Rush now heals up to 5 of them for 166 + 25% AP + 35% SP and grants a stack of Running on Instinct.Running on Instinct (Proc)Damage of Wildclaw and Seismic spells is increased by 5% for 20 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Grove Tender",
+          "tree": "Life",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "While inside your Bramblepatch your Seismic abilities now have a -80% reduced cooldown.\n\nIn addition, the duration of Bramblepatch is doubled."
+        },
+        {
+          "talent": "Earthmother's Warden",
+          "tree": "Life",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Seismic abilities by -2 sec."
+        },
+        {
+          "talent": "Douse",
+          "tree": "Life",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 75.0,
+              "unit": "flat"
+            },
+            {
+              "value": -2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.8,
+          "lanes": [
+            "DMG",
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Striking an enemy with Seismic spells now deals an additional 1 + 8% AP Frost damage and reduces all resistances by 75 and increases their Magic damage taken by -2% for 10 seconds."
+        },
+        {
+          "talent": "Spiritbound",
+          "tree": "Mountain King",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Avoiding attacks now grants you 5 Rage and reduces the cooldown of your Seismic abilities by -1 sec."
+        },
+        {
+          "talent": "Stone Skin",
+          "tree": "Mountain King",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS"
+          ],
+          "flags": [],
+          "description": "Level 30 Passive\nYou are now immune to bleeds and your Geode Barrage and Seismic ability damage now additionally scales with your parry rating."
+        },
+        {
+          "talent": "Quakeformer",
+          "tree": "Mountain King",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Wildclaw and Seismic abilities now has a 25% chance to refresh a charge of Quake."
+        },
+        {
+          "talent": "Earthmaker",
+          "tree": "Mountain King",
+          "position": {
+            "x": 5,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            },
+            {
+              "value": -3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Seismic abilities and Quake now reduces the cooldown of Earthen Avatar by -1 sec.\n\nAdditionally, the cooldown of Seismic abilities is reduced by -3 sec."
+        },
+        {
+          "talent": "Tremors",
+          "tree": "Primal",
+          "position": {
+            "x": 10,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 30,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 30 Passive\nPeriodic damage now has a 10% chance to reset the cooldown of your Seismic abilties and cause your next cast within 10 seconds to be free of cost."
+        },
+        {
+          "talent": "Earthshaker",
+          "tree": "Primal",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Increases the damage dealt by Seismic abilities by 10% and allows their periodic damage to critically strike."
+        }
+      ]
+    },
+    "Seismic Crash": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Earthmother's Precision",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.3,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Seismic Crash now increases the chance for allies to hit with all spells against the enemy by 3% for 15 seconds."
+        },
+        {
+          "talent": "Stone Tosser",
+          "tree": "Geomancy",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases spell bonus damage scaling of Geode Barrage, Stoneshard, and Seismic Crash by 25%."
+        },
+        {
+          "talent": "Therazane's Blessing",
+          "tree": "Geomancy",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nAllows the periodic damage dealt by Seismic Tremor, Seismic Crash, and Earthquake to critically strike."
+        },
+        {
+          "talent": "Rupturer",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Seismic Spike or Seismic Crash now generates a stack of Geomolding. \n\nCritically striking with Seismic Spike or Seismic Crash now generates an additional stack of Geomolding plus a stack of Earthshaping.\n\nCasting Lithic Lance now reduces the cooldown of Terrasurge by -4 sec."
+        },
+        {
+          "talent": "Crashing Out",
+          "tree": "Life",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Seismic Crash by 30%."
+        },
+        {
+          "talent": "Seismically Efficient",
+          "tree": "Mountain King",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "flat"
+            },
+            {
+              "value": 2.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the Rage generated from Seismic Crash by 5 and Seismic Spike by 2."
+        },
+        {
+          "talent": "Primal Resurgence",
+          "tree": "Primal",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Seismic Crash now generates an additional 10 Rage and Seismic Spike now generates 3 additional Rage."
+        }
+      ]
+    },
+    "Seismic Grasp": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Spinebreaker",
+          "tree": "Primal",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Seismic Grasp now roots enemies for 3.5 seconds."
+        }
+      ]
+    },
+    "Seismic Smash": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$d2",
+      "baseTree": "Mountain King",
+      "basePosition": {
+        "x": 3,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Seismic Spike": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Cracking the Earth",
+          "tree": "Geomancy",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE",
+            "AOE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Striking at least 5 enemies with Volcanic Blast now grants you Cracking the Earth for 10 seconds.Cracking the Earth (Proc)Your Seismic Spike strikes 1 additional enemy. Stacks 5 times."
+        },
+        {
+          "talent": "Rupturer",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Seismic Spike or Seismic Crash now generates a stack of Geomolding. \n\nCritically striking with Seismic Spike or Seismic Crash now generates an additional stack of Geomolding plus a stack of Earthshaping.\n\nCasting Lithic Lance now reduces the cooldown of Terrasurge by -4 sec."
+        },
+        {
+          "talent": "Tears of the Earthmother",
+          "tree": "Life",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the amount of targets hit by Seismic Spike by 4."
+        },
+        {
+          "talent": "Seismically Efficient",
+          "tree": "Mountain King",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "flat"
+            },
+            {
+              "value": 2.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the Rage generated from Seismic Crash by 5 and Seismic Spike by 2."
+        },
+        {
+          "talent": "Primal Resurgence",
+          "tree": "Primal",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Seismic Crash now generates an additional 10 Rage and Seismic Spike now generates 3 additional Rage."
+        },
+        {
+          "talent": "Wild Carnage",
+          "tree": "Primal",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Seismic Spike now causes your Wildclaws to strike up to 4 additional nearby targets, dealing reduced damage with each additional enemy struck. Lasts 6 seconds."
+        }
+      ]
+    },
+    "Seismic Tremor": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Therazane's Might",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your Terrasurge will now always critically strike against targets affected by your Seismic Tremor."
+        },
+        {
+          "talent": "Trembling Rage",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the amount of Rage generated by Seismic Tremor by 2."
+        },
+        {
+          "talent": "Everlasting Rage",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            },
+            {
+              "value": -10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.0,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Seismic Tremor by 5 sec and its tick rate by -10%."
+        },
+        {
+          "talent": "Geomolding",
+          "tree": "Geomancy",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Periodic damage dealt by Seismic Tremor now grants Geomolding for 15 seconds.Geomolding (Proc)Your next Terrasurge costs 2 additional Rage and deals 3% increased damage. Stacks 20 times."
+        },
+        {
+          "talent": "Therazane's Blessing",
+          "tree": "Geomancy",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nAllows the periodic damage dealt by Seismic Tremor, Seismic Crash, and Earthquake to critically strike."
+        }
+      ]
+    },
+    "Seismic Wave": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Create a seismic wave of healing water around you, healing for 27 + 60% healing + 28% AP health to up to 8 allies and dealing 47 + 28% AP + 30% healing Nature damage to enemies in a 25 yd radius.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 2,
+        "y": 1
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Primal Power",
+          "tree": "Life",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Casting Seismic Wave now causes your next Hand of the Earthmother within 8 seconds to cost -50% less Rage."
+        },
+        {
+          "talent": "Nature's Blessing",
+          "tree": "Life",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Healing allies with Seismic Wave now heals them for an additional 20% of the healing done every 3 sec for 9 sec."
+        },
+        {
+          "talent": "Ride the Wave",
+          "tree": "Life",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Seismic Wave now increases the movement speed of affected allies by 30% for 4 seconds."
+        }
+      ]
+    },
+    "Sharpened Claws": {
+      "lanes": [
+        "CRIT",
+        "ARMOR",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your direct critical strikes now increase your and your pet's Armor penetration by 5% for 10 seconds, stacking 3 times.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 3,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Soothing Touch": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Emerald Will",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Successfully dispelling a poison or disease effect with Soothing Touch now heals for 4% maximum health."
+        },
+        {
+          "talent": "Mending Touch",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Soothing Touch now dispels an additional poison and disease effect."
+        }
+      ]
+    },
+    "Spirit Beast Master": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 10 Passive\nYou may now tame beasts in Azeroth to aid you as a companion.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": []
+    },
+    "Spirit Charge": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Charge to an ally's aid, healing them for 53 + 20% healing + 20% AP and dealing 67 + 20% healing + 20% AP Nature damage to enemies within 5 yds of them.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 6,
+        "y": 1
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Spiritual Warrior",
+          "tree": "Life",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "STATS",
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Spirit Charge by 25%."
+        },
+        {
+          "talent": "Primordial Earth",
+          "tree": "Life",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "CRIT",
+            "HEAL",
+            "AOE",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Critical strikes with melee attacks now summon 1 Spirit of Life that immediately casts a lesser Spirit Charge on a nearby ally, healing them for 397 + 20% nature SP + 20% AP and dealing 404 + 20% nature SP + 20% AP Nature damage to nearby enemies."
+        },
+        {
+          "talent": "Verdant Chase",
+          "tree": "Life",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "STATS",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Spirit Charge and Primal Rush now cooldown faster."
+        },
+        {
+          "talent": "Eternally Chosen",
+          "tree": "Life",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "HEAL",
+            "AOE",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Spirit Charge and Primal Rush now summons 2 Spirits of Life that immediately cast a lesser Spirit Charge on the nearest ally, healing them for 397 + 20% nature SP + 20% AP and dealing 404 + 20% nature SP + 20% AP Nature damage to nearby enemies."
+        }
+      ]
+    },
+    "Spirit Stable": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Call forth a stabled animal spirit to replace your current one. Lasts 10 seconds.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 10,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Spirit of Life": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT",
+        "HEAL",
+        "AOE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Primordial Earth",
+          "tree": "Life",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "CRIT",
+            "HEAL",
+            "AOE",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Critical strikes with melee attacks now summon 1 Spirit of Life that immediately casts a lesser Spirit Charge on a nearby ally, healing them for 397 + 20% nature SP + 20% AP and dealing 404 + 20% nature SP + 20% AP Nature damage to nearby enemies."
+        }
+      ]
+    },
+    "Spirits of Life": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "HEAL",
+        "AOE",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Eternally Chosen",
+          "tree": "Life",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "HEAL",
+            "AOE",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Spirit Charge and Primal Rush now summons 2 Spirits of Life that immediately cast a lesser Spirit Charge on the nearest ally, healing them for 397 + 20% nature SP + 20% AP and dealing 404 + 20% nature SP + 20% AP Nature damage to nearby enemies."
+        }
+      ]
+    },
+    "Stone Cold": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your maximum health by 8%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Stone Soldier": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases the damage of your off hand weapon by 60% and your chance to hit by 6%.",
+      "baseTree": "Mountain King",
+      "basePosition": {
+        "x": 6,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Stoneshard": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "CAST",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Whispers of the Earth",
+          "tree": "Geomancy",
+          "position": {
+            "x": 2,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.3,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CAST"
+          ],
+          "flags": [],
+          "description": "Reduces the cast time of Geode Barrage and Stoneshard by 0.3 sec."
+        },
+        {
+          "talent": "Cataclysm",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Generating Earthshaping or casting Stoneshard now has a 10% chance to reset the cooldown of your Seismic abilities."
+        },
+        {
+          "talent": "Rockslide",
+          "tree": "Geomancy",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Stoneshard now has a 15% chance to cast an additional time. This effect can trigger itself."
+        },
+        {
+          "talent": "One With The Earth",
+          "tree": "Geomancy",
+          "position": {
+            "x": 6,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Stoneshard and Geode Barrage by 20% and Stoneshard now restores 4% of your maximum mana."
+        },
+        {
+          "talent": "Stone Tosser",
+          "tree": "Geomancy",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases spell bonus damage scaling of Geode Barrage, Stoneshard, and Seismic Crash by 25%."
+        }
+      ]
+    },
+    "Stoneskin": {
+      "lanes": [
+        "STATS",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Armor by 400% of your Intellect.",
+      "baseTree": "Geomancy",
+      "basePosition": {
+        "x": 1,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Terrasurge": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Therazane's Might",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Your Terrasurge will now always critically strike against targets affected by your Seismic Tremor."
+        },
+        {
+          "talent": "Geomolding",
+          "tree": "Geomancy",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Periodic damage dealt by Seismic Tremor now grants Geomolding for 15 seconds.Geomolding (Proc)Your next Terrasurge costs 2 additional Rage and deals 3% increased damage. Stacks 20 times."
+        },
+        {
+          "talent": "Rupturer",
+          "tree": "Geomancy",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Seismic Spike or Seismic Crash now generates a stack of Geomolding. \n\nCritically striking with Seismic Spike or Seismic Crash now generates an additional stack of Geomolding plus a stack of Earthshaping.\n\nCasting Lithic Lance now reduces the cooldown of Terrasurge by -4 sec."
+        }
+      ]
+    },
+    "Thane's Rage": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Quaking Thane",
+          "tree": "Mountain King",
+          "position": {
+            "x": 3,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.2,
+          "lanes": [
+            "DMG",
+            "STATS"
+          ],
+          "flags": [],
+          "description": "Striking at least 5 enemies with Quake or casting Mountain Hammer now grants you Thane's Rage.Thane's RageIncreases your attack power by 20% of your Stamina and your Stamina by 10% of your Strength for 15 seconds."
+        }
+      ]
+    },
+    "Therazane's Rage": {
+      "lanes": [
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Therazane's Gift",
+          "tree": "Class",
+          "position": {
+            "x": 4,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Therazane's Rage now generates an additional 5 Rage and 5% additional mana."
+        }
+      ]
+    },
+    "Thorns": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Physical damage dealt or taken now has a 10% chance to unleash Thorns on an enemy.Thorns (Talent)Create thorns around an enemy, rooting them and dealing 270 Nature Damage over 6 seconds.\n\nDirect damage taken may end this effect.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 4,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Throat Clamp": {
+      "lanes": [
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Command your pet to dash forward a short distance towards your target, interrupting spellcasting and preventing any spell in that school from being cast for 3 seconds.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 1,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Totemic Crash": {
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Totemic Echoes",
+          "tree": "Primal",
+          "position": {
+            "x": 3,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Totemic Smash now applies Totemic Crash to an enemy for 2 seconds.\n\nAt the end of the duration, if you are within 5 yds of the target, you cast Totemic Smash against them for free."
+        }
+      ]
+    },
+    "Totemic Smash": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Smash an enemy for 140% Weapon Damage plus 20.\n\nDeals an additional 10 + 35% AP damage to up to 5 enemies within 8 yds.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Pulverize",
+          "tree": "Primal",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Totemic Smash by 20%."
+        },
+        {
+          "talent": "Torn to Shreds",
+          "tree": "Primal",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Totemic Smash and Rylak's Bite now causes enemies to bleed for 155 + 4.5% AP over 12 seconds, stacking 2 times."
+        },
+        {
+          "talent": "Pulverize",
+          "tree": "Primal",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Totemic Smash now trigger the area of effect portion of its damage an additional time."
+        },
+        {
+          "talent": "Primal Rage",
+          "tree": "Primal",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Casting Totemic Smash now refreshes a charge of Rylak's Bite."
+        },
+        {
+          "talent": "Elemental Berserker",
+          "tree": "Primal",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the area damage dealt by Totemic Smash by 30%, but it now costs 5 additional Rage."
+        },
+        {
+          "talent": "Totemic Echoes",
+          "tree": "Primal",
+          "position": {
+            "x": 3,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Totemic Smash now applies Totemic Crash to an enemy for 2 seconds.\n\nAt the end of the duration, if you are within 5 yds of the target, you cast Totemic Smash against them for free."
+        }
+      ]
+    },
+    "Tranquil Mind": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your damage and healing done by 8%.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 1,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Unyielding Form": {
+      "lanes": [
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your parry and dodge chance by 6% and your Armor contribution from mail and plate by 50%.",
+      "baseTree": "Mountain King",
+      "basePosition": {
+        "x": 4,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Ursoc's Bellow": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Improved Ursoc's Bellow",
+          "tree": "Mountain King",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of Ursoc's Bellow by 40%."
+        }
+      ]
+    },
+    "Vitality Surge": {
+      "lanes": [
+        "HASTE",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "All effective healing done now has a 25% chance to increase the haste of party and raid members by 5% for 20 seconds.\n\nDoes not stack with similar effects.",
+      "baseTree": "Life",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Volcanic Blast": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your Physical or Nature damaging critical strikes now deal an additional 20% of the damage dealt as Fire damage to the target and enemies nearby.",
+      "baseTree": "Geomancy",
+      "basePosition": {
+        "x": 1,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Cracking the Earth",
+          "tree": "Geomancy",
+          "position": {
+            "x": 1,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE",
+            "AOE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Striking at least 5 enemies with Volcanic Blast now grants you Cracking the Earth for 10 seconds.Cracking the Earth (Proc)Your Seismic Spike strikes 1 additional enemy. Stacks 5 times."
+        }
+      ]
+    },
+    "Wild Rampage": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your attack power by 10% and your chance to hit by 4%.",
+      "baseTree": "Primal",
+      "basePosition": {
+        "x": 6,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Wildclaw": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "HEAL",
+        "RESOURCE",
+        "COST",
+        "AOE",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Elemental Cascade",
+          "tree": "Life",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "HEAL",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Critical strikes with Wildclaw now unleash an Elemental Cascade.Elemental CascadeRestores 32 + 10% AP + 10% healing health to allies in a 12 yd radius around you."
+        },
+        {
+          "talent": "Running on Instinct",
+          "tree": "Life",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Passing through allies with Primal Rush now heals up to 5 of them for 166 + 25% AP + 35% SP and grants a stack of Running on Instinct.Running on Instinct (Proc)Damage of Wildclaw and Seismic spells is increased by 5% for 20 seconds, stacking 5 times."
+        },
+        {
+          "talent": "Verdant Warrior",
+          "tree": "Life",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 30.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Wildclaw by 30%."
+        },
+        {
+          "talent": "Shaman Training",
+          "tree": "Life",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 555.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Wildclaw now reduces the enemy's armor by 555 for 8 seconds."
+        },
+        {
+          "talent": "Quakeformer",
+          "tree": "Mountain King",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Wildclaw and Seismic abilities now has a 25% chance to refresh a charge of Quake."
+        },
+        {
+          "talent": "Mountain Mover",
+          "tree": "Mountain King",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE",
+            "COST"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Avoiding an attack grants a stack of Mountain Mover for 10 seconds, stacking 5 times.\n\nWildclaw consumes Mountain Mover stacks to cost -10% less Rage per stack."
+        },
+        {
+          "talent": "Wild At Heart",
+          "tree": "Primal",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 0.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the global cooldown of Wildclaw by 0.-25 sec."
+        },
+        {
+          "talent": "Rush of the Hunt",
+          "tree": "Primal",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Wildclaw and Rylak's Bite by 15% against bleeding enemies."
+        },
+        {
+          "talent": "Totem Warrior",
+          "tree": "Primal",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "While you have Boon of the Bear active, Wildclaw will now strike an additional time for 40% of the damage dealt with both weapons."
+        }
+      ]
+    },
+    "Wildclaws": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Wild Carnage",
+          "tree": "Primal",
+          "position": {
+            "x": 5,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Seismic Spike now causes your Wildclaws to strike up to 4 additional nearby targets, dealing reduced damage with each additional enemy struck. Lasts 6 seconds."
+        }
+      ]
+    },
+    "Wildheart": {
+      "lanes": [
+        "CDR",
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "The Earthmother marks you as her chosen one, reducing the cooldown of all other non-damaging spells and abilities by 5%, repeating every 2 sec for 15 seconds.\n\nInstantly restores 5% missing health, mana, and Rage to you, repeating every 3 sec.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 9
+      },
+      "modifyingTalents": []
+    }
+  }
+}

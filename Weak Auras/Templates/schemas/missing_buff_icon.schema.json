@@ -1,0 +1,41 @@
+{
+  "$id": "missing_buff_icon.schema.json",
+  "opportunity_type": "missing_buff",
+  "title": "Missing buff (icon, showOnMissing)",
+  "description": "Shows only when a named personal buff is ABSENT - the Buffs/Utility dynamic-overflow mechanism.",
+  "region_type": "icon",
+  "trigger": "Aura (matchesShowOn = showOnMissing)",
+  "type": "object",
+  "required": [
+    "name",
+    "spell_id",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "spell_id": {
+      "type": [
+        "string",
+        "integer"
+      ]
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 30
+    },
+    "height": {
+      "type": "number",
+      "default": 20
+    }
+  },
+  "verified": "Confirmed by direct source read: BuffTrigger2.lua has a real matchesShowOn == 'showOnMissing' mode. Already load-bearing in Template_shadow.py's design (v0.13+ reserves the positional slots), though the actual trigger dict for showOnMissing specifically has not yet been captured from a real live-tested example in this project - same caveat as the glow_source conditions block."
+}

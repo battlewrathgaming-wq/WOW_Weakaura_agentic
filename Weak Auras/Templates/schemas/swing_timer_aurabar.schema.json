@@ -1,0 +1,44 @@
+{
+  "$id": "swing_timer_aurabar.schema.json",
+  "opportunity_type": "swing_timer",
+  "title": "Swing timer (aurabar)",
+  "description": "Melee auto-attack swing/rhythm tracker - sits outside the five tiers (HUD_DESIGN.md, settled 2026-07-06), same category as enemy_cast. Uses WeakAuras' own NATIVE 'Swing Timer' trigger (Prototypes.lua line 4969) - no external addon dependency. An earlier assumption that this needed a separate library addon (SwingTimerAPI by Ralgathor, referenced by a live Wago pack) was checked directly against this project's installed WeakAuras source and found wrong - the native trigger is fully self-contained. REVISED 2026-07-06 (later same day): converted from icon to aurabar, and given the same 'always-shown shadow footprint' treatment as player_cast_aurabar, per Battlewrath's direct request that both bars match - see that schema's 'idle-shadow mechanism' note, identical logic here.",
+  "region_type": "aurabar",
+  "trigger": "Swing Timer",
+  "type": "object",
+  "required": [
+    "name",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "hand": {
+      "type": "string",
+      "enum": [
+        "main",
+        "off",
+        "ranged"
+      ],
+      "default": "main",
+      "description": "Which weapon slot to track - Types.lua's swing_types (main=MAINHANDSLOT, off=SECONDARYHANDSLOT, ranged=RANGEDSLOT). Defaults to main-hand; only one mask slot exists for this element so far - dual-wield off-hand tracking (a second bar) is a stretch enhancement for melee-class builds later, not needed for Necromancer."
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 127.5
+    },
+    "height": {
+      "type": "number",
+      "default": 15
+    }
+  },
+  "verified": "Trigger type and 'hand' field confirmed directly from this project's own installed WeakAuras source (Prototypes.lua lines 4969-5030 - including its own implicit show/hide test, '(inverse and duration==0) or (not inverse and duration>0)', confirming the trigger is naturally hidden when no swing is in progress - and Types.lua's swing_types line 2350), not inferred from a community pack. progressType='timed' confirmed at line 5076. WeakAuras' own UI text warns results are 'inaccurate in edge cases' due to Blizzard API limitations (CAPABILITY_INVENTORY.md) - accepted as-is per Battlewrath, this is a baseline, not a final answer. IDLE-SHADOW MECHANISM - ATTEMPTED THEN WITHDRAWN (2026-07-06), identical story to player_cast_aurabar.schema.json: live-tested, found backwards (hid once triggered instead of brightening), withdrawn in favor of a separate backing_plate_aurabar element doing the persistent-footprint job instead. Back to a single trigger, full alpha, normal show/hide. Timer-text placeholder ('%p', INNER_RIGHT) kept - see that file's 'verified' field for the shared writeup. COLOR SYNCED 2026-07-06: barColor set to white/untinted ([1,1,1,1]), matching the 'color' field on Battlewrath's own real in-game 'Swing Timer' recolor (decoded from the same pasted export as Cast Bar's color, both from the actually-imported v1 aura - see slot_assignment.md's timeline correction). ICON: BRIEFLY REMOVED, THEN RESTORED WITH CORRECTED UNDERSTANDING (2026-07-06) - same story and AuraBar.lua confirmation as player_cast_aurabar.schema.json's matching note, not repeated in full here. Restored to icon:true. Confirmed why it's wanted specifically for Swing Timer: with iconSource=-1, AuraBar.lua's UpdateIcon() reads self.state.icon - the Swing Timer trigger's own 'icon' state field (Prototypes.lua line ~5047, init='icon', fed by GetSwingTimerInfo(hand)'s icon return value) is the swinging WEAPON's icon, per Battlewrath: 'they use the icon of what triggered them... what weapon.' Not yet rebuilt/live-tested since this correction."
+}

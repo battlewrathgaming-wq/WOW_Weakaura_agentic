@@ -1,0 +1,5520 @@
+{
+  "class": "Felsworn",
+  "classId": 14,
+  "realm": "voljin-alpha",
+  "source": "https://ascension.gg/en/v2/coa-builder/voljin-alpha",
+  "extracted": "2026-07-01",
+  "schemaVersion": 3,
+  "trees": [
+    "Class",
+    "Infernal",
+    "Slayer",
+    "Tyrant"
+  ],
+  "totalTalents": 158,
+  "budget": {
+    "abilityEssence": 26,
+    "talentEssence": 25
+  },
+  "rules": {
+    "specExclusivity": "Only one spec tree (Sanguine/Accursed/Eternal/Fleshweaver-equivalent) can be active at a time in-game. You commit to ONE non-Class tree and spend your full Talent Essence budget within it (plus the separate Class tree spent with Ability Essence). Treat trees other than 'Class' as mutually exclusive choices, not a blend.",
+    "partialRanksCount": "A node only needs 1 point invested (not maxPoints) to count as 'connected' for prerequisite checks and to contribute toward the reqTreeAbilityEssence/reqTreeTalentEssence row-unlock thresholds.",
+    "budgetCurrencies": "Ability Essence (AE) is spent only in the Class tree. Talent Essence (TE) is spent only in whichever single spec tree you commit to. A node's abilityEssenceCost/talentEssenceCost fields show which currency it draws from (never both).",
+    "rowGating": "reqTreeAbilityEssence / reqTreeTalentEssence on a node is the minimum essence already spent within that SAME tree required to unlock it - not total across trees.",
+    "levelGates": "Some nodes (mostly entryType Ability) cost 0 essence and unlock automatically at requiredLevel instead of being a budget choice.",
+    "prerequisiteFieldsCorrected": "'prerequisites' is the OR-logic grid-connection requirement (matches tooltip 'requires one connected node: A or B or C') - need at least 1 point in ANY ONE listed node. 'specialRequirement' is a separate, rare, AND-logic hard requirement used only by a handful of free/level-gated bonus nodes - ALL listed nodes must already have a point.",
+    "budgetTotalsAssumed": "Verified live for Bloodmage: 26 Ability Essence (Class tree) / 25 Talent Essence (spec tree) as the spendable caps. Assumed identical for all classes since this is tied to character leveling, not class design - not independently verified per class. Override in the toolkit if a specific class differs.",
+    "referencedTerms": "Extracted from colored in-line spans in the raw tooltip HTML (e.g. a description that highlights 'Cursed Blood' or 'Bloodbolt'). These are explicit developer-authored callouts to another spell/buff/mechanic name, and are the strongest available signal for detecting mechanical synergy between talents - stronger than plain keyword text matching."
+  },
+  "talents": [
+    {
+      "id": 29686,
+      "name": "Annihilation",
+      "tree": "Class",
+      "x": 2,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_boss_lordanthricystgreen",
+      "spellId": 803904,
+      "description": "Gorge on fel energy, guaranteeing your next direct instance of damage to critically strike, but causing it to consume 5% of your maximum health. Lasts for 5 attacks or 12 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Gorge on fel energy, guaranteeing your next direct instance of damage to critically strike, but causing it to consume 5% of your maximum health. Lasts for 5 attacks or 12 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29367,
+      "name": "Manaburn",
+      "tree": "Class",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_ManaBurn_Fel",
+      "spellId": 805248,
+      "description": "Burn an enemy's mana equal to 200% of your Stamina.\n\nDeals damage equal to the mana drained.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Burn an enemy's mana equal to 200% of your Stamina.\n\nDeals damage equal to the mana drained."
+        }
+      ]
+    },
+    {
+      "id": 30554,
+      "name": "Hateforged Barrier",
+      "tree": "Class",
+      "x": 6,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\spell_fire_felfireward",
+      "spellId": 705129,
+      "description": "Manifest a barrier of pure hatred, absorbing 177 + 200% Stamina damage, scaling with your Stamina, for 30 seconds.\n\nWhile the barrier holds, you regenerate 2% of your maximum health every 2 sec.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Manifest a barrier of pure hatred, absorbing 177 + 200% Stamina damage, scaling with your Stamina, for 30 seconds.\n\nWhile the barrier holds, you regenerate 2% of your maximum health every 2 sec."
+        }
+      ]
+    },
+    {
+      "id": 7862,
+      "name": "Cruelty",
+      "tree": "Class",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Warlock_Imp",
+      "spellId": 705109,
+      "description": "Increases your critical strike chance by 2% and an additional 3% against Demons.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Annihilation"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical strike chance by 2% and an additional 3% against Demons."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your critical strike chance by 4% and an additional 6% against Demons."
+        }
+      ]
+    },
+    {
+      "id": 34207,
+      "name": "Demonborn",
+      "tree": "Class",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\nhi_unholyswing_Border",
+      "spellId": 705102,
+      "description": "Increases your Energy regeneration by 15%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Manaburn",
+        "Annihilation",
+        "Hateforged Barrier"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Energy regeneration by 15%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Energy regeneration by 30%."
+        }
+      ]
+    },
+    {
+      "id": 34203,
+      "name": "Demonic Evasion",
+      "tree": "Class",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_MonkSpecialAttack_DodgeNightElf",
+      "spellId": 705108,
+      "description": "Increases your chance to dodge by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Hateforged Barrier"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your chance to dodge by 5%."
+        }
+      ]
+    },
+    {
+      "id": 34211,
+      "name": "Focused Hatred",
+      "tree": "Class",
+      "x": 1,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_leather_raiddemonhuntermythic_q_02helm",
+      "spellId": 704606,
+      "description": "Direct magical critical strikes now generate 5 Energy.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Cruelty"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Direct magical critical strikes now generate 5 Energy."
+        }
+      ]
+    },
+    {
+      "id": 34205,
+      "name": "Felwracked",
+      "tree": "Class",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_DemonicCircleTeleport",
+      "spellId": 704374,
+      "description": "Every 3rd Twin Slice or Fel Fireball within 15 seconds now generates 1 additional Felfury.",
+      "referencedTerms": [
+        "Fel Fireball",
+        "Felfury",
+        "Twin Slice"
+      ],
+      "prerequisites": [
+        "Demonborn"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Every 3rd Twin Slice or Fel Fireball within 15 seconds now generates 1 additional Felfury."
+        }
+      ]
+    },
+    {
+      "id": 7863,
+      "name": "Infernal Armor",
+      "tree": "Class",
+      "x": 7,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_argus_felreaver",
+      "spellId": 300467,
+      "description": "Reduces the cooldown of your Hateforged Barrier by -10 sec.",
+      "referencedTerms": [
+        "Hateforged Barrier"
+      ],
+      "prerequisites": [
+        "Demonic Evasion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of your Hateforged Barrier by -10 sec."
+        }
+      ]
+    },
+    {
+      "id": 6868,
+      "name": "Whispers of the Pit",
+      "tree": "Class",
+      "x": 2,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_bossmannoroth_mannorothsgaze",
+      "spellId": 805235,
+      "description": "Unleash fel energy upon enemies at target location, fearing them and slowing their movement speed by -80% for 8 seconds.\n\nDamage caused may interrupt the effect.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Felwracked",
+        "Focused Hatred"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Unleash fel energy upon enemies at target location, fearing them and slowing their movement speed by -80% for 8 seconds.\n\nDamage caused may interrupt the effect."
+        }
+      ]
+    },
+    {
+      "id": 33670,
+      "name": "Embracing Evil",
+      "tree": "Class",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_CasterCloak_Fel",
+      "spellId": 800352,
+      "description": "Increases the duration and reduces the Energy cost of Banes by 20%.",
+      "referencedTerms": [
+        "Banes"
+      ],
+      "prerequisites": [
+        "Felwracked"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration and reduces the Energy cost of Banes by 20%."
+        }
+      ]
+    },
+    {
+      "id": 30559,
+      "name": "Skull of Gul'dan",
+      "tree": "Class",
+      "x": 6,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_offhand_1h_artifactskulloferedar_d_03",
+      "spellId": 800225,
+      "description": "Consume the essence of the skull of Gul'dan, increasing your maximum health and Energy by 25% for 10 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Infernal Armor",
+        "Felwracked"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Consume the essence of the skull of Gul'dan, increasing your maximum health and Energy by 25% for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 33668,
+      "name": "Felgorged",
+      "tree": "Class",
+      "x": 1,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_feldevastation",
+      "spellId": 560573,
+      "description": "Reduces the Energy cost of Cripple and Consume Magic by -10.",
+      "referencedTerms": [
+        "Consume Magic",
+        "Cripple"
+      ],
+      "prerequisites": [
+        "Whispers of the Pit"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Energy cost of Cripple and Consume Magic by -10."
+        }
+      ]
+    },
+    {
+      "id": 34212,
+      "name": "Felheart",
+      "tree": "Class",
+      "x": 3,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_dhmount_felsaber",
+      "spellId": 301287,
+      "description": "Each Felfury active now increases your haste by 1%.",
+      "referencedTerms": [
+        "Felfury"
+      ],
+      "prerequisites": [
+        "Whispers of the Pit",
+        "Embracing Evil"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each Felfury active now increases your haste by 1%."
+        }
+      ]
+    },
+    {
+      "id": 29400,
+      "name": "Doomstride",
+      "tree": "Class",
+      "x": 5,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_doublejump",
+      "spellId": 804613,
+      "description": "Using Chaos Rush twice in a row now refreshes a charge of Chaos Rush.",
+      "referencedTerms": [
+        "Chaos Rush"
+      ],
+      "prerequisites": [
+        "Embracing Evil",
+        "Skull of Gul'dan"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Using Chaos Rush twice in a row now refreshes a charge of Chaos Rush."
+        }
+      ]
+    },
+    {
+      "id": 34213,
+      "name": "Demonic Embrace",
+      "tree": "Class",
+      "x": 7,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_mage_worldinflamesgreen",
+      "spellId": 520257,
+      "description": "Casting Inner Demon with at least 6 Felfury now restores 50 Energy.",
+      "referencedTerms": [
+        "Felfury",
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Skull of Gul'dan"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Inner Demon with at least 6 Felfury now restores 50 Energy."
+        }
+      ]
+    },
+    {
+      "id": 29924,
+      "name": "Illidan's Guile",
+      "tree": "Class",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\INV_Misc_QirajiCrystal_03",
+      "spellId": 806109,
+      "description": "Gorge on fel energy, becoming immune to all physical attacks and spells for 8 seconds, but during that time you cannot attack, move or cast spells.\n\nAt the end of the duration, your next Chaos Rush within 5 seconds now dashes an additional 20 yds.",
+      "referencedTerms": [
+        "Chaos Rush"
+      ],
+      "prerequisites": [
+        "Felgorged",
+        "Felheart"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Gorge on fel energy, becoming immune to all physical attacks and spells for 8 seconds, but during that time you cannot attack, move or cast spells.\n\nAt the end of the duration, your next Chaos Rush within 5 seconds now dashes an additional 20 yds."
+        }
+      ]
+    },
+    {
+      "id": 6423,
+      "name": "Dark Teachings",
+      "tree": "Class",
+      "x": 3,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_Book2Motif_Illidan",
+      "spellId": 520251,
+      "description": "Increases the effectiveness of your Intuitions by 20%.",
+      "referencedTerms": [
+        "Intuitions"
+      ],
+      "prerequisites": [
+        "Felheart"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Intuitions by 20%."
+        }
+      ]
+    },
+    {
+      "id": 29399,
+      "name": "Legion March",
+      "tree": "Class",
+      "x": 5,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_Warlock_RueeArdenteVerte",
+      "spellId": 805244,
+      "description": "Increases the range of Chaos Rush by 3 yds.",
+      "referencedTerms": [
+        "Chaos Rush"
+      ],
+      "prerequisites": [
+        "Doomstride"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the range of Chaos Rush by 3 yds."
+        }
+      ]
+    },
+    {
+      "id": 30552,
+      "name": "Felbane",
+      "tree": "Class",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\5_warlock42_Border",
+      "spellId": 525001,
+      "description": "Curse an enemy, causing the next spell they cast within 4 seconds to be reflected onto them.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Doomstride",
+        "Demonic Embrace"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Curse an enemy, causing the next spell they cast within 4 seconds to be reflected onto them."
+        }
+      ]
+    },
+    {
+      "id": 34204,
+      "name": "Warden's End",
+      "tree": "Class",
+      "x": 0,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\INV_Fabric_Felcloth_Ebon",
+      "spellId": 705125,
+      "description": "Reduces the cooldown of Mana Burn and Illidan's Guile by -20%.",
+      "referencedTerms": [
+        "Illidan's Guile",
+        "Mana Burn"
+      ],
+      "prerequisites": [
+        "Illidan's Guile"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Mana Burn and Illidan's Guile by -20%."
+        }
+      ]
+    },
+    {
+      "id": 31294,
+      "name": "Cunning",
+      "tree": "Class",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_boss_hellfire_felreaver",
+      "spellId": 300465,
+      "description": "Reduces the duration of movement impairing effects on you by -20%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Dark Teachings",
+        "Illidan's Guile"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the duration of movement impairing effects on you by -20%."
+        }
+      ]
+    },
+    {
+      "id": 30565,
+      "name": "Pact Hunter",
+      "tree": "Class",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_metamorphasistank",
+      "spellId": 704612,
+      "description": "Increases the effectiveness of your Pacts by 50%.",
+      "referencedTerms": [
+        "Pacts"
+      ],
+      "prerequisites": [
+        "Legion March",
+        "Felbane"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Pacts by 50%."
+        }
+      ]
+    },
+    {
+      "id": 11227,
+      "name": "Suffering",
+      "tree": "Class",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_hunter_negate",
+      "spellId": 807430,
+      "description": "Increases the duration of Skull of Gul'dan by 5 sec.",
+      "referencedTerms": [
+        "Skull of Gul'dan"
+      ],
+      "prerequisites": [
+        "Felbane"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Skull of Gul'dan by 5 sec."
+        }
+      ]
+    },
+    {
+      "id": 34227,
+      "name": "Gul'dan's Gift",
+      "tree": "Class",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_staff_2h_guldan_d_01",
+      "spellId": 804609,
+      "description": "Increases the effectiveness of your Skull of Gul'dan by 50%, but its cooldown is increased by 30 sec.",
+      "referencedTerms": [
+        "Skull of Gul'dan"
+      ],
+      "prerequisites": [
+        "Felbane"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Skull of Gul'dan by 50%, but its cooldown is increased by 30 sec."
+        }
+      ]
+    },
+    {
+      "id": 33674,
+      "name": "Elemental Bane",
+      "tree": "Class",
+      "x": 0,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\spell_fel_elementaldevastation",
+      "spellId": 704607,
+      "description": "Increases your critical damage by 10% and additionally increases your critical strike chance by 15% while fighting Elementals.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Warden's End"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical damage by 10% and additionally increases your critical strike chance by 15% while fighting Elementals."
+        }
+      ]
+    },
+    {
+      "id": 30553,
+      "name": "Magic Fiend",
+      "tree": "Class",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_DarkSummoning",
+      "spellId": 704613,
+      "description": "Increases the amount of beneficial magic effects stolen by your Consume Magic by 1.",
+      "referencedTerms": [
+        "Consume Magic"
+      ],
+      "prerequisites": [
+        "Cunning"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the amount of beneficial magic effects stolen by your Consume Magic by 1."
+        }
+      ]
+    },
+    {
+      "id": 6875,
+      "name": "Fel Communion",
+      "tree": "Class",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_warlock_moltencoregreen",
+      "spellId": 705105,
+      "description": "Increases your maximum Energy by 30.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Pact Hunter",
+        "Cunning"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your maximum Energy by 30."
+        }
+      ]
+    },
+    {
+      "id": 5210,
+      "name": "Felguard",
+      "tree": "Class",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Achievement_explore_argus",
+      "spellId": 704360,
+      "description": "Your Chaos Rush now reduces all damage taken by -3% for 5 seconds, stacking 2 times.",
+      "referencedTerms": [
+        "Chaos Rush"
+      ],
+      "prerequisites": [
+        "Pact Hunter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Chaos Rush now reduces all damage taken by -3% for 5 seconds, stacking 2 times."
+        }
+      ]
+    },
+    {
+      "id": 11210,
+      "name": "Felstrider",
+      "tree": "Class",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_hunter_onewithnature",
+      "spellId": 707513,
+      "description": "Your Chaos Rush now increases your Energy regeneration by 10% for 5 seconds, stacking 2 times.",
+      "referencedTerms": [
+        "Chaos Rush"
+      ],
+      "prerequisites": [
+        "Pact Hunter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Chaos Rush now increases your Energy regeneration by 10% for 5 seconds, stacking 2 times."
+        }
+      ]
+    },
+    {
+      "id": 33671,
+      "name": "Armaments of the Legion",
+      "tree": "Class",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_plate_helmet_eredarargus_d_01",
+      "spellId": 706266,
+      "description": "Reduces your chance to be hit by spells by -2% and increases the absorption value of Hateforge Barrier by 10%.",
+      "referencedTerms": [
+        "Hateforge Barrier"
+      ],
+      "prerequisites": [
+        "Suffering",
+        "Gul'dan's Gift"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces your chance to be hit by spells by -2% and increases the absorption value of Hateforge Barrier by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Reduces your chance to be hit by spells by -4% and increases the absorption value of Hateforge Barrier by 20%."
+        }
+      ]
+    },
+    {
+      "id": 7860,
+      "name": "Warlock Training",
+      "tree": "Class",
+      "x": 1,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Orc_09",
+      "spellId": 560641,
+      "description": "Cripple now causes the enemy target to be unable to critically strike for 4 seconds.",
+      "referencedTerms": [
+        "Cripple"
+      ],
+      "prerequisites": [
+        "Magic Fiend",
+        "Elemental Bane"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Cripple now causes the enemy target to be unable to critically strike for 4 seconds."
+        }
+      ]
+    },
+    {
+      "id": 5685,
+      "name": "Chaotic",
+      "tree": "Class",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\nhi_chaosfire_Border",
+      "spellId": 681376,
+      "description": "Dealing damage now has an 8% chance to increase your damage by 3% for 8 seconds, stacking 3 times.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Felguard",
+        "Fel Communion",
+        "Felstrider",
+        "Magic Fiend"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dealing damage now has an 8% chance to increase your damage by 3% for 8 seconds, stacking 3 times."
+        }
+      ]
+    },
+    {
+      "id": 30301,
+      "name": "Anti-Magic",
+      "tree": "Class",
+      "x": 7,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_AntiMagicShell",
+      "spellId": 560822,
+      "description": "When Hateforged Barrier is removed from you, you now reduce -10% of all Magic damage taken for 8 seconds.\n\nIn addition, Hateforged Barrier now heals for an additional 2% of your maximum health each tick.",
+      "referencedTerms": [
+        "Hateforged Barrier"
+      ],
+      "prerequisites": [
+        "Felguard",
+        "Felstrider",
+        "Armaments of the Legion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "When Hateforged Barrier is removed from you, you now reduce -10% of all Magic damage taken for 8 seconds.\n\nIn addition, Hateforged Barrier now heals for an additional 2% of your maximum health each tick."
+        }
+      ]
+    },
+    {
+      "id": 7865,
+      "name": "Reckoning",
+      "tree": "Class",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\spell_fire_felrainoffire",
+      "spellId": 802058,
+      "description": "For 10 seconds, your Fel Fireball is free of cost, instant cast, and strikes up to 4 targets.\n\nFor the duration, your falling speed is slowed and damage dealt by your Fel Fireball increases your damage dealt by 4% for 15 seconds, stacking 4 times.",
+      "referencedTerms": [
+        "Fel Fireball"
+      ],
+      "prerequisites": [
+        "Chaotic",
+        "Warlock Training"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "For 10 seconds, your Fel Fireball is free of cost, instant cast, and strikes up to 4 targets.\n\nFor the duration, your falling speed is slowed and damage dealt by your Fel Fireball increases your damage dealt by 4% for 15 seconds, stacking 4 times."
+        }
+      ]
+    },
+    {
+      "id": 7868,
+      "name": "Mark of Chaos",
+      "tree": "Class",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\70_inscription_glyph_demonhunter_minor",
+      "spellId": 524947,
+      "description": "Using Chaos Rush increases the next instance of direct spell or ability damage within 5 seconds by 25%.",
+      "referencedTerms": [
+        "Chaos Rush"
+      ],
+      "prerequisites": [
+        "Chaotic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Using Chaos Rush increases the next instance of direct spell or ability damage within 5 seconds by 25%."
+        }
+      ]
+    },
+    {
+      "id": 29409,
+      "name": "Illidari Barrier",
+      "tree": "Class",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_vehicle_shellshieldgenerator_green",
+      "spellId": 300468,
+      "description": "Casting Hateforged Barrier now also creates a damage absorption shield on all nearby allies within 15 yds, absorbing 328 + 100% Stamina + 20% SP + 8% AP damage for 5 seconds.",
+      "referencedTerms": [
+        "Hateforged Barrier"
+      ],
+      "prerequisites": [
+        "Chaotic",
+        "Anti-Magic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Hateforged Barrier now also creates a damage absorption shield on all nearby allies within 15 yds, absorbing 328 + 100% Stamina + 20% SP + 8% AP damage for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 31158,
+      "name": "Ruin",
+      "tree": "Infernal",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_infernalmountgreen",
+      "spellId": 801895,
+      "description": "Consumes 2 Felfury\nBring doom upon an enemy, dealing cond(gt(SPFI, SPS), 116+0+SPFI*1, 116+0+SPS*1.32) Shadowflame Damage to an enemy, piercing all absorption effects.\n\nInner Demon: Deals an additional 30% of the damage dealt over 3 seconds.",
+      "referencedTerms": [
+        "Inner Demon"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Fel Apprentice",
+        "Annihilation"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Consumes 2 Felfury\nBring doom upon an enemy, dealing cond(gt(SPFI, SPS), 116+0+SPFI*1, 116+0+SPS*1.32) Shadowflame Damage to an enemy, piercing all absorption effects.\n\nInner Demon: Deals an additional 30% of the damage dealt over 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 4008,
+      "name": "Fel Apprentice",
+      "tree": "Infernal",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_AuraCloak_Felfire",
+      "spellId": 92088,
+      "description": "Level 10 Passive\nWhile Inner Demon is active, your Fel Fireball will now unleash a Felstrike on your target.FelstrikeBurn an enemy for 54 + 30% SP Shadowflame Damage over 6 seconds, stacking 3 times.",
+      "referencedTerms": [
+        "Fel Fireball",
+        "Felstrike",
+        "Inner Demon"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Annihilation"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nWhile Inner Demon is active, your Fel Fireball will now unleash a Felstrike on your target.FelstrikeBurn an enemy for 54 + 30% SP Shadowflame Damage over 6 seconds, stacking 3 times."
+        }
+      ]
+    },
+    {
+      "id": 34256,
+      "name": "Dark Magician",
+      "tree": "Infernal",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_DeathGrip_Fel",
+      "spellId": 560637,
+      "description": "While Inner Demon is active, casting Ruin, Sunder, or Felwrath now refunds 20 Energy.",
+      "referencedTerms": [
+        "Felwrath",
+        "Inner Demon",
+        "Ruin",
+        "Sunder"
+      ],
+      "prerequisites": [
+        "Ruin"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Inner Demon is active, casting Ruin, Sunder, or Felwrath now refunds 20 Energy."
+        }
+      ]
+    },
+    {
+      "id": 31297,
+      "name": "Wrath of Sargeras",
+      "tree": "Infernal",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_dungeon_tombofsargeras",
+      "spellId": 806103,
+      "description": "Increases your Magic damage dealt by 3% and your spell hit chance by 2%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Ruin"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Magic damage dealt by 3% and your spell hit chance by 2%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Magic damage dealt by 6% and your spell hit chance by 4%."
+        }
+      ]
+    },
+    {
+      "id": 29933,
+      "name": "Bane of Chaos",
+      "tree": "Infernal",
+      "x": 1,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\chaosincursion",
+      "spellId": 704368,
+      "description": "Generates 1 Felfury\nUnleash fel magic on an enemy, dealing 114 Chaos damage over 18 seconds.\n\nInner Demon: The enemy takes an additional 13 + 100% SP Chaos Damage every 6 sec.\n\nCan only have 1 Bane active on a target at a time.",
+      "referencedTerms": [
+        "Bane",
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Dark Magician"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 1 Felfury\nUnleash fel magic on an enemy, dealing 114 Chaos damage over 18 seconds.\n\nInner Demon: The enemy takes an additional 13 + 100% SP Chaos Damage every 6 sec.\n\nCan only have 1 Bane active on a target at a time."
+        }
+      ]
+    },
+    {
+      "id": 31291,
+      "name": "Felfire Adept",
+      "tree": "Infernal",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Fire_FelHellfire",
+      "spellId": 560836,
+      "description": "Increases the critical strike chance of Sargeron Smite by 10%.",
+      "referencedTerms": [
+        "Sargeron Smite"
+      ],
+      "prerequisites": [
+        "Wrath of Sargeras",
+        "Dark Magician"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Sargeron Smite by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the critical strike chance of Sargeron Smite by 20%."
+        }
+      ]
+    },
+    {
+      "id": 6931,
+      "name": "Gul'dan's Prodigy",
+      "tree": "Infernal",
+      "x": 7,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_warlock_demonicempowerment",
+      "spellId": 704378,
+      "description": "Reduces Energy cost and cast time of Fel Fireball by -15%.",
+      "referencedTerms": [
+        "Fel Fireball"
+      ],
+      "prerequisites": [
+        "Wrath of Sargeras"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces Energy cost and cast time of Fel Fireball by -15%."
+        }
+      ]
+    },
+    {
+      "id": 11224,
+      "name": "Hidden Power",
+      "tree": "Infernal",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_UnstableAffliction_2",
+      "spellId": 802108,
+      "description": "Level 20 Passive\nIncreases your spell damage by 15% of your Intellect and Spirit.\n\nIn addition, Inner Demon now increases your spell damage and critical strike chance by an additional 20% of your Spirit.",
+      "referencedTerms": [
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Fel Apprentice"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nIncreases your spell damage by 15% of your Intellect and Spirit.\n\nIn addition, Inner Demon now increases your spell damage and critical strike chance by an additional 20% of your Spirit."
+        }
+      ]
+    },
+    {
+      "id": 30302,
+      "name": "Felforged",
+      "tree": "Infernal",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_fire_felfire",
+      "spellId": 300490,
+      "description": "Periodic damage dealt now has a 15% chance to grant you Felforged for 8 seconds.Felforged (Proc)Your next 3 Fel Fireballs have -30% reduced casting speed for 8 seconds.",
+      "referencedTerms": [
+        "Fel Fireballs",
+        "Felforged"
+      ],
+      "prerequisites": [
+        "Bane of Chaos"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Periodic damage dealt now has a 15% chance to grant you Felforged for 8 seconds.Felforged (Proc)Your next 3 Fel Fireballs have -30% reduced casting speed for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6340,
+      "name": "Fel Cannon",
+      "tree": "Infernal",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Gizmo_FelIronBomb",
+      "spellId": 802180,
+      "description": "Increases the critical strike chance of Fel Fireball and Ruin by 15% on enemies above 75% health.",
+      "referencedTerms": [
+        "Fel Fireball",
+        "Ruin"
+      ],
+      "prerequisites": [
+        "Felfire Adept"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Fel Fireball and Ruin by 15% on enemies above 75% health."
+        }
+      ]
+    },
+    {
+      "id": 6915,
+      "name": "Felwrath",
+      "tree": "Infernal",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Fire_FelFlameRing",
+      "spellId": 520236,
+      "description": "Consumes 2 Felfury\nBlast an enemy and all enemies near them with fel magic, dealing 69 + 40% SP Shadowflame Damage.\n\nInner Demon: Striking at least 5 enemies with this spell causes it to deal an additional 108 + 10% SP Shadowflame Damage over 6 seconds, stacking 3 times.",
+      "referencedTerms": [
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Gul'dan's Prodigy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Consumes 2 Felfury\nBlast an enemy and all enemies near them with fel magic, dealing 69 + 40% SP Shadowflame Damage.\n\nInner Demon: Striking at least 5 enemies with this spell causes it to deal an additional 108 + 10% SP Shadowflame Damage over 6 seconds, stacking 3 times."
+        }
+      ]
+    },
+    {
+      "id": 30808,
+      "name": "Withering",
+      "tree": "Infernal",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Achievement_Zone_Shadowmoon",
+      "spellId": 707416,
+      "description": "Your Fel Fireballs used with Felforged active now deal 30% increased damage.",
+      "referencedTerms": [
+        "Fel Fireballs",
+        "Felforged"
+      ],
+      "prerequisites": [
+        "Felforged"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Fel Fireballs used with Felforged active now deal 30% increased damage."
+        }
+      ]
+    },
+    {
+      "id": 31298,
+      "name": "Black Magic",
+      "tree": "Infernal",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_shoulder_plate_archimonde_d_01",
+      "spellId": 524950,
+      "description": "Increases the damage of your Bane of Chaos and Ruin by 10%.",
+      "referencedTerms": [
+        "Bane of Chaos",
+        "Ruin"
+      ],
+      "prerequisites": [
+        "Fel Cannon",
+        "Felforged"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of your Bane of Chaos and Ruin by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the damage of your Bane of Chaos and Ruin by 20%."
+        }
+      ]
+    },
+    {
+      "id": 7861,
+      "name": "Cursed Flames",
+      "tree": "Infernal",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_fire_felflamestrike",
+      "spellId": 300478,
+      "description": "Critically striking with Fel Fireball now increases the critical strike chance of your next Fel Fireball within 10 seconds by 20%.",
+      "referencedTerms": [
+        "Fel Fireball"
+      ],
+      "prerequisites": [
+        "Fel Cannon",
+        "Felwrath"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critically striking with Fel Fireball now increases the critical strike chance of your next Fel Fireball within 10 seconds by 20%."
+        }
+      ]
+    },
+    {
+      "id": 29968,
+      "name": "Illidari Magi",
+      "tree": "Infernal",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_polearm_2h_fellord",
+      "spellId": 560639,
+      "description": "Your periodic damage now has a 20% chance to generate 1 Felfury.",
+      "referencedTerms": [
+        "Felfury"
+      ],
+      "prerequisites": [
+        "Felwrath"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your periodic damage now has a 20% chance to generate 1 Felfury."
+        }
+      ]
+    },
+    {
+      "id": 9225,
+      "name": "Sculptor of Doom",
+      "tree": "Infernal",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_argus_felreaver",
+      "spellId": 801235,
+      "description": "Landing 3 direct critical strikes now grants Sculptor of Doom.Sculptor of DoomYour next Ruin within 8 seconds is instant cast.",
+      "referencedTerms": [
+        "Ruin",
+        "Sculptor of Doom"
+      ],
+      "prerequisites": [
+        "Hidden Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Landing 3 direct critical strikes now grants Sculptor of Doom.Sculptor of DoomYour next Ruin within 8 seconds is instant cast."
+        }
+      ]
+    },
+    {
+      "id": 34230,
+      "name": "Felbreak",
+      "tree": "Infernal",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_deathknight_deathsiphon",
+      "spellId": 800203,
+      "description": "Interrupt a spell from being cast, preventing the target from casting spells of that school for 3 seconds and draining mana from the target based on your Spirit.\n\nUsable while moving.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Withering",
+        "Black Magic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Interrupt a spell from being cast, preventing the target from casting spells of that school for 3 seconds and draining mana from the target based on your Spirit.\n\nUsable while moving."
+        }
+      ]
+    },
+    {
+      "id": 29923,
+      "name": "Shadow Magi",
+      "tree": "Infernal",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_SealOfKings",
+      "spellId": 803905,
+      "description": "Reduces the cooldown of Annihilation by -15 sec and Sunder by -4 sec.",
+      "referencedTerms": [
+        "Annihilation",
+        "Sunder"
+      ],
+      "prerequisites": [
+        "Cursed Flames",
+        "Black Magic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Annihilation by -15 sec and Sunder by -4 sec."
+        }
+      ]
+    },
+    {
+      "id": 31295,
+      "name": "Infernal",
+      "tree": "Infernal",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_shadow_summoninfernal",
+      "spellId": 560284,
+      "description": "Drop an infernal from the sky with grotesque magic, dealing 12 + 55% fire SP Fire damage to enemies in the radius, horrifying them for 4 seconds, and spawning an Infernal to fight by your side for 15 seconds.\n\nInner Demon: Lasts 1 additional sec.",
+      "referencedTerms": [
+        "Infernal",
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Cursed Flames",
+        "Illidari Magi"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Drop an infernal from the sky with grotesque magic, dealing 12 + 55% fire SP Fire damage to enemies in the radius, horrifying them for 4 seconds, and spawning an Infernal to fight by your side for 15 seconds.\n\nInner Demon: Lasts 1 additional sec."
+        }
+      ]
+    },
+    {
+      "id": 6911,
+      "name": "Illidari Smiter",
+      "tree": "Infernal",
+      "x": 0,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_belt_leather_raiddemonhuntermythic_r_01",
+      "spellId": 520246,
+      "description": "Critical strikes with Fel Fireball now generate 1 Felfury.",
+      "referencedTerms": [
+        "Fel Fireball",
+        "Felfury"
+      ],
+      "prerequisites": [
+        "Withering",
+        "Felbreak"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Fel Fireball now generate 1 Felfury."
+        }
+      ]
+    },
+    {
+      "id": 10909,
+      "name": "Herald of the Legion",
+      "tree": "Infernal",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\LegionShipMount",
+      "spellId": 807461,
+      "description": "Damage dealt by Bane of Chaos now radiates fel energy around the enemy, dealing 50% of the damage dealt to up to 8 nearby enemies.",
+      "referencedTerms": [
+        "Bane of Chaos"
+      ],
+      "prerequisites": [
+        "Felbreak"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Bane of Chaos now radiates fel energy around the enemy, dealing 50% of the damage dealt to up to 8 nearby enemies."
+        }
+      ]
+    },
+    {
+      "id": 6909,
+      "name": "Fel Flamecasting",
+      "tree": "Infernal",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\uico_unholy_spell_03_Border",
+      "spellId": 805998,
+      "description": "Damage dealt by Sargeron Smite now spreads your Cripple to 2 nearby enemies.",
+      "referencedTerms": [
+        "Cripple",
+        "Sargeron Smite"
+      ],
+      "prerequisites": [
+        "Felbreak"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Sargeron Smite now spreads your Cripple to 2 nearby enemies."
+        }
+      ]
+    },
+    {
+      "id": 6912,
+      "name": "The True Blessing",
+      "tree": "Infernal",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_sword_1h_felfireraid_d_03",
+      "spellId": 560838,
+      "description": "Casting Annihilation now grants you Sculptor of Doom.Sculptor of DoomYour next Ruin within 8 seconds is instant cast.",
+      "referencedTerms": [
+        "Annihilation",
+        "Ruin",
+        "Sculptor of Doom"
+      ],
+      "prerequisites": [
+        "Shadow Magi"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Annihilation now grants you Sculptor of Doom.Sculptor of DoomYour next Ruin within 8 seconds is instant cast."
+        }
+      ]
+    },
+    {
+      "id": 11292,
+      "name": "Doomsayer",
+      "tree": "Infernal",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_staff_2h_artifactsargeras_d_02",
+      "spellId": 520833,
+      "description": "Critical strikes with Sargeron Smite now refund 1 Felfury.\n\nIn addition, Sargeron Smite now deals 25% increased damage to enemies above 75% of their maximum health.",
+      "referencedTerms": [
+        "Felfury",
+        "Sargeron Smite"
+      ],
+      "prerequisites": [
+        "Infernal"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Sargeron Smite now refund 1 Felfury.\n\nIn addition, Sargeron Smite now deals 25% increased damage to enemies above 75% of their maximum health."
+        }
+      ]
+    },
+    {
+      "id": 4292,
+      "name": "Infernal Summoner",
+      "tree": "Infernal",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_74_wings_Border",
+      "spellId": 300480,
+      "description": "Direct damage dealt now has a 5% chance to reset the cooldown of Infernal.",
+      "referencedTerms": [
+        "Infernal"
+      ],
+      "prerequisites": [
+        "Infernal"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Direct damage dealt now has a 5% chance to reset the cooldown of Infernal."
+        }
+      ]
+    },
+    {
+      "id": 11914,
+      "name": "Oppressive Ruin",
+      "tree": "Infernal",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\creatureportrait_infernal_ball_02",
+      "spellId": 561201,
+      "description": "Damage dealt by Ruin now absorbs the next 99 healing on the target based on rank, up to 226 at rank 7, for 8 sec.",
+      "referencedTerms": [
+        "Ruin"
+      ],
+      "prerequisites": [
+        "Illidari Magi",
+        "Infernal"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Ruin now absorbs the next 99 healing on the target based on rank, up to 226 at rank 7, for 8 sec."
+        }
+      ]
+    },
+    {
+      "id": 6914,
+      "name": "Infernal Ruin",
+      "tree": "Infernal",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\warlock_pvp_burninglegion",
+      "spellId": 560840,
+      "description": "Every 3rd Ruin or Felwrath now spawns an Infernal to fight by your side for 15 seconds.",
+      "referencedTerms": [
+        "Felwrath",
+        "Infernal",
+        "Ruin"
+      ],
+      "prerequisites": [
+        "Illidari Magi",
+        "Infernal"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Every 3rd Ruin or Felwrath now spawns an Infernal to fight by your side for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 9226,
+      "name": "Unphased",
+      "tree": "Infernal",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Fabric_FelRag",
+      "spellId": 803645,
+      "description": "Level 40 Passive\nIncreases your spell penetration by 20, scaling with your level.\n\nIn addition, reduces spell pushback suffered from damaging attacks by 50% while Inner Demon is active.",
+      "referencedTerms": [
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Sculptor of Doom"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nIncreases your spell penetration by 20, scaling with your level.\n\nIn addition, reduces spell pushback suffered from damaging attacks by 50% while Inner Demon is active."
+        }
+      ]
+    },
+    {
+      "id": 30874,
+      "name": "Curse of Argus",
+      "tree": "Infernal",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_NatureBurn_Border",
+      "spellId": 704370,
+      "description": "Each time Bane of Chaos deals damage its damage is increased on the target by 1% for 6 seconds, stacking 20 times.",
+      "referencedTerms": [
+        "Bane of Chaos"
+      ],
+      "prerequisites": [
+        "Fel Flamecasting",
+        "Illidari Smiter",
+        "Herald of the Legion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each time Bane of Chaos deals damage its damage is increased on the target by 1% for 6 seconds, stacking 20 times."
+        }
+      ]
+    },
+    {
+      "id": 6910,
+      "name": "Felshock",
+      "tree": "Infernal",
+      "x": 3,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_fel_incinerate",
+      "spellId": 806235,
+      "description": "Direct critical strikes with Felfury spenders now extend the duration of Inner Demon by 1 sec and cause enemies struck to have a 3% increased chance to be hit by spells for 12 seconds.",
+      "referencedTerms": [
+        "Felfury",
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "The True Blessing"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Direct critical strikes with Felfury spenders now extend the duration of Inner Demon by 1 sec and cause enemies struck to have a 3% increased chance to be hit by spells for 12 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34231,
+      "name": "Fel Infusion",
+      "tree": "Infernal",
+      "x": 5,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_AuraCloak_Felfire",
+      "spellId": 560533,
+      "description": "Increases critical strike chance of all party and raid members within 100 by 3%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 3%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "The True Blessing"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases critical strike chance of all party and raid members within 100 by 3%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 3%."
+        }
+      ]
+    },
+    {
+      "id": 34237,
+      "name": "Archimonde's Wrath",
+      "tree": "Infernal",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Achievement_Boss_Exarch_Maladaar",
+      "spellId": 300489,
+      "description": "Increases the critical strike chance of your Felfury spenders by 1% for every 10 points of Energy you have at the time of casting.",
+      "referencedTerms": [
+        "Felfury"
+      ],
+      "prerequisites": [
+        "Infernal Summoner",
+        "Infernal Ruin",
+        "Doomsayer",
+        "Oppressive Ruin"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of your Felfury spenders by 1% for every 10 points of Energy you have at the time of casting."
+        }
+      ]
+    },
+    {
+      "id": 29849,
+      "name": "Infernal Doom",
+      "tree": "Infernal",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_glaive_1h_artifactaldrochi_d_05",
+      "spellId": 804219,
+      "description": "Ruin now has a -25% chance not to consume Felfury.",
+      "referencedTerms": [
+        "Felfury",
+        "Ruin"
+      ],
+      "prerequisites": [
+        "Felshock",
+        "Curse of Argus"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Ruin now has a -25% chance not to consume Felfury."
+        }
+      ]
+    },
+    {
+      "id": 34234,
+      "name": "Nether Spirit",
+      "tree": "Infernal",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_immolation",
+      "spellId": 300477,
+      "description": "Increases your spell critical strike chance by 20% of your Spirit.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Felshock",
+        "Fel Infusion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your spell critical strike chance by 20% of your Spirit."
+        }
+      ]
+    },
+    {
+      "id": 29922,
+      "name": "Chaotic Intuition",
+      "tree": "Infernal",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Ember_Fel",
+      "spellId": 300483,
+      "description": "Damage dealt by Felstrikes now extends the duration of Cripple on the target by 1 sec and grants you 1% increased spell critical damage for 6 seconds, stacking 10 times.",
+      "referencedTerms": [
+        "Cripple",
+        "Felstrikes"
+      ],
+      "prerequisites": [
+        "Fel Infusion",
+        "Archimonde's Wrath"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Felstrikes now extends the duration of Cripple on the target by 1 sec and grants you 1% increased spell critical damage for 6 seconds, stacking 10 times."
+        }
+      ]
+    },
+    {
+      "id": 4226,
+      "name": "Man'ari Teachings",
+      "tree": "Infernal",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_argus_femaleeredar",
+      "spellId": 705150,
+      "description": "Level 50 Passive\nIncreases your critical damage dealt by 100%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Unphased"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nIncreases your critical damage dealt by 100%."
+        }
+      ]
+    },
+    {
+      "id": 29445,
+      "name": "Sargeras Embrace",
+      "tree": "Infernal",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_eyebeam",
+      "spellId": 800355,
+      "description": "Channel a beam of fel magic upon an enemy, slowing your target's movement speed by -60% for 5.5 seconds and dealing cond(gt(SPFI, SPS), 695+0+SPFI*0.85, 695+0+SPS*0.85) Shadowflame Damage at the end of the duration.\n\nFor the duration, you may instant cast Fel Fireball and Ruin while channeling and they refund their cost.",
+      "referencedTerms": [
+        "Fel Fireball",
+        "Ruin"
+      ],
+      "prerequisites": [
+        "Infernal Doom",
+        "Nether Spirit"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Channel a beam of fel magic upon an enemy, slowing your target's movement speed by -60% for 5.5 seconds and dealing cond(gt(SPFI, SPS), 695+0+SPFI*0.85, 695+0+SPS*0.85) Shadowflame Damage at the end of the duration.\n\nFor the duration, you may instant cast Fel Fireball and Ruin while channeling and they refund their cost."
+        }
+      ]
+    },
+    {
+      "id": 34232,
+      "name": "Malice of Gul'dan",
+      "tree": "Infernal",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_thenighthold_guldan",
+      "spellId": 800214,
+      "description": "$47",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Nether Spirit"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$48"
+        }
+      ]
+    },
+    {
+      "id": 30200,
+      "name": "Fury of Archimonde",
+      "tree": "Infernal",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_hellfire_archimonde",
+      "spellId": 706268,
+      "description": "After generating 10 Felfury, your next Sargeron Smite within 15 seconds gains 50% increased critical strike chance and damage.",
+      "referencedTerms": [
+        "Felfury",
+        "Sargeron Smite"
+      ],
+      "prerequisites": [
+        "Chaotic Intuition",
+        "Nether Spirit"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "After generating 10 Felfury, your next Sargeron Smite within 15 seconds gains 50% increased critical strike chance and damage."
+        }
+      ]
+    },
+    {
+      "id": 34243,
+      "name": "Azzinoth's Assault",
+      "tree": "Slayer",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_creature_felsunder",
+      "spellId": 801904,
+      "description": "Consumes 2 Felfury\nStrike an enemy for Weapon Damage plus 15 + 10% AP with both weapons, additionally scaling with your attack power.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Consumes 2 Felfury\nStrike an enemy for Weapon Damage plus 15 + 10% AP with both weapons, additionally scaling with your attack power."
+        }
+      ]
+    },
+    {
+      "id": 4007,
+      "name": "Dancing Blades",
+      "tree": "Slayer",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_sword_1h_artifactfelomelorn_d_03dual",
+      "spellId": 92087,
+      "description": "Level 10 Passive\nCritical strikes with melee abilities now trigger Dancing Blades, dealing off-hand Weapon Damage to up to 5 nearby enemies.",
+      "referencedTerms": [
+        "Dancing Blades"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Manaburn"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nCritical strikes with melee abilities now trigger Dancing Blades, dealing off-hand Weapon Damage to up to 5 nearby enemies."
+        }
+      ]
+    },
+    {
+      "id": 6512,
+      "name": "Slice & Dice",
+      "tree": "Slayer",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_glaive_1h_demonhunter_a_01",
+      "spellId": 704361,
+      "description": "Increases your off-hand weapon damage by 25% and reduces the Energy cost of Twin Slice by -5.",
+      "referencedTerms": [
+        "Twin Slice"
+      ],
+      "prerequisites": [
+        "Azzinoth's Assault"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your off-hand weapon damage by 25% and reduces the Energy cost of Twin Slice by -5."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your off-hand weapon damage by 50% and reduces the Energy cost of Twin Slice by -10."
+        }
+      ]
+    },
+    {
+      "id": 29387,
+      "name": "Annihilan Strike",
+      "tree": "Slayer",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_glaive_1h_npc_d_02",
+      "spellId": 801903,
+      "description": "Generates 2 Felfury\nUnleash a devastating attack, dealing 145% Weapon Damage to your target with both weapons.\n\nThis ability is guaranteed to critically strike against enemies above 75% health.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Slice & Dice"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 2 Felfury\nUnleash a devastating attack, dealing 145% Weapon Damage to your target with both weapons.\n\nThis ability is guaranteed to critically strike against enemies above 75% health."
+        }
+      ]
+    },
+    {
+      "id": 6526,
+      "name": "Immolation Aura",
+      "tree": "Slayer",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_fire_felimmolation",
+      "spellId": 800207,
+      "description": "Wreathe yourself in fire for up to 1 minute, dealing 23 + 30% fire SP + 23% AP Fire Damage to nearby enemies every 3 sec.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Slice & Dice"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Wreathe yourself in fire for up to 1 minute, dealing 23 + 30% fire SP + 23% AP Fire Damage to nearby enemies every 3 sec."
+        }
+      ]
+    },
+    {
+      "id": 9228,
+      "name": "True Self",
+      "tree": "Slayer",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\azgalor_Border",
+      "spellId": 574140,
+      "description": "Level 20 Passive\nYour Inner Demon now grants 10% increased dodge chance and critical damage dealt while active.",
+      "referencedTerms": [
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Dancing Blades"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nYour Inner Demon now grants 10% increased dodge chance and critical damage dealt while active."
+        }
+      ]
+    },
+    {
+      "id": 34236,
+      "name": "Twin Fury",
+      "tree": "Slayer",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Fire_Felcano",
+      "spellId": 801892,
+      "description": "Critically striking with Twin Slice or Annihilan Strike now generates an additional 1 Felfury.",
+      "referencedTerms": [
+        "Annihilan Strike",
+        "Twin Slice"
+      ],
+      "prerequisites": [
+        "Annihilan Strike"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critically striking with Twin Slice or Annihilan Strike now generates an additional 1 Felfury."
+        }
+      ]
+    },
+    {
+      "id": 30300,
+      "name": "Azzinoth's Rage",
+      "tree": "Slayer",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 3,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Achievement_Boss_OmarTheUnscarred_01",
+      "spellId": 804611,
+      "description": "Increases your Armor penetration by 10% and your expertise by 4.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Immolation Aura",
+        "Annihilan Strike"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Armor penetration by 10% and your expertise by 4."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Armor penetration by 20% and your expertise by 8."
+        },
+        {
+          "rank": 3,
+          "description": "Increases your Armor penetration by 30% and your expertise by 12."
+        }
+      ]
+    },
+    {
+      "id": 30299,
+      "name": "Chaos Soldier",
+      "tree": "Slayer",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_felblade",
+      "spellId": 560057,
+      "description": "Increases the critical strike chance of Azzinoth's Assault and Sargeron Smite by 5%.",
+      "referencedTerms": [
+        "Azzinoth's Assault",
+        "Sargeron Smite"
+      ],
+      "prerequisites": [
+        "Immolation Aura"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Azzinoth's Assault and Sargeron Smite by 5%."
+        }
+      ]
+    },
+    {
+      "id": 29927,
+      "name": "Legionfall",
+      "tree": "Slayer",
+      "x": 1,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_vengefulretreat",
+      "spellId": 801899,
+      "description": "Melee ability damage now has a 15% chance to reset the cooldown of Annihilan Strike.",
+      "referencedTerms": [
+        "Annihilan Strike"
+      ],
+      "prerequisites": [
+        "Twin Fury"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Melee ability damage now has a 15% chance to reset the cooldown of Annihilan Strike."
+        }
+      ]
+    },
+    {
+      "id": 34238,
+      "name": "Fel Blades",
+      "tree": "Slayer",
+      "x": 3,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_weapon_shortblade_62",
+      "spellId": 300484,
+      "description": "Damage dealt by Azzinoth's Assault now reduces the enemy's armor by -4% for 10 seconds, stacking 5 times.",
+      "referencedTerms": [
+        "Azzinoth's Assault"
+      ],
+      "prerequisites": [
+        "Azzinoth's Rage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Azzinoth's Assault now reduces the enemy's armor by -4% for 10 seconds, stacking 5 times."
+        }
+      ]
+    },
+    {
+      "id": 31308,
+      "name": "Scars of Suffering",
+      "tree": "Slayer",
+      "x": 3,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_sword_1h_artifactfelomelorn_d_03",
+      "spellId": 570158,
+      "description": "Casting Azzinoth's Assault now scars the enemy, increasing your allies' attack power against them by 15% Agility for 10 seconds.",
+      "referencedTerms": [
+        "Azzinoth's Assault"
+      ],
+      "prerequisites": [
+        "Azzinoth's Rage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Azzinoth's Assault now scars the enemy, increasing your allies' attack power against them by 15% Agility for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29405,
+      "name": "Pit Lord's Strength",
+      "tree": "Slayer",
+      "x": 5,
+      "y": 4,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_hellfire_mannorothreanimated",
+      "spellId": 802076,
+      "description": "Your Annihilation now affects 1 additional attack.",
+      "referencedTerms": [
+        "Annihilation"
+      ],
+      "prerequisites": [
+        "Azzinoth's Rage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Annihilation now affects 1 additional attack."
+        },
+        {
+          "rank": 2,
+          "description": "Your Annihilation now affects 2 additional attack."
+        }
+      ]
+    },
+    {
+      "id": 34252,
+      "name": "Burning Rage",
+      "tree": "Slayer",
+      "x": 7,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_SummonImp",
+      "spellId": 707907,
+      "description": "Increases the damage and reduces the cost of Sunder and Immolation Aura by 20%.",
+      "referencedTerms": [
+        "Immolation Aura",
+        "Sunder"
+      ],
+      "prerequisites": [
+        "Chaos Soldier"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage and reduces the cost of Sunder and Immolation Aura by 20%."
+        }
+      ]
+    },
+    {
+      "id": 11228,
+      "name": "Unbound",
+      "tree": "Slayer",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Potion_19",
+      "spellId": 574153,
+      "description": "Level 30 Passive\nIncreases your dodge by 15% of your Agility and your hit rating by 6% of your Agility.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "True Self"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nIncreases your dodge by 15% of your Agility and your hit rating by 6% of your Agility."
+        }
+      ]
+    },
+    {
+      "id": 31301,
+      "name": "Spite",
+      "tree": "Slayer",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warlock_backdraftgreen",
+      "spellId": 800188,
+      "description": "Increases your Agility by 8% and dodge chance by 3%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Legionfall"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Agility by 8% and dodge chance by 3%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Agility by 15% and dodge chance by 6%."
+        }
+      ]
+    },
+    {
+      "id": 29396,
+      "name": "Felhoof Charge",
+      "tree": "Slayer",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_felrush",
+      "spellId": 800204,
+      "description": "Generates 1 Felfury\nCharge an enemy, dealing 60 + 28.5% AP Physical damage.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Legionfall",
+        "Scars of Suffering",
+        "Fel Blades"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 1 Felfury\nCharge an enemy, dealing 60 + 28.5% AP Physical damage."
+        }
+      ]
+    },
+    {
+      "id": 29852,
+      "name": "You Cheat, Gul'dan!",
+      "tree": "Slayer",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_metamorphasistank",
+      "spellId": 705127,
+      "description": "Increases your critical damage by 50% against enemies above 75% health.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Pit Lord's Strength",
+        "Scars of Suffering",
+        "Fel Blades"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical damage by 50% against enemies above 75% health."
+        }
+      ]
+    },
+    {
+      "id": 34245,
+      "name": "Demonic Machinations",
+      "tree": "Slayer",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_polearm_2h_fellord_03",
+      "spellId": 806111,
+      "description": "Critical strikes with Sargeron Smite now cause the target to bleed for an additional 50% of the damage dealt over 5 seconds.",
+      "referencedTerms": [
+        "Sargeron Smite"
+      ],
+      "prerequisites": [
+        "Pit Lord's Strength",
+        "Burning Rage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Sargeron Smite now cause the target to bleed for an additional 50% of the damage dealt over 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 7432,
+      "name": "Nether Champion",
+      "tree": "Slayer",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_mage_worldinflamesgreen",
+      "spellId": 705145,
+      "description": "Triggering Dancing Blades now increases the damage of next Sargeron Smite by 8% for 20 seconds, stacking 5 times.",
+      "referencedTerms": [
+        "Dancing Blades",
+        "Sargeron Smite"
+      ],
+      "prerequisites": [
+        "Pit Lord's Strength",
+        "Burning Rage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Triggering Dancing Blades now increases the damage of next Sargeron Smite by 8% for 20 seconds, stacking 5 times."
+        }
+      ]
+    },
+    {
+      "id": 11814,
+      "name": "Consumed By Fel",
+      "tree": "Slayer",
+      "x": 8,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_FelSpikes_Border",
+      "spellId": 300485,
+      "description": "Increases the tick rate of Immolation Aura by -25%.",
+      "referencedTerms": [
+        "Immolation Aura"
+      ],
+      "prerequisites": [
+        "Burning Rage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the tick rate of Immolation Aura by -25%."
+        }
+      ]
+    },
+    {
+      "id": 6919,
+      "name": "A Thousand Cuts",
+      "tree": "Slayer",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_glaive_1h_battledungeon_c_02",
+      "spellId": 704610,
+      "description": "Azzinoth's Assault now has a 30% chance to hit an additional time with your main-hand Weapon.",
+      "referencedTerms": [
+        "Azzinoth's Assault"
+      ],
+      "prerequisites": [
+        "Felhoof Charge",
+        "Spite"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Azzinoth's Assault now has a 30% chance to hit an additional time with your main-hand Weapon."
+        }
+      ]
+    },
+    {
+      "id": 31299,
+      "name": "Scars of the Past",
+      "tree": "Slayer",
+      "x": 3,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell-illidan-rosa",
+      "spellId": 520805,
+      "description": "Reduces the Energy cost of Chaos Rush by -5 and casting Chaos Rush now heals you for 81 + 20% Stamina + 33% AP.",
+      "referencedTerms": [
+        "Chaos Rush"
+      ],
+      "prerequisites": [
+        "You Cheat, Gul'dan!"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Energy cost of Chaos Rush by -5 and casting Chaos Rush now heals you for 81 + 20% Stamina + 33% AP."
+        }
+      ]
+    },
+    {
+      "id": 29402,
+      "name": "Blighted Strikes",
+      "tree": "Slayer",
+      "x": 5,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\skill_icon_skill104_Border",
+      "spellId": 570077,
+      "description": "While Inner Demon is active your melee attacks reduce the target's healing received by -20% for 8 seconds, stacking 2 times.",
+      "referencedTerms": [
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "You Cheat, Gul'dan!"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Inner Demon is active your melee attacks reduce the target's healing received by -20% for 8 seconds, stacking 2 times."
+        }
+      ]
+    },
+    {
+      "id": 34244,
+      "name": "Fury Unleashed",
+      "tree": "Slayer",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_glaive_1h_artifactaldrochi_d_03dual",
+      "spellId": 555738,
+      "description": "Spin your glaives for 5 seconds, increasing movement speed by 30% and dealing 200% Weapon Damage every 1 sec with both weapons to all nearby enemies.\n\nYou are immune to movement impairing and loss of control effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Demonic Machinations",
+        "Nether Champion",
+        "Consumed By Fel"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Spin your glaives for 5 seconds, increasing movement speed by 30% and dealing 200% Weapon Damage every 1 sec with both weapons to all nearby enemies.\n\nYou are immune to movement impairing and loss of control effects."
+        }
+      ]
+    },
+    {
+      "id": 9229,
+      "name": "Chaotic",
+      "tree": "Slayer",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_immolation",
+      "spellId": 574143,
+      "description": "Level 40 Passive\nWhile Inner Demon is active, direct melee ability critical strikes now refund 3 Energy.",
+      "referencedTerms": [
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Unbound"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nWhile Inner Demon is active, direct melee ability critical strikes now refund 3 Energy."
+        }
+      ]
+    },
+    {
+      "id": 31300,
+      "name": "Fel Instincts",
+      "tree": "Slayer",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_argustalbukmount_felpurple",
+      "spellId": 560645,
+      "description": "Increases the damage of Azzinoth's Assault by 10% and causes it to increase your melee haste by 20% for 5 seconds.",
+      "referencedTerms": [
+        "Azzinoth's Assault"
+      ],
+      "prerequisites": [
+        "A Thousand Cuts"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Azzinoth's Assault by 10% and causes it to increase your melee haste by 20% for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29132,
+      "name": "Reckless Assault",
+      "tree": "Slayer",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_spectralsight",
+      "spellId": 804610,
+      "description": "Increases the damage of Azzinoth's Assault, Annihilan Strike, and Twin Slice by 15% against slowed enemies.",
+      "referencedTerms": [
+        "Annihilan Strike",
+        "Azzinoth's Assault",
+        "Twin Slice"
+      ],
+      "prerequisites": [
+        "Felhoof Charge",
+        "Scars of the Past"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Azzinoth's Assault, Annihilan Strike, and Twin Slice by 15% against slowed enemies."
+        }
+      ]
+    },
+    {
+      "id": 6513,
+      "name": "Fel Haze",
+      "tree": "Slayer",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_FingerOfDeath",
+      "spellId": 803903,
+      "description": "While active, Blood of Mannoroth now also causes you to ignore all enemy Armor.",
+      "referencedTerms": [
+        "Blood of Mannoroth"
+      ],
+      "prerequisites": [
+        "Blighted Strikes",
+        "You Cheat, Gul'dan!",
+        "Scars of the Past"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While active, Blood of Mannoroth now also causes you to ignore all enemy Armor."
+        }
+      ]
+    },
+    {
+      "id": 34209,
+      "name": "Felguard",
+      "tree": "Slayer",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_FelArmour",
+      "spellId": 560542,
+      "description": "Emanate a powerful aura, granting 10% increased melee and ranged haste to party and raid members within 100 yds. Does not stack with similar effects.\n\nIn addition, while Inner Demon is active, you now heal for 15% of all melee damage dealt.",
+      "referencedTerms": [
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Blighted Strikes",
+        "Fury Unleashed"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Emanate a powerful aura, granting 10% increased melee and ranged haste to party and raid members within 100 yds. Does not stack with similar effects.\n\nIn addition, while Inner Demon is active, you now heal for 15% of all melee damage dealt."
+        }
+      ]
+    },
+    {
+      "id": 34251,
+      "name": "Glaiving",
+      "tree": "Slayer",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_infernalstrike2",
+      "spellId": 560578,
+      "description": "Increases the damage dealt and reduces the Energy cost of Fury Unleashed by 50%.",
+      "referencedTerms": [
+        "Fury Unleashed"
+      ],
+      "prerequisites": [
+        "Fury Unleashed"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage dealt and reduces the Energy cost of Fury Unleashed by 50%."
+        }
+      ]
+    },
+    {
+      "id": 6524,
+      "name": "Perpetual Fury",
+      "tree": "Slayer",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_thenighthold_tichondrius",
+      "spellId": 520244,
+      "description": "Dealing damage with Dancing Blades reduces the cooldown of Fury Unleashed by -1 sec.",
+      "referencedTerms": [
+        "Dancing Blades",
+        "Fury Unleashed"
+      ],
+      "prerequisites": [
+        "Fury Unleashed"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dealing damage with Dancing Blades reduces the cooldown of Fury Unleashed by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 34249,
+      "name": "Reachwalker",
+      "tree": "Slayer",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_blood_of_sargeras",
+      "spellId": 705135,
+      "description": "Casting Chaos Rush now reduces the cooldown of Felhoof Charge by -2 sec.",
+      "referencedTerms": [
+        "Chaos Rush",
+        "Felhoof Charge"
+      ],
+      "prerequisites": [
+        "Reckless Assault",
+        "Fel Instincts"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Chaos Rush now reduces the cooldown of Felhoof Charge by -2 sec."
+        }
+      ]
+    },
+    {
+      "id": 6968,
+      "name": "Azzinoth's Battery",
+      "tree": "Slayer",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_shoulder_leather_raiddemonhuntermythic_r_01",
+      "spellId": 705137,
+      "description": "Your Azzinoth's Assault now has a 30% chance to not consume Felfury.",
+      "referencedTerms": [
+        "Azzinoth's Assault",
+        "Felfury"
+      ],
+      "prerequisites": [
+        "Fel Haze",
+        "Reckless Assault",
+        "Felguard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Azzinoth's Assault now has a 30% chance to not consume Felfury."
+        }
+      ]
+    },
+    {
+      "id": 31392,
+      "name": "Oblivion",
+      "tree": "Slayer",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_staff_2h_felfireraid_d_03",
+      "spellId": 572889,
+      "description": "Critically striking now increases your damage dealt by 1% for 4 seconds, stacking 10 times.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Perpetual Fury",
+        "Felguard",
+        "Glaiving"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critically striking now increases your damage dealt by 1% for 4 seconds, stacking 10 times."
+        }
+      ]
+    },
+    {
+      "id": 9230,
+      "name": "Felcaked Blades",
+      "tree": "Slayer",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_polearm_1h_felfireraid_d_02",
+      "spellId": 574145,
+      "description": "Level 50 Passive\nTwin Slice and Sargeron Smite now additionally scale with your Agility.",
+      "referencedTerms": [
+        "Sargeron Smite",
+        "Twin Slice"
+      ],
+      "prerequisites": [
+        "Chaotic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nTwin Slice and Sargeron Smite now additionally scale with your Agility."
+        }
+      ]
+    },
+    {
+      "id": 30811,
+      "name": "Pit Lord's Rage",
+      "tree": "Slayer",
+      "x": 1,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_staff_2h_felfireraid_d_03",
+      "spellId": 705141,
+      "description": "Casting Chaos Rush now increases your Physical damage by 15% for 10 seconds.\n\nCasting Felhoof Charge increases your critical strike chance by 6% for 15 seconds.",
+      "referencedTerms": [
+        "Chaos Rush",
+        "Felhoof Charge"
+      ],
+      "prerequisites": [
+        "Reachwalker"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Chaos Rush now increases your Physical damage by 15% for 10 seconds.\n\nCasting Felhoof Charge increases your critical strike chance by 6% for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29926,
+      "name": "Fury of the Illidari",
+      "tree": "Slayer",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_sword_1h_artifactfelomelorn_d_03dual",
+      "spellId": 561216,
+      "description": "2 Charges, 1.5 min recharge\nMove quickly from enemy to enemy, attacking them every 1 sec with both weapons until 6 assaults are made, generating 1 Felfury with each strike. While active you are immune to crowd control effects.\n\nCan hit the same target multiple times. Cannot hit invisible or stealthed targets.",
+      "referencedTerms": [
+        "Felfury"
+      ],
+      "prerequisites": [
+        "Azzinoth's Battery",
+        "Oblivion",
+        "Reachwalker"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "2 Charges, 1.5 min recharge\nMove quickly from enemy to enemy, attacking them every 1 sec with both weapons until 6 assaults are made, generating 1 Felfury with each strike. While active you are immune to crowd control effects.\n\nCan hit the same target multiple times. Cannot hit invisible or stealthed targets."
+        }
+      ]
+    },
+    {
+      "id": 29842,
+      "name": "Whirling Vengeance",
+      "tree": "Slayer",
+      "x": 7,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Rogue_CutToTheChase",
+      "spellId": 704602,
+      "description": "Reduces the cooldown of Fury Unleashed by -60 sec. \n\nWhen Fury Unleashed ends, you strike all nearby enemies for 757 + 56.14% AP Shadowflame Damage and increase their damage taken from Sunder by 100% for 15 seconds.",
+      "referencedTerms": [
+        "Fury Unleashed",
+        "Sunder"
+      ],
+      "prerequisites": [
+        "Oblivion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Fury Unleashed by -60 sec. \n\nWhen Fury Unleashed ends, you strike all nearby enemies for 757 + 56.14% AP Shadowflame Damage and increase their damage taken from Sunder by 100% for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 31159,
+      "name": "Carve",
+      "tree": "Tyrant",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_infernalstrike2",
+      "spellId": 800206,
+      "description": "Consumes 2 Felfury\nCharge up a powerful attack over 2.5 seconds. \n\nUpon ending the channel, slash in front of you, dealing increased Weapon Damage with both weapons based on how long you channel, dealing less damage with each target struck. \n\nInner Demon: Reduces affected enemies melee and ranged haste by -20% for 8 seconds.",
+      "referencedTerms": [
+        "Inner Demon"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Consumes 2 Felfury\nCharge up a powerful attack over 2.5 seconds. \n\nUpon ending the channel, slash in front of you, dealing increased Weapon Damage with both weapons based on how long you channel, dealing less damage with each target struck. \n\nInner Demon: Reduces affected enemies melee and ranged haste by -20% for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 4009,
+      "name": "Burning Commander",
+      "tree": "Tyrant",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_demonictrample",
+      "spellId": 92089,
+      "description": "Level 10 Passive\nAllows you to wield a Two-Handed Axe, Mace, or Sword in each hand and grants you additional Armor and magic resistance based on your dodge rating.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Hateforged Barrier"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nAllows you to wield a Two-Handed Axe, Mace, or Sword in each hand and grants you additional Armor and magic resistance based on your dodge rating."
+        }
+      ]
+    },
+    {
+      "id": 29845,
+      "name": "Demonic Will",
+      "tree": "Tyrant",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_infernalchains",
+      "spellId": 800209,
+      "description": "Generates 1 Felfury\nStrengthen your will, reducing Physical damage taken by -30% for 10 seconds.\n\nWhile active, direct damaging abilities heal you for 3% of your maximum health. Can only occur once every 0.5 sec.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Carve"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 1 Felfury\nStrengthen your will, reducing Physical damage taken by -30% for 10 seconds.\n\nWhile active, direct damaging abilities heal you for 3% of your maximum health. Can only occur once every 0.5 sec."
+        }
+      ]
+    },
+    {
+      "id": 11121,
+      "name": "Annihilan Rituals",
+      "tree": "Tyrant",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Mannoroth",
+      "spellId": 520831,
+      "description": "Fully channeling Carve now refunds 1 Felfury.",
+      "referencedTerms": [
+        "Carve",
+        "Felfury"
+      ],
+      "prerequisites": [
+        "Demonic Will"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Fully channeling Carve now refunds 1 Felfury."
+        }
+      ]
+    },
+    {
+      "id": 30567,
+      "name": "Quick Carving",
+      "tree": "Tyrant",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_polearm_2h_fellord",
+      "spellId": 520254,
+      "description": "Carve now channels 1 sec faster.",
+      "referencedTerms": [
+        "Carve"
+      ],
+      "prerequisites": [
+        "Demonic Will"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Carve now channels 1 sec faster."
+        }
+      ]
+    },
+    {
+      "id": 6338,
+      "name": "Nether Disciple",
+      "tree": "Tyrant",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_felhound4_custom",
+      "spellId": 560576,
+      "description": "Increases your dodge and parry chance by 3%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Demonic Will"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your dodge and parry chance by 3%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your dodge and parry chance by 6%."
+        }
+      ]
+    },
+    {
+      "id": 7869,
+      "name": "Demon Hide",
+      "tree": "Tyrant",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Racial_Demonbane",
+      "spellId": 520252,
+      "description": "While Inner Demon is active, your Armor contribution from cloth and leather items is increased by 120%.",
+      "referencedTerms": [
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Demonic Will"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Inner Demon is active, your Armor contribution from cloth and leather items is increased by 120%."
+        },
+        {
+          "rank": 2,
+          "description": "While Inner Demon is active, your Armor contribution from cloth and leather items is increased by 240%."
+        }
+      ]
+    },
+    {
+      "id": 9231,
+      "name": "Hulking Demon",
+      "tree": "Tyrant",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warlock_Avoidance",
+      "spellId": 805246,
+      "description": "Level 20 Passive\nIncreases your attack power by 30% of your Stamina and your hit rating by 6% of your Agility.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Burning Commander"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nIncreases your attack power by 30% of your Stamina and your hit rating by 6% of your Agility."
+        }
+      ]
+    },
+    {
+      "id": 29442,
+      "name": "Felrend",
+      "tree": "Tyrant",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_chaosstrike",
+      "spellId": 800210,
+      "description": "Generates 1 Felfury\nErupt in a whirlwind of felfury, striking all enemies within 6 yds with both weapons, dealing Weapon Damage plus 5.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Annihilan Rituals",
+        "Quick Carving"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generates 1 Felfury\nErupt in a whirlwind of felfury, striking all enemies within 6 yds with both weapons, dealing Weapon Damage plus 5."
+        }
+      ]
+    },
+    {
+      "id": 34222,
+      "name": "Pure Hatred",
+      "tree": "Tyrant",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_metamorphasistank",
+      "spellId": 803478,
+      "description": "Your Hateforged Barrier now also scales with your dodge rating.",
+      "referencedTerms": [
+        "Hateforged Barrier"
+      ],
+      "prerequisites": [
+        "Nether Disciple"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Hateforged Barrier now also scales with your dodge rating."
+        }
+      ]
+    },
+    {
+      "id": 34226,
+      "name": "Burning Legionnaire",
+      "tree": "Tyrant",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Kiljaedan",
+      "spellId": 520885,
+      "description": "Reduces the Energy cost of Twin Slice and Sunder by -10.",
+      "referencedTerms": [
+        "Sunder",
+        "Twin Slice"
+      ],
+      "prerequisites": [
+        "Demon Hide"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Energy cost of Twin Slice and Sunder by -10."
+        }
+      ]
+    },
+    {
+      "id": 6774,
+      "name": "Outland Slaver",
+      "tree": "Tyrant",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_felshieldemitter",
+      "spellId": 705123,
+      "description": "Reduces the cost of your Felrend and Fel Fireball by -3 and increases their damage dealt by 15%.",
+      "referencedTerms": [
+        "Fel Fireball",
+        "Felrend"
+      ],
+      "prerequisites": [
+        "Felrend"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cost of your Felrend and Fel Fireball by -3 and increases their damage dealt by 15%."
+        },
+        {
+          "rank": 2,
+          "description": "Reduces the cost of your Felrend and Fel Fireball by -6 and increases their damage dealt by 30%."
+        }
+      ]
+    },
+    {
+      "id": 30566,
+      "name": "Battle Finesse",
+      "tree": "Tyrant",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\warlock_curse_weakness_aura",
+      "spellId": 704611,
+      "description": "While channeling Carve, your chance to dodge is now increased by 1% based on how long you channel, up to a maximum of 10%.",
+      "referencedTerms": [
+        "Carve"
+      ],
+      "prerequisites": [
+        "Felrend",
+        "Pure Hatred"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While channeling Carve, your chance to dodge is now increased by 1% based on how long you channel, up to a maximum of 10%."
+        }
+      ]
+    },
+    {
+      "id": 34221,
+      "name": "Unholy Endurance",
+      "tree": "Tyrant",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_doublejump",
+      "spellId": 300466,
+      "description": "Increases the damage and threat generated from Carve by 15%.",
+      "referencedTerms": [
+        "Carve"
+      ],
+      "prerequisites": [
+        "Felrend",
+        "Pure Hatred"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage and threat generated from Carve by 15%."
+        }
+      ]
+    },
+    {
+      "id": 30556,
+      "name": "Felspill",
+      "tree": "Tyrant",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_yorsahj_bloodboil_greenoil",
+      "spellId": 706267,
+      "description": "Generating Felfury now leeches 10% AP health from 3 nearby enemies within 6 yds, scaling with your attack power.",
+      "referencedTerms": [
+        "Felfury"
+      ],
+      "prerequisites": [
+        "Pure Hatred"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generating Felfury now leeches 10% AP health from 3 nearby enemies within 6 yds, scaling with your attack power."
+        }
+      ]
+    },
+    {
+      "id": 34220,
+      "name": "Infernal Constitution",
+      "tree": "Tyrant",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_glide",
+      "spellId": 805256,
+      "description": "Increases your maximum health by 10% and increases your off-hand weapon damage by 30%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Pure Hatred",
+        "Burning Legionnaire"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your maximum health by 10% and increases your off-hand weapon damage by 30%."
+        }
+      ]
+    },
+    {
+      "id": 11213,
+      "name": "Abyssal Conditioning",
+      "tree": "Tyrant",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_warlock_summonabyssal",
+      "spellId": 807431,
+      "description": "Casting Felfury spenders now increases your Energy regeneration by 5% for 10 seconds, stacking up to 4 times.",
+      "referencedTerms": [
+        "Felfury"
+      ],
+      "prerequisites": [
+        "Burning Legionnaire"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Felfury spenders now increases your Energy regeneration by 5% for 10 seconds, stacking up to 4 times."
+        }
+      ]
+    },
+    {
+      "id": 30563,
+      "name": "Illidari Training",
+      "tree": "Tyrant",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_fire_elementaldevastation",
+      "spellId": 805249,
+      "description": "Dodging an attack now generates 3 Energy.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Burning Legionnaire"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dodging an attack now generates 3 Energy."
+        }
+      ]
+    },
+    {
+      "id": 9832,
+      "name": "Hellfire Carver",
+      "tree": "Tyrant",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_felhound4_custom",
+      "spellId": 707444,
+      "description": "Level 30 Passive\nCasting Carve now makes your next Fel Fireball instant cast and causes it to strike 1 additional enemy near the primary target based on how long you channeled, up to a maximum of 10 enemies, dealing less damage with each target struck.",
+      "referencedTerms": [
+        "Carve",
+        "Fel Fireball"
+      ],
+      "prerequisites": [
+        "Hulking Demon"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nCasting Carve now makes your next Fel Fireball instant cast and causes it to strike 1 additional enemy near the primary target based on how long you channeled, up to a maximum of 10 enemies, dealing less damage with each target struck."
+        }
+      ]
+    },
+    {
+      "id": 29398,
+      "name": "Vengeance",
+      "tree": "Tyrant",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_polearm_2h_fellord_2",
+      "spellId": 520817,
+      "description": "Your Twin Slice and Felrend now have a 60% chance to generate 1 additional Felfury.",
+      "referencedTerms": [
+        "Felfury",
+        "Felrend",
+        "Twin Slice"
+      ],
+      "prerequisites": [
+        "Outland Slaver",
+        "Battle Finesse",
+        "Unholy Endurance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Twin Slice and Felrend now have a 60% chance to generate 1 additional Felfury."
+        }
+      ]
+    },
+    {
+      "id": 34219,
+      "name": "Bulwark of Azzinoth",
+      "tree": "Tyrant",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Armor_Shield_Naxxramas_D_01",
+      "spellId": 705122,
+      "description": "Inner Demon now also reduces your damage taken by -10%.",
+      "referencedTerms": [
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Felspill",
+        "Battle Finesse",
+        "Unholy Endurance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Inner Demon now also reduces your damage taken by -10%."
+        }
+      ]
+    },
+    {
+      "id": 30558,
+      "name": "Burning Hatred",
+      "tree": "Tyrant",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_warlock_demonicempowerment",
+      "spellId": 805239,
+      "description": "Enrages you, instantly generating 6 Felfury and causing your melee damage to leech health to you equal to 50% of the damage dealt as Chaos damage for 15 seconds.",
+      "referencedTerms": [
+        "Felfury"
+      ],
+      "prerequisites": [
+        "Felspill"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Enrages you, instantly generating 6 Felfury and causing your melee damage to leech health to you equal to 50% of the damage dealt as Chaos damage for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34229,
+      "name": "Betrayer",
+      "tree": "Tyrant",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_unholy_smile_Border",
+      "spellId": 300476,
+      "description": "Dodging attacks causes 40% off-hand Weapon Damage to attackers and enrages your party and raid members within 20 yds, increasing their critical strike chance by 2% for 10 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Felspill",
+        "Infernal Constitution"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dodging attacks causes 40% off-hand Weapon Damage to attackers and enrages your party and raid members within 20 yds, increasing their critical strike chance by 2% for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30557,
+      "name": "Tyrant's Gaze",
+      "tree": "Tyrant",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_summondemonictyrant",
+      "spellId": 805240,
+      "description": "Set your fiery gaze upon an enemy and all enemies nearby, intimidating them and causing them to combust, dealing 220 + 35% AP Shadowflame Damage to them.\n\nDamaging an enemy in this way heals you for 146 + 50% AP and generates 1 Felfury.\n\nOnly usable on enemies below 35% health.",
+      "referencedTerms": [
+        "Felfury"
+      ],
+      "prerequisites": [
+        "Abyssal Conditioning",
+        "Illidari Training",
+        "Infernal Constitution"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Set your fiery gaze upon an enemy and all enemies nearby, intimidating them and causing them to combust, dealing 220 + 35% AP Shadowflame Damage to them.\n\nDamaging an enemy in this way heals you for 146 + 50% AP and generates 1 Felfury.\n\nOnly usable on enemies below 35% health."
+        }
+      ]
+    },
+    {
+      "id": 9218,
+      "name": "Straight to the Nether",
+      "tree": "Tyrant",
+      "x": 0,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_DemonicCircleSummon",
+      "spellId": 560503,
+      "description": "While Inner Demon is active, Carve and Sargeron Smite now leeches 20% of the damage dealt from the initial strike as Shadowflame Damage.",
+      "referencedTerms": [
+        "Carve",
+        "Inner Demon",
+        "Sargeron Smite"
+      ],
+      "prerequisites": [
+        "Vengeance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Inner Demon is active, Carve and Sargeron Smite now leeches 20% of the damage dealt from the initial strike as Shadowflame Damage."
+        }
+      ]
+    },
+    {
+      "id": 12170,
+      "name": "Fel Torpedo",
+      "tree": "Tyrant",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\custom_T_FelSpikes_Border",
+      "spellId": 520853,
+      "description": "Transforms your Chaos Rush into Fel Torpedo.Fel TorpedoGenerates 1 Felfury\nTorpedo forward in the direction you're running and deal 195 + 35% AP Shadowflame Damage to enemies in your path.\n\nGenerates a large amount of threat. Scales with modifiers to Chaos Rush",
+      "referencedTerms": [
+        "Chaos Rush",
+        "Fel Torpedo"
+      ],
+      "prerequisites": [
+        "Vengeance",
+        "Bulwark of Azzinoth"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Transforms your Chaos Rush into Fel Torpedo.Fel TorpedoGenerates 1 Felfury\nTorpedo forward in the direction you're running and deal 195 + 35% AP Shadowflame Damage to enemies in your path.\n\nGenerates a large amount of threat. Scales with modifiers to Chaos Rush"
+        }
+      ]
+    },
+    {
+      "id": 7870,
+      "name": "Illidan's Favor",
+      "tree": "Tyrant",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Achievement_Boss_Illidan",
+      "spellId": 520592,
+      "description": "Removes the Energy cost of your Felbane and Manaburn and your Manaburn now strikes 4 additional enemies near the primary target.",
+      "referencedTerms": [
+        "Felbane",
+        "Manaburn"
+      ],
+      "prerequisites": [
+        "Vengeance",
+        "Bulwark of Azzinoth"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Removes the Energy cost of your Felbane and Manaburn and your Manaburn now strikes 4 additional enemies near the primary target."
+        }
+      ]
+    },
+    {
+      "id": 6815,
+      "name": "Nether Strength",
+      "tree": "Tyrant",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_DarkHand_Fel",
+      "spellId": 520240,
+      "description": "Casting Felfury spenders now reduces the cooldown of Burning Hatred, Hateforged Barrier, and Demonic Will by -1 sec.",
+      "referencedTerms": [
+        "Burning Hatred",
+        "Demonic Will",
+        "Felfury",
+        "Hateforged Barrier"
+      ],
+      "prerequisites": [
+        "Burning Hatred"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Felfury spenders now reduces the cooldown of Burning Hatred, Hateforged Barrier, and Demonic Will by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 11217,
+      "name": "Demonic Blood",
+      "tree": "Tyrant",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_brandofthehunt",
+      "spellId": 807438,
+      "description": "Generating Felfury now extends the duration of Inner Demon by 0.5 sec.",
+      "referencedTerms": [
+        "Felfury",
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Tyrant's Gaze",
+        "Betrayer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Generating Felfury now extends the duration of Inner Demon by 0.5 sec."
+        }
+      ]
+    },
+    {
+      "id": 34217,
+      "name": "Demonic Fortitude",
+      "tree": "Tyrant",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_reversemagic",
+      "spellId": 805245,
+      "description": "While Demonic Will or Hateforged Barrier are active, all damage taken or avoided now has a 20% chance to generate 1 Felfury.",
+      "referencedTerms": [
+        "Demonic Will",
+        "Felfury",
+        "Hateforged Barrier"
+      ],
+      "prerequisites": [
+        "Tyrant's Gaze",
+        "Betrayer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Demonic Will or Hateforged Barrier are active, all damage taken or avoided now has a 20% chance to generate 1 Felfury."
+        }
+      ]
+    },
+    {
+      "id": 6877,
+      "name": "Expose",
+      "tree": "Tyrant",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_ManaBurn_Fel",
+      "spellId": 300474,
+      "description": "Direct Fire and Shadow spell damage dealt now applies Expose to enemies.Expose (Proc)Damage taken from the Felsworn increased by 10% and the critical strike chance of all allies against this target is increased by 3% for 8 seconds.",
+      "referencedTerms": [
+        "Expose"
+      ],
+      "prerequisites": [
+        "Tyrant's Gaze"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Direct Fire and Shadow spell damage dealt now applies Expose to enemies.Expose (Proc)Damage taken from the Felsworn increased by 10% and the critical strike chance of all allies against this target is increased by 3% for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 9233,
+      "name": "Felblade",
+      "tree": "Tyrant",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_MonkSpecialAttack_DodgeBloodElf",
+      "spellId": 574146,
+      "description": "Level 40 Passive\nDamage dealt by Fel Fireball, Sargeron Smite, and Twin Slice now additionally scales with your Agility.",
+      "referencedTerms": [
+        "Fel Fireball",
+        "Sargeron Smite",
+        "Twin Slice"
+      ],
+      "prerequisites": [
+        "Hellfire Carver"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nDamage dealt by Fel Fireball, Sargeron Smite, and Twin Slice now additionally scales with your Agility."
+        }
+      ]
+    },
+    {
+      "id": 6339,
+      "name": "Doomscarring",
+      "tree": "Tyrant",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_shield_mogu_c_01",
+      "spellId": 685321,
+      "description": "Your melee critical strikes now deal an additional 1 + 30% AP Physical damage and scars enemies for 12 seconds, increasing your allies' attack power against them by 45 + 15% Agility.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Illidan's Favor",
+        "Straight to the Nether",
+        "Fel Torpedo"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your melee critical strikes now deal an additional 1 + 30% AP Physical damage and scars enemies for 12 seconds, increasing your allies' attack power against them by 45 + 15% Agility."
+        }
+      ]
+    },
+    {
+      "id": 11111,
+      "name": "Fel Daze",
+      "tree": "Tyrant",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_DeathCoil",
+      "spellId": 705131,
+      "description": "Increases the critical strike chance of Fel Fireball by 10% and it's damage dealt now reduces the enemy's chance to hit by -3% for 6 seconds.",
+      "referencedTerms": [
+        "Fel Fireball"
+      ],
+      "prerequisites": [
+        "Nether Strength",
+        "Illidan's Favor",
+        "Demonic Blood",
+        "Fel Torpedo",
+        "Demonic Fortitude"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Fel Fireball by 10% and it's damage dealt now reduces the enemy's chance to hit by -3% for 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30561,
+      "name": "Dark Lord",
+      "tree": "Tyrant",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helm_leather_demonhunter_b_01gold",
+      "spellId": 300470,
+      "description": "While above 75% health, your damage taken is reduced by -5% and damage dealt is increased by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Nether Strength",
+        "Illidan's Favor",
+        "Demonic Blood",
+        "Fel Torpedo",
+        "Demonic Fortitude"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While above 75% health, your damage taken is reduced by -5% and damage dealt is increased by 5%."
+        }
+      ]
+    },
+    {
+      "id": 30560,
+      "name": "Eye of the Tyrant",
+      "tree": "Tyrant",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_fel_tainted_cache",
+      "spellId": 560549,
+      "description": "Grant 10% increased melee and ranged haste to party and raid members within 100 yds. Does not stack with similar effects.\n\nIn addition, your attack power is increased by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Expose",
+        "Demonic Blood",
+        "Demonic Fortitude"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Grant 10% increased melee and ranged haste to party and raid members within 100 yds. Does not stack with similar effects.\n\nIn addition, your attack power is increased by 5%."
+        }
+      ]
+    },
+    {
+      "id": 6876,
+      "name": "Vengeance Is Mine",
+      "tree": "Tyrant",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_brandofthehunt",
+      "spellId": 804822,
+      "description": "Dodging or parrying an attack now gives you a 10% chance to make your next 10 instances of damage with Twin Slice deal 30% increased damage and generate 1 Felfury.",
+      "referencedTerms": [
+        "Felfury",
+        "Twin Slice"
+      ],
+      "prerequisites": [
+        "Doomscarring",
+        "Fel Daze",
+        "Dark Lord"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dodging or parrying an attack now gives you a 10% chance to make your next 10 instances of damage with Twin Slice deal 30% increased damage and generate 1 Felfury."
+        }
+      ]
+    },
+    {
+      "id": 30404,
+      "name": "Mannoroth's Rage",
+      "tree": "Tyrant",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Fire_FelFireNova",
+      "spellId": 805255,
+      "description": "Reduces the cooldown of Burning Hatred by -60 sec and removes its Energy cost.",
+      "referencedTerms": [
+        "Burning Hatred"
+      ],
+      "prerequisites": [
+        "Fel Daze",
+        "Dark Lord"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Burning Hatred by -60 sec and removes its Energy cost."
+        }
+      ]
+    },
+    {
+      "id": 34224,
+      "name": "Infernal Whipcrack",
+      "tree": "Tyrant",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warlock_whiplash",
+      "spellId": 805243,
+      "description": "Enrage up to 8 allies within 20 yds, reducing their damage taken by -15% and increasing their haste by 10% for 10 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Fel Daze",
+        "Eye of the Tyrant",
+        "Dark Lord"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Enrage up to 8 allies within 20 yds, reducing their damage taken by -15% and increasing their haste by 10% for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 11233,
+      "name": "Fel Monstrosity",
+      "tree": "Tyrant",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_hellfire_felreaver",
+      "spellId": 500067,
+      "description": "Level 50 Passive\nIncreases your Stamina by 25% and size by 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Felblade"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nIncreases your Stamina by 25% and size by 10%."
+        }
+      ]
+    },
+    {
+      "id": 30405,
+      "name": "Tyrannical Resolve",
+      "tree": "Tyrant",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_demonhunter_immolation",
+      "spellId": 804823,
+      "description": "Taunt nearby enemies for 4 seconds and ignore -50% of all damage taken for 30 seconds, up to 100% of your maximum health.\n\nWhen this ends, you unleash a Felfire Blast that leeches health from nearby enemies based on how many times you took damage with the effect active.",
+      "referencedTerms": [
+        "Felfire Blast"
+      ],
+      "prerequisites": [
+        "Vengeance Is Mine"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Taunt nearby enemies for 4 seconds and ignore -50% of all damage taken for 30 seconds, up to 100% of your maximum health.\n\nWhen this ends, you unleash a Felfire Blast that leeches health from nearby enemies based on how many times you took damage with the effect active."
+        }
+      ]
+    },
+    {
+      "id": 34228,
+      "name": "Grommash's Folly",
+      "tree": "Tyrant",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Orc_06",
+      "spellId": 805236,
+      "description": "While Inner Demon is active, your melee haste is now increased by 15% and you now heal equal to 50% of all damage dealt by critical strikes with auto attacks.\n\nIn addition, critical strikes with Carve deal 5% increased damage, increasing up to 60% with each strike based on how long you channel.",
+      "referencedTerms": [
+        "Carve",
+        "Inner Demon"
+      ],
+      "prerequisites": [
+        "Vengeance Is Mine",
+        "Mannoroth's Rage",
+        "Infernal Whipcrack"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Inner Demon is active, your melee haste is now increased by 15% and you now heal equal to 50% of all damage dealt by critical strikes with auto attacks.\n\nIn addition, critical strikes with Carve deal 5% increased damage, increasing up to 60% with each strike based on how long you channel."
+        }
+      ]
+    },
+    {
+      "id": 29407,
+      "name": "Taskmaster's Army",
+      "tree": "Tyrant",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_hellfire_fellord",
+      "spellId": 800220,
+      "description": "Reduces the cooldown of Infernal Whipcrack by -30 sec and it now affects all allies and its radius is increased by 15 yds.",
+      "referencedTerms": [
+        "Infernal Whipcrack"
+      ],
+      "prerequisites": [
+        "Infernal Whipcrack"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Infernal Whipcrack by -30 sec and it now affects all allies and its radius is increased by 15 yds."
+        }
+      ]
+    }
+  ]
+}

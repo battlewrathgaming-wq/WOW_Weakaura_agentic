@@ -1,0 +1,90 @@
+{
+  "regionType": "aurabar",
+  "width": "{{width}}",
+  "height": "{{height}}",
+  "orientation": "HORIZONTAL",
+  "inverse": false,
+  "barColor": [
+    1.0,
+    0.0,
+    0.0,
+    1.0
+  ],
+  "barColor2": [
+    1.0,
+    1.0,
+    0.0,
+    1.0
+  ],
+  "enableGradient": false,
+  "gradientOrientation": "HORIZONTAL",
+  "backgroundColor": [
+    0.0,
+    0.0,
+    0.0,
+    0.5
+  ],
+  "texture": "Blizzard",
+  "textureSource": "LSM",
+  "icon": false,
+  "icon_side": "RIGHT",
+  "icon_color": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "desaturate": false,
+  "iconSource": -1,
+  "displayIcon": "",
+  "zoom": 0,
+  "progressSource": [
+    -1,
+    ""
+  ],
+  "adjustedMax": "",
+  "adjustedMin": "",
+  "useAdjustededMax": false,
+  "useAdjustededMin": false,
+  "spark": false,
+  "sparkWidth": 10,
+  "sparkHeight": 30,
+  "sparkColor": [
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+  "sparkBlendMode": "ADD",
+  "sparkOffsetX": 0,
+  "sparkOffsetY": 0,
+  "sparkRotationMode": "AUTO",
+  "sparkRotation": 0,
+  "sparkHidden": "NEVER",
+  "subRegions": [
+    {
+      "type": "subbackground"
+    }
+  ],
+  "triggers": {
+    "1": {
+      "trigger": {
+        "type": "aura2",
+        "event": "Health",
+        "unit": "player",
+        "debuffType": "HELPFUL",
+        "spellIds": [
+          "{{spell_id}}"
+        ],
+        "useExactSpellId": true,
+        "ownOnly": true,
+        "names": [],
+        "subeventPrefix": "SPELL",
+        "subeventSuffix": "_CAST_START"
+      },
+      "untrigger": {}
+    },
+    "activeTriggerMode": -10
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "_readme": "Hand-verified anchor table for Ascension's Spell.dbc SpellClassSet family ids. Not auto-generated - only add an entry here after empirically confirming it (checked that a class's talents/spells share this SpellClassSet, and that at least one modifies/SpellClassMask match against it holds up). See Docs/PIPELINE.md section 9 for the mechanism this supports.",
+  "families": {
+    "29": {
+      "class": "Necromancer",
+      "totalSpellsInFamily": 1311,
+      "note": "Entire Necromancer kit (talent-tree stubs, implementation spells, and modifier auras alike) uses SpellClassSet=29 uniformly. Confirmed via build_abilities_reference_dbc.py: 180 player-facing abilities surfaced from the tree, 133 of them linked via modifies-relationship SpellClassMask matches scoped to this family id.",
+      "verifiedExamples": [
+        {
+          "modifier": "Graverobber (spell 503757)",
+          "effectSpellClassMask": "A=8, B=8 (effect 0)",
+          "matchesConfirmed": ["Raise: Ghoul (500971, SpellClassMask_0=8)", "Animate: Skeletal Archer (805040, SpellClassMask_0=2097160, includes bit 8)"]
+        }
+      ]
+    }
+  },
+  "confirmedGaps": {
+    "note": "Relationship types confirmed NOT present in Spell.dbc for any family - stay text-only/manual-tag territory (see PIPELINE.md section 8's 'regex can't own' bucket).",
+    "examples": [
+      {
+        "case": "Army of the Dead (spell 525600)",
+        "relationship": "Buffs Ghoul crit/haste conditional on live Abomination count",
+        "finding": "SpellClassMask and EffectSpellClassMask_A/B/C all zero on its own record - implemented as custom server-side scripting (pet-type check at runtime), invisible to client data."
+      },
+      {
+        "case": "Skeletal Artillery (spell 302518)",
+        "relationship": "Its own text: 'Your Animate: Skeletal Archers now summons 1 additional Skeletal Archer.'",
+        "finding": "Real effects (effect0/effect1) are dummy/proc auras with MiscValue 3/12, not a spell-ID reference - no classmask anywhere on the live effect slots. A separate, UNUSED effect2 slot (Effect_2=0) carried a stale leftover EffectSpellClassMask that produced 5 false-positive matches against unrelated Raise spells until the matcher was fixed to require Effect_e != 0. See PIPELINE.md section 9 correction note."
+      }
+    ]
+  },
+  "implementationNotes": {
+    "deadEffectSlotGuard": "When scanning EffectSpellClassMask_A/B/C_<e> for a modifier candidate, always check Effect_<e> != 0 first. A zero-value Effect slot (SPELL_EFFECT_NONE) can still carry a non-zero, stale EffectSpellClassMask value - almost certainly inherited from whatever template spell was cloned to author the new one. Confirmed on Skeletal Artillery (see confirmedGaps above); caused 21 of the original 41 candidate 'modifier' talents to be pure false positives before this guard was added."
+  }
+}

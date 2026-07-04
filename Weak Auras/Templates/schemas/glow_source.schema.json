@@ -1,0 +1,36 @@
+{
+  "$id": "glow_source.schema.json",
+  "title": "Glow-source fragment",
+  "description": "Not a standalone template - an OPTIONAL second trigger attachable to any icon-shaped template (cooldown_tracker today), per WEAKAURA_INDEX.md's 'glow-source mechanism' section. Represents HUD_DESIGN.md's settled rule: a proc/buff on an ability that already has its own Rotation button should brighten that button in place, not spawn a separate icon. Modeled as a LIST (settled 2026-07-04: 'settling for 1 effect is fine... expanding is mostly just adding another of the same schema section') so a second independent proc later is additive, not a schema change.",
+  "type": "array",
+  "maxItems_note": "1 today by settled scope; no hard cap enforced in the schema itself so extension stays additive.",
+  "items": {
+    "type": "object",
+    "required": [
+      "opportunity_type",
+      "spell_id"
+    ],
+    "properties": {
+      "opportunity_type": {
+        "type": "string",
+        "enum": [
+          "proc_alert",
+          "buff_uptime"
+        ],
+        "description": "Which of the two glow-eligible opportunity types this second spell is."
+      },
+      "spell_id": {
+        "type": [
+          "string",
+          "integer"
+        ],
+        "description": "The proc/buff spell ID that should brighten the parent icon when active."
+      },
+      "use_exact_spell_id": {
+        "type": "boolean",
+        "default": true
+      }
+    }
+  },
+  "verified": "RESOLVED 2026-07-06 (was PARTIAL). The second numbered trigger slot (triggers[2]) was already confirmed real - EXAMPLE_TEST_AURA/EXAMPLE_GROUP_AURA show WeakAuras' triggers dict is keyed by integer trigger index, and Prototypes.lua/BuffTrigger2.lua confirm aura2/Cooldown trigger shapes independently. The remaining gap - the exact 'conditions' dict shape reading a genuinely SEPARATE trigger's state - is now closed by direct source read of Conditions.lua's CreateTestForCondition (the cType=='bool' branch generates state[trigger] and state[trigger].show and state[trigger][variable]==true, for whichever trigger number is given - not special-cased to trigger 1). See power_threshold_effect.schema.json for the sibling numeric-check version (cType=='number'), confirmed the same way."
+}

@@ -1,0 +1,5629 @@
+{
+  "class": "Barbarian",
+  "classId": 12,
+  "realm": "voljin-alpha",
+  "source": "https://ascension.gg/en/v2/coa-builder/voljin-alpha",
+  "extracted": "2026-07-01",
+  "schemaVersion": 3,
+  "trees": [
+    "Ancestry",
+    "Brutality",
+    "Class",
+    "Headhunting"
+  ],
+  "totalTalents": 161,
+  "budget": {
+    "abilityEssence": 26,
+    "talentEssence": 25
+  },
+  "rules": {
+    "specExclusivity": "Only one spec tree (Sanguine/Accursed/Eternal/Fleshweaver-equivalent) can be active at a time in-game. You commit to ONE non-Class tree and spend your full Talent Essence budget within it (plus the separate Class tree spent with Ability Essence). Treat trees other than 'Class' as mutually exclusive choices, not a blend.",
+    "partialRanksCount": "A node only needs 1 point invested (not maxPoints) to count as 'connected' for prerequisite checks and to contribute toward the reqTreeAbilityEssence/reqTreeTalentEssence row-unlock thresholds.",
+    "budgetCurrencies": "Ability Essence (AE) is spent only in the Class tree. Talent Essence (TE) is spent only in whichever single spec tree you commit to. A node's abilityEssenceCost/talentEssenceCost fields show which currency it draws from (never both).",
+    "rowGating": "reqTreeAbilityEssence / reqTreeTalentEssence on a node is the minimum essence already spent within that SAME tree required to unlock it - not total across trees.",
+    "levelGates": "Some nodes (mostly entryType Ability) cost 0 essence and unlock automatically at requiredLevel instead of being a budget choice.",
+    "prerequisiteFieldsCorrected": "'prerequisites' is the OR-logic grid-connection requirement (matches tooltip 'requires one connected node: A or B or C') - need at least 1 point in ANY ONE listed node. 'specialRequirement' is a separate, rare, AND-logic hard requirement used only by a handful of free/level-gated bonus nodes - ALL listed nodes must already have a point.",
+    "budgetTotalsAssumed": "Verified live for Bloodmage: 26 Ability Essence (Class tree) / 25 Talent Essence (spec tree) as the spendable caps. Assumed identical for all classes since this is tied to character leveling, not class design - not independently verified per class. Override in the toolkit if a specific class differs.",
+    "referencedTerms": "Extracted from colored in-line spans in the raw tooltip HTML (e.g. a description that highlights 'Cursed Blood' or 'Bloodbolt'). These are explicit developer-authored callouts to another spell/buff/mechanic name, and are the strongest available signal for detecting mechanical synergy between talents - stronger than plain keyword text matching."
+  },
+  "talents": [
+    {
+      "id": 13572,
+      "name": "Keg Smash",
+      "tree": "Ancestry",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_monk_elusiveale",
+      "spellId": 805808,
+      "description": "Smash an enemy for 21 + 15% AP Physical damage, plus an additional 17 + 25% AP Frost damage to up to 5 nearby enemies.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Ancestral Roar",
+        "Fill Level"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Smash an enemy for 21 + 15% AP Physical damage, plus an additional 17 + 25% AP Frost damage to up to 5 nearby enemies."
+        }
+      ]
+    },
+    {
+      "id": 4003,
+      "name": "Fill Level",
+      "tree": "Ancestry",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\spell_brew_wheat",
+      "spellId": 92083,
+      "description": "Level 10 Passive\nGrants you Fill Level and the ability to manipulate a Tankard.Fill LevelYou have a magical Tankard that fills up over time, granting you 1 stack of Fill Level every 2 sec.\n\nSome of your other abilities empty your Tankard to trigger with a reduced cooldown.",
+      "referencedTerms": [
+        "Fill Level",
+        "Tankard"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Ancestral Roar"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nGrants you Fill Level and the ability to manipulate a Tankard.Fill LevelYou have a magical Tankard that fills up over time, granting you 1 stack of Fill Level every 2 sec.\n\nSome of your other abilities empty your Tankard to trigger with a reduced cooldown."
+        }
+      ]
+    },
+    {
+      "id": 31153,
+      "name": "Ancestor's Call",
+      "tree": "Ancestry",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helmet_158",
+      "spellId": 804729,
+      "description": "Teaches you Ancestor's Call.Ancestor's Call (Troll)Call an Honored Ancestor to aid you in battle until dismissed that scales with your Agility and attack power.\n\nWhenever you use Barbaric Whirl or Whirling Advance, your Honored Ancestor mimics it.",
+      "referencedTerms": [
+        "Ancestor's Call",
+        "Barbaric Whirl",
+        "Honored Ancestor",
+        "Whirling Advance"
+      ],
+      "prerequisites": [
+        "Keg Smash"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Fill Level",
+        "Ancestral Roar"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Teaches you Ancestor's Call.Ancestor's Call (Troll)Call an Honored Ancestor to aid you in battle until dismissed that scales with your Agility and attack power.\n\nWhenever you use Barbaric Whirl or Whirling Advance, your Honored Ancestor mimics it."
+        }
+      ]
+    },
+    {
+      "id": 34306,
+      "name": "Breath of The North",
+      "tree": "Ancestry",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Fire_BlueFlameBreath",
+      "spellId": 800838,
+      "description": "Unleashes a frost breath, dealing 31 + 20% AP Frost damage to enemies in a 12 yd cone and slowing them by -30% for 5 seconds.\n\nCan only be used after emptying your Tankard.",
+      "referencedTerms": [
+        "Tankard"
+      ],
+      "prerequisites": [
+        "Ancestor's Call"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Unleashes a frost breath, dealing 31 + 20% AP Frost damage to enemies in a 12 yd cone and slowing them by -30% for 5 seconds.\n\nCan only be used after emptying your Tankard."
+        }
+      ]
+    },
+    {
+      "id": 29284,
+      "name": "Ale of The God-King",
+      "tree": "Ancestry",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\aleofgodking",
+      "spellId": 805780,
+      "description": "Empower your Honored Ancestor's melee attacks to deal additional Frost damage scaling with your attack power. Lasts for 20 seconds.\n\nThis ability consumes Fill Level stacks and triggers a reduced cooldown based on stacks consumed.",
+      "referencedTerms": [
+        "Fill Level",
+        "Honored Ancestor"
+      ],
+      "prerequisites": [
+        "Ancestor's Call"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Empower your Honored Ancestor's melee attacks to deal additional Frost damage scaling with your attack power. Lasts for 20 seconds.\n\nThis ability consumes Fill Level stacks and triggers a reduced cooldown based on stacks consumed."
+        }
+      ]
+    },
+    {
+      "id": 9172,
+      "name": "Frozen Blades",
+      "tree": "Ancestry",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 15,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_weapon_shortblade_48",
+      "spellId": 573256,
+      "description": "Critical strikes now grant party and raid members 5% critical strike chance for 8 seconds.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Fill Level"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes now grant party and raid members 5% critical strike chance for 8 seconds.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 11172,
+      "name": "Ancestral Wisdom",
+      "tree": "Ancestry",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 15,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Achievement_Dungeon_UtgardeKeep_Normal",
+      "spellId": 803511,
+      "description": "Increases chance to hit with all spells and attacks by 1% for you and party and raid members.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Fill Level"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases chance to hit with all spells and attacks by 1% for you and party and raid members.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 34258,
+      "name": "Frostbite",
+      "tree": "Ancestry",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_magicspell_(74)_Border",
+      "spellId": 705158,
+      "description": "Breath of The North now causes the target to bleed for an additional 30% of its damage over 6 seconds as Frost damage.",
+      "referencedTerms": [
+        "Breath of The North"
+      ],
+      "prerequisites": [
+        "Breath of The North"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Breath of The North now causes the target to bleed for an additional 30% of its damage over 6 seconds as Frost damage."
+        }
+      ]
+    },
+    {
+      "id": 31220,
+      "name": "Ancestral Fury",
+      "tree": "Ancestry",
+      "x": 2,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_argus_aggramar",
+      "spellId": 804731,
+      "description": "Emanate a powerful aura, granting 10% increased melee and ranged haste to party and raid members within 100 yds.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Breath of The North"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Emanate a powerful aura, granting 10% increased melee and ranged haste to party and raid members within 100 yds.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 29799,
+      "name": "Ancestral Combat",
+      "tree": "Ancestry",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3calloftheancients",
+      "spellId": 801782,
+      "description": "Empower yourself, granting your Physical damage dealt a 25% chance to trigger an additional main hand attack as Frost damage on your target and grant a stack of Fill Level.\n\nLasts until triggered 20 times.",
+      "referencedTerms": [
+        "Fill Level"
+      ],
+      "prerequisites": [
+        "Ale of The God-King",
+        "Breath of The North"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Empower yourself, granting your Physical damage dealt a 25% chance to trigger an additional main hand attack as Frost damage on your target and grant a stack of Fill Level.\n\nLasts until triggered 20 times."
+        }
+      ]
+    },
+    {
+      "id": 34259,
+      "name": "Trip to the Alehouse",
+      "tree": "Ancestry",
+      "x": 6,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_guildperk_bartering",
+      "spellId": 705152,
+      "description": "Increases the damage of Keg Smash by 10% and its range by 3 yds.",
+      "referencedTerms": [
+        "Keg Smash"
+      ],
+      "prerequisites": [
+        "Ale of The God-King"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Keg Smash by 10% and its range by 3 yds."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the damage of Keg Smash by 20% and its range by 6 yds."
+        }
+      ]
+    },
+    {
+      "id": 34260,
+      "name": "Drinking Frenzy",
+      "tree": "Ancestry",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_archaeology_vrykuldrinkinghorn",
+      "spellId": 706821,
+      "description": "Your melee attacks now have a 15% chance to grant a stack of Fill Level.\n\nIn addition, your chance to hit is increased by 5%.",
+      "referencedTerms": [
+        "Fill Level"
+      ],
+      "prerequisites": [
+        "Ale of The God-King"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your melee attacks now have a 15% chance to grant a stack of Fill Level.\n\nIn addition, your chance to hit is increased by 5%."
+        }
+      ]
+    },
+    {
+      "id": 4354,
+      "name": "Frost Giant's Fury",
+      "tree": "Ancestry",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_deathknight_icetouch",
+      "spellId": 805812,
+      "description": "Casting Breath of the North now grants you 10% melee attack speed, plus an additional 20% when using a two-handed weapon, for 8 seconds.",
+      "referencedTerms": [
+        "Breath of the North"
+      ],
+      "prerequisites": [
+        "Frostbite"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Breath of the North now grants you 10% melee attack speed, plus an additional 20% when using a two-handed weapon, for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 12153,
+      "name": "Frozen Tankard",
+      "tree": "Ancestry",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\tankardtoss",
+      "spellId": 805815,
+      "description": "Throw one of your extra tankards at an enemy, dealing 107 Frost damage and stunning them for 4 seconds. \n\nStunned enemies are considered Frozen.",
+      "referencedTerms": [
+        "Frozen"
+      ],
+      "prerequisites": [
+        "Ancestral Combat",
+        "Ancestral Fury",
+        "Frostbite"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Throw one of your extra tankards at an enemy, dealing 107 Frost damage and stunning them for 4 seconds. \n\nStunned enemies are considered Frozen."
+        }
+      ]
+    },
+    {
+      "id": 29800,
+      "name": "Improved Ancestral Combat",
+      "tree": "Ancestry",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 3,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_axe_82",
+      "spellId": 705209,
+      "description": "Reduces the Energy cost of your Ancestral Combat by -10 and allows it to trigger 3 additional times.",
+      "referencedTerms": [
+        "Ancestral Combat"
+      ],
+      "prerequisites": [
+        "Ancestral Combat"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Energy cost of your Ancestral Combat by -10 and allows it to trigger 3 additional times."
+        },
+        {
+          "rank": 2,
+          "description": "Reduces the Energy cost of your Ancestral Combat by -20 and allows it to trigger 6 additional times."
+        },
+        {
+          "rank": 3,
+          "description": "Reduces the Energy cost of your Ancestral Combat by -30 and allows it to trigger 10 additional times."
+        }
+      ]
+    },
+    {
+      "id": 30763,
+      "name": "Cheers!",
+      "tree": "Ancestry",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\archaeology_5_0_twinsteinsetofbrewfatherquantoukuo",
+      "spellId": 805810,
+      "description": "Designate an ally as your drinking partner for 30 minutes, reducing all damage they take by -5%, and causing 10% of all damage they take to be redirected to you.\n\nYou can only have 1 ally designated at a time.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Ancestral Combat",
+        "Trip to the Alehouse",
+        "Drinking Frenzy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Designate an ally as your drinking partner for 30 minutes, reducing all damage they take by -5%, and causing 10% of all damage they take to be redirected to you.\n\nYou can only have 1 ally designated at a time."
+        }
+      ]
+    },
+    {
+      "id": 34263,
+      "name": "The Finest Ale",
+      "tree": "Ancestry",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Misc_Drink",
+      "spellId": 705218,
+      "description": "Your Ale of The God-King no longer empties your Tankard.",
+      "referencedTerms": [
+        "Ale of The God-King",
+        "Tankard"
+      ],
+      "prerequisites": [
+        "Drinking Frenzy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Ale of The God-King no longer empties your Tankard."
+        }
+      ]
+    },
+    {
+      "id": 11257,
+      "name": "Crystal Enhancements",
+      "tree": "Ancestry",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_frostemblem_01",
+      "spellId": 707541,
+      "description": "You now emanate an aura around you, increasing the Armor of party and raid members by 390.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Frozen Blades",
+        "Ancestral Wisdom"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "You now emanate an aura around you, increasing the Armor of party and raid members by 390.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 34257,
+      "name": "Uniting Voice",
+      "tree": "Ancestry",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helm_mail_vrykuldragonrider_b_01",
+      "spellId": 705162,
+      "description": "Casting Ancestral Roar now increases haste of party and raid members by 5% for 20 seconds.\n\nDoes not stack with similar effects.\n\nCritical strikes extend the duration of the buff by 1 sec.",
+      "referencedTerms": [
+        "Ancestral Roar"
+      ],
+      "prerequisites": [
+        "Frozen Blades",
+        "Ancestral Wisdom"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Ancestral Roar now increases haste of party and raid members by 5% for 20 seconds.\n\nDoes not stack with similar effects.\n\nCritical strikes extend the duration of the buff by 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 34262,
+      "name": "Icebound Ancestry",
+      "tree": "Ancestry",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_forgemaster",
+      "spellId": 705216,
+      "description": "Increases the critical strike chance of Breath of the North by 10%.\n\nIn addition, your attacks now ignore Armor against Frozen targets.",
+      "referencedTerms": [
+        "Breath of the North",
+        "Frozen"
+      ],
+      "prerequisites": [
+        "Frost Giant's Fury",
+        "Frozen Tankard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Breath of the North by 10%.\n\nIn addition, your attacks now ignore Armor against Frozen targets."
+        }
+      ]
+    },
+    {
+      "id": 34264,
+      "name": "Hodir's Revenge",
+      "tree": "Ancestry",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_IceBoundFortitude",
+      "spellId": 705214,
+      "description": "Enemies damaged by your Frozen Tankard now take 50% increased damage from you for 6 seconds.",
+      "referencedTerms": [
+        "Frozen Tankard"
+      ],
+      "prerequisites": [
+        "Frozen Tankard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Enemies damaged by your Frozen Tankard now take 50% increased damage from you for 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 11219,
+      "name": "Thane's Grip",
+      "tree": "Ancestry",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_archerskill33_Border",
+      "spellId": 803798,
+      "description": "Allows you to wield a Two-Handed Axe, Mace, or Sword in each hand, but reduces your Physical Damage dealt by -8%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Improved Ancestral Combat"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Allows you to wield a Two-Handed Axe, Mace, or Sword in each hand, but reduces your Physical Damage dealt by -8%."
+        }
+      ]
+    },
+    {
+      "id": 31219,
+      "name": "Thane's Guard",
+      "tree": "Ancestry",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievements_zone_stormheim",
+      "spellId": 800132,
+      "description": "Gain the Shield proficiency and while wearing a shield you gain 40% increased attack speed and 100% increased Armor contribution from your shield.",
+      "referencedTerms": [
+        "Shield"
+      ],
+      "prerequisites": [
+        "Improved Ancestral Combat"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Gain the Shield proficiency and while wearing a shield you gain 40% increased attack speed and 100% increased Armor contribution from your shield."
+        }
+      ]
+    },
+    {
+      "id": 34304,
+      "name": "Liquid Courage",
+      "tree": "Ancestry",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_monk_fortifyingale_new",
+      "spellId": 681060,
+      "description": "Each Fill Level stack now reduces your damage taken by -2%.",
+      "referencedTerms": [
+        "Fill Level"
+      ],
+      "prerequisites": [
+        "Cheers!"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each Fill Level stack now reduces your damage taken by -2%."
+        }
+      ]
+    },
+    {
+      "id": 12261,
+      "name": "Breaking Morale",
+      "tree": "Ancestry",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Racial_Avatar",
+      "spellId": 681473,
+      "description": "Reduces the Energy cost of Break by -15.",
+      "referencedTerms": [
+        "Break"
+      ],
+      "prerequisites": [
+        "Cheers!",
+        "The Finest Ale"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Energy cost of Break by -15."
+        }
+      ]
+    },
+    {
+      "id": 30386,
+      "name": "Ice Cold Bubbles",
+      "tree": "Ancestry",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_iceswirl_Border",
+      "spellId": 705161,
+      "description": "Each Fill Level stack now also increases Frost damage dealt by 2%.",
+      "referencedTerms": [
+        "Fill Level"
+      ],
+      "prerequisites": [
+        "Thane's Grip",
+        "Thane's Guard",
+        "Icebound Ancestry",
+        "Hodir's Revenge"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each Fill Level stack now also increases Frost damage dealt by 2%."
+        },
+        {
+          "rank": 2,
+          "description": "Each Fill Level stack now also increases Frost damage dealt by 4%."
+        }
+      ]
+    },
+    {
+      "id": 30387,
+      "name": "Unified Rage",
+      "tree": "Ancestry",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_magicspell_(76)_Border",
+      "spellId": 705212,
+      "description": "Your Unbridled Rage now increases your chance to trigger Ancestral Combat by 25%.",
+      "referencedTerms": [
+        "Ancestral Combat",
+        "Unbridled Rage"
+      ],
+      "prerequisites": [
+        "Thane's Grip",
+        "Thane's Guard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Unbridled Rage now increases your chance to trigger Ancestral Combat by 25%."
+        }
+      ]
+    },
+    {
+      "id": 29348,
+      "name": "Blind Stupor",
+      "tree": "Ancestry",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_monk_drunkenhaze",
+      "spellId": 805811,
+      "description": "Damage dealt by Keg Smash now reduces enemies' casting speed by -30% for 15 seconds.",
+      "referencedTerms": [
+        "Keg Smash"
+      ],
+      "prerequisites": [
+        "Thane's Grip",
+        "Breaking Morale",
+        "Thane's Guard",
+        "Liquid Courage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Keg Smash now reduces enemies' casting speed by -30% for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 9861,
+      "name": "To The Bone",
+      "tree": "Ancestry",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_frost_bonecrack_Border",
+      "spellId": 712673,
+      "description": "Damage dealt by Breath of the North now reduces enemies' resistances by 75 and increases their Magic damage taken by -2% for 8 seconds.",
+      "referencedTerms": [
+        "Breath of the North"
+      ],
+      "prerequisites": [
+        "Uniting Voice",
+        "Crystal Enhancements"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Breath of the North now reduces enemies' resistances by 75 and increases their Magic damage taken by -2% for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30764,
+      "name": "Splash Zone",
+      "tree": "Ancestry",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_holiday_beerfest_darkiron",
+      "spellId": 705156,
+      "description": "Share a drink from your Tankard with all party and raid members, granting 95 increased attack or spell power for 15 seconds.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [
+        "Tankard"
+      ],
+      "prerequisites": [
+        "Uniting Voice",
+        "Crystal Enhancements"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Share a drink from your Tankard with all party and raid members, granting 95 increased attack or spell power for 15 seconds.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 34305,
+      "name": "Drunken Frenzy",
+      "tree": "Ancestry",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_offhand_1h_draenordungeon_c_02",
+      "spellId": 572799,
+      "description": "Unbridled Rage now increases your Honored Ancestor's Physical damage by 15% for 10 seconds.",
+      "referencedTerms": [
+        "Honored Ancestor",
+        "Unbridled Rage"
+      ],
+      "prerequisites": [
+        "Icebound Ancestry",
+        "Ice Cold Bubbles"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Unbridled Rage now increases your Honored Ancestor's Physical damage by 15% for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34261,
+      "name": "Ancestor's Fury",
+      "tree": "Ancestry",
+      "x": 3,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_generalbjarngrim",
+      "spellId": 705168,
+      "description": "Unbridled Rage now also increases your Frost damage by 10%.",
+      "referencedTerms": [
+        "Unbridled Rage"
+      ],
+      "prerequisites": [
+        "Ice Cold Bubbles",
+        "Unified Rage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Unbridled Rage now also increases your Frost damage by 10%."
+        }
+      ]
+    },
+    {
+      "id": 30754,
+      "name": "Cold Brew",
+      "tree": "Ancestry",
+      "x": 5,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_monk_nimblebrew",
+      "spellId": 705211,
+      "description": "Critical strikes with Frost damage now generate a stack of Fill Level. \n\nCan only occur once per sec.",
+      "referencedTerms": [
+        "Fill Level"
+      ],
+      "prerequisites": [
+        "Blind Stupor",
+        "Unified Rage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Frost damage now generate a stack of Fill Level. \n\nCan only occur once per sec."
+        }
+      ]
+    },
+    {
+      "id": 34309,
+      "name": "Ancestral Spirit",
+      "tree": "Ancestry",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_druideskill22_Border",
+      "spellId": 705153,
+      "description": "Reduces the Energy cost of your Spirit spells and increases the duration of your Shouts by -50%.",
+      "referencedTerms": [
+        "Shouts",
+        "Spirit"
+      ],
+      "prerequisites": [
+        "Breaking Morale",
+        "Blind Stupor"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Energy cost of your Spirit spells and increases the duration of your Shouts by -50%."
+        },
+        {
+          "rank": 2,
+          "description": "Reduces the Energy cost of your Spirit spells and increases the duration of your Shouts by -100%."
+        }
+      ]
+    },
+    {
+      "id": 34311,
+      "name": "The Spins",
+      "tree": "Ancestry",
+      "x": 1,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\skill_icon_skill14_Border",
+      "spellId": 705208,
+      "description": "Casting Keg Smash now causes your Honored Ancestor to perform an Ancestral Whirl attack upon nearby enemies.",
+      "referencedTerms": [
+        "Ancestral Whirl",
+        "Honored Ancestor",
+        "Keg Smash"
+      ],
+      "prerequisites": [
+        "Ancestor's Fury",
+        "Drunken Frenzy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Keg Smash now causes your Honored Ancestor to perform an Ancestral Whirl attack upon nearby enemies."
+        }
+      ]
+    },
+    {
+      "id": 29366,
+      "name": "Ramhorn Rage",
+      "tree": "Ancestry",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_holiday_beerfest_maghar",
+      "spellId": 805804,
+      "description": "$39",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Cold Brew",
+        "Ancestor's Fury"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$3a"
+        }
+      ]
+    },
+    {
+      "id": 29782,
+      "name": "War Cry",
+      "tree": "Ancestry",
+      "x": 7,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_soulrenderdormazain_hellscream",
+      "spellId": 500995,
+      "description": "Unleash a blood curdling war cry, increasing melee and ranged attack speed by 20%, and attack power by 150 of allies within 25 yds for 20 seconds.\n\nAllies cannot benefit from this spell again for 5 minutes.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Ancestral Spirit",
+        "Cold Brew"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Unleash a blood curdling war cry, increasing melee and ranged attack speed by 20%, and attack power by 150 of allies within 25 yds for 20 seconds.\n\nAllies cannot benefit from this spell again for 5 minutes."
+        }
+      ]
+    },
+    {
+      "id": 12112,
+      "name": "Clanlord's Totem",
+      "tree": "Ancestry",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_belt_armor_orcclan_d_01",
+      "spellId": 804737,
+      "description": "Drop the Clanlord's Totem at the target location where it will remain for 15 seconds.\n\nThe totem emanates an aura for 15 seconds, causing allied players within 100 yds to deal 35% AP additional damage as Frost damage when they deal direct damage and gain 50% increased honor.\n\nApplies Exhaustion, preventing you from benefiting from similar effects for 1 minute.",
+      "referencedTerms": [
+        "Clanlord's Totem",
+        "Exhaustion"
+      ],
+      "prerequisites": [
+        "Splash Zone",
+        "To The Bone"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Drop the Clanlord's Totem at the target location where it will remain for 15 seconds.\n\nThe totem emanates an aura for 15 seconds, causing allied players within 100 yds to deal 35% AP additional damage as Frost damage when they deal direct damage and gain 50% increased honor.\n\nApplies Exhaustion, preventing you from benefiting from similar effects for 1 minute."
+        }
+      ]
+    },
+    {
+      "id": 13111,
+      "name": "Tavern Brawl!",
+      "tree": "Ancestry",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_passivemastery_(34)_Border",
+      "spellId": 804456,
+      "description": "Enrage all nearby allies, increasing their haste by 30% for 20 seconds.\n\nAfter being affected by this spell, allies cannot benefit from similar effects for 5 minutes.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Splash Zone",
+        "To The Bone"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Enrage all nearby allies, increasing their haste by 30% for 20 seconds.\n\nAfter being affected by this spell, allies cannot benefit from similar effects for 5 minutes."
+        }
+      ]
+    },
+    {
+      "id": 34312,
+      "name": "Might of Utgarde",
+      "tree": "Ancestry",
+      "x": 1,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Achievement_Dungeon_UtgardePinnacle_Normal",
+      "spellId": 804768,
+      "description": "Attacks from your Ancestral Combat now heal your Honored Ancestor for 5% maximum health and cause it to perform an Ancestral Whirl attack.",
+      "referencedTerms": [
+        "Ancestral Combat",
+        "Ancestral Whirl",
+        "Honored Ancestor"
+      ],
+      "prerequisites": [
+        "The Spins"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Attacks from your Ancestral Combat now heal your Honored Ancestor for 5% maximum health and cause it to perform an Ancestral Whirl attack."
+        }
+      ]
+    },
+    {
+      "id": 34307,
+      "name": "Rage of the North",
+      "tree": "Ancestry",
+      "x": 3,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_banner_tolbarad_alliance",
+      "spellId": 705221,
+      "description": "Increases the amount of attacks that can trigger your Ale of The God-King by 10.",
+      "referencedTerms": [
+        "Ale of The God-King"
+      ],
+      "prerequisites": [
+        "Ramhorn Rage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the amount of attacks that can trigger your Ale of The God-King by 10."
+        }
+      ]
+    },
+    {
+      "id": 6713,
+      "name": "Fury of the North",
+      "tree": "Ancestry",
+      "x": 5,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\uico_frost_spell_10_Border",
+      "spellId": 560938,
+      "description": "Increases the duration of the enrage effect from your Ramhorn Rage by 6 sec and causes it to increase your movement speed by 40% for its duration.",
+      "referencedTerms": [
+        "Ramhorn Rage"
+      ],
+      "prerequisites": [
+        "Ramhorn Rage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of the enrage effect from your Ramhorn Rage by 6 sec and causes it to increase your movement speed by 40% for its duration."
+        }
+      ]
+    },
+    {
+      "id": 7846,
+      "name": "Rally Behind Me!",
+      "tree": "Ancestry",
+      "x": 7,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Hunter_RapidKilling",
+      "spellId": 712429,
+      "description": "Increases the duration of Warband by 3 sec.\n\nIn addition, your first use of Warband will incur no cooldown. Can only occur once every 1.5 min.",
+      "referencedTerms": [
+        "Warband"
+      ],
+      "prerequisites": [
+        "War Cry"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Warband by 3 sec.\n\nIn addition, your first use of Warband will incur no cooldown. Can only occur once every 1.5 min."
+        }
+      ]
+    },
+    {
+      "id": 5744,
+      "name": "Decapitate",
+      "tree": "Brutality",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_physical_ability_(47)_Border",
+      "spellId": 804414,
+      "description": "Attempt to decapitate an injured enemy, dealing 165% Weapon Damage plus 15, and converting each extra point of Energy to deal additional damage (up to a maximum cost of 100 Energy).\n\nOnly usable on enemies below 35% health.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Attempt to decapitate an injured enemy, dealing 165% Weapon Damage plus 15, and converting each extra point of Energy to deal additional damage (up to a maximum cost of 100 Energy).\n\nOnly usable on enemies below 35% health."
+        }
+      ]
+    },
+    {
+      "id": 4001,
+      "name": "Excessive Power",
+      "tree": "Brutality",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 1,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_Orc_06",
+      "spellId": 92081,
+      "description": "Level 10 Passive\nIncreases your maximum Energy by 100%.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Jawbreaker"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nIncreases your maximum Energy by 100%."
+        }
+      ]
+    },
+    {
+      "id": 6744,
+      "name": "Beheader",
+      "tree": "Brutality",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_archaeology_ogres_warmaul_chieftain",
+      "spellId": 705222,
+      "description": "Scoring a kill blow with Decapitate now refunds 100% of your maximum Energy.",
+      "referencedTerms": [
+        "Decapitate"
+      ],
+      "prerequisites": [
+        "Decapitate"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Scoring a kill blow with Decapitate now refunds 100% of your maximum Energy."
+        }
+      ]
+    },
+    {
+      "id": 30792,
+      "name": "Reckless Movements",
+      "tree": "Brutality",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_boss_blackhand",
+      "spellId": 705204,
+      "description": "Increases the damage of Ancestral Strike and Barbaric Whirl by 20%.",
+      "referencedTerms": [
+        "Ancestral Strike",
+        "Barbaric Whirl"
+      ],
+      "prerequisites": [
+        "Beheader"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Ancestral Strike and Barbaric Whirl by 20%."
+        }
+      ]
+    },
+    {
+      "id": 29281,
+      "name": "Killing Spree",
+      "tree": "Brutality",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3leapattack",
+      "spellId": 850021,
+      "description": "Charge at an enemy, dealing 25 + 30% AP Physical damage.\n\nCan only be used within 6 seconds of scoring a killing blow or applying Born in Blood.",
+      "referencedTerms": [
+        "Born in Blood"
+      ],
+      "prerequisites": [
+        "Beheader"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Charge at an enemy, dealing 25 + 30% AP Physical damage.\n\nCan only be used within 6 seconds of scoring a killing blow or applying Born in Blood."
+        }
+      ]
+    },
+    {
+      "id": 6742,
+      "name": "Pure Power",
+      "tree": "Brutality",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_revendreth_rogue",
+      "spellId": 705173,
+      "description": "Increases the damage of Smash by 15% and your expertise by 5.",
+      "referencedTerms": [
+        "Smash"
+      ],
+      "prerequisites": [
+        "Beheader"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Smash by 15% and your expertise by 5."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the damage of Smash by 30% and your expertise by 10."
+        }
+      ]
+    },
+    {
+      "id": 9170,
+      "name": "Relentless",
+      "tree": "Brutality",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_warriorskill07_Border",
+      "spellId": 300505,
+      "description": "Level 20 Passive\nCritical strikes with Ancestral Strike and Brutal Swing now refund 10 Energy.",
+      "referencedTerms": [
+        "Ancestral Strike",
+        "Brutal Swing"
+      ],
+      "prerequisites": [
+        "Excessive Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nCritical strikes with Ancestral Strike and Brutal Swing now refund 10 Energy."
+        }
+      ]
+    },
+    {
+      "id": 34268,
+      "name": "Brutal Swing",
+      "tree": "Brutality",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_axe_Border",
+      "spellId": 500913,
+      "description": "Your next attack causes you to swing violently at an enemy and up to 2 nearby enemies, dealing 120% Weapon Damage plus 10.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Reckless Movements"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your next attack causes you to swing violently at an enemy and up to 2 nearby enemies, dealing 120% Weapon Damage plus 10."
+        }
+      ]
+    },
+    {
+      "id": 29791,
+      "name": "Overkill",
+      "tree": "Brutality",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_magicspell_(16)_Border",
+      "spellId": 560444,
+      "description": "Increases the critical strike chance of Decapitate and Headhunter's Spear by 30% against targets below 20% health.",
+      "referencedTerms": [
+        "Decapitate",
+        "Headhunter's Spear"
+      ],
+      "prerequisites": [
+        "Pure Power",
+        "Killing Spree",
+        "Reckless Movements"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Decapitate and Headhunter's Spear by 30% against targets below 20% health."
+        }
+      ]
+    },
+    {
+      "id": 31151,
+      "name": "Crush",
+      "tree": "Brutality",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Mace_69",
+      "spellId": 500915,
+      "description": "Crush enemies in a frontal cone, dealing 250% Weapon Damage plus 30, knocking them down briefly and stunning them for 3 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Pure Power"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Excessive Power",
+        "Jawbreaker"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Crush enemies in a frontal cone, dealing 250% Weapon Damage plus 30, knocking them down briefly and stunning them for 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6750,
+      "name": "Bloody Fighter",
+      "tree": "Brutality",
+      "x": 1,
+      "y": 4,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_mace_1h_pvpcataclysms3_c_02",
+      "spellId": 705167,
+      "description": "Increases the critical strike chance of Brutal Swing and Smash by 5%.",
+      "referencedTerms": [
+        "Brutal Swing",
+        "Smash"
+      ],
+      "prerequisites": [
+        "Brutal Swing"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Brutal Swing and Smash by 5%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the critical strike chance of Brutal Swing and Smash by 10%."
+        }
+      ]
+    },
+    {
+      "id": 6350,
+      "name": "Headlopper",
+      "tree": "Brutality",
+      "x": 3,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_physical_ability_(10)_Border",
+      "spellId": 300499,
+      "description": "Your critical strikes with Decapitate now cause the enemy to bleed, dealing an additional 30% of the damage dealt over 5 seconds.",
+      "referencedTerms": [
+        "Decapitate"
+      ],
+      "prerequisites": [
+        "Overkill"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your critical strikes with Decapitate now cause the enemy to bleed, dealing an additional 30% of the damage dealt over 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30042,
+      "name": "Spiked Weapons",
+      "tree": "Brutality",
+      "x": 5,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_mace_1h_draenorhonors2_c_01",
+      "spellId": 705186,
+      "description": "Increases the critical damage of Crush, Brutal Swing, and Decapitate by 20%.",
+      "referencedTerms": [
+        "Brutal Swing",
+        "Crush",
+        "Decapitate"
+      ],
+      "prerequisites": [
+        "Overkill"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical damage of Crush, Brutal Swing, and Decapitate by 20%."
+        }
+      ]
+    },
+    {
+      "id": 6739,
+      "name": "Horde Breaker",
+      "tree": "Brutality",
+      "x": 7,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\warrior_skullbanner",
+      "spellId": 804745,
+      "description": "Your Crush is now guaranteed to critically strike enemies affected by Headbutt and it now applies Wounded to enemies for 10 seconds.Wounded (Proc)Increases Physical Damage taken by 4% for 10 seconds.",
+      "referencedTerms": [
+        "Crush",
+        "Headbutt",
+        "Wounded"
+      ],
+      "prerequisites": [
+        "Crush"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Crush is now guaranteed to critically strike enemies affected by Headbutt and it now applies Wounded to enemies for 10 seconds.Wounded (Proc)Increases Physical Damage taken by 4% for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 12739,
+      "name": "Power Swings",
+      "tree": "Brutality",
+      "x": 7,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_OffensiveStance",
+      "spellId": 707762,
+      "description": "Reduces the cooldown of Crush by -5 sec.",
+      "referencedTerms": [
+        "Crush"
+      ],
+      "prerequisites": [
+        "Crush"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Crush by -5 sec."
+        }
+      ]
+    },
+    {
+      "id": 4720,
+      "name": "Thirst for Battle",
+      "tree": "Brutality",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Racial_BloodRage",
+      "spellId": 570236,
+      "description": "Your Smash now regenerate 25% of your maximum Energy.",
+      "referencedTerms": [
+        "Smash"
+      ],
+      "prerequisites": [
+        "Relentless"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Smash now regenerate 25% of your maximum Energy."
+        }
+      ]
+    },
+    {
+      "id": 30760,
+      "name": "Rancor",
+      "tree": "Brutality",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\trade_archaeology_generalbeauregardslaststand",
+      "spellId": 704876,
+      "description": "Your Brutal Swing now triggers an additional auto attack on the primary target.",
+      "referencedTerms": [
+        "Brutal Swing"
+      ],
+      "prerequisites": [
+        "Bloody Fighter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Brutal Swing now triggers an additional auto attack on the primary target."
+        }
+      ]
+    },
+    {
+      "id": 34271,
+      "name": "Battering Ram",
+      "tree": "Brutality",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_engineerskill03_Border",
+      "spellId": 561326,
+      "description": "Increases your Armor penetration by 10% while wielding a two-handed mace or axe.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Headlopper",
+        "Spiked Weapons"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Armor penetration by 10% while wielding a two-handed mace or axe."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Armor penetration by 20% while wielding a two-handed mace or axe."
+        }
+      ]
+    },
+    {
+      "id": 34265,
+      "name": "Hail of Hammers",
+      "tree": "Brutality",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_iron_hammer_b_Border",
+      "spellId": 807047,
+      "description": "Reduces the cast time of Crush by -25%.",
+      "referencedTerms": [
+        "Crush"
+      ],
+      "prerequisites": [
+        "Horde Breaker",
+        "Power Swings"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cast time of Crush by -25%."
+        }
+      ]
+    },
+    {
+      "id": 6834,
+      "name": "Anger Issues",
+      "tree": "Brutality",
+      "x": 0,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\epic_rpg_icon_pack_brutal_icon_0005s_0000_characterb_Border",
+      "spellId": 560450,
+      "description": "Scoring a critical strike against an enemy now reduces the cooldown of Carnage by -4 sec.",
+      "referencedTerms": [
+        "Carnage"
+      ],
+      "prerequisites": [
+        "Bloody Fighter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Scoring a critical strike against an enemy now reduces the cooldown of Carnage by -4 sec."
+        }
+      ]
+    },
+    {
+      "id": 30377,
+      "name": "Whirling Assault",
+      "tree": "Brutality",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_butcher_whirl",
+      "spellId": 560563,
+      "description": "Increases the damage of Whirling Advance by 300% on enemies above 80% health.",
+      "referencedTerms": [
+        "Whirling Advance"
+      ],
+      "prerequisites": [
+        "Rancor"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Whirling Advance by 300% on enemies above 80% health."
+        }
+      ]
+    },
+    {
+      "id": 34266,
+      "name": "Efficient Killer",
+      "tree": "Brutality",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_warriorskill41_Border",
+      "spellId": 803085,
+      "description": "Reduces the Energy cost of your spells and abilities by -10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Rancor",
+        "Hail of Hammers",
+        "Battering Ram"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Energy cost of your spells and abilities by -10%."
+        }
+      ]
+    },
+    {
+      "id": 6737,
+      "name": "Mounting Fury",
+      "tree": "Brutality",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\warrior_talent_icon_furyintheblood",
+      "spellId": 805927,
+      "description": "Increases the duration of Born in Blood by 2 sec.",
+      "referencedTerms": [
+        "Born in Blood"
+      ],
+      "prerequisites": [
+        "Hail of Hammers"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Born in Blood by 2 sec."
+        }
+      ]
+    },
+    {
+      "id": 12737,
+      "name": "Savage",
+      "tree": "Brutality",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_rogue_ruthlessness",
+      "spellId": 560441,
+      "description": "Unbridled Rage now also increases your critical damage by 10%.",
+      "referencedTerms": [
+        "Unbridled Rage"
+      ],
+      "prerequisites": [
+        "Hail of Hammers"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Unbridled Rage now also increases your critical damage by 10%."
+        }
+      ]
+    },
+    {
+      "id": 33958,
+      "name": "Ancestral Trauma",
+      "tree": "Brutality",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\uico_blood_spell_10_Border",
+      "spellId": 560446,
+      "description": "Damage dealt by Ancestral Strike and Crush now scales with your Strength.",
+      "referencedTerms": [
+        "Ancestral Strike",
+        "Crush"
+      ],
+      "prerequisites": [
+        "Horde Breaker",
+        "Power Swings"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Ancestral Strike and Crush now scales with your Strength."
+        }
+      ]
+    },
+    {
+      "id": 14171,
+      "name": "Ogre's Strength",
+      "tree": "Brutality",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_reputation_ogre",
+      "spellId": 561160,
+      "description": "Level 40 Passive\nIncreases your attack power by 30% of your Strength.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Thirst for Battle"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nIncreases your attack power by 30% of your Strength."
+        }
+      ]
+    },
+    {
+      "id": 34313,
+      "name": "Reckful",
+      "tree": "Brutality",
+      "x": 0,
+      "y": 7,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_BullRush",
+      "spellId": 681063,
+      "description": "Your Smash now has a 30% chance to not trigger a cooldown.",
+      "referencedTerms": [
+        "Smash"
+      ],
+      "prerequisites": [
+        "Anger Issues",
+        "Whirling Assault"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Smash now has a 30% chance to not trigger a cooldown."
+        },
+        {
+          "rank": 2,
+          "description": "Your Smash now has a 60% chance to not trigger a cooldown."
+        }
+      ]
+    },
+    {
+      "id": 2277,
+      "name": "Incredibly Strong",
+      "tree": "Brutality",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_Devastate",
+      "spellId": 804749,
+      "description": "Removes the minimum range from Maiming Spear, but reduces its maximum range by -5 yds.",
+      "referencedTerms": [
+        "Maiming Spear"
+      ],
+      "prerequisites": [
+        "Whirling Assault"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Removes the minimum range from Maiming Spear, but reduces its maximum range by -5 yds."
+        }
+      ]
+    },
+    {
+      "id": 12277,
+      "name": "Giant Tosser",
+      "tree": "Brutality",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_ability_packleaderhunter_vicioushunt",
+      "spellId": 807863,
+      "description": "Your Headhunter's Spear now generates 50% additional Energy when you strike an enemy that is at least 20 yds away.",
+      "referencedTerms": [
+        "Headhunter's Spear"
+      ],
+      "prerequisites": [
+        "Whirling Assault"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Headhunter's Spear now generates 50% additional Energy when you strike an enemy that is at least 20 yds away."
+        }
+      ]
+    },
+    {
+      "id": 30374,
+      "name": "Symbol of the Warspear",
+      "tree": "Brutality",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_banner_warspear",
+      "spellId": 804730,
+      "description": "You are marked by the Warspear symbol, granting 10% increased attack power to party and raid members. Does not stack with similar effects.\n\nIn addition, reduces the cooldown of Spears by -2 sec.",
+      "referencedTerms": [
+        "Spears"
+      ],
+      "prerequisites": [
+        "Efficient Killer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "You are marked by the Warspear symbol, granting 10% increased attack power to party and raid members. Does not stack with similar effects.\n\nIn addition, reduces the cooldown of Spears by -2 sec."
+        }
+      ]
+    },
+    {
+      "id": 34274,
+      "name": "Brutal Spirit",
+      "tree": "Brutality",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Helmet_08",
+      "spellId": 706653,
+      "description": "Increases the effectiveness of your Spirit spells by 25%.",
+      "referencedTerms": [
+        "Spirit"
+      ],
+      "prerequisites": [
+        "Mounting Fury",
+        "Savage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Spirit spells by 25%."
+        }
+      ]
+    },
+    {
+      "id": 13958,
+      "name": "Crusher",
+      "tree": "Brutality",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3seismicslam",
+      "spellId": 803817,
+      "description": "Melee auto attacks now have a 10% chance to reset the cooldown of Crush.",
+      "referencedTerms": [
+        "Crush"
+      ],
+      "prerequisites": [
+        "Mounting Fury",
+        "Savage",
+        "Ancestral Trauma"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Melee auto attacks now have a 10% chance to reset the cooldown of Crush."
+        },
+        {
+          "rank": 2,
+          "description": "Melee auto attacks now have a 20% chance to reset the cooldown of Crush."
+        }
+      ]
+    },
+    {
+      "id": 6706,
+      "name": "Maximum Carnage",
+      "tree": "Brutality",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_warrior_paintrain",
+      "spellId": 561359,
+      "description": "Casting Unbridled Rage now causes you to begin swinging your weapon around you dealing 47 + 25% AP Physical damage to up to 5 nearby enemies over 5 seconds.",
+      "referencedTerms": [
+        "Unbridled Rage"
+      ],
+      "prerequisites": [
+        "Incredibly Strong",
+        "Giant Tosser",
+        "Symbol of the Warspear",
+        "Reckful"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Unbridled Rage now causes you to begin swinging your weapon around you dealing 47 + 25% AP Physical damage to up to 5 nearby enemies over 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29514,
+      "name": "Storm of Steel",
+      "tree": "Brutality",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_Warriorskill_21_Border",
+      "spellId": 800637,
+      "description": "Begin striking your target every 1 sec for 80% Weapon Damage for 3 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Crusher",
+        "Symbol of the Warspear",
+        "Brutal Spirit"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Begin striking your target every 1 sec for 80% Weapon Damage for 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 9171,
+      "name": "Body Builder",
+      "tree": "Brutality",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_Strength",
+      "spellId": 706481,
+      "description": "Level 50 Passive\nYou now gain 1 Strength for every 3 Agility and your size is increased by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Ogre's Strength"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nYou now gain 1 Strength for every 3 Agility and your size is increased by 5%."
+        }
+      ]
+    },
+    {
+      "id": 30378,
+      "name": "Steelslinger",
+      "tree": "Brutality",
+      "x": 1,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_Bladestorm",
+      "spellId": 804750,
+      "description": "Reduces the cooldown of Barbaric Whirl by -2 sec and increases its damage dealt by 100% on enemies below 35% health.",
+      "referencedTerms": [
+        "Barbaric Whirl"
+      ],
+      "prerequisites": [
+        "Maximum Carnage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Barbaric Whirl by -2 sec and increases its damage dealt by 100% on enemies below 35% health."
+        }
+      ]
+    },
+    {
+      "id": 6740,
+      "name": "Utter Devastation",
+      "tree": "Brutality",
+      "x": 3,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_EndlessRage",
+      "spellId": 560910,
+      "description": "Increases the duration of Maximum Carnage by 1 sec and it now grants Utter Devastation for 6 seconds. Utter DevastationInstantly removes all movement impairing effects, increases your movement speed by 25%, and makes you immune to slows.\n\nCan be consumed by Decapitate or Crush to guarantee them to critically strike.",
+      "referencedTerms": [
+        "Crush",
+        "Decapitate",
+        "Maximum Carnage",
+        "Utter Devastation"
+      ],
+      "prerequisites": [
+        "Maximum Carnage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Maximum Carnage by 1 sec and it now grants Utter Devastation for 6 seconds. Utter DevastationInstantly removes all movement impairing effects, increases your movement speed by 25%, and makes you immune to slows.\n\nCan be consumed by Decapitate or Crush to guarantee them to critically strike."
+        }
+      ]
+    },
+    {
+      "id": 34314,
+      "name": "Steel Fury",
+      "tree": "Brutality",
+      "x": 5,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_Warbringer",
+      "spellId": 704240,
+      "description": "Dealing damage with Storm of Steel increases the damage of its subsequent strikes by 4%, stacking 10 times.\n\nIn addition, the duration of Storm of Steel is increased by 2.5 sec.",
+      "referencedTerms": [
+        "Storm of Steel"
+      ],
+      "prerequisites": [
+        "Storm of Steel"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dealing damage with Storm of Steel increases the damage of its subsequent strikes by 4%, stacking 10 times.\n\nIn addition, the duration of Storm of Steel is increased by 2.5 sec."
+        }
+      ]
+    },
+    {
+      "id": 6741,
+      "name": "Sustaining Swings",
+      "tree": "Brutality",
+      "x": 7,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_Warriorskill_42_nobg_Border",
+      "spellId": 520539,
+      "description": "Melee attacks now have an 8% chance to heal you for 10% of the damage dealt and cause your next Ancestral Strike to deal 50% increased damage.",
+      "referencedTerms": [
+        "Ancestral Strike"
+      ],
+      "prerequisites": [
+        "Storm of Steel"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Melee attacks now have an 8% chance to heal you for 10% of the damage dealt and cause your next Ancestral Strike to deal 50% increased damage."
+        }
+      ]
+    },
+    {
+      "id": 30162,
+      "name": "Maiming Spear",
+      "tree": "Class",
+      "x": 1,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Maiming_Spear",
+      "spellId": 804139,
+      "description": "Throw your ranged weapon at your enemy's legs, dealing 100% Ranged Weapon Damage plus 2 and slowing their movement speed by -50% for 10 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Throw your ranged weapon at your enemy's legs, dealing 100% Ranged Weapon Damage plus 2 and slowing their movement speed by -50% for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29783,
+      "name": "Jawbreaker",
+      "tree": "Class",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_dungeon_bastion_of_twilight_halfus_wyrmbreaker",
+      "spellId": 802792,
+      "description": "Attempt to break an enemy's jaw, interrupting them and preventing any spell from that school from being cast for 4 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Attempt to break an enemy's jaw, interrupting them and preventing any spell from that school from being cast for 4 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30762,
+      "name": "Ancestral Roar",
+      "tree": "Class",
+      "x": 7,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_D3threateningshout",
+      "spellId": 500918,
+      "description": "Requires Enraged\nRoar with ancestral fervor, healing you for 100 + 50% AP.",
+      "referencedTerms": [
+        "Requires Enraged"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Requires Enraged\nRoar with ancestral fervor, healing you for 100 + 50% AP."
+        }
+      ]
+    },
+    {
+      "id": 34291,
+      "name": "Unrelenting",
+      "tree": "Class",
+      "x": 1,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_DeathKnight_RuneTap",
+      "spellId": 705169,
+      "description": "Increases your Physical damage dealt and taken by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Maiming Spear"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Physical damage dealt and taken by 5%."
+        }
+      ]
+    },
+    {
+      "id": 34277,
+      "name": "Savage Strength",
+      "tree": "Class",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Achievement_Character_Orc_Male",
+      "spellId": 560886,
+      "description": "Increases your Agility by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Jawbreaker"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Agility by 5%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Agility by 10%."
+        }
+      ]
+    },
+    {
+      "id": 14277,
+      "name": "One With The Ancestors",
+      "tree": "Class",
+      "x": 7,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helm_plate_pvpwarrior_d_01",
+      "spellId": 560452,
+      "description": "Increases your critical strike chance by 2%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Ancestral Roar"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical strike chance by 2%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your critical strike chance by 4%."
+        }
+      ]
+    },
+    {
+      "id": 34279,
+      "name": "Athleticism",
+      "tree": "Class",
+      "x": 0,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\5_run_Border",
+      "spellId": 560456,
+      "description": "Increases your Energy regeneration by 25%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Unrelenting"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Energy regeneration by 25%."
+        }
+      ]
+    },
+    {
+      "id": 6802,
+      "name": "Strength of Goria",
+      "tree": "Class",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Achievement_Boss_HighMaul_Butcher",
+      "spellId": 705202,
+      "description": "Casting Unbridled Rage now grants you Born in Blood.Born in BloodBattle fuels your vitality, restoring 18 health and 12 Energy over 3 seconds.",
+      "referencedTerms": [
+        "Born in Blood",
+        "Unbridled Rage"
+      ],
+      "prerequisites": [
+        "Savage Strength",
+        "Unrelenting"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Unbridled Rage now grants you Born in Blood.Born in BloodBattle fuels your vitality, restoring 18 health and 12 Energy over 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6462,
+      "name": "Unstoppable Rage",
+      "tree": "Class",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_InnerRage",
+      "spellId": 706353,
+      "description": "Increases the duration of Unbridled Rage by 2 sec.",
+      "referencedTerms": [
+        "Unbridled Rage"
+      ],
+      "prerequisites": [
+        "One With The Ancestors",
+        "Savage Strength"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Unbridled Rage by 2 sec."
+        }
+      ]
+    },
+    {
+      "id": 6790,
+      "name": "War Tales",
+      "tree": "Class",
+      "x": 8,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Misc_Head_Dwarf_01",
+      "spellId": 706352,
+      "description": "Increases your chance to resist fear and horrify effects by 25%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "One With The Ancestors"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your chance to resist fear and horrify effects by 25%."
+        }
+      ]
+    },
+    {
+      "id": 29793,
+      "name": "Headhunter's Spear",
+      "tree": "Class",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Headhunting_Spear",
+      "spellId": 804137,
+      "description": "Hurl a light spear at an enemy dealing 140% Ranged Weapon Damage plus 21 and restores 30% of your maximum Energy.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Strength of Goria",
+        "Athleticism"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Hurl a light spear at an enemy dealing 140% Ranged Weapon Damage plus 21 and restores 30% of your maximum Energy."
+        }
+      ]
+    },
+    {
+      "id": 30870,
+      "name": "Defiance",
+      "tree": "Class",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_warrior_bloodsurge",
+      "spellId": 806228,
+      "description": "Attempt to defy death, reducing all damage taken by 30% to 80% based on your current missing health for 15 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Unstoppable Rage",
+        "Strength of Goria"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Attempt to defy death, reducing all damage taken by 30% to 80% based on your current missing health for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 7720,
+      "name": "Warband",
+      "tree": "Class",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\warrior_skullbanner",
+      "spellId": 560883,
+      "description": "Bring all nearby allies into the warband for 12 seconds, granting them Born in Blood, repeating every 3 sec.Born in BloodBattle fuels your vitality, restoring 18 health and 12 Energy over 3 seconds.",
+      "referencedTerms": [
+        "Born in Blood"
+      ],
+      "prerequisites": [
+        "Unstoppable Rage",
+        "War Tales"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Bring all nearby allies into the warband for 12 seconds, granting them Born in Blood, repeating every 3 sec.Born in BloodBattle fuels your vitality, restoring 18 health and 12 Energy over 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34299,
+      "name": "Dauntless",
+      "tree": "Class",
+      "x": 0,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\sha_ability_rogue_sturdyrecuperate_nightmare",
+      "spellId": 804746,
+      "description": "Dealing damage with Whirling Advance now dispels 1 movement slowing effect from you and refunds 2 Energy.",
+      "referencedTerms": [
+        "Whirling Advance"
+      ],
+      "prerequisites": [
+        "Headhunter's Spear"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dealing damage with Whirling Advance now dispels 1 movement slowing effect from you and refunds 2 Energy."
+        }
+      ]
+    },
+    {
+      "id": 6844,
+      "name": "Savagery",
+      "tree": "Class",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_garrosh_hellscreams_warsong",
+      "spellId": 800943,
+      "description": "While below 35% health, your auto attacks, Ancestral Strike, and Throw Weapon now grant Born in Blood. Can only occur once every 2 sec.\nBorn in BloodBattle fuels your vitality, restoring 18 health and 12 Energy over 3 seconds.",
+      "referencedTerms": [
+        "Ancestral Strike",
+        "Born in Blood",
+        "Throw Weapon"
+      ],
+      "prerequisites": [
+        "Headhunter's Spear",
+        "Defiance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While below 35% health, your auto attacks, Ancestral Strike, and Throw Weapon now grant Born in Blood. Can only occur once every 2 sec.\nBorn in BloodBattle fuels your vitality, restoring 18 health and 12 Energy over 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 14304,
+      "name": "Savage Cadence",
+      "tree": "Class",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_offhand_1h_artifactskulloferedar_d_05",
+      "spellId": 807861,
+      "description": "Direct critical strikes now extend the duration of your Unbridled Rage by 0.5 sec. This effect can occur only once per sec.\n\nKilling blows extend the duration of your Unbridled Rage by 0.5 sec.",
+      "referencedTerms": [
+        "Unbridled Rage"
+      ],
+      "prerequisites": [
+        "Defiance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Direct critical strikes now extend the duration of your Unbridled Rage by 0.5 sec. This effect can occur only once per sec.\n\nKilling blows extend the duration of your Unbridled Rage by 0.5 sec."
+        }
+      ]
+    },
+    {
+      "id": 6871,
+      "name": "Knockout Artist",
+      "tree": "Class",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\item_onepunch",
+      "spellId": 705196,
+      "description": "Successfully interrupting a target with Jawbreaker now increases your haste by 30% for 4 seconds and refunds half its Energy cost.",
+      "referencedTerms": [
+        "Jawbreaker"
+      ],
+      "prerequisites": [
+        "Warband",
+        "Defiance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Successfully interrupting a target with Jawbreaker now increases your haste by 30% for 4 seconds and refunds half its Energy cost."
+        }
+      ]
+    },
+    {
+      "id": 4297,
+      "name": "Bloodbound",
+      "tree": "Class",
+      "x": 8,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_D3gargantuan",
+      "spellId": 801767,
+      "description": "Reduces the cooldown of your Warband by -30 sec and Ancestral Roar by -5 sec.",
+      "referencedTerms": [
+        "Ancestral Roar",
+        "Warband"
+      ],
+      "prerequisites": [
+        "Warband"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of your Warband by -30 sec and Ancestral Roar by -5 sec."
+        }
+      ]
+    },
+    {
+      "id": 30770,
+      "name": "Forward Advance",
+      "tree": "Class",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\INV_Ascend_whirlpool_b_01",
+      "spellId": 707207,
+      "description": "Increases the range of your Whirling Advance by 3 yds.",
+      "referencedTerms": [
+        "Whirling Advance"
+      ],
+      "prerequisites": [
+        "Dauntless"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the range of your Whirling Advance by 3 yds."
+        }
+      ]
+    },
+    {
+      "id": 12770,
+      "name": "Rage Whirling",
+      "tree": "Class",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\5_druideskill45_Border",
+      "spellId": 561321,
+      "description": "Increases the critical strike chance of Whirling Advance by 50%.",
+      "referencedTerms": [
+        "Whirling Advance"
+      ],
+      "prerequisites": [
+        "Dauntless"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Whirling Advance by 50%."
+        }
+      ]
+    },
+    {
+      "id": 12563,
+      "name": "Skull Smash",
+      "tree": "Class",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\SkullSmash2",
+      "spellId": 560532,
+      "description": "Pick up a rock and hurl it at an enemy's skull, disorienting them for 40 seconds (8 sec vs players). \n\nDamage taken will end this effect.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Savagery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Pick up a rock and hurl it at an enemy's skull, disorienting them for 40 seconds (8 sec vs players). \n\nDamage taken will end this effect."
+        }
+      ]
+    },
+    {
+      "id": 34302,
+      "name": "Rapid Recovery",
+      "tree": "Class",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\custom_Warriorskill_11_Border",
+      "spellId": 705171,
+      "description": "Your Onslaught's effect now occurs -50% faster.",
+      "referencedTerms": [
+        "Onslaught"
+      ],
+      "prerequisites": [
+        "Savagery",
+        "Knockout Artist",
+        "Savage Cadence"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Onslaught's effect now occurs -50% faster."
+        }
+      ]
+    },
+    {
+      "id": 11302,
+      "name": "Bloody Onslaught",
+      "tree": "Class",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_fishing_bait_spinefinpiranha",
+      "spellId": 707583,
+      "description": "Increases the duration of Onslaught by 6 sec.",
+      "referencedTerms": [
+        "Onslaught"
+      ],
+      "prerequisites": [
+        "Savagery",
+        "Knockout Artist",
+        "Savage Cadence"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Onslaught by 6 sec."
+        }
+      ]
+    },
+    {
+      "id": 6374,
+      "name": "Thick Skull",
+      "tree": "Class",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_helm_laughingskull_01",
+      "spellId": 801549,
+      "description": "Your thick skull makes you immune to all stun effects for 10 seconds and while active taking direct damage grants you Born in Blood.\n\nUsable while stunned.Born in BloodBattle fuels your vitality, restoring 18 health and 12 Energy over 3 seconds.",
+      "referencedTerms": [
+        "Born in Blood"
+      ],
+      "prerequisites": [
+        "Knockout Artist"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your thick skull makes you immune to all stun effects for 10 seconds and while active taking direct damage grants you Born in Blood.\n\nUsable while stunned.Born in BloodBattle fuels your vitality, restoring 18 health and 12 Energy over 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34276,
+      "name": "Bellowing Voice",
+      "tree": "Class",
+      "x": 8,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_fomor_boss_shout",
+      "spellId": 561322,
+      "description": "Increases the effectiveness of your Shouts by 20%.",
+      "referencedTerms": [
+        "Shouts"
+      ],
+      "prerequisites": [
+        "Bloodbound"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Shouts by 20%."
+        }
+      ]
+    },
+    {
+      "id": 34303,
+      "name": "Blood and Glory",
+      "tree": "Class",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_boss_operator_thogar",
+      "spellId": 805821,
+      "description": "While at or below 35% maximum health, you now gain 20% increased healing received and take -10% reduced damage.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Skull Smash",
+        "Rage Whirling",
+        "Forward Advance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While at or below 35% maximum health, you now gain 20% increased healing received and take -10% reduced damage."
+        }
+      ]
+    },
+    {
+      "id": 13168,
+      "name": "Plugging the Hole",
+      "tree": "Class",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\custom_T_BloodFog_Border",
+      "spellId": 561314,
+      "description": "Your Skull Smash now removes all bleed effects on the enemy.",
+      "referencedTerms": [
+        "Skull Smash"
+      ],
+      "prerequisites": [
+        "Skull Smash"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Skull Smash now removes all bleed effects on the enemy."
+        }
+      ]
+    },
+    {
+      "id": 11168,
+      "name": "Smasher",
+      "tree": "Class",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ability_Rogue_Eviscerate",
+      "spellId": 561394,
+      "description": "Removes the Energy cost from Skull Smash.",
+      "referencedTerms": [
+        "Skull Smash"
+      ],
+      "prerequisites": [
+        "Skull Smash"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Removes the Energy cost from Skull Smash."
+        }
+      ]
+    },
+    {
+      "id": 34320,
+      "name": "Ogre's Endurance",
+      "tree": "Class",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_boss_highmaul_king",
+      "spellId": 705206,
+      "description": "Increases your healing received by 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Bloody Onslaught",
+        "Rapid Recovery"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your healing received by 10%."
+        }
+      ]
+    },
+    {
+      "id": 29608,
+      "name": "Face Smasher",
+      "tree": "Class",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\warrior_talent_icon_innerrage",
+      "spellId": 706354,
+      "description": "Your ability critical strikes now reduce the cooldown of your Battle Vigor and Thick Skull by -1 sec.",
+      "referencedTerms": [
+        "Battle Vigor",
+        "Thick Skull"
+      ],
+      "prerequisites": [
+        "Thick Skull"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your ability critical strikes now reduce the cooldown of your Battle Vigor and Thick Skull by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 6753,
+      "name": "Drunken Brawler",
+      "tree": "Class",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_MonkSpecialAttack_DodgePandaren",
+      "spellId": 560364,
+      "description": "Taking direct damage now increases your chance to dodge by 1% for 3 seconds, stacking 10 times.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Thick Skull",
+        "Bellowing Voice"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Taking direct damage now increases your chance to dodge by 1% for 3 seconds, stacking 10 times."
+        }
+      ]
+    },
+    {
+      "id": 12463,
+      "name": "Powerful Grip",
+      "tree": "Class",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_Warriorskill_03_Border",
+      "spellId": 804728,
+      "description": "Reduces the duration of disarm effects by -30%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Thick Skull",
+        "Bellowing Voice"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the duration of disarm effects by -30%."
+        }
+      ]
+    },
+    {
+      "id": 5373,
+      "name": "Born Killer",
+      "tree": "Class",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_misc_trinket6oih_ironskull1",
+      "spellId": 800131,
+      "description": "Killing an enemy that yields experience or honor now grants you 5% increased armor penetration and movement speed for 5 seconds, stacking 20 times.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Smasher",
+        "Plugging the Hole",
+        "Blood and Glory"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Killing an enemy that yields experience or honor now grants you 5% increased armor penetration and movement speed for 5 seconds, stacking 20 times."
+        }
+      ]
+    },
+    {
+      "id": 14303,
+      "name": "Battle Rhythm",
+      "tree": "Class",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_axe_2h_orcwarrior_c_01",
+      "spellId": 800193,
+      "description": "Critical strikes with abilities now generate 5 Energy.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Smasher",
+        "Plugging the Hole",
+        "Face Smasher",
+        "Ogre's Endurance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with abilities now generate 5 Energy."
+        }
+      ]
+    },
+    {
+      "id": 34295,
+      "name": "Iron Gut",
+      "tree": "Class",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\5_warriorskill44_Border",
+      "spellId": 707721,
+      "description": "Reduces the duration of poison effects on you by -40%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Drunken Brawler",
+        "Powerful Grip",
+        "Face Smasher"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the duration of poison effects on you by -40%."
+        }
+      ]
+    },
+    {
+      "id": 29322,
+      "name": "Outrage",
+      "tree": "Class",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_D3frenzy",
+      "spellId": 801759,
+      "description": "Requires Enraged\nIncreases your haste and critical strike chance by 20%, but increases your damage taken by 30% for 10 seconds. \n\nPhysical critical strikes extend this effect by 1 sec.",
+      "referencedTerms": [
+        "Requires Enraged"
+      ],
+      "prerequisites": [
+        "Born Killer",
+        "Battle Rhythm"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Requires Enraged\nIncreases your haste and critical strike chance by 20%, but increases your damage taken by 30% for 10 seconds. \n\nPhysical critical strikes extend this effect by 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 29803,
+      "name": "First Blood",
+      "tree": "Class",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\warrior_talent_icon_skirmisher",
+      "spellId": 560906,
+      "description": "Increases all damage dealt to enemies above 80% health by 20%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Battle Rhythm"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases all damage dealt to enemies above 80% health by 20%."
+        }
+      ]
+    },
+    {
+      "id": 30767,
+      "name": "Hodir's Wrath",
+      "tree": "Class",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_dungeon_ulduarraid_icegiant_01",
+      "spellId": 800152,
+      "description": "Erupt with the power of Hodir, dealing 1361 + 120% AP Frost damage to nearby enemies and restoring 100% of your maximum Energy.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Battle Rhythm",
+        "Iron Gut"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Erupt with the power of Hodir, dealing 1361 + 120% AP Frost damage to nearby enemies and restoring 100% of your maximum Energy."
+        }
+      ]
+    },
+    {
+      "id": 7764,
+      "name": "Bloodthirsty",
+      "tree": "Class",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_BullRush",
+      "spellId": 300497,
+      "description": "Increases the effectiveness of your Outrage by 100%.",
+      "referencedTerms": [
+        "Outrage"
+      ],
+      "prerequisites": [
+        "Outrage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the effectiveness of your Outrage by 100%."
+        }
+      ]
+    },
+    {
+      "id": 7848,
+      "name": "Mak'Gora",
+      "tree": "Class",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_leader_thrall",
+      "spellId": 561360,
+      "description": "Critical strikes on enemies above 80% or below 20% health now challenges them to a Mak'Gora. Only 1 enemy can be challenged at a time.Mak'gora (20%)Challenge an enemy to a duel to the death for 10 seconds, reducing their healing received by -20% and absorbing the next 1244 + 100% AP healing done to them.",
+      "referencedTerms": [
+        "Mak'Gora"
+      ],
+      "prerequisites": [
+        "Outrage",
+        "First Blood",
+        "Hodir's Wrath"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes on enemies above 80% or below 20% health now challenges them to a Mak'Gora. Only 1 enemy can be challenged at a time.Mak'gora (20%)Challenge an enemy to a duel to the death for 10 seconds, reducing their healing received by -20% and absorbing the next 1244 + 100% AP healing done to them."
+        }
+      ]
+    },
+    {
+      "id": 7847,
+      "name": "Frozen Warlord",
+      "tree": "Class",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_frost_knight_Border",
+      "spellId": 560939,
+      "description": "Damage dealt by Hodir's Wrath now freezes enemies in place for 0 seconds.",
+      "referencedTerms": [
+        "Hodir's Wrath"
+      ],
+      "prerequisites": [
+        "Hodir's Wrath"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Hodir's Wrath now freezes enemies in place for 0 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30163,
+      "name": "Berserker Axe",
+      "tree": "Headhunting",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_axe_1h_draenorcrafted_d_02_a_horde",
+      "spellId": 804138,
+      "description": "Requires Enraged\n3 Charges, 8 sec recharge\nHurl two axes at an enemy, each dealing 16 + 40% ranged AP Physical damage and reducing enemy armor by 80 for 8 seconds.",
+      "referencedTerms": [
+        "Requires Enraged"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Headhunter",
+        "Maiming Spear"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Requires Enraged\n3 Charges, 8 sec recharge\nHurl two axes at an enemy, each dealing 16 + 40% ranged AP Physical damage and reducing enemy armor by 80 for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 4002,
+      "name": "Headhunter",
+      "tree": "Headhunting",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_axe_2h_artifactmaw_d_01",
+      "spellId": 92082,
+      "description": "Level 10 Passive\nReduces the Energy cost of Throw Weapon, Maiming Spear, and Whirling Advance by -15.",
+      "referencedTerms": [
+        "Maiming Spear",
+        "Throw Weapon",
+        "Whirling Advance"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Maiming Spear"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nReduces the Energy cost of Throw Weapon, Maiming Spear, and Whirling Advance by -15."
+        }
+      ]
+    },
+    {
+      "id": 6796,
+      "name": "You Want Axe?",
+      "tree": "Headhunting",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_axe_1h_garrison_a_01",
+      "spellId": 560564,
+      "description": "While enraged, casting Spears now refreshes 3 charges of Berserker Axe and your next 3 casts cost -50% less Energy. Lasts 12 seconds.",
+      "referencedTerms": [
+        "Berserker Axe",
+        "Spears"
+      ],
+      "prerequisites": [
+        "Berserker Axe"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While enraged, casting Spears now refreshes 3 charges of Berserker Axe and your next 3 casts cost -50% less Energy. Lasts 12 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34319,
+      "name": "Barbed Spear",
+      "tree": "Headhunting",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Barbed_Spear",
+      "spellId": 560881,
+      "description": "Throw a heavy spear with precision at an enemy, dealing 160% Ranged Weapon Damage plus 37, and reducing their healing received by -30% for 10 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "You Want Axe?"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Throw a heavy spear with precision at an enemy, dealing 160% Ranged Weapon Damage plus 37, and reducing their healing received by -30% for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 31152,
+      "name": "Gutspiller",
+      "tree": "Headhunting",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_weapon_(6)_Border",
+      "spellId": 805832,
+      "description": "Launch a heavy axe at an enemy, causing them to bleed for 96 damage over 12 seconds.\n\nEvery 6 sec the target has their Guts Spilled, causing them to bleed out for an additional 71 + 40% ranged AP damage.",
+      "referencedTerms": [
+        "Guts Spilled"
+      ],
+      "prerequisites": [
+        "You Want Axe?"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Launch a heavy axe at an enemy, causing them to bleed for 96 damage over 12 seconds.\n\nEvery 6 sec the target has their Guts Spilled, causing them to bleed out for an additional 71 + 40% ranged AP damage."
+        }
+      ]
+    },
+    {
+      "id": 9192,
+      "name": "Savage",
+      "tree": "Headhunting",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ACHIEVEMENT_BOSS_TROLLGORE",
+      "spellId": 705242,
+      "description": "Level 20 Passive\nBorn in Blood now also increases your damage dealt by 5% and its duration is increased by 3 sec.",
+      "referencedTerms": [
+        "Born in Blood"
+      ],
+      "prerequisites": [
+        "Headhunter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nBorn in Blood now also increases your damage dealt by 5% and its duration is increased by 3 sec."
+        }
+      ]
+    },
+    {
+      "id": 6785,
+      "name": "Puncture Wounds",
+      "tree": "Headhunting",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_boilingblood",
+      "spellId": 805997,
+      "description": "Critical strikes with Spears now causes enemies to bleed for 633 + 16.5% ranged AP over 6 seconds.",
+      "referencedTerms": [
+        "Spears"
+      ],
+      "prerequisites": [
+        "Barbed Spear"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Spears now causes enemies to bleed for 633 + 16.5% ranged AP over 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 5318,
+      "name": "Strong Arm",
+      "tree": "Headhunting",
+      "x": 2,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_StrengthOfArms",
+      "spellId": 705176,
+      "description": "Increases the damage of Spears by 15% and your hit chance by 3%.",
+      "referencedTerms": [
+        "Spears"
+      ],
+      "prerequisites": [
+        "Barbed Spear"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Spears by 15% and your hit chance by 3%."
+        }
+      ]
+    },
+    {
+      "id": 5327,
+      "name": "Vital Spirit",
+      "tree": "Headhunting",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_Reincarnation",
+      "spellId": 805835,
+      "description": "Increases the range of your Spirit spells by 10 yds.",
+      "referencedTerms": [
+        "Spirit"
+      ],
+      "prerequisites": [
+        "Gutspiller",
+        "Barbed Spear"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the range of your Spirit spells by 10 yds."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the range of your Spirit spells by 20 yds."
+        }
+      ]
+    },
+    {
+      "id": 30771,
+      "name": "Guts Splatter",
+      "tree": "Headhunting",
+      "x": 6,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_blackhand_marked4death",
+      "spellId": 560586,
+      "description": "Your Gutspiller now allows your abilities to ignore 10% of the enemy's Armor.",
+      "referencedTerms": [
+        "Gutspiller"
+      ],
+      "prerequisites": [
+        "Gutspiller"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Gutspiller now allows your abilities to ignore 10% of the enemy's Armor."
+        },
+        {
+          "rank": 2,
+          "description": "Your Gutspiller now allows your abilities to ignore 10% of the enemy's Armor."
+        }
+      ]
+    },
+    {
+      "id": 6608,
+      "name": "Deep Fury",
+      "tree": "Headhunting",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warrior_warcry",
+      "spellId": 705240,
+      "description": "Direct Physical damage dealt now reduces the cooldown of Unbridled Rage by -1 sec.",
+      "referencedTerms": [
+        "Unbridled Rage"
+      ],
+      "prerequisites": [
+        "Gutspiller"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Direct Physical damage dealt now reduces the cooldown of Unbridled Rage by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 34325,
+      "name": "Headhunting",
+      "tree": "Headhunting",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_archerskill07_Border",
+      "spellId": 500060,
+      "description": "Reduces the cast time of Throw Weapon by -20% and removes your spell pushback suffered from taking damage.",
+      "referencedTerms": [
+        "Throw Weapon"
+      ],
+      "prerequisites": [
+        "Strong Arm",
+        "Puncture Wounds"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cast time of Throw Weapon by -20% and removes your spell pushback suffered from taking damage."
+        }
+      ]
+    },
+    {
+      "id": 13576,
+      "name": "Axe Twirling",
+      "tree": "Headhunting",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_axe_104",
+      "spellId": 800401,
+      "description": "Display mastery over throwing weapons for 10 seconds, causing Throw Weapon, Gutspiller, and Berserker Axe to strike 2 additional nearby enemies.",
+      "referencedTerms": [
+        "Berserker Axe",
+        "Gutspiller",
+        "Throw Weapon"
+      ],
+      "prerequisites": [
+        "Strong Arm",
+        "Vital Spirit",
+        "Guts Splatter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Display mastery over throwing weapons for 10 seconds, causing Throw Weapon, Gutspiller, and Berserker Axe to strike 2 additional nearby enemies."
+        }
+      ]
+    },
+    {
+      "id": 6803,
+      "name": "Entrails",
+      "tree": "Headhunting",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Spell_Shadow_LifeDrain",
+      "spellId": 705238,
+      "description": "Damage dealt by bleed effects now increases your Agility by 1% for 8 seconds, stacking 10 times.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Deep Fury",
+        "Guts Splatter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by bleed effects now increases your Agility by 1% for 8 seconds, stacking 10 times."
+        }
+      ]
+    },
+    {
+      "id": 19192,
+      "name": "Spear Thrower",
+      "tree": "Headhunting",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\asaltante-azul",
+      "spellId": 574321,
+      "description": "Level 30 Passive\nCasting Throw Weapon now has a 30% chance to reset the cooldown of your Spears.",
+      "referencedTerms": [
+        "Spears",
+        "Throw Weapon"
+      ],
+      "prerequisites": [
+        "Savage"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nCasting Throw Weapon now has a 30% chance to reset the cooldown of your Spears."
+        }
+      ]
+    },
+    {
+      "id": 6511,
+      "name": "Frothing Savage",
+      "tree": "Headhunting",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_bloodtrollfemalehead",
+      "spellId": 705234,
+      "description": "Increases the critical strike chance of Spears and Berserker Axe by 8% against bleeding targets.",
+      "referencedTerms": [
+        "Berserker Axe",
+        "Spears"
+      ],
+      "prerequisites": [
+        "Puncture Wounds",
+        "Headhunting"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Spears and Berserker Axe by 8% against bleeding targets."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the critical strike chance of Spears and Berserker Axe by 15% against bleeding targets."
+        }
+      ]
+    },
+    {
+      "id": 5794,
+      "name": "Impaling Spear",
+      "tree": "Headhunting",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Impaling_Spear",
+      "spellId": 500984,
+      "description": "Hurl a spear in a 30 yd frontal line, dealing 131% Ranged Weapon Damage plus 23, dealing less damage with each enemy struck.\n\nAt the spear's impact location the spear shatters, dealing 277 + 15% ranged AP Physical damage to nearby enemies.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Headhunting"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Hurl a spear in a 30 yd frontal line, dealing 131% Ranged Weapon Damage plus 23, dealing less damage with each enemy struck.\n\nAt the spear's impact location the spear shatters, dealing 277 + 15% ranged AP Physical damage to nearby enemies."
+        }
+      ]
+    },
+    {
+      "id": 30773,
+      "name": "Time To Kill!",
+      "tree": "Headhunting",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_hunter_focusingshot",
+      "spellId": 926591,
+      "description": "Reduces the cooldown of Axe Twirling by -15 sec.",
+      "referencedTerms": [
+        "Axe Twirling"
+      ],
+      "prerequisites": [
+        "Axe Twirling"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Axe Twirling by -15 sec."
+        }
+      ]
+    },
+    {
+      "id": 5329,
+      "name": "Berserker Rush",
+      "tree": "Headhunting",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_hanzandfranz_chestbump",
+      "spellId": 560518,
+      "description": "Charge an enemy dealing 31 + 35% ranged AP Physical damage and rooting them for 2 seconds, then leap backwards.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Entrails"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Charge an enemy dealing 31 + 35% ranged AP Physical damage and rooting them for 2 seconds, then leap backwards."
+        }
+      ]
+    },
+    {
+      "id": 6799,
+      "name": "Gruesome",
+      "tree": "Headhunting",
+      "x": 8,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_skeer_bloodletting",
+      "spellId": 705227,
+      "description": "Increases the damage of Throw Weapon, Gutspiller, and Guts Spilled by 10%.",
+      "referencedTerms": [
+        "Guts Spilled",
+        "Gutspiller",
+        "Throw Weapon"
+      ],
+      "prerequisites": [
+        "Deep Fury",
+        "Entrails"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Throw Weapon, Gutspiller, and Guts Spilled by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the damage of Throw Weapon, Gutspiller, and Guts Spilled by 20%."
+        }
+      ]
+    },
+    {
+      "id": 6797,
+      "name": "Spear Shards",
+      "tree": "Headhunting",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_spear_06",
+      "spellId": 805893,
+      "description": "Whenever you shatter your Impaling Spear, affected enemies bleed for 100% of the damage dealt over 3 seconds.",
+      "referencedTerms": [
+        "Impaling Spear"
+      ],
+      "prerequisites": [
+        "Impaling Spear"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Whenever you shatter your Impaling Spear, affected enemies bleed for 100% of the damage dealt over 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 5124,
+      "name": "Furious Berserker",
+      "tree": "Headhunting",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_WarCry",
+      "spellId": 707389,
+      "description": "Critical strikes with Barbed Spear now grants Born in Blood.Born in BloodBattle fuels your vitality, restoring 18 health and 12 Energy over 3 seconds.",
+      "referencedTerms": [
+        "Barbed Spear",
+        "Born in Blood"
+      ],
+      "prerequisites": [
+        "Berserker Rush",
+        "Impaling Spear",
+        "Time To Kill!"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Barbed Spear now grants Born in Blood.Born in BloodBattle fuels your vitality, restoring 18 health and 12 Energy over 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6794,
+      "name": "Hunting for Sport",
+      "tree": "Headhunting",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_hunter_exoticmunitions_incendiary",
+      "spellId": 706558,
+      "description": "While Unbridled Rage is active, your attacks now ignore 20% of the target's Armor.",
+      "referencedTerms": [
+        "Unbridled Rage"
+      ],
+      "prerequisites": [
+        "Berserker Rush",
+        "Impaling Spear",
+        "Time To Kill!"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Unbridled Rage is active, your attacks now ignore 20% of the target's Armor."
+        }
+      ]
+    },
+    {
+      "id": 34293,
+      "name": "Vengeance For Zul'jin",
+      "tree": "Headhunting",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\racial_troll_berserk",
+      "spellId": 560205,
+      "description": "Casting Berserker Rush now grants you Born in Blood.Born in BloodBattle fuels your vitality, restoring 18 health and 12 Energy over 3 seconds.",
+      "referencedTerms": [
+        "Berserker Rush",
+        "Born in Blood"
+      ],
+      "prerequisites": [
+        "Berserker Rush"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Berserker Rush now grants you Born in Blood.Born in BloodBattle fuels your vitality, restoring 18 health and 12 Energy over 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 5192,
+      "name": "Bloody Fighter",
+      "tree": "Headhunting",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_head_troll_01",
+      "spellId": 570235,
+      "description": "Level 40 Passive\nBorn in Blood now stacks 1 additional time.",
+      "referencedTerms": [
+        "Born in Blood"
+      ],
+      "prerequisites": [
+        "Spear Thrower"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nBorn in Blood now stacks 1 additional time."
+        }
+      ]
+    },
+    {
+      "id": 30166,
+      "name": "Legacy of the Amani",
+      "tree": "Headhunting",
+      "x": 0,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\novart_physical_ability_(25)_Border",
+      "spellId": 706804,
+      "description": "Damage dealt by your Spears now has a 25% chance to cause you to quickly throw an additional spear that strikes for 40% of the damage dealt.",
+      "referencedTerms": [
+        "Spears"
+      ],
+      "prerequisites": [
+        "Frothing Savage",
+        "Spear Shards"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by your Spears now has a 25% chance to cause you to quickly throw an additional spear that strikes for 40% of the damage dealt."
+        }
+      ]
+    },
+    {
+      "id": 34275,
+      "name": "Raging Spirit",
+      "tree": "Headhunting",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\warrior_talent_icon_innerrage",
+      "spellId": 707410,
+      "description": "Casting Unbridled Rage now grants you 30 Energy and it now also removes the Energy cost of your Spirit spells while active.",
+      "referencedTerms": [
+        "Spirit",
+        "Unbridled Rage"
+      ],
+      "prerequisites": [
+        "Furious Berserker",
+        "Hunting for Sport",
+        "Spear Shards"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Unbridled Rage now grants you 30 Energy and it now also removes the Energy cost of your Spirit spells while active."
+        }
+      ]
+    },
+    {
+      "id": 29468,
+      "name": "No Survivors",
+      "tree": "Headhunting",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_bg_interruptx_flagcapture_attempts_1game",
+      "spellId": 805864,
+      "description": "Increases the duration of Axe Twirling, Maiming Spear, and Barbed Spear by 5 sec.",
+      "referencedTerms": [
+        "Axe Twirling",
+        "Barbed Spear",
+        "Maiming Spear"
+      ],
+      "prerequisites": [
+        "Furious Berserker",
+        "Hunting for Sport"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Axe Twirling, Maiming Spear, and Barbed Spear by 5 sec."
+        }
+      ]
+    },
+    {
+      "id": 34326,
+      "name": "Manhunter",
+      "tree": "Headhunting",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_warrior_gladiatorstance",
+      "spellId": 300879,
+      "description": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your damage dealt by 10% against Humanoids.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Furious Berserker",
+        "Hunting for Sport",
+        "Vengeance For Zul'jin"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your damage dealt by 10% against Humanoids."
+        }
+      ]
+    },
+    {
+      "id": 5608,
+      "name": "To The Bone",
+      "tree": "Headhunting",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_StrongBone_Red",
+      "spellId": 560880,
+      "description": "Increases the critical strike chance of Guts Spilled by 10% and it now applies Break to the target and critically striking with it will apply an additional stack.BreakBreak an enemy's defenses, reducing their armor by -4% for 20 seconds, stacking 5 times.",
+      "referencedTerms": [
+        "Break",
+        "Guts Spilled"
+      ],
+      "prerequisites": [
+        "Gruesome",
+        "Vengeance For Zul'jin"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of Guts Spilled by 10% and it now applies Break to the target and critically striking with it will apply an additional stack.BreakBreak an enemy's defenses, reducing their armor by -4% for 20 seconds, stacking 5 times."
+        }
+      ]
+    },
+    {
+      "id": 34329,
+      "name": "Skullseeker",
+      "tree": "Headhunting",
+      "x": 1,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Fire_EnchantWeapon",
+      "spellId": 560517,
+      "description": "Increases your critical strike chance against enemies above 80% health by 25%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Legacy of the Amani",
+        "Raging Spirit"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical strike chance against enemies above 80% health by 25%."
+        }
+      ]
+    },
+    {
+      "id": 7338,
+      "name": "Brutal Form",
+      "tree": "Headhunting",
+      "x": 3,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_axe_1h_pvpdraenors2_d_01",
+      "spellId": 705235,
+      "description": "Increases the tick rate of Born in Blood by -25%, allows its healing to scale with your Agility, and it can now critically heal you.",
+      "referencedTerms": [
+        "Born in Blood"
+      ],
+      "prerequisites": [
+        "No Survivors",
+        "Raging Spirit"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the tick rate of Born in Blood by -25%, allows its healing to scale with your Agility, and it can now critically heal you."
+        }
+      ]
+    },
+    {
+      "id": 30167,
+      "name": "Berserker",
+      "tree": "Headhunting",
+      "x": 5,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Troll_03",
+      "spellId": 561397,
+      "description": "While enraged, your ranged critical strikes now grant you Berserker. Once applied it cannot be applied again.BerserkerYour ranged abilities have a 20% chance to unleash Berserker Throw, dealing 75% Ranged Weapon Damage. Lasts 15 seconds.\n\nWhile active, every offensive ranged ability used increases its chance to trigger by 2%.",
+      "referencedTerms": [
+        "Berserker",
+        "Berserker Throw"
+      ],
+      "prerequisites": [
+        "No Survivors",
+        "Manhunter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While enraged, your ranged critical strikes now grant you Berserker. Once applied it cannot be applied again.BerserkerYour ranged abilities have a 20% chance to unleash Berserker Throw, dealing 75% Ranged Weapon Damage. Lasts 15 seconds.\n\nWhile active, every offensive ranged ability used increases its chance to trigger by 2%."
+        }
+      ]
+    },
+    {
+      "id": 34321,
+      "name": "Payback",
+      "tree": "Headhunting",
+      "x": 7,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_axe_11",
+      "spellId": 705232,
+      "description": "Increases the damage dealt by your Guts Spilled by 75%.",
+      "referencedTerms": [
+        "Guts Spilled"
+      ],
+      "prerequisites": [
+        "To The Bone",
+        "Manhunter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage dealt by your Guts Spilled by 75%."
+        }
+      ]
+    },
+    {
+      "id": 14237,
+      "name": "Power Tosser",
+      "tree": "Headhunting",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_thrown_1h_pvp410_c_01",
+      "spellId": 570242,
+      "description": "Level 50 Passive\nDamage dealt by Throw Weapon now scales with your Agility.",
+      "referencedTerms": [
+        "Throw Weapon"
+      ],
+      "prerequisites": [
+        "Bloody Fighter"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nDamage dealt by Throw Weapon now scales with your Agility."
+        }
+      ]
+    },
+    {
+      "id": 6798,
+      "name": "Gurubashi Technique",
+      "tree": "Headhunting",
+      "x": 1,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helm_mask_zulgurub_d_01",
+      "spellId": 705198,
+      "description": "Casting Throw Weapon now has a 25% chance to transform your next cast of it within 8 seconds into Rapid Throw.Rapid ThrowThrow your ranged weapon 3 times in quick succession, each dealing 50% Ranged Weapon Damage plus 25 Physical damage. \n\nGrants Born in Blood. Scales with damage modifiers to Throw Weapon.",
+      "referencedTerms": [
+        "Born in Blood",
+        "Rapid Throw",
+        "Throw Weapon"
+      ],
+      "prerequisites": [
+        "Brutal Form",
+        "Skullseeker"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Throw Weapon now has a 25% chance to transform your next cast of it within 8 seconds into Rapid Throw.Rapid ThrowThrow your ranged weapon 3 times in quick succession, each dealing 50% Ranged Weapon Damage plus 25 Physical damage. \n\nGrants Born in Blood. Scales with damage modifiers to Throw Weapon."
+        }
+      ]
+    },
+    {
+      "id": 6801,
+      "name": "Sen'jin's Guidance",
+      "tree": "Headhunting",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\archaeology_5_0_spearofxuen",
+      "spellId": 707661,
+      "description": "Transforms your Throw Weapon into Javelin Toss and increases the critical strike chance of Javelin Toss by 5%.Javelin TossTake aim and hurl a javelin at an enemy dealing 160% Ranged Weapon Damage plus 241. \n\nScales with damage modifiers to Throw Weapon and Spears. Usable while moving.",
+      "referencedTerms": [
+        "Javelin Toss",
+        "Spears",
+        "Throw Weapon"
+      ],
+      "prerequisites": [
+        "Brutal Form",
+        "Berserker"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Transforms your Throw Weapon into Javelin Toss and increases the critical strike chance of Javelin Toss by 5%.Javelin TossTake aim and hurl a javelin at an enemy dealing 160% Ranged Weapon Damage plus 241. \n\nScales with damage modifiers to Throw Weapon and Spears. Usable while moving."
+        }
+      ]
+    },
+    {
+      "id": 7337,
+      "name": "Spite",
+      "tree": "Headhunting",
+      "x": 7,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\epic_rpg_icon_pack_brutal_icon_0007s_0000_warrior_Border",
+      "spellId": 707584,
+      "description": "Quickly unleash 3 Berserker Throws at your target and then fling yourself back a great distance, dealing 125% Ranged Weapon Damage, scaling with modifiers to Berserker Axe.",
+      "referencedTerms": [
+        "Berserker Axe",
+        "Berserker Throws"
+      ],
+      "prerequisites": [
+        "Berserker",
+        "Payback"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Quickly unleash 3 Berserker Throws at your target and then fling yourself back a great distance, dealing 125% Ranged Weapon Damage, scaling with modifiers to Berserker Axe."
+        }
+      ]
+    }
+  ]
+}

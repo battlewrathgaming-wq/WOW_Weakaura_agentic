@@ -1,0 +1,5623 @@
+{
+  "class": "Guardian",
+  "classId": 18,
+  "realm": "voljin-alpha",
+  "source": "https://ascension.gg/en/v2/coa-builder/voljin-alpha",
+  "extracted": "2026-07-01",
+  "schemaVersion": 3,
+  "trees": [
+    "Class",
+    "Gladiator",
+    "Inspiration",
+    "Vanguard"
+  ],
+  "totalTalents": 161,
+  "budget": {
+    "abilityEssence": 26,
+    "talentEssence": 25
+  },
+  "rules": {
+    "specExclusivity": "Only one spec tree (Sanguine/Accursed/Eternal/Fleshweaver-equivalent) can be active at a time in-game. You commit to ONE non-Class tree and spend your full Talent Essence budget within it (plus the separate Class tree spent with Ability Essence). Treat trees other than 'Class' as mutually exclusive choices, not a blend.",
+    "partialRanksCount": "A node only needs 1 point invested (not maxPoints) to count as 'connected' for prerequisite checks and to contribute toward the reqTreeAbilityEssence/reqTreeTalentEssence row-unlock thresholds.",
+    "budgetCurrencies": "Ability Essence (AE) is spent only in the Class tree. Talent Essence (TE) is spent only in whichever single spec tree you commit to. A node's abilityEssenceCost/talentEssenceCost fields show which currency it draws from (never both).",
+    "rowGating": "reqTreeAbilityEssence / reqTreeTalentEssence on a node is the minimum essence already spent within that SAME tree required to unlock it - not total across trees.",
+    "levelGates": "Some nodes (mostly entryType Ability) cost 0 essence and unlock automatically at requiredLevel instead of being a budget choice.",
+    "prerequisiteFieldsCorrected": "'prerequisites' is the OR-logic grid-connection requirement (matches tooltip 'requires one connected node: A or B or C') - need at least 1 point in ANY ONE listed node. 'specialRequirement' is a separate, rare, AND-logic hard requirement used only by a handful of free/level-gated bonus nodes - ALL listed nodes must already have a point.",
+    "budgetTotalsAssumed": "Verified live for Bloodmage: 26 Ability Essence (Class tree) / 25 Talent Essence (spec tree) as the spendable caps. Assumed identical for all classes since this is tied to character leveling, not class design - not independently verified per class. Override in the toolkit if a specific class differs.",
+    "referencedTerms": "Extracted from colored in-line spans in the raw tooltip HTML (e.g. a description that highlights 'Cursed Blood' or 'Bloodbolt'). These are explicit developer-authored callouts to another spell/buff/mechanic name, and are the strongest available signal for detecting mechanical synergy between talents - stronger than plain keyword text matching."
+  },
+  "talents": [
+    {
+      "id": 29430,
+      "name": "Net Throw",
+      "tree": "Class",
+      "x": 1,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ability_Ensnare",
+      "spellId": 802304,
+      "description": "Toss a weighted net at an enemy that roots them for 4 seconds. While active, the target cannot dodge attacks.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Toss a weighted net at an enemy that roots them for 4 seconds. While active, the target cannot dodge attacks."
+        }
+      ]
+    },
+    {
+      "id": 29796,
+      "name": "Standard of Rallying",
+      "tree": "Class",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Standard_Valiance",
+      "spellId": 500263,
+      "description": "Throw down a Standard of Rallying for 5 minutes, reducing damage taken by -3% and the duration of stun effects on them by -30% on all allies within 30 yds.",
+      "referencedTerms": [
+        "Standard of Rallying"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Throw down a Standard of Rallying for 5 minutes, reducing damage taken by -3% and the duration of stun effects on them by -30% on all allies within 30 yds."
+        }
+      ]
+    },
+    {
+      "id": 30057,
+      "name": "Brace",
+      "tree": "Class",
+      "x": 7,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_Safeguard",
+      "spellId": 800313,
+      "description": "Fortify your defenses, reducing all damage taken by -50% and gaining immunity to stun effects for 10 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Fortify your defenses, reducing all damage taken by -50% and gaining immunity to stun effects for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6362,
+      "name": "Knightly Demeanor",
+      "tree": "Class",
+      "x": 1,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_sharp_blade_b_Border",
+      "spellId": 504148,
+      "description": "Your attack power is increased by 1 for every 50 Armor you have.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Net Throw"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your attack power is increased by 1 for every 50 Armor you have."
+        }
+      ]
+    },
+    {
+      "id": 6455,
+      "name": "Gallant",
+      "tree": "Class",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Chest_Plate04",
+      "spellId": 705368,
+      "description": "Increases your Strength by 4% and expertise by 2.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Standard of Rallying"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Strength by 4% and expertise by 2."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Strength by 8% and expertise by 4."
+        }
+      ]
+    },
+    {
+      "id": 34427,
+      "name": "Sturdy",
+      "tree": "Class",
+      "x": 7,
+      "y": 1,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\novart_shield_(3)_Border",
+      "spellId": 706639,
+      "description": "Increases your maximum health by 6%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Brace"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your maximum health by 6%."
+        }
+      ]
+    },
+    {
+      "id": 30433,
+      "name": "Light Nets",
+      "tree": "Class",
+      "x": 0,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\hunter_pvp_trackersnet",
+      "spellId": 704150,
+      "description": "Increases the range of your Net Throw by 15 yds.",
+      "referencedTerms": [
+        "Net Throw"
+      ],
+      "prerequisites": [
+        "Knightly Demeanor"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the range of your Net Throw by 15 yds."
+        }
+      ]
+    },
+    {
+      "id": 6364,
+      "name": "Guardbreaker",
+      "tree": "Class",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_T_BurningEyes_Border",
+      "spellId": 504385,
+      "description": "Damage dealt by Pulverize now has a 20% chance to reset the cooldown of Ram.",
+      "referencedTerms": [
+        "Pulverize",
+        "Ram"
+      ],
+      "prerequisites": [
+        "Knightly Demeanor",
+        "Gallant"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Pulverize now has a 20% chance to reset the cooldown of Ram."
+        }
+      ]
+    },
+    {
+      "id": 6456,
+      "name": "Valiant Effort",
+      "tree": "Class",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_weapon_(2)_Border",
+      "spellId": 706637,
+      "description": "Your auto attacks now have a 15% chance to allow the use of Reprisal as if you had recently blocked an attack.",
+      "referencedTerms": [
+        "Reprisal"
+      ],
+      "prerequisites": [
+        "Gallant",
+        "Sturdy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your auto attacks now have a 15% chance to allow the use of Reprisal as if you had recently blocked an attack."
+        }
+      ]
+    },
+    {
+      "id": 34422,
+      "name": "Deflector",
+      "tree": "Class",
+      "x": 8,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_ShieldReflection",
+      "spellId": 706336,
+      "description": "Reduces the cooldown of your Raise Shield by -5 sec and reduces its Energy cost by -10%.",
+      "referencedTerms": [
+        "Raise Shield"
+      ],
+      "prerequisites": [
+        "Sturdy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of your Raise Shield by -5 sec and reduces its Energy cost by -10%."
+        }
+      ]
+    },
+    {
+      "id": 6818,
+      "name": "Resolve",
+      "tree": "Class",
+      "x": 8,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\warrior_talent_icon_gladiatorsresolve",
+      "spellId": 706806,
+      "description": "Increases the duration of your Raise Shield by 1 sec.",
+      "referencedTerms": [
+        "Raise Shield"
+      ],
+      "prerequisites": [
+        "Sturdy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of your Raise Shield by 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 7310,
+      "name": "Glorious Arena",
+      "tree": "Class",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Achievement_Zone_BladesEdgeMtns_01",
+      "spellId": 300983,
+      "description": "Create a 10 yd ring beneath you for 15 seconds. Enemies who stand inside will gain Peril every 1 sec.\n PerilEach stack can be consumed by Pulverize to deal an additional 10% AP Physical Damage and reduce the cooldown of Glorious Arena by 10%.\n\nUpon reaching 5 stacks, the stacks are instantly consumed to stun the enemy for 5 seconds.",
+      "referencedTerms": [
+        "Glorious Arena",
+        "Peril",
+        "Pulverize"
+      ],
+      "prerequisites": [
+        "Guardbreaker",
+        "Light Nets"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Create a 10 yd ring beneath you for 15 seconds. Enemies who stand inside will gain Peril every 1 sec.\n PerilEach stack can be consumed by Pulverize to deal an additional 10% AP Physical Damage and reduce the cooldown of Glorious Arena by 10%.\n\nUpon reaching 5 stacks, the stacks are instantly consumed to stun the enemy for 5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29972,
+      "name": "Shrug It Off",
+      "tree": "Class",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\5_warriorskill18_Border",
+      "spellId": 802198,
+      "description": "Instantly escape the effects of any root or slow and become immune to movement slowing effects for 3 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Guardbreaker",
+        "Valiant Effort"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Instantly escape the effects of any root or slow and become immune to movement slowing effects for 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6817,
+      "name": "Press the Line!",
+      "tree": "Class",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\5_archerskill20_Border",
+      "spellId": 300542,
+      "description": "While Line Formation is active, your movement speed cannot be reduced below 115%, but its cost is increased by 30 Energy.",
+      "referencedTerms": [
+        "Line Formation"
+      ],
+      "prerequisites": [
+        "Guardbreaker",
+        "Valiant Effort"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While Line Formation is active, your movement speed cannot be reduced below 115%, but its cost is increased by 30 Energy."
+        }
+      ]
+    },
+    {
+      "id": 29639,
+      "name": "Shield Wall",
+      "tree": "Class",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ability_Defend",
+      "spellId": 705370,
+      "description": "Increases your Armor contribution from your shield by 20%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Valiant Effort",
+        "Resolve",
+        "Deflector"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Armor contribution from your shield by 20%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Armor contribution from your shield by 40%."
+        }
+      ]
+    },
+    {
+      "id": 7786,
+      "name": "Lord of the Arena",
+      "tree": "Class",
+      "x": 1,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_axe_2h_war_b_02_hd",
+      "spellId": 802290,
+      "description": "Reduces the Energy cost of Pulverize and Broad Sweep by -5.",
+      "referencedTerms": [
+        "Broad Sweep",
+        "Pulverize"
+      ],
+      "prerequisites": [
+        "Glorious Arena"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Energy cost of Pulverize and Broad Sweep by -5."
+        }
+      ]
+    },
+    {
+      "id": 29971,
+      "name": "Unstoppable",
+      "tree": "Class",
+      "x": 3,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_D3furiouscharge",
+      "spellId": 704513,
+      "description": "Reduces the cooldown of Battle Rush by -5 sec and Advance by -30 sec.",
+      "referencedTerms": [
+        "Advance",
+        "Battle Rush"
+      ],
+      "prerequisites": [
+        "Press the Line!",
+        "Glorious Arena",
+        "Shrug It Off"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Battle Rush by -5 sec and Advance by -30 sec."
+        }
+      ]
+    },
+    {
+      "id": 30316,
+      "name": "Heroic Deeds",
+      "tree": "Class",
+      "x": 5,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_paladin_touchedbylight",
+      "spellId": 804661,
+      "description": "Increases the reputation gains of your allies within 30 yds by 5% and reduces damage you take by -3%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Press the Line!",
+        "Shield Wall",
+        "Shrug It Off"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the reputation gains of your allies within 30 yds by 5% and reduces damage you take by -3%."
+        }
+      ]
+    },
+    {
+      "id": 6363,
+      "name": "Reflective Shield",
+      "tree": "Class",
+      "x": 7,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\epic_rpg_icon_pack_brutal_icon_0003s_0000_fire_Border",
+      "spellId": 300927,
+      "description": "Raise your shield and reflect the next harmful spell cast on you within 3 seconds. \n\nWhile active, being hit by a spell restores 20 Energy.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Shield Wall"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Raise your shield and reflect the next harmful spell cast on you within 3 seconds. \n\nWhile active, being hit by a spell restores 20 Energy."
+        }
+      ]
+    },
+    {
+      "id": 7320,
+      "name": "Bloodletter",
+      "tree": "Class",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_sword_1h_artifactmagnar_d_02",
+      "spellId": 560093,
+      "description": "Avoiding an attack now reduces the remaining cooldown of Glorious Arena by 10%. Can only occur once per sec.",
+      "referencedTerms": [
+        "Glorious Arena"
+      ],
+      "prerequisites": [
+        "Lord of the Arena"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Avoiding an attack now reduces the remaining cooldown of Glorious Arena by 10%. Can only occur once per sec."
+        }
+      ]
+    },
+    {
+      "id": 34415,
+      "name": "Myrmidon",
+      "tree": "Class",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_Challange",
+      "spellId": 503532,
+      "description": "Removes the Energy cost of Glorious Arena and increases its damage dealt by 25%.",
+      "referencedTerms": [
+        "Glorious Arena"
+      ],
+      "prerequisites": [
+        "Lord of the Arena"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Removes the Energy cost of Glorious Arena and increases its damage dealt by 25%."
+        }
+      ]
+    },
+    {
+      "id": 34407,
+      "name": "Valiance",
+      "tree": "Class",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_Shockwave",
+      "spellId": 705324,
+      "description": "Reprisal now regenerates an additional 20 Energy.",
+      "referencedTerms": [
+        "Reprisal"
+      ],
+      "prerequisites": [
+        "Lord of the Arena",
+        "Unstoppable"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reprisal now regenerates an additional 20 Energy."
+        }
+      ]
+    },
+    {
+      "id": 29431,
+      "name": "Counter Stance",
+      "tree": "Class",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\counterstanceguardian",
+      "spellId": 802188,
+      "description": "You automatically parry the next attack against you. Lasts for 5 attacks or 15 seconds.\n\nWhen you expend a charge you deal 275 damage to attackers and heal for 366 + 100% AP health.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Unstoppable",
+        "Heroic Deeds"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "You automatically parry the next attack against you. Lasts for 5 attacks or 15 seconds.\n\nWhen you expend a charge you deal 275 damage to attackers and heal for 366 + 100% AP health."
+        }
+      ]
+    },
+    {
+      "id": 29429,
+      "name": "Standard Bearer",
+      "tree": "Class",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_banner_02",
+      "spellId": 806134,
+      "description": "Increases the radius of Standards by 10 yds and increases the effectiveness of your Honor by 20%.",
+      "referencedTerms": [
+        "Honor",
+        "Standards"
+      ],
+      "prerequisites": [
+        "Reflective Shield",
+        "Heroic Deeds"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the radius of Standards by 10 yds and increases the effectiveness of your Honor by 20%."
+        }
+      ]
+    },
+    {
+      "id": 29996,
+      "name": "Recuperation",
+      "tree": "Class",
+      "x": 8,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_skyreach_shielded",
+      "spellId": 801121,
+      "description": "Taking Physical damage or blocking a physical attack now restores 2 Energy.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Reflective Shield"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Taking Physical damage or blocking a physical attack now restores 2 Energy."
+        }
+      ]
+    },
+    {
+      "id": 34421,
+      "name": "Energetic",
+      "tree": "Class",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\novart_passivemastery_(8)_Border",
+      "spellId": 705316,
+      "description": "Restores 5 of your Energy every 3 sec.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Bloodletter",
+        "Counter Stance",
+        "Valiance",
+        "Myrmidon"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Restores 5 of your Energy every 3 sec."
+        }
+      ]
+    },
+    {
+      "id": 34419,
+      "name": "Knight's Advantage",
+      "tree": "Class",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Achievement_LegionPVP2Tier1",
+      "spellId": 705378,
+      "description": "Increases your damage dealt against Humanoids by 6%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Counter Stance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your damage dealt against Humanoids by 6%."
+        }
+      ]
+    },
+    {
+      "id": 34414,
+      "name": "Steel Riposte",
+      "tree": "Class",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_MeleeDamage",
+      "spellId": 300534,
+      "description": "Reduces the cooldown of Counter Stance and Turn the Blade by -25%.",
+      "referencedTerms": [
+        "Counter Stance",
+        "Turn the Blade"
+      ],
+      "prerequisites": [
+        "Standard Bearer",
+        "Counter Stance",
+        "Recuperation"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Counter Stance and Turn the Blade by -25%."
+        }
+      ]
+    },
+    {
+      "id": 7311,
+      "name": "Pit Fighter",
+      "tree": "Class",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\spell_warrior_gladiatorstance",
+      "spellId": 802296,
+      "description": "Increases the movement speed slow of your Standard of Valiance by -15%.",
+      "referencedTerms": [
+        "Standard of Valiance"
+      ],
+      "prerequisites": [
+        "Energetic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the movement speed slow of your Standard of Valiance by -15%."
+        }
+      ]
+    },
+    {
+      "id": 30059,
+      "name": "Warstopper",
+      "tree": "Class",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\warrior_talent_icon_thunderstruck",
+      "spellId": 705330,
+      "description": "Reduces the Energy cost of Standard of Valiance by -20.",
+      "referencedTerms": [
+        "Standard of Valiance"
+      ],
+      "prerequisites": [
+        "Energetic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Energy cost of Standard of Valiance by -20."
+        }
+      ]
+    },
+    {
+      "id": 34405,
+      "name": "Thick Shields",
+      "tree": "Class",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_shield_1h_newplayer_a_01",
+      "spellId": 807346,
+      "description": "Increases your block value by 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Energetic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your block value by 10%."
+        }
+      ]
+    },
+    {
+      "id": 12431,
+      "name": "Knight's Calling",
+      "tree": "Class",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\custom_Paladinskill_32_Border",
+      "spellId": 504151,
+      "description": "Embrace your calling, restoring 15% of your maximum health and Energy, repeating every 5 sec for 10 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Steel Riposte",
+        "Knight's Advantage",
+        "Energetic"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Embrace your calling, restoring 15% of your maximum health and Energy, repeating every 5 sec for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29970,
+      "name": "Make Room! I'm Here.",
+      "tree": "Class",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\achievement_featsofstrength_gladiator_08",
+      "spellId": 300543,
+      "description": "Increases the duration of Standard of Valiance and Broad Sweep by 50%.",
+      "referencedTerms": [
+        "Broad Sweep",
+        "Standard of Valiance"
+      ],
+      "prerequisites": [
+        "Steel Riposte"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the duration of Standard of Valiance and Broad Sweep by 50%."
+        }
+      ]
+    },
+    {
+      "id": 34404,
+      "name": "Master of Arms",
+      "tree": "Class",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 9,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\novart_passivemastery_(35)_Border",
+      "spellId": 705315,
+      "description": "Your Turn the Blade now guarantees you to parry 1 additional attack and the duration of its parry window is increased by 1 sec.",
+      "referencedTerms": [
+        "Turn the Blade"
+      ],
+      "prerequisites": [
+        "Steel Riposte"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Turn the Blade now guarantees you to parry 1 additional attack and the duration of its parry window is increased by 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 34425,
+      "name": "Relentless",
+      "tree": "Class",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\garrison_building_salvageyard",
+      "spellId": 705343,
+      "description": "Your Pulverizes or Rams now ignores -15% of the target's Armor.",
+      "referencedTerms": [
+        "Rams"
+      ],
+      "prerequisites": [
+        "Pit Fighter",
+        "Thick Shields",
+        "Warstopper"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Pulverizes or Rams now ignores -15% of the target's Armor."
+        }
+      ]
+    },
+    {
+      "id": 34429,
+      "name": "Honorable Demeanor",
+      "tree": "Class",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_toughness",
+      "spellId": 705377,
+      "description": "Whenever you block an attack your Strength and Stamina are increased by 2% for 10 seconds, stacking 3 times.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Thick Shields",
+        "Knight's Calling",
+        "Make Room! I'm Here."
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Whenever you block an attack your Strength and Stamina are increased by 2% for 10 seconds, stacking 3 times."
+        }
+      ]
+    },
+    {
+      "id": 29427,
+      "name": "Refuse To Die",
+      "tree": "Class",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\sha_ability_rogue_sturdyrecuperate",
+      "spellId": 804892,
+      "description": "Casting Advance now resets the cooldown of Raise Shield.",
+      "referencedTerms": [
+        "Advance",
+        "Raise Shield"
+      ],
+      "prerequisites": [
+        "Make Room! I'm Here.",
+        "Master of Arms"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Advance now resets the cooldown of Raise Shield."
+        }
+      ]
+    },
+    {
+      "id": 34426,
+      "name": "Grand Entrance",
+      "tree": "Class",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_warrior_stalwartprotector",
+      "spellId": 802870,
+      "description": "Leap into the air, becoming immune to crowd control effects, and then crash back down with incredible speed at your location.\n\nUpon landing, deal 400% Weapon Damage to enemies in the impact area, plus an additional 611 + 77.25% AP over 6 seconds, ignoring Armor and knocking them into the air.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Relentless"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Leap into the air, becoming immune to crowd control effects, and then crash back down with incredible speed at your location.\n\nUpon landing, deal 400% Weapon Damage to enemies in the impact area, plus an additional 611 + 77.25% AP over 6 seconds, ignoring Armor and knocking them into the air."
+        }
+      ]
+    },
+    {
+      "id": 30100,
+      "name": "Valiant Warrior",
+      "tree": "Class",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ability_skyreach_shielded",
+      "spellId": 524694,
+      "description": "Critical strikes with Ram now have a 50% chance to strike again for 100% of the damage dealt.",
+      "referencedTerms": [
+        "Ram"
+      ],
+      "prerequisites": [
+        "Refuse To Die",
+        "Relentless",
+        "Honorable Demeanor"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Ram now have a 50% chance to strike again for 100% of the damage dealt."
+        }
+      ]
+    },
+    {
+      "id": 34403,
+      "name": "Press the Attack",
+      "tree": "Class",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 1,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 24,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\novart_physical_ability_(50)_Border",
+      "spellId": 801219,
+      "description": "Raise your shield and press the attack, dealing 75% Weapon Damage plus 83 to enemies in front of you and draining 10 Energy every 1 sec. Lasts 5 seconds.\n\nWhile active you gain 100% increased block chance and you may block, dodge, and parry while channeling.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Refuse To Die"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Raise your shield and press the attack, dealing 75% Weapon Damage plus 83 to enemies in front of you and draining 10 Energy every 1 sec. Lasts 5 seconds.\n\nWhile active you gain 100% increased block chance and you may block, dodge, and parry while channeling."
+        }
+      ]
+    },
+    {
+      "id": 31170,
+      "name": "Centurion Strike",
+      "tree": "Gladiator",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_Warriorskill_02_Border",
+      "spellId": 802286,
+      "description": "Stab an enemy, dealing 110% Weapon Damage plus an additional effect based on your weapon.\n\nSword: Triggers 3 additional auto attacks.\n\nAxe: Guaranteed to critically strike for 25% increased damage.\n\nMace: Ignores -50% of your target's Armor.\n\nPolearm: Stabs the target and enemies behind them an additional time.",
+      "referencedTerms": [
+        "Axe:",
+        "Mace:",
+        "Polearm:",
+        "Sword:"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Glory"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Stab an enemy, dealing 110% Weapon Damage plus an additional effect based on your weapon.\n\nSword: Triggers 3 additional auto attacks.\n\nAxe: Guaranteed to critically strike for 25% increased damage.\n\nMace: Ignores -50% of your target's Armor.\n\nPolearm: Stabs the target and enemies behind them an additional time."
+        }
+      ]
+    },
+    {
+      "id": 4020,
+      "name": "Glory",
+      "tree": "Gladiator",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 10,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\epic_rpg_icon_pack_brutal_icon_0001s_0000_warrior_Border",
+      "spellId": 92106,
+      "description": "Level 10 Passive\nYour Ram now grants you a stack of Glory for 30 seconds.\n\nAt 3 stacks, your next Ram within 30 seconds deals 150% increased damage.",
+      "referencedTerms": [
+        "Glory",
+        "Ram"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Net Throw"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nYour Ram now grants you a stack of Glory for 30 seconds.\n\nAt 3 stacks, your next Ram within 30 seconds deals 150% increased damage."
+        }
+      ]
+    },
+    {
+      "id": 4410,
+      "name": "Might",
+      "tree": "Gladiator",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helm_crown_c_01_silver",
+      "spellId": 300538,
+      "description": "Increases your attack power by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Centurion Strike"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your attack power by 5%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your attack power by 10%."
+        }
+      ]
+    },
+    {
+      "id": 29426,
+      "name": "Legionnaire",
+      "tree": "Gladiator",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warrior_shieldbreak",
+      "spellId": 504730,
+      "description": "Increases the critical damage of Centurion Strike and Reprisal by 10%.",
+      "referencedTerms": [
+        "Centurion Strike",
+        "Reprisal"
+      ],
+      "prerequisites": [
+        "Centurion Strike"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical damage of Centurion Strike and Reprisal by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the critical damage of Centurion Strike and Reprisal by 20%."
+        }
+      ]
+    },
+    {
+      "id": 30000,
+      "name": "Sword Training",
+      "tree": "Gladiator",
+      "x": 0,
+      "y": 2,
+      "maxPoints": 3,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Sword_40",
+      "spellId": 802297,
+      "description": "While a sword is equipped, your melee haste is increased by 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Might"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While a sword is equipped, your melee haste is increased by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "While a sword is equipped, your melee haste is increased by 20%."
+        },
+        {
+          "rank": 3,
+          "description": "While a sword is equipped, your melee haste is increased by 30%."
+        }
+      ]
+    },
+    {
+      "id": 29661,
+      "name": "Supremacy",
+      "tree": "Gladiator",
+      "x": 4,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_sword_b_07_Border",
+      "spellId": 504140,
+      "description": "Casting Centurion Strike now refreshes a charge of Reprisal.",
+      "referencedTerms": [
+        "Centurion Strike",
+        "Reprisal"
+      ],
+      "prerequisites": [
+        "Might",
+        "Legionnaire"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Centurion Strike now refreshes a charge of Reprisal."
+        }
+      ]
+    },
+    {
+      "id": 5433,
+      "name": "Axe Training",
+      "tree": "Gladiator",
+      "x": 8,
+      "y": 2,
+      "maxPoints": 3,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Axe_12",
+      "spellId": 704515,
+      "description": "While an axe is equipped, your critical strike chance is increased by 2% and critical damage increased by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Legionnaire"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While an axe is equipped, your critical strike chance is increased by 2% and critical damage increased by 5%."
+        },
+        {
+          "rank": 2,
+          "description": "While an axe is equipped, your critical strike chance is increased by 4% and critical damage increased by 10%."
+        },
+        {
+          "rank": 3,
+          "description": "While an axe is equipped, your critical strike chance is increased by 6% and critical damage increased by 15%."
+        }
+      ]
+    },
+    {
+      "id": 4220,
+      "name": "Shield Training",
+      "tree": "Gladiator",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\INV_Shield_20",
+      "spellId": 524885,
+      "description": "Level 20 Passive\nIncreases your block rating by 10% of your Strength.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Glory"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nIncreases your block rating by 10% of your Strength."
+        }
+      ]
+    },
+    {
+      "id": 7306,
+      "name": "Polearm Training",
+      "tree": "Gladiator",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 3,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "interface\\icons\\GladiatorSpearGuy",
+      "spellId": 802299,
+      "description": "Allows you to wield polearms and to wield them with a shield equipped.\n\nWhile a polearm is equipped, your melee abilities have 2 yds increased range.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Might"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Allows you to wield polearms and to wield them with a shield equipped.\n\nWhile a polearm is equipped, your melee abilities have 2 yds increased range."
+        },
+        {
+          "rank": 2,
+          "description": "Allows you to wield polearms and to wield them with a shield equipped.\n\nWhile a polearm is equipped, your melee abilities have 3 yds increased range."
+        },
+        {
+          "rank": 3,
+          "description": "Allows you to wield polearms and to wield them with a shield equipped.\n\nWhile a polearm is equipped, your melee abilities have 5 yds increased range."
+        }
+      ]
+    },
+    {
+      "id": 34458,
+      "name": "Upper Hand",
+      "tree": "Gladiator",
+      "x": 3,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Relics_TotemofRage",
+      "spellId": 802295,
+      "description": "Your melee auto attacks now have a 20% chance to strike 2 additional times.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Supremacy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your melee auto attacks now have a 20% chance to strike 2 additional times."
+        }
+      ]
+    },
+    {
+      "id": 5349,
+      "name": "Built Different",
+      "tree": "Gladiator",
+      "x": 5,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_engineerskill39_Border",
+      "spellId": 300545,
+      "description": "Increases your Strength and Stamina by 4%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Supremacy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Strength and Stamina by 4%."
+        }
+      ]
+    },
+    {
+      "id": 34455,
+      "name": "Mace Training",
+      "tree": "Gladiator",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 3,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_mace_05",
+      "spellId": 705336,
+      "description": "While a mace is equipped, your armor penetration is increased by 8%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Legionnaire"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While a mace is equipped, your armor penetration is increased by 8%."
+        },
+        {
+          "rank": 2,
+          "description": "While a mace is equipped, your armor penetration is increased by 16%."
+        },
+        {
+          "rank": 3,
+          "description": "While a mace is equipped, your armor penetration is increased by 25%."
+        }
+      ]
+    },
+    {
+      "id": 34410,
+      "name": "Double Duty",
+      "tree": "Gladiator",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_sword_1h_artifactskywall_d_06dual",
+      "spellId": 504184,
+      "description": "Increases your hit chance by 5% and expertise by 4.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Upper Hand"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your hit chance by 5% and expertise by 4."
+        }
+      ]
+    },
+    {
+      "id": 7038,
+      "name": "Champion",
+      "tree": "Gladiator",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_ImprovedDisciplines",
+      "spellId": 300972,
+      "description": "Your Centurion Strike now extends the duration of Raise Shield on you by 3 sec.",
+      "referencedTerms": [
+        "Centurion Strike",
+        "Raise Shield"
+      ],
+      "prerequisites": [
+        "Built Different",
+        "Upper Hand"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Centurion Strike now extends the duration of Raise Shield on you by 3 sec."
+        }
+      ]
+    },
+    {
+      "id": 6433,
+      "name": "Crashing Force",
+      "tree": "Gladiator",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_mace_124",
+      "spellId": 705329,
+      "description": "Increases the damage of your Centurion Strike and Reprisal by 15%.",
+      "referencedTerms": [
+        "Centurion Strike",
+        "Reprisal"
+      ],
+      "prerequisites": [
+        "Built Different"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of your Centurion Strike and Reprisal by 15%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the damage of your Centurion Strike and Reprisal by 30%."
+        }
+      ]
+    },
+    {
+      "id": 12224,
+      "name": "Experienced Combatant",
+      "tree": "Gladiator",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\5_assassinskill06_Border",
+      "spellId": 707633,
+      "description": "Level 30 Passive\nIncreases your attack power by 20% of your Strength.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Shield Training"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nIncreases your attack power by 20% of your Strength."
+        }
+      ]
+    },
+    {
+      "id": 7307,
+      "name": "Spear Throw",
+      "tree": "Gladiator",
+      "x": 1,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3ancientspear",
+      "spellId": 500463,
+      "description": "Throw a massive spear at an enemy, dealing 45 + 35% AP Physical damage, reducing the effectiveness of any healing by -50% for 10 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Double Duty"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Throw a massive spear at an enemy, dealing 45 + 35% AP Physical damage, reducing the effectiveness of any healing by -50% for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 6431,
+      "name": "Tactical Combat",
+      "tree": "Gladiator",
+      "x": 3,
+      "y": 5,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Achievement_BG_KillXEnemies_GeneralsRoom",
+      "spellId": 504503,
+      "description": "Increases your block value by 8% and chance to block by 2%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Champion",
+        "Double Duty"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your block value by 8% and chance to block by 2%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your block value by 15% and chance to block by 4%."
+        }
+      ]
+    },
+    {
+      "id": 34450,
+      "name": "Heroic Effort",
+      "tree": "Gladiator",
+      "x": 5,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ACHIEVEMENT_GUILDPERK_EVERYONES_A_HERO",
+      "spellId": 301057,
+      "description": "Casting Centurion Strike now grants 1 stack of Glory.",
+      "referencedTerms": [
+        "Centurion Strike",
+        "Glory"
+      ],
+      "prerequisites": [
+        "Crashing Force",
+        "Champion"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Centurion Strike now grants 1 stack of Glory."
+        }
+      ]
+    },
+    {
+      "id": 34453,
+      "name": "Bulwark Rush",
+      "tree": "Gladiator",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warrior_criticalblock",
+      "spellId": 300536,
+      "description": "Casting Battle Rush increases your block rating by 25% of Strength for 6 seconds.",
+      "referencedTerms": [
+        "Battle Rush"
+      ],
+      "prerequisites": [
+        "Crashing Force"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Battle Rush increases your block rating by 25% of Strength for 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30003,
+      "name": "No Escape",
+      "tree": "Gladiator",
+      "x": 7,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_physical_ability_(46)_Border",
+      "spellId": 802300,
+      "description": "Reduces the cooldown of your Battle Rush by -10 sec when used against a rooted enemy.",
+      "referencedTerms": [
+        "Battle Rush"
+      ],
+      "prerequisites": [
+        "Crashing Force"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of your Battle Rush by -10 sec when used against a rooted enemy."
+        }
+      ]
+    },
+    {
+      "id": 6434,
+      "name": "No Retreating!",
+      "tree": "Gladiator",
+      "x": 0,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_iron_hl_b_Border",
+      "spellId": 504139,
+      "description": "While in combat, every 2 sec, increase the range and Energy cost of your next Spear Throw by 1 and its damage dealt by 3%, stacking up to 15 times.",
+      "referencedTerms": [
+        "Spear Throw"
+      ],
+      "prerequisites": [
+        "Spear Throw"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While in combat, every 2 sec, increase the range and Energy cost of your next Spear Throw by 1 and its damage dealt by 3%, stacking up to 15 times."
+        }
+      ]
+    },
+    {
+      "id": 6430,
+      "name": "Waste No Movement",
+      "tree": "Gladiator",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_sword_35",
+      "spellId": 704516,
+      "description": "Reduces the Energy cost of Broad Sweep, Spear Throw, and Centurion Strike by -5.",
+      "referencedTerms": [
+        "Broad Sweep",
+        "Centurion Strike",
+        "Spear Throw"
+      ],
+      "prerequisites": [
+        "Tactical Combat",
+        "Spear Throw"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Energy cost of Broad Sweep, Spear Throw, and Centurion Strike by -5."
+        }
+      ]
+    },
+    {
+      "id": 4123,
+      "name": "Overwhelming Presence",
+      "tree": "Gladiator",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\novart_shield_(8)_Border",
+      "spellId": 712367,
+      "description": "Increases the attack power of all party and raid members 5%. Does not stack with similar effects.\n\nIn addition, increases your Agility by 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Tactical Combat",
+        "Heroic Effort"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the attack power of all party and raid members 5%. Does not stack with similar effects.\n\nIn addition, increases your Agility by 10%."
+        }
+      ]
+    },
+    {
+      "id": 6989,
+      "name": "Momentum",
+      "tree": "Gladiator",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_ShieldBash",
+      "spellId": 504531,
+      "description": "Melee damage dealt now reduces the cooldown of your Chivlary by -2 sec.",
+      "referencedTerms": [
+        "Chivlary"
+      ],
+      "prerequisites": [
+        "No Escape",
+        "Heroic Effort",
+        "Bulwark Rush"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Melee damage dealt now reduces the cooldown of your Chivlary by -2 sec."
+        }
+      ]
+    },
+    {
+      "id": 6990,
+      "name": "Myrmidon",
+      "tree": "Gladiator",
+      "x": 8,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\epic_rpg_icon_pack_brutal_icon_0007s_0000_warrior_Border",
+      "spellId": 504530,
+      "description": "Increases the damage of Ram and Broad Sweep by 25%.",
+      "referencedTerms": [
+        "Broad Sweep",
+        "Ram"
+      ],
+      "prerequisites": [
+        "No Escape",
+        "Bulwark Rush"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of Ram and Broad Sweep by 25%."
+        }
+      ]
+    },
+    {
+      "id": 4224,
+      "name": "Shield Combat",
+      "tree": "Gladiator",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_VictoryRush",
+      "spellId": 807297,
+      "description": "Level 40 Passive\nCasting Ram and Pulverize now increases your attack power based on your block rating for 6 seconds.",
+      "referencedTerms": [
+        "Pulverize",
+        "Ram"
+      ],
+      "prerequisites": [
+        "Experienced Combatant"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nCasting Ram and Pulverize now increases your attack power based on your block rating for 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 31354,
+      "name": "Clinch Brawler",
+      "tree": "Gladiator",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_net_Border",
+      "spellId": 707310,
+      "description": "Centurion Strike is now guaranteed to critically strike against enemies affected by Net Throw.",
+      "referencedTerms": [
+        "Centurion Strike",
+        "Net Throw"
+      ],
+      "prerequisites": [
+        "Waste No Movement",
+        "No Retreating!"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Centurion Strike is now guaranteed to critically strike against enemies affected by Net Throw."
+        }
+      ]
+    },
+    {
+      "id": 4654,
+      "name": "Pinned Down!",
+      "tree": "Gladiator",
+      "x": 1,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_Challange",
+      "spellId": 301252,
+      "description": "Damage dealt by Spear Throw now refreshes the duration of Net Throw on your target.",
+      "referencedTerms": [
+        "Net Throw",
+        "Spear Throw"
+      ],
+      "prerequisites": [
+        "Waste No Movement",
+        "No Retreating!"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Spear Throw now refreshes the duration of Net Throw on your target."
+        }
+      ]
+    },
+    {
+      "id": 6547,
+      "name": "Deadly Blow",
+      "tree": "Gladiator",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_mace_2h_draenorcrafted_d_01_b_alliance",
+      "spellId": 706807,
+      "description": "Your Centurion Strike and Broad Sweep now bleed an additional 15% of the damage dealt over 3 seconds.",
+      "referencedTerms": [
+        "Broad Sweep",
+        "Centurion Strike"
+      ],
+      "prerequisites": [
+        "Overwhelming Presence",
+        "Waste No Movement",
+        "Momentum"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Centurion Strike and Broad Sweep now bleed an additional 15% of the damage dealt over 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29998,
+      "name": "Retiarius",
+      "tree": "Gladiator",
+      "x": 7,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_Warbringer",
+      "spellId": 705338,
+      "description": "Increases your maximum Energy by 25.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Momentum",
+        "Myrmidon"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your maximum Energy by 25."
+        }
+      ]
+    },
+    {
+      "id": 30528,
+      "name": "Close Combat",
+      "tree": "Gladiator",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3groundstomp",
+      "spellId": 704514,
+      "description": "Removes the shared cooldown of your Standards and reduces the cooldown of Guard by -10 sec.",
+      "referencedTerms": [
+        "Guard",
+        "Standards"
+      ],
+      "prerequisites": [
+        "Pinned Down!",
+        "Deadly Blow",
+        "Clinch Brawler"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Removes the shared cooldown of your Standards and reduces the cooldown of Guard by -10 sec."
+        }
+      ]
+    },
+    {
+      "id": 31352,
+      "name": "Heroism",
+      "tree": "Gladiator",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Racial_Avatar",
+      "spellId": 705323,
+      "description": "Whenever you reach 3 stacks of Glory or 20 stacks of Favor, your next 2 Pulverizes or Broad Sweeps within 10 seconds are free of cost.",
+      "referencedTerms": [
+        "Broad Sweeps",
+        "Favor",
+        "Glory",
+        "Pulverizes"
+      ],
+      "prerequisites": [
+        "Deadly Blow"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Whenever you reach 3 stacks of Glory or 20 stacks of Favor, your next 2 Pulverizes or Broad Sweeps within 10 seconds are free of cost."
+        }
+      ]
+    },
+    {
+      "id": 6429,
+      "name": "One-Handed Mastery",
+      "tree": "Gladiator",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warrior_unrelentingassault",
+      "spellId": 300541,
+      "description": "Increases your damage dealt by 10% while a one-handed weapon is equipped.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Deadly Blow",
+        "Retiarius"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your damage dealt by 10% while a one-handed weapon is equipped."
+        }
+      ]
+    },
+    {
+      "id": 4225,
+      "name": "Favor",
+      "tree": "Gladiator",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\warrior_talent_icon_angermanagement",
+      "spellId": 704322,
+      "description": "Level 50 Passive\nCritical strikes and killing blows now grant you Favor for 1 minute, stacking 20 times.\n\nAt 20 stacks, your next auto attack deals an additional 500% Weapon Damage, consuming the stacks.",
+      "referencedTerms": [
+        "Favor"
+      ],
+      "prerequisites": [
+        "Experienced Combatant"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nCritical strikes and killing blows now grant you Favor for 1 minute, stacking 20 times.\n\nAt 20 stacks, your next auto attack deals an additional 500% Weapon Damage, consuming the stacks."
+        }
+      ]
+    },
+    {
+      "id": 31285,
+      "name": "Calculated Strike",
+      "tree": "Gladiator",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_raregarrisonquests_x",
+      "spellId": 705341,
+      "description": "Your Reprisal, Broad Sweep, and Spear Throw now deal an additional 2% Weapon Damage for each Energy point you have upon casting it.",
+      "referencedTerms": [
+        "Broad Sweep",
+        "Reprisal",
+        "Spear Throw"
+      ],
+      "prerequisites": [
+        "Close Combat",
+        "Heroism"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Reprisal, Broad Sweep, and Spear Throw now deal an additional 2% Weapon Damage for each Energy point you have upon casting it."
+        }
+      ]
+    },
+    {
+      "id": 30019,
+      "name": "Final Verdict",
+      "tree": "Gladiator",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\epic_rpg_icon_pack_brutal_icon_0001s_0000_warrior_Border",
+      "spellId": 500258,
+      "description": "Give the final verdict to your target, dealing 1195 + 100% AP Physical damage and healing you for 15% of your maximum health.\n\nOnly usable on enemies below 20% health. Killing blows reset the cooldown of this ability.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Heroism"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Give the final verdict to your target, dealing 1195 + 100% AP Physical damage and healing you for 15% of your maximum health.\n\nOnly usable on enemies below 20% health. Killing blows reset the cooldown of this ability."
+        }
+      ]
+    },
+    {
+      "id": 29999,
+      "name": "Earthsplitter",
+      "tree": "Gladiator",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_kilruk_reave",
+      "spellId": 805155,
+      "description": "Casting Broad Sweep now increases the amount of enemies struck by your next Broad Sweep by 1 and reduces its Energy cost by -10% for 6 seconds, stacking 3 times.",
+      "referencedTerms": [
+        "Broad Sweep"
+      ],
+      "prerequisites": [
+        "One-Handed Mastery",
+        "Heroism"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Broad Sweep now increases the amount of enemies struck by your next Broad Sweep by 1 and reduces its Energy cost by -10% for 6 seconds, stacking 3 times."
+        }
+      ]
+    },
+    {
+      "id": 31171,
+      "name": "Inspiring Leader",
+      "tree": "Inspiration",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_maldraxxus_warriorplantbanner",
+      "spellId": 505344,
+      "description": "You pledge to inspire your allies in the midst of battle, transforming your Pulverize and your Broad Sweep into Ballads.",
+      "referencedTerms": [
+        "Ballads",
+        "Broad Sweep",
+        "Pulverize"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Tempo",
+        "Standard of Rallying"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "You pledge to inspire your allies in the midst of battle, transforming your Pulverize and your Broad Sweep into Ballads."
+        }
+      ]
+    },
+    {
+      "id": 4021,
+      "name": "Tempo",
+      "tree": "Inspiration",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 1,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\ACHIEVEMENT_GUILDPERK_EVERYONES_A_HERO",
+      "spellId": 92107,
+      "description": "$5f",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Standard of Rallying"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$60"
+        }
+      ]
+    },
+    {
+      "id": 6432,
+      "name": "A Hero's Tale",
+      "tree": "Inspiration",
+      "x": 2,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Achievement_PVP_Legion08",
+      "spellId": 705361,
+      "description": "Increases your Energy regeneration by 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Inspiring Leader"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Energy regeneration by 10%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Energy regeneration by 20%."
+        }
+      ]
+    },
+    {
+      "id": 6454,
+      "name": "Leading the March",
+      "tree": "Inspiration",
+      "x": 6,
+      "y": 1,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_VictoryRush",
+      "spellId": 704423,
+      "description": "Increases your attack power and total Armor by 4%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Inspiring Leader"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your attack power and total Armor by 4%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your attack power and total Armor by 8%."
+        }
+      ]
+    },
+    {
+      "id": 4836,
+      "name": "Strength In Unison",
+      "tree": "Inspiration",
+      "x": 1,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Misc_Drum_01",
+      "spellId": 300860,
+      "description": "Increases your melee haste by 1% for each ally within 20 yds, up to a maximum of 20%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "A Hero's Tale"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your melee haste by 1% for each ally within 20 yds, up to a maximum of 20%."
+        }
+      ]
+    },
+    {
+      "id": 34433,
+      "name": "Veteran of the Third War",
+      "tree": "Inspiration",
+      "x": 3,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_passivemastery_(4)_Border",
+      "spellId": 300540,
+      "description": "You now restore 3% of your base health whenever you block an attack.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "A Hero's Tale"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "You now restore 3% of your base health whenever you block an attack."
+        }
+      ]
+    },
+    {
+      "id": 31362,
+      "name": "Dragonslayer",
+      "tree": "Inspiration",
+      "x": 5,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\crest_warrior",
+      "spellId": 706333,
+      "description": "Increases your Agility by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Leading the March"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Agility by 5%."
+        }
+      ]
+    },
+    {
+      "id": 6428,
+      "name": "Into The Fray",
+      "tree": "Inspiration",
+      "x": 7,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3wrathoftheberserker",
+      "spellId": 704525,
+      "description": "Triggering a Sound of War now grants you an additional auto attack on your next swing.",
+      "referencedTerms": [
+        "Sound of War"
+      ],
+      "prerequisites": [
+        "Leading the March"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Triggering a Sound of War now grants you an additional auto attack on your next swing."
+        }
+      ]
+    },
+    {
+      "id": 13616,
+      "name": "Spirit of Battle",
+      "tree": "Inspiration",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Holy_SpellWarding",
+      "spellId": 504159,
+      "description": "Increases chance to hit with all spells and attacks by 1% for you and party and raid members.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Tempo"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases chance to hit with all spells and attacks by 1% for you and party and raid members.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 29216,
+      "name": "Banner of Conquest",
+      "tree": "Inspiration",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\demoralizing_banner",
+      "spellId": 500261,
+      "description": "Attach a Banner of Conquest to your back, increasing the critical strike chance of party and raid members within 40 yds by 5%.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [
+        "Banner of Conquest"
+      ],
+      "prerequisites": [
+        "Tempo"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Attach a Banner of Conquest to your back, increasing the critical strike chance of party and raid members within 40 yds by 5%.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 30829,
+      "name": "Battle Bard",
+      "tree": "Inspiration",
+      "x": 2,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_inscription_scrollofwisdom_01",
+      "spellId": 806140,
+      "description": "Increases the damage of your Ballads by 15%.",
+      "referencedTerms": [
+        "Ballads"
+      ],
+      "prerequisites": [
+        "Strength In Unison",
+        "Veteran of the Third War"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage of your Ballads by 15%."
+        }
+      ]
+    },
+    {
+      "id": 31361,
+      "name": "Soundwave",
+      "tree": "Inspiration",
+      "x": 6,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_animabastion_wave",
+      "spellId": 705318,
+      "description": "Increases the damage dealt by Sound of War by 15%.",
+      "referencedTerms": [
+        "Sound of War"
+      ],
+      "prerequisites": [
+        "Into The Fray",
+        "Dragonslayer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the damage dealt by Sound of War by 15%."
+        }
+      ]
+    },
+    {
+      "id": 31141,
+      "name": "Harrowing Melody",
+      "tree": "Inspiration",
+      "x": 1,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_axe_2h_undeadguitar_c_01",
+      "spellId": 572821,
+      "description": "Play a harrowing melody, dealing 191 + 42% AP Magic damage and reducing all healing received by enemies within 10 yds by -30% for 10 seconds.\n\nIn addition, your next Ballad within 10 seconds is free of cost and deals 50% increased damage.",
+      "referencedTerms": [
+        "Ballad"
+      ],
+      "prerequisites": [
+        "Strength In Unison",
+        "Battle Bard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Play a harrowing melody, dealing 191 + 42% AP Magic damage and reducing all healing received by enemies within 10 yds by -30% for 10 seconds.\n\nIn addition, your next Ballad within 10 seconds is free of cost and deals 50% increased damage."
+        }
+      ]
+    },
+    {
+      "id": 29797,
+      "name": "Hero's March",
+      "tree": "Inspiration",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_misc_drum_03",
+      "spellId": 801774,
+      "description": "Beat the drums of war, causing your auto attacks to trigger a Sound of War and increasing your haste by 15% for 15 seconds.\n\nIn addition, allies within 10 yds of you have a 5% chance to trigger a Sound of War on any damage dealt.",
+      "referencedTerms": [
+        "Sound of War"
+      ],
+      "prerequisites": [
+        "Battle Bard",
+        "Soundwave"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Beat the drums of war, causing your auto attacks to trigger a Sound of War and increasing your haste by 15% for 15 seconds.\n\nIn addition, allies within 10 yds of you have a 5% chance to trigger a Sound of War on any damage dealt."
+        }
+      ]
+    },
+    {
+      "id": 34430,
+      "name": "Liberation",
+      "tree": "Inspiration",
+      "x": 7,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_pvp_gladiatormedallion",
+      "spellId": 803963,
+      "description": "Instantly breaks an ally free of any stun, fear, or polymorph effects and grants immunity to such effects for 5 seconds. \n\nDispels 2 harmful magic effects from the ally.\n\nUsable while stunned, feared, or polymorphed.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Into The Fray",
+        "Soundwave"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Instantly breaks an ally free of any stun, fear, or polymorph effects and grants immunity to such effects for 5 seconds. \n\nDispels 2 harmful magic effects from the ally.\n\nUsable while stunned, feared, or polymorphed."
+        }
+      ]
+    },
+    {
+      "id": 11214,
+      "name": "Knight's Song",
+      "tree": "Inspiration",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_flute_01",
+      "spellId": 505228,
+      "description": "Casting a Ballad now grants allies Knight's Song.Knight's SongEmanate an aura for 10 seconds that increases the Armor of party and raid members by 400.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [
+        "Ballad",
+        "Knight's Song"
+      ],
+      "prerequisites": [
+        "Spirit of Battle",
+        "Banner of Conquest"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting a Ballad now grants allies Knight's Song.Knight's SongEmanate an aura for 10 seconds that increases the Armor of party and raid members by 400.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 29214,
+      "name": "Banner of Swiftness",
+      "tree": "Inspiration",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Banner_03",
+      "spellId": 500259,
+      "description": "Attach a Banner of Swiftness to your back, increasing the haste of party and raid members within 40 yds by 5%.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [
+        "Banner of Swiftness"
+      ],
+      "prerequisites": [
+        "Spirit of Battle",
+        "Banner of Conquest"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Attach a Banner of Swiftness to your back, increasing the haste of party and raid members within 40 yds by 5%.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 31359,
+      "name": "Minstrel",
+      "tree": "Inspiration",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_racial_makecamp",
+      "spellId": 704533,
+      "description": "Casting a Ballad now increases your haste by 3%, stacking 3 times, for 8 seconds.",
+      "referencedTerms": [
+        "Ballad"
+      ],
+      "prerequisites": [
+        "Harrowing Melody"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting a Ballad now increases your haste by 3%, stacking 3 times, for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 7040,
+      "name": "Pied Piper",
+      "tree": "Inspiration",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_flute_01",
+      "spellId": 705350,
+      "description": "Triggering a Sound of War now increases damage of your next Ram by 20% for 15 seconds.",
+      "referencedTerms": [
+        "Ram",
+        "Sound of War"
+      ],
+      "prerequisites": [
+        "Hero's March",
+        "Harrowing Melody"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Triggering a Sound of War now increases damage of your next Ram by 20% for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 11040,
+      "name": "Frontliner",
+      "tree": "Inspiration",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_Intervene",
+      "spellId": 504782,
+      "description": "Triggering a Sound of War now increases your movement speed by 40% and allies' within 20 yds movement speed by 20% for 2 seconds.",
+      "referencedTerms": [
+        "Sound of War"
+      ],
+      "prerequisites": [
+        "Hero's March",
+        "Harrowing Melody"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Triggering a Sound of War now increases your movement speed by 40% and allies' within 20 yds movement speed by 20% for 2 seconds."
+        }
+      ]
+    },
+    {
+      "id": 12123,
+      "name": "Bard's Manuscript",
+      "tree": "Inspiration",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\pvp_scroll_1",
+      "spellId": 704526,
+      "description": "Reduces the cooldown of Hero's March by -60 sec.",
+      "referencedTerms": [
+        "Hero's March"
+      ],
+      "prerequisites": [
+        "Hero's March"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Hero's March by -60 sec."
+        }
+      ]
+    },
+    {
+      "id": 34435,
+      "name": "Warbringer's Manuscript",
+      "tree": "Inspiration",
+      "x": 4,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_misc_notescript1c",
+      "spellId": 705351,
+      "description": "Critical strikes now reduce the cooldown of Hero's March by -1 sec.",
+      "referencedTerms": [
+        "Hero's March"
+      ],
+      "prerequisites": [
+        "Hero's March"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes now reduce the cooldown of Hero's March by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 1789,
+      "name": "Reverberations",
+      "tree": "Inspiration",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\skill_icon_skill121_Border",
+      "spellId": 520650,
+      "description": "Casting Ram now causes your next 3 melee attacks to deal an additional 30 + 10% AP Magic damage for 10 seconds.",
+      "referencedTerms": [
+        "Ram"
+      ],
+      "prerequisites": [
+        "Hero's March",
+        "Liberation"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Ram now causes your next 3 melee attacks to deal an additional 30 + 10% AP Magic damage for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 9279,
+      "name": "Show of Force",
+      "tree": "Inspiration",
+      "x": 8,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Fire_FireArmor",
+      "spellId": 573047,
+      "description": "Dealing damage with Ram now dispels 1 magic effect from the target.",
+      "referencedTerms": [
+        "Ram"
+      ],
+      "prerequisites": [
+        "Liberation"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Dealing damage with Ram now dispels 1 magic effect from the target."
+        }
+      ]
+    },
+    {
+      "id": 30098,
+      "name": "Powerful Voice",
+      "tree": "Inspiration",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warrior_battleshout",
+      "spellId": 705356,
+      "description": "Increases the critical strike chance of your Ballads by 10%.",
+      "referencedTerms": [
+        "Ballads"
+      ],
+      "prerequisites": [
+        "Pied Piper",
+        "Frontliner",
+        "Minstrel"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the critical strike chance of your Ballads by 10%."
+        }
+      ]
+    },
+    {
+      "id": 30825,
+      "name": "Little Drummer",
+      "tree": "Inspiration",
+      "x": 3,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_misc_(15)_Border",
+      "spellId": 706636,
+      "description": "Allies within 20 yds of you now gain 20% chance to resist curses.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Pied Piper",
+        "Frontliner",
+        "Bard's Manuscript",
+        "Warbringer's Manuscript"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Allies within 20 yds of you now gain 20% chance to resist curses."
+        }
+      ]
+    },
+    {
+      "id": 30145,
+      "name": "Elegant Combat",
+      "tree": "Inspiration",
+      "x": 5,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_Warriorskill_35_Border",
+      "spellId": 804047,
+      "description": "Casting a Ballad has a 20% chance to remove the cost of the next Ram and increase its critical chance by 10%.",
+      "referencedTerms": [
+        "Ballad",
+        "Ram"
+      ],
+      "prerequisites": [
+        "Reverberations",
+        "Bard's Manuscript",
+        "Warbringer's Manuscript"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting a Ballad has a 20% chance to remove the cost of the next Ram and increase its critical chance by 10%."
+        }
+      ]
+    },
+    {
+      "id": 29798,
+      "name": "Banner Boy",
+      "tree": "Inspiration",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Achievement_BG_captureflag_WSG",
+      "spellId": 705359,
+      "description": "Increases your haste by 5% and the movement speed granted by Line Formation by 8%.",
+      "referencedTerms": [
+        "Line Formation"
+      ],
+      "prerequisites": [
+        "Reverberations",
+        "Show of Force"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your haste by 5% and the movement speed granted by Line Formation by 8%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your haste by 10% and the movement speed granted by Line Formation by 15%."
+        }
+      ]
+    },
+    {
+      "id": 10836,
+      "name": "Dissonance",
+      "tree": "Inspiration",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_music_Border",
+      "spellId": 505202,
+      "description": "Damage dealt by Sound of War now has a 25% chance to reduce enemies' resistances by 75 and increases their Magic damage taken by -2% for 8 seconds.",
+      "referencedTerms": [
+        "Sound of War"
+      ],
+      "prerequisites": [
+        "Banner of Swiftness",
+        "Knight's Song"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Sound of War now has a 25% chance to reduce enemies' resistances by 75 and increases their Magic damage taken by -2% for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 7836,
+      "name": "Song of Steel",
+      "tree": "Inspiration",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\skill_icon_skill29_Border",
+      "spellId": 704540,
+      "description": "Boost the morale of party and raid members, increasing their attack or spell power by 95 for 15 seconds.\n\nDoes not stack with similar effects.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Banner of Swiftness",
+        "Knight's Song"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Boost the morale of party and raid members, increasing their attack or spell power by 95 for 15 seconds.\n\nDoes not stack with similar effects."
+        }
+      ]
+    },
+    {
+      "id": 5825,
+      "name": "War's Muse",
+      "tree": "Inspiration",
+      "x": 0,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_Reincarnation",
+      "spellId": 505201,
+      "description": "Increases your critical damage by 20%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Powerful Voice"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your critical damage by 20%."
+        }
+      ]
+    },
+    {
+      "id": 9450,
+      "name": "Stand Your Ground!",
+      "tree": "Inspiration",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_holy_heroism",
+      "spellId": 806142,
+      "description": "While standing in your Standard of Valiance, your allies' Physical damage taken is reduced by -10%.",
+      "referencedTerms": [
+        "Standard of Valiance"
+      ],
+      "prerequisites": [
+        "Powerful Voice",
+        "Little Drummer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While standing in your Standard of Valiance, your allies' Physical damage taken is reduced by -10%."
+        }
+      ]
+    },
+    {
+      "id": 31315,
+      "name": "You Shall Not Fall!",
+      "tree": "Inspiration",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_bg_masterofallbgs",
+      "spellId": 505200,
+      "description": "While standing in your Standard of Valiance, allies have a -20% increased chance to resist stun and grip effects.",
+      "referencedTerms": [
+        "Standard of Valiance"
+      ],
+      "prerequisites": [
+        "Powerful Voice",
+        "Little Drummer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While standing in your Standard of Valiance, allies have a -20% increased chance to resist stun and grip effects."
+        }
+      ]
+    },
+    {
+      "id": 11797,
+      "name": "Battle Drums",
+      "tree": "Inspiration",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_archaeology_70_tauren_drum",
+      "spellId": 803683,
+      "description": "Place down 3 Battle Drums around you for 1 minute. \n\nAllies may click on the drums to increase their critical strike chance, haste, damage, and healing done by 10% and causes their damage dealt to trigger a Sound of War for their next 5 instances of damage or 30 seconds.",
+      "referencedTerms": [
+        "Battle Drums",
+        "Sound of War"
+      ],
+      "prerequisites": [
+        "Elegant Combat",
+        "Little Drummer"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Place down 3 Battle Drums around you for 1 minute. \n\nAllies may click on the drums to increase their critical strike chance, haste, damage, and healing done by 10% and causes their damage dealt to trigger a Sound of War for their next 5 instances of damage or 30 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34434,
+      "name": "Fearless",
+      "tree": "Inspiration",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Nature_Invisibilty",
+      "spellId": 505199,
+      "description": "Each nearby enemy within 10 yds now reduces your damage taken by 1%, up to a maximum of 10%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Banner Boy",
+        "Elegant Combat"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each nearby enemy within 10 yds now reduces your damage taken by 1%, up to a maximum of 10%."
+        }
+      ]
+    },
+    {
+      "id": 34436,
+      "name": "Cavalry Tactics",
+      "tree": "Inspiration",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_blacksmith_leystonehoofplates_blue",
+      "spellId": 503631,
+      "description": "Reduces the cooldown of your Cavalry Charge by -30 sec and it now prevents root and slow effects on allies.",
+      "referencedTerms": [
+        "Cavalry Charge"
+      ],
+      "prerequisites": [
+        "Banner Boy"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of your Cavalry Charge by -30 sec and it now prevents root and slow effects on allies."
+        }
+      ]
+    },
+    {
+      "id": 31364,
+      "name": "Legion Commander",
+      "tree": "Inspiration",
+      "x": 1,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_RallyingCry",
+      "spellId": 704535,
+      "description": "The damage increase of Harrowing Melody now affects an additional 2 Ballad casts and guarantees them to critically strike and deal 100% more damage.",
+      "referencedTerms": [
+        "Ballad",
+        "Harrowing Melody"
+      ],
+      "prerequisites": [
+        "War's Muse",
+        "Stand Your Ground!",
+        "You Shall Not Fall!"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "The damage increase of Harrowing Melody now affects an additional 2 Ballad casts and guarantees them to critically strike and deal 100% more damage."
+        }
+      ]
+    },
+    {
+      "id": 29432,
+      "name": "Echoes of War",
+      "tree": "Inspiration",
+      "x": 3,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_dungeon_lordstormsong",
+      "spellId": 704539,
+      "description": "Triggering a Sound of War now grants Echoes of War to nearby allies for 8 seconds.Echoes of WarNext direct ability or spell deals 15% of their damage as additional Magic Damage.",
+      "referencedTerms": [
+        "Echoes of War",
+        "Sound of War"
+      ],
+      "prerequisites": [
+        "Stand Your Ground!",
+        "Battle Drums",
+        "You Shall Not Fall!"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Triggering a Sound of War now grants Echoes of War to nearby allies for 8 seconds.Echoes of WarNext direct ability or spell deals 15% of their damage as additional Magic Damage."
+        }
+      ]
+    },
+    {
+      "id": 30097,
+      "name": "Song of Battle",
+      "tree": "Inspiration",
+      "x": 5,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\achievement_pvp_legion04",
+      "spellId": 803956,
+      "description": "Every 2 sec you emanate Sounds of War, dealing 71 + 12.74% AP Physical damage to all enemies within 8 yds. Lasts 15 seconds.\n\nUpon expiration, stun all enemies within 8 yds for 4 seconds.",
+      "referencedTerms": [
+        "Sounds of War"
+      ],
+      "prerequisites": [
+        "Battle Drums",
+        "Fearless"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Every 2 sec you emanate Sounds of War, dealing 71 + 12.74% AP Physical damage to all enemies within 8 yds. Lasts 15 seconds.\n\nUpon expiration, stun all enemies within 8 yds for 4 seconds."
+        }
+      ]
+    },
+    {
+      "id": 7309,
+      "name": "Bannerman",
+      "tree": "Inspiration",
+      "x": 7,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\nhi_magicbanner_Border",
+      "spellId": 504144,
+      "description": "While affected by your Banner of Swiftness or Banner of Conquest, the initial damage dealt by your Standard of Valiance now deals 150% more damage.",
+      "referencedTerms": [
+        "Banner of Conquest",
+        "Banner of Swiftness",
+        "Standard of Valiance"
+      ],
+      "prerequisites": [
+        "Fearless",
+        "Cavalry Tactics"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "While affected by your Banner of Swiftness or Banner of Conquest, the initial damage dealt by your Standard of Valiance now deals 150% more damage."
+        }
+      ]
+    },
+    {
+      "id": 11836,
+      "name": "Inspiring Presence",
+      "tree": "Inspiration",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Human_07",
+      "spellId": 705352,
+      "description": "Emanate an aura around you for 15 seconds, causing allied players within 100 yds to deal 35% AP additional damage as Holy damage when they deal direct damage.\n\nApplies Exhaustion, preventing you from benefiting from similar effects for 1 minute.",
+      "referencedTerms": [
+        "Exhaustion"
+      ],
+      "prerequisites": [
+        "Song of Steel",
+        "Dissonance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Emanate an aura around you for 15 seconds, causing allied players within 100 yds to deal 35% AP additional damage as Holy damage when they deal direct damage.\n\nApplies Exhaustion, preventing you from benefiting from similar effects for 1 minute."
+        }
+      ]
+    },
+    {
+      "id": 11837,
+      "name": "Champion's Presence",
+      "tree": "Inspiration",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_paladin_clarityofpurpose",
+      "spellId": 520835,
+      "description": "Enrage all nearby allies, increasing their haste by 30% for 20 seconds.\n\nAfter being affected by this spell, allies cannot benefit from similar effects for 5 minutes.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Song of Steel",
+        "Dissonance"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Enrage all nearby allies, increasing their haste by 30% for 20 seconds.\n\nAfter being affected by this spell, allies cannot benefit from similar effects for 5 minutes."
+        }
+      ]
+    },
+    {
+      "id": 31316,
+      "name": "Voice of an Angel",
+      "tree": "Inspiration",
+      "x": 1,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_priest_heavanlyvoice",
+      "spellId": 704420,
+      "description": "Sing a beautiful song, instantly resetting the cooldown of Liberation, Harrowing Melody, and Hero's March.",
+      "referencedTerms": [
+        "Harrowing Melody",
+        "Hero's March",
+        "Liberation"
+      ],
+      "prerequisites": [
+        "Legion Commander"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Sing a beautiful song, instantly resetting the cooldown of Liberation, Harrowing Melody, and Hero's March."
+        }
+      ]
+    },
+    {
+      "id": 31358,
+      "name": "War Drums",
+      "tree": "Inspiration",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_leatherworking_drums",
+      "spellId": 704524,
+      "description": "Adds 5% to the value of Echoes of War.\n\nIn addition, performing a Sound of War now has a 40% chance to echo, striking an additional time after 0.5 sec. Can only occur once per sec.",
+      "referencedTerms": [
+        "Echoes of War",
+        "Sound of War"
+      ],
+      "prerequisites": [
+        "Echoes of War",
+        "Song of Battle"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Adds 5% to the value of Echoes of War.\n\nIn addition, performing a Sound of War now has a 40% chance to echo, striking an additional time after 0.5 sec. Can only occur once per sec."
+        }
+      ]
+    },
+    {
+      "id": 29433,
+      "name": "Field Commander",
+      "tree": "Inspiration",
+      "x": 7,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Achievement_PVP_A_06",
+      "spellId": 705320,
+      "description": "$61",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Bannerman"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$62"
+        }
+      ]
+    },
+    {
+      "id": 31169,
+      "name": "Heavy Blow",
+      "tree": "Vanguard",
+      "x": 4,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_paladin_hammerofwrath",
+      "spellId": 803129,
+      "description": "Smash an enemy and enemies behind them in a line, dealing 23 + 45% AP High Threat Physical damage, scaling with defense rating.",
+      "referencedTerms": [],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Footman's Calling",
+        "Brace"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Smash an enemy and enemies behind them in a line, dealing 23 + 45% AP High Threat Physical damage, scaling with defense rating."
+        }
+      ]
+    },
+    {
+      "id": 4019,
+      "name": "Footman's Calling",
+      "tree": "Vanguard",
+      "x": 10,
+      "y": 0,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 10,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\_Human_06",
+      "spellId": 92105,
+      "description": "Level 10 Passive\nYour damage taken is reduced by -10% while Tower Formation or Line Formation is active.\n\nIn addition, your threat generated from Physical Damage dealt is increased significantly while Tower Formation or Line Formation is active.",
+      "referencedTerms": [
+        "Line Formation",
+        "Tower Formation"
+      ],
+      "prerequisites": [],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [
+        "Brace"
+      ],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 10 Passive\nYour damage taken is reduced by -10% while Tower Formation or Line Formation is active.\n\nIn addition, your threat generated from Physical Damage dealt is increased significantly while Tower Formation or Line Formation is active."
+        }
+      ]
+    },
+    {
+      "id": 30056,
+      "name": "Iron Guardian",
+      "tree": "Vanguard",
+      "x": 4,
+      "y": 1,
+      "maxPoints": 3,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\garrison_building_armory",
+      "spellId": 705364,
+      "description": "Increases your Stamina by 5%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Heavy Blow"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your Stamina by 5%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your Stamina by 10%."
+        },
+        {
+          "rank": 3,
+          "description": "Increases your Stamina by 15%."
+        }
+      ]
+    },
+    {
+      "id": 30802,
+      "name": "Heavy Expert",
+      "tree": "Vanguard",
+      "x": 2,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_Warrior_Vigilance",
+      "spellId": 803128,
+      "description": "Increases your chance to parry and dodge by 4% and increase your Armor contribution from mail and plate items by 20%.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Iron Guardian"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your chance to parry and dodge by 4% and increase your Armor contribution from mail and plate items by 20%."
+        }
+      ]
+    },
+    {
+      "id": 31319,
+      "name": "With Honor",
+      "tree": "Vanguard",
+      "x": 6,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_shoulder_plate_raidpaladin_s_01",
+      "spellId": 504383,
+      "description": "Reduces the cooldown of Ram by -4 sec.",
+      "referencedTerms": [
+        "Ram"
+      ],
+      "prerequisites": [
+        "Iron Guardian"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of Ram by -4 sec."
+        }
+      ]
+    },
+    {
+      "id": 4718,
+      "name": "Bulwark",
+      "tree": "Vanguard",
+      "x": 10,
+      "y": 2,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 20,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_shield_06",
+      "spellId": 804046,
+      "description": "Level 20 Passive\nIncreases your block value by 25% and your hit rating by 5% of your Stamina.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Footman's Calling"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 20 Passive\nIncreases your block value by 25% and your hit rating by 5% of your Stamina."
+        }
+      ]
+    },
+    {
+      "id": 11060,
+      "name": "Honorbound",
+      "tree": "Vanguard",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_assassinskill32_Border",
+      "spellId": 803571,
+      "description": "Removes the Energy cost of Shield Challenge.",
+      "referencedTerms": [
+        "Shield Challenge"
+      ],
+      "prerequisites": [
+        "Heavy Expert"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Removes the Energy cost of Shield Challenge."
+        }
+      ]
+    },
+    {
+      "id": 6712,
+      "name": "Shieldbound",
+      "tree": "Vanguard",
+      "x": 1,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_shield_draenorguard_b_01_a_alliance",
+      "spellId": 706515,
+      "description": "Your Shield Challenge no longer has a cooldown, but now costs 10 additional Energy.",
+      "referencedTerms": [
+        "Shield Challenge"
+      ],
+      "prerequisites": [
+        "Heavy Expert"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Shield Challenge no longer has a cooldown, but now costs 10 additional Energy."
+        }
+      ]
+    },
+    {
+      "id": 34448,
+      "name": "Knight's Conviction",
+      "tree": "Vanguard",
+      "x": 4,
+      "y": 3,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_horsekultiran",
+      "spellId": 705369,
+      "description": "Increases the block value provided by Raise Shield by 25% and your block chance by 1%.",
+      "referencedTerms": [
+        "Raise Shield"
+      ],
+      "prerequisites": [
+        "Heavy Expert",
+        "With Honor"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases the block value provided by Raise Shield by 25% and your block chance by 1%."
+        },
+        {
+          "rank": 2,
+          "description": "Increases the block value provided by Raise Shield by 50% and your block chance by 2%."
+        }
+      ]
+    },
+    {
+      "id": 30144,
+      "name": "Footman's Call",
+      "tree": "Vanguard",
+      "x": 7,
+      "y": 3,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\warrior_talent_icon_blitz",
+      "spellId": 705376,
+      "description": "Damage dealt by Pulverize is increased by 15, plus an additional amount scaling with your block value.",
+      "referencedTerms": [
+        "Pulverize"
+      ],
+      "prerequisites": [
+        "With Honor"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Pulverize is increased by 15, plus an additional amount scaling with your block value."
+        }
+      ]
+    },
+    {
+      "id": 1719,
+      "name": "Seasoned Fighter",
+      "tree": "Vanguard",
+      "x": 2,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Ability_SteelMelee",
+      "spellId": 704421,
+      "description": "Reduces the Energy cost of Pulverize, Ram, and Broad Sweep by -10%.",
+      "referencedTerms": [
+        "Broad Sweep",
+        "Pulverize",
+        "Ram"
+      ],
+      "prerequisites": [
+        "Shieldbound",
+        "Honorbound"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Energy cost of Pulverize, Ram, and Broad Sweep by -10%."
+        }
+      ]
+    },
+    {
+      "id": 34441,
+      "name": "Vanguard's Might",
+      "tree": "Vanguard",
+      "x": 4,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_plate_raidwarrior_s_01helm",
+      "spellId": 705345,
+      "description": "Your Heavy Blow now causes you to emanate an aura for 5 seconds that reduces all damage taken by -5% for party members.",
+      "referencedTerms": [
+        "Heavy Blow"
+      ],
+      "prerequisites": [
+        "Knight's Conviction"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Heavy Blow now causes you to emanate an aura for 5 seconds that reduces all damage taken by -5% for party members."
+        }
+      ]
+    },
+    {
+      "id": 34440,
+      "name": "Bring Down The Hammer!",
+      "tree": "Vanguard",
+      "x": 6,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_hammer_1h_jiro_b_01",
+      "spellId": 705379,
+      "description": "Damage dealt by Heavy Blow now deals an additional 20% of the damage dealt every 1 sec for 3 seconds.",
+      "referencedTerms": [
+        "Heavy Blow"
+      ],
+      "prerequisites": [
+        "Footman's Call"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Heavy Blow now deals an additional 20% of the damage dealt every 1 sec for 3 seconds."
+        }
+      ]
+    },
+    {
+      "id": 4716,
+      "name": "Iron Barrier",
+      "tree": "Vanguard",
+      "x": 10,
+      "y": 4,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 30,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\inv_shoulder_plate_pvpwarrior_c_01",
+      "spellId": 705331,
+      "description": "Level 30 Passive\nYour successful blocks now have a 50% chance to critically block for twice the normal amount.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Bulwark"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 30 Passive\nYour successful blocks now have a 50% chance to critically block for twice the normal amount."
+        }
+      ]
+    },
+    {
+      "id": 34417,
+      "name": "Vanguard's Shield",
+      "tree": "Vanguard",
+      "x": 0,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\INV_Shield_32",
+      "spellId": 804383,
+      "description": "Blocking an attack or landing an auto attack now grants a stack of Vanguard for 1 minute, stacking 10 times.Vanguard's ShieldMagic Damage taken reduced by -2%. Whenever you are hit by a spell, you lose 1 stack of this effect.",
+      "referencedTerms": [
+        "Vanguard"
+      ],
+      "prerequisites": [
+        "Shieldbound",
+        "Honorbound"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Blocking an attack or landing an auto attack now grants a stack of Vanguard for 1 minute, stacking 10 times.Vanguard's ShieldMagic Damage taken reduced by -2%. Whenever you are hit by a spell, you lose 1 stack of this effect."
+        }
+      ]
+    },
+    {
+      "id": 34439,
+      "name": "Hold the Line",
+      "tree": "Vanguard",
+      "x": 2,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warrior_shieldguard",
+      "spellId": 803830,
+      "description": "Command nearby allies to hold the line, making them immune to incapacitate, disorient, knockback, and grip effects for 15 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Seasoned Fighter",
+        "Vanguard's Might"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Command nearby allies to hold the line, making them immune to incapacitate, disorient, knockback, and grip effects for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 34445,
+      "name": "Hammer of the Law",
+      "tree": "Vanguard",
+      "x": 6,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_mace_1h_draenorguard_b_02_a",
+      "spellId": 704418,
+      "description": "Smash an enemy and enemies behind them in a line, dealing 90 + 100% AP High Threat Physical damage and silencing them for 3.5 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Bring Down The Hammer!",
+        "Vanguard's Might"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Smash an enemy and enemies behind them in a line, dealing 90 + 100% AP High Threat Physical damage and silencing them for 3.5 seconds."
+        }
+      ]
+    },
+    {
+      "id": 31318,
+      "name": "Battle Wary",
+      "tree": "Vanguard",
+      "x": 8,
+      "y": 5,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\custom_Warriorskill_22_Border",
+      "spellId": 705332,
+      "description": "Reduces the cooldown of your Advance and Battle Rush by -30%.",
+      "referencedTerms": [
+        "Advance",
+        "Battle Rush"
+      ],
+      "prerequisites": [
+        "Footman's Call"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the cooldown of your Advance and Battle Rush by -30%."
+        }
+      ]
+    },
+    {
+      "id": 30530,
+      "name": "Retaliation",
+      "tree": "Vanguard",
+      "x": 1,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\ability_warrior_shieldreflection",
+      "spellId": 582901,
+      "description": "Successful blocks now deal 51 + 5% AP Physical damage to the attacker, scaling with defense rating. Can only occur once per sec.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Vanguard's Shield",
+        "Hold the Line"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Successful blocks now deal 51 + 5% AP Physical damage to the attacker, scaling with defense rating. Can only occur once per sec."
+        }
+      ]
+    },
+    {
+      "id": 34443,
+      "name": "Plate Buster",
+      "tree": "Vanguard",
+      "x": 2,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_plate_raidwarrior_s_01helm",
+      "spellId": 705333,
+      "description": "Critical strikes with Ram now reduces the remaining cooldown of your Challenging Cry and Hold the Line by -4 sec.",
+      "referencedTerms": [
+        "Challenging Cry",
+        "Hold the Line",
+        "Ram"
+      ],
+      "prerequisites": [
+        "Hold the Line"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Critical strikes with Ram now reduces the remaining cooldown of your Challenging Cry and Hold the Line by -4 sec."
+        }
+      ]
+    },
+    {
+      "id": 34438,
+      "name": "Stalwart",
+      "tree": "Vanguard",
+      "x": 4,
+      "y": 6,
+      "maxPoints": 2,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_D3revenge",
+      "spellId": 704413,
+      "description": "Increases your block value by 10% and your expertise by 4.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Hold the Line",
+        "Hammer of the Law"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your block value by 10% and your expertise by 4."
+        },
+        {
+          "rank": 2,
+          "description": "Increases your block value by 20% and your expertise by 8."
+        }
+      ]
+    },
+    {
+      "id": 29220,
+      "name": "Unscuffable",
+      "tree": "Vanguard",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\creatureportrait_blackrockv2_shieldgong",
+      "spellId": 503837,
+      "description": "Allies within 30 yds now take -10% less Magic damage from area of effect attacks.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Hammer of the Law"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Allies within 30 yds now take -10% less Magic damage from area of effect attacks."
+        }
+      ]
+    },
+    {
+      "id": 30061,
+      "name": "Order In The Court",
+      "tree": "Vanguard",
+      "x": 6,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\_Silence_BloodElf",
+      "spellId": 707716,
+      "description": "Damage dealt by Hammer of the Law now reduces the damage dealt by affected enemies by -10% for 8 seconds.",
+      "referencedTerms": [
+        "Hammer of the Law"
+      ],
+      "prerequisites": [
+        "Hammer of the Law"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Damage dealt by Hammer of the Law now reduces the damage dealt by affected enemies by -10% for 8 seconds."
+        }
+      ]
+    },
+    {
+      "id": 30060,
+      "name": "The Green Tower",
+      "tree": "Vanguard",
+      "x": 7,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_warriorskill25_Border",
+      "spellId": 560410,
+      "description": "Reduces the Energy cost of your Formations and increases their effectiveness by 25%.",
+      "referencedTerms": [
+        "Formations"
+      ],
+      "prerequisites": [
+        "Battle Wary",
+        "Hammer of the Law"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Reduces the Energy cost of your Formations and increases their effectiveness by 25%."
+        }
+      ]
+    },
+    {
+      "id": 4710,
+      "name": "Experienced Soldier",
+      "tree": "Vanguard",
+      "x": 10,
+      "y": 6,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 40,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\Icons\\Ability_GolemThunderClap",
+      "spellId": 570713,
+      "description": "Level 40 Passive\nMelee attacks now reduce the cooldown of Brace by -1 sec.",
+      "referencedTerms": [
+        "Brace"
+      ],
+      "prerequisites": [
+        "Iron Barrier"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 40 Passive\nMelee attacks now reduce the cooldown of Brace by -1 sec."
+        }
+      ]
+    },
+    {
+      "id": 34446,
+      "name": "Valorous Strikes",
+      "tree": "Vanguard",
+      "x": 0,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_shoulder_mail_bastion_d_01",
+      "spellId": 524932,
+      "description": "Auto attacks now have a 10% chance to strike an additional time and reduce your target's chance to hit by -3% for 15 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Retaliation",
+        "Vanguard's Shield"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Auto attacks now have a 10% chance to strike an additional time and reduce your target's chance to hit by -3% for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 31320,
+      "name": "Resilient",
+      "tree": "Vanguard",
+      "x": 2,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_warriorskill47_Border",
+      "spellId": 707137,
+      "description": "Blocking an attack while Raise Shield is active now increases your maximum health by 308 + 10% Stamina + 11% AP for 15 seconds.",
+      "referencedTerms": [
+        "Raise Shield"
+      ],
+      "prerequisites": [
+        "Retaliation",
+        "Plate Buster"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Blocking an attack while Raise Shield is active now increases your maximum health by 308 + 10% Stamina + 11% AP for 15 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29213,
+      "name": "Forceful Impact",
+      "tree": "Vanguard",
+      "x": 4,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\novart_passivemastery_(11)_Border",
+      "spellId": 705346,
+      "description": "Casting Raise Shield and Heavy Blow now extends the duration of your Brace by 1 sec.",
+      "referencedTerms": [
+        "Brace",
+        "Heavy Blow",
+        "Raise Shield"
+      ],
+      "prerequisites": [
+        "Stalwart"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Casting Raise Shield and Heavy Blow now extends the duration of your Brace by 1 sec."
+        }
+      ]
+    },
+    {
+      "id": 7180,
+      "name": "Lionheart",
+      "tree": "Vanguard",
+      "x": 6,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv__faction_alliancewareffort",
+      "spellId": 531515,
+      "description": "Your Shield of Denial now strikes 1 additional enemy.",
+      "referencedTerms": [
+        "Shield of Denial"
+      ],
+      "prerequisites": [
+        "Unscuffable",
+        "The Green Tower",
+        "Order In The Court"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Shield of Denial now strikes 1 additional enemy."
+        }
+      ]
+    },
+    {
+      "id": 29219,
+      "name": "Valiant Defender",
+      "tree": "Vanguard",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\Spell_Holy_DivineIntervention",
+      "spellId": 582933,
+      "description": "Increases your maximum Energy by 15 and increases the damage of Pulverize and Broad Sweep by 10%.",
+      "referencedTerms": [
+        "Broad Sweep",
+        "Pulverize"
+      ],
+      "prerequisites": [
+        "The Green Tower",
+        "Battle Wary"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Increases your maximum Energy by 15 and increases the damage of Pulverize and Broad Sweep by 10%."
+        }
+      ]
+    },
+    {
+      "id": 19218,
+      "name": "Valiant Knight",
+      "tree": "Vanguard",
+      "x": 8,
+      "y": 7,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 8,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\5_archerskill48_Border",
+      "spellId": 582937,
+      "description": "Melee ability critical strikes now cause your next Pulverize within 6 seconds to be free of cost and deal 25% increased damage.",
+      "referencedTerms": [
+        "Pulverize"
+      ],
+      "prerequisites": [
+        "The Green Tower",
+        "Battle Wary"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Melee ability critical strikes now cause your next Pulverize within 6 seconds to be free of cost and deal 25% increased damage."
+        }
+      ]
+    },
+    {
+      "id": 34447,
+      "name": "King's Guard",
+      "tree": "Vanguard",
+      "x": 2,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_helmet_plate_raidpaladin_l_01",
+      "spellId": 803134,
+      "description": "Your Pulverize and Ram now have a 10% chance to reset the cooldown of Raise Shield.",
+      "referencedTerms": [
+        "Pulverize",
+        "Raise Shield",
+        "Ram"
+      ],
+      "prerequisites": [
+        "Resilient",
+        "Valorous Strikes"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Your Pulverize and Ram now have a 10% chance to reset the cooldown of Raise Shield."
+        }
+      ]
+    },
+    {
+      "id": 30529,
+      "name": "Shield Unit",
+      "tree": "Vanguard",
+      "x": 4,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\spell_tailor_defenceup01",
+      "spellId": 804891,
+      "description": "Each time you take damage, you gain 5% of the damage taken as attack power for 1 minute.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Lionheart",
+        "Forceful Impact",
+        "Resilient"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Each time you take damage, you gain 5% of the damage taken as attack power for 1 minute."
+        }
+      ]
+    },
+    {
+      "id": 1721,
+      "name": "Wreck Formation",
+      "tree": "Vanguard",
+      "x": 6,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\6bf_explosive_shard",
+      "spellId": 803126,
+      "description": "Melee critical strikes now have a 50% chance to reset the cooldown of Hammer of the Law.\n\nCasting Standard of Valiance now increases your attack power by 10% for 6 seconds.",
+      "referencedTerms": [
+        "Hammer of the Law",
+        "Standard of Valiance"
+      ],
+      "prerequisites": [
+        "Lionheart",
+        "Valiant Knight",
+        "Valiant Defender"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Melee critical strikes now have a 50% chance to reset the cooldown of Hammer of the Law.\n\nCasting Standard of Valiance now increases your attack power by 10% for 6 seconds."
+        }
+      ]
+    },
+    {
+      "id": 12710,
+      "name": "High Guard",
+      "tree": "Vanguard",
+      "x": 10,
+      "y": 8,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 0,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 0,
+      "requiredLevel": 50,
+      "isStartingNode": false,
+      "isPassive": true,
+      "entryType": "Ability",
+      "iconPath": "Interface\\icons\\custom_Warriorskill_03_Border",
+      "spellId": 707621,
+      "description": "Level 50 Passive\nAfter using Raise Shield, Advance or Battle Rush, you are granted High Guard.High Guard (Buff)Your next Heavy Blow within 15 seconds triggers no cooldown.",
+      "referencedTerms": [
+        "Advance",
+        "Battle Rush",
+        "Heavy Blow",
+        "High Guard",
+        "Raise Shield"
+      ],
+      "prerequisites": [
+        "Experienced Soldier"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Level 50 Passive\nAfter using Raise Shield, Advance or Battle Rush, you are granted High Guard.High Guard (Buff)Your next Heavy Blow within 15 seconds triggers no cooldown."
+        }
+      ]
+    },
+    {
+      "id": 29969,
+      "name": "Paragon",
+      "tree": "Vanguard",
+      "x": 2,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\icons\\5_warriorskill16_Border",
+      "spellId": 706514,
+      "description": "$33",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Shield Unit",
+        "King's Guard"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "$34"
+        }
+      ]
+    },
+    {
+      "id": 30434,
+      "name": "Bastion",
+      "tree": "Vanguard",
+      "x": 4,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\shield_draenorcrafted_d_02_a_alliance",
+      "spellId": 802283,
+      "description": "Raise your shield and lead your allies within 12 yds, reducing their damage taken by -40% for 10 seconds.",
+      "referencedTerms": [],
+      "prerequisites": [
+        "Shield Unit"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "Raise your shield and lead your allies within 12 yds, reducing their damage taken by -40% for 10 seconds."
+        }
+      ]
+    },
+    {
+      "id": 29992,
+      "name": "Shieldlord\u2019s Strength",
+      "tree": "Vanguard",
+      "x": 6,
+      "y": 9,
+      "maxPoints": 1,
+      "abilityEssenceCost": 0,
+      "talentEssenceCost": 1,
+      "reqTreeAbilityEssence": 0,
+      "reqTreeTalentEssence": 23,
+      "requiredLevel": 0,
+      "isStartingNode": false,
+      "isPassive": false,
+      "entryType": "Talent",
+      "iconPath": "Interface\\Icons\\inv_hammer_10",
+      "spellId": 803738,
+      "description": "You may now use two-handed Maces and can now equip two-handed Maces with a shield.\n\nYour Heavy Blow and Hammer of the Law now deal additional damage scaling with your Stamina and your Stamina is increased by 15%.",
+      "referencedTerms": [
+        "Hammer of the Law",
+        "Heavy Blow"
+      ],
+      "prerequisites": [
+        "Wreck Formation",
+        "Shield Unit"
+      ],
+      "prerequisiteLogic": "OR",
+      "specialRequirement": [],
+      "specialRequirementLogic": "AND",
+      "rankDescriptions": [
+        {
+          "rank": 1,
+          "description": "You may now use two-handed Maces and can now equip two-handed Maces with a shield.\n\nYour Heavy Blow and Hammer of the Law now deal additional damage scaling with your Stamina and your Stamina is increased by 15%."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "regionType": "aurabar",
+  "width": "{{width}}",
+  "height": "{{height}}",
+  "orientation": "HORIZONTAL",
+  "inverse": false,
+  "barColor": [
+    0.0,
+    0.4,
+    1.0,
+    1.0
+  ],
+  "backgroundColor": [
+    0.0,
+    0.0,
+    0.0,
+    0.5
+  ],
+  "texture": "Blizzard",
+  "textureSource": "LSM",
+  "icon": false,
+  "desaturate": false,
+  "iconSource": -1,
+  "displayIcon": "",
+  "zoom": 0,
+  "progressSource": [
+    -1,
+    ""
+  ],
+  "adjustedMax": "",
+  "adjustedMin": "",
+  "useAdjustededMax": false,
+  "useAdjustededMin": false,
+  "spark": false,
+  "subRegions": [
+    {
+      "type": "subbackground"
+    },
+    {
+      "type": "subtext",
+      "text_text": "%p",
+      "text_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "text_font": "Friz Quadrata TT",
+      "text_fontSize": 12,
+      "text_fontType": "None",
+      "text_justify": "CENTER",
+      "text_visible": true,
+      "text_selfPoint": "AUTO",
+      "anchor_point": "INNER_LEFT",
+      "anchorXOffset": 0,
+      "anchorYOffset": 0,
+      "text_shadowColor": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "text_shadowXOffset": 1,
+      "text_shadowYOffset": -1
+    }
+  ],
+  "triggers": {
+    "1": {
+      "trigger": {
+        "type": "unit",
+        "event": "Power",
+        "unit": "player",
+        "use_powertype": true,
+        "powertype": "{{power_type}}"
+      },
+      "untrigger": {}
+    },
+    "activeTriggerMode": -10
+  }
+}

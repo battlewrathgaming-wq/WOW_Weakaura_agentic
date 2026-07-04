@@ -1,0 +1,6124 @@
+{
+  "class": "Witch Hunter",
+  "schemaVersion": 2,
+  "laneTaxonomy": {
+    "DMG": "Damage",
+    "STATS": "Primary/secondary stats",
+    "CRIT": "Crit chance/damage",
+    "CDR": "Cooldown",
+    "CAST": "Cast time",
+    "HASTE": "Haste",
+    "SPEED": "Movement speed",
+    "HEAL": "Healing",
+    "SHIELD": "Shield/absorb",
+    "MITIGATION": "Damage mitigation",
+    "RESOURCE": "Resource generation",
+    "COST": "Resource cost",
+    "DURATION": "Duration",
+    "AOE": "AoE / target count",
+    "CC": "Crowd control",
+    "ARMOR": "Armor",
+    "SUMMON": "Summon / pet",
+    "MISC": "Other"
+  },
+  "note": "Per-skill index: for each observed skill/ability, lists every talent that modifies it, where it sits in the tree, its parsed stat modification, and a mock value showing that modification applied to a normalized baseline of 10. Each modifying talent is tagged with one or more lanes from laneTaxonomy (DMG/CRIT/CDR/CAST/HASTE/SPEED/HEAL/SHIELD/MITIGATION/RESOURCE/COST/DURATION/AOE/CC/ARMOR/SUMMON/MISC), plus cross-cutting behavior flags (PROC, STACK) that describe how the effect triggers rather than what stat it touches. A handful of nodes have unresolved \"$xx\" template descriptions in the source export - these are flagged rather than guessed at.",
+  "mockBaseline": 10,
+  "skills": {
+    "Arbalist": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 30 Passive\nIncreases your attack power by 100% of your Intellect.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Bola Throw": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Purified Bola",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 4.0,
+          "lanes": [
+            "DMG",
+            "SPEED",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Your Bola Throw now has 2 charges, deals additional damage, and lasts 2 additional sec, but now costs 10 Rage instead of mana.Purified Bola Throw2 Charges, 15 sec recharge\nThrow a bola at an enemy, dealing 348 + 40% AP Holy damage and slowing movement speed by -60% for 8 seconds."
+        }
+      ]
+    },
+    "Bolt and Dash": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Dead and Gone",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Bolt and Dash now affects an additional use of a Heartseeking Bolt.\n\nYour Pavise now lasts 2 additional sec and has a -30 sec reduced cooldown."
+        }
+      ]
+    },
+    "Brand": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Vishas' Memoir",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Brand spells by -25%."
+        }
+      ]
+    },
+    "Brand of the Unworthy": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Expose an enemy's darkest faults, disorienting them for 40 seconds (8 sec vs players).\n\nDamage caused will end this effect. Only usable on Humanoids, Demons, and Undead.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Brands": {
+      "lanes": [
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Scarlet Inquisitor",
+          "tree": "Inquisition",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost of your Traps and Brands by -50%."
+        }
+      ]
+    },
+    "Brimming Hatred": {
+      "lanes": [
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your critical strikes now generate 10 Rage. Can only occur every 3 sec.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Brooding Hatred": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your off-hand Weapon Damage by 40% and increases your chance to hit by 6%.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 6,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Brushin' Off The Dusk": {
+      "lanes": [
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Your off-hand auto attacks now have a 20% chance to strike 2 additional times.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 5,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Burned Alive": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical strike chance by 25% on enemies below 20% health.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 7,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Burrow Bolt": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Shoot a bolt with a rope attached to it at an enemy dealing 6 + 25% AP Physical damage and pulling them to you.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Calm Under Pressure",
+          "tree": "Black Knight",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            },
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Stoicism by -30 sec and Burrow Bolt by -5 sec."
+        },
+        {
+          "talent": "Three Sevens",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 7.0,
+              "unit": "sec"
+            },
+            {
+              "value": -7.0,
+              "unit": "sec"
+            },
+            {
+              "value": -7.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "COST",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration that Traps last on the ground by 7 sec, reduces the cooldown of Burrow Bolt by -7 sec, and reduces the cost of Dawn Blade by -7."
+        },
+        {
+          "talent": "Duskwood Renegade",
+          "tree": "Inquisition",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Burrow Bolt by -10 sec."
+        }
+      ]
+    },
+    "Chains of Darkness": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Pull all nearby enemies to you, dealing 84 + 55% shadow SP + 15% AP Shadow damage and taunting them for 3 seconds.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 6,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Combat Training": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Physical damage dealt and parry chance by 6%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Contract Killing": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases damage dealt against enemies above 75% health and below 35% health by 15%.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 1,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Damnation": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Deplete your rage to shoot a powerful bolt dealing 130% Weapon Damage plus 6 Twilight Damage and converting each point of Rage into additional damage.\n\nOnly usable on enemies below 35% health.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 1,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Witching Bolt",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Damnation against Undead and Demons by 25%."
+        },
+        {
+          "talent": "Resourceful Pursuit",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Rage cost of Tormentor and Damnation by -20%."
+        },
+        {
+          "talent": "Neverending Pursuit",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Critically striking with Damnation now refunds 40 Rage."
+        },
+        {
+          "talent": "Slinging Bolts",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 40 Passive\nDirect ranged damage dealt now has an 8% chance to grant you Slinging Bolts.Slinging Bolts (Proc)Your next Damnation is usable regardless of the target's current health. Lasts 20 seconds.\n\nCan only occur once every 5 sec."
+        },
+        {
+          "talent": "Silver Bolts",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Heartseeking Bolt and Damnation is increased by 15%, doubled against Undead or Demons or enemies affected by Shadow Trap."
+        }
+      ]
+    },
+    "Daring Escape": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Jump backwards, causing all ranged attacks to miss you for 2 seconds.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 1,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Escape Artist",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Your Daring Escape now resets the cooldown of Vault and generates 10 Rage."
+        }
+      ]
+    },
+    "Dark Chivalry": {
+      "lanes": [
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Armor contribution from mail items by 100%.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Dark Intuition": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Whenever you parry or dodge an attack, your attack speed is increased by 5%, and your parry chance by 2% for 15 seconds, stacking 2 times.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Dark Mind": {
+      "lanes": [
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 30 Passive\nIncreases your critical strike rating by 25% of your Intellect.",
+      "baseTree": "Houndmaster",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Dark Oath": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "MITIGATION",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Knight's Seal",
+          "tree": "Black Knight",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.5,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "MITIGATION",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Curse an enemy, dealing 66 + 19.2% shadow SP + 14.6% AP Shadow damage every 2 sec and applying Dark Oath to you, reducing all damage taken by -5% for 8 seconds.\n\nYour next Desecrate within 8 seconds now restores 15% of your maximum health and mana."
+        }
+      ]
+    },
+    "Dark Penance": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Agility and your chance to parry and dodge by 4%.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 6,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Dark Power": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 30 Passive\nYou now gain 1 Stamina for every 2 Agility.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Dark Riposte": {
+      "lanes": [
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Parrying enemy attacks now restores 5% of your missing health and Rage.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 0,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Darkflock": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Channel for 8 seconds, commanding a flock of crows to deal 50 + 15% ranged AP + 85% SP Shadow damage to enemies in a wide cone every 2 sec.\n\nCan channel while moving.",
+      "baseTree": "Houndmaster",
+      "basePosition": {
+        "x": 8,
+        "y": 4
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Anguish",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Shadow damage dealt now has a 5% chance to reduce the channel time of your next Darkflock within 15 seconds by -50%."
+        },
+        {
+          "talent": "Feast of Talons",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Striking at least 5 enemies with Darkflock now causes you to unleash a flock of crows around each enemy struck, dealing 762 + 78.75% SP + 45% ranged AP Twilight Damage over 9 seconds."
+        }
+      ]
+    },
+    "Darkslayer": {
+      "lanes": [
+        "DMG",
+        "CAST",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Boltslinger",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Vault"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "RESOURCE"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 10 Passive\nYou may now cast Darkslayer while moving.\n\nRanged attacks and abilities now have a 25% chance to shoot an additional shot, dealing 20% ranged AP Physical damage and generating 5 Rage."
+        },
+        {
+          "talent": "Bounty Hunter",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Darkslayer or Witchbane now applies a stack of Bounty Hunter to you for 8 seconds, which can be consumed by casting Heartseeking Bolt to deal an additional 305 + 45% SP + 30% ranged AP Physical damage, stacking 2 times."
+        },
+        {
+          "talent": "Heavy Crossbows",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": 0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG",
+            "CAST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the damage of Darkslayer by 50%, but increases its cast time by 0.5 sec.\n\nYour Heartseeking Bolt and Darkslayer now have a 25% chance to strike an additional time."
+        },
+        {
+          "talent": "Darkhunter",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Quickdraw now additionally causes your next Darkslayer within 15 seconds to be instant cast."
+        },
+        {
+          "talent": "Silver Bullets",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Darkslayer by 20%, increased by an additional 20% against Undead."
+        }
+      ]
+    },
+    "Dawn": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HASTE",
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Cycle of Despair",
+          "tree": "Inquisition",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "HASTE",
+            "SPEED"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Increases the amount of stacks of Dawn and Dusk by 10.\n\nIn addition, reaching 20 stacks with both buffs will consume them to grant you 20% increased damage, melee haste, movement speed, and critical strike chance for 6 seconds."
+        }
+      ]
+    },
+    "Dawn Blade": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "HEAL",
+        "RESOURCE",
+        "COST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Bulwark of Darkness",
+          "tree": "Black Knight",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Dawn Blade is now increased by 5% for each stack of Pommel Smash on the target."
+        },
+        {
+          "talent": "Destroyer of Evil",
+          "tree": "Black Knight",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Dawn Blade now deals an additional 20% of the damage dealt as Twilight Damage every 1 sec for 3 seconds.Shadow BrandMarks the target for 12 seconds, dealing 36 High Threat Shadow Damage over 12 seconds."
+        },
+        {
+          "talent": "Foresight",
+          "tree": "Black Knight",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Your direct Physical critical strikes now grant allies Replenishment.\n\nIn addition, Dawn Blade is now guaranteed to critically strike against Undead or Demons.ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+        },
+        {
+          "talent": "Undying",
+          "tree": "Black Knight",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While below 75% maximum health, Dawn Blade now increases the critical strike chance of Noctis Blade by 40% for 10 seconds."
+        },
+        {
+          "talent": "Dawn Knight",
+          "tree": "Black Knight",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 50 Passive\nAvoiding damage or dealing damage with auto attacks now has a 40% chance to grant you Dawn Knight.Dawn KnightYour next Dawn Blade within 15 seconds is free of cost and deals 25% increased damage."
+        },
+        {
+          "talent": "Blade of the Misbegotten",
+          "tree": "Black Knight",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Dawn Blade now increases your health by 15% of the damage dealt for 8 seconds, stacking 3 times."
+        },
+        {
+          "talent": "Three Sevens",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 7.0,
+              "unit": "sec"
+            },
+            {
+              "value": -7.0,
+              "unit": "sec"
+            },
+            {
+              "value": -7.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "COST",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration that Traps last on the ground by 7 sec, reduces the cooldown of Burrow Bolt by -7 sec, and reduces the cost of Dawn Blade by -7."
+        },
+        {
+          "talent": "Flames of Sin",
+          "tree": "Inquisition",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Burrow Bolt"
+          ],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nUsing Dawn Blade now grants you Flames of Sin for 3 sec, causing your auto attacks to deal an additional 30% of the damage dealt as Fire damage.\n\nGranting yourself Flames of Sin in this way while it's already active will increase the current duration by 3 sec."
+        },
+        {
+          "talent": "Interrogator",
+          "tree": "Inquisition",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Level 20 Passive\nDamage dealt by Dawn Blade now deals an additional 100% of the damage dealt over 10 seconds as Fire damage."
+        },
+        {
+          "talent": "Protector of Darkshire",
+          "tree": "Inquisition",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Dawn Blade and Dusk Blade by 15%."
+        },
+        {
+          "talent": "Dusk",
+          "tree": "Inquisition",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Dealing Physical damage now increases the damage dealt by Stake and Dawn Blade by 2% for 5 seconds, stacking 10 times."
+        }
+      ]
+    },
+    "Death Trap": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Place a death trap on the ground lasting 1 minute that will curse the first enemy to approach it, marking them for death, causing them to take 3100 + 100% AP Shadow damage after 1 minute.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Decimate": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Rearmament",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Arm yourself against evil, resetting the cooldown of all Traps and Decimate."
+        }
+      ]
+    },
+    "Desecrate": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Desecrate up to 8 enemies in front of you, dealing Weapon Damage plus 18 as Shadow damage, piercing resistances.\n\nOnly usable after avoiding an attack.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 7,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Knight's Seal",
+          "tree": "Black Knight",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 9.5,
+          "lanes": [
+            "DMG",
+            "HEAL",
+            "MITIGATION",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Curse an enemy, dealing 66 + 19.2% shadow SP + 14.6% AP Shadow damage every 2 sec and applying Dark Oath to you, reducing all damage taken by -5% for 8 seconds.\n\nYour next Desecrate within 8 seconds now restores 15% of your maximum health and mana."
+        },
+        {
+          "talent": "Dark Juggernaut",
+          "tree": "Black Knight",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Desecrate now restores 10 + 20% shadow SP + 10% AP health plus an additional 1% maximum health for each target struck affected by Shadow Brand."
+        },
+        {
+          "talent": "Wicked Intent",
+          "tree": "Black Knight",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Desecrate now has a 15% chance to reset the cooldown of Noctis Blade."
+        }
+      ]
+    },
+    "Dusk": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "HASTE",
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Cycle of Despair",
+          "tree": "Inquisition",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "HASTE",
+            "SPEED"
+          ],
+          "flags": [
+            "PROC",
+            "STACK"
+          ],
+          "description": "Increases the amount of stacks of Dawn and Dusk by 10.\n\nIn addition, reaching 20 stacks with both buffs will consume them to grant you 20% increased damage, melee haste, movement speed, and critical strike chance for 6 seconds."
+        }
+      ]
+    },
+    "Dusk Blade": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Strike an enemy with both weapons, dealing Weapon Damage plus 10 + 15% shadow SP Shadow damage, piercing resistances. Heals for 25% of damage dealt.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 4,
+        "y": 1
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Protector of Darkshire",
+          "tree": "Inquisition",
+          "position": {
+            "x": 4,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Dawn Blade and Dusk Blade by 15%."
+        },
+        {
+          "talent": "Dawn",
+          "tree": "Inquisition",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Dealing Fire damage now increases the damage dealt by Torchlight and Dusk Blade by 2% for 5 seconds, stacking 10 times."
+        },
+        {
+          "talent": "Lightbringer",
+          "tree": "Inquisition",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 0.0,
+          "lanes": [
+            "DMG",
+            "COST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Dusk Blade now has a 15% chance to reduce the mana cost of your next Purifier's Edge by -100%. This effect has a 25% chance to not be consumed by Purifier's Edge."
+        }
+      ]
+    },
+    "Dusk Knight": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 20 Passive\nIncreases your parry rating by 40% of your Agility and your dodge rating by 25% of your Intellect.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 10,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Edicts": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Follow The Edict",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Edicts by 20%."
+        }
+      ]
+    },
+    "Enchanted Bolts": {
+      "lanes": [
+        "DMG",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Magic damage dealt by 5% and your Armor penetration by 10%.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 6,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Evil Never Sleeps": {
+      "lanes": [
+        "STATS",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "In the night time, your Agility is increased by 4%.\n\nIn the day time, your haste is increased by 3%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Fiery Judgement": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Cinder and Ashes",
+          "tree": "Inquisition",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell power scaling of Purifier's Edge and Fiery Judgement by 25%."
+        },
+        {
+          "talent": "Heartstopper",
+          "tree": "Inquisition",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 40 Passive\nCasting Purifier's Edge or Fiery Judgement now has a 30% chance to allow the use of Stake within 8 seconds regardless of the target's health percentage."
+        }
+      ]
+    },
+    "Flames of Sin": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "RESOURCE",
+        "DURATION",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Purifier's Edge",
+          "tree": "Inquisition",
+          "position": {
+            "x": 1,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Strike an enemy with searing blades, dealing Weapon Damage plus 20 with both weapons as Fire damage.\n\nGrants Flames of Sin or increases the duration by 3 sec."
+        },
+        {
+          "talent": "Fiery Judgement",
+          "tree": "Inquisition",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Judge an enemy, dealing 361 + 40% AP + 100% fire SP Fire damage to them and nearby enemies.\n\nGrants Flames of Sin or increases the duration by 3 sec."
+        },
+        {
+          "talent": "Darkslayer's Lantern",
+          "tree": "Inquisition",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Empower a lantern with your Flames of Sin and let it shine, dealing 291 + 15% AP Fire damage and stunning all enemies within 5 yds for 5 seconds."
+        },
+        {
+          "talent": "Flames of the Sinned",
+          "tree": "Inquisition",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Smite Evil now has a 25% chance to strike again.\n\nWhile you have Flames of Sin active, the chance to trigger this effect is increased by 10%."
+        },
+        {
+          "talent": "Flourish",
+          "tree": "Inquisition",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Perform an advanced flourish, dealing 207 + 100% AP Fire damage to nearby enemies, repeating every 4 sec, and causing your Flames of Sin to cleave up to 3 additional enemies for 20 seconds.\n\nGrants you Flames of Sin and increases the duration by 10 sec."
+        },
+        {
+          "talent": "Torchlight",
+          "tree": "Inquisition",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Throw a torch at an enemy, dealing 166 + 30% AP + 45% fire SP Fire damage, and causing up to 5 of the next attacks you make against them to grant you Flames of Sin and increasing the duration by 2 sec."
+        },
+        {
+          "talent": "Stake",
+          "tree": "Inquisition",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Drive your concealed stake into the chest of an injured enemy, dealing 197 + 67.5% AP Physical damage.\n\nGrants Flames of Sin and increases the duration by 3 sec.\n\nOnly usable on enemies at or below 35% health."
+        },
+        {
+          "talent": "Sin Eater",
+          "tree": "Inquisition",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the amount of next attacks that grant Flames of Sin through Torchlight by 5."
+        },
+        {
+          "talent": "Torch the Wicked!",
+          "tree": "Inquisition",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Dealing damage with Flames of Sin now grants 2% attack speed, stacking up to 12 times for 6 seconds. Application of this effect does not refresh the duration.\n\nAdditionally, Pyro Tonic now also resets the cooldown of Torchlight."
+        }
+      ]
+    },
+    "Flexible Fighter": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Agility by 6%.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 2,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Gaze of the Black Knight": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Apply a dark shield to yourself, absorbing 3255 + 700% Stamina + 41% AP damage and then gaze upon your party members, causing 25% of the damage they take to be transferred to you for 12 seconds.\n\nDamage which reduces your health below 20% will break the effect.\n\nUsable while stunned.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Grasp of the Undying": {
+      "lanes": [
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 10 Passive\nAuto attacks while wielding a two-handed weapon now have a 25% chance to unleash Grasp of the Undying, leeching 20 + 15% SP + 10% AP health from the target.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 10,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Wide Swings",
+          "tree": "Black Knight",
+          "position": {
+            "x": 5,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Noctis Blade and Grasp of the Undying by 20% on enemies affected by Shadow Brand."
+        },
+        {
+          "talent": "Shadowy Tendrils",
+          "tree": "Black Knight",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Grasp of the Undying now strikes 2 additional nearby enemies."
+        }
+      ]
+    },
+    "Guard Strike": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Bash an enemy with your weapon's hilt, interrupting them and preventing any spell from that school of magic from being cast for 3 seconds.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 2,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Hail of Gunfire": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your ranged haste by 10%.",
+      "baseTree": "Houndmaster",
+      "basePosition": {
+        "x": 2,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Heartless": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Physical ranged critical damage by 30%.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Heartseeking Bolt": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Charge up a powerful bolt that deals 200% Ranged Weapon Damage plus 40 + 50% ranged AP + 30% shadow SP to an enemy and reduces their healing received by -30% for 10 seconds.\n\nGenerates Rage based on the damage dealt.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 4,
+        "y": 2
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Kingdom Hearts",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 20 Passive\nYour Heartseeking Bolt is now guaranteed to critically strike on enemies below 20% health and it now restores 10% of your maximum mana."
+        },
+        {
+          "talent": "One Shot",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 3,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Heartseeking Bolt by 20%."
+        },
+        {
+          "talent": "Bane of Witches",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 5,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Heartseeking Bolt now increases your Physical damage dealt by 10% for 8 seconds."
+        },
+        {
+          "talent": "Silver Bolts",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Heartseeking Bolt and Damnation is increased by 15%, doubled against Undead or Demons or enemies affected by Shadow Trap."
+        },
+        {
+          "talent": "Bolt and Dash",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "Your next Heartseeking Bolt within 10 seconds deals 25% more damage and incurs no cooldown.\n\nWhen this buff is consumed you gain 50% increased movement speed for 3 seconds."
+        },
+        {
+          "talent": "Bounty Hunter",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Darkslayer or Witchbane now applies a stack of Bounty Hunter to you for 8 seconds, which can be consumed by casting Heartseeking Bolt to deal an additional 305 + 45% SP + 30% ranged AP Physical damage, stacking 2 times."
+        },
+        {
+          "talent": "Dead and Gone",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Bolt and Dash now affects an additional use of a Heartseeking Bolt.\n\nYour Pavise now lasts 2 additional sec and has a -30 sec reduced cooldown."
+        },
+        {
+          "talent": "Heavy Crossbows",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 6,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": 0.5,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG",
+            "CAST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the damage of Darkslayer by 50%, but increases its cast time by 0.5 sec.\n\nYour Heartseeking Bolt and Darkslayer now have a 25% chance to strike an additional time."
+        }
+      ]
+    },
+    "Holy Frenzy": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your melee haste by 15%.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Houndmaster's Call": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Expulsion of Evil",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 5,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Direct ranged attacks and abilities now have a 5% chance to reset the cooldown of Houndmaster's Call."
+        },
+        {
+          "talent": "Houndmaster",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Using Houndmaster's Call summons 1 Lesser Shadow Hound for 15 seconds that leaps at the target and deals 217 Shadow damage."
+        }
+      ]
+    },
+    "Houndmaster's Whistle": {
+      "lanes": [
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Houndmaster",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Shadow Trap"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour ranged auto attacks now generate Rage.\n\nIn addition, teaches you Houndmaster's Whistle.Houndmaster's WhistleSummons a permanent Shadowhound companion to aid you in combat.\n\nYour Shadowhound receives 25% of healing done to you."
+        }
+      ]
+    },
+    "Hunt": {
+      "lanes": [
+        "SPEED",
+        "RESOURCE",
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "2 Charges, 25 sec recharge\nCharge an enemy, slowing their movement speed by -70% for 2 seconds and generating 20 Rage.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "The Hunt Continues",
+          "tree": "Inquisition",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.5,
+          "lanes": [
+            "RESOURCE",
+            "COST"
+          ],
+          "flags": [],
+          "description": "Hunt now generates an additional 15 Rage and the mana cost is reduced by -15%."
+        },
+        {
+          "talent": "Evil Never Sleeps",
+          "tree": "Inquisition",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SPEED",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Hunt now slows movement speed by an additional 2 sec."
+        }
+      ]
+    },
+    "Inquisitor's Trap": {
+      "lanes": [
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Place a cruel trap on the ground lasting 1 minute that will curse the first enemy to approach it silencing them and all enemies in a 5 yd radius for 6 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Lesser Shadow Hound": {
+      "lanes": [
+        "DMG",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Unleash the Hounds",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 4,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Summon 1 Lesser Shadow Hound to aid you in combat for 20 seconds."
+        },
+        {
+          "talent": "Kennel Master",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Unleash The Hounds now has a 50% chance to summon an additional Lesser Shadow Hound for 15 seconds."
+        },
+        {
+          "talent": "Houndmaster",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Using Houndmaster's Call summons 1 Lesser Shadow Hound for 15 seconds that leaps at the target and deals 217 Shadow damage."
+        }
+      ]
+    },
+    "Malice": {
+      "lanes": [
+        "DMG",
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Level 30 Passive\nIncreases your Fire spell damage by 50% of your Agility and your attack power by 100% of your Intellect.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 10,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "March of the Black King": {
+      "lanes": [
+        "DMG",
+        "RESOURCE",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Expel darkness from within you, dealing 55 Shadow damage to nearby enemies over 10 seconds.\n\nGenerates 5 Rage every 2 sec.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 1,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "No Regrets",
+          "tree": "Black Knight",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Your March of the Black King now increases your Armor by 15%."
+        }
+      ]
+    },
+    "Mechanized Crossbows": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your ranged attack power by 10% and the range of your ranged abilities by 5 yds.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 2,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Monster Hunting": {
+      "lanes": [
+        "DMG",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases melee and ranged haste of party and raid members within 100 yds by 10%. Does not stack with similar effects.\n\nIn addition, increases your damage dealt against Undead and Demons by 10%.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 7,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Night Stalker": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your critical strike chance by 6%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 3,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Noctis Blade": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Strike an enemy, dealing 100% Weapon Damage plus 26, scaling with your parry rating, and healing you for 150% of the damage dealt.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Wide Swings",
+          "tree": "Black Knight",
+          "position": {
+            "x": 5,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Noctis Blade and Grasp of the Undying by 20% on enemies affected by Shadow Brand."
+        },
+        {
+          "talent": "Noctis Protection",
+          "tree": "Black Knight",
+          "position": {
+            "x": 3,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "STATS",
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Casting Noctis Blade now applies a shield absorbing 166 + 200% Stamina + 10% AP damage for 4 seconds."
+        },
+        {
+          "talent": "Wicked Intent",
+          "tree": "Black Knight",
+          "position": {
+            "x": 8,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Desecrate now has a 15% chance to reset the cooldown of Noctis Blade."
+        },
+        {
+          "talent": "Clinch Fighting",
+          "tree": "Black Knight",
+          "position": {
+            "x": 4,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Attacks which would otherwise kill you now heal you for 50% maximum health and increases the damage of Noctis Blade by 50% for 6 seconds.\n\nCan only occur once every 2 min."
+        },
+        {
+          "talent": "Undying",
+          "tree": "Black Knight",
+          "position": {
+            "x": 8,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "While below 75% maximum health, Dawn Blade now increases the critical strike chance of Noctis Blade by 40% for 10 seconds."
+        },
+        {
+          "talent": "Night King",
+          "tree": "Black Knight",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Noctis Blade now consumes Shadow Brand to deal 50% increased damage."
+        }
+      ]
+    },
+    "Pavise": {
+      "lanes": [
+        "CDR",
+        "SHIELD"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Pavise Crossbowman",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SHIELD"
+          ],
+          "flags": [],
+          "description": "Teaches you how to use Shields and teaches you Pavise.PaviseSlam your shield into the ground, forming a pavise for 10 sec.\n\nWhile you remain near it, hostile spells targeting you are deflected."
+        },
+        {
+          "talent": "Dead and Gone",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Bolt and Dash now affects an additional use of a Heartseeking Bolt.\n\nYour Pavise now lasts 2 additional sec and has a -30 sec reduced cooldown."
+        }
+      ]
+    },
+    "Plagueland Survivalist": {
+      "lanes": [
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Reduces the duration of disease effects on you by -30%.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 1
+      },
+      "modifyingTalents": []
+    },
+    "Pommel Smash": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Bulwark of Darkness",
+          "tree": "Black Knight",
+          "position": {
+            "x": 1,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Damage dealt by Dawn Blade is now increased by 5% for each stack of Pommel Smash on the target."
+        },
+        {
+          "talent": "Guardbreaker",
+          "tree": "Black Knight",
+          "position": {
+            "x": 0,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Pommel Smash now strikes an additional nearby enemy."
+        },
+        {
+          "talent": "Shadowstorm",
+          "tree": "Black Knight",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HEAL"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Pommel Smash now has a 20% chance to trigger a Shadowstorm.ShadowstormLeeches 350 + 30% SP + 10% AP health from enemies within 8 yds."
+        }
+      ]
+    },
+    "Purifier's Edge": {
+      "lanes": [
+        "DMG",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Searing Hilt",
+          "tree": "Inquisition",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Purifier's Edge now grants you Searing Hilt for 10 seconds.Searing HiltIncreases your melee attack speed by 10% for 10 seconds."
+        },
+        {
+          "talent": "Cinder and Ashes",
+          "tree": "Inquisition",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the spell power scaling of Purifier's Edge and Fiery Judgement by 25%."
+        },
+        {
+          "talent": "Heartstopper",
+          "tree": "Inquisition",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 40 Passive\nCasting Purifier's Edge or Fiery Judgement now has a 30% chance to allow the use of Stake within 8 seconds regardless of the target's health percentage."
+        },
+        {
+          "talent": "Lightbringer",
+          "tree": "Inquisition",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 0.0,
+          "lanes": [
+            "DMG",
+            "COST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Damage dealt by Dusk Blade now has a 15% chance to reduce the mana cost of your next Purifier's Edge by -100%. This effect has a 25% chance to not be consumed by Purifier's Edge."
+        }
+      ]
+    },
+    "Purity": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Purity & Wickedness",
+          "tree": "Inquisition",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            },
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Main-hand auto attacks now apply a stack of Purity to the target, increasing the Fire and Holy damage you deal to them by 2% per stack, stacking 6 times.\n\nOff-hand auto attacks now apply a stack of Wickedness to the target, increasing the Shadow and Physical damage you deal to them by 2% per stack, stacking 6 times.\n\nTorchlight can now consume these stacks to deal 1028 + 25% holy SP + 45% AP Holyflame or Shadowstrike damage to the target."
+        }
+      ]
+    },
+    "Pyro Tonic": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Drink a fiery tonic, increasing your Fire damage dealt by 20% and your critical damage by 10% for 15 seconds.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 4,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Torch the Wicked!",
+          "tree": "Inquisition",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Dealing damage with Flames of Sin now grants 2% attack speed, stacking up to 12 times for 6 seconds. Application of this effect does not refresh the duration.\n\nAdditionally, Pyro Tonic now also resets the cooldown of Torchlight."
+        }
+      ]
+    },
+    "Quickdraw": {
+      "lanes": [
+        "DMG",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Unleash a quick shot, dealing 175% Ranged Weapon Damage plus 16 + 20% ranged AP Physical damage and generates Rage.\n\nOnly usable after critically striking with an ability.",
+      "baseTree": "Houndmaster",
+      "basePosition": {
+        "x": 1,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Pure Agony",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the critical damage of Quickdraw by 50%."
+        },
+        {
+          "talent": "Reload",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -4.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Quickdraw by -4 sec."
+        },
+        {
+          "talent": "Darkhunter",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 0,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Your Quickdraw now additionally causes your next Darkslayer within 15 seconds to be instant cast."
+        }
+      ]
+    },
+    "Rapid Reload": {
+      "lanes": [
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your ranged haste by 25%.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 4,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Refined Combatant": {
+      "lanes": [
+        "STATS"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your expertise by 10.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 6,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Replenishment": {
+      "lanes": [
+        "CRIT",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Foresight",
+          "tree": "Black Knight",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Your direct Physical critical strikes now grant allies Replenishment.\n\nIn addition, Dawn Blade is now guaranteed to critically strike against Undead or Demons.ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+        }
+      ]
+    },
+    "Repulse": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Emit a burst of shadow from your musket that strikes enemies in front of you, dealing 57 Shadow damage and knocking all affected targets back.",
+      "baseTree": "Houndmaster",
+      "basePosition": {
+        "x": 1,
+        "y": 6
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Bringer of Darkness",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Repulse now resets the cooldown of Vault and makes your next Vault within 6 seconds free of cost."
+        }
+      ]
+    },
+    "Resilient to Darkness": {
+      "lanes": [
+        "DMG",
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Direct Magic damage taken now heals you and restores mana to you equal to 3% of the damage done.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 1,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Secret Society": {
+      "lanes": [
+        "DMG",
+        "STATS",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Shadow critical strike chance and Shadow damage dealt by 8% and your expertise by 10.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 5,
+        "y": 5
+      },
+      "modifyingTalents": []
+    },
+    "Secret of Raven Hill": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$4c",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 2,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Sermon of Flame": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases your Fire damage dealt by 10%.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 2,
+        "y": 2
+      },
+      "modifyingTalents": []
+    },
+    "Shadow Brand": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Direct ability damage now applies Shadow Brand to enemies.Shadow BrandMarks the target for 12 seconds, dealing 36 High Threat Shadow Damage over 12 seconds.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 4,
+        "y": 1
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Shadow Order",
+          "tree": "Black Knight",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            },
+            {
+              "value": 6.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.84,
+          "lanes": [
+            "DMG",
+            "STATS"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Shadow Brand by 40% and your hit rating by 6% of your Agility."
+        },
+        {
+          "talent": "Wide Swings",
+          "tree": "Black Knight",
+          "position": {
+            "x": 5,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Noctis Blade and Grasp of the Undying by 20% on enemies affected by Shadow Brand."
+        },
+        {
+          "talent": "Dark Juggernaut",
+          "tree": "Black Knight",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL"
+          ],
+          "flags": [],
+          "description": "Desecrate now restores 10 + 20% shadow SP + 10% AP health plus an additional 1% maximum health for each target struck affected by Shadow Brand."
+        },
+        {
+          "talent": "Night King",
+          "tree": "Black Knight",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Noctis Blade now consumes Shadow Brand to deal 50% increased damage."
+        }
+      ]
+    },
+    "Shadow Hound": {
+      "lanes": [
+        "DMG",
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Shadow Rage",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Shadowblast now grants Shadow Rage to your Shadow Hound.Shadow RageAuto attacks have a 50% chance to deal an additional 57*1+AP*0.07t Shadow Damage. Lasts 15 seconds."
+        },
+        {
+          "talent": "Houndfeeder",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of you and your Shadow Hound by 4%."
+        }
+      ]
+    },
+    "Shadow Hound's": {
+      "lanes": [
+        "CRIT",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Scent of Magic",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Houndmaster"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Critical strikes now apply Scent of Magic for 15 seconds, causing your Shadow Hound's next Shadow Leap to incur a -10 sec reduced cooldown."
+        }
+      ]
+    },
+    "Shadow Hounds": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "CDR",
+        "HASTE",
+        "RESOURCE",
+        "AOE",
+        "ARMOR",
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Houndmaster's Call",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 4,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Command your Shadow Hounds to leap upon an enemy target, dealing two strikes for 1164 + 30% ranged AP Shadow damage."
+        },
+        {
+          "talent": "Dark Ranger",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 7,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the Shadow damage dealt by your Shadow Hounds by 10%."
+        },
+        {
+          "talent": "Decimate",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 4,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "HASTE",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Empowers your Shadow Hounds for 20 seconds, granting them 30% increased damage and haste and allowing them to ignore Armor."
+        },
+        {
+          "talent": "Defender of Darkshire",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 6,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT",
+            "HASTE"
+          ],
+          "flags": [],
+          "description": "Critical strikes with ranged auto attacks now increase the melee haste of your Shadow Hounds by 10% for 5 seconds."
+        },
+        {
+          "talent": "Daredevil",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nWhen you take damage that would reduce your health to 35% or less, you summon 3 lesser Shadow Hounds and reset the cooldown of Vault.\n\nCan only occur once every 2 min."
+        },
+        {
+          "talent": "Rampaging Hounds",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Your Shadow Hounds melee attacks now cleave 1 additional nearby enemy."
+        },
+        {
+          "talent": "Deal With The Devil",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            },
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 18.75,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your and your Shadow Hounds critical damage dealt with Shadow damage is increased by 50%, but the cost of your spells and abilities is increased by 25%."
+        },
+        {
+          "talent": "Lethal Pursuit",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HASTE",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Shadow Rage now also grants your Shadow Hounds 10% increased haste and it now stacks 3 additional times."
+        }
+      ]
+    },
+    "Shadow Leap": {
+      "lanes": [
+        "CRIT",
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Scent of Magic",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Houndmaster"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Critical strikes now apply Scent of Magic for 15 seconds, causing your Shadow Hound's next Shadow Leap to incur a -10 sec reduced cooldown."
+        }
+      ]
+    },
+    "Shadow Rage": {
+      "lanes": [
+        "DMG",
+        "HASTE",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Loksey's Journal",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Shadow Rage by 20% of your ranged attack power."
+        },
+        {
+          "talent": "Coordinated Killing",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Unleash the Hounds now casts Shadow Rage on you for 10 seconds.Shadow RageRanged auto attacks deal an additional 50 Shadow Damage."
+        },
+        {
+          "talent": "Lethal Pursuit",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 4,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HASTE",
+            "RESOURCE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Shadow Rage now also grants your Shadow Hounds 10% increased haste and it now stacks 3 additional times."
+        }
+      ]
+    },
+    "Shadow Trap": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Place a dark trap on the ground lasting 30 seconds that will curse the first enemy to approach it and up to 5 enemies within 3 yds, stunning them for 4 seconds and dealing 461 + 136% AP Shadow damage over 8 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Silver Bolts",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 15.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Heartseeking Bolt and Damnation is increased by 15%, doubled against Undead or Demons or enemies affected by Shadow Trap."
+        }
+      ]
+    },
+    "Shadowblast": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "RESOURCE",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "My Trusty Arbalest",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            },
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.32,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Reduces the Rage cost of Witchbane and Shadowblast by -20% and increases your chance to hit by 4%."
+        },
+        {
+          "talent": "Bringing the Law",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the critical strike chance of Shadowblast by 10%."
+        },
+        {
+          "talent": "Crossbow Expert",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Shadowblast by 20% and Witchbane by 10%."
+        },
+        {
+          "talent": "Expert Shot",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 2,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.48,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the damage of Shadowblast by 20% and your hit chance by 4%."
+        },
+        {
+          "talent": "Shadow Rage",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 6,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Shadowblast now grants Shadow Rage to your Shadow Hound.Shadow RageAuto attacks have a 50% chance to deal an additional 57*1+AP*0.07t Shadow Damage. Lasts 15 seconds."
+        },
+        {
+          "talent": "Sharpshooter ",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 10,
+            "y": 2
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 20,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 20 Passive\nCasting Shadowblast now regenerates 5% of your maximum mana."
+        },
+        {
+          "talent": "Darkrider",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Rage cost of Shadowblast, Vault, and Unleash the Hounds by -10."
+        }
+      ]
+    },
+    "Shadowhound": {
+      "lanes": [
+        "HEAL",
+        "RESOURCE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Houndmaster",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 10,
+            "y": 0
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [
+            "Shadow Trap"
+          ],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Level 10 Passive\nYour ranged auto attacks now generate Rage.\n\nIn addition, teaches you Houndmaster's Whistle.Houndmaster's WhistleSummons a permanent Shadowhound companion to aid you in combat.\n\nYour Shadowhound receives 25% of healing done to you."
+        }
+      ]
+    },
+    "Sixfold Shot": {
+      "lanes": [
+        "MISC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "$4a",
+      "baseTree": "Houndmaster",
+      "basePosition": {
+        "x": 10,
+        "y": 8
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Low Dawn",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.5,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Sixfold Shot by 25% and causes it to channel 0.5 sec quicker."
+        }
+      ]
+    },
+    "Slayer": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 3%.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 5,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Slayer of Darkness": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Increases damage dealt by 5% when fighting Demons or Undead. \n\nAdditionally, direct damage dealt with spells or abilities now has a 10% chance to deal 151 Holy damage.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Slayer's Mark": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Mark an enemy, increasing the attack power of all attackers against that target by 150 and your critical strike chance against them by 3%, increasing by 3% every 1 sec for 8 seconds.\n\nFor the duration, the enemy is unable to stealth.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 9
+      },
+      "modifyingTalents": []
+    },
+    "Smite Evil": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Strike an enemy with your blade, dealing Weapon Damage plus 25 as Holy damage to them and 5 nearby enemies.",
+      "baseTree": "Inquisition",
+      "basePosition": {
+        "x": 7,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Flames of the Sinned",
+          "tree": "Inquisition",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 11.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Your Smite Evil now has a 25% chance to strike again.\n\nWhile you have Flames of Sin active, the chance to trigger this effect is increased by 10%."
+        }
+      ]
+    },
+    "Smoke": {
+      "lanes": [
+        "DMG",
+        "SPEED",
+        "CC"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Smoke Grenade",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -60.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 4.0,
+          "lanes": [
+            "DMG",
+            "SPEED",
+            "CC"
+          ],
+          "flags": [],
+          "description": "Throw down a smoke grenade, enemies are unable to target into or out of the Smoke for 8 seconds. \n\nAny damage caused will remove the effect.\n\nAll allies in the Smoke area gain 40% increased movement speed and all enemies have their movement speed slowed by -60%."
+        }
+      ]
+    },
+    "Smoke Grenade": {
+      "lanes": [
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Trickster",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            },
+            {
+              "value": 1.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Smoke Grenade by -30 sec and increases its duration by 1 sec."
+        }
+      ]
+    },
+    "Stake": {
+      "lanes": [
+        "DMG",
+        "CRIT",
+        "ARMOR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Heartstopper",
+          "tree": "Inquisition",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Level 40 Passive\nCasting Purifier's Edge or Fiery Judgement now has a 30% chance to allow the use of Stake within 8 seconds regardless of the target's health percentage."
+        },
+        {
+          "talent": "Dusk",
+          "tree": "Inquisition",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Dealing Physical damage now increases the damage dealt by Stake and Dawn Blade by 2% for 5 seconds, stacking 10 times."
+        },
+        {
+          "talent": "Evil Doers, Beware!",
+          "tree": "Inquisition",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nStake is now guaranteed to critically strike enemies above 75% health."
+        },
+        {
+          "talent": "Hatred & Vitriol",
+          "tree": "Inquisition",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CRIT",
+            "ARMOR"
+          ],
+          "flags": [],
+          "description": "Damage dealt by Stake now ignores enemy armor and its critical strikes refund half of its cost."
+        }
+      ]
+    },
+    "Stoicism": {
+      "lanes": [
+        "CDR",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Dark Barrier",
+          "tree": "Black Knight",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Stoicism by 5 sec."
+        },
+        {
+          "talent": "Calm Under Pressure",
+          "tree": "Black Knight",
+          "position": {
+            "x": 7,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -30.0,
+              "unit": "sec"
+            },
+            {
+              "value": -5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Stoicism by -30 sec and Burrow Bolt by -5 sec."
+        }
+      ]
+    },
+    "Tonic": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Tonic Supply",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Using a Tonic now reduces the cooldown of all other Tonics by -10 sec."
+        }
+      ]
+    },
+    "Tonics": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HASTE",
+        "HEAL",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Witch Knight",
+          "tree": "Black Knight",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.1,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Direct ability damage with a two-handed weapon now reduces the remaining cooldown of your Tonics by -1 sec and grants Witching.\nWitchingIncreases magic resistances by 10%, and melee haste by 10% for 8 seconds, stacking 3 times."
+        },
+        {
+          "talent": "Regenerative Elixirs",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Drinking Tonics now also restores 30 Rage."
+        },
+        {
+          "talent": "Just A Sip",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "HEAL",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Drinking Tonics now also restores 5% of your maximum health and mana."
+        },
+        {
+          "talent": "Alchemical Research",
+          "tree": "Class",
+          "position": {
+            "x": 5,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the effectiveness of your Tonics by 50%."
+        },
+        {
+          "talent": "Dark Souls",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of Tonics by 5 sec."
+        },
+        {
+          "talent": "Tonic Supply",
+          "tree": "Class",
+          "position": {
+            "x": 7,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Using a Tonic now reduces the cooldown of all other Tonics by -10 sec."
+        }
+      ]
+    },
+    "Torchlight": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "RESOURCE",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Sinner",
+          "tree": "Inquisition",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 100.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 20.0,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Torchlight by 100%."
+        },
+        {
+          "talent": "Sin Eater",
+          "tree": "Inquisition",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the amount of next attacks that grant Flames of Sin through Torchlight by 5."
+        },
+        {
+          "talent": "Dawn",
+          "tree": "Inquisition",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Dealing Fire damage now increases the damage dealt by Torchlight and Dusk Blade by 2% for 5 seconds, stacking 10 times."
+        },
+        {
+          "talent": "Torch the Wicked!",
+          "tree": "Inquisition",
+          "position": {
+            "x": 4,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "RESOURCE",
+            "DURATION"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Dealing damage with Flames of Sin now grants 2% attack speed, stacking up to 12 times for 6 seconds. Application of this effect does not refresh the duration.\n\nAdditionally, Pyro Tonic now also resets the cooldown of Torchlight."
+        },
+        {
+          "talent": "Purity & Wickedness",
+          "tree": "Inquisition",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            },
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Main-hand auto attacks now apply a stack of Purity to the target, increasing the Fire and Holy damage you deal to them by 2% per stack, stacking 6 times.\n\nOff-hand auto attacks now apply a stack of Wickedness to the target, increasing the Shadow and Physical damage you deal to them by 2% per stack, stacking 6 times.\n\nTorchlight can now consume these stacks to deal 1028 + 25% holy SP + 45% AP Holyflame or Shadowstrike damage to the target."
+        }
+      ]
+    },
+    "Tormentor": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Fire a deadly bolt dealing cond(gt(SPS, SPH), 5+0+SPS*0.175, 5+0+SPH*0.175) Twilight Damage plus 63 + 87.5% ranged AP over 14 seconds.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 7,
+        "y": 3
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Resourceful Pursuit",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 0,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Rage cost of Tormentor and Damnation by -20%."
+        },
+        {
+          "talent": "Strafing Shot",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 8,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Critical strikes with ranged abilities now spread Tormentor to a nearby enemy."
+        },
+        {
+          "talent": "Tormenting the Tormented",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 10,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 50,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT"
+          ],
+          "flags": [],
+          "description": "Level 50 Passive\nYour Tormentor can now critically strike."
+        }
+      ]
+    },
+    "Trap": {
+      "lanes": [
+        "CDR"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Trapper",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 3,
+            "y": 3
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -25.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 7.5,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of your Trap spells by -25%."
+        }
+      ]
+    },
+    "Traps": {
+      "lanes": [
+        "CDR",
+        "COST",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Trap Card",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 15.0,
+          "lanes": [
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration of your Traps by 50%."
+        },
+        {
+          "talent": "Three Sevens",
+          "tree": "Class",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 7.0,
+              "unit": "sec"
+            },
+            {
+              "value": -7.0,
+              "unit": "sec"
+            },
+            {
+              "value": -7.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "COST",
+            "DURATION"
+          ],
+          "flags": [],
+          "description": "Increases the duration that Traps last on the ground by 7 sec, reduces the cooldown of Burrow Bolt by -7 sec, and reduces the cost of Dawn Blade by -7."
+        },
+        {
+          "talent": "Rearmament",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Arm yourself against evil, resetting the cooldown of all Traps and Decimate."
+        },
+        {
+          "talent": "Scarlet Inquisitor",
+          "tree": "Inquisition",
+          "position": {
+            "x": 2,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -50.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 5.0,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the mana cost of your Traps and Brands by -50%."
+        }
+      ]
+    },
+    "Twilight Frenzy": {
+      "lanes": [
+        "DMG",
+        "AOE"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Spin around, unable to stop moving for 5 seconds, firing shots at nearby enemies for 50% Ranged Weapon Damage plus cond(gt(SPS, SPH), 15+31+SPS*0.2+ranged AP*0.1, 15+31+SPH*0.2+ranged AP*0.1) as Twilight Damage.\n\nCan dodge and parry while active.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 7,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Crossbow Frenzy",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 40.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 14.0,
+          "lanes": [
+            "SPEED"
+          ],
+          "flags": [],
+          "description": "While Twilight Frenzy is active, your movement speed is now increased by 40%."
+        },
+        {
+          "talent": "Evasive",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MITIGATION"
+          ],
+          "flags": [],
+          "description": "Twilight Frenzy now grants you -20% reduced damage taken while active."
+        },
+        {
+          "talent": "Everything You Have",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 7,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 5.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "DURATION"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Increases the duration of Twilight Frenzy by 5 sec, and gives damage dealt by it a 15% chance to strike again."
+        }
+      ]
+    },
+    "Unleash The Hounds": {
+      "lanes": [
+        "SUMMON"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Kennel Master",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 4,
+            "y": 5
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "SUMMON"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Casting Unleash The Hounds now has a 50% chance to summon an additional Lesser Shadow Hound for 15 seconds."
+        }
+      ]
+    },
+    "Unleash the Hounds": {
+      "lanes": [
+        "DMG",
+        "COST"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Darkrider",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Rage cost of Shadowblast, Vault, and Unleash the Hounds by -10."
+        },
+        {
+          "talent": "Coordinated Killing",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 6,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Casting Unleash the Hounds now casts Shadow Rage on you for 10 seconds.Shadow RageRanged auto attacks deal an additional 50 Shadow Damage."
+        }
+      ]
+    },
+    "Vampire Hunter": {
+      "lanes": [
+        "DMG",
+        "MITIGATION",
+        "DURATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "When an enemy applies a curse to you, your Magic damage taken is reduced by -10% for 8 seconds.\n\nThe damage reduction is increased by 5% and duration is increased by 2 seconds for every curse active.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 4,
+        "y": 6
+      },
+      "modifyingTalents": []
+    },
+    "Vampiric Tonic": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Drink a vampiric tonic, allowing Physical damage dealt to heal you equal to 20% of the damage dealt for 10 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 8
+      },
+      "modifyingTalents": []
+    },
+    "Vault": {
+      "lanes": [
+        "SPEED"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Dash in the direction you are moving. Distance scales with movement speed.\n\nNot usable while rooted.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 2,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Escape Artist",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 0,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR",
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Your Daring Escape now resets the cooldown of Vault and generates 10 Rage."
+        },
+        {
+          "talent": "Night Walker",
+          "tree": "Class",
+          "position": {
+            "x": 1,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 3.0,
+              "unit": "yds"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "Increases the base range of Vault by 3 yds."
+        },
+        {
+          "talent": "Strategist",
+          "tree": "Class",
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "RESOURCE"
+          ],
+          "flags": [],
+          "description": "Your Vault now regenerates 5% maximum mana."
+        },
+        {
+          "talent": "Renegade",
+          "tree": "Class",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "MISC"
+          ],
+          "flags": [],
+          "description": "You now drop caltrops below you each time you use Vault that last 6 seconds."
+        },
+        {
+          "talent": "Darkrider",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 2,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "flat"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [],
+          "description": "Reduces the Rage cost of Shadowblast, Vault, and Unleash the Hounds by -10."
+        },
+        {
+          "talent": "Daredevil",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 10,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 40,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "SUMMON"
+          ],
+          "flags": [],
+          "description": "Level 40 Passive\nWhen you take damage that would reduce your health to 35% or less, you summon 3 lesser Shadow Hounds and reset the cooldown of Vault.\n\nCan only occur once every 2 min."
+        },
+        {
+          "talent": "Bringer of Darkness",
+          "tree": "Houndmaster",
+          "position": {
+            "x": 1,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Your Repulse now resets the cooldown of Vault and makes your next Vault within 6 seconds free of cost."
+        }
+      ]
+    },
+    "Veiled in Darkness": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "A veil of dark magic encircles you at all times, granting 5% increased Attack Power to party and raid members within 100 yds.\n\nDoes not stack with similar effects.",
+      "baseTree": "Houndmaster",
+      "basePosition": {
+        "x": 4,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Vengeful Intent": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Whenever you take direct damage you have a 10% chance to strike back for 75% Weapon Damage.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 5,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Wickedness": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Purity & Wickedness",
+          "tree": "Inquisition",
+          "position": {
+            "x": 1,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 2.0,
+              "unit": "%"
+            },
+            {
+              "value": 2.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 10.4,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Main-hand auto attacks now apply a stack of Purity to the target, increasing the Fire and Holy damage you deal to them by 2% per stack, stacking 6 times.\n\nOff-hand auto attacks now apply a stack of Wickedness to the target, increasing the Shadow and Physical damage you deal to them by 2% per stack, stacking 6 times.\n\nTorchlight can now consume these stacks to deal 1028 + 25% holy SP + 45% AP Holyflame or Shadowstrike damage to the target."
+        }
+      ]
+    },
+    "Witchbane": {
+      "lanes": [
+        "DMG"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Unleash a series of devastating shots dealing 60 + 45% ranged AP Physical damage over 3 seconds.",
+      "baseTree": "Boltslinger",
+      "basePosition": {
+        "x": 4,
+        "y": 0
+      },
+      "modifyingTalents": [
+        {
+          "talent": "My Trusty Arbalest",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 6,
+            "y": 1
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -20.0,
+              "unit": "%"
+            },
+            {
+              "value": 4.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 8.32,
+          "lanes": [
+            "COST"
+          ],
+          "flags": [
+            "PROC"
+          ],
+          "description": "Reduces the Rage cost of Witchbane and Shadowblast by -20% and increases your chance to hit by 4%."
+        },
+        {
+          "talent": "Relentless",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "AOE"
+          ],
+          "flags": [],
+          "description": "Allows Witchbane to hit an additional nearby enemy."
+        },
+        {
+          "talent": "Rapid",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 6,
+            "y": 4
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Your Witchbane now deals its full damage over -1 second shorter period."
+        },
+        {
+          "talent": "Arbalest Mastery",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 3,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Each subsequent shot of a Witchbane cast deals 15% more damage, up to a maximum of 150%."
+        },
+        {
+          "talent": "Crossbow Expert",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 7,
+            "y": 7
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 2,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": 20.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 13.2,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [],
+          "description": "Increases the damage of Shadowblast by 20% and Witchbane by 10%."
+        },
+        {
+          "talent": "Bounty Hunter",
+          "tree": "Boltslinger",
+          "position": {
+            "x": 2,
+            "y": 9
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "DMG"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Casting Darkslayer or Witchbane now applies a stack of Bounty Hunter to you for 8 seconds, which can be consumed by casting Heartseeking Bolt to deal an additional 305 + 45% SP + 30% ranged AP Physical damage, stacking 2 times."
+        }
+      ]
+    },
+    "Witchblight": {
+      "lanes": [
+        "DMG",
+        "HEAL"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Explode with dark energy, dealing 51 + 50% shadow SP + 20% AP Shadow damage to up to to 10 enemies within 8 yds and healing you for 20% of your maximum health.\n\nEach target struck is guaranteed to miss their next instance of damage within 6 seconds.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 4,
+        "y": 4
+      },
+      "modifyingTalents": []
+    },
+    "Witchblood Tonic": {
+      "lanes": [
+        "MITIGATION"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Drink a shadowy tonic, removing all curse effects from you and reducing all Magic damage taken by -40% for 10 seconds.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 6,
+        "y": 3
+      },
+      "modifyingTalents": []
+    },
+    "Witching": {
+      "lanes": [
+        "DMG",
+        "CDR",
+        "HASTE"
+      ],
+      "isBaseAbilityInTree": false,
+      "baseDescription": null,
+      "baseTree": null,
+      "basePosition": null,
+      "modifyingTalents": [
+        {
+          "talent": "Witch Knight",
+          "tree": "Black Knight",
+          "position": {
+            "x": 2,
+            "y": 8
+          },
+          "cost": {
+            "abilityEssence": 0,
+            "talentEssence": 1
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -1.0,
+              "unit": "sec"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            },
+            {
+              "value": 10.0,
+              "unit": "%"
+            }
+          ],
+          "mockValueOnBaseline10": 12.1,
+          "lanes": [
+            "DMG",
+            "CDR",
+            "HASTE"
+          ],
+          "flags": [
+            "STACK"
+          ],
+          "description": "Direct ability damage with a two-handed weapon now reduces the remaining cooldown of your Tonics by -1 sec and grants Witching.\nWitchingIncreases magic resistances by 10%, and melee haste by 10% for 8 seconds, stacking 3 times."
+        }
+      ]
+    },
+    "Witching Idol": {
+      "lanes": [
+        "CC"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Drop a Witching Idol that periodically dispels fear, sleep, and charm effects every 3 sec from party members within 20 yds.",
+      "baseTree": "Black Knight",
+      "basePosition": {
+        "x": 2,
+        "y": 7
+      },
+      "modifyingTalents": []
+    },
+    "Witching Shroud": {
+      "lanes": [
+        "CRIT"
+      ],
+      "isBaseAbilityInTree": true,
+      "baseDescription": "Enter a powerful stealth mode for 3 seconds, granting immunity to all harmful magic effects.\n\nOnly usable for 10 seconds after being hit by a magical critical strike. Usable while stunned or feared.",
+      "baseTree": "Class",
+      "basePosition": {
+        "x": 7,
+        "y": 5
+      },
+      "modifyingTalents": [
+        {
+          "talent": "Alertness",
+          "tree": "Class",
+          "position": {
+            "x": 8,
+            "y": 6
+          },
+          "cost": {
+            "abilityEssence": 1,
+            "talentEssence": 0
+          },
+          "maxPoints": 1,
+          "requiredLevel": 0,
+          "specialRequirement": [],
+          "statModification": [
+            {
+              "value": -10.0,
+              "unit": "sec"
+            }
+          ],
+          "mockValueOnBaseline10": null,
+          "lanes": [
+            "CRIT",
+            "CDR"
+          ],
+          "flags": [],
+          "description": "Reduces the cooldown of Witching Shroud by -10 sec when you are struck by a Shadow or Arcane critical strike."
+        }
+      ]
+    }
+  }
+}

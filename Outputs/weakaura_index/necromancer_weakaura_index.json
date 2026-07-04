@@ -1,0 +1,3735 @@
+{
+  "class": "Necromancer",
+  "abilities": [
+    {
+      "name": "Animate: Skeletal Archer",
+      "spellId": 805040,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 30000,
+      "cooldown": "30 sec",
+      "durationMs": null,
+      "duration": null,
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        }
+      ]
+    },
+    {
+      "name": "Summoning Adept",
+      "spellId": 92123,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 25,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (25% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Bone King",
+      "spellId": 707175,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 15,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (15% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Graverobber",
+      "spellId": 503757,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 33,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (33% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Summoning Prodigy",
+      "spellId": 704682,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Sepulchral Might",
+      "spellId": 706472,
+      "tree": "Animation",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 15,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (15% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Forbidden Technique",
+      "spellId": 561215,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Deadly Bond",
+      "spellId": 704724,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 30,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (30% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Scourge Disciple",
+      "spellId": 531126,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Raise: Ghoul",
+      "spellId": 500971,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Runic Animation",
+      "spellId": 707445,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 10,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (10% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Summoner",
+      "spellId": 706953,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 50,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (50% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Animate: Tomb King",
+      "spellId": 805044,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 60000,
+      "cooldown": "1 min",
+      "durationMs": 15000,
+      "duration": "15 sec",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Animate: Bone Wraith",
+      "spellId": 805032,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 60000,
+      "cooldown": "1 min",
+      "durationMs": 15000,
+      "duration": "15 sec",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Ghoul Mastery",
+      "spellId": 503740,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 15,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (15% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Skeletal Artillery",
+      "spellId": 302518,
+      "tree": "Animation",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Putrifier",
+      "spellId": 302923,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Summoning Expert",
+      "spellId": 807494,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Unrelenting Army",
+      "spellId": 705747,
+      "tree": "Animation",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 20,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (20% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Animate: Plaguefather",
+      "spellId": 805048,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 120000,
+      "cooldown": "2 min",
+      "durationMs": 15000,
+      "duration": "15 sec",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "March of the Dead",
+      "spellId": 707007,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 10000,
+      "cooldown": "10 sec",
+      "durationMs": 30000,
+      "duration": "30 sec",
+      "procChance": 15,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Mindless Fury",
+      "spellId": 805674,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Depravity",
+      "spellId": 638403,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 50,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (50% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Crypt Keeper",
+      "spellId": 560596,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Unrelenting",
+      "spellId": 704718,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Unstoppable Frenzy",
+      "spellId": 573426,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Army of the Dead",
+      "spellId": 525600,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Lich's Prodigy",
+      "spellId": 302519,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Diabolical",
+      "spellId": 704723,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Anti-Magic Shell",
+      "spellId": 504866,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 33,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (33% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Summoning Ritual",
+      "spellId": 805038,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 5000,
+      "cooldown": "5 sec",
+      "durationMs": 60000,
+      "duration": "1 min",
+      "procChance": 50,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Corpse Wagon",
+      "spellId": 503738,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 20,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (20% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Plague Protection",
+      "spellId": 570046,
+      "tree": "Animation",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "None"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Fetid Mark",
+      "spellId": 706948,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Chomp",
+      "spellId": 707283,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical",
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Flesh Symbiosis",
+      "spellId": 301207,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Plague Horde",
+      "spellId": 802986,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": null,
+      "duration": null,
+      "procChance": 10,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (10% chance - fires automatically, easy to miss without an alert)"
+        }
+      ]
+    },
+    {
+      "name": "Long March",
+      "spellId": 704717,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Grave Mastery",
+      "spellId": 504439,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Master Animator",
+      "spellId": 504431,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 15,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (15% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Underking",
+      "spellId": 704701,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Nature"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Animate: Bone Construct",
+      "spellId": 531130,
+      "tree": "Animation",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 15000,
+      "cooldown": "15 sec",
+      "durationMs": 20000,
+      "duration": "20 sec",
+      "procChance": 20,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Raise: Abomination",
+      "spellId": 500335,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Fetid Ward",
+      "spellId": 680388,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": 1800000,
+      "duration": "30 min",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Glacial Tap",
+      "spellId": 805369,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 12000,
+      "cooldown": "12 sec",
+      "durationMs": null,
+      "duration": null,
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Frost"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        }
+      ]
+    },
+    {
+      "name": "Command: Hook",
+      "spellId": 504316,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 30000,
+      "cooldown": "30 sec",
+      "durationMs": null,
+      "duration": null,
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        }
+      ]
+    },
+    {
+      "name": "Hulking Hordes",
+      "spellId": 300748,
+      "tree": "Class",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Lich Essence",
+      "spellId": 802988,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Icecrown Scriptures",
+      "spellId": 300234,
+      "tree": "Class",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Vampiric Aura",
+      "spellId": 300241,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Living Dead",
+      "spellId": 302888,
+      "tree": "Class",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Create Frozen Reliquary",
+      "spellId": 803772,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": null,
+      "duration": null,
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": []
+    },
+    {
+      "name": "Life For Power",
+      "spellId": 705746,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": null,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Bone Tithe",
+      "spellId": 802121,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 120000,
+      "cooldown": "2 min",
+      "durationMs": null,
+      "duration": null,
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Nature",
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        }
+      ]
+    },
+    {
+      "name": "Ner'zhul's Blessing",
+      "spellId": 704729,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Phylactery",
+      "spellId": 500933,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 120000,
+      "cooldown": "2 min",
+      "durationMs": 120000,
+      "duration": "2 min",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Tears of Lordaeron",
+      "spellId": 705752,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Overwhelming Force",
+      "spellId": 531128,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 5,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (5% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Death's Due",
+      "spellId": 807796,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 90000,
+      "cooldown": "90 sec",
+      "durationMs": 5000,
+      "duration": "5 sec",
+      "procChance": 101,
+      "maxStacks": 1,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Gravedigger",
+      "spellId": 704715,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Reclaimed Life",
+      "spellId": 707670,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Mass Grave",
+      "spellId": 803741,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 30000,
+      "cooldown": "30 sec",
+      "durationMs": 40000,
+      "duration": "40 sec",
+      "procChance": 80,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Disciple of Kel'thuzad",
+      "spellId": 560615,
+      "tree": "Class",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Improved Mandates",
+      "spellId": 560613,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Game of Bones",
+      "spellId": 301198,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Corpse Commander",
+      "spellId": 707739,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Lich Commander",
+      "spellId": 704713,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Dead Man Walking",
+      "spellId": 300233,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 10,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (10% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Naxxramas Prodigy",
+      "spellId": 560622,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Cobalt-Plated Armor",
+      "spellId": 300945,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Putrid Summoner",
+      "spellId": 560595,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 20,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (20% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Deadly Defense",
+      "spellId": 300580,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Winds of Northrend",
+      "spellId": 301333,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Raise: Decaying Colossus",
+      "spellId": 500989,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Foul Invocation",
+      "spellId": 804371,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 120000,
+      "cooldown": "2 min",
+      "durationMs": 20000,
+      "duration": "20 sec",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Frost Runes",
+      "spellId": 705750,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 5,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (5% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Command: Blight",
+      "spellId": 504050,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": null,
+      "duration": null,
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": []
+    },
+    {
+      "name": "Study of Death",
+      "spellId": 704721,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Raise: Banshee",
+      "spellId": 504861,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Animate: Frost Wyrm",
+      "spellId": 805428,
+      "tree": "Class",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 120000,
+      "cooldown": "2 min",
+      "durationMs": 30000,
+      "duration": "30 sec",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Frost"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Flesh to Worms",
+      "spellId": 500338,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": 18000,
+      "duration": "18 sec",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Nature",
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Crypt Plague",
+      "spellId": 92121,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Cycle of Death",
+      "spellId": 560727,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Master of Death",
+      "spellId": 806328,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Rotting Flesh",
+      "spellId": 301304,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Swarmer",
+      "spellId": 704528,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 15,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (15% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Damnation",
+      "spellId": 806149,
+      "tree": "Death",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": 1,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Plague Science",
+      "spellId": 704163,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Plague of Undeath",
+      "spellId": 801945,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": 20000,
+      "duration": "20 sec",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Nature",
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Creeping Crypt",
+      "spellId": 300960,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Dark Harvester",
+      "spellId": 807960,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": 1,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Expunge",
+      "spellId": 705754,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": null,
+      "duration": null,
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": []
+    },
+    {
+      "name": "Virulency",
+      "spellId": 801938,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 60000,
+      "cooldown": "1 min",
+      "durationMs": null,
+      "duration": null,
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        }
+      ]
+    },
+    {
+      "name": "Necrosis",
+      "spellId": 802990,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Foul Contagion",
+      "spellId": 300965,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Rotting Flesh",
+      "spellId": 574138,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Touch of Death",
+      "spellId": 707113,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Nature"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Crypt Explosion",
+      "spellId": 500572,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Nature",
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Creeping Plagues",
+      "spellId": 572130,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Pandemic",
+      "spellId": 560798,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Festering Decay",
+      "spellId": 806324,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Unholy Runes",
+      "spellId": 561353,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 35,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (35% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Expediting Death",
+      "spellId": 300236,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Mutation",
+      "spellId": 500342,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 180000,
+      "cooldown": "3 min",
+      "durationMs": 15000,
+      "duration": "15 sec",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Fire",
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Plague Revenant",
+      "spellId": 806321,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Withering",
+      "spellId": 301250,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Parasite Plague",
+      "spellId": 560730,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 5,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (5% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Fleshcrafting",
+      "spellId": 300941,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Apothecary's Cauldron",
+      "spellId": 560537,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Death Commander",
+      "spellId": 300235,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 10,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (10% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Fiend",
+      "spellId": 707627,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 30,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (30% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Putricide's Formula",
+      "spellId": 707001,
+      "tree": "Death",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 10,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (10% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Lichplague",
+      "spellId": 802132,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 30000,
+      "cooldown": "30 sec",
+      "durationMs": 18000,
+      "duration": "18 sec",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Nature",
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Rot Fetishist",
+      "spellId": 805675,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Wormfood",
+      "spellId": 560800,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 35,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (35% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Unholy Erosion",
+      "spellId": 807700,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 8,
+      "maxStacks": null,
+      "school": [
+        "Holy"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (8% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Waking Crypts",
+      "spellId": 570136,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Raise: Gargoyle",
+      "spellId": 500329,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Muck Summoner",
+      "spellId": 806086,
+      "tree": "Death",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 5,
+      "maxStacks": null,
+      "school": [
+        "Holy"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (5% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Ice Barrage",
+      "spellId": 801760,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 10000,
+      "cooldown": "10 sec",
+      "durationMs": 1000,
+      "duration": "1 sec",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Frost"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Tundra Warriors",
+      "spellId": 92122,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 25,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (25% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Refreshing Chill",
+      "spellId": 300940,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 20,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (20% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Frigid Winds",
+      "spellId": 504357,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Piercing Icicles",
+      "spellId": 524687,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": null,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Glacial Impact",
+      "spellId": 704355,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 6000,
+      "cooldown": "6 sec",
+      "durationMs": null,
+      "duration": null,
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Frost"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        }
+      ]
+    },
+    {
+      "name": "Ice Mastery",
+      "spellId": 560045,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Bone Legion",
+      "spellId": 707006,
+      "tree": "Rime",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Curse of the Lich",
+      "spellId": 300240,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Runic Reservoir",
+      "spellId": 704670,
+      "tree": "Rime",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 50,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (50% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Hoarfrost Hands",
+      "spellId": 803291,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 20,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (20% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Frigid Death",
+      "spellId": 560851,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Freeze Dry",
+      "spellId": 704680,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Heartchill",
+      "spellId": 801739,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 30000,
+      "cooldown": "30 sec",
+      "durationMs": null,
+      "duration": null,
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Frost"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        }
+      ]
+    },
+    {
+      "name": "Necrotic Chains",
+      "spellId": 801733,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Frost"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Ner'zhul's Blessing",
+      "spellId": 803797,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Giant Bones",
+      "spellId": 805427,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Frost"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Glacier Lord",
+      "spellId": 560852,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Icecrown",
+      "spellId": 531135,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Frozen Power",
+      "spellId": 301303,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 20,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (20% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Raise: Skeletal Mage",
+      "spellId": 500331,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Frost"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Dominion of Frost",
+      "spellId": 537208,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Frigidness",
+      "spellId": 704669,
+      "tree": "Rime",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Frigid Power",
+      "spellId": 560620,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Command: Bonefreeze",
+      "spellId": 504489,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 20000,
+      "cooldown": "20 sec",
+      "durationMs": null,
+      "duration": null,
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        }
+      ]
+    },
+    {
+      "name": "Blood and Ice",
+      "spellId": 561164,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "None"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Death and Ice",
+      "spellId": 560012,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "None"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Frozen Bodies",
+      "spellId": 707562,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Permafrost",
+      "spellId": 704681,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 15,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (15% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Deathly Chill",
+      "spellId": 805424,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Lich Form",
+      "spellId": 500981,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 20,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Crown's Call",
+      "spellId": 805429,
+      "tree": "Rime",
+      "maxPoints": 2,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 25,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (25% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Chilling Presence",
+      "spellId": 300958,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Arch Lich",
+      "spellId": 707588,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Raising the Kirin Tor",
+      "spellId": 805649,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 40,
+      "maxStacks": 8,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (40% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        },
+        {
+          "type": "stack_counter",
+          "trigger": "Stack sub-display on the Aura trigger above (max 8 stacks)"
+        }
+      ]
+    },
+    {
+      "name": "Harrowing Winds",
+      "spellId": 705745,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Soulfreeze",
+      "spellId": 572023,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 25,
+      "maxStacks": null,
+      "school": [
+        "Frost"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (25% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Champion of Kel'thuzad",
+      "spellId": 704676,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    },
+    {
+      "name": "Champion of Kel'Thuzad",
+      "spellId": 807937,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 40,
+      "maxStacks": 8,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "proc_alert",
+          "trigger": "Combat Log: Spell Cast Success or Aura Applied, Spell ID = this ability (40% chance - fires automatically, easy to miss without an alert)"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        },
+        {
+          "type": "stack_counter",
+          "trigger": "Stack sub-display on the Aura trigger above (max 8 stacks)"
+        }
+      ]
+    },
+    {
+      "name": "Army of the North",
+      "spellId": 561138,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": true,
+      "cooldownMs": 300000,
+      "cooldown": "5 min",
+      "durationMs": 15000,
+      "duration": "15 sec",
+      "procChance": 100,
+      "maxStacks": null,
+      "school": [
+        "Shadow"
+      ],
+      "opportunities": [
+        {
+          "type": "cooldown_tracker",
+          "trigger": "Cooldown Progress (Spell) - use Spell ID directly"
+        },
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - countdown bar"
+        }
+      ]
+    },
+    {
+      "name": "Master Lich",
+      "spellId": 560848,
+      "tree": "Rime",
+      "maxPoints": 1,
+      "isFirstClass": false,
+      "cooldownMs": null,
+      "cooldown": null,
+      "durationMs": -1,
+      "duration": "Until cancelled",
+      "procChance": 101,
+      "maxStacks": null,
+      "school": [
+        "Physical"
+      ],
+      "opportunities": [
+        {
+          "type": "buff_uptime",
+          "trigger": "Aura trigger by Spell ID - permanent on/off icon"
+        }
+      ]
+    }
+  ],
+  "opportunityCounts": {
+    "cooldown_tracker": 23,
+    "proc_alert": 37,
+    "buff_uptime": 148,
+    "stack_counter": 2
+  }
+}
