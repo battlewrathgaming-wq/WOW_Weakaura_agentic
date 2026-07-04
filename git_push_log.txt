@@ -6,28 +6,7 @@ Your branch is ahead of 'origin/main' by 1 commit.
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   Weak Auras/Necromancer/slot_assignment.md
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-	git_push.bat
-	git_push_log.txt
-	git_status.bat
+	modified:   .gitignore
+	modified:   git_push_log.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
-
-=== git add -A ===
-warning: in the working copy of 'Weak Auras/Necromancer/slot_assignment.md', LF will be replaced by CRLF the next time Git touches it
-warning: in the working copy of 'git_push.bat', LF will be replaced by CRLF the next time Git touches it
-warning: in the working copy of 'git_push_log.txt', LF will be replaced by CRLF the next time Git touches it
-warning: in the working copy of 'git_status.bat', LF will be replaced by CRLF the next time Git touches it
-=== git commit ===
-[main 12d3482] Stable landing, work on necromancer UI hud. Complete tooling for ingame scrape of live data complete.
- 4 files changed, 239 insertions(+), 1 deletion(-)
- create mode 100644 git_push.bat
- create mode 100644 git_push_log.txt
- create mode 100644 git_status.bat
-=== git push origin main ===
-To https://github.com/battlewrathgaming-wq/WOW_Weakaura_agentic.git
-   5d4e775..12d3482  main -> main
-=== DONE ===

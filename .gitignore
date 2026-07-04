@@ -1,3 +1,4 @@
 __pycache__/
 *.pyc
 .fuse_manifest.json
+git_push_log.txt
