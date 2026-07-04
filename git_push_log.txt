@@ -1,0 +1,17 @@
+=== git status ===
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   Weak Auras/Necromancer/slot_assignment.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	git_push.bat
+	git_push_log.txt
+	git_status.bat
+
+no changes added to commit (use "git add" and/or "git commit -a")

@@ -864,4 +864,157 @@ data.
   gone, or leave the gap - and whether this "opportunities only, not a
   full hotbar" philosophy should be applied retroactively to any other
   layer/ability going forward.
-- 2026-0
+- 2026-07-06 (v6, same day) - **course correction: pared Tier 1 Rotation
+  down to just Command: Undead**, and stopped the class-wide audit work
+  entirely. Battlewrath called out real overreach in this session: db.
+  ascension.gg was being treated as reliable when this project had
+  already caught it wrong twice; a full 23-ability class audit was being
+  built out via fresh web research instead of checking what already
+  existed in the workspace; and all of this was happening while
+  Battlewrath is level 10 on a server that's been up one day - most of
+  what was being scoped (2-minute cooldowns, deep talent-tree abilities)
+  isn't even reachable yet. Direct quote: "Now trying to over commit
+  whilst I'm level 10 in-game and still working out how the classes
+  behave on a server that's been up for one day."
+  Concrete result: Crypt Swarm DROPPED (Battlewrath: "Crypt can be
+  dropped also. It is only a channeled runic builder" - same builder
+  classification as Lichfrost, just channeled). Command: Undead's
+  press_wash REMOVED from the build (it never reliably fired in-game
+  even after the sourceUnit/spellName/_CAST_SUCCESS fixes - shipping a
+  feature that doesn't visibly work contradicts the new stated goal of
+  "proving the UI rather than trying to build it all outright"). Not
+  deleted from the codebase - press_wash is confirmed genuinely working
+  (Lichfrost, real in-game test) and stays available as a mechanism for
+  whatever ability actually earns it later. Command: Undead keeps its
+  afford-glow (confirmed working, the "opportunity" signal) - only the
+  separate "response" wash layer was dropped.
+  Rebuilt as `Tier1_Rotation_v6_import.txt` - a single child (Command:
+  Undead), round-trip verified: only 2 triggers (Cooldown Progress +
+  Power), no combatlog/press_wash trigger, `desaturate` and afford-glow
+  (`sub.3.glow`) conditions both intact. Not yet live-tested in-game.
+  **Direction going forward, per Battlewrath:** stop scoping ahead of
+  actual play. No more upfront class-wide auditing, no more speculative
+  db.ascension.gg cross-checks for abilities not yet in use - work one
+  real, currently-relevant ability at a time, validated by what
+  Battlewrath actually has access to and is actually testing in-game.
+- 2026-07-06/07: Built and source-verified a new standalone
+  `stack_gain_flash_text` template (`text` region, Combat Log
+  `SPELL_AURA_APPLIED_DOSE`) - a transient "+1"-style combat text on a
+  stack gain, per Battlewrath's request after the static Life Force
+  readout test confirmed the `text` region type works
+  (`TEST_text_region_lifeforce_import.txt`). Built, round-trip verified,
+  regenerated via `build_templates.py`. **Live-tested for Life Force
+  (525004) and failed to fire, three times in a row:** (1) name-based
+  filter (`"Life Force: Visual"`) + `sourceUnit=player`; (2)
+  Battlewrath's own edit to ID-based (`spellId: [525004]`, the correct
+  singular Combat Log field, not the plural `spellIds` `proc_alert_icon`/
+  `pet_summon_countdown_icon` mistakenly use) + `sourceUnit=player`; (3)
+  no source/destination filter at all. All three failed - ruling out both
+  the unit-filter and name-string hypotheses raised along the way (both
+  explored and retracted in conversation, not repeated here). Working
+  conclusion: this custom server's Life Force mechanic likely doesn't
+  emit a reliably-matching Combat Log subevent for this trigger to catch,
+  at least not one of the three shapes tried. `stack_gain_flash_text`
+  itself is not deleted or considered broken - it may still be correct
+  for a different class's ability that does use standard aura-stack
+  combat log events; just not proven for Life Force.
+  Also reconfirmed via live combat log, independent of any DB source: the
+  Guardian count buff pattern (`spell_index.md`) - "Gravekeeper gains
+  Abomination's Abomination" - and that Life Force itself is self-sourced/
+  self-destined on the player throughout (an intermediate "sourced from
+  the pet" hypothesis was raised and directly retracted after Battlewrath
+  supplied contradicting screenshots).
+  **Pivoted to a `Custom` (`stateupdate`) trigger instead** - polls Life
+  Force's live stack count (`UnitAura`, the same classic API `BuffTrigger2.lua`
+  itself uses) on every `UNIT_AURA:player` event and diffs it against the
+  last-seen count in Lua, reporting only a positive delta (Battlewrath's
+  exact spec: 1→3 = 2, 2→5 = 3, decreases produce nothing). Full
+  source-grounded research written up in
+  `Templates/CUSTOM_STATEUPDATE_TRIGGER.md`, including the confirmed
+  trigger shape, the `TSUHelpers.lua` `allstates` API, and a draft Lua
+  implementation.
+- 2026-07-07: Built and live-tested the Custom/stateupdate trigger for
+  real. v1 fired correctly on the very first live test. v1 also surfaced
+  a real "sticking" bug (flash held on screen instead of fading, except
+  at count extremes 0/cap) - diagnosed by tracing `GenericTrigger.lua`/
+  `WeakAuras.lua` directly (the "no new gain" branch was silently writing
+  `state.show=false` on every unrelated `UNIT_AURA` tick while returning
+  `false`, racing against the legitimate 1.5s auto-hide timer). Fixed in
+  v2 (only persist `lastCount` bookkeeping on the no-gain branch, never
+  touch `show`/`autoHide`/`expirationTime`) - **confirmed working fully
+  as expected in-game.** Also confirmed the delta is computed live
+  (`count - lastCount`), not hardcoded to 3, so it scales correctly with
+  talent-increased Life Force caps. Separately noted (not a bug): the
+  server recalculates Life Force on summon by draining to 0 then
+  refunding what's owed, so a 1-cost summon with 3 banked shows a real
+  "+2" flash on the refund rather than "-1" - accurate to the underlying
+  data, not something to fix.
+  **Formalized into a reusable, class-agnostic compiler capability**
+  (Battlewrath: "Having it as a specific capability is preferred" ->
+  "Go. We're in perfect alignment."): added `stack_delta_flash_text`
+  to `Templates/build_templates.py`'s `REGISTRY` (schema + template +
+  a bespoke Lua `.format()` fill block in `template_filler.py`, since
+  the Lua embeds params mid-string, which the generic `{{}}` mechanism
+  can't reach). Test-filled and round-trip verified: the formalized
+  template's output is field-for-field identical to the hand-built,
+  live-tested-working v2 scratch aura, including a byte-for-byte match
+  on the generated Lua. A fresh instance for Life Force (525004) was
+  rebuilt through the formalized template and dropped into
+  `TEST_custom_trigger_lifeforce_delta_import.txt` for Battlewrath to
+  re-test in-game as a final confirmation the compiler path produces
+  the same working behavior as the hand-built version.
+- 2026-07-08: Found and fixed a real, previously-unflagged `aura2`
+  field-name bug across 4 template definitions (`buff_uptime_icon`,
+  `buff_uptime_aurabar`, `missing_buff_icon`, `template_filler.py`'s
+  `glow_source` buff_uptime branch) - all used `spellIds`/`names`, which
+  `BuffTrigger2.lua` only reads inside a one-time legacy-migration
+  function (`ConvertBuffTrigger2`), not for a natively-authored `aura2`
+  trigger. The real fields are `auraspellids`+`useExactSpellId` (ID-based)
+  or `auranames`+`useName` (name-based) - confirmed via direct source
+  read. None of the 4 had ever been used to build a real shipped aura, so
+  nothing broke in production; caught at the definition level.
+  Built a new generalized `stance_loader_icon` template (icon, N
+  mutually-exclusive `aura2` triggers -> 1 icon, `disjunctive: "any"`,
+  `activeTriggerMode: -10`) for the Necromancer's "1 of 3" Undead Stance
+  slot (Pacify/Protect/Assault) - see the dedicated section above for the
+  full mechanism and sourcing writeup. Registered in
+  `Templates/build_templates.py`'s `REGISTRY`, bespoke dynamic-trigger
+  fill block added to `template_filler.py`, schema/template JSON
+  regenerated, test-filled against the 3 real stance names (3 name-matched
+  triggers, no unresolved placeholders). Built a real instance
+  (`Necromancer/UndeadStance_v1_import.txt`), round-trip verified. Hit the
+  project's recurring FUSE mount-lag bug twice this pass (once on
+  `Templates/build_templates.py`, once on `template_filler.py` right
+  after the stance-loader edit) - both resolved via the established
+  `fuse_check.py --resync` recovery workflow. Position is an explicit
+  placeholder (vacated Tier 1 Rotation slot 1) pending Battlewrath's
+  decision on where stance display actually belongs - not yet live-tested
+  in-game.
+- 2026-07-08 (second pass, same day): Battlewrath imported Undead Stance
+  and confirmed it "conceptually works great," moved it (with the
+  existing Life Force delta text) into a personal dev/test group
+  (`Necro_animation_spec_UI_element`), re-styled the Life Force text
+  in-game (font `MoK`, size 13, teal color), and built a SECOND real
+  element themselves by hand - `Ward active` (Fetid Ward vs. Bone Ward) -
+  reusing `stance_loader_icon`'s exact mechanism unassisted. Bone Ward's
+  own live trainer tooltip independently confirms the same "only 1 active
+  at a time" mutual exclusivity as the stances, validating the pattern's
+  generalization to a second, unrelated ability pair. Per Battlewrath's
+  explicit request ("I'd index it so it gets picked up in future builds
+  for export. On both the font change and the ward addition."):
+  (1) added a new optional `font` param to `stack_delta_flash_text`
+  (previously hardcoded, unreachable) plus a generic `font`/`font_size`/
+  `color` defaulting fix in `template_filler.py` (same unresolved-
+  placeholder risk class as the 2026-07-06 `threshold_value` bug);
+  (2) added a new `"Necro_animation_spec_UI_element"` layer to
+  `Necromancer/inventory.py` with all 3 real elements (Life Force delta
+  text with its synced font/color, Undead Stance, and the new Ward
+  active), reproducing Battlewrath's real pasted export field-for-field
+  via `layer_builder.py` (round-trip verified: group id, child order,
+  positions, font/fontSize/color, option names, disjunctive/
+  activeTriggerMode all match exactly). Hit the FUSE mount-lag bug a
+  third time this session, on `Necromancer/inventory.py` - resolved via
+  the same established `fuse_check.py --resync` workflow. Built
+  `Necromancer/Necro_animation_spec_UI_element_v1_import.txt`. Positions
+  throughout remain Battlewrath's own dev/test coordinates, explicitly
+  not a settled mask - revisit once "a mask for around the UI" exists.
