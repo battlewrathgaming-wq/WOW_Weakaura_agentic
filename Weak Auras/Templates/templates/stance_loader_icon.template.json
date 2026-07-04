@@ -29,24 +29,5 @@
       "type": "subbackground"
     }
   ],
-  "triggers": {
-    "1": {
-      "trigger": {
-        "type": "aura2",
-        "event": "Health",
-        "unit": "player",
-        "debuffType": "HELPFUL",
-        "auraspellids": [
-          "{{spell_id}}"
-        ],
-        "useExactSpellId": true,
-        "ownOnly": true,
-        "matchesShowOn": "showOnMissing",
-        "subeventPrefix": "SPELL",
-        "subeventSuffix": "_CAST_START"
-      },
-      "untrigger": {}
-    },
-    "activeTriggerMode": -10
-  }
+  "triggers": {}
 }

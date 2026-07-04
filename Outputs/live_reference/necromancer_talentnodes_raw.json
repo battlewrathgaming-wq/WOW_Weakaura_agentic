@@ -1,0 +1,701 @@
+{
+  "704723": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 475.9609008268085,
+    "maxRank": 1,
+    "spellID": 704723,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate33",
+    "left": 1471.374833400136
+  },
+  "704724": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 651.9608822254794,
+    "maxRank": 1,
+    "spellID": 704724,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate31",
+    "left": 1471.374833400136
+  },
+  "561215": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 651.9608822254794,
+    "maxRank": 1,
+    "spellID": 561215,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate7",
+    "left": 1295.374781972932
+  },
+  "302518": {
+    "name": "0/2",
+    "rank": 0,
+    "maxRank": 2,
+    "top": 563.960891526144,
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "spellID": 302518,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate16",
+    "left": 1295.374781972932
+  },
+  "302519": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 475.9609008268085,
+    "maxRank": 1,
+    "spellID": 302519,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate24",
+    "left": 1339.374829844
+  },
+  "300234": {
+    "name": "0/2",
+    "rank": 0,
+    "maxRank": 2,
+    "top": 695.9608600680139,
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "spellID": 300234,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate2",
+    "left": 682.3747643974117
+  },
+  "705746": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 607.960904382945,
+    "maxRank": 1,
+    "spellID": 705746,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate4",
+    "left": 462.3747351276732
+  },
+  "705747": {
+    "name": "0/2",
+    "rank": 0,
+    "maxRank": 2,
+    "top": 519.960878669343,
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "spellID": 705747,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate13",
+    "left": 1075.374822731727
+  },
+  "705750": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 387.9608751132066,
+    "maxRank": 1,
+    "spellID": 705750,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate23",
+    "left": 682.3747643974117
+  },
+  "300748": {
+    "name": "0/2",
+    "rank": 0,
+    "maxRank": 2,
+    "top": 695.9608600680139,
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "spellID": 300748,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate3",
+    "left": 506.3747479844742
+  },
+  "705752": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate13",
+    "spellID": 705752
+  },
+  "531128": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate11",
+    "spellID": 531128
+  },
+  "531130": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 343.9608972706721,
+    "maxRank": 1,
+    "spellID": 531130,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonSquareTemplate8",
+    "left": 1295.374781972932
+  },
+  "560595": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 431.9608879700076,
+    "maxRank": 1,
+    "spellID": 560595,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate10",
+    "left": 462.3747351276732
+  },
+  "560596": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate14",
+    "spellID": 560596
+  },
+  "707283": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate10",
+    "spellID": 707283
+  },
+  "573426": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate25",
+    "spellID": 573426
+  },
+  "707670": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 519.960878669343,
+    "maxRank": 1,
+    "spellID": 707670,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate16",
+    "left": 462.3747351276732
+  },
+  "302923": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 563.960891526144,
+    "maxRank": 1,
+    "spellID": 302923,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate9",
+    "left": 1383.374737658001
+  },
+  "560613": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 519.960878669343,
+    "maxRank": 1,
+    "spellID": 560613,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate22",
+    "left": 726.374742239946
+  },
+  "504861": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 343.9608972706721,
+    "maxRank": 1,
+    "spellID": 504861,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate14",
+    "left": 594.3747386838096
+  },
+  "560615": {
+    "name": "0/2",
+    "rank": 0,
+    "maxRank": 2,
+    "top": 519.960878669343,
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "spellID": 560615,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate21",
+    "left": 638.3747865548772
+  },
+  "707175": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 695.9608600680139,
+    "maxRank": 1,
+    "spellID": 707175,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate2",
+    "left": 1119.374800574261
+  },
+  "504866": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 431.9608879700076,
+    "maxRank": 1,
+    "spellID": 504866,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate22",
+    "left": 1031.374774860659
+  },
+  "560622": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate20",
+    "spellID": 560622
+  },
+  "500933": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 563.960891526144,
+    "maxRank": 1,
+    "spellID": 500933,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate7",
+    "left": 418.3747222708722
+  },
+  "92123": {
+    "name": "1/1",
+    "rank": 1,
+    "maxRank": 1,
+    "top": 739.9609079390815,
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "spellID": 92123,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate1",
+    "left": 1471.374833400136
+  },
+  "680388": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 739.9609079390815,
+    "maxRank": 1,
+    "spellID": 680388,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate2",
+    "left": 550.3747608412752
+  },
+  "707445": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 607.960904382945,
+    "maxRank": 1,
+    "spellID": 707445,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate3",
+    "left": 1339.374829844
+  },
+  "503738": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 431.9608879700076,
+    "maxRank": 1,
+    "spellID": 503738,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate19",
+    "left": 1207.374826287864
+  },
+  "503740": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 563.960891526144,
+    "maxRank": 1,
+    "spellID": 503740,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate15",
+    "left": 1207.374826287864
+  },
+  "805369": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 739.9609079390815,
+    "maxRank": 1,
+    "spellID": 805369,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate5",
+    "left": 638.3747865548772
+  },
+  "706948": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate12",
+    "spellID": 706948
+  },
+  "570046": {
+    "name": "0/2",
+    "rank": 0,
+    "maxRank": 2,
+    "top": 431.9608879700076,
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "spellID": 570046,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate18",
+    "left": 1295.374781972932
+  },
+  "706953": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 563.960891526144,
+    "maxRank": 1,
+    "spellID": 706953,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate21",
+    "left": 1031.374774860659
+  },
+  "525600": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate17",
+    "spellID": 525600
+  },
+  "503757": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 695.9608600680139,
+    "maxRank": 1,
+    "spellID": 503757,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate6",
+    "left": 1295.374781972932
+  },
+  "807796": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 563.960891526144,
+    "maxRank": 1,
+    "spellID": 807796,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate8",
+    "left": 682.3747643974117
+  },
+  "804371": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 387.9608751132066,
+    "maxRank": 1,
+    "spellID": 804371,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate12",
+    "left": 550.3747608412752
+  },
+  "301198": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 475.9609008268085,
+    "maxRank": 1,
+    "spellID": 301198,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate14",
+    "left": 418.3747222708722
+  },
+  "300945": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate9",
+    "spellID": 300945
+  },
+  "500971": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 607.960904382945,
+    "maxRank": 1,
+    "spellID": 500971,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonSquareTemplate2",
+    "left": 1207.374826287864
+  },
+  "803741": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 519.960878669343,
+    "maxRank": 1,
+    "spellID": 803741,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate9",
+    "left": 550.3747608412752
+  },
+  "704682": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 651.9608822254794,
+    "maxRank": 1,
+    "spellID": 704682,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate8",
+    "left": 1119.374800574261
+  },
+  "301333": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 431.9608879700076,
+    "maxRank": 1,
+    "spellID": 301333,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate17",
+    "left": 638.3747865548772
+  },
+  "301207": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 387.9608751132066,
+    "maxRank": 1,
+    "spellID": 301207,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate27",
+    "left": 1119.374800574261
+  },
+  "802986": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 387.9608751132066,
+    "maxRank": 1,
+    "spellID": 802986,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate26",
+    "left": 1207.374826287864
+  },
+  "802988": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 695.9608600680139,
+    "maxRank": 1,
+    "spellID": 802988,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate5",
+    "left": 594.3747386838096
+  },
+  "707739": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate12",
+    "spellID": 707739
+  },
+  "704721": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 343.9608972706721,
+    "maxRank": 1,
+    "spellID": 704721,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate24",
+    "left": 506.3747479844742
+  },
+  "706472": {
+    "name": "0/2",
+    "rank": 0,
+    "maxRank": 2,
+    "top": 651.9608822254794,
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "spellID": 706472,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate5",
+    "left": 1207.374826287864
+  },
+  "500335": {
+    "name": "1/1",
+    "rank": 1,
+    "maxRank": 1,
+    "top": 739.9609079390815,
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "spellID": 500335,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate3",
+    "left": 462.3747351276732
+  },
+  "504439": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 387.9608751132066,
+    "maxRank": 1,
+    "spellID": 504439,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate34",
+    "left": 1471.374833400136
+  },
+  "638403": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate11",
+    "spellID": 638403
+  },
+  "300241": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 651.9608822254794,
+    "maxRank": 1,
+    "spellID": 300241,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate1",
+    "left": 462.3747351276732
+  },
+  "300580": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 431.9608879700076,
+    "maxRank": 1,
+    "spellID": 300580,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate18",
+    "left": 550.3747608412752
+  },
+  "805428": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 343.9608972706721,
+    "maxRank": 1,
+    "spellID": 805428,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate11",
+    "left": 682.3747643974117
+  },
+  "704701": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 343.9608972706721,
+    "maxRank": 1,
+    "spellID": 704701,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate30",
+    "left": 1207.374826287864
+  },
+  "805032": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonSquareTemplate4",
+    "spellID": 805032
+  },
+  "805048": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 519.960878669343,
+    "maxRank": 1,
+    "spellID": 805048,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonSquareTemplate7",
+    "left": 1207.374826287864
+  },
+  "803772": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 651.9608822254794,
+    "maxRank": 1,
+    "spellID": 803772,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate6",
+    "left": 638.3747865548772
+  },
+  "704729": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 607.960904382945,
+    "maxRank": 1,
+    "spellID": 704729,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate7",
+    "left": 638.3747865548772
+  },
+  "531126": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 607.960904382945,
+    "maxRank": 1,
+    "spellID": 531126,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate4",
+    "left": 1075.374822731727
+  },
+  "300233": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 475.9609008268085,
+    "maxRank": 1,
+    "spellID": 300233,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate19",
+    "left": 594.3747386838096
+  },
+  "805038": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 431.9608879700076,
+    "maxRank": 1,
+    "spellID": 805038,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonSquareTemplate3",
+    "left": 1119.374800574261
+  },
+  "805674": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate23",
+    "spellID": 805674
+  },
+  "805040": {
+    "name": "1/1",
+    "rank": 1,
+    "maxRank": 1,
+    "top": 739.9609079390815,
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "spellID": 805040,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonSquareTemplate1",
+    "left": 1207.374826287864
+  },
+  "500989": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 387.9608751132066,
+    "maxRank": 1,
+    "spellID": 500989,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate10",
+    "left": 418.3747222708722
+  },
+  "802121": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 607.960904382945,
+    "maxRank": 1,
+    "spellID": 802121,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate4",
+    "left": 550.3747608412752
+  },
+  "704713": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate8",
+    "spellID": 704713
+  },
+  "805044": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonSquareTemplate6",
+    "spellID": 805044
+  },
+  "704715": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 519.960878669343,
+    "maxRank": 1,
+    "spellID": 704715,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate15",
+    "left": 374.3747444283378
+  },
+  "302888": {
+    "name": "0/2",
+    "rank": 0,
+    "maxRank": 2,
+    "top": 651.9608822254794,
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "spellID": 302888,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonCircleTemplate6",
+    "left": 550.3747608412752
+  },
+  "704717": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 387.9608751132066,
+    "maxRank": 1,
+    "spellID": 704717,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate29",
+    "left": 1295.374781972932
+  },
+  "704718": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "maxRank": 1,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate20",
+    "spellID": 704718
+  },
+  "504050": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 343.9608972706721,
+    "maxRank": 1,
+    "spellID": 504050,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate13",
+    "left": 418.3747222708722
+  },
+  "504431": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 343.9608972706721,
+    "maxRank": 1,
+    "spellID": 504431,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate28",
+    "left": 1119.374800574261
+  },
+  "707007": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 519.960878669343,
+    "maxRank": 1,
+    "spellID": 707007,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonSquareTemplate5",
+    "left": 1339.374829844
+  },
+  "504316": {
+    "tree": "CoATalentFrameTreeViewClassTree",
+    "rank": 0,
+    "top": 695.9608600680139,
+    "maxRank": 1,
+    "spellID": 504316,
+    "widgetName": "CoATalentFrameTreeViewClassTreePoolFrameCoATalentButtonSquareTemplate1",
+    "left": 418.3747222708722
+  },
+  "807494": {
+    "tree": "CoATalentFrameTreeViewSpecTree",
+    "rank": 0,
+    "top": 563.960891526144,
+    "maxRank": 1,
+    "spellID": 807494,
+    "widgetName": "CoATalentFrameTreeViewSpecTreePoolFrameCoATalentButtonCircleTemplate32",
+    "left": 1471.374833400136
+  }
+}

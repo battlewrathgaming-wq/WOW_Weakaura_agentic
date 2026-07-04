@@ -37,5 +37,5 @@
       "default": 20
     }
   },
-  "verified": "Confirmed by direct source read: BuffTrigger2.lua has a real matchesShowOn == 'showOnMissing' mode. Already load-bearing in Template_shadow.py's design (v0.13+ reserves the positional slots), though the actual trigger dict for showOnMissing specifically has not yet been captured from a real live-tested example in this project - same caveat as the glow_source conditions block."
+  "verified": "Confirmed by direct source read: BuffTrigger2.lua has a real matchesShowOn == 'showOnMissing' mode. Already load-bearing in Template_shadow.py's design (v0.13+ reserves the positional slots), though the actual trigger dict for showOnMissing specifically has not yet been captured from a real live-tested example in this project - same caveat as the glow_source conditions block. Also fixed the same 'spellIds'->'auraspellids' field-name bug as buff_uptime_icon (see that schema's 'verified' field) - the aura2 trigger here now uses the real matching fields too."
 }

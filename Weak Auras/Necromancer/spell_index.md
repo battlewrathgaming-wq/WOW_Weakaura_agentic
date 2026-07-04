@@ -154,6 +154,19 @@ assumption from the names alone. `525004` is the one to use for an `aura2`
 trigger; `805011` is only relevant if this project ever needs to read or
 react to the native UI element itself, not the debuff.
 
+**Flagged 2026-07-06/07 - the "Visual" suffix itself is now suspect.**
+Every real combat log line Battlewrath has pasted for this debuff reads
+plain **"Life Force"** - never once "Life Force: Visual" - across multiple
+independent gain/loss events. The "Visual" label came from
+`db.ascension.gg`, which this project has already caught wrong twice
+before (the manaCost/Runic-Power mislabeling, and Crypt Swarm's cooldown).
+Not corrected here since it wasn't the confirmed root cause of the
+stack-gain-flash failure chain (ID-based spell-ID matching, which doesn't
+depend on this name string at all, also failed - see
+`Templates/CUSTOM_STATEUPDATE_TRIGGER.md`), but worth treating "Visual" as
+unconfirmed decoration rather than the real in-game name if it's ever
+needed as a literal string again (e.g. a tooltip-name check).
+
 ## Guardian count buff - a real per-minion-type stacking buff (found 2026-07-06)
 
 Per Battlewrath: "per guardian, you get a buff" - each active summon of a
@@ -171,6 +184,15 @@ stacks with 2 Lesser Skeletal Warriors summoned.** (Effects #2/#3 are
 separate `Dummy` script effects buffing **Soulfreeze**, 801724, by 80
 within 100 yards - a nearby-pet damage/proc interaction, not part of the
 counting mechanic itself.)
+
+**Reconfirmed independently, 2026-07-06/07**, via a real combat log
+screenshot from Battlewrath showing this exact pattern for Abomination
+too (not just Lesser Skeletal Warrior): "Gravekeeper gains Abomination's
+Abomination" / "Abomination's Abomination fades from Gravekeeper" - same
+"X gains Y's X" shape, live rather than DB-sourced. Battlewrath's own
+framing: "Abom takes passives from me. And gives me a buff to say I have
+an abom." Still shelved per the note below - this is corroboration, not a
+reason to un-shelve on its own.
 
 **Shelved, 2026-07-06 - not load-bearing for now.** This looked like a
 materially better pet-count mechanism than this project previously

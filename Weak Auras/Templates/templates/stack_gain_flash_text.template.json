@@ -1,0 +1,51 @@
+{
+  "regionType": "text",
+  "displayText": "{{display_text}}",
+  "outline": "OUTLINE",
+  "color": "{{color}}",
+  "justify": "CENTER",
+  "selfPoint": "CENTER",
+  "anchorPoint": "CENTER",
+  "anchorFrameType": "SCREEN",
+  "font": "Friz Quadrata TT",
+  "fontSize": "{{font_size}}",
+  "frameStrata": 1,
+  "customTextUpdate": "event",
+  "automaticWidth": "Auto",
+  "fixedWidth": 200,
+  "wordWrap": "WordWrap",
+  "shadowColor": [
+    0,
+    0,
+    0,
+    1
+  ],
+  "shadowXOffset": 1,
+  "shadowYOffset": -1,
+  "subRegions": [
+    {
+      "type": "subbackground"
+    }
+  ],
+  "triggers": {
+    "1": {
+      "trigger": {
+        "type": "combatlog",
+        "event": "Combat Log",
+        "subeventPrefix": "SPELL",
+        "subeventSuffix": "_AURA_APPLIED_DOSE",
+        "use_sourceUnit": true,
+        "sourceUnit": "player",
+        "use_spellName": true,
+        "spellName": [
+          "{{name}}"
+        ],
+        "use_spellId": false,
+        "duration": "{{duration}}",
+        "use_duration": true
+      },
+      "untrigger": {}
+    },
+    "activeTriggerMode": -10
+  }
+}

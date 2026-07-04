@@ -37,5 +37,5 @@
       "default": 15
     }
   },
-  "verified": "aurabar default fields from RegionTypes/AuraBar.lua; aura2 trigger shape shared with buff_uptime_icon above."
+  "verified": "aurabar default fields from RegionTypes/AuraBar.lua; aura2 trigger shape shared with buff_uptime_icon above, including the same 'spellIds'->'auraspellids' field-name fix - see that schema's 'verified' field for the full trail."
 }

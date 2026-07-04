@@ -1,1 +1,396 @@
 === Removing old/broken .git folder if present ===
+=== git init ===
+Initialized empty Git repository in F:/Projects_games/World of Warcraft - Conquest of Azeroth/.git/
+=== git branch -M main ===
+=== git remote add origin ===
+=== git add -A ===
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Display/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Docs/PIPELINE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Docs/WEAKAURA_INDEX.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Docs/spell_family_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/barbarian_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/bloodmage_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/chronomancer_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/cultist_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/felsworn_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/guardian_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/knight_of_xoroth_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/necromancer_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/primalist_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/pyromancer_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/ranger_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/reaper_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/runemaster_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/starcaller_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/stormbringer_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/sun_cleric_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/templar_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/tinker_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/venomancer_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/witch_doctor_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Input/witch_hunter_talents.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/Archive/bloodmage_reference.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/Archive/bloodmage_tree_display.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/class_sheets/ability_sheets_all_classes.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/dbc_preview/necromancer_abilities_reference.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/dbc_preview/necromancer_ability_cards.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/dbc_preview/necromancer_talent_context.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/nested_preview/necromancer_readout_nested.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/nested_preview/necromancer_skill_index_nested.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/barbarian_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/bloodmage_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/chronomancer_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/cultist_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/felsworn_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/guardian_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/knight_of_xoroth_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/necromancer_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/primalist_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/pyromancer_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/ranger_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/reaper_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/runemaster_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/starcaller_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/stormbringer_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/sun_cleric_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/templar_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/tinker_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/venomancer_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/witch_doctor_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readout_html/witch_hunter_readout.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/barbarian_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/bloodmage_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/chronomancer_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/cultist_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/felsworn_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/guardian_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/knight_of_xoroth_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/necromancer_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/primalist_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/pyromancer_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/ranger_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/reaper_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/runemaster_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/starcaller_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/stormbringer_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/sun_cleric_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/templar_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/tinker_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/venomancer_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/witch_doctor_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/readouts/witch_hunter_readout.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/barbarian_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/bloodmage_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/chronomancer_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/cultist_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/felsworn_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/guardian_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/knight_of_xoroth_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/necromancer_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/primalist_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/pyromancer_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/ranger_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/reaper_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/runemaster_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/starcaller_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/stormbringer_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/sun_cleric_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/templar_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/tinker_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/venomancer_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/witch_doctor_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/skill_indices/witch_hunter_skill_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Outputs/weakaura_index/necromancer_weakaura_index.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/build_abilities_reference_dbc.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/build_ability_cards_dbc.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/build_class_ability_sheet.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/build_flattened_readout.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/build_skill_index.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/build_skill_index_nested.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/build_weakaura_index.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/coa_skill_lookup.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/coa_toolkit.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/example_build.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/generate_readout_html.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/generate_readout_html_nested.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/generate_reference_sheet.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/generate_talent_context_dbc.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Scripts/tooltip_normalize.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/AGENT_PROMPT.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/AURA_BLUEPRINT.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/CAPABILITY_INVENTORY.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/CAST_ERROR_OVERLAY.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/CLAUDE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/DEV_TOOLS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/DISCORD_POST.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/ELEMENT_INVENTORY.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/HUD_DESIGN.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/IMPLEMENTATION_PLAN.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Necromancer/BUILD_METHOD.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Necromancer/inventory.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Necromancer/slot_assignment.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Necromancer/spell_index.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Necromancer/theme.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Template_shadow.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/ICON_REGION_OPTIONS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/ROTATION_ICON_PATTERN.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/build_templates.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/backing_plate_aurabar.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/buff_uptime_aurabar.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/buff_uptime_icon.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/class_accent_tick_end.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/cooldown_tracker_icon.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/enemy_cast_aurabar.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/glow_source.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/missing_buff_icon.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/pet_summon_countdown_icon.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/player_cast_aurabar.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/power_threshold_effect.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/proc_alert_icon.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/resource_threshold_aurabar.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/stack_counter_overlay.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/swing_timer_aurabar.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/schemas/swing_timer_icon.schema.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/_base_envelope.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/backing_plate_aurabar.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/buff_uptime_aurabar.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/buff_uptime_icon.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/class_accent_tick_end.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/cooldown_tracker_icon.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/enemy_cast_aurabar.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/missing_buff_icon.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/pet_summon_countdown_icon.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/player_cast_aurabar.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/proc_alert_icon.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/resource_threshold_aurabar.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/stack_counter_overlay.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/swing_timer_aurabar.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/Templates/templates/swing_timer_icon.template.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/USE_CASE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/fuse_check.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/geometry.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/layer_builder.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/reference_library.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/space_audit.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/template_filler.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/wa_lua_verify/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/wa_lua_verify/harness.lua', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/wa_lua_verify/setup.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/wa_lua_verify/verify.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Weak Auras/weakaura_codec.py', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'git_setup.bat', LF will be replaced by CRLF the next time Git touches it
+=== git commit ===
+[main (root-commit) 5d4e775] Initial commit: WeakAuras procedural HUD system (Necromancer)
+ 205 files changed, 304965 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 Display/README.md
+ create mode 100644 Docs/PIPELINE.md
+ create mode 100644 Docs/WEAKAURA_INDEX.md
+ create mode 100644 Docs/spell_family_index.json
+ create mode 100644 Input/barbarian_talents.json
+ create mode 100644 Input/bloodmage_talents.json
+ create mode 100644 Input/chronomancer_talents.json
+ create mode 100644 Input/cultist_talents.json
+ create mode 100644 Input/felsworn_talents.json
+ create mode 100644 Input/guardian_talents.json
+ create mode 100644 Input/knight_of_xoroth_talents.json
+ create mode 100644 Input/necromancer_talents.json
+ create mode 100644 Input/primalist_talents.json
+ create mode 100644 Input/pyromancer_talents.json
+ create mode 100644 Input/ranger_talents.json
+ create mode 100644 Input/reaper_talents.json
+ create mode 100644 Input/runemaster_talents.json
+ create mode 100644 Input/starcaller_talents.json
+ create mode 100644 Input/stormbringer_talents.json
+ create mode 100644 Input/sun_cleric_talents.json
+ create mode 100644 Input/templar_talents.json
+ create mode 100644 Input/tinker_talents.json
+ create mode 100644 Input/venomancer_talents.json
+ create mode 100644 Input/witch_doctor_talents.json
+ create mode 100644 Input/witch_hunter_talents.json
+ create mode 100644 Outputs/Archive/bloodmage_reference.html
+ create mode 100644 Outputs/Archive/bloodmage_tree_display.md
+ create mode 100644 Outputs/class_sheets/ability_sheets_all_classes.html
+ create mode 100644 Outputs/dbc_preview/necromancer_abilities_reference.html
+ create mode 100644 Outputs/dbc_preview/necromancer_ability_cards.html
+ create mode 100644 Outputs/dbc_preview/necromancer_talent_context.html
+ create mode 100644 Outputs/nested_preview/necromancer_readout_nested.html
+ create mode 100644 Outputs/nested_preview/necromancer_skill_index_nested.json
+ create mode 100644 Outputs/readout_html/barbarian_readout.html
+ create mode 100644 Outputs/readout_html/bloodmage_readout.html
+ create mode 100644 Outputs/readout_html/chronomancer_readout.html
+ create mode 100644 Outputs/readout_html/cultist_readout.html
+ create mode 100644 Outputs/readout_html/felsworn_readout.html
+ create mode 100644 Outputs/readout_html/guardian_readout.html
+ create mode 100644 Outputs/readout_html/knight_of_xoroth_readout.html
+ create mode 100644 Outputs/readout_html/necromancer_readout.html
+ create mode 100644 Outputs/readout_html/primalist_readout.html
+ create mode 100644 Outputs/readout_html/pyromancer_readout.html
+ create mode 100644 Outputs/readout_html/ranger_readout.html
+ create mode 100644 Outputs/readout_html/reaper_readout.html
+ create mode 100644 Outputs/readout_html/runemaster_readout.html
+ create mode 100644 Outputs/readout_html/starcaller_readout.html
+ create mode 100644 Outputs/readout_html/stormbringer_readout.html
+ create mode 100644 Outputs/readout_html/sun_cleric_readout.html
+ create mode 100644 Outputs/readout_html/templar_readout.html
+ create mode 100644 Outputs/readout_html/tinker_readout.html
+ create mode 100644 Outputs/readout_html/venomancer_readout.html
+ create mode 100644 Outputs/readout_html/witch_doctor_readout.html
+ create mode 100644 Outputs/readout_html/witch_hunter_readout.html
+ create mode 100644 Outputs/readouts/barbarian_readout.md
+ create mode 100644 Outputs/readouts/bloodmage_readout.md
+ create mode 100644 Outputs/readouts/chronomancer_readout.md
+ create mode 100644 Outputs/readouts/cultist_readout.md
+ create mode 100644 Outputs/readouts/felsworn_readout.md
+ create mode 100644 Outputs/readouts/guardian_readout.md
+ create mode 100644 Outputs/readouts/knight_of_xoroth_readout.md
+ create mode 100644 Outputs/readouts/necromancer_readout.md
+ create mode 100644 Outputs/readouts/primalist_readout.md
+ create mode 100644 Outputs/readouts/pyromancer_readout.md
+ create mode 100644 Outputs/readouts/ranger_readout.md
+ create mode 100644 Outputs/readouts/reaper_readout.md
+ create mode 100644 Outputs/readouts/runemaster_readout.md
+ create mode 100644 Outputs/readouts/starcaller_readout.md
+ create mode 100644 Outputs/readouts/stormbringer_readout.md
+ create mode 100644 Outputs/readouts/sun_cleric_readout.md
+ create mode 100644 Outputs/readouts/templar_readout.md
+ create mode 100644 Outputs/readouts/tinker_readout.md
+ create mode 100644 Outputs/readouts/venomancer_readout.md
+ create mode 100644 Outputs/readouts/witch_doctor_readout.md
+ create mode 100644 Outputs/readouts/witch_hunter_readout.md
+ create mode 100644 Outputs/skill_indices/barbarian_skill_index.json
+ create mode 100644 Outputs/skill_indices/bloodmage_skill_index.json
+ create mode 100644 Outputs/skill_indices/chronomancer_skill_index.json
+ create mode 100644 Outputs/skill_indices/cultist_skill_index.json
+ create mode 100644 Outputs/skill_indices/felsworn_skill_index.json
+ create mode 100644 Outputs/skill_indices/guardian_skill_index.json
+ create mode 100644 Outputs/skill_indices/knight_of_xoroth_skill_index.json
+ create mode 100644 Outputs/skill_indices/necromancer_skill_index.json
+ create mode 100644 Outputs/skill_indices/primalist_skill_index.json
+ create mode 100644 Outputs/skill_indices/pyromancer_skill_index.json
+ create mode 100644 Outputs/skill_indices/ranger_skill_index.json
+ create mode 100644 Outputs/skill_indices/reaper_skill_index.json
+ create mode 100644 Outputs/skill_indices/runemaster_skill_index.json
+ create mode 100644 Outputs/skill_indices/starcaller_skill_index.json
+ create mode 100644 Outputs/skill_indices/stormbringer_skill_index.json
+ create mode 100644 Outputs/skill_indices/sun_cleric_skill_index.json
+ create mode 100644 Outputs/skill_indices/templar_skill_index.json
+ create mode 100644 Outputs/skill_indices/tinker_skill_index.json
+ create mode 100644 Outputs/skill_indices/venomancer_skill_index.json
+ create mode 100644 Outputs/skill_indices/witch_doctor_skill_index.json
+ create mode 100644 Outputs/skill_indices/witch_hunter_skill_index.json
+ create mode 100644 Outputs/weakaura_index/necromancer_weakaura_index.json
+ create mode 100644 Scripts/build_abilities_reference_dbc.py
+ create mode 100644 Scripts/build_ability_cards_dbc.py
+ create mode 100644 Scripts/build_class_ability_sheet.py
+ create mode 100644 Scripts/build_flattened_readout.py
+ create mode 100644 Scripts/build_skill_index.py
+ create mode 100644 Scripts/build_skill_index_nested.py
+ create mode 100644 Scripts/build_weakaura_index.py
+ create mode 100644 Scripts/coa_skill_lookup.py
+ create mode 100644 Scripts/coa_toolkit.py
+ create mode 100644 Scripts/example_build.json
+ create mode 100644 Scripts/generate_readout_html.py
+ create mode 100644 Scripts/generate_readout_html_nested.py
+ create mode 100644 Scripts/generate_reference_sheet.py
+ create mode 100644 Scripts/generate_talent_context_dbc.py
+ create mode 100644 Scripts/tooltip_normalize.py
+ create mode 100644 Weak Auras/AGENT_PROMPT.md
+ create mode 100644 Weak Auras/AURA_BLUEPRINT.md
+ create mode 100644 Weak Auras/CAPABILITY_INVENTORY.md
+ create mode 100644 Weak Auras/CAST_ERROR_OVERLAY.md
+ create mode 100644 Weak Auras/CLAUDE.md
+ create mode 100644 Weak Auras/DEV_TOOLS.md
+ create mode 100644 Weak Auras/DISCORD_POST.md
+ create mode 100644 Weak Auras/ELEMENT_INVENTORY.md
+ create mode 100644 Weak Auras/HUD_DESIGN.md
+ create mode 100644 Weak Auras/IMPLEMENTATION_PLAN.md
+ create mode 100644 Weak Auras/Necromancer/BUILD_METHOD.md
+ create mode 100644 Weak Auras/Necromancer/Resources_v10_import.txt
+ create mode 100644 Weak Auras/Necromancer/Resources_v11_import.txt
+ create mode 100644 Weak Auras/Necromancer/Resources_v12_import.txt
+ create mode 100644 Weak Auras/Necromancer/Resources_v13_import.txt
+ create mode 100644 Weak Auras/Necromancer/Resources_v1_import.txt
+ create mode 100644 Weak Auras/Necromancer/Resources_v2_import.txt
+ create mode 100644 Weak Auras/Necromancer/Resources_v3_import.txt
+ create mode 100644 Weak Auras/Necromancer/Resources_v4_import.txt
+ create mode 100644 Weak Auras/Necromancer/Resources_v5_import.txt
+ create mode 100644 Weak Auras/Necromancer/Resources_v6_import.txt
+ create mode 100644 Weak Auras/Necromancer/Resources_v7_import.txt
+ create mode 100644 Weak Auras/Necromancer/Resources_v8_import.txt
+ create mode 100644 Weak Auras/Necromancer/Resources_v9_import.txt
+ create mode 100644 Weak Auras/Necromancer/Tier1_Rotation_v1_import.txt
+ create mode 100644 Weak Auras/Necromancer/inventory.py
+ create mode 100644 Weak Auras/Necromancer/slot_assignment.md
+ create mode 100644 Weak Auras/Necromancer/spell_index.md
+ create mode 100644 Weak Auras/Necromancer/theme.json
+ create mode 100644 Weak Auras/README.md
+ create mode 100644 Weak Auras/Template_shadow.py
+ create mode 100644 Weak Auras/Template_shadow_v0.10_import.txt
+ create mode 100644 Weak Auras/Template_shadow_v0.11_import.txt
+ create mode 100644 Weak Auras/Template_shadow_v0.12_import.txt
+ create mode 100644 Weak Auras/Template_shadow_v0.13_import.txt
+ create mode 100644 Weak Auras/Template_shadow_v0.14_import.txt
+ create mode 100644 Weak Auras/Template_shadow_v0.1_import.txt
+ create mode 100644 Weak Auras/Template_shadow_v0.2_import.txt
+ create mode 100644 Weak Auras/Template_shadow_v0.3_import.txt
+ create mode 100644 Weak Auras/Template_shadow_v0.4_import.txt
+ create mode 100644 Weak Auras/Template_shadow_v0.5_import.txt
+ create mode 100644 Weak Auras/Template_shadow_v0.6_import.txt
+ create mode 100644 Weak Auras/Template_shadow_v0.8_import.txt
+ create mode 100644 Weak Auras/Template_shadow_v0.9_import.txt
+ create mode 100644 Weak Auras/Templates/ICON_REGION_OPTIONS.md
+ create mode 100644 Weak Auras/Templates/ROTATION_ICON_PATTERN.md
+ create mode 100644 Weak Auras/Templates/build_templates.py
+ create mode 100644 Weak Auras/Templates/schemas/backing_plate_aurabar.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/buff_uptime_aurabar.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/buff_uptime_icon.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/class_accent_tick_end.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/cooldown_tracker_icon.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/enemy_cast_aurabar.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/glow_source.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/missing_buff_icon.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/pet_summon_countdown_icon.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/player_cast_aurabar.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/power_threshold_effect.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/proc_alert_icon.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/resource_threshold_aurabar.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/stack_counter_overlay.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/swing_timer_aurabar.schema.json
+ create mode 100644 Weak Auras/Templates/schemas/swing_timer_icon.schema.json
+ create mode 100644 Weak Auras/Templates/templates/_base_envelope.template.json
+ create mode 100644 Weak Auras/Templates/templates/backing_plate_aurabar.template.json
+ create mode 100644 Weak Auras/Templates/templates/buff_uptime_aurabar.template.json
+ create mode 100644 Weak Auras/Templates/templates/buff_uptime_icon.template.json
+ create mode 100644 Weak Auras/Templates/templates/class_accent_tick_end.template.json
+ create mode 100644 Weak Auras/Templates/templates/cooldown_tracker_icon.template.json
+ create mode 100644 Weak Auras/Templates/templates/enemy_cast_aurabar.template.json
+ create mode 100644 Weak Auras/Templates/templates/missing_buff_icon.template.json
+ create mode 100644 Weak Auras/Templates/templates/pet_summon_countdown_icon.template.json
+ create mode 100644 Weak Auras/Templates/templates/player_cast_aurabar.template.json
+ create mode 100644 Weak Auras/Templates/templates/proc_alert_icon.template.json
+ create mode 100644 Weak Auras/Templates/templates/resource_threshold_aurabar.template.json
+ create mode 100644 Weak Auras/Templates/templates/stack_counter_overlay.template.json
+ create mode 100644 Weak Auras/Templates/templates/swing_timer_aurabar.template.json
+ create mode 100644 Weak Auras/Templates/templates/swing_timer_icon.template.json
+ create mode 100644 Weak Auras/USE_CASE.md
+ create mode 100644 Weak Auras/fuse_check.py
+ create mode 100644 Weak Auras/geometry.py
+ create mode 100644 Weak Auras/layer_builder.py
+ create mode 100644 Weak Auras/reference_library.py
+ create mode 100644 Weak Auras/space_audit.py
+ create mode 100644 Weak Auras/template_filler.py
+ create mode 100644 Weak Auras/wa_lua_verify/README.md
+ create mode 100644 Weak Auras/wa_lua_verify/harness.lua
+ create mode 100644 Weak Auras/wa_lua_verify/setup.sh
+ create mode 100644 Weak Auras/wa_lua_verify/verify.py
+ create mode 100644 Weak Auras/weakaura_codec.py
+ create mode 100644 git_setup.bat
+ create mode 100644 git_setup_log.txt
+=== git push -u origin main ===
+To https://github.com/battlewrathgaming-wq/WOW_Weakaura_agentic.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+=== DONE ===

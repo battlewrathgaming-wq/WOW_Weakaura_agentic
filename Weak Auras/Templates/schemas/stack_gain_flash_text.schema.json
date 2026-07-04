@@ -1,0 +1,59 @@
+{
+  "$id": "stack_gain_flash_text.schema.json",
+  "opportunity_type": "stack_gain_flash",
+  "title": "Stack-gain flash (text, momentary)",
+  "description": "A standalone text-region aura that appears briefly ONLY when a tracked stacking aura's count goes UP (never on removal, never a persistent readout), then auto-reverts - a 'combat text' style '+1' flick-in, not a status display. Distinct from a buff_uptime_icon/aurabar's '%s' readout (this project's already-confirmed-working static approach, live-tested on Life Force 2026-07-06) - that shows the CURRENT count continuously; this shows only the MOMENT of a gain, then disappears, even while the underlying stack is still present.",
+  "region_type": "text",
+  "trigger": "Combat Log (SPELL_AURA_APPLIED_DOSE)",
+  "type": "object",
+  "required": [
+    "name",
+    "spell_id",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Must match the tracked aura's real in-game display name exactly - used for name-based Combat Log filtering (see 'verified' field), same rank-safety reasoning as press_wash_effect."
+    },
+    "spell_id": {
+      "type": [
+        "string",
+        "integer"
+      ],
+      "description": "The stacking aura's spell ID - documentation/reference only (e.g. Life Force: Visual, 525004). The actual trigger filters by name, not this ID directly - see 'verified'."
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "display_text": {
+      "type": "string",
+      "default": "+1",
+      "description": "What flashes on a gain. Defaults to a fixed '+1', matching Battlewrath's own stated goal ('seeing per +1 flick in') and deliberately NOT the live new total - see 'verified' for why the live total isn't wired up yet (no confirmed dynamic-text token exists for a Combat Log DOSE event's 'amount' field, unlike aura2's confirmed-working '%s'). Override this per-ability if a gain is ever not exactly +1 (e.g. a spell that can grant 2+ stacks in one event)."
+    },
+    "duration": {
+      "type": "number",
+      "default": 1.0,
+      "description": "Seconds the flash stays visible before auto-reverting - same native timedrequired mechanism already confirmed working for press_wash (GenericTrigger.lua's automaticAutoHide), just a longer default than press_wash's 0.3s since this needs to be readable as text, not just a color cue."
+    },
+    "color": {
+      "type": "array",
+      "default": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "description": "Text color - defaults to plain white; pass a class's accent_rgba for a class-tinted flash if wanted."
+    },
+    "font_size": {
+      "type": "integer",
+      "default": 20
+    }
+  },
+  "verified": "Region type 'text' and its full default() field set confirmed TWO ways, not just read: (1) mechanically, via a new sibling harness (wa_lua_verify/harness_regiontype.lua, extending the existing SubRegionType harness's proven technique to Private.RegisterRegionType calls) run against the real, unmodified RegionTypes/Text.lua under real Lua 5.1.5 - output matched a direct source read exactly, no missing fields; (2) live, in-game: a standalone test aura (regionType 'text', aura2 trigger on Life Force 525004, displayText '%s') was built, round-trip verified, and pasted in-game by Battlewrath - confirmed rendering correctly, '%s' tracking the real live stack count, and showing/hiding correctly with the aura's own presence. That test also caught a real mistake in the first build: debuffType was wrongly set to 'HELPFUL' (copied verbatim from buff_uptime_icon's actual-buff pattern) when Life Force is a debuff - Battlewrath's real re-exported aura showed the correct 'HARMFUL' value, confirming the fix. SPELL_AURA_APPLIED_DOSE confirmed as a real, distinct Combat Log subevent (BuffTrigger2.lua lines 3432/3607, Types.lua line 1409, Prototypes.lua's subeventHeader enable-condition line 3438 explicitly checks for 'DOSE') - fires specifically when a stacking aura's count INCREASES, distinct from plain SPELL_AURA_APPLIED (first application) and SPELL_AURA_REMOVED_DOSE (a decrease). Same Combat Log trigger family already proven working for press_wash_effect - 'timedrequired' category, native automaticAutoHide, no custom Lua or manual revert Condition needed - just a different subeventSuffix and regionType 'text' instead of 'icon'. OPEN, NOT YET RESOLVED: whether a live/dynamic new-total display is possible here at all. Prototypes.lua confirms a generic 'amount' field exists on combat log triggers (line 3563), likely populated from the DOSE event's own extra arg (the new stack count in real WoW's COMBAT_LOG_EVENT_UNFILTERED payload) - but WeakAuras.lua's Private.dynamic_texts table (the source of every working '%'-style text token) only defines p/t/n/i/s (progress/ duration/name/icon/stacks) - no 'amount' token exists there, and whether a combatlog trigger's 'amount' field ever populates state.stacks (so '%s' would resolve to it the way aura2's own stacks do) is NOT confirmed. Deliberately NOT guessed at here - shipped with a fixed 'display_text' default ('+1') instead, which directly satisfies Battlewrath's own stated ask without depending on this unresolved mechanism. Revisit only if a live dynamic total is specifically wanted later - would need its own source/live-test pass, same as everything else in this file."
+}

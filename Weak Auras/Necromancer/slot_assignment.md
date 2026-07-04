@@ -1,4 +1,4 @@
-# Necromancer slot assignment (Resources tier)
+# Necromancer slot assignment
 
 The real-content counterpart to `ELEMENT_INVENTORY.md` - that file
 describes what each `Template_shadow.py` slot is *for*, in the abstract,
@@ -8,8 +8,125 @@ live-tested. Positions below are copied from `ELEMENT_INVENTORY.md`'s Row
 C/D (v0.14) exactly - this file mirrors the mask, per `BUILD_METHOD.md`,
 it doesn't re-derive geometry.
 
-Scope: Resources tier only for now, per Battlewrath's explicit request.
-Other tiers get their own rows here once they're built out the same way.
+Scope: covers every tier built so far - Resources (built 2026-07-05/06)
+and Tier 1 Rotation (built 2026-07-06). Other tiers get their own section
+here once they're built out the same way, per `BUILD_METHOD.md`'s
+per-tier authoring process.
+
+## Tier 1 Rotation (layer 2 in `inventory.py`)
+
+**CURRENT STATE, 2026-07-06 (v6, most recent revision - read this first,
+the walkthrough below is the in-order history that got here, kept for
+traceability but NOT the current picture on its own):** just **Command:
+Undead** (504868). Lichfrost and Crypt Swarm were both built, live-tested,
+and then deliberately DROPPED the same day - both turned out to be pure
+Runic Power builders (no cooldown, no decision point), not opportunities
+worth a HUD slot; see the "SCOPE RULE" walkthrough below for the full
+reasoning trail. Command: Undead currently has: `cooldown_tracker_icon` +
+`power_threshold` (desaturate-on-insufficient-power + afford-glow at 30
+Runic Power). It does NOT currently have `press_wash` - that fragment is
+real, live-confirmed working (on Lichfrost, before Lichfrost itself was
+dropped), but never fired reliably for Command: Undead specifically and
+was pulled from this build rather than ship a visibly-broken feature.
+`press_wash` itself is NOT deprecated - it's a proven mechanism, just not
+currently applied here; the next ability that's both real and has no
+cooldown of its own is the next real candidate for it.
+
+**Real import string, current: `Necromancer/Tier1_Rotation_v6_import.txt`**
+(single child, round-trip verified: 2 triggers - Cooldown Progress + Power
+- and 2 conditions - desaturate, afford-glow via `sub.3.glow`; no
+combatlog trigger). **Not yet live-tested in-game.** `_v1` through `_v5`
+in this same folder are superseded build history, not live artifacts -
+kept on disk per this project's existing convention (see the Resources
+section below for the same pattern), not cleaned up.
+
+Necromancer's first three real rotation abilities were originally built
+via `layer_builder.py` from `Necromancer/inventory.py`'s "Tier 1 Rotation"
+layer (not hand-assembled like Resources was) - see that file's own
+inline comments for the full sourcing trail. All used
+`cooldown_tracker_icon` + the `power_threshold` fragment
+(`Templates/ROTATION_ICON_PATTERN.md`), no `glow_source` (no confirmed
+"proc that empowers" buff exists among these three - see below).
+
+| Template_shadow slot | x | y | Assigned to | Spell ID | Cost | Opportunity type | Status (as of v1, since superseded - see CURRENT STATE above) |
+|---|---|---|---|---|---|---|---|
+| Tier 1 slot Rotation | -107.5 | -130 | ~~Lichfrost~~ | 501969 | 10% base mana (`percentpower`) | `cooldown_tracker` + desaturate-on-insufficient-mana | Built, live-tested, confirmed working - then DROPPED (pure Runic Power builder, no decision point) |
+| Tier 1 slot 2 | -64.5 | -130 | ~~Crypt Swarm~~ | 500965 | 10% base mana (`percentpower`) | `cooldown_tracker` + desaturate-on-insufficient-mana | Built, live-tested, confirmed working - then DROPPED (channeled Runic Power builder, same reasoning as Lichfrost) |
+| Tier 1 slot 3 | -21.5 | -130 | **Command: Undead** | 504868 | 30 flat Runic Power (`power`) | `cooldown_tracker` + desaturate-on-insufficient-power + afford-glow (`include_afford_glow`) | **Kept - this is the current, only slot in the layer** |
+
+**No proc/empower relationship built yet.** Research this session (spell
+data pulled from `db.ascension.gg`, since none of these 3 IDs existed in
+this project's own indexed data yet) found Lichfrost triggers **Ice
+Barrage** (804112 - instant, no cost, "Give Power: (Runic Power) Value:
+20") and Command: Undead triggers **Grave March** (500991 - a minor
+damage tick) as side effects, but neither is a buff that empowers a
+*different* rotation ability the way `glow_source`/`ROTATION_ICON_PATTERN.md`
+expects - Lichfrost is a Runic Power *generator*, Command: Undead a
+Runic Power *spender*, not a proc chain. So `power_threshold` (desaturate
++ afford-glow) is the only effect wired in for this tier; revisit
+`glow_source` once a real empowering proc exists in this character's kit
+(low level, per Battlewrath - "a lot of the kit is missing").
+
+**Original v1 import string:** `Necromancer/Tier1_Rotation_v1_import.txt`,
+built via `python3 layer_builder.py Necromancer Necromancer/inventory.py
+"Tier 1 Rotation"`. Round-trip verified (correct trigger/condition counts:
+Lichfrost 1 condition, Crypt Swarm 1 condition, Command: Undead 2
+conditions) and pasted into WeakAuras in-game - confirmed working. This is
+now superseded - see CURRENT STATE above for what's actually live.
+
+**Revision, 2026-07-06 - press-wash feedback added ("I pressed this and it
+actioned").** Battlewrath, running Resources + Tier 1 Rotation live in-game:
+"Currently they just look at you without response... I liken it to playing
+a piano. Press a key and get a response." Explicitly NOT wanted: all three
+icons flashing together off one shared GCD animation - "What I don't want
+is every ability to all go through the same GCD animation, because I
+pressed one key." Diagnosed why: none of these 3 abilities have a real
+ability cooldown (only GCD) - `power_threshold`'s desaturate/afford-glow
+covers the "can I afford this" question, but nothing signals "I just
+pressed it." Reference point Battlewrath gave: the native Blizzard action-
+button press highlight (a faint, neutral wash, not a golden proc-glow) -
+"maybe a very faint class hex based wash on the button when YOUR spell
+triggers on the event log." Scope clarified: "those with cooldowns don't
+need it, as their response is going on cooldown / desaturation" - so this
+only applies to abilities without a real cooldown sweep (all 3 here,
+currently; future Power-button abilities with real 15s+ cooldowns won't
+need it). Command: Undead keeps its existing afford-glow untouched -
+"Glow is opportunity. Wash is response" - the two are independent,
+non-conflicting Conditions on separate triggers.
+
+**Mechanism, confirmed via direct source read before building (`CLAUDE.md`'s
+"discuss before acting"):** a new optional `press_wash` fragment
+(`Templates/schemas/press_wash_effect.schema.json`,
+`template_filler.py`'s press-wash block) adds a third trigger - Combat Log,
+`SPELL_CAST_SUCCESS`, filtered to the icon's own spell ID, with
+`duration: "0.3"`. Combat Log is a `timedrequired` trigger category
+(`GenericTrigger.lua` line 3739) - WeakAuras auto-reverts this trigger's
+`show` back to false 0.3s after it fires, natively, no custom Lua. A single
+Condition (matching the existing `power_threshold`/`glow_source` pattern -
+one direction only, WeakAuras reverts automatically) mixes the icon's base
+`color` 30% toward its class accent while that trigger is showing, then
+reverts. **A real risk was caught before shipping, not after:**
+`WeakAuras.lua` line 3109 defaults a multi-trigger aura's `disjunctive`
+combination to `"all"` (AND) unless set otherwise. `power_threshold`'s own
+second trigger (Power, a continuous status - always active) never needed
+to touch this; this new trigger is genuinely momentary (0.3s per cast), so
+leaving `disjunctive` at its default would have required BOTH trigger 1
+(showAlways) AND this one active simultaneously for the icon to show at
+all - hiding it except during the 0.3s flash. This is plausibly the same
+bug class that broke the Cast Bar/Swing Timer idle-shadow experiment
+(above). Fixed: `template_filler.py` explicitly sets
+`disjunctive: "any"` whenever `press_wash` is applied.
+
+Applied to all 3 built abilities (`inventory.py`): `press_wash: {wash_alpha:
+0.3, duration: 0.3}` - 30%/0.3s, Battlewrath's confirmed starting values.
+Rebuilt as **`Necromancer/Tier1_Rotation_v2_import.txt`**. Round-trip
+verified: each icon now carries 3 triggers (Cooldown Progress, Power,
+Combat Log wash) with `disjunctive: "any"`; Lichfrost/Crypt Swarm each
+carry 2 conditions (desaturate + wash-color), Command: Undead carries 3
+(desaturate + afford-glow + wash-color, all independent); the wash color
+resolves to `[0.781, 0.958, 0.884, 1]` (30% mix of white toward the
+Necromancer accent `#45db9c`), region alpha untouched throughout (a tint
+mix, never a fade/flicker). **Not yet live-tested in-game.**
 
 ## Resources tier (Row C/D, `Template_shadow.py` v0.14)
 
@@ -394,6 +511,117 @@ showing the Cast trigger's own `castType` field ("cast" vs "channel")
 instead of the name text - noted as "we'll see," not decided, nothing
 built for it yet.
 
+## Stance loader (Undead Stance)
+
+**Built 2026-07-08.** A single icon showing whichever of the Necromancer's
+3 mutually-exclusive Undead Stances (Pacify/Protect/Assault) is currently
+active - `stance_loader_icon`, a new generalized (N-of-N) template added
+this pass to `Templates/build_templates.py`/`template_filler.py`. See that
+template's own schema for the full mechanism writeup (N `aura2` triggers,
+name-matched, `disjunctive: "any"`, `activeTriggerMode: -10` - no
+Conditions block or manual icon-swap needed, confirmed via direct source
+read of `RegionTypes/Icon.lua`'s `UpdateIcon` and `WeakAuras.lua`'s
+`activeTriggerMode` handling).
+
+Sourced from `Outputs/live_reference/necromancer_live_reference.json`
+(trainer capture, `verifiedLive: true`) - mutual exclusivity confirmed
+directly from the live tooltip text: "Only 1 Undead Stance can be active
+at a time." All three are single-rank (no rank-multiplicity risk - see
+`Templates/build_templates.py`'s stance_loader_icon comment block).
+Matched by exact in-game name (`useName`/`auranames`), not spell ID - none
+of the three has a resolved spellId in the live reference (trainer-window
+data doesn't expose one).
+
+**Position: PLACEHOLDER, not final.** Asked Battlewrath directly where
+this should sit on the mask; answer: "Undefined. This will live around
+the UI for the necro" - i.e. genuinely not decided yet, not a case of
+picking the wrong existing slot. Built at `x: -107.5, y: -130` - the
+vacated Tier 1 Rotation slot 1 (Lichfrost's old position, left empty since
+Lichfrost was dropped, see the v5 change-log entry below) - a real,
+already-known-empty coordinate in the Necromancer's own action area,
+chosen only so the mechanism could be verified end-to-end rather than
+left unbuilt. **Reposition once Battlewrath settles where stance display
+actually belongs** - this is not a considered placement decision, just an
+available parking spot.
+
+**Real import string:** `Necromancer/UndeadStance_v1_import.txt` (single
+aura, not a group). Round-trip verified via `weakaura_codec.py`'s
+`encode_import_string`/`decode_import_string`
+(`_normalize_for_comparison`-equal, per this codec's own empty-table
+convention - see `weakaura_codec.py`'s docstring). **Not yet live-tested
+in-game.**
+
+## Necro_animation_spec_UI_element (Battlewrath's live dev/test group)
+
+**Indexed 2026-07-08.** Battlewrath imported Undead Stance in-game
+("General placement. Some feedback. But conceptually works great."),
+moved it (along with the existing Life Force delta text) into a new
+personal dev/test group named `Necro_animation_spec_UI_element`, re-styled
+the Life Force text, and - notably - **built a second real element
+themselves**, by hand, reusing the exact `stance_loader_icon` mechanism
+for an unrelated mutually-exclusive pair. Per Battlewrath's explicit
+request ("I'd index it so it gets picked up in future builds for export.
+On both the font change and the ward addition."), all of this is now
+indexed as a real layer in `Necromancer/inventory.py` (`"Necro_
+animation_spec_UI_element"`), not left as a one-off in-game edit -
+`layer_builder.py` reproduces it byte-for-byte (round-trip verified,
+decoded output matches Battlewrath's real pasted export field-for-field:
+group id, `controlledChildren` order, all 3 children's positions,
+`LF Delta Test`'s font/fontSize/color, and both stance-loader icons'
+option names/`disjunctive`/`activeTriggerMode`).
+
+**1. Life Force delta text - font/size/color synced.** Battlewrath's
+in-game edit changed `stack_delta_flash_text`'s font from the template
+default (`Friz Quadrata TT`) to `MoK`, font_size from 20 to 13, and color
+to a teal (`[0, 0.6745, 0.5451, 1]`). The font change required a real
+compiler fix, not just a data update: `font` was previously **hardcoded**
+inside `STACK_DELTA_FLASH_TEXT_TEMPLATE` (`"font": "Friz Quadrata TT"`,
+no placeholder), so there was no way to override it at all. Added a new
+optional `font` property to `stack_delta_flash_text`'s schema (default
+`"Friz Quadrata TT"`, preserving existing behavior for anyone who doesn't
+override it), templated as `"font": "{{font}}"`, and added a matching
+`fill_params.setdefault(...)` block in `template_filler.py` for
+`font`/`font_size`/`color` together - these are plain `{{}}`-substituted
+leaves, not schema-required, so omitting any of them without a default
+would have silently stranded the literal `"{{font}}"` string in a built
+aura (same failure class as the `threshold_value` bug from 2026-07-06,
+just never caught until now because `font` had no placeholder at all to
+strand). Verified via test-fill: both the no-override case (`Friz
+Quadrata TT` / 20) and the real override case (`MoK` / 13 / teal) resolve
+cleanly with no unresolved `{{...}}` left in either.
+
+**2. Ward active - a second real element, built by Battlewrath directly,
+now indexed.** Not something this project built - Battlewrath constructed
+it themselves in-game, by hand, copying `stance_loader_icon`'s exact
+mechanism (2 `aura2` triggers, `useName`/`auranames`, `disjunctive: "any"`,
+`activeTriggerMode: -10`) for **Fetid Ward vs. Bone Ward**. Checked the
+live reference to confirm this is a real, independently-verified
+mutually-exclusive pair, not a guess: **Bone Ward**'s own live trainer
+tooltip text reads *"Only 1 |cffffffffWard|r can be active at a time"* -
+the identical mutual-exclusivity language as the Undead Stances, from a
+completely separate ability family. This is a strong validation of the
+`stance_loader_icon` design generalizing beyond its original 3-option case
+without any changes needed - Battlewrath reused it directly, unassisted.
+Indexed into `inventory.py` as a second `stance_loader_icon` slot
+(`option_names: ["Fetid Ward", "Bone Ward"]`) so it's tracked the same way
+as every other real element here, not left as an untracked hand-built
+aura.
+
+**Position - explicitly a dev/test area, not the final mask, same caveat
+as Undead Stance's own placeholder above.** All 3 children's x/y are
+Battlewrath's own current in-game coordinates (decoded straight off their
+real pasted export), reflecting where they're actively testing right now,
+not a settled design decision - Battlewrath: "General placement... I'll
+develop a mask for around the UI." Revisit once that mask exists.
+
+**Real import string:** `Necromancer/Necro_animation_spec_UI_element_v1_
+import.txt` (group, 3 children: `LF Delta Test`, `Undead Stance`, `Ward
+active`). Round-trip verified via `layer_builder.py`/`weakaura_codec.py`.
+**Not yet re-tested in-game since this indexing pass** - the next useful
+check is re-importing this generated string and confirming it matches
+what's already running, byte-for-byte in practice, not just in the codec's
+own decode.
+
 ## Open items before either slot can be built for real
 
 - **Power-type value - CONFIRMED LIVE (2026-07-06).** Battlewrath captured
@@ -515,3 +743,125 @@ data.
   promoted the end-cap tick into a new named, reusable FRAGMENT
   (`class_accent_tick_end`) per Battlewrath's request. Rebuilt as v11,
   round-trip verified, not yet live-tested.
+- 2026-07-06: Added Tier 1 Rotation section (Lichfrost, Crypt Swarm,
+  Command: Undead), built via the new `layer_builder.py` +
+  `Necromancer/inventory.py` pipeline, pasted into WeakAuras in-game and
+  confirmed working. This closed a real doc gap: the layer had already
+  been built and live-tested before this ledger recorded it at all,
+  found during a documentation audit for new-agent handoff.
+- 2026-07-06: Added press-wash feedback (new `press_wash` fragment) to
+  all 3 Tier 1 Rotation abilities - a faint (30%, 0.3s) class-accent tint
+  on the icon's base `color`, driven by a third Combat Log
+  SPELL_CAST_SUCCESS trigger (own spell ID, `duration: "0.3"` for native
+  auto-revert), independent per ability and independent of Command:
+  Undead's existing afford-glow. Caught and fixed a real risk before
+  building: WeakAuras defaults multi-trigger `disjunctive` to `"all"`
+  (AND), which would have hidden the icon except during the 0.3s flash -
+  fixed by explicitly setting `disjunctive: "any"`. Rebuilt as
+  `Tier1_Rotation_v2_import.txt`, round-trip verified. Not yet
+  live-tested in-game.
+- 2026-07-06 (v3 correction, same day): Battlewrath live-tested v2 in-game
+  and pasted back the manually-edited export as reference material,
+  reporting two real gaps: "they all landed with no spell config. So they
+  was firing to any combat event" and a fix of "set source = player,"
+  plus "set spell ID to named" (switched the filter from spell ID to
+  spell name). Decoded the pasted export and confirmed both:
+  1. MISSING SOURCE FILTER - v2's combatlog trigger had no `sourceUnit`/
+     `use_sourceUnit` at all, so it matched Combat Log events from ANY
+     unit. Fixed: `use_sourceUnit: true, sourceUnit: "player"`.
+  2. NAME-BASED SPELL MATCH - v2 used `spellIds`/`use_spellId: true`
+     (copied from `proc_alert_icon`'s own not-independently-verified
+     pattern). Battlewrath's fix uses `use_spellName: true` +
+     `spellName: [<name>]` instead. Confirmed directly with Battlewrath
+     this is a DELIBERATE rank-safety choice, not a workaround for a
+     broken ID filter: "Spell ID can be a source. But I made it generic
+     incase the ranks effect things. So targetted the spell name" -
+     different ranks of the same spell carry different spell IDs but the
+     same display name, so name-based matching catches all ranks where
+     ID-based would only catch one specific rank.
+  Both fixes applied in `template_filler.py`; `press_wash_effect.schema.json`'s
+  "verified" field rewritten to document the correction, the source-filter
+  bug, and the deliberate-choice framing precisely (not as a bug).
+  OPEN QUESTION, not resolved: Battlewrath's real test also flipped
+  `subeventSuffix` to `_CAST_START` and reported Lichfrost then repeated
+  correctly, but Crypt Swarm and Command: Undead did not fire at all under
+  that suffix. Hypothesis (unconfirmed): `_CAST_START` may only fire for
+  casts with a visible windup, while purely instant abilities may only
+  ever emit `_CAST_SUCCESS`. Kept the corrected build at `_CAST_SUCCESS`
+  (universal for instant and windup casts) rather than `_CAST_START`,
+  pending a live re-test of this specific hypothesis - flag if any ability
+  still doesn't fire once this v3 is tested in-game.
+  Rebuilt as `Tier1_Rotation_v3_import.txt`; round-trip verified (decoded
+  and confirmed, per icon: `sourceUnit=player`, `use_spellName=True`,
+  `spellName=[<name>]`, `use_spellId=False`, `subeventSuffix=_CAST_SUCCESS`,
+  `disjunctive=any`; Command: Undead's afford-glow condition (trigger 2,
+  `sub.3.glow`) confirmed still independent of the wash condition
+  (trigger 3, `color`)). Not yet live-tested in-game.
+- 2026-07-06 (v4, same day): Battlewrath live-tested v3 and resolved the
+  open `_CAST_START`/`_CAST_SUCCESS` question - swapped Crypt Swarm to
+  `_CAST_SUCCESS` and it started firing correctly, then stated the rule:
+  "true cast start = spells with a cast time. Cast success = spells with
+  instant." Cross-checked against real db.ascension.gg spell pages to
+  sharpen this into the precise combat-log rule: **Lichfrost** (501969)
+  has a real 1.5s windup cast time -> `_CAST_START`; **Crypt Swarm**
+  (500965) is "Channeled" (not a windup) -> `_CAST_SUCCESS`; **Command:
+  Undead** (504868) is "Instant cast" -> `_CAST_SUCCESS`. Channeled spells
+  fire `SPELL_CAST_SUCCESS` the instant the channel begins - there's no
+  separate `CAST_START` event for them the way there is for a true
+  windup, despite showing a nonzero "cast time" on their tooltip.
+  Implemented as a new per-ability `trigger_event` param on `press_wash`
+  (`"cast_start"` or `"cast_success"`, default `"cast_success"`) -
+  Lichfrost is the only ability currently set to `"cast_start"`. Rebuilt
+  as `Tier1_Rotation_v4_import.txt`; round-trip verified per icon:
+  Lichfrost=`_CAST_START`, Crypt Swarm/Command: Undead=`_CAST_SUCCESS`,
+  `disjunctive=any` still present on all three.
+  Command: Undead's wash is still not observed firing in-game even at the
+  now-correct `_CAST_SUCCESS` suffix - left unresolved and NOT further
+  debugged, per Battlewrath's call: it's non-blocking since Command:
+  Undead already gets its own per-press feedback for free via its
+  existing afford-glow (Runic Power >= 30) cycling on/off as its 30 RP
+  cost is spent and regenerated - "that has feed back in the glow once
+  you press it enough times."
+  **Also surfaced, same pass, not yet acted on:** the real db.ascension.gg
+  check done for this fix showed Crypt Swarm actually has a genuine
+  15-second cooldown - this project's own prior assumption ("all 3 Tier 1
+  Rotation abilities lack a real cooldown, only GCD") was wrong for Crypt
+  Swarm specifically. This matters against Battlewrath's newly-stated
+  scoping rule ("if it has a cooldown worth tracking, or a condition to
+  launch on it, track it - if it's pure builder, don't"): Crypt Swarm's
+  own Cooldown Progress trigger (trigger 1) already sweeps on that real
+  15s cooldown, which per the earlier press-wash scoping rule ("those
+  with cooldowns don't need it") likely makes its press_wash redundant.
+  Flagged for Battlewrath's direct call - not removed yet.
+- 2026-07-06 (v5, same day) - Tier 1 Rotation scope reduced from 3
+  abilities to 2, per Battlewrath's direct rulings on the two open items
+  above:
+  1. **Lichfrost DROPPED entirely.** Real data confirmed it's a pure
+     builder: no cooldown, and its own Effect #2 triggers Ice Barrage
+     (804112), which itself just gives 20 Runic Power - i.e. Lichfrost's
+     whole job is generating Runic Power for Command: Undead to spend,
+     with no cooldown or condition making it worth tracking. Battlewrath
+     confirmed: "Drop it entirely." Its slot (was slot 1, x=-107.5) is
+     left as a vacated gap in `Necromancer/inventory.py` - the remaining
+     two abilities were NOT shifted left to fill it; reflowing slot
+     positions is a separate, not-yet-made decision.
+  2. **Crypt Swarm's press_wash KEPT, db.ascension.gg's cooldown claim
+     corrected.** Asked whether to drop Crypt Swarm's press_wash as
+     redundant (given the apparent 15s cooldown above) - Battlewrath
+     corrected the premise directly: "It does not have a 15 sec cool
+     down." Battlewrath's direct in-game experience is being treated as
+     authoritative over db.ascension.gg's scraped page for this specific
+     field (this project has already caught a real db.ascension.gg data
+     error once before - the manaCost/Runic-Power mislabeling documented
+     in `spell_index.md`). Crypt Swarm is treated as having no real
+     cooldown; its press_wash stays as originally built.
+  Rebuilt as `Tier1_Rotation_v5_import.txt` (2 children: Crypt Swarm,
+  Command: Undead); round-trip verified both are present with their
+  press_wash triggers intact (`_CAST_SUCCESS`, `sourceUnit=player`).
+  Not yet live-tested in-game.
+  **Open follow-up, not yet decided:** whether to reflow Crypt Swarm/
+  Command: Undead into the vacated slot-1 position now that Lichfrost is
+  gone, or leave the gap - and whether this "opportunities only, not a
+  full hotbar" philosophy should be applied retroactively to any other
+  layer/ability going forward.
+- 2026-0

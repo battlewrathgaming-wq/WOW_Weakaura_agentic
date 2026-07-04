@@ -1,0 +1,43 @@
+{
+  "regionType": "text",
+  "displayText": "%n",
+  "outline": "OUTLINE",
+  "color": "{{color}}",
+  "justify": "CENTER",
+  "selfPoint": "CENTER",
+  "anchorPoint": "CENTER",
+  "anchorFrameType": "SCREEN",
+  "font": "{{font}}",
+  "fontSize": "{{font_size}}",
+  "frameStrata": 1,
+  "customTextUpdate": "event",
+  "automaticWidth": "Auto",
+  "fixedWidth": 200,
+  "wordWrap": "WordWrap",
+  "shadowColor": [
+    0,
+    0,
+    0,
+    1
+  ],
+  "shadowXOffset": 1,
+  "shadowYOffset": -1,
+  "subRegions": [
+    {
+      "type": "subbackground"
+    }
+  ],
+  "triggers": {
+    "1": {
+      "trigger": {
+        "type": "custom",
+        "event": "Custom",
+        "custom_type": "stateupdate",
+        "events": "UNIT_AURA:player",
+        "custom": "function(allstates, event, ...)\n  local count, icon = 0, nil\n  for i = 1, 40 do\n    local name, _, ic, stacks, _, _, _, _, _, _, spellId = UnitAura(\"player\", i, \"{aura_filter}\")\n    if not name then break end\n    if spellId == {spell_id} then\n      count, icon = stacks or 1, ic\n      break\n    end\n  end\n  local lastCount = allstates:Get(\"\", \"lastCount\") or 0\n  if count > lastCount then\n    allstates:Update(\"\", {{\n      show = true, name = \"+\" .. (count - lastCount) .. \"{label_suffix}\",\n      icon = icon, progressType = \"timed\",\n      expirationTime = GetTime() + {duration}, duration = {duration}, autoHide = true,\n      lastCount = count,\n    }})\n    return true\n  else\n    if count ~= lastCount then\n      allstates:Update(\"\", {{ lastCount = count }})\n    end\n    return false\n  end\nend"
+      },
+      "untrigger": {}
+    },
+    "activeTriggerMode": -10
+  }
+}

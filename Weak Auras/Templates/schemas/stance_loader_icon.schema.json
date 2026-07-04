@@ -1,0 +1,44 @@
+{
+  "$id": "stance_loader_icon.schema.json",
+  "opportunity_type": "stance_loader",
+  "title": "Stance loader (icon, N mutually-exclusive states -> 1 icon)",
+  "description": "One icon that shows whichever of N mutually-exclusive buffs is currently active (e.g. a class's stance/form set), auto-resolving its own icon art from whichever trigger is active - no manual icon path or Conditions-based swap needed.",
+  "region_type": "icon",
+  "trigger": "Aura (N triggers, name-matched, disjunctive: any, activeTriggerMode: first_active)",
+  "type": "object",
+  "required": [
+    "name",
+    "option_names",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Aura id/label."
+    },
+    "option_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "description": "Exact real in-game display names of each mutually-exclusive option (e.g. ['Undead: Pacify', 'Undead: Protect', 'Undead: Assault']) - matched by name via aura2's useName/auranames, not spell ID."
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 30
+    },
+    "height": {
+      "type": "number",
+      "default": 20
+    }
+  },
+  "verified": "Mutual exclusivity confirmed directly from live trainer tooltip text (Outputs/live_reference/necromancer_live_reference.json, source: 'trainer', verifiedLive: true): 'Only 1 Undead Stance can be active at a time.' iconSource=-1 auto-resolving to whichever trigger is active confirmed directly via RegionTypes/Icon.lua's UpdateIcon (iconSource==-1 branch reads self.state.icon) and WeakAuras.lua's activeTriggerMode='first_active' handling (lines 4744-4762 - scans triggerState[id].triggers[i] for the first active one and uses ITS state). aura2 name-based matching fields (useName/auranames) confirmed the same way as the 'spellIds'->'auraspellids' fix on buff_uptime_icon/buff_uptime_aurabar/missing_buff_icon above (BuffTrigger2.lua lines 2598-2825/3722-3761) - built correctly from the start rather than copying the since-fixed wrong field names. Not yet built or live-tested as a real instance."
+}

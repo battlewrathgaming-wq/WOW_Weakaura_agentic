@@ -57,6 +57,10 @@
     "power_threshold": {
       "$ref": "power_threshold_effect.schema.json",
       "description": "Optional - see power-threshold-effect fragment. Desaturate-on-insufficient-power and/or afford-glow, never visibility."
+    },
+    "press_wash": {
+      "$ref": "press_wash_effect.schema.json",
+      "description": "Optional - see press-wash-effect fragment. Per-press 'I touched this' feedback via a faint class-accent tint on cast-success, independent per ability. Scope: only abilities without a real cooldown sweep need this (their cooldown IS the response signal already) - see the fragment's own description."
     }
   },
   "verified": "Icon default fields from RegionTypes/Icon.lua; trigger fields from Prototypes.lua's 'Cooldown Progress (Spell)' entry (line 3742). Field shape confirmed live-tested in Template_shadow.py's own Rotation/Power-button icons (regionType=icon, cooldown=true). Extended 2026-07-06 with a subborder (icon-variant fields live-confirmed via the real Test_Board_validation export) and the optional power_threshold fragment, promoting ROTATION_ICON_PATTERN.md from a documented-but-unwired design into an actual reusable capability - first real consumers: Necromancer's Lichfrost/Crypt Swarm/Command: Undead."

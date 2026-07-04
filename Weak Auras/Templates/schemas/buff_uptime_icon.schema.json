@@ -41,5 +41,5 @@
       "default": true
     }
   },
-  "verified": "Trigger type 'aura2' confirmed live-tested (Buffs/Utility static slots in Template_shadow.py). BuffTrigger2.lua registers 'aura2' (line 3798)."
+  "verified": "Trigger type 'aura2' confirmed live-tested (Buffs/Utility static slots in Template_shadow.py). BuffTrigger2.lua registers 'aura2' (line 3798). FIELD-NAME BUG FIXED 2026-07-08: this template previously used 'spellIds'/'names', which are only ever read inside BuffTrigger2.lua's ConvertBuffTrigger2 (a one-time legacy-migration function for old pre-aura2 'buff' trigger data) - a natively-authored aura2 trigger never passes through it. The real fields the live matching code reads (confirmed directly, BuffTrigger2.lua lines 2598-2825/3722-3761) are 'useExactSpellId'+'auraspellids' (ID-based) or 'useName'+'auranames' (name-based). Fixed to 'auraspellids' (kept 'useExactSpellId', dropped the inert 'names' field). Found while building stance_loader_icon; caught before this template was ever used to build a real aura, so nothing shipped broken."
 }

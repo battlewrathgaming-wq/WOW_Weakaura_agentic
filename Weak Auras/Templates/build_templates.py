@@ -148,6 +148,97 @@ POWER_THRESHOLD_EFFECT_SCHEMA = {
     ),
 }
 
+PRESS_WASH_EFFECT_SCHEMA = {
+    "$id": "press_wash_effect.schema.json",
+    "title": "Press-wash effect fragment",
+    "description": (
+        "Not a standalone template - an OPTIONAL extra trigger (Combat Log, "
+        "SPELL_CAST_SUCCESS, filtered to this icon's OWN spell_id) "
+        "attachable to any icon-shaped template, giving per-ability 'I "
+        "pressed this and it actioned' feedback - independent per icon, "
+        "never a shared/global flash. Added 2026-07-06, per Battlewrath's "
+        "piano-key analogy: 'press a key and get a response.' Distinct "
+        "from power_threshold (opportunity - can I afford this right now) "
+        "and glow_source (a DIFFERENT ability's proc empowering this one) - "
+        "this fragment is pure response feedback to the player's OWN "
+        "action, and is scoped ONLY to abilities that don't already get a "
+        "cooldown sweep as their response signal (Battlewrath, 2026-07-06: "
+        "'those with cooldowns don't need it, as their response is going "
+        "on cooldown / desaturation'). Ties into the icon's own base "
+        "'color' field (a faint mix toward the class accent, not a "
+        "separate overlay - subforeground/subbackground on icon regions "
+        "have no configurable fields, confirmed via ICON_REGION_OPTIONS.md) "
+        "rather than a scale/zoom animation, matching Battlewrath's most "
+        "concrete reference point: the native Blizzard action-button "
+        "press highlight (a faint, neutral wash, not the golden proc-glow "
+        "look) - 'a very faint class hex based wash on the button when "
+        "YOUR spell triggers on the event log.'"
+    ),
+    "type": "object",
+    "properties": {
+        "wash_alpha": {
+            "type": "number",
+            "default": 0.3,
+            "description": "Mix fraction toward the icon's own accent_color, blended against white (untinted) - NOT the region's overall alpha/opacity (that stays 1 throughout, so the icon never fades/flickers transparent, only tints). 0.3 = 30%, Battlewrath's confirmed starting value (2026-07-06).",
+        },
+        "duration": {
+            "type": "number",
+            "default": 0.3,
+            "description": "Seconds before auto-revert. Combat Log is a 'timedrequired' trigger category (GenericTrigger.lua line 3739) - WeakAuras reads this straight off trigger.duration and auto-hides via automaticAutoHide (GenericTrigger.lua line 1696-1700), no custom Lua or manual revert Condition needed. 0.3s, Battlewrath's confirmed starting value (2026-07-06).",
+        },
+    },
+    "verified": (
+        "Timed auto-revert mechanism confirmed directly from "
+        "GenericTrigger.lua: line 3739 ('Combat Log' prototype entry has "
+        "timedrequired=true), line 1696-1700 (timedrequired branch sets "
+        "automaticAutoHide=true and duration=tonumber(trigger.duration or "
+        "'1')), and Private.ActivateEvent/EndEvent (lines 528-561, 451-461) "
+        "confirming state.show flips true then automatically false again "
+        "once expirationTime passes - no polling or custom code required. "
+        "Color-property Condition shape (a 4-element {r,g,b,a} table, "
+        "property path 'color' directly - a top-level icon field, not a "
+        "subRegion) confirmed directly from Conditions.lua's "
+        "SerializeValueForCode 'color' branch (line 104-110) and "
+        "formatValueForCall's 'color' branch (line 174-177). DISJUNCTIVE "
+        "FIX (2026-07-06, reasoned before building): WeakAuras.lua line "
+        "3109 defaults an aura's multi-trigger 'disjunctive' combination to "
+        "'all' (AND) unless set otherwise. power_threshold's own second "
+        "trigger (Power, a continuous status always active) never needed "
+        "to touch this - AND-combining two perpetually-active triggers is "
+        "a no-op. This fragment's trigger is genuinely momentary (0.3s per "
+        "cast), so template_filler.py explicitly sets disjunctive='any' "
+        "whenever press_wash is applied - otherwise the icon's overall "
+        "visibility would require BOTH triggers active simultaneously, "
+        "hiding it except during that 0.3s flash. "
+        "TRIGGER FILTER SHAPE - CORRECTED 2026-07-06 after a real in-game "
+        "test (v2, pasted and decoded). The original combatlog trigger "
+        "copied proc_alert_icon/glow_source's existing spellIds+"
+        "use_spellId=true shape (itself flagged there as 'not "
+        "independently re-verified'), with no source-unit filter at all. "
+        "Both were wrong in practice: (1) missing sourceUnit/use_sourceUnit "
+        "meant the trigger matched Combat Log events from ANY unit, not "
+        "just the player ('they all landed with no spell config... firing "
+        "to any combat event' - Battlewrath); (2) Battlewrath's real fix "
+        "uses use_spellName=true + spellName=[name] instead of ID-based "
+        "matching - deliberately, not as a bug workaround: 'Spell ID can "
+        "be a source. But I made it generic incase the ranks effect "
+        "things. So targetted the spell name' - different ranks of the "
+        "same spell carry different spell IDs but the same name, so name-"
+        "based matching is robust across ranks where ID-based would only "
+        "catch one specific rank. Both fixes applied: use_sourceUnit=true/"
+        "sourceUnit='player', use_spellName=true/spellName=[name], "
+        "use_spellId=false. OPEN QUESTION, not yet resolved: Battlewrath's "
+        "real test also flipped subeventSuffix to '_CAST_START' and "
+        "reported Lichfrost repeated correctly but Crypt Swarm/Command: "
+        "Undead didn't fire at all under that suffix - hypothesis (not "
+        "confirmed) is that '_CAST_START' only fires for casts with a "
+        "visible windup, while purely instant abilities go straight to "
+        "'_CAST_SUCCESS' with no '_CAST_START' event. Kept at "
+        "'_CAST_SUCCESS' (universal for instant AND windup casts) pending "
+        "a live re-test of this specific hypothesis."
+    ),
+}
+
 
 # ---------------------------------------------------------------------------
 # Base envelope - fields every leaf aura needs, identical for every template.
@@ -210,6 +301,10 @@ COOLDOWN_TRACKER_ICON_SCHEMA = {
         "power_threshold": {
             "$ref": "power_threshold_effect.schema.json",
             "description": "Optional - see power-threshold-effect fragment. Desaturate-on-insufficient-power and/or afford-glow, never visibility.",
+        },
+        "press_wash": {
+            "$ref": "press_wash_effect.schema.json",
+            "description": "Optional - see press-wash-effect fragment. Per-press 'I touched this' feedback via a faint class-accent tint on cast-success, independent per ability. Scope: only abilities without a real cooldown sweep need this (their cooldown IS the response signal already) - see the fragment's own description.",
         },
     },
     "verified": (
@@ -380,7 +475,7 @@ BUFF_UPTIME_ICON_SCHEMA = {
         "height": {"type": "number", "default": 20},
         "own_only": {"type": "boolean", "default": True},
     },
-    "verified": "Trigger type 'aura2' confirmed live-tested (Buffs/Utility static slots in Template_shadow.py). BuffTrigger2.lua registers 'aura2' (line 3798).",
+    "verified": "Trigger type 'aura2' confirmed live-tested (Buffs/Utility static slots in Template_shadow.py). BuffTrigger2.lua registers 'aura2' (line 3798). FIELD-NAME BUG FIXED 2026-07-08: this template previously used 'spellIds'/'names', which are only ever read inside BuffTrigger2.lua's ConvertBuffTrigger2 (a one-time legacy-migration function for old pre-aura2 'buff' trigger data) - a natively-authored aura2 trigger never passes through it. The real fields the live matching code reads (confirmed directly, BuffTrigger2.lua lines 2598-2825/3722-3761) are 'useExactSpellId'+'auraspellids' (ID-based) or 'useName'+'auranames' (name-based). Fixed to 'auraspellids' (kept 'useExactSpellId', dropped the inert 'names' field). Found while building stance_loader_icon; caught before this template was ever used to build a real aura, so nothing shipped broken.",
 }
 
 BUFF_UPTIME_ICON_TEMPLATE = {
@@ -409,10 +504,9 @@ BUFF_UPTIME_ICON_TEMPLATE = {
                 "event": "Health",
                 "unit": "player",
                 "debuffType": "HELPFUL",
-                "spellIds": ["{{spell_id}}"],
+                "auraspellids": ["{{spell_id}}"],
                 "useExactSpellId": True,
                 "ownOnly": "{{own_only}}",
-                "names": [],
                 "subeventPrefix": "SPELL",
                 "subeventSuffix": "_CAST_START",
             },
@@ -443,7 +537,7 @@ BUFF_UPTIME_AURABAR_SCHEMA = {
         "width": {"type": "number", "default": 127.5},
         "height": {"type": "number", "default": 15},
     },
-    "verified": "aurabar default fields from RegionTypes/AuraBar.lua; aura2 trigger shape shared with buff_uptime_icon above.",
+    "verified": "aurabar default fields from RegionTypes/AuraBar.lua; aura2 trigger shape shared with buff_uptime_icon above, including the same 'spellIds'->'auraspellids' field-name fix - see that schema's 'verified' field for the full trail.",
 }
 
 BUFF_UPTIME_AURABAR_TEMPLATE = {
@@ -484,10 +578,9 @@ BUFF_UPTIME_AURABAR_TEMPLATE = {
                 "event": "Health",
                 "unit": "player",
                 "debuffType": "HELPFUL",
-                "spellIds": ["{{spell_id}}"],
+                "auraspellids": ["{{spell_id}}"],
                 "useExactSpellId": True,
                 "ownOnly": True,
-                "names": [],
                 "subeventPrefix": "SPELL",
                 "subeventSuffix": "_CAST_START",
             },
@@ -611,7 +704,7 @@ MISSING_BUFF_ICON_SCHEMA = {
         "width": {"type": "number", "default": 30},
         "height": {"type": "number", "default": 20},
     },
-    "verified": "Confirmed by direct source read: BuffTrigger2.lua has a real matchesShowOn == 'showOnMissing' mode. Already load-bearing in Template_shadow.py's design (v0.13+ reserves the positional slots), though the actual trigger dict for showOnMissing specifically has not yet been captured from a real live-tested example in this project - same caveat as the glow_source conditions block.",
+    "verified": "Confirmed by direct source read: BuffTrigger2.lua has a real matchesShowOn == 'showOnMissing' mode. Already load-bearing in Template_shadow.py's design (v0.13+ reserves the positional slots), though the actual trigger dict for showOnMissing specifically has not yet been captured from a real live-tested example in this project - same caveat as the glow_source conditions block. Also fixed the same 'spellIds'->'auraspellids' field-name bug as buff_uptime_icon (see that schema's 'verified' field) - the aura2 trigger here now uses the real matching fields too.",
 }
 
 MISSING_BUFF_ICON_TEMPLATE = {
@@ -638,11 +731,10 @@ MISSING_BUFF_ICON_TEMPLATE = {
                 "event": "Health",
                 "unit": "player",
                 "debuffType": "HELPFUL",
-                "spellIds": ["{{spell_id}}"],
+                "auraspellids": ["{{spell_id}}"],
                 "useExactSpellId": True,
                 "ownOnly": True,
                 "matchesShowOn": "showOnMissing",
-                "names": [],
                 "subeventPrefix": "SPELL",
                 "subeventSuffix": "_CAST_START",
             },
@@ -1322,6 +1414,461 @@ CLASS_ACCENT_TICK_END_FRAGMENT = {
 }
 
 # ---------------------------------------------------------------------------
+# stack_gain_flash_text (text region) - transient "+1"-style combat text,
+# fires once on a genuine stack GAIN, not a persistent readout.
+# ---------------------------------------------------------------------------
+# Added 2026-07-06, per Battlewrath's direct request after confirming the
+# "text" region type works in this pipeline (round-trip verified, then
+# live-tested in-game with a static Life Force readout: renders, "%s"
+# tracks the real stack count live, shows/hides correctly with the aura).
+# Battlewrath: "I'd still like it to behave as you described as the
+# combat text on gain only... I think combat like text for the classes
+# will be useful for their own elements. Blood mage has a bottle they
+# build up to 10 stacks into. So seeing per +1 flick in will be
+# satisfying." Deliberately built generic/class-agnostic from the start
+# (not hardcoded to Necromancer/Life Force) to match that stated intent -
+# same registry pattern as every other fragment/template here.
+STACK_GAIN_FLASH_TEXT_SCHEMA = {
+    "$id": "stack_gain_flash_text.schema.json",
+    "opportunity_type": "stack_gain_flash",
+    "title": "Stack-gain flash (text, momentary)",
+    "description": (
+        "A standalone text-region aura that appears briefly ONLY when a "
+        "tracked stacking aura's count goes UP (never on removal, never a "
+        "persistent readout), then auto-reverts - a 'combat text' style "
+        "'+1' flick-in, not a status display. Distinct from a "
+        "buff_uptime_icon/aurabar's '%s' readout (this project's already-"
+        "confirmed-working static approach, live-tested on Life Force "
+        "2026-07-06) - that shows the CURRENT count continuously; this "
+        "shows only the MOMENT of a gain, then disappears, even while the "
+        "underlying stack is still present."
+    ),
+    "region_type": "text",
+    "trigger": "Combat Log (SPELL_AURA_APPLIED_DOSE)",
+    "type": "object",
+    "required": ["name", "spell_id", "x", "y"],
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Must match the tracked aura's real in-game display name exactly - used for name-based Combat Log filtering (see 'verified' field), same rank-safety reasoning as press_wash_effect.",
+        },
+        "spell_id": {
+            "type": ["string", "integer"],
+            "description": "The stacking aura's spell ID - documentation/reference only (e.g. Life Force: Visual, 525004). The actual trigger filters by name, not this ID directly - see 'verified'.",
+        },
+        "x": {"type": "number"},
+        "y": {"type": "number"},
+        "display_text": {
+            "type": "string",
+            "default": "+1",
+            "description": "What flashes on a gain. Defaults to a fixed '+1', matching Battlewrath's own stated goal ('seeing per +1 flick in') and deliberately NOT the live new total - see 'verified' for why the live total isn't wired up yet (no confirmed dynamic-text token exists for a Combat Log DOSE event's 'amount' field, unlike aura2's confirmed-working '%s'). Override this per-ability if a gain is ever not exactly +1 (e.g. a spell that can grant 2+ stacks in one event).",
+        },
+        "duration": {
+            "type": "number",
+            "default": 1.0,
+            "description": "Seconds the flash stays visible before auto-reverting - same native timedrequired mechanism already confirmed working for press_wash (GenericTrigger.lua's automaticAutoHide), just a longer default than press_wash's 0.3s since this needs to be readable as text, not just a color cue.",
+        },
+        "color": {
+            "type": "array",
+            "default": [1, 1, 1, 1],
+            "description": "Text color - defaults to plain white; pass a class's accent_rgba for a class-tinted flash if wanted.",
+        },
+        "font_size": {"type": "integer", "default": 20},
+    },
+    "verified": (
+        "Region type 'text' and its full default() field set confirmed "
+        "TWO ways, not just read: (1) mechanically, via a new sibling "
+        "harness (wa_lua_verify/harness_regiontype.lua, extending the "
+        "existing SubRegionType harness's proven technique to "
+        "Private.RegisterRegionType calls) run against the real, "
+        "unmodified RegionTypes/Text.lua under real Lua 5.1.5 - output "
+        "matched a direct source read exactly, no missing fields; (2) "
+        "live, in-game: a standalone test aura (regionType 'text', aura2 "
+        "trigger on Life Force 525004, displayText '%s') was built, "
+        "round-trip verified, and pasted in-game by Battlewrath - "
+        "confirmed rendering correctly, '%s' tracking the real live "
+        "stack count, and showing/hiding correctly with the aura's own "
+        "presence. That test also caught a real mistake in the first "
+        "build: debuffType was wrongly set to 'HELPFUL' (copied verbatim "
+        "from buff_uptime_icon's actual-buff pattern) when Life Force is "
+        "a debuff - Battlewrath's real re-exported aura showed the "
+        "correct 'HARMFUL' value, confirming the fix. "
+        "SPELL_AURA_APPLIED_DOSE confirmed as a real, distinct Combat Log "
+        "subevent (BuffTrigger2.lua lines 3432/3607, Types.lua line 1409, "
+        "Prototypes.lua's subeventHeader enable-condition line 3438 "
+        "explicitly checks for 'DOSE') - fires specifically when a "
+        "stacking aura's count INCREASES, distinct from plain "
+        "SPELL_AURA_APPLIED (first application) and SPELL_AURA_REMOVED_"
+        "DOSE (a decrease). Same Combat Log trigger family already "
+        "proven working for press_wash_effect - 'timedrequired' "
+        "category, native automaticAutoHide, no custom Lua or manual "
+        "revert Condition needed - just a different subeventSuffix and "
+        "regionType 'text' instead of 'icon'. "
+        "OPEN, NOT YET RESOLVED: whether a live/dynamic new-total display "
+        "is possible here at all. Prototypes.lua confirms a generic "
+        "'amount' field exists on combat log triggers (line 3563), likely "
+        "populated from the DOSE event's own extra arg (the new stack "
+        "count in real WoW's COMBAT_LOG_EVENT_UNFILTERED payload) - but "
+        "WeakAuras.lua's Private.dynamic_texts table (the source of every "
+        "working '%'-style text token) only defines p/t/n/i/s (progress/ "
+        "duration/name/icon/stacks) - no 'amount' token exists there, and "
+        "whether a combatlog trigger's 'amount' field ever populates "
+        "state.stacks (so '%s' would resolve to it the way aura2's own "
+        "stacks do) is NOT confirmed. Deliberately NOT guessed at here - "
+        "shipped with a fixed 'display_text' default ('+1') instead, "
+        "which directly satisfies Battlewrath's own stated ask without "
+        "depending on this unresolved mechanism. Revisit only if a live "
+        "dynamic total is specifically wanted later - would need its own "
+        "source/live-test pass, same as everything else in this file."
+    ),
+}
+
+STACK_GAIN_FLASH_TEXT_TEMPLATE = {
+    "regionType": "text",
+    "displayText": "{{display_text}}",
+    "outline": "OUTLINE",
+    "color": "{{color}}",
+    "justify": "CENTER",
+    "selfPoint": "CENTER",
+    "anchorPoint": "CENTER",
+    "anchorFrameType": "SCREEN",
+    "font": "Friz Quadrata TT",
+    "fontSize": "{{font_size}}",
+    "frameStrata": 1,
+    "customTextUpdate": "event",
+    "automaticWidth": "Auto",
+    "fixedWidth": 200,
+    "wordWrap": "WordWrap",
+    "shadowColor": [0, 0, 0, 1],
+    "shadowXOffset": 1,
+    "shadowYOffset": -1,
+    "subRegions": [{"type": "subbackground"}],
+    "triggers": {
+        "1": {
+            "trigger": {
+                "type": "combatlog",
+                "event": "Combat Log",
+                "subeventPrefix": "SPELL",
+                "subeventSuffix": "_AURA_APPLIED_DOSE",
+                "use_sourceUnit": True,
+                "sourceUnit": "player",
+                "use_spellName": True,
+                "spellName": ["{{name}}"],
+                "use_spellId": False,
+                "duration": "{{duration}}",
+                "use_duration": True,
+            },
+            "untrigger": {},
+        },
+        "activeTriggerMode": -10,
+    },
+}
+
+# ---------------------------------------------------------------------------
+# stack_delta_flash_text (text region, Custom/stateupdate trigger) - a
+# transient "+N<suffix>" flash reporting the POSITIVE delta between a
+# tracked aura's last-seen and current stack count, computed live in Lua.
+# ---------------------------------------------------------------------------
+# Added 2026-07-07, formalizing Necromancer's Life Force delta feature
+# (Templates/CUSTOM_STATEUPDATE_TRIGGER.md has the full research/build/
+# live-test trail) into a generic, class-agnostic capability, per
+# Battlewrath: "Having it as a specific capability is preferred."
+#
+# Distinct from stack_gain_flash_text above - that one is a wizard Combat
+# Log trigger (SPELL_AURA_APPLIED_DOSE), which THREE separate live tests
+# confirmed does not reliably fire for Necromancer's Life Force debuff
+# (name-based, ID-based, and no-unit-filter variants all failed - see
+# stack_gain_flash_text's own "verified" field and slot_assignment.md's
+# 2026-07-06/07 change-log entry). stack_gain_flash_text is kept, not
+# deleted - it may still be correct for some other class's ability that
+# genuinely uses standard aura-stack combat log events. This template is
+# the proven, working alternative: instead of waiting for a specific
+# combat-log event, it re-reads the tracked aura's CURRENT stack count
+# every time the player's auras change (UNIT_AURA:player) and computes
+# the gain itself in Lua, live-confirmed working end to end on Life
+# Force (525004) on 2026-07-07 ("It works fully as expected on our end").
+STACK_DELTA_FLASH_TEXT_SCHEMA = {
+    "$id": "stack_delta_flash_text.schema.json",
+    "opportunity_type": "stack_delta_flash",
+    "title": "Stack-delta flash (text, Custom/stateupdate trigger)",
+    "description": (
+        "A standalone text-region aura that flashes '+N<suffix>' whenever "
+        "a tracked aura's stack count goes UP, where N is the actual "
+        "delta between the last-seen and current count (not a fixed "
+        "'+1') - computed live in Lua via a Custom (stateupdate) trigger "
+        "that polls UnitAura() on every UNIT_AURA:player event, rather "
+        "than waiting for a specific Combat Log subevent. Never fires on "
+        "a decrease. Matches Battlewrath's exact spec: 1->3 = +2, "
+        "2->5 = +3, decreases produce nothing."
+    ),
+    "region_type": "text",
+    "trigger": "Custom (stateupdate) - polls UnitAura(unit, index, aura_filter) each UNIT_AURA:player event",
+    "type": "object",
+    "required": ["name", "spell_id", "aura_filter", "x", "y"],
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "Aura id/label only - the Lua matches purely by spell_id, not by name.",
+        },
+        "spell_id": {
+            "type": ["string", "integer"],
+            "description": "The tracked stacking aura's real spell ID (e.g. Life Force: Visual, 525004) - embedded directly into the Lua's UnitAura scan.",
+        },
+        "aura_filter": {
+            "type": "string",
+            "enum": ["HELPFUL", "HARMFUL"],
+            "description": "Passed straight to UnitAura(unit, index, filter) - HARMFUL for a debuff (Life Force), HELPFUL for a buff (e.g. a future Blood Mage bottle-stack buff). Required - deliberately not defaulted, since guessing wrong here would silently never match anything.",
+        },
+        "x": {"type": "number"},
+        "y": {"type": "number"},
+        "label_suffix": {
+            "type": "string",
+            "default": "",
+            "description": "Appended after the numeric delta, e.g. ' LF' for Life Force ('+2 LF'). Defaults to nothing.",
+        },
+        "duration": {
+            "type": "number",
+            "default": 1.5,
+            "description": "Seconds the flash stays visible before auto-reverting, via the same native autoHide/expirationTime mechanism every timed element in this project already relies on (WeakAuras.lua's startStopTimers, confirmed generic to any state with these fields set, not trigger-type-specific).",
+        },
+        "font_size": {"type": "integer", "default": 20},
+        "font": {
+            "type": "string",
+            "default": "Friz Quadrata TT",
+            "description": "LibSharedMedia font name. Added 2026-07-08 after Battlewrath's real in-game edit of the Life Force instance changed font to 'MoK' (plus font_size 20->13) - previously hardcoded in the template, unreachable as a param.",
+        },
+        "color": {
+            "type": "array",
+            "default": [1, 1, 1, 1],
+            "description": "Text color - defaults to plain white; pass a class's accent_rgba for a class-tinted flash if wanted.",
+        },
+    },
+    "verified": (
+        "Full mechanism source-verified before building (Templates/"
+        "CUSTOM_STATEUPDATE_TRIGGER.md has the complete trail) and now "
+        "LIVE-TEST CONFIRMED WORKING, 2026-07-07, across two real builds: "
+        "v1 fired correctly on the very first live test ('That works as "
+        "expected first time. :D'). v1 also surfaced a real bug, "
+        "diagnosed by tracing GenericTrigger.lua/WeakAuras.lua directly "
+        "rather than guessing again: the 'no new gain' branch explicitly "
+        "wrote state.show=false on every UNIT_AURA tick (which fires "
+        "constantly for reasons unrelated to the tracked aura, e.g. any "
+        "other buff/debuff changing in combat), while returning false to "
+        "suppress WeakAuras' own redraw signal (RunTriggerFunc, "
+        "GenericTrigger.lua ~line 662: 'returnValue or (returnValue ~= "
+        "false and allStates:IsChanged())' - an explicit false return "
+        "short-circuits this entirely). That silently stamped show=false "
+        "into the state without ever calling Private.UpdatedTriggerState "
+        "(the function that actually invokes startStopTimers, WeakAuras."
+        "lua ~line 4728, gated on state.changed) - so by the time the "
+        "LEGITIMATE 1.5s auto-hide timer (scheduled on the original gain "
+        "tick) fired, it found state.show already false and no-opped "
+        "(startStopTimers' own guard: 'if not state.show or not state."
+        "autoHide then stopAutoHideTimer(...); return end') instead of "
+        "actively hiding - so the last rendered frame never got told to "
+        "update, and the flash appeared stuck. Reported symptom matched "
+        "exactly: fades correctly at the tracked aura's extremes (0 or "
+        "cap, where there's typically a quiet moment with no unrelated "
+        "UNIT_AURA churn before the timer fires), sticks in the middle "
+        "(where churn is common). FIXED in v2 (this template's shipped "
+        "Lua): the 'no new gain' branch now ONLY persists the lastCount "
+        "bookkeeping value when it actually changes, and never touches "
+        "show/autoHide/expirationTime itself - the auto-hide timer is "
+        "left as the SOLE owner of visibility. v2 CONFIRMED WORKING, "
+        "2026-07-07 ('It works fully as expected on our end'). "
+        "SEPARATELY NOTED, not a bug: Battlewrath observed the server "
+        "recalculates a resource like Life Force on summon by draining "
+        "the ENTIRE current amount to 0 first, then refunding what's "
+        "owed (e.g. a 1-cost summon with 3 banked drains to 0, then "
+        "refunds 2) - this template correctly reports no flash on the "
+        "drain (a decrease, by design) followed by a real '+2' flash on "
+        "the refund, accurately reflecting the real underlying data even "
+        "though a player might semantically expect '-1' - a server "
+        "implementation detail, not something to fix here. "
+        "SCOPING CHOICE, not yet generalized: 'player' is hardcoded as "
+        "the scanned/watched unit (both in UnitAura's first arg and the "
+        "events string) rather than exposed as a param - every real use "
+        "case discussed so far (Life Force, a hypothetical Blood Mage "
+        "bottle-stack buff) is a unit tracking its OWN stacking aura on "
+        "itself. Revisit only if a genuine cross-unit case (e.g. "
+        "tracking a pet's own stack count) is actually wanted. "
+        "IMPLEMENTATION NOTE: the Lua 'custom' field embeds several "
+        "params INSIDE one long function-literal string, which "
+        "template_filler.py's generic {{}} substitution (whole-string-"
+        "only regex) can't reach - filled via a dedicated Python "
+        ".format() pass in template_filler.py instead, kept deliberately "
+        "separate from the {{}} mechanism to avoid the two colliding "
+        "(every literal Lua table constructor in the template below is "
+        "doubled to {{ }} for exactly this reason)."
+    ),
+}
+
+STACK_DELTA_FLASH_TEXT_LUA_TEMPLATE = """function(allstates, event, ...)
+  local count, icon = 0, nil
+  for i = 1, 40 do
+    local name, _, ic, stacks, _, _, _, _, _, _, spellId = UnitAura("player", i, "{aura_filter}")
+    if not name then break end
+    if spellId == {spell_id} then
+      count, icon = stacks or 1, ic
+      break
+    end
+  end
+  local lastCount = allstates:Get("", "lastCount") or 0
+  if count > lastCount then
+    allstates:Update("", {{
+      show = true, name = "+" .. (count - lastCount) .. "{label_suffix}",
+      icon = icon, progressType = "timed",
+      expirationTime = GetTime() + {duration}, duration = {duration}, autoHide = true,
+      lastCount = count,
+    }})
+    return true
+  else
+    if count ~= lastCount then
+      allstates:Update("", {{ lastCount = count }})
+    end
+    return false
+  end
+end"""
+
+STACK_DELTA_FLASH_TEXT_TEMPLATE = {
+    "regionType": "text",
+    "displayText": "%n",
+    "outline": "OUTLINE",
+    "color": "{{color}}",
+    "justify": "CENTER",
+    "selfPoint": "CENTER",
+    "anchorPoint": "CENTER",
+    "anchorFrameType": "SCREEN",
+    "font": "{{font}}",
+    "fontSize": "{{font_size}}",
+    "frameStrata": 1,
+    "customTextUpdate": "event",
+    "automaticWidth": "Auto",
+    "fixedWidth": 200,
+    "wordWrap": "WordWrap",
+    "shadowColor": [0, 0, 0, 1],
+    "shadowXOffset": 1,
+    "shadowYOffset": -1,
+    "subRegions": [{"type": "subbackground"}],
+    "triggers": {
+        "1": {
+            "trigger": {
+                "type": "custom",
+                "event": "Custom",
+                "custom_type": "stateupdate",
+                "events": "UNIT_AURA:player",
+                "custom": STACK_DELTA_FLASH_TEXT_LUA_TEMPLATE,
+            },
+            "untrigger": {},
+        },
+        "activeTriggerMode": -10,
+    },
+}
+
+# ---------------------------------------------------------------------------
+# stance_loader_icon (icon, N mutually-exclusive aura2 triggers -> 1 icon)
+# ---------------------------------------------------------------------------
+# Added 2026-07-08, per Battlewrath's request to build the "1-of-3 stance"
+# slot (Necromancer's Undead: Assault/Protect/Pacify - confirmed mutually
+# exclusive directly from live trainer tooltip text: "Only 1 Undead Stance
+# can be active at a time", Outputs/live_reference/necromancer_live_
+# reference.json). Generalized as N-of-N (any count >= 2), not hardcoded to
+# 3, since the underlying mechanism doesn't care how many mutually-exclusive
+# options there are.
+#
+# Design settled through direct source-checking rather than the earlier
+# Conditions-based icon-swap plan: confirmed (WeakAuras.lua lines 4744-4762)
+# that activeTriggerMode=-10 ("first active" - already this project's
+# standard default) picks whichever trigger is currently active and uses
+# ITS OWN state for the region; and (RegionTypes/Icon.lua's UpdateIcon,
+# iconSource==-1 branch) that the icon auto-resolves to self.state.icon -
+# i.e. whichever trigger is active supplies its own icon automatically. So
+# no Conditions block or manual icon-swapping is needed at all - one icon,
+# N aura2 triggers OR'd together (disjunctive:"any", same reasoning as
+# press_wash_effect - "first_active" mode alone doesn't make the icon VISIBLE
+# across multiple triggers, only picks which one's state to show; the
+# overall show/hide still needs at least one trigger active, and without
+# disjunctive:"any" the default AND-combination would require every trigger
+# active simultaneously, which can never happen for mutually-exclusive
+# states).
+#
+# Matched by NAME, not spell ID: the live_reference capture has no spellId
+# for these three (trainer-window data doesn't expose one), and they're
+# single-rank abilities (no rank-multiplicity risk) - see BuffTrigger2.lua's
+# real aura2 name-matching fields (useName/auranames), confirmed the same
+# way as this session's spellIds->auraspellids fix above.
+STANCE_LOADER_ICON_SCHEMA = {
+    "$id": "stance_loader_icon.schema.json",
+    "opportunity_type": "stance_loader",
+    "title": "Stance loader (icon, N mutually-exclusive states -> 1 icon)",
+    "description": (
+        "One icon that shows whichever of N mutually-exclusive buffs is "
+        "currently active (e.g. a class's stance/form set), auto-resolving "
+        "its own icon art from whichever trigger is active - no manual icon "
+        "path or Conditions-based swap needed."
+    ),
+    "region_type": "icon",
+    "trigger": "Aura (N triggers, name-matched, disjunctive: any, activeTriggerMode: first_active)",
+    "type": "object",
+    "required": ["name", "option_names", "x", "y"],
+    "properties": {
+        "name": {"type": "string", "description": "Aura id/label."},
+        "option_names": {
+            "type": "array",
+            "items": {"type": "string"},
+            "minItems": 2,
+            "description": "Exact real in-game display names of each mutually-exclusive option (e.g. ['Undead: Pacify', 'Undead: Protect', 'Undead: Assault']) - matched by name via aura2's useName/auranames, not spell ID.",
+        },
+        "x": {"type": "number"},
+        "y": {"type": "number"},
+        "width": {"type": "number", "default": 30},
+        "height": {"type": "number", "default": 20},
+    },
+    "verified": (
+        "Mutual exclusivity confirmed directly from live trainer tooltip "
+        "text (Outputs/live_reference/necromancer_live_reference.json, "
+        "source: 'trainer', verifiedLive: true): 'Only 1 Undead Stance can "
+        "be active at a time.' iconSource=-1 auto-resolving to whichever "
+        "trigger is active confirmed directly via RegionTypes/Icon.lua's "
+        "UpdateIcon (iconSource==-1 branch reads self.state.icon) and "
+        "WeakAuras.lua's activeTriggerMode='first_active' handling (lines "
+        "4744-4762 - scans triggerState[id].triggers[i] for the first "
+        "active one and uses ITS state). aura2 name-based matching fields "
+        "(useName/auranames) confirmed the same way as the 'spellIds'->"
+        "'auraspellids' fix on buff_uptime_icon/buff_uptime_aurabar/"
+        "missing_buff_icon above (BuffTrigger2.lua lines 2598-2825/3722-"
+        "3761) - built correctly from the start rather than copying the "
+        "since-fixed wrong field names. Not yet built or live-tested as a "
+        "real instance."
+    ),
+}
+
+STANCE_LOADER_ICON_TEMPLATE = {
+    "regionType": "icon",
+    "width": "{{width}}",
+    "height": "{{height}}",
+    "color": [1, 1, 1, 1],
+    "desaturate": False,
+    "iconSource": -1,
+    "displayIcon": "",
+    "cooldown": False,
+    "cooldownEdge": False,
+    "inverse": False,
+    "zoom": 0,
+    "keepAspectRatio": False,
+    "progressSource": [-1, ""],
+    "adjustedMax": "", "adjustedMin": "",
+    "useAdjustededMax": False, "useAdjustededMin": False,
+    "subRegions": [{"type": "subbackground"}],
+    # "triggers" is intentionally empty here - the real per-option trigger
+    # set is built entirely by template_filler.py's bespoke stance_loader_icon
+    # block, since the number of triggers is dynamic (len(option_names)),
+    # unlike every other template's fixed trigger count.
+    "triggers": {},
+}
+
+
+# ---------------------------------------------------------------------------
 # Registry - drives both file generation and the filler's lookup
 # ---------------------------------------------------------------------------
 
@@ -1337,6 +1884,9 @@ REGISTRY = {
     "swing_timer_aurabar": (SWING_TIMER_AURABAR_SCHEMA, SWING_TIMER_AURABAR_TEMPLATE),
     "backing_plate_aurabar": (BACKING_PLATE_AURABAR_SCHEMA, BACKING_PLATE_AURABAR_TEMPLATE),
     "pet_summon_countdown_icon": (PET_SUMMON_COUNTDOWN_ICON_SCHEMA, PET_SUMMON_COUNTDOWN_ICON_TEMPLATE),
+    "stack_gain_flash_text": (STACK_GAIN_FLASH_TEXT_SCHEMA, STACK_GAIN_FLASH_TEXT_TEMPLATE),
+    "stack_delta_flash_text": (STACK_DELTA_FLASH_TEXT_SCHEMA, STACK_DELTA_FLASH_TEXT_TEMPLATE),
+    "stance_loader_icon": (STANCE_LOADER_ICON_SCHEMA, STANCE_LOADER_ICON_TEMPLATE),
 }
 
 FRAGMENTS = {
@@ -1344,6 +1894,7 @@ FRAGMENTS = {
     "stack_counter_overlay": STACK_COUNTER_OVERLAY_SCHEMA,
     "class_accent_tick_end": CLASS_ACCENT_TICK_END_SCHEMA,
     "power_threshold_effect": POWER_THRESHOLD_EFFECT_SCHEMA,
+    "press_wash_effect": PRESS_WASH_EFFECT_SCHEMA,
 }
 
 FRAGMENT_TEMPLATES = {

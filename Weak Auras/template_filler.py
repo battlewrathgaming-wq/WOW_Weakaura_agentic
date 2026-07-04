@@ -123,6 +123,15 @@ def fill_template(template_name, params, uid=None, generate_uid_fn=None):
     # cooldown_tracker_icon, added 2026-07-06 alongside power_threshold).
     if "accent_color" in schema["properties"]:
         fill_params.setdefault("accent_color", schema["properties"]["accent_color"].get("default"))
+    # Same pattern, added 2026-07-08 alongside the new 'font' param on
+    # stack_delta_flash_text/stack_gain_flash_text - font/font_size/color
+    # are plain {{}}-substituted template leaves (not schema-required), so
+    # without this an omitted param would silently strand the literal
+    # "{{font}}"/"{{font_size}}"/"{{color}}" string in the built aura
+    # instead of resolving to the schema's own stated default.
+    for _optional_field in ("font", "font_size", "color"):
+        if _optional_field in schema["properties"]:
+            fill_params.setdefault(_optional_field, schema["properties"][_optional_field].get("default"))
 
     merged = {**base_envelope(), **template}
     result = _substitute(merged, fill_params)
@@ -267,10 +276,9 @@ def fill_template(template_name, params, uid=None, generate_uid_fn=None):
                 "event": "Health",
                 "unit": "player",
                 "debuffType": "HELPFUL",
-                "spellIds": [str(entry["spell_id"])],
+                "auraspellids": [str(entry["spell_id"])],
                 "useExactSpellId": True,
                 "ownOnly": True,
-                "names": [],
                 "subeventPrefix": "SPELL",
                 "subeventSuffix": "_CAST_START",
             }
@@ -354,6 +362,184 @@ def fill_template(template_name, params, uid=None, generate_uid_fn=None):
                 "changes": [{"property": f"sub.{glow_position}.glow", "value": 1}],
                 "check": {"trigger": power_trigger_num, "variable": cost_field, "op": ">=", "value": str(cost)},
             })
+
+    # Press-wash effect (optional) - see press_wash_effect.schema.json.
+    # Added 2026-07-06, per Battlewrath's piano-key analogy ("press a key
+    # and get a response") - per-ability "I touched this" feedback,
+    # independent per icon, scoped only to abilities that don't already get
+    # a cooldown sweep as their response (Battlewrath: "those with
+    # cooldowns don't need it"). A second Combat Log trigger (this icon's
+    # own spell, duration=0.3 for native auto-revert - see the fragment's
+    # own "verified" field for the full GenericTrigger.lua confirmation)
+    # drives a single Condition that mixes the icon's base "color" toward
+    # its accent_color, then reverts automatically when the trigger's own
+    # timed show flips back false - same single-direction Condition
+    # pattern as power_threshold/glow_source above (no manual "revert"
+    # entry needed).
+    #
+    # CORRECTED 2026-07-06, after a real in-game test (v2, pasted and
+    # decoded) surfaced two real gaps in the first version:
+    # 1. MISSING SOURCE FILTER - v2 never set sourceUnit/use_sourceUnit, so
+    #    the trigger matched Combat Log events from ANY unit, not just the
+    #    player ("they all landed with no spell config... firing to any
+    #    combat event"). Fixed: use_sourceUnit=true, sourceUnit="player".
+    # 2. NAME-BASED, NOT ID-BASED, SPELL FILTER - v2 used spellIds/
+    #    use_spellId=true (copied from proc_alert_icon's existing pattern,
+    #    itself flagged as "not independently re-verified"). Battlewrath's
+    #    real fix uses use_spellName=true + spellName=[name] instead -
+    #    DELIBERATE, not a bug workaround: "Spell ID can be a source. But I
+    #    made it generic incase the ranks effect things. So targetted the
+    #    spell name" - different ranks of the same spell carry different
+    #    spell IDs but the same name, so name-based matching is robust
+    #    across ranks where ID-based would only catch one specific rank.
+    # Both fixes are load-bearing and applied below.
+    #
+    # CAST_START vs CAST_SUCCESS - RESOLVED 2026-07-06 (v4), after a second
+    # live-test round. v3's open question ("why did Crypt Swarm/Command:
+    # Undead never fire under _CAST_START while Lichfrost did") is now
+    # answered: Battlewrath swapped Crypt Swarm to _CAST_SUCCESS and it
+    # started firing correctly, then stated the general rule directly -
+    # "true cast start = spells with a cast time. Cast success = spells
+    # with instant." Cross-checked against real db.ascension.gg spell data
+    # (2026-07-06) to sharpen this into the precise WoW combat-log rule:
+    #   - Lichfrost (501969): real 1.5s cast time (a true windup/cast bar)
+    #     -> _CAST_START (WoW fires SPELL_CAST_START at windup begin,
+    #     SPELL_CAST_SUCCESS only at completion - _CAST_START is the
+    #     "I pressed this" moment here).
+    #   - Crypt Swarm (500965): "Channeled" cast time, not a normal windup
+    #     -> _CAST_SUCCESS (WoW fires SPELL_CAST_SUCCESS the instant a
+    #     channel begins - there is no separate CAST_START event for a
+    #     channeled spell the way there is for a windup cast).
+    #   - Command: Undead (504868): "Instant cast" -> _CAST_SUCCESS
+    #     (instant spells only ever emit SPELL_CAST_SUCCESS, no CAST_START).
+    # So the real rule is windup-cast-time vs (instant OR channeled), not
+    # simply "has a cast time" vs "instant" as first stated - channeled
+    # spells behave like instant casts for this specific event, despite
+    # visually having a "cast time" (a channel duration) on their tooltip.
+    # Selected per-ability via the new trigger_event param below (default
+    # "cast_success"; Lichfrost is the only current exception, set to
+    # "cast_start" in Necromancer/inventory.py).
+    #
+    # Command: Undead STILL not observed firing in-game even at the
+    # (correct, instant-cast) _CAST_SUCCESS suffix, per Battlewrath's
+    # 2026-07-06 live report - left as-is and NOT further debugged this
+    # pass: Battlewrath judged it non-blocking, since Command: Undead
+    # already gets its own per-press feedback signal for free via its
+    # existing afford-glow (trigger 2, Runic Power >= 30) cycling on/off
+    # as its 30 RP cost is spent and regenerated - "that has feed back in
+    # the glow once you press it enough times." Revisit only if this
+    # becomes a real problem in practice.
+    #
+    # DISJUNCTIVE: unlike power_threshold's own second trigger (Power, a
+    # continuous status - always active, so AND-combining with trigger 1's
+    # showAlways is a no-op), this trigger is genuinely momentary (0.3s per
+    # cast). WeakAuras.lua line 3109 defaults multi-trigger "disjunctive" to
+    # "all" (AND) unless set otherwise - left at that default, adding this
+    # trigger would require BOTH trigger 1 AND this one active
+    # simultaneously for the icon to show at all, hiding it except during
+    # the 0.3s flash. Explicitly set to "any" (OR) here so trigger 1's own
+    # showAlways alone keeps the icon permanently visible, same as before
+    # this fragment existed.
+    press_wash = params.get("press_wash")
+    if press_wash:
+        wash_alpha = press_wash.get("wash_alpha", 0.3)
+        duration = press_wash.get("duration", 0.3)
+        accent = fill_params.get("accent_color") or [1, 1, 1, 1]
+        # trigger_event: "cast_success" (default - instant AND channeled
+        # spells) or "cast_start" (windup/cast-time spells only) - see the
+        # long comment block above for the confirmed WoW combat-log rule
+        # and per-ability values (Lichfrost is currently the only
+        # "cast_start" case).
+        trigger_event = press_wash.get("trigger_event", "cast_success")
+        subevent_suffix = "_CAST_START" if trigger_event == "cast_start" else "_CAST_SUCCESS"
+
+        wash_color = [
+            1 * (1 - wash_alpha) + accent[0] * wash_alpha,
+            1 * (1 - wash_alpha) + accent[1] * wash_alpha,
+            1 * (1 - wash_alpha) + accent[2] * wash_alpha,
+            1,  # region alpha untouched - this is a tint mix, never a fade
+        ]
+
+        wash_trigger = {
+            "type": "combatlog",
+            "event": "Combat Log",
+            "subeventPrefix": "SPELL",
+            "subeventSuffix": subevent_suffix,
+            "use_sourceUnit": True,
+            "sourceUnit": "player",
+            "use_spellName": True,
+            "spellName": [str(params["name"])],
+            "use_spellId": False,
+            "duration": str(duration),
+            "use_duration": True,
+        }
+        existing_nums = [int(k) for k in result["triggers"].keys() if isinstance(k, str) and k.isdigit()]
+        wash_trigger_num = max(existing_nums, default=1) + 1
+        result["triggers"][str(wash_trigger_num)] = {"trigger": wash_trigger, "untrigger": {}}
+        result["triggers"]["disjunctive"] = "any"
+
+        result.setdefault("conditions", []).append({
+            "changes": [{"property": "color", "value": wash_color}],
+            "check": {"trigger": wash_trigger_num, "variable": "show", "value": 1},
+        })
+
+    # Stack-delta flash text (stack_delta_flash_text only) - the Lua "custom"
+    # field embeds spell_id/aura_filter/label_suffix/duration INSIDE one long
+    # function-literal string, which the generic {{}} _substitute() pass
+    # above can't reach (its regex only matches a leaf that IS entirely one
+    # placeholder). Filled here via a dedicated .format() pass instead - see
+    # stack_delta_flash_text.schema.json's "verified" field for why this is
+    # deliberately kept separate from the {{}} mechanism (every literal Lua
+    # table-constructor brace in the template is pre-doubled to "{{ }}" so
+    # .format() leaves it as a single literal brace).
+    if template_name == "stack_delta_flash_text":
+        aura_filter = params["aura_filter"]
+        spell_id = params["spell_id"]
+        label_suffix = params.get("label_suffix", schema["properties"]["label_suffix"]["default"])
+        duration = params.get("duration", schema["properties"]["duration"]["default"])
+        trig = result["triggers"]["1"]["trigger"]
+        trig["custom"] = trig["custom"].format(
+            aura_filter=aura_filter,
+            spell_id=spell_id,
+            label_suffix=label_suffix,
+            duration=duration,
+        )
+
+    # Stance loader (stance_loader_icon only) - builds N mutually-exclusive
+    # aura2 triggers from option_names, one per option, name-matched (no
+    # spell ID available/needed - see stance_loader_icon.schema.json's
+    # "verified" field). Dynamic trigger count is why STANCE_LOADER_ICON_
+    # TEMPLATE ships with "triggers": {} rather than a fixed shape like
+    # every other template here - built entirely here instead.
+    # disjunctive="any": without it, the default AND-combination would
+    # require every option's trigger active simultaneously - impossible for
+    # mutually-exclusive states, so the icon would never show at all.
+    # activeTriggerMode=-10 ("first_active", already this project's default
+    # via base template dicts) then picks whichever ONE trigger is active
+    # and the icon auto-resolves its own art from that trigger's state
+    # (RegionTypes/Icon.lua's iconSource=-1 branch) - no Conditions block
+    # or manual icon-swap needed.
+    if template_name == "stance_loader_icon":
+        option_names = params["option_names"]
+        triggers = {}
+        for i, opt_name in enumerate(option_names, start=1):
+            triggers[str(i)] = {
+                "trigger": {
+                    "type": "aura2",
+                    "event": "Health",
+                    "unit": "player",
+                    "debuffType": "HELPFUL",
+                    "useName": True,
+                    "auranames": [str(opt_name)],
+                    "ownOnly": True,
+                    "subeventPrefix": "SPELL",
+                    "subeventSuffix": "_CAST_START",
+                },
+                "untrigger": {},
+            }
+        triggers["activeTriggerMode"] = -10
+        triggers["disjunctive"] = "any"
+        result["triggers"] = triggers
 
     result["triggers"] = _intify_trigger_keys(result["triggers"])
     return result

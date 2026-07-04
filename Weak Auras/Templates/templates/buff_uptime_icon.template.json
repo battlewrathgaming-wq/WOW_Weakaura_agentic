@@ -36,12 +36,11 @@
         "event": "Health",
         "unit": "player",
         "debuffType": "HELPFUL",
-        "spellIds": [
+        "auraspellids": [
           "{{spell_id}}"
         ],
         "useExactSpellId": true,
         "ownOnly": "{{own_only}}",
-        "names": [],
         "subeventPrefix": "SPELL",
         "subeventSuffix": "_CAST_START"
       },

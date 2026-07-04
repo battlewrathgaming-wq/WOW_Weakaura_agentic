@@ -8,5 +8,11 @@
     "Class Accent Left/Right icons (Template_shadow.py's Row C.5, currently generic placeholders)",
     "Any Necromancer-specific aurabar's barColor, if a class-tinted resource bar is ever wanted over the default red/white scheme",
     "subglow's glowColor, if a class-tinted proc glow is ever wanted over the default white"
-  ]
+  ],
+  "fantasy_mechanic": {
+    "summary": "Commanding a growing roster of raised/summoned undead minions - the Necromancer directs (Command: X), the minions fight. Class-level, not per-spec: confirmed 2026-07-06 by Battlewrath checking the CoA talent builder directly - even Rime (nominally the frost-control spec) still leans on pets heavily, so this isn't specific to the Animation tree despite Animation's own talent names (Animate: X, Raise: X) making the pet-focus most explicit there.",
+    "source": "Battlewrath, 2026-07-06, direct observation from the Conquest of Azeroth talent builder tool - not independently re-derived from Spell.dbc data.",
+    "status": "Provisional - first pass at this field. Not yet used to override the insight/decision tracking rule (slot_assignment.md) - currently documentation/context only. Revisit if a pet-roster-specific HUD element (e.g. minion-count or guardian-stack tracking, see spell_index.md's shelved 'Guardian count buff' finding) ever gets built - that would be the natural place this field starts actively mattering.",
+    "note_for_other_classes": "This field is new as of 2026-07-06 and only exists for Necromancer so far - not yet backfilled for any of the other 20 classes' theme.json-equivalent (most don't have one yet at all)."
+  }
 }

@@ -7,9 +7,23 @@ folder is a pointer layer like `Display/` - the generated data lives under
 
 **[CLAUDE.md](CLAUDE.md)** - working agreement for this folder (2026-07-06):
 discuss intent before acting on feedback, correct once aligned, not before.
+Also covers the FUSE mount-lag bug and, as of 2026-07-06, why `git` must
+never be run through the sandbox's mounted-folder bridge - the whole
+project is now tracked at
+[github.com/battlewrathgaming-wq/WOW_Weakaura_agentic](https://github.com/battlewrathgaming-wq/WOW_Weakaura_agentic).
 
 ## Start here
 
+- **[Tools/COA_DevDump/README.md](Tools/COA_DevDump/README.md)** - a custom
+  in-game addon (2026-07-04) for pulling real live-client data into
+  `SavedVariables`, since neither macros nor `/devconsole` expose file I/O.
+  Confirmed the stock trainer API works cleanly on this server (trainers
+  are server-driven, no client-side data to bypass) but the stock talent
+  API is fully dead for custom classes (`GetNumTalentTabs()` returns 0) -
+  the real talent data instead lives as plain `spellID`/`rank`/`maxRank`
+  fields on the custom `CoATalentFrame`'s own button widgets. This is the
+  tool + method behind `necromancer_live_reference.json` below; read this
+  first before repeating the capture for another class.
 - **[wa_lua_verify/](wa_lua_verify/)** - runs the REAL WeakAuras addon
   source under a real Lua 5.1.5 interpreter (matching WoW 3.3.5a's
   actual Lua version) to extract subRegion `default()` tables directly
@@ -35,6 +49,14 @@ discuss intent before acting on feedback, correct once aligned, not before.
   desaturate-on-insufficient-mana, composable together. Wired into
   `cooldown_tracker_icon`'s schema/template as of 2026-07-06 (see
   `power_threshold_effect.schema.json`).
+- **[Templates/CUSTOM_STATEUPDATE_TRIGGER.md](Templates/CUSTOM_STATEUPDATE_TRIGGER.md)**
+  - source-grounded research (2026-07-06/07) into WeakAuras' `Custom`
+  (`stateupdate`) trigger type - the mechanism behind polling a live
+  stack count and diffing it in Lua, written up after `stack_gain_flash_text`'s
+  wizard Combat Log trigger failed three separate live tests for
+  Necromancer's Life Force debuff. Confirms the trigger shape, the
+  `TSUHelpers.lua` `allstates` API, and a draft Lua implementation. Not
+  yet built into an actual test aura.
 - **[layer_builder.py](layer_builder.py)** - the shared, class-agnostic
   tool that turns one class's `inventory.py` (plain per-layer constants)
   into a real, auto-versioned import string, one layer at a time - see
@@ -107,8 +129,25 @@ discuss intent before acting on feedback, correct once aligned, not before.
   also picking up two structural facts the client itself adds
   (`subforeground` subRegion, text-format metadata fields) for byte
   fidelity. Current: `Necromancer/Resources_v13_import.txt` - round-trip
-  verified, not yet live-tested. Other classes get their own sibling
-  folder the same way once their turn comes.
+  verified, not yet live-tested. **Tier 1 Rotation built and live-tested,
+  2026-07-06:** Necromancer's first three real rotation abilities
+  (Lichfrost, Crypt Swarm, Command: Undead - real spell IDs/costs pulled
+  from `db.ascension.gg`, none of which existed in this project's own
+  indexed data yet) built via the new `layer_builder.py` +
+  `Necromancer/inventory.py` pattern (see below) rather than one-off
+  scripting - each uses `cooldown_tracker_icon` plus the new
+  `power_threshold` fragment (desaturate when unaffordable, plus an
+  afford-glow on Command: Undead once enough Runic Power is banked).
+  Pasted into WeakAuras in-game and confirmed working. **Superseded later
+  the same day (v6):** Lichfrost and Crypt Swarm were both dropped after
+  being confirmed pure Runic Power builders (no cooldown, no decision
+  point - see `Necromancer/slot_assignment.md`'s "SCOPE RULE" walkthrough),
+  and a press-wash feature added in between (v2-v5) was pulled from
+  Command: Undead's build after it never reliably fired in-game. Current
+  state is just Command: Undead - see `Necromancer/slot_assignment.md`'s
+  "CURRENT STATE" note at the top of its "Tier 1 Rotation" section, not
+  this changelog entry, for what's actually live. Other classes get their
+  own sibling folder the same way once their turn comes.
 - **[AGENT_PROMPT.md](AGENT_PROMPT.md)** - baseline prompt for starting a
   fresh agent session to work on WeakAuras for this project. Paste it in
   first, then give the actual task (build a specific aura, review an
@@ -334,6 +373,32 @@ discuss intent before acting on feedback, correct once aligned, not before.
   cd Scripts
   python3 build_weakaura_index.py ../Input/necromancer_talents.json <mpq_data_dir> ../Outputs/weakaura_index/necromancer_weakaura_index.json
   ```
+
+- [necromancer_live_reference.json](../Outputs/live_reference/necromancer_live_reference.json)
+  (2026-07-04) - a durable reference built from **real live-client captures**,
+  not DBC extraction. Covers a gap the DBC pipeline structurally can't reach:
+  baseline/leveling abilities with zero talent-tree link (`Undead: Pacify`/
+  `Protect`/`Assault`, `Grave March`, `Bone Ward`, `Scourge Apprentice
+  Training`, and dozens of ranked trainer-taught spells like `Crypt Swarm`
+  ranks 1-8 and `Lichfrost` ranks 1-11), captured via the `COA_DevDump`
+  addon (`Tools/COA_DevDump/`) against a real trainer NPC ("Nightmarish Book
+  of Ascension") and the custom `CoATalentFrame` talent UI. **Keyed by
+  ability NAME, not spellId** - a deliberate design call (Battlewrath,
+  2026-07-04): rank-variant abilities can have a dozen or more distinct
+  spellIds (Crypt Swarm alone has 15 in Spell.dbc), too many to track
+  cleanly by ID, and WeakAuras' own name-based triggers already resolve to
+  whatever rank a player has learned. `spellId` is still included as a
+  best-effort field wherever independently confirmed (84 of 121 abilities),
+  cross-referenced against `Input/necromancer_talents.json` by exact name -
+  absent otherwise, not guessed. Every entry carries `verifiedLive: true`
+  and a `source` of `"trainer"` (real gold cost/level requirement/fully
+  server-resolved description text, no `$s1`-style tokens) or `"talent"`
+  (spellID/rank/maxRank read directly off the live talent UI's own button
+  widgets, since this server's talent system doesn't use the stock
+  Blizzard talent API at all - confirmed via `GetNumTalentTabs()` returning
+  0 through both known call shapes). Raw captures kept alongside for
+  traceability: `necromancer_trainer_raw.json` (125 entries),
+  `necromancer_talentnodes_raw.json` (80 entries).
 
 ## Reference materials (dip into Display for these)
 

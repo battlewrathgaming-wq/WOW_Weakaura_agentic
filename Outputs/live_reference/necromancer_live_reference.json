@@ -1,0 +1,2398 @@
+{
+  "_readme": "Durable live-verified reference for the Necromancer class, built to support WeakAuras work. Keyed by ability NAME (not spellId) deliberately - rank-variant abilities like Crypt Swarm have too many distinct spellIds (15 candidates found in Spell.dbc) to track cleanly by ID, and WeakAuras' own combat-log/cast triggers can match by name directly, which naturally covers whatever rank a player has learned. spellId is included as a best-effort cross-reference where independently known (from Input/necromancer_talents.json), not as the primary key. Two source types: 'trainer' (gold-trained baseline/leveling abilities, captured live via the stock GetTrainerServiceInfo API - includes real per-rank cost, level requirement, and fully server-resolved description text) and 'talent' (talent-point investments, captured live by reading spellID/rank/maxRank fields directly off the custom CoATalentFrame's button widgets, since this server's talent system does not use the stock Blizzard talent API at all - confirmed via GetNumTalentTabs() returning 0 through both known call shapes). verifiedLive:true on every entry here reflects that all of it came from a real live client capture, not derived/guessed.",
+  "class": "Necromancer",
+  "capturedFrom": "Gravekeeper (live character), trainer NPC \"Nightmarish Book of Ascension\"",
+  "schemaVersion": 1,
+  "totalAbilities": 121,
+  "spellIdResolvedCount": 84,
+  "abilities": {
+    "Grave March": {
+      "name": "Grave March",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 0,
+          "levelReq": 2,
+          "serviceType": "used",
+          "description": "Command your |cFFFFFFFFUndead|r to focus their attacks on the target enemy.\n\nUsable while casting or channeling."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Bone Ward": {
+      "name": "Bone Ward",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 0,
+          "levelReq": 6,
+          "serviceType": "used",
+          "description": "Activate a |cffffffffBone Ward|r on yourself and your Undead minions for 30 min.\r\n\r\nWhile active, Armor is increased by 50% and Stamina by 10% and melee and ranged damage taken reduces the target's attack power by 27.\r\n\r\n@ext:Only 1 |cffffffffWard|r can be active at a time.:ext@"
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Raise: Crypt Fiend": {
+      "name": "Raise: Crypt Fiend",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 0,
+          "levelReq": 8,
+          "serviceType": "used",
+          "description": "Raise a |cffffffffCrypt Fiend|r to aid you in combat, occupying 2 |cffffffffLife Force|r.\r\n\r\n|cff90ee90Command|r: Shoots barbs at your target that deal 35 Frost damage and bounce to a nearby enemy."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Undead: Pacify": {
+      "name": "Undead: Pacify",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 0,
+          "levelReq": 8,
+          "serviceType": "used",
+          "description": "Your undead minions assume a passive behavior and will not attack enemies or cast spells.\n\n@ext:Only 1 |cffffffffUndead Stance|r can be active at a time.:ext@"
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Undead: Protect": {
+      "name": "Undead: Protect",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 0,
+          "levelReq": 8,
+          "serviceType": "used",
+          "description": "Your undead minions assume a defensive behavior, increasing threat and Armor.\n\n@ext:Only 1 |cffffffffUndead Stance|r can be active at a time.:ext@"
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Scourge Apprentice Training": {
+      "name": "Scourge Apprentice Training",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 0,
+          "levelReq": 10,
+          "serviceType": "used",
+          "description": "Your |cffffffffLife Force|r is increased by 1."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Raise: Greater Skeletal Warrior": {
+      "name": "Raise: Greater Skeletal Warrior",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 2",
+          "cost": 500,
+          "levelReq": 14,
+          "serviceType": "unavailable",
+          "description": "Raise a |cffffffffGreater Skeletal Warrior|r to aid you in combat, occupying 1 |cffffffffLife Force|r.\r\n\r\n|cff90ee90Command|r: Strikes an enemy in front of it and deals Weapon Damage plus 2, reducing their Armor by 10% for 15 sec, stacking 2 times."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Undead: Assault": {
+      "name": "Undead: Assault",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 650,
+          "levelReq": 14,
+          "serviceType": "unavailable",
+          "description": "Your undead minions assume an aggresive behaviour, increasing movement speed by 50%.\r\n\r\n@ext:Only 1 |cffffffffUndead Stance|r can be active at a time.:ext@"
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Create Bone Reliquary": {
+      "name": "Create Bone Reliquary",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 1",
+          "cost": 800,
+          "levelReq": 16,
+          "serviceType": "unavailable",
+          "description": "Create 1 |cffffffffBone Reliquary|r that restores 30% of your missing health.\r\n\r\nAllies may only use a |cffffffffBone Reliquary|r once per minute. Shares a cooldown with similar effects."
+        },
+        {
+          "rankLabel": "Rank 2",
+          "cost": 6200,
+          "levelReq": 26,
+          "serviceType": "unavailable",
+          "description": "Create 2 |cffffffffBone Reliquaries|r that restores 30% of your missing health.\r\n\r\nAllies may only use a |cffffffffBone Reliquary|r once per minute. Shares a cooldown with similar effects."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 14000,
+          "levelReq": 36,
+          "serviceType": "unavailable",
+          "description": "Create 3 |cffffffffBone Reliquaries|r that restores 30% of your missing health.\r\n\r\nAllies may only use a |cffffffffBone Reliquary|r once per minute. Shares a cooldown with similar effects."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 27000,
+          "levelReq": 46,
+          "serviceType": "unavailable",
+          "description": "Create 4 |cffffffffBone Reliquaries|r that restores 30% of your missing health.\r\n\r\nAllies may only use a |cffffffffBone Reliquary|r once per minute. Shares a cooldown with similar effects."
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 40500,
+          "levelReq": 56,
+          "serviceType": "unavailable",
+          "description": "Create 5 |cffffffffBone Reliquaries|r that restores 30% of your missing health.\r\n\r\nAllies may only use a |cffffffffBone Reliquary|r once per minute. Shares a cooldown with similar effects."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Call of The Scourge": {
+      "name": "Call of The Scourge",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 1",
+          "cost": 1100,
+          "levelReq": 18,
+          "serviceType": "unavailable",
+          "description": "Bring a dead ally back to life with 70 health and 135 mana.\n\nCan be used in combat."
+        },
+        {
+          "rankLabel": "Rank 2",
+          "cost": 5200,
+          "levelReq": 26,
+          "serviceType": "unavailable",
+          "description": "Bring a dead ally back to life with 145 health and 273 mana.\n\nCan be used in combat."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 12000,
+          "levelReq": 36,
+          "serviceType": "unavailable",
+          "description": "Bring a dead ally back to life with 253 health and 447 mana.\n\nCan be used in combat."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 22500,
+          "levelReq": 46,
+          "serviceType": "unavailable",
+          "description": "Bring a dead ally back to life with 400 health and 635 mana.\n\nCan be used in combat."
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 34000,
+          "levelReq": 56,
+          "serviceType": "unavailable",
+          "description": "Bring a dead ally back to life with 583 health and 833 mana.\n\nCan be used in combat."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Unholy Frenzy": {
+      "name": "Unholy Frenzy",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 3000,
+          "levelReq": 22,
+          "serviceType": "unavailable",
+          "description": "Enrage your Undead minions for 15 sec, increasing their haste by 30% and movement speed by 50%."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Raise: Skeletal Rogue": {
+      "name": "Raise: Skeletal Rogue",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 14500,
+          "levelReq": 30,
+          "serviceType": "unavailable",
+          "description": "Raise a |cffffffffSkeletal Rogue|r to aid you in combat, occupying 1 |cffffffffLife Force|r. \r\n\r\nHas a chance to apply |cffffffffDecaying Poison|r on hit, reducing the target's casting speed by 10% for 6 sec, stacking 3 times.\r\n\r\n|cff90ee90Command|r: Leaps to your target and strikes it 2 to 5 times. Always strikes 5 times on enemies below 35% health."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Gravebound Champion": {
+      "name": "Gravebound Champion",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 36000,
+          "levelReq": 42,
+          "serviceType": "unavailable",
+          "description": "Summon a |cffffffffGravebound Champion|r that redirects 50% of all damage the caster takes to themselves for 20 sec.\r\n\r\n@ext:Shares a 3min cooldown with other |cffffffffChampion|r spells.:ext@"
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Animate: Skeletal Smith": {
+      "name": "Animate: Skeletal Smith",
+      "tree": "Animation",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 39500,
+          "levelReq": 44,
+          "serviceType": "unavailable",
+          "description": "Animate a |cFFFFFFFFSkeletal Smith|r that can repair the equipment of allies for 1 min."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Crypt Swarm": {
+      "name": "Crypt Swarm",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 1",
+          "cost": 0,
+          "levelReq": 4,
+          "serviceType": "used",
+          "description": "Channel a swarm of locusts on an enemy, dealing 25 Shadow damage slowing their movement speed by 30%, and generating Runic Power over 2.90 sec."
+        },
+        {
+          "rankLabel": "Rank 2",
+          "cost": 300,
+          "levelReq": 12,
+          "serviceType": "unavailable",
+          "description": "Channel a swarm of locusts on an enemy, dealing 40 Shadow damage slowing their movement speed by 30%, and generating Runic Power over 2.90 sec."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 1700,
+          "levelReq": 20,
+          "serviceType": "unavailable",
+          "description": "Channel a swarm of locusts on an enemy, dealing 75 Shadow damage slowing their movement speed by 30%, and generating Runic Power over 2.90 sec."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 5200,
+          "levelReq": 26,
+          "serviceType": "unavailable",
+          "description": "Channel a swarm of locusts on an enemy, dealing 114 Shadow damage slowing their movement speed by 30%, and generating Runic Power over 2.90 sec."
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 12500,
+          "levelReq": 34,
+          "serviceType": "unavailable",
+          "description": "Channel a swarm of locusts on an enemy, dealing 150 Shadow damage slowing their movement speed by 30%, and generating Runic Power over 2.90 sec."
+        },
+        {
+          "rankLabel": "Rank 6",
+          "cost": 17000,
+          "levelReq": 40,
+          "serviceType": "unavailable",
+          "description": "Channel a swarm of locusts on an enemy, dealing 192 Shadow damage slowing their movement speed by 30%, and generating Runic Power over 2.90 sec."
+        },
+        {
+          "rankLabel": "Rank 7",
+          "cost": 25000,
+          "levelReq": 48,
+          "serviceType": "unavailable",
+          "description": "Channel a swarm of locusts on an enemy, dealing 276 Shadow damage slowing their movement speed by 30%, and generating Runic Power over 2.90 sec."
+        },
+        {
+          "rankLabel": "Rank 8",
+          "cost": 35500,
+          "levelReq": 54,
+          "serviceType": "unavailable",
+          "description": "Channel a swarm of locusts on an enemy, dealing 342 Shadow damage slowing their movement speed by 30%, and generating Runic Power over 2.90 sec."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Sacrifice Undead": {
+      "name": "Sacrifice Undead",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 1",
+          "cost": 0,
+          "levelReq": 4,
+          "serviceType": "used",
+          "description": "Sacrifices your Undead, returning their |cffffffffLife Force|r to you, and restoring 139 health for each Undead minion destroyed."
+        },
+        {
+          "rankLabel": "Rank 2",
+          "cost": 450,
+          "levelReq": 14,
+          "serviceType": "unavailable",
+          "description": "Sacrifices your Undead, returning their |cffffffffLife Force|r to you, and restoring 205 health for each Undead minion destroyed."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 6600,
+          "levelReq": 28,
+          "serviceType": "unavailable",
+          "description": "Sacrifices your Undead, returning their |cffffffffLife Force|r to you, and restoring 308 health for each Undead minion destroyed."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 20000,
+          "levelReq": 42,
+          "serviceType": "unavailable",
+          "description": "Sacrifices your Undead, returning their |cffffffffLife Force|r to you, and restoring 561 health for each Undead minion destroyed."
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 35500,
+          "levelReq": 54,
+          "serviceType": "unavailable",
+          "description": "Sacrifices your Undead, returning their |cffffffffLife Force|r to you, and restoring 808 health for each Undead minion destroyed."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Foul Mandate": {
+      "name": "Foul Mandate",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 1",
+          "cost": 200,
+          "levelReq": 12,
+          "serviceType": "unavailable",
+          "description": "Empowers an ally with a dark Mandate, increasing Stamina by 8 for 30 min."
+        },
+        {
+          "rankLabel": "Rank 2",
+          "cost": 2900,
+          "levelReq": 24,
+          "serviceType": "unavailable",
+          "description": "Empowers an ally with a dark Mandate, increasing Stamina by 20 for 30 min."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 9600,
+          "levelReq": 36,
+          "serviceType": "unavailable",
+          "description": "Empowers an ally with a dark Mandate, increasing Stamina by 32 for 30 min."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 20000,
+          "levelReq": 48,
+          "serviceType": "unavailable",
+          "description": "Empowers an ally with a dark Mandate, increasing Stamina by 43 for 30 min."
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 27000,
+          "levelReq": 58,
+          "serviceType": "unavailable",
+          "description": "Empowers an ally with a dark Mandate, increasing Stamina by 54 for 30 min."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Harvest Plague": {
+      "name": "Harvest Plague",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 1",
+          "cost": 700,
+          "levelReq": 16,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy, siphoning 30 health every 3 sec for 18 sec, healing you for a portion of the damage dealt.\r\n\r\nThe plague intensifies and siphons increased health based on how close to death your target is."
+        },
+        {
+          "rankLabel": "Rank 2",
+          "cost": 3700,
+          "levelReq": 24,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy, siphoning 48 health every 3 sec for 18 sec, healing you for a portion of the damage dealt.\r\n\r\nThe plague intensifies and siphons increased health based on how close to death your target is."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 10000,
+          "levelReq": 32,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy, siphoning 72 health every 3 sec for 21 sec, healing you for a portion of the damage dealt.\r\n\r\nThe plague intensifies and siphons increased health based on how close to death your target is."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 17000,
+          "levelReq": 40,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy, siphoning 95 health every 3 sec for 21 sec, healing you for a portion of the damage dealt.\r\n\r\nThe plague intensifies and siphons increased health based on how close to death your target is."
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 25000,
+          "levelReq": 48,
+          "serviceType": "unavailable",
+          "description": "Disease the enemy, siphoning 132 health every 3 sec for 24 sec, healing you for a portion of the damage dealt.\r\n\r\nThe plague intensifies and siphons increased health based on how close to death your target is."
+        },
+        {
+          "rankLabel": "Rank 6",
+          "cost": 34000,
+          "levelReq": 56,
+          "serviceType": "unavailable",
+          "description": "Disease the enemy, siphoning 173 health every 3 sec for 24 sec, healing you for a portion of the damage dealt.\r\n\r\nThe plague intensifies and siphons increased health based on how close to death your target is."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Ghoulify": {
+      "name": "Ghoulify",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 3000,
+          "levelReq": 20,
+          "serviceType": "unavailable",
+          "description": "Transform an enemy into a ghoul, fearing them for 40 sec (8 sec vs. players). Only usable on Humanoids. Damage caused may interrupt the effect."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Flesh to Worms": {
+      "name": "Flesh to Worms",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 2",
+          "cost": 1700,
+          "levelReq": 20,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy, dealing 26 Plague damage and generating Runic Power every 3 sec for 18 sec.\r\n\r\n@ext:Periodic damage dealt by this can critically strike.:ext@"
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 5200,
+          "levelReq": 26,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy, dealing 35 Plague damage and generating Runic Power every 3 sec for 18 sec.\r\n\r\n@ext:Periodic damage dealt by this can critically strike.:ext@"
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 10000,
+          "levelReq": 32,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy, dealing 44 Plague damage and generating Runic Power every 3 sec for 18 sec.\r\n\r\n@ext:Periodic damage dealt by this can critically strike.:ext@"
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 16000,
+          "levelReq": 38,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy, dealing 56 Plague damage and generating Runic Power every 3 sec for 18 sec.\r\n\r\n@ext:Periodic damage dealt by this can critically strike.:ext@"
+        },
+        {
+          "rankLabel": "Rank 6",
+          "cost": 22000,
+          "levelReq": 44,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy, dealing 70 Plague damage and generating Runic Power every 3 sec for 18 sec.\r\n\r\n@ext:Periodic damage dealt by this can critically strike.:ext@"
+        },
+        {
+          "rankLabel": "Rank 7",
+          "cost": 26500,
+          "levelReq": 50,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy, dealing 85 Plague damage and generating Runic Power every 3 sec for 18 sec.\r\n\r\n@ext:Periodic damage dealt by this can critically strike.:ext@"
+        },
+        {
+          "rankLabel": "Rank 8",
+          "cost": 34000,
+          "levelReq": 56,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy, dealing 103 Plague damage and generating Runic Power every 3 sec for 18 sec.\r\n\r\n@ext:Periodic damage dealt by this can critically strike.:ext@"
+        }
+      ],
+      "spellId": 500338,
+      "spellIdSource": "necromancer_talents.json exact name match"
+    },
+    "Blight": {
+      "name": "Blight",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 1",
+          "cost": 3700,
+          "levelReq": 24,
+          "serviceType": "unavailable",
+          "description": "The target becomes blighted, causing nearby enemies to suffer 114 Shadow damage over 20 sec.\r\n\r\nAfter 20 sec, the blight expunges from the target dealing 93 Nature damage."
+        },
+        {
+          "rankLabel": "Rank 2",
+          "cost": 10000,
+          "levelReq": 32,
+          "serviceType": "unavailable",
+          "description": "The target becomes blighted, causing nearby enemies to suffer 179 Shadow damage over 20 sec.\r\n\r\nAfter 20 sec, the blight expunges from the target dealing 93 Nature damage."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 17000,
+          "levelReq": 40,
+          "serviceType": "unavailable",
+          "description": "The target becomes blighted, causing nearby enemies to suffer 249 Shadow damage over 20 sec.\r\n\r\nAfter 20 sec, the blight expunges from the target dealing 93 Nature damage."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 25000,
+          "levelReq": 48,
+          "serviceType": "unavailable",
+          "description": "The target becomes blighted, causing nearby enemies to suffer 334 Shadow damage over 20 sec.\r\n\r\nAfter 20 sec, the blight expunges from the target dealing 93 Nature damage."
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 34000,
+          "levelReq": 56,
+          "serviceType": "unavailable",
+          "description": "The target becomes blighted, causing nearby enemies to suffer 429 Shadow damage over 20 sec.\r\n\r\nAfter 20 sec, the blight expunges from the target dealing 93 Nature damage."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Corpse Explosion": {
+      "name": "Corpse Explosion",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 1",
+          "cost": 3700,
+          "levelReq": 24,
+          "serviceType": "unavailable",
+          "description": "Cause a corpse to explode for 145 Plague damage to all enemies within 10 yds. Will use a nearby corpse if the target is not a corpse. Does not affect mechanical or elemental corpses."
+        },
+        {
+          "rankLabel": "Rank 2",
+          "cost": 12500,
+          "levelReq": 34,
+          "serviceType": "unavailable",
+          "description": "Cause a corpse to explode for 223 Plague damage to all enemies within 10 yds. Will use a nearby corpse if the target is not a corpse. Does not affect mechanical or elemental corpses."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 22000,
+          "levelReq": 44,
+          "serviceType": "unavailable",
+          "description": "Cause a corpse to explode for 389 Plague damage to all enemies within 10 yds. Will use a nearby corpse if the target is not a corpse. Does not affect mechanical or elemental corpses."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 35500,
+          "levelReq": 54,
+          "serviceType": "unavailable",
+          "description": "Cause a corpse to explode for 513 Plague damage to all enemies within 10 yds. Will use a nearby corpse if the target is not a corpse. Does not affect mechanical or elemental corpses."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Plague of Undeath": {
+      "name": "Plague of Undeath",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 2",
+          "cost": 3700,
+          "levelReq": 24,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy dealing 53 Plague damage every 2.42 sec and reduces the targets Holy healing received by 50% for 19.33 sec.\r\n\r\nIf |cffffffffPlague of Undeath|r is dispelled, the enemy takes 86 Plague damage and is stunned for 5 sec.\r\n\r\n@ext:Periodic damage dealt by this benefits from your spell haste.:ext@"
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 10000,
+          "levelReq": 32,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy dealing 97 Plague damage every 2.42 sec and reduces the targets Holy healing received by 50% for 19.33 sec.\r\n\r\nIf |cffffffffPlague of Undeath|r is dispelled, the enemy takes 86 Plague damage and is stunned for 5 sec.\r\n\r\n@ext:Periodic damage dealt by this benefits from your spell haste.:ext@"
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 17000,
+          "levelReq": 40,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy dealing 132 Plague damage every 2.42 sec and reduces the targets Holy healing received by 50% for 19.33 sec.\r\n\r\nIf |cffffffffPlague of Undeath|r is dispelled, the enemy takes 86 Plague damage and is stunned for 5 sec.\r\n\r\n@ext:Periodic damage dealt by this benefits from your spell haste.:ext@"
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 25000,
+          "levelReq": 48,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy dealing 197 Plague damage every 2.42 sec and reduces the targets Holy healing received by 50% for 19.33 sec.\r\n\r\nIf |cffffffffPlague of Undeath|r is dispelled, the enemy takes 86 Plague damage and is stunned for 5 sec.\r\n\r\n@ext:Periodic damage dealt by this benefits from your spell haste.:ext@"
+        },
+        {
+          "rankLabel": "Rank 6",
+          "cost": 34000,
+          "levelReq": 56,
+          "serviceType": "unavailable",
+          "description": "Disease an enemy dealing 253 Plague damage every 2.42 sec and reduces the targets Holy healing received by 50% for 19.33 sec.\r\n\r\nIf |cffffffffPlague of Undeath|r is dispelled, the enemy takes 86 Plague damage and is stunned for 5 sec.\r\n\r\n@ext:Periodic damage dealt by this benefits from your spell haste.:ext@"
+        }
+      ],
+      "spellId": 801945,
+      "spellIdSource": "necromancer_talents.json exact name match"
+    },
+    "Call of the Grave": {
+      "name": "Call of the Grave",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 12000,
+          "levelReq": 30,
+          "serviceType": "unavailable",
+          "description": "Beckon the dead, removing the cost and cast time of all |cFFFFFFFFRaise|r spells and |cffffffffAnimates|r for 10 sec."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Sense Undead": {
+      "name": "Sense Undead",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 18000,
+          "levelReq": 32,
+          "serviceType": "unavailable",
+          "description": "Shows the location of all nearby Undead on the minimap and increases damage dealt to Undead by 5% while active."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Entomb": {
+      "name": "Entomb",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 22500,
+          "levelReq": 34,
+          "serviceType": "unavailable",
+          "description": "Bury an enemy alive with necrotic energy, banishing them, preventing all actions and making them immune to damage for 4 sec."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Grim Mandate": {
+      "name": "Grim Mandate",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 1",
+          "cost": 12500,
+          "levelReq": 38,
+          "serviceType": "unavailable",
+          "description": "Places a Mandate on the friendly target, increasing spell power by 37 for 30 min."
+        },
+        {
+          "rankLabel": "Rank 2",
+          "cost": 18000,
+          "levelReq": 46,
+          "serviceType": "unavailable",
+          "description": "Places a Mandate on the friendly target, increasing spell power by 49 for 30 min."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 25500,
+          "levelReq": 52,
+          "serviceType": "unavailable",
+          "description": "Places a Mandate on the friendly target, increasing spell power by 49 for 30 min."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Spellbound Champion": {
+      "name": "Spellbound Champion",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 61000,
+          "levelReq": 56,
+          "serviceType": "unavailable",
+          "description": "Summon a |cffffffffSpellbound Champion|r that deflects spells cast on you, redirecting them to itself for 20 sec.\r\n\r\n@ext:Shares a 3min cooldown with other |cffffffffChampion|r spells.:ext@"
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Greater Grim Mandate": {
+      "name": "Greater Grim Mandate",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 40500,
+          "levelReq": 58,
+          "serviceType": "unavailable",
+          "description": "Places a Mandate on the friendly target, increasing spell power by 62 for 30 min."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Greater Foul Mandate": {
+      "name": "Greater Foul Mandate",
+      "tree": "Death",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 52500,
+          "levelReq": 60,
+          "serviceType": "unavailable",
+          "description": "Empowers raid and party members with a dark Mandate, increasing Stamina by 54 for 30 min."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Lichfrost": {
+      "name": "Lichfrost",
+      "tree": "Rime",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 2",
+          "cost": 0,
+          "levelReq": 6,
+          "serviceType": "used",
+          "description": "Unleash a shard of frozen decay at an enemy, dealing 34 Frost damage and slowing their movement speed by 35% for 3 sec and generates Runic Power."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 350,
+          "levelReq": 12,
+          "serviceType": "unavailable",
+          "description": "Unleash a shard of frozen decay at an enemy, dealing 48 Frost damage and slowing their movement speed by 35% for 4 sec and generates Runic Power."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 1300,
+          "levelReq": 18,
+          "serviceType": "unavailable",
+          "description": "Unleash a shard of frozen decay at an enemy, dealing 69 Frost damage and slowing their movement speed by 35% for 4 sec and generates Runic Power."
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 4400,
+          "levelReq": 24,
+          "serviceType": "unavailable",
+          "description": "Unleash a shard of frozen decay at an enemy, dealing 95 Frost damage and slowing their movement speed by 35% for 4 sec and generates Runic Power."
+        },
+        {
+          "rankLabel": "Rank 6",
+          "cost": 9900,
+          "levelReq": 30,
+          "serviceType": "unavailable",
+          "description": "Unleash a shard of frozen decay at an enemy, dealing 143 Frost damage and slowing their movement speed by 35% for 5 sec and generates Runic Power."
+        },
+        {
+          "rankLabel": "Rank 7",
+          "cost": 14000,
+          "levelReq": 36,
+          "serviceType": "unavailable",
+          "description": "Unleash a shard of frozen decay at an enemy, dealing 186 Frost damage and slowing their movement speed by 35% for 5 sec and generates Runic Power."
+        },
+        {
+          "rankLabel": "Rank 8",
+          "cost": 24000,
+          "levelReq": 42,
+          "serviceType": "unavailable",
+          "description": "Unleash a shard of frozen decay at an enemy, dealing 240 Frost damage and slowing their movement speed by 35% for 5 sec and generates Runic Power."
+        },
+        {
+          "rankLabel": "Rank 9",
+          "cost": 30000,
+          "levelReq": 48,
+          "serviceType": "unavailable",
+          "description": "Unleash a shard of frozen decay at an enemy, dealing 293 Frost damage and slowing their movement speed by 35% for 5 sec and generates Runic Power."
+        },
+        {
+          "rankLabel": "Rank 10",
+          "cost": 42500,
+          "levelReq": 54,
+          "serviceType": "unavailable",
+          "description": "Unleash a shard of frozen decay at an enemy, dealing 356 Frost damage and slowing their movement speed by 35% for 5 sec and generates Runic Power."
+        },
+        {
+          "rankLabel": "Rank 11",
+          "cost": 42000,
+          "levelReq": 60,
+          "serviceType": "unavailable",
+          "description": "Unleash a shard of frozen decay at an enemy, dealing 472 Frost damage and slowing their movement speed by 35% for 6 sec and generates Runic Power."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Razorice": {
+      "name": "Razorice",
+      "tree": "Rime",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 1",
+          "cost": 0,
+          "levelReq": 8,
+          "serviceType": "used",
+          "description": "Frozen spikes erupt from the bodies of an ally and |cffffffffRaised|r minions for 30 min, causing 4 Frost damage to attackers when hit."
+        },
+        {
+          "rankLabel": "Rank 2",
+          "cost": 700,
+          "levelReq": 16,
+          "serviceType": "unavailable",
+          "description": "Frozen spikes erupt from the bodies of an ally and |cffffffffRaised|r minions for 30 min, causing 7 Frost damage to attackers when hit."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 5200,
+          "levelReq": 26,
+          "serviceType": "unavailable",
+          "description": "Frozen spikes erupt from the bodies of an ally and |cffffffffRaised|r minions for 30 min, causing 10 Frost damage to attackers when hit."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 12000,
+          "levelReq": 36,
+          "serviceType": "unavailable",
+          "description": "Frozen spikes erupt from the bodies of an ally and |cffffffffRaised|r minions for 30 min, causing 13 Frost damage to attackers when hit."
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 22500,
+          "levelReq": 46,
+          "serviceType": "unavailable",
+          "description": "Frozen spikes erupt from the bodies of an ally and |cffffffffRaised|r minions for 30 min, causing 16 Frost damage to attackers when hit."
+        },
+        {
+          "rankLabel": "Rank 6",
+          "cost": 32000,
+          "levelReq": 52,
+          "serviceType": "unavailable",
+          "description": "Frozen spikes erupt from the bodies of an ally and |cffffffffRaised|r minions for 30 min, causing 17 Frost damage to attackers when hit."
+        },
+        {
+          "rankLabel": "Rank 7",
+          "cost": 34000,
+          "levelReq": 58,
+          "serviceType": "unavailable",
+          "description": "Frozen spikes erupt from the bodies of an ally and |cffffffffRaised|r minions for 30 min, causing 21 Frost damage to attackers when hit."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Transfer Life": {
+      "name": "Transfer Life",
+      "tree": "Rime",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 1600,
+          "levelReq": 18,
+          "serviceType": "unavailable",
+          "description": "Channel life into your |cFFFFFFFFRaised|r minions within 20 yds for 10 sec, healing them for 5% of their maximum health plus 9 every 1 sec."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Ice Barrage": {
+      "name": "Ice Barrage",
+      "tree": "Rime",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 2",
+          "cost": 1700,
+          "levelReq": 20,
+          "serviceType": "unavailable",
+          "description": "Unleash a relentless volley of glacial shards, dealing 36 Frost damage every 0.24 sec for 0.97 sec.\r\n\r\nAt the end of the duration, you entomb your target in ice, freezing them for 4 sec."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 6600,
+          "levelReq": 28,
+          "serviceType": "unavailable",
+          "description": "Unleash a relentless volley of glacial shards, dealing 67 Frost damage every 0.24 sec for 0.97 sec.\r\n\r\nAt the end of the duration, you entomb your target in ice, freezing them for 4 sec."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 12000,
+          "levelReq": 36,
+          "serviceType": "unavailable",
+          "description": "Unleash a relentless volley of glacial shards, dealing 98 Frost damage every 0.24 sec for 0.97 sec.\r\n\r\nAt the end of the duration, you entomb your target in ice, freezing them for 4 sec."
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 22000,
+          "levelReq": 44,
+          "serviceType": "unavailable",
+          "description": "Unleash a relentless volley of glacial shards, dealing 135 Frost damage every 0.24 sec for 0.97 sec.\r\n\r\nAt the end of the duration, you entomb your target in ice, freezing them for 4 sec."
+        },
+        {
+          "rankLabel": "Rank 6",
+          "cost": 32000,
+          "levelReq": 52,
+          "serviceType": "unavailable",
+          "description": "Unleash a relentless volley of glacial shards, dealing 175 Frost damage every 0.24 sec for 0.97 sec.\r\n\r\nAt the end of the duration, you entomb your target in ice, freezing them for 4 sec."
+        },
+        {
+          "rankLabel": "Rank 7",
+          "cost": 35000,
+          "levelReq": 60,
+          "serviceType": "unavailable",
+          "description": "Unleash a relentless volley of glacial shards, dealing 236 Frost damage every 0.24 sec for 0.97 sec.\r\n\r\nAt the end of the duration, you entomb your target in ice, freezing them for 4 sec."
+        }
+      ],
+      "spellId": 801760,
+      "spellIdSource": "necromancer_talents.json exact name match"
+    },
+    "Siphon Mana": {
+      "name": "Siphon Mana",
+      "tree": "Rime",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 1",
+          "cost": 2500,
+          "levelReq": 22,
+          "serviceType": "unavailable",
+          "description": "Drain 20 mana every 0.97 sec from your |cFFFFFFFFRaised|r minions within 20 yds in exchange for 1 Runic Power for 9.67 sec."
+        },
+        {
+          "rankLabel": "Rank 2",
+          "cost": 12500,
+          "levelReq": 34,
+          "serviceType": "unavailable",
+          "description": "Drain 40 mana every 0.97 sec from your |cFFFFFFFFRaised|r minions within 20 yds in exchange for 2 Runic Power for 9.67 sec."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 22500,
+          "levelReq": 46,
+          "serviceType": "unavailable",
+          "description": "Drain 60 mana every 0.97 sec from your |cFFFFFFFFRaised|r minions within 20 yds in exchange for 3 Runic Power for 9.67 sec."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 34000,
+          "levelReq": 58,
+          "serviceType": "unavailable",
+          "description": "Drain 80 mana every 0.97 sec from your |cFFFFFFFFRaised|r minions within 20 yds in exchange for 4 Runic Power for 9.67 sec."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Glacial Impact": {
+      "name": "Glacial Impact",
+      "tree": "Rime",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 2",
+          "cost": 5200,
+          "levelReq": 26,
+          "serviceType": "unavailable",
+          "description": "|cff3399ffRequires Frozen Target|r\r\nCall down icy boulders onto a |cff3399ffFrozen|r enemy, dealing 170 Frost damage.\r\n\r\n@ext:Damage scales with your critical strike rating. :ext@"
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 12500,
+          "levelReq": 34,
+          "serviceType": "unavailable",
+          "description": "|cff3399ffRequires Frozen Target|r\r\nCall down icy boulders onto a |cff3399ffFrozen|r enemy, dealing 255 Frost damage.\r\n\r\n@ext:Damage scales with your critical strike rating. :ext@"
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 20000,
+          "levelReq": 42,
+          "serviceType": "unavailable",
+          "description": "|cff3399ffRequires Frozen Target|r\r\nCall down icy boulders onto a |cff3399ffFrozen|r enemy, dealing 357 Frost damage.\r\n\r\n@ext:Damage scales with your critical strike rating. :ext@"
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 26500,
+          "levelReq": 50,
+          "serviceType": "unavailable",
+          "description": "|cff3399ffRequires Frozen Target|r\r\nCall down icy boulders onto a |cff3399ffFrozen|r enemy, dealing 464 Frost damage.\r\n\r\n@ext:Damage scales with your critical strike rating. :ext@"
+        },
+        {
+          "rankLabel": "Rank 6",
+          "cost": 34000,
+          "levelReq": 58,
+          "serviceType": "unavailable",
+          "description": "|cff3399ffRequires Frozen Target|r\r\nCall down icy boulders onto a |cff3399ffFrozen|r enemy, dealing 642 Frost damage.\r\n\r\n@ext:Damage scales with your critical strike rating. :ext@"
+        }
+      ],
+      "spellId": 704355,
+      "spellIdSource": "necromancer_talents.json exact name match"
+    },
+    "Chill of the Tomb": {
+      "name": "Chill of the Tomb",
+      "tree": "Rime",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 1",
+          "cost": 4100,
+          "levelReq": 26,
+          "serviceType": "unavailable",
+          "description": "Increases the target's resistance to Frost spells by 15 for 30 min."
+        },
+        {
+          "rankLabel": "Rank 2",
+          "cost": 8000,
+          "levelReq": 32,
+          "serviceType": "unavailable",
+          "description": "Increases the target's resistance to Frost spells by 30 for 30 min."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 17500,
+          "levelReq": 44,
+          "serviceType": "unavailable",
+          "description": "Increases the target's resistance to Frost spells by 45 for 30 min."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 21000,
+          "levelReq": 50,
+          "serviceType": "unavailable",
+          "description": "Increases the target's resistance to Frost spells by 60 for 30 min."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Create Frozen Reliquary": {
+      "name": "Create Frozen Reliquary",
+      "tree": "Rime",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": "Rank 2",
+          "cost": 9900,
+          "levelReq": 30,
+          "serviceType": "unavailable",
+          "description": "Create 2 |cffffffffFrozen Reliquary|r that restores 30% of your missing mana.\r\n\r\nAllies may only use a |cffffffffFrozen Reliquary|r once per minute."
+        },
+        {
+          "rankLabel": "Rank 3",
+          "cost": 20000,
+          "levelReq": 40,
+          "serviceType": "unavailable",
+          "description": "Create 3 |cffffffffFrozen Reliquary|r that restores 30% of your missing mana.\r\n\r\nAllies may only use a |cffffffffFrozen Reliquary|r once per minute."
+        },
+        {
+          "rankLabel": "Rank 4",
+          "cost": 31500,
+          "levelReq": 50,
+          "serviceType": "unavailable",
+          "description": "Create 4 |cffffffffFrozen Reliquary|r that restores 30% of your missing mana.\r\n\r\nAllies may only use a |cffffffffFrozen Reliquary|r once per minute."
+        },
+        {
+          "rankLabel": "Rank 5",
+          "cost": 42000,
+          "levelReq": 60,
+          "serviceType": "unavailable",
+          "description": "Create 5 |cffffffffFrozen Reliquary|r that restores 30% of your missing mana.\r\n\r\nAllies may only use a |cffffffffFrozen Reliquary|r once per minute."
+        }
+      ],
+      "spellId": 803772,
+      "spellIdSource": "necromancer_talents.json exact name match",
+      "talentNode": {
+        "liveRank": 0,
+        "liveMaxRank": 1,
+        "position": {
+          "left": 638.3747865548772,
+          "top": 651.9608822254794
+        }
+      }
+    },
+    "Glacial Ward": {
+      "name": "Glacial Ward",
+      "tree": "Rime",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 12000,
+          "levelReq": 32,
+          "serviceType": "unavailable",
+          "description": "Activate a |cffffffffGlacial Ward|r on yourself and your Undead minions for 30 min.\r\n\r\nWhile active, maximum Runic Power and Intellect is increased by 10% and the duration of stun effects on you is reduced by 20%.\r\n\r\n@ext:Only 1 |cffffffffWard|r can be active at a time.:ext@"
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Icebound Champion": {
+      "name": "Icebound Champion",
+      "tree": "Rime",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 47500,
+          "levelReq": 50,
+          "serviceType": "unavailable",
+          "description": "Summon an |cffffffffIcebound Champion|r that prevents you from being silenced or interrupted and reduces the pushback suffered from damaging attacks while casting by 50% for 20 sec.\r\n\r\n@ext:Shares a 3min cooldown with other |cffffffffChampion|r spells.:ext@"
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Greater Razorice": {
+      "name": "Greater Razorice",
+      "tree": "Rime",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 34000,
+          "levelReq": 58,
+          "serviceType": "unavailable",
+          "description": "Frozen spikes erupt from the bodies of nearby allies and |cffffffffRaised|r minions for 30 min, causing 21 Frost damage to attackers when hit."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Greater Chill of the Tomb": {
+      "name": "Greater Chill of the Tomb",
+      "tree": "Rime",
+      "source": "trainer",
+      "verifiedLive": true,
+      "ranks": [
+        {
+          "rankLabel": null,
+          "cost": 52500,
+          "levelReq": 60,
+          "serviceType": "unavailable",
+          "description": "Increases the target's party and raid members resistance to Frost spells by 60 for 30 min."
+        }
+      ],
+      "spellId": null,
+      "spellIdSource": null
+    },
+    "Diabolical": {
+      "name": "Diabolical",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 704723,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1471.374833400136,
+        "top": 475.9609008268085
+      }
+    },
+    "Deadly Bond": {
+      "name": "Deadly Bond",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 704724,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1471.374833400136,
+        "top": 651.9608822254794
+      }
+    },
+    "Forbidden Technique": {
+      "name": "Forbidden Technique",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 561215,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1295.374781972932,
+        "top": 651.9608822254794
+      }
+    },
+    "Skeletal Artillery": {
+      "name": "Skeletal Artillery",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 302518,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 2,
+      "position": {
+        "left": 1295.374781972932,
+        "top": 563.960891526144
+      }
+    },
+    "Lich's Prodigy": {
+      "name": "Lich's Prodigy",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 302519,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1339.374829844,
+        "top": 475.9609008268085
+      }
+    },
+    "Icecrown Scriptures": {
+      "name": "Icecrown Scriptures",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 300234,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 2,
+      "position": {
+        "left": 682.3747643974117,
+        "top": 695.9608600680139
+      }
+    },
+    "Life For Power": {
+      "name": "Life For Power",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 705746,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 462.3747351276732,
+        "top": 607.960904382945
+      }
+    },
+    "Unrelenting Army": {
+      "name": "Unrelenting Army",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 705747,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 2,
+      "position": {
+        "left": 1075.374822731727,
+        "top": 519.960878669343
+      }
+    },
+    "Frost Runes": {
+      "name": "Frost Runes",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 705750,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 682.3747643974117,
+        "top": 387.9608751132066
+      }
+    },
+    "Hulking Hordes": {
+      "name": "Hulking Hordes",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 300748,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 2,
+      "position": {
+        "left": 506.3747479844742,
+        "top": 695.9608600680139
+      }
+    },
+    "Tears of Lordaeron": {
+      "name": "Tears of Lordaeron",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 705752,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Overwhelming Force": {
+      "name": "Overwhelming Force",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 531128,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Animate: Bone Construct": {
+      "name": "Animate: Bone Construct",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 531130,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1295.374781972932,
+        "top": 343.9608972706721
+      }
+    },
+    "Putrid Summoner": {
+      "name": "Putrid Summoner",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 560595,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 462.3747351276732,
+        "top": 431.9608879700076
+      }
+    },
+    "Crypt Keeper": {
+      "name": "Crypt Keeper",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 560596,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Chomp": {
+      "name": "Chomp",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 707283,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Unstoppable Frenzy": {
+      "name": "Unstoppable Frenzy",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 573426,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Reclaimed Life": {
+      "name": "Reclaimed Life",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 707670,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 462.3747351276732,
+        "top": 519.960878669343
+      }
+    },
+    "Putrifier": {
+      "name": "Putrifier",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 302923,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1383.374737658001,
+        "top": 563.960891526144
+      }
+    },
+    "Improved Mandates": {
+      "name": "Improved Mandates",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 560613,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 726.374742239946,
+        "top": 519.960878669343
+      }
+    },
+    "Raise: Banshee": {
+      "name": "Raise: Banshee",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 504861,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 594.3747386838096,
+        "top": 343.9608972706721
+      }
+    },
+    "Disciple of Kel'thuzad": {
+      "name": "Disciple of Kel'thuzad",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 560615,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 2,
+      "position": {
+        "left": 638.3747865548772,
+        "top": 519.960878669343
+      }
+    },
+    "Bone King": {
+      "name": "Bone King",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 707175,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1119.374800574261,
+        "top": 695.9608600680139
+      }
+    },
+    "Anti-Magic Shell": {
+      "name": "Anti-Magic Shell",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 504866,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1031.374774860659,
+        "top": 431.9608879700076
+      }
+    },
+    "Naxxramas Prodigy": {
+      "name": "Naxxramas Prodigy",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 560622,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Phylactery": {
+      "name": "Phylactery",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 500933,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 418.3747222708722,
+        "top": 563.960891526144
+      }
+    },
+    "Summoning Adept": {
+      "name": "Summoning Adept",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 92123,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 1,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1471.374833400136,
+        "top": 739.9609079390815
+      }
+    },
+    "Fetid Ward": {
+      "name": "Fetid Ward",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 680388,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 550.3747608412752,
+        "top": 739.9609079390815
+      }
+    },
+    "Runic Animation": {
+      "name": "Runic Animation",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 707445,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1339.374829844,
+        "top": 607.960904382945
+      }
+    },
+    "Corpse Wagon": {
+      "name": "Corpse Wagon",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 503738,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1207.374826287864,
+        "top": 431.9608879700076
+      }
+    },
+    "Ghoul Mastery": {
+      "name": "Ghoul Mastery",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 503740,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1207.374826287864,
+        "top": 563.960891526144
+      }
+    },
+    "Glacial Tap": {
+      "name": "Glacial Tap",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 805369,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 638.3747865548772,
+        "top": 739.9609079390815
+      }
+    },
+    "Fetid Mark": {
+      "name": "Fetid Mark",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 706948,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Plague Protection": {
+      "name": "Plague Protection",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 570046,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 2,
+      "position": {
+        "left": 1295.374781972932,
+        "top": 431.9608879700076
+      }
+    },
+    "Summoner": {
+      "name": "Summoner",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 706953,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1031.374774860659,
+        "top": 563.960891526144
+      }
+    },
+    "Army of the Dead": {
+      "name": "Army of the Dead",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 525600,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Graverobber": {
+      "name": "Graverobber",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 503757,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1295.374781972932,
+        "top": 695.9608600680139
+      }
+    },
+    "Death's Due": {
+      "name": "Death's Due",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 807796,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 682.3747643974117,
+        "top": 563.960891526144
+      }
+    },
+    "Foul Invocation": {
+      "name": "Foul Invocation",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 804371,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 550.3747608412752,
+        "top": 387.9608751132066
+      }
+    },
+    "Game of Bones": {
+      "name": "Game of Bones",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 301198,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 418.3747222708722,
+        "top": 475.9609008268085
+      }
+    },
+    "Cobalt-Plated Armor": {
+      "name": "Cobalt-Plated Armor",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 300945,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Raise: Ghoul": {
+      "name": "Raise: Ghoul",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 500971,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1207.374826287864,
+        "top": 607.960904382945
+      }
+    },
+    "Mass Grave": {
+      "name": "Mass Grave",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 803741,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 550.3747608412752,
+        "top": 519.960878669343
+      }
+    },
+    "Summoning Prodigy": {
+      "name": "Summoning Prodigy",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 704682,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1119.374800574261,
+        "top": 651.9608822254794
+      }
+    },
+    "Winds of Northrend": {
+      "name": "Winds of Northrend",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 301333,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 638.3747865548772,
+        "top": 431.9608879700076
+      }
+    },
+    "Flesh Symbiosis": {
+      "name": "Flesh Symbiosis",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 301207,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1119.374800574261,
+        "top": 387.9608751132066
+      }
+    },
+    "Plague Horde": {
+      "name": "Plague Horde",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 802986,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1207.374826287864,
+        "top": 387.9608751132066
+      }
+    },
+    "Lich Essence": {
+      "name": "Lich Essence",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 802988,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 594.3747386838096,
+        "top": 695.9608600680139
+      }
+    },
+    "Corpse Commander": {
+      "name": "Corpse Commander",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 707739,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Study of Death": {
+      "name": "Study of Death",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 704721,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 506.3747479844742,
+        "top": 343.9608972706721
+      }
+    },
+    "Sepulchral Might": {
+      "name": "Sepulchral Might",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 706472,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 2,
+      "position": {
+        "left": 1207.374826287864,
+        "top": 651.9608822254794
+      }
+    },
+    "Raise: Abomination": {
+      "name": "Raise: Abomination",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 500335,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 1,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 462.3747351276732,
+        "top": 739.9609079390815
+      }
+    },
+    "Grave Mastery": {
+      "name": "Grave Mastery",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 504439,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1471.374833400136,
+        "top": 387.9608751132066
+      }
+    },
+    "Depravity": {
+      "name": "Depravity",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 638403,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Vampiric Aura": {
+      "name": "Vampiric Aura",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 300241,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 462.3747351276732,
+        "top": 651.9608822254794
+      }
+    },
+    "Deadly Defense": {
+      "name": "Deadly Defense",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 300580,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 550.3747608412752,
+        "top": 431.9608879700076
+      }
+    },
+    "Animate: Frost Wyrm": {
+      "name": "Animate: Frost Wyrm",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 805428,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 682.3747643974117,
+        "top": 343.9608972706721
+      }
+    },
+    "Underking": {
+      "name": "Underking",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 704701,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1207.374826287864,
+        "top": 343.9608972706721
+      }
+    },
+    "Animate: Bone Wraith": {
+      "name": "Animate: Bone Wraith",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 805032,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Animate: Plaguefather": {
+      "name": "Animate: Plaguefather",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 805048,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1207.374826287864,
+        "top": 519.960878669343
+      }
+    },
+    "Ner'zhul's Blessing": {
+      "name": "Ner'zhul's Blessing",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 704729,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 638.3747865548772,
+        "top": 607.960904382945
+      }
+    },
+    "Scourge Disciple": {
+      "name": "Scourge Disciple",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 531126,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1075.374822731727,
+        "top": 607.960904382945
+      }
+    },
+    "Dead Man Walking": {
+      "name": "Dead Man Walking",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 300233,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 594.3747386838096,
+        "top": 475.9609008268085
+      }
+    },
+    "Summoning Ritual": {
+      "name": "Summoning Ritual",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 805038,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1119.374800574261,
+        "top": 431.9608879700076
+      }
+    },
+    "Mindless Fury": {
+      "name": "Mindless Fury",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 805674,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Animate: Skeletal Archer": {
+      "name": "Animate: Skeletal Archer",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 805040,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 1,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1207.374826287864,
+        "top": 739.9609079390815
+      }
+    },
+    "Raise: Decaying Colossus": {
+      "name": "Raise: Decaying Colossus",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 500989,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 418.3747222708722,
+        "top": 387.9608751132066
+      }
+    },
+    "Bone Tithe": {
+      "name": "Bone Tithe",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 802121,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 550.3747608412752,
+        "top": 607.960904382945
+      }
+    },
+    "Lich Commander": {
+      "name": "Lich Commander",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 704713,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Animate: Tomb King": {
+      "name": "Animate: Tomb King",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 805044,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Gravedigger": {
+      "name": "Gravedigger",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 704715,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 374.3747444283378,
+        "top": 519.960878669343
+      }
+    },
+    "Living Dead": {
+      "name": "Living Dead",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 302888,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 2,
+      "position": {
+        "left": 550.3747608412752,
+        "top": 651.9608822254794
+      }
+    },
+    "Long March": {
+      "name": "Long March",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 704717,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1295.374781972932,
+        "top": 387.9608751132066
+      }
+    },
+    "Unrelenting": {
+      "name": "Unrelenting",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 704718,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": null,
+        "top": null
+      }
+    },
+    "Command: Blight": {
+      "name": "Command: Blight",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 504050,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 418.3747222708722,
+        "top": 343.9608972706721
+      }
+    },
+    "Master Animator": {
+      "name": "Master Animator",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 504431,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1119.374800574261,
+        "top": 343.9608972706721
+      }
+    },
+    "March of the Dead": {
+      "name": "March of the Dead",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 707007,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1339.374829844,
+        "top": 519.960878669343
+      }
+    },
+    "Command: Hook": {
+      "name": "Command: Hook",
+      "tree": "Class",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 504316,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 418.3747222708722,
+        "top": 695.9608600680139
+      }
+    },
+    "Summoning Expert": {
+      "name": "Summoning Expert",
+      "tree": "Animation",
+      "source": "talent",
+      "verifiedLive": true,
+      "spellId": 807494,
+      "spellIdSource": "live talentnodes capture",
+      "liveRank": 0,
+      "liveMaxRank": 1,
+      "position": {
+        "left": 1471.374833400136,
+        "top": 563.960891526144
+      }
+    }
+  }
+}

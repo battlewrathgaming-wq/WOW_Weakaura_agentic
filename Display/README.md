@@ -36,6 +36,16 @@ classification, family/compounds detection. See `Docs/PIPELINE.md` section
   earliest prototype (one card per talent's own spell only). Superseded by
   the abilities reference above; kept for history.
 
+## Live-client reference (Necromancer only, real captures not DBC)
+
+- [necromancer_live_reference.json](../Outputs/live_reference/necromancer_live_reference.json) -
+  baseline/leveling abilities and talent-node data captured directly from a
+  live character via the `COA_DevDump` addon (`Weak Auras/Tools/COA_DevDump/`),
+  not derived from Spell.dbc. Fills the gap the DBC pipeline can't reach on
+  its own - abilities with no talent-tree link at all (class stances, trainer-
+  taught spells). Keyed by ability name rather than spellId; see the file's
+  own `_readme` field for the full rationale.
+
 ## Production readouts (all 21 classes, prose-regex model)
 
 The original, class-by-class flattened talent readouts - one file per

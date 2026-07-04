@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: COA Dev Dump
+## Notes: Dumps live talent-tree data and frame-stack snapshots to SavedVariables for the Conquest of Azeroth theorycrafting project.
+## Author: Battlewrath
+## Version: 1.0
+## SavedVariables: COA_DevDumpDB
+
+COA_DevDump.lua

@@ -138,27 +138,74 @@ content is correct and current, and even though its own generated JSON
 outputs (in `Templates/schemas/`, `Templates/templates/`) were
 separately re-verified correct.
 
-**Honest scope: this is a detector, not an automatic fixer.** It can't
-independently know which view (bash's or the tools') is right - it has
-no access to the tools' side. What it does: report a fast, cheap
-snapshot (line count/size/sha256/mtime) of what bash currently sees, so
-drift gets caught in one quick call right after an edit, instead of
-discovered mid-task via a confusing traceback. Usage:
+**Honest scope: still a detector first, but now also does the fix.** It
+still can't independently know which view (bash's or the tools') is
+right - it has no access to the tools' side. What it does: report a
+fast, cheap snapshot (line count/size/sha256/mtime) of what bash
+currently sees, so drift gets caught in one quick call right after an
+edit, instead of discovered mid-task via a confusing traceback. Usage:
 ```
-python3 fuse_check.py <file1> [file2 ...]     # check specific files
-python3 fuse_check.py --scan --save           # snapshot everything, save baseline
-python3 fuse_check.py --scan --diff           # compare against saved baseline
+python3 fuse_check.py <file1> [file2 ...]         # check specific files
+python3 fuse_check.py --scan --save               # snapshot everything, save baseline
+python3 fuse_check.py --scan --diff               # compare against saved baseline
+python3 fuse_check.py --resync <fresh> <stale>     # apply the fix (see below)
 ```
-When it flags a mismatch (or a file just won't parse/import), the actual
-fix remains what this project already established: rewrite the file
-directly via a bash heredoc (`cat > path << 'EOF' ... EOF`) using the
-content already confirmed via the Read tool - that has been the one
-reliable fix found so far. Used this same session to catch and correct
-drift on `template_filler.py` and `layer_builder.py` before it could
-cause a repeat of the confusing mid-task failures this bug has already
-caused (see `Templates/build_templates.py`'s own still-unresolved case,
-left as a known, flagged, non-blocking issue since its actual JSON
-outputs are independently confirmed correct).
+`--scan` covers `.py`/`.json`/`.md` (confirmed 2026-07-06 the bug hits
+markdown docs too, not just code/data files).
+
+**Added 2026-07-06: `--resync`, a lighter recovery method than the
+original heredoc fix.** Confirmed via a real repro (a plain test file,
+edited 3 times, went stale in bash's view exactly like the real cases
+had) that a brand-new file written ONCE via the Write tool is never
+stale - so the fix is: Write the Read-tool-confirmed-correct content to
+a fresh, untouched path, then run `fuse_check.py --resync <fresh_path>
+<stale_path>`, which copies the bytes over and verifies the hash matches
+in one step. This avoids hand-typing (and shell-escaping) a full heredoc
+for a large file - the content only has to be right once, in the Write
+call. The original heredoc method (`cat > path << 'EOF' ... EOF`) still
+works as a fallback. Used this same session to catch and correct drift
+on `template_filler.py`, `layer_builder.py`, and (via the new `--resync`
+path) `CLAUDE.md` itself, before it could cause a repeat of the
+confusing mid-task failures this bug has already caused (see
+`Templates/build_templates.py`'s own case, since fully resynced).
+
+**Separately confirmed 2026-07-06: a bash `rm` failing with "Operation
+not permitted" inside this project folder is NOT the FUSE bug** - it's
+Cowork's own deliberate file-protection safeguard, and it applies even
+to a file that was never stale (written once, never edited). The fix
+there is `mcp__cowork__allow_cowork_file_delete`, called with the file's
+VM path (`/sessions/...`, not the Windows `F:\...` path) - see
+`CLAUDE.md` for the full note. Worth not conflating the two failure
+modes: one is "bash sees old bytes," the other is "bash isn't allowed to
+delete this at all," and they need different fixes.
+
+## 6. `Tools/COA_DevDump/` - a custom addon for getting live data onto disk
+
+Added 2026-07-04. Neither macros nor `/devconsole` (tool 2 above) expose
+file I/O - `dump`/`tinspect` only print to the in-game console pane, they
+don't write anything to a file. `COA_DevDump` closes that gap: a small
+addon that reads real client data (trainer service lists, the custom
+talent UI's own widget fields, arbitrary frame-stack snapshots) into a
+`SavedVariables` table, which the client itself writes to a real `.lua`
+file on `/reload`.
+
+**First real finding: this server's trainer and talent systems are built
+completely differently under the hood.** The stock trainer API
+(`GetTrainerServiceInfo` etc.) just works, unmodified, even for a custom
+class - trainers are server-driven in stock WotLK, so there's no
+client-side data a custom class would need to bypass. The stock talent API
+(`GetNumTalentTabs` etc.), by contrast, is fully dead here - it returns 0
+through every call shape tried, confirmed live. This server's custom
+talent trees are rendered by an entirely custom frame (`CoATalentFrame`)
+that stores each node's `spellID`/`rank`/`maxRank` as plain fields on its
+own button widgets instead. Full usage, command reference, and every
+gotcha hit while building this (a bash-side stale-read issue distinct from
+`fuse_check.py`'s, the talent-node pool's lazy per-tab population, garbage
+cost values on trainer header rows) are in
+**[Tools/COA_DevDump/README.md](Tools/COA_DevDump/README.md)**.
+
+First real output: `Outputs/live_reference/necromancer_live_reference.json` -
+see `Weak Auras/README.md`'s "Data" section for what's in it.
 
 ## Cross-references
 
