@@ -181,4 +181,42 @@ content:
 
 1. **"Obviously safe" APIs need live verification too, not just
    custom/server-specific ones.** The `GetNumTalentTabs` lesson taught
-   us to distrust server
+   us to distrust server customization. This session's failure
+   (`UnitPosition("player")`) was a different kind: not a server nerf,
+   just a wrong prior about the API generation, on an assumption that
+   felt basic enough not to need checking. Widen "verify before
+   assuming" to cover anything not yet actually confirmed, regardless of
+   how safe it seems.
+2. **When an assumption breaks, check what an already-working neighbor
+   relies on before guessing further.** After `UnitPosition` failed,
+   reading WeakAuras' own working Range Check trigger to see what real
+   mechanism it depends on was more productive than trying more function
+   names. A working feature in the same codebase is evidence; another
+   guess isn't.
+3. **A source-read finding isn't settled until confirmed live or
+   independently reproduced.** Broadens the existing Lua-emulation rule
+   above: reading `GenericTrigger.lua` correctly predicted the
+   subevent-filter requirement, but it only became fully solid once
+   confirmed by a real in-game error and, separately, by an unaffiliated
+   collaborator's independently-built script hitting the same wall.
+4. **An active collaborator building something adjacent is a
+   first-class verification channel, worth deliberately seeking out -
+   not incidental chat.** Two real issues (the subevent-filter error,
+   and point 6 below) surfaced only because Battlewrath asked the actual
+   dev directly, not from source-reading or live-testing alone.
+5. **Don't pre-generalize past the actual need.** Widening a subevent
+   filter to also cover a case ("might need this for a future totem")
+   nothing currently requires is scope creep dressed as thoroughness.
+6. **Reframe the question, around what is or isn't being tracked.**
+   Before naming something a failure/success condition, check whose
+   state it's actually describing. The beacon staleness check was
+   originally framed as "the beacon failed" when it was really only ever
+   "this specific viewer isn't currently benefiting" - a shared object
+   can be working fine for the group while reading as stale for one
+   person standing outside it. When a status signal could be read
+   differently depending on who's asking, name it after what's actually
+   being tracked (one viewer's state), not after the shared object's
+   state, unless those two are actually confirmed to be the same thing.
+
+See `README.md` in this folder for the actual project index/content map
+- this file is process only.

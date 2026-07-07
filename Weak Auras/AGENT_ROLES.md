@@ -187,4 +187,28 @@ If a class implementer's build touches one of these, that's worth a
 note too, even if it's not a hard blocker - same "don't oversell
 certainty" principle as everything else in this project.
 
-## G
+## Git identity convention for agent-made commits (added 2026-07-07)
+
+The repo's stored `user.name`/`user.email` (`Battlewrath <...>`) stays
+Battlewrath's own identity - never change it. When an agent session
+commits its own work directly (rather than leaving everything for
+Battlewrath to commit by hand via `git_push.bat`), override the identity
+for that single command only, using this session's own sandbox id as the
+distinguishing suffix:
+
+```bash
+git -c user.name="Claude (session <sandbox-id>)" \
+    -c user.email="<sandbox-id>@agent.session.local" \
+    commit -m "..."
+```
+
+The `-c` flags only apply to that one git invocation - they never touch
+the persistent repo config, so Battlewrath's own commits (via
+`git_push.bat`) are unaffected. Each new session gets a different sandbox
+id automatically, so distinct sessions naturally get distinct authors in
+`git log` with zero setup. Purpose: `git log`/`git blame` can distinguish
+human-authored commits from agent-authored ones (and, per-session, which
+agent run did what), rather than every agent-written change being
+indistinguishable from Battlewrath's own hand-authored history. See
+`CLAUDE.md`'s git section for the related bash-vs-native-script safety
+rule this is layered on top of.
