@@ -79,6 +79,15 @@ outside of any trigger), but "capture and decode a real aura" is often the
 more direct path when the question is specifically about what WeakAuras
 itself sees.
 
+**Update (2026-07-06): "capture and decode" formalized into a repeatable
+verification pipeline against Pane Board.** Same mechanism
+(`decode_group_import_string()`), used to check a real in-game group
+export's geometry against a Pane Board sketch and this project's own
+`Tiers/resources_base.py`/class `inventory.py` values, rather than a
+one-off spot-check - see `Tools/PaneBoard/README.md`'s "Real-vs-modeled
+verification pipeline" section for the full workflow and a real worked
+example (Reaper's Resources group).
+
 ## 3. `wa_lua_verify/` - project-side, not a client feature
 
 Different category from the two above (those are IN the client;

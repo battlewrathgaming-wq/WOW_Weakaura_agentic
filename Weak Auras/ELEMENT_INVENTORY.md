@@ -16,6 +16,54 @@ take a filling progress bar (with text overlay for value/name) - see
 `weakaura_codec.py`'s debugging checklist if a slot's region type ever
 needs changing, the two types don't share a field set.
 
+## The pipeline - where a mask value actually lives, and where to change it
+
+This file is the mask - the single documented source of truth for every
+slot's position/size. **It is a markdown document, not code - nothing
+reads it programmatically.** Everything downstream is a *manually
+maintained mirror* of these numbers, not a live derivation, so changing a
+value here does NOT automatically change anything else. Added 2026-07-09
+after a real drift was found and fixed (see the Row C/C.5/D history note
+below): the Resources tier's geometry had been updated in code weeks
+before this file caught up, so this file briefly stopped being true. The
+chain, in the order an update must propagate:
+
+1. **`ELEMENT_INVENTORY.md`** (this file) - the documented position/size
+   for a given slot role. Change a number here first, and only here
+   decide *what the new value should be*.
+2. **`Tiers/resources_base.py`** - for anything in the Resources tier
+   (Row C/C.5/D) specifically: `CLASS_RESOURCE_POS`, `CLASS_ENERGY_POS`,
+   `CAST_BAR_POS`, `SWING_TIMER_POS`, `DIVIDER_POS`. These constants must
+   be hand-edited to match whatever this file now says - there is no
+   import or code path that reads this markdown file, so this step is a
+   manual, traceable copy, not automation. This is the file every class's
+   Resources layer actually builds from (see its own docstring for the
+   full 3-layer architecture).
+3. **Each class's `inventory.py`** (e.g. `Necromancer/inventory.py`,
+   `Reaper/inventory.py`) - for Resources-tier slots, these already pull
+   position from step 2's constants (`rb.CLASS_RESOURCE_POS`, etc.), so
+   they need NO edit when a Resources position changes - that's the whole
+   point of routing through `resources_base.py` instead of hardcoding
+   coordinates per class. For any tier that does NOT yet have a shared
+   `Tiers/*.py` base file (Rotation, Buffs/Utility, Power-button - only
+   Resources has been migrated so far), a class's own `inventory.py` still
+   hardcodes that tier's positions directly from this file, and DOES need
+   a manual per-class edit if this file's numbers change for those rows.
+4. **`layer_builder.py`** - never touched for a position change; it only
+   consumes whatever `inventory.py` gives it and has no positional
+   constants of its own.
+5. **Rebuild** - run `python3 layer_builder.py <class folder> <inventory.py
+   path> <layer name>` to regenerate that layer's real import string
+   from the now-updated data, then re-import in-game.
+
+**Bottom line: if you want to change a mask value, decide it here first,
+then walk steps 2-3 by hand for every place that currently mirrors the old
+number.** There is currently no tooling that flags a mismatch between this
+file and `resources_base.py` automatically - `fuse_check.py` only catches
+stale FUSE-mounted file content, not stale-but-correctly-saved values that
+simply drifted from this document. Treat a position change as a small
+multi-file edit, not a single-file one.
+
 ## Row A - Proc / Condition (Tier 5)
 
 Reactive, off-rotation opportunities - things that need a brightness-based
@@ -51,10 +99,27 @@ v0.7's changelog for why Proc alone got shortened).
 
 ## Row C - Resource grid, top half
 
+**REVISED 2026-07-09 - center-seam divider strip.** Every Resources-tier
+bar shrank from 127.5 to 126 wide and stepped 0.75 further from center
+(±63.75 -> ±64.5), opening a precise 3px gap at x=0 for a new fixed
+divider element to fill (see Row C/D center seam below) - each bar's
+OUTER edge is unchanged, only the inner edge moved. This replaced the
+older `class_accent_tick_end` permanent-subtick mechanism, which turned
+out to depend on `GetMinMaxProgress()` returning a real value range - a
+dependency that silently breaks (hides the tick) for any trigger lacking
+live progress data, including the `show_when_missing` "anti statement"
+state a bar like Reaper's Soul Fragment needs. Superseded live via
+`Necromancer/Resources_v14_import.txt`; see
+`Necromancer/slot_assignment.md`'s own writeup for the full derivation.
+This row's numbers were out of date relative to the actual shipped
+geometry for a few days after that change landed in
+`Tiers/resources_base.py` - caught and fixed 2026-07-09 (see the pipeline
+note above).
+
 | Element ID | x | y | w | h | Region | Expected function |
 |---|---|---|---|---|---|---|
-| Class resource | -63.75 | -152.5 | 127.5 | 15 | aurabar | Primary resource bar (Mana/Energy/Rage/whatever the class's core meter is - class-agnostic label, not literally Mana). |
-| Cast bar | 63.75 | -152.5 | 127.5 | 15 | aurabar | Player's own cast-time progress. Confirmed buildable via WeakAuras' "Cast" trigger, unit=player (`Prototypes.lua` line ~7010). |
+| Class resource | -64.5 | -152.5 | 126 | 15 | aurabar | Primary resource bar (Mana/Energy/Rage/whatever the class's core meter is - class-agnostic label, not literally Mana). |
+| Cast bar | 64.5 | -152.5 | 126 | 15 | aurabar | Player's own cast-time progress. Confirmed buildable via WeakAuras' "Cast" trigger, unit=player (`Prototypes.lua` line ~7010). |
 
 ## Row C.5 - Class accents
 
@@ -68,12 +133,33 @@ redefine later."
 | Class Accent Left | -157.5 | -160 | 60 | 30 | icon | Decorative class-identity accent. Not yet assigned a concrete meaning. |
 | Class Accent Right | 157.5 | -160 | 60 | 30 | icon | Decorative class-identity accent. Not yet assigned a concrete meaning. |
 
-## Row D - Resource grid, bottom half
+## Row C/D center seam - Resources Divider
+
+**Added 2026-07-09**, alongside the Row C/Row D resize above - not part
+of the original v0.14 scaffold, so it has no `Template_shadow.py` history
+of its own the way every other row does. Sits at the exact x=0 seam
+between the left column (Class resource/Class energy) and right column
+(Cast bar/Swing Timer), spanning both rows' combined height (15+15=30,
+centered on the shared y midpoint between -152.5 and -167.5). A single
+fixed, valueless bar (`backing_plate_aurabar`, `Unit Characteristics`
+trigger - always true, never computes a percentage) tinted with the
+owning class's own accent color, giving the resource grid a stable visual
+break where the tick-based mechanism used to. See
+`Tiers/resources_base.py`'s `divider_strip_slot()`.
 
 | Element ID | x | y | w | h | Region | Expected function |
 |---|---|---|---|---|---|---|
-| Class energy | -63.75 | -167.5 | 127.5 | 15 | aurabar | Secondary resource bar (combo points/runic power/whatever the class's second resource is, shown as a fill rather than a count). |
-| Swing Timer | 63.75 | -167.5 | 127.5 | 15 | aurabar | Melee auto-attack swing/rhythm tracker. Relevant mainly for melee-oriented classes/specs - may sit unused for pure casters. **REVISED 2026-07-06 (later same day):** region type flipped back to `aurabar` per Battlewrath's direct request ("the cast / swing should both be bars... the same with the swing timer") - supersedes the earlier `icon` decision noted in Template_shadow.py v0.12's changelog. Both Cast bar and Swing Timer now share one visual treatment: an always-shown "shadow" bar (dim, 0.35 alpha, empty) that brightens to full alpha and fills only while actually casting/swinging, plus a static right-side timer text. See `Necromancer/slot_assignment.md` and `Templates/schemas/swing_timer_aurabar.schema.json` for the mechanism. |
+| Resources Divider | 0 | -160 | 3 | 30 | aurabar | Fixed, always-shown center-seam divider - class-accent-tinted, no trigger data, purely a visual break between the two resource-grid columns. |
+
+## Row D - Resource grid, bottom half
+
+Same 2026-07-09 center-seam divider resize as Row C above - see that
+row's note for the full history; not repeated here.
+
+| Element ID | x | y | w | h | Region | Expected function |
+|---|---|---|---|---|---|---|
+| Class energy | -64.5 | -167.5 | 126 | 15 | aurabar | Secondary resource bar (combo points/runic power/whatever the class's second resource is, shown as a fill rather than a count). |
+| Swing Timer | 64.5 | -167.5 | 126 | 15 | aurabar | Melee auto-attack swing/rhythm tracker. Relevant mainly for melee-oriented classes/specs - may sit unused for pure casters. **REVISED 2026-07-06 (later same day):** region type flipped back to `aurabar` per Battlewrath's direct request ("the cast / swing should both be bars... the same with the swing timer") - supersedes the earlier `icon` decision noted in Template_shadow.py v0.12's changelog. Both Cast bar and Swing Timer now share one visual treatment: an always-shown "shadow" bar (dim, 0.35 alpha, empty) that brightens to full alpha and fills only while actually casting/swinging, plus a static right-side timer text. See `Necromancer/slot_assignment.md` and `Templates/schemas/swing_timer_aurabar.schema.json` for the mechanism. |
 
 ## Row E - Footer (Buffs / Utility / Power)
 

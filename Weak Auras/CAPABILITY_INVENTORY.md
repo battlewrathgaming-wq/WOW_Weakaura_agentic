@@ -146,6 +146,15 @@ Behavior (8340), **Queued Action** (8415), Range Check (8459), Money
 (8544), Currency (8612), Location (8745) - plus `aura2` (`BuffTrigger2.lua`,
 the buff/debuff trigger already in active use via `showOnMissing`).
 
+**Combat Log (3157) - full deep pass done 2026-07-06, see
+`COMBAT_LOG_CAPABILITIES.md`** for the complete problem -> known use case
+-> WeakAura formation writeup (Self/Mine affiliation flags, Object Type
+classification, the real per-instance-uniqueness gap and what field
+actually solves it, cloneId, buff-vs-combat-log tradeoff, full subevent
+field taxonomy). Motivated by the Witch Doctor totem/ward investigation
+surfacing that several tracked-as-buffs effects grant no real buff aura
+at all.
+
 Confirmed already in use: Cooldown Progress (Spell), Cast, `aura2`.
 Individually verified this pass (not just name-inferred): **GTFO Alert**
 depends on the separate GTFO addon being installed (`GTFO_DISPLAY` event) -

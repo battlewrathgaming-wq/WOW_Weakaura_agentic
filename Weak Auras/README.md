@@ -12,8 +12,87 @@ never be run through the sandbox's mounted-folder bridge - the whole
 project is now tracked at
 [github.com/battlewrathgaming-wq/WOW_Weakaura_agentic](https://github.com/battlewrathgaming-wq/WOW_Weakaura_agentic).
 
+**[AGENT_ROLES.md](AGENT_ROLES.md)** (2026-07-10) - splits future work into
+two roles: a core maintainer (this thread - owns `Templates/`, `Tiers/`,
+`ELEMENT_INVENTORY.md`, and the live-test loop for genuinely new
+mechanics) and a class implementer (a fresh, spun-up agent per new class,
+read-only against the core layer, write-only inside its own class
+folder). Defines the standard per-class build loop and, critically, the
+escalation rule: stop and hand a capability gap back as a "first class /
+primitive issue" the moment a class needs a mechanic with no existing
+REGISTRY entry/fragment/builder - never patch around it locally. Written
+self-contained, same handoff pattern as `Mob_Autogroup/DESIGN.md`, so it
+can be dropped into a brand-new agent session with zero prior context.
+
+**[Necromancer/Necromancer_fantasy_playstyle.md](Necromancer/Necromancer_fantasy_playstyle.md)**
+/ **[Reaper/Reaper_fantasy_playstyle.md](Reaper/Reaper_fantasy_playstyle.md)**
+(2026-07-10) - the "what is this class and what matters to it" doc
+`AGENT_ROLES.md` now requires per class, sourced from each class's real
+talent tree data (`Input/<class>_talents.json`,
+`Outputs/readouts/<class>_readout.md`): the resource economy, the shared
+class-tree baseline, and each spec's identity + UI-build priorities.
+Necromancer resolves into a 3-spec summoner/caster (Animation = wide pet
+army, Death = disease/execute, Rime = frost proc/burst); Reaper resolves
+into a 3-spec melee soul-harvester (Domination = tanky/control, Harvest =
+lifesteal/sustain, Soul = dual-wield burst). Meant to be read before
+`spell_index.md`/`slot_assignment.md` when scoping a new tier, so slot
+priority is a reasoned choice rather than a guess.
+
+**[Bloodmage/](Bloodmage/)** (2026-07-07) - **scaffolding only, no real
+content yet.** Battlewrath: "I'm going to play blood mage for a
+while... we can do the fantasy exploring with that agent. I just need the
+folder structure, instructions and files setting up." Folder created with
+the standard file set (`theme.json` - accent `#c66161` confirmed;
+`BUILD_METHOD.md`; placeholder `Bloodmage_fantasy_playstyle.md`/
+`spell_index.md`/`slot_assignment.md`; an `inventory.py` with an empty
+`LAYERS` dict) per `AGENT_ROLES.md`'s class-implementer scaffold step, but
+none of the fantasy synthesis or slot decisions has been done - that's
+explicitly deferred to a later class-implementer agent session. Real
+source data already exists and is pointed at from `BUILD_METHOD.md`:
+`Input/bloodmage_talents.json`, `Outputs/readouts/bloodmage_readout.md`
+(4 specs: Accursed, Eternal, Fleshweaver, Sanguine),
+`Outputs/skill_indices/bloodmage_skill_index.json`. Battlewrath's "own life
+as a resource" framing (a UnitHealth-driven "top 50% of HP" bar) is now a
+REAL, FORMALIZED core capability, not just a resolved question -
+`Tiers/resources_base.py`'s `health_slot()` + `Templates/build_templates.py`'s
+`health_range_aurabar` (native WeakAuras "Health" unit-event trigger + the
+aurabar region's own `adjustedMin`/`adjustedMax` percent clamp, confirmed
+both by direct source read and by a real Battlewrath-built, live-confirmed
+capture). Per Battlewrath: "I'd formalize the health side as a capability.
+Then the class agent can work from there... It comes between us as a
+primitive capability first." Also confirmed: the class's secondary
+resource is **Rage, not Mana** (`bloodmage_skill_index.json`'s "Pooled
+Vitality" entry). See `Bloodmage/BUILD_METHOD.md` for the full trail -
+`inventory.py`'s `LAYERS` is still deliberately empty pending the
+class-implementer pass.
+
 ## Start here
 
+- **[ADDRESSABLE_HUD_CONCEPT.md](ADDRESSABLE_HUD_CONCEPT.md)** (2026-07-08,
+  concept only, not started) - the future direction that came out of
+  facing the real scale of this project (21 classes x 3-4 specs, ~69 total):
+  a pre-formed/indexed HUD mask where every slot is fixed (not free-form -
+  deliberately not "an offline WeakAuras simulator") and a player fills
+  each slot from a closed dropdown drawn straight from the opportunity
+  taxonomy, narrowed to whatever types fit that slot's own region shape.
+  Grounded in real evidence already in hand (`stance_loader_icon` proven
+  3x independently; most templates already class-agnostic) and real risk
+  already on record (Life Force's stacking-trigger fragility, the
+  glow-source/press-wash flourishes' live-test failures). Decision: keep
+  building Necromancer for now as the reference implementation - this doc
+  is a captured framing, not a spec to build against yet.
+- **[CLASS_BEHAVIOR_PROFILES.md](CLASS_BEHAVIOR_PROFILES.md)** (2026-07-08)
+  - a deliberate step back from building specific auras: five real Wowhead
+  SoD class/role rotation-cooldowns-abilities guides (Druid Feral Tank,
+  Priest Healer, Mage DPS, Rogue DPS, Warlock DPS) cross-referenced against
+  this project's own opportunity-type taxonomy (`Docs/WEAKAURA_INDEX.md` +
+  the Templates section below). Confirms `stance_loader_icon`'s pattern
+  against Druid forms (a third real-world instance, after Undead Stance and
+  Battlewrath's own Ward active), and surfaces eight named gaps - none
+  built, since Necromancer's own kit doesn't need any of them yet - for
+  when a future mechanic actually does (target-scoped stance-loader,
+  externally-sourced procs, target-health thresholds, danger-stack
+  ceilings, and others).
 - **[Tools/COA_DevDump/README.md](Tools/COA_DevDump/README.md)** - a custom
   in-game addon (2026-07-04) for pulling real live-client data into
   `SavedVariables`, since neither macros nor `/devconsole` expose file I/O.
@@ -24,6 +103,24 @@ project is now tracked at
   fields on the custom `CoATalentFrame`'s own button widgets. This is the
   tool + method behind `necromancer_live_reference.json` below; read this
   first before repeating the capture for another class.
+- **[Tools/PaneBoard/README.md](Tools/PaneBoard/README.md)** (2026-07-10)
+  - an in-house, standalone Electron app for visually sketching HUD slot
+  layout/intent - a duplicated, independently-owned fork of a tool called
+  Pane Board found in the unrelated AURA-Lab project ("Aura" is a
+  coincidental name collision, not a shared codebase or workflow). Chosen
+  as the launch candidate for `ADDRESSABLE_HUD_CONCEPT.md`'s dropdown-mask
+  idea because its existing data shape (grid position/size, role,
+  importance, an `intent` block, human/agent provenance, a human
+  acceptance gate) already matches "statements of intent" almost exactly.
+  Duplicated and syntax-verified this session; WeakAuras-specific meaning
+  (opportunity-type dropdowns wired to `Templates/build_templates.py`'s
+  REGISTRY, mask-aware positions) is now wired in, plus a one-way
+  class-layout importer, a snapshot loader, and a real-vs-modeled
+  verification pipeline (decode a live in-game group export via
+  `weakaura_codec.py`, compare against the board/`resources_base.py`, log
+  findings on the snapshot without ever writing back to the real base
+  files) - see that folder's own README for the full trail and what's
+  still open.
 - **[wa_lua_verify/](wa_lua_verify/)** - runs the REAL WeakAuras addon
   source under a real Lua 5.1.5 interpreter (matching WoW 3.3.5a's
   actual Lua version) to extract subRegion `default()` tables directly
@@ -148,6 +245,127 @@ project is now tracked at
   "CURRENT STATE" note at the top of its "Tier 1 Rotation" section, not
   this changelog entry, for what's actually live. Other classes get their
   own sibling folder the same way once their turn comes.
+  **v2 (2026-07-08, second pass) - two real in-game behaviour bugs fixed
+  on `Necro_animation_spec_UI_element`** (positions untouched, deliberately
+  deferred): (1) both `stance_loader_icon` instances (Undead Stance, Ward
+  active) were vanishing entirely whenever none of their mutually-exclusive
+  options was active - same class of gap already fixed once for Cast
+  Bar/Swing Timer, now generalized to icons via a new `backing_plate_icon`
+  template (always-true, `frameStrata: 2`, sits behind the real icon at
+  the same address); (2) Undead Stance's 3 options were rendering the
+  same icon texture in-game, fixed with a new optional `border_colors`
+  param on `stance_loader_icon` (grey/white=passive, blue=defensive, blood
+  red=aggressive, one Condition per option via the same `sub.N.<field>`
+  pattern already used by `glow_source`). Both are generic capabilities,
+  not one-off patches - see `Necromancer/slot_assignment.md`'s own
+  writeup for the full trail. Not yet live-tested. **Live-test result:**
+  the same-icon symptom turned out to be server-side (resolved on its own
+  after a server update) - `border_colors` is kept anyway per Battlewrath
+  ("reads really clean being color coded"), reclassified from bug-fix to
+  deliberate design choice. The footprint fix genuinely failed, though:
+  "The backing plate did fail however. As it has no icon."
+  **v3 (2026-07-08, third pass) - backing plate now shows a real
+  desaturated icon instead of a blank square**, per Battlewrath's own
+  proposed fix ("add a additional display, of one of the icons/spells...
+  No boarder, but desaturated to show it is missing per stance"). Added an
+  optional `fallback_icon` param to `backing_plate_icon` (spell ID or
+  texture path; confirmed via direct source read of `RegionTypes/Icon.lua`
+  and `RegionTypes/RegionPrototype.lua` - `iconSource: 0` reads
+  `displayIcon` manually) - when set: real icon, desaturated, no border.
+  `Ward active Backing` now uses Fetid Ward's confirmed spell ID (680388).
+  `Undead Stance Backing` is left unset - no spell ID or icon path exists
+  in this project's own sourced data (`necromancer_live_reference.json`/
+  `necromancer_trainer_raw.json`) for Undead: Pacify/Protect/Assault;
+  flagged as open rather than guessed, pending an in-game lookup. Not yet
+  live-tested.
+  **v4 (2026-07-08, fourth pass) - Battlewrath hand-built a better fix and
+  pasted it back**, closing the open item above without an in-game
+  spell-ID lookup after all: "It is basically an anti statement. If
+  neither of those auras are present, then show the desaturated version."
+  A second aura2 trigger (`matchesShowOn: "showOnMissing"`, same 3 option
+  names, no spell ID anywhere) lets WeakAuras resolve an icon for the
+  named spell(s) *by name*, live in-game - a Condition then flips
+  `iconSource` to that trigger's own number when it's active. Formalized
+  as a new optional `missing_state_option_names` param on
+  `backing_plate_icon` (plus a `color` override param, since Battlewrath's
+  edit also re-tinted the plate to a muted grey), test-verified to match
+  the real captured shape field-for-field. `Ward active Backing` is
+  unchanged (kept on `fallback_icon`) - Battlewrath only touched the
+  stance backing. See `Necromancer/slot_assignment.md`'s writeup for the
+  full trail. Not yet live-tested (this regenerated file, though the
+  underlying mechanism was already hand-tested live by Battlewrath).
+  **v5 (2026-07-08, fifth pass) - a new declarable axis: WeakAuras' "Load"
+  system, formalized from a real edit on "LF Delta Test".** Battlewrath
+  hand-edited that instance in-game to add a load condition ("Must be on
+  necromancer" + "In Combat"), pasted back the export, and asked for the
+  broader mechanism, not just this one fix: "this is a new class of action
+  that a WA can adhere to... you should emulate to capture a broader view
+  of things we can declare." Decoded real `load` dict confirmed the
+  encoding for two field types (multiselect `class`: companion `use_class`
+  gate + nested `{single, multi}`; tristate `combat`: single `use_combat`
+  key, no companion value field). Also did a direct source read of
+  `Prototypes.lua`'s `Private.load_prototype` to catalog the full ~30-field
+  set WeakAuras' Load tab supports (class/specialization/level/zone/
+  itemequiped/etc - `specialization` is Ascension's own custom spec system)
+  as reference documentation for future work - only `classes`/`combat` are
+  wired as params so far, the rest isn't guessed at without its own real
+  example. Formalized as a new **universal** `load_conditions` fragment
+  (applies to any template, not gated by `template_name`, since every leaf
+  aura's envelope already carries a `"load"` dict). `Necromancer/
+  inventory.py`'s "LF Delta Test" slot now carries
+  `load_conditions: {classes: ["NECROMANCER"], combat: true}` - only this
+  one slot retrofitted so far; a blanket pass across the rest of the pack
+  is a natural next step Battlewrath anticipated but hasn't been applied
+  yet. See `Necromancer/slot_assignment.md`'s writeup for the full trail.
+  Test-verified to match the real captured `load` dict exactly. Not yet
+  live-tested (same status as v3/v4).
+  **"Minion tracker" (2026-07-09) - the first real `dynamicgroup` layer.**
+  Formalizes Battlewrath's own hand-built "Minion tracker" DynamicGroup (a
+  row of per-minion-type presence icons - Abomination, Crypt Fiend/Crypt
+  Keeper, Skeleton - each shown via its own "guardian count" owner-buff
+  `aura2` trigger). Added a new `minion_presence_icon` template and fixed a
+  real gap in `layer_builder.py`: `EXAMPLE_GROUP_AURA` was shaped for a
+  plain static `group` and lacked every DynamicGroup-specific reflow field
+  (`grow`/`align`/`space`/etc, confirmed by direct source read of
+  `RegionTypes/DynamicGroup.lua`) - fixed via a new
+  `DYNAMICGROUP_EXTRA_DEFAULTS` dict plus a generic `group_layout` override,
+  both class-agnostic. Built per Battlewrath's explicit instruction: "Let's
+  build around the expected, normal function. Then add the tailored items
+  later" - deliberately ships with a known, deferred limitation (each
+  minion applies its own separate, non-stacking guardian aura, so the `%s`
+  count reads "presence of one," not a true aggregate - `bestMatch`/
+  `state.stacks`, confirmed via direct `BuffTrigger2.lua` read, not fixed
+  this pass). See `Necromancer/slot_assignment.md`'s writeup for the full
+  trail. Round-trip verified against the real captured trigger/group shape.
+  Not yet live-tested.
+  **"Buff Index" (2026-07-09) - the first content in the Buffs/Utility
+  tier.** Two real buffs (Razorice 500967, Foul Mandate 800199) at
+  `ELEMENT_INVENTORY.md`'s pre-settled static Buffs slots, each a
+  backing_plate_icon(fallback_icon, always-shown, desaturated) + a
+  buff_uptime_icon (full color, hides while absent) pair - no new
+  mechanism, the same pairing already proven for Ward active. A static
+  `group` for now; the dynamic-overflow rows stay reserved for when more
+  buffs unlock. Found and fixed a real, previously-latent bug in the
+  process: `buff_uptime_icon` had never actually been used before, and
+  its `own_only` param had no fill-time default, so it shipped as a
+  literal unresolved `"{{own_only}}"` string - fixed in
+  `template_filler.py`'s generic defaulting loop. See
+  `Necromancer/slot_assignment.md` for the full trail. Not yet
+  live-tested.
+  **Skeletal Archers added to Tier 1 Rotation, slot 2 (2026-07-09) -
+  "show when available, desaturate on cooldown" as ONE WA item.**
+  Battlewrath's explicit ask was whether this needed the usual 2-element
+  backing-plate pairing; answer confirmed via direct source read of
+  `Prototypes.lua`: the Cooldown Progress (Spell) trigger every
+  `cooldown_tracker_icon` already carries sets its own `duration` state
+  field to 0 when available, the real cooldown length while cooling down
+  - no GCD false-positive risk since `use_showgcd` isn't set. New optional
+  `desaturate_on_cooldown` param on `cooldown_tracker_icon` adds a single
+  self-referencing Condition (`trigger 1, duration > 0 -> desaturate`) -
+  no second trigger, no backing plate. Wired in for spell 805040 at
+  (-64.5, -130), the slot vacated by Crypt Swarm. See
+  `Necromancer/slot_assignment.md` for the full trail. Not yet
+  live-tested.
 - **[AGENT_PROMPT.md](AGENT_PROMPT.md)** - baseline prompt for starting a
   fresh agent session to work on WeakAuras for this project. Paste it in
   first, then give the actual task (build a specific aura, review an
