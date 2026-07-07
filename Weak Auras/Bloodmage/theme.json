@@ -1,0 +1,17 @@
+{
+  "class": "Bloodmage",
+  "source": "Outputs/class_sheets/ability_sheets_all_classes.html's embedded per-class JSON (\"Bloodmage\", \"accent\": \"#c66161\"), cross-confirmed against Outputs/readout_html/bloodmage_readout.html's own --accent CSS variable (--class-tag: #c98a3d; --spec-tag: #4d8fc4; --accent: #c66161). Same already-established per-class accent system Necromancer/theme.json and Reaper/theme.json document (all 21 classes have a distinct accent) - not invented for this folder.",
+  "accent_hex": "#c66161",
+  "accent_rgba": [0.7765, 0.3804, 0.3804, 1.0],
+  "accent_rgba_note": "0-1 float conversion of accent_hex (c6/61/61 / 255), ready to plug directly into a WeakAuras color field. No real in-game capture has used this color yet (no Bloodmage content built) - unlike Reaper's Soul Fragment barColor, there is no evidenced value to prefer over this theme accent yet.",
+  "usage": [
+    "Resources divider strip color (Tiers/resources_base.py's divider_strip_slot), same per-class-accent convention Reaper established over inheriting Necromancer's default.",
+    "Any future Bloodmage-specific aurabar's barColor, if a class-tinted resource bar is wanted.",
+    "subglow's glowColor, if a class-tinted proc glow is ever wanted."
+  ],
+  "fantasy_mechanic": {
+    "summary": "NOT YET WRITTEN. Battlewrath's own first framing (2026-07-07, before any source reading): \"uses their own life as a resource as well as mana and such.\" That's a steer, not a confirmed mechanic - do not build against it directly. The real per-spec resource economy (4 specs: Accursed, Eternal, Fleshweaver, Sanguine - confirmed via Outputs/readouts/bloodmage_readout.md) needs the same real-source read Necromancer/Reaper's own fantasy_mechanic fields got before this is filled in. Candidate threads visible just from skimming Outputs/skill_indices/bloodmage_skill_index.json's skill names: 'Mortal Form' and 'Pooled Vitality' (both tagged RESOURCE) recur across specs and look like the health-as-resource mechanic Battlewrath described, but neither has been read in full yet.",
+    "source": "Battlewrath, 2026-07-07 (verbal steer only, not yet cross-checked against Input/bloodmage_talents.json / Outputs/readouts/bloodmage_readout.md / Outputs/skill_indices/bloodmage_skill_index.json).",
+    "status": "Placeholder. This field, Bloodmage_fantasy_playstyle.md, spell_index.md, and slot_assignment.md are all deliberately left unwritten by this scaffolding pass - Battlewrath's explicit instruction was to set up the folder/instructions/files now and do the actual fantasy exploration in a separate class-implementer agent pass (see BUILD_METHOD.md and ../AGENT_ROLES.md's 'class implementer' role, step 1: write Bloodmage_fantasy_playstyle.md BEFORE spell_index.md/slot_assignment.md)."
+  }
+}
