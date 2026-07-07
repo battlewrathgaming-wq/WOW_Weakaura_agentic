@@ -644,3 +644,87 @@ LUXTHOS_CORE_GROUP_SPACING = {
 #     comprehensive for db.ascension.gg's "Conquest of Azeroth" tag
 #     specifically, but rotation-helper/cast-bar content may simply be
 #     tagged under a different category or not yet built for this ruleset.
+
+# ============================================================================
+# 10. "Pitho - Tinker" (2026-07-06) - POISONED reference, concepts only
+# ============================================================================
+#
+# PROVENANCE - read this before touching anything below. Unlike Fojji/
+# Luxthos above (public wago.io listings, attributed, license-clear),
+# this one was pasted directly into chat by Battlewrath - a real WeakAuras
+# import string someone shared in the project's Discord after mentioning
+# they'd "re-engineer their addon." No public listing URL, no confirmed
+# license, author identity is only a guess from the pack's own top-level
+# id ("Pitho - Tinker"). Decoded via this project's own weakaura_codec.py
+# (`decode_group_import_string`) - first real confirmation that decoder
+# correctly handles a genuinely NESTED group export (envelope version
+# 2000, real parent chains, group-inside-group), which the encoder side
+# of this same module explicitly doesn't support building yet.
+#
+# TREAT AS POISONED: mine this for CONCEPTS ONLY. Never copy a field
+# value, a spellID, a size, a color, or any structural fragment out of
+# `reference_captures/pitho_tinker_decoded.json` directly into anything
+# we actually ship - unknown provenance, unknown quality control, unknown
+# license. Anything we decide is worth using gets rebuilt from scratch to
+# this project's own conventions (see AURA_BLUEPRINT.md/HUD_DESIGN.md),
+# the same way Fojji/Luxthos above were treated as inspiration, just with
+# a harder line here given the murkier sourcing.
+#
+# Raw materials kept alongside this file (not embedded here - 93 auras,
+# too large for a readable Python literal):
+#   - Weak Auras/reference_captures/pitho_tinker_import.txt   (raw !WA:2! string)
+#   - Weak Auras/reference_captures/pitho_tinker_decoded.json (full decode,
+#     group + all 93 children, via weakaura_codec.decode_group_import_string)
+#
+# WHAT'S ACTUALLY USEFUL (concepts, verified by reading the real decode,
+# not assumed):
+#
+# - **`dynamicgroup` as a "pack tight, no gaps" container for a FIXED
+#   roster**, not a Custom-trigger-driven variable pool. Every child
+#   under "Tinker - Abilities"/"Tinker - CDs"/"Tinker - UPTIME" is an
+#   ordinary aura with its OWN spellknown-gated load condition and its
+#   own "Cooldown Progress (Spell)" trigger; the dynamicgroup's only job
+#   is auto-arranging whichever ones are currently passing. Different
+#   (simpler) mechanism than the "one Custom Group trigger emitting
+#   per-slot keys" approach discussed for totem tracking - good fit for
+#   "all of a class's fixed ability list," not for a genuinely variable
+#   0-4 pool like active totem slots.
+# - **Combat-log-based tracking for a persistent player-summoned object
+#   that ISN'T a real totem** - the "Beacons" (Restorative/Shield/
+#   Replenishment) are `aurabar`s keyed on a `combatlog` trigger, gated by
+#   spellknown/talentknown, not on any totem-frame/GetTotemInfo mechanism.
+#   Concrete fallback pattern for any future ability that summons
+#   something but doesn't register as a real totem slot.
+# - **Cooldown-ready via desaturation, not glow**: the standard leaf
+#   pattern here is a "Cooldown Progress (Spell)" trigger, always shown,
+#   with exactly one condition (`onCooldown==1` -> `desaturate=true`) -
+#   a simpler, valid alternative to this project's own glow-based
+#   ready-check convention.
+# - **Swing timer built from stock triggers**: `unit`/"Swing Timer" +
+#   a secondary `unit`/"Conditions" trigger, three parallel `aurabar`s
+#   (Main/Off-hand/Ranged) - confirms CAPABILITY_INVENTORY.md's native
+#   Swing Timer finding with a second real, working example.
+# - **"NOT IN USE ATM" parked-subgroup naming** - a whole subgroup
+#   ("Tinker - Glows NOT IN USE ATM") left in place but flagged retired
+#   rather than deleted. Same spirit as this project's own `Outputs/
+#   Archive/` convention; trivially adoptable as a labeling habit.
+#
+# ONE HYGIENE HAZARD FLAGGED, not fixed anywhere, just worth knowing:
+# several children carry stale multi-class load-condition leftovers -
+# e.g. "Tinker - Castbar"'s `class.multi` still lists Mage/Monk/Priest/
+# Warrior/etc. even though `single = "TINKER"` (+ `use_class`) is what's
+# actually active. Reads like debris from cloning another class's aura as
+# a starting template rather than a real functional bug, but a concrete
+# reminder that a decoded `load.multi` dict can be leftover UI state, not
+# necessarily live logic - check `single`/`use_*` first.
+PITHO_TINKER_SECTION_TAXONOMY = [
+    "Tinker - Beacons",       # group   - Restorative/Shield/Replenishment Beacon bars
+    "Tinker - Greater Bionics",  # icon (top-level, not in a subfolder)
+    "Tinker - Resources",     # group   - Castbar, nested SwingTimers group,
+                              #           nested Rocket Jump dynamicgroup, Manabar, Scrap
+    "Tinker - Glows NOT IN USE ATM",  # group   - parked/retired, kept not deleted
+    "Tinker - Abilities",     # dynamicgroup - ~14 fixed cooldown icons
+    "Tinker - CDs",           # dynamicgroup - ~24 fixed major-CD icons
+    "Tinker - UPTIME",        # dynamicgroup - ~23 buff/proc uptime icons
+    "Tinker - Procs WIP",     # dynamicgroup - work-in-progress proc icons
+]

@@ -1,0 +1,43 @@
+{
+  "$id": "minion_presence_icon.schema.json",
+  "opportunity_type": "minion_presence",
+  "title": "Minion presence (icon, guardian-count aura2 + stack subtext)",
+  "description": "Shows whether at least one active summon of a given minion TYPE is currently up, via the real 'guardian count' owner-buff mechanism (each active pet of a type applies its own instance of a matching aura onto the player - 'Apply Area Aura: Pet Owner'). Meant to be used as a slot inside a dynamicgroup layer (not a static group) so that minion types with no active summon simply aren't rendered, and the remaining active icons re-flow to close the gap - confirmed live via Battlewrath's own hand-built 'Minion tracker' capture (grow: RIGHT, align: CENTER, space: 2).",
+  "region_type": "icon",
+  "trigger": "Aura (aura2, useStacks - see 'verified' for a known accuracy caveat)",
+  "type": "object",
+  "required": [
+    "name",
+    "guardian_aura_id",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Aura id/label - the minion type's display name, e.g. 'Skeleton'."
+    },
+    "guardian_aura_id": {
+      "type": [
+        "string",
+        "integer"
+      ],
+      "description": "The guardian-count owner-buff's own spell ID (NOT the summon-cast spell ID) - e.g. 805016 for Skeletal Warrior, 805017 for Abomination, 800034 for Crypt Keeper. Matched by exact spell ID (useExactSpellId), same as buff_uptime_icon's own auraspellids field."
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 30
+    },
+    "height": {
+      "type": "number",
+      "default": 40
+    }
+  },
+  "verified": "CONFIRMED LIVE, 2026-07-08/09 - decoded Battlewrath's real 'Minion tracker' export via weakaura_codec.py. Real per-child trigger shape: {type: 'aura2', event: 'Health', unit: 'player', debuffType: 'HELPFUL', auraspellids: [<id>], useExactSpellId: true, ownOnly: true, useStacks: true, subeventPrefix: 'SPELL', subeventSuffix: '_CAST_START'} - matches buff_uptime_icon's own aura2 shape exactly, plus useStacks:true. Each child also carries a '%s' stack-count subtext (INNER_BOTTOMRIGHT, OUTLINE) and an unused subglow (glow:false) in the real capture - both kept here for parity even though the subglow isn't wired to anything yet. KNOWN LIMITATION, confirmed by direct source read (BuffTrigger2.lua, 2026-07-09), NOT fixed in this pass - Battlewrath's own diagnosis: each active pet of a type applies its OWN separate, non-stacking aura instance (distinct casters), not one aura incrementing a shared stack count - '3x1' not '1x3'. Confirmed directly: BuffTrigger2.lua's aura2 scanner picks one 'bestMatch' instance among however many separate instances match, and state.stacks (what '%s' reads) is bestMatch's OWN stack field - never a sum. So with 3 separate single-caster instances (each stacks=1), '%s' shows '1', not '3' - presence-accurate, count-inaccurate. WeakAuras DOES separately compute the true aggregate internally (state.matchCount / state.totalStacks, BuffTrigger2.lua ~line 574), but there's no built-in dynamic-text token for it (Prototypes.lua's dynamic_texts only maps p/t/n/i/s) - a real fix would need a Custom text expression reading matchCount directly, not a stock format string. Deliberately deferred per Battlewrath's own call: 'let's build around the expected, normal function. Then add the tailored items later.' POSSIBLE FUTURE RE-EXPLORE, noted lightly 2026-07-10 (side-agent session, not acted on now): that same session independently confirmed 'sourceGUID'/'destGUID' are real, store=true fields on Combat Log triggers (direct read of Prototypes.lua). Since this limitation's root cause is aura2 collapsing several distinct same-type instances into one 'bestMatch,' a Combat Log-based trigger keyed off sourceGUID/destGUID could in principle disambiguate instances individually instead of relying on aura2's single-match behavior - a plausible path to a real fix, not a designed solution. Revisit only if this limitation actually becomes a blocker for a real class build, per the same 'expected, normal function first' deferral logic above."
+}

@@ -1,0 +1,83 @@
+{
+  "regionType": "aurabar",
+  "width": "{{width}}",
+  "height": "{{height}}",
+  "orientation": "HORIZONTAL",
+  "inverse": false,
+  "barColor": [
+    0.8,
+    0.1,
+    0.1,
+    1.0
+  ],
+  "backgroundColor": [
+    0.0,
+    0.0,
+    0.0,
+    0.5
+  ],
+  "texture": "Blizzard",
+  "textureSource": "LSM",
+  "icon": false,
+  "desaturate": false,
+  "iconSource": -1,
+  "displayIcon": "",
+  "zoom": 0,
+  "progressSource": [
+    -1,
+    ""
+  ],
+  "adjustedMax": "{{max_percent}}",
+  "adjustedMin": "{{min_percent}}",
+  "useAdjustededMax": true,
+  "useAdjustededMin": true,
+  "spark": false,
+  "subRegions": [
+    {
+      "type": "subbackground"
+    },
+    {
+      "type": "subtext",
+      "text_text": "%1.percenthealth",
+      "text_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "text_font": "Friz Quadrata TT",
+      "text_fontSize": 12,
+      "text_fontType": "None",
+      "text_justify": "CENTER",
+      "text_visible": true,
+      "text_selfPoint": "AUTO",
+      "anchor_point": "INNER_LEFT",
+      "anchorXOffset": 0,
+      "anchorYOffset": 0,
+      "text_shadowColor": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "text_shadowXOffset": 1,
+      "text_shadowYOffset": -1,
+      "text_text_format_1.percenthealth_format": "Number",
+      "text_text_format_1.percenthealth_decimal_precision": 1,
+      "text_text_format_1.percenthealth_pad": false,
+      "text_text_format_1.percenthealth_pad_mode": "left",
+      "text_text_format_1.percenthealth_pad_max": 8
+    }
+  ],
+  "triggers": {
+    "1": {
+      "trigger": {
+        "type": "unit",
+        "event": "Health",
+        "unit": "player"
+      },
+      "untrigger": {}
+    },
+    "activeTriggerMode": -10
+  }
+}

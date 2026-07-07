@@ -1,0 +1,24 @@
+{
+  "$id": "load_conditions.schema.json",
+  "title": "Load conditions (universal fragment - applies to any template)",
+  "description": "WeakAuras' real 'Load' tab - conditions on WHETHER an aura is loaded at all (checked once on login/event, distinct from a trigger's show/hide, which runs continuously while loaded). Optional on every template, since 'load' is already part of every leaf aura's envelope (base_envelope()'s own class/size/spec placeholders). Only 'classes' and 'combat' are wired as params so far, backed by Battlewrath's own real captured example - the much larger full field catalog (see 'verified') exists in WeakAuras' own load_prototype and is documented here as a map of what else this project could declare later, not yet built.",
+  "type": "object",
+  "properties": {
+    "classes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Player class name(s) required to load, e.g. ['NECROMANCER'] - this server's class_types list is populated dynamically and includes Ascension's own custom classes alongside the 11 stock WoW classes (Types.lua line 1186, 'WeakAuras.class_types = {}', filled at runtime). Single-class case (len==1) is CONFIRMED LIVE (see 'verified'); multi-class case is inferred by analogy, not independently tested."
+    },
+    "combat": {
+      "type": [
+        "boolean",
+        "null"
+      ],
+      "default": null,
+      "description": "Tristate: true = must be IN combat, false = must NOT be in combat, omitted/null = ignored (no combat requirement at all). CONFIRMED LIVE for true (see 'verified') - false is inferred by analogy with WeakAuras' documented tristate convention (Prototypes.lua's load_prototype 'combat' arg, type='tristate'), not independently tested."
+    }
+  },
+  "verified": "CONFIRMED LIVE, 2026-07-08 - Battlewrath hand-built a real load-conditioned instance (LF Delta Test: Necromancer class + In Combat) directly in-game and pasted back the export string, decoded via weakaura_codec.py. Real captured 'load' dict: {use_class: true, class: {single: 'NECROMANCER', multi: []}, spec: {multi: []}, use_combat: true, size: {multi: []}} - confirms (1) a multiselect-type load field ('class', Prototypes.lua's load_prototype 'class' arg, type='multiselect', values='class_types') is encoded as a companion 'use_class' gate boolean PLUS a nested {single, multi} value dict, matching this project's already-established WeakAuras multiselect pattern elsewhere; (2) a tristate-type load field ('combat', load_prototype's 'combat' arg, type='tristate') is encoded as A SINGLE 'use_combat' key carrying the tristate value directly (no companion value field at all - confirmed by its total absence from the real capture, which has only 'use_combat: true', never a separate 'combat: true'). FULL FIELD CATALOG (direct source read, Prototypes.lua's Private.load_prototype table, line 963+, NOT independently tested field-by-field beyond classes/combat above - catalogued for future extension, not guessed at): General (tristate unless noted): combat, never (toggle, always false - 'never load'), alive, encounter (DBM-based), pvpmode, manastorm, vehicle, vehicleUi, mounted. Player: class (multiselect, class_types - includes Ascension's custom classes), specialization (multiselect, specialization_types - ASCENSION'S OWN CUSTOM SPEC SYSTEM, SpecializationUtil.GetSpecializationInfo - directly relevant to a future per-spec Necromancer load condition, since Necromancer has multiple specs per CLASS_BEHAVIOR_PROFILES.md's '69 specs' framing), knowntalent (talent-type, Ascension's IsTalentKnownForLoad), mysticenchantactive/not_mysticenchantactive (Ascension's own 'Mystic Enchant' system), spellknown/not_spellknown, race (multiselect), faction (multiselect), level (number, supports a 2-entry AND range per multiEntry - i.e. a min/max band), role (multiselect, role_types), spec_position (multiselect, Ascension-specific), raid_role (multiselect), ingroup/groupSize/group_leader (party/raid composition), ruleset (multiselect, PvP ruleset). Location: zone/zoneId/subzone (string, supports comma-separated multi-entry with '-' negation), encounterid (DBM encounter IDs), size (multiselect, instance_types - solo/party/raid), difficulty (multiselect, difficulty_types). Equipment: itemequiped/not_itemequiped (item-type, supports OR multi-entry), itemtypeequipped (multiselect, weapon type). Encoding pattern for these other types (string/number/item) is NOT yet confirmed the way multiselect/tristate are above - would need its own real captured example before wiring as a param, per this project's evidenced-not-invented rule."
+}

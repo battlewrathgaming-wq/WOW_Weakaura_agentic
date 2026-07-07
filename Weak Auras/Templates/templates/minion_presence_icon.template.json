@@ -11,7 +11,7 @@
   "desaturate": false,
   "iconSource": -1,
   "displayIcon": "",
-  "cooldown": true,
+  "cooldown": false,
   "cooldownEdge": false,
   "inverse": false,
   "zoom": 0,
@@ -29,12 +29,34 @@
       "type": "subbackground"
     },
     {
-      "type": "subborder",
-      "border_size": 2,
-      "border_color": "{{accent_color}}",
-      "border_visible": true,
-      "border_edge": "Blizzard Dialog",
-      "border_offset": 0
+      "type": "subtext",
+      "text_text": "%s",
+      "text_color": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "text_font": "Friz Quadrata TT",
+      "text_fontSize": 12,
+      "text_fontType": "OUTLINE",
+      "text_justify": "CENTER",
+      "text_visible": true,
+      "text_selfPoint": "AUTO",
+      "anchor_point": "INNER_BOTTOMRIGHT",
+      "anchorXOffset": 0,
+      "anchorYOffset": 0,
+      "text_shadowColor": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "text_shadowXOffset": 0,
+      "text_shadowYOffset": 0,
+      "text_automaticWidth": "Auto",
+      "text_fixedWidth": 64,
+      "text_wordWrap": "WordWrap"
     },
     {
       "type": "subglow",
@@ -61,11 +83,18 @@
   "triggers": {
     "1": {
       "trigger": {
-        "type": "spell",
-        "event": "Cooldown Progress (Spell)",
-        "spellName": "{{spell_id}}",
-        "use_exact_spellName": true,
-        "genericShowOn": "showAlways"
+        "type": "aura2",
+        "event": "Health",
+        "unit": "player",
+        "debuffType": "HELPFUL",
+        "auraspellids": [
+          "{{guardian_aura_id}}"
+        ],
+        "useExactSpellId": true,
+        "ownOnly": true,
+        "useStacks": true,
+        "subeventPrefix": "SPELL",
+        "subeventSuffix": "_CAST_START"
       },
       "untrigger": {}
     },

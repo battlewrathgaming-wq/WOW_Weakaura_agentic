@@ -1,0 +1,62 @@
+{
+  "$id": "backing_plate_icon.schema.json",
+  "opportunity_type": "backing_plate",
+  "title": "Backing plate (icon, always shown)",
+  "description": "An always-visible placeholder that sits BEHIND a trigger-gated icon (e.g. stance_loader_icon) at the exact same position/size, so the slot's footprint stays visible even while the real icon has no active option (e.g. no stance/ward currently up). Added 2026-07-08, per Battlewrath's direct bug report on the real Undead Stance/Ward active build: 'they violate the owned footprint when not active.' Icon-region counterpart of backing_plate_aurabar - same mechanism (a separate, always-true-triggered element, not a modification of the real icon's own trigger/condition logic), same reasoning Battlewrath already gave for the aurabar version: 'the backing entity is the fix here... rather than over complicate the auras.' REVISED 2026-07-08 (same day, second pass) - the original plain-dim-square version (no fallback_icon) was live-tested and reported as failing: 'The backing plate did fail however. As it has no icon.' Battlewrath's own proposed fix: 'add a additional display, of one of the icons/spells... No boarder, but desaturated to show it is missing per stance.' Added the optional fallback_icon param below to do exactly that - a real spell icon, desaturated, no border, instead of a blank colored plate. fallback_icon omitted keeps the original blank-plate behavior (kept for any future case with no representative icon available). REVISED AGAIN 2026-07-08 (third pass, same day) - Battlewrath hand-edited the real Undead Stance Backing instance in-game (pasted back and decoded) with a BETTER mechanism for exactly the case fallback_icon couldn't cover: no confirmed spell ID at all. Own words: 'It is basically an anti statement. If neither of those auras are present, then show the desaturated version.' Formalized below as the optional missing_state_option_names param - an aura2 showOnMissing trigger using the SAME names as the paired stance_loader_icon's option_names, whose icon WeakAuras resolves live BY NAME in-game (no spellId needed at all, unlike fallback_icon), combined via a Condition that switches iconSource to that trigger's own number. Net visible behavior differs from the base 'always shown' contract: with this param, the element is visible ONLY while no option is active (the paired real icon covers the address the rest of the time, so the footprint is never actually lost) - a deliberate trade confirmed correct by Battlewrath's own real edit, not an oversight. fallback_icon and missing_state_option_names are alternative mechanisms for the same problem - prefer missing_state_option_names when no real spell ID/icon data exists (as for Undead Stance); fallback_icon remains valid where a real ID is already confirmed (as for Ward active).",
+  "region_type": "icon",
+  "trigger": "Unit Characteristics",
+  "type": "object",
+  "required": [
+    "name",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 30
+    },
+    "height": {
+      "type": "number",
+      "default": 20
+    },
+    "color": {
+      "type": "array",
+      "default": [
+        1,
+        1,
+        1,
+        0.35
+      ],
+      "description": "Optional RGBA tint override. Added 2026-07-08 (third pass) since Battlewrath's real missing_state_option_names edit re-tinted this to a muted grey ([0.357, 0.357, 0.357, 0.72]) to suit a real (desaturated) icon showing through, rather than the plain-blank-square default's dimmer white ([1,1,1,0.35])."
+    },
+    "fallback_icon": {
+      "type": [
+        "string",
+        "integer",
+        "null"
+      ],
+      "default": null,
+      "description": "Optional. A spell ID (resolved to that spell's real icon via GetSpellInfo) OR a raw texture path - either works, per RegionTypes/RegionPrototype.lua's SetTextureOrSpellTexture ('local spellID = tonumber(path); if spellID then ... GetSpellInfo(spellID) ... else texture:SetTexture(path) end'). When supplied: iconSource is set to 0 (manual, RegionTypes/Icon.lua's UpdateIcon 'elseif self.iconSource == 0 then iconPath = self.displayIcon'), icon:true, desaturate:true, no subborder - a real icon, grayed out, no color-coded border (that's reserved for the real active state on the icon on top). When omitted, falls back to the original icon:false blank dim-square plate. See missing_state_option_names for a mechanism that needs no spell ID at all - prefer that when no real ID is known."
+    },
+    "missing_state_option_names": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 2,
+      "default": null,
+      "description": "Optional. Added 2026-07-08 (third pass), formalizing Battlewrath's own real fix for Undead Stance Backing (no confirmed spellId available for any of its 3 options). Same exact name list as the paired stance_loader_icon's option_names. Adds a second trigger (aura2, matchesShowOn:'showOnMissing', useName:true, ownOnly:true - fires 'show' only when NONE of the named auras are present) and a Condition that flips iconSource to that trigger's own number when it's active - WeakArua's aura2 trigger resolves an icon for the named spell(s) live in-game even in the 'missing' state, no spellId needed on our side at all. Net effect: this element only renders (a desaturated icon, resolved by name) while none of the options are active; the real stance_loader_icon on top covers the address the rest of the time. desaturate is forced true whenever this param is set (matches the real captured value)."
+    }
+  },
+  "verified": "Trigger identical to backing_plate_aurabar's own (Unit Characteristics, unit=player, unconditionally true - confirmed in Prototypes.lua line 1622+). frameStrata=2 (BACKGROUND, same enum confirmed in backing_plate_aurabar's own note) so it renders behind the real stance_loader_icon on top, which stays at the default frameStrata=1 (Inherited). fallback_icon's iconSource=0/displayIcon mechanism confirmed by DIRECT SOURCE READ of this project's own installed WeakAuras build (RegionTypes/Icon.lua's UpdateIcon function, lines ~551-566: iconSource==-1 -> self.state.icon (trigger-provided, the normal path every other icon template uses), iconSource==0 -> self.displayIcon (manual, this fragment's new path), any other value -> a specific trigger number's own icon). displayIcon's spell-ID-or-texture-path duality confirmed the same way, RegionPrototype.lua's SetTextureOrSpellTexture. fallback_icon itself still not independently live-tested in-game. missing_state_option_names' entire mechanism IS CONFIRMED LIVE (2026-07-08, third pass) - Battlewrath built and pasted back a real, hand-edited Undead Stance Backing instance using exactly this shape (decoded via weakaura_codec.py): trigger 2 = {type: 'aura2', unit: 'player', auranames: [3 option names], useName: true, matchesShowOn: 'showOnMissing', ownOnly: true, debuffType: 'HELPFUL'} - notably NO 'event'/subeventPrefix/subeventSuffix keys at all (unlike this project's other aura2 triggers, e.g. stance_loader_icon's own - those fields are evidently not required for a bare showOnMissing presence check); conditions: [{check: {trigger: 2, variable: 'show', value: 1}, changes: [{property: 'iconSource', value: 2}]}]; no 'disjunctive' key set at all, meaning the default 'all' (AND) combination applies (WeakAuras.lua line 3109) - trigger 1 (always true) AND trigger 2 (true only while missing) together mean the whole element is visible only in the missing state, exactly matching Battlewrath's own description ('anti statement... if neither of those auras are present, show the desaturated version'). desaturate was true and icon/iconSource were left at their base false/-1 in the exported static data (the iconSource:2 override only applies at runtime, dynamically, via the Condition) - matched exactly in this fragment's template_filler.py implementation."
+}

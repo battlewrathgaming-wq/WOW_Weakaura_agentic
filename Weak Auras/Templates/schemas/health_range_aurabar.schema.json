@@ -1,0 +1,48 @@
+{
+  "$id": "health_range_aurabar.schema.json",
+  "opportunity_type": "health_range",
+  "title": "Health range (aurabar, clamped percent-of-max window)",
+  "description": "A unit-health bar clamped to a percent-of-max-health window (e.g. the TOP 50%-100%, empty at half health and full at max) rather than a plain 0-100% health bar - 'HP you can afford to lose/use', not total health remaining. Formalized 2026-07-09 as a primitive capability (Battlewrath: 'I'd formalize the health side as a capability... It comes between us as a primitive capability first' - before any class-implementer agent is allowed to consume it, per AGENT_ROLES.md's rule that classes must not invent local workarounds for missing mechanisms).",
+  "region_type": "aurabar",
+  "trigger": "Health",
+  "type": "object",
+  "required": [
+    "name",
+    "min_percent",
+    "max_percent",
+    "x",
+    "y"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "min_percent": {
+      "type": "string",
+      "description": "The clamp's lower bound, as a string ENDING IN '%' (e.g. '50%') - NOT a plain number. This is the exact field WeakAuras' RegionPrototype.lua reads: a trailing '%' makes it store adjustedMinRelPercent = value/100, applied at render as adjustedMinRelPercent * total (max health) - true percent-of-max clamping. Omit the '%' and WeakAuras instead stores a literal absolute hit-point value, which on a real character (thousands of max HP) renders as pinned full or empty, not a percent window. This is not a hypothetical risk: Battlewrath's own real hand-built prototype ('Bloodmage_hp_resouece_50-100%', decoded 2026-07-07) shipped with plain '50'/'100' (no '%') and hit exactly this bug. Callers should use Tiers/resources_base.py's health_slot() builder, which takes plain numbers and appends the '%' itself so this mistake can't recur structurally - do not hand-construct this field's params dict directly."
+    },
+    "max_percent": {
+      "type": "string",
+      "description": "The clamp's upper bound, same '%'-suffixed-string requirement as min_percent above (e.g. '100%')."
+    },
+    "bar_color": {
+      "type": "array",
+      "description": "OPTIONAL RGBA override for barColor - same non-placeholder-risk pattern as resource_threshold_aurabar's own bar_color (applied as a direct fill-time override in template_filler.py, which is NOT gated by template name, so it already covers this template with no code change). Omit to keep this template's default (a neutral red, not tied to any one class's theme)."
+    },
+    "x": {
+      "type": "number"
+    },
+    "y": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number",
+      "default": 126
+    },
+    "height": {
+      "type": "number",
+      "default": 15
+    }
+  },
+  "verified": "Formalized directly from two independent, corroborating sources: (1) direct source read of the real installed client's Interface/AddOns/WeakAuras/Prototypes.lua (~line 2273) confirming a native 'Health' unit-event trigger exists (type='unit', progressType='static', watches UNIT_HEALTH/UNIT_MAXHEALTH, exposes value/total/percenthealth/deficit/maxhealth) - the same trigger category/shape as the already-proven 'Power' trigger resource_threshold_aurabar uses, just no powertype field; and RegionTypes/RegionPrototype.lua (~line 368-796) confirming adjustedMin/adjustedMax/useAdjustededMin/useAdjustededMax's percent-suffix behavior. (2) A REAL live-built and live-tested WeakAuras export string Battlewrath pasted and confirmed in-game (2026-07-07): id 'Bloodmage_hp_resouece_50-100%', uid 'd4mA)3j847u', decoded via weakaura_codec.py - regionType='aurabar', trigger {type:'unit', event:'Health', unit:'player'}, useAdjustededMin/useAdjustededMax both true, subtext '%1.percenthealth'. The trigger dict in that real capture also carried several inert leftover fields (use_showAbsorb, use_absorbMode, use_maxhealth, subeventPrefix/Suffix, debuffType, names, spellIds, use_deficit, use_percenthealth, use_absorb) that don't affect a Health-event trigger's actual state fields - trimmed here the same way resource_threshold_aurabar's own 'verified' note trims Power's leftover fields, not something this template needs to reproduce. Percenthealth subtext format fields (text_text_format_1.percenthealth_*) are copied from that same real capture, not invented."
+}

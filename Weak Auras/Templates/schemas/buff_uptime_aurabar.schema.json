@@ -35,7 +35,17 @@
     "height": {
       "type": "number",
       "default": 15
+    },
+    "show_when_missing": {
+      "type": "boolean",
+      "default": false,
+      "description": "OPTIONAL, added 2026-07-09 for Reaper's Soul Fragment (805077) - the first real consumer of this template. Battlewrath's own live-tested fix ('Maybe a second trigger when it's not active as an anti statement') for the footprint disappearing entirely whenever the buff is absent: adds a SECOND aura2 trigger on the same spell_id, matchesShowOn:'showOnMissing', combined with the real trigger 1 via disjunctive:'any' - the exact same 'anti statement' mechanism already proven on backing_plate_icon's missing_state_option_names, just applied to THIS aura's own single trigger instead of a separate paired backing plate. Confirmed working live by Battlewrath ('Yes that fixed it') - one WA item, no backing_plate_aurabar pairing needed for footprint. NOTE: this does NOT solve permanent-tick visibility (a separate, since-abandoned problem) - a class_accent_tick_end style tick still vanishes during the missing state, confirmed by direct source read (RegionPrototype.lua's GetMinMaxProgress/UpdateProgressFromAuto zeroing out whenever the active trigger's progressType isn't 'timed'/'static' with real data - true for ANY trigger lacking a genuine duration, not something show_when_missing specifically causes). That problem is solved separately by Tiers/resources_base.py's divider_strip_slot, not by anything in this template - omit end_cap_color entirely on any bar using show_when_missing."
+    },
+    "show_stacks": {
+      "type": "boolean",
+      "default": false,
+      "description": "OPTIONAL, added 2026-07-09 alongside show_when_missing. Adds a '%s' stack-count subtext at INNER_RIGHT (opposite the permanent '%p' timer text at INNER_LEFT, baked into this template's own default subRegions below) - same state.stacks mechanism already proven on minion_presence_icon. Requested by Battlewrath for Soul Fragment ('Time remaining on soul fragment + stack count') but not yet present in the real hand-built prototype at the time it was captured - this formalizes the still-missing half."
     }
   },
-  "verified": "aurabar default fields from RegionTypes/AuraBar.lua; aura2 trigger shape shared with buff_uptime_icon above, including the same 'spellIds'->'auraspellids' field-name fix - see that schema's 'verified' field for the full trail."
+  "verified": "aurabar default fields from RegionTypes/AuraBar.lua; aura2 trigger shape shared with buff_uptime_icon above, including the same 'spellIds'->'auraspellids' field-name fix - see that schema's 'verified' field for the full trail. TIMER TEXT baked into this template's own default subRegions (added 2026-07-09, matching Battlewrath's real hand-built Soul Fragment prototype exactly, decoded via weakaura_codec.py): a '%p' subtext at INNER_LEFT, 'timed' format, precision 1, threshold 60 - this template had never actually been used to build a real aura before Soul Fragment, so its previous bare 'subbackground'-only subRegions list was untested placeholder, not a deliberate design; the real capture's own timer-text shape is now the template default rather than an optional add-on, since a 'countdown bar' template with no countdown text defeats its own purpose."
 }

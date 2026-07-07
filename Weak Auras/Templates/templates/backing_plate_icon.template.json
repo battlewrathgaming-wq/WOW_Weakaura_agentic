@@ -1,0 +1,45 @@
+{
+  "regionType": "icon",
+  "width": "{{width}}",
+  "height": "{{height}}",
+  "color": [
+    1,
+    1,
+    1,
+    0.35
+  ],
+  "desaturate": false,
+  "iconSource": -1,
+  "displayIcon": "",
+  "icon": false,
+  "cooldown": false,
+  "cooldownEdge": false,
+  "inverse": false,
+  "zoom": 0,
+  "keepAspectRatio": false,
+  "frameStrata": 2,
+  "progressSource": [
+    -1,
+    ""
+  ],
+  "adjustedMax": "",
+  "adjustedMin": "",
+  "useAdjustededMax": false,
+  "useAdjustededMin": false,
+  "subRegions": [
+    {
+      "type": "subbackground"
+    }
+  ],
+  "triggers": {
+    "1": {
+      "trigger": {
+        "type": "unit",
+        "event": "Unit Characteristics",
+        "unit": "player"
+      },
+      "untrigger": {}
+    },
+    "activeTriggerMode": -10
+  }
+}

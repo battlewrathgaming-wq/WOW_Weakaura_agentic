@@ -129,7 +129,19 @@ def fill_template(template_name, params, uid=None, generate_uid_fn=None):
     # without this an omitted param would silently strand the literal
     # "{{font}}"/"{{font_size}}"/"{{color}}" string in the built aura
     # instead of resolving to the schema's own stated default.
-    for _optional_field in ("font", "font_size", "color"):
+    #
+    # 'own_only' ADDED 2026-07-09 - a real, previously-latent bug found the
+    # first time buff_uptime_icon was ever actually used to build a real
+    # aura (Razorice/Foul Mandate, Necromancer/inventory.py's new "Buff
+    # Index" layer): BUFF_UPTIME_ICON_TEMPLATE's trigger has
+    # "ownOnly": "{{own_only}}", but nothing ever defaulted it, so both
+    # built children shipped with the literal, unresolved string
+    # "{{own_only}}" in place of a real boolean - same failure class as the
+    # 2026-07-06 threshold_value/font bugs (an optional, schema-defaulted
+    # param with no corresponding fill_params.setdefault call). Caught by
+    # inspecting the decoded real output before shipping, not live-tested
+    # first.
+    for _optional_field in ("font", "font_size", "color", "own_only"):
         if _optional_field in schema["properties"]:
             fill_params.setdefault(_optional_field, schema["properties"][_optional_field].get("default"))
 
@@ -242,6 +254,34 @@ def fill_template(template_name, params, uid=None, generate_uid_fn=None):
     if not isinstance(result.get("conditions"), list):
         result["conditions"] = []
 
+    # Load conditions (optional, UNIVERSAL - see load_conditions.schema.json).
+    # Added 2026-07-08, per Battlewrath's real hand-built "LF Delta Test"
+    # example (class=NECROMANCER + combat=true), decoded via
+    # weakaura_codec.py. Deliberately NOT gated by template_name - unlike
+    # every other optional block in this function, load conditions apply to
+    # ANY template, since "load" is already part of every leaf aura's
+    # envelope (base_envelope()'s own class/size/spec placeholders).
+    # Confirmed real encoding: a multiselect-type field ("class") is a
+    # companion "use_<name>" gate boolean plus a nested {single, multi}
+    # value dict; a tristate-type field ("combat") is a single "use_<name>"
+    # key carrying the tristate value directly (no companion value field).
+    load_conditions = params.get("load_conditions")
+    if load_conditions:
+        load = result.setdefault("load", {})
+        classes = load_conditions.get("classes")
+        if classes:
+            load["use_class"] = True
+            if len(classes) == 1:
+                load["class"] = {"single": classes[0], "multi": {}}
+            else:
+                # UNCONFIRMED shape for >1 classes - inferred by analogy
+                # with the confirmed single-class case, not independently
+                # live-tested. Flagged in load_conditions.schema.json too.
+                load["class"] = {"single": classes[0], "multi": {c: True for c in classes}}
+        combat = load_conditions.get("combat")
+        if combat is not None:
+            load["use_combat"] = bool(combat)
+
     # Glow source (optional) - see glow_source.schema.json's "verified" field.
     # CORRECTED 2026-07-04 against a real captured example
     # (weakaura_codec.REAL_MULTI_CONDITION_EXAMPLE_STRING, pasted and decoded
@@ -260,56 +300,274 @@ def fill_template(template_name, params, uid=None, generate_uid_fn=None):
     # producer exists, rather than waiting to discover the collision live.
     glow_source = params.get("glow_source")
     if glow_source:
-        entry = glow_source[0]  # settled scope: 1 glow-source for now
-        if entry["opportunity_type"] == "proc_alert":
-            glow_trigger = {
-                "type": "combatlog",
-                "event": "Combat Log",
-                "subeventPrefix": "SPELL",
-                "subeventSuffix": "_CAST_SUCCESS",
-                "spellIds": [str(entry["spell_id"])],
-                "use_spellId": True,
-            }
-        else:  # buff_uptime
-            glow_trigger = {
-                "type": "aura2",
-                "event": "Health",
-                "unit": "player",
-                "debuffType": "HELPFUL",
-                "auraspellids": [str(entry["spell_id"])],
-                "useExactSpellId": True,
-                "ownOnly": True,
-                "subeventPrefix": "SPELL",
-                "subeventSuffix": "_CAST_START",
-            }
-        existing_nums = [int(k) for k in result["triggers"].keys() if isinstance(k, str) and k.isdigit()]
-        glow_trigger_num = max(existing_nums, default=1) + 1
-        result["triggers"][str(glow_trigger_num)] = {"trigger": glow_trigger, "untrigger": {}}
+        # LOOP FIX 2026-07-10: this used to hardcode `entry = glow_source[0]`
+        # (a "settled scope: 1 for now" decision from 2026-07-04) - revised
+        # after Battlewrath's real, live-tested Tormented Souls v4 build
+        # proved the multi-entry case is real, not theoretical: it stacks a
+        # buff_uptime entry (the ability's own granted buff) AND an
+        # external_empower entry (an unrelated buff empowering it) on the
+        # SAME icon simultaneously. Now iterates every entry, computing each
+        # new trigger number fresh each pass (existing_nums must be
+        # recomputed inside the loop, since each entry's own new trigger
+        # changes what "existing" means for the next one).
+        for entry in glow_source:
+            existing_nums = [int(k) for k in result["triggers"].keys() if isinstance(k, str) and k.isdigit()]
+            glow_trigger_num = max(existing_nums, default=1) + 1
 
-        glow_position = next(
-            (i + 1 for i, sub in enumerate(result.get("subRegions", [])) if sub.get("type") == "subglow"),
-            None,
-        )
-        if glow_position is None:
-            raise ValueError(
-                f"Template '{template_name}' has a glow_source param but no "
-                "subglow entry in its subRegions - can't compute a 'sub.N.glow' "
-                "property path."
-            )
+            if entry["opportunity_type"] == "proc_alert":
+                # UNCHANGED mechanism (sub.N.glow, a plain auto-reverting
+                # boolean subRegion property) - Battlewrath's 2026-07-10 ask
+                # was specifically about buff_uptime's "confirmation this
+                # effect is active" case, not this one; the two stay visually
+                # and mechanically distinct on purpose (see glow_source.schema
+                # .json's "verified" field, REVISED 2026-07-10 note).
+                glow_trigger = {
+                    "type": "combatlog",
+                    "event": "Combat Log",
+                    "subeventPrefix": "SPELL",
+                    "subeventSuffix": "_CAST_SUCCESS",
+                    "spellIds": [str(entry["spell_id"])],
+                    "use_spellId": True,
+                }
+                result["triggers"][str(glow_trigger_num)] = {"trigger": glow_trigger, "untrigger": {}}
 
-        # UNVERIFIED PIECE (see glow_source.schema.json's "verified" field):
-        # the real captured example only shows a check against TRIGGER 1's
-        # OWN "show" state, never a genuinely separate trigger 2 - this
-        # trigger:N/variable:"show" check is inferred by analogy from that
-        # confirmed syntax, not independently confirmed for a truly separate
-        # trigger number. The list shape and "sub.N.glow" property-path
-        # addressing below ARE confirmed (and, separately, power_threshold's
-        # own cross-trigger check below IS independently confirmed via
-        # Conditions.lua directly - see that block's comment).
-        result.setdefault("conditions", []).append({
-            "changes": [{"property": f"sub.{glow_position}.glow"}],
-            "check": {"trigger": glow_trigger_num, "variable": "show", "value": 1},
-        })
+                glow_position = next(
+                    (i + 1 for i, sub in enumerate(result.get("subRegions", [])) if sub.get("type") == "subglow"),
+                    None,
+                )
+                if glow_position is None:
+                    raise ValueError(
+                        f"Template '{template_name}' has a glow_source param but no "
+                        "subglow entry in its subRegions - can't compute a 'sub.N.glow' "
+                        "property path."
+                    )
+
+                # UNVERIFIED PIECE (see glow_source.schema.json's "verified"
+                # field): the real captured example only shows a check against
+                # TRIGGER 1's OWN "show" state, never a genuinely separate
+                # trigger 2 - this trigger:N/variable:"show" check is inferred
+                # by analogy from that confirmed syntax, not independently
+                # confirmed for a truly separate trigger number. The list shape
+                # and "sub.N.glow" property-path addressing below ARE confirmed.
+                # "value": True FIXED 2026-07-10 (was a bare {"property": ...}
+                # entry with no value key - harmless no-op for the desaturate
+                # property elsewhere, since off is its own inferred default, but
+                # sub.N.glow's "on" state DOES need its true value declared
+                # explicitly, same as every other non-boolean-default Condition
+                # change in this file).
+                result.setdefault("conditions", []).append({
+                    "changes": [{"property": f"sub.{glow_position}.glow", "value": True}],
+                    "check": {"trigger": glow_trigger_num, "variable": "show", "value": 1},
+                })
+            elif entry["opportunity_type"] == "buff_uptime":
+                # REVISED 2026-07-10, per Battlewrath's live-built and
+                # live-tested Reaper "Tormented Souls" aura: glow mechanism
+                # upgraded from sub.N.glow to "glowexternal" (LibCustomGlow's
+                # Pixel-type border glow, applied directly to the aura's own
+                # frame) - this reads as "confirmation this effect is active,"
+                # colored to the parent template's own accent_color (class
+                # accent hex), not a hand-picked one-off. glowexternal is an
+                # IMPERATIVE action (glow_action: "show"/"hide"), not a
+                # declarative property - it does NOT auto-revert, so a PAIRED
+                # hide condition is required or the glow starts once and never
+                # stops (confirmed the hard way live, in-game, by Battlewrath;
+                # fix confirmed working in the same live test). See
+                # glow_source.schema.json's "verified" field for the full trail.
+                glow_trigger = {
+                    "type": "aura2",
+                    "unit": "player",
+                    "debuffType": "HELPFUL",
+                    "auraspellids": [str(entry["spell_id"])],
+                    "useExactSpellId": True,
+                    "ownOnly": True,
+                }
+                result["triggers"][str(glow_trigger_num)] = {"trigger": glow_trigger, "untrigger": {}}
+
+                glow_frame = f"WeakAuras:{result['id']}"
+                glow_color = list(fill_params.get("accent_color") or [1, 1, 1, 1])
+                conditions = result.setdefault("conditions", [])
+                conditions.append({
+                    "check": {"trigger": glow_trigger_num, "variable": "show", "value": 1},
+                    "changes": [{
+                        "property": "glowexternal",
+                        "value": {
+                            "glow_action": "show",
+                            "glow_type": "Pixel",
+                            "glow_frame": glow_frame,
+                            "glow_frame_type": "FRAMESELECTOR",
+                            "glow_border": True,
+                            "use_glow_color": True,
+                            "glow_color": glow_color,
+                        },
+                    }],
+                })
+                conditions.append({
+                    "check": {"trigger": glow_trigger_num, "variable": "show", "value": 0},
+                    "changes": [{
+                        "property": "glowexternal",
+                        "value": {
+                            "glow_action": "hide",
+                            "glow_frame": glow_frame,
+                            "glow_frame_type": "FRAMESELECTOR",
+                        },
+                    }],
+                })
+            elif entry["opportunity_type"] == "external_empower":
+                # ADDED 2026-07-10 (second pass, same day), decoded directly
+                # from Battlewrath's real Tormented Souls v4 build: an
+                # AMBIENT, low-key texture overlay signaling that an
+                # UNRELATED buff (not this ability's own granted result) is
+                # currently empowering this ability - Battlewrath's own
+                # framing: "rather than being flashy for attention... less
+                # dramatics, but gives you reference to wait for that
+                # state." Distinct from buff_uptime's glowexternal (an
+                # attention-grabbing border trace) - this is deliberately
+                # quieter, a plain declarative subtexture visibility toggle,
+                # not an imperative glow action.
+                #
+                # Real capture's aura2 trigger also carried useStacks/
+                # stacksOperator('<=')/stacks('1') - Battlewrath's own
+                # words, "canceling out conditions," describing these as a
+                # neutralized WeakAuras-UI artifact (trivially true for a
+                # non-stacking buff, not real filtering). Deliberately NOT
+                # reproduced here - a plain aura2 presence check achieves
+                # the identical real-world result for Soul Infusion and
+                # avoids a latent bug for any future empowering buff that
+                # genuinely stacks past 1 (a literal stacks<=1 check would
+                # then hide the texture at higher stacks, backwards from
+                # intent). See glow_source.schema.json's "verified" field
+                # for the full trail.
+                empower_trigger = {
+                    "type": "aura2",
+                    "unit": "player",
+                    "debuffType": "HELPFUL",
+                    "auraspellids": [str(entry["spell_id"])],
+                    "useExactSpellId": True,
+                    "ownOnly": True,
+                }
+                result["triggers"][str(glow_trigger_num)] = {"trigger": empower_trigger, "untrigger": {}}
+
+                texture_color = list(entry["texture_color"])
+                texture_path = entry.get(
+                    "texture_path",
+                    "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Auras\\Aura1",
+                )
+                sub_regions = result.setdefault("subRegions", [])
+                texture_position = next(
+                    (i + 1 for i, sub in enumerate(sub_regions) if sub.get("type") == "subtexture"),
+                    None,
+                )
+                if texture_position is None:
+                    sub_regions.append({
+                        "type": "subtexture",
+                        "textureTexture": texture_path,
+                        "textureColor": texture_color,
+                        "textureBlendMode": "ADD",
+                        "textureVisible": True,
+                        "textureDesaturate": False,
+                        "width": 32,
+                        "height": 32,
+                        "scale": 1,
+                        "anchor_mode": "area",
+                        "anchor_area": "ALL",
+                        "anchor_point": "CENTER",
+                        "self_point": "CENTER",
+                        "rotate": False,
+                        "textureRotate": False,
+                        "textureRotation": 0,
+                        "mirror": False,
+                        "textureMirror": False,
+                    })
+                    texture_position = len(sub_regions)
+
+                # BOTH states explicit (unlike desaturate's inferred-off
+                # convention) - this subtexture's own baseline
+                # textureVisible is true, not false, so the "hide" half
+                # must be stated or it would never revert. A declarative
+                # property toggle (like sub.N.glow), not glowexternal's
+                # imperative action - no automatic-revert risk here, but
+                # the pair is still needed because the property's OWN
+                # default is "on."
+                conditions = result.setdefault("conditions", [])
+                conditions.append({
+                    "check": {"trigger": glow_trigger_num, "variable": "show", "value": 1},
+                    "changes": [{"property": f"sub.{texture_position}.textureVisible", "value": True}],
+                })
+                conditions.append({
+                    "check": {"trigger": glow_trigger_num, "variable": "show", "value": 0},
+                    "changes": [{"property": f"sub.{texture_position}.textureVisible", "value": False}],
+                })
+            else:  # target_debuff_presence
+                # ADDED 2026-07-10 (third pass, same day), decoded directly
+                # from Battlewrath's real, live-built and live-tested
+                # "Murder" (502679) Rotation-tier aura. A boolean CONDITION
+                # CHECK, not a DoT/duration tracker - Battlewrath's own
+                # words: "this checks if my target has my debuff on it.
+                # This is not a DOT tracker in the broad sense. More a
+                # condition checker." unit:"target" is the load-bearing
+                # difference from every other aura2 trigger in this
+                # project so far (all previously unit:"player") - the
+                # debuff is one the PLAYER applies (ownOnly:true) but the
+                # presence check reads the TARGET's own aura list.
+                #
+                # Uses the SIMPLER internal-subglow mechanism Battlewrath
+                # discovered this same session ("I didn't know I can
+                # declare an internal glow effect, so I used the external
+                # and pointed it on it's self. I've since learned about
+                # making a glow, internal, but turned off. And then a
+                # condition turning it onto visible.") - an ordinary
+                # internal subglow subRegion configured with glowType
+                # 'Pixel'/useGlowColor true/a custom glowColor (not just
+                # proc_alert's plain 'buttonOverlay' type), toggled via the
+                # SAME declarative "sub.N.glow" property Condition
+                # proc_alert already uses - a SINGLE Condition (no paired
+                # hide needed, confirmed by the real capture having only
+                # one condition for this signal: the declarative auto-
+                # revert class, same as desaturate/proc_alert's sub.N.glow,
+                # NOT glowexternal's imperative no-auto-revert class). This
+                # is simpler than glowexternal on every axis (no frame-
+                # selector self-targeting, no imperative glow_action pair)
+                # - kept as a documented ALTERNATIVE rather than
+                # retroactively rewriting buff_uptime's own already-shipped
+                # glowexternal mechanism above; future opportunity_types
+                # needing a border-glow confirmation signal should default
+                # to THIS simpler approach unless a real reason favors
+                # glowexternal specifically. See glow_source.schema.json's
+                # "verified" field for the full trail.
+                presence_trigger = {
+                    "type": "aura2",
+                    "unit": "target",
+                    "debuffType": "HARMFUL",
+                    "auraspellids": [str(entry["spell_id"])],
+                    "useExactSpellId": True,
+                    "ownOnly": True,
+                }
+                result["triggers"][str(glow_trigger_num)] = {"trigger": presence_trigger, "untrigger": {}}
+
+                glow_color = list(entry["glow_color"])
+                sub_regions = result.setdefault("subRegions", [])
+                sub_regions.append({
+                    "type": "subglow",
+                    "glow": False,
+                    "glowType": "Pixel",
+                    "useGlowColor": True,
+                    "glowColor": glow_color,
+                    "glowLines": 8,
+                    "glowFrequency": 0.25,
+                    "glowDuration": 1,
+                    "glowLength": 10,
+                    "glowThickness": 1,
+                    "glowScale": 1,
+                    "glowBorder": False,
+                    "glowXOffset": 0,
+                    "glowYOffset": 0,
+                })
+                glow_position = len(sub_regions)
+
+                result.setdefault("conditions", []).append({
+                    "check": {"trigger": glow_trigger_num, "variable": "show", "value": 1},
+                    "changes": [{"property": f"sub.{glow_position}.glow", "value": True}],
+                })
 
     # Power-threshold effect (optional) - see power_threshold_effect.schema.json.
     # Added 2026-07-06, direct real-source consumer: Necromancer's Lichfrost/
@@ -362,6 +620,79 @@ def fill_template(template_name, params, uid=None, generate_uid_fn=None):
                 "changes": [{"property": f"sub.{glow_position}.glow", "value": 1}],
                 "check": {"trigger": power_trigger_num, "variable": cost_field, "op": ">=", "value": str(cost)},
             })
+
+    # Show-when-missing + show-stacks (optional, buff_uptime_aurabar only) -
+    # see build_templates.py's BUFF_UPTIME_AURABAR_SCHEMA. Added 2026-07-09
+    # for Reaper's Soul Fragment (805077), formalizing Battlewrath's own
+    # live-tested "anti statement" second-trigger fix ("Yes that fixed it")
+    # for the footprint-disappears-when-absent problem, plus the
+    # still-missing stack-count subtext.
+    if template_name == "buff_uptime_aurabar":
+        if params.get("show_when_missing"):
+            missing_trigger = {
+                "type": "aura2",
+                "event": "Health",
+                "unit": "player",
+                "debuffType": "HELPFUL",
+                "auraspellids": [str(params["spell_id"])],
+                "useExactSpellId": True,
+                "ownOnly": True,
+                "matchesShowOn": "showOnMissing",
+            }
+            existing_nums = [int(k) for k in result["triggers"].keys() if isinstance(k, str) and k.isdigit()]
+            missing_trigger_num = max(existing_nums, default=1) + 1
+            result["triggers"][str(missing_trigger_num)] = {"trigger": missing_trigger, "untrigger": {}}
+            result["triggers"]["disjunctive"] = "any"
+
+        if params.get("show_stacks"):
+            stacks_subtext = {
+                "type": "subtext",
+                "text_text": "%s",
+                "text_color": [1, 1, 1, 1],
+                "text_font": "Friz Quadrata TT",
+                "text_fontSize": 12,
+                "text_fontType": "None",
+                "text_justify": "CENTER",
+                "text_visible": True,
+                "text_selfPoint": "AUTO",
+                "anchor_point": "INNER_RIGHT",
+                "anchorXOffset": 0,
+                "anchorYOffset": 0,
+                "text_shadowColor": [0, 0, 0, 1],
+                "text_shadowXOffset": 1,
+                "text_shadowYOffset": -1,
+            }
+            result.setdefault("subRegions", []).append(stacks_subtext)
+
+    # Background-color override (optional, backing_plate_aurabar only) - see
+    # build_templates.py's BACKING_PLATE_AURABAR_SCHEMA "background_color"
+    # property. Added 2026-07-09 for the new center-seam divider-strip use
+    # case (a plain instance of this already-proven template, resized/
+    # recolored, replacing class_accent_tick_end after live-testing found
+    # the tick's AtPercent placement hides whenever the active trigger lacks
+    # real progress data - see that schema's own note for the full trail).
+    if template_name == "backing_plate_aurabar":
+        background_color = params.get("background_color")
+        if background_color is not None:
+            result["backgroundColor"] = list(background_color)
+
+    # Desaturate-on-cooldown (optional, cooldown_tracker_icon only) - see
+    # build_templates.py's COOLDOWN_TRACKER_ICON_SCHEMA "desaturate_on_
+    # cooldown" property. Added 2026-07-09 for Skeletal Archers (805040),
+    # per Battlewrath: "Show when available. Then desaturate whilst on
+    # cooldown... see if this can be handled as one WA item, instead of 2
+    # (backplate vs live)." Answer: yes - this checks trigger 1's OWN
+    # "duration" state field (already set by the Cooldown Progress (Spell)
+    # trigger every template of this kind already has - 0 when available,
+    # the real cooldown length while cooling down, confirmed by direct
+    # source read of Prototypes.lua). No second trigger, no backing_plate_
+    # icon pairing - a single Condition on the one trigger this template
+    # already carries.
+    if params.get("desaturate_on_cooldown"):
+        result.setdefault("conditions", []).append({
+            "changes": [{"property": "desaturate", "value": 1}],
+            "check": {"trigger": 1, "variable": "duration", "op": ">", "value": "0"},
+        })
 
     # Press-wash effect (optional) - see press_wash_effect.schema.json.
     # Added 2026-07-06, per Battlewrath's piano-key analogy ("press a key
@@ -434,12 +765,9 @@ def fill_template(template_name, params, uid=None, generate_uid_fn=None):
     # continuous status - always active, so AND-combining with trigger 1's
     # showAlways is a no-op), this trigger is genuinely momentary (0.3s per
     # cast). WeakAuras.lua line 3109 defaults multi-trigger "disjunctive" to
-    # "all" (AND) unless set otherwise - left at that default, adding this
-    # trigger would require BOTH trigger 1 AND this one active
-    # simultaneously for the icon to show at all, hiding it except during
-    # the 0.3s flash. Explicitly set to "any" (OR) here so trigger 1's own
-    # showAlways alone keeps the icon permanently visible, same as before
-    # this fragment existed.
+    # "all" (AND) unless set otherwise. Explicitly set to "any" (OR) here so
+    # trigger 1's own showAlways alone keeps the icon permanently visible,
+    # same as before this fragment existed.
     press_wash = params.get("press_wash")
     if press_wash:
         wash_alpha = press_wash.get("wash_alpha", 0.3)
@@ -505,6 +833,68 @@ def fill_template(template_name, params, uid=None, generate_uid_fn=None):
             duration=duration,
         )
 
+    # Fallback icon (backing_plate_icon only) - see backing_plate_icon.
+    # schema.json's "fallback_icon" note. REVISED 2026-07-08: the original
+    # blank-dim-square backing plate was live-tested and reported failing
+    # ("it has no icon") - when a real spell ID/texture is supplied, show
+    # that icon instead, desaturated, no border, per Battlewrath's own
+    # proposed fix. iconSource=0 (manual) tells RegionTypes/Icon.lua's
+    # UpdateIcon to read displayIcon directly instead of a trigger's own
+    # state.icon - confirmed by direct source read, not inferred.
+    if template_name == "backing_plate_icon":
+        fallback_icon = params.get("fallback_icon")
+        if fallback_icon is not None:
+            result["icon"] = True
+            result["iconSource"] = 0
+            result["displayIcon"] = str(fallback_icon)
+            result["desaturate"] = True
+
+        # Color tint override (backing_plate_icon only) - see that schema's
+        # "color" property note. Added 2026-07-08 (third pass) alongside
+        # missing_state_option_names below, since Battlewrath's real edit
+        # re-tinted this to a muted grey to suit a real icon showing through.
+        color = params.get("color")
+        if color is not None:
+            result["color"] = list(color)
+
+        # Missing-state icon-source override (backing_plate_icon only) - see
+        # backing_plate_icon.schema.json's "missing_state_option_names" note.
+        # Formalizes Battlewrath's own real, hand-edited fix for Undead
+        # Stance Backing: "It is basically an anti statement. If neither of
+        # those auras are present, then show the desaturated version." Adds
+        # a second aura2 trigger (matchesShowOn: showOnMissing, same names as
+        # the paired stance_loader_icon's option_names) so WeakAuras resolves
+        # an icon for the named spell(s) BY NAME, live in-game - no spellId
+        # needed on our side at all, unlike fallback_icon above. A Condition
+        # then flips iconSource to that trigger's own number when it's
+        # active. No 'event'/subeventPrefix/subeventSuffix keys on this
+        # trigger - confirmed absent in Battlewrath's real captured export
+        # (see schema's "verified" field), so deliberately omitted here too
+        # rather than copied from stance_loader_icon's own aura2 shape.
+        # desaturate forced true (matches the real captured value) - icon/
+        # iconSource are left at their base false/-1 in this static fill;
+        # the iconSource override only happens at runtime via the Condition.
+        missing_state_option_names = params.get("missing_state_option_names")
+        if missing_state_option_names:
+            missing_trigger = {
+                "type": "aura2",
+                "unit": "player",
+                "auranames": [str(n) for n in missing_state_option_names],
+                "useName": True,
+                "matchesShowOn": "showOnMissing",
+                "ownOnly": True,
+                "debuffType": "HELPFUL",
+            }
+            existing_nums = [int(k) for k in result["triggers"].keys() if isinstance(k, str) and k.isdigit()]
+            missing_trigger_num = max(existing_nums, default=1) + 1
+            result["triggers"][str(missing_trigger_num)] = {"trigger": missing_trigger, "untrigger": {}}
+
+            result["desaturate"] = True
+            result.setdefault("conditions", []).append({
+                "changes": [{"property": "iconSource", "value": missing_trigger_num}],
+                "check": {"trigger": missing_trigger_num, "variable": "show", "value": 1},
+            })
+
     # Stance loader (stance_loader_icon only) - builds N mutually-exclusive
     # aura2 triggers from option_names, one per option, name-matched (no
     # spell ID available/needed - see stance_loader_icon.schema.json's
@@ -540,6 +930,45 @@ def fill_template(template_name, params, uid=None, generate_uid_fn=None):
         triggers["activeTriggerMode"] = -10
         triggers["disjunctive"] = "any"
         result["triggers"] = triggers
+
+        # Optional per-option border color (added 2026-07-08, real bug fix -
+        # see stance_loader_icon.schema.json's "border_colors" property note:
+        # iconSource=-1 was resolving to the same icon art for all 3 Undead
+        # Stance options in-game, so a border color per trigger is the actual
+        # distinguishing signal, not a different icon-art mechanism. Same
+        # "sub.N.<field>" Condition-addressing pattern as glow_source above,
+        # just one condition per option instead of one - each option's own
+        # trigger index directly maps to its own condition (trigger i active
+        # -> border shows option i's color).
+        border_colors = params.get("border_colors")
+        if border_colors:
+            if len(border_colors) != len(option_names):
+                raise ValueError(
+                    "stance_loader_icon: border_colors must have the same "
+                    f"length as option_names ({len(option_names)}), got "
+                    f"{len(border_colors)}."
+                )
+            sub_regions = result.setdefault("subRegions", [])
+            border_position = next(
+                (i + 1 for i, sub in enumerate(sub_regions) if sub.get("type") == "subborder"),
+                None,
+            )
+            if border_position is None:
+                sub_regions.append({
+                    "type": "subborder",
+                    "border_size": 2,
+                    "border_color": [1, 1, 1, 1],
+                    "border_visible": True,
+                    "border_edge": "Square Full White",
+                    "border_offset": 0,
+                })
+                border_position = len(sub_regions)
+            conditions = result.setdefault("conditions", [])
+            for i, color in enumerate(border_colors, start=1):
+                conditions.append({
+                    "changes": [{"property": f"sub.{border_position}.border_color", "value": list(color)}],
+                    "check": {"trigger": i, "variable": "show", "value": 1},
+                })
 
     result["triggers"] = _intify_trigger_keys(result["triggers"])
     return result
