@@ -49,6 +49,23 @@ exists specifically to be the positional reference every real tier build
 mirrors, not just a one-time scaffold that gets discarded once real
 content lands.
 
+**Mask is the sole source of truth for position - reaffirmed 2026-07-09.**
+Per Battlewrath, on `layer_builder.py`'s uid-preservation fix (see
+`slot_assignment.md`'s "Tier 1 Rotation - Skeletal Archers added" entry):
+"the mask is the source of truth position wise. I experiment in-game and
+shouldn't be considered for trust." Every slot's x/y always comes straight
+from `inventory.py` (itself mirroring `ELEMENT_INVENTORY.md`/
+`Template_shadow.py`), never from decoding a live in-game capture - that
+was already true before this reaffirmation. What the uid-preservation fix
+actually carries forward is identity (uid) only, so a rebuild reads as an
+"update" to WeakAuras rather than a new aura; it is NOT a channel for
+syncing live-dragged group position back into the codebase, and shouldn't
+be treated as one if a future agent is tempted to "capture" a manually
+repositioned live group as the new baseline. If a layer's group ever needs
+a specific screen anchor, that's an explicit, authored `group_layout`
+value (same as Minion tracker's), sourced from a deliberate placement
+decision - never inferred from in-game experimentation.
+
 **Why per-tier instead of one big group from the start:**
 - Smaller, faster imports to generate and paste while iterating - matches
   the established build/test/screenshot/adjust cycle rather than needing

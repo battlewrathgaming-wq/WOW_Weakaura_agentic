@@ -511,6 +511,105 @@ showing the Cast trigger's own `castType` field ("cast" vs "channel")
 instead of the name text - noted as "we'll see," not decided, nothing
 built for it yet.
 
+**Revision, 2026-07-09 - end-cap tick replaced with a fixed center-seam
+divider strip, real bug found via live-testing during the Reaper/Soul
+Fragment build (see this file's own "Tier 1 Rotation - Skeletal Archers"
+and Reaper sections for that build's own trail).** Battlewrath's real
+in-game test of a two-trigger "anti statement" design on Soul Fragment
+(present + `showOnMissing`, `disjunctive: "any"`) surfaced that
+`class_accent_tick_end`'s `AtPercent` placement disappears whenever the
+region's currently-active trigger lacks a genuine `progressType`/duration
+range - confirmed by direct source read (`RegionPrototype.lua`'s
+`GetMinMaxProgress`/`UpdateProgressFromAuto`, `BuffTrigger2.lua`'s
+no-match branch setting `progressType=nil`): EVERY tick placement mode
+depends on this, so the SAME failure would have hit a separate
+`backing_plate_aurabar` pairing too (its "Unit Characteristics" trigger
+never sets `progressType` either) - not something specific to the
+two-trigger design. Mana/Runic Power's own tick only ever worked because
+the Power trigger's `progressType='static'` always has a real, nonzero
+max.
+
+**Redesign, per Battlewrath (explicitly discussed before building,
+"don't rush into implementation"):** drop the tick mechanism for this
+purpose entirely and replace it with a small, fixed, always-shown divider
+strip that never computes a percentage against anything, sidestepping the
+dependency altogether. Battlewrath's own precise geometry: every
+Resources-tier bar shrinks width by 1.5 (127.5 -> 126) while keeping its
+anchor fixed (shrinks symmetrically on both edges), then steps its anchor
+0.75 further outward from the center seam - left-column bars (Mana, Runic
+Power) from x=-63.75 to x=-64.5; right-column bars (Cast Bar/Swing Timer +
+their backing plates) from x=63.75 to x=64.5. Net effect: each bar's OUTER
+edge stays exactly where it was, while a precise 3px gap opens at the
+x=0 center seam (where left/right bars used to touch flush). A new
+`backing_plate_aurabar` instance ("Resources Divider", 3 wide x 30 tall -
+spanning the full combined height of both stacked rows - at x=0, y=-160,
+the vertical midpoint) fills that gap - the exact same always-true "Unit
+Characteristics" mechanism already proven for Cast Bar/Swing Timer's own
+backing plates, just resized and recolored via a new optional
+`background_color` param (overrides `backgroundColor` directly, since
+`barColor` never renders at this template's permanent 0% fill).
+Battlewrath's own framing for the choice of bar over icon: "so we're
+using the same principle" - visual/mechanical consistency with the rest
+of the stack, which is already all aurabars.
+
+**Real import string:** `Necromancer/Resources_v14_import.txt` (7
+children: Mana, Runic Power, Cast Bar Backing, Cast Bar, Swing Timer
+Backing, Swing Timer, Resources Divider - supersedes v13). Round-trip
+verified: all 6 original children now carry width 126 and their stepped
+x; Mana/Runic Power's `subtick` is confirmed removed (2 subRegions each,
+down from 3); Resources Divider confirmed at (0, -160), 3x30,
+`backgroundColor` = the Necromancer accent (`[0.2706, 0.8588, 0.6118,
+1]`), single always-true trigger, no subtick of its own. Unique uids, no
+collisions. Full project-wide sanity checks re-run and passing. **Not yet
+live-tested in-game.**
+
+**Backfill, 2026-07-09 (same day) - Resources finally retrofitted into
+`inventory.py`, via a new shared cross-class base file.** This layer had
+been a hand-maintained real import string since before `inventory.py`
+existed (13 ad-hoc sessions, then the v14 divider-strip revision above) -
+explicitly flagged as a deliberate, deferred gap in this file's own header
+comment. Backfilled now because Reaper's own Resources tier (Soul
+Fragment + Runic Power) needs the identical Runic Power/Cast Bar/Swing
+Timer/divider mechanism - real, immediate duplication between two classes,
+not a hypothetical future one. Per Battlewrath: "it's more centered on the
+mask / backing plates and positional indexes as a source of truth per
+slot. Then a class defines with it's own inventory how they're populated."
+
+New file: `Tiers/resources_base.py` (a new top-level folder, sibling to
+`Necromancer/`/`Templates/`) - the middle layer of a 3-layer split: the
+mask (`ELEMENT_INVENTORY.md`) stays pure position; this file holds the
+generic, class-agnostic "menu" of standard resource-type builders (Mana,
+Rage, Focus, Energy, Combo Points, Runes, Runic Power - WoW's real
+PowerType enum) plus Cast Bar/Swing Timer/divider-strip builders (which
+never vary by class at all); each class's own `inventory.py` picks which
+builders fill its own slots and supplies whatever's genuinely bespoke
+(Reaper's Soul Fragment has no base entry - it isn't a standard power
+type). Flagged rather than silently assumed: Battlewrath's own list when
+proposing this ("Mana, Rage, Runic power, Stamina, Combo points") named
+"Stamina," which isn't a real WoW PowerType (a unit stat, not a resource
+bar) - implemented as Focus instead (the actual enum member) and flagged
+back rather than guessed.
+
+Necromancer's own "Resources" layer in `inventory.py` now reads as 7
+`resources_base` calls (`resource_slot` x2 with Runic Power's own cyan
+`bar_color` override, `cast_bar_backing_slot`/`cast_bar_slot`,
+`swing_timer_backing_slot`/`swing_timer_slot`, `divider_strip_slot`) - a
+RE-DERIVATION of the already-live v14 capture, not a redesign. Verified
+byte-for-byte: decoded v14 and the freshly-built `Resources_v15_import.txt`
+(via `layer_builder.py`), normalized away only the (expectedly-fresh)
+`uid` field on each side, and confirmed every one of the 7 children's
+every other field matches exactly, in the same child order, with no
+override needed beyond Runic Power's `bar_color` - every other child
+(Mana, Cast Bar, Swing Timer, both backing plates, the divider) already
+matched its shared template's own baked-in defaults with zero extra
+params. Hit the FUSE mount-lag bug again on `Necromancer/inventory.py`
+mid-edit (confirmed via full Read, resynced via the established
+`fuse_check.py --resync` workflow) and once more on a stale
+`__pycache__`-driven child-order mismatch (cleared, rebuilt, confirmed
+correct). Full project-wide sanity checks re-run and passing.
+`Resources_v15_import.txt` is the new canonical build going forward,
+functionally identical to v14. **Not yet live-tested in-game.**
+
 ## Stance loader (Undead Stance)
 
 **Built 2026-07-08.** A single icon showing whichever of the Necromancer's
@@ -621,6 +720,254 @@ active`). Round-trip verified via `layer_builder.py`/`weakaura_codec.py`.
 check is re-importing this generated string and confirming it matches
 what's already running, byte-for-byte in practice, not just in the codec's
 own decode.
+
+**v2 (2026-07-08, second pass) - real in-game behaviour bugs fixed, not
+positions.** Battlewrath live-tested v1 and reported two concrete
+problems, explicitly separate from placement ("Not position yet. This is
+behaviour"):
+
+1. **Footprint violation when no option is active.** Both
+   `stance_loader_icon` instances (Undead Stance, Ward active) disappear
+   entirely when none of their N mutually-exclusive options is currently
+   true - `disjunctive: "any"` + `activeTriggerMode: -10` means the icon
+   has literally no active trigger to render from in that state, so
+   `RegionTypes/Icon.lua` shows nothing at all. Same class of bug already
+   hit and fixed once before for Cast Bar/Swing Timer (see this file's own
+   backing-plate history) - generalized to icons for the first time via a
+   new **`backing_plate_icon`** schema/template (`Templates/build_templates.py`),
+   modeled directly on `backing_plate_aurabar`: a separate, always-true
+   (`Unit Characteristics`, unit=player) icon element at `frameStrata: 2`,
+   `icon: false`, `color: [1,1,1,0.35]`, sitting at the exact same x/y
+   behind each `stance_loader_icon`. Added as its own slot immediately
+   before each real stance-loader icon in `inventory.py` (2 new backing
+   plates: "Undead Stance Backing", "Ward active Backing") - not a
+   modification of the real icon's own trigger/condition logic, same
+   design principle Battlewrath already stated for the aurabar version
+   ("the backing entity is the fix here... rather than over complicate
+   the auras").
+2. **All 3 Undead Stance options render the same icon texture.**
+   `iconSource: -1` auto-resolution (proven working for Ward active,
+   which only has 2 options) apparently isn't enough to visually
+   distinguish Pacify/Protect/Assault - Battlewrath: "stance uses the same
+   icon on all 3 it seems." Rather than chase a different icon-resolution
+   mechanism, the fix is a **color-coded border**, per Battlewrath's own
+   spec: "Blood / dark red for aggressive. White/grey for passive. Blue /
+   dark blue for defensive." Added a new optional `border_colors` array
+   property to `stance_loader_icon.schema.json` (one RGBA per
+   `option_names` entry, same order) - `template_filler.py`'s
+   `stance_loader_icon` block now appends a `subborder` subRegion (if not
+   already present) and one Condition per option
+   (`check: {trigger: i, variable: "show", value: 1}` ->
+   `changes: [{property: "sub.N.border_color", value: <that option's
+   color>}]`), the same `sub.N.<field>`-addressing pattern already
+   confirmed for `glow_source`'s `sub.N.glow`. Applied to Undead Stance
+   only (`option_names` order is `["Undead: Pacify", "Undead: Protect",
+   "Undead: Assault"]`, so `border_colors` is
+   `[grey/white, blue, blood red]` in that same order) - Ward active is
+   left unchanged, since it wasn't reported as having the same-icon
+   problem. **Caveat, flagged in the schema itself:** driving `border_color`
+   via a per-trigger Condition is confirmed real as a *field* (live-tested
+   via `Test_Board_validation`) but the Condition-driving mechanism
+   specifically is inferred by analogy from `sub.N.glow`, not yet
+   independently live-tested - same caveat class as `glow_source`'s own
+   still-open second-trigger case. Exact hex values are a first pass
+   (aesthetic choice, low risk per this project's own instructions) -
+   tunable later without any mechanism change.
+   **Root cause update, live-tested (2026-07-08, same day):** after a
+   server update, the 3 Undead Stance options are back to rendering
+   separate, distinct icons - the "same icon on all 3" symptom was a
+   server-side data issue, not something `iconSource: -1`/this project's
+   template ever needed fixing on its own. **`border_colors` is being
+   kept anyway**, per Battlewrath: "Still that reads really clean being
+   color coded. So I'd keep it." Reclassified from bug-workaround to
+   deliberate design choice - the mechanism, schema, and Undead Stance's
+   3 colors all stay exactly as built above, just no longer justified by
+   a rendering defect.
+
+Both fixes are **generic capabilities**, not one-off patches: any future
+class's stance/mode set gets a free backing plate and (optionally) colored
+borders just by using `backing_plate_icon` + `border_colors`, the same way
+`stance_loader_icon` itself already generalized across Druid forms/Undead
+Stance/Ward active per `CLASS_BEHAVIOR_PROFILES.md`.
+
+**Real import string:** `Necromancer/Necro_animation_spec_UI_element_v2_
+import.txt` (group, 5 children: `LF Delta Test`, `Undead Stance Backing`,
+`Undead Stance`, `Ward active Backing`, `Ward active`). Round-trip
+verified (group + all 5 children match after a re-encode/decode pass, no
+uid collisions). **Not yet live-tested in-game** - next step is pasting
+this over the existing v1 group and confirming both fixes visually
+(footprint holds with no stance/ward active; Undead Stance's 3 states
+show visibly different border colors).
+
+**v3 (2026-07-08, third pass) - backing plate's blank square replaced with
+a real desaturated icon.** Battlewrath live-tested v2 and reported the
+footprint fix itself still failed visually: "The backing plate did fail
+however. As it has no icon." Battlewrath's own proposed fix: "add a
+additional display, of one of the icons/spells... No boarder, but
+desaturated to show it is missing per stance."
+
+1. Added an optional `fallback_icon` property to `backing_plate_icon`
+   (`Templates/build_templates.py`'s `BACKING_PLATE_ICON_SCHEMA`) -
+   accepts either a real spell ID or a raw texture path. Confirmed real by
+   **direct source read** of this project's own installed WeakAuras addon:
+   `RegionTypes/Icon.lua`'s `UpdateIcon` (`iconSource == 0` branch reads
+   `self.displayIcon` directly, manual mode - distinct from the normal
+   `iconSource == -1` trigger-driven path every other icon template uses)
+   and `RegionTypes/RegionPrototype.lua`'s `SetTextureOrSpellTexture`
+   (`local spellID = tonumber(path)` - resolves via `GetSpellInfo` if
+   numeric, otherwise treats it as a raw texture path). When supplied,
+   `template_filler.py`'s `backing_plate_icon` block overrides the fill
+   result: `icon: True`, `iconSource: 0`, `displayIcon: str(fallback_icon)`,
+   `desaturate: True` - a real spell icon, grayed out, no border (the
+   border is reserved for the real active-state icon on top). Omitting
+   `fallback_icon` keeps the original blank-dim-square behavior unchanged
+   (verified via test-fill: both the with- and without-`fallback_icon`
+   cases produce the expected fields).
+2. Wired real data where it exists, flagged where it doesn't, per this
+   project's evidenced-not-invented rule: **Ward active Backing** now
+   carries `fallback_icon: 680388` (Fetid Ward's confirmed `spellId`,
+   source: `"talent"`, from
+   `Outputs/live_reference/necromancer_live_reference.json`). **Undead
+   Stance Backing** is left without a `fallback_icon` - checked both
+   `necromancer_live_reference.json` and `necromancer_trainer_raw.json`
+   directly and confirmed none of Undead: Pacify/Protect/Assault have a
+   captured `spellId` or icon texture path (trainer-window captures don't
+   expose one). Rather than guess a spell ID, this half of the fix is
+   **open**: Battlewrath would need to grab a real spell ID for one of
+   these in-game (e.g. `DEV_TOOLS.md`'s "Show IDs in Tooltips" or
+   `/devconsole`) to complete it. Until then, Undead Stance Backing falls
+   back to the plain blank-dim-square plate.
+
+**Real import string:** `Necromancer/Necro_animation_spec_UI_element_v3_
+import.txt` (group, same 5 children as v2). Round-trip verified (group +
+all 5 children match after a re-encode/decode pass, no uid collisions,
+`controlledChildren` matches child order). Test-filled and confirmed:
+`Ward active Backing` -> `icon: True, iconSource: 0, displayIcon: "680388",
+desaturate: True`; `Undead Stance Backing` -> unchanged blank-plate fields
+(`icon: False, iconSource: -1, desaturate: False`). **Not yet live-tested
+in-game.**
+
+**v4 (2026-07-08, fourth pass) - Battlewrath hand-built a better fix for
+Undead Stance Backing and pasted it back.** Rather than wait on an in-game
+spell-ID lookup for the open item above, Battlewrath modified the real
+`Undead Stance Backing` instance directly in-game and pasted the resulting
+export string. Decoded via `weakaura_codec.py`, it added a **second aura2
+trigger** (`matchesShowOn: "showOnMissing"`, the same 3 option names as the
+paired `stance_loader_icon`, no `spellId` anywhere) plus **one Condition**
+(`trigger 2 show == 1` -> `iconSource = 2`). Battlewrath's own description:
+"It is basically an anti statement. If neither of those auras are present,
+then show the desaturated version."
+
+This is a materially better mechanism than `fallback_icon` for exactly the
+case that fix couldn't cover: **no spell ID is needed at all.** WeakAuras'
+own aura2 trigger resolves an icon for the named spell(s) *by name*, live
+in-game, even while reporting the "missing" state - so the icon shows up
+correctly despite this project's own data having no captured `spellId` for
+any of the 3 Undead Stance options. The trade: with this mechanism the
+element is only visible while none of the options are active (default `all`
+disjunctive combines the always-true trigger 1 with trigger 2's own
+missing-state check) - the paired real `stance_loader_icon` covers the
+address the rest of the time, so the footprint is never actually lost.
+
+1. Formalized as a new optional `missing_state_option_names` property on
+   `backing_plate_icon` (`Templates/build_templates.py`'s
+   `BACKING_PLATE_ICON_SCHEMA`), plus a new optional `color` override
+   property (Battlewrath's real edit also re-tinted the plate to a muted
+   grey, `[0.357, 0.357, 0.357, 0.72]`, better suited to a real icon
+   showing through than the original blank-plate default). `template_filler.
+   py`'s `backing_plate_icon` block now builds the second trigger and
+   Condition exactly matching Battlewrath's captured shape (confirmed via a
+   direct assertion test against the decoded real data - see below) - no
+   `event`/`subeventPrefix`/`subeventSuffix` keys on this trigger, since
+   those were confirmed absent in the real capture.
+2. `fallback_icon` and `missing_state_option_names` are now **two
+   alternative mechanisms** for the same underlying problem: prefer
+   `missing_state_option_names` when no real spell ID/icon data exists (as
+   for Undead Stance); `fallback_icon` remains valid where a real ID is
+   already confirmed (as for Ward active, kept unchanged this pass -
+   Battlewrath only modified the stance backing: "I modified just the
+   stance backing").
+3. `Necromancer/inventory.py`'s "Undead Stance Backing" slot now carries
+   `color` and `missing_state_option_names` (the open item from v3 is
+   **resolved** - no in-game spell-ID lookup was needed after all).
+
+**Real import string:** `Necromancer/Necro_animation_spec_UI_element_v4_
+import.txt` (group, same 5 children). Round-trip verified (group + all 5
+children match after a re-encode/decode pass, no uid collisions,
+`controlledChildren` matches child order). Test-filled and confirmed to
+match Battlewrath's real captured shape exactly, field-for-field (trigger 2
+shape, Condition shape, `icon`/`iconSource`/`desaturate`/`color` values -
+verified via a direct assertion test against the decoded real data, not
+just visual inspection). **Not yet live-tested in-game** (this v4 is the
+formalized/regenerated version of the mechanism Battlewrath already
+hand-tested live - the underlying mechanism itself is confirmed working,
+but this specific regenerated file hasn't been round-tripped through the
+game client yet).
+
+**v5 (2026-07-08, fifth pass) - a new declarable axis: WeakAuras' "Load"
+system (class/combat conditions), formalized from Battlewrath's own real
+edit on "LF Delta Test".** Battlewrath hand-edited the Life Force delta
+flash text instance in-game, adding a load condition ("Must be on
+necromancer" + "In Combat"), then pasted back the export string. Own
+framing: "I imagine the whole pack will use the 'Must be on necromancer'.
+The in-combat will be more selective. Such as the proc tier. But this is a
+new class of action that a WA can adhere to. I'm providing the example. But
+you should emulate to capture a broader view of things we can declare."
+
+Decoded via `weakaura_codec.py`, the real `load` dict was: `{use_class:
+true, class: {single: "NECROMANCER", multi: []}, spec: {multi: []},
+use_combat: true, size: {multi: []}}`. This is WeakAuras' real "Load" tab -
+conditions on **whether an aura is loaded at all** (checked once on
+login/relevant event), distinct from a trigger's continuous show/hide.
+
+1. Confirmed encoding from the real capture: a **multiselect**-type load
+   field (`class`) is a companion `use_<name>` gate boolean plus a nested
+   `{single, multi}` value dict, matching this project's already-established
+   WeakAuras multiselect pattern elsewhere. A **tristate**-type load field
+   (`combat`) is a single `use_<name>` key carrying the tristate value
+   directly - confirmed by its total absence as a separate `combat:` key in
+   the real capture.
+2. Also performed a direct source read of the installed WeakAuras addon's
+   `Prototypes.lua` (`Private.load_prototype`, ~line 963), cataloging the
+   full, much broader set of ~30 load-condition fields WeakAuras supports
+   (general: combat/never/alive/encounter/pvpmode/vehicle/mounted/etc;
+   player: class/specialization/knowntalent/mysticenchantactive/spellknown/
+   race/faction/level/role/etc - `specialization` is Ascension's own custom
+   spec system, directly relevant to a future per-spec Necromancer load
+   condition; location: zone/size/difficulty; equipment: itemequiped/
+   itemtypeequipped). Only `classes`/`combat` are wired as params so far
+   (backed by this real example); the rest is documented as a map of what
+   else this project could declare later, in `LOAD_CONDITIONS_SCHEMA`'s own
+   `"verified"` field - not yet built, per this project's
+   evidenced-not-invented rule (no real captured example yet for the other
+   field types).
+3. Formalized as a new **universal** fragment, `load_conditions`
+   (`Templates/build_templates.py`'s `LOAD_CONDITIONS_SCHEMA`), applicable
+   to *any* template (not `$ref`'d from individual schemas' properties the
+   way `glow_source`/`power_threshold`/`press_wash` are) - `template_filler.
+   py`'s new handling block is deliberately **not** gated by `template_name`,
+   since every leaf aura already carries its own `"load"` dict via
+   `base_envelope()`.
+4. `Necromancer/inventory.py`'s "LF Delta Test" slot now carries
+   `"load_conditions": {"classes": ["NECROMANCER"], "combat": True}`. Only
+   this one real slot has been retrofitted so far - a blanket
+   `classes=["NECROMANCER"]` pass across the rest of the pack is a natural
+   next step Battlewrath anticipated ("I imagine the whole pack will use
+   the 'Must be on necromancer'") but has **not** been applied yet
+   (deliberately, per this project's build-one-confirmed-instance-before-
+   generalizing rule).
+
+**Real import string:** `Necromancer/Necro_animation_spec_UI_element_v5_
+import.txt` (group, same 5 children). Round-trip verified (group + all 5
+children match after a re-encode/decode pass, no uid collisions,
+`controlledChildren` matches child order). Test-filled and confirmed to
+match Battlewrath's real captured `load` dict exactly (`use_class`,
+`class.single`/`class.multi`, `use_combat` - accounting for the project's
+already-documented empty-map/empty-array round-trip quirk, which the real
+capture exhibits identically). **Not yet live-tested in-game** (same status
+as v4 - the underlying mechanism is confirmed working via Battlewrath's own
+hand-built instance; this regenerated file hasn't been round-tripped
+through the game client yet).
 
 ## Open items before either slot can be built for real
 
@@ -1018,3 +1365,243 @@ data.
   `Necromancer/Necro_animation_spec_UI_element_v1_import.txt`. Positions
   throughout remain Battlewrath's own dev/test coordinates, explicitly
   not a settled mask - revisit once "a mask for around the UI" exists.
+
+## Minion tracker (dynamicgroup)
+
+**Built 2026-07-09.** The first real `dynamicgroup` layer this project has
+shipped - a fixed-order row of per-minion-type presence icons
+(Abomination, Crypt Fiend/Crypt Keeper, Skeleton), each independently
+shown/hidden by its own "guardian count" owner-buff `aura2` trigger
+(`Apply Area Aura: Pet Owner` - see `Necromancer/spell_index.md`'s own
+"Guardian count buff" section, confirmed live 2026-07-06/07). Formalizes
+Battlewrath's own real, hand-built "Minion tracker" DynamicGroup, pasted
+in and decoded via `weakaura_codec.py`. Battlewrath's framing of the real
+build: "It's not perfect. But it works. It doesn't per buff track. But it
+helps show what you have summoned at any one time... just insight. Not
+perfect counting." Battlewrath's explicit instruction for this build pass:
+"Let's build around the expected, normal function. Then add the tailored
+items later" - i.e. match the real capture's plain behavior exactly,
+deliberately deferring a known accuracy limitation (below) rather than
+fixing it now.
+
+**New template: `minion_presence_icon`** (`Templates/build_templates.py`/
+`template_filler.py`) - an icon with a single `aura2` trigger
+(`useStacks: true`, matched by exact `guardian_aura_id`) plus a `%s`
+stack-count subtext and an unused `subglow`, matching the real capture's
+per-child shape field-for-field.
+
+**New layer_builder.py capability: real DynamicGroup layout fields.**
+`weakaura_codec.EXAMPLE_GROUP_AURA` (the envelope every layer is built
+from) is shaped for a plain static `group` and was confirmed, by direct
+source read of `RegionTypes/DynamicGroup.lua`'s own `default` table, to be
+missing every DynamicGroup-specific reflow field (`grow`/`align`/`space`/
+`sort`/`stagger`/`radius`/`rotation`/`stepAngle`/`fullCircle`/`arcLength`/
+`constantFactor`/`useLimit`/`limit`/`gridType`/`centerType`/`gridWidth`/
+`rowSpace`/`columnSpace`). Before this pass, calling `build_layer()` with
+`region_type: "dynamicgroup"` would have silently shipped a group with no
+reflow behavior at all. Fixed: a new `DYNAMICGROUP_EXTRA_DEFAULTS` dict in
+`layer_builder.py`, merged in whenever `region_type == "dynamicgroup"`,
+plus a new generic `group_layout` override dict on any layer definition
+(position/`selfPoint`/`grow`/`align`/`space`/etc) - both class-agnostic,
+so any future class's own dynamicgroup layer (e.g. an enemy-cast tracker)
+gets full reflow behavior for free.
+
+**"Minion tracker" layer, `Necromancer/inventory.py`:** `region_type:
+"dynamicgroup"`, `group_layout` matching the real capture's own
+group-level fields exactly (`grow: "RIGHT"`, `align: "CENTER"`, `sort:
+"none"`, `space: 2`, `selfPoint: "LEFT"`, and the real x/yOffset
+Battlewrath's own placement landed on). 3 slots, one per confirmed
+guardian-count owner-buff spell ID: **Abomination** (805017), **Crypt
+Fiend** (800034 - Battlewrath's own corrected ID for Crypt Keeper,
+2026-07-09, replacing an earlier five-digit guess of 80035), **Skeleton**
+(805016). `guardian_aura_id` is passed as a clean int rather than the real
+capture's raw `"800034 "`-with-trailing-space string, since
+`template_filler.py`'s `{{}}` substitution stringifies whatever's given -
+a clean int avoids reproducing that harmless artifact.
+
+**Known, deliberately deferred limitation (NOT fixed this pass):**
+confirmed by direct source read of `BuffTrigger2.lua` - each active
+minion of a type applies its OWN separate, non-stacking guardian-count
+aura instance (distinct casters), not one aura incrementing a shared
+stack count. WeakAuras' `aura2` scanner picks one `bestMatch` instance
+among however many match, and `state.stacks` (what `%s` reads) is
+`bestMatch`'s own stack field - never a sum. So with e.g. 3 separate
+Skeleton instances (each `stacks: 1`), `%s` shows `1`, not `3` -
+presence-accurate, count-inaccurate. This matches Battlewrath's own
+diagnosis exactly ("it's 3x1 not 1x3"). WeakAuras does separately compute
+the true aggregate internally (`state.matchCount`/`state.totalStacks`,
+`BuffTrigger2.lua` ~line 574), but there's no built-in dynamic-text token
+for it (`Prototypes.lua`'s `dynamic_texts` only maps `p`/`t`/`n`/`i`/`s`) -
+a real fix would need a Custom text expression reading `matchCount`
+directly. Deferred per Battlewrath's own call, as a "tailored item" for
+later, not an oversight.
+
+**Open question, not yet resolved:** the real capture's screenshot showed
+4 icons in a row plus a "0/4" readout, but only 3 children actually decode
+from the transmitted export data - likely WeakAuras' own options-window/
+editor UI chrome rather than real exported aura data, but not
+independently confirmed.
+
+**Real import string:** `Necromancer/Minion_tracker_v1_import.txt` (1
+dynamicgroup + 3 icon children). Round-trip verified: group-level
+dynamicgroup fields match the real capture exactly (`grow`/`align`/
+`sort`/`space`/`selfPoint`/`xOffset`/`yOffset`), all 3 children match the
+real captured trigger shape field-for-field (confirmed via a direct
+test-fill assertion, not just visual inspection), unique uids, no
+collisions. Full project-wide sanity checks re-run and passing (all
+Python files parse, all JSON schema/template files valid,
+`weakaura_codec.py` self-test passes). **Not yet live-tested in-game.**
+
+## Buff Index (static group - first content in the Buffs/Utility tier)
+
+**Built 2026-07-09.** Battlewrath: "These can be our 2 anchors for the
+buff section / index... They should = Present as desaturated when not
+present. Be present/saturated when applied. We'll leave the dynamic group
+for when I unlock more buffs." A static `group` layer (not dynamicgroup),
+occupying `ELEMENT_INVENTORY.md`'s Row E pre-settled static Buffs slots
+("Tier 3 Buffs 2"/"Tier 3 Buffs 3", x -172.5/-142.5, y -185, 30x20 icon) -
+the Row F dynamic-overflow rows below stay reserved, unbuilt, for the
+future expansion Battlewrath is explicitly deferring.
+
+**Mechanism: no new template needed.** Each of the 2 real buffs is built
+as a pair of slots at the same x/y - a `backing_plate_icon` with
+`fallback_icon` (always shown via its own always-true `Unit
+Characteristics` trigger, desaturated, no border) plus a `buff_uptime_icon`
+on top (`aura2`, `ownOnly`, full color, hides entirely while the buff is
+absent). This is the exact backing+real-icon pairing already proven for
+"Ward active Backing"/"Ward active" - just applied to a plain single buff
+instead of an N-way stance set, per Battlewrath's own framing that this
+is "not a new mechanism."
+
+**Buffs:** Razorice (500967), Foul Mandate (800199) - both given directly
+by Battlewrath, no prior indexed data existed for either in
+`spell_index.md` or `Outputs/live_reference/`.
+
+**Real bug found and fixed this pass:** `buff_uptime_icon` had never
+actually been used to build a real aura before this - its `own_only`
+param has a schema default of `True`, but `template_filler.py` had no
+corresponding `fill_params.setdefault` for it (only `font`/`font_size`/
+`color`/`accent_color`/`width`/`height` were covered). Both built children
+initially shipped with the literal, unresolved string `"{{own_only}}"` in
+place of a real boolean - caught by inspecting the decoded output before
+presenting, not via a live test. Fixed by adding `"own_only"` to
+`template_filler.py`'s generic optional-field defaulting loop (same
+pattern as the 2026-07-06 `threshold_value`/`font` bugs - an optional,
+schema-defaulted param with no fill-time default is a recurring failure
+class in this project). Re-verified after the fix: `ownOnly` resolves to
+a real boolean `true` in both built children.
+
+**A second FUSE mount-lag incident hit mid-fix**, this time surfacing
+inconsistently across tools (Python's own `ast.parse`/`import` saw one
+version of `template_filler.py`, `bash`'s `tail`/`grep` saw a different,
+truncated one) rather than the usual single-tool stale view - resolved via
+the same established Read-full-file -> write-to-`.fresh` ->
+`fuse_check.py --resync` -> re-verify workflow.
+
+**Real import string:** `Necromancer/Buff_Index_v1_import.txt` (1 group +
+4 children: Razorice Backing, Razorice, Foul Mandate Backing, Foul
+Mandate). Round-trip verified: correct positions, unique uids, backing
+plates show `fallback_icon`/desaturated/no-border, real icons show full
+color/`ownOnly: true` aura2 triggers matching the confirmed spell IDs.
+Full project-wide sanity checks re-run and passing. **Not yet live-tested
+in-game.**
+
+## Tier 1 Rotation - Skeletal Archers added (slot 2)
+
+**Built 2026-07-09.** Battlewrath: "Rotation, slot two. To become 805040.
+(Skeletal archers.) Show when available. Then desaturate whilst on
+cooldown. See if this can be handled as one WA item, instead of 2
+(backplate vs live)." A direct question about mechanism, answered before
+building anything, per this project's evidenced-not-invented rule.
+
+**Answer: yes - one WA item is enough.** Confirmed via direct source read
+of the installed WeakAuras addon's `Prototypes.lua` (Cooldown Progress
+(Spell) trigger, `init` function, non-charge-tracking branch): every
+`cooldown_tracker_icon` already sets `state.duration = WeakAuras.
+GetSpellCooldown(...)` on its own existing trigger 1 - `0` whenever the
+ability is off cooldown/available, the real cooldown length in seconds
+whenever actively cooling down. Since this template never sets
+`use_showgcd`, `duration` reflects only the ability's real cooldown, never
+the shared GCD sweep - so a Condition on it won't falsely fire on every
+global cooldown. No second trigger, no `backing_plate_icon` pairing
+needed - just a self-referencing Condition on the trigger the template
+already has.
+
+**New capability: `desaturate_on_cooldown`** - a new optional boolean
+property on `COOLDOWN_TRACKER_ICON_SCHEMA` (`Templates/build_templates.py`).
+When true, `template_filler.py` appends a single Condition:
+`{"trigger": 1, "variable": "duration", "op": ">", "value": "0"}` ->
+`{"property": "desaturate", "value": 1}`. This reuses the exact same
+Conditions.lua `cType=='number'` mechanism already confirmed for
+`power_threshold`'s own desaturate Condition, just checking trigger 1's
+own field instead of adding a second Power trigger. Verified via a direct
+test-fill: exactly 1 trigger, exactly 1 condition, matching this shape.
+
+**Wired into `Necromancer/inventory.py`'s existing "Tier 1 Rotation"
+layer**, as the new first slot (-64.5, -130 - the position vacated by
+Crypt Swarm, dropped 2026-07-06): `cooldown_tracker_icon`, spell_id
+805040, `desaturate_on_cooldown: True`. No `power_threshold`/`press_wash`
+given yet - not requested, and no real cost/no-cooldown-response data
+confirmed for this ability yet. Command: Undead (the layer's existing
+slot) is unchanged.
+
+**Hit the FUSE mount-lag bug four more times this pass** (on
+`build_templates.py`, `template_filler.py` twice - one incident showing
+the same cross-tool-inconsistency variant as the Buff Index fix above -
+and `Necromancer/inventory.py`) - all resolved via the same established
+Read-full-file -> write-to-`.fresh` -> `fuse_check.py --resync` ->
+re-verify workflow.
+
+**Real import string:** `Necromancer/Tier1_Rotation_v7_import.txt` (1
+group + 2 children: Skeletal Archers, Command: Undead). Round-trip
+verified: Skeletal Archers carries exactly 1 real trigger (Cooldown
+Progress, spellName 805040) and exactly 1 condition (desaturate when
+`duration > 0`); Command: Undead unchanged from its prior shape (2
+triggers - Cooldown Progress + Power - and 2 conditions - desaturate,
+afford-glow via `sub.3.glow`). Full project-wide sanity checks re-run and
+passing (all Python files parse, all JSON schema/template files valid,
+`weakaura_codec.py` self-test passes). **Not yet live-tested in-game.**
+
+**Real bug found via Battlewrath's live-test feedback: "you moved the slot
+positions."** Checked the coded coordinates directly against
+`ELEMENT_INVENTORY.md`'s settled mask first - Skeletal Archers at slot 2
+(-64.5, -130) matched exactly, both before and after this build, so the
+per-slot math was never wrong. Root cause was in `layer_builder.py`
+itself: `build_layer()` generated a brand-new random `uid` for the group
+AND every child on every single rebuild, and never carried forward the
+group's own on-screen anchor (`x`/`y`/`selfPoint`/etc, defaulting instead
+to `EXAMPLE_GROUP_AURA`'s screen-center placeholder). So re-importing an
+already-live, already-hand-positioned layer looked to WeakAuras like a
+brand-new aura, not an update to the existing one - discarding wherever
+the real aura had actually been dragged to on screen.
+
+**Fix, generalized (class/layer-agnostic, benefits every future rebuild):**
+new `_load_previous_layer_state()` in `layer_builder.py` decodes the most
+recent locally-built version of a layer (if any) before building the new
+one, and `build_layer()` now carries forward: (1) the group's own `uid`
+and anchor fields (`GROUP_ANCHOR_FIELDS`: x/y/xOffset/yOffset/selfPoint/
+anchorPoint/anchorFrameType/anchorFrameFrame/anchorFrameParent/parent) -
+applied before any explicit `group_layout` override, so a deliberately
+authored position (e.g. Minion tracker's real captured layout) still
+wins; (2) each child's own `uid`, matched by name - a genuinely new child
+(Skeletal Archers, added this same pass) still gets a fresh uid since no
+prior match exists. Verified: rebuilding "Tier 1 Rotation" now produces
+**v8** with the group uid and Command: Undead's uid both identical to v7,
+Skeletal Archers unaffected (new). Hit the FUSE mount-lag bug again on
+`layer_builder.py` itself mid-fix (bash's own `wc`/`tail` saw a truncated
+166-line file while the Read tool saw the correct 240-line one) - resolved
+via the same established recovery workflow.
+
+**Open caveat, not yet resolved:** this fix preserves uid/anchor from the
+last **locally-built** file (v7), but per this layer's own earlier history
+note, Battlewrath's actual live "Command: Undead" aura may descend
+directly from the original `Tier1_Rotation_v1_import.txt` import
+(hand-trimmed down from 3 abilities to 1 in-game, not necessarily
+re-imported through v2-v7, which the docs above still flag as "Not yet
+live-tested in-game"). If so, v7's uid doesn't match the true live uid
+either, and this fix - while a correct, needed improvement - won't by
+itself make v8 update the real live aura in place. Safest next step:
+Battlewrath pastes the CURRENT live export of the Tier 1 Rotation group
+(or just Command: Undead) so the true live uid/position can be captured
+directly, the same decode-then-patch approach already used successfully
+for `Necro_animation_spec_UI_element`'s several revisions.
