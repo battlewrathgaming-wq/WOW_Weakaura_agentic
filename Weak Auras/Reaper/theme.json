@@ -1,0 +1,17 @@
+{
+  "class": "Reaper",
+  "source": "Outputs/readout_html/reaper_readout.html's --accent CSS variable (confirmed 2026-07-09: '--accent: #0a876b'), cross-confirmed against the same per-class accent system Necromancer/theme.json already documents (all 21 classes have a distinct accent - Reaper #0a876b, Necromancer #45db9c, Pyromancer #ff6112, Chronomancer #ffed4a).",
+  "accent_hex": "#0a876b",
+  "accent_rgba": [0.0392, 0.5294, 0.4196, 1.0],
+  "accent_rgba_note": "0-1 float conversion of accent_hex (0a/87/6b / 255), ready to plug directly into a WeakAuras color field. NOTE: close to but NOT identical to the barColor Battlewrath's own real Soul Fragment prototype used ([0.0902, 0.580, 0.431, 1], see slot_assignment.md) - that real captured value is kept as-is for Soul Fragment's own bar_color override (evidenced, not re-derived), while this theme accent is the class-wide reference for anything NOT already pinned to a specific real capture (e.g. the Resources divider strip).",
+  "usage": [
+    "Resources divider strip color (Tiers/resources_base.py's divider_strip_slot) - resolves that fragment's own 2026-07-09 open flag about whether Necromancer's accent default should be shared cross-class or per-class-themed; Reaper now explicitly passes its own accent instead of inheriting Necromancer's.",
+    "Any future Reaper-specific aurabar's barColor, if a class-tinted resource bar is wanted over a specific real-captured color.",
+    "subglow's glowColor, if a class-tinted proc glow is ever wanted."
+  ],
+  "fantasy_mechanic": {
+    "summary": "A distinct class (confirmed live via a real captured WeakAuras Load-tab value 'class.single: REAPER', 2026-07-09 - NOT a Necromancer spec, despite some early scoping ambiguity). Builds and spends a capped, decaying stacking resource: Soul Fragments (805077, stacks to 3, each fragment has its own time-to-live) convert into Reaped Souls once 3 are banked - Reaped Souls are the class's own visible stacking power resource (tracked by its own native in-game UI element already, per Battlewrath, so this project does not duplicate that display) that fuels several capstone-style payoff abilities (Tormented Souls, Spectral Scythe summons, damage-reduction stacks, etc., per Outputs/skill_indices/reaper_skill_index.json).",
+    "source": "Battlewrath, 2026-07-09, plus direct read of Outputs/skill_indices/reaper_skill_index.json (Soul Fragment/Reaped Soul talent descriptions) and Outputs/readout_html/reaper_readout.html.",
+    "status": "First pass. The only Reaper-specific HUD element built so far is the Soul Fragment tracker (this class's actual gap in native UI coverage - see slot_assignment.md) - Reaped Souls themselves are deliberately NOT re-tracked here, same 'don't compete with an existing native display' principle already established for Necromancer's Life Force."
+  }
+}
