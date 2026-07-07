@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weak Auras Pane Board</title>
+    <link rel="stylesheet" href="./pane-board.css">
+  </head>
+  <body>
+    <header class="frame-chrome">
+      <div class="frame-drag-region">
+        <span>Weak Auras / Pane Board</span>
+      </div>
+      <nav class="frame-controls" aria-label="Window controls">
+        <button class="frame-button" type="button" id="pin-window" title="Toggle always on top" aria-label="Toggle always on top">Pin</button>
+        <button class="frame-button" type="button" id="minimize-window" title="Minimize" aria-label="Minimize">_</button>
+        <button class="frame-button danger" type="button" id="close-window" title="Close" aria-label="Close">X</button>
+      </nav>
+    </header>
+    <main class="pane-board-shell">
+      <aside class="tool-rail" aria-label="Pane Board controls">
+        <div class="title-group">
+          <p class="eyebrow">Layout Intent Board</p>
+          <input id="board-title" aria-label="Board title" value="Pane Board V1 working sketch">
+          <div class="orientation-rail" aria-label="Board orientation">
+            <span class="save-chip" id="save-status">Loading...</span>
+            <span class="last-change" id="last-change">Last change: none this session</span>
+          </div>
+        </div>
+        <div class="control-grid">
+          <label for="viewport-preset">Viewport</label>
+          <select id="viewport-preset">
+            <option value="960x640">960 x 640</option>
+            <option value="720x640">720 x 640</option>
+          </select>
+          <label for="pane-zoom">Zoom</label>
+          <select id="pane-zoom">
+            <option value="1">1x</option>
+            <option value="2">2x</option>
+            <option value="4">4x</option>
+            <option value="8">8x</option>
+          </select>
+          <label for="board-status">State</label>
+          <select id="board-status">
+            <option value="human-sketch">human-sketch</option>
+            <option value="agent-proposal">agent-proposal</option>
+            <option value="human-accepted">human-accepted</option>
+            <option value="superseded">superseded</option>
+            <option value="parked">parked</option>
+            <option value="rejected">rejected</option>
+          </select>
+        </div>
+        <div class="button-row">
+          <button type="button" id="add-pane">Add</button>
+          <button type="button" id="duplicate-pane">Duplicate</button>
+          <button type="button" id="delete-pane">Delete</button>
+        </div>
+        <div class="button-row board-actions">
+          <button type="button" id="refresh-board">Refresh</button>
+          <button type="button" id="return-sketch">Back to sketch</button>
+        </div>
+        <section class="import-panel" aria-label="Import class layout">
+          <label for="import-class-select">Import class layout</label>
+          <select id="import-class-select">
+            <option value="">(choose a class)</option>
+          </select>
+          <p class="import-hint">One-way, read-only snapshot of that class's currently shipped inventory.py - writes a NEW file, never touches this board or inventory.py itself.</p>
+          <button type="button" id="import-class-button">Import snapshot</button>
+          <label for="load-snapshot-select">Load snapshot into view</label>
+          <select id="load-snapshot-select">
+            <option value="">(choose a snapshot)</option>
+          </select>
+          <p class="import-hint">Replaces THIS board's content with the chosen snapshot. The board you're currently viewing is auto-backed-up first (like Grab state) - nothing is lost.</p>
+          <button type="button" id="load-snapshot-button">Load into view</button>
+        </section>
+        <section class="mask-panel" aria-label="Mask overlay">
+          <label class="check-row" for="show-mask-toggle">
+            <input id="show-mask-toggle" type="checkbox">
+            <span>Show mask (shadow slots)</span>
+          </label>
+          <p class="import-hint">Non-interactive background from ELEMENT_INVENTORY.md's full documented slot mask - the whole intended Template_shadow shape, not just this class's built panes. Read-only, never saved onto this board.</p>
+          <p class="mask-status" id="mask-status"></p>
+        </section>
+        <section class="pane-editor" aria-label="Selected pane">
+          <label for="pane-label">Label</label>
+          <input id="pane-label">
+          <label for="pane-importance">Importance</label>
+          <select id="pane-importance">
+            <option value="primary">primary</option>
+            <option value="supporting">supporting</option>
+            <option value="quiet">quiet</option>
+          </select>
+          <label for="pane-opportunity-type">Opportunity type</label>
+          <select id="pane-opportunity-type">
+            <option value="">(unset - sketch only)</option>
+          </select>
+          <p class="opportunity-type-hint" id="opportunity-type-hint"></p>
+          <div class="pane-fields" id="pane-fields"></div>
+          <label for="pane-notes">Notes</label>
+          <textarea id="pane-notes" rows="5"></textarea>
+          <fieldset class="material-editor">
+            <legend>Material cue</legend>
+            <label for="pane-material-path">PNG path</label>
+            <input id="pane-material-path" placeholder="materials/example-panel-plate.png">
+            <label for="pane-material-fit">Fit</label>
+            <select id="pane-material-fit">
+              <option value="cover">cover</option>
+              <option value="contain">contain</option>
+              <option value="tile">tile</option>
+            </select>
+            <label for="pane-material-opacity">Opacity</label>
+            <input id="pane-material-opacity" type="number" min="0.05" max="1" step="0.05" value="0.35">
+            <label for="pane-material-role">Role</label>
+            <input id="pane-material-role" value="imagination-paint">
+            <button type="button" id="clear-pane-material">Clear material</button>
+          </fieldset>
+          <button type="button" id="lock-pane">Lock</button>
+          <div class="nudge-pad" aria-label="Nudge selected pane">
+            <button class="nudge-pane" type="button" data-dx="0" data-dy="-1" title="Nudge up" aria-label="Nudge selected pane up">↑</button>
+            <button class="nudge-pane" type="button" data-dx="-1" data-dy="0" title="Nudge left" aria-label="Nudge selected pane left">←</button>
+            <button class="nudge-pane" type="button" data-dx="1" data-dy="0" title="Nudge right" aria-label="Nudge selected pane right">→</button>
+            <button class="nudge-pane" type="button" data-dx="0" data-dy="1" title="Nudge down" aria-label="Nudge selected pane down">↓</button>
+          </div>
+        </section>
+        <section class="snapshot-panel" aria-label="Snapshot">
+          <label for="snapshot-status">Grab as</label>
+          <select id="snapshot-status">
+            <option value="human-sketch">human-sketch</option>
+            <option value="agent-proposal">agent-proposal</option>
+            <option value="human-accepted">human-accepted</option>
+            <option value="parked">parked</option>
+          </select>
+          <label for="snapshot-title">Snapshot title</label>
+          <input id="snapshot-title">
+          <label for="snapshot-based-on">Based on</label>
+          <input id="snapshot-based-on">
+          <div class="button-row">
+            <button type="button" id="grab-state">Grab state</button>
+            <button type="button" id="export-png">PNG</button>
+          </div>
+        </section>
+        <section class="capture-panel" aria-label="Resting capture">
+          <label for="capture-title">Capture name</label>
+          <input id="capture-title">
+          <label for="capture-source-artifact">Source artifact</label>
+          <input id="capture-source-artifact">
+          <label for="capture-human-signal">Human signal</label>
+          <textarea id="capture-human-signal" rows="3"></textarea>
+          <label class="check-row" for="capture-include-screenshot">
+            <input id="capture-include-screenshot" type="checkbox" checked>
+            <span>Include PNG</span>
+          </label>
+          <button type="button" id="capture-board">Capture resting state</button>
+        </section>
+        <output id="board-message" aria-live="polite"></output>
+      </aside>
+      <section class="board-region" aria-label="Pane board">
+        <div class="ownership-banner" id="ownership-banner"></div>
+        <div class="board-meta" id="board-meta"></div>
+        <section class="collaboration-panel" aria-label="Board-local collaboration notes">
+          <div class="note-lane">
+            <label for="board-human-note">Human note</label>
+            <textarea id="board-human-note" rows="3"></textarea>
+          </div>
+          <div class="note-lane">
+            <label for="board-labs-note">Labs note</label>
+            <textarea id="board-labs-note" rows="3"></textarea>
+          </div>
+          <div class="command-inbox">
+            <label for="board-command-input">Board guidance</label>
+            <div class="command-entry">
+              <input id="board-command-input">
+              <button type="button" id="add-board-command">Add</button>
+            </div>
+            <ol id="board-command-list"></ol>
+          </div>
+        </section>
+        <section class="screen-note" aria-label="Screen note">
+          <label for="screen-note-text">Surface note</label>
+          <textarea id="screen-note-text" rows="2"></textarea>
+        </section>
+        <div class="board-canvas-wrap">
+          <div class="board-canvas" id="board-canvas" aria-label="Layout canvas"></div>
+        </div>
+      </section>
+    </main>
+    <script src="./pane-board.js"></script>
+  </body>
+</html>

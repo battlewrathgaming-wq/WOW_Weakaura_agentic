@@ -1,0 +1,423 @@
+{
+  "id": "layout-2026-07-06-necromancer-imported-from-inventory-py",
+  "title": "Necromancer - imported from inventory.py",
+  "status": "human-accepted",
+  "viewport": {
+    "preset": "960x640",
+    "width": 960,
+    "height": 640,
+    "grid": 1
+  },
+  "source": {
+    "createdBy": "human",
+    "basedOn": "Necromancer/inventory.py",
+    "project": "Weak Auras",
+    "context": "Auto-imported snapshot of Necromancer's currently shipped layout, generated 2026-07-06T22:34:13.788Z. One-way, read-only"
+  },
+  "panes": [
+    {
+      "id": "resources-mana-1",
+      "label": "Mana",
+      "grid": {
+        "x": 352.5,
+        "y": 465,
+        "w": 126,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "resource_threshold_aurabar",
+      "fields": {
+        "name": "Mana",
+        "power_type": 0,
+        "width": 126,
+        "height": 15
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "resources-runic-power-2",
+      "label": "Runic Power",
+      "grid": {
+        "x": 352.5,
+        "y": 480,
+        "w": 126,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "resource_threshold_aurabar",
+      "fields": {
+        "name": "Runic Power",
+        "power_type": 6,
+        "width": 126,
+        "height": 15
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "resources-cast-bar-backing-3",
+      "label": "Cast Bar Backing",
+      "grid": {
+        "x": 481.5,
+        "y": 465,
+        "w": 126,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "backing_plate_aurabar",
+      "fields": {
+        "name": "Cast Bar Backing",
+        "width": 126,
+        "height": 15
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "resources-cast-bar-4",
+      "label": "Cast Bar",
+      "grid": {
+        "x": 481.5,
+        "y": 465,
+        "w": 126,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "player_cast_aurabar",
+      "fields": {
+        "name": "Cast Bar",
+        "width": 126,
+        "height": 15
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "resources-swing-timer-backing-5",
+      "label": "Swing Timer Backing",
+      "grid": {
+        "x": 481.5,
+        "y": 480,
+        "w": 126,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "backing_plate_aurabar",
+      "fields": {
+        "name": "Swing Timer Backing",
+        "width": 126,
+        "height": 15
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "resources-swing-timer-6",
+      "label": "Swing Timer",
+      "grid": {
+        "x": 481.5,
+        "y": 480,
+        "w": 126,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "swing_timer_aurabar",
+      "fields": {
+        "name": "Swing Timer",
+        "hand": "main",
+        "width": 126,
+        "height": 15
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "resources-resources-divider-7",
+      "label": "Resources Divider",
+      "grid": {
+        "x": 478.5,
+        "y": 465,
+        "w": 3,
+        "h": 30
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "backing_plate_aurabar",
+      "fields": {
+        "name": "Resources Divider",
+        "width": 3,
+        "height": 30
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "tier-1-rotation-skeletal-archers-8",
+      "label": "Skeletal Archers",
+      "grid": {
+        "x": 395.5,
+        "y": 435,
+        "w": 40,
+        "h": 30
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "cooldown_tracker_icon",
+      "fields": {
+        "name": "Skeletal Archers",
+        "spell_id": 805040,
+        "desaturate_on_cooldown": true
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Tier 1 Rotation\"."
+    },
+    {
+      "id": "tier-1-rotation-command-undead-9",
+      "label": "Command: Undead",
+      "grid": {
+        "x": 438.5,
+        "y": 435,
+        "w": 40,
+        "h": 30
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "cooldown_tracker_icon",
+      "fields": {
+        "name": "Command: Undead",
+        "spell_id": 504868
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Tier 1 Rotation\"."
+    },
+    {
+      "id": "necro-animation-spec-ui-element-lf-delta-test-10",
+      "label": "LF Delta Test",
+      "grid": {
+        "x": 633.8016456842079,
+        "y": 414.3362841971246,
+        "w": 40,
+        "h": 30
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "stack_delta_flash_text",
+      "fields": {
+        "name": "LF Delta Test",
+        "spell_id": 525004,
+        "aura_filter": "HARMFUL",
+        "label_suffix": " LF",
+        "font": "MoK",
+        "font_size": 13
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Necro_animation_spec_UI_element\"."
+    },
+    {
+      "id": "necro-animation-spec-ui-element-undead-stance-backing-11",
+      "label": "Undead Stance Backing",
+      "grid": {
+        "x": 733.3431767418281,
+        "y": 419.29426707719983,
+        "w": 30,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "backing_plate_icon",
+      "fields": {
+        "name": "Undead Stance Backing"
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Necro_animation_spec_UI_element\"."
+    },
+    {
+      "id": "necro-animation-spec-ui-element-undead-stance-12",
+      "label": "Undead Stance",
+      "grid": {
+        "x": 733.3431767418281,
+        "y": 419.29426707719983,
+        "w": 30,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "stance_loader_icon",
+      "fields": {
+        "name": "Undead Stance"
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Necro_animation_spec_UI_element\"."
+    },
+    {
+      "id": "necro-animation-spec-ui-element-ward-active-backing-13",
+      "label": "Ward active Backing",
+      "grid": {
+        "x": 774.1275143679882,
+        "y": 419.76470754778336,
+        "w": 30,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "backing_plate_icon",
+      "fields": {
+        "name": "Ward active Backing",
+        "fallback_icon": 680388
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Necro_animation_spec_UI_element\"."
+    },
+    {
+      "id": "necro-animation-spec-ui-element-ward-active-14",
+      "label": "Ward active",
+      "grid": {
+        "x": 774.1275143679882,
+        "y": 419.76470754778336,
+        "w": 30,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "stance_loader_icon",
+      "fields": {
+        "name": "Ward active"
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Necro_animation_spec_UI_element\"."
+    },
+    {
+      "id": "minion-tracker-abomination-15",
+      "label": "Abomination",
+      "grid": {
+        "x": 731.0388878566216,
+        "y": 483.21538882488227,
+        "w": 30,
+        "h": 40
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "minion_presence_icon",
+      "fields": {
+        "name": "Abomination",
+        "guardian_aura_id": 805017
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Minion tracker\". Position is an APPROXIMATION: this slot belongs to a dynamicgroup whose real position comes from WeakAuras' own runtime flow layout (grow/space), not a fixed x/y - do not treat this pane's exact coordinates as authoritative."
+    },
+    {
+      "id": "minion-tracker-crypt-fiend-16",
+      "label": "Crypt Fiend",
+      "grid": {
+        "x": 763.0388878566216,
+        "y": 483.21538882488227,
+        "w": 30,
+        "h": 40
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "minion_presence_icon",
+      "fields": {
+        "name": "Crypt Fiend",
+        "guardian_aura_id": 800034
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Minion tracker\". Position is an APPROXIMATION: this slot belongs to a dynamicgroup whose real position comes from WeakAuras' own runtime flow layout (grow/space), not a fixed x/y - do not treat this pane's exact coordinates as authoritative."
+    },
+    {
+      "id": "minion-tracker-skeleton-17",
+      "label": "Skeleton",
+      "grid": {
+        "x": 795.0388878566216,
+        "y": 483.21538882488227,
+        "w": 30,
+        "h": 40
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "minion_presence_icon",
+      "fields": {
+        "name": "Skeleton",
+        "guardian_aura_id": 805016
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Minion tracker\". Position is an APPROXIMATION: this slot belongs to a dynamicgroup whose real position comes from WeakAuras' own runtime flow layout (grow/space), not a fixed x/y - do not treat this pane's exact coordinates as authoritative."
+    },
+    {
+      "id": "buff-index-razorice-backing-18",
+      "label": "Razorice Backing",
+      "grid": {
+        "x": 292.5,
+        "y": 495,
+        "w": 30,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "backing_plate_icon",
+      "fields": {
+        "name": "Razorice Backing",
+        "fallback_icon": 500967
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Buff Index\"."
+    },
+    {
+      "id": "buff-index-razorice-19",
+      "label": "Razorice",
+      "grid": {
+        "x": 292.5,
+        "y": 495,
+        "w": 30,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "buff_uptime_icon",
+      "fields": {
+        "name": "Razorice",
+        "spell_id": 500967
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Buff Index\"."
+    },
+    {
+      "id": "buff-index-foul-mandate-backing-20",
+      "label": "Foul Mandate Backing",
+      "grid": {
+        "x": 322.5,
+        "y": 495,
+        "w": 30,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "backing_plate_icon",
+      "fields": {
+        "name": "Foul Mandate Backing",
+        "fallback_icon": 800199
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Buff Index\"."
+    },
+    {
+      "id": "buff-index-foul-mandate-21",
+      "label": "Foul Mandate",
+      "grid": {
+        "x": 322.5,
+        "y": 495,
+        "w": 30,
+        "h": 20
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "buff_uptime_icon",
+      "fields": {
+        "name": "Foul Mandate",
+        "spell_id": 800199
+      },
+      "notes": "Imported from Necromancer/inventory.py, layer \"Buff Index\"."
+    }
+  ],
+  "review": {
+    "humanIntent": "Mirrors Necromancer's currently shipped Pane layout, for reference while sketching - not itself the source of truth (inventory.py is).",
+    "agentNotes": "",
+    "acceptedByHuman": false
+  },
+  "collaboration": {
+    "notes": {
+      "human": "",
+      "labs": ""
+    },
+    "commands": []
+  },
+  "screenNote": "Imported snapshot of Necromancer/inventory.py - re-import to refresh, do not hand-edit and expect it to propagate back.",
+  "updatedAt": "2026-07-06T22:34:13.789Z"
+}

@@ -30,6 +30,23 @@
 --                           NPCs across sessions.
 --   /coadump frames      -> frame-stack snapshot at the current mouse
 --                           position, appended to a running log.
+--   /coadump probe <FrameName> [field1,field2,...]
+--                        -> NEW. Generalized version of the talentframe/
+--                           trainer widget-probe pattern: walks any named
+--                           global frame (must exist in _G right now, e.g.
+--                           "TotemFrame") recursively, reading off a given
+--                           comma-separated field list (or a sensible
+--                           default list if omitted) from each widget.
+--                           Useful for reconnaissance on any CoA-custom
+--                           frame that stashes data as plain Lua table
+--                           fields, the way the talent buttons do. NOT the
+--                           right tool for stock, API-backed frames (e.g.
+--                           TotemFrame itself) where the real data lives
+--                           behind a function call (GetTotemInfo) rather
+--                           than a widget field - probing those will show
+--                           structure only, same as /coadump frames does.
+--                           Results ACCUMULATE across calls (a list, one
+--                           entry per call, keyed by capturedAt/rootName).
 --   /coadump clear       -> wipes ALL saved data (fresh start).
 --
 -- After running any command, type /reload (or log out) to flush
@@ -544,26 +561,141 @@ local function DumpFrames()
 end
 
 -- ---------------------------------------------------------------------
+-- Generic named-frame field probe - parameterized version of the
+-- talentframe/trainer widget-probe pattern above (same walk-and-
+-- describe logic, this time taking the root frame name and field list
+-- as arguments instead of hardcoding them). Reusable any time a new
+-- CoA-custom frame needs the same reconnaissance treatment the talent
+-- UI got, without writing a new one-off Dump<Thing> function each time.
+--
+-- Deliberately NOT a substitute for calling a real stock API directly
+-- when one exists (e.g. GetTotemInfo for TotemFrame) - this only
+-- surfaces data that's actually stored as a plain Lua table field on
+-- the widget itself, which is how CoA's own custom frames (talent
+-- buttons) work, but not how stock Blizzard frames are populated.
+-- ---------------------------------------------------------------------
+
+local DEFAULT_PROBE_FIELDS = {
+    "spellID", "spellId", "id", "talentID", "talentIndex", "tabIndex",
+    "rank", "currentRank", "maxRank", "abilityID", "nodeID", "tier", "column",
+    "unit", "slot", "index", "duration", "startTime", "haveTotem",
+}
+
+local function DescribeWidgetWithFields(widget, fields)
+    local entry = {
+        name = (widget.GetName and widget:GetName()) or nil,
+        objectType = widget.GetObjectType and widget:GetObjectType() or "?",
+    }
+
+    pcall(function() entry.widgetID = widget:GetID() end)
+    pcall(function() entry.text = widget.GetText and widget:GetText() or nil end)
+    pcall(function() entry.texture = widget.GetTexture and widget:GetTexture() or nil end)
+
+    for _, field in ipairs(fields) do
+        local ok, val = pcall(function() return widget[field] end)
+        if ok and val ~= nil and type(val) ~= "function" and type(val) ~= "table" then
+            entry["field_" .. field] = val
+        end
+    end
+
+    return entry
+end
+
+local function WalkFrameTreeWithFields(widget, depth, maxDepth, out, fields)
+    if depth > maxDepth then return end
+
+    local ok = pcall(function()
+        local entry = DescribeWidgetWithFields(widget, fields)
+        entry.depth = depth
+        table.insert(out, entry)
+
+        if widget.GetChildren then
+            local children = { widget:GetChildren() }
+            for _, child in ipairs(children) do
+                WalkFrameTreeWithFields(child, depth + 1, maxDepth, out, fields)
+            end
+        end
+        if widget.GetRegions then
+            local regions = { widget:GetRegions() }
+            for _, region in ipairs(regions) do
+                WalkFrameTreeWithFields(region, depth + 1, maxDepth, out, fields)
+            end
+        end
+    end)
+
+    if not ok then
+        table.insert(out, { depth = depth, name = "(error walking this widget)" })
+    end
+end
+
+local function ParseFieldList(csv)
+    if not csv or csv:trim() == "" then
+        return DEFAULT_PROBE_FIELDS
+    end
+    local fields = {}
+    for field in csv:gmatch("[^,]+") do
+        table.insert(fields, field:trim())
+    end
+    return fields
+end
+
+local function DumpProbe(rootName, fieldsCSV)
+    if not rootName or rootName:trim() == "" then
+        Print("Usage: /coadump probe <FrameName> [field1,field2,...]")
+        return
+    end
+
+    local root = _G[rootName]
+    if not root then
+        Print("No frame named '" .. rootName .. "' found in _G right now - is it on screen/loaded?")
+        return
+    end
+
+    local fields = ParseFieldList(fieldsCSV)
+    local out = {}
+    WalkFrameTreeWithFields(root, 0, 8, out, fields)
+
+    COA_DevDumpDB.probes = COA_DevDumpDB.probes or {}
+    table.insert(COA_DevDumpDB.probes, {
+        capturedAt = date("%Y-%m-%d %H:%M:%S"),
+        rootName = rootName,
+        fields = fields,
+        widgetCount = #out,
+        data = out,
+    })
+
+    Print(string.format(
+        "Probed '%s' -> %d widget(s) captured (fields: %s). /reload to flush.",
+        rootName, #out, table.concat(fields, ", ")))
+end
+
+-- ---------------------------------------------------------------------
 -- Slash command
 -- ---------------------------------------------------------------------
 
 SLASH_COADEVDUMP1 = "/coadump"
 SlashCmdList["COADEVDUMP"] = function(msg)
-    msg = (msg or ""):lower():trim()
-    if msg == "talents" then
+    local trimmed = (msg or ""):trim()
+    local cmd, rest = trimmed:match("^(%S*)%s*(.-)$")
+    cmd = (cmd or ""):lower()
+
+    if cmd == "talents" then
         DumpTalents()
-    elseif msg == "talentnodes" then
+    elseif cmd == "talentnodes" then
         DumpTalentNodes()
-    elseif msg == "talentframe" then
+    elseif cmd == "talentframe" then
         DumpTalentFrameStructure()
-    elseif msg == "trainer" then
+    elseif cmd == "trainer" then
         DumpTrainer()
-    elseif msg == "frames" then
+    elseif cmd == "frames" then
         DumpFrames()
-    elseif msg == "clear" then
+    elseif cmd == "probe" then
+        local rootName, fieldsCSV = rest:match("^(%S*)%s*(.-)$")
+        DumpProbe(rootName, fieldsCSV)
+    elseif cmd == "clear" then
         COA_DevDumpDB = {}
         Print("Cleared saved data.")
     else
-        Print("Usage: /coadump talents | /coadump talentnodes | /coadump talentframe | /coadump trainer | /coadump frames | /coadump clear")
+        Print("Usage: /coadump talents | /coadump talentnodes | /coadump talentframe | /coadump trainer | /coadump frames | /coadump probe <FrameName> [fields] | /coadump clear")
     end
 end

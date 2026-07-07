@@ -1,0 +1,14 @@
+{
+  "name": "weakauras-pane-board",
+  "version": "0.1.0",
+  "description": "In-house spatial layout/intent board for the Weak Auras HUD mask - a standalone fork of AURA-Lab's Pane Board, scoped to this project.",
+  "main": "src/main/main.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "electron .",
+    "smoke": "powershell -ExecutionPolicy Bypass -File scripts/pane-board-smoke.ps1"
+  },
+  "devDependencies": {
+    "electron": "^42.2.0"
+  }
+}

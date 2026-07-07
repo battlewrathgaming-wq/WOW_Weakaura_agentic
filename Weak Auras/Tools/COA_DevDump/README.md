@@ -63,6 +63,23 @@ Type these in-game chat.
 - **`/coadump frames`** - frame-stack snapshot at the current mouse
   position, same idea as the built-in `fstack` console command. General
   UI-debugging utility, not specific to this pipeline.
+- **`/coadump probe <FrameName> [field1,field2,...]`** - generalized version
+  of the `talentframe`/`trainer` widget-probe pattern: walks any frame that
+  currently exists in `_G` (e.g. `TotemFrame`) recursively, reading a given
+  comma-separated field list off every widget (or a sensible default list
+  if omitted). Built 2026-07-06, motivated by the Witch Doctor totem-bar
+  question - collapses what had been two copy-pasted one-off walkers
+  (`talentframe`'s and `trainer`'s) into one reusable command, so the next
+  time some other CoA-custom frame needs the same reconnaissance treatment
+  it doesn't need its own bespoke `Dump<Thing>` function. **Important scope
+  note confirmed while building this**: only useful for frames that stash
+  data as plain Lua table fields the way CoA's own custom talent buttons
+  do. Stock, API-backed frames (`TotemFrame` itself is the motivating
+  example - confirmed a real `Cooldown` widget fed by `GetTotemInfo`, not a
+  custom field) will only show structure through this command, same as
+  `/coadump frames` already does - the actual data for those lives behind
+  the API call, not on the widget. Results accumulate across calls, keyed
+  by capture time + root frame name.
 - **`/coadump clear`** - wipes all saved data.
 
 After any capture, **`/reload`** flushes `COA_DevDumpDB` to disk at

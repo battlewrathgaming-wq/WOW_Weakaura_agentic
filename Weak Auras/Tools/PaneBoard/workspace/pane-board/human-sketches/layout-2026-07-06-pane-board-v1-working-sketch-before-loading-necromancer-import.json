@@ -1,0 +1,52 @@
+{
+  "id": "layout-2026-07-06-pane-board-v1-working-sketch-before-loading-necromancer-imported-from-inventory-",
+  "title": "Pane Board V1 working sketch (before loading Necromancer - imported from inventory.py)",
+  "status": "human-sketch",
+  "viewport": {
+    "preset": "960x640",
+    "width": 960,
+    "height": 640,
+    "grid": 1
+  },
+  "source": {
+    "createdBy": "human",
+    "basedOn": "layout-2026-07-06-pane-board-v1",
+    "project": "Weak Auras",
+    "context": "layout intent reference"
+  },
+  "panes": [
+    {
+      "id": "pane-1",
+      "label": "Pane 1",
+      "grid": {
+        "x": 176,
+        "y": 379,
+        "w": 40,
+        "h": 30
+      },
+      "importance": "primary",
+      "locked": false,
+      "opportunityType": "cooldown_tracker_icon",
+      "fields": {
+        "width": 40,
+        "height": 30,
+        "desaturate_on_cooldown": false
+      },
+      "notes": "Countdown bar for the Soul Fragment stack."
+    }
+  ],
+  "review": {
+    "humanIntent": "Use this board to describe spatial intent without turning it into product UI.",
+    "agentNotes": "",
+    "acceptedByHuman": false
+  },
+  "collaboration": {
+    "notes": {
+      "human": "",
+      "labs": ""
+    },
+    "commands": []
+  },
+  "screenNote": "Dev note: this board is a cooperative spatial sketch surface. Treat positions as intent, not instruction.",
+  "updatedAt": "2026-07-06T22:17:04.610Z"
+}

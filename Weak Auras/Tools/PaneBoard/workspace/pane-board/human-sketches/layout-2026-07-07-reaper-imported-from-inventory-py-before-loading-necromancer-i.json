@@ -1,0 +1,192 @@
+{
+  "id": "layout-2026-07-07-reaper-imported-from-inventory-py-before-loading-necromancer-imported-from-inven",
+  "title": "Reaper - imported from inventory.py (before loading Necromancer - imported from inventory.py (before loading Reaper - im",
+  "status": "human-sketch",
+  "viewport": {
+    "preset": "960x640",
+    "width": 960,
+    "height": 640,
+    "grid": 1
+  },
+  "source": {
+    "createdBy": "human",
+    "basedOn": "layout-2026-07-06-reaper-imported-from-inventory-py",
+    "project": "Weak Auras",
+    "context": "layout intent reference"
+  },
+  "panes": [
+    {
+      "id": "resources-soul-fragment-1",
+      "label": "Soul Fragment",
+      "grid": {
+        "x": 352.5,
+        "y": 465,
+        "w": 96,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "buff_uptime_aurabar",
+      "fields": {
+        "name": "Soul Fragment",
+        "spell_id": 805077,
+        "height": 15,
+        "show_when_missing": true,
+        "show_stacks": true,
+        "width": 96
+      },
+      "notes": "Imported from Reaper/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "resources-runic-power-2",
+      "label": "Runic Power",
+      "grid": {
+        "x": 352.5,
+        "y": 480,
+        "w": 126,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "resource_threshold_aurabar",
+      "fields": {
+        "name": "Runic Power",
+        "power_type": 6,
+        "width": 126,
+        "height": 15
+      },
+      "notes": "Imported from Reaper/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "resources-cast-bar-backing-3",
+      "label": "Cast Bar Backing",
+      "grid": {
+        "x": 481.5,
+        "y": 465,
+        "w": 126,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "backing_plate_aurabar",
+      "fields": {
+        "name": "Cast Bar Backing",
+        "width": 126,
+        "height": 15
+      },
+      "notes": "Imported from Reaper/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "resources-cast-bar-4",
+      "label": "Cast Bar",
+      "grid": {
+        "x": 481.5,
+        "y": 465,
+        "w": 126,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "player_cast_aurabar",
+      "fields": {
+        "name": "Cast Bar",
+        "width": 126,
+        "height": 15
+      },
+      "notes": "Imported from Reaper/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "resources-swing-timer-backing-5",
+      "label": "Swing Timer Backing",
+      "grid": {
+        "x": 481.5,
+        "y": 480,
+        "w": 126,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "backing_plate_aurabar",
+      "fields": {
+        "name": "Swing Timer Backing",
+        "width": 126,
+        "height": 15
+      },
+      "notes": "Imported from Reaper/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "resources-swing-timer-6",
+      "label": "Swing Timer",
+      "grid": {
+        "x": 481.5,
+        "y": 480,
+        "w": 126,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "swing_timer_aurabar",
+      "fields": {
+        "name": "Swing Timer",
+        "hand": "main",
+        "width": 126,
+        "height": 15
+      },
+      "notes": "Imported from Reaper/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "resources-resources-divider-7",
+      "label": "Resources Divider",
+      "grid": {
+        "x": 478.5,
+        "y": 465,
+        "w": 3,
+        "h": 30
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "backing_plate_aurabar",
+      "fields": {
+        "name": "Resources Divider",
+        "width": 3,
+        "height": 30
+      },
+      "notes": "Imported from Reaper/inventory.py, layer \"Resources\"."
+    },
+    {
+      "id": "pane-8",
+      "label": "Reaped souls count",
+      "grid": {
+        "x": 448,
+        "y": 465,
+        "w": 30,
+        "h": 15
+      },
+      "importance": "supporting",
+      "locked": false,
+      "opportunityType": "buff_uptime_icon",
+      "fields": {
+        "width": 30,
+        "height": 15,
+        "own_only": true,
+        "name": "Reaped Soul",
+        "spell_id": 500363
+      },
+      "notes": "This has an anti-statement pressence (Shows when missing, desaturates)\n\nThis counts how many stacks you have of the main resource in a flattened manner. It sits next to the lesser resource as it's acculmative value as the game dictates. \n\n(Soul fragment, at 3 =1 reaped soul. )"
+    }
+  ],
+  "review": {
+    "humanIntent": "Mirrors Reaper's currently shipped Pane layout, for reference while sketching - not itself the source of truth (inventory.py is).",
+    "agentNotes": "",
+    "acceptedByHuman": false
+  },
+  "collaboration": {
+    "notes": {
+      "human": "",
+      "labs": ""
+    },
+    "commands": []
+  },
+  "screenNote": "Imported snapshot of Reaper/inventory.py - re-import to refresh, do not hand-edit and expect it to propagate back.",
+  "updatedAt": "2026-07-07T00:21:48.363Z"
+}
