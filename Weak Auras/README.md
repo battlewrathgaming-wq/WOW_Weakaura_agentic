@@ -66,6 +66,27 @@ Vitality" entry). See `Bloodmage/BUILD_METHOD.md` for the full trail -
 `inventory.py`'s `LAYERS` is still deliberately empty pending the
 class-implementer pass.
 
+- **[Tools/project_index/watch_index.py](Tools/project_index/watch_index.py)**
+  (2026-07-07) - a small, dependency-free real-time file index + full-text
+  search tool, scoped strictly to this one project folder (never reads or
+  logs anything elsewhere on the device). Built after discussing the local
+  filesystem MCP server's limits (`search_files` matches names/paths only,
+  not content) - three modes: a continuous poll loop (default), `--once`
+  for a single scan, `--search "term"` for an instant lookup against the
+  existing index (no rescan). Verified end to end: a live edit was
+  correctly picked up as "changed" (not "added") on the next pass, and
+  `--search` correctly found real terms (`POWERTYPE_RAGE`, `health_slot`)
+  across the files that actually reference them. Bloat control added the
+  same day: files over 300KB (generated HTML sheets, decoded WA exports,
+  talent JSON dumps) are metadata-tracked but skipped for word-indexing;
+  `search_index.json` stores a shared file list + integer ids instead of
+  repeating full paths per token (cut this project's copy from ~8.2MB to
+  ~2.4MB); the watch loop no longer logs a heartbeat line every poll cycle
+  with no changes (`--once` still does, for single-run feedback), plus a
+  hard trim past 5000 log lines. Its own output (`index.json`/
+  `search_index.json`/`activity.log`) is gitignored - regenerable, not
+  source content.
+
 ## Start here
 
 - **[ADDRESSABLE_HUD_CONCEPT.md](ADDRESSABLE_HUD_CONCEPT.md)** (2026-07-08,
@@ -613,31 +634,4 @@ class-implementer pass.
   server-resolved description text, no `$s1`-style tokens) or `"talent"`
   (spellID/rank/maxRank read directly off the live talent UI's own button
   widgets, since this server's talent system doesn't use the stock
-  Blizzard talent API at all - confirmed via `GetNumTalentTabs()` returning
-  0 through both known call shapes). Raw captures kept alongside for
-  traceability: `necromancer_trainer_raw.json` (125 entries),
-  `necromancer_talentnodes_raw.json` (80 entries).
-
-## Reference materials (dip into Display for these)
-
-Designing an actual aura needs more context than the index alone gives you
-- what an ability's toolkit/talent status means, what a modifier talent
-actually does, real cooldown/duration numbers straight from the client.
-That's all in **[../Display/](../Display/README.md)**:
-
-- The **class ability sheet** (`ability_sheets_all_classes.html`) is the
-  fastest way to look up a specific ability's real stats and confirm its
-  Toolkit-vs-Talents lane before deciding which opportunity type applies.
-- The **DBC-sourced abilities reference** pages show the full relationship
-  picture (what modifies/compounds on what) if you need to understand why
-  an ability behaves the way it does before building a tracker for it.
-
-## Not yet covered
-
-Resource-threshold alerts (e.g. "alert at 80 Runic Power") aren't an
-opportunity type yet - that needs the "Class Resource" primitive category
-from `Docs/PIPELINE.md`'s still-open synthesized-family work, not just a
-field filter. Revisit once that classification exists.
-
-Necromancer only so far - same rollout status as the DBC-sourced pipeline
-in Display.
+  Bl

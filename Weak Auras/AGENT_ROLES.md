@@ -184,5 +184,7 @@ stops, rather than fixing it itself inline.
   triggers exists (added 2026-07-10), not built, not designed.
 
 If a class implementer's build touches one of these, that's worth a
-note back too, even if it's not a hard blocker - same "don't oversell
+note too, even if it's not a hard blocker - same "don't oversell
 certainty" principle as everything else in this project.
+
+## G

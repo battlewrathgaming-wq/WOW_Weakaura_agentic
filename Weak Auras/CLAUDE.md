@@ -69,25 +69,63 @@ actual fix: call `mcp__cowork__allow_cowork_file_delete` with the file's
 Windows-style path), which prompts the user for permission and then
 allows deletion for that folder for the rest of the session.
 
-**Git exists now (2026-07-06) - never run it through the sandbox's
-mounted-folder bridge.** This project is tracked at
-`https://github.com/battlewrathgaming-wq/WOW_Weakaura_agentic.git`, one
-repo covering the whole project folder (not just `Weak Auras/`). This is
-a harder failure than the general staleness bug above and is a genuine
-FUSE write-path problem, distinct from the delete-protection note above:
-a `git init`/`git add` run through the sandbox's bash tool against the
-mounted Windows drive wrote a `.git/config` full of null bytes - a real
-write corruption, not just a stale read a heredoc/resync can fix. (Its
-follow-on inability to delete the corrupted `.git` files could itself
-just have been the same delete-protection safeguard rather than a
-second FUSE symptom - not re-tested since, so don't assume it was
-FUSE-specific.) The working fix: write a `.bat` script (a normal
-single-file write, which IS reliable) and run it via computer-use
-double-clicking it in File Explorer, so git actually executes natively
-on the user's machine, never through the bridge. Don't attempt `git` via
-the bash tool against this project again - if a git operation is needed,
-prepare a script and ask the user (or use computer-use) to run it
-locally instead.
+**Git via the sandbox's bash bridge - updated 2026-07-07, supersedes the
+2026-07-06 blanket ban below.** The original note (kept for context) said
+never run `git` through the sandbox at all, based on one incident where
+`git init`/`git add` wrote a `.git/config` full of null bytes - treated
+as unrecoverable write corruption. On 2026-07-07, a full catch-up session
+ran 8 real `git add`/`commit` operations through bash against this same
+mounted repo: 7 succeeded cleanly, and the one hiccup (a `git add` hit
+the FUSE-lag bug on `.git/index` itself, "bad signature 0x00000000,
+index file corrupt") was fully recoverable - `git fsck --full` confirmed
+zero object-store corruption, all working-tree files were confirmed
+intact on disk, and a plain `git reset` (mixed, restores the index from
+HEAD without touching the working tree) fixed it in one command. That's
+the same *class* of bug as the general FUSE staleness note above (a
+stale/inconsistent read, not a genuine write-path corruption) - not the
+harder failure the 2026-07-06 incident described.
+
+**Current working rule:** bash is fine for day-to-day `git add`/`commit`
+- just verify between steps rather than chaining blindly: check
+`git diff --cached --name-only` looks like what you expect before
+committing, and if anything looks wrong (unexpected deletions, a
+`fatal:`/`error:` from git itself, a file count that doesn't match), stop
+and run `git fsck --full` before doing anything else. If `fsck` comes back
+clean, `git reset` (mixed) is almost always the fix - it only touches the
+index, never the working tree or the object store. If `fsck` ever reports
+real object corruption (not yet seen, but the theoretical harder case),
+that's when to fall back to the original 2026-07-06 fix: write a `.bat`
+script and run it via computer-use double-clicking it in File Explorer,
+so git executes natively on the user's machine, never through the bridge
+- `git_push.bat`/`git_setup.bat` already do exactly this for push/init.
+`git push` itself still can't run from the sandbox at all (no GitHub
+credentials in that environment, unrelated to FUSE) - that step always
+needs `git_push.bat` run locally regardless of how the commits were made.
+
+Neither the local filesystem MCP (`mcp__filesystem__*`, read/write/list
+only, no command execution by design) nor `Tools/project_index/` (a
+search/metadata index, not a git tool) are alternatives here - they solve
+different problems. There is currently no MCP-based way to run git; the
+two real options remain bash-with-verification and computer-use-native.
+
+Cheap extra insurance, independent of the above: **before starting a big
+batch of git operations (like a multi-commit catch-up session), make a
+dated copy of the whole project folder (or at minimum just `.git/`)
+somewhere else on the F: drive.** `git push` to GitHub already gives an
+off-machine copy of everything committed, but an occasional local backup
+covers the gap before that push happens - cheap, no tooling needed, just
+a copy-paste in File Explorer every so often (not after every commit,
+just before/after a session with real risk - e.g. today's catch-up pass).
+
+*(Original 2026-07-06 note, kept for context - the null-byte `.git/config`
+incident above was the basis for it, root cause never independently
+confirmed): a `git init`/`git add` run through the sandbox's bash tool
+against the mounted Windows drive wrote a `.git/config` full of null
+bytes - a real write corruption, not just a stale read a heredoc/resync
+can fix. Its follow-on inability to delete the corrupted `.git` files
+could itself just have been the delete-protection safeguard noted above
+rather than a second FUSE symptom - never re-tested, so don't assume it
+was FUSE-specific.)
 
 **Compiler-change checklist + go word.** Settled 2026-07-06, after a
 session where `template_filler.py`'s press-wash logic got rebuilt four
@@ -143,42 +181,4 @@ content:
 
 1. **"Obviously safe" APIs need live verification too, not just
    custom/server-specific ones.** The `GetNumTalentTabs` lesson taught
-   us to distrust server customization. This session's failure
-   (`UnitPosition("player")`) was a different kind: not a server nerf,
-   just a wrong prior about the API generation, on an assumption that
-   felt basic enough not to need checking. Widen "verify before
-   assuming" to cover anything not yet actually confirmed, regardless of
-   how safe it seems.
-2. **When an assumption breaks, check what an already-working neighbor
-   relies on before guessing further.** After `UnitPosition` failed,
-   reading WeakAuras' own working Range Check trigger to see what real
-   mechanism it depends on was more productive than trying more function
-   names. A working feature in the same codebase is evidence; another
-   guess isn't.
-3. **A source-read finding isn't settled until confirmed live or
-   independently reproduced.** Broadens the existing Lua-emulation rule
-   above: reading `GenericTrigger.lua` correctly predicted the
-   subevent-filter requirement, but it only became fully solid once
-   confirmed by a real in-game error and, separately, by an unaffiliated
-   collaborator's independently-built script hitting the same wall.
-4. **An active collaborator building something adjacent is a
-   first-class verification channel, worth deliberately seeking out -
-   not incidental chat.** Two real issues (the subevent-filter error,
-   and point 6 below) surfaced only because Battlewrath asked the actual
-   dev directly, not from source-reading or live-testing alone.
-5. **Don't pre-generalize past the actual need.** Widening a subevent
-   filter to also cover a case ("might need this for a future totem")
-   nothing currently requires is scope creep dressed as thoroughness.
-6. **Reframe the question, around what is or isn't being tracked.**
-   Before naming something a failure/success condition, check whose
-   state it's actually describing. The beacon staleness check was
-   originally framed as "the beacon failed" when it was really only ever
-   "this specific viewer isn't currently benefiting" - a shared object
-   can be working fine for the group while reading as stale for one
-   person standing outside it. When a status signal could be read
-   differently depending on who's asking, name it after what's actually
-   being tracked (one viewer's state), not after the shared object's
-   state, unless those two are actually confirmed to be the same thing.
-
-See `README.md` in this folder for the actual project index/content map
-- this file is process only.
+   us to distrust server
