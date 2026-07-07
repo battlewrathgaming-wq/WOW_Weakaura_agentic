@@ -2,3 +2,11 @@ __pycache__/
 *.pyc
 .fuse_manifest.json
 git_push_log.txt
+
+# project_index: regenerable local index data, not source content.
+# search_index.json in particular gets rewritten (and can be several MB)
+# on every scan - committing it would bloat history with noisy diffs for
+# zero real information (it's fully rebuildable from the project files).
+Weak Auras/Tools/project_index/index.json
+Weak Auras/Tools/project_index/search_index.json
+Weak Auras/Tools/project_index/activity.log
