@@ -84,13 +84,17 @@ place.
   independent capability - only ever does anything while the main on/off
   switch is enabled. For a friendly player also in your party/raid
   (`IsGroupOrRaidFriendlyPlayer` - everyone else stays untouched, to avoid
-  noise from players outside your group), suppression un-suppresses that
-  one plate the moment health drops below `healerModeThreshold` (default
-  80%), showing the full health bar plus a new %HP `FontString`
-  (`GetOrCreateHealAlertText`). Held open via `healerModeTTL` (default 4s)
-  that only ever refreshes forward while still below threshold - once
-  healed above it, the existing TTL timestamp is left alone rather than
-  cleared, so the reveal keeps holding until it genuinely expires
+  noise from players outside your group), suppression reveals just the
+  health bar (plus a new %HP `FontString`, `GetOrCreateHealAlertText`) the
+  moment health drops below `healerModeThreshold` (default 80%) -
+  `ApplyHealAlertRevealState` is a PARTIAL reveal, not a full unsuppress:
+  level text, portrait, cast bar, and everything else stays hidden
+  (live-test feedback, Battlewrath: "The only thing I would omit from the
+  healer display is the target's level element. It's just the health bar
+  we want."). Held open via `healerModeTTL` (default 4s) that only ever
+  refreshes forward while still below threshold - once healed above it,
+  the existing TTL timestamp is left alone rather than cleared, so the
+  reveal keeps holding until it genuinely expires
   (`SweepHealAlertExpirations`, piggybacked on the existing 0.5s reclassify
   throttle) - this is what prevents a HoT tick bouncing HP across the line
   from turning into a flicker show. Event-driven off `UNIT_HEALTH`/

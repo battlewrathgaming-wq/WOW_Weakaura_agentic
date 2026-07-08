@@ -231,13 +231,17 @@
 -- (IsGroupOrRaidFriendlyPlayer), suppression behaves exactly as normal
 -- (name-only) until that unit's health drops below
 -- COA_GuardianPlatesDB.healerModeThreshold (default 80%) - at that point
--- the plate is un-suppressed (full health bar restored) and a new %HP
--- FontString is shown on it (GetOrCreateHealAlertText), since nameplates
--- don't ship a health-percent readout natively. Every friendly player NOT
--- in your group/raid is untouched by this - Battlewrath was explicit this
--- is about "who needs attention," not a general "show all ally health"
--- toggle, and showing every friendly player's health in a city would just
--- be noise.
+-- the plate's health bar becomes visible alongside the name, plus a new
+-- %HP FontString (GetOrCreateHealAlertText), since nameplates don't ship
+-- a health-percent readout natively. This is a PARTIAL reveal
+-- (ApplyHealAlertRevealState), not a full unsuppress - level text,
+-- portrait, cast bar, and everything else stays hidden. Live-test
+-- feedback, Battlewrath: "The only thing I would omit from the healer
+-- display is the target's level element. It's just the health bar we
+-- want." Every friendly player NOT in your group/raid is untouched by
+-- this - Battlewrath was explicit this is about "who needs attention,"
+-- not a general "show all ally health" toggle, and showing every friendly
+-- player's health in a city would just be noise.
 --
 -- ANTI-FLICKER TTL (Battlewrath, verbatim: "Hang open with a TTL... then
 -- collapse back down... It's intent is to filter who needs attention vs
@@ -781,6 +785,27 @@ local function SetPlateBarsHidden(plate, hidden)
     return true
 end
 
+-- Healer mode (v2.1) reveal - shows the health bar ONLY. Name stays
+-- visible as usual (SetPlateBarsHidden already keeps it up); everything
+-- else - level text, portrait, cast bar, and any other sibling region -
+-- stays hidden. Live-test feedback, Battlewrath: "The only thing I would
+-- omit from the healer display is the target's level element. It's just
+-- the health bar we want." Reuses SetPlateBarsHidden's "hide everything
+-- except the name" pass, then explicitly re-shows just the health bar on
+-- top of that, rather than doing a full unsuppress (which would also
+-- bring back the level indicator and everything else).
+local function ApplyHealAlertRevealState(plate)
+    local okSelective, didSelective = pcall(SetPlateBarsHidden, plate, true)
+    if not (okSelective and didSelective) then
+        plate:SetAlpha(0) -- fallback: no partial reveal possible, better than nothing
+        return
+    end
+    local healthBar = GetHealthBar(plate)
+    if healthBar then
+        pcall(healthBar.SetAlpha, healthBar, 1)
+    end
+end
+
 local function UpdatePlateForUnit(unit)
     if not unit then return end
     local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
@@ -789,16 +814,21 @@ local function UpdatePlateForUnit(unit)
     platesByUnit[unit] = plate
 
     -- Healer mode (v2.1): a group/raid member currently below the HP
-    -- threshold overrides suppression for their own plate only - this is
-    -- the entire mechanism, no separate arm/disarm lifecycle needed since
-    -- it's read fresh here every time suppression itself is (re)computed.
+    -- threshold still counts as "suppressed" here (shouldSuppress stays
+    -- true) - what changes is HOW the plate is suppressed:
+    -- ApplyHealAlertRevealState shows just the health bar instead of the
+    -- full name-only suppression, rather than doing a full unsuppress.
     -- See the v2.1 HEALER MODE doc block near the top of this file.
-    local shouldSuppress = COA_GuardianPlatesDB.enabled and IsFriendlyPlayer(unit) and not healAlerted[unit]
+    local shouldSuppress = COA_GuardianPlatesDB.enabled and IsFriendlyPlayer(unit)
 
     if shouldSuppress then
-        local okSelective, didSelective = pcall(SetPlateBarsHidden, plate, true)
-        if not (okSelective and didSelective) then
-            plate:SetAlpha(0) -- fallback: hides the name too, better than nothing
+        if healAlerted[unit] then
+            pcall(ApplyHealAlertRevealState, plate)
+        else
+            local okSelective, didSelective = pcall(SetPlateBarsHidden, plate, true)
+            if not (okSelective and didSelective) then
+                plate:SetAlpha(0) -- fallback: hides the name too, better than nothing
+            end
         end
         suppressed[unit] = true
     elseif suppressed[unit] then
@@ -1169,9 +1199,18 @@ local function ReapplySuppressed()
     for unit in pairs(suppressed) do
         local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
         if ok and plate then
-            local okSelective, didSelective = pcall(SetPlateBarsHidden, plate, true)
-            if not (okSelective and didSelective) then
-                plate:SetAlpha(0)
+            -- Healer mode (v2.1): a currently-revealed group/raid member
+            -- needs its partial (health-bar-only) state reasserted every
+            -- frame too, same as normal name-only suppression - it's
+            -- still fighting the native driver's own per-frame alpha
+            -- recompute on every OTHER region (level, portrait, etc).
+            if healAlerted[unit] then
+                pcall(ApplyHealAlertRevealState, plate)
+            else
+                local okSelective, didSelective = pcall(SetPlateBarsHidden, plate, true)
+                if not (okSelective and didSelective) then
+                    plate:SetAlpha(0)
+                end
             end
         end
     end
