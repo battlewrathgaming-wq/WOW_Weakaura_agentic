@@ -8,7 +8,7 @@ consuming the same shared pipeline).
 Resources tier filled in 2026-07-07 by the class-implementer pass (see
 BUILD_METHOD.md and ../AGENT_ROLES.md). Required ordering was followed:
 Bloodmage_fantasy_playstyle.md -> spell_index.md -> slot_assignment.md ->
-this file's LAYERS content.
+this file's LAYERS content. Tier 1 Rotation added 2026-07-07 (800772).
 
 Notes:
 - Read ../AGENT_ROLES.md's "class implementer" role in full.
@@ -58,6 +58,13 @@ POWERTYPE_RAGE = rb.POWERTYPE_RAGE
 # but confirm the two reds read as distinct in-game).
 RAGE_BAR_COLOR = [0.77, 0.25, 0.25, 1.0]
 
+# 800772 target-debuff glow color - a brighter/whiter red per Battlewrath's
+# steer ("brighter/whiter red. Purple is for necro/reaper"). NOT the muted
+# theme accent (#c66161) and NOT Murder's purple convention - a Bloodmage-
+# flavored "offensive/debuff-presence tracker" color. First-pass value,
+# tunable in-game (Battlewrath drives final color, we capture).
+DEBUFF_GLOW_COLOR = [1.0, 0.4, 0.4, 1.0]  # ~#FF6666, bright light red
+
 LAYERS = {
     # ------------------------------------------------------------------
     # Layer 1: Resources. Bloodmage's primary-resource slot
@@ -87,6 +94,65 @@ LAYERS = {
             rb.swing_timer_backing_slot(),
             rb.swing_timer_slot(),
             rb.divider_strip_slot(color=ACCENT_COLOR),
+        ],
+    },
+
+    # ------------------------------------------------------------------
+    # Layer 2: Tier 1 Rotation. First rotation-tier content for this class.
+    # Positions from the mask (ELEMENT_INVENTORY.md Row B, "Tier 1 slot
+    # Rotation" = the leftmost anchor at -107.5, -130, 40x30 icon - six
+    # icon slots exist total across the row).
+    #
+    # 800772 (name TBC - Battlewrath's own given ID, validated in-game;
+    # not in Outputs/skill_indices/bloodmage_skill_index.json, same as
+    # Reaper's Murder IDs came from the live game, not the index) - a DoT
+    # the player applies to the target, modeled EXACTLY on Reaper's Murder
+    # (Templates/build_templates.py's glow_source opportunity_type
+    # "target_debuff_presence"): a standard cooldown_tracker_icon for the
+    # ability's ready/cooldown state, PLUS a glow_source entry that lights
+    # the icon when the TARGET carries the player's own 800772 debuff
+    # (aura2, unit:'target', ownOnly:true - a boolean presence "condition
+    # checker," Battlewrath's framing for Murder, "not a DOT tracker in the
+    # broad sense").
+    #
+    # SINGLE ID fills BOTH roles here (Battlewrath: "Same ID for both. I
+    # already validated this in-game. The target aspect catches the ID
+    # being seen twice") - the pressed ability's spell_id AND the applied
+    # debuff's auraspellids are both 800772, so cooldown_tracker_icon's
+    # spell_id and the glow_source entry's spell_id are the same number.
+    #
+    # FIRST pipeline build of target_debuff_presence: the capability was
+    # FORMALIZED from Reaper's real, live-tested Murder capture but never
+    # actually built through a class inventory.py before now (Reaper's is
+    # the hand-built in-game version). Proven capability, not pipeline-
+    # exercised until this - round-trip verified in slot_assignment.md.
+    #
+    # Glow color is a brighter/whiter red (DEBUFF_GLOW_COLOR), NOT Murder's
+    # purple - Battlewrath: "Purple is for necro/reaper." Tunable in-game.
+    # Minimal, Murder-matching build: no power_threshold / desaturate /
+    # press_wash added (none were part of Murder's shape; add later only if
+    # Battlewrath asks and the real cost/response data is confirmed).
+    # ------------------------------------------------------------------
+    "Tier 1 Rotation": {
+        "region_type": "group",
+        "slots": [
+            {
+                "template": "cooldown_tracker_icon",
+                "params": {
+                    "name": "Blood DoT (800772)",  # placeholder name - confirm real spell name
+                    "spell_id": 800772,
+                    "x": -107.5,
+                    "y": -130,
+                    "accent_color": ACCENT_COLOR,
+                    "glow_source": [
+                        {
+                            "opportunity_type": "target_debuff_presence",
+                            "spell_id": 800772,
+                            "glow_color": DEBUFF_GLOW_COLOR,
+                        },
+                    ],
+                },
+            },
         ],
     },
 }

@@ -1,9 +1,9 @@
-# Bloodmage spell index (Resources tier)
+# Bloodmage spell index (Resources + Tier 1 Rotation)
 
 A pointer index, not a copy - same principle as `Necromancer/
-spell_index.md` and `Reaper/spell_index.md`. Scope: only the Resources-tier
-content actually built so far (Health-as-resource, Rage) - NOT a full class
-ability dump. The real full sources remain
+spell_index.md` and `Reaper/spell_index.md`. Scope: only content actually
+built so far (Resources tier: Health-as-resource, Rage; Tier 1 Rotation:
+800772) - NOT a full class ability dump. The real full sources remain
 `Outputs/skill_indices/bloodmage_skill_index.json` (123 skills),
 `Outputs/readouts/bloodmage_readout.md` (4 specs), and
 `Input/bloodmage_talents.json`.
@@ -37,7 +37,10 @@ spell ID - a native `Health` unit trigger, no ability to reference.
 - **Bar color:** theme accent `#c66161` (`ACCENT_COLOR`), sanctioned by
   `BUILD_METHOD.md`'s worked example - a blood-red, on-theme for a health
   meter. No competing captured barColor exists to prefer over the accent
-  (unlike Reaper's Soul Fragment, which had one).
+  (unlike Reaper's Soul Fragment, which had one). NOTE: the live in-game
+  build uses a horizontal gradient here (`#751117` -> `#D95D6D`); that is
+  set manually on the WeakAuras end and not auto-built yet - see
+  `color_palette.md`.
 
 ## Rage (secondary resource)
 
@@ -71,6 +74,41 @@ spell ID - a native `Health` unit trigger, no ability to reference.
   with a real capture if one is ever taken; also note it sits close to the
   accent-red HP bar directly above it (thematically coherent for a blood
   class, but confirm the two reds read as distinct in-game).
+
+## 800772 - Tier 1 Rotation DoT tracker (name TBC)
+
+A DoT the player applies to the target, built into the leftmost Tier 1
+Rotation slot, modeled exactly on Reaper's Murder.
+
+- **Spell ID**: 800772 - Battlewrath's own given ID, **validated in-game**,
+  not in `Outputs/skill_indices/bloodmage_skill_index.json` (same as
+  Reaper's Murder IDs came from the live game, not the index). **Real spell
+  name not yet confirmed** - `inventory.py` uses the placeholder display
+  name `"Blood DoT (800772)"`; rename once known.
+- **Single ID, both roles**: 800772 is BOTH the pressed ability (Cooldown
+  Progress trigger, the icon's ready/cooldown state) AND the debuff it
+  applies to the target (the presence check). Battlewrath: "Same ID for
+  both. I already validated this in-game. The target aspect catches the ID
+  being seen twice."
+- **Built via** `cooldown_tracker_icon` + a `glow_source` entry with
+  `opportunity_type: target_debuff_presence` (both `spell_id` = 800772).
+  The glow_source lights the icon when the TARGET carries the player's own
+  800772 debuff: `aura2`, `unit: target`, `debuffType: HARMFUL`,
+  `ownOnly: true` - a boolean presence "condition checker" (Battlewrath's
+  Murder framing: "not a DOT tracker in the broad sense. More a condition
+  checker"), NOT a duration countdown.
+- **Glow color**: brighter/whiter red `DEBUFF_GLOW_COLOR` `#FF6666`
+  (`[1.0, 0.4, 0.4, 1]`) - NOT Murder's purple (Battlewrath: "Purple is for
+  necro/reaper"), NOT the muted theme accent. A Bloodmage-flavored
+  offensive-tracker color, tunable in-game.
+- **First pipeline build of `target_debuff_presence`**: the capability was
+  formalized from Reaper's real, live-tested Murder capture but never built
+  through a class `inventory.py` before now (Reaper's is the hand-built
+  in-game version). Round-trip verified field-for-field (see
+  `slot_assignment.md`): Cooldown Progress trigger on 800772, aura2
+  `unit: target` debuff check on 800772, Pixel subglow `#FF6666`, single
+  auto-reverting condition (`trigger 2 show==1 -> sub.4.glow`). Not yet
+  re-tested in-game in this exact built form.
 
 ## Not tracked in the Resources tier (deferred to future tiers)
 

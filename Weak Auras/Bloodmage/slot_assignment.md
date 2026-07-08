@@ -48,11 +48,33 @@ decode (`controlledChildren: 0` vs. Reaper's reference 7), diagnosed via
 documented `Write` fresh-copy -> `python3 fuse_check.py --resync
 <fresh> Bloodmage/inventory.py` workflow (hash-verified match), plus
 clearing the stale `__pycache__/inventory*.pyc`. Rebuild then produced the
-correct `Resources_v2_import.txt` (2428 chars, 7 children). The three
-`.md` files written this pass hit the same lag (truncated at their
-original placeholder byte counts) and were resynced the same way.
+correct `Resources_v2_import.txt` (2428 chars, 7 children). The `.md`
+files written this session repeatedly hit the same lag (truncated at their
+prior byte counts) and were resynced the same way each time - including the
+Tier 1 Rotation additions below.
 `Resources_v1_import.txt` is retained only as the empty pre-resync
 artifact - **`Resources_v2_import.txt` is the authoritative build.**
+
+## Tier 1 Rotation tier - built 2026-07-07 (`Tier1_Rotation_v1_import.txt`)
+
+| Slot (mask position) | Content | Opportunity type | Trigger | Status |
+|---|---|---|---|---|
+| Tier 1 slot Rotation (-107.5, -130, 40x30 icon) | Blood DoT (800772) - name TBC | `cooldown_tracker_icon` + `glow_source` (`target_debuff_presence`) | T1: spell / `Cooldown Progress (Spell)` / 800772; T2: `aura2` / `unit: target` / `debuffType: HARMFUL` / `auraspellids: ['800772']` / `ownOnly: true` | Built, round-trip verified. Modeled on Reaper's Murder. Single ID (800772) fills both the pressed-ability and target-debuff roles (Battlewrath validated in-game: "the target aspect catches the ID being seen twice"). **First pipeline build of `target_debuff_presence`** (capability was formalized from Murder's real capture but only ever hand-built before) - not yet re-tested in-game in this built form. Display name is a placeholder; real spell name to confirm. |
+
+**Glow**: Pixel subglow, color `#FF6666` (`[1.0, 0.4, 0.4, 1]`,
+`DEBUFF_GLOW_COLOR`) - a brighter/whiter red per Battlewrath ("Purple is
+for necro/reaper"), toggled by a single auto-reverting condition
+(`trigger 2 show==1 -> sub.4.glow: true`). Tunable in-game.
+
+**Verification method**: `layer_builder.py Bloodmage Bloodmage/inventory.py
+"Tier 1 Rotation"` -> `Tier1_Rotation_v1_import.txt`, decoded via
+`weakaura_codec.decode_group_import_string` and spot-checked: 1 child,
+`controlledChildren` matches; icon at (-107.5, -130) 40x30; trigger 1 is
+Cooldown Progress on 800772; trigger 2 is `aura2 unit:target` debuff 800772
+(`ownOnly`); the 4 subRegions resolve `sub.4` to the Pixel glow with color
+`[1, 0.4, 0.4, 1]`, and the lone condition (`trigger 2 show==1 ->
+sub.4.glow`) points at exactly that subglow (index confirmed, the one
+thing that could have silently mis-addressed).
 
 ## Escalations raised this pass
 
@@ -66,6 +88,15 @@ no new opportunity_type, no new fragment, no bespoke Lua, per
 `../AGENT_ROLES.md`'s class-implementer scope. The health-as-resource
 mechanic that would once have been an escalation was pre-formalized as
 `health_slot()` specifically so this pass could consume it directly.
+
+The Tier 1 Rotation build (800772) likewise used only existing capabilities
+(`cooldown_tracker_icon` + `glow_source`'s `target_debuff_presence`
+opportunity type). It IS the first time `target_debuff_presence` has been
+built through the `inventory.py` pipeline (formalized from Reaper's Murder
+capture but only ever hand-built before) - noted, not an escalation: the
+capability already exists in the REGISTRY/fragments and `template_filler.py`
+handles it. Flag for the core thread only as "now pipeline-exercised once,
+pending in-game re-test."
 
 ## Not yet built
 
@@ -82,6 +113,11 @@ mechanic that would once have been an escalation was pre-formalized as
   raise a gap report per `../AGENT_ROLES.md` if any needs a below-35%-HP
   trigger or an "empowered at N stacks" threshold that isn't already a
   proven capability.
-- **Any Rotation/Buffs/Utility tier content** - Bloodmage's ability kit
-  hasn't been scoped for those tiers yet; Resources is the only layer built
-  so far, mirroring how Necromancer's and Reaper's builds started.
+- **Rest of Tier 1 Rotation** - 5 more icon slots exist in the row (x
+  -64.5 / -21.5 / 21.5 / 64.5 / 107.5, all y -130); only the leftmost
+  anchor (800772) is filled so far. Remaining rotation abilities not yet
+  scoped.
+- **Buffs/Utility tier content** - Bloodmage's ability kit hasn't been
+  scoped for those tiers yet.
+- **Spec stacking sub-resources** - still deferred (see the Resources-tier
+  "Not yet built" list above / `Bloodmage_fantasy_playstyle.md`).
