@@ -670,4 +670,21 @@ class-implementer pass.
 Designing an actual aura needs more context than the index alone gives you
 - what an ability's toolkit/talent status means, what a modifier talent
 actually does, real cooldown/duration numbers straight from the client.
-That's all in **[../Display/](../Displ
+That's all in **[../Display/](../Display/README.md)**:
+
+- The **class ability sheet** (`ability_sheets_all_classes.html`) is the
+  fastest way to look up a specific ability's real stats and confirm its
+  Toolkit-vs-Talents lane before deciding which opportunity type applies.
+- The **DBC-sourced abilities reference** pages show the full relationship
+  picture (what modifies/compounds on what) if you need to understand why
+  an ability behaves the way it does before building a tracker for it.
+
+## Not yet covered
+
+Resource-threshold alerts (e.g. "alert at 80 Runic Power") aren't an
+opportunity type yet - that needs the "Class Resource" primitive category
+from `Docs/PIPELINE.md`'s still-open synthesized-family work, not just a
+field filter. Revisit once that classification exists.
+
+Necromancer only so far - same rollout status as the DBC-sourced pipeline
+in Display.
