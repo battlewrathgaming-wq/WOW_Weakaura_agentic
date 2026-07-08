@@ -138,6 +138,18 @@ class-implementer pass.
   cadence not stress-tested, spec-aware auto-toggle deliberately deferred,
   pet/guardian/totem stays a two-way not three-way split) - see its own
   README for the full trail.
+- **[COA_IDENTITY_INDEX_PROPOSAL.md](COA_IDENTITY_INDEX_PROPOSAL.md)**
+  (2026-07-08, proposal only, not started) - grew out of a GuardianPlates
+  design conversation about spawning genuinely per-entity WeakAuras rows
+  (keyed by GUID, not unit token) for things WeakAuras can't track on its
+  own - pets/guardians/totems whose frame slot gets recycled out from
+  under a naive tracker. Proposes a separate addon in the same family: a
+  GUID-keyed claims index fed by nameplate events, direct unit-token
+  polling, and combat log, in that order - each tier used only where a
+  cheaper one can't already answer the question ("don't infer from
+  streams what the API can already flatten"), with a phased build order
+  so persistent off-screen pet tracking (the actual stated goal) ships
+  before any totem/combat-log work is even started.
 - **[Tools/PaneBoard/README.md](Tools/PaneBoard/README.md)** (2026-07-10)
   - an in-house, standalone Electron app for visually sketching HUD slot
   layout/intent - a duplicated, independently-owned fork of a tool called
@@ -658,21 +670,4 @@ class-implementer pass.
 Designing an actual aura needs more context than the index alone gives you
 - what an ability's toolkit/talent status means, what a modifier talent
 actually does, real cooldown/duration numbers straight from the client.
-That's all in **[../Display/](../Display/README.md)**:
-
-- The **class ability sheet** (`ability_sheets_all_classes.html`) is the
-  fastest way to look up a specific ability's real stats and confirm its
-  Toolkit-vs-Talents lane before deciding which opportunity type applies.
-- The **DBC-sourced abilities reference** pages show the full relationship
-  picture (what modifies/compounds on what) if you need to understand why
-  an ability behaves the way it does before building a tracker for it.
-
-## Not yet covered
-
-Resource-threshold alerts (e.g. "alert at 80 Runic Power") aren't an
-opportunity type yet - that needs the "Class Resource" primitive category
-from `Docs/PIPELINE.md`'s still-open synthesized-family work, not just a
-field filter. Revisit once that classification exists.
-
-Necromancer only so far - same rollout status as the DBC-sourced pipeline
-in Display.
+That's all in **[../Display/](../Displ
