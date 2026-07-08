@@ -5,7 +5,7 @@ friendly PLAYER nameplates while leaving friendly guardian/pet/NPC
 nameplates untouched, whenever the game's native "Friendly Nameplates"
 option shows them - fills a real gap, since there is no stock
 `nameplateShowFriendlyPlayers` CVar. Built 2026-07 as a low-risk
-theorycraft companion addon, currently v2.1.
+theorycraft companion addon, currently v2.2.
 
 v2.0 (2026-07-08) adds an optional, independent threat-coloring capability
 for ENEMY nameplates - the first of three "light capability" additions
@@ -24,6 +24,22 @@ friendly players in your group/raid, suppression behaves as normal until
 their health drops below a threshold, at which point their plate is
 revealed (full health bar + a new %HP readout) and held open via a TTL to
 avoid flicker. See the "Healer mode" bullet below for the full mechanism.
+
+v2.2 (2026-07-08) is an internal-only refactor, no user-facing behavior
+change: a single `unitIndex` table (plate reference + `UnitGUID` + last-seen
+timestamp) replaces the old plate-only cache, and every plate's sibling
+region list (health bar, portrait, cast bar, level text, etc.) is now cached
+on the plate's container and refreshed on the existing 0.5s reclassify
+cadence instead of being re-queried via `GetChildren()`/`GetRegions()` every
+single rendered frame for every suppressed unit. Prompted by a design
+discussion about whether the addon's per-frame "hide, then reapply"
+suppression loop was doing more work than necessary - it was, specifically
+in that re-query - see the "Sibling cache" and "Unit index" bullets below.
+Kept deliberately internal (no WeakAuras-facing API yet, per Battlewrath:
+"Weak aura need first... DOT/HOT tracking... that'll be internal to the
+addon") - the GUID field exists now so a future internal HoT/DoT tracker
+has a stable per-entity identity to key off, since a pooled nameplate frame
+can get reassigned to a different occupant mid-fight.
 
 Brought into this project folder 2026-07-08 as its source of truth - it
 previously only existed in the deployed game install with no project-folder
@@ -65,7 +81,7 @@ place.
 - Nameplate frames on this client are pooled and reused across unrelated
   units - `RestorePlateOnRemoved()` explicitly restores a plate's true
   native state before bookkeeping is wiped, using a cached plate reference
-  (`platesByUnit`) as a fallback since `GetNamePlateForUnit(unit)` was
+  (`unitIndex`) as a fallback since `GetNamePlateForUnit(unit)` was
   confirmed (20/20 live events) to never resolve directly by the time
   `NAME_PLATE_UNIT_REMOVED` actually fires on this client.
 - **Threat coloring (v2.0)**, its own independent tri-state capability
@@ -99,6 +115,26 @@ place.
   throttle) - this is what prevents a HoT tick bouncing HP across the line
   from turning into a flicker show. Event-driven off `UNIT_HEALTH`/
   `UNIT_MAXHEALTH`, not polled - no meaningful processing cost.
+- **Unit index (v2.2)**, internal only - a single `unitIndex` table
+  (`IndexUnit`/`GetIndexedPlate`/`GetUnitGUID`) replacing the old
+  plate-only cache, populated on every `UpdatePlateForUnit` pass (ADDED +
+  0.5s reclassify). Adds a real `UnitGUID(unit)` field alongside the plate
+  reference - GUID is stable per-entity even when a pooled nameplate frame
+  gets reassigned to a different occupant, unlike the unit token itself,
+  which matters for any future internal consumer (a HoT/DoT tracker) that
+  needs to keep tracking the same entity across a frame reassignment. No
+  WeakAuras-facing API yet - kept internal per Battlewrath's call.
+- **Sibling cache (v2.2)** - the plate's non-name sibling regions (health
+  bar, portrait, cast bar, level text, etc.) used to be re-queried via
+  `GetChildren()`/`GetRegions()` from scratch on every single rendered
+  frame, for every currently suppressed unit, just to hide the same set of
+  regions over and over. Since a pooled frame's structural children are
+  fixed by its XML template, the sibling list is now cached on the
+  container itself (`RefreshSiblingsCache`/`GetSiblings`, mirroring the
+  existing `coagpHealAlertText` caching pattern) and only recomputed on
+  the 0.5s reclassify cadence rather than every frame - the every-frame
+  suppression loop just reads the cached list. Bounded staleness window
+  (0.5s), not unbounded: see known open item below.
 
 ## Commands
 
@@ -168,3 +204,10 @@ place.
    easy-to-trigger threshold (`/coagp healermode threshold 95`), and watch
    whether the reveal holds/collapses at the expected cadence before
    trusting the defaults blind.
+6. **Sibling cache (v2.2) staleness window not yet live-tested.** If this
+   client ever lazily creates a new child region on a plate after the last
+   0.5s refresh (e.g. a raid-icon texture that only appears once actually
+   assigned), it would go unhidden on a suppressed plate until the next
+   refresh window - bounded, not silent-forever, but worth watching for if
+   anything unexpected shows up on an otherwise-suppressed plate. Not
+   observed yet; flagged proactively based on how the cache is built.

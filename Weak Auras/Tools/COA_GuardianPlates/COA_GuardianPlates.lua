@@ -153,7 +153,7 @@
 -- client actually severs the unit<->plate association before running our
 -- handler, that lookup returns nil and the "restore" silently no-ops -
 -- meaning v1 may have done nothing at all. Fixed by caching every plate
--- reference we successfully resolve (`platesByUnit`, populated in
+-- reference we successfully resolve (`unitIndex`, populated in
 -- UpdatePlateForUnit) and falling back to that cached Lua object reference
 -- in RestorePlateOnRemoved if the direct lookup fails - a plain Frame
 -- reference stays valid even after the client-side association is torn
@@ -328,15 +328,51 @@ local activeUnits = {}
 -- their classification ever changes (e.g. a mind-control edge case).
 local suppressed = {}
 
--- unit token -> plate object, cached every time we successfully resolve
--- one via GetNamePlateForUnit. Exists because GetNamePlateForUnit(unit)
+-- UNIT INDEX (v2.2, 2026-07-08) - a single standard record per tracked
+-- unit: unit token -> { plate, guid, lastSeen }. Replaces the old
+-- platesByUnit-only cache (same original purpose: GetNamePlateForUnit(unit)
 -- may already fail to resolve by the time NAME_PLATE_UNIT_REMOVED fires -
 -- the unit-to-plate association can be torn down before our REMOVED
 -- handler runs, in which case a fresh lookup returns nil and any restore
 -- logic keyed off it silently no-ops. This cache gives RestorePlateOnRemoved
 -- a fallback: the plate is just a Lua Frame reference, so it stays valid
--- even after the client severs the unit<->plate association.
-local platesByUnit = {}
+-- even after the client severs the unit<->plate association), plus a real
+-- GUID field. Battlewrath's brief: a "standard utility" for the addon to
+-- reduce repeat calls and make GUID available for later internal use
+-- (e.g. a future HoT/DoT tracker) - GUID matters specifically because it's
+-- stable per-entity even when a pooled nameplate frame gets reassigned to
+-- a different occupant, unlike the unit token itself. Kept internal to
+-- this addon only for now (no WeakAuras-facing API) - Battlewrath: "Weak
+-- aura need first... DOT/HOT tracking... that'll be internal to the
+-- addon."
+local unitIndex = {}
+
+-- Populates/refreshes a unit's index record. Called from UpdatePlateForUnit
+-- (both on NAME_PLATE_UNIT_ADDED and every 0.5s reclassify sweep), so the
+-- GUID and plate reference stay current without needing their own
+-- separate event wiring.
+local function IndexUnit(unit, plate)
+    local okGuid, guid = pcall(UnitGUID, unit)
+    unitIndex[unit] = {
+        plate = plate,
+        guid = okGuid and guid or nil,
+        lastSeen = GetTime(),
+    }
+end
+
+-- Read helpers - small, but these are the two things a future internal
+-- consumer (a HoT/DoT tracker, say) would actually want out of the index,
+-- so they get named accessors rather than callers reaching into
+-- unitIndex[unit] directly everywhere.
+local function GetIndexedPlate(unit)
+    local entry = unitIndex[unit]
+    return entry and entry.plate
+end
+
+local function GetUnitGUID(unit)
+    local entry = unitIndex[unit]
+    return entry and entry.guid
+end
 
 local function IsFriendlyPlayer(unit)
     if not unit or not UnitExists(unit) then return false end
@@ -722,7 +758,7 @@ local function DisarmThreatColors()
         if originalThreatColors[unit] then
             local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
             if not ok or not plate then
-                plate = platesByUnit[unit]
+                plate = GetIndexedPlate(unit)
             end
             if plate then
                 local healthBar = GetHealthBar(plate)
@@ -748,6 +784,60 @@ local function SetThreatMode(mode)
     end
 end
 
+-- SIBLING CACHE (v2.2, 2026-07-08) - GetChildren()/GetRegions() were being
+-- re-queried from scratch every single rendered frame, for every currently
+-- suppressed unit, just to hide the same set of regions over and over
+-- (ReapplySuppressed calls SetPlateBarsHidden every frame to win the race
+-- against the native driver's own per-frame alpha recompute - see the
+-- CONFIRMED LIVE note further down). Those two calls return every result
+-- as loose varargs that then get packed into a fresh table each time -
+-- real, avoidable cost at that frequency. A pooled nameplate frame's
+-- structural children are fixed by its XML template - only the OCCUPANT
+-- changes, not the container's own child/region list - so the sibling set
+-- is cached directly on the container the first time it's resolved
+-- (mirrors the existing coagpHealAlertText caching pattern on the same
+-- container) and only recomputed on the 0.5s reclassify cadence
+-- (RefreshSiblingsCache, called from UpdatePlateForUnit) rather than every
+-- frame. Every-frame callers (ReapplySuppressed) just read the cached list.
+-- NOT YET LIVE-TESTED: if this client ever lazily creates a new child
+-- region on a plate after the last refresh (e.g. a raid-icon texture that
+-- only appears once actually assigned), it would go unhidden until the
+-- next 0.5s refresh window - a bounded staleness, not a silent-forever
+-- one, but worth watching for if anything unexpected shows up on an
+-- otherwise-suppressed plate.
+local function RefreshSiblingsCache(container, nameRegion)
+    local siblings = {}
+
+    -- GetChildren()/GetRegions() return every result as separate values,
+    -- not a single table - pack them all via {...} so none get dropped.
+    local childResults = { pcall(container.GetChildren, container) }
+    if childResults[1] then
+        for i = 2, #childResults do
+            local child = childResults[i]
+            if child and child ~= nameRegion then
+                table.insert(siblings, child)
+            end
+        end
+    end
+
+    local regionResults = { pcall(container.GetRegions, container) }
+    if regionResults[1] then
+        for i = 2, #regionResults do
+            local region = regionResults[i]
+            if region and region ~= nameRegion then
+                table.insert(siblings, region)
+            end
+        end
+    end
+
+    container.coagpSiblings = siblings
+    return siblings
+end
+
+local function GetSiblings(container, nameRegion)
+    return container.coagpSiblings or RefreshSiblingsCache(container, nameRegion)
+end
+
 -- Hides every sibling of the name region (health bar, portrait, border,
 -- cast bar, etc.) while explicitly keeping the name itself at alpha 1, so
 -- the floating name stays visible even while the rest of the plate is
@@ -759,26 +849,8 @@ local function SetPlateBarsHidden(plate, hidden)
         return false
     end
 
-    -- GetChildren()/GetRegions() return every result as separate values,
-    -- not a single table - pack them all via {...} so none get dropped.
-    local childResults = { pcall(container.GetChildren, container) }
-    if childResults[1] then
-        for i = 2, #childResults do
-            local child = childResults[i]
-            if child and child ~= nameRegion then
-                pcall(child.SetAlpha, child, hidden and 0 or 1)
-            end
-        end
-    end
-
-    local regionResults = { pcall(container.GetRegions, container) }
-    if regionResults[1] then
-        for i = 2, #regionResults do
-            local region = regionResults[i]
-            if region and region ~= nameRegion then
-                pcall(region.SetAlpha, region, hidden and 0 or 1)
-            end
-        end
+    for _, region in ipairs(GetSiblings(container, nameRegion)) do
+        pcall(region.SetAlpha, region, hidden and 0 or 1)
     end
 
     pcall(nameRegion.SetAlpha, nameRegion, 1)
@@ -811,7 +883,18 @@ local function UpdatePlateForUnit(unit)
     local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
     if not ok or not plate then return end
 
-    platesByUnit[unit] = plate
+    pcall(IndexUnit, unit, plate)
+
+    -- Sibling cache (v2.2): UpdatePlateForUnit is the natural "authoritative
+    -- recheck" point for a unit (called on NAME_PLATE_UNIT_ADDED and every
+    -- 0.5s reclassify sweep), so force a fresh sibling-list requery here
+    -- rather than trusting whatever's cached indefinitely - bounds the
+    -- staleness window described in the SIBLING CACHE note above to 0.5s
+    -- instead of "however long this plate happens to stay suppressed."
+    local nameRegionForCache, containerForCache = GetNameRegion(plate)
+    if nameRegionForCache and containerForCache then
+        pcall(RefreshSiblingsCache, containerForCache, nameRegionForCache)
+    end
 
     -- Healer mode (v2.1): a group/raid member currently below the HP
     -- threshold still counts as "suppressed" here (shouldSuppress stays
@@ -952,7 +1035,7 @@ local function DisarmGuardianColors()
         if originalColors[unit] or originalNameColors[unit] then
             local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
             if not ok or not plate then
-                plate = platesByUnit[unit]
+                plate = GetIndexedPlate(unit)
             end
 
             if plate then
@@ -1045,10 +1128,10 @@ local function RestorePlateOnRemoved(unit)
     if ok and resolved then
         plate = resolved
         resolvedDirectly = true
-    elseif platesByUnit[unit] then
+    elseif GetIndexedPlate(unit) then
         -- Direct lookup failed - fall back to our cached reference from
         -- the last time this unit's plate was successfully resolved.
-        plate = platesByUnit[unit]
+        plate = GetIndexedPlate(unit)
         resolvedViaCache = true
     end
 
@@ -1104,6 +1187,25 @@ local function RestorePlateOnRemoved(unit)
     end
 end
 
+-- Every per-unit tracking table this addon maintains, cleared from this
+-- one place whenever a unit's plate goes away (NAME_PLATE_UNIT_REMOVED).
+-- Centralized specifically so "good hygiene on clearing stale records"
+-- doesn't depend on remembering to touch N different tables by hand - a
+-- future capability that adds its own per-unit table only has to be wired
+-- in here once, rather than risking the same forgot-to-clear leak that
+-- caused the pooled-frame color bug earlier in this file's history
+-- (SANITATION FIX / SANITATION FIX v2 above).
+local function ClearUnitState(unit)
+    activeUnits[unit] = nil
+    suppressed[unit] = nil
+    originalColors[unit] = nil
+    originalNameColors[unit] = nil
+    originalThreatColors[unit] = nil
+    healAlerted[unit] = nil
+    healAlertExpire[unit] = nil
+    unitIndex[unit] = nil
+end
+
 local eventFrame = CreateFrame("Frame")
 eventFrame:RegisterEvent("NAME_PLATE_UNIT_ADDED")
 eventFrame:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
@@ -1133,14 +1235,7 @@ eventFrame:SetScript("OnEvent", function(self, event, unit)
         pcall(UpdateHealAlertForUnit, unit)
     elseif event == "NAME_PLATE_UNIT_REMOVED" then
         pcall(RestorePlateOnRemoved, unit)
-        activeUnits[unit] = nil
-        suppressed[unit] = nil
-        originalColors[unit] = nil
-        originalNameColors[unit] = nil
-        originalThreatColors[unit] = nil
-        healAlerted[unit] = nil
-        healAlertExpire[unit] = nil
-        platesByUnit[unit] = nil
+        ClearUnitState(unit)
     elseif event == "UNIT_THREAT_SITUATION_UPDATE" or event == "UNIT_THREAT_LIST_UPDATE" then
         if COA_GuardianPlatesDB.threatMode and COA_GuardianPlatesDB.threatMode > 0 and unit then
             local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
