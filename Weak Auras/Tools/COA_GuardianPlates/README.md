@@ -5,7 +5,7 @@ friendly PLAYER nameplates while leaving friendly guardian/pet/NPC
 nameplates untouched, whenever the game's native "Friendly Nameplates"
 option shows them - fills a real gap, since there is no stock
 `nameplateShowFriendlyPlayers` CVar. Built 2026-07 as a low-risk
-theorycraft companion addon, currently v2.2.1.
+theorycraft companion addon, currently v2.2.2.
 
 v2.0 (2026-07-08) adds an optional, independent threat-coloring capability
 for ENEMY nameplates - the first of three "light capability" additions
@@ -58,6 +58,44 @@ content). That class of bug - the addon still "registers" enough to
 appear enabled, but the real `.lua` never loads at all, so nothing it
 does actually happens - is exactly why file changes on this project get
 verified byte-for-byte, not just diffed for consistency between copies.
+
+v2.2.2 (2026-07-08), built directly from a full logical-coherence code
+review (function call graph, per-unit table lifecycle, event flow,
+sibling-cache/unit-index invalidation, healer-mode state machine, DB field
+spelling): fixes a real bug the review found - toggling `healerModeEnabled`
+off (checkbox or `/coagp healermode off`) never cleared already-armed
+`healAlerted`/`healAlertExpire` state, since `SweepHealAlertExpirations`
+(the only code that clears it) refuses to run at all once the feature is
+off. A revealed plate could stay revealed indefinitely until its nameplate
+happened to despawn. Fixed with a new shared `SetHealerModeEnabled`
+function (mirroring `SetEnabled`/`SetThreatMode`'s shape, same internal-
+utility tier as `unitIndex`) that both the checkbox and slash command now
+route through, actively collapsing back to normal suppression on disable
+instead of waiting on a TTL or despawn - per Battlewrath's framing:
+"Turning something off shouldn't lead to more work because it was on.
+Instead letting the base line behaviour take over." Same commit also
+normalizes a smaller asymmetry the review flagged: `ApplyGuardianColorForUnit`
+now nils `originalColors`/`originalNameColors` after restoring a unit's
+native color (mirroring how `ApplyThreatColorForUnit` already did), so a
+future re-override always starts from a fresh capture.
+
+CONFIRMED LIVE (Battlewrath, 2026-07-08): switching Healer Mode off while a
+unit is currently revealed collapses that plate back to normal suppression
+immediately - no stuck-open plates observed. Same session also confirmed
+the v2.2.1 "bar only, let upstream handle presentation" design directly:
+toggling the HP-value display in Ascension's own nameplate settings on/off
+was reflected correctly in GuardianPlates' reveal, confirming the addon
+really does draw nothing of its own on top of the native bar - whatever
+Ascension is configured to show is what shows.
+
+FLAGGED, not settled: this confirms the CURRENT mechanism (per-toggle
+shared setters - `SetEnabled`/`SetThreatMode`/`SetHealerModeEnabled` - each
+forcing an immediate collapse to baseline on disable) works as tested. It
+is not being treated as finished/final architecture - `SetHealerModeEnabled`
+in particular was built from a code-review finding without first agreeing
+on its shape as a shared utility with Battlewrath, and remains open to
+reconsideration/rewrite once that design conversation actually happens,
+rather than locked in just because it passed this test.
 
 Brought into this project folder 2026-07-08 as its source of truth - it
 previously only existed in the deployed game install with no project-folder
@@ -230,3 +268,11 @@ place.
    refresh window - bounded, not silent-forever, but worth watching for if
    anything unexpected shows up on an otherwise-suppressed plate. Not
    observed yet; flagged proactively based on how the cache is built.
+7. **`SetHealerModeEnabled` (v2.2.2) confirmed live, but not settled
+   design.** Live-tested: switching Healer Mode off while a unit is
+   currently revealed collapses that plate back to normal suppression
+   immediately, no stuck-open plates observed. That said, this function
+   was built from a code-review finding without first agreeing its shape
+   as a shared utility with Battlewrath - it works, but stays open to
+   reconsideration/rewrite once that design conversation actually happens,
+   rather than being treated as finished just because it passed this test.

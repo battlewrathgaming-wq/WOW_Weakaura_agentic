@@ -624,6 +624,11 @@ local function ApplyGuardianColorForUnit(unit, plate)
         elseif originalColors[unit] then
             local c = originalColors[unit]
             pcall(healthBar.SetStatusBarColor, healthBar, c.r, c.g, c.b)
+            -- Once restored, forget the capture (mirrors ApplyThreatColorForUnit's
+            -- equivalent branch below) - baseline is baseline again, so a future
+            -- override starts from a fresh capture rather than "restoring" an
+            -- already-restored value indefinitely.
+            originalColors[unit] = nil
         end
     end
 
@@ -639,6 +644,7 @@ local function ApplyGuardianColorForUnit(unit, plate)
         elseif originalNameColors[unit] then
             local c = originalNameColors[unit]
             pcall(nameRegion.SetTextColor, nameRegion, c.r, c.g, c.b)
+            originalNameColors[unit] = nil
         end
     end
 end
@@ -1054,6 +1060,33 @@ local function SetEnabled(enabled)
         end
         wipe(suppressed)
         pcall(DisarmGuardianColors)
+    end
+end
+
+-- BUGFIX (code-review-found, not yet live-observed): healerModeEnabled had
+-- no equivalent shared setter - the options checkbox and the slash command
+-- each just inlined `COA_GuardianPlatesDB.healerModeEnabled = ...` directly,
+-- same class of utility gap `unitIndex` fixed for plate/GUID lookups, but
+-- here for the enable/disable path itself. Consequence: SweepHealAlertExpirations
+-- (the only code that ever clears healAlerted/healAlertExpire) hard-returns
+-- immediately if healerModeEnabled is false - so any unit already revealed
+-- at the moment Healer Mode was switched off stayed revealed indefinitely,
+-- until that unit's plate happened to despawn. Battlewrath's framing:
+-- "Turning something off shouldn't lead to more work because it was on.
+-- Instead letting the base line behaviour take over." Fixed the same way
+-- SetEnabled above already handles its own on/off transition: one shared
+-- setter, used by both the checkbox and the slash command, that actively
+-- collapses back to baseline on disable rather than waiting for a TTL or a
+-- despawn to do it eventually. Mirrors SetEnabled/SetThreatMode's shape -
+-- same utility tier as unitIndex, per Battlewrath's own framing.
+local function SetHealerModeEnabled(enabled)
+    COA_GuardianPlatesDB.healerModeEnabled = enabled and true or false
+    if not COA_GuardianPlatesDB.healerModeEnabled then
+        wipe(healAlerted)
+        wipe(healAlertExpire)
+        for unit in pairs(activeUnits) do
+            pcall(UpdatePlateForUnit, unit)
+        end
     end
 end
 
@@ -1519,7 +1552,7 @@ if okHealerLabel and healerModeCheckboxLabel then
 end
 healerModeCheckbox:SetChecked(COA_GuardianPlatesDB.healerModeEnabled and true or false)
 healerModeCheckbox:SetScript("OnClick", function(self)
-    COA_GuardianPlatesDB.healerModeEnabled = self:GetChecked() and true or false
+    SetHealerModeEnabled(self:GetChecked() and true or false)
 end)
 
 -- Guardian/pet/NPC color override - optional cosmetic recolor. Tints BOTH
@@ -1718,7 +1751,7 @@ SlashCmdList["COAGUARDIANPLATES"] = function(msg)
         Print("Threat coloring: " .. THREAT_MODE_LABELS[COA_GuardianPlatesDB.threatMode or 0])
     elseif cmd == "healermode on" or cmd == "healermode off" then
         local arg = cmd:match("^healermode%s+(%S+)$")
-        COA_GuardianPlatesDB.healerModeEnabled = (arg == "on")
+        SetHealerModeEnabled(arg == "on")
         if healerModeCheckbox then
             healerModeCheckbox:SetChecked(COA_GuardianPlatesDB.healerModeEnabled)
         end
