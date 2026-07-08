@@ -231,17 +231,22 @@
 -- (IsGroupOrRaidFriendlyPlayer), suppression behaves exactly as normal
 -- (name-only) until that unit's health drops below
 -- COA_GuardianPlatesDB.healerModeThreshold (default 80%) - at that point
--- the plate's health bar becomes visible alongside the name, plus a new
--- %HP FontString (GetOrCreateHealAlertText), since nameplates don't ship
--- a health-percent readout natively. This is a PARTIAL reveal
--- (ApplyHealAlertRevealState), not a full unsuppress - level text,
--- portrait, cast bar, and everything else stays hidden. Live-test
--- feedback, Battlewrath: "The only thing I would omit from the healer
--- display is the target's level element. It's just the health bar we
--- want." Every friendly player NOT in your group/raid is untouched by
+-- the plate's health bar becomes visible alongside the name. This is a
+-- PARTIAL reveal (ApplyHealAlertRevealState), not a full unsuppress -
+-- level text, portrait, cast bar, and everything else stays hidden.
+-- Live-test feedback, Battlewrath: "The only thing I would omit from the
+-- healer display is the target's level element. It's just the health bar
+-- we want." Every friendly player NOT in your group/raid is untouched by
 -- this - Battlewrath was explicit this is about "who needs attention,"
 -- not a general "show all ally health" toggle, and showing every friendly
 -- player's health in a city would just be noise.
+--
+-- An earlier revision (v2.1.1-v2.2) also drew a custom %HP FontString on
+-- top of the revealed bar, computed from UnitHealth/UnitHealthMax, since
+-- nameplates don't ship a health-percent readout natively. That was
+-- removed per Battlewrath's live-test call: "Bar only. Then let upstream
+-- handle how it is presented." - the reveal shows only the real native
+-- health bar; no addon-drawn text sits on top of it.
 --
 -- ANTI-FLICKER TTL (Battlewrath, verbatim: "Hang open with a TTL... then
 -- collapse back down... It's intent is to filter who needs attention vs
@@ -533,12 +538,28 @@ local function GetHealthBar(plate)
 end
 
 -- ---------------------------------------------------------------------
--- Healer mode (v2.1) - state + the %HP text overlay. See the v2.1 HEALER
--- MODE doc block near the top of this file for the full design.
+-- Healer mode (v2.1) - state. See the v2.1 HEALER MODE doc block near the
+-- top of this file for the full design.
+--
+-- DESIGN CHANGE (live-test, Battlewrath, 2026-07-08): v2.1.1 through v2.2
+-- carried a custom %HP FontString (GetOrCreateHealAlertText/
+-- GetHealAlertText) drawn on top of the revealed health bar, computed
+-- independently from UnitHealth/UnitHealthMax, because nameplates don't
+-- ship a health-percent readout natively. Live-testing surfaced a real
+-- bug where that text's alpha got zeroed by the sibling-hide sweep and
+-- never restored ("I haven't been able to see the HP text"). Rather than
+-- ship the fix, Battlewrath's call was to drop the custom text entirely:
+-- "Bar only. Then let upstream handle how it is presented." - i.e. reveal
+-- only the plate's real native health bar (whose fill IS the true HP,
+-- drawn by the game itself) and let Ascension's own nameplate styling own
+-- however HP is presented from there, consistent with this addon's
+-- overall "redraw around behaviours, don't own styling" architecture.
+-- The functions that created/looked up that FontString are gone; only the
+-- alert timing state below remains.
 -- ---------------------------------------------------------------------
 
 -- unit token -> true while this group/raid member's plate is currently
--- revealed (un-suppressed + %HP text shown) due to dropping below
+-- revealed (un-suppressed health bar only) due to dropping below
 -- healerModeThreshold. Cleared on NAME_PLATE_UNIT_REMOVED like every
 -- other per-unit table.
 local healAlerted = {}
@@ -550,40 +571,6 @@ local healAlerted = {}
 -- what gives the anti-flicker "hang open with a TTL" behavior instead of
 -- an instant collapse the moment a heal lands.
 local healAlertExpire = {}
-
--- Looks up (without creating) the %HP FontString already attached to a
--- plate's container, or nil if none exists yet. Used by cleanup paths
--- that only need to hide an existing text, not conjure a new one just to
--- immediately hide it.
-local function GetHealAlertText(plate)
-    local _, container = GetNameRegion(plate)
-    container = container or plate
-    return container and container.coagpHealAlertText
-end
-
--- Lazily creates (once per pooled plate) a small FontString showing HP%,
--- centered on the health bar. Nameplates don't ship one of these
--- natively, unlike the name FontString GetNameRegion() already finds.
--- Cached directly on the plate's container so it survives pooled-frame
--- reuse safely - mirrors TurboPlates' own EnsureHealerIcon pattern
--- (create once, Hide() by default, only Show() when actually relevant).
-local function GetOrCreateHealAlertText(plate)
-    local _, container = GetNameRegion(plate)
-    container = container or plate
-    if not container then return nil end
-    if container.coagpHealAlertText then
-        return container.coagpHealAlertText
-    end
-
-    local healthBar = GetHealthBar(plate)
-    if not healthBar then return nil end
-
-    local text = container:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-    text:SetPoint("CENTER", healthBar, "CENTER", 0, 0)
-    text:Hide()
-    container.coagpHealAlertText = text
-    return text
-end
 
 -- unit token -> {r,g,b} native color, captured the first time we override
 -- a given unit's health bar color this occupancy (cleared on
@@ -794,17 +781,24 @@ end
 -- real, avoidable cost at that frequency. A pooled nameplate frame's
 -- structural children are fixed by its XML template - only the OCCUPANT
 -- changes, not the container's own child/region list - so the sibling set
--- is cached directly on the container the first time it's resolved
--- (mirrors the existing coagpHealAlertText caching pattern on the same
--- container) and only recomputed on the 0.5s reclassify cadence
--- (RefreshSiblingsCache, called from UpdatePlateForUnit) rather than every
--- frame. Every-frame callers (ReapplySuppressed) just read the cached list.
+-- is cached directly on the container the first time it's resolved and
+-- only recomputed on the 0.5s reclassify cadence (RefreshSiblingsCache,
+-- called from UpdatePlateForUnit) rather than every frame. Every-frame
+-- callers (ReapplySuppressed) just read the cached list.
 -- NOT YET LIVE-TESTED: if this client ever lazily creates a new child
 -- region on a plate after the last refresh (e.g. a raid-icon texture that
 -- only appears once actually assigned), it would go unhidden until the
 -- next 0.5s refresh window - a bounded staleness, not a silent-forever
 -- one, but worth watching for if anything unexpected shows up on an
 -- otherwise-suppressed plate.
+--
+-- NOTE: an earlier version of healer mode also had a container-level
+-- FontString (coagpHealAlertText) that needed excluding here, since it
+-- was itself a sibling region prone to being swept to alpha 0. That
+-- element has since been removed entirely (see the v2.1 HEALER MODE
+-- design note above UpdateHealAlertForUnit) - the reveal only ever
+-- touches the real health bar now, so no exclusion beyond nameRegion is
+-- needed.
 local function RefreshSiblingsCache(container, nameRegion)
     local siblings = {}
 
@@ -946,12 +940,12 @@ end
 -- ---------------------------------------------------------------------
 
 -- Recomputes heal-alert state for a single group/raid friendly-player
--- unit and re-derives suppression/the %HP text from it. Only ever ARMS
--- the alert (sets healAlerted[unit] = true and pushes healAlertExpire
--- forward) - clearing it is SweepHealAlertExpirations()'s job alone, so
--- the TTL's anti-flicker behavior (hold open until genuinely expired) is
--- never accidentally short-circuited by this function running again
--- while still above threshold.
+-- unit and re-derives suppression from it. Only ever ARMS the alert (sets
+-- healAlerted[unit] = true and pushes healAlertExpire forward) - clearing
+-- it is SweepHealAlertExpirations()'s job alone, so the TTL's anti-flicker
+-- behavior (hold open until genuinely expired) is never accidentally
+-- short-circuited by this function running again while still above
+-- threshold.
 local function UpdateHealAlertForUnit(unit)
     if not COA_GuardianPlatesDB.healerModeEnabled then return end
     if not COA_GuardianPlatesDB.enabled then return end -- sub-option of suppression
@@ -971,26 +965,15 @@ local function UpdateHealAlertForUnit(unit)
         healAlertExpire[unit] = GetTime() + ttl
     end
 
-    local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
-    if not ok or not plate then return end
-
     pcall(UpdatePlateForUnit, unit) -- re-derives suppression from healAlerted
-
-    if healAlerted[unit] then
-        local text = GetOrCreateHealAlertText(plate)
-        if text then
-            text:SetText(string.format("%d%%", math.floor(percent + 0.5)))
-            text:Show()
-        end
-    end
 end
 
 -- Throttled sweep (piggybacked on the existing 0.5s reclassifier below -
 -- no new per-frame cost) that's the ONLY thing allowed to clear a heal
 -- alert: only once health is back at/above threshold AND the TTL
--- timestamp has genuinely passed does the plate re-suppress and the %HP
--- text hide. This is what turns "threshold crossed" into "hang open,
--- then collapse" instead of an instant, flicker-prone toggle.
+-- timestamp has genuinely passed does the plate re-suppress. This is what
+-- turns "threshold crossed" into "hang open, then collapse" instead of an
+-- instant, flicker-prone toggle.
 local function SweepHealAlertExpirations()
     if not COA_GuardianPlatesDB.healerModeEnabled then return end
     local now = GetTime()
@@ -1009,12 +992,6 @@ local function SweepHealAlertExpirations()
             healAlertExpire[unit] = nil
 
             pcall(UpdatePlateForUnit, unit) -- re-suppresses now that healAlerted is clear
-
-            local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
-            if ok and plate then
-                local text = GetHealAlertText(plate)
-                if text then text:Hide() end
-            end
         end
     end
 end
@@ -1172,14 +1149,6 @@ local function RestorePlateOnRemoved(unit)
             end
         end
 
-        -- Healer mode (v2.1): hide (not recreate) any %HP text so a
-        -- pooled frame handed to an unrelated next occupant doesn't carry
-        -- a stale reveal-text leftover, same pooled-frame-safety
-        -- discipline as the suppression/color restores above.
-        if healAlerted[unit] then
-            local text = GetHealAlertText(plate)
-            if text then text:Hide() end
-        end
     end
 
     if suppressed[unit] or originalColors[unit] or originalNameColors[unit] or originalThreatColors[unit] or healAlerted[unit] then

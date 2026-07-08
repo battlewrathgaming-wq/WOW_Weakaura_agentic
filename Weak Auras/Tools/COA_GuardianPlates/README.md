@@ -5,7 +5,7 @@ friendly PLAYER nameplates while leaving friendly guardian/pet/NPC
 nameplates untouched, whenever the game's native "Friendly Nameplates"
 option shows them - fills a real gap, since there is no stock
 `nameplateShowFriendlyPlayers` CVar. Built 2026-07 as a low-risk
-theorycraft companion addon, currently v2.2.
+theorycraft companion addon, currently v2.2.1.
 
 v2.0 (2026-07-08) adds an optional, independent threat-coloring capability
 for ENEMY nameplates - the first of three "light capability" additions
@@ -21,9 +21,9 @@ v2.1 (2026-07-08) adds healer mode - not a fourth independent capability,
 but a sub-option of the existing suppression switch itself (Battlewrath's
 own correction: "Maybe this is a healer option to the suppression?"). For
 friendly players in your group/raid, suppression behaves as normal until
-their health drops below a threshold, at which point their plate is
-revealed (full health bar + a new %HP readout) and held open via a TTL to
-avoid flicker. See the "Healer mode" bullet below for the full mechanism.
+their health drops below a threshold, at which point their plate's health
+bar is revealed and held open via a TTL to avoid flicker. See the "Healer
+mode" bullet below for the full mechanism.
 
 v2.2 (2026-07-08) is an internal-only refactor, no user-facing behavior
 change: a single `unitIndex` table (plate reference + `UnitGUID` + last-seen
@@ -40,6 +40,24 @@ Kept deliberately internal (no WeakAuras-facing API yet, per Battlewrath:
 addon") - the GUID field exists now so a future internal HoT/DoT tracker
 has a stable per-entity identity to key off, since a pooled nameplate frame
 can get reassigned to a different occupant mid-fight.
+
+v2.2.1 (2026-07-08) removes the custom %HP `FontString` that v2.1.1-v2.2
+drew on top of the revealed health bar. Live-testing surfaced a real bug
+where its alpha got zeroed by the sibling-hide sweep and never restored
+("I haven't been able to see the HP text"), but rather than ship that fix,
+Battlewrath's call was to drop the custom text entirely: "Bar only. Then
+let upstream handle how it is presented." The reveal now shows only the
+plate's real native health bar - no addon-drawn text sits on top of it.
+
+Also caught before this commit: the `.toc` file's file-list line had lost
+its trailing "a" (`COA_GuardianPlates.lu` instead of `...lua`) during this
+same session's editing - confirmed via byte-level hex dump, not visible
+from a plain `cat`/`diff` check, since both showed the project and
+deployed copies matching each other (just matching each other's wrong
+content). That class of bug - the addon still "registers" enough to
+appear enabled, but the real `.lua` never loads at all, so nothing it
+does actually happens - is exactly why file changes on this project get
+verified byte-for-byte, not just diffed for consistency between copies.
 
 Brought into this project folder 2026-07-08 as its source of truth - it
 previously only existed in the deployed game install with no project-folder
@@ -96,13 +114,13 @@ place.
   tank, but the safe default for everyone else) - see
   `THREAT_COLOR_SECURE`/`_WARNING`/`_DANGER` in the file. Deliberately not
   gated behind the main on/off switch - its own capability, its own toggle.
-- **Healer mode (v2.1)**, a sub-option of suppression itself rather than an
-  independent capability - only ever does anything while the main on/off
-  switch is enabled. For a friendly player also in your party/raid
-  (`IsGroupOrRaidFriendlyPlayer` - everyone else stays untouched, to avoid
-  noise from players outside your group), suppression reveals just the
-  health bar (plus a new %HP `FontString`, `GetOrCreateHealAlertText`) the
-  moment health drops below `healerModeThreshold` (default 80%) -
+- **Healer mode (v2.1, reveal simplified in v2.2.1)**, a sub-option of
+  suppression itself rather than an independent capability - only ever does
+  anything while the main on/off switch is enabled. For a friendly player
+  also in your party/raid (`IsGroupOrRaidFriendlyPlayer` - everyone else
+  stays untouched, to avoid noise from players outside your group),
+  suppression reveals just the real native health bar the moment health
+  drops below `healerModeThreshold` (default 80%) -
   `ApplyHealAlertRevealState` is a PARTIAL reveal, not a full unsuppress:
   level text, portrait, cast bar, and everything else stays hidden
   (live-test feedback, Battlewrath: "The only thing I would omit from the
@@ -130,11 +148,10 @@ place.
   frame, for every currently suppressed unit, just to hide the same set of
   regions over and over. Since a pooled frame's structural children are
   fixed by its XML template, the sibling list is now cached on the
-  container itself (`RefreshSiblingsCache`/`GetSiblings`, mirroring the
-  existing `coagpHealAlertText` caching pattern) and only recomputed on
-  the 0.5s reclassify cadence rather than every frame - the every-frame
-  suppression loop just reads the cached list. Bounded staleness window
-  (0.5s), not unbounded: see known open item below.
+  container itself (`RefreshSiblingsCache`/`GetSiblings`) and only
+  recomputed on the 0.5s reclassify cadence rather than every frame - the
+  every-frame suppression loop just reads the cached list. Bounded
+  staleness window (0.5s), not unbounded: see known open item below.
 
 ## Commands
 
@@ -198,12 +215,14 @@ place.
    `UNIT_THREAT_LIST_UPDATE` events (near-real-time) plus the 0.5s
    reclassify sweep as a safety net, not a per-frame loop, on the
    (untested) assumption that's fast enough for this use case.
-5. **Healer mode (v2.1) not yet live-tested.** The reveal/collapse timing
-   (default 80% threshold, 4s TTL) is a first guess, not something watched
-   against a real heal/damage exchange yet. Group up, set a deliberately
-   easy-to-trigger threshold (`/coagp healermode threshold 95`), and watch
-   whether the reveal holds/collapses at the expected cadence before
-   trusting the defaults blind.
+5. **Healer mode (v2.1) reveal/collapse timing partially live-tested.**
+   Threshold detection, the level-omission fix (v2.1.1), and the v2.2.1
+   bar-only reveal (custom %HP text removed) are all confirmed working
+   live. The default 80%/4s values themselves are still a first guess, not
+   watched against a real heal/damage exchange yet - re-test with a
+   deliberately easy-to-trigger threshold (`/coagp healermode threshold
+   95`) to confirm the hold/collapse cadence feels right before trusting
+   the defaults blind.
 6. **Sibling cache (v2.2) staleness window not yet live-tested.** If this
    client ever lazily creates a new child region on a plate after the last
    0.5s refresh (e.g. a raid-icon texture that only appears once actually
