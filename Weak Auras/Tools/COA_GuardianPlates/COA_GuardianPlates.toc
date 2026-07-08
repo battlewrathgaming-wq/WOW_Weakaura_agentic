@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: COA Guardian Plates
+## Notes: Suppresses friendly PLAYER nameplates while leaving friendly guardian/pet/NPC nameplates visible, whenever the native Friendly Nameplates option shows them. Low-risk theorycraft companion addon for Conquest of Azeroth.
+## Author: Battlewrath
+## Version: 1.9
+## SavedVariablesPerCharacter: COA_GuardianPlatesDB
+
+COA_GuardianPlates.lua

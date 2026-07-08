@@ -124,6 +124,20 @@ class-implementer pass.
   fields on the custom `CoATalentFrame`'s own button widgets. This is the
   tool + method behind `necromancer_live_reference.json` below; read this
   first before repeating the capture for another class.
+- **[Tools/COA_GuardianPlates/README.md](Tools/COA_GuardianPlates/README.md)**
+  (built 2026-07, brought into this project folder 2026-07-08 as its
+  source of truth - previously only existed in the deployed game install
+  with no version history at all) - a small custom addon suppressing
+  friendly PLAYER nameplates while leaving friendly guardian/pet/NPC
+  nameplates visible, using Ascension's real backported modern nameplate
+  API (`C_NamePlate`, real per-plate unit tokens) rather than the stock
+  pre-Legion no-unit-token assumption that seemed safe for a 3.3.5 client
+  but crashed live on a wrong CLEU-layout guess. Currently v1.9, with two
+  confirmed-live bug fixes (pooled-nameplate-frame restore leak, a broken
+  `plateName` diagnostic) and three known-open items (color-tint reclassify
+  cadence not stress-tested, spec-aware auto-toggle deliberately deferred,
+  pet/guardian/totem stays a two-way not three-way split) - see its own
+  README for the full trail.
 - **[Tools/PaneBoard/README.md](Tools/PaneBoard/README.md)** (2026-07-10)
   - an in-house, standalone Electron app for visually sketching HUD slot
   layout/intent - a duplicated, independently-owned fork of a tool called
