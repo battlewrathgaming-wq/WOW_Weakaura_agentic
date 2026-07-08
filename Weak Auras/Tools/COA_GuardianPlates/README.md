@@ -5,7 +5,7 @@ friendly PLAYER nameplates while leaving friendly guardian/pet/NPC
 nameplates untouched, whenever the game's native "Friendly Nameplates"
 option shows them - fills a real gap, since there is no stock
 `nameplateShowFriendlyPlayers` CVar. Built 2026-07 as a low-risk
-theorycraft companion addon, currently v2.0.
+theorycraft companion addon, currently v2.1.
 
 v2.0 (2026-07-08) adds an optional, independent threat-coloring capability
 for ENEMY nameplates - the first of three "light capability" additions
@@ -16,6 +16,14 @@ more capabilities (a curated "needs action" debuff/cast highlight, and a
 DPS-facing threat cue) are planned as later, equally independent additions -
 this addon is deliberately not adopting any reference addon's full option
 surface, just small on/off pieces shaped like their best ideas.
+
+v2.1 (2026-07-08) adds healer mode - not a fourth independent capability,
+but a sub-option of the existing suppression switch itself (Battlewrath's
+own correction: "Maybe this is a healer option to the suppression?"). For
+friendly players in your group/raid, suppression behaves as normal until
+their health drops below a threshold, at which point their plate is
+revealed (full health bar + a new %HP readout) and held open via a TTL to
+avoid flicker. See the "Healer mode" bullet below for the full mechanism.
 
 Brought into this project folder 2026-07-08 as its source of truth - it
 previously only existed in the deployed game install with no project-folder
@@ -72,6 +80,21 @@ place.
   tank, but the safe default for everyone else) - see
   `THREAT_COLOR_SECURE`/`_WARNING`/`_DANGER` in the file. Deliberately not
   gated behind the main on/off switch - its own capability, its own toggle.
+- **Healer mode (v2.1)**, a sub-option of suppression itself rather than an
+  independent capability - only ever does anything while the main on/off
+  switch is enabled. For a friendly player also in your party/raid
+  (`IsGroupOrRaidFriendlyPlayer` - everyone else stays untouched, to avoid
+  noise from players outside your group), suppression un-suppresses that
+  one plate the moment health drops below `healerModeThreshold` (default
+  80%), showing the full health bar plus a new %HP `FontString`
+  (`GetOrCreateHealAlertText`). Held open via `healerModeTTL` (default 4s)
+  that only ever refreshes forward while still below threshold - once
+  healed above it, the existing TTL timestamp is left alone rather than
+  cleared, so the reveal keeps holding until it genuinely expires
+  (`SweepHealAlertExpirations`, piggybacked on the existing 0.5s reclassify
+  throttle) - this is what prevents a HoT tick bouncing HP across the line
+  from turning into a flicker show. Event-driven off `UNIT_HEALTH`/
+  `UNIT_MAXHEALTH`, not polled - no meaningful processing cost.
 
 ## Commands
 
@@ -90,10 +113,16 @@ place.
   `COA_GuardianPlatesDB.removedLog` for full per-event detail.
 - **`/coagp threat off|smart|always`** (v2.0) - sets the threat-coloring
   tri-state. Independent of the on/off switch above.
+- **`/coagp healermode on|off`** (v2.1) - toggles the healer-mode sub-
+  option; also a checkbox in the options panel, directly under the main
+  enable checkbox. **`/coagp healermode threshold <n>`** and
+  **`/coagp healermode ttl <secs>`** tune the reveal threshold (default 80)
+  and hold time (default 4s) - slash-only, matching the addon's existing
+  split between GUI (everyday on/off) and slash-only (tuning/debugging).
 - **`/coagp options`** / **`/coagp config`** - opens the Interface Options
-  panel directly (on/off switch, the two color swatches, and the threat-
-  coloring dropdown). `scan`/`probe`/`diag` are debugging aids and
-  deliberately stay slash-only.
+  panel directly (on/off switch, healer-mode checkbox, the two color
+  swatches, and the threat-coloring dropdown). `scan`/`probe`/`diag` are
+  debugging aids and deliberately stay slash-only.
 
 ## Known open items (not yet resolved, flagged in the code itself)
 
@@ -129,3 +158,9 @@ place.
    `UNIT_THREAT_LIST_UPDATE` events (near-real-time) plus the 0.5s
    reclassify sweep as a safety net, not a per-frame loop, on the
    (untested) assumption that's fast enough for this use case.
+5. **Healer mode (v2.1) not yet live-tested.** The reveal/collapse timing
+   (default 80% threshold, 4s TTL) is a first guess, not something watched
+   against a real heal/damage exchange yet. Group up, set a deliberately
+   easy-to-trigger threshold (`/coagp healermode threshold 95`), and watch
+   whether the reveal holds/collapses at the expected cadence before
+   trusting the defaults blind.

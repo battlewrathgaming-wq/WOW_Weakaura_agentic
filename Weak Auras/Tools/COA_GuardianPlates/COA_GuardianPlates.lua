@@ -218,6 +218,55 @@
 -- specific server yet. `/coagp threat off|smart|always` is provided for
 -- quick in-combat toggling to make that easy to check without alt-tabbing
 -- to Interface Options.
+--
+-- HEALER MODE (v2.1, 2026-07-08) - a sub-option of suppression itself,
+-- NOT an independent capability like threat coloring above. Battlewrath's
+-- framing, verbatim: "Maybe this is a healer option to the suppression?" -
+-- correct, and simpler than how this was first sketched (as a fourth
+-- independent toggle): the whole premise only means anything while a
+-- plate would otherwise BE suppressed, so it lives entirely inside the
+-- existing enabled-suppression codepath rather than beside it.
+--
+-- What it does: for a friendly PLAYER who is also in your party or raid
+-- (IsGroupOrRaidFriendlyPlayer), suppression behaves exactly as normal
+-- (name-only) until that unit's health drops below
+-- COA_GuardianPlatesDB.healerModeThreshold (default 80%) - at that point
+-- the plate is un-suppressed (full health bar restored) and a new %HP
+-- FontString is shown on it (GetOrCreateHealAlertText), since nameplates
+-- don't ship a health-percent readout natively. Every friendly player NOT
+-- in your group/raid is untouched by this - Battlewrath was explicit this
+-- is about "who needs attention," not a general "show all ally health"
+-- toggle, and showing every friendly player's health in a city would just
+-- be noise.
+--
+-- ANTI-FLICKER TTL (Battlewrath, verbatim: "Hang open with a TTL... then
+-- collapse back down... It's intent is to filter who needs attention vs
+-- does not. Without becoming a flicker show."): a naive "un-suppress
+-- below threshold, re-suppress above it" rule would flicker constantly
+-- under any HoT or heal landing right at the threshold line. Fixed by
+-- healAlertExpire[unit]: every time health is recomputed and is STILL
+-- below threshold, this timestamp is pushed forward to
+-- GetTime() + healerModeTTL (default 4s). The moment health recovers
+-- above threshold, this stops refreshing - but the existing timestamp is
+-- left alone rather than cleared, so the reveal keeps holding until that
+-- TTL genuinely runs out. Only once BOTH conditions are true at the same
+-- check (health >= threshold AND GetTime() >= healAlertExpire[unit]) does
+-- SweepHealAlertExpirations() (piggybacked on the existing 0.5s
+-- reclassifier throttle - no new per-frame cost) clear the alert and let
+-- suppression resume.
+--
+-- COST (Battlewrath asked directly: "does that incur too much
+-- processing? get hp, process amount, decide, redraw"): no - health
+-- changes are event-driven (UNIT_HEALTH/UNIT_MAXHEALTH), not polled, so
+-- there's no per-frame race to win here the way alpha suppression has.
+-- One event, one division, one SetText() call, only for units that are
+-- both friendly players AND in your group/raid - a small, bounded set
+-- even in a 40-plate pull.
+--
+-- NOT YET LIVE-TESTED: same discipline as threat coloring above -
+-- watch a real heal/damage exchange with a grouped, low-threshold test
+-- (e.g. `/coagp healermode threshold 95`) and confirm the reveal/collapse
+-- timing feels right before trusting the default 80%/4s values blind.
 
 COA_GuardianPlatesDB = COA_GuardianPlatesDB or {}
 if COA_GuardianPlatesDB.enabled == nil then
@@ -229,6 +278,22 @@ end
 -- Deliberately separate from .enabled above.
 if COA_GuardianPlatesDB.threatMode == nil then
     COA_GuardianPlatesDB.threatMode = 0
+end
+
+-- Healer mode (v2.1) is NOT an independent capability like threatMode
+-- above - it's a sub-option of suppression itself (Battlewrath: "Maybe
+-- this is a healer option to the suppression?" - correct call: the whole
+-- premise is "reveal a plate that would otherwise be suppressed," so it
+-- only ever does anything while COA_GuardianPlatesDB.enabled is true).
+-- See the v2.1 HEALER MODE doc block above.
+if COA_GuardianPlatesDB.healerModeEnabled == nil then
+    COA_GuardianPlatesDB.healerModeEnabled = false
+end
+if COA_GuardianPlatesDB.healerModeThreshold == nil then
+    COA_GuardianPlatesDB.healerModeThreshold = 80 -- percent
+end
+if COA_GuardianPlatesDB.healerModeTTL == nil then
+    COA_GuardianPlatesDB.healerModeTTL = 4 -- seconds to hold the reveal open
 end
 
 -- Migrate the old single-bucket guardianColor (pre-split) into both new
@@ -307,6 +372,17 @@ local function IsFriendlyNPC(unit)
     if not IsFriendlyNonPlayer(unit) then return false end
     local okControlled, controlled = pcall(UnitPlayerControlled, unit)
     return okControlled and (not controlled) and true or false
+end
+
+-- Healer mode (v2.1) only ever concerns friendly players who are also in
+-- your party or raid - a general "show everyone's health" toggle would
+-- just add noise for players you're not responsible for. See the v2.1
+-- HEALER MODE doc block near the top of this file.
+local function IsGroupOrRaidFriendlyPlayer(unit)
+    if not IsFriendlyPlayer(unit) then return false end
+    local okParty, inParty = pcall(UnitInParty, unit)
+    local okRaid, inRaid = pcall(UnitInRaid, unit)
+    return ((okParty and inParty) or (okRaid and inRaid)) and true or false
 end
 
 -- ---------------------------------------------------------------------
@@ -414,6 +490,59 @@ local function GetHealthBar(plate)
         return plate.healthBar
     end
     return nil
+end
+
+-- ---------------------------------------------------------------------
+-- Healer mode (v2.1) - state + the %HP text overlay. See the v2.1 HEALER
+-- MODE doc block near the top of this file for the full design.
+-- ---------------------------------------------------------------------
+
+-- unit token -> true while this group/raid member's plate is currently
+-- revealed (un-suppressed + %HP text shown) due to dropping below
+-- healerModeThreshold. Cleared on NAME_PLATE_UNIT_REMOVED like every
+-- other per-unit table.
+local healAlerted = {}
+
+-- unit token -> GetTime() this unit's reveal is allowed to collapse at.
+-- Refreshed forward every time health is recomputed and still below
+-- threshold; left alone (not cleared) once health recovers, so the
+-- reveal keeps holding until this timestamp genuinely passes - this is
+-- what gives the anti-flicker "hang open with a TTL" behavior instead of
+-- an instant collapse the moment a heal lands.
+local healAlertExpire = {}
+
+-- Looks up (without creating) the %HP FontString already attached to a
+-- plate's container, or nil if none exists yet. Used by cleanup paths
+-- that only need to hide an existing text, not conjure a new one just to
+-- immediately hide it.
+local function GetHealAlertText(plate)
+    local _, container = GetNameRegion(plate)
+    container = container or plate
+    return container and container.coagpHealAlertText
+end
+
+-- Lazily creates (once per pooled plate) a small FontString showing HP%,
+-- centered on the health bar. Nameplates don't ship one of these
+-- natively, unlike the name FontString GetNameRegion() already finds.
+-- Cached directly on the plate's container so it survives pooled-frame
+-- reuse safely - mirrors TurboPlates' own EnsureHealerIcon pattern
+-- (create once, Hide() by default, only Show() when actually relevant).
+local function GetOrCreateHealAlertText(plate)
+    local _, container = GetNameRegion(plate)
+    container = container or plate
+    if not container then return nil end
+    if container.coagpHealAlertText then
+        return container.coagpHealAlertText
+    end
+
+    local healthBar = GetHealthBar(plate)
+    if not healthBar then return nil end
+
+    local text = container:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    text:SetPoint("CENTER", healthBar, "CENTER", 0, 0)
+    text:Hide()
+    container.coagpHealAlertText = text
+    return text
 end
 
 -- unit token -> {r,g,b} native color, captured the first time we override
@@ -659,7 +788,12 @@ local function UpdatePlateForUnit(unit)
 
     platesByUnit[unit] = plate
 
-    local shouldSuppress = COA_GuardianPlatesDB.enabled and IsFriendlyPlayer(unit)
+    -- Healer mode (v2.1): a group/raid member currently below the HP
+    -- threshold overrides suppression for their own plate only - this is
+    -- the entire mechanism, no separate arm/disarm lifecycle needed since
+    -- it's read fresh here every time suppression itself is (re)computed.
+    -- See the v2.1 HEALER MODE doc block near the top of this file.
+    local shouldSuppress = COA_GuardianPlatesDB.enabled and IsFriendlyPlayer(unit) and not healAlerted[unit]
 
     if shouldSuppress then
         local okSelective, didSelective = pcall(SetPlateBarsHidden, plate, true)
@@ -690,6 +824,85 @@ local function UpdatePlateForUnit(unit)
     -- COA_GuardianPlatesDB.enabled above. See THREAT COLORING doc block.
     if COA_GuardianPlatesDB.threatMode and COA_GuardianPlatesDB.threatMode > 0 and IsPotentialThreatUnit(unit) then
         pcall(ApplyThreatColorForUnit, unit, plate)
+    end
+end
+
+-- ---------------------------------------------------------------------
+-- Healer mode (v2.1) - reveal/collapse logic. See the v2.1 HEALER MODE
+-- doc block near the top of this file for the full design.
+-- ---------------------------------------------------------------------
+
+-- Recomputes heal-alert state for a single group/raid friendly-player
+-- unit and re-derives suppression/the %HP text from it. Only ever ARMS
+-- the alert (sets healAlerted[unit] = true and pushes healAlertExpire
+-- forward) - clearing it is SweepHealAlertExpirations()'s job alone, so
+-- the TTL's anti-flicker behavior (hold open until genuinely expired) is
+-- never accidentally short-circuited by this function running again
+-- while still above threshold.
+local function UpdateHealAlertForUnit(unit)
+    if not COA_GuardianPlatesDB.healerModeEnabled then return end
+    if not COA_GuardianPlatesDB.enabled then return end -- sub-option of suppression
+    if not IsGroupOrRaidFriendlyPlayer(unit) then return end
+
+    local okMax, maxHP = pcall(UnitHealthMax, unit)
+    if not okMax or not maxHP or maxHP <= 0 then return end
+    local okHP, hp = pcall(UnitHealth, unit)
+    if not okHP or not hp then return end
+
+    local percent = (hp / maxHP) * 100
+    local threshold = COA_GuardianPlatesDB.healerModeThreshold or 80
+    local ttl = COA_GuardianPlatesDB.healerModeTTL or 4
+
+    if percent < threshold then
+        healAlerted[unit] = true
+        healAlertExpire[unit] = GetTime() + ttl
+    end
+
+    local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
+    if not ok or not plate then return end
+
+    pcall(UpdatePlateForUnit, unit) -- re-derives suppression from healAlerted
+
+    if healAlerted[unit] then
+        local text = GetOrCreateHealAlertText(plate)
+        if text then
+            text:SetText(string.format("%d%%", math.floor(percent + 0.5)))
+            text:Show()
+        end
+    end
+end
+
+-- Throttled sweep (piggybacked on the existing 0.5s reclassifier below -
+-- no new per-frame cost) that's the ONLY thing allowed to clear a heal
+-- alert: only once health is back at/above threshold AND the TTL
+-- timestamp has genuinely passed does the plate re-suppress and the %HP
+-- text hide. This is what turns "threshold crossed" into "hang open,
+-- then collapse" instead of an instant, flicker-prone toggle.
+local function SweepHealAlertExpirations()
+    if not COA_GuardianPlatesDB.healerModeEnabled then return end
+    local now = GetTime()
+
+    for unit in pairs(healAlerted) do
+        local okMax, maxHP = pcall(UnitHealthMax, unit)
+        local okHP, hp = pcall(UnitHealth, unit)
+        local percent = 0
+        if okMax and okHP and maxHP and maxHP > 0 and hp then
+            percent = (hp / maxHP) * 100
+        end
+        local threshold = COA_GuardianPlatesDB.healerModeThreshold or 80
+
+        if percent >= threshold and now >= (healAlertExpire[unit] or 0) then
+            healAlerted[unit] = nil
+            healAlertExpire[unit] = nil
+
+            pcall(UpdatePlateForUnit, unit) -- re-suppresses now that healAlerted is clear
+
+            local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
+            if ok and plate then
+                local text = GetHealAlertText(plate)
+                if text then text:Hide() end
+            end
+        end
     end
 end
 
@@ -845,9 +1058,18 @@ local function RestorePlateOnRemoved(unit)
                 restoredColor = true
             end
         end
+
+        -- Healer mode (v2.1): hide (not recreate) any %HP text so a
+        -- pooled frame handed to an unrelated next occupant doesn't carry
+        -- a stale reveal-text leftover, same pooled-frame-safety
+        -- discipline as the suppression/color restores above.
+        if healAlerted[unit] then
+            local text = GetHealAlertText(plate)
+            if text then text:Hide() end
+        end
     end
 
-    if suppressed[unit] or originalColors[unit] or originalNameColors[unit] or originalThreatColors[unit] then
+    if suppressed[unit] or originalColors[unit] or originalNameColors[unit] or originalThreatColors[unit] or healAlerted[unit] then
         pcall(LogRemovedRestore, unit, resolvedDirectly, resolvedViaCache, restoredSuppress, restoredColor)
     end
 end
@@ -864,10 +1086,21 @@ eventFrame:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
 -- backport, so no "confirmed via TurboPlates" caveat needed here.
 eventFrame:RegisterEvent("UNIT_THREAT_SITUATION_UPDATE")
 eventFrame:RegisterEvent("UNIT_THREAT_LIST_UPDATE")
+-- Healer mode (v2.1): health changes are event-driven, not polled - see
+-- the COST paragraph in the v2.1 HEALER MODE doc block near the top of
+-- this file. UNIT_MAXHEALTH also matters on its own (e.g. a buff/debuff
+-- changing max health without a matching UNIT_HEALTH tick would otherwise
+-- leave the percentage stale).
+eventFrame:RegisterEvent("UNIT_HEALTH")
+eventFrame:RegisterEvent("UNIT_MAXHEALTH")
 eventFrame:SetScript("OnEvent", function(self, event, unit)
     if event == "NAME_PLATE_UNIT_ADDED" then
         activeUnits[unit] = true
         pcall(UpdatePlateForUnit, unit)
+        -- Healer mode: catch a unit that's already below threshold the
+        -- moment their plate first appears (e.g. joining a fight in
+        -- progress), rather than waiting for the next health event.
+        pcall(UpdateHealAlertForUnit, unit)
     elseif event == "NAME_PLATE_UNIT_REMOVED" then
         pcall(RestorePlateOnRemoved, unit)
         activeUnits[unit] = nil
@@ -875,6 +1108,8 @@ eventFrame:SetScript("OnEvent", function(self, event, unit)
         originalColors[unit] = nil
         originalNameColors[unit] = nil
         originalThreatColors[unit] = nil
+        healAlerted[unit] = nil
+        healAlertExpire[unit] = nil
         platesByUnit[unit] = nil
     elseif event == "UNIT_THREAT_SITUATION_UPDATE" or event == "UNIT_THREAT_LIST_UPDATE" then
         if COA_GuardianPlatesDB.threatMode and COA_GuardianPlatesDB.threatMode > 0 and unit then
@@ -882,6 +1117,10 @@ eventFrame:SetScript("OnEvent", function(self, event, unit)
             if ok and plate and IsPotentialThreatUnit(unit) then
                 pcall(ApplyThreatColorForUnit, unit, plate)
             end
+        end
+    elseif event == "UNIT_HEALTH" or event == "UNIT_MAXHEALTH" then
+        if unit and COA_GuardianPlatesDB.healerModeEnabled then
+            pcall(UpdateHealAlertForUnit, unit)
         end
     end
 end)
@@ -955,6 +1194,11 @@ reclassifier:SetScript("OnUpdate", function(self, elapsed)
     for unit in pairs(activeUnits) do
         pcall(UpdatePlateForUnit, unit)
     end
+
+    -- Healer mode (v2.1): piggybacked on this same throttle rather than a
+    -- new ticker frame - the TTL expiry check only needs to run a couple
+    -- times a second, not every frame, and this cadence already exists.
+    pcall(SweepHealAlertExpirations)
 end)
 
 -- ---------------------------------------------------------------------
@@ -1155,6 +1399,26 @@ optionsCheckbox:SetScript("OnClick", function(self)
     SetEnabled(self:GetChecked() and true or false)
 end)
 
+-- Healer mode (v2.1) - a sub-option of suppression, not an independent
+-- capability (Battlewrath: "Maybe this is a healer option to the
+-- suppression?"), so it's placed directly under the main enable checkbox
+-- rather than in its own section. Only ever does anything while the
+-- checkbox above is also checked - see the v2.1 HEALER MODE doc block and
+-- UpdateHealAlertForUnit's own COA_GuardianPlatesDB.enabled guard.
+-- Threshold/TTL stay slash-only tunables (`/coagp healermode threshold|
+-- ttl`) rather than GUI sliders, matching this addon's existing split
+-- between GUI (everyday on/off) and slash-only (tuning/debugging aids).
+local healerModeCheckbox = CreateFrame("CheckButton", "COA_GuardianPlatesHealerModeCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
+healerModeCheckbox:SetPoint("TOPLEFT", optionsCheckbox, "BOTTOMLEFT", 0, -4)
+local okHealerLabel, healerModeCheckboxLabel = pcall(function() return _G[healerModeCheckbox:GetName() .. "Text"] end)
+if okHealerLabel and healerModeCheckboxLabel then
+    healerModeCheckboxLabel:SetText("Healer mode: reveal group/raid members on low HP")
+end
+healerModeCheckbox:SetChecked(COA_GuardianPlatesDB.healerModeEnabled and true or false)
+healerModeCheckbox:SetScript("OnClick", function(self)
+    COA_GuardianPlatesDB.healerModeEnabled = self:GetChecked() and true or false
+end)
+
 -- Guardian/pet/NPC color override - optional cosmetic recolor. Tints BOTH
 -- the health bar and the floating name text (Battlewrath: "Is it cheap to
 -- tint the name too?" - yes, since the name FontString is already
@@ -1264,7 +1528,7 @@ local function CreateGuardianColorRow(anchorWidget, labelText, colorKey)
     return swatch, Refresh
 end
 
-local npcColorSwatch, RefreshNPCColorSwatch = CreateGuardianColorRow(optionsCheckbox, "NPC nameplate color", "npcColor")
+local npcColorSwatch, RefreshNPCColorSwatch = CreateGuardianColorRow(healerModeCheckbox, "NPC nameplate color", "npcColor")
 local petColorSwatch, RefreshPetColorSwatch = CreateGuardianColorRow(npcColorSwatch, "Pet / Guardian / Totem nameplate color", "petColor")
 
 -- Threat coloring (v2.0) - independent capability, its own tri-state
@@ -1300,6 +1564,7 @@ end)
 
 optionsPanel.refresh = function()
     optionsCheckbox:SetChecked(COA_GuardianPlatesDB.enabled and true or false)
+    healerModeCheckbox:SetChecked(COA_GuardianPlatesDB.healerModeEnabled and true or false)
     RefreshNPCColorSwatch()
     RefreshPetColorSwatch()
     RefreshThreatModeDropdown()
@@ -1330,13 +1595,16 @@ SlashCmdList["COAGUARDIANPLATES"] = function(msg)
         SetEnabled(not COA_GuardianPlatesDB.enabled)
         Print(COA_GuardianPlatesDB.enabled and "Enabled." or "Disabled.")
     elseif cmd == "status" then
-        local activeCount, suppressedCount = 0, 0
+        local activeCount, suppressedCount, healAlertedCount = 0, 0, 0
         for _ in pairs(activeUnits) do activeCount = activeCount + 1 end
         for _ in pairs(suppressed) do suppressedCount = suppressedCount + 1 end
+        for _ in pairs(healAlerted) do healAlertedCount = healAlertedCount + 1 end
         Print(string.format(
-            "enabled=%s, active plate(s)=%d, currently suppressed=%d, threatMode=%s",
+            "enabled=%s, active plate(s)=%d, currently suppressed=%d, threatMode=%s, healerMode=%s (threshold=%d%%, ttl=%ss, currently revealed=%d)",
             tostring(COA_GuardianPlatesDB.enabled), activeCount, suppressedCount,
-            THREAT_MODE_LABELS[COA_GuardianPlatesDB.threatMode or 0]))
+            THREAT_MODE_LABELS[COA_GuardianPlatesDB.threatMode or 0],
+            tostring(COA_GuardianPlatesDB.healerModeEnabled), COA_GuardianPlatesDB.healerModeThreshold or 80,
+            tostring(COA_GuardianPlatesDB.healerModeTTL or 4), healAlertedCount))
     elseif cmd == "threat off" or cmd == "threat smart" or cmd == "threat always" then
         local arg = cmd:match("^threat%s+(%S+)$")
         local newMode = (arg == "off" and 0) or (arg == "smart" and 1) or (arg == "always" and 2) or 0
@@ -1345,6 +1613,25 @@ SlashCmdList["COAGUARDIANPLATES"] = function(msg)
             pcall(RefreshThreatModeDropdown)
         end
         Print("Threat coloring: " .. THREAT_MODE_LABELS[COA_GuardianPlatesDB.threatMode or 0])
+    elseif cmd == "healermode on" or cmd == "healermode off" then
+        local arg = cmd:match("^healermode%s+(%S+)$")
+        COA_GuardianPlatesDB.healerModeEnabled = (arg == "on")
+        if healerModeCheckbox then
+            healerModeCheckbox:SetChecked(COA_GuardianPlatesDB.healerModeEnabled)
+        end
+        Print("Healer mode: " .. (COA_GuardianPlatesDB.healerModeEnabled and "On" or "Off"))
+    elseif cmd:match("^healermode threshold%s+%d+$") then
+        local n = tonumber(cmd:match("^healermode threshold%s+(%d+)$"))
+        if n and n >= 1 and n <= 100 then
+            COA_GuardianPlatesDB.healerModeThreshold = n
+            Print("Healer mode threshold: " .. n .. "%")
+        end
+    elseif cmd:match("^healermode ttl%s+[%d%.]+$") then
+        local n = tonumber(cmd:match("^healermode ttl%s+([%d%.]+)$"))
+        if n and n > 0 then
+            COA_GuardianPlatesDB.healerModeTTL = n
+            Print("Healer mode TTL: " .. n .. "s")
+        end
     elseif cmd == "scan" then
         ScanNow()
     elseif cmd == "probe" then
@@ -1369,6 +1656,6 @@ SlashCmdList["COAGUARDIANPLATES"] = function(msg)
             Print("Interface Options panel API not found on this client - open ESC > Interface > AddOns manually.")
         end
     else
-        Print("Usage: /coagp on | off | toggle | status | threat off|smart|always | scan | probe | diag | options")
+        Print("Usage: /coagp on | off | toggle | status | threat off|smart|always | healermode on|off|threshold <n>|ttl <secs> | scan | probe | diag | options")
     end
 end
