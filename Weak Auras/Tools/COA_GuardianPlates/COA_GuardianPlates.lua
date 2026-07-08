@@ -50,6 +50,11 @@
 -- Usage:
 --   /coagp on|off|toggle  -> persistent (SavedVariables) enable switch.
 --   /coagp status         -> prints current state + active plate count.
+--   /coagp threat off|smart|always -> tri-state threat-coloring capability
+--                            (v2.0, independent of the on/off switch above)
+--                            - colors HOSTILE nameplate health bars by
+--                            threat standing. See THREAT COLORING doc
+--                            block further down for the full design.
 --   /coagp scan           -> one-shot dump of every currently active
 --                            nameplate (unit token, name, isPlayer,
 --                            isFriend) to COA_GuardianPlatesDB.lastScan.
@@ -168,10 +173,62 @@
 -- container layout at a different pool index (Template21 vs the earlier
 -- Template63) - further evidence the pool really is being recycled as
 -- theorized.
+--
+-- THREAT COLORING (v2.0, 2026-07-08) - first of three capabilities picked
+-- from the nameplate-addon code review + role research written up in
+-- CAPABILITY_INVENTORY.md / ROLE_RESEARCH.md (Battlewrath's brief: capture
+-- what TurboPlates/Kui_Nameplates/etc. do well, then build very light,
+-- independently-toggleable versions into this addon rather than adopting
+-- any of their full option surfaces). This is a genuinely new dimension
+-- for the addon - everything above only ever touches FRIENDLY nameplates
+-- (suppress players, tint pets/guardians/NPCs). Threat coloring instead
+-- colors HOSTILE/enemy nameplates' health bars based on the player's own
+-- threat standing on that unit, using UnitDetailedThreatSituation("player",
+-- unit) - a genuine WotLK-era API (added in patch 3.0.2), not a modern-
+-- client backport like the nameplate system itself, so there's no
+-- "confirmed via TurboPlates" caveat needed here the way there was for the
+-- nameplate API - this one is native to this exact expansion.
+--
+-- Tri-state (COA_GuardianPlatesDB.threatMode: 0=Off, 1=Smart, 2=Always On)
+-- mirrors the exact shape both TurboPlates (`tankMode`) and Kui_Nameplates
+-- (`tankmode.enabled`) independently converged on - two unrelated addon
+-- authors landing on the same three-state design is a signal it's the
+-- right default. "Smart" auto-detects a tank spec via real talent-point
+-- introspection (IsTank(), ported from Kui_Nameplates' TankMode.lua, which
+-- itself credits the idea to the ElitistJerks addon) rather than "whichever
+-- tab has the most points," since a Feral druid or a Death Knight can't be
+-- told apart from their DPS counterpart that way. "Always On" skips
+-- detection and just always uses the tank-view color scheme, for anyone
+-- who tanks without a dedicated tank-only spec.
+--
+-- This is its own independent toggle, deliberately NOT gated behind
+-- COA_GuardianPlatesDB.enabled (the friendly-suppression switch) - a
+-- genuine per-capability on/off selector, per Battlewrath's brief, so
+-- suppression and threat coloring can each be on or off independently.
+-- Same ARMED GATE discipline applies on its own terms though: nothing is
+-- ever colored while threatMode is 0, and DisarmThreatColors() reverts
+-- every live-colored plate back to native the instant it's switched off,
+-- mirroring DisarmGuardianColors() above.
+--
+-- NOT YET LIVE-TESTED (flagged per this project's own "confirm before
+-- trusting" discipline): the status-value semantics documented above
+-- (0=safe, 1=approaching threat cap, 2=tanking-but-insecure, 3=tanking-
+-- securely) are the standard documented behavior for this API era, but
+-- haven't been independently confirmed against a real pull on this
+-- specific server yet. `/coagp threat off|smart|always` is provided for
+-- quick in-combat toggling to make that easy to check without alt-tabbing
+-- to Interface Options.
 
 COA_GuardianPlatesDB = COA_GuardianPlatesDB or {}
 if COA_GuardianPlatesDB.enabled == nil then
     COA_GuardianPlatesDB.enabled = true
+end
+
+-- Threat coloring is its own independent capability toggle (0=Off,
+-- 1=Smart, 2=Always On) - see the v2.0 THREAT COLORING doc block above.
+-- Deliberately separate from .enabled above.
+if COA_GuardianPlatesDB.threatMode == nil then
+    COA_GuardianPlatesDB.threatMode = 0
 end
 
 -- Migrate the old single-bucket guardianColor (pre-split) into both new
@@ -250,6 +307,86 @@ local function IsFriendlyNPC(unit)
     if not IsFriendlyNonPlayer(unit) then return false end
     local okControlled, controlled = pcall(UnitPlayerControlled, unit)
     return okControlled and (not controlled) and true or false
+end
+
+-- ---------------------------------------------------------------------
+-- Tank-spec detection ("Smart" threat-coloring mode) - ported from
+-- Kui_Nameplates' TankMode.lua (see CAPABILITY_INVENTORY.md). Real talent-
+-- point introspection rather than "whichever tab has the most points,"
+-- since e.g. Feral druid covers both cat-DPS and bear-tank builds off the
+-- same tab, and Death Knights have no single dedicated tank tab in Wrath
+-- at all (tank DKs are built from talents across all three trees, usually
+-- Blood-heavy). Only used when threatMode == 1 (Smart); mode 2 (Always On)
+-- skips this entirely.
+-- ---------------------------------------------------------------------
+
+local function GetTalentPointsSpent(spellID)
+    local okName, spellName = pcall(GetSpellInfo, spellID)
+    if not okName or not spellName then return 0 end
+    local okTabs, numTabs = pcall(GetNumTalentTabs)
+    if not okTabs or not numTabs then return 0 end
+    for tabIndex = 1, numTabs do
+        local okNumTalents, numTalents = pcall(GetNumTalents, tabIndex)
+        if okNumTalents and numTalents then
+            for talentIndex = 1, numTalents do
+                local okInfo, name, _, _, _, spent = pcall(GetTalentInfo, tabIndex, talentIndex)
+                if okInfo and name == spellName then
+                    return spent or 0
+                end
+            end
+        end
+    end
+    return 0
+end
+
+local function IsDeathKnightTank()
+    -- idea taken from addon 'ElitistJerks' (via Kui_Nameplates)
+    local tankTalents =
+        (GetTalentPointsSpent(16271) >= 5 and 1 or 0) + -- Anticipation
+        (GetTalentPointsSpent(49042) >= 5 and 1 or 0) + -- Toughness
+        (GetTalentPointsSpent(55225) >= 5 and 1 or 0)   -- Blade Barrier
+    return tankTalents >= 2
+end
+
+local function IsDruidTank()
+    -- idea taken from addon 'ElitistJerks' (via Kui_Nameplates)
+    local tankTalents =
+        (GetTalentPointsSpent(57881) >= 2 and 1 or 0) + -- Natural Reaction
+        (GetTalentPointsSpent(16929) >= 3 and 1 or 0) + -- Thick Hide
+        (GetTalentPointsSpent(61336) >= 1 and 1 or 0) + -- Survival Instincts
+        (GetTalentPointsSpent(57877) >= 3 and 1 or 0)   -- Protector of the Pack
+    return tankTalents >= 3
+end
+
+local function IsTank()
+    local okClass, _, class = pcall(UnitClass, "player")
+    if not okClass or not class then return false end
+
+    if class == "WARRIOR" then
+        local okTab, _, _, points = pcall(GetTalentTabInfo, 3) -- Protection
+        return okTab and points and points >= 51 and true or false
+    elseif class == "PALADIN" then
+        local okTab, _, _, points = pcall(GetTalentTabInfo, 2) -- Protection
+        return okTab and points and points >= 51 and true or false
+    elseif class == "DRUID" then
+        local okTab, _, _, points = pcall(GetTalentTabInfo, 2) -- Feral
+        return okTab and points and points >= 51 and IsDruidTank() and true or false
+    elseif class == "DEATHKNIGHT" then
+        return IsDeathKnightTank() and true or false
+    end
+    return false
+end
+
+-- A hostile/attackable unit is the complement of the friendly buckets
+-- above - the pool threat coloring below considers. Deliberately not
+-- keyed off combat state (UnitAffectingCombat) since a fresh pull's very
+-- first GCD is exactly when a tank most wants to see this).
+local function IsPotentialThreatUnit(unit)
+    if not unit or not UnitExists(unit) then return false end
+    local okFriend, isFriend = pcall(UnitIsFriend, "player", unit)
+    if okFriend and isFriend then return false end
+    local okAttack, canAttack = pcall(UnitCanAttack, "player", unit)
+    return okAttack and canAttack and true or false
 end
 
 -- Finds the plate's name FontString + the container it lives in. Tries the
@@ -350,6 +487,134 @@ local function ApplyGuardianColorForUnit(unit, plate)
     end
 end
 
+-- ---------------------------------------------------------------------
+-- Threat coloring (v2.0) - colors a HOSTILE unit's health bar based on the
+-- player's own threat standing on it. See the THREAT COLORING doc block
+-- near the top of this file for the full design reasoning.
+-- ---------------------------------------------------------------------
+
+-- unit token -> native health-bar color, captured the first time we apply
+-- a threat override. Kept separate from originalColors above (the
+-- friendly guardian/pet/NPC bucket) since these two sets are effectively
+-- disjoint (friendly vs hostile) - a shared table would only ever risk
+-- confusion on a genuine mind-control edge case.
+local originalThreatColors = {}
+
+-- Fixed colors, not user-configurable yet - kept deliberately light per
+-- Battlewrath's brief ("very light versions... per capability on/off
+-- selector"). A color picker could be added later the same way
+-- npcColor/petColor already work, if wanted.
+local THREAT_COLOR_SECURE  = { r = 0.1, g = 0.9, b = 0.2 } -- holding aggro safely (tank view)
+local THREAT_COLOR_WARNING = { r = 1.0, g = 0.6, b = 0.0 } -- transitional / approaching threat cap
+local THREAT_COLOR_DANGER  = { r = 1.0, g = 0.1, b = 0.1 } -- lost aggro (tank view) / has aggro (non-tank view)
+
+-- Returns {r,g,b} or nil (nil = leave native). Caller must already have
+-- confirmed `unit` is a valid hostile/enemy nameplate unit via
+-- IsPotentialThreatUnit. Uses UnitDetailedThreatSituation("player", unit) -
+-- isTanking = "player" is this unit's current primary target; status
+-- further distinguishes secure (3) tanking from about-to-lose-it (2), or
+-- safe (0) from about-to-pull-aggro (1) when not tanking. Tank view and
+-- non-tank view intentionally read the same isTanking/status pair
+-- differently - see ROLE_RESEARCH.md for why (a tank without aggro is bad
+-- for a tank, but exactly the safe default state for everyone else).
+local function GetThreatColorForUnit(unit)
+    local mode = COA_GuardianPlatesDB.threatMode
+    if not mode or mode == 0 then return nil end
+
+    local okThreat, isTanking, status = pcall(UnitDetailedThreatSituation, "player", unit)
+    if not okThreat then return nil end
+    isTanking = isTanking and true or false
+    status = status or 0
+
+    local tankView
+    if mode == 2 then
+        tankView = true -- Always On: skip detection, force tank-view scheme
+    else
+        tankView = IsTank() -- Smart
+    end
+
+    if tankView then
+        if isTanking and status == 3 then
+            return THREAT_COLOR_SECURE
+        elseif isTanking and status == 2 then
+            return THREAT_COLOR_WARNING
+        elseif not isTanking then
+            return THREAT_COLOR_DANGER -- a tank without aggro needs to taunt back
+        end
+        return nil
+    else
+        if isTanking then
+            return THREAT_COLOR_DANGER -- non-tank holding aggro is bad
+        elseif status == 1 then
+            return THREAT_COLOR_WARNING -- approaching the tank's threat
+        end
+        return nil -- status 0: safe, leave native
+    end
+end
+
+-- Applies (or clears) the threat color override on a hostile plate's
+-- health bar - same capture-native-then-restore shape as
+-- ApplyGuardianColorForUnit above, keyed off originalThreatColors instead.
+-- Deliberately leaves the name text untouched (the bar color IS the
+-- signal here - every reference addon in CAPABILITY_INVENTORY.md works
+-- this way too).
+local function ApplyThreatColorForUnit(unit, plate)
+    local healthBar = GetHealthBar(plate)
+    if not healthBar then return end
+
+    local color = GetThreatColorForUnit(unit)
+
+    if color then
+        if not originalThreatColors[unit] then
+            local okGet, r, g, b = pcall(healthBar.GetStatusBarColor, healthBar)
+            if okGet and r then
+                originalThreatColors[unit] = { r = r, g = g, b = b }
+            end
+        end
+        pcall(healthBar.SetStatusBarColor, healthBar, color.r, color.g, color.b)
+    elseif originalThreatColors[unit] then
+        local c = originalThreatColors[unit]
+        pcall(healthBar.SetStatusBarColor, healthBar, c.r, c.g, c.b)
+        originalThreatColors[unit] = nil
+    end
+end
+
+-- Reverts every currently threat-colored plate back to its captured native
+-- color - called the instant threatMode flips to 0, mirroring
+-- DisarmGuardianColors()'s "don't leave anything of ours on a plate once
+-- the capability is switched off" discipline, applied to this capability's
+-- own independent toggle.
+local function DisarmThreatColors()
+    for unit in pairs(activeUnits) do
+        if originalThreatColors[unit] then
+            local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
+            if not ok or not plate then
+                plate = platesByUnit[unit]
+            end
+            if plate then
+                local healthBar = GetHealthBar(plate)
+                if healthBar then
+                    local c = originalThreatColors[unit]
+                    pcall(healthBar.SetStatusBarColor, healthBar, c.r, c.g, c.b)
+                end
+            end
+            originalThreatColors[unit] = nil
+        end
+    end
+end
+
+-- Shared setter - used by both the options panel dropdown and the
+-- `/coagp threat` slash subcommand, so there's only one place that knows
+-- how to disarm cleanly.
+local function SetThreatMode(mode)
+    mode = tonumber(mode) or 0
+    if mode < 0 or mode > 2 then mode = 0 end
+    COA_GuardianPlatesDB.threatMode = mode
+    if mode == 0 then
+        pcall(DisarmThreatColors)
+    end
+end
+
 -- Hides every sibling of the name region (health bar, portrait, border,
 -- cast bar, etc.) while explicitly keeping the name itself at alpha 1, so
 -- the floating name stays visible even while the rest of the plate is
@@ -419,6 +684,12 @@ local function UpdatePlateForUnit(unit)
     -- for the matching revert step run the moment the switch flips off.
     if COA_GuardianPlatesDB.enabled and IsFriendlyNonPlayer(unit) then
         pcall(ApplyGuardianColorForUnit, unit, plate)
+    end
+
+    -- Threat coloring (v2.0) - its own independent toggle, not gated by
+    -- COA_GuardianPlatesDB.enabled above. See THREAT COLORING doc block.
+    if COA_GuardianPlatesDB.threatMode and COA_GuardianPlatesDB.threatMode > 0 and IsPotentialThreatUnit(unit) then
+        pcall(ApplyThreatColorForUnit, unit, plate)
     end
 end
 
@@ -565,9 +836,18 @@ local function RestorePlateOnRemoved(unit)
                 restoredColor = true
             end
         end
+
+        if originalThreatColors[unit] then
+            local healthBar = GetHealthBar(plate)
+            if healthBar then
+                local c = originalThreatColors[unit]
+                pcall(healthBar.SetStatusBarColor, healthBar, c.r, c.g, c.b)
+                restoredColor = true
+            end
+        end
     end
 
-    if suppressed[unit] or originalColors[unit] or originalNameColors[unit] then
+    if suppressed[unit] or originalColors[unit] or originalNameColors[unit] or originalThreatColors[unit] then
         pcall(LogRemovedRestore, unit, resolvedDirectly, resolvedViaCache, restoredSuppress, restoredColor)
     end
 end
@@ -575,6 +855,15 @@ end
 local eventFrame = CreateFrame("Frame")
 eventFrame:RegisterEvent("NAME_PLATE_UNIT_ADDED")
 eventFrame:RegisterEvent("NAME_PLATE_UNIT_REMOVED")
+-- Threat coloring (v2.0): these fire whenever the client itself recomputes
+-- a unit's threat standing (any unit it's currently tracking for display
+-- purposes - target/party/nameplate units all qualify), so we get
+-- near-real-time recoloring instead of waiting on the 0.5s reclassifier
+-- sweep below. Genuine WotLK-era events (added alongside
+-- UnitDetailedThreatSituation in patch 3.0.2), not a modern-client
+-- backport, so no "confirmed via TurboPlates" caveat needed here.
+eventFrame:RegisterEvent("UNIT_THREAT_SITUATION_UPDATE")
+eventFrame:RegisterEvent("UNIT_THREAT_LIST_UPDATE")
 eventFrame:SetScript("OnEvent", function(self, event, unit)
     if event == "NAME_PLATE_UNIT_ADDED" then
         activeUnits[unit] = true
@@ -585,7 +874,15 @@ eventFrame:SetScript("OnEvent", function(self, event, unit)
         suppressed[unit] = nil
         originalColors[unit] = nil
         originalNameColors[unit] = nil
+        originalThreatColors[unit] = nil
         platesByUnit[unit] = nil
+    elseif event == "UNIT_THREAT_SITUATION_UPDATE" or event == "UNIT_THREAT_LIST_UPDATE" then
+        if COA_GuardianPlatesDB.threatMode and COA_GuardianPlatesDB.threatMode > 0 and unit then
+            local ok, plate = pcall(C_NamePlate.GetNamePlateForUnit, unit)
+            if ok and plate and IsPotentialThreatUnit(unit) then
+                pcall(ApplyThreatColorForUnit, unit, plate)
+            end
+        end
     end
 end)
 
@@ -970,13 +1267,46 @@ end
 local npcColorSwatch, RefreshNPCColorSwatch = CreateGuardianColorRow(optionsCheckbox, "NPC nameplate color", "npcColor")
 local petColorSwatch, RefreshPetColorSwatch = CreateGuardianColorRow(npcColorSwatch, "Pet / Guardian / Totem nameplate color", "petColor")
 
+-- Threat coloring (v2.0) - independent capability, its own tri-state
+-- dropdown rather than a checkbox since it's Off/Smart/Always, not just
+-- on/off. See the THREAT COLORING doc block near the top of this file.
+local THREAT_MODE_LABELS = { [0] = "Off", [1] = "Smart (auto-detect spec)", [2] = "Always On" }
+
+local threatModeLabel = optionsPanel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
+threatModeLabel:SetPoint("TOPLEFT", petColorSwatch, "BOTTOMLEFT", -4, -24)
+threatModeLabel:SetText("Threat coloring (enemy nameplate health bars):")
+
+local threatModeDropdown = CreateFrame("Frame", "COA_GuardianPlatesThreatModeDropdown", optionsPanel, "UIDropDownMenuTemplate")
+threatModeDropdown:SetPoint("TOPLEFT", threatModeLabel, "BOTTOMLEFT", -16, -4)
+UIDropDownMenu_SetWidth(threatModeDropdown, 160)
+
+local function RefreshThreatModeDropdown()
+    UIDropDownMenu_SetText(threatModeDropdown, THREAT_MODE_LABELS[COA_GuardianPlatesDB.threatMode or 0])
+end
+
+UIDropDownMenu_Initialize(threatModeDropdown, function(self, level)
+    for mode = 0, 2 do
+        local info = UIDropDownMenu_CreateInfo()
+        info.text = THREAT_MODE_LABELS[mode]
+        info.value = mode
+        info.checked = (COA_GuardianPlatesDB.threatMode or 0) == mode
+        info.func = function()
+            SetThreatMode(mode)
+            RefreshThreatModeDropdown()
+        end
+        UIDropDownMenu_AddButton(info)
+    end
+end)
+
 optionsPanel.refresh = function()
     optionsCheckbox:SetChecked(COA_GuardianPlatesDB.enabled and true or false)
     RefreshNPCColorSwatch()
     RefreshPetColorSwatch()
+    RefreshThreatModeDropdown()
 end
 RefreshNPCColorSwatch()
 RefreshPetColorSwatch()
+RefreshThreatModeDropdown()
 
 if InterfaceOptions_AddCategory then
     pcall(InterfaceOptions_AddCategory, optionsPanel)
@@ -1004,8 +1334,17 @@ SlashCmdList["COAGUARDIANPLATES"] = function(msg)
         for _ in pairs(activeUnits) do activeCount = activeCount + 1 end
         for _ in pairs(suppressed) do suppressedCount = suppressedCount + 1 end
         Print(string.format(
-            "enabled=%s, active plate(s)=%d, currently suppressed=%d",
-            tostring(COA_GuardianPlatesDB.enabled), activeCount, suppressedCount))
+            "enabled=%s, active plate(s)=%d, currently suppressed=%d, threatMode=%s",
+            tostring(COA_GuardianPlatesDB.enabled), activeCount, suppressedCount,
+            THREAT_MODE_LABELS[COA_GuardianPlatesDB.threatMode or 0]))
+    elseif cmd == "threat off" or cmd == "threat smart" or cmd == "threat always" then
+        local arg = cmd:match("^threat%s+(%S+)$")
+        local newMode = (arg == "off" and 0) or (arg == "smart" and 1) or (arg == "always" and 2) or 0
+        SetThreatMode(newMode)
+        if threatModeDropdown then
+            pcall(RefreshThreatModeDropdown)
+        end
+        Print("Threat coloring: " .. THREAT_MODE_LABELS[COA_GuardianPlatesDB.threatMode or 0])
     elseif cmd == "scan" then
         ScanNow()
     elseif cmd == "probe" then
@@ -1030,6 +1369,6 @@ SlashCmdList["COAGUARDIANPLATES"] = function(msg)
             Print("Interface Options panel API not found on this client - open ESC > Interface > AddOns manually.")
         end
     else
-        Print("Usage: /coagp on | off | toggle | status | scan | probe | diag | options")
+        Print("Usage: /coagp on | off | toggle | status | threat off|smart|always | scan | probe | diag | options")
     end
 end

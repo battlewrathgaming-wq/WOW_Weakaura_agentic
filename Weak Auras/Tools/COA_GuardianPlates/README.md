@@ -5,7 +5,17 @@ friendly PLAYER nameplates while leaving friendly guardian/pet/NPC
 nameplates untouched, whenever the game's native "Friendly Nameplates"
 option shows them - fills a real gap, since there is no stock
 `nameplateShowFriendlyPlayers` CVar. Built 2026-07 as a low-risk
-theorycraft companion addon, currently v1.9.
+theorycraft companion addon, currently v2.0.
+
+v2.0 (2026-07-08) adds an optional, independent threat-coloring capability
+for ENEMY nameplates - the first of three "light capability" additions
+picked from a code review of TurboPlates/Kui_Nameplates/Kui_Nameplates_Auras/
+PlateBuffs plus role research on what tanks/healers/DPS actually rely on
+(see `CAPABILITY_INVENTORY.md` and `ROLE_RESEARCH.md` in this folder). Two
+more capabilities (a curated "needs action" debuff/cast highlight, and a
+DPS-facing threat cue) are planned as later, equally independent additions -
+this addon is deliberately not adopting any reference addon's full option
+surface, just small on/off pieces shaped like their best ideas.
 
 Brought into this project folder 2026-07-08 as its source of truth - it
 previously only existed in the deployed game install with no project-folder
@@ -50,6 +60,18 @@ place.
   (`platesByUnit`) as a fallback since `GetNamePlateForUnit(unit)` was
   confirmed (20/20 live events) to never resolve directly by the time
   `NAME_PLATE_UNIT_REMOVED` actually fires on this client.
+- **Threat coloring (v2.0)**, its own independent tri-state capability
+  (Off/Smart/Always On, `/coagp threat off|smart|always` or the options
+  dropdown) - colors an ENEMY unit's health bar using
+  `UnitDetailedThreatSituation("player", unit)`, a genuine WotLK-era API
+  (patch 3.0.2), not a client backport like the nameplate system itself.
+  "Smart" auto-detects a tank spec via real talent-point introspection
+  (`IsTank()`, ported from Kui_Nameplates' `TankMode.lua`) rather than
+  "whichever tab has the most points." Tank view and non-tank view read the
+  same isTanking/status pair differently (a tank without aggro is bad for a
+  tank, but the safe default for everyone else) - see
+  `THREAT_COLOR_SECURE`/`_WARNING`/`_DANGER` in the file. Deliberately not
+  gated behind the main on/off switch - its own capability, its own toggle.
 
 ## Commands
 
@@ -66,9 +88,12 @@ place.
 - **`/coagp diag`** - prints how many REMOVED-restore events needed the
   cached-plate fallback vs resolved directly. `/reload` then check
   `COA_GuardianPlatesDB.removedLog` for full per-event detail.
+- **`/coagp threat off|smart|always`** (v2.0) - sets the threat-coloring
+  tri-state. Independent of the on/off switch above.
 - **`/coagp options`** / **`/coagp config`** - opens the Interface Options
-  panel directly (on/off switch + the two color swatches). `scan`/`probe`/
-  `diag` are debugging aids and deliberately stay slash-only.
+  panel directly (on/off switch, the two color swatches, and the threat-
+  coloring dropdown). `scan`/`probe`/`diag` are debugging aids and
+  deliberately stay slash-only.
 
 ## Known open items (not yet resolved, flagged in the code itself)
 
@@ -92,3 +117,15 @@ place.
    risk misclassifying edge cases, so this stays `UnitPlayerControlled`'s
    clean two-way split (pet/guardian/totem combined vs plain NPC) per
    Battlewrath's call. Not a bug, just a known scope limit.
+4. **Threat coloring (v2.0) not yet live-tested.** The
+   `UnitDetailedThreatSituation` status-value semantics (0=safe,
+   1=approaching threat cap, 2=tanking-but-insecure, 3=tanking-securely)
+   are the standard documented behavior for this API era, but haven't been
+   confirmed against a real pull on this specific server yet. Watch a pull
+   with `/coagp threat smart` (or `always`) on and confirm the color
+   actually tracks aggro state as expected; also not yet stress-tested
+   against the same "wins the per-frame race" concern flagged in item 1
+   above - threat coloring rides `UNIT_THREAT_SITUATION_UPDATE`/
+   `UNIT_THREAT_LIST_UPDATE` events (near-real-time) plus the 0.5s
+   reclassify sweep as a safety net, not a per-frame loop, on the
+   (untested) assumption that's fast enough for this use case.
