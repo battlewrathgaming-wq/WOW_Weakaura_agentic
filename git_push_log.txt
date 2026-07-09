@@ -10,3 +10,14 @@ Changes not staged for commit:
 	modified:   git_push_log.txt
 
 no changes added to commit (use "git add" and/or "git commit -a")
+
+=== git add -A ===
+warning: in the working copy of 'Weak Auras/README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'git_push_log.txt', LF will be replaced by CRLF the next time Git touches it
+=== git commit ===
+[main ed1d57a] Index addon discovery -> Use WA for tracking summons
+ 2 files changed, 18 insertions(+), 1 deletion(-)
+=== git push origin main ===
+To https://github.com/battlewrathgaming-wq/WOW_Weakaura_agentic.git
+   5f9d679..ed1d57a  main -> main
+=== DONE ===

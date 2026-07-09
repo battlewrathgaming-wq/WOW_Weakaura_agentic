@@ -92,3 +92,43 @@ Sources:
 - [H.H.T.D. - CurseForge](https://www.curseforge.com/wow/addons/h-h-t-d)
 - [Threat Plates - CurseForge](https://www.curseforge.com/wow/addons/tidy-plates-threat-plates)
 - [SimpleClassicThreatNameplates - CurseForge](https://www.curseforge.com/wow/addons/simpleclassicthreatnameplates)
+
+## Phase 4 (v3.2): role auto-detection - what's actually available on this server
+
+Prompted by Battlewrath's own field notes: "In the LFG/LFR system, you do
+get assigned a tag. In user-driven content, there are less system tags to
+rely on. And there is no loot specialization selection. We do know each
+spec, so we could filter by spec, but then that's something to maintain."
+Confirmed against real sources rather than assumed:
+
+- **`UnitGroupRolesAssigned(unit)`** is a real WotLK 3.3.5 API (shipped
+  alongside Dungeon Finder in patch 3.3), returning `TANK`/`HEALER`/
+  `DAMAGER`/`NONE`. Per Blizzard's own documented behavior, it only resolves
+  to a real role for a group formed through the Dungeon/Raid Finder tool -
+  a manually-formed group (guild run, world group) gets `NONE`, exactly
+  matching Battlewrath's own observation. `PLAYER_ROLES_ASSIGNED` and
+  `ROLE_CHANGED_INFORM` fire live whenever a role changes, so this doesn't
+  need polling.
+- **Spec-based inference is real, working prior art, not a hypothetical.**
+  Tidy Plates: Threat Plates auto-detects spec and flips tank/DPS view on
+  retail. TWThreat does the same via talent-point introspection on Turtle
+  WoW - a custom-class private server, the same situation as CoA. Both
+  confirm the tradeoff Battlewrath already named: it only works because
+  someone maintains a spec->role table, and it goes stale the moment a
+  class gets retuned. Given CoA's classes are already fully custom (the
+  reason the original `IsTank()` auto-detect failed - see EnemyPlates.lua's
+  MIGRATION note), that table would be entirely ours to build and keep
+  current, with no upstream addon's fixes to inherit.
+- **No loot-specialization signal exists here** (confirmed by Battlewrath -
+  a retail-only feature; there's no per-character "intended role" flag
+  independent of talent spec to fall back on).
+
+**Decision (v3.2):** two-layer resolution, not three. Core.lua now builds a
+shared `ns.GetPlayerRole()` index from `UnitGroupRolesAssigned` - free,
+zero-maintenance, and correct exactly when the game itself knows (LFG/LFR
+groups). When it returns `NONE`, EnemyPlates.lua falls back to the existing
+manual "Tanking" checkbox - already built, already working, no change
+needed there. Spec-based inference was deliberately NOT built - the
+maintenance cost is real and already being paid by other addons in
+comparable environments, and it doesn't match this addon's standing
+preference for locking in simple choices over configurability/upkeep.
