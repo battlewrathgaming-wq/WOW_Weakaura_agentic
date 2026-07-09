@@ -1,0 +1,83 @@
+## Licence "All Rights Reserved"
+
+**Copyright (c) 2024-2026 Mr_Ghoosty. Tous droits réservés.**
+
+### Conditions d'utilisation
+
+Ce logiciel et sa documentation associée (l'"Addon") sont protégés par les droits d'auteur et les lois sur la propriété intellectuelle. Tous droits réservés.
+
+### Utilisation autorisée
+
+L'utilisation de cet addon est autorisée uniquement pour :
+- Installation et utilisation personnelle dans World of Warcraft
+- Distribution via des plateformes autorisées (CurseForge, WoWInterface, etc.) avec l'autorisation explicite de l'auteur
+
+### Restrictions
+
+Sans autorisation écrite préalable de l'auteur, il est interdit de :
+- Copier, reproduire ou distribuer cet addon
+- Modifier, adapter ou créer des œuvres dérivées
+- Décompiler, désassembler ou analyser le code source
+- Utiliser cet addon à des fins commerciales
+- Intégrer cet addon dans d'autres projets
+- Supprimer ou modifier les notices de copyright
+
+### Garanties et responsabilités
+
+L'addon est fourni "en l'état" sans garantie d'aucune sorte. L'auteur ne peut être tenu responsable de :
+- Tout dommage direct ou indirect résultant de l'utilisation de l'addon
+- Toute incompatibilité avec d'autres addons ou versions de WoW
+- Toute perte de données ou interruption de service
+
+### Contact et autorisations
+
+Pour toute demande d'autorisation, question ou problème :
+- **Email :** ghoosty.addon@gmail.com
+- **Plateforme :** CurseForge (Mr_Ghoosty)
+
+### Violations
+
+Toute violation de cette licence peut entraîner des actions légales appropriées.
+
+---
+
+## License "All Rights Reserved"
+
+**Copyright (c) 2024-2026 Mr_Ghoosty. All rights reserved.**
+
+### Terms of Use
+
+This software and its associated documentation (the "Addon") are protected by copyright and intellectual property laws. All rights reserved.
+
+### Permitted Use
+
+Use of this addon is permitted only for:
+- Personal installation and use in World of Warcraft
+- Distribution via authorized platforms (CurseForge, WoWInterface, etc.) with explicit author permission
+
+### Restrictions
+
+Without prior written permission from the author, it is prohibited to:
+- Copy, reproduce or distribute this addon
+- Modify, adapt or create derivative works
+- Decompile, disassemble or analyze the source code
+- Use this addon for commercial purposes
+- Integrate this addon into other projects
+- Remove or modify copyright notices
+
+### Warranties and Liability
+
+The addon is provided "as is" without warranty of any kind. The author cannot be held responsible for:
+- Any direct or indirect damage resulting from the use of the addon
+- Any incompatibility with other addons or WoW versions
+- Any data loss or service interruption
+
+### Contact and Permissions
+
+For any permission requests, questions or issues:
+- **Email :** ghoosty.addon@gmail.com
+- **Platform :** CurseForge (Mr_Ghoosty)
+
+### Violations
+
+Any violation of this license may result in appropriate legal action.

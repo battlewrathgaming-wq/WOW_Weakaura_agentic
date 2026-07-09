@@ -1,0 +1,32 @@
+## Interface: 40402
+## Version: 0.5.36
+## Title: ThreatMeter |T132117:16:16:0:0|t by |cff55d2ffD4KiR |T132115:16:16:0:0|t
+## Notes: ThreatMeter
+## Notes-ruRU: ThreatMeter - аддон, который отображает наивысший процент угрозы среди всех мобов, которые в данный момент находятся в зоне видимости
+## Author: D4KiR |T132115:16:16:0:0|t
+## Category: Combat
+## Category-deDE: Kampf
+## Category-esES: Combate
+## Category-esMX: Combate
+## Category-frFR: Combat
+## Category-itIT: Combattimento
+## Category-koKR: 전투
+## Category-ptBR: Combate
+## Category-ruRU: Бой
+## Category-zhCN: 战斗
+## Category-zhTW: 戰鬥
+## DefaultState: enabled
+## SavedVariables: TMTAB
+## SavedVariablesPerCharacter: TMTABPC
+## X-Curse-Project-ID: 868151
+## X-Wago-ID: j6jzz16R
+## IconTexture: 132117
+
+libs\D4Lib\D4Lib.xml
+
+locale\enUS.lua
+locale\deDE.lua
+locale\ruRU.lua
+
+settings.lua
+core.lua

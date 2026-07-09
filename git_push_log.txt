@@ -1,23 +1,17 @@
 === git status ===
 On branch main
-Your branch is ahead of 'origin/main' by 2 commits.
+Your branch is ahead of 'origin/main' by 1 commit.
   (use "git push" to publish your local commits)
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   Weak Auras/README.md
+	modified:   Weak Auras/Tools/COA_GuardianPlates/EnemyPlates.lua
+	modified:   Weak Auras/Tools/COA_GuardianPlates/README.md
 	modified:   git_push_log.txt
 
-no changes added to commit (use "git add" and/or "git commit -a")
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	Addon refs_threat/
 
-=== git add -A ===
-warning: in the working copy of 'Weak Auras/README.md', LF will be replaced by CRLF the next time Git touches it
-warning: in the working copy of 'git_push_log.txt', LF will be replaced by CRLF the next time Git touches it
-=== git commit ===
-[main ed1d57a] Index addon discovery -> Use WA for tracking summons
- 2 files changed, 18 insertions(+), 1 deletion(-)
-=== git push origin main ===
-To https://github.com/battlewrathgaming-wq/WOW_Weakaura_agentic.git
-   5f9d679..ed1d57a  main -> main
-=== DONE ===
+no changes added to commit (use "git add" and/or "git commit -a")

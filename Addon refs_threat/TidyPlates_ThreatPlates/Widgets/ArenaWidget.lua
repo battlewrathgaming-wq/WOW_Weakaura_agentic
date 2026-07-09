@@ -1,0 +1,333 @@
+---------------------------------------------------------------------------------------------------
+-- Arena Widget
+---------------------------------------------------------------------------------------------------
+local ADDON_NAME, Addon = ...
+
+if Addon.IS_CLASSIC then return end
+
+local Widget = Addon.Widgets:NewWidget("Arena")
+
+---------------------------------------------------------------------------------------------------
+-- Imported functions and constants
+---------------------------------------------------------------------------------------------------
+
+-- Lua APIs
+local pairs = pairs
+
+-- WoW APIs
+local IsInInstance = IsInInstance
+local UnitExists = UnitExists
+local IsInBrawl = C_PvP.IsInBrawl
+local UnitInParty = UnitInParty
+local UnitName = UnitName
+local MAX_ARENA_ENEMIES = MAX_ARENA_ENEMIES or 5 -- MAX_ARENA_ENEMIES is not defined in Wrath Clasic
+local GetAddOnEnableState = (C_AddOns and C_AddOns.GetAddOnEnableState)
+    -- classic's GetAddonEnableState and retail's C_AddOns have their parameters swapped
+    or function(name, character) return GetAddOnEnableState(character, name) end
+
+-- ThreatPlates APIs
+local IsSecretValueTP = Addon.IsSecretValue
+local UnitIsUnitTP = Addon.UnitIsUnit
+local FontUpdateText = Addon.Font.UpdateText
+
+local _G =_G
+-- Global vars/functions that we don't upvalue since they might get hooked, or upgraded
+-- List them here for Mikk's FindGlobals script
+-- GLOBALS: CreateFrame, UnitGUID
+
+---------------------------------------------------------------------------------------------------
+-- Constants and local variables
+---------------------------------------------------------------------------------------------------
+local InArena = false
+local PlayerGUIDToNumber = {}
+--local ArenaID = {}
+
+---------------------------------------------------------------------------------------------------
+-- Cached configuration settings
+---------------------------------------------------------------------------------------------------
+local Settings
+local SettingsByTeam = {
+  HOSTILE = {},  
+  FRIENDLY = {},
+}
+
+---------------------------------------------------------------------------------------------------
+-- Arena Widget Functions
+---------------------------------------------------------------------------------------------------
+
+local ArenaUnitIdToNumber = {}
+for i = 1, MAX_ARENA_ENEMIES do
+  ArenaUnitIdToNumber["arena" .. i] = i
+  ArenaUnitIdToNumber["arenapet" .. i] = i
+  ArenaUnitIdToNumber["party" .. i] = i
+  ArenaUnitIdToNumber["partypet" .. i] = i
+end
+
+-- local function GetArenaOpponents()
+-- 	for i = 1, GetNumArenaOpponents() do
+-- 		local player_guid = _G.UnitGUID("arena" .. i)
+-- 		local pet_guid = _G.UnitGUID("arenapet" .. i)
+
+--     if player_guid and not ArenaID[player_guid] then
+--       ArenaID[player_guid] = i
+-- 		end
+
+-- 		if pet_guid and not ArenaID[pet_guid] then
+-- 			ArenaID[pet_guid] = i
+-- 		end
+--   end
+-- end
+
+local function GetUnitArenaNumber(unit)
+  local guid = unit.guid
+  if not IsSecretValueTP(guid) then
+    local arena_no = PlayerGUIDToNumber[guid]
+    if arena_no then 
+      return arena_no 
+    end
+  end
+
+  -- Fallback: try a direct UnitIsUnit comparison if the GUID lookup failed (e.g. UnitGUID
+  -- returned a secret value when ARENA_OPPONENT_UPDATE fired). UnitIsUnitTP returns false
+  -- for secret results, so this degrades gracefully in fully-restricted contexts.
+  for unitid, num in pairs(ArenaUnitIdToNumber) do
+    if UnitIsUnitTP(unitid, unit.unitid) then
+      return num
+    end
+  end
+end
+
+local function GetFrameSortNumber(unitId)
+  if GetAddOnEnableState("FrameSort", UnitName("player")) == 0 then
+    -- framesort not installed
+    return nil
+  end
+
+  local fs = FrameSortApi and FrameSortApi.v2
+
+  if not fs then
+    -- they are using an ancient unsupported version of FrameSort that doesn't have API support
+    return nil
+  end
+
+  -- get an ordered list of units by their visual position
+  local units = UnitInParty(unitId) and fs.Sorting:GetFriendlyUnits() or fs.Sorting:GetEnemyUnits()
+
+  for frameNumber, unit in ipairs(units) do
+    if UnitIsUnitTP(unitId, unit) then
+      return frameNumber
+    end
+  end
+
+  return nil
+end
+
+function Widget:PLAYER_ENTERING_WORLD()
+  local _, instance_type = IsInInstance()
+  if instance_type == "arena" and not IsInBrawl() then
+    InArena = true
+  
+    -- Arenas are available from TBC Classic on. But ARENA_OPPONENT_UPDATE is also fired in BGs, 
+    -- at least in Classic, not sure if also in Wrath/TBC Classic, so it's only enabled when in an arena
+    self:SubscribeEvent("ARENA_OPPONENT_UPDATE")
+    -- Register GROUP_ROSTER_UPDATE here is it only should be used while in an arena, not in, e.g., a dungeon.
+    self:SubscribeEvent("GROUP_ROSTER_UPDATE")
+
+    -- Scan arena unit tokens immediately. During the prep phase UnitGUID may still
+    -- return real (non-secret) values, so capture them before PvP restrictions activate.
+    for unitid, num in pairs(ArenaUnitIdToNumber) do
+      if UnitExists(unitid) then
+        local guid = _G.UnitGUID(unitid)
+        if guid and not IsSecretValueTP(guid) then
+          PlayerGUIDToNumber[guid] = num
+        end
+      end
+    end
+  else
+    self:UnsubscribeEvent("ARENA_OPPONENT_UPDATE")
+    self:UnsubscribeEvent("GROUP_ROSTER_UPDATE")
+
+    InArena = false
+    PlayerGUIDToNumber = {}
+    --ArenaID = {} -- Clear the table when we leave
+  end
+end
+
+-- function Widget:ARENA_PREP_OPPONENT_SPECIALIZATIONS()
+--   --ArenaID = {} -- Clear the table when we leave
+--   PlayerGUIDToNumber = {}
+
+--   -- if IsSoloShuffle() then
+--   --   -- GetArenaOpponents()
+--   --   self:UpdateAllFrames()
+--   -- end
+-- end
+
+function Widget:UpdateFriendyPlayerOrPet(unitid)
+  if UnitExists(unitid) then
+    local guid = _G.UnitGUID(unitid)
+    if guid and not IsSecretValueTP(guid) then
+      PlayerGUIDToNumber[guid] = ArenaUnitIdToNumber[unitid]
+    end
+    local widget_frame = self:GetWidgetFrameForUnit(unitid)
+    if widget_frame then
+      self:OnUnitAdded(widget_frame, unitid)
+    end
+  end
+end
+
+-- Parameters: unitToken, updateReason
+--   updateReason: seen, destroyed, unseen, cleared
+function Widget:ARENA_OPPONENT_UPDATE(unitid, update_reason)
+  -- Only registered when in solo shuffles
+  local guid = _G.UnitGUID(unitid)
+  if guid and not IsSecretValueTP(guid) then
+    if update_reason == "seen" then
+      PlayerGUIDToNumber[guid] = ArenaUnitIdToNumber[unitid]
+    else
+      PlayerGUIDToNumber[guid] = nil
+    end
+
+    local widget_frame = self:GetWidgetFrameForUnit(unitid)
+    if widget_frame then
+      self:OnUnitAdded(widget_frame, unitid)
+    end
+  end
+end
+
+function Widget:GROUP_ROSTER_UPDATE()
+  for i = 1, 5 do
+    self:UpdateFriendyPlayerOrPet("party" .. i)
+    self:UpdateFriendyPlayerOrPet("partypet" .. i)
+  end
+end
+
+---------------------------------------------------------------------------------------------------
+-- Widget functions for creation and update
+---------------------------------------------------------------------------------------------------
+
+function Widget:Create(tp_frame)
+  -- Required Widget Code
+  local widget_frame = _G.CreateFrame("Frame", nil, tp_frame)
+  widget_frame:Hide()
+
+  -- Custom Code
+  --------------------------------------
+  -- widget_frame:SetSize(32, 32)
+  widget_frame:SetFrameLevel(tp_frame:GetFrameLevel() + 7)
+
+  widget_frame.Icon = widget_frame:CreateTexture(nil, "ARTWORK")
+  widget_frame.Icon:SetAllPoints(widget_frame)
+
+  widget_frame.NumText = widget_frame:CreateFontString(nil, "ARTWORK")
+
+  self:UpdateLayout(widget_frame)
+  --------------------------------------
+  -- End Custom Code
+
+  return widget_frame
+end
+
+function Widget:IsEnabled()
+  return Addon.db.profile.arenaWidget.ON
+end
+
+function Widget:OnEnable()
+  self:SubscribeEvent("PLAYER_ENTERING_WORLD")
+
+  self:PLAYER_ENTERING_WORLD()
+end
+
+-- function Widget:OnDisable()
+--   self:UnsubscribeAllEvents()
+-- end
+
+function Widget:EnabledForStyle(style, unit)
+  return unit.reaction ~= "NEUTRAL" and not (style == "NameOnly" or style == "NameOnly-Unique" or style == "etotem")
+end
+
+function Widget:OnUnitAdded(widget_frame, unit)
+  if not InArena then
+    widget_frame:Hide()
+    return
+  end
+
+  local arena_no = GetUnitArenaNumber(unit)
+  if not arena_no then
+    widget_frame:Hide()
+    return
+  end
+
+  local settings_by_team = SettingsByTeam[unit.reaction]
+
+  if settings_by_team.UseFrameSort then
+    local fsNumber = GetFrameSortNumber(unit.unitid)
+    arena_no = fsNumber or arena_no
+  end
+
+  widget_frame.Random = arena_no
+
+  if settings_by_team.ShowOrb then
+    local icon_color = settings_by_team.OrbColors[arena_no]
+    widget_frame.Icon:SetVertexColor(icon_color.r, icon_color.g, icon_color.b, icon_color.a)
+    widget_frame.Icon:Show()
+  else
+    widget_frame.Icon:Hide()
+  end
+
+  if settings_by_team.ShowNumber then
+    local number_color = settings_by_team.NumberColors[arena_no]
+    widget_frame.NumText:SetTextColor(number_color.r, number_color.g, number_color.b)
+    widget_frame.NumText:SetText(arena_no)
+    widget_frame.NumText:Show()
+  else
+    widget_frame.NumText:Hide()
+  end
+
+  if settings_by_team.HideName then
+    widget_frame:GetParent().visual.NameText:Hide()
+  elseif Addon.db.profile.Name.HealthbarMode.Enabled then
+    widget_frame:GetParent().visual.NameText:Show()
+  end
+
+  widget_frame:Show()
+end
+
+-- Used in ARENA_PREP_OPPONENT_SPECIALIZATIONS
+-- Widget.UpdateFrame = Widget.OnUnitAdded
+
+function Widget:UpdateLayout(widget_frame)
+  -- Updates based on settings
+  widget_frame:SetPoint("CENTER", widget_frame:GetParent(), Settings.x, Settings.y)
+  widget_frame:SetSize(Settings.scale, Settings.scale)
+  
+  Addon:SetIconTexture(widget_frame.Icon, "Arena")
+  
+  FontUpdateText(widget_frame, widget_frame.NumText, Settings.NumberText)
+end
+
+function Widget:UpdateSettings()
+  Settings = Addon.db.profile.arenaWidget
+
+  SettingsByTeam.HOSTILE.ShowOrb = Settings.ShowOrb
+  SettingsByTeam.HOSTILE.ShowNumber = Settings.ShowNumber
+  SettingsByTeam.HOSTILE.HideName = Settings.HideName
+  SettingsByTeam.HOSTILE.UseFrameSort = Settings.UseFrameSort
+  SettingsByTeam.HOSTILE.OrbColors = Settings.colors
+  SettingsByTeam.HOSTILE.NumberColors = Settings.numColors
+  SettingsByTeam.FRIENDLY = Settings.Allies
+
+  -- If the widget is enabled when in an arena, PLAYER_ENTERING_WORLD was already fired, so we have to update
+  -- call it manually
+  self:PLAYER_ENTERING_WORLD()
+
+  for unitid, _ in pairs(ArenaUnitIdToNumber) do
+    if UnitExists(unitid) then
+      local guid = _G.UnitGUID(unitid)
+      if guid and not IsSecretValueTP(guid) then
+        -- The nameplate is updated after the settings update by WidgetHandler
+        PlayerGUIDToNumber[guid] = ArenaUnitIdToNumber[unitid]
+      end
+    end
+  end
+end

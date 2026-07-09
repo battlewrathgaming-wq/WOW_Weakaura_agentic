@@ -1,0 +1,15 @@
+## Interface: 30401
+## Title: Quality Of Life: |cffffffffClassic Threat|r |c004AAAE7WOTLK|r
+## Notes: Displays threat on unit frames.
+## Author: Benjamin Bober
+## Version: 22
+## Dependencies: QoL_Core-TBC
+## LoadOnDemand: 1
+
+qol-classicthreat.lua
+qol-classicthreat-misc.lua
+qol-classicthreat-options.lua
+qol-classicthreat-ui.lua
+qol-classicthreat-ui-frame.lua
+
+localization\qol-classicthreat-deDE.lua

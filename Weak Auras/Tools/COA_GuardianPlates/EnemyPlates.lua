@@ -1407,4 +1407,18 @@ SlashCmdList["COAENEMYPLATES"] = function(msg)
             threatReadout = "On (" .. (IsEffectivelyTanking() and "Tanking" or "DPS") .. " view [" .. roleSourceReadout .. "], " .. groupReadout .. ")"
         end
         Print(string.format(
-           
+            "threat=%s, instanceFill=%s (currently %s), aggroCue caution=%d%%, glow=%s",
+            threatReadout, tostring(COA_GuardianPlatesDB.threatInstanceFillEnabled), zoneReadout,
+            COA_GuardianPlatesDB.threatCautionPct or 80,
+            ns.LCG and "animated (PixelGlow)" or "static border (fallback - LibCustomGlow not loaded)"))
+    elseif cmd == "options" or cmd == "config" then
+        if InterfaceOptionsFrame_OpenToCategory then
+            pcall(InterfaceOptionsFrame_OpenToCategory, optionsPanel)
+            pcall(InterfaceOptionsFrame_OpenToCategory, optionsPanel)
+        else
+            Print("Interface Options panel API not found on this client - open ESC > Interface > AddOns manually.")
+        end
+    else
+        Print("Usage: /coaep on|off | tanking on|off | instancefill on|off | caution <pct> | status | options - render testing moved to /coasp rendertest")
+    end
+end

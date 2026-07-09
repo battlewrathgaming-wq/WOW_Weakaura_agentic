@@ -1223,4 +1223,15 @@ really is instead of conflating them.
    auto-detection was a code-level fix for a confirmed-broken assumption
    (CoA's classes aren't the 4 stock classes `IsTank()` checked), but the
    replacement checkbox itself hasn't been watched in a real tank pull yet
-   - confirm
+   - confirm toggling "Tanking" actually flips which literal aggro state
+   reads as "secure" vs "danger," and that the secure-state glow suppression
+   behaves correctly for both checkbox positions.
+10. **Group gate (v2.6) not yet live-tested.** Confirm threat coloring
+    actually goes silent solo and lights back up the moment a group forms
+    (`GROUP_ROSTER_UPDATE` isn't separately hooked - the gate is just read
+    live inside `GetThreatColorForUnit` on the existing reclassify/event
+    cadence, so it should pick up a group forming without any extra
+    wiring, but that's an assumption, not yet watched). Also unconfirmed:
+    whether a solo player's own pet/guardian holding independent aggro is
+    a real scenario on CoA at all - see the GROUP GATE doc note in the
+    `.lua` file for the full reasoning.

@@ -1,0 +1,23 @@
+-- ruRU Russian
+-- Translated by Hollicsh
+local _, ThreatMeter = ...
+ThreatMeter:AddTrans("ruRU", "LID_GENERAL", "Основное")
+ThreatMeter:AddTrans("ruRU", "LID_TEXT", "Текст")
+ThreatMeter:AddTrans("ruRU", "LID_SHOWTEXTOUTSIDEOFCOMBAT", "Показывать текст вне боя")
+ThreatMeter:AddTrans("ruRU", "LID_TEXTSCALE", "Масштаб текста: %0.1f")
+ThreatMeter:AddTrans("ruRU", "LID_MMBTN", "Показывать кнопку миникарты")
+ThreatMeter:AddTrans("ruRU", "LID_SHOWHIGHESTTHREAT", "Показать наибольшую угрозу (другие игроки)")
+ThreatMeter:AddTrans("ruRU", "LID_INCOMBAT", "В бою")
+ThreatMeter:AddTrans("ruRU", "LID_NOTINCOMBAT", "Не в бою")
+ThreatMeter:AddTrans("ruRU", "LID_TANKING", "Танкование")
+ThreatMeter:AddTrans("ruRU", "LID_lockedText", "Заблокировать текст")
+ThreatMeter:AddTrans("ruRU", "LID_ThreatMeterText", "Нажмите на замок, чтобы зафиксировать положение текста")
+ThreatMeter:AddTrans("ruRU", "LID_UNLOCKLOCKTEXT", "Разблокировать текст")
+ThreatMeter:AddTrans("ruRU", "LID_HIDEMINIMAPICON", "Скрыть значок миникарты")
+ThreatMeter:AddTrans("ruRU", "LID_MINIMAPBUTTONISNOWHIDDEN", "Кнопка миникарты теперь скрыта.")
+ThreatMeter:AddTrans("ruRU", "LID_TEXTISNOWUNLOCKED", "Текст теперь разблокирован.")
+ThreatMeter:AddTrans("ruRU", "LID_TEXTISNOWLOCKED", "Текст теперь заблокирован.")
+ThreatMeter:AddTrans("ruRU", "LID_SAVEDNEWTEXTPOSITION", "Сохранено новое положение текста.")
+ThreatMeter:AddTrans("ruRU", "LID_CANTBEMOVEDINCOMBAT", "Нельзя перемещать в бою.")
+ThreatMeter:AddTrans("ruRU", "LID_TEXTISLOCKEDHELPTEXT", "Текст заблокирован. Пожалуйста, сначала разблокируйте текст.")
+ThreatMeter:AddTrans("ruRU", "LID_DISPLAYBAR", "Display Bar")

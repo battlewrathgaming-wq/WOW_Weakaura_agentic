@@ -1,0 +1,28 @@
+## Interface: 30401
+## Title: Quality Of Life for |c004AAAE7WOTLK|r Classic
+## Notes: Quality Of Life for WOTLK Classic (main functionalities).
+## Author: Benjamin Bober
+## Version: 15
+## SavedVariables: QOL_OPTIONS
+
+qol-core.lua
+
+qol-core-compatibility.lua
+qol-core-misc.lua
+qol-core-math.lua
+qol-core-string.lua
+
+qol-core-api-shared.lua
+
+qol-core-ui-options.lua
+qol-core-ui-unithealth.lua
+
+ui-modern\qol-core-ui-modern.lua
+
+ui-spark\qol-core-ui-spark.lua
+ui-spark\qol-core-ui-sparksource.lua
+ui-spark\qol-core-ui-sparksource-frame.lua
+ui-spark\qol-core-ui-sparksource-point.lua
+
+localization\qol-core-language.lua
+localization\qol-core-deDE.lua

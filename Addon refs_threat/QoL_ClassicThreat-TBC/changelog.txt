@@ -1,0 +1,32 @@
+Version 22 (23-01-18):
+- Barframes now remember their last target unit
+- Added compatibility for new Blizzard addon API
+- New interface version: 30401
+
+Version 21 (22-09-19):
+- Fixed a visual glitch on the TargetFrame (further improvement might follow)
+- Added deathknight threat frame icon
+
+Version 20 (22-08-31):
+- Added WOTLK support
+
+Version 19 (22-03-23):
+- TBC Classic only: Upgraded to interface version 20504
+
+Version 18 (22-02-16):
+- Fixed a bug which caused the addon to fail at start on newly installed addons
+- Added a couple of bar frame icons, e.g. class icons (more to come)
+
+Version 17 (22-01-19):
+- TBC Classic only: Upgraded to interface version 20503
+
+Version 16 (22-01-07):
+- Added: Barframes can now be locked in place and size via doubleclick
+- Added: Barframes and their position/size are now saved per realm and character
+- Added: Target marker for fixed "player" barframes
+- Added: Option to toggle barframe animations on or off
+- Added: Option to automatically show/hide barframes on join/leave party/raid
+- Fixed: NPC text color is now white as intended
+- Classic Era only: Upgraded to interface version 11401
+
+No continuous changelog before version 16.
