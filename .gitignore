@@ -10,3 +10,11 @@ git_push_log.txt
 Weak Auras/Tools/project_index/index.json
 Weak Auras/Tools/project_index/search_index.json
 Weak Auras/Tools/project_index/activity.log
+
+# .tools/: contained dev binaries (LuaBinaries 5.1.5 for wa_lua_verify), not
+# source - platform-specific, rebuildable by re-downloading. Never commit.
+.tools/
+
+# derived corpus/library artifacts - regenerable from the live SavedVariables
+# via aura_scrape.py / blocks_db.py; can be large / binary. Not source.
+Outputs/aura_corpus/

@@ -1,0 +1,662 @@
+{
+  "mask_id": "Central_hud",
+  "authority": "relational matrix computed via geometry.py; live wells validate, never define",
+  "frame": "HUD-centered (0,0); group on-screen placement is WeakAuras' (normalized out)",
+  "scheme": "A (2026-07): icon gap 2 -> integer columns, inner band \u00b1125, outer \u00b1185",
+  "relationships": {
+    "inner_band": 125.0,
+    "outer_band": 185,
+    "icon_columns": [
+      -105.0,
+      -63.0,
+      -21.0,
+      21.0,
+      63.0,
+      105.0
+    ],
+    "plateau": 2,
+    "resource_centre": 63.0,
+    "resource_outer_edge": 125.0,
+    "plateau_juts_past_icon_band_by": 0.0,
+    "accent_bridges_bands": [
+      125.0,
+      185
+    ]
+  },
+  "composition_model": "single | subdivide (2D budget-fill). Backing plates are an inventory/strata concern.",
+  "family_count": 37,
+  "validation": {
+    "confirmed": 9,
+    "drifted": 6,
+    "unconfirmed": 22
+  },
+  "families": {
+    "Tier1_1": {
+      "anchor": [
+        -105.0,
+        -130
+      ],
+      "budget": {
+        "w": 40,
+        "h": 30
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "live"
+    },
+    "Tier1_2": {
+      "anchor": [
+        -63.0,
+        -130
+      ],
+      "budget": {
+        "w": 40,
+        "h": 30
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "live"
+    },
+    "Tier1_3": {
+      "anchor": [
+        -21.0,
+        -130
+      ],
+      "budget": {
+        "w": 40,
+        "h": 30
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "live"
+    },
+    "Tier1_4": {
+      "anchor": [
+        21.0,
+        -130
+      ],
+      "budget": {
+        "w": 40,
+        "h": 30
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "live"
+    },
+    "Tier1_5": {
+      "anchor": [
+        63.0,
+        -130
+      ],
+      "budget": {
+        "w": 40,
+        "h": 30
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "live"
+    },
+    "Tier1_6": {
+      "anchor": [
+        105.0,
+        -130
+      ],
+      "budget": {
+        "w": 40,
+        "h": 30
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "live"
+    },
+    "Tier2_1": {
+      "anchor": [
+        -105.0,
+        -190
+      ],
+      "budget": {
+        "w": 40,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single",
+        "subdivide"
+      ],
+      "provenance": "design",
+      "subdivide": {
+        "axis": "x",
+        "span": [
+          -125.0,
+          -85.0
+        ]
+      }
+    },
+    "Tier2_2": {
+      "anchor": [
+        -63.0,
+        -190
+      ],
+      "budget": {
+        "w": 40,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single",
+        "subdivide"
+      ],
+      "provenance": "design",
+      "subdivide": {
+        "axis": "x",
+        "span": [
+          -83.0,
+          -43.0
+        ]
+      }
+    },
+    "Tier2_3": {
+      "anchor": [
+        -21.0,
+        -190
+      ],
+      "budget": {
+        "w": 40,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single",
+        "subdivide"
+      ],
+      "provenance": "design",
+      "subdivide": {
+        "axis": "x",
+        "span": [
+          -41.0,
+          -1.0
+        ]
+      }
+    },
+    "Tier2_4": {
+      "anchor": [
+        21.0,
+        -190
+      ],
+      "budget": {
+        "w": 40,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single",
+        "subdivide"
+      ],
+      "provenance": "design",
+      "subdivide": {
+        "axis": "x",
+        "span": [
+          1.0,
+          41.0
+        ]
+      }
+    },
+    "Tier2_5": {
+      "anchor": [
+        63.0,
+        -190
+      ],
+      "budget": {
+        "w": 40,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single",
+        "subdivide"
+      ],
+      "provenance": "design",
+      "subdivide": {
+        "axis": "x",
+        "span": [
+          43.0,
+          83.0
+        ]
+      }
+    },
+    "Tier2_6": {
+      "anchor": [
+        105.0,
+        -190
+      ],
+      "budget": {
+        "w": 40,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single",
+        "subdivide"
+      ],
+      "provenance": "design",
+      "subdivide": {
+        "axis": "x",
+        "span": [
+          85.0,
+          125.0
+        ]
+      }
+    },
+    "Tier3_1": {
+      "anchor": [
+        -170.0,
+        -185
+      ],
+      "budget": {
+        "w": 30,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "live"
+    },
+    "Tier3_2": {
+      "anchor": [
+        -140.0,
+        -185
+      ],
+      "budget": {
+        "w": 30,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "live"
+    },
+    "Tier3_3": {
+      "anchor": [
+        -170.0,
+        -205
+      ],
+      "budget": {
+        "w": 30,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design",
+      "dynamic": true
+    },
+    "Tier3_4": {
+      "anchor": [
+        -140.0,
+        -205
+      ],
+      "budget": {
+        "w": 30,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design",
+      "dynamic": true
+    },
+    "Tier3_5": {
+      "anchor": [
+        -170.0,
+        -225
+      ],
+      "budget": {
+        "w": 30,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design",
+      "dynamic": true
+    },
+    "Tier3_6": {
+      "anchor": [
+        -140.0,
+        -225
+      ],
+      "budget": {
+        "w": 30,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design",
+      "dynamic": true
+    },
+    "Tier4_1": {
+      "anchor": [
+        170.0,
+        -185
+      ],
+      "budget": {
+        "w": 30,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design"
+    },
+    "Tier4_2": {
+      "anchor": [
+        140.0,
+        -185
+      ],
+      "budget": {
+        "w": 30,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design"
+    },
+    "Tier4_3": {
+      "anchor": [
+        170.0,
+        -205
+      ],
+      "budget": {
+        "w": 30,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design",
+      "dynamic": true
+    },
+    "Tier4_4": {
+      "anchor": [
+        140.0,
+        -205
+      ],
+      "budget": {
+        "w": 30,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design",
+      "dynamic": true
+    },
+    "Tier4_5": {
+      "anchor": [
+        170.0,
+        -225
+      ],
+      "budget": {
+        "w": 30,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design",
+      "dynamic": true
+    },
+    "Tier4_6": {
+      "anchor": [
+        140.0,
+        -225
+      ],
+      "budget": {
+        "w": 30,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design",
+      "dynamic": true
+    },
+    "Tier5_1": {
+      "anchor": [
+        -105.0,
+        -105
+      ],
+      "budget": {
+        "w": 40,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design"
+    },
+    "Tier5_2": {
+      "anchor": [
+        -63.0,
+        -105
+      ],
+      "budget": {
+        "w": 40,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design"
+    },
+    "Tier5_3": {
+      "anchor": [
+        -21.0,
+        -105
+      ],
+      "budget": {
+        "w": 40,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design"
+    },
+    "Tier5_4": {
+      "anchor": [
+        21.0,
+        -105
+      ],
+      "budget": {
+        "w": 40,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design"
+    },
+    "Tier5_5": {
+      "anchor": [
+        63.0,
+        -105
+      ],
+      "budget": {
+        "w": 40,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design"
+    },
+    "Tier5_6": {
+      "anchor": [
+        105.0,
+        -105
+      ],
+      "budget": {
+        "w": 40,
+        "h": 20
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design"
+    },
+    "accent.left": {
+      "anchor": [
+        -155.0,
+        -160
+      ],
+      "budget": {
+        "w": 60.0,
+        "h": 30
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design"
+    },
+    "accent.right": {
+      "anchor": [
+        155.0,
+        -160
+      ],
+      "budget": {
+        "w": 60.0,
+        "h": 30
+      },
+      "region": "icon",
+      "composition": [
+        "single"
+      ],
+      "provenance": "design"
+    },
+    "cast_bar": {
+      "anchor": [
+        63.0,
+        -152.5
+      ],
+      "budget": {
+        "w": 124.0,
+        "h": 15
+      },
+      "region": "aurabar",
+      "composition": [
+        "single"
+      ],
+      "provenance": "live"
+    },
+    "divider": {
+      "anchor": [
+        0,
+        -160
+      ],
+      "budget": {
+        "w": 2,
+        "h": 30
+      },
+      "region": "aurabar",
+      "composition": [
+        "single"
+      ],
+      "provenance": "live"
+    },
+    "resource.primary": {
+      "anchor": [
+        -63.0,
+        -152.5
+      ],
+      "budget": {
+        "w": 124.0,
+        "h": 15
+      },
+      "region": "aurabar",
+      "composition": [
+        "single",
+        "subdivide"
+      ],
+      "provenance": "live",
+      "subdivide": {
+        "axis": "x",
+        "span": [
+          -125.0,
+          -1.0
+        ]
+      }
+    },
+    "resource.secondary": {
+      "anchor": [
+        -63.0,
+        -167.5
+      ],
+      "budget": {
+        "w": 124.0,
+        "h": 15
+      },
+      "region": "aurabar",
+      "composition": [
+        "single",
+        "subdivide"
+      ],
+      "provenance": "live",
+      "subdivide": {
+        "axis": "x",
+        "span": [
+          -125.0,
+          -1.0
+        ]
+      }
+    },
+    "swing_timer": {
+      "anchor": [
+        63.0,
+        -167.5
+      ],
+      "budget": {
+        "w": 124.0,
+        "h": 15
+      },
+      "region": "aurabar",
+      "composition": [
+        "single"
+      ],
+      "provenance": "live"
+    }
+  }
+}

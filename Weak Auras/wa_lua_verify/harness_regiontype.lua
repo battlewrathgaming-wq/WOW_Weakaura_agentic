@@ -72,7 +72,15 @@ local WeakAurasStub = {
 }
 setmetatable(WeakAurasStub, { __index = function() return autoviv() end })
 
-_G.LibStub = function(...) return autoviv() end
+-- Optional libs (silent=true, e.g. Masque via `LibStub("Masque", true)`) are
+-- treated as ABSENT so their enhancement blocks skip - we only need `default`
+-- to be defined, not real libs. Adapted 2026-07-09 for the local WA 5.21.2
+-- source (Icon.lua's `if MSQ_Version <= 80100` compared nil under the old
+-- always-autoviv stub). Mandatory libs still get the permissive autoviv stub.
+_G.LibStub = function(major, silent)
+  if silent then return nil end
+  return autoviv()
+end
 _G.CreateFrame = function(...) return autoviv() end
 _G.GetScreenWidth = function() return 1920 end
 _G.GetScreenHeight = function() return 1080 end
