@@ -31,4 +31,18 @@ via a different path (`Prototypes.lua`) — a harness for those is open thread #
 Beyond field-conformance sits **import acceptance** (driving WA's real `Import`),
 a deeper level not yet built.
 
+## Beyond schemas: WA's *engine* runs headless too
+
+The harness doesn't only extract `default()` tables — WA's actual
+data-processing logic runs standalone. Proven: **`Modernize`** (WA's authoritative
+version-migration / canonicalization) loaded and migrated a real aura `v10 → v86`
+**clean**, with three trivial stubs (`GetData→nil`, `prettyPrint→noop`,
+`InternalVersion→86`). It's near-pure data→data (no frame creation). So we can
+hand WA our constructed table and let *its own engine* canonicalize it — the
+assembler needn't emit perfect WA-canonical output, only *reasonable* output.
+See [ASSEMBLER.md](ASSEMBLER.md#the-division-of-labour--lanes-and-what-wa-does-for-us).
+(`WeakAuras.Add` creates live frames → in-game only; feasibility of full-fidelity
+`Modernize` for *arbitrary* input still needs stubbing the few real deps some
+migrations touch.)
+
 See [CHAIN.md](CHAIN.md). Needs the game client (memory `game-client-install-path`).

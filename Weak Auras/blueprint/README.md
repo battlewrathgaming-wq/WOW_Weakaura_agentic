@@ -1,0 +1,49 @@
+# Blueprint — the coherent pipeline (reference plane)
+
+The single top-down statement of **what we're building toward**. The strand docs
+(`../CHAIN.md` + siblings) describe what's *built*, in pieces; this describes the
+*intended coherent model*, component by component. Fresh basis — if it proves
+wrong, we replace it wholesale, cheaply.
+
+## The goal
+Author HUD content by expressing **intent** (what to display, where) and have the
+system assemble it into working, WA-valid auras — so complex auras ship from
+understood, indexed primitives instead of hand-built tables.
+
+## The flow
+```
+[4] Class inventory — per slot: a slice + fills            (intent, authored)
+      on  [1] Mask   — slot families: where / how much room (computed authority)
+      of  [2] Slices — logical display operators: what      (hand-authored vocabulary)
+      from[3] Blocks — WA code snippets + holes             (WA's parts, indexed)
+   |
+   v
+[5] Assembler — resolve slice->blocks, distribute into lanes, allocate indices, pair
+   |   (a *reasonable* data table)
+   v
+[6] WA Modernize — canonicalize to WA-valid form (harnessed headless)
+   |
+   v
+   encode -> import string -> paste in-game
+```
+
+## Who owns what
+| stage | owner | note |
+|---|---|---|
+| Mask | computed geometry | ours; live captures only validate |
+| Slices | **human author** | ours — the real work |
+| Blocks | WeakAuras | WA's ontology; we index, not invent |
+| Inventory | human / agent | the authoring surface |
+| Assembler | machine | dumb, mechanical, zero reasoning |
+| Canonicalize | WeakAuras | `Modernize`, harnessed |
+
+## Status
+- **Built:** Mask ✔ · Blocks ✔ · Assembler (reconstruction, 59/59) ✔ · WA-engine harnessable ✔
+- **Next:** Slices (vocabulary) ✎ · Inventory (redesign) ✎ · Assembler (generative distribute+pair) ✎
+
+## Components
+1. [Mask](1_mask.md) · 2. [Slices](2_slices.md) · 3. [Blocks](3_blocks.md) · 4. [Inventory](4_inventory.md) · 5. [Assembler](5_assembler.md) · 6. [WA engine](6_wa_engine.md)
+
+Supporting (not in the runtime path): the **corpus** (`../CORPUS.md`) reads live
+auras as intent / discovery for authoring slices; **validators** (`../mask_validate.py`,
+`../WA_VALIDATION.md`) are drift detectors, not builders.

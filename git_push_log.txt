@@ -2,29 +2,19 @@
 On branch main
 Your branch is up to date with 'origin/main'.
 
-Changes to be committed:
-  (use "git restore --staged <file>..." to unstage)
-	modified:   .gitignore
-	new file:   Weak Auras/ASSEMBLER.md
-	new file:   Weak Auras/BLOCK_SYSTEM.md
-	new file:   Weak Auras/CHAIN.md
-	new file:   Weak Auras/CORPUS.md
-	new file:   Weak Auras/MASK.md
-	new file:   Weak Auras/WA_VALIDATION.md
-	new file:   Weak Auras/assembler.py
-	new file:   Weak Auras/aura_blocks.py
-	new file:   Weak Auras/aura_scrape.py
-	new file:   Weak Auras/blocks_db.py
-	new file:   Weak Auras/lua_table.py
-	new file:   Weak Auras/mask_build.py
-	new file:   Weak Auras/mask_trends.py
-	new file:   Weak Auras/mask_validate.py
-	new file:   Weak Auras/masks/Central_hud.mask.json
-	modified:   Weak Auras/wa_lua_verify/harness_regiontype.lua
-	new file:   Weak Auras/wa_validate.py
-
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
+	modified:   Weak Auras/ASSEMBLER.md
+	modified:   Weak Auras/CHAIN.md
+	modified:   Weak Auras/WA_VALIDATION.md
 	modified:   git_push_log.txt
 
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	Addon refs_threat/Necro.txt
+	Addon refs_threat/Necro_2.txt
+	Weak Auras/blueprint/
+	Weak Auras/bom_mine.py
+
+no changes added to commit (use "git add" and/or "git commit -a")

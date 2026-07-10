@@ -40,7 +40,7 @@ corpus → [aura_blocks.py](aura_blocks.py) → `native_blocks.json` (Layer-0 vo
 ## Open threads (`!build`-gated)
 1. Re-emit resource layers to **scheme A** (clears validator drift + 3→2 divider over-budget).
 2. Regenerate `ELEMENT_INVENTORY.md` **from** `mask.json` (closes prose drift).
-3. **Class inventory → manifest** (the front-end that feeds D; forces the generative joining layer).
+3. **Class inventory → manifest** (the front-end that feeds D; drives the generative joining layer — now **spec'd** from the `Full stack strip test` reference, see [ASSEMBLER.md](ASSEMBLER.md#generative-joining--the-spec), not yet implemented).
 4. **BOM mining** (populate `bom`/`bom_block`).
 5. **wago.io ingestion** (bigger training set → sharper library + patterns).
 6. **Trigger-schema harness** (`Prototypes.lua`) — extend F beyond region/subregion.
