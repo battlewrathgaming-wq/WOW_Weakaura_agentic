@@ -18,3 +18,8 @@ Weak Auras/Tools/project_index/activity.log
 # derived corpus/library artifacts - regenerable from the live SavedVariables
 # via aura_scrape.py / blocks_db.py; can be large / binary. Not source.
 Outputs/aura_corpus/
+
+# plane/ assembler output - regenerable from the BOM + parts via assemble.py,
+# and the import string re-mints a fresh uid each run (would churn). Source is
+# the BOM/parts/scripts, not this generated table/string.
+Weak Auras/plane/out/

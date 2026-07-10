@@ -10,6 +10,29 @@ Author HUD content by expressing **intent** (what to display, where) and have th
 system assemble it into working, WA-valid auras — so complex auras ship from
 understood, indexed primitives instead of hand-built tables.
 
+## Vision & sequencing
+
+**North star — a community service.** The end goal is a *workshop taking
+commissions*: a requester brings a user story ("flare when Voidseeker procs") and
+the pipeline returns a working, generic (multi-user) WeakAura. The reasoning,
+assembly, and final fitness stay **in-house** — the requester's only job is the
+story, plus optional *homework* (a spell ID to drop into a trigger). The data
+pipeline (DBC + talent crawler) is the auto-fill that lets a user story *survive
+translation* without anyone logging onto every class to live-sample it. An
+**agent** writes the *docket* (the structured inventory entry) from the story,
+bounded to the known slice vocabulary + data — gaps are marked as homework, never
+guessed, and a homework package is self-verifying (the game lights up on import,
+or it doesn't).
+
+**Current framing — prove it on the HUD first.** We are deliberately framed
+around making the **HUD** work (Necromancer as proof, since Battlewrath plays it).
+That is *not* the end goal — it's the proof that we can **constrain the unknowns**:
+mask, blocks, slices, assembler, and WA's engine, composed into a real working
+output. Community service is **downstream**, and waits on two things: a **factual
+basis** (the DBC + talent data) and **working outputs** (the pipeline proven
+end-to-end). Don't chase the service before the proof lands — the HUD is how we
+earn the right to it.
+
 ## The flow
 ```
 [4] Class inventory — per slot: a slice + fills            (intent, authored)

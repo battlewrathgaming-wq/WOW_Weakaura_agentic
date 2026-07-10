@@ -1,0 +1,25 @@
+{
+ "part_id": "trigger.availability",
+ "lane": "trigger",
+ "holes": [
+  "spell_id"
+ ],
+ "template": {
+  "trigger": {
+   "type": "spell",
+   "subeventSuffix": "_CAST_START",
+   "event": "Action Usable",
+   "use_genericShowOn": true,
+   "genericShowOn": "showOnCooldown",
+   "unit": "player",
+   "debuffType": "HELPFUL",
+   "use_spellName": true,
+   "spellIds": {},
+   "subeventPrefix": "SPELL",
+   "names": {},
+   "use_track": true,
+   "spellName": "{{spell_id}}"
+  },
+  "untrigger": {}
+ }
+}

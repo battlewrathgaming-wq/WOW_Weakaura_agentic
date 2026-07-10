@@ -1,0 +1,20 @@
+{
+ "part_id": "load.by_class",
+ "lane": "load",
+ "holes": [
+  "class"
+ ],
+ "template": {
+  "use_class": true,
+  "spec": {
+   "multi": {}
+  },
+  "class": {
+   "single": "{{class}}",
+   "multi": {}
+  },
+  "size": {
+   "multi": {}
+  }
+ }
+}

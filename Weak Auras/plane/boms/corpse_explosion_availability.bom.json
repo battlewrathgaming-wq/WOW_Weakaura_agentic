@@ -1,0 +1,11 @@
+{
+  "name": "Corpse Explosion Availability",
+  "archetype": "slot",
+  "base": "icon",
+  "note": "Hand-written BOM standing in for the not-yet-built inventory agent. This is INTENT (a docket), not output - the aura table is produced by the dumb assembler from these parts. T2 (availability) + T1 (load-by-class) on Corpse Explosion 533236, NECROMANCER-gated.",
+  "parts": [
+    { "part": "region.icon" },
+    { "part": "trigger.availability", "fills": { "spell_id": 533236 } },
+    { "part": "load.by_class", "fills": { "class": "NECROMANCER" } }
+  ]
+}
