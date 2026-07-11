@@ -35,3 +35,9 @@ Weak Auras/ingest/inbox/
 # regenerate this deliverable on demand. NOTE: ability_inventory/out/ is TRACKED (it holds
 # the scraped+consolidated dataset), unlike plane/out/ which is pure regenerable build output.
 Weak Auras/ability_inventory/reference.html
+
+# Outputs/spell_dbc/ - the full Spell.dbc manifest dump (~163MB, 237k spells), regenerable
+# from the live client MPQ via Scripts/extract_spell_dbc.py. Pure "store all" scratch: the
+# whole dir is regenerable and ignored. The COA-relevant FILTERED subset is written to the
+# tracked dependencies/ folder instead (see filter_coa_spells.py), so nothing here is kept.
+Outputs/spell_dbc/

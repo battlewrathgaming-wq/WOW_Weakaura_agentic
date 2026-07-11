@@ -37,6 +37,7 @@ dofile(SV)
 local data = {
   trainer = (COA_DevDumpDB and COA_DevDumpDB.trainer) or {},
   spellbook = (COA_DevDumpDB and COA_DevDumpDB.spellbook) or {},
+  spellinfo = (COA_DevDumpDB and COA_DevDumpDB.spellinfo) or {},
 }
 local f = assert(io.open(OUT, "w"))
 f:write(enc(data))

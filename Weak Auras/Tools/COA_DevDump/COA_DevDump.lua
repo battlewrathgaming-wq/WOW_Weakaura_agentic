@@ -739,6 +739,85 @@ local function DumpSpellbook()
 end
 
 -- ---------------------------------------------------------------------
+-- Spell-info dump - ONE cycle over every spellId already captured (trainer +
+-- spellbook), profiling each via the client-side spell APIs. Fills the
+-- categorization gaps the Necro test exposed: real cast cost (powerCost, not
+-- trainer gold), cast time (instant vs cast), range (self/melee/ranged),
+-- offensive/defensive (IsHelpful/IsHarmful), and a complete passive flag - plus
+-- base cooldown IF this build backported GetSpellBaseCooldown. Every call is
+-- pcall'd, so unavailable APIs just leave the field nil and the summary line
+-- reports which ones actually returned data (self-diagnosing - no manual probe).
+-- GetSpellInfo works for any spellId regardless of whether the char knows it, so
+-- one run profiles the WHOLE captured set (all classes) at once. Run anywhere.
+-- ---------------------------------------------------------------------
+
+local function DumpSpellInfo()
+    local ids = {}
+    for _, cap in ipairs(COA_DevDumpDB.trainer or {}) do
+        for _, s in ipairs(cap.services or {}) do
+            if s.spellId then ids[s.spellId] = true end
+        end
+    end
+    for _, cap in ipairs(COA_DevDumpDB.spellbook or {}) do
+        for _, tab in ipairs(cap.tabs or {}) do
+            for _, sp in ipairs(tab.spells or {}) do
+                if sp.spellId then ids[sp.spellId] = true end
+            end
+        end
+    end
+    -- plus the FULL spellId set (baseline + talent, all classes) from the generated
+    -- COA_DevDump_Spells.lua, so we profile every ability's static data - not just the
+    -- trainer/spellbook-captured ones (GetSpellInfo/GetSpellBaseCooldown work for any id).
+    for _, id in ipairs(COA_DevDump_ExtraSpellIds or {}) do
+        ids[id] = true
+    end
+
+    -- MERGE into the accumulated set (don't overwrite). Class-agnostic fields (cost/
+    -- castTime/range/cooldown) complete in one run from any char; helpful/harmful/passive
+    -- are known-spell-only, so they accumulate as you run this on a char of each class.
+    COA_DevDumpDB.spellinfo = COA_DevDumpDB.spellinfo or {}
+    local byId = COA_DevDumpDB.spellinfo.byId or {}
+    local n = 0
+    for id in pairs(ids) do
+        local e = byId[tostring(id)] or { spellId = id }
+        pcall(function()
+            local name, rank, icon, cost, isFunnel, powerType, castTime, minR, maxR = GetSpellInfo(id)
+            e.name, e.rank, e.icon = name, rank, icon
+            e.powerCost, e.powerType, e.castTime = cost, powerType, castTime
+            e.minRange, e.maxRange = minR, maxR
+        end)
+        pcall(function() e.baseCooldown, e.baseGCD = GetSpellBaseCooldown(id) end)
+        -- only ever mark TRUE -> a later off-class run can't clobber an earlier class's true
+        pcall(function() if IsHelpfulSpell(e.name or id) then e.isHelpful = true end end)
+        pcall(function() if IsHarmfulSpell(e.name or id) then e.isHarmful = true end end)
+        pcall(function() if IsPassiveSpell(e.name or id) then e.isPassive = true end end)
+        byId[tostring(id)] = e
+        n = n + 1
+    end
+
+    local have = { total = 0, cost = 0, castTime = 0, range = 0, baseCd = 0, helpful = 0, harmful = 0, passive = 0 }
+    for _, e in pairs(byId) do
+        have.total = have.total + 1
+        if e.powerCost ~= nil then have.cost = have.cost + 1 end
+        if e.castTime ~= nil then have.castTime = have.castTime + 1 end
+        if e.maxRange ~= nil then have.range = have.range + 1 end
+        if e.baseCooldown ~= nil then have.baseCd = have.baseCd + 1 end
+        if e.isHelpful then have.helpful = have.helpful + 1 end
+        if e.isHarmful then have.harmful = have.harmful + 1 end
+        if e.isPassive then have.passive = have.passive + 1 end
+    end
+    COA_DevDumpDB.spellinfo.byId = byId
+    COA_DevDumpDB.spellinfo.capturedAt = date("%Y-%m-%d %H:%M:%S")
+    COA_DevDumpDB.spellinfo.lastBy = UnitName("player")
+    COA_DevDumpDB.spellinfo.count = have.total
+
+    Print(string.format("SpellInfo: +%d this run, %d total. Coverage: cost=%d castTime=%d "
+        .. "range=%d baseCd=%d | helpful=%d harmful=%d passive=%d (these grow per class run). "
+        .. "/reload to flush.",
+        n, have.total, have.cost, have.castTime, have.range, have.baseCd, have.helpful, have.harmful, have.passive))
+end
+
+-- ---------------------------------------------------------------------
 -- Slash command
 -- ---------------------------------------------------------------------
 
@@ -758,6 +837,8 @@ SlashCmdList["COADEVDUMP"] = function(msg)
         DumpTrainer()
     elseif cmd == "spellbook" then
         DumpSpellbook()
+    elseif cmd == "spellinfo" then
+        DumpSpellInfo()
     elseif cmd == "frames" then
         DumpFrames()
     elseif cmd == "probe" then
@@ -767,6 +848,6 @@ SlashCmdList["COADEVDUMP"] = function(msg)
         COA_DevDumpDB = {}
         Print("Cleared saved data.")
     else
-        Print("Usage: /coadump talents | /coadump talentnodes | /coadump talentframe | /coadump trainer | /coadump spellbook | /coadump frames | /coadump probe <FrameName> [fields] | /coadump clear")
+        Print("Usage: /coadump talents | /coadump talentnodes | /coadump talentframe | /coadump trainer | /coadump spellbook | /coadump spellinfo | /coadump frames | /coadump probe <FrameName> [fields] | /coadump clear")
     end
 end

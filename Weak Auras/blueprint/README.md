@@ -79,6 +79,15 @@ outputs.
    drift), mined only as per-choice witnesses on ingest.
 6. **Intent ↔ Structure.** The pool pairs *purpose* (pack filenames) with *composition*
    (decoded) — the seed for the eventual intent→grammar mapping the service needs.
+7. **Data sourcing: probe → manifest → store → filter; Source vs Verification.** Gather
+   comprehensively, THEN filter — don't pre-filter to what you think you need (the store
+   catches classless/un-hooked/triggered spells the in-game scrape can't see). The
+   repeatable authority (`Spell.dbc`) is the **SOURCE**; the live in-game scrape is
+   **VERIFICATION** — a fallback you keep reaching for is *pressure to change approach*,
+   not a crutch to lean on. Corollaries: **commonality ≠ quality** (the corpus is inertia;
+   most-common is often the stale copy — current-best comes from reasoning+testing, not the
+   norm), and **completeness > richness** (a partial signal biases conclusions — worse than
+   an absent one; why cast-type was dropped). `[[proc-basis-plan]]` `[[diagnosis-tool-and-corpus-findings]]`
 
 ## The dumb-machine rule
 All the intelligence lives in the agent authoring the **BOM** (the docket: part-
@@ -90,7 +99,7 @@ and *validated* by WA. `[[pipeline-not-agent-handwriting]]`
 | piece | role | state |
 |---|---|---|
 | mask (`mask_build.py`, `masks/`) | WHERE — position / spatial budget | **built** (stands) |
-| class inventory (`<Class>/inventory.py`) | WHAT fills each position — the docket/BOM authoring surface | stands; redesign around index/grammar pending |
+| class inventory (`<Class>/inventory.py`) | WHAT fills each position — the docket/BOM authoring surface | stands; **content now DATA-SOURCED** (`coa_spells.json`); redesign around index/grammar pending |
 | `wa_index/` | HOW-expressed: the vocabulary WA accepts (1042 levers, input_kind, value-domains, name-reconciled) | **built** |
 | `COMPOSITION_GRAMMAR.md` | how parts attach — evidenced across 21 packs | **evidenced, maturing** |
 | `ingest/` | training pool (ascension + retail), transferability-filtered, intent-labelled | **built** |
@@ -100,7 +109,8 @@ and *validated* by WA. `[[pipeline-not-agent-handwriting]]`
 | generative assembler (BOM → distribute+pair) | the real backend | **designed** |
 | agent/resolver (story → BOM) | the reasoning front-end | **designed** |
 | script-insertion (custom check/combination/code contract) | the expert frontier | **next workstream** |
-| reference data (DBC/talent) | content auto-fill | **partial** |
+| **data foundation** (`dependencies/coa_spells.json`, `ability_inventory/`) | the class inventory's CONTENT — every COA-relevant spell (6922 class-hooked + 2230 triggered) + categorisation signals (cooldown/cost/castTime/range) + the `effectTriggerSpell` PROC GRAPH; class:spec-keyed | **built + live-validated** (DBC `Spell.dbc` @ patch-D, 99.97% vs full live scrape; probe→manifest→store→filter) |
+| type-configured pack (first product) | every ability as a pre-built type-config drive-from-ID aura; users arrange own UI; external-input → blank-basis scaffold | **designed** `[[type-configured-pack-first-product]]` |
 
 ## Drift-verifiers — make the holes loud
 If reasoning has drifted, one of these is being violated:

@@ -5,4 +5,5 @@
 ## Version: 1.0
 ## SavedVariables: COA_DevDumpDB
 
+COA_DevDump_Spells.lua
 COA_DevDump.lua
