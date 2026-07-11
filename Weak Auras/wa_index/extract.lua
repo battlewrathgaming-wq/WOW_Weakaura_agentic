@@ -48,16 +48,27 @@ rawset(PrivateStub, "RegisterRegionType", function(name, create, modify, default
   captured[#captured + 1] = { kind = "region", name = name, default = default, getProperties = getProperties }
 end)
 
+-- Mixin(dest, ...): real WA copies mixin methods onto dest; a plain local table
+-- like Types.lua's `timeFormatter = {}` then calls dest:Init(). Our no-op left
+-- dest without the method (nil-call error), so give dest the autoviv metatable -
+-- then dest:AnyMethod() resolves to an inert stub instead of erroring.
+local function MixinStub(dest, ...)
+  if type(dest) == "table" then return setmetatable(dest, AV_MT) end
+  return dest
+end
+_G.Mixin = MixinStub
+
 local WeakAurasStub = {
   IsLibsOK = function() return true end,
   L = setmetatable({}, { __index = function(_, k) return k end }),
   normalWidth = 1, doubleWidth = 2, halfWidth = 0.5, newFeatureString = "",
-  CopyTable = CopyTable,
+  CopyTable = CopyTable, Mixin = MixinStub,
   -- signature: (name, display, supports, create, modify, onAcquire, onRelease,
   --             default, addDefaultsForNewAura, properties)  [confirmed Glow.lua:468]
+  -- `display` (2nd arg) is WA's own UI label for the subregion (e.g. L["Glow"]).
   RegisterSubRegionType = function(name, display, supports, create, modify,
                                     onAcquire, onRelease, default, addDefaults, properties, ...)
-    captured[#captured + 1] = { kind = "subregion", name = name,
+    captured[#captured + 1] = { kind = "subregion", name = name, display = display,
       default = default, properties = properties }
   end,
 }
@@ -68,8 +79,40 @@ _G.LibStub = function(major, silent) if silent then return nil end return autovi
 _G.CreateFrame = function(...) return autoviv() end
 _G.GetScreenWidth = function() return 1920 end
 _G.GetScreenHeight = function() return 1080 end
+
+-- string.format tolerance: WA derives some *_for_ui value-domains with
+-- ("%.3d - %s"):format(id, WOW_GLOBAL_STRING), and our stubs resolve those WoW
+-- string constants to tables. Coerce table/nil args so the derivation doesn't
+-- abort the load. Our own jsonEncode passes only valid numeric/string args, so
+-- it's unaffected.
+local _rawformat = string.format
+string.format = function(fmt, ...)
+  local n = select("#", ...)
+  local a = { ... }
+  for i = 1, n do if type(a[i]) == "table" then a[i] = "" end end
+  local ok, r = pcall(_rawformat, fmt, unpack(a, 1, n))
+  return ok and r or tostring(fmt)
+end
 _G.WeakAuras = WeakAurasStub
 setmetatable(_G, { __index = function(_, k) return autoviv() end })
+
+-- WeakAurasOptions addon: region UI labels register via
+-- OptionsPrivate.Private.RegisterRegionOptions(name, create, icon, displayName, ...)
+local OptionsPrivateStub = autoviv()
+local _optPriv = autoviv()
+rawset(_optPriv, "RegisterRegionOptions", function(name, create, icon, displayName, ...)
+  captured[#captured + 1] = { kind = "regionoption", name = name, display = displayName }
+end)
+-- Seed value-domain names as string MARKERS so an options builder's
+-- `values = OptionsPrivate.Private.anim_types` yields the domain NAME "anim_types"
+-- (a reference we can resolve against value_domains.json) rather than a table copy.
+for _, dom in ipairs({
+  "anim_types", "anim_ease_types", "anim_start_preset_types", "anim_main_preset_types",
+  "anim_finish_preset_types", "duration_types", "duration_types_no_choice",
+  "anim_translate_types", "anim_scale_types", "anim_rotate_types",
+  "anim_alpha_types", "anim_color_types",
+}) do rawset(_optPriv, dom, dom) end
+rawset(OptionsPrivateStub, "Private", _optPriv)
 
 -- ---------------------------------------------------------------- JSON encode
 local function isArray(t)
@@ -152,8 +195,26 @@ end
 
 local chunk, err = loadfile(path)
 if not chunk then io.stderr:write("load failed: " .. tostring(err) .. "\n"); os.exit(1) end
-local ok, runErr = pcall(chunk, "WeakAuras", PrivateStub)
-if not ok then io.stderr:write("exec failed: " .. tostring(runErr) .. "\n"); os.exit(1) end
+local _optmode = (mode == "regionoptions" or mode == "animoptions")
+local addonName = _optmode and "WeakAurasOptions" or "WeakAuras"
+local secondArg = _optmode and OptionsPrivateStub or PrivateStub
+local ok, runErr = pcall(chunk, addonName, secondArg)
+-- types mode only needs the value-domain literals, all assigned early in
+-- Types.lua; later runtime code may error under stubs, but PrivateStub already
+-- holds the enums, so a partial load is fine. Other modes need the full load.
+if not ok and mode ~= "types" then
+  io.stderr:write("exec failed: " .. tostring(runErr) .. "\n"); os.exit(1)
+end
+
+-- Options files don't register at load - they push a deferred closure into
+-- OptionsPrivate.registerRegions that WA invokes later. Run them so the
+-- RegisterRegionOptions call (and its displayName) actually fires.
+if mode == "regionoptions" then
+  local rr = rawget(OptionsPrivateStub, "registerRegions")
+  if type(rr) == "table" then
+    for _, fn in ipairs(rr) do if type(fn) == "function" then pcall(fn) end end
+  end
+end
 
 local result = {}
 if mode == "prototypes" then
@@ -173,9 +234,47 @@ elseif mode == "subregion" then
   for _, e in ipairs(captured) do
     if e.kind == "subregion" then
       local entry = default_variants(e.default)
+      if type(e.display) == "string" then entry.display = e.display end
       local props = resolve_properties(e.properties, e.getProperties)
       if props then entry.properties = props end
       result[e.name] = entry
+    end
+  end
+elseif mode == "regionoptions" then
+  for _, e in ipairs(captured) do
+    if e.kind == "regionoption" and type(e.display) == "string" then
+      result[e.name] = e.display
+    end
+  end
+elseif mode == "animoptions" then
+  -- call the options builder with a stub data; capture the returned args (the
+  -- animation field schema: field name -> {type, name(display), values(domain)}).
+  local fn = OptionsPrivateStub.GetAnimationOptions
+  if type(fn) == "function" then
+    local ok2, opts = pcall(fn, autoviv())
+    if ok2 and type(opts) == "table" and type(opts.args) == "table" then
+      result = opts.args
+    end
+  end
+elseif mode == "regionprototype" then
+  -- shared levers every region inherits: call AddProperties(props, defaults) with
+  -- empty tables and capture what it fills in (the alpha/position/anchor levers +
+  -- shared default fields our per-region no-op stub couldn't add).
+  local rp = rawget(PrivateStub, "regionPrototype")
+  local props, defaults = {}, {}
+  if type(rp) == "table" then
+    local ap = rp.AddProperties
+    if type(ap) == "function" then pcall(ap, props, defaults) end
+  end
+  result.shared_properties = props
+  result.shared_defaults = defaults
+elseif mode == "types" then
+  -- Types.lua sets value-domains as `Private.X = {...}` literals. A real literal
+  -- has NO metatable; an autoviv stub (from an incidental __index during load)
+  -- carries AV_MT - so getmetatable==nil cleanly separates the real enums.
+  for k, v in pairs(PrivateStub) do
+    if type(v) == "table" and getmetatable(v) == nil then
+      result[k] = v
     end
   end
 else

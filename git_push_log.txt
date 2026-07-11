@@ -5,17 +5,15 @@ Your branch is up to date with 'origin/main'.
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   .gitignore
-	modified:   Weak Auras/blueprint/README.md
+	modified:   Weak Auras/wa_index/build_index.py
+	modified:   Weak Auras/wa_index/extract.lua
+	modified:   Weak Auras/wa_index/index.json
+	modified:   Weak Auras/wa_index/index_summary.json
 	modified:   git_push_log.txt
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	Weak Auras/blueprint/RECONCILIATION.md
-	Weak Auras/blueprint/REFERENCE_MODEL.md
-	Weak Auras/blueprint/REQUIREMENTS_AND_MVP.md
-	Weak Auras/blueprint/SLICE_CLAIM_MODEL.md
-	Weak Auras/plane/
-	Weak Auras/wa_index/
+	Weak Auras/wa_index/value_domains.json
+	Weak Auras/wa_index/vocabulary.json
 
 no changes added to commit (use "git add" and/or "git commit -a")
