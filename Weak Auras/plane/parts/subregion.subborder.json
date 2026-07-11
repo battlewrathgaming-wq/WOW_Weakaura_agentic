@@ -1,0 +1,90 @@
+{
+ "part_id": "subregion.subborder",
+ "lane": "subregion",
+ "namespace": "subborder",
+ "allow": [
+  "anchor_area",
+  "border_color",
+  "border_edge",
+  "border_offset",
+  "border_size",
+  "border_visible",
+  "type"
+ ],
+ "holes": [
+  {
+   "name": "anchor_area",
+   "type": "str",
+   "input": "reference",
+   "default": "bar",
+   "values": null
+  },
+  {
+   "name": "border_color",
+   "type": "list",
+   "input": "color",
+   "default": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "values": null
+  },
+  {
+   "name": "border_edge",
+   "type": "str",
+   "input": "reference",
+   "default": "Square Full White",
+   "values": null
+  },
+  {
+   "name": "border_offset",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  },
+  {
+   "name": "border_size",
+   "type": "int",
+   "input": "value",
+   "default": 2,
+   "values": null
+  },
+  {
+   "name": "border_visible",
+   "type": "bool",
+   "input": "toggle",
+   "default": true,
+   "values": null
+  },
+  {
+   "name": "border_color",
+   "type": "color",
+   "input": "color",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "border_visible",
+   "type": "bool",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  }
+ ],
+ "template": {
+  "border_color": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "border_edge": "Square Full White",
+  "border_offset": 1,
+  "border_size": 1,
+  "border_visible": true,
+  "type": "subborder"
+ }
+}

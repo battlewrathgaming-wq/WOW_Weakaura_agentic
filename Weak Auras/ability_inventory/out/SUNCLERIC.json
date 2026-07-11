@@ -1,0 +1,4507 @@
+{
+ "class": "SUNCLERIC",
+ "display": "Sun Cleric",
+ "classId": 27,
+ "abilityCount": 242,
+ "bySpec": {
+  "General": 41,
+  "Blessings": 41,
+  "Piety": 39,
+  "Class": 39,
+  "Seraphim": 41,
+  "Valkyrie": 41
+ },
+ "abilities": {
+  "A Pious Life": {
+   "name": "A Pious Life",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 570027,
+   "ranks": null,
+   "spellIds": [
+    570027
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_priestskill26_Border",
+   "description": "Increases the damage of Horusath Blast and Rapture by 15%."
+  },
+  "Adjudication": {
+   "name": "Adjudication",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804630,
+   "ranks": null,
+   "spellIds": [
+    804630
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_SoulFire_Light",
+   "description": "Casting Rapture now causes your next Dawnsear within 10 seconds to strike your target twice and launch a Solar Flare at the target.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+  },
+  "Adjudicator": {
+   "name": "Adjudicator",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704903,
+   "ranks": null,
+   "spellIds": [
+    704903
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_plate_raidpaladindragon_d_01",
+   "description": "Your Justicar's Wrath now deals an additional 50% of its damage dealt to the target and enemies around them, healing you for 10% of the damage dealt."
+  },
+  "An'she's Blessing": {
+   "name": "An'she's Blessing",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804058,
+   "ranks": {
+    "1": 804058
+   },
+   "spellIds": [
+    804058
+   ],
+   "cost": 25500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Become An'she's champion, allowing you to cast all of your spells while moving for 10 sec."
+  },
+  "An'she's Guidance": {
+   "name": "An'she's Guidance",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681064,
+   "ranks": null,
+   "spellIds": [
+    681064
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_SummonLightwell",
+   "description": "Increases your Holy critical strike chance by 2% and reduces spell pushback suffered from damaging attacks by 50%."
+  },
+  "Ancient Rites": {
+   "name": "Ancient Rites",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300351,
+   "ranks": null,
+   "spellIds": [
+    300351
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_essence_reapingflames",
+   "description": "Increases your Intellect by 2% and causes you to regenerate mana equal to 1% of your maximum mana every 20 sec."
+  },
+  "Angelic": {
+   "name": "Angelic",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704582,
+   "ranks": null,
+   "spellIds": [
+    704582
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell-AP-Orange",
+   "description": "Reduces the cast time of Illumination by 0.25 sec."
+  },
+  "Angelic Light": {
+   "name": "Angelic Light",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560094,
+   "ranks": null,
+   "spellIds": [
+    560094
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_HolyProtection",
+   "description": "Reduces the cooldown of Glare by -30 sec."
+  },
+  "Angelic Presence": {
+   "name": "Angelic Presence",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92137,
+   "ranks": null,
+   "spellIds": [
+    92137
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\ability_paladin_conviction",
+   "description": "Level 10 Passive\nAvoiding an attack now has a 20% chance to grant you Angelic Presence.Angelic PresenceYour next Illumination within 15 seconds is instant cast and free of cost."
+  },
+  "Arbiter of Grace": {
+   "name": "Arbiter of Grace",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301313,
+   "ranks": null,
+   "spellIds": [
+    301313
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_BlessedResillience",
+   "description": "While Vow of Grace is active, your Glorious Execution now regenerates an additional 15% mana equal to the damage dealt."
+  },
+  "Arbiter of Light": {
+   "name": "Arbiter of Light",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 302914,
+   "ranks": null,
+   "spellIds": [
+    302914
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_swordsoflight_Border",
+   "description": "While Vow of Light is active, your Gavel of Light now restores an additional 100% health equal to the damage dealt."
+  },
+  "Arcane Affinity": {
+   "name": "Arcane Affinity",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 28877,
+   "ranks": null,
+   "spellIds": [
+    28877
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Arcane Torrent": {
+   "name": "Arcane Torrent",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 814287,
+   "ranks": null,
+   "spellIds": [
+    814287
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Atone, Or Else": {
+   "name": "Atone, Or Else",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680619,
+   "ranks": null,
+   "spellIds": [
+    680619
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_ReviveChampion",
+   "description": "Fervor of the Sun now stacks up to 3 additional times."
+  },
+  "Auto Attack": {
+   "name": "Auto Attack",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 6603,
+   "ranks": null,
+   "spellIds": [
+    6603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Bastion of Hope": {
+   "name": "Bastion of Hope",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704928,
+   "ranks": null,
+   "spellIds": [
+    704928
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_1h_artifactnorgannon_d_06",
+   "description": "Critical strikes now bless you, regenerating 41 + 15% SP mana and increasing all of your primary stats by 10% for 5 seconds."
+  },
+  "Blazing Chariot": {
+   "name": "Blazing Chariot",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300350,
+   "ranks": null,
+   "spellIds": [
+    300350
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_priestskill09_Border",
+   "description": "Increases the healing and damage of Radiance by 125%."
+  },
+  "Bless": {
+   "name": "Bless",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804247,
+   "ranks": null,
+   "spellIds": [
+    804247
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_ascendance",
+   "description": "Bless an ally, restoring 5% of their maximum health every 10 sec for 5 minutes.\n\nCan only affect 1 ally at a time."
+  },
+  "Blessed Armor": {
+   "name": "Blessed Armor",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300334,
+   "ranks": null,
+   "spellIds": [
+    300334
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_HolyBolt",
+   "description": "Increases your spell power by 1 for every 125 Armor you have."
+  },
+  "Blessed Bulwark": {
+   "name": "Blessed Bulwark",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680663,
+   "ranks": null,
+   "spellIds": [
+    680663
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_57",
+   "description": "Avoiding an attack now has a 25% chance to regenerate 5% of your base mana."
+  },
+  "Blessed Hammer": {
+   "name": "Blessed Hammer",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804032,
+   "ranks": null,
+   "spellIds": [
+    804032
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_hammeroflight_Border",
+   "description": "Reduces the cooldown of Solar Invocation spells by -10 sec."
+  },
+  "Blessed Magic": {
+   "name": "Blessed Magic",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560111,
+   "ranks": null,
+   "spellIds": [
+    560111
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_weapon_(28)_Border",
+   "description": "Casting Horusath Blast now resets the cooldown of Glorious Execution."
+  },
+  "Blessed One": {
+   "name": "Blessed One",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680670,
+   "ranks": null,
+   "spellIds": [
+    680670
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_reflectiveshield",
+   "description": "Increases your chance to block by 5% and reduces the duration of movement slowing effects by -20%."
+  },
+  "Blessing of Absolution": {
+   "name": "Blessing of Absolution",
+   "spec": "Blessings",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 503505,
+   "ranks": {
+    "2": 503498,
+    "3": 503499,
+    "4": 503500,
+    "5": 503501,
+    "6": 503502,
+    "7": 503503,
+    "8": 503504,
+    "9": 503505
+   },
+   "spellIds": [
+    503498,
+    503499,
+    503500,
+    503501,
+    503502,
+    503503,
+    503504,
+    503505,
+    804249
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_paladin_lightofdawn",
+   "description": "Empower a |cffffffffBlessed|r ally to unleash a burst of holy energy in front of them, dealing 66 Holy damage enemies in a 10 yd frontal cone and generating additional threat.\r\n\r\n@ext:Only usable on your ally with |cffffffffBless|r active.:ext@"
+  },
+  "Blessing of Kings": {
+   "name": "Blessing of Kings",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561327,
+   "ranks": null,
+   "spellIds": [
+    561327
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Magic_GreaterBlessingofKings",
+   "description": "Critical strikes now reduce the cooldown of Hammer of Kings and Solar Prayer by -1."
+  },
+  "Blessing of Purity": {
+   "name": "Blessing of Purity",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804253,
+   "ranks": null,
+   "spellIds": [
+    804253
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_angelicbulwark",
+   "description": "Protect a Blessed ally, making them immune to all damage for 4 seconds but reducing their damage and healing done by -25%."
+  },
+  "Blessing of Retribution": {
+   "name": "Blessing of Retribution",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804254,
+   "ranks": null,
+   "spellIds": [
+    804254
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_reflectiveshield",
+   "description": "Guard a Blessed ally, deflecting the next harmful spell cast on them within 1 minute."
+  },
+  "Blessing of Triumph": {
+   "name": "Blessing of Triumph",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804250,
+   "ranks": null,
+   "spellIds": [
+    804250
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_paladin_holyavenger",
+   "description": "Redeem a Blessed ally for 20 seconds, granting 25% increased haste and 10% increased damage.\n\nIf the ally falls below 35% maximum health they are healed for 10% of their direct damage dealt for the remaining duration."
+  },
+  "Blightbreaker": {
+   "name": "Blightbreaker",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707433,
+   "ranks": null,
+   "spellIds": [
+    707433
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_HarmUndeadAura",
+   "description": "Increases the tick rate of Mercy by -50%, but increases its mana cost by 100%."
+  },
+  "Block": {
+   "name": "Block",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 107,
+   "ranks": null,
+   "spellIds": [
+    107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Burn The Heretics": {
+   "name": "Burn The Heretics",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560857,
+   "ranks": null,
+   "spellIds": [
+    560857
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_excorcism_02",
+   "description": "Increases your damage and healing by 10% against targets below 35% health.\n\nAdditionally, when Scorch Marks are consumed you now gain 10% increased Magic damage for 8 seconds."
+  },
+  "Burning Cascade": {
+   "name": "Burning Cascade",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560859,
+   "ranks": null,
+   "spellIds": [
+    560859
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_firehands_Border",
+   "description": "Reduces the cast time and mana cost of Dawnsear and Sunflare by -10%."
+  },
+  "Burning Heat": {
+   "name": "Burning Heat",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704908,
+   "ranks": null,
+   "spellIds": [
+    704908
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_devineaegis",
+   "description": "$9d"
+  },
+  "By The Light": {
+   "name": "By The Light",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680620,
+   "ranks": null,
+   "spellIds": [
+    680620
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Restoration",
+   "description": "Increases the critical strike chance of Valkyr's Calling by 50%."
+  },
+  "Calm": {
+   "name": "Calm",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804057,
+   "ranks": null,
+   "spellIds": [
+    804057
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_priest_burningwill",
+   "description": "Calm an enemy, disarming their melee and ranged weapons for 6 seconds.\n\nIf your target is an Undead or Demon, they are also unable to attack or move for 6 seconds. \n\nEnemies that are immune to silence effects cannot be affected by this."
+  },
+  "Censure": {
+   "name": "Censure",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300371,
+   "ranks": null,
+   "spellIds": [
+    300371
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_HolySmite",
+   "description": "Dealing direct damage to an enemy affected by Chains of Light will now cause it to chain to a nearby enemy. Can only occur once per sec."
+  },
+  "Chains of Light": {
+   "name": "Chains of Light",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801524,
+   "ranks": {
+    "1": 801524
+   },
+   "spellIds": [
+    801524
+   ],
+   "cost": 1000,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Shackle an enemy with chains of light, preventing mounting, fleeing, or increasing their movement speed above normal movement speed for 15 sec."
+  },
+  "Champion of the Sun": {
+   "name": "Champion of the Sun",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800612,
+   "ranks": null,
+   "spellIds": [
+    800612
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_ability_heraldofthesunpaladin_dawnlight",
+   "description": "Become a champion of An'she, causing your melee auto attacks to deal an additional 50% of the damage dealt as Holy damage. Lasts 20 seconds."
+  },
+  "Champion's Arrival": {
+   "name": "Champion's Arrival",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704905,
+   "ranks": null,
+   "spellIds": [
+    704905
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_InnerFire",
+   "description": "Increases the duration of Champion of the Sun and Chains of Light by 5 sec."
+  },
+  "Chosen of the Light": {
+   "name": "Chosen of the Light",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800622,
+   "ranks": {
+    "1": 800622
+   },
+   "spellIds": [
+    800622
+   ],
+   "cost": 150,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Become An'she's chosen one, reducing your damage taken by 50% for 8 sec.\r\n\r\nTaking damage while below 50% health will instantly heal you for 10% of your maximum health. Can only occur once."
+  },
+  "Circle of Valor": {
+   "name": "Circle of Valor",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520647,
+   "ranks": null,
+   "spellIds": [
+    520647
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_circlet_firelands_d_01",
+   "description": "Place a 10 yd holy circle at target location for 15 seconds. Allies that stand inside of it will divert 30% of all damage taken to the caster, and will be healed for 50 + 42.5% SP + 12.5% AP every 2 sec."
+  },
+  "City of Light": {
+   "name": "City of Light",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301239,
+   "ranks": null,
+   "spellIds": [
+    301239
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Paladin_RighteousVengeance",
+   "description": "Damage dealt by Radiant Flame now restores 3% of your missing health and mana."
+  },
+  "Clarity of the Heavens": {
+   "name": "Clarity of the Heavens",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704935,
+   "ranks": null,
+   "spellIds": [
+    704935
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\spell_holy_ardentdefender",
+   "description": "Level 50 Passive\nIncreases your block value by 50% of your Intellect."
+  },
+  "Cultivate Divinity": {
+   "name": "Cultivate Divinity",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704920,
+   "ranks": null,
+   "spellIds": [
+    704920
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_bindingprayers",
+   "description": "Effectively healing with Radiant Cascade has a 20% chance to increase the healing of your next Illumination by 20%. \n\nEffectively healing with Illumination has a 40% chance to increase the healing of your next Radiant Cascade by 20%."
+  },
+  "Dawn": {
+   "name": "Dawn",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804584,
+   "ranks": {
+    "1": 804584
+   },
+   "spellIds": [
+    804584
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Allows you to fulfill your |cffffffffVows|r.\r\n\r\nYour next 10 damaging or healing abilities will trigger the |cffffffffFulfillment|r effect of your |CffffffffVow|r. Can only occur once per sec. Lasts 1 min.\r\n\r\n@ext:|cFFFF9800Solar Power|r cannot be generated while |cffffffffDawn|r is active.:ext@"
+  },
+  "Dawn's Arrival": {
+   "name": "Dawn's Arrival",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503690,
+   "ranks": null,
+   "spellIds": [
+    503690
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Restoration",
+   "description": "Casting Dawnbreak now has a 40% chance to reset the cooldown of Gavels and causes the next one to not incur a cooldown."
+  },
+  "Dawnbreak": {
+   "name": "Dawnbreak",
+   "spec": "Seraphim",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 504580,
+   "ranks": {
+    "2": 502496,
+    "3": 502497,
+    "4": 502498,
+    "5": 502499,
+    "6": 504579,
+    "7": 504580
+   },
+   "spellIds": [
+    502496,
+    502497,
+    502498,
+    502499,
+    504579,
+    504580,
+    800654
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_energyshield_Border",
+   "description": "Radiate holy light from your shield on enemies in front of you, dealing 40 Holyfire Damage, scaling with your block value."
+  },
+  "Dawnfall": {
+   "name": "Dawnfall",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 806118,
+   "ranks": {
+    "1": 806118
+   },
+   "spellIds": [
+    806118
+   ],
+   "cost": 25500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Bring down the light of An'she down at the target location for 15 sec.\r\n\r\nWhile inside, allies receive 15% increased healing from all sources and enemies take 15% increased damage from you and are struck by a |cffffffffSolar Flare|R every 1 sec.@s:807175:0@"
+  },
+  "Dawnguard": {
+   "name": "Dawnguard",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704562,
+   "ranks": null,
+   "spellIds": [
+    704562
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_artifact_xp05",
+   "description": "Fulfilling a Vow now increases your block chance by 2% for 15 seconds, stacking 5 times."
+  },
+  "Dawnsear": {
+   "name": "Dawnsear",
+   "spec": "Piety",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 554406,
+   "ranks": {
+    "2": 502366,
+    "3": 502367,
+    "4": 502368,
+    "5": 502369,
+    "6": 502370,
+    "7": 502371,
+    "8": 554406
+   },
+   "spellIds": [
+    500146,
+    502366,
+    502367,
+    502368,
+    502369,
+    502370,
+    502371,
+    554406
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fire_solar_Border",
+   "description": "Blast an enemy with burning light, dealing 114 Fire damage."
+  },
+  "Day Cycles": {
+   "name": "Day Cycles",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300361,
+   "ranks": null,
+   "spellIds": [
+    300361
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\nhi_holywatch_Border",
+   "description": "Level 50 Passive\nWhile in Sunrise, the remaining cooldown of Horusath Blast is reduced by 10% every 1 sec.\n\nWhile in Sunset, the remaining cooldown of Rapture is reduced by 10% every 1 sec."
+  },
+  "Daybreak": {
+   "name": "Daybreak",
+   "spec": "Blessings",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572035,
+   "ranks": {
+    "2": 502432,
+    "3": 502433,
+    "4": 503623,
+    "5": 503624,
+    "6": 572035
+   },
+   "spellIds": [
+    500147,
+    502432,
+    502433,
+    503623,
+    503624,
+    572035
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_paladin_lightoftheprotector",
+   "description": "Make a prayer, healing an ally for 228."
+  },
+  "Devoted to the Light": {
+   "name": "Devoted to the Light",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681436,
+   "ranks": null,
+   "spellIds": [
+    681436
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_LightsGrace",
+   "description": "Removes the cost of your Solar Invocation spells and they now generate 5% of your missing mana when cast."
+  },
+  "Devoted to the Sun": {
+   "name": "Devoted to the Sun",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681066,
+   "ranks": null,
+   "spellIds": [
+    681066
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_sun_Border",
+   "description": "Reduces the cooldown of your Solar Invocation spells by -5 sec."
+  },
+  "Devotee": {
+   "name": "Devotee",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707767,
+   "ranks": null,
+   "spellIds": [
+    707767
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_ascension",
+   "description": "Increases the effectiveness of your Devotions by 20%."
+  },
+  "Devotion of Dawn": {
+   "name": "Devotion of Dawn",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572389,
+   "ranks": {
+    "1": 572384,
+    "2": 572385,
+    "3": 572386,
+    "4": 572387,
+    "5": 572388,
+    "6": 572389
+   },
+   "spellIds": [
+    572384,
+    572385,
+    572386,
+    572387,
+    572388,
+    572389
+   ],
+   "cost": 200,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Places a |cffffffffDevotion|r on the friendly target, increasing attack power by 35 for 30 min.\r\n\r\n@ext:Players may only have one |cFFFFFFFFDevotion|r on them per Sun Cleric at any one time.:ext@"
+  },
+  "Devotion of Emperors": {
+   "name": "Devotion of Emperors",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572552,
+   "ranks": {
+    "1": 572552
+   },
+   "spellIds": [
+    572552
+   ],
+   "cost": 26000,
+   "levelReq": 44,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Places a |cffffffffDevotion|r on the friendly target, increasing total stats by 10% for 30 min.\r\n\r\n@ext:Players may only have one |cFFFFFFFFDevotion|r on them per Sun Cleric at any one time.:ext@"
+  },
+  "Devotion of Grace": {
+   "name": "Devotion of Grace",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 300865,
+   "ranks": {
+    "1": 800852,
+    "2": 300858,
+    "3": 300859,
+    "4": 300862,
+    "5": 300863,
+    "6": 300864,
+    "7": 300865
+   },
+   "spellIds": [
+    300858,
+    300859,
+    300862,
+    300863,
+    300864,
+    300865,
+    800852
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Places a |cffffffffDevotion|r on the friendly target, restoring 5 mana every 5 seconds and reducing their costs by 5% for 30 min.\r\n\r\n@ext:Players may only have one |cFFFFFFFFDevotion|r on them per Sun Cleric at any one time.:ext@"
+  },
+  "Devotion of Radiance": {
+   "name": "Devotion of Radiance",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 575043,
+   "ranks": {
+    "1": 575040,
+    "2": 575041,
+    "3": 575042,
+    "4": 575043
+   },
+   "spellIds": [
+    575040,
+    575041,
+    575042,
+    575043
+   ],
+   "cost": 5200,
+   "levelReq": 28,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Places a |cffffffffDevotion|r on the friendly target, increasing spell power by 28 for 30 min.\r\n\r\n@ext:Players may only have one |cFFFFFFFFDevotion|r on them per Sun Cleric at any one time.:ext@"
+  },
+  "Divine Retribution": {
+   "name": "Divine Retribution",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680624,
+   "ranks": null,
+   "spellIds": [
+    680624
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Vindication",
+   "description": "Accumulates 25% of your damage dealt to on the target and unleashes it after 8 seconds, damaging enemies within 10 yds as Holy damage."
+  },
+  "Divine Right": {
+   "name": "Divine Right",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680631,
+   "ranks": null,
+   "spellIds": [
+    680631
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holy_punch_Border",
+   "description": "Increases your chance to critically strike and to parry attacks by 2% and your spell hit chance by 5%."
+  },
+  "Divine Vision": {
+   "name": "Divine Vision",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706735,
+   "ranks": null,
+   "spellIds": [
+    706735
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_powerinfusion",
+   "description": "Increases your Holy damage and healing done by 4%."
+  },
+  "Dodge": {
+   "name": "Dodge",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 81,
+   "ranks": null,
+   "spellIds": [
+    81
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Duality of Light": {
+   "name": "Duality of Light",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806116,
+   "ranks": null,
+   "spellIds": [
+    806116
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holy_hand_Border",
+   "description": "$a1"
+  },
+  "Empowered Holy Form": {
+   "name": "Empowered Holy Form",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800602,
+   "ranks": null,
+   "spellIds": [
+    800602
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_priest_divinestar_holy",
+   "description": "Doubles the effectiveness of your Holy Form."
+  },
+  "Enveloped in Light": {
+   "name": "Enveloped in Light",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680652,
+   "ranks": null,
+   "spellIds": [
+    680652
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_holynova",
+   "description": "Increases your armor contribution from mail and plate items by 10% and reduces Shadow damage taken by -3%."
+  },
+  "Everglow": {
+   "name": "Everglow",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704565,
+   "ranks": null,
+   "spellIds": [
+    704565
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_artifact_xp04",
+   "description": "Your Radiant Cascade now bounces to 2 additional allies."
+  },
+  "Exorcism": {
+   "name": "Exorcism",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300341,
+   "ranks": null,
+   "spellIds": [
+    300341
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_SurgeOfLight",
+   "description": "Sanctify now dispels 1 additional effect."
+  },
+  "Faith": {
+   "name": "Faith",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707077,
+   "ranks": null,
+   "spellIds": [
+    707077
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_plate_raidpaladinmythic_q_01",
+   "description": "Direct healing done now increases the target's Armor by 10% for 20 seconds."
+  },
+  "Fanaticism": {
+   "name": "Fanaticism",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805628,
+   "ranks": null,
+   "spellIds": [
+    805628
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_atonement",
+   "description": "Increases the effectiveness of Gavels and Horusath Blast and reduces their mana cost by -20%."
+  },
+  "Fervor of the Sun": {
+   "name": "Fervor of the Sun",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680622,
+   "ranks": null,
+   "spellIds": [
+    680622
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holywhirlpool_Border",
+   "description": "Fulfilling a Vow now increases the damage of your Sunslam by 10% for 1 minute, stacking 5 times."
+  },
+  "Final Vows": {
+   "name": "Final Vows",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707528,
+   "ranks": null,
+   "spellIds": [
+    707528
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_avenginewrath",
+   "description": "Fulfilling your Vow of Grace now also reduces the cooldown of the triggered ability by 10%."
+  },
+  "Fire from the Heavens": {
+   "name": "Fire from the Heavens",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300369,
+   "ranks": null,
+   "spellIds": [
+    300369
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_circlet_firelands_d_01",
+   "description": "Level 20 Passive\nDamage dealt by Radiant Flame now has a 10% chance to launch a Solar Flare at your target.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+  },
+  "Flames of Absolution": {
+   "name": "Flames of Absolution",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804632,
+   "ranks": null,
+   "spellIds": [
+    804632
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holyrod_Border",
+   "description": "Damage dealt by Horusath Blast now launches a Solar Flare at up to 5 enemies within 5 yds of your target.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+  },
+  "Flames of the Father": {
+   "name": "Flames of the Father",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806458,
+   "ranks": null,
+   "spellIds": [
+    806458
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mage_flamecannon",
+   "description": "Your Fire damage dealt is increased by 10% against Burning targets."
+  },
+  "Fortuitous": {
+   "name": "Fortuitous",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561328,
+   "ranks": null,
+   "spellIds": [
+    561328
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_InnerFire",
+   "description": "Removes the cast time of Glare while above 80% health."
+  },
+  "Gateway to Heaven": {
+   "name": "Gateway to Heaven",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301301,
+   "ranks": null,
+   "spellIds": [
+    301301
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_GreaterBlessingofLight",
+   "description": "Whenever you use Dawn you now apply Radiance to yourself for 6 sec.RadianceEvery 2 sec you burst with light, healing nearby allies for 36 + 20% SP + 10% AP and damaging nearby enemies for 37 + 40% SP + 15% AP. Lasts 10 seconds."
+  },
+  "Gavel of Grace": {
+   "name": "Gavel of Grace",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807987,
+   "ranks": {
+    "1": 800614,
+    "2": 807981,
+    "3": 807982,
+    "4": 807983,
+    "5": 807984,
+    "6": 807985,
+    "7": 807986,
+    "8": 807987
+   },
+   "spellIds": [
+    800614,
+    807981,
+    807982,
+    807983,
+    807984,
+    807985,
+    807986,
+    807987
+   ],
+   "cost": 300,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Smash an enemy for 80% Weapon Damage plus 23 and restores 25 mana.\r\n\r\n@ext:Shares a cooldown with other |cffffffffGavels|r.:ext@"
+  },
+  "Gavel of Light": {
+   "name": "Gavel of Light",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 502476,
+   "ranks": {
+    "1": 800611,
+    "2": 502467,
+    "3": 502468,
+    "4": 502469,
+    "5": 502470,
+    "6": 502471,
+    "7": 502472,
+    "8": 502473,
+    "9": 502474,
+    "10": 502475,
+    "11": 502476
+   },
+   "spellIds": [
+    502467,
+    502468,
+    502469,
+    502470,
+    502471,
+    502472,
+    502473,
+    502474,
+    502475,
+    502476,
+    800611
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Smash an enemy for 80% Weapon Damage plus 12 and heal yourself equal to 50% of the damage dealt.\r\n\r\n@ext:Shares a cooldown with other |cffffffffGavels|r.:ext@"
+  },
+  "Gavel of Wrath": {
+   "name": "Gavel of Wrath",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802561,
+   "ranks": {
+    "1": 800617,
+    "2": 802558,
+    "3": 802559,
+    "4": 802560,
+    "5": 802561
+   },
+   "spellIds": [
+    800617,
+    802558,
+    802559,
+    802560,
+    802561
+   ],
+   "cost": 5200,
+   "levelReq": 26,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Smash an enemy for 80% Weapon Damage plus 45 and dispel 1 beneficial magic effect from them.\r\n\r\n@ext:Shares a cooldown with other |cffffffffGavels|r.:ext@"
+  },
+  "Gift of the Sun": {
+   "name": "Gift of the Sun",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680618,
+   "ranks": null,
+   "spellIds": [
+    680618
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_malkorok_blightofyshaarj_yellow",
+   "description": "Increases your critical strike chance with Holy spells and abilities by 50% on enemies above 80% health."
+  },
+  "Glare": {
+   "name": "Glare",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 807870,
+   "ranks": {
+    "2": 807867,
+    "3": 807868,
+    "4": 807869,
+    "5": 807870
+   },
+   "spellIds": [
+    805583,
+    807867,
+    807868,
+    807869,
+    807870
+   ],
+   "cost": 20000,
+   "levelReq": 40,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_halo",
+   "description": "Flash powerful light that deals 32 Holy damage and stuns enemies within 8 yds for 5 sec."
+  },
+  "Glaring Rays": {
+   "name": "Glaring Rays",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804257,
+   "ranks": null,
+   "spellIds": [
+    804257
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Power",
+   "description": "Increases the spell haste of all party and raid members by 3% and your spell haste by an additional 3%.\n\nDoes not stack with similar effects."
+  },
+  "Gleaming Armor": {
+   "name": "Gleaming Armor",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805267,
+   "ranks": null,
+   "spellIds": [
+    805267
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_legion_faction_valarjar",
+   "description": "Reduces your spell damage taken by -5%, plus an additional -5% while above 80% health."
+  },
+  "Gleaming Light": {
+   "name": "Gleaming Light",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704568,
+   "ranks": null,
+   "spellIds": [
+    704568
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_jewelry_necklace_75",
+   "description": "Increases healing of Illumination and Daybreak by 10%."
+  },
+  "Gleaming Vigil": {
+   "name": "Gleaming Vigil",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704585,
+   "ranks": null,
+   "spellIds": [
+    704585
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_artifact_bulwarkoforder",
+   "description": "Reduces your Physical damage taken by -5%, plus an additional 5% while above 80% health."
+  },
+  "Glorious Defender": {
+   "name": "Glorious Defender",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680634,
+   "ranks": null,
+   "spellIds": [
+    680634
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_AvengersShield",
+   "description": "Increases the effectiveness of Gavels by 25%."
+  },
+  "Glorious Execution": {
+   "name": "Glorious Execution",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 803913,
+   "ranks": {
+    "2": 803909,
+    "3": 803910,
+    "4": 803911,
+    "5": 803912,
+    "6": 803913
+   },
+   "spellIds": [
+    800626,
+    803909,
+    803910,
+    803911,
+    803912,
+    803913
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_2h_armyoflight_c_01",
+   "description": "Strike with both weapons dealing Weapon Damage plus 13 Physical damage and regenerate mana equal to 5% of the damage dealt."
+  },
+  "Grace": {
+   "name": "Grace",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504070,
+   "ranks": null,
+   "spellIds": [
+    504070,
+    680650
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_paladinskill18_Border",
+   "description": "Increases the spell damage bonus of Dawnsear by 20% and Sunflare by 10%."
+  },
+  "Greater Devotion of Dawn": {
+   "name": "Greater Devotion of Dawn",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572390,
+   "ranks": {
+    "1": 572390
+   },
+   "spellIds": [
+    572390
+   ],
+   "cost": 42000,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Places a |cffffffffDevotion|r on all raid and party members, increasing attack power by 232 for 30 min.\r\n\r\n@ext:Players may only have one |cFFFFFFFFDevotion|r on them per Sun Cleric at any one time.:ext@"
+  },
+  "Greater Devotion of Emperors": {
+   "name": "Greater Devotion of Emperors",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572553,
+   "ranks": {
+    "1": 572553
+   },
+   "spellIds": [
+    572553
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Places a |cffffffffDevotion|r on all raid and party members, increasing total stats by 10% for 30 min.\r\n\r\n@ext:Players may only have one |cFFFFFFFFDevotion|r on them per Sun Cleric at any one time.:ext@"
+  },
+  "Greater Devotion of Grace": {
+   "name": "Greater Devotion of Grace",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 681160,
+   "ranks": {
+    "1": 681160
+   },
+   "spellIds": [
+    681160
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Places a |cffffffffDevotion|r on the friendly target, restoring 33 mana every 5 seconds and reducing their costs by 5% for 30 min.\r\n\r\n@ext:Players may only have one |cFFFFFFFFDevotion|r on them per Sun Cleric at any one time.:ext@"
+  },
+  "Greater Devotion of Radiance": {
+   "name": "Greater Devotion of Radiance",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 575045,
+   "ranks": {
+    "1": 575045
+   },
+   "spellIds": [
+    575045
+   ],
+   "cost": 51000,
+   "levelReq": 58,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Places a |cffffffffDevotion|r on all raid and party members, increasing spell power by 62 for 30 min.\r\n\r\n@ext:Players may only have one |cFFFFFFFFDevotion|r on them per Sun Cleric at any one time.:ext@"
+  },
+  "Guiding Glow": {
+   "name": "Guiding Glow",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300324,
+   "ranks": null,
+   "spellIds": [
+    300324
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_FlashHeal",
+   "description": "Allows Dawn to affect 3 additional casts."
+  },
+  "Hammer of Kings": {
+   "name": "Hammer of Kings",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804751,
+   "ranks": null,
+   "spellIds": [
+    804751
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_HolyHammer_Border",
+   "description": "Become anointed by the light, summoning a blessed hammer that encircles you dealing 43 + 12% AP + 22% holy SP Holyfire Damage to nearby enemies every 3 sec for 12 seconds."
+  },
+  "Harmonious Bells": {
+   "name": "Harmonious Bells",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704917,
+   "ranks": null,
+   "spellIds": [
+    704917
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_qirajidol_rebirth_holy",
+   "description": "Your Mercy now affects 4 additional allies near the primary target."
+  },
+  "Harsh Lessons": {
+   "name": "Harsh Lessons",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804625,
+   "ranks": null,
+   "spellIds": [
+    804625
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_MaievBlade_Light",
+   "description": "Casting Dawn now grants Scorch Marks.Scorch MarksYour next Radiant Flame has no mana cost, ticks -50% faster, and its duration is reduced by -50%."
+  },
+  "Heat Death": {
+   "name": "Heat Death",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704932,
+   "ranks": null,
+   "spellIds": [
+    704932
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_artifact_xp01",
+   "description": "Your Solar Eclipse now reduces the enemies chance to hit by -3% for 15 sec."
+  },
+  "Heat Wave": {
+   "name": "Heat Wave",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 534267,
+   "ranks": null,
+   "spellIds": [
+    534267
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_HolyBolt",
+   "description": "Healing with Illumination and Shine now additionally heals the target's nearby allies for 10% of the value."
+  },
+  "Heaven’s Appraisal": {
+   "name": "Heaven’s Appraisal",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300353,
+   "ranks": null,
+   "spellIds": [
+    300353
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\ability_priest_wordsofmeaning",
+   "description": "Level 40 Passive\nIncreases the effectiveness of your Fulfillment effects by 25%.\n\nIn addition, the Fulfillment effect granted by Vow of Dawn now triples the amount of targets struck."
+  },
+  "Hegemony": {
+   "name": "Hegemony",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561204,
+   "ranks": null,
+   "spellIds": [
+    561204
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_Paladinskill_11_Border",
+   "description": "Increases the duration of Radiance by 5 sec."
+  },
+  "Herald of Purity": {
+   "name": "Herald of Purity",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806058,
+   "ranks": null,
+   "spellIds": [
+    806058
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_purifyingpower",
+   "description": "Damage dealt by Justice now has an 8% chance to reset its own cooldown."
+  },
+  "Holy Conquest": {
+   "name": "Holy Conquest",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504248,
+   "ranks": null,
+   "spellIds": [
+    504248
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_holypower_Border",
+   "description": "Reduces the mana cost of Paragon, Chosen of the Light, and Judgement Day by -50%."
+  },
+  "Holy Fervor": {
+   "name": "Holy Fervor",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300323,
+   "ranks": null,
+   "spellIds": [
+    300323
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holy_beam_Border",
+   "description": "Increases the effectiveness of Sunrise and Sunset by 20%."
+  },
+  "Holy Form": {
+   "name": "Holy Form",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805301,
+   "ranks": null,
+   "spellIds": [
+    805301
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_AuraMastery",
+   "description": "Ascend into a holy form, increasing your healing done by 10%, increasing your Holy critical strike chance by 5%, and reducing your threat generated by -50%."
+  },
+  "Holy Giant": {
+   "name": "Holy Giant",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681337,
+   "ranks": null,
+   "spellIds": [
+    681337
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\spell_paladin_lightshammer",
+   "description": "Level 50 Passive\nDoubles the effectiveness of Vow of the Valkyr."
+  },
+  "Holy Strength": {
+   "name": "Holy Strength",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561159,
+   "ranks": null,
+   "spellIds": [
+    561159
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Holy_BlessingOfProtection",
+   "description": "Level 30 Passive\nIncreases your spell power by 100% of your Strength."
+  },
+  "Hope": {
+   "name": "Hope",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300349,
+   "ranks": null,
+   "spellIds": [
+    300349,
+    680637
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_PrayerOfMendingtga",
+   "description": "Your critical heals now reduce the cooldown of Solar Invocation spells by -1 sec.\n\nCan occur only once per sec."
+  },
+  "Horusath Blast": {
+   "name": "Horusath Blast",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572801,
+   "ranks": {
+    "2": 502380,
+    "3": 502381,
+    "4": 502382,
+    "5": 502383,
+    "6": 502384,
+    "7": 502385,
+    "8": 572796,
+    "9": 572801
+   },
+   "spellIds": [
+    500154,
+    502380,
+    502381,
+    502382,
+    502383,
+    502384,
+    502385,
+    572796,
+    572801
+   ],
+   "cost": 700,
+   "levelReq": 16,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\paladin_holy",
+   "description": "Blast an enemy with the power of the sun, dealing 107 Holy damage and reducing their attack power by 24 for 15 sec."
+  },
+  "Hot Spot": {
+   "name": "Hot Spot",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301256,
+   "ranks": null,
+   "spellIds": [
+    301256
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holy_hand_Border",
+   "description": "Casting Daybreak now causes your next 2 Shines within 10 seconds to have a -25% reduced cast time."
+  },
+  "Illumination": {
+   "name": "Illumination",
+   "spec": "Blessings",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 502429,
+   "ranks": {
+    "2": 502421,
+    "3": 502422,
+    "4": 502423,
+    "5": 502424,
+    "6": 502425,
+    "7": 502426,
+    "8": 502427,
+    "9": 502428,
+    "10": 502429
+   },
+   "spellIds": [
+    500143,
+    502421,
+    502422,
+    502423,
+    502424,
+    502425,
+    502426,
+    502427,
+    502428,
+    502429
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Illuminate an ally, healing them for 89."
+  },
+  "Impartial": {
+   "name": "Impartial",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704942,
+   "ranks": null,
+   "spellIds": [
+    704942
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_paladin_executionsentence",
+   "description": "Increases your Strength and maximum mana by 5% and your expertise by 5."
+  },
+  "Improved Radiant Cascade": {
+   "name": "Improved Radiant Cascade",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807963,
+   "ranks": null,
+   "spellIds": [
+    807963
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_SlowingTotem",
+   "description": "Increases the healing done and reduces the mana cost of Radiant Cascade by -15%."
+  },
+  "Injunction": {
+   "name": "Injunction",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800624,
+   "ranks": {
+    "1": 800624
+   },
+   "spellIds": [
+    800624
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Taunts an enemy target for 3 sec."
+  },
+  "It's Always Sunny": {
+   "name": "It's Always Sunny",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707414,
+   "ranks": null,
+   "spellIds": [
+    707414
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_HealingAura",
+   "description": "Activating Dawn now reduces the cooldowns of Radiance, Valkyr's Calling, and Sunslam by 10%."
+  },
+  "Judgement": {
+   "name": "Judgement",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680645,
+   "ranks": null,
+   "spellIds": [
+    680645
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Excorcism",
+   "description": "Increases the critical damage of Gavels by 15% and they are now guaranteed to critically strike against Undead enemies."
+  },
+  "Judgement Day": {
+   "name": "Judgement Day",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 806121,
+   "ranks": {
+    "1": 806121
+   },
+   "spellIds": [
+    806121
+   ],
+   "cost": 90,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Bring judgement upon all nearby enemies, disorienting them for 30 sec (8 sec vs players). Damage dealt will end this effect.\r\n\r\nAffected enemies take 50% increased damage from your next instance of damage."
+  },
+  "Judgement of the Valkyrie": {
+   "name": "Judgement of the Valkyrie",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300315,
+   "ranks": null,
+   "spellIds": [
+    300315
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Warrior_Revenge",
+   "description": "Reduces the cooldown of Judgement Day by -15 sec."
+  },
+  "Justicar's Wrath": {
+   "name": "Justicar's Wrath",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806980,
+   "ranks": null,
+   "spellIds": [
+    806980
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_weapon_(28)_Border",
+   "description": "Bring holy wrath down upon an enemy, dealing 508 + 55% SP + 25% AP High Threat Holy damage and increasing the target's spell damage taken by 10% for 15 seconds."
+  },
+  "Justice": {
+   "name": "Justice",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572848,
+   "ranks": {
+    "2": 520746,
+    "3": 520747,
+    "4": 520748,
+    "5": 572847,
+    "6": 572848
+   },
+   "spellIds": [
+    520359,
+    520746,
+    520747,
+    520748,
+    572847,
+    572848
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_glaive_1h_artifactaldrochi_d_02dual",
+   "description": "Spin and strike with both weapons dealing 40% Weapon Damage plus 20 to up to 5 enemies within 5 yds.\r\n\r\nYour main-hand strike will deal Fire damage and your off-hand strike will deal Physical damage."
+  },
+  "Knight of Dawn": {
+   "name": "Knight of Dawn",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805647,
+   "ranks": null,
+   "spellIds": [
+    805647
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3fanofknives",
+   "description": "Your Glorious Execution now has a 20% chance to strike 1 additional time."
+  },
+  "Last Call": {
+   "name": "Last Call",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681448,
+   "ranks": null,
+   "spellIds": [
+    681448
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Retribution",
+   "description": "Increases the duration of Valkyr's Calling by 1 sec."
+  },
+  "Lead Me Not Astray": {
+   "name": "Lead Me Not Astray",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300357,
+   "ranks": null,
+   "spellIds": [
+    300357
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_divineprotection",
+   "description": "Doubles the healing done by Bless."
+  },
+  "Leap of the Valkyrie": {
+   "name": "Leap of the Valkyrie",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301295,
+   "ranks": null,
+   "spellIds": [
+    301295
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\priest_spell_leapoffaith_b",
+   "description": "Reduces the cooldown of Sun Stride by -4 sec."
+  },
+  "Learning Light": {
+   "name": "Learning Light",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300360,
+   "ranks": null,
+   "spellIds": [
+    300360
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_bookthrow_Border",
+   "description": "Entering Sunset or Sunrise increases your spell haste by 20%. Lasts for 10 seconds or 3 casts."
+  },
+  "Light The Way": {
+   "name": "Light The Way",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300336,
+   "ranks": null,
+   "spellIds": [
+    300336
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Torch_Thrown",
+   "description": "Healing done by Shine or Illumination now increases the targets movement speed by 20% for 3 seconds."
+  },
+  "Light of the Sun": {
+   "name": "Light of the Sun",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704941,
+   "ranks": null,
+   "spellIds": [
+    704941
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Paladin_ArtofWar",
+   "description": "Parrying an attack now restores 3% of your maximum health and increases your chance to parry the next attack by 30%."
+  },
+  "Light's Blessing": {
+   "name": "Light's Blessing",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300318,
+   "ranks": null,
+   "spellIds": [
+    300318
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_paladinskill06_Border",
+   "description": "Casting Sunslam now reduces the cooldown of Pendant of the Sun by -10 sec."
+  },
+  "Lights of Absolution": {
+   "name": "Lights of Absolution",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807343,
+   "ranks": null,
+   "spellIds": [
+    807343
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holywhirlpool_Border",
+   "description": "Damage dealt by Horusath Blast now grants you Light of Absolution for 10 seconds.Lights of AbsolutionDamage dealt by Solar Flares now restores 2% missing health, Energy, Focus, Runic Power, and Rage to allies within 40 yds. Can only occur once every 0.5 sec."
+  },
+  "Lightward": {
+   "name": "Lightward",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800233,
+   "ranks": null,
+   "spellIds": [
+    800233
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_soulwarding",
+   "description": "Increases the duration of Blessing of Purity by 2 sec."
+  },
+  "Luminary Mendicant": {
+   "name": "Luminary Mendicant",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 547214,
+   "ranks": null,
+   "spellIds": [
+    547214
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_SealOfWrath",
+   "description": "Increases the mana restored by Vow of Grace by 100%."
+  },
+  "Magic Resistance": {
+   "name": "Magic Resistance",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 822,
+   "ranks": null,
+   "spellIds": [
+    822
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "March of the Valkyr": {
+   "name": "March of the Valkyr",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560534,
+   "ranks": null,
+   "spellIds": [
+    560534
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Crusade",
+   "description": "Increases the all damage dealt by party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, your chance to parry is increased by 5%."
+  },
+  "Mercy": {
+   "name": "Mercy",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504848,
+   "ranks": null,
+   "spellIds": [
+    504848
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_paladin_selflesshealer",
+   "description": "Grant mercy to an ally, abolishing 2 disease effects, repeating every 3 sec for 12 seconds."
+  },
+  "Moment of Triumph": {
+   "name": "Moment of Triumph",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300367,
+   "ranks": null,
+   "spellIds": [
+    300367
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_divinepurpose",
+   "description": "Horusath Blast or Rapture now have a 20% chance to not incur a cooldown on cast."
+  },
+  "New Day": {
+   "name": "New Day",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800600,
+   "ranks": null,
+   "spellIds": [
+    800600
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3waveoflight",
+   "description": "Start anew, reseting the cooldown of Paragon, Chosen of the Light, and Judgement Day."
+  },
+  "Nysoni's Blessing": {
+   "name": "Nysoni's Blessing",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520639,
+   "ranks": null,
+   "spellIds": [
+    520639
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_blessedrecovery",
+   "description": "Dawn will now provide an additional effect based on your specialization."
+  },
+  "Odyn's Vanguard": {
+   "name": "Odyn's Vanguard",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806699,
+   "ranks": null,
+   "spellIds": [
+    806699
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Power",
+   "description": "Melee attacks now have a 20% chance to reset the cooldown of Glorious Execution."
+  },
+  "Paragon": {
+   "name": "Paragon",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680639,
+   "ranks": {
+    "1": 680639
+   },
+   "spellIds": [
+    680639
+   ],
+   "cost": 20000,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Become a paragon of the light for 20 sec, increasing all primary attributes by 20% and increasing your Armor by an amount equal to 5 times your Intellect.\r\n\r\nFor the duration, |CffffffffSun Stride|r triggers a 75% reduced cooldown. "
+  },
+  "Paying The Tithe": {
+   "name": "Paying The Tithe",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680647,
+   "ranks": null,
+   "spellIds": [
+    680647
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_56_holy_Border",
+   "description": "Increases the critical strike chance of Dawnbreak by 10% and your Seraphic Bulwark now lasts for 2 additional blocks."
+  },
+  "Pendant of the Sun": {
+   "name": "Pendant of the Sun",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680630,
+   "ranks": null,
+   "spellIds": [
+    680630
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holy_amulet_Border",
+   "description": "Activate your pendant of the sun, refreshing the duration and all charges of Dawn."
+  },
+  "Photosynthetic": {
+   "name": "Photosynthetic",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300363,
+   "ranks": null,
+   "spellIds": [
+    300363
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\70_inscription_vantus_rune_light",
+   "description": "Increases your spell haste by 3%, plus an additional 1% during the day."
+  },
+  "Pious": {
+   "name": "Pious",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300943,
+   "ranks": null,
+   "spellIds": [
+    300943
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\nhi_holywhirlpool_Border",
+   "description": "Level 40 Passive\nIncreases your critical damage dealt by 150% and your critical strikes grant allies Replenishment.ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+  },
+  "Protector of the Flame": {
+   "name": "Protector of the Flame",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560492,
+   "ranks": null,
+   "spellIds": [
+    560492
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_soulburn_Border",
+   "description": "Avoiding an attack now also deals 648% fire SP + 3% AP Fire damage to the attacker.\n\nCan only occur once per sec."
+  },
+  "Pure Heart": {
+   "name": "Pure Heart",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 582832,
+   "ranks": null,
+   "spellIds": [
+    582832
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Renew",
+   "description": "Removes the damage penalty provided by Blessing of Purity."
+  },
+  "Pure Light": {
+   "name": "Pure Light",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300314,
+   "ranks": null,
+   "spellIds": [
+    300314
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holyshock_Border",
+   "description": "While above 80% health you now deal 10% increased damage and healing."
+  },
+  "Purgation": {
+   "name": "Purgation",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806024,
+   "ranks": null,
+   "spellIds": [
+    806024
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_FireDancer_01",
+   "description": "Dealing damage with Radiant Flame now increases the target's Holy and Fire damage taken from you by 1% for 8 seconds, stacking 8 times."
+  },
+  "Radiance": {
+   "name": "Radiance",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800054,
+   "ranks": null,
+   "spellIds": [
+    800054
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_ability_holyfire_nova",
+   "description": "Every 2 sec you burst with light, healing nearby allies for 36 + 20% SP + 10% AP and damaging nearby enemies for 37 + 40% SP + 15% AP. Lasts 10 seconds."
+  },
+  "Radiant Cascade": {
+   "name": "Radiant Cascade",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 502411,
+   "ranks": {
+    "1": 500141,
+    "2": 502407,
+    "3": 502408,
+    "4": 502409,
+    "5": 502410,
+    "6": 502411
+   },
+   "spellIds": [
+    500141,
+    502407,
+    502408,
+    502409,
+    502410,
+    502411
+   ],
+   "cost": 8300,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Refract light into a restorative beam, healing an ally for 207, and then jumps to up to 4 additional allies, healing for less with each bounce."
+  },
+  "Radiant Flame": {
+   "name": "Radiant Flame",
+   "spec": "Piety",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 560867,
+   "ranks": {
+    "2": 560862,
+    "3": 560863,
+    "4": 560864,
+    "5": 560865,
+    "6": 560866,
+    "7": 560867
+   },
+   "spellIds": [
+    560862,
+    560863,
+    560864,
+    560865,
+    560866,
+    560867,
+    806060
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holysparks_Border",
+   "description": "Launch radiant spheres at an enemy each dealing 44 Holyflame Damage, repeating every 1 sec for 4 sec."
+  },
+  "Radiant Fury": {
+   "name": "Radiant Fury",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300325,
+   "ranks": null,
+   "spellIds": [
+    300325
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_SearingLightPriest",
+   "description": "Damage dealt by Radiant Flame is now increased by 10% on enemies below 35% health."
+  },
+  "Radiant Halberd": {
+   "name": "Radiant Halberd",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681252,
+   "ranks": null,
+   "spellIds": [
+    681252
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_halberd15",
+   "description": "Direct Physical damage dealt now reduces the cooldown of Champion of the Sun by -1 sec."
+  },
+  "Radiant Marks": {
+   "name": "Radiant Marks",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704947,
+   "ranks": null,
+   "spellIds": [
+    704947
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_skyreach_solar_burst",
+   "description": "Reduces the channel time of Sunslam by 1 sec."
+  },
+  "Radiant Power": {
+   "name": "Radiant Power",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707613,
+   "ranks": null,
+   "spellIds": [
+    707613
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_PowerWordShield",
+   "description": "Each stack of Sunwalker now increases the critical strike chance of Shine by 3%."
+  },
+  "Rapture": {
+   "name": "Rapture",
+   "spec": "Piety",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 807372,
+   "ranks": {
+    "2": 807367,
+    "3": 807368,
+    "4": 807369,
+    "5": 807370,
+    "6": 807371,
+    "7": 807372
+   },
+   "spellIds": [
+    806477,
+    807367,
+    807368,
+    807369,
+    807370,
+    807371,
+    807372
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_racial_orbitalstrike",
+   "description": "Call down a streak of sun light to smite your target, dealing 144 Fire damage to them and nearby enemies, piercing all immunities, but dealing less damage with each enemy struck."
+  },
+  "Ray of Illumination": {
+   "name": "Ray of Illumination",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801428,
+   "ranks": {
+    "1": 801428
+   },
+   "spellIds": [
+    801428
+   ],
+   "cost": 9900,
+   "levelReq": 28,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Call down a beam of light on an area for 15 sec, revealing stealthed and invisible enemies."
+  },
+  "Rejuvenating Rays": {
+   "name": "Rejuvenating Rays",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807240,
+   "ranks": {
+    "1": 807240
+   },
+   "spellIds": [
+    807240
+   ],
+   "cost": 150,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Call down |cffffffffRejuvenating Rays|r in an area for 1 min, restoring 1% maximum health and mana per sec. This effect is stronger based on how long you stay in the area.\r\n\r\nRemaining in the area for at least 10 sec will remove all diseases from allies inside.\r\n\r\nCannot be used in combat or indoors. Does not work on allies in combat."
+  },
+  "Resilient Constitution": {
+   "name": "Resilient Constitution",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 552011,
+   "ranks": null,
+   "spellIds": [
+    552011
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Revivify": {
+   "name": "Revivify",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803592,
+   "ranks": {
+    "1": 801790,
+    "2": 803588,
+    "3": 803589,
+    "4": 803590,
+    "5": 803591,
+    "6": 803592
+   },
+   "spellIds": [
+    801790,
+    803588,
+    803589,
+    803590,
+    803591,
+    803592
+   ],
+   "cost": 200,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Brings a dead ally back to life with 70 health and 135 mana.\r\n\r\nNot usable in combat."
+  },
+  "Sacred Vessel": {
+   "name": "Sacred Vessel",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680648,
+   "ranks": null,
+   "spellIds": [
+    680648
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_holywater_Border",
+   "description": "Expending Angelic Presence increases your critical strike chance and healing by 1% for 20 seconds, stacking up to 10 times.\n\nAdditional applications do not refresh the duration."
+  },
+  "Sanctified": {
+   "name": "Sanctified",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300344,
+   "ranks": null,
+   "spellIds": [
+    300344
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_divineintervention",
+   "description": "Healing a target affected by Bless refunds 25% of the mana cost of the spell."
+  },
+  "Sanctify": {
+   "name": "Sanctify",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 524968,
+   "ranks": {
+    "1": 524968
+   },
+   "spellIds": [
+    524968
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Sanctify a friendly target, dispelling 1 magic, poison, and disease effect from them."
+  },
+  "Savior": {
+   "name": "Savior",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300343,
+   "ranks": null,
+   "spellIds": [
+    300343
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Fanaticism",
+   "description": "Increases your healing on targets below 20% health by 30%."
+  },
+  "Scorch Marks": {
+   "name": "Scorch Marks",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806021,
+   "ranks": null,
+   "spellIds": [
+    806021
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_1h_artifactstormfist_d_03",
+   "description": "Casting Dawnsear and Sunflare now have a 40% chance to grant Scorch Marks for 10 seconds.Scorch MarksYour next Radiant Flame has no mana cost, ticks -50% faster, and its duration is reduced by -50%."
+  },
+  "Scroll of Hope": {
+   "name": "Scroll of Hope",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680646,
+   "ranks": null,
+   "spellIds": [
+    680646
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_HolyScroll_Border",
+   "description": "Read from a scroll of hope, reducing Magic damage taken by party and raid members within 15 yds by -30% for 10 seconds.\n\nIf any ally falls below 35% of their maximum health while this is active they are instantly healed once for 15% of their maximum health."
+  },
+  "Seraphic Bulwark": {
+   "name": "Seraphic Bulwark",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560095,
+   "ranks": null,
+   "spellIds": [
+    560095
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_1h_raidnazmir_d_01",
+   "description": "2 Charges, 25 sec recharge\nRaise your blessed shield, increasing your block value by 100%. Lasts for 5 blocks or 10 seconds."
+  },
+  "Shine": {
+   "name": "Shine",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 502455,
+   "ranks": {
+    "1": 800357,
+    "2": 502449,
+    "3": 502450,
+    "4": 502451,
+    "5": 502452,
+    "6": 502453,
+    "7": 502454,
+    "8": 502455
+   },
+   "spellIds": [
+    502449,
+    502450,
+    502451,
+    502452,
+    502453,
+    502454,
+    502455,
+    800357
+   ],
+   "cost": 700,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Shine holy light upon an ally, healing for 136."
+  },
+  "Shining Shield": {
+   "name": "Shining Shield",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704586,
+   "ranks": null,
+   "spellIds": [
+    704586
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_paladinskill11_Border",
+   "description": "Activating Dawn now grants Shining Shield for 8 seconds.Shining ShieldIncreases your Armor contribution from your shield by 50%."
+  },
+  "Shoot": {
+   "name": "Shoot",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3018,
+   "ranks": null,
+   "spellIds": [
+    3018
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Sintorcher": {
+   "name": "Sintorcher",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704909,
+   "ranks": null,
+   "spellIds": [
+    704909
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_LavaSpawn",
+   "description": "Increases your damage and healing done by 3% and your critical strike chance against Undead by 2%."
+  },
+  "Sol Invictus": {
+   "name": "Sol Invictus",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807732,
+   "ranks": {
+    "1": 807732
+   },
+   "spellIds": [
+    807732
+   ],
+   "cost": 450,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Your devotion to the sun knows no bounds, increasing your threat generated by 50% plus an additional 75% from Holy and Fire spells and abilities."
+  },
+  "Solar Champion": {
+   "name": "Solar Champion",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504734,
+   "ranks": null,
+   "spellIds": [
+    504734
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_fire_0004s_0000_armor_Border",
+   "description": "Increases the range of your Piety spells by 20% and reduces the threat generated by them by -20%."
+  },
+  "Solar Concord": {
+   "name": "Solar Concord",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301266,
+   "ranks": null,
+   "spellIds": [
+    301266
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_priestskill01_Border",
+   "description": "Resets the cooldown of Horusath Blast while in Sunrise and Rapture while in Sunset and causes their damage dealt to launch a Solar Flare. Lasts 15 seconds.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+  },
+  "Solar Conduit": {
+   "name": "Solar Conduit",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300321,
+   "ranks": null,
+   "spellIds": [
+    300321
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_FireInOurHands_Border",
+   "description": "Reduces the cast time of Dawnsear by -20% while Dawn is active."
+  },
+  "Solar Discernment": {
+   "name": "Solar Discernment",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807654,
+   "ranks": null,
+   "spellIds": [
+    807654
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\5_paladinskill13_Border",
+   "description": "Level 40 Passive\nIncreases your critical strike rating and expertise rating by 12% of your Intellect."
+  },
+  "Solar Eclipse": {
+   "name": "Solar Eclipse",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704929,
+   "ranks": null,
+   "spellIds": [
+    704929
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_artifact_xp03",
+   "description": "Dawnbreak now unleashes a burst of holy energy after a 1 seconds delay, dealing 22 + 12.5% holy SP + 10% AP Holy damage to nearby enemies."
+  },
+  "Solar Empowerment": {
+   "name": "Solar Empowerment",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707081,
+   "ranks": null,
+   "spellIds": [
+    707081
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_suncrown_d_01",
+   "description": "Fulfilling your Vow now unleashes a chain of light at your target, dealing 91 + 23% holy SP + 10% AP Holy damage and then bouncing to up to 5 additional enemies, dealing reduced damage with each strike."
+  },
+  "Solar Guardian": {
+   "name": "Solar Guardian",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704581,
+   "ranks": null,
+   "spellIds": [
+    704581
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\buff_forcesoforder",
+   "description": "Reduces the duration of stun effects on you by -20%."
+  },
+  "Solar Invigoration": {
+   "name": "Solar Invigoration",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806123,
+   "ranks": null,
+   "spellIds": [
+    806123
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_element(fire)_b_01_Border",
+   "description": "For 15 seconds, your allies take 20% increased healing and their direct damage dealt now causes them to cast Shine. Can only occur once every 2 sec.Shine (Rank 8)Shine holy light upon an ally, healing for 511 + 29.47% SP."
+  },
+  "Solar Invocation: Ascension": {
+   "name": "Solar Invocation: Ascension",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572157,
+   "ranks": {
+    "1": 500152,
+    "2": 502440,
+    "3": 502441,
+    "4": 572157
+   },
+   "spellIds": [
+    500152,
+    502440,
+    502441,
+    572157
+   ],
+   "cost": 8300,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Call down the restorative power of the sun, healing all allied players within 40 yds for 107.\r\n\r\n@ext:Shares a cooldown with other |cffffffffSolar Invocation|r spells.:ext@"
+  },
+  "Solar Invocation: Conquest": {
+   "name": "Solar Invocation: Conquest",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800764,
+   "ranks": null,
+   "spellIds": [
+    800764
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holy_toglory_Border",
+   "description": "Invoke the spirit of An'she to instantly generate 10 Solar Power and refunds 10% of your maximum mana."
+  },
+  "Solar Invocation: Resplendence": {
+   "name": "Solar Invocation: Resplendence",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806159,
+   "ranks": null,
+   "spellIds": [
+    806159
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_rayofhope",
+   "description": "Invoke the grace of An'she for 8 seconds, causing your llluminations to be instant cast and guaranteed to critically strike, but cost 100% more mana."
+  },
+  "Solar Invocation: Revelation": {
+   "name": "Solar Invocation: Revelation",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503651,
+   "ranks": null,
+   "spellIds": [
+    503651
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_priestskill07_Border",
+   "description": "Invoke An'she to root an enemy for 4 seconds with holy shackles or heal an ally for 10% maximum health and increase their movement speed by 50% for 4 seconds."
+  },
+  "Solar Might": {
+   "name": "Solar Might",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704916,
+   "ranks": null,
+   "spellIds": [
+    704916
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_paladin_holyavenger",
+   "description": "Increases your Strength and Intellect by 5%."
+  },
+  "Solar Nova": {
+   "name": "Solar Nova",
+   "spec": "Seraphim",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 681433,
+   "ranks": {
+    "2": 681432,
+    "3": 681433
+   },
+   "spellIds": [
+    680621,
+    681432,
+    681433
+   ],
+   "cost": 20000,
+   "levelReq": 42,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_holyguidance",
+   "description": "Emit a powerful holy light in an 8 yd radius, dealing 168 Holy damage to all nearby enemies. \r\n\r\nReduces the cooldown of your |cffffffffSolar Invocation|r spells by 1 sec for each target struck.\r\n\r\nThis ability is guaranteed to critically strike against Undead or Demons."
+  },
+  "Solar Prayer": {
+   "name": "Solar Prayer",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806479,
+   "ranks": null,
+   "spellIds": [
+    806479
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_devineaegis",
+   "description": "Recite a solar prayer, instantly healing you for 25% of your maximum health plus an additional 100 + 100% SP, scaling with spell power.\n\nUsable while stunned."
+  },
+  "Solar Priest": {
+   "name": "Solar Priest",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300347,
+   "ranks": null,
+   "spellIds": [
+    300347
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_ascension",
+   "description": "Reduces the cooldown of Solar Invigoration by -30 sec.\n\nIn addition, whenever allies effectively heal with Shine they now cast Illumination. Can only occur once every 6 sec.Illumination (Rank 11)Illuminate an ally, healing them for 1373 + 68% healing."
+  },
+  "Soul of Light": {
+   "name": "Soul of Light",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807964,
+   "ranks": null,
+   "spellIds": [
+    807964
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_BlessingOfProtection",
+   "description": "Reduces the cooldown of An'she's Blessing by -60 sec."
+  },
+  "Spears of Glory": {
+   "name": "Spears of Glory",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804629,
+   "ranks": null,
+   "spellIds": [
+    804629
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireball_Border",
+   "description": "Damage dealt by Radiant Flame now has an 15% chance to grant you Spears of Glory.Spears of GloryYour next Dawnsear within 10 seconds is instant cast and deals 25% increased damage."
+  },
+  "Stalwart": {
+   "name": "Stalwart",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300355,
+   "ranks": null,
+   "spellIds": [
+    300355
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_qirajidol_sun",
+   "description": "Melee critical strikes against you prevent you from being critically struck again for 4 seconds."
+  },
+  "Stand Against Darkness": {
+   "name": "Stand Against Darkness",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707078,
+   "ranks": null,
+   "spellIds": [
+    707078
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_DevineAegis",
+   "description": "During the day you now deal -10% more Holy damage and take -10% reduced periodic damage."
+  },
+  "Struck by the Sun": {
+   "name": "Struck by the Sun",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300723,
+   "ranks": null,
+   "spellIds": [
+    300723
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\spell_paladin_lightofdawn",
+   "description": "Level 30 Passive\nIncreases your Holy and Fire spell damage by 30% and your spell hit rating by 6% of your Intellect."
+  },
+  "Sun Disc": {
+   "name": "Sun Disc",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560547,
+   "ranks": null,
+   "spellIds": [
+    560547
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_1h_hyrja_d_01",
+   "description": "You now emit an aura that causes all nearby allies to receive 6% increased healing. Does not stack with similar effects.\n\nIn addition, the healing done by Illumination is increased by 20%."
+  },
+  "Sun Down": {
+   "name": "Sun Down",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572752,
+   "ranks": null,
+   "spellIds": [
+    572752
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_fire_spell_07_Border",
+   "description": "$9b"
+  },
+  "Sun Gate": {
+   "name": "Sun Gate",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802161,
+   "ranks": null,
+   "spellIds": [
+    802161
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_paladin_blindinglight2",
+   "description": "Shift 25 yds forward at light speed, removing all root effects.\n\nThis leaves behind a Sun Gate for 15 seconds that allies can interact with to blink themselves the same distance forward. Allies can only use Sun Gate every 90 seconds."
+  },
+  "Sun Shield": {
+   "name": "Sun Shield",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300348,
+   "ranks": null,
+   "spellIds": [
+    300348
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_holyinfusion_Border",
+   "description": "Reduces your chance to be hit by spells by -3%."
+  },
+  "Sun Strength": {
+   "name": "Sun Strength",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707517,
+   "ranks": null,
+   "spellIds": [
+    707517
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_HolyProtection",
+   "description": "Radiant Cascade is now guaranteed to critically strike on allies affected by Bless."
+  },
+  "Sun Stride": {
+   "name": "Sun Stride",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680700,
+   "ranks": null,
+   "spellIds": [
+    680700
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_archangel",
+   "description": "Rush forward at a high speed for 2 seconds."
+  },
+  "Sun Strider": {
+   "name": "Sun Strider",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680641,
+   "ranks": null,
+   "spellIds": [
+    680641
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holypeak_Border",
+   "description": "Critical strikes with Gavels or Dawnbreak now increases the healing of your next Illumination within 20 seconds by 15%, stacking up to 3 times.\n\nConsuming the stacks increases your critical block chance and movement speed by 10% for 8 seconds."
+  },
+  "Sun Warrior's Guidance": {
+   "name": "Sun Warrior's Guidance",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800039,
+   "ranks": null,
+   "spellIds": [
+    800039
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_plate_raidpaladin_r_01mythic",
+   "description": "Increases the critical strike chance of Gavels and Dawnbreak by 5%."
+  },
+  "Sun Worship": {
+   "name": "Sun Worship",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704910,
+   "ranks": null,
+   "spellIds": [
+    704910
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Ability_Paladin_GaurdedbytheLight",
+   "description": "Level 20 Passive\nIncreases your healing power by 15% of your Intellect and your spell haste rating by 25% of your Intellect."
+  },
+  "Sun's Gift": {
+   "name": "Sun's Gift",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680656,
+   "ranks": null,
+   "spellIds": [
+    680656
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Holy_GreaterBlessingofSalvation",
+   "description": "Level 30 Passive\nYour Horusath Blast now deals additional damage scaling with your attack power and grants allies Replenishment.ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+  },
+  "Sun's Hope": {
+   "name": "Sun's Hope",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560276,
+   "ranks": null,
+   "spellIds": [
+    560276
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_SearingLight",
+   "description": "Damage dealt by Solar Flares now grants you 1 Solar Power and increase the targets chance to be critically struck by spells by 3% for 8 seconds.Solar Flare (Damage)Deals 137 + 26% SP Holyflame Damage and reduces the target's chance to hit by -3% for 10 seconds."
+  },
+  "Sun-Touched Armor": {
+   "name": "Sun-Touched Armor",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561023,
+   "ranks": null,
+   "spellIds": [
+    561023
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Fire_FireArmor",
+   "description": "Level 20 Passive\nIncreases your Armor by 150% of your Strength and Intellect and increases your total Stamina by 15%."
+  },
+  "Sunbeams": {
+   "name": "Sunbeams",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807874,
+   "ranks": null,
+   "spellIds": [
+    807874
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Restoration",
+   "description": "Reduces the cast time of Radiant Cascade by -15%."
+  },
+  "Sunburn": {
+   "name": "Sunburn",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300365,
+   "ranks": null,
+   "spellIds": [
+    300365
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_burningsoul",
+   "description": "Reduces the cast time of Rapture by -0.5 sec."
+  },
+  "Suncharged": {
+   "name": "Suncharged",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804628,
+   "ranks": null,
+   "spellIds": [
+    804628
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_skyreach_energize",
+   "description": "Your Judgement Day now applies Suncharged to the target every 1 sec, stacking 10 times.\n\nAt the end of the duration, or when Judgement Day ends, the enemy takes 487 + 30% AP + 50% holy SP Holy damage, increased for each stack on the target."
+  },
+  "Sunflare": {
+   "name": "Sunflare",
+   "spec": "Piety",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 502396,
+   "ranks": {
+    "2": 502386,
+    "3": 502387,
+    "4": 502388,
+    "5": 502389,
+    "6": 502390,
+    "7": 502391,
+    "8": 502392,
+    "9": 502393,
+    "10": 502394,
+    "11": 502395,
+    "12": 502396
+   },
+   "spellIds": [
+    502386,
+    502387,
+    502388,
+    502389,
+    502390,
+    502391,
+    502392,
+    502393,
+    502394,
+    502395,
+    502396,
+    800231
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Blast an enemy with the light of the sun, dealing 39 to 45 Holy damage."
+  },
+  "Sunflare Aegis": {
+   "name": "Sunflare Aegis",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707629,
+   "ranks": null,
+   "spellIds": [
+    707629
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_1h_bastionquest_b_01",
+   "description": "Blocking attacks now has a 30% chance to grant you Hammer of Kings for 4 sec. \n\nIf Hammer of Kings is already active, you increase the duration by 4 sec.Hammer of KingsBecome anointed by the light, summoning a blessed hammer that encircles you dealing 43 + 12% AP + 22% holy SP Holyfire Damage to nearby enemies every 3 sec for 12 seconds."
+  },
+  "Sunlight": {
+   "name": "Sunlight",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92136,
+   "ranks": null,
+   "spellIds": [
+    92136
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\item_holyspark",
+   "description": "Level 10 Passive\nFulfilling your Vow now unleashes Sunlight restoring 25 + 15% healing health to up to 5 allies within 40 yds, prioritizing the lowest health allies."
+  },
+  "Sunrise and Sunset": {
+   "name": "Sunrise and Sunset",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92135,
+   "ranks": null,
+   "spellIds": [
+    92135
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_HolyMeditation_Border",
+   "description": "$9f"
+  },
+  "Sunslam": {
+   "name": "Sunslam",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 807973,
+   "ranks": {
+    "2": 807970,
+    "3": 807971,
+    "4": 807972,
+    "5": 807973
+   },
+   "spellIds": [
+    805629,
+    807970,
+    807971,
+    807972,
+    807973
+   ],
+   "cost": 5200,
+   "levelReq": 26,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Sunslam",
+   "description": "Slam an enemy every 1 sec with the might of the sun, dealing 46 Holy damage and stunning them for 1 sec. Lasts 4 sec.\r\n\r\nOnly usable while |cFFFF9800Dawn|r is active. Usable while moving."
+  },
+  "Sunsworn": {
+   "name": "Sunsworn",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802935,
+   "ranks": null,
+   "spellIds": [
+    802935
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_paladinskill25_Border",
+   "description": "Increases your Physical damage dealt by 6% and auto attacks now have a 10% chance to restore 3% of your maximum mana."
+  },
+  "Sunwalker": {
+   "name": "Sunwalker",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704934,
+   "ranks": null,
+   "spellIds": [
+    704934
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holy_blessing_Border",
+   "description": "Dealing melee damage now generates a stack of Sunwalker.SunwalkerReduces the cast time and mana cost of your next Shine by -20% for 30 seconds, stacking 5 times."
+  },
+  "Sunwell": {
+   "name": "Sunwell",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560123,
+   "ranks": null,
+   "spellIds": [
+    560123
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holy_tornado_Border",
+   "description": "Become an embodiment of the sun for 30 seconds that periodically dispels fear, sleep, and charm effects every 3 sec from allies within 40 yds."
+  },
+  "Swift Justice": {
+   "name": "Swift Justice",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300322,
+   "ranks": null,
+   "spellIds": [
+    300322
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_hammerofjustice_Border",
+   "description": "Increases your haste by 3%."
+  },
+  "Taking Vows": {
+   "name": "Taking Vows",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300331,
+   "ranks": null,
+   "spellIds": [
+    300331
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Restoration",
+   "description": "Your Vow of Light now heals for an additional 5% of damage taken or direct healing done by you."
+  },
+  "The Chosen": {
+   "name": "The Chosen",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704936,
+   "ranks": null,
+   "spellIds": [
+    704936
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_paladin_empoweredsealsrighteous",
+   "description": "Your Illumination now shields you for 30% of the amount healed."
+  },
+  "The Chosen King": {
+   "name": "The Chosen King",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707079,
+   "ranks": null,
+   "spellIds": [
+    707079
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_auramastery",
+   "description": "Casting Hammer of Kings now also increases your critical strike chance by 10% for 10 seconds."
+  },
+  "The Coming Dawn": {
+   "name": "The Coming Dawn",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560861,
+   "ranks": null,
+   "spellIds": [
+    560861
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_HolyStrike_Border",
+   "description": "While Dawn is active, damage dealt by Radiant Flame now reduces the cooldown of Dawnfall and Solar Concord by -1 sec."
+  },
+  "The Redeemer": {
+   "name": "The Redeemer",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300339,
+   "ranks": null,
+   "spellIds": [
+    300339
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\5_priestskill01_Border",
+   "description": "Level 50 Passive\nWhen you critically heal your target, they will be healed for 30% of the amount originally healed the next time they take damage. Lasts 15 seconds."
+  },
+  "Together In Conquest": {
+   "name": "Together In Conquest",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681253,
+   "ranks": null,
+   "spellIds": [
+    681253
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Crusade",
+   "description": "Your Solar Invocation spells now causes your Illumination to heal an additional nearby ally at 70% effectiveness for 10 seconds.\n\nIn addition, Illumination now reduces the cooldown of Solar Invocation spells by -1 sec."
+  },
+  "Touch of Light": {
+   "name": "Touch of Light",
+   "spec": "Blessings",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572885,
+   "ranks": null,
+   "spellIds": [
+    572885
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_holyguidance",
+   "description": "Enemies struck by Blessing of Absolution now deal -20% reduced damage for 5 seconds."
+  },
+  "Trial of Valor": {
+   "name": "Trial of Valor",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805581,
+   "ranks": null,
+   "spellIds": [
+    805581
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_raid_trialofvalor",
+   "description": "Fulfilling a Vow now reduces the cooldown of Horusath Blast by -2 sec."
+  },
+  "Twilight": {
+   "name": "Twilight",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704579,
+   "ranks": null,
+   "spellIds": [
+    704579
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_sundarkening_Border",
+   "description": "Applying Vow of the Eclipse now blinds enemies struck, increasing their chance to miss their next attack by -10% for 6 seconds, stacking 5 times. Does not work on bosses.\n\nIn addition, increases the effectiveness of the Fulfillment effect of Vow of the Eclipse by 100%."
+  },
+  "Unbreakable Focus": {
+   "name": "Unbreakable Focus",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704945,
+   "ranks": null,
+   "spellIds": [
+    704945
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_auramastery",
+   "description": "Reduces the cooldown of Gavels and Horusath Blast by -20%."
+  },
+  "Valiance": {
+   "name": "Valiance",
+   "spec": "Seraphim",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680643,
+   "ranks": null,
+   "spellIds": [
+    680643
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_championsgrace",
+   "description": "Increases your melee attack speed by 15% and your first auto attack on a target hits twice."
+  },
+  "Valkyr's Calling": {
+   "name": "Valkyr's Calling",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520024,
+   "ranks": null,
+   "spellIds": [
+    520024
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_priest_angelicbulwark",
+   "description": "Target an enemy and leap into the air, becoming immune to all physical attacks and spells for 2 seconds. \n\nAt the end of the duration, you charge back down, dealing 428 + 100% AP + 22.5% SP Holy damage to all enemies within 8 yds."
+  },
+  "Valkyr's Grip": {
+   "name": "Valkyr's Grip",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707072,
+   "ranks": null,
+   "spellIds": [
+    707072,
+    807507
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_valkiergoldpet",
+   "description": "Level 10 Passive\nAllows you to dual wield and to wield a Two-Handed Mace, Sword, or Polearm in each hand and your chance to hit is increased by 6%."
+  },
+  "Valkyrie's Watch": {
+   "name": "Valkyrie's Watch",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805816,
+   "ranks": null,
+   "spellIds": [
+    805816
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_valkiergoldpet",
+   "description": "Damage that would take you below 35% health and damage taken while below 35% health is reduced by 25%."
+  },
+  "Valorous Champion": {
+   "name": "Valorous Champion",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804339,
+   "ranks": null,
+   "spellIds": [
+    804339
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Holy_HolyNova",
+   "description": "Level 20 Passive\nIncreases your attack power by 25% and your spell hit rating by 5% of your Strength."
+  },
+  "Vindicator": {
+   "name": "Vindicator",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704938,
+   "ranks": null,
+   "spellIds": [
+    704938
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_1h_artifactfelomelorn_d_01dual",
+   "description": "Your Glorious Execution now ignores -10% of the target's armor while Vow of the Valkyr is active."
+  },
+  "Vow of Dawn": {
+   "name": "Vow of Dawn",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803491,
+   "ranks": {
+    "1": 803491
+   },
+   "spellIds": [
+    803491
+   ],
+   "cost": 2500,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Direct ability damage or healing generates 1 |cFFFF9800Solar Power|r and bounces to 2 additional nearby targets with less value per target struck.\r\n\r\n|cffffffffFulfillment|r: Doubles the amount of targets struck.\r\n\r\n@ext:Only 1 |cffffffffVow|r can be active at a time.:ext@"
+  },
+  "Vow of Grace": {
+   "name": "Vow of Grace",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803719,
+   "ranks": {
+    "1": 803719
+   },
+   "spellIds": [
+    803719
+   ],
+   "cost": 450,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "You generate 2 |cFFFF9800Solar Power|r every 2 sec and direct ability damage now regenerates 5% of your missing mana plus 10.\r\n\r\n|cffffffffFulfillment|r: Halves the mana cost of all spells and abilities.\r\n\r\n@ext:Only 1 |cffffffffVow|r can be active at a time.:ext@"
+  },
+  "Vow of Light": {
+   "name": "Vow of Light",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807547,
+   "ranks": {
+    "1": 807547
+   },
+   "spellIds": [
+    807547
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Direct damage taken or direct healing taken by you generates 1 |cFFFF9800Solar Power|r and heals the nearest nearby ally equal to 20% of the amount.\r\n\r\n|cffffffffFulfillment|r: Doubles the amount of healing done.\r\n\r\n@ext:Only 1 |cffffffffVow|r can be active at a time.:ext@"
+  },
+  "Vow of Radiance": {
+   "name": "Vow of Radiance",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803489,
+   "ranks": {
+    "1": 803489
+   },
+   "spellIds": [
+    803489
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Direct ability damage or healing generates 2 |cFFFF9800Solar Power|r and damages or heals for an additional 25% of the amount.\r\n\r\n|cffffffffFulfillment|r: Doubles the damage or healing done.\r\n\r\n@ext:Only 1 |cffffffffVow|r can be active at a time.:ext@"
+  },
+  "Vow of the Eclipse": {
+   "name": "Vow of the Eclipse",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807435,
+   "ranks": {
+    "1": 807435
+   },
+   "spellIds": [
+    807435
+   ],
+   "cost": 12000,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Direct ability damage or effective healing now generates 1 |cFFFF9800Solar Power|r and burns for 5% of the damage or healing done every 3 sec for 18 sec. Each trigger increases the damage of this effect. Additional applications do not refresh the duration.\r\n\r\n|cffffffffFulfillment|r: Direct ability damage or healing done by you is increased by 10% on targets affected by |cFFFFFFFFVow of the Eclipse|r.\r\n\r\n@ext:Only 1 |cffffffffVow|r can be active at a time.:ext@"
+  },
+  "Vow of the Valkyr": {
+   "name": "Vow of the Valkyr",
+   "spec": "Valkyrie",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807749,
+   "ranks": null,
+   "spellIds": [
+    807749
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Vow_Of_Valkyr",
+   "description": "Auto attacks generate 1 Solar Power and deal 10% increased damage.\n\nFulfillment: Melee ability damage triggers an auto attack with each weapon.\n\nOnly 1 Vow can be active at a time."
+  },
+  "Wand": {
+   "name": "Wand",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 5019,
+   "ranks": null,
+   "spellIds": [
+    5019
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Warmth": {
+   "name": "Warmth",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704563,
+   "ranks": null,
+   "spellIds": [
+    704563
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_artifact_xp03",
+   "description": "Direct healing now increases the target's health by 300 for 15 seconds."
+  },
+  "Wrath of God": {
+   "name": "Wrath of God",
+   "spec": "Piety",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301267,
+   "ranks": null,
+   "spellIds": [
+    301267
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireinyourhand_Border",
+   "description": "Increases the critical strike chance of Sunflare and Dawnsear by 3% and reduces spell pushback suffered from damaging attacks by 50%."
+  },
+  "Zealous": {
+   "name": "Zealous",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560113,
+   "ranks": null,
+   "spellIds": [
+    560113
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_rune",
+   "description": "Reduces the cooldown of Radiance by -30 sec, but reduces its duration by -4 sec."
+  }
+ }
+}

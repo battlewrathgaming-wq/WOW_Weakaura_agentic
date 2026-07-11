@@ -1,0 +1,4348 @@
+{
+ "class": "CULTIST",
+ "display": "Cultist",
+ "classId": 25,
+ "abilityCount": 235,
+ "bySpec": {
+  "General": 40,
+  "Corruption": 39,
+  "Dreadnought": 38,
+  "Godblade": 38,
+  "Heretic": 41,
+  "Class": 39
+ },
+ "abilities": {
+  "Absolute Horror": {
+   "name": "Absolute Horror",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300309,
+   "ranks": null,
+   "spellIds": [
+    300309
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_volatileshadow",
+   "description": "Reduces the cast time of Horrorbolt and Wrath of the Black Empire by 0.3 sec."
+  },
+  "Abyssal Cleave": {
+   "name": "Abyssal Cleave",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707604,
+   "ranks": null,
+   "spellIds": [
+    707604
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_T_ShadowStab_Border",
+   "description": "Your Gaze of C'Thun now strikes 1 additional nearby enemy."
+  },
+  "Abyssal Covenant": {
+   "name": "Abyssal Covenant",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500751,
+   "ranks": null,
+   "spellIds": [
+    500751
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_cloth_eyeballhat_b_01",
+   "description": "Link yourself to an ally for 30 minutes, transfering 10% of all damage taken by them to you and causing 20% of all damage you deal to be converted into healing for them.\n\nCan only be applied to 1 ally at a time."
+  },
+  "Abyssal Destruction": {
+   "name": "Abyssal Destruction",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300308,
+   "ranks": null,
+   "spellIds": [
+    300308
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_priest_shadow_mend",
+   "description": "Periodic or channeled damage dealt now reduces the cooldown of your Obliteration Beam by -1 sec and grants 1 stack of Abyssal Destruction.Abyssal DestructionIncreases the damage dealt of your next Obliteration Beam by 5%, stacking 10 times, for 15 seconds."
+  },
+  "Abyssal Edge": {
+   "name": "Abyssal Edge",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 582836,
+   "ranks": null,
+   "spellIds": [
+    582836
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_1h_draenei_c_03",
+   "description": "Increases the critical strike chance of Blade of the Empire by 2% and reduces its mana cost by -25%."
+  },
+  "Abyssal Ward": {
+   "name": "Abyssal Ward",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804670,
+   "ranks": null,
+   "spellIds": [
+    804670
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_priest_shadoworbs",
+   "description": "Coalesce an Abyssal Ward reducing your damage taken by 50% for 10 seconds or 5 attacks. For the duration, each attack received will decrease the value by -10%.\n\nUsable while stunned."
+  },
+  "Adaptive Combatant": {
+   "name": "Adaptive Combatant",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300268,
+   "ranks": null,
+   "spellIds": [
+    300268
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sulfurelemental_void",
+   "description": "Increases your parry chance by 3% and dodge chance by 2%."
+  },
+  "Ancient Curse": {
+   "name": "Ancient Curse",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500712,
+   "ranks": null,
+   "spellIds": [
+    500712
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\void_hided_limb",
+   "description": "Generates 20 Insanity\nCurse an enemy, dealing 326 + 100% SP Shadow damage and increasing all Shadow damage they take from you by 10% for 10 seconds.\n\nUpon expiration, it deals an additional 1233 + 100% shadow SP Shadow damage to the target."
+  },
+  "Ancient Rituals": {
+   "name": "Ancient Rituals",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807877,
+   "ranks": null,
+   "spellIds": [
+    807877
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_Twilight",
+   "description": "Casting Satiate now refreshes the duration of Black Blood on all allies within 30 yds.\n\nDark Infusion bounces one additional time after its third infusion, expanding to the three lowest-health nearby party or raid members."
+  },
+  "Apocalyptic Skies": {
+   "name": "Apocalyptic Skies",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301200,
+   "ranks": null,
+   "spellIds": [
+    301200
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_void_conquer_Border",
+   "description": "Casting Wrath of the Black Empire now spawns a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+  },
+  "Arcane Affinity": {
+   "name": "Arcane Affinity",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 28877,
+   "ranks": null,
+   "spellIds": [
+    28877
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Arcane Torrent": {
+   "name": "Arcane Torrent",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 814287,
+   "ranks": null,
+   "spellIds": [
+    814287
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "As The Prophecy Foretold": {
+   "name": "As The Prophecy Foretold",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504642,
+   "ranks": null,
+   "spellIds": [
+    504642
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_inscription_scroll_fortitude",
+   "description": "Melee critical strikes now refresh a charge of Blade of the Empire and restore 3% of your base mana."
+  },
+  "Auto Attack": {
+   "name": "Auto Attack",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 6603,
+   "ranks": null,
+   "spellIds": [
+    6603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Black Prayer": {
+   "name": "Black Prayer",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805110,
+   "ranks": null,
+   "spellIds": [
+    805110
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\forbidding_void_dust",
+   "description": "All direct damage dealt now has a 5% chance to unleash a Black Prayer on all enemies near the target for 9 seconds.Black PrayerDeals 136 + 12% shadow SP + 0.5% AP Shadow Damage every 3 sec and reduces attack speed by -20%."
+  },
+  "Blade of Yogg-Saron": {
+   "name": "Blade of Yogg-Saron",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524887,
+   "ranks": null,
+   "spellIds": [
+    524887
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_shortblade_52",
+   "description": "Damage dealt by Blade of the Empire now heals the lowest health ally for 35% of the damage dealt plus 198 + 20% healing + 5% AP."
+  },
+  "Blade of the Depths": {
+   "name": "Blade of the Depths",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300753,
+   "ranks": null,
+   "spellIds": [
+    300753
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_OrbofShadow_Border",
+   "description": "While Herald of the Depths is active, your Forbidden Ritual will cooldown faster."
+  },
+  "Blade of the Empire": {
+   "name": "Blade of the Empire",
+   "spec": "Godblade",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 502122,
+   "ranks": {
+    "2": 502114,
+    "3": 502115,
+    "4": 502116,
+    "5": 502117,
+    "6": 502118,
+    "7": 502119,
+    "8": 502120,
+    "9": 502121,
+    "10": 502122
+   },
+   "spellIds": [
+    500720,
+    502114,
+    502115,
+    502116,
+    502117,
+    502118,
+    502119,
+    502120,
+    502121,
+    502122
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffff3 Charge, 6 sec recharge|r\r\n|cffcfa6ffGenerates 20 Insanity|r\r\nStrike an enemy, dealing 40 Shadow damage."
+  },
+  "Blessing of C'Thun": {
+   "name": "Blessing of C'Thun",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301255,
+   "ranks": null,
+   "spellIds": [
+    301255
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_inscription_talenttome01",
+   "description": "Level 50 Passive\nYour Darkwither can now critically strike and your spell hit rating is increased by 5% of your Intellect."
+  },
+  "Blessing of N'Zoth": {
+   "name": "Blessing of N'Zoth",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681107,
+   "ranks": null,
+   "spellIds": [
+    681107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_nzothfish_void",
+   "description": "Level 50 Passive\nIncreases your attack power by 100% of your Intellect."
+  },
+  "Blessing of Y'Shaarj": {
+   "name": "Blessing of Y'Shaarj",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801968,
+   "ranks": null,
+   "spellIds": [
+    801968
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_inscription_80_vantusrune_nyalotha",
+   "description": "Level 50 Passive\nWhile transformed into a void monstrosity your damage dealt is now also increased by 20%."
+  },
+  "Blessing of Yogg-Saron": {
+   "name": "Blessing of Yogg-Saron",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806264,
+   "ranks": null,
+   "spellIds": [
+    806264,
+    807128
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Devotion",
+   "description": "Level 50 Passive\nIncreases your attack power by an amount equal to 3 times your spell critical strike rating."
+  },
+  "Block": {
+   "name": "Block",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 107,
+   "ranks": null,
+   "spellIds": [
+    107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Book of N'Zoth": {
+   "name": "Book of N'Zoth",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806768,
+   "ranks": null,
+   "spellIds": [
+    806768
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Book2_Purple",
+   "description": "Your Shadow of the Void now stacks 1 additional time."
+  },
+  "Boon of Y'shaarj": {
+   "name": "Boon of Y'shaarj",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560080,
+   "ranks": null,
+   "spellIds": [
+    560080
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_wand_1h_430oldgod_c_01",
+   "description": "You now gain an additional 2 mana per point of Intellect."
+  },
+  "Bouncing Thoughts": {
+   "name": "Bouncing Thoughts",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680607,
+   "ranks": null,
+   "spellIds": [
+    680607
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_arcaneshuriken_Border",
+   "description": "Your Twilight Shieldtoss now hits an additional enemy for every 20 Insanity you have."
+  },
+  "Bulwark of Horror": {
+   "name": "Bulwark of Horror",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300278,
+   "ranks": null,
+   "spellIds": [
+    300278
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowcatcher_Border",
+   "description": "Avoiding an attack now has a 40% chance to refresh a charge of Blade of the Empire."
+  },
+  "Bulwark of Shadow": {
+   "name": "Bulwark of Shadow",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301182,
+   "ranks": null,
+   "spellIds": [
+    301182
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_draenorhonor_c_02",
+   "description": "While above 80 Insanity, your Void Shield has 30% increased value."
+  },
+  "Bulwark of Y'shaarj": {
+   "name": "Bulwark of Y'shaarj",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680558,
+   "ranks": null,
+   "spellIds": [
+    680558
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_73",
+   "description": "Increases your block chance by 5%, plus an additional 10% while above 40 Insanity."
+  },
+  "Call of C'Thun": {
+   "name": "Call of C'Thun",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301317,
+   "ranks": null,
+   "spellIds": [
+    301317
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_knife_1h_artifactcthun_d_02",
+   "description": "Your Darkwither's healing reduction now stacks 3 additional times and its tick rate is increased by -25%."
+  },
+  "Call of N'Zoth": {
+   "name": "Call of N'Zoth",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300306,
+   "ranks": null,
+   "spellIds": [
+    300306
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_wand_1h_nzothraid_d_01",
+   "description": "Increases the duration of Darkwither by 9 sec."
+  },
+  "Corrupt Fate": {
+   "name": "Corrupt Fate",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520810,
+   "ranks": null,
+   "spellIds": [
+    520810
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_deadshadow_Border",
+   "description": "Reduces the cooldown of Dark Veil by -60 sec."
+  },
+  "Corrupt Mind": {
+   "name": "Corrupt Mind",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560109,
+   "ranks": null,
+   "spellIds": [
+    560109
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_clarityofpower",
+   "description": "Generates 10 Insanity\nCorrupt the mind of an enemy and spread madness, fearing them in place for 40 seconds (8 sec vs players), bouncing to up to 2 nearby enemies.\n\nDamage dealt may end this effect."
+  },
+  "Corrupting Whispers": {
+   "name": "Corrupting Whispers",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92130,
+   "ranks": null,
+   "spellIds": [
+    92130
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\CThunIcon",
+   "description": "Damage dealt has a 15% chance to grant you Corrupting Whispers.\nCorrupting Whispers (Aura)Increases your Magic Damage dealt by 20%, reduces your mana costs by -30%, and prevents Insanity from decaying for 8 seconds."
+  },
+  "Corruptor's Gaze": {
+   "name": "Corruptor's Gaze",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802048,
+   "ranks": null,
+   "spellIds": [
+    802048
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_eyeofnzothpet",
+   "description": "Increases the damage of your Tentacles by 20%."
+  },
+  "Crushing Dissonance": {
+   "name": "Crushing Dissonance",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804056,
+   "ranks": null,
+   "spellIds": [
+    804056
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_kaztik_dominatemind",
+   "description": "Unleash a wave of maddening resonance, interrupting the current spell cast of all enemies around you and preventing any spell in that school from being cast for 2 seconds."
+  },
+  "Crystalline Reflection": {
+   "name": "Crystalline Reflection",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 525060,
+   "ranks": null,
+   "spellIds": [
+    525060
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_PrayerofShadowProtection",
+   "description": "Increases the chance for Void Shield to resist dispel effects on allies by -50% and it now also reflects 50% of the damage absorbed."
+  },
+  "Cunning Nature": {
+   "name": "Cunning Nature",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706915,
+   "ranks": null,
+   "spellIds": [
+    706915
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowwatcher_Border",
+   "description": "Increases your chance to hit by 3% and reduces threat generated by Shadow damage spells by -15%."
+  },
+  "Dark Calling": {
+   "name": "Dark Calling",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560715,
+   "ranks": null,
+   "spellIds": [
+    560715
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_offhand_1h_artifactcthun_d_04",
+   "description": "Taking damage while below 35% health now summons 3 Manifestations of Y'shaarj for 10 sec, which will attack enemies and heal you for 2% of your base health.\n\nCan ony occur once every 2 minutes."
+  },
+  "Dark Chants": {
+   "name": "Dark Chants",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 712471,
+   "ranks": null,
+   "spellIds": [
+    712471
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_druideskill30_Border",
+   "description": "Reduces the cast time of Forbidden Ritual by 1 sec and allows Black Blood to stack up to 2 times."
+  },
+  "Dark Infusion": {
+   "name": "Dark Infusion",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500721,
+   "ranks": null,
+   "spellIds": [
+    500721
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_mage_thermalvoid",
+   "description": "3 Charges, 30 sec recharge\nInfuse an ally with dark energy, healing them for 44 the next time they take damage. When the heal occurs, Dark Infusion is consumed and expands to the two lowest-health nearby party or raid members. Each secondary infusion heals when triggered, then expands to three nearby allies."
+  },
+  "Dark Magician": {
+   "name": "Dark Magician",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 563123,
+   "ranks": null,
+   "spellIds": [
+    563123
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\spell_priest_void_flay",
+   "description": "Level 20 Passive\nIncreases your critical damage dealt by 50% and your spell power by 30% of your Intellect."
+  },
+  "Dark Matter": {
+   "name": "Dark Matter",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806382,
+   "ranks": null,
+   "spellIds": [
+    806382
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Arcane_PrismaticCloak",
+   "description": "Channeling Satiate now heals all allies within 30 yds for 208 + 20% healing every 1 sec for 10 seconds."
+  },
+  "Dark Prophet": {
+   "name": "Dark Prophet",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301209,
+   "ranks": null,
+   "spellIds": [
+    301209
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_foreshadowing_Border",
+   "description": "Healing done by Abyssal Covenant now heals 5 of the lowest health nearby allies and healing done by Black Blood can now critically strike."
+  },
+  "Dark Protection": {
+   "name": "Dark Protection",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704897,
+   "ranks": null,
+   "spellIds": [
+    704897
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_SealOfKings",
+   "description": "Allies affected by Abyssal Covenant now also take 20% increased healing from you."
+  },
+  "Dark Reservoir": {
+   "name": "Dark Reservoir",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300284,
+   "ranks": null,
+   "spellIds": [
+    300284
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_battleground_templeofkotmogu_02_purple",
+   "description": "Increases the bonus healing power scaling of Eldritch Mending by 25%."
+  },
+  "Dark Revelation": {
+   "name": "Dark Revelation",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706245,
+   "ranks": null,
+   "spellIds": [
+    300313,
+    706245
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_summonvoidwalker",
+   "description": "Grants your Horrorbolt and Wrath of the Black Empire a 20% chance to reset the cooldown of Gaze of C'thun."
+  },
+  "Dark Rites": {
+   "name": "Dark Rites",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300290,
+   "ranks": null,
+   "spellIds": [
+    300290
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Enchant_VoidCrystal",
+   "description": "While Herald of the Depths is active, your movement speed cannot be reduced below 100% of normal value."
+  },
+  "Dark Veil": {
+   "name": "Dark Veil",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520345,
+   "ranks": null,
+   "spellIds": [
+    520345
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_priest_burningwill_shadow",
+   "description": "Channel a shield of void energies upon an ally, causing both you and them to absorb 875 + 100% healing + 25% AP damage, stacking 5 times, every 1 sec for 5 seconds.\n\nAt the end of the duration, if the shield holds, you teleport to them.\n\nWhile channeling you are immune to stuns and silences."
+  },
+  "Dark Whispers": {
+   "name": "Dark Whispers",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560977,
+   "ranks": null,
+   "spellIds": [
+    560977
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_ShadowsRising_Border",
+   "description": "$8f"
+  },
+  "Darkward": {
+   "name": "Darkward",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706180,
+   "ranks": null,
+   "spellIds": [
+    706180
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_MindSooth",
+   "description": "Increases the effectiveness of your damage absorption effects by 10%."
+  },
+  "Darkwither": {
+   "name": "Darkwither",
+   "spec": "Corruption",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502220,
+   "ranks": {
+    "2": 502213,
+    "3": 502214,
+    "4": 502215,
+    "5": 502216,
+    "6": 502217,
+    "7": 502218,
+    "8": 502219,
+    "9": 502220
+   },
+   "spellIds": [
+    502213,
+    502214,
+    502215,
+    502216,
+    502217,
+    502218,
+    502219,
+    502220,
+    800446
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_unstableaffliction_3_purple",
+   "description": "|cffcfa6ffGenerates 10 Insanity|r\r\nWither an enemy, dealing 190 Shadow damage over 15 sec. Each instance of damage reduces their periodic healing taken by 5%, stacking up to 4 times."
+  },
+  "Deep Secrets": {
+   "name": "Deep Secrets",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 582307,
+   "ranks": null,
+   "spellIds": [
+    582307
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_SummonVoidWalker",
+   "description": "Level 30 Passive\nEach point of Insanity now reduces mana costs of your instant cast spells and abilities by 1%."
+  },
+  "Depths of Madness": {
+   "name": "Depths of Madness",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706911,
+   "ranks": null,
+   "spellIds": [
+    706911
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_SoulHarvest2__Purple",
+   "description": "Damage dealt by Gaze of C'Thun now has a 15% to chance to spawn a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+  },
+  "Devour Curse": {
+   "name": "Devour Curse",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800402,
+   "ranks": null,
+   "spellIds": [
+    800402
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Curse_Purple",
+   "description": "Devour dark magic on an ally, dispelling 2 curse effects from them and healing you for 90 + 65% SP."
+  },
+  "Devour Magic": {
+   "name": "Devour Magic",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 520151,
+   "ranks": {
+    "1": 520151
+   },
+   "spellIds": [
+    520151
+   ],
+   "cost": 7800,
+   "levelReq": 26,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Devour 1 harmful magic effect on a friendly target, dispelling it and healing you for 174."
+  },
+  "Devourer": {
+   "name": "Devourer",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300265,
+   "ranks": null,
+   "spellIds": [
+    300265
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_eye_03",
+   "description": "Your Devour Magic now dispels 1 additional magic effect."
+  },
+  "Disdain": {
+   "name": "Disdain",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707747,
+   "ranks": null,
+   "spellIds": [
+    707747
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_Drowsy",
+   "description": "Removes the cooldown of Grasp of Zek'voz, but increases its mana cost by 25%."
+  },
+  "Dismay": {
+   "name": "Dismay",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704885,
+   "ranks": null,
+   "spellIds": [
+    704885
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_assassinskill07_Border",
+   "description": "Increases the movement speed slowed by Grasp of Zek'voz by -20%."
+  },
+  "Dodge": {
+   "name": "Dodge",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 81,
+   "ranks": null,
+   "spellIds": [
+    81
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Doomsayer": {
+   "name": "Doomsayer",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704880,
+   "ranks": null,
+   "spellIds": [
+    704880
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_boss_heraldofnzoth",
+   "description": "Reduces the mana cost of your Presences by -50%."
+  },
+  "Dread": {
+   "name": "Dread",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301315,
+   "ranks": null,
+   "spellIds": [
+    301315
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_BurningSpirit",
+   "description": "Increases the damage of Darkwither by 30%."
+  },
+  "Dreadfall": {
+   "name": "Dreadfall",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806175,
+   "ranks": null,
+   "spellIds": [
+    806175
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_ShadowGuard_Border",
+   "description": "Raise your shield and charge towards an enemy, dealing 50% AP Shadow damage to enemies you pass through, generating additional threat."
+  },
+  "Dreadful": {
+   "name": "Dreadful",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680579,
+   "ranks": null,
+   "spellIds": [
+    680579
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_tentacles_Border",
+   "description": "Increases your critical strike rating equal to your block rating.\n\nIn addition, critical strikes now reduce the cooldown of Dreadfall and Dreadnought by 1 sec."
+  },
+  "Dreadnought": {
+   "name": "Dreadnought",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 567552,
+   "ranks": {
+    "2": 567548,
+    "3": 567549,
+    "4": 567550,
+    "5": 567551,
+    "6": 567552
+   },
+   "spellIds": [
+    567548,
+    567549,
+    567550,
+    567551,
+    567552,
+    680750
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\YshaarjIcon",
+   "description": "Absorbs 389 damage, scaling with Intellect and Stamina. Protects movement speed from going below 80% of normal speed. Lasts 20 sec.\r\n\r\nDepletes all |cffcfa6ffInsanity|r upon expiration. "
+  },
+  "Eldritch Bastion": {
+   "name": "Eldritch Bastion",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560091,
+   "ranks": null,
+   "spellIds": [
+    560091
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowtentacle_Border",
+   "description": "Increases your Armor contribution from your shield by 15%."
+  },
+  "Eldritch Command": {
+   "name": "Eldritch Command",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 302015,
+   "ranks": null,
+   "spellIds": [
+    302015
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_shadow_spell_02_Border",
+   "description": "Casting Gaze of C'thun now has a 30% chance to cause your Tentacles to blast the enemy with eldritch energy, dealing 81 + 22.5% shadow SP + 10% AP Shadow damage."
+  },
+  "Eldritch Devastation": {
+   "name": "Eldritch Devastation",
+   "spec": "Corruption",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 803398,
+   "ranks": {
+    "2": 803395,
+    "3": 803396,
+    "4": 803397,
+    "5": 803398
+   },
+   "spellIds": [
+    802727,
+    803395,
+    803396,
+    803397,
+    803398
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_artifact_powerofthedarkside",
+   "description": "Channel upon an enemy, chaining to nearby enemies, dealing 120 Shadow damage over 6 sec, dealing less damage with each enemy struck."
+  },
+  "Eldritch Entities": {
+   "name": "Eldritch Entities",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681425,
+   "ranks": null,
+   "spellIds": [
+    681425
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_AuraOfDarkness",
+   "description": "Critical strikes with abilities now summon a Manifestation of Y'shaarj for 10 seconds, which will attack enemies and heal you for 2% of your base health."
+  },
+  "Eldritch Eye": {
+   "name": "Eldritch Eye",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802049,
+   "ranks": null,
+   "spellIds": [
+    802049
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_eyeofnzothpet",
+   "description": "Invoke the Old Gods for 15 seconds, removing the cast time of your next 3 Eldritch Mendings or Malevolences and causing them to critically strike."
+  },
+  "Eldritch Force": {
+   "name": "Eldritch Force",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681474,
+   "ranks": null,
+   "spellIds": [
+    681474
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowtentacle_Border",
+   "description": "Every 5th critical strike with abilities now transforms your next Gaze of C'Thun into Eldritch Force.Eldritch ForceGenerates 30 Insanity\nSend out a wave of force, dealing 631 + 76.26% SP + 12.5% AP Shadow damage to enemies in front of you and reducing their movement speed by -30% for 10 seconds."
+  },
+  "Eldritch Mending": {
+   "name": "Eldritch Mending",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 574325,
+   "ranks": {
+    "1": 500711,
+    "2": 502226,
+    "3": 502227,
+    "4": 502228,
+    "5": 502229,
+    "6": 502230,
+    "7": 502231,
+    "8": 502232,
+    "9": 502233,
+    "10": 502234,
+    "11": 574325
+   },
+   "spellIds": [
+    500711,
+    502226,
+    502227,
+    502228,
+    502229,
+    502230,
+    502231,
+    502232,
+    502233,
+    502234,
+    574325
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Envelop an ally in eldritch magic, healing for 45."
+  },
+  "Eldritch Obelisk": {
+   "name": "Eldritch Obelisk",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560321,
+   "ranks": null,
+   "spellIds": [
+    560321
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_nzothraid_nyalothaguildrun",
+   "description": "Create an Eldritch Obelisk beneath you for 20 seconds, increasing the damage of your Tentacles by 100% and the movement speed of allies by 40% while near it."
+  },
+  "Eldritch Ritual": {
+   "name": "Eldritch Ritual",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804777,
+   "ranks": {
+    "1": 804777
+   },
+   "spellIds": [
+    804777
+   ],
+   "cost": 30500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Summons a |cffffffffRitual Stone|r at the target location. You and your allies can interact with the |cffffffffRitual Stone|r to begin channeling their life force into it. \r\n\r\nWhen 10 allies are channeling, the stone will be destroyed to bring forth a hostile |cffffffffFaceless Destroyer|r into the world for 2 min."
+  },
+  "Eldritch Screams": {
+   "name": "Eldritch Screams",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 525049,
+   "ranks": null,
+   "spellIds": [
+    525049
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\impotent_void_effigy",
+   "description": "Your Corrupt Mind now also applies Mind Rot to nearby enemies.Mind Rot (Trigger)Increases the chance for allies to hit with all spells against the afflicted enemy by 3% for 10 seconds.\n\nIf this effect is dispelled, your critical strike chance is increased by 30% for 5 seconds."
+  },
+  "Eldritch Strength": {
+   "name": "Eldritch Strength",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680600,
+   "ranks": null,
+   "spellIds": [
+    680600
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sha_ability_rogue_envelopingshadows",
+   "description": "Increases the damage of Hammer of Twilight and Entropic Slam by 25% and they now generates a large amount of threat."
+  },
+  "Embodied Presences": {
+   "name": "Embodied Presences",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803283,
+   "ranks": null,
+   "spellIds": [
+    803283
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\warlock_houroftwilight",
+   "description": "Increases the chance to trigger your Presences by 5%."
+  },
+  "Embodiment of Y'shaarj": {
+   "name": "Embodiment of Y'shaarj",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681088,
+   "ranks": null,
+   "spellIds": [
+    681088
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_thenighthold_chromaticanomaly",
+   "description": "Increases the amount that Void Shield absorbs by 100%.\n\nAbsorbing damage grants you 20% of the absorbed value as spell power for 8 seconds."
+  },
+  "Embrace the Void": {
+   "name": "Embrace the Void",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 582591,
+   "ranks": null,
+   "spellIds": [
+    300307,
+    582591
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\overwhelming_void_effigy",
+   "description": "Become one with the void, preventing you from dying for 6 seconds, or until you take damage equal to a maximum of 100% of your total health.\n\nWhen the effect ends you instantly regenerate health equal to 50% of the damage taken while active."
+  },
+  "Empire Commander": {
+   "name": "Empire Commander",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704887,
+   "ranks": null,
+   "spellIds": [
+    704887
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowasphyxiation_Border",
+   "description": "Increases all primary attributes by 4%."
+  },
+  "Empire's Blessing": {
+   "name": "Empire's Blessing",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704895,
+   "ranks": null,
+   "spellIds": [
+    704895
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_AntiShadow",
+   "description": "Reduces the mana cost of Void Shield by -20%."
+  },
+  "Empire's Grasp": {
+   "name": "Empire's Grasp",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500704,
+   "ranks": null,
+   "spellIds": [
+    500704
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_demonhunter_darkness",
+   "description": "Teleport an enemy to your position and slow their movement speed by -60% for 4 seconds."
+  },
+  "Encroaching Presence": {
+   "name": "Encroaching Presence",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300280,
+   "ranks": null,
+   "spellIds": [
+    300280
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowwatcher_Border",
+   "description": "Your melee critical strikes reduce the cooldown of Rift and Gaze of C'Thun by -3 sec."
+  },
+  "End Times": {
+   "name": "End Times",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805115,
+   "ranks": null,
+   "spellIds": [
+    805115
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_167_Border",
+   "description": "Increases the range of Blade of the Empire, Netherstrike, and Hammer of Twilight by 25 yds and reduces their mana costs by -50% for 15 seconds."
+  },
+  "Entropic Retaliation": {
+   "name": "Entropic Retaliation",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802043,
+   "ranks": null,
+   "spellIds": [
+    802043
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowbarrier_Border",
+   "description": "Blocking an attack now increases your critical strike chance by 2% for 6 seconds, stacking up to 5 times."
+  },
+  "Entropic Singularity": {
+   "name": "Entropic Singularity",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800430,
+   "ranks": null,
+   "spellIds": [
+    800430
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_void_blackhole_Border",
+   "description": "Create a void zone for 5 seconds at target location that slows enemies' movement speed while inside.\n\nThe slow increases in intensity based on how close to the middle of the zone the enemy is."
+  },
+  "Entropic Slam": {
+   "name": "Entropic Slam",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572846,
+   "ranks": {
+    "1": 804152,
+    "2": 555351,
+    "3": 555352,
+    "4": 555353,
+    "5": 555354,
+    "6": 572846
+   },
+   "spellIds": [
+    555351,
+    555352,
+    555353,
+    555354,
+    572846,
+    804152
+   ],
+   "cost": 300,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Crush enemies in front of you, dealing 130% Weapon Damage plus 16 as Shadow damage and draining 40 |cffcfa6ffInsanity|r."
+  },
+  "Eternal Grasp": {
+   "name": "Eternal Grasp",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704878,
+   "ranks": null,
+   "spellIds": [
+    704878
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_nzothraid_carapace",
+   "description": "Increases the duration of your Tentacles by 25%."
+  },
+  "Everpresent": {
+   "name": "Everpresent",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300272,
+   "ranks": null,
+   "spellIds": [
+    300272
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_darkmoon_eye",
+   "description": "Increases the chance to trigger Presences by 10%."
+  },
+  "Eye of N'zoth": {
+   "name": "Eye of N'zoth",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802728,
+   "ranks": null,
+   "spellIds": [
+    802728
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_eyeofnzothpet",
+   "description": "Increases the critical strike chance and critical damage of your Tentacles by 10%."
+  },
+  "Eyes of Eternity": {
+   "name": "Eyes of Eternity",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706188,
+   "ranks": null,
+   "spellIds": [
+    706188
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_eyes_01",
+   "description": "Healing an ally with Gaze of C'Thun now additionally reveals nearby stealthed enemies for 8 seconds."
+  },
+  "Feeding Darkness": {
+   "name": "Feeding Darkness",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300302,
+   "ranks": null,
+   "spellIds": [
+    300302
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_mindtwisting",
+   "description": "Increases the range of your Corruption spells by 3 yds and their chance to critically strike by 2%."
+  },
+  "Forbidden Resilience": {
+   "name": "Forbidden Resilience",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300287,
+   "ranks": null,
+   "spellIds": [
+    300287
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_armor_voidelf_d_01",
+   "description": "While Herald of the Depths is active, you now take -15% less damage and have a 25% increased chance to resist dispel effects."
+  },
+  "Forbidden Ritual": {
+   "name": "Forbidden Ritual",
+   "spec": "Heretic",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502273,
+   "ranks": {
+    "2": 502267,
+    "3": 502268,
+    "4": 502269,
+    "5": 502270,
+    "6": 502271,
+    "7": 502272,
+    "8": 502273
+   },
+   "spellIds": [
+    502267,
+    502268,
+    502269,
+    502270,
+    502271,
+    502272,
+    502273,
+    800105
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_nullstone_shadow",
+   "description": "Chant a forbidden ritual that places a shield on all nearby allies that absorbs 308 damage for 10 sec."
+  },
+  "Forbidden Strength": {
+   "name": "Forbidden Strength",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301258,
+   "ranks": null,
+   "spellIds": [
+    301258
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_void_stab_Border",
+   "description": "While Herald of the Depths is active, the critical strike chance of Blade of the Empire is increased by 10%."
+  },
+  "Foulness": {
+   "name": "Foulness",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706921,
+   "ranks": null,
+   "spellIds": [
+    706921
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(85)_Border",
+   "description": "Increases the damage bonus provided by your Corrupting Whispers by 5%."
+  },
+  "Gaze of C'Thun": {
+   "name": "Gaze of C'Thun",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 502141,
+   "ranks": {
+    "1": 500110,
+    "2": 502135,
+    "3": 502136,
+    "4": 502137,
+    "5": 502138,
+    "6": 502139,
+    "7": 502140,
+    "8": 502141
+   },
+   "spellIds": [
+    500110,
+    502135,
+    502136,
+    502137,
+    502138,
+    502139,
+    502140,
+    502141
+   ],
+   "cost": 100,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Set C’thun’s Gaze upon an enemy or ally, jumping to 1 additional nearby target, dealing 28 Shadow damage to enemies or healing allies for 24."
+  },
+  "General of Y'shaarj": {
+   "name": "General of Y'shaarj",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680581,
+   "ranks": null,
+   "spellIds": [
+    680581
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_voidboss",
+   "description": "Dealing damage with Twilight Shieldtoss now heals you for 10% of the damage dealt."
+  },
+  "Gift of C'Thun": {
+   "name": "Gift of C'Thun",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706189,
+   "ranks": null,
+   "spellIds": [
+    706189
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\creatureportrait_sc_eyeofacherus_02",
+   "description": "Increases your Shadow damage dealt by 4% and healing done by 4%."
+  },
+  "Glimpse of Madness": {
+   "name": "Glimpse of Madness",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500719,
+   "ranks": null,
+   "spellIds": [
+    500719
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_MasterTactitian",
+   "description": "Reduces the cooldown of Obliteration Beam by -20% and it now applies Madness to all targets struck. \nMadnessYour Gaze of C'thun causes 3% increased damage, stacks up to 5 times."
+  },
+  "Glory to N'Zoth": {
+   "name": "Glory to N'Zoth",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681326,
+   "ranks": null,
+   "spellIds": [
+    681326
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\potent_void_effigy",
+   "description": "While Shadow of the Void is active, you now take -15% reduced damage."
+  },
+  "God Blade": {
+   "name": "God Blade",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680377,
+   "ranks": null,
+   "spellIds": [
+    680377
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_shortblade_60",
+   "description": "Your Rift now guarantees your next Hammer of Twilight to critically strike."
+  },
+  "Grasp of Zek'voz": {
+   "name": "Grasp of Zek'voz",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573028,
+   "ranks": null,
+   "spellIds": [
+    573028
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_nazmir_boss_zekvoz",
+   "description": "Hinder an enemies momentum with void chains, slowing their movement speed by -30% for 10 seconds."
+  },
+  "Greater Whispers of C'thun": {
+   "name": "Greater Whispers of C'thun",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 573067,
+   "ranks": {
+    "1": 573067
+   },
+   "spellIds": [
+    573067
+   ],
+   "cost": 51000,
+   "levelReq": 58,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Gift nearby allies with the madness of C'thun, increasing spell power by 62 for 30 min."
+  },
+  "Greater Whispers of N'zoth": {
+   "name": "Greater Whispers of N'zoth",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561387,
+   "ranks": {
+    "1": 561387
+   },
+   "spellIds": [
+    561387
+   ],
+   "cost": 48000,
+   "levelReq": 52,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Gift party and raid members with the madness of N'zoth, increasing total stats by 10% for 30 min."
+  },
+  "Greater Whispers of Y'shaarj": {
+   "name": "Greater Whispers of Y'shaarj",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561392,
+   "ranks": {
+    "1": 561392
+   },
+   "spellIds": [
+    561392
+   ],
+   "cost": 53000,
+   "levelReq": 54,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Gift nearby allies with the madness of Y'shaarj, restoring 33 mana every 5 seconds for 30 min.  Players may only have one Whisper on them per Cultist at any one time."
+  },
+  "Hallucination": {
+   "name": "Hallucination",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560301,
+   "ranks": null,
+   "spellIds": [
+    560301
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_warlock28_Border",
+   "description": "Create 3 copies of yourself that run in a random direction for 3 seconds and may briefly trick enemies into ignoring you. \n\nSignificantly reduces your threat and removes all movement impairing effects from you."
+  },
+  "Hammer of Twilight": {
+   "name": "Hammer of Twilight",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 806830,
+   "ranks": {
+    "1": 805116,
+    "2": 806498,
+    "3": 806499,
+    "4": 806831,
+    "5": 806832,
+    "6": 806833,
+    "7": 806829,
+    "8": 806830
+   },
+   "spellIds": [
+    805116,
+    806498,
+    806499,
+    806829,
+    806830,
+    806831,
+    806832,
+    806833
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Smash an enemy for 195% Weapon Damage plus 14 Shadow damage, ignoring absorption effects and draining 40 |cffcfa6ffInsanity|r."
+  },
+  "Hand of N'Zoth": {
+   "name": "Hand of N'Zoth",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704869,
+   "ranks": null,
+   "spellIds": [
+    704869
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_ChillTouch",
+   "description": "Your Hammer of Twilight, Entropic Slam, and Gaze of C'Thun now refreshes a charge of Blade of the Empire."
+  },
+  "Hand of Yogg-Saron": {
+   "name": "Hand of Yogg-Saron",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704476,
+   "ranks": null,
+   "spellIds": [
+    704476
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_Shadowfiend",
+   "description": "Tether yourself to an ally for 15 seconds, increasing all damage they deal and reducing all damage they take by 15%."
+  },
+  "Herald of the Depths": {
+   "name": "Herald of the Depths",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92131,
+   "ranks": null,
+   "spellIds": [
+    92131
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Yogg-SaronIcon",
+   "description": "$91"
+  },
+  "Horrific Revelations": {
+   "name": "Horrific Revelations",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524877,
+   "ranks": null,
+   "spellIds": [
+    524877
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_boss_triumvirate_darknaaru",
+   "description": "Every 1 sec while Hand of Yogg-Saron is active, you now trigger a Horrific Revelation on the target and generate 5 Insanity.Horrific RevelationHeals a friendly target for 144 + 67.85% SP, scaling with Insanity, and increases their critical strike chance by 1%, stacking 15 times, for 15 seconds."
+  },
+  "Horrific Visions": {
+   "name": "Horrific Visions",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707753,
+   "ranks": null,
+   "spellIds": [
+    707753
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_UnholyFrenzy",
+   "description": "While above 40 Insanity, your chance to trigger Dark Revelation is now increased by 10%."
+  },
+  "Horrifying Presence": {
+   "name": "Horrifying Presence",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 500723,
+   "ranks": {
+    "1": 500723
+   },
+   "spellIds": [
+    500723
+   ],
+   "cost": 1600,
+   "levelReq": 18,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Taunts enemies within 8 yds for 5 sec, and significantly increases threat generation for 5 sec."
+  },
+  "Horrorbolt": {
+   "name": "Horrorbolt",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 502182,
+   "ranks": {
+    "1": 800416,
+    "2": 502173,
+    "3": 502174,
+    "4": 502175,
+    "5": 502176,
+    "6": 502177,
+    "7": 502178,
+    "8": 502179,
+    "9": 502180,
+    "10": 502181,
+    "11": 502182
+   },
+   "spellIds": [
+    502173,
+    502174,
+    502175,
+    502176,
+    502177,
+    502178,
+    502179,
+    502180,
+    502181,
+    502182,
+    800416
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffcfa6ffGenerates 10 Insanity|r\r\nInflicts 22 Shadow damage to an enemy."
+  },
+  "Horrorbolt Volley": {
+   "name": "Horrorbolt Volley",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704892,
+   "ranks": null,
+   "spellIds": [
+    704892
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_normal20shadowrain_Border",
+   "description": "After casting 3 Horrorbolts, it transforms into Horrorbolt Volley for 15 seconds.\nHorrorbolt VolleyGenerates 10 Insanity\nInflict sheer horror on up to 5 enemies, dealing 607 + 28% shadow SP Shadow damage."
+  },
+  "Hysterical Momentum": {
+   "name": "Hysterical Momentum",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300275,
+   "ranks": null,
+   "spellIds": [
+    300275
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nzinsanity_shortsighted",
+   "description": "Damage dealt by Blade of the Empire increases your melee haste by 3% for 8 seconds, stacking 3 times."
+  },
+  "Improved Sermon of Dread": {
+   "name": "Improved Sermon of Dread",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706177,
+   "ranks": null,
+   "spellIds": [
+    706177
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_SoulLeech_3",
+   "description": "Increases the effectiveness of Sermon of Dread by 40%."
+  },
+  "In And Out of Insanity": {
+   "name": "In And Out of Insanity",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 582308,
+   "ranks": null,
+   "spellIds": [
+    582308
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_DeathsEmbrace",
+   "description": "Increases the effectiveness of your damage absorption effects by 20%."
+  },
+  "Inner Darkness": {
+   "name": "Inner Darkness",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706182,
+   "ranks": null,
+   "spellIds": [
+    706182
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_racial_entropicembrace",
+   "description": "Blocking an attack now generates 3 Insanity."
+  },
+  "Inner Turmoil": {
+   "name": "Inner Turmoil",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706722,
+   "ranks": null,
+   "spellIds": [
+    706722
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowchains_Border",
+   "description": "Increases the damage of Wrath of the Black Empire by 25%."
+  },
+  "Instilling Fear": {
+   "name": "Instilling Fear",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 527268,
+   "ranks": null,
+   "spellIds": [
+    527268
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_ShadeTrueSight",
+   "description": "While above 60 Insanity, your Netherstrike and Gaze of C'Thun now gain 10% increased critical strike chance."
+  },
+  "Isolate": {
+   "name": "Isolate",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800368,
+   "ranks": {
+    "1": 800368
+   },
+   "spellIds": [
+    800368
+   ],
+   "cost": 7800,
+   "levelReq": 26,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Isolate yourself or an ally, reducing all threat by 100% for 10 sec."
+  },
+  "Lead the Covenant": {
+   "name": "Lead the Covenant",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704884,
+   "ranks": null,
+   "spellIds": [
+    704884
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shoulder_cloth_nzothraidmythic_d_01",
+   "description": "50% of all healing done to allies through Abyssal Covenant is now replicated to you."
+  },
+  "Lost in the Void": {
+   "name": "Lost in the Void",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704881,
+   "ranks": null,
+   "spellIds": [
+    704881
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_arcanemask_Border",
+   "description": "Increases the duration of Embrace the Void by 4 sec and it now heals you for an additional 50% of the damage taken while active and its cooldown is reduced by -60 sec."
+  },
+  "Magic Resistance": {
+   "name": "Magic Resistance",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 822,
+   "ranks": null,
+   "spellIds": [
+    822
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Malevolence": {
+   "name": "Malevolence",
+   "spec": "Heretic",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502241,
+   "ranks": {
+    "2": 502235,
+    "3": 502236,
+    "4": 502237,
+    "5": 502238,
+    "6": 502239,
+    "7": 502240,
+    "8": 502241
+   },
+   "spellIds": [
+    500714,
+    502235,
+    502236,
+    502237,
+    502238,
+    502239,
+    502240,
+    502241
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_mace_1h_orgrimmarraid_d_03",
+   "description": "|cffcfa6ffGenerates 10 Insanity|r\r\nSmash an enemy with eldritch force, dealing 55 Shadow damage and applying |cffffffffBlack Blood|r to 5 nearby allies, healing them for 39, repeating every 3 sec for 15 sec.\r\n\r\nUsable while moving.\r\n\r\n@ext: Additional applications of |cffffffffBlack Blood|r do not refresh the duration.:ext@"
+  },
+  "Malevolent Power": {
+   "name": "Malevolent Power",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301183,
+   "ranks": null,
+   "spellIds": [
+    301183
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_2h_artifactashbringershadow_d_03",
+   "description": "Every 3rd melee ability you cast now causes your next Eldritch Mending to become instant cast and cost -20% less mana."
+  },
+  "Malignant Armor": {
+   "name": "Malignant Armor",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680569,
+   "ranks": null,
+   "spellIds": [
+    680569
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_plate_nzothraidmythic_d_01",
+   "description": "Increases your attack power by 2 for every 100 armor value you have."
+  },
+  "Mass Nightmare": {
+   "name": "Mass Nightmare",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805114,
+   "ranks": null,
+   "spellIds": [
+    805114
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_volatileshadow",
+   "description": "Spread nightmares of the black empire to up to 5 nearby enemies, horrifying them for 5 seconds and interrupting non-player spellcasting for 3 seconds."
+  },
+  "Mind Games": {
+   "name": "Mind Games",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 582589,
+   "ranks": null,
+   "spellIds": [
+    582589
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_shadowmend",
+   "description": "Reduces the cooldown of Hallucination by -5 sec and reduces its mana cost by -20%."
+  },
+  "Mind Leak": {
+   "name": "Mind Leak",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300270,
+   "ranks": null,
+   "spellIds": [
+    300270
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_mindrot",
+   "description": "While above 60 Insanity, you gain -5% reduced damage taken."
+  },
+  "Mind Rot": {
+   "name": "Mind Rot",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300300,
+   "ranks": null,
+   "spellIds": [
+    300300
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_mindshear",
+   "description": "Periodic or channeled damage dealt now has a 25% chance to curse your target, applying Mind Rot.Mind Rot (Trigger)Increases the chance for allies to hit with all spells against the afflicted enemy by 3% for 10 seconds.\n\nIf this effect is dispelled, your critical strike chance is increased by 30% for 5 seconds."
+  },
+  "Misery": {
+   "name": "Misery",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300298,
+   "ranks": null,
+   "spellIds": [
+    300298
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_dungeon_lordstormsong",
+   "description": "Casting Gaze of C'Thun now reduces the cooldown of Psychic Suppression and Grasp of Zek'voz by -1 sec."
+  },
+  "Moment of Clarity": {
+   "name": "Moment of Clarity",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706179,
+   "ranks": null,
+   "spellIds": [
+    706179
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Racial_ShadowMeld",
+   "description": "Reduces spell pushback suffered from damaging attacks by 35% and increases mana generated by Sanity Tap by 5%."
+  },
+  "Netherborne": {
+   "name": "Netherborne",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801539,
+   "ranks": null,
+   "spellIds": [
+    801539
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_SummonVoidWalker",
+   "description": "Increases the critical damage of Netherstrike by 25%."
+  },
+  "Netherstrike": {
+   "name": "Netherstrike",
+   "spec": "Godblade",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 578263,
+   "ranks": {
+    "2": 806825,
+    "3": 806826,
+    "4": 806827,
+    "5": 806828,
+    "6": 578263
+   },
+   "spellIds": [
+    578263,
+    806222,
+    806825,
+    806826,
+    806827,
+    806828
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_arcanearrow_Border",
+   "description": "|cffcfa6ffGenerates 10 Insanity|r\r\nStrike an enemy quickly for 125% Weapon Damage plus 62 Shadow damage, purging 1 beneficial magic effect from them.\r\n\r\nOnly usable on enemies below 35% health."
+  },
+  "Nutcase": {
+   "name": "Nutcase",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805117,
+   "ranks": null,
+   "spellIds": [
+    805117
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_dhmurloc_purple",
+   "description": "Your Shadow of the Void now also increases your critical damage dealt by 10%."
+  },
+  "Obliteration": {
+   "name": "Obliteration",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92129,
+   "ranks": null,
+   "spellIds": [
+    92129
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\NZothIcon",
+   "description": "Level 10 Passive\nYour Gaze of C'Thun now gains an additional 15 base damage and healing."
+  },
+  "Obliteration Beam": {
+   "name": "Obliteration Beam",
+   "spec": "Corruption",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 806897,
+   "ranks": {
+    "2": 807969,
+    "3": 806893,
+    "4": 806894,
+    "5": 806895,
+    "6": 806896,
+    "7": 806897
+   },
+   "spellIds": [
+    805572,
+    806893,
+    806894,
+    806895,
+    806896,
+    806897,
+    807969
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadoweye_Border",
+   "description": "|cffcfa6ffGenerates 10 Insanity|r\r\nUnleash a beam of eldritch energy, dealing 181 Shadow damage to an enemy and all nearby enemies.\r\n\r\nWhile above 60 |cffcfa6ffInsanity|r, deals 20% more damage."
+  },
+  "Oblivion's Embrace": {
+   "name": "Oblivion's Embrace",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680500,
+   "ranks": null,
+   "spellIds": [
+    680500
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nzinsanity_chasedbyshadows",
+   "description": "Increases the critical damage of your Hammer of Twilight by 25%."
+  },
+  "Occultism": {
+   "name": "Occultism",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300305,
+   "ranks": null,
+   "spellIds": [
+    300305
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_book_b_03",
+   "description": "Increases the critical strike chance of Wrath of the Black Empire by 10%."
+  },
+  "Overwhelming Void": {
+   "name": "Overwhelming Void",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707429,
+   "ranks": null,
+   "spellIds": [
+    707429
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_FaerieFire",
+   "description": "Your Mass Nightmare now triggers a 60 sec reduced cooldown when used at or above 80 Insanity."
+  },
+  "Persistent Prayers": {
+   "name": "Persistent Prayers",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 302072,
+   "ranks": null,
+   "spellIds": [
+    302072
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_ShadowWatcher_Border",
+   "description": "Increases the duration and absorption amount of Void Shield and Forbidden Ritual by 25%."
+  },
+  "Presence of C'Thun": {
+   "name": "Presence of C'Thun",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803339,
+   "ranks": {
+    "1": 803339
+   },
+   "spellIds": [
+    803339
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Assume an unholy |cFFFFFFFFPresence|r, giving damage dealt a 20% chance to increase your haste by 20% for 6 sec.\r\n\r\n@ext:You may only have 1 |cFFFFFFFFPresence|r active at a time. :ext@"
+  },
+  "Presence of N'Zoth": {
+   "name": "Presence of N'Zoth",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803037,
+   "ranks": {
+    "1": 803037
+   },
+   "spellIds": [
+    803037
+   ],
+   "cost": 2500,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Assume a dark |cFFFFFFFFPresence|r, giving damage dealt a 20% chance to summon |cffffffffTentacles|r on your back that attack a nearby enemy for 8 sec.\r\n\r\n@ext:You may only have 1 |cFFFFFFFFPresence|r active at a time. :ext@"
+  },
+  "Presence of Y'Shaarj": {
+   "name": "Presence of Y'Shaarj",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803035,
+   "ranks": {
+    "1": 803035
+   },
+   "spellIds": [
+    803035
+   ],
+   "cost": 12000,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Assume a powerful |cFFFFFFFFPresence|r, giving damage dealt a 20% chance to curse the ground for 12 sec, dealing 14 Shadow damage every 3 sec to enemies within.\r\n\r\n@ext:You may only have 1 |cFFFFFFFFPresence|r active at a time. :ext@"
+  },
+  "Presence of Yogg-Saron": {
+   "name": "Presence of Yogg-Saron",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803082,
+   "ranks": {
+    "1": 803082
+   },
+   "spellIds": [
+    803082
+   ],
+   "cost": 25500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Assume a crazed |cFFFFFFFFPresence|r, giving damage dealt a 30% chance to deal 16 Shadow damage to your target and reduce their casting speed by 30% for 6 sec.\r\n\r\n@ext:You may only have 1 |cFFFFFFFFPresence|r active at a time. :ext@"
+  },
+  "Prophetic Compulsion": {
+   "name": "Prophetic Compulsion",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300264,
+   "ranks": null,
+   "spellIds": [
+    300264
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_leader_prophet_velen",
+   "description": "While Black Blood is active on an ally, healing done to them by your Gaze of C'Thun has a 15% increased chance to critically strike."
+  },
+  "Protection From Light": {
+   "name": "Protection From Light",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704434,
+   "ranks": null,
+   "spellIds": [
+    704434
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_fire_twilightimmolation",
+   "description": "Reduces all damage taken by party and raid members by -3%.\n\nIn addition, your Holy damage taken is reduced by -10%."
+  },
+  "Psychic Suppression": {
+   "name": "Psychic Suppression",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800432,
+   "ranks": null,
+   "spellIds": [
+    800432
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_priest_voidsear",
+   "description": "Lift an enemy into the air, stunning them and dealing 30 + 55% shadow SP + 10% AP Shadow damage every 1 sec for 5 seconds. \n\nThe target takes 15% more spell damage from all sources while you are channeling this spell."
+  },
+  "Rapid Incantations": {
+   "name": "Rapid Incantations",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301181,
+   "ranks": null,
+   "spellIds": [
+    301181
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_shadow_spell_08_nobg_Border",
+   "description": "While above 60 Insanity, you gain 5% increased haste."
+  },
+  "Residual Energy": {
+   "name": "Residual Energy",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681389,
+   "ranks": null,
+   "spellIds": [
+    681389
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_nightblade",
+   "description": "Doubles the duration of Shadow of the Void."
+  },
+  "Resilient Constitution": {
+   "name": "Resilient Constitution",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 552011,
+   "ranks": null,
+   "spellIds": [
+    552011
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Restore Sanity": {
+   "name": "Restore Sanity",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801157,
+   "ranks": {
+    "1": 801157
+   },
+   "spellIds": [
+    801157
+   ],
+   "cost": 39500,
+   "levelReq": 50,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Removes the |cffffffffTotal Madness|r effect from you or an allied Cultist, resetting the target's |cffcfa6ffInsanity|r to 0."
+  },
+  "Rift": {
+   "name": "Rift",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806250,
+   "ranks": null,
+   "spellIds": [
+    806250
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_chest_armor_voidelf_d_01",
+   "description": "Apply a dark boon to yourself for 15 seconds, causing your next Hammer of Twilight to deal an additional 80% of its damage dealt as Shadow damage.\n\nCreates a rift in front of you that absorbs the next 690 + 150% AP healing taken by enemies that step inside and reduces their periodic healing received by -50% for 10 seconds while inside."
+  },
+  "Ritual of Awakening": {
+   "name": "Ritual of Awakening",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803599,
+   "ranks": {
+    "1": 801791,
+    "2": 803595,
+    "3": 803596,
+    "4": 803597,
+    "5": 803598,
+    "6": 803599
+   },
+   "spellIds": [
+    801791,
+    803595,
+    803596,
+    803597,
+    803598,
+    803599
+   ],
+   "cost": 200,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Brings a dead player back to life with 70 health and 135 mana.  Cannot be cast when in combat."
+  },
+  "Sanity Tap": {
+   "name": "Sanity Tap",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802575,
+   "ranks": {
+    "1": 802575
+   },
+   "spellIds": [
+    802575
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Regain your sanity, reducing your |cffcfa6ffInsanity|r by 20 and restoring 20% of your missing mana.\r\n\r\nUsable while casting or channeling."
+  },
+  "Saronite Blessing": {
+   "name": "Saronite Blessing",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301262,
+   "ranks": null,
+   "spellIds": [
+    301262
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_ingot_yoggthorite",
+   "description": "Melee critical strikes now apply Saronite Blessing to you.Saronite Blessing (Buff)Your melee attack speed is increased by 25% and your melee auto attacks heal the lowest health ally for an additional 100% of the damage dealt. Lasts for 15 seconds or 10 attacks."
+  },
+  "Saronite Cube": {
+   "name": "Saronite Cube",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807307,
+   "ranks": null,
+   "spellIds": [
+    807307
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_cat_trinket05",
+   "description": "Melee ability damage now reduces the duration of Wracked Mind by -1 sec on all allies within 30 yds."
+  },
+  "Saronite Mind": {
+   "name": "Saronite Mind",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806266,
+   "ranks": null,
+   "spellIds": [
+    806266
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_psychiclink",
+   "description": "Your Eldritch Eye now has 1 additional charge."
+  },
+  "Satiate": {
+   "name": "Satiate",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804275,
+   "ranks": {
+    "1": 804275
+   },
+   "spellIds": [
+    804275
+   ],
+   "cost": 15000,
+   "levelReq": 32,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Channel for 6 sec, generating 5 |cffcfa6ffInsanity|r and regenerating 5% of your maximum mana every 0.50 sec, but increase damage taken by 20%."
+  },
+  "Seething Void": {
+   "name": "Seething Void",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524804,
+   "ranks": null,
+   "spellIds": [
+    524804
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_fire_twilighthellfire",
+   "description": "Reduces the cooldown of Empire's Grasp by -5 sec."
+  },
+  "Sermon of Dread": {
+   "name": "Sermon of Dread",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 620614,
+   "ranks": {
+    "1": 620610,
+    "2": 620611,
+    "3": 620612,
+    "4": 620613,
+    "5": 620614
+   },
+   "spellIds": [
+    620610,
+    620611,
+    620612,
+    620613,
+    620614
+   ],
+   "cost": 700,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Induce dread upon nearby enemies, reducing the attack power of all enemies within 10 yds by 35 for 30 sec."
+  },
+  "Servant of C'Thun": {
+   "name": "Servant of C'Thun",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300296,
+   "ranks": null,
+   "spellIds": [
+    300296
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_GatherShadows",
+   "description": "Casting Gaze of C'thun now always triggers your Presence of C'Thun while it is active.Presence of C'Thun (Buff)Increases your haste by 20% for 6 seconds."
+  },
+  "Shadow Fiend": {
+   "name": "Shadow Fiend",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680487,
+   "ranks": null,
+   "spellIds": [
+    680487
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_stormdragonvoidmount",
+   "description": "Reduces the cooldown of your Voidborne by -90 sec and increases its duration by 5 sec."
+  },
+  "Shadow Pennant": {
+   "name": "Shadow Pennant",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706926,
+   "ranks": null,
+   "spellIds": [
+    706926
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\mocking_banner",
+   "description": "You now heal the lowest health ally affected by Black Blood for 50% of your auto attack damage."
+  },
+  "Shadow Strikes": {
+   "name": "Shadow Strikes",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707640,
+   "ranks": null,
+   "spellIds": [
+    707640
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_void_conquer_Border",
+   "description": "Blade of the Empire now has a 30% chance to cause your next auto attack to hit twice."
+  },
+  "Shadow Training": {
+   "name": "Shadow Training",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805607,
+   "ranks": null,
+   "spellIds": [
+    805607
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\achievement_dungeon_aqusirr",
+   "description": "Level 20 Passive\nIncreases the healing done by Eldritch Mending by 50% and Gaze of C'Thun by 100%.\n\nIn addition, you are now unable to miss your attacks and you cannot be parried or dodged."
+  },
+  "Shadow Words": {
+   "name": "Shadow Words",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706928,
+   "ranks": null,
+   "spellIds": [
+    706928
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_priest_voidshift",
+   "description": "Increases the effectiveness of your Whispers by 25%."
+  },
+  "Shadow of the Void": {
+   "name": "Shadow of the Void",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 574318,
+   "ranks": null,
+   "spellIds": [
+    574318
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\5_shadowswords_Border",
+   "description": "Level 20 Passive\nWhile above 40 Insanity, melee attacks and abilities trigger Shadow of the Void.Shadow of the VoidRestores 5% of your maximum mana and increases your Shadow Damage dealt by 10% for 8 seconds."
+  },
+  "Shadowy Symbiosis": {
+   "name": "Shadowy Symbiosis",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680574,
+   "ranks": null,
+   "spellIds": [
+    680574
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nzinsanity_stophittingyourself",
+   "description": "Your successful blocks now have a 20% chance to critically block for twice the normal amount.\n\nThis effect is doubled while above 60 Insanity."
+  },
+  "Shoot": {
+   "name": "Shoot",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3018,
+   "ranks": null,
+   "spellIds": [
+    3018
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Shroud of Pride": {
+   "name": "Shroud of Pride",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805126,
+   "ranks": null,
+   "spellIds": [
+    805126
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sha_spell_fire_felfireward",
+   "description": "Your Abyssal Ward now stacks 3 additional times."
+  },
+  "Split Mind": {
+   "name": "Split Mind",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572064,
+   "ranks": null,
+   "spellIds": [
+    572064
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_soulbarrier",
+   "description": "Void Shield now applies to an additional nearby ally but its duration is reduced by -30%.\n\nKilling an opponent that yields experience or honor removes Wracked Mind from you."
+  },
+  "Stare Into The Abyss": {
+   "name": "Stare Into The Abyss",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 525019,
+   "ranks": null,
+   "spellIds": [
+    525019
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_SoulsDevourer_Purple",
+   "description": "Removes the cast time of your Corrupt Mind."
+  },
+  "Strength of the Black Empire": {
+   "name": "Strength of the Black Empire",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680557,
+   "ranks": null,
+   "spellIds": [
+    680557
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\achievement_boss_generalvezax_01",
+   "description": "Level 40 Passive\nDreadnought now sheds your mortal form, transforming you into a void monstrosity, reducing your damage taken by -10%"
+  },
+  "Strength of the Sha": {
+   "name": "Strength of the Sha",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804286,
+   "ranks": null,
+   "spellIds": [
+    804286
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\ability_titankeeper_uncheckedcorruption",
+   "description": "Level 20 Passive\nIncreases your spell damage by 25% of your Strength and your spell hit rating by 6% of your Intellect."
+  },
+  "Sunderer of Realities": {
+   "name": "Sunderer of Realities",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301068,
+   "ranks": null,
+   "spellIds": [
+    301068
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_ShadeTrueSight",
+   "description": "Casting Wrath of the Black Empire now causes your subsequent Wraths of the Black Empire, within 15 seconds, to deal 15% more damage each and unleash Apocalyptic Skies upon the enemy.Apocalyptic SkiesSpawns a void portal that casts either Gaze of C'thun, Horrorbolt, or Obliteration Beam before disappearing."
+  },
+  "Tales of Woe": {
+   "name": "Tales of Woe",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520682,
+   "ranks": null,
+   "spellIds": [
+    520682
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_warlock_demonwrath",
+   "description": "Your Dark Veil now performs its effect -50% faster."
+  },
+  "Teachings of Mythrax": {
+   "name": "Teachings of Mythrax",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561035,
+   "ranks": null,
+   "spellIds": [
+    561035
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_nazmir_boss_mythraxtheunraveler",
+   "description": "Increases the duration of Presence of N'Zoth and Presence of Y'Shaarj by 25%."
+  },
+  "Tentacle of C'Thun": {
+   "name": "Tentacle of C'Thun",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801153,
+   "ranks": {
+    "1": 801153
+   },
+   "spellIds": [
+    801153
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Summon a |cffffffffTentacle of the Old Gods|r near you for 30 sec.\r\n\r\nIt will seek an enemy out, dealing 3 Shadow Damage every 1.50 sec, scaling with spell power and attack power.\r\n\r\nWhile above 60 |cffcfa6ffInsanity|r, the mana cost of this spell is removed.\r\n\r\n@ext:You may only have 1 |cFFFFFFFFOld God Tentacle|r active at a time.:ext@"
+  },
+  "Tentacle of N'Zoth": {
+   "name": "Tentacle of N'Zoth",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572103,
+   "ranks": null,
+   "spellIds": [
+    572103
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_priest_voidtendrils",
+   "description": "Target an enemy and summon a Tentacle of N'Zoth on the ground near them that will silence them and deal 117 + 75% SP Shadow damage every 2 sec for 8 seconds. If your target runs out of range, the tentacle will seek a new target.\n\nThe tentacle gains health based on your Stamina. If the tentacle dies, the silence effect will end."
+  },
+  "Tentacle of Y'shaarj": {
+   "name": "Tentacle of Y'shaarj",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802044,
+   "ranks": null,
+   "spellIds": [
+    802044
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_Boss_YoggSaron_01",
+   "description": "Summon a Tentacle of Y'shaarj near you for 30 seconds.\n\nWhen summoned and whenever Gaze of C'thun is used, it slams the ground dealing Physical damage, scaling with Stamina, to all enemies in a 10 yd frontal cone."
+  },
+  "Tentacle of Yogg-Saron": {
+   "name": "Tentacle of Yogg-Saron",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802042,
+   "ranks": {
+    "1": 802042
+   },
+   "spellIds": [
+    802042
+   ],
+   "cost": 9300,
+   "levelReq": 26,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Summon a |cffffffffTentacle of Yogg-Saron|r near you for 30 sec.\r\n\r\nAllies within 15 yds receive 6% increased healing and 50% reduced spell pushback.\r\n\r\n@ext:You may only have 1 |cFFFFFFFFOld God Tentacle|r active at a time.:ext@"
+  },
+  "Terror": {
+   "name": "Terror",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300304,
+   "ranks": null,
+   "spellIds": [
+    300304
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_warlock_howlofterror",
+   "description": "Increases the spell damage bonus of Horrorbolt by 10% and Wrath of the Empire by 20%."
+  },
+  "Test of Pride": {
+   "name": "Test of Pride",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804412,
+   "ranks": {
+    "1": 804412
+   },
+   "spellIds": [
+    804412
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Attempt to drive an enemy mad, taunting the target for 3 sec."
+  },
+  "Throw": {
+   "name": "Throw",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 2764,
+   "ranks": null,
+   "spellIds": [
+    2764
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Touch of the Void": {
+   "name": "Touch of the Void",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680508,
+   "ranks": null,
+   "spellIds": [
+    680508
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_void_blackhole_Border",
+   "description": "Increases your Magic damage dealt by 3% and Hammer of Twilight now increases the target's spell damage taken by 10% for 15 seconds."
+  },
+  "Twilight Domain": {
+   "name": "Twilight Domain",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807725,
+   "ranks": {
+    "1": 807725
+   },
+   "spellIds": [
+    807725
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "You become enveloped with twilight magic, increasing your threat generated by 75%, doubled for Shadow spells and abilities."
+  },
+  "Twilight Domination": {
+   "name": "Twilight Domination",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520405,
+   "ranks": null,
+   "spellIds": [
+    520405
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mount_voidelfstridermount",
+   "description": "Damage dealt by your Tentacles reduces the cooldown of Eldritch Obelisk by -2 sec.\n\nIn addition, increases the effectiveness of Eldritch Obelisk by 25%."
+  },
+  "Twilight Guardian": {
+   "name": "Twilight Guardian",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704889,
+   "ranks": null,
+   "spellIds": [
+    704889
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_druid_twilightswrath",
+   "description": "Damage dealt by Twilight Shieldtoss now shields you for 50% of the damage dealt for 8 seconds."
+  },
+  "Twilight Incarnate": {
+   "name": "Twilight Incarnate",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681087,
+   "ranks": null,
+   "spellIds": [
+    681087
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_elemental_eternal_shadow",
+   "description": "Damage dealt by Twilight Shieldtoss now generates 3 Insanity."
+  },
+  "Twilight Shieldtoss": {
+   "name": "Twilight Shieldtoss",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572141,
+   "ranks": {
+    "2": 804208,
+    "3": 503487,
+    "4": 503488,
+    "5": 572715,
+    "6": 572140,
+    "7": 572141
+   },
+   "spellIds": [
+    503487,
+    503488,
+    524876,
+    572140,
+    572141,
+    572715,
+    804208
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_1h_artifactstormfist_d_05",
+   "description": "Hurl a cursed shield, dealing 70 Shadow damage to up to 3 enemies, reduced by 20% with each jump.\r\n\r\nDamage increased by 1% for each stack of |cffcfa6ffInsanity|r."
+  },
+  "Twilight's Call": {
+   "name": "Twilight's Call",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301180,
+   "ranks": null,
+   "spellIds": [
+    301180
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_hand_1h_shaclaw",
+   "description": "Level 30 Passive\nCritical strikes with Hammer of Twilight now refund 20 Insanity."
+  },
+  "Twisted Sanity": {
+   "name": "Twisted Sanity",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706187,
+   "ranks": null,
+   "spellIds": [
+    706187
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_priest_void_flay",
+   "description": "Allies affected by your Black Blood are now healed for 30% of the damage dealt by your Tentacles."
+  },
+  "Twisted Seal": {
+   "name": "Twisted Seal",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 525065,
+   "ranks": null,
+   "spellIds": [
+    525065
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_peacockmount_dark",
+   "description": "Create a warped sigil that bends hostile force away from you, deflecting all spells for 5 seconds, but making you unable to attack or cast spells.\n\nCasters whose magic is deflected are silenced for 3 seconds."
+  },
+  "Ungodly Blessing": {
+   "name": "Ungodly Blessing",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301241,
+   "ranks": null,
+   "spellIds": [
+    301241
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Racial_ShadowMeld",
+   "description": "Reduces the duration of curse effects on you by -40%."
+  },
+  "Unrelenting Void": {
+   "name": "Unrelenting Void",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704527,
+   "ranks": null,
+   "spellIds": [
+    704527
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_bossgorefiend_touchofdoom",
+   "description": "Periodic or channeled damage now increases the damage the enemy takes from you by 2% for 10 seconds, stacking 10 times."
+  },
+  "Vision of Doom": {
+   "name": "Vision of Doom",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520388,
+   "ranks": null,
+   "spellIds": [
+    520388
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_fire_twilightcano",
+   "description": "Behold a vision of doom, causing direct damage or healing done to apply Vision of Doom to nearby targets for 3 seconds. Can only occur once every 3 sec.\n\nAt the end of the duration, they are damaged or healed for 100% of the damage or healing that doomed them. Lasts for 1 minute or 5 instances of damage or healing.\n\nDoomed enemies are unable to be healed and the damage or healing done by this effect can critically strike."
+  },
+  "Visions": {
+   "name": "Visions",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560526,
+   "ranks": null,
+   "spellIds": [
+    560526
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_void_whirl_Border",
+   "description": "Increases the spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, your Shadow damage is increased by 3%."
+  },
+  "Visions of the Empire": {
+   "name": "Visions of the Empire",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806384,
+   "ranks": null,
+   "spellIds": [
+    806384
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sha_ability_rogue_bloodyeye_nightborne",
+   "description": "Increases the damage converted into healing through Abyssal Covenant by 10%."
+  },
+  "Void Augmentation": {
+   "name": "Void Augmentation",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680575,
+   "ranks": null,
+   "spellIds": [
+    680575
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_alliedrace_voidelf",
+   "description": "While Dreadnought is active, your Twilight Shieldtoss has a -3 sec reduced cooldown."
+  },
+  "Void Barrier": {
+   "name": "Void Barrier",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300291,
+   "ranks": null,
+   "spellIds": [
+    300291
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_shadowbarrier_Border",
+   "description": "Casting Herald of the Depths now increases the absorption of your next Void Shield within 10 seconds by 100%."
+  },
+  "Void Hunger": {
+   "name": "Void Hunger",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524879,
+   "ranks": null,
+   "spellIds": [
+    524879
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_surgeofdarkness",
+   "description": "Satiate now also regenerates an additional 1% mana per tick and no longer increases damage taken during the channel."
+  },
+  "Void Power": {
+   "name": "Void Power",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 574147,
+   "ranks": null,
+   "spellIds": [
+    574147
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_belt_armor_voidelf_d_01",
+   "description": "Your healing power is increased based on your main-hand weapon damage."
+  },
+  "Void Rage": {
+   "name": "Void Rage",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681102,
+   "ranks": null,
+   "spellIds": [
+    681102
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_pet_netherray",
+   "description": "Increases the Shadow damage increased through Shadow of the Void by 5%."
+  },
+  "Void Reaver": {
+   "name": "Void Reaver",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800463,
+   "ranks": null,
+   "spellIds": [
+    800463
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sha_spell_shadow_shadesofdarkness",
+   "description": "Avoiding or absorbing an attack now has a 20% chance to make your next Blade of the Empire deal 20% more damage and hit an additional nearby enemy."
+  },
+  "Void Resilience": {
+   "name": "Void Resilience",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 1119892,
+   "ranks": {
+    "1": 1119881,
+    "2": 1119889,
+    "3": 1119892
+   },
+   "spellIds": [
+    1119881,
+    1119889,
+    1119892
+   ],
+   "cost": 5200,
+   "levelReq": 28,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Gives 30 additional Shadow resistance to all party and raid members within 40 yards. Does not stack with similar effects."
+  },
+  "Void Shield": {
+   "name": "Void Shield",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 578115,
+   "ranks": {
+    "2": 502244,
+    "3": 502245,
+    "4": 502246,
+    "5": 502247,
+    "6": 806745,
+    "7": 578114,
+    "8": 578115
+   },
+   "spellIds": [
+    500715,
+    502244,
+    502245,
+    502246,
+    502247,
+    578114,
+    578115,
+    806745
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3energyarmor",
+   "description": "Shields an ally, absorbing 241 damage for 30 sec and applying |cffffffffWracked Mind|r.\r\n@s:805801:0@"
+  },
+  "Void Strength": {
+   "name": "Void Strength",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805121,
+   "ranks": null,
+   "spellIds": [
+    805121
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\achievement_nzothraid_nzoth",
+   "description": "Level 40 Passive\nIncreases your Shadow spell damage by 50% of your Strength and your spell hit chance by 5% of your Strength."
+  },
+  "Void Strikes": {
+   "name": "Void Strikes",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680609,
+   "ranks": null,
+   "spellIds": [
+    680609
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_void_stab_Border",
+   "description": "Damage dealt by Blade of the Empire and Entropic Slam is now increased based on your defense rating."
+  },
+  "Void Tolerance": {
+   "name": "Void Tolerance",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680570,
+   "ranks": null,
+   "spellIds": [
+    680570
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_legendary_chimeraoffear",
+   "description": "Reduces the cooldown of Abyssal Ward by -30 sec."
+  },
+  "Void-Enchanted Armor": {
+   "name": "Void-Enchanted Armor",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804633,
+   "ranks": null,
+   "spellIds": [
+    804633
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\pure_void_metal",
+   "description": "Increases your chance to resist dispel effects by -20%."
+  },
+  "Void-Enhanced Shield": {
+   "name": "Void-Enhanced Shield",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680555,
+   "ranks": null,
+   "spellIds": [
+    680555
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_draenei_a_02_uprez",
+   "description": "Increases your block value by 20%.\n\nWhile above 60 Insanity, the value of this effect is doubled."
+  },
+  "Void-Touched": {
+   "name": "Void-Touched",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300286,
+   "ranks": null,
+   "spellIds": [
+    300286
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\ability_deathknight_aoedeathgrip",
+   "description": "Level 30 Passive\nDirect healing done now applies Void-Touched.Void-Touched (Stacks)Marks the ally for 30 seconds, stacking 10 times.\n\nWhen you cast Gaze of C'Thun, all stacks are consumed to heal all allies affected by Void-Touched for 304 + 35% healing, increased based on how many stacks were on them."
+  },
+  "Voidborne": {
+   "name": "Voidborne",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681104,
+   "ranks": null,
+   "spellIds": [
+    681104
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_void_wraith_Border",
+   "description": "Tap into your inner voidborne rage, increasing your damage dealt and critical strike chance by 25%, and granting you immunity to stun effects for 15 seconds.\n\nGenerates 1 Insanity every 1 sec."
+  },
+  "Voidforged Edge": {
+   "name": "Voidforged Edge",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704871,
+   "ranks": null,
+   "spellIds": [
+    704871
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_02",
+   "description": "Your auto attacks now deal an additional 10% of the damage dealt as Shadow damage."
+  },
+  "Voidseeker": {
+   "name": "Voidseeker",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560320,
+   "ranks": null,
+   "spellIds": [
+    560320
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_cloth_eyeballhat_b_01",
+   "description": "Melee attacks now have a 10% chance to reset the cooldown of your Netherstrike, allowing the next use regardless of the target's health for 8 seconds."
+  },
+  "Voidwarding": {
+   "name": "Voidwarding",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560002,
+   "ranks": null,
+   "spellIds": [
+    560002
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_glyph_primewarlock",
+   "description": "Reduces damage taken by party and raid members by -3%. Does not stack with similar effects.\n\nIn addition, increases all of your resistances by 5, scaling with level."
+  },
+  "Wand": {
+   "name": "Wand",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 5019,
+   "ranks": null,
+   "spellIds": [
+    5019
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Warrior of the Old Gods": {
+   "name": "Warrior of the Old Gods",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802047,
+   "ranks": null,
+   "spellIds": [
+    802047
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowasphyxiation_Border",
+   "description": "Increases the Weapon Damage dealt by Hammer of Twilight and Entropic Slam by 20%."
+  },
+  "Wavering Hope": {
+   "name": "Wavering Hope",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560502,
+   "ranks": null,
+   "spellIds": [
+    560502
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_dungeon_grimbatol_drahga_the_shadowburner",
+   "description": "While above 60 Insanity, the cooldown of your Twilight Shieldtoss and Gaze of C'thun is reduced by -25%."
+  },
+  "Whispers of C'Thun": {
+   "name": "Whispers of C'Thun",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807512,
+   "ranks": null,
+   "spellIds": [
+    807512
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\_ScrollOfSpeed_Purple",
+   "description": "Level 30 Passive\nYour Gaze of C'Thun now generates 10 Insanity."
+  },
+  "Whispers of C'thun": {
+   "name": "Whispers of C'thun",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572905,
+   "ranks": {
+    "1": 572791,
+    "2": 572819,
+    "3": 572905
+   },
+   "spellIds": [
+    572791,
+    572819,
+    572905
+   ],
+   "cost": 12500,
+   "levelReq": 38,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Gift an ally with the madness of C'thun, increasing spell power by 37 for 30 min."
+  },
+  "Whispers of N'Zoth": {
+   "name": "Whispers of N'Zoth",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561386,
+   "ranks": {
+    "1": 561386
+   },
+   "spellIds": [
+    561386
+   ],
+   "cost": 4400,
+   "levelReq": 24,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Gift an ally with the madness of N'Zoth, increasing total stats by 10% for 30 min."
+  },
+  "Whispers of Y'shaarj": {
+   "name": "Whispers of Y'shaarj",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561391,
+   "ranks": {
+    "1": 561389,
+    "2": 561390,
+    "3": 561391
+   },
+   "spellIds": [
+    561389,
+    561390,
+    561391
+   ],
+   "cost": 450,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Gift an ally with the madness of Y'shaarj, restoring 10 mana every 5 seconds for 30 min.  Players may only have one Whisper on them per Cultist at any one time."
+  },
+  "Whispers of Yogg-Saron": {
+   "name": "Whispers of Yogg-Saron",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572637,
+   "ranks": {
+    "1": 572637
+   },
+   "spellIds": [
+    572637
+   ],
+   "cost": 15000,
+   "levelReq": 32,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Destabilizes magic used against the targeted party member. Reduces all spell damage taken by 5% and reduces all healing taken by 5%."
+  },
+  "Who Needs Sanity?": {
+   "name": "Who Needs Sanity?",
+   "spec": "Godblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681106,
+   "ranks": null,
+   "spellIds": [
+    681106
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_zone_netherstorm_01",
+   "description": "Each stack of Insanity increases the critical damage of your Netherstrike by 1%."
+  },
+  "Wicked Thoughts": {
+   "name": "Wicked Thoughts",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706190,
+   "ranks": null,
+   "spellIds": [
+    706190
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_LDAEye",
+   "description": "Increases your maximum mana, your movement speed, and mounted movement speed by 15%."
+  },
+  "Worrysome Idol": {
+   "name": "Worrysome Idol",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706917,
+   "ranks": null,
+   "spellIds": [
+    706917
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(88)_Border",
+   "description": "Increases your spell haste by 4% and causes you to regenerate mana equal to 1% of your missing mana every 10 sec."
+  },
+  "Wrath of the Black Empire": {
+   "name": "Wrath of the Black Empire",
+   "spec": "Corruption",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 504904,
+   "ranks": {
+    "2": 502166,
+    "3": 502167,
+    "4": 502168,
+    "5": 502169,
+    "6": 502170,
+    "7": 502171,
+    "8": 502172,
+    "9": 504904
+   },
+   "spellIds": [
+    502166,
+    502167,
+    502168,
+    502169,
+    502170,
+    502171,
+    502172,
+    504904,
+    800413
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Blast an enemy with overwhelming void power, dealing 56 Shadow damage and draining 20 |cffcfa6ffInsanity|r."
+  },
+  "Y'Shaarj's Enforcer": {
+   "name": "Y'Shaarj's Enforcer",
+   "spec": "Dreadnought",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803236,
+   "ranks": null,
+   "spellIds": [
+    803236
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_orgrimmarraid_d_01",
+   "description": "Increases the damage dealt by your Twilight Shieldtoss by 100% but it to no longer bounces."
+  },
+  "Yawning Decay": {
+   "name": "Yawning Decay",
+   "spec": "Corruption",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706909,
+   "ranks": null,
+   "spellIds": [
+    706909
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_priest_void_blast",
+   "description": "Every 3rd Horrorbolt cast causes your next successful Horrorbolt to deal an additional 50% of the initial damage to the target over 3 seconds."
+  },
+  "Yogg-Saron's Embrace": {
+   "name": "Yogg-Saron's Embrace",
+   "spec": "Heretic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301984,
+   "ranks": null,
+   "spellIds": [
+    301984
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_SummonVoidWalker",
+   "description": "Increases your attack power and your maximum mana by 10%."
+  }
+ }
+}

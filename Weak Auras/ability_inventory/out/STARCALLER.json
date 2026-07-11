@@ -1,0 +1,4218 @@
+{
+ "class": "STARCALLER",
+ "display": "Starcaller",
+ "classId": 26,
+ "abilityCount": 229,
+ "bySpec": {
+  "General": 37,
+  "Moon Guard": 35,
+  "Moon Priest": 38,
+  "Sentinel": 39,
+  "Warden": 41,
+  "Class": 39
+ },
+ "abilities": {
+  "Arcane Affinity": {
+   "name": "Arcane Affinity",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 28877,
+   "ranks": null,
+   "spellIds": [
+    28877
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Arcane Protection": {
+   "name": "Arcane Protection",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 573345,
+   "ranks": {
+    "1": 573343,
+    "2": 573344,
+    "3": 573345
+   },
+   "spellIds": [
+    573343,
+    573344,
+    573345
+   ],
+   "cost": 6600,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increases the target's resistance to Arcane spells by 30 for 30 min."
+  },
+  "Arcane Torrent": {
+   "name": "Arcane Torrent",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 814291,
+   "ranks": null,
+   "spellIds": [
+    814291
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Arrow of the Goddess": {
+   "name": "Arrow of the Goddess",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 563725,
+   "ranks": null,
+   "spellIds": [
+    563725
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_spiritualarrow_Border",
+   "description": "Fire a star-infused arrow hitting enemies in a line, dealing 400% Ranged Weapon Damage plus POWER1*0.25 Arcane damage, scaling with maximum mana and applying Scattered Stars to them.Scattered StarsCan be consumed by spells to deal additional Arcane Damage. Lasts 30 seconds, stacking 4 times."
+  },
+  "Arrows In The Night": {
+   "name": "Arrows In The Night",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520481,
+   "ranks": null,
+   "spellIds": [
+    520481
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\arrowsinthenight",
+   "description": "Your Huntress Shots now strike 3 additional enemies and explode with astral energy for 10 seconds, dealing 30 + 8.14% arcane SP + 3% ranged AP Arcane damage.\n\nDamage dealt by Starcall reduces the cooldown of this ability by -2 sec."
+  },
+  "Aspect Mastery": {
+   "name": "Aspect Mastery",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704389,
+   "ranks": null,
+   "spellIds": [
+    704389
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Silence_NightElf_2",
+   "description": "Increases the effectiveness of your Aspects by 10% and their chance to trigger by 5%."
+  },
+  "Aspect of the Cosmos": {
+   "name": "Aspect of the Cosmos",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801123,
+   "ranks": null,
+   "spellIds": [
+    801123
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_ardenweald_priest",
+   "description": "Melee and ranged damage dealt has a 40% chance to slow enemy movement speed by -20% for 10 seconds, stacking 2 times and apply Scattered Stars.Scattered StarsCan be consumed by spells to deal additional Arcane Damage. Lasts 30 seconds, stacking 4 times."
+  },
+  "Aspect of the Goddess": {
+   "name": "Aspect of the Goddess",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802203,
+   "ranks": null,
+   "spellIds": [
+    802203
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_leader_tyrande_whisperwind",
+   "description": "While active, your healing done is increased by 10% and your spells and abilities will not be able to miss.\n\nIn addition, consuming Scattered Stars now heals up to 5 allies around the target for 73 + 14.97% healing."
+  },
+  "Aspect of the Huntress": {
+   "name": "Aspect of the Huntress",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 805356,
+   "ranks": {
+    "1": 805356
+   },
+   "spellIds": [
+    805356
+   ],
+   "cost": 5500,
+   "levelReq": 24,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Melee and ranged auto attacks now have a 30% chance to drain the target's mana equal to 25% of the damage dealt and apply |cff66ccffScattered Stars|r, but your damage is reduced by 25% while this is active.@s:804378:0@\r\n\r\n@ext:Shares a cooldown with other |cffffffffAspects|r.:ext@"
+  },
+  "Aspect of the Moonwell": {
+   "name": "Aspect of the Moonwell",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 574360,
+   "ranks": {
+    "1": 574360
+   },
+   "spellIds": [
+    574360
+   ],
+   "cost": 70,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "While active, doubles the damage dealt and mana gained from consuming |cff66ccffScattered Stars|r.@s:804716:0@\r\n\r\n@ext:Shares a cooldown with other |cffffffffAspects|r.:ext@"
+  },
+  "Aspect of the Stars": {
+   "name": "Aspect of the Stars",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803888,
+   "ranks": {
+    "1": 800510,
+    "2": 803887,
+    "3": 803888
+   },
+   "spellIds": [
+    800510,
+    803887,
+    803888
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Melee and ranged auto attacks now have a 25% chance to apply |cff66ccffScattered Stars|r and deal 5 Arcane damage.@s:804378:0@\r\n\r\n@ext:Shares a cooldown with other |cffffffffAspects|r.:ext@"
+  },
+  "Aspect of the Warden": {
+   "name": "Aspect of the Warden",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801128,
+   "ranks": {
+    "1": 801128
+   },
+   "spellIds": [
+    801128
+   ],
+   "cost": 2500,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Melee and ranged auto attacks have a 10% chance to strike 3 additional times for Arcane damage and apply |cff66ccffScattered Stars|r. Each strike can critically strike.@s:804378:0@\r\n\r\n@ext:Shares a cooldown with other |cffffffffAspects|r.:ext@"
+  },
+  "Asteroid Belt": {
+   "name": "Asteroid Belt",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 574349,
+   "ranks": null,
+   "spellIds": [
+    574349
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\_D3arcaneorb",
+   "description": "Level 20 Passive\nEvery 15 sec, you now gain Asteroid Belt.\n\nIn addition, your hit rating is increased by 5% of your Intellect and your expertise is increased by 8.Asteroid BeltBlock rating, parry rating, and block value increased based on how much mana you had when this was applied for 15 seconds."
+  },
+  "Astral Aegis": {
+   "name": "Astral Aegis",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806155,
+   "ranks": null,
+   "spellIds": [
+    806155
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_bastion_monk",
+   "description": "Drains 30% Maximum Mana\nFor 10 seconds, direct Magic damage taken will silence the attacker for 1 seconds and deal 57 + 18% arcane SP Arcane damage to them."
+  },
+  "Astral Blade": {
+   "name": "Astral Blade",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805563,
+   "ranks": null,
+   "spellIds": [
+    805563
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_demonhunter_manabreak",
+   "description": "Drains 25% Maximum Mana\nStrike an enemy with precision, dealing 16 + 100% SP + 20% AP Arcane damage, increased further based on your maximum mana.\n\nIncreases your dealt to the enemy by 15% for 5 seconds."
+  },
+  "Astral Blessing": {
+   "name": "Astral Blessing",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801145,
+   "ranks": null,
+   "spellIds": [
+    801145
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_MagicStrike_Border",
+   "description": "Level 50 Passive\nDamaging critical strikes now reduce the cooldown of Warden's Blade by -1 sec."
+  },
+  "Astral Combatant": {
+   "name": "Astral Combatant",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706574,
+   "ranks": null,
+   "spellIds": [
+    706574
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_thenighthold_spellbladealuriel",
+   "description": "Lunar Lance and Umbral Blade increase the enemy damage taken from Scattered Stars by 10% for 10 seconds."
+  },
+  "Astral Finesse": {
+   "name": "Astral Finesse",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707636,
+   "ranks": null,
+   "spellIds": [
+    707636
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Warrior_Challange_blue",
+   "description": "Reduces the cooldown of Astral Blade by -4 sec."
+  },
+  "Astral Lancer": {
+   "name": "Astral Lancer",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681330,
+   "ranks": null,
+   "spellIds": [
+    681330
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Frost_IceClaw",
+   "description": "Level 20 Passive\nIncreases the critical damage of Lunar Lance by 50%."
+  },
+  "Astral Onslaught": {
+   "name": "Astral Onslaught",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704789,
+   "ranks": null,
+   "spellIds": [
+    704789
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3spectralblade",
+   "description": "Increases the duration of Astral Blade by 7 sec."
+  },
+  "Astral Projection": {
+   "name": "Astral Projection",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300994,
+   "ranks": null,
+   "spellIds": [
+    300994
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_AstralRecalGroup",
+   "description": "Reduces the Energy cost of Celestial Strike and Moon Arrow by -10."
+  },
+  "Astral Reconstitution": {
+   "name": "Astral Reconstitution",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801155,
+   "ranks": null,
+   "spellIds": [
+    801155
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_cosmicvoid_buff",
+   "description": "Surround yourself with lunar light, causing 30% of damage taken to be converted into mana for 10 seconds."
+  },
+  "Auto Attack": {
+   "name": "Auto Attack",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 6603,
+   "ranks": null,
+   "spellIds": [
+    6603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Auto Shot": {
+   "name": "Auto Shot",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 75,
+   "ranks": null,
+   "spellIds": [
+    75
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Avatar of Vengeance": {
+   "name": "Avatar of Vengeance",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680822,
+   "ranks": null,
+   "spellIds": [
+    680822
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_boss_councilsentinel",
+   "description": "Transform into an Avatar of Vengeance, teleporting to your target and increasing your Intellect by 25% for 30 seconds. \n\nFor the duration, the range of Astral Blade is increased by 30 yards and will teleport you to your target.\n\nIf your target is an enemy, you strike them dealing 50 + 22% Intellect + 6.5% arcane SP Arcane damage per 1 sec for 8 seconds, scaling with Intellect."
+  },
+  "Blade of the Moon": {
+   "name": "Blade of the Moon",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802680,
+   "ranks": null,
+   "spellIds": [
+    802680
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_artifactelune_d_01",
+   "description": "Consuming Scattered Stars now has a 15% chance to transform Celestial Strike into Moonblade for 8 seconds.MoonbladeDevastate an enemy, dealing 130% Weapon Damage plus 100% Intellect Arcane damage and regenerating 15% missing mana."
+  },
+  "Blanket of Stars": {
+   "name": "Blanket of Stars",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804381,
+   "ranks": null,
+   "spellIds": [
+    804381
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_cosmicvoid_orb",
+   "description": "Cover your shield in a blanket of stars for 8 seconds, increasing your block chance and block value by 100%."
+  },
+  "Blessed By The Stars": {
+   "name": "Blessed By The Stars",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704741,
+   "ranks": null,
+   "spellIds": [
+    704741
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_humanpriest_c_01",
+   "description": "Your ranged damage dealt now has a 15% chance to unleash a Scattered Star."
+  },
+  "Block": {
+   "name": "Block",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 107,
+   "ranks": null,
+   "spellIds": [
+    107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Bonds of Justice": {
+   "name": "Bonds of Justice",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680705,
+   "ranks": null,
+   "spellIds": [
+    680705
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Bondsofjustice",
+   "description": "Send forth bonds of justice to an enemy, tethering them to you for 8 seconds.\n\nIf the tether is broken through expiration or the target runs at least 10 yds from you, they are gripped back towards you, taking 441 + 120% arcane SP Arcane damage."
+  },
+  "Bright Moon": {
+   "name": "Bright Moon",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801226,
+   "ranks": null,
+   "spellIds": [
+    801226
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_Teleport",
+   "description": "Allows Lunar Phase to stack 4 additional times."
+  },
+  "Cascade": {
+   "name": "Cascade",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704765,
+   "ranks": null,
+   "spellIds": [
+    704765
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_druid_lunarinspiration",
+   "description": "Every 8th Scattered Star you consume increases the damage of your next Starcall by 50%."
+  },
+  "Celestial Aegis": {
+   "name": "Celestial Aegis",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801126,
+   "ranks": {
+    "1": 801126
+   },
+   "spellIds": [
+    801126
+   ],
+   "cost": 12000,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffffDrains 30% Maximum Mana|r\nEnvelop yourself with celestial magic, reducing your damage taken by 25% for 10 sec.\r\n\r\n@ext:Shares a cooldown with other |cffffffffAegis|r spells.:ext@"
+  },
+  "Celestial Awakening": {
+   "name": "Celestial Awakening",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803617,
+   "ranks": {
+    "1": 801795,
+    "2": 803613,
+    "3": 803614,
+    "4": 803615,
+    "5": 803616,
+    "6": 803617
+   },
+   "spellIds": [
+    801795,
+    803613,
+    803614,
+    803615,
+    803616,
+    803617
+   ],
+   "cost": 200,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Brings a dead ally back to life with 70 Health and 135 Mana. The target gains 200% increased Mana regeneration for 10 sec.\n\nCannot be cast when in combat."
+  },
+  "Celestial Cleave": {
+   "name": "Celestial Cleave",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802437,
+   "ranks": {
+    "1": 801181,
+    "2": 802435,
+    "3": 802436,
+    "4": 802437
+   },
+   "spellIds": [
+    801181,
+    802435,
+    802436,
+    802437
+   ],
+   "cost": 300,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Cleave up to 5 nearby enemies in front of you for 55% Weapon Damage as Arcane Damage.\r\n\r\nRegenerates 2% maximum mana for each enemy struck."
+  },
+  "Celestial Divination": {
+   "name": "Celestial Divination",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560319,
+   "ranks": null,
+   "spellIds": [
+    560319
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_faction_celestials",
+   "description": "Increases your chance to dodge by 5%."
+  },
+  "Celestial Form": {
+   "name": "Celestial Form",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801231,
+   "ranks": null,
+   "spellIds": [
+    801231
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_boss_algalon_01",
+   "description": "Ascend into a celestial form for 15 seconds, increasing your critical strike chance by 10%.\n\nWhile active, critical strikes now reduce the remaining cooldown of all healing spells by 10% and apply a Scattered Star to your target and up to 4 enemies within 5 yds of them."
+  },
+  "Celestial Glaives": {
+   "name": "Celestial Glaives",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805524,
+   "ranks": null,
+   "spellIds": [
+    805524
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\ability_racial_chillofnight",
+   "description": "Level 30 Passive\nYour Scattered Stars can now stack 2 additional times."
+  },
+  "Celestial Guard": {
+   "name": "Celestial Guard",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 574351,
+   "ranks": null,
+   "spellIds": [
+    574351
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_nightborneracialmount",
+   "description": "Level 40 Passive\nIncreases the effectiveness of consuming Scattered Stars by 50%."
+  },
+  "Celestial Mind": {
+   "name": "Celestial Mind",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 301225,
+   "ranks": {
+    "1": 300255,
+    "2": 301222,
+    "3": 301223,
+    "4": 301224,
+    "5": 301225
+   },
+   "spellIds": [
+    300255,
+    301222,
+    301223,
+    301224,
+    301225,
+    707638
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\5_archerskill42_Border",
+   "description": "Enhance an ally with a blessing from Elune, increasing their Intellect by 3 for 30 min."
+  },
+  "Celestial Prowess": {
+   "name": "Celestial Prowess",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561206,
+   "ranks": null,
+   "spellIds": [
+    561206
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_MagicalSentry",
+   "description": "Increases the critical strike chance of Lunar Lance and Starfire Shot by 5%."
+  },
+  "Celestial Shot": {
+   "name": "Celestial Shot",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 574348,
+   "ranks": null,
+   "spellIds": [
+    574348
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\INV_Enchant_DustVision",
+   "description": "Level 40 Passive\nIncreases the effectiveness of consuming Scattered Stars by 40%."
+  },
+  "Celestial Strike": {
+   "name": "Celestial Strike",
+   "spec": "Warden",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 502292,
+   "ranks": {
+    "2": 502286,
+    "3": 502287,
+    "4": 502288,
+    "5": 502289,
+    "6": 502290,
+    "7": 502291,
+    "8": 502292
+   },
+   "spellIds": [
+    502286,
+    502287,
+    502288,
+    502289,
+    502290,
+    502291,
+    502292,
+    800496
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Strike an enemy for 75% Weapon Damage plus 13 and regenerate 10% of your maximum mana plus 20."
+  },
+  "Celestial Surge": {
+   "name": "Celestial Surge",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680773,
+   "ranks": null,
+   "spellIds": [
+    680773
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_moon_Border",
+   "description": "Increases the damage dealt by consuming Scattered Stars by 10%."
+  },
+  "Chosen of the Moon": {
+   "name": "Chosen of the Moon",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680755,
+   "ranks": null,
+   "spellIds": [
+    680755
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_plate_kthirrelic_d_01",
+   "description": "Become the chosen of the moon, reducing all Physical damage taken by -60% and taunting all enemies within 8 yds for 10 seconds."
+  },
+  "Coalesced Resilience": {
+   "name": "Coalesced Resilience",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680786,
+   "ranks": null,
+   "spellIds": [
+    680786
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_belt_armor_nightborne_d_01",
+   "description": "Reduces your damage taken by an amount equal to 1% of your maximum mana."
+  },
+  "Command": {
+   "name": "Command",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804386,
+   "ranks": {
+    "1": 804386
+   },
+   "spellIds": [
+    804386
+   ],
+   "cost": 450,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Taunt an enemy to attack you for 3 sec.\r\n\r\nIf the target is a player, they are unable to stop moving for 3 sec."
+  },
+  "Constellation Barrier": {
+   "name": "Constellation Barrier",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300259,
+   "ranks": null,
+   "spellIds": [
+    300259
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_ArcaneWeapons_Border",
+   "description": "Reduces all Magic damage taken by -5%."
+  },
+  "Continual Starfall": {
+   "name": "Continual Starfall",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503584,
+   "ranks": null,
+   "spellIds": [
+    503584
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_druid_starfall",
+   "description": "Astral Flares called down by Aspect of the Stars now increase your haste by 3% for 5 seconds, stacking 3 times."
+  },
+  "Cosmic Crown": {
+   "name": "Cosmic Crown",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804385,
+   "ranks": null,
+   "spellIds": [
+    804385
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_jewelcrafting_70_cutgem03_blue",
+   "description": "Increases the duration of Aegis spells by 3 sec."
+  },
+  "Cosmic Duality": {
+   "name": "Cosmic Duality",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504628,
+   "ranks": null,
+   "spellIds": [
+    504628
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\talentspec_druid_balance",
+   "description": "Dealing damage grants you Cosmic Harmony, increasing the healing of your next ability within 6 seconds by 5%.\n\nEffective healing grants you Cosmic Wrath, increasing the damage of your next ability within 6 seconds by 5%."
+  },
+  "Cosmic Shift": {
+   "name": "Cosmic Shift",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801134,
+   "ranks": null,
+   "spellIds": [
+    801134
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_Displacement",
+   "description": "Shift the target ally out of the physical plane, granting improved stealth for 10 seconds.\n\nDoes not break on damage taken."
+  },
+  "Cosmic Strides": {
+   "name": "Cosmic Strides",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300772,
+   "ranks": null,
+   "spellIds": [
+    300772
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shaman_spiritwalkersgrace",
+   "description": "Aspect of the Cosmos no longer slows enemy movement speed. Instead, your melee and ranged attacks now grant you 5% increased movement speed for 4 seconds, stacking 3 times."
+  },
+  "Crystal Shield": {
+   "name": "Crystal Shield",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680748,
+   "ranks": null,
+   "spellIds": [
+    680748
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_artifactheartofkure_d_01",
+   "description": "Level 30 Passive\nIncreases your Stamina by 10% and increases your spell damage by 25% of your attack power."
+  },
+  "Cycle of the Moon": {
+   "name": "Cycle of the Moon",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500206,
+   "ranks": null,
+   "spellIds": [
+    500206
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\artifactability_balancedruid_halfmoon",
+   "description": "Every 10 seconds, you cycle between Full Moon and New Moon.Full MoonIncreases your critical strike chance by 5%.New MoonDamage dealt has a 25% chance to apply Scattered Stars."
+  },
+  "Dance In The Starlight": {
+   "name": "Dance In The Starlight",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503637,
+   "ranks": null,
+   "spellIds": [
+    503637
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_mask_fittedalpha_b_01_nightborne_02",
+   "description": "Reduces the cooldown of Blanket of Stars by -10 sec."
+  },
+  "Dancing in the Moonlight": {
+   "name": "Dancing in the Moonlight",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807659,
+   "ranks": null,
+   "spellIds": [
+    807659
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\spell_arcane_starfire",
+   "description": "Level 50 Passive\nParrying an attack now regenerates 15 of your Energy and deals 65% Weapon Damage to the attacker."
+  },
+  "Dodge": {
+   "name": "Dodge",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 81,
+   "ranks": null,
+   "spellIds": [
+    81
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Drawstring of Elune": {
+   "name": "Drawstring of Elune",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801975,
+   "ranks": null,
+   "spellIds": [
+    801975
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Bow_1H_Auchindoun_D_01",
+   "description": "Huntress Shot and Starcall apply an additional stack of Scattered Stars and your ranged ability attack range is increased to 50 yds for 20 seconds."
+  },
+  "Dual Wield": {
+   "name": "Dual Wield",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 674,
+   "ranks": null,
+   "spellIds": [
+    674
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Eclipse of Fury": {
+   "name": "Eclipse of Fury",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 570221,
+   "ranks": {
+    "1": 570217,
+    "2": 570218,
+    "3": 570219,
+    "4": 570220,
+    "5": 570221
+   },
+   "spellIds": [
+    570217,
+    570218,
+    570219,
+    570220,
+    570221
+   ],
+   "cost": 450,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cFFFFFFFFDrains 10% Maximum Mana|r \r\nShrouds the area in lunar shadow, reducing enemy attack power by 35 for 30 sec as their fury wanes beneath the darkened sky."
+  },
+  "Eclipsing Arrows": {
+   "name": "Eclipsing Arrows",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800504,
+   "ranks": null,
+   "spellIds": [
+    800504
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\artifactability_balancedruid_newmoon",
+   "description": "Healing done by Hand of Elune or Touch of Moonlight now marks allies for 20 seconds.\n\nCasting Huntress Shot now heals marked allies for 235 + 30% SP."
+  },
+  "Elune's Blessing": {
+   "name": "Elune's Blessing",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681407,
+   "ranks": null,
+   "spellIds": [
+    300876,
+    681407
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\nhi_frozenmoon_Border",
+   "description": "Level 50 Passive\nYour Hand of Elune now gains an additional 30% of your bonus healing."
+  },
+  "Elune's Favor": {
+   "name": "Elune's Favor",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300237,
+   "ranks": null,
+   "spellIds": [
+    300237
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_WaterBomb_Border",
+   "description": "Hand of Elune and Touch of Moonlight now heal for an additional 50% of their value over 10 seconds."
+  },
+  "Elune's Grace": {
+   "name": "Elune's Grace",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504001,
+   "ranks": null,
+   "spellIds": [
+    504001
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\trade_archaeology_tyrandesfavoritedoll",
+   "description": "Critical heals with Hand of Elune now increase the target's armor by 10% for 10 seconds."
+  },
+  "Elune's Presence": {
+   "name": "Elune's Presence",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680774,
+   "ranks": null,
+   "spellIds": [
+    680774
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_ardenweald_paladin_summer",
+   "description": "Gain the blessing of a goddess, granting all party or raid members within 40 yds 20% temporary maximum health for 10 seconds."
+  },
+  "Elune's Purification": {
+   "name": "Elune's Purification",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 520869,
+   "ranks": {
+    "1": 520869
+   },
+   "spellIds": [
+    520869
+   ],
+   "cost": 1000,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Call down Elune's cleansing waters on an ally, removing 1 poison and disease effect from them."
+  },
+  "Enchanted Aegis": {
+   "name": "Enchanted Aegis",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704795,
+   "ranks": null,
+   "spellIds": [
+    704795
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_arcane_arcaneresilience",
+   "description": "Your successful blocks now have a 50% chance to critically block for twice the normal amount."
+  },
+  "Enchanted Stream": {
+   "name": "Enchanted Stream",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504003,
+   "ranks": null,
+   "spellIds": [
+    504003
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Frost_ChillingBlast",
+   "description": "Increases the critical healing of Hand of Elune and Moonflow by 15%."
+  },
+  "Enchanted Water": {
+   "name": "Enchanted Water",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704755,
+   "ranks": null,
+   "spellIds": [
+    704755
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Scroll_02",
+   "description": "Increases the healing of Touch of Moonlight by 10% and reduces spell pushback suffered from damaging attacks by 35%."
+  },
+  "Enchanted Well": {
+   "name": "Enchanted Well",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680820,
+   "ranks": null,
+   "spellIds": [
+    680820
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_Brilliance",
+   "description": "Reduces the cast time of Moonwell Splash by -0.3 sec."
+  },
+  "Enduring Hunt": {
+   "name": "Enduring Hunt",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680223,
+   "ranks": null,
+   "spellIds": [
+    680223
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_aimedshot",
+   "description": "Reduces the mana cost of Huntress Shot and Trueshot by -15%."
+  },
+  "Enduring Moon": {
+   "name": "Enduring Moon",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560440,
+   "ranks": null,
+   "spellIds": [
+    560440
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_racial_magicalresistance",
+   "description": "Critical strikes now increase the target's spell damage taken by 10% for 15 seconds."
+  },
+  "Exemplary Draw": {
+   "name": "Exemplary Draw",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504004,
+   "ranks": null,
+   "spellIds": [
+    504004
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shoulder_cloth_warfrontsnightelfmythic_d_01",
+   "description": "Moon Arrow deals 20% more damage and increases the target's spell damage taken by 10% for 12 seconds."
+  },
+  "Explosive Moonlight": {
+   "name": "Explosive Moonlight",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800474,
+   "ranks": null,
+   "spellIds": [
+    800474
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\custom_18_moon_nobg_Border",
+   "description": "Level 30 Passive\nIncreases your ranged attack power by 30% of your Intellect and your hit rating by 3% of your Intellect."
+  },
+  "Eye of Elune": {
+   "name": "Eye of Elune",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704783,
+   "ranks": null,
+   "spellIds": [
+    704783
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_druid_fortifiedbark",
+   "description": "Increases your critical strike chance by 5%."
+  },
+  "Fan of Knives": {
+   "name": "Fan of Knives",
+   "spec": "Warden",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 681545,
+   "ranks": {
+    "2": 681541,
+    "3": 681542,
+    "4": 681543,
+    "5": 681544,
+    "6": 681545
+   },
+   "spellIds": [
+    680703,
+    681541,
+    681542,
+    681543,
+    681544,
+    681545
+   ],
+   "cost": 1700,
+   "levelReq": 21,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_FanOfKnives_LightBlue",
+   "description": "|cff66ccffApplies 1 Scattered Star Per Hit|r\r\nUnleash hidden blades upon nearby enemies, dealing 19 Arcane damage scaling with maximum mana.\r\n\r\nConsuming a |cff66ccffScattered Star|r reduces the remaining cooldown of |cffffffffFan of Knives|r by 2 sec.@s:804378:0@"
+  },
+  "Final Prayer": {
+   "name": "Final Prayer",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704745,
+   "ranks": null,
+   "spellIds": [
+    704745
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_MoonGlow",
+   "description": "Your Prayer of Elune now dispels 1 additional effect."
+  },
+  "Flask of Moonwell Water": {
+   "name": "Flask of Moonwell Water",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800292,
+   "ranks": {
+    "1": 800292
+   },
+   "spellIds": [
+    800292
+   ],
+   "cost": 80,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increases your swimming speed by 50%, and allows you to breathe underwater at all times."
+  },
+  "Flow of Mana": {
+   "name": "Flow of Mana",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704604,
+   "ranks": null,
+   "spellIds": [
+    704604
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_manafeed",
+   "description": "Increases your Intellect and Strength by 5%."
+  },
+  "Flow of Waters": {
+   "name": "Flow of Waters",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560539,
+   "ranks": null,
+   "spellIds": [
+    560539
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Elemental_Mote_Water01",
+   "description": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 3%."
+  },
+  "Font of Magic": {
+   "name": "Font of Magic",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680742,
+   "ranks": null,
+   "spellIds": [
+    680742
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_gizmo_manasyphon",
+   "description": "Each time you spend a cumulative 100% of your maximum mana, you heal for 4% of your maximum health."
+  },
+  "Full Cycle": {
+   "name": "Full Cycle",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704343,
+   "ranks": null,
+   "spellIds": [
+    704343
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_shaman_ancestralguidance",
+   "description": "Hand of Elune gains the following Full Moon and New Moon effects.\n\nFull Moon: Healing increased by 10%.\n\nNew Moon: Cost reduced by -10%."
+  },
+  "Fury of the Stars": {
+   "name": "Fury of the Stars",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704603,
+   "ranks": null,
+   "spellIds": [
+    704603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_156",
+   "description": "Increases the damage of Astral Blade by 10%."
+  },
+  "Galaxy": {
+   "name": "Galaxy",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800508,
+   "ranks": null,
+   "spellIds": [
+    800508
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_ElunesGrace",
+   "description": "Your Scattered Stars can now stack 2 additional times."
+  },
+  "Glaive Tossing": {
+   "name": "Glaive Tossing",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680737,
+   "ranks": null,
+   "spellIds": [
+    680737
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_glove_armor_nightborne_d_01",
+   "description": "Increases the range of Warden's Blade by 20 yds."
+  },
+  "Goddess Watch Over": {
+   "name": "Goddess Watch Over",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500582,
+   "ranks": null,
+   "spellIds": [
+    500582
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_ability_eluneschosendruid_boundlessmoonlight",
+   "description": "Increases the effectiveness of Aspect of the Goddess by 25%."
+  },
+  "Grace of the Moon": {
+   "name": "Grace of the Moon",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 570124,
+   "ranks": {
+    "1": 570124
+   },
+   "spellIds": [
+    570124
+   ],
+   "cost": 18500,
+   "levelReq": 34,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Grant the grace of the moon to nearby allies, allowing them to walk on water. Lasts for 30 min. \r\n\r\nDamage taken will cancel this effect."
+  },
+  "Greater Arcane Protection": {
+   "name": "Greater Arcane Protection",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 573348,
+   "ranks": {
+    "1": 573348
+   },
+   "spellIds": [
+    573348
+   ],
+   "cost": 51000,
+   "levelReq": 56,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increases the target's party and raid members resistance to Arcane spells by 60 for 30 min."
+  },
+  "Greater Celestial Mind": {
+   "name": "Greater Celestial Mind",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680301,
+   "ranks": {
+    "1": 680301
+   },
+   "spellIds": [
+    680301
+   ],
+   "cost": 51000,
+   "levelReq": 56,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Empowers your allies with galactic vigor, increasing their Intellect by 31 for 30 min."
+  },
+  "Guided Blades": {
+   "name": "Guided Blades",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680738,
+   "ranks": null,
+   "spellIds": [
+    680738
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_warrior_sharpenblade",
+   "description": "Reduces the cooldown of Warden's Blade by -5 sec."
+  },
+  "Halt": {
+   "name": "Halt",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807741,
+   "ranks": null,
+   "spellIds": [
+    807741
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Blink",
+   "description": "Teleport to a target location, silencing all enemies around you for 4 seconds."
+  },
+  "Hand of Elune": {
+   "name": "Hand of Elune",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801990,
+   "ranks": {
+    "1": 801990
+   },
+   "spellIds": [
+    801990
+   ],
+   "cost": 1000,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffffDrains 20% Maximum Mana|r\nEnvelop an ally in Elune's grace, healing them, scaling with maximum mana.\r\n\r\nUsable while moving."
+  },
+  "Healing Prayers": {
+   "name": "Healing Prayers",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680805,
+   "ranks": null,
+   "spellIds": [
+    680805
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Fabric_MoonRag_01",
+   "description": "Prayer of Elune gains an additional 20% of your bonus healing effects."
+  },
+  "Highest Order": {
+   "name": "Highest Order",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680771,
+   "ranks": null,
+   "spellIds": [
+    680771
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_thenighthold",
+   "description": "Reduces the cooldown of Shadowsong's Mandate by -25% and increases the chance to trigger Warden's Blade by 60%."
+  },
+  "Hunter's Sight": {
+   "name": "Hunter's Sight",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561022,
+   "ranks": null,
+   "spellIds": [
+    561022
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ammo_Arrow_02",
+   "description": "Aspect of the Huntress now increases your chance to hit by 3%."
+  },
+  "Huntress Saber": {
+   "name": "Huntress Saber",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 524643,
+   "ranks": {
+    "1": 524643
+   },
+   "spellIds": [
+    524643
+   ],
+   "cost": 25500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Mount a |cFFFFFFFFHuntress Saber|r for 30 sec, increasing your movement speed by 50%, making you immune to movement slowing effects.\r\n\r\nWhile on the saber, casting does not dismount you and you may cast offensive spells while moving."
+  },
+  "Huntress Shot": {
+   "name": "Huntress Shot",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680589,
+   "ranks": {
+    "1": 680220,
+    "2": 680586,
+    "3": 680587,
+    "4": 680588,
+    "5": 680589
+   },
+   "spellIds": [
+    680220,
+    680586,
+    680587,
+    680588,
+    680589
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffffDrains 20% Maximum Mana|r\r\n|cff66ccffApplies 1 Scattered Star|r\r\nFire an enchanted arrow, dealing 40% Ranged Weapon Damage plus 10 as Arcane damage, increased further based on your maximum mana.\r\n@s:804378:0@"
+  },
+  "Huntress Training": {
+   "name": "Huntress Training",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92133,
+   "ranks": null,
+   "spellIds": [
+    92133
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\_Diablo3_ArrowRain_Mage",
+   "description": "Level 10 Passive\nIncreases your haste rating by 8% of your Intellect."
+  },
+  "Huntress of Elune": {
+   "name": "Huntress of Elune",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704769,
+   "ranks": null,
+   "spellIds": [
+    704769
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_PiercingShots",
+   "description": "Increases your damage dealt by 5% on enemies further than 30 yds."
+  },
+  "Improved Eclipse of Fury": {
+   "name": "Improved Eclipse of Fury",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704793,
+   "ranks": null,
+   "spellIds": [
+    704793
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_arcane_arcane01",
+   "description": "Increases the effectiveness of Eclipse of Fury by 40%."
+  },
+  "Infused Aegis": {
+   "name": "Infused Aegis",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704777,
+   "ranks": null,
+   "spellIds": [
+    704777
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_nightfae_soulshape",
+   "description": "Drains 30% Maximum Mana\nInstantly counterattack any enemy that strikes you from the front in melee for Arcane damage, lasting 10 seconds. Can only occur once per sec per enemy."
+  },
+  "Infused Blades": {
+   "name": "Infused Blades",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807160,
+   "ranks": null,
+   "spellIds": [
+    807160
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_glaive_ardenweald_d_01_temp",
+   "description": "Your Astral Blade now has a 30% chance to reset its own cooldown and refund its maximum mana cost."
+  },
+  "Ishnu-alah": {
+   "name": "Ishnu-alah",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524638,
+   "ranks": null,
+   "spellIds": [
+    524638
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_NightElf_08",
+   "description": "Moon Arrow restores an additional 4% of your maximum mana."
+  },
+  "Last Prayer": {
+   "name": "Last Prayer",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707637,
+   "ranks": null,
+   "spellIds": [
+    707637
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_holy_prayerofspirit",
+   "description": "Casting Stellar Convergence now resets the cooldown of Prayer of Elune."
+  },
+  "Lethal Pursuit": {
+   "name": "Lethal Pursuit",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680770,
+   "ranks": null,
+   "spellIds": [
+    680770
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_glaive_1h_warfrontsnightelf_d_01",
+   "description": "Reduces the cooldown of Fan of Knives by -5 sec."
+  },
+  "Lo'sho Amplification": {
+   "name": "Lo'sho Amplification",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500205,
+   "ranks": null,
+   "spellIds": [
+    500205
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\INV_WEAPON_BOW_39",
+   "description": "Level 50 Passive\nScattered Stars now burn enemy mana equal to 10% of the damage dealt."
+  },
+  "Lunar Amplification": {
+   "name": "Lunar Amplification",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680813,
+   "ranks": null,
+   "spellIds": [
+    680813
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_ArcaneEclipse_Border",
+   "description": "Increases the damage of Trueshot by 25%."
+  },
+  "Lunar Anomaly": {
+   "name": "Lunar Anomaly",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300989,
+   "ranks": null,
+   "spellIds": [
+    300989
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_fire_blueflamestrike",
+   "description": "Increases the damage of Lunar Lance by 50%."
+  },
+  "Lunar Authority": {
+   "name": "Lunar Authority",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807731,
+   "ranks": {
+    "1": 807731
+   },
+   "spellIds": [
+    807731
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Your presence intimidates enemies, increasing your threat generated by 60%, doubled for Arcane spells and abilities."
+  },
+  "Lunar Blessing": {
+   "name": "Lunar Blessing",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704756,
+   "ranks": null,
+   "spellIds": [
+    704756
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_warfrontsnightelf_d_01",
+   "description": "Increases your healing done by 3%, plus an additional 3% on Poisoned or Diseased targets."
+  },
+  "Lunar Cascade": {
+   "name": "Lunar Cascade",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704725,
+   "ranks": null,
+   "spellIds": [
+    704725
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_hand_18",
+   "description": "Critical strikes with Moonflow and Prayer of Elune now apply Eclipsing Arrows to the target for 20 seconds.\n\nCasting Huntress Shot heals marked allies for 235 + 30% SP."
+  },
+  "Lunar Charge": {
+   "name": "Lunar Charge",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680215,
+   "ranks": null,
+   "spellIds": [
+    680215
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_monk_forcesphere_arcane",
+   "description": "After using Shooting Star, your next Celestial Strike, Starsunder or auto attack ends the effect to deal 87 + 28.75% arcane SP + 4.65% AP Arcane damage, increased based on distance travelled."
+  },
+  "Lunar Combatant": {
+   "name": "Lunar Combatant",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805828,
+   "ranks": null,
+   "spellIds": [
+    805828
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\INV_Elemental_Primal_Mana",
+   "description": "Level 40 Passive\nIncreases the effectiveness of consuming Scattered Stars by 50%."
+  },
+  "Lunar Eclipse": {
+   "name": "Lunar Eclipse",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800386,
+   "ranks": {
+    "1": 800386
+   },
+   "spellIds": [
+    800386
+   ],
+   "cost": 150,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Activate this to cause your next |cFFFFFFFFLunar Phase|r spell to trigger its |cFFFFFFFFLunar|r effect.\r\n\r\nCan be used while casting or channeling another spell."
+  },
+  "Lunar Knight": {
+   "name": "Lunar Knight",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680791,
+   "ranks": null,
+   "spellIds": [
+    680791
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_plate_raiddeathknight_s_01",
+   "description": "Increases the damage of your Moonblade and Starsweep by 50% and their chance to critically strike by 20%."
+  },
+  "Lunar Lance": {
+   "name": "Lunar Lance",
+   "spec": "Sentinel",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 502339,
+   "ranks": {
+    "2": 502333,
+    "3": 502334,
+    "4": 502335,
+    "5": 502336,
+    "6": 502337,
+    "7": 502338,
+    "8": 502339
+   },
+   "spellIds": [
+    502333,
+    502334,
+    502335,
+    502336,
+    502337,
+    502338,
+    502339,
+    801132
+   ],
+   "cost": 100,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cff66ccffConsumes Scattered Stars|r\r\nUnleash a lunar lance on an enemy, dealing 18 Arcane damage.@s:804716:0@"
+  },
+  "Lunar Phasing": {
+   "name": "Lunar Phasing",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680812,
+   "ranks": null,
+   "spellIds": [
+    680812
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_WispSplode",
+   "description": "Cosmic Shift now dispels all harmful effects from the target."
+  },
+  "Lunar Prophecy": {
+   "name": "Lunar Prophecy",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704764,
+   "ranks": null,
+   "spellIds": [
+    704764
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Druid_LunarGuidance",
+   "description": "Casting Moon Arrow now reduces the cooldown of Prayer of Elune by -3 sec."
+  },
+  "Lunar Resplendence": {
+   "name": "Lunar Resplendence",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801989,
+   "ranks": null,
+   "spellIds": [
+    801989
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_ardenweald_hunter",
+   "description": "Increases your healing done to allies below 20% health by 30%."
+  },
+  "Lunar Revelation": {
+   "name": "Lunar Revelation",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681521,
+   "ranks": null,
+   "spellIds": [
+    681521
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_Purge",
+   "description": "Increases the critical strike chance of Moonflow by 10%."
+  },
+  "Lunar Splinters": {
+   "name": "Lunar Splinters",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561062,
+   "ranks": null,
+   "spellIds": [
+    561062
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_MagicMoonBuff_Border",
+   "description": "Increases the damage of consuming Scattered Stars by 10%."
+  },
+  "Lunar Swiftness": {
+   "name": "Lunar Swiftness",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503779,
+   "ranks": null,
+   "spellIds": [
+    503779
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_bow_44",
+   "description": "Moon Arrow now reduces the cast time of the next Hand of Elune within 8 seconds by -20%, stacking 5 times."
+  },
+  "Magic Resistance": {
+   "name": "Magic Resistance",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 822,
+   "ranks": null,
+   "spellIds": [
+    822
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Maiev's Discipline": {
+   "name": "Maiev's Discipline",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680233,
+   "ranks": null,
+   "spellIds": [
+    680233
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_polearm_2h_odynspear_d_01",
+   "description": "Level 20 Passive\nIncreases your critical strike rating by 12% of your Intellect and your expertise by 10% of your Intellect."
+  },
+  "Maiev's Guard": {
+   "name": "Maiev's Guard",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707635,
+   "ranks": null,
+   "spellIds": [
+    707635
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_MaievBlade_Water",
+   "description": "Critical strikes with Astral Blade now strike 2 additional times, one for 40% of the damage dealt and the other for 20% of the damage dealt."
+  },
+  "Mending Surge": {
+   "name": "Mending Surge",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704732,
+   "ranks": null,
+   "spellIds": [
+    704732
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_dungeon_throne_of_the_tides",
+   "description": "Reduces the cooldown of Stellar Convergence by -30 sec."
+  },
+  "Moon Arrow": {
+   "name": "Moon Arrow",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803925,
+   "ranks": {
+    "1": 801972,
+    "2": 803918,
+    "3": 803919,
+    "4": 803920,
+    "5": 803921,
+    "6": 803922,
+    "7": 803923,
+    "8": 803924,
+    "9": 803925
+   },
+   "spellIds": [
+    801972,
+    803918,
+    803919,
+    803920,
+    803921,
+    803922,
+    803923,
+    803924,
+    803925
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Fire an enchanted arrow, dealing 14 Physical damage and restoring 10% of your maximum mana plus 10.\r\n\r\n@ext:Scales with ranged attack power, spell power and Intellect.:ext@"
+  },
+  "Moon Gazing": {
+   "name": "Moon Gazing",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504786,
+   "ranks": null,
+   "spellIds": [
+    504786
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\5_druideskill11_Border",
+   "description": "Level 40 Passive\nYour critical strikes now generate a stack of Lunar Phase. Can only occur once per sec."
+  },
+  "Moon Guard": {
+   "name": "Moon Guard",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92132,
+   "ranks": null,
+   "spellIds": [
+    92132
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\artifactability_balancedruid_newmoon",
+   "description": "Level 10 Passive\nYou now gain Intellect equal to your Strength."
+  },
+  "Moon Priest": {
+   "name": "Moon Priest",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92134,
+   "ranks": null,
+   "spellIds": [
+    92134
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\custom_T_Nhance_RPG_Icons_MagicMoonBuff_Border",
+   "description": "Level 10 Passive\nYour Huntress Shot now has a Lunar Eclipse effect.\n\nHuntress Shot: Applies 2 additional Scattered Stars."
+  },
+  "Moon Runner": {
+   "name": "Moon Runner",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301236,
+   "ranks": null,
+   "spellIds": [
+    301236
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_bow_2h_crossbow_panstart_a_01",
+   "description": "Increases the movement slowing effect of Aspect of the Cosmos by -5% per stack."
+  },
+  "Moonblessed Aspects": {
+   "name": "Moonblessed Aspects",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706232,
+   "ranks": null,
+   "spellIds": [
+    706232
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shoulder_leather_raiddruid_q_01",
+   "description": "Increases the effectiveness of Aspects by 15%."
+  },
+  "Mooncharged Blades": {
+   "name": "Mooncharged Blades",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 536216,
+   "ranks": null,
+   "spellIds": [
+    536216
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_2h_warfrontsnightelf_d_01",
+   "description": "Blocking an attack allows your next Starsunder to hit an additional nearby enemy and cost -30% less mana."
+  },
+  "Moonflares": {
+   "name": "Moonflares",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560501,
+   "ranks": null,
+   "spellIds": [
+    560501
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_moon_Border",
+   "description": "Avoiding melee attacks will call down a Moonflare at the attacker, dealing 66 Arcane damage.\n\nCan occur only once per second."
+  },
+  "Moonflow": {
+   "name": "Moonflow",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 575038,
+   "ranks": {
+    "2": 575031,
+    "3": 575032,
+    "4": 575033,
+    "5": 575034,
+    "6": 575035,
+    "7": 575036,
+    "8": 575037,
+    "9": 575038
+   },
+   "spellIds": [
+    575030,
+    575031,
+    575032,
+    575033,
+    575034,
+    575035,
+    575036,
+    575037,
+    575038
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_animaardenweald_missile",
+   "description": "Send forth moonwell waters to all nearby allies, healing them for 81.\r\n\r\n|cffffffffLunar Eclipse|r: Triggers with no cooldown and consumes |cff66ccffScattered Stars|r from enemies you are in combat with within 40 yds.@s:804716:0@"
+  },
+  "Moonlight Ripple": {
+   "name": "Moonlight Ripple",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503583,
+   "ranks": null,
+   "spellIds": [
+    503583
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_socererking_arcanemines",
+   "description": "Reduces the mana cost of your Aegis spells by -10%."
+  },
+  "Moonlit Bulwark": {
+   "name": "Moonlit Bulwark",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805433,
+   "ranks": null,
+   "spellIds": [
+    805433
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_argus_blightorb",
+   "description": "Grants you a shield for an amount equal to your maximum mana for 10 seconds. \n\nUsable while stunned."
+  },
+  "Moonlit Impaler": {
+   "name": "Moonlit Impaler",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561222,
+   "ranks": null,
+   "spellIds": [
+    561222
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_druideskill12_Border",
+   "description": "Increases your Arcane damage by 5% and your hit chance by 2%."
+  },
+  "Moonlit Lancer": {
+   "name": "Moonlit Lancer",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560662,
+   "ranks": null,
+   "spellIds": [
+    560662
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_Resourcefulness",
+   "description": "Your Lunar Lance now deals additional Arcane damage over 20 sec."
+  },
+  "Moonlit Slumber": {
+   "name": "Moonlit Slumber",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805546,
+   "ranks": null,
+   "spellIds": [
+    805546
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nature_sleep",
+   "description": "Put an enemy to sleep for 30 seconds (6 sec vs players). Damage dealt will end the effect.\n\nWhile sleeping, you drain 98 mana from them every 3 sec."
+  },
+  "Moonmancer": {
+   "name": "Moonmancer",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680810,
+   "ranks": null,
+   "spellIds": [
+    680810
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Book2Motif_Moon",
+   "description": "Reduces the cooldown of Starcall by -50%."
+  },
+  "Moonstone": {
+   "name": "Moonstone",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805503,
+   "ranks": null,
+   "spellIds": [
+    805503
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_holiday_hearthstonelunarfestival",
+   "description": "Increases the damage of Lunar Lance by 20%."
+  },
+  "Moonstone Hilt": {
+   "name": "Moonstone Hilt",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300250,
+   "ranks": null,
+   "spellIds": [
+    300250
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_jewelcrafting_starofelune_02",
+   "description": "Increases your parry chance by 2% and block value by 15%."
+  },
+  "Moontouched Weapons": {
+   "name": "Moontouched Weapons",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680777,
+   "ranks": null,
+   "spellIds": [
+    680777
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_shortblade_45",
+   "description": "Increases the damage of Aspect of the Warden by POWER1*0.01, scaling with maximum mana."
+  },
+  "Moonveil Screen": {
+   "name": "Moonveil Screen",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680779,
+   "ranks": null,
+   "spellIds": [
+    680779
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_MoonGlow",
+   "description": "Increases the damage of Starsunder and Moonflare by 20%."
+  },
+  "Moonwalk": {
+   "name": "Moonwalk",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300256,
+   "ranks": null,
+   "spellIds": [
+    300256
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_manafeet_Border",
+   "description": "Increases your movement speed by 20% at night."
+  },
+  "Moonwell": {
+   "name": "Moonwell",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804739,
+   "ranks": null,
+   "spellIds": [
+    804739
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_shawaterelemental_swirl",
+   "description": "Creates a zone blessed by moonwell waters for 15 seconds at the target location. \n\nAll allied players standing within the well receive 25% more healing, and their mana regeneration is increased by 100%."
+  },
+  "Moonwell Acuity": {
+   "name": "Moonwell Acuity",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680809,
+   "ranks": null,
+   "spellIds": [
+    680809
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\World_Marker_Moon",
+   "description": "Level 30 Passive\nThe Lunar Eclipse effect of Moonwell Splash now causes it to affect 3 targets."
+  },
+  "Moonwell Splash": {
+   "name": "Moonwell Splash",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 503027,
+   "ranks": {
+    "1": 800370,
+    "2": 503019,
+    "3": 503020,
+    "4": 503021,
+    "5": 503022,
+    "6": 503023,
+    "7": 503024,
+    "8": 503025,
+    "9": 503026,
+    "10": 503027
+   },
+   "spellIds": [
+    503019,
+    503020,
+    503021,
+    503022,
+    503023,
+    503024,
+    503025,
+    503026,
+    503027,
+    800370
+   ],
+   "cost": 100,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Envelop an ally in moonwell waters, healing them for 79.\r\n\r\n|cffffffffLunar Eclipse|r: This spell is instant and heals the ally for an additional 5% of their maximum health."
+  },
+  "Moonwell Tides": {
+   "name": "Moonwell Tides",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560951,
+   "ranks": null,
+   "spellIds": [
+    560951
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_elemental_mote_water01",
+   "description": "Casting Vial of Moonwell Water now additionally heals you equal to 25% of your current mana."
+  },
+  "Mu'sha's Resilience": {
+   "name": "Mu'sha's Resilience",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704774,
+   "ranks": null,
+   "spellIds": [
+    704774
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Fabric_MoonRag_01",
+   "description": "Reduces Arcane damage taken by -15%."
+  },
+  "Nebula": {
+   "name": "Nebula",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300992,
+   "ranks": null,
+   "spellIds": [
+    300992
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_manashield_Border",
+   "description": "Blocking enemy attacks now applies Scattered Stars to the attacker."
+  },
+  "Night Hunter": {
+   "name": "Night Hunter",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801146,
+   "ranks": null,
+   "spellIds": [
+    801146
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Foreshadowing_Border",
+   "description": "Reduces the cooldown of Huntress Saber by -60 sec."
+  },
+  "Nightborne Armaments": {
+   "name": "Nightborne Armaments",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680789,
+   "ranks": null,
+   "spellIds": [
+    680789
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_armor_nightborne_d_01",
+   "description": "While below 35% health, your damage taken is reduced by -10%."
+  },
+  "Omnipresent Moon": {
+   "name": "Omnipresent Moon",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520482,
+   "ranks": null,
+   "spellIds": [
+    520482
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_arcane_teleportmoonglade",
+   "description": "Your Lunar Lances now strikes an additional nearby enemy."
+  },
+  "On The Hunt": {
+   "name": "On The Hunt",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504006,
+   "ranks": null,
+   "spellIds": [
+    504006
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_herb_arrowbloom",
+   "description": "Starfire Shot now increases the damage the enemy takes from your Huntress Shot by 10% for 8 seconds, stacking 2 times."
+  },
+  "Parry": {
+   "name": "Parry",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3124,
+   "ranks": null,
+   "spellIds": [
+    3124
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Phase Guider": {
+   "name": "Phase Guider",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300995,
+   "ranks": null,
+   "spellIds": [
+    300995
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Arcane_Arcane02",
+   "description": "Increases the bonus healing scaling of Moonwell Splash and the healing done through Aspect of the Goddess by 20%."
+  },
+  "Pierce The Night": {
+   "name": "Pierce The Night",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680708,
+   "ranks": null,
+   "spellIds": [
+    680708
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_1h_warfrontsnightelf_d_01",
+   "description": "Your Fan of Knives now applies an additional stack of Scattered Stars to each enemy struck."
+  },
+  "Pouch of Stardust": {
+   "name": "Pouch of Stardust",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504694,
+   "ranks": null,
+   "spellIds": [
+    504694
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_inscription_trinket_mage",
+   "description": "Increases the critical strike chance and critical damage of consumed Scattered Stars by 10%."
+  },
+  "Prayer of Elune": {
+   "name": "Prayer of Elune",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 575334,
+   "ranks": {
+    "2": 502348,
+    "3": 502349,
+    "4": 502350,
+    "5": 502351,
+    "6": 575334
+   },
+   "spellIds": [
+    502348,
+    502349,
+    502350,
+    502351,
+    575334,
+    801987
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_animaardenweald_orb",
+   "description": "Say a prayer to Elune, healing up to 12 allies within 40 yds for 115, and dispel 1 harmful magic effect from them."
+  },
+  "Protected by the Stars": {
+   "name": "Protected by the Stars",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300258,
+   "ranks": null,
+   "spellIds": [
+    300258
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_1h_artifactstormfist_d_04",
+   "description": "Increases your Armor by 300% of your Intellect and reduces the duration of stuns and disarms against you by -25%."
+  },
+  "Pulsar Explosion": {
+   "name": "Pulsar Explosion",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704794,
+   "ranks": null,
+   "spellIds": [
+    704794
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_121",
+   "description": "Increases the damage of Celestial Cleave by 10% and allows it to affect 1 additional enemies."
+  },
+  "Pulverizing Blade": {
+   "name": "Pulverizing Blade",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805437,
+   "ranks": null,
+   "spellIds": [
+    805437
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Execution_LightBlue",
+   "description": "Casting Warden's Blade now grants you Pulverizing Blade.\nPulverizing BladeNext 5 Starsunders within 20 seconds deal increasing damage, scaling with 10% of Intellect, with each subsequent use, stacking 5 times."
+  },
+  "Rally The Sentinels": {
+   "name": "Rally The Sentinels",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704784,
+   "ranks": null,
+   "spellIds": [
+    704784
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_warfrontsnightelf_d_01",
+   "description": "Sentinel Glaive now restores 20% of your maximum mana and applies a Scattered Star to the enemy."
+  },
+  "Rampaging Waters": {
+   "name": "Rampaging Waters",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560956,
+   "ranks": null,
+   "spellIds": [
+    560956
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_icewaterblast_Border",
+   "description": "Damage dealt by Scattered Stars now increases your healing by 1% and critical strike chance by 1% for 10 seconds, stacking 10 times."
+  },
+  "Rapid Cycle": {
+   "name": "Rapid Cycle",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300249,
+   "ranks": null,
+   "spellIds": [
+    300249
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_IceWave_Border",
+   "description": "Lunar Phase now increases your ranged haste by 4% per stack."
+  },
+  "Resilient Constitution": {
+   "name": "Resilient Constitution",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 552011,
+   "ranks": null,
+   "spellIds": [
+    552011
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Reverse Magic": {
+   "name": "Reverse Magic",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 570231,
+   "ranks": null,
+   "spellIds": [
+    570231
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_10_dungeonjewelry_dragon_trinket_1arcanemagical_blue",
+   "description": "Reverse the next spell cast on you within 3 seconds, reflecting it back to its caster.\n\nReversing a spell in this way drains 600 + 20% SP of the attacker's mana."
+  },
+  "Rippling Moonwater": {
+   "name": "Rippling Moonwater",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804733,
+   "ranks": null,
+   "spellIds": [
+    804733
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nature_riptide",
+   "description": "Your healing effects now apply Moonwater to the target, stacking 5 times.MoonwaterDealing damage will consume a stack to heal you."
+  },
+  "Scattering Blades": {
+   "name": "Scattering Blades",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806738,
+   "ranks": null,
+   "spellIds": [
+    806738
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_MaievBlade_Ice",
+   "description": "Your Warden's Blade now increases the chance to trigger Aspect of the Warden by 10% for 8 seconds."
+  },
+  "Second Moon": {
+   "name": "Second Moon",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300252,
+   "ranks": null,
+   "spellIds": [
+    300252
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_magicmoonbuff_Border",
+   "description": "Every 10th Scattered Star consumed now launches a comet at an enemy dealing 304 + 30% arcane SP Arcane damage to 5 enemies within 5 yds."
+  },
+  "Sentinel Glaive": {
+   "name": "Sentinel Glaive",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800506,
+   "ranks": null,
+   "spellIds": [
+    800506
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_glaive_1h_tyrande_d_01",
+   "description": "Throw a sentinel glaive at an enemy, dealing Weapon Damage plus 53 as Arcane damage, increased further based on your maximum mana, and increasing their resource costs by 15% for 8 seconds."
+  },
+  "Sentinel's Focus": {
+   "name": "Sentinel's Focus",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704740,
+   "ranks": null,
+   "spellIds": [
+    704740
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_bow_1h_artifactwindrunner_d_03",
+   "description": "Starfire Shot now has a 20% chance to fire a free Huntress Shot at the target."
+  },
+  "Shadowsong's Mandate": {
+   "name": "Shadowsong's Mandate",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805439,
+   "ranks": null,
+   "spellIds": [
+    805439
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helmet_leather_raiddruid_q_01",
+   "description": "Increases your critical strike chance by 15% for 10 seconds.\n\nWhile active, your damaging critical strikes have a 40% chance to trigger Warden's Blade."
+  },
+  "Shattered Stars": {
+   "name": "Shattered Stars",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704771,
+   "ranks": null,
+   "spellIds": [
+    704771
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_archerskill34_Border",
+   "description": "Increases the range of Starshatter by 10 yds."
+  },
+  "Shoot": {
+   "name": "Shoot",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3018,
+   "ranks": null,
+   "spellIds": [
+    3018
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Shooting Star": {
+   "name": "Shooting Star",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502297,
+   "ranks": {
+    "2": 803915,
+    "3": 803916,
+    "4": 803917,
+    "5": 502295,
+    "6": 502296,
+    "7": 502297
+   },
+   "spellIds": [
+    502295,
+    502296,
+    502297,
+    800505,
+    803915,
+    803916,
+    803917
+   ],
+   "cost": 850,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\artifactability_balancedruid_moonandstars",
+   "description": "Sprint forward with astral magic at your feet, increasing your movement speed by 65% for 4 sec. \r\n\r\nWhile active, you cannot be slowed and cannot stop moving."
+  },
+  "Shrouded Stars": {
+   "name": "Shrouded Stars",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704785,
+   "ranks": null,
+   "spellIds": [
+    704785
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_ElunesGrace",
+   "description": "Reduces damage taken by all party and raid members by -3%.\n\nDoes not stack with similar effects."
+  },
+  "Spirit of Vengeance": {
+   "name": "Spirit of Vengeance",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680711,
+   "ranks": null,
+   "spellIds": [
+    680711
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_spirittranquility_Border",
+   "description": "Fan of Knives now marks enemies with Vengeance for 10 seconds. Successfully marking an enemy increases the range of your next Astral Blade by 25 yards.\n\nCasting Astral Blade on a marked enemy causes it to deal 30% more damage."
+  },
+  "Star Citizen": {
+   "name": "Star Citizen",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704776,
+   "ranks": null,
+   "spellIds": [
+    704776
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_arcane_arcanetactics",
+   "description": "Increases effectiveness of Celestial Mind by 20%."
+  },
+  "Star Pupil": {
+   "name": "Star Pupil",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706575,
+   "ranks": null,
+   "spellIds": [
+    706575
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_arcane_starfire",
+   "description": "Your damaging critical strikes now grant you a stack of Star Pupil.Star PupilReduces the cast time of Moonwell Splash by -25% for 8 seconds, stacking 4 times.\n\nWhile this is active, Moonwell Splash is castable while moving."
+  },
+  "Star-Charged": {
+   "name": "Star-Charged",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500608,
+   "ranks": null,
+   "spellIds": [
+    500608
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_arcane_arcane04",
+   "description": "Reduces the cooldown of your Aspects by -5 sec."
+  },
+  "Star-Guided Arrows": {
+   "name": "Star-Guided Arrows",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524642,
+   "ranks": null,
+   "spellIds": [
+    524642
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_StarFall",
+   "description": "Damage dealt by Scattered Stars now has a 25% chance to refresh a charge of Trueshot."
+  },
+  "Starbarian": {
+   "name": "Starbarian",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704778,
+   "ranks": null,
+   "spellIds": [
+    704778
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_axe_1h_pandaraid_d_01",
+   "description": "Increases your haste by 4%."
+  },
+  "Starbound": {
+   "name": "Starbound",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704787,
+   "ranks": null,
+   "spellIds": [
+    704787
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_socererking_arcanereplication",
+   "description": "Increases your healing done and received by 10%, doubled while below 20% health."
+  },
+  "Starburst": {
+   "name": "Starburst",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801996,
+   "ranks": null,
+   "spellIds": [
+    801996
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_argus_soulburst",
+   "description": "Applies 1 Scattered Star Per Hit\nSmash up to 8 enemies, dealing 2 + 30% arcane SP + 15% AP Arcane damage, scaling with block value and maximum mana and reducing their attack speed by -20% for 10 seconds.\n\nConsuming a Scattered Star reduces the remaining cooldown of Starburst by -2 sec."
+  },
+  "Starburst Invigoration": {
+   "name": "Starburst Invigoration",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704792,
+   "ranks": null,
+   "spellIds": [
+    704792
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_ManaBurn",
+   "description": "Increases your Energy regeneration by 15%."
+  },
+  "Starcall": {
+   "name": "Starcall",
+   "spec": "Sentinel",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 302569,
+   "ranks": {
+    "2": 502316,
+    "3": 502317,
+    "4": 302568,
+    "5": 302569
+   },
+   "spellIds": [
+    302568,
+    302569,
+    502316,
+    502317,
+    800497
+   ],
+   "cost": 5200,
+   "levelReq": 26,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_archaeology_70_starlightbeacon",
+   "description": "Blast the target enemy and all enemies near them with lunar fire that deals 127 Arcane damage, applying |cff66ccffScattered Stars|r.\r\n\r\nConsuming a |cff66ccffScattered Star|r reduces the remaining cooldown by 1.5 sec.\r\n@s:804378:0@"
+  },
+  "Starcovered Night": {
+   "name": "Starcovered Night",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503639,
+   "ranks": null,
+   "spellIds": [
+    503639
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_warfrontsnightelf_d_01",
+   "description": "Increases the duration of Blanket of Stars by 4 sec."
+  },
+  "Starcrash": {
+   "name": "Starcrash",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560721,
+   "ranks": null,
+   "spellIds": [
+    560721
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_mage_supernova",
+   "description": "Increases the damage dealt by consuming Scattered Stars by 10%."
+  },
+  "Starfire Barrage": {
+   "name": "Starfire Barrage",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704739,
+   "ranks": null,
+   "spellIds": [
+    704739
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\skill_icon_skill3_Border",
+   "description": "$95"
+  },
+  "Starfire Power": {
+   "name": "Starfire Power",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707639,
+   "ranks": null,
+   "spellIds": [
+    707639
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Weapon_Crossbow_18",
+   "description": "Casting Starfire Shot now has a 20% chance to grant you Drawstring of Elune for 5 sec.Drawstring of Elune (SLS)Huntress Shot and Starcall apply an additional stack of Scattered Stars and your ranged ability attack range is increased to 50 yds."
+  },
+  "Starfire Shot": {
+   "name": "Starfire Shot",
+   "spec": "Sentinel",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 804469,
+   "ranks": {
+    "2": 804463,
+    "3": 804464,
+    "4": 804465,
+    "5": 804466,
+    "6": 804467,
+    "7": 804468,
+    "8": 804469
+   },
+   "spellIds": [
+    801978,
+    804463,
+    804464,
+    804465,
+    804466,
+    804467,
+    804468,
+    804469
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_ArcaneShot_LightBlue",
+   "description": "|cff66ccffConsumes Scattered Stars|r\r\nFire an enchanted arrow, dealing 120% Ranged Weapon Damage plus 64 Arcane damage, scaling further based on your maximum mana.@s:804716:0@"
+  },
+  "Starlight Duelist": {
+   "name": "Starlight Duelist",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805505,
+   "ranks": null,
+   "spellIds": [
+    805505
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_1h_artifactfelomelorn_d_06",
+   "description": "Blocking or parrying an attack now increases your damage dealt by 10% for 6 seconds."
+  },
+  "Starlit Finesse": {
+   "name": "Starlit Finesse",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 574350,
+   "ranks": null,
+   "spellIds": [
+    574350
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_artifactelune_d_06",
+   "description": "Increases your hit and critical strike chance by 3%."
+  },
+  "Starshatter": {
+   "name": "Starshatter",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801135,
+   "ranks": null,
+   "spellIds": [
+    801135
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sha_ability_mage_firestarter_nightborne",
+   "description": "Call down the power of the stars, sending forth Elune’s astral light in a line outward from you, stunning enemies struck for 5 seconds and applying a Scattered Star."
+  },
+  "Starsunder": {
+   "name": "Starsunder",
+   "spec": "Warden",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 802473,
+   "ranks": {
+    "2": 802470,
+    "3": 802471,
+    "4": 802472,
+    "5": 802473
+   },
+   "spellIds": [
+    801127,
+    802470,
+    802471,
+    802472,
+    802473
+   ],
+   "cost": 300,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffffDrains 20% Maximum Mana|r\r\n|cff66ccffApplies 1 Scattered Star|r\r\nStrike an enemy for 50% Weapon Damage plus 16 Arcane Damage, increased further based on your maximum mana.\r\n@s:804378:0@"
+  },
+  "Starsweep": {
+   "name": "Starsweep",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 806811,
+   "ranks": {
+    "2": 806806,
+    "3": 806807,
+    "4": 806808,
+    "5": 806809,
+    "6": 806810,
+    "7": 806811
+   },
+   "spellIds": [
+    805550,
+    806806,
+    806807,
+    806808,
+    806809,
+    806810,
+    806811
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_1h_warfrontsnightelf_d_01",
+   "description": "|cff66ccffConsumes Scattered Stars|r\r\nSweep an enemy and all nearby enemies with your astral blade, dealing 44 Arcane damage.\r\n\r\nEvery |cff66ccffScattered Star|r consumed reduces the cooldown of this spell by 3 sec.@s:804716:0@"
+  },
+  "Stellar Amplification": {
+   "name": "Stellar Amplification",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801143,
+   "ranks": null,
+   "spellIds": [
+    801143
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_demonhunter_soulcleave4",
+   "description": "Dealing damage with Scattered Stars now has a 15% chance to make your next Astral Blade free of cost."
+  },
+  "Stellar Convergence": {
+   "name": "Stellar Convergence",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572784,
+   "ranks": null,
+   "spellIds": [
+    572784
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_ardenweald_druid",
+   "description": "Applies Eclipsing Arrows to all party and raid members within 40 yds."
+  },
+  "Stellar Drift": {
+   "name": "Stellar Drift",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800501,
+   "ranks": {
+    "1": 800501
+   },
+   "spellIds": [
+    800501
+   ],
+   "cost": 70,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Seize the tide of the cosmos, slowing the movement speed of all nearby enemies by 50% for 3 sec.\r\n\r\nAfter 3 sec, you knock back all nearby enemies a great distance."
+  },
+  "Teachings of Elune": {
+   "name": "Teachings of Elune",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704759,
+   "ranks": null,
+   "spellIds": [
+    704759
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_fabric_moonrag_02",
+   "description": "Increases the healing of Hand of Elune and Moonflow by 10%."
+  },
+  "Tear Drops": {
+   "name": "Tear Drops",
+   "spec": "Moon Priest",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560896,
+   "ranks": null,
+   "spellIds": [
+    560896
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_animaardenweald_nova",
+   "description": "Healing through Aspect of the Goddess now increases the target's healing taken from you by 1% for 10 sec, stacking up to 10 times."
+  },
+  "The Stars Align": {
+   "name": "The Stars Align",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300251,
+   "ranks": null,
+   "spellIds": [
+    300251
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_void_stars_Border",
+   "description": "Increases your maximum mana by 10%."
+  },
+  "Tidal Rebirth": {
+   "name": "Tidal Rebirth",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803635,
+   "ranks": {
+    "1": 801793,
+    "2": 803634,
+    "3": 803635
+   },
+   "spellIds": [
+    801793,
+    803634,
+    803635
+   ],
+   "cost": 17000,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Instantly brings a dead ally back to life with 400 health and 635 mana.\n\nThis spell is usable in combat."
+  },
+  "Touch of Moonlight": {
+   "name": "Touch of Moonlight",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 574328,
+   "ranks": null,
+   "spellIds": [
+    574328
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_MoonGlow",
+   "description": "Drains 10% Maximum Mana\nQuickly heal an ally with Elune's touch, scaling with maximum mana."
+  },
+  "Trueshot": {
+   "name": "Trueshot",
+   "spec": "Sentinel",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 520739,
+   "ranks": {
+    "2": 520737,
+    "3": 520738,
+    "4": 520739
+   },
+   "spellIds": [
+    520590,
+    520737,
+    520738,
+    520739
+   ],
+   "cost": 12000,
+   "levelReq": 36,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Trueshot",
+   "description": "|cffffffffDrains 20% Maximum Mana|r\r\n|cffffffff2 Charges, 18 sec recharge|r\r\n|cff66ccffConsumes Scattered Stars|r\r\nFire at your target and enemies near them, dealing Ranged Weapon Damage plus 58 Arcane damage, scaling with maximum mana.\r\n@s:804716:0@"
+  },
+  "Twinkle Toes": {
+   "name": "Twinkle Toes",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704775,
+   "ranks": null,
+   "spellIds": [
+    704775
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\rogue_burstofspeed",
+   "description": "Increases the movement speed granted by Shooting Star by 20%."
+  },
+  "Tyrande's Guidance": {
+   "name": "Tyrande's Guidance",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704788,
+   "ranks": null,
+   "spellIds": [
+    704788,
+    706572
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Weapon_Shortblade_79",
+   "description": "Increases the critical strike chance of your Starburst by 10%."
+  },
+  "Tyrande's Training": {
+   "name": "Tyrande's Training",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707751,
+   "ranks": null,
+   "spellIds": [
+    707751
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_searingarrow",
+   "description": "Increases the critical strike chance and critical damage of Starfire Shot by 10% against Burning targets."
+  },
+  "Tyrande's Vigilance": {
+   "name": "Tyrande's Vigilance",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680801,
+   "ranks": null,
+   "spellIds": [
+    680801
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_leader_tyrande_whisperwind",
+   "description": "Reduces the cast time of Starfire Shot by -0.5 sec."
+  },
+  "Umbral Blade": {
+   "name": "Umbral Blade",
+   "spec": "Warden",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 681548,
+   "ranks": {
+    "2": 681546,
+    "3": 681547,
+    "4": 681548
+   },
+   "spellIds": [
+    680704,
+    681546,
+    681547,
+    681548
+   ],
+   "cost": 3700,
+   "levelReq": 25,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_artifactelune_d_01",
+   "description": "|cff66ccffConsumes Scattered Stars|r\r\nSlash an enemy, dealing 178 Arcane damage to them and nearby enemies. Each additional enemy beyond the first takes 20% less damage."
+  },
+  "Universal Power": {
+   "name": "Universal Power",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300262,
+   "ranks": null,
+   "spellIds": [
+    300262
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_manacup_Border",
+   "description": "Your Aspect of the Cosmos now stacks 1 additional time."
+  },
+  "Unleashed Wisps": {
+   "name": "Unleashed Wisps",
+   "spec": "Sentinel",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706230,
+   "ranks": null,
+   "spellIds": [
+    706230
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_frost_wisp",
+   "description": "Dealing damage with Scattered Stars has a 30% chance to launch a Wisp at your target, dealing 80 + 13.5% arcane SP Arcane damage to nearby enemies."
+  },
+  "Vengeful Inspiration": {
+   "name": "Vengeful Inspiration",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680784,
+   "ranks": null,
+   "spellIds": [
+    680784
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_thenighthold_highbotanisttelam",
+   "description": "Increases your attack speed by 10% and causes critical strikes with melee attacks to apply a Scattered Star."
+  },
+  "Vial of Moonwell Water": {
+   "name": "Vial of Moonwell Water",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804652,
+   "ranks": null,
+   "spellIds": [
+    804652
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_potionc_3",
+   "description": "Drink from your enchanted moonwell vial, instantly removing all crowd control effects and making you immune to them for 3 seconds.\n\nUsable while stunned, feared, or polymorphed."
+  },
+  "Vigil of the Moon": {
+   "name": "Vigil of the Moon",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802797,
+   "ranks": {
+    "1": 802797
+   },
+   "spellIds": [
+    802797
+   ],
+   "cost": 9900,
+   "levelReq": 28,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Call one of Elune's watchers down to an area for 15 sec, revealing stealthed and invisible enemies."
+  },
+  "Vigil of the Watchers": {
+   "name": "Vigil of the Watchers",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680709,
+   "ranks": null,
+   "spellIds": [
+    680709
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_tabard_a_86warden",
+   "description": "Increases critical strike chance of all party and raid members by 3%.\n\nDoes not stack with similar effects."
+  },
+  "Wand": {
+   "name": "Wand",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 5019,
+   "ranks": null,
+   "spellIds": [
+    5019
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Warden Training": {
+   "name": "Warden Training",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680725,
+   "ranks": null,
+   "spellIds": [
+    680725,
+    704790
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_pet_wardenowl",
+   "description": "Level 10 Passive\nCritically striking with Starsunder now applies an additional stack of Scattered Stars.Scattered StarsCan be consumed by spells to deal additional Arcane Damage. Lasts 30 seconds, stacking 4 times."
+  },
+  "Warden's Blade": {
+   "name": "Warden's Blade",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 806816,
+   "ranks": {
+    "2": 806812,
+    "3": 806813,
+    "4": 806814,
+    "5": 806815,
+    "6": 806816
+   },
+   "spellIds": [
+    805508,
+    806812,
+    806813,
+    806814,
+    806815,
+    806816
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_MaievBlade_Arcane",
+   "description": "Attack with celestial fervor, dealing 160% Weapon Damage and triggering a unique effect based on your active |cffffffffAspect|r.@s:805512:0@@s:805511:0@@s:805510:0@@s:807195:0@@s:807816:0@"
+  },
+  "Warden's Precision": {
+   "name": "Warden's Precision",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680212,
+   "ranks": null,
+   "spellIds": [
+    680212
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Weapon_Halberd18",
+   "description": "Your Warden's Blade now launches an additional 2 blades at the target, dealing 49 + 24.5% SP Spellstrike Damage."
+  },
+  "Warrior of Elune": {
+   "name": "Warrior of Elune",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704798,
+   "ranks": null,
+   "spellIds": [
+    704798
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_polearm_2h_kultirasquest_b_01",
+   "description": "Increases your melee haste by 5% and movement speed by 10%.\n\nMovement speed granted by this talent stacks with Moonwalk."
+  },
+  "Way of the Goddess": {
+   "name": "Way of the Goddess",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801976,
+   "ranks": null,
+   "spellIds": [
+    801976
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Diablo3_ArrowRain_Mage",
+   "description": "Reduces the duration of harmful magic effects on you by -25%."
+  },
+  "Will of Elune": {
+   "name": "Will of Elune",
+   "spec": "Moon Guard",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680788,
+   "ranks": null,
+   "spellIds": [
+    680788
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_cloth_warfrontsnightelfmythic_d_01",
+   "description": "Damage dealt by Aspect of the Stars now strikes 2 additional nearby enemies."
+  },
+  "Wrath of Elune": {
+   "name": "Wrath of Elune",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704786,
+   "ranks": null,
+   "spellIds": [
+    704786
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_FrostResistanceTotem",
+   "description": "Reduces the cooldown of Sentinel Glaive by -5 sec."
+  },
+  "Wrath of the Moon": {
+   "name": "Wrath of the Moon",
+   "spec": "Warden",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680775,
+   "ranks": null,
+   "spellIds": [
+    680775
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_druid_twilightswrath",
+   "description": "Increases your Arcane critical damage dealt by 20%."
+  }
+ }
+}

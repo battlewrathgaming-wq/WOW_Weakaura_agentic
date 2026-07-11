@@ -1,0 +1,3666 @@
+{
+ "class": "TINKER",
+ "display": "Tinker",
+ "classId": 28,
+ "abilityCount": 197,
+ "bySpec": {
+  "General": 38,
+  "Demolition": 41,
+  "Class": 35,
+  "Invention": 38,
+  "Mechanics": 45
+ },
+ "abilities": {
+  "'Pick Lock'": {
+   "name": "'Pick Lock'",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804154,
+   "ranks": {
+    "1": 804154
+   },
+   "spellIds": [
+    804154
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Allows opening of locked chests and doors."
+  },
+  "Aether Augmentation": {
+   "name": "Aether Augmentation",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 653130,
+   "ranks": {
+    "1": 653130
+   },
+   "spellIds": [
+    653130
+   ],
+   "cost": 3700,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Add an |cffffffffAether Augmentation|r to your gun for 1 hour, causing an additional 1 Arcane damage with each shot.\r\n\r\nIncreases your damage and critical strike chance against Mechanicals by 25% and reduces your Magic damage taken by 10%."
+  },
+  "Aftermath": {
+   "name": "Aftermath",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707260,
+   "ranks": null,
+   "spellIds": [
+    707260
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_sticks_b_01",
+   "description": "Casting Sticky Bomb now causes your next 2 Scrap Shots within 10 seconds to cast -50% faster and deal 25% increased damage."
+  },
+  "Air Strike": {
+   "name": "Air Strike",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801744,
+   "ranks": null,
+   "spellIds": [
+    801744
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mount_gyrocoptor",
+   "description": "Mark the target location for an Air Strike. After 7 seconds, it deals 1250 Fire damage to up to 12 enemies caught within the blast.\n\nThis ability always critically strikes."
+  },
+  "Anti-Cloaking Device": {
+   "name": "Anti-Cloaking Device",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 675204,
+   "ranks": {
+    "1": 675204
+   },
+   "spellIds": [
+    675204
+   ],
+   "cost": 9900,
+   "levelReq": 28,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Reveal all stealthed and invisible enemies within 10 yds at target location. Lasts 15 sec."
+  },
+  "Arcane Affinity": {
+   "name": "Arcane Affinity",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 28877,
+   "ranks": null,
+   "spellIds": [
+    28877
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Arcane Bionics": {
+   "name": "Arcane Bionics",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 541493,
+   "ranks": {
+    "1": 541493
+   },
+   "spellIds": [
+    541493
+   ],
+   "cost": 33500,
+   "levelReq": 46,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Augment a party member with the essence of arcane, decreasing damage taken from spells by up to 3% and healing spells by up to 3%.  Lasts 5 min."
+  },
+  "Arcane Torrent": {
+   "name": "Arcane Torrent",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 814287,
+   "ranks": null,
+   "spellIds": [
+    814287
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Arclight Adept": {
+   "name": "Arclight Adept",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705788,
+   "ranks": null,
+   "spellIds": [
+    705788
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_axe_1h_mechagnome_c_01",
+   "description": "Increases the critical damage of your Mechsuit abilities by 15%."
+  },
+  "Arclight Core": {
+   "name": "Arclight Core",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704449,
+   "ranks": null,
+   "spellIds": [
+    704449
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Gizmo_KhoriumPowerCore",
+   "description": "Makeshift Dynamite now marks enemies for 6 seconds. \n\nThe next damaging ability used on this target by your pet consumes the mark to deal 491 + 20% fire SP + 20% ranged AP Fire damage."
+  },
+  "Augmechtation": {
+   "name": "Augmechtation",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503568,
+   "ranks": null,
+   "spellIds": [
+    503568
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_tech_saw_Border",
+   "description": "Your Mechsuit now increases your damage by an additional 10% while active."
+  },
+  "Augmentor": {
+   "name": "Augmentor",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801821,
+   "ranks": null,
+   "spellIds": [
+    801821
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\epic_rpg_icon_pack_frost_0000s_0000_figure_Border",
+   "description": "While Piercing Augmentation or Aether Augmentation is active, your ranged haste is increased by 10%."
+  },
+  "Auto Attack": {
+   "name": "Auto Attack",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 6603,
+   "ranks": null,
+   "spellIds": [
+    6603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Auto Resuscitation Device": {
+   "name": "Auto Resuscitation Device",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520445,
+   "ranks": null,
+   "spellIds": [
+    520445
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_enggizmos_15",
+   "description": "Attach a resuscitation device to your target ally for 20 seconds.\n\nWhen the target would otherwise die, they are instead healed for 50% of their maximum health."
+  },
+  "Auto Shot": {
+   "name": "Auto Shot",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 75,
+   "ranks": null,
+   "spellIds": [
+    75
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Backup Fuel": {
+   "name": "Backup Fuel",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705810,
+   "ranks": null,
+   "spellIds": [
+    705810
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_battleground_templeofkotmogu_02_orange",
+   "description": "Falling below 35% health now refreshes all charges of Rocket Boots.\n\nCan occur only once every 3 min."
+  },
+  "Bandage Gun": {
+   "name": "Bandage Gun",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705780,
+   "ranks": null,
+   "spellIds": [
+    705780
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_engineering_pumpactionbandagegun",
+   "description": "Healing from Stim Augmentation now affects 2 additional allies near the primary target."
+  },
+  "Basic Intuition": {
+   "name": "Basic Intuition",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 504060,
+   "ranks": {
+    "1": 504060
+   },
+   "spellIds": [
+    504060
+   ],
+   "cost": 25500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "For 10 sec, your |cffffffffBuild|r spells cost no mana, and their cast time is removed."
+  },
+  "Battle Engineer": {
+   "name": "Battle Engineer",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806629,
+   "ranks": null,
+   "spellIds": [
+    806629
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\INV_Misc_EngGizmos_20",
+   "description": "Level 30 Passive\nYour ranged damage dealt now has a 20% chance to refresh a charge of Makeshift Dynamite."
+  },
+  "Beacon Charging": {
+   "name": "Beacon Charging",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524834,
+   "ranks": null,
+   "spellIds": [
+    524834
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_plate_mechagnome_c_01helm",
+   "description": "$a5"
+  },
+  "Blazewrought Titan": {
+   "name": "Blazewrought Titan",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681001,
+   "ranks": null,
+   "spellIds": [
+    681001
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ammo_FireTar",
+   "description": "$ad"
+  },
+  "Block": {
+   "name": "Block",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 107,
+   "ranks": null,
+   "spellIds": [
+    107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Bomb Builder": {
+   "name": "Bomb Builder",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520811,
+   "ranks": null,
+   "spellIds": [
+    520811
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Mage_LivingBomb",
+   "description": "Increases your and your summons Fire Damage dealt by 5%."
+  },
+  "Bomb Squad": {
+   "name": "Bomb Squad",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520131,
+   "ranks": null,
+   "spellIds": [
+    520131
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\INV_Ascend_bomb_b_02",
+   "description": "Level 40 Passive\nIncreases your Fire spell power by 50% of Agility."
+  },
+  "Bomb Toss": {
+   "name": "Bomb Toss",
+   "spec": "Demolition",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 547209,
+   "ranks": {
+    "2": 502510,
+    "3": 502511,
+    "4": 560600,
+    "5": 560601,
+    "6": 560602,
+    "7": 560603,
+    "8": 547209
+   },
+   "spellIds": [
+    502510,
+    502511,
+    547209,
+    560600,
+    560601,
+    560602,
+    560603,
+    801005
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_bomb_Border",
+   "description": "Lob a bomb at an enemy, dealing 67 Fire damage and reducing their armor by 5% for 15 sec, stacking 4 times."
+  },
+  "Bombastic": {
+   "name": "Bombastic",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707271,
+   "ranks": null,
+   "spellIds": [
+    707271
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\INV_Misc_Bomb_01",
+   "description": "Level 30 Passive\nCasting Build: Spider Bomb now resets the cooldown of Bomb Toss and causes your next Bomb Toss within 15 seconds to trigger no cooldown, global cooldown, or cost."
+  },
+  "Bomber Man": {
+   "name": "Bomber Man",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707273,
+   "ranks": null,
+   "spellIds": [
+    707273
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_gizmo_goblinboombox_01",
+   "description": "Level 30 Passive\nWhile Bombastic is active, your Bomb Tosses will additionally reduce the cooldown of Sticky Bomb by -1 sec."
+  },
+  "Bombs? BOMBS!": {
+   "name": "Bombs? BOMBS!",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705789,
+   "ranks": null,
+   "spellIds": [
+    705789
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Bomb_04",
+   "description": "Increases the detonation speed of Sticky Bomb by -1 sec and reduces its cooldown by -2 sec."
+  },
+  "Boom Hour": {
+   "name": "Boom Hour",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802963,
+   "ranks": null,
+   "spellIds": [
+    802963
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Bomb_04",
+   "description": "Increases the critical strike chance of Bomb Toss and Firepot Drone by 10%."
+  },
+  "Boomshot": {
+   "name": "Boomshot",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707249,
+   "ranks": null,
+   "spellIds": [
+    707249
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3evasivefire",
+   "description": "Every 4th Scrap Shot now causes your next Scrap Shot within 15 seconds to deal 25% increased damage."
+  },
+  "Build: Alarm Beacon": {
+   "name": "Build: Alarm Beacon",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560754,
+   "ranks": null,
+   "spellIds": [
+    560754
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_lightforgedmechsuit",
+   "description": "3 Charges, 15 sec recharge\nThrow down an alarm beacon for 10 seconds, removing fear, charm and sleep effects from up to 1 ally within 20 yds every 1 sec."
+  },
+  "Build: Battery Recharge Station": {
+   "name": "Build: Battery Recharge Station",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805308,
+   "ranks": null,
+   "spellIds": [
+    805308
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_engineering_815_uberspanner",
+   "description": "$a3"
+  },
+  "Build: Battle Turret X-13": {
+   "name": "Build: Battle Turret X-13",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 504680,
+   "ranks": {
+    "1": 504519,
+    "2": 504678,
+    "3": 504680
+   },
+   "spellIds": [
+    504519,
+    504678,
+    504680
+   ],
+   "cost": 20000,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Create the latest in turret technology, the |cffffffffBattle Turret X-13|r for 30 sec that emanates an aura that increases the damage of your summons by 10%.\r\n\r\nAllies can enter the turret giving them access to unique abilities and the turret's health pool for the duration."
+  },
+  "Build: Clockwork Assistant": {
+   "name": "Build: Clockwork Assistant",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803436,
+   "ranks": {
+    "1": 803436
+   },
+   "spellIds": [
+    803436
+   ],
+   "cost": 150,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Construct a |cffffffffClockwork Assistant|r to accompany the Tinker until dismissed."
+  },
+  "Build: Destructo-Bot": {
+   "name": "Build: Destructo-Bot",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804673,
+   "ranks": null,
+   "spellIds": [
+    804673
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "interface\\icons\\Little_Bomb_Bro",
+   "description": "Build a Destructo-Bot that you can see through and directly control.\n\nThe bot is capable of exploding, dealing massive Fire damage to enemies nearby and disorienting them for 3 seconds."
+  },
+  "Build: Firepot Drone": {
+   "name": "Build: Firepot Drone",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500600,
+   "ranks": null,
+   "spellIds": [
+    500600
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_engineerskill25_Border",
+   "description": "3 Charges, 10 sec recharge\nBuild a Firepot Drone that flies towards your target, dropping a bomb along its path and exploding upon landing, dealing 182 + 17.5% ranged AP + 55% fire SP Fire damage in a 5 yd radius, leaving oil on the ground for 6 seconds that slows enemies within by -30%."
+  },
+  "Build: Mechano-Bear": {
+   "name": "Build: Mechano-Bear",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803405,
+   "ranks": {
+    "1": 803405
+   },
+   "spellIds": [
+    803405
+   ],
+   "cost": 800,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Construct a |cffffffffMechano-Bear|r to accompany the Tinker until dismissed."
+  },
+  "Build: Mechsuit": {
+   "name": "Build: Mechsuit",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92141,
+   "ranks": null,
+   "spellIds": [
+    92141
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_engineering_815_uberspanner",
+   "description": "$a7"
+  },
+  "Build: Noise Box": {
+   "name": "Build: Noise Box",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807723,
+   "ranks": null,
+   "spellIds": [
+    807723
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_engineerskill23_Border",
+   "description": "Build a Noise Box for 15 seconds that periodically unleashes screeching noise on nearby enemies, interrupting spellcasts and preventing spells of that school from being cast for 3 seconds."
+  },
+  "Build: Oil-Spill Pylon": {
+   "name": "Build: Oil-Spill Pylon",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707257,
+   "ranks": null,
+   "spellIds": [
+    707257
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_vehicle_oiljets",
+   "description": "Build an Oil-Spill Pylon at target location for 10 seconds, spilling oil in an 8 yd radius that reduces enemies movement speed by -60% and increases their Fire damage taken by you by 15%.\n\nSticky Bomb Explosions and Firepot Drone deal 20% increased damage to enemies inside."
+  },
+  "Build: Replenishment Beacon": {
+   "name": "Build: Replenishment Beacon",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 560750,
+   "ranks": {
+    "1": 560750
+   },
+   "spellIds": [
+    560750
+   ],
+   "cost": 6600,
+   "levelReq": 24,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffff3 Charges, 15 sec recharge|r\r\nThrow down a replenishment beacon for 15 sec which projects a force field restoring 5 Rage, Energy, Focus, Runic Power and 5% base mana every 2.50 sec to allies.\r\n\r\n@ext:Shares a cooldown with other |cffffffffBeacons|r:ext@"
+  },
+  "Build: Repulsion Unit": {
+   "name": "Build: Repulsion Unit",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706904,
+   "ranks": null,
+   "spellIds": [
+    706904
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\RepulsionUnit",
+   "description": "Build a Repulsion Unit that periodically knocks nearby enemies back every 5 sec for 20 seconds."
+  },
+  "Build: Restorative Beacon": {
+   "name": "Build: Restorative Beacon",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801801,
+   "ranks": null,
+   "spellIds": [
+    801801
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_mekkatorque_bot_greenspring",
+   "description": "3 Charges, 15 sec recharge\nThrow down a restorative beacon for 15 seconds which projects a field that heals raid and party members in the area for 92 every 3 sec."
+  },
+  "Build: Rusthound": {
+   "name": "Build: Rusthound",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803437,
+   "ranks": {
+    "1": 803437
+   },
+   "spellIds": [
+    803437
+   ],
+   "cost": 14500,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Construct a |cffffffffRusthound|r to accompany the Tinker until dismissed."
+  },
+  "Build: Scrapmaw": {
+   "name": "Build: Scrapmaw",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500242,
+   "ranks": null,
+   "spellIds": [
+    500242
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "interface\\icons\\inv_goblinshredderrocketmount",
+   "description": "Build a Scrapmaw to accompany the Tinker until dismissed."
+  },
+  "Build: Sentry Turret": {
+   "name": "Build: Sentry Turret",
+   "spec": "Mechanics",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 500239,
+   "ranks": null,
+   "spellIds": [
+    500239
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Build: Shield Beacon": {
+   "name": "Build: Shield Beacon",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803802,
+   "ranks": {
+    "1": 801799,
+    "2": 803799,
+    "3": 803800,
+    "4": 803801,
+    "5": 803802
+   },
+   "spellIds": [
+    801799,
+    803799,
+    803800,
+    803801,
+    803802
+   ],
+   "cost": 500,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffff3 Charges, 15 sec recharge|r\r\nThrow down a shield beacon for 15 sec which projects a force field in a 10 yd radius, increasing the Armor of nearby allies by 220.\r\n\r\n@ext:Shares a cooldown with other |cffffffffBeacons|r:ext@"
+  },
+  "Build: Spider Bomb": {
+   "name": "Build: Spider Bomb",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500535,
+   "ranks": null,
+   "spellIds": [
+    500535
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_siege_engineer_detonate",
+   "description": "Build a Spider Bomb that will immediately run towards your target and detonate dealing 250 + 30% ranged AP Fire damage in an 8 yd radius.\n\nUsing Scrap Shot will redirect the Spider Bombs to your new target."
+  },
+  "Build: Spider Bomb Factory": {
+   "name": "Build: Spider Bomb Factory",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802052,
+   "ranks": null,
+   "spellIds": [
+    802052
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_mechagonspidertank_brass",
+   "description": "Build a Spider Bomb Factory in front of you for 20 seconds.\n\nFor the duration, Bomb Toss and Rocket Launcher will summon 3 Spider Bombs, that will immediately run towards your target and detonate dealing 250 + 30% ranged AP Fire damage.\n\nUsing Scrap Shot will redirect the Spider Bombs to your new target."
+  },
+  "Build: ZIGGI-6K": {
+   "name": "Build: ZIGGI-6K",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92140,
+   "ranks": null,
+   "spellIds": [
+    92140
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_plate_mechagnome_c_01shoulder",
+   "description": "Level 10 Passive\nTeaches you Build: ZIGGI-6K.Build: ZIGGI-6KBuild ZIGGI-6K, the latest in regenerative technology, to aid you in healing allies until dismissed."
+  },
+  "Bunker Operative": {
+   "name": "Bunker Operative",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801706,
+   "ranks": null,
+   "spellIds": [
+    801706
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_engineering_sonicenvironmentenhancer",
+   "description": "Reduces the cooldown of Kinetic Shield, Discombobulate!, and Repulsion Unit by -20%."
+  },
+  "Buster Scope": {
+   "name": "Buster Scope",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707253,
+   "ranks": null,
+   "spellIds": [
+    707253
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_engineering_snipingscope",
+   "description": "Increases the critical damage of Rocket Launcher by 10%."
+  },
+  "Clockwork Guardians": {
+   "name": "Clockwork Guardians",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806758,
+   "ranks": null,
+   "spellIds": [
+    806758
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Head_ClockworkGnome_01",
+   "description": "$ab"
+  },
+  "Clockwork Ingenuity": {
+   "name": "Clockwork Ingenuity",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 505336,
+   "ranks": null,
+   "spellIds": [
+    505336
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\t_roboticon",
+   "description": "Increases the maximum health of your summons by 10%."
+  },
+  "Cogmaster": {
+   "name": "Cogmaster",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504525,
+   "ranks": null,
+   "spellIds": [
+    504525
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_LDACogs",
+   "description": "Increases your critical strike chance by 2% and gives ranged critical strikes a 50% chance to generate 3 Scrap."
+  },
+  "Combat Crafter": {
+   "name": "Combat Crafter",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807499,
+   "ranks": null,
+   "spellIds": [
+    807499
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\5_engineerskill01_Border",
+   "description": "Level 20 Passive\nWhile in your Mechsuit, damage dealt by your summons now has a 20% chance to grant you 5 Scrap and 2% of your maximum mana."
+  },
+  "Combat Symbiosis": {
+   "name": "Combat Symbiosis",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805305,
+   "ranks": null,
+   "spellIds": [
+    805305
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_lightning_soul_Border",
+   "description": "Electrify an allies' body, increasing their haste by 20% and causing damage dealt by them to heal nearby allies for 15% of the value. Lasts for 15 seconds, or 20 attacks."
+  },
+  "Concussive Spanner": {
+   "name": "Concussive Spanner",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704107,
+   "ranks": null,
+   "spellIds": [
+    704107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mage_brainfreeze",
+   "description": "Your Spanner Smash will now apply Concussion to the target.ConcussionYour target is unable to critically strike and their total primary attributes are reduced by -5% for 8 seconds."
+  },
+  "Control Mechanical": {
+   "name": "Control Mechanical",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807846,
+   "ranks": {
+    "1": 807846
+   },
+   "spellIds": [
+    807846
+   ],
+   "cost": 5500,
+   "levelReq": 24,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Control a Mechanical enemy up to level 1, forcing them to do your bidding for up to 5 min (8 sec vs players). \r\n\r\nThe Mechanical has greatly increased melee and ranged attack speed, but will short-circuit over time, taking 2% of its maximum health as Nature damage every 3 sec."
+  },
+  "Cutting Edge Technology": {
+   "name": "Cutting Edge Technology",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707398,
+   "ranks": null,
+   "spellIds": [
+    707398
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_engineering_reavesmodule",
+   "description": "Increases the tick rate and healing done of Nanobot Reconstruction by 20%."
+  },
+  "Cybernetic Revivification": {
+   "name": "Cybernetic Revivification",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705811,
+   "ranks": null,
+   "spellIds": [
+    705811
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_racial_skeletonpinkie",
+   "description": "All nearby allies receive 6% more healing. Does not stack with similar effects.\n\nIn addition, your Alarm Beacon now dispels fear, charm, and sleep effects from 1 additional ally."
+  },
+  "Deathball": {
+   "name": "Deathball",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500236,
+   "ranks": null,
+   "spellIds": [
+    500236
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_garrosh_siege_engine",
+   "description": "Launch 3 Deathballs in a line, increasing in speed the further they travel.\n\nThey explode when they come into contact with an enemy, dealing 1150 + 35% ranged AP Fire damage to nearby enemies, increased based on distance traveled.\n\nBot and Build abilities reduce the cooldown of this ability by -2 sec."
+  },
+  "Defensive Utility": {
+   "name": "Defensive Utility",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806631,
+   "ranks": null,
+   "spellIds": [
+    806631
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_plate_mechagnome_c_01shoulder",
+   "description": "Your Mechsuit will now increase your armor by an additional 50%."
+  },
+  "Defibrillate": {
+   "name": "Defibrillate",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803631,
+   "ranks": {
+    "1": 802175,
+    "2": 803627,
+    "3": 803628,
+    "4": 803629,
+    "5": 803630,
+    "6": 803631
+   },
+   "spellIds": [
+    802175,
+    803627,
+    803628,
+    803629,
+    803630,
+    803631
+   ],
+   "cost": 200,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Brings up to 5 dead allies within 15 yds back to life with 70 health and 135 mana.\n\nCannot be cast when in combat."
+  },
+  "Deploy Blast Mine": {
+   "name": "Deploy Blast Mine",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801718,
+   "ranks": {
+    "1": 801718
+   },
+   "spellIds": [
+    801718
+   ],
+   "cost": 90,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Place down a |cffffffffBlast Mine|r, lasting 1 min.\r\n\r\nWhen the mine is destroyed, or upon using |cffffffffRemote Detonation|r, up to 8 targets within 8 yds are blasted away and enemies take a minor amount of Fire damage."
+  },
+  "Discombobulate!": {
+   "name": "Discombobulate!",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807197,
+   "ranks": {
+    "1": 807197
+   },
+   "spellIds": [
+    807197
+   ],
+   "cost": 150,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Discombobulate an enemy, disorienting them for 4 sec.\r\n\r\nDamage dealt will end the effect."
+  },
+  "Dodge": {
+   "name": "Dodge",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 81,
+   "ranks": null,
+   "spellIds": [
+    81
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Drone Striker": {
+   "name": "Drone Striker",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707256,
+   "ranks": null,
+   "spellIds": [
+    707256
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_missilelarge_red",
+   "description": "Firepot Drone and Scrap Shot now deal 2% increased damage for each stack of Napalm on the enemy.Napalm (Damage)Fire Damage taken by you is increased and healing received reduced by -3% for 8 seconds. Stacks 10 times."
+  },
+  "Duobombers": {
+   "name": "Duobombers",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707258,
+   "ranks": null,
+   "spellIds": [
+    707258
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_eng_bombfire",
+   "description": "Build: Spider Bomb now creates an additional Spider Bomb that rushes towards your target."
+  },
+  "Efficiency": {
+   "name": "Efficiency",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705806,
+   "ranks": null,
+   "spellIds": [
+    705806
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_bountyhunting",
+   "description": "Reduces the mana cost of all spells and abilities by -10%."
+  },
+  "Electromagnetic Resistors": {
+   "name": "Electromagnetic Resistors",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560734,
+   "ranks": null,
+   "spellIds": [
+    560734
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_manaforgedbarrier_yellow",
+   "description": "Nanobots now grant a 30% chance to resist movement impairing effects for 15 seconds."
+  },
+  "Emergency Circumvented": {
+   "name": "Emergency Circumvented",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805303,
+   "ranks": null,
+   "spellIds": [
+    805303
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_ProtectionformNature",
+   "description": "Increases the critical strike chance of Emergency Heal by 15% and allows the periodic healing done by Med Pack to critically strike."
+  },
+  "Emergency Enhancer": {
+   "name": "Emergency Enhancer",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560787,
+   "ranks": null,
+   "spellIds": [
+    560787
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_Purge",
+   "description": "Zap! now causes your active Build abilities to zap the lowest health nearby ally, healing them for 490 + 90% healing."
+  },
+  "Emergency Heal": {
+   "name": "Emergency Heal",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802691,
+   "ranks": {
+    "1": 802684,
+    "2": 802685,
+    "3": 802686,
+    "4": 802687,
+    "5": 802688,
+    "6": 802689,
+    "7": 802690,
+    "8": 802691
+   },
+   "spellIds": [
+    802684,
+    802685,
+    802686,
+    802687,
+    802688,
+    802689,
+    802690,
+    802691
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Launch a quick healing stimshot at an ally, healing them for 70."
+  },
+  "Engine Augmentation": {
+   "name": "Engine Augmentation",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503569,
+   "ranks": null,
+   "spellIds": [
+    503569
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_eng_superchargedengine",
+   "description": "For 8 seconds after activating your Mechsuit, all damage dealt will now generate 3 Scrap."
+  },
+  "Enhanced Procedures": {
+   "name": "Enhanced Procedures",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 506819,
+   "ranks": null,
+   "spellIds": [
+    506819
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_firstaid_bandage2",
+   "description": "Increases the duration of Med Pack by 100% and it's healing by 75%."
+  },
+  "Epiphany!": {
+   "name": "Epiphany!",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560782,
+   "ranks": null,
+   "spellIds": [
+    560782
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_tech_robot_Border",
+   "description": "Casting Beacon abilities now reduces the cooldown of My Greatest Invention! by -20 sec."
+  },
+  "Eureka!": {
+   "name": "Eureka!",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503552,
+   "ranks": null,
+   "spellIds": [
+    503552
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_character_gnome_male",
+   "description": "Direct healing critical strikes now increase the healing done by your next Repair Shot or Emergency Heal by 30% for 10 seconds."
+  },
+  "Explosive Augmentation": {
+   "name": "Explosive Augmentation",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 653236,
+   "ranks": {
+    "1": 653236
+   },
+   "spellIds": [
+    653236
+   ],
+   "cost": 3700,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Add an |cffffffffExplosive Augmentation|r to your gun for 1 hour, causing your ranged attacks to explode on your target dealing 1 Fire damage to them and nearby enemies.\r\n\r\nCan only occur once per sec."
+  },
+  "Explosive Inventor": {
+   "name": "Explosive Inventor",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300636,
+   "ranks": null,
+   "spellIds": [
+    300636
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_eng_bombroot",
+   "description": "Spider Bomb Factory now also summons a Heavy Spider Bomb.\n\nHeavy Spider Bombs move slowly, and deal 1231 + 55% ranged AP Fire damage when they reach their target and slow their movement speed by -70% for 2 seconds."
+  },
+  "Explosive Personality": {
+   "name": "Explosive Personality",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704111,
+   "ranks": null,
+   "spellIds": [
+    704111
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_Engineerskill_35_Border",
+   "description": "Increases your ranged attack power by 50% of your Intellect."
+  },
+  "Explosives Expert": {
+   "name": "Explosives Expert",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706379,
+   "ranks": null,
+   "spellIds": [
+    706379
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_bomb_07",
+   "description": "Direct harmful ability critical strikes from you or your summons now restores 4% of your maximum mana."
+  },
+  "Field Medic": {
+   "name": "Field Medic",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560789,
+   "ranks": null,
+   "spellIds": [
+    560789
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_mechagonspidertank_junker",
+   "description": "Increases your and your summons critical strike chance by 5%."
+  },
+  "Fine Tuned": {
+   "name": "Fine Tuned",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705792,
+   "ranks": null,
+   "spellIds": [
+    705792
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_trinket6oog_handeye3",
+   "description": "Increases the critical strike and hit chance of you and your summons by 4%."
+  },
+  "Fine Tuning": {
+   "name": "Fine Tuning",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300877,
+   "ranks": null,
+   "spellIds": [
+    300877
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_mecha_spell_09_Border",
+   "description": "Increases critical strike chance of all party and raid members by 3%.\n\nDoes not stack with similar effects.\n\nIn addition, not critically healing now increases your critical strike chance by 1%, stacking 10 times, until your next effective critical heal."
+  },
+  "Flak Guns": {
+   "name": "Flak Guns",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520686,
+   "ranks": null,
+   "spellIds": [
+    520686
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_HolyBullet_Border",
+   "description": "Your Mechsuit: Combustion now has 10% increased critical strike chance and 15% increased critical damage."
+  },
+  "Flame Jets": {
+   "name": "Flame Jets",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504523,
+   "ranks": null,
+   "spellIds": [
+    504523
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_siege_engineer_purification_beam",
+   "description": "While inside your Mechsuit, damage dealt by your Scrap Shot and Makeshift Dynamite now applies Living Flame to the target.Living Flame (Damage)Deals 32 Fire Damage every 2 sec and increases the damage the target takes from your Mechsuit: Combustion by 10% for 4.5 seconds, stacking 5 times."
+  },
+  "Flamethrowing": {
+   "name": "Flamethrowing",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707237,
+   "ranks": null,
+   "spellIds": [
+    707237
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_SelfDestruct",
+   "description": "When you Bomb Toss, your Sentry Turret unleashes flames on your target, dealing 89+18+ranged AP*0.12+SPFI*0.4. Fire damage to enemies in a 30 yd line."
+  },
+  "Flexible Thinking": {
+   "name": "Flexible Thinking",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705825,
+   "ranks": null,
+   "spellIds": [
+    705825
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_engineering_leystone_buoy",
+   "description": "Increases Agility and Intellect by 4%."
+  },
+  "Freeze Ray": {
+   "name": "Freeze Ray",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 806157,
+   "ranks": {
+    "1": 806157
+   },
+   "spellIds": [
+    806157
+   ],
+   "cost": 12000,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Fire an icy ray at all enemies in a line, |cffffffffFreezing|r them in place for 40 sec (8 sec vs players). Damage dealt may end this effect."
+  },
+  "Frozen Bomb Launcher": {
+   "name": "Frozen Bomb Launcher",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707265,
+   "ranks": null,
+   "spellIds": [
+    707265
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_eng_bombicestun",
+   "description": "Damage dealt by your Sentry Turrets will now slow enemy movement speed by -15% for 10 seconds, stacking 3 times."
+  },
+  "Function Over Form": {
+   "name": "Function Over Form",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572538,
+   "ranks": null,
+   "spellIds": [
+    572538
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Devotion",
+   "description": "Increases the effectiveness of Aether Augmentation by 50%."
+  },
+  "Gazlowe's Wisdom": {
+   "name": "Gazlowe's Wisdom",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803074,
+   "ranks": null,
+   "spellIds": [
+    803074
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Goblin_01",
+   "description": "You now spawn 2 Shrapnel Mines under your target when Sticky Bomb explodes.\nShrapnel MineWhen you use Remote Detonation, deal 264 + 25% AP + 38.5% SP Physical damage to up to 5 enemies within 10 yds. The mine lasts 1 minute."
+  },
+  "Gear Grind": {
+   "name": "Gear Grind",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680975,
+   "ranks": null,
+   "spellIds": [
+    680975
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_misc_gear_05",
+   "description": "$a9"
+  },
+  "Goblin Depravity": {
+   "name": "Goblin Depravity",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806762,
+   "ranks": null,
+   "spellIds": [
+    806762
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mount_gyrocoptorelite",
+   "description": "Air Strike now drops Tear Gas, dealing 132 + 11% nature SP + 100% AP Nature damage every 2 sec for 12 seconds."
+  },
+  "Graftbolts": {
+   "name": "Graftbolts",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560785,
+   "ranks": null,
+   "spellIds": [
+    560785
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_engineering_90_toolbox_green",
+   "description": "Level 40 Passive\nEffective healing done now has a 25% chance to grant you GraftboltsGraftboltsRestores 15% maximum mana to your pet and increases the damage and healing done by your summons by a percentage equal to 10% of your healing spell power for 6 seconds.."
+  },
+  "Greater Mana Module": {
+   "name": "Greater Mana Module",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803665,
+   "ranks": {
+    "1": 803665
+   },
+   "spellIds": [
+    803665
+   ],
+   "cost": 51000,
+   "levelReq": 58,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Empower nearby party and raid members with a mana module, restoring 33 mana every 5 seconds for 30 min.\r\n\r\nOnly one |cffffffffModule|r per Tinker can be active."
+  },
+  "Greater Power Module": {
+   "name": "Greater Power Module",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680315,
+   "ranks": {
+    "1": 680315
+   },
+   "spellIds": [
+    680315
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Activates power module on raid and party members, increasing attack power by 232 for 30 min.\r\n\r\nOnly one |cffffffffModule|r per Tinker can be active."
+  },
+  "Grenadier": {
+   "name": "Grenadier",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707240,
+   "ranks": null,
+   "spellIds": [
+    707240
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_mohawkgrenade",
+   "description": "When you reach 5 stacks of Napalm on a target you refresh 1 charge of Build: Firepot Drone."
+  },
+  "Hacking the Enemy": {
+   "name": "Hacking the Enemy",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705796,
+   "ranks": null,
+   "spellIds": [
+    705796
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_engineerskill17_Border",
+   "description": "Your Piercing Augmentation now ignores an additional 10% of your target's armor and grants you -10 increased spell penetration."
+  },
+  "Hasty Tech": {
+   "name": "Hasty Tech",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705805,
+   "ranks": null,
+   "spellIds": [
+    705805
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_food_lunchbox_fel",
+   "description": "Reduces the cast time of Scrap Shot and Repair Shot by -15%."
+  },
+  "Haywired State!": {
+   "name": "Haywired State!",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707395,
+   "ranks": null,
+   "spellIds": [
+    707395
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_engineerskill21_Border",
+   "description": "Casting Mechsuit abilities now causes your pet to enter a haywired state for 6 seconds.Haywired State!Auto attacks now zap up to 10 nearby enemies for 159 + 35% AP Stormstrike Damage and damaged enemies take 20% increased damage from your summons."
+  },
+  "Healing Radiator": {
+   "name": "Healing Radiator",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705846,
+   "ranks": null,
+   "spellIds": [
+    705846
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_monk_chiexplosion",
+   "description": "Periodic healing done by Nanobot Reconstruction now restores 27 + 4.03% healing health to 5 allied players within 10 yds of the affected target."
+  },
+  "Hyperblast Barrage": {
+   "name": "Hyperblast Barrage",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500249,
+   "ranks": null,
+   "spellIds": [
+    500249
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Weapon_Rifle_20",
+   "description": "Unleash a barrage of shrapnel, dealing 831 + 36% ranged AP + 55% fire SP Fire damage to enemies in a line, applying a lesser Sticky Bomb to each target struck that deals 297 + 10% fire SP + 50% AP Fire damage after 3 sec.\n\nAfter 3 seconds, your active Sentry Turret will also fire a Hyperblast Barrage."
+  },
+  "I Need More Explosions!": {
+   "name": "I Need More Explosions!",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503550,
+   "ranks": null,
+   "spellIds": [
+    503550
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_tech_bombs_Border",
+   "description": "Increases the damage of Sticky Bomb Explosions by 15%."
+  },
+  "I'm The Creator Now": {
+   "name": "I'm The Creator Now",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503534,
+   "ranks": null,
+   "spellIds": [
+    503534
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_tech_roboticcalm_Border",
+   "description": "Damage dealt by your summons now has a 40% chance to increase your attack power and spell power by 9 for 30 seconds, stacking 3 times."
+  },
+  "Improved Emergency Heal": {
+   "name": "Improved Emergency Heal",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504918,
+   "ranks": null,
+   "spellIds": [
+    504918
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_SealOfSacrifice",
+   "description": "Increases the healing and reduces the mana cost of Emergency Heal by -20%."
+  },
+  "Improved Graftbolts": {
+   "name": "Improved Graftbolts",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807748,
+   "ranks": null,
+   "spellIds": [
+    807748
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\INV_Gizmo_03",
+   "description": "Level 50 Passive\nYour Graftbolts now stacks 2 additional times."
+  },
+  "Incendiary Bullets": {
+   "name": "Incendiary Bullets",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707269,
+   "ranks": null,
+   "spellIds": [
+    707269
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_holybullet_Border",
+   "description": "Increases the damage of Scrap Shot by 15% and increases your chance to hit by 2%."
+  },
+  "Innate Brilliance": {
+   "name": "Innate Brilliance",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572545,
+   "ranks": null,
+   "spellIds": [
+    572545
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_monk_forcesphere",
+   "description": "While Aether Augmentation is active, every 4th Scrap Shot now grants you Innate Brilliance.Innate Brilliance (Buff)Your next Scrap Shot has 5 yds increased range, deals 15% increased damage, and drains 125 + 10% ranged AP of your target's mana. Lasts 10 seconds."
+  },
+  "Inventor's Tool Belt": {
+   "name": "Inventor's Tool Belt",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560742,
+   "ranks": null,
+   "spellIds": [
+    560742
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_belt_83",
+   "description": "Increases your and your pet's Intellect by 10% and you are both now unable to miss your attacks."
+  },
+  "J27 Upgrade": {
+   "name": "J27 Upgrade",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301322,
+   "ranks": null,
+   "spellIds": [
+    301322
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_vwmechanostrider_blue",
+   "description": "Reduces the mana cost of your Nanobots by -10% and they now last 10 additional sec."
+  },
+  "Junker": {
+   "name": "Junker",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705786,
+   "ranks": null,
+   "spellIds": [
+    705786
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_dungeon_blackwingdescent_darkironcouncil",
+   "description": "Casting Spanner Smash and Scrap Shot now increases your pet's attack power by 5% for 15 seconds, stacking 2 times."
+  },
+  "Junkyard Loiter": {
+   "name": "Junkyard Loiter",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706680,
+   "ranks": null,
+   "spellIds": [
+    706680
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_mechagon_junkyardtinkeringcrafting",
+   "description": "When you deal damage with Mechsuit: Laser Beam or Mechsuit: Combustion you now launch a Lesser Sticky Bomb on each target struck.Lesser Sticky BombThrows a bomb that sticks to the enemy for 3 sec.\n\nAt the end of the duration the bomb will explode, dealing 17 + 5% fire SP + 2.5% AP Fire Damage to the target."
+  },
+  "Kinetic Shield": {
+   "name": "Kinetic Shield",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806224,
+   "ranks": null,
+   "spellIds": [
+    806224
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\garrison_bluearmorupgrade",
+   "description": "Create magnetic shields of kinetic energy on an ally target for 8 seconds, reducing damage taken by -40% and making them immune to stun effects.\n\nUsable while stunned."
+  },
+  "Machine Synergy": {
+   "name": "Machine Synergy",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707277,
+   "ranks": null,
+   "spellIds": [
+    707277
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_tech_steammachine_Border",
+   "description": "Casting Scrap Shot now adds a stack of Machine Synergy to your active pet and Sentry Turret.Machine SynergyIncreases damage dealt by 5% and haste by 3%, stacking 3 times, for 6 seconds."
+  },
+  "Macro Designer": {
+   "name": "Macro Designer",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 505230,
+   "ranks": null,
+   "spellIds": [
+    505230
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_atom_Border",
+   "description": "Increases the duration of your Beacons by 5 sec and Med Pack by 3 sec."
+  },
+  "Macro-Gravity Zone": {
+   "name": "Macro-Gravity Zone",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707104,
+   "ranks": null,
+   "spellIds": [
+    707104
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_deathknight_antimagiczone",
+   "description": "Create a macro-gravity zone at target location for 8 seconds.\n\nEnemies within the zone have their movement speed slowed by -50% and gain 1 stack of Macro-Gravity every 1 sec.Macro-GravityAt 6 stacks, the affected enemy will be stunned for 6 seconds."
+  },
+  "Magic Augmentation": {
+   "name": "Magic Augmentation",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 653242,
+   "ranks": {
+    "1": 653242
+   },
+   "spellIds": [
+    653242
+   ],
+   "cost": 70,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Add a |cffffffffMagic Augmentation|r to your gun for 1 hour, causing an additional 2 Magic damage with each shot.\r\n\r\nIncreases the range of your ranged abilities by 5 yds."
+  },
+  "Magic Resistance": {
+   "name": "Magic Resistance",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 822,
+   "ranks": null,
+   "spellIds": [
+    822
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Makeshift Dynamite": {
+   "name": "Makeshift Dynamite",
+   "spec": "Mechanics",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572888,
+   "ranks": {
+    "2": 504589,
+    "3": 504590,
+    "4": 504591,
+    "5": 504592,
+    "6": 504593,
+    "7": 572888
+   },
+   "spellIds": [
+    504527,
+    504589,
+    504590,
+    504591,
+    504592,
+    504593,
+    572888
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_Engineerskill_49_Border",
+   "description": "|cffffffff2 Charges, 8 sec recharge|R\r\n|cffc7c7c7Generates 10 Scrap|r\r\nLoad dynamite into your gun and launch it at an enemy, dealing 100% Ranged Weapon Damage plus 20 as Fire damage.\r\n\r\nUsable while moving."
+  },
+  "Mana Capacitors": {
+   "name": "Mana Capacitors",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 506818,
+   "ranks": null,
+   "spellIds": [
+    506818
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_siege_engineer_pattern_recognition",
+   "description": "Reduces the cost of Overcharge by -15% and reduces its cooldown by -10%."
+  },
+  "Mana Module": {
+   "name": "Mana Module",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803663,
+   "ranks": {
+    "1": 803658,
+    "2": 803659,
+    "3": 803660,
+    "4": 803661,
+    "5": 803662,
+    "6": 803663
+   },
+   "spellIds": [
+    803658,
+    803659,
+    803660,
+    803661,
+    803662,
+    803663
+   ],
+   "cost": 700,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Empower an ally with a mana module, restoring 10 mana every 5 seconds for 30 min.\r\n\r\nOnly one |cffffffffModule|r per Tinker can be active."
+  },
+  "Maniacal": {
+   "name": "Maniacal",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706375,
+   "ranks": null,
+   "spellIds": [
+    706375
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_offhand_1h_artifactdoomhammer_d_04",
+   "description": "Reduces the cooldown of Sticky Bomb and Deploy Blast Mine by -2 sec."
+  },
+  "Master Builder": {
+   "name": "Master Builder",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807966,
+   "ranks": null,
+   "spellIds": [
+    704475,
+    807966
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Frost_FrostWard",
+   "description": "Reduces the mana cost of all Build abilities by -25%."
+  },
+  "Master Technician": {
+   "name": "Master Technician",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520022,
+   "ranks": null,
+   "spellIds": [
+    520022
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_arcanebeam_Border",
+   "description": "Scrap Shot and Mechsuit abilities now grants your Sentry Turret a stack of Master Technician, stacking 10 times.\n\nAt 10 stacks, your Sentry Turret will unleash a beam dealing 725 + 75% fire SP + 40% AP Fire damage in a 25 yd line, piercing invulnerabilities."
+  },
+  "Mechanical Enhancements": {
+   "name": "Mechanical Enhancements",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 506632,
+   "ranks": null,
+   "spellIds": [
+    506632,
+    706632
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_plate_mechagnome_c_01chest",
+   "description": "Reduces your damage taken from bleed effects by -10% and the duration of bleed effects on you by -20%."
+  },
+  "Mechanical Extender": {
+   "name": "Mechanical Extender",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681003,
+   "ranks": null,
+   "spellIds": [
+    681003
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_mechanicalhandpet",
+   "description": "Casting Scrap Shot and Mechsuit abilities now increases the chance to trigger Overload by 3% for 10 seconds, stacking 10 times.\n\nWhen Overload triggers, all stacks are consumed."
+  },
+  "Mechanical Synergy": {
+   "name": "Mechanical Synergy",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680200,
+   "ranks": null,
+   "spellIds": [
+    680200
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_eng_mechanicalboomerang",
+   "description": "Increases the damage of Sticky Bomb Explosion and Mechsuit abilities by 15%."
+  },
+  "Mechanosoldier": {
+   "name": "Mechanosoldier",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705827,
+   "ranks": null,
+   "spellIds": [
+    705827
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_EngGizmos_01",
+   "description": "Increases the damage reduced by Kinetic Shield by -10% and its duration by 2 sec."
+  },
+  "Mechaplating": {
+   "name": "Mechaplating",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705831,
+   "ranks": null,
+   "spellIds": [
+    705831
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_wartornscrap_plate",
+   "description": "Whenever your summons critically strike, reduce your and your pet's damage taken by -2% for 15 seconds, stacking 4 times."
+  },
+  "Mechsuit: Activate Jets": {
+   "name": "Mechsuit: Activate Jets",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801389,
+   "ranks": null,
+   "spellIds": [
+    801389
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_engineerskill10_Border",
+   "description": "Launch forward and slow your falling speed. \n\nWhen you hit the ground you blast nearby enemies for 275 Fire damage based on time in the air."
+  },
+  "Mechsuit: Combustion": {
+   "name": "Mechsuit: Combustion",
+   "spec": "Mechanics",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 803444,
+   "ranks": {
+    "2": 803439,
+    "3": 803440,
+    "4": 803441,
+    "5": 803442,
+    "6": 803443,
+    "7": 803444
+   },
+   "spellIds": [
+    801387,
+    803439,
+    803440,
+    803441,
+    803442,
+    803443,
+    803444
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_siege_engineer_death_from_above",
+   "description": "Launch a massive ball of fire at an enemy that also damages nearby enemies, dealing 91 Fire damage.\r\n\r\nUsable while moving.\r\n\r\n@ext:Shares a cooldown with other |cffffffffMechsuit|r abilities.:ext@"
+  },
+  "Mechsuit: Laser Beam": {
+   "name": "Mechsuit: Laser Beam",
+   "spec": "Mechanics",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 807291,
+   "ranks": {
+    "2": 807287,
+    "3": 807288,
+    "4": 807289,
+    "5": 807290,
+    "6": 807291
+   },
+   "spellIds": [
+    805372,
+    807287,
+    807288,
+    807289,
+    807290,
+    807291
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_siege_engineer_superheated",
+   "description": "Blast an enemy with a laser, dealing 100% Ranged Weapon Damage plus 39 as Fire Damage and forcing your pet to charge to the enemy for 24 Physical Damage.\r\n\r\n@ext:Shares a cooldown with other |cffffffffMechsuit|r abilities.:ext@"
+  },
+  "Med Pack": {
+   "name": "Med Pack",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502536,
+   "ranks": {
+    "2": 502533,
+    "3": 502534,
+    "4": 502535,
+    "5": 502536
+   },
+   "spellIds": [
+    502533,
+    502534,
+    502535,
+    502536,
+    800347
+   ],
+   "cost": 5200,
+   "levelReq": 26,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_first_aid_70_medicalkit",
+   "description": "Toss a med pack to an ally, healing for 354 over 6 sec and cleanses all bleed, poison and disease effects."
+  },
+  "Medical Degree": {
+   "name": "Medical Degree",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 505327,
+   "ranks": null,
+   "spellIds": [
+    505327
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_scroll_b_01_Border",
+   "description": "Increases the cooldown of Med Pack by 30 sec, but allows it to affect up to 4 additional targets around your ally."
+  },
+  "Mega Scope": {
+   "name": "Mega Scope",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707252,
+   "ranks": null,
+   "spellIds": [
+    707252
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_scopeb",
+   "description": "Increases the range of Rocket Launcher by 10 yds."
+  },
+  "Modulator": {
+   "name": "Modulator",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707832,
+   "ranks": null,
+   "spellIds": [
+    707832
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_Engineerskill_21_Border",
+   "description": "Increases the effectiveness of your Modules by 20%."
+  },
+  "My Greatest Invention!": {
+   "name": "My Greatest Invention!",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560744,
+   "ranks": null,
+   "spellIds": [
+    560744
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_alliedrace_mechagnome",
+   "description": "Show off your Greatest Invention, healing party and raid members in a 30 yd radius for 823 + 65% healing every 2 sec for 9 seconds."
+  },
+  "Nano-Repair Tech": {
+   "name": "Nano-Repair Tech",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681358,
+   "ranks": null,
+   "spellIds": [
+    681358
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_desecrated_platechest",
+   "description": "You and your pet now regenerate 3% of your maximum health every 8 sec."
+  },
+  "Nanobot Cleanser": {
+   "name": "Nanobot Cleanser",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 502537,
+   "ranks": null,
+   "spellIds": [
+    502537
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Dizzy",
+   "description": "Send Nanobots to an ally removing 1 poison and disease effect every 3 sec for up to 15 seconds.\n\nNanobot Cleanser can only be sent to 1 target at a time and can't be dispelled."
+  },
+  "Nanobot Recharger": {
+   "name": "Nanobot Recharger",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803552,
+   "ranks": {
+    "1": 803552
+   },
+   "spellIds": [
+    803552
+   ],
+   "cost": 2500,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Send |cffffffffNanobots|r to an ally, regenerating 13 mana every 5 sec for 1 min.\n\n|cffffffffNanobot Recharger|r can only be sent to 1 target at a time and cannot be dispelled."
+  },
+  "Nanobot Reconstruction": {
+   "name": "Nanobot Reconstruction",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502561,
+   "ranks": {
+    "2": 502552,
+    "3": 502553,
+    "4": 502554,
+    "5": 502555,
+    "6": 502556,
+    "7": 502557,
+    "8": 502558,
+    "9": 502559,
+    "10": 502560,
+    "11": 502561
+   },
+   "spellIds": [
+    502552,
+    502553,
+    502554,
+    502555,
+    502556,
+    502557,
+    502558,
+    502559,
+    502560,
+    502561,
+    801809
+   ],
+   "cost": 700,
+   "levelReq": 16,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_shaman_repulsiontotem",
+   "description": "Send |cffffffffNanobots|r to an ally, healing them for 600 over 1 min.\r\n\r\n|cffffffffNanobot Reconstruction|r can only be sent to 1 target at a time and cannot be dispelled."
+  },
+  "Nanobot Swarm": {
+   "name": "Nanobot Swarm",
+   "spec": "Invention",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 803449,
+   "ranks": {
+    "2": 803445,
+    "3": 803446,
+    "4": 803447,
+    "5": 803448,
+    "6": 803449
+   },
+   "spellIds": [
+    801709,
+    803445,
+    803446,
+    803447,
+    803448,
+    803449
+   ],
+   "cost": 8000,
+   "levelReq": 32,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_eng_miniaturizedplasmashield",
+   "description": "Send |cffffffffNanobots|r to an ally, dealing 19 damage to nearby enemies every 4 sec for 1 min. All threat generated by you is redirected to the target.\r\n\r\n|cffffffffNanobot Swarm|r can only be sent to 1 target at time and cannot be dispelled."
+  },
+  "Napalm": {
+   "name": "Napalm",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92138,
+   "ranks": null,
+   "spellIds": [
+    92138
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_eng_bombfire",
+   "description": "Level 10 Passive\nDealing direct Fire damage now applies Napalm to your target.Napalm (Damage)Fire Damage taken by you is increased and healing received reduced by -3% for 8 seconds. Stacks 10 times."
+  },
+  "Offensive Utility": {
+   "name": "Offensive Utility",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807388,
+   "ranks": null,
+   "spellIds": [
+    807388
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_alliedrace_mechagnome",
+   "description": "While in your Mechsuit, casting Sticky Bomb reduces the channel time of your next Gatling Gun within 5 seconds by -30%."
+  },
+  "Over-Repaired": {
+   "name": "Over-Repaired",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807498,
+   "ranks": null,
+   "spellIds": [
+    807498
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_repair",
+   "description": "Increases the healing done by Repair Shot by 15%."
+  },
+  "Overclocked Machine": {
+   "name": "Overclocked Machine",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806757,
+   "ranks": null,
+   "spellIds": [
+    806757
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_tech_steammachine_Border",
+   "description": "Overclock your pet for for 20 seconds, increasing its damage dealt by 20% and allowing it's attacks to trigger Hardwired Haymaker on the target enemy. \n\nAdditionally, your pet will trigger Overclocked Smash every 5 sec."
+  },
+  "Overload": {
+   "name": "Overload",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707403,
+   "ranks": null,
+   "spellIds": [
+    707403
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_T_Nhance_RPG_Icons_HolyBeam_Border",
+   "description": "Damage dealt by Mechsuit: Combustion and Mechsuit: Laser Beam now have a 40% chance to strike 2 additional times for 30% of the damage dealt."
+  },
+  "Parachute Pack": {
+   "name": "Parachute Pack",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804690,
+   "ranks": {
+    "1": 804690
+   },
+   "spellIds": [
+    804690
+   ],
+   "cost": 1000,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Equip party and raid members within 15 yds with a |cFFFFFFFFParachute|r for 1 min, automatically deploying and slowing their fall speed."
+  },
+  "Piercing Augmentation": {
+   "name": "Piercing Augmentation",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 653234,
+   "ranks": {
+    "1": 653234
+   },
+   "spellIds": [
+    653234
+   ],
+   "cost": 1000,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Add a |cffffffffPiercing Augmentation|r to your gun for 1 hour, causing an additional 3 Physical damage with each shot.\r\n\r\nAllows your attacks to ignore 25% of your target's armor and grants you 20 spell penetration."
+  },
+  "Power Module": {
+   "name": "Power Module",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 707688,
+   "ranks": {
+    "1": 706742,
+    "2": 707346,
+    "3": 707347,
+    "4": 707348,
+    "5": 707349,
+    "6": 707350,
+    "7": 707688
+   },
+   "spellIds": [
+    706742,
+    707346,
+    707347,
+    707348,
+    707349,
+    707350,
+    707688
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Activates power module on an allied player, increasing attack power by 19 for 30 min.\r\n\r\nOnly one |cffffffffModule|r per Tinker can be active."
+  },
+  "Rapid Fire Healing": {
+   "name": "Rapid Fire Healing",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705803,
+   "ranks": null,
+   "spellIds": [
+    705803
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_IngenieurBelt",
+   "description": "Casting Repair Shot or Emergency Heal now has a 15% chance to refresh a charge of Beacons."
+  },
+  "Refined Gunpowder": {
+   "name": "Refined Gunpowder",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705781,
+   "ranks": null,
+   "spellIds": [
+    705781
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_ammo_gunpowder_02",
+   "description": "Increases your haste and your damage dealt against Mechanical creatures by 3%."
+  },
+  "Regeneration Enhancement": {
+   "name": "Regeneration Enhancement",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807635,
+   "ranks": null,
+   "spellIds": [
+    807635
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_mechagnome_powercell_broken",
+   "description": "When you enter your Mechsuit, it now refunds 20% of your base mana, repeating every 20 sec while inside."
+  },
+  "Rejuvenating Gadget": {
+   "name": "Rejuvenating Gadget",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805306,
+   "ranks": null,
+   "spellIds": [
+    805306
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_enggizmos_21",
+   "description": "Critical strikes with Zap! now apply Rejuvenating Gas to up to 12 allies within 8 yards of your target that restores 15% of the value of the shot as health every 2 sec for 10 seconds."
+  },
+  "Repair Shot": {
+   "name": "Repair Shot",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 574152,
+   "ranks": {
+    "1": 801707,
+    "2": 502573,
+    "3": 502574,
+    "4": 502575,
+    "5": 502576,
+    "6": 502577,
+    "7": 502578,
+    "8": 502579,
+    "9": 502580,
+    "10": 502581,
+    "11": 574152
+   },
+   "spellIds": [
+    502573,
+    502574,
+    502575,
+    502576,
+    502577,
+    502578,
+    502579,
+    502580,
+    502581,
+    574152,
+    801707
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Fire a healing stimshot at an ally, healing them for 38."
+  },
+  "Resilient Constitution": {
+   "name": "Resilient Constitution",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 552011,
+   "ranks": null,
+   "spellIds": [
+    552011
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Resourceful Tech": {
+   "name": "Resourceful Tech",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560791,
+   "ranks": null,
+   "spellIds": [
+    560791
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Gizmo_FelIronBomb",
+   "description": "Your Zap! is now guaranteed to critically strike allies affected by Nanobots."
+  },
+  "Rockadier": {
+   "name": "Rockadier",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801827,
+   "ranks": null,
+   "spellIds": [
+    801827
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mount_rocketmount4",
+   "description": "Empowers the next 6 Scrap Shots or Rocket Launchers within 30 seconds deal additional Fire damage equal to 100% of the damage dealt to up to 10 enemies around the target."
+  },
+  "Rocket Barrage": {
+   "name": "Rocket Barrage",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805314,
+   "ranks": null,
+   "spellIds": [
+    805314
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mount_rocketmount3",
+   "description": "Increases the amount of stacks of Tracer Augmentation by 5, and its duration by 7 sec, and causes damage dealt by Bomb Toss on enemies with 10 stacks to launch a Rocket Barrage at their location.Rocket Barrage (Damage)Deals 1290 + 17.5% AP + 11% fire SP Fire Damage to nearby enemies after 5 seconds."
+  },
+  "Rocket Bombardment": {
+   "name": "Rocket Bombardment",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706695,
+   "ranks": null,
+   "spellIds": [
+    706695
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_engineerskill25_Border",
+   "description": "Casting Sticky Bomb now causes your Sentry Turret to fire a rocket cluster on its next attack, causing 126 Fire damage to enemies within 5 yds of the target."
+  },
+  "Rocket Boots": {
+   "name": "Rocket Boots",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500241,
+   "ranks": null,
+   "spellIds": [
+    500241
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Gizmo_RocketBootExtreme",
+   "description": "3 Charges, 30 sec recharge\nActivate your Rocket Boots, dispelling root effects and launching you forward."
+  },
+  "Rocket Engineering": {
+   "name": "Rocket Engineering",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573247,
+   "ranks": null,
+   "spellIds": [
+    573247
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_blackhand_slagbombs",
+   "description": "Direct harmful ability critical strikes now apply an additional stack of Tracer Augmentation to the target while active on the enemy."
+  },
+  "Rocket Launcher": {
+   "name": "Rocket Launcher",
+   "spec": "Demolition",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 573268,
+   "ranks": {
+    "2": 500647,
+    "3": 502521,
+    "4": 502522,
+    "5": 502523,
+    "6": 573268
+   },
+   "spellIds": [
+    500235,
+    500647,
+    502521,
+    502522,
+    502523,
+    573268
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_racial_rocketbarrage",
+   "description": "Fire a powerful rocket at an enemy that deals 174 Fire damage."
+  },
+  "Rocket Pack": {
+   "name": "Rocket Pack",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705820,
+   "ranks": null,
+   "spellIds": [
+    705820
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_backpack_wrathion_c_01",
+   "description": "Fire critical strikes now reduce the remaining cooldown of Rockadier by -3 sec."
+  },
+  "Rocket Turrets": {
+   "name": "Rocket Turrets",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707259,
+   "ranks": null,
+   "spellIds": [
+    707259
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_tech_rocketdouble_Border",
+   "description": "Allows Machine Synergy to stack 2 additional times and using Rocket Launcher now causes your Sentry Turret to also cast Rocket Launcher.Machine SynergyIncreases damage dealt by 5% and haste by 3%, stacking 3 times, for 6 seconds."
+  },
+  "Scientific Nature": {
+   "name": "Scientific Nature",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705802,
+   "ranks": null,
+   "spellIds": [
+    705802
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\nhi_chaoshealing_Border",
+   "description": "Level 20 Passive\nIncreases your healing power by 20% of your Intellect and your critical strike rating by 15% of your Intellect."
+  },
+  "Scrap Shot": {
+   "name": "Scrap Shot",
+   "spec": "Demolition",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 500561,
+   "ranks": {
+    "2": 500556,
+    "3": 500557,
+    "4": 500558,
+    "5": 500559,
+    "6": 500560,
+    "7": 500561
+   },
+   "spellIds": [
+    500549,
+    500556,
+    500557,
+    500558,
+    500559,
+    500560,
+    500561
+   ],
+   "cost": 200,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Shoot an enemy with scrap debris, dealing 100% Ranged Weapon Damage plus 14.\r\n"
+  },
+  "Scrapper": {
+   "name": "Scrapper",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 525039,
+   "ranks": null,
+   "spellIds": [
+    525039
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_engineerskill32_Border",
+   "description": "Search and rummage through nearby debris, gaining 10 Scrap and 25 mana every 1 sec for 5 seconds.\n\nNot usable in combat."
+  },
+  "Scrapshielding": {
+   "name": "Scrapshielding",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806627,
+   "ranks": null,
+   "spellIds": [
+    806627
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_mecha_spell_02_Border",
+   "description": "Your critical strikes now grant you a shield that absorbs 177 + 15% AP + 60% SP damage."
+  },
+  "Self-Sustaining Technology": {
+   "name": "Self-Sustaining Technology",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705817,
+   "ranks": null,
+   "spellIds": [
+    705817
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_engineering_gunpack",
+   "description": "Damage or healing done by your pet or summons now heals you equal to 15% of the value. \n\nIn addition, damage or healing done by you now restores health and mana to your pet equal to 15% of the value. \n\nEach of these effects can only occur once per sec."
+  },
+  "Short Fuse": {
+   "name": "Short Fuse",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707246,
+   "ranks": null,
+   "spellIds": [
+    707246
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_boss_siegecrafter_blackfuse",
+   "description": "Sparked and Ready now also increases the critical strike chance of Rocket Launcher by 20%."
+  },
+  "Slam the Cogs!": {
+   "name": "Slam the Cogs!",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520453,
+   "ranks": null,
+   "spellIds": [
+    520453
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_engineering_autohammer",
+   "description": "Increases the damage dealt by you and your summons by 4%."
+  },
+  "Spanner Smash": {
+   "name": "Spanner Smash",
+   "spec": "Mechanics",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 805656,
+   "ranks": {
+    "2": 805651,
+    "3": 805652,
+    "4": 805653,
+    "5": 805654,
+    "6": 805655,
+    "7": 805656
+   },
+   "spellIds": [
+    805351,
+    805651,
+    805652,
+    805653,
+    805654,
+    805655,
+    805656
+   ],
+   "cost": 300,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Smash an enemy with your spanner, dealing 110% Weapon Damage plus 22.\r\n\r\nGuaranteed to critically strike against Mechanicals."
+  },
+  "Sparked and Ready!": {
+   "name": "Sparked and Ready!",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705815,
+   "ranks": null,
+   "spellIds": [
+    705815
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\nhi_tech_rocket_Border",
+   "description": "Level 20 Passive\nFire damage dealt has a 5% chance to grant you Sparked and Ready!.Sparked and Ready!Causes your next Rocket Launcher, within 10 seconds, to be instant cast and deal 20% increased damage."
+  },
+  "Sprocket Loaded": {
+   "name": "Sprocket Loaded",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807500,
+   "ranks": null,
+   "spellIds": [
+    807500
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\INV_Ascend_RpgLoot_167",
+   "description": "Casting Makeshift Dynamite now resets the cooldown of your Mechsuit abilities."
+  },
+  "Sticky Bomb": {
+   "name": "Sticky Bomb",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 502564,
+   "ranks": {
+    "1": 500232,
+    "2": 502512,
+    "3": 502513,
+    "4": 502514,
+    "5": 502515,
+    "6": 502516,
+    "7": 502517,
+    "8": 502564
+   },
+   "spellIds": [
+    500232,
+    502512,
+    502513,
+    502514,
+    502515,
+    502516,
+    502517,
+    502564
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "\r\nThrow a bomb that sticks to the enemy for 5 sec.\r\n\r\nAt the end of the duration the bomb will explode, dealing 20 Fire damage to the target and 4 enemies within 8 yds of the target.\r\n\r\nCan target corpses."
+  },
+  "Stim Augmentation": {
+   "name": "Stim Augmentation",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 653239,
+   "ranks": null,
+   "spellIds": [
+    653239
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_engineering_reavesmodule",
+   "description": "Add a Stim Augmentation to your gun for 1 hour, causing your direct healing abilities to heal up to 3 nearby friendly players for an additional 20% of the amount healed."
+  },
+  "Stim Pack": {
+   "name": "Stim Pack",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807531,
+   "ranks": null,
+   "spellIds": [
+    807531
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_jewelry_mech_ring_green",
+   "description": "Effective healing with Stim Augmentation now reduces the cooldown of Med Pack by -3 sec."
+  },
+  "Stim Shots": {
+   "name": "Stim Shots",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 808009,
+   "ranks": null,
+   "spellIds": [
+    808009
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_SoothingKiss",
+   "description": "Your Stim Augmentation now heals for an additional 10% of the amount healed."
+  },
+  "Strength Bionics": {
+   "name": "Strength Bionics",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 510176,
+   "ranks": {
+    "1": 510176
+   },
+   "spellIds": [
+    510176
+   ],
+   "cost": 51000,
+   "levelReq": 56,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Amplifies magic used against the targeted party member, increasing damage taken from spells by up to 75 and healing spells by up to 80.  Lasts 10 min."
+  },
+  "Surprise Launch!": {
+   "name": "Surprise Launch!",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707244,
+   "ranks": null,
+   "spellIds": [
+    707244
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Hos_lunar_rocket",
+   "description": "When Rocket Launcher is used on enemies affected by Sticky Bomb it is now guaranteed to critically strike."
+  },
+  "Tank Buster": {
+   "name": "Tank Buster",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707254,
+   "ranks": null,
+   "spellIds": [
+    707254
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_SealOfFire",
+   "description": "Your Scrap Shot now ignores 25% of the target's Armor when damaging Burning targets."
+  },
+  "Target Acquired": {
+   "name": "Target Acquired",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707262,
+   "ranks": null,
+   "spellIds": [
+    707262
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_siege_engineer_superheated",
+   "description": "Your Sticky Bomb Explosions and Spider Bomb now deal 30% increased damage when it strikes only 1 target."
+  },
+  "Technician": {
+   "name": "Technician",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560735,
+   "ranks": null,
+   "spellIds": [
+    560735
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_enggizmos_30",
+   "description": "Reduces spell pushback suffered from damaging attacks by 35% and increases your critical healing by 10%."
+  },
+  "The BIG Guns!": {
+   "name": "The BIG Guns!",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560593,
+   "ranks": null,
+   "spellIds": [
+    560593
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_vehicle_siegeenginecannon",
+   "description": "Increases the attack power of all party and raid members 5%. Does not stack with similar effects.\n\nIn addition, increases your ranged attack power by 3%."
+  },
+  "Tracer Augmentation": {
+   "name": "Tracer Augmentation",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 653245,
+   "ranks": null,
+   "spellIds": [
+    653245
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_engineerskill46_Border",
+   "description": "Add a Tracer Augmentation to your gun for 1 hour, causing your ranged attacks to mark enemies for 5 seconds, stacking 5 times. After the duration they explode for 80 + 8% ranged AP + 15% fire SP Fire damage, increased based on stacks.\n\nMarked enemies are prevented from entering stealth or invisibility for 20 seconds."
+  },
+  "Trust the Science!": {
+   "name": "Trust the Science!",
+   "spec": "Invention",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300653,
+   "ranks": null,
+   "spellIds": [
+    300653
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nature_lightningbolt",
+   "description": "Reduces the cooldown of Zap! by -5 sec."
+  },
+  "Turbo Guns": {
+   "name": "Turbo Guns",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520809,
+   "ranks": null,
+   "spellIds": [
+    520809
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_FireBolt",
+   "description": "Reduces the cast time of your Mechsuit: Combustion by 0.25 sec and its damage is increased by 20%."
+  },
+  "Turbo Upgrade!": {
+   "name": "Turbo Upgrade!",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707115,
+   "ranks": null,
+   "spellIds": [
+    707115
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\uico_mecha_spell_03_Border",
+   "description": "Level 40 Passive\nIncreases the effectiveness of your Mechsuit by 100%."
+  },
+  "Turret Upgrade Z-15": {
+   "name": "Turret Upgrade Z-15",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524979,
+   "ranks": null,
+   "spellIds": [
+    524979
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_robotpet",
+   "description": "Damage dealt by Sentry Turrets now has a 30% chance to cause 47 + 20% AP additional Nature damage and increase critical strike chance of the turret by 1%, stacking 5 times, for 8 seconds."
+  },
+  "Upgrade!": {
+   "name": "Upgrade!",
+   "spec": "Mechanics",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800349,
+   "ranks": null,
+   "spellIds": [
+    800349
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\garrison_upgrade",
+   "description": "Upgrade nearby Sentry Turrets to a Molten Grenade Turret for 1 minute.Molten Grenade TurretUpgrades the Sentry Turret to fire grenades, increasing its attack speed significantly and causing it to deal 133 Fire Damage in an 8 yd radius, plus an additional 95 + 15% fire SP + 8.5% AP Fire Damage over 1.5 seconds."
+  },
+  "Ventilation": {
+   "name": "Ventilation",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572367,
+   "ranks": null,
+   "spellIds": [
+    572367
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_tech_steamdetector_Border",
+   "description": "Direct magic damage taken now has a 50% chance to increase all magic resistances of allies within 8 yds of you by 15 for 6 seconds."
+  },
+  "War Crimes": {
+   "name": "War Crimes",
+   "spec": "Demolition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707239,
+   "ranks": null,
+   "spellIds": [
+    707239
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fire_explosion_Border",
+   "description": "Damage dealt by Explosive Augmentation and Tracer Augmentation now has a 50% chance to apply an additional stack of Napalm to enemies.Napalm (Damage)Fire Damage taken by you is increased and healing received reduced by -3% for 8 seconds. Stacks 10 times."
+  },
+  "Warning Shot": {
+   "name": "Warning Shot",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 534480,
+   "ranks": {
+    "1": 534480
+   },
+   "spellIds": [
+    534480
+   ],
+   "cost": 53000,
+   "levelReq": 54,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "The current party or raid member targeted will receive the threat caused by your next damaging attack and all actions taken for 4 sec afterwards."
+  },
+  "Zap!": {
+   "name": "Zap!",
+   "spec": "Invention",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 681298,
+   "ranks": {
+    "2": 681296,
+    "3": 681297,
+    "4": 681298
+   },
+   "spellIds": [
+    680196,
+    681296,
+    681297,
+    681298
+   ],
+   "cost": 16000,
+   "levelReq": 38,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_lightning_empower_Border",
+   "description": "Fires a long range zap of electricity that heals an ally for 332.\r\n\r\nScales with modifiers to |cffffffffRepair Shot|r."
+  }
+ }
+}

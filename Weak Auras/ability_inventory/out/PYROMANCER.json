@@ -1,0 +1,3723 @@
+{
+ "class": "PYROMANCER",
+ "display": "Pyromancer",
+ "classId": 24,
+ "abilityCount": 196,
+ "bySpec": {
+  "Draconic": 42,
+  "General": 35,
+  "Class": 40,
+  "Flameweaving": 40,
+  "Incineration": 39
+ },
+ "abilities": {
+  "Agonizing Burns": {
+   "name": "Agonizing Burns",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803452,
+   "ranks": null,
+   "spellIds": [
+    803452
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_Immolation",
+   "description": "Increases the duration of Blaze by 20% and allows it to benefit from your spell haste."
+  },
+  "Al Dente": {
+   "name": "Al Dente",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300921,
+   "ranks": null,
+   "spellIds": [
+    300921
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_cooking_masteroftheoven",
+   "description": "Targets affected by Gaze of Ysera now take 15% increased Fire damage."
+  },
+  "Alexstrasza's Gift": {
+   "name": "Alexstrasza's Gift",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300956,
+   "ranks": null,
+   "spellIds": [
+    300956
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_FireDancer_01",
+   "description": "Increases the damage and healing of your Ember spenders by 15%."
+  },
+  "Arcane Affinity": {
+   "name": "Arcane Affinity",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 28877,
+   "ranks": null,
+   "spellIds": [
+    28877
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Arcane Torrent": {
+   "name": "Arcane Torrent",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 814287,
+   "ranks": null,
+   "spellIds": [
+    814287
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Arsonist": {
+   "name": "Arsonist",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301286,
+   "ranks": null,
+   "spellIds": [
+    301286
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shaman_firenova",
+   "description": "Increases the critical damage of your Ember spenders by 10%."
+  },
+  "Ascender": {
+   "name": "Ascender",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807319,
+   "ranks": null,
+   "spellIds": [
+    807319
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_druideskill25_Border",
+   "description": "Reduces the cooldown of Dragon Leap by -5 sec."
+  },
+  "Ascension of Executus": {
+   "name": "Ascension of Executus",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 1119758,
+   "ranks": {
+    "1": 1119754,
+    "2": 1119755,
+    "3": 1119756,
+    "4": 1119757,
+    "5": 1119758
+   },
+   "spellIds": [
+    1119754,
+    1119755,
+    1119756,
+    1119757,
+    1119758
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Deals 15 Fire damage to any enemy that strikes a party or raid member.\r\n\r\n@ext:Only 1 |cFFFFFFFFAscension|r spell can be active at a time.:ext@"
+  },
+  "Ascension of Ragnaros": {
+   "name": "Ascension of Ragnaros",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 1119953,
+   "ranks": {
+    "1": 1119901,
+    "2": 1119944,
+    "3": 1119953
+   },
+   "spellIds": [
+    1119901,
+    1119944,
+    1119953
+   ],
+   "cost": 9600,
+   "levelReq": 36,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "All party or raid members within 40 yds gain 30 additional Fire resistance.\r\n\r\n@ext:Only 1 |cFFFFFFFFAscension|r spell can be active at a time.:ext@"
+  },
+  "Ascension of Thaurissan": {
+   "name": "Ascension of Thaurissan",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 1119751,
+   "ranks": {
+    "1": 1119751
+   },
+   "spellIds": [
+    1119751
+   ],
+   "cost": 12000,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "All party or raid members within 40 yds lose 35% less casting or channeling time when damaged.\r\n\r\n@ext:Only 1 |cFFFFFFFFAscension|r spell can be active at a time.:ext@"
+  },
+  "Ashen Priest": {
+   "name": "Ashen Priest",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707432,
+   "ranks": null,
+   "spellIds": [
+    707432
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_trinket_firelands_01",
+   "description": "Level 30 Passive\nYour critical heals now grant allies Replenishment.\n\nIn addition, 20% of your mana regeneration continues while in combat. ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+  },
+  "Ashen Skin": {
+   "name": "Ashen Skin",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 504720,
+   "ranks": {
+    "1": 504720
+   },
+   "spellIds": [
+    504720
+   ],
+   "cost": 150,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Imbue your skin with volcanic ash, allowing 40% of your mana regeneration to continue in combat and periodic damage dealt restores 1% of your base mana. Lasts 30 min.\r\n\r\n@ext:Can only have 1 |cffffffffSkin|r active at a time.:ext@"
+  },
+  "Aspect of Earth": {
+   "name": "Aspect of Earth",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802780,
+   "ranks": null,
+   "spellIds": [
+    802780
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_Dungeon_CoABlackDragonflight",
+   "description": "$8b"
+  },
+  "Aspect of Eternity": {
+   "name": "Aspect of Eternity",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520770,
+   "ranks": null,
+   "spellIds": [
+    520770
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Head_Dragon_Bronze_Nightmare",
+   "description": "Allows the periodic damage of Blaze to critically strike.\n\nIn addition, damage dealt by Echo of Nozdormu or Aspect of Time now has a 20% chance to guarantee your next Blaze within 8 seconds to critically strike and increase its critical damage by 100% and duration by 25%."
+  },
+  "Aspect of Magic": {
+   "name": "Aspect of Magic",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681334,
+   "ranks": null,
+   "spellIds": [
+    681334
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\MalygosIcon",
+   "description": "Damage dealt by Dragon's Wrath now increases your Intellect by 3% for 20 seconds, stacking 10 times.\n\nConsuming an Ember now increases your critical strike chance by 2% and your critical damage by 4% for 20 seconds, stacking 5 times."
+  },
+  "Aspect of Time": {
+   "name": "Aspect of Time",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504750,
+   "ranks": null,
+   "spellIds": [
+    504750
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "interface\\icons\\inv_misc_head_dragon_bronze",
+   "description": "Level 20 Passive\nDamage dealt by Echo of Nozdormu and Flames of Neltharion now has a 33% chance to cast an additional time for 30% of the damage dealt.\n\nDamage dealt in this way can trigger this effect up to 3 additional times."
+  },
+  "Aspect's Blessing": {
+   "name": "Aspect's Blessing",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802168,
+   "ranks": null,
+   "spellIds": [
+    802168
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathwing_assualtaspects",
+   "description": "Your next Echo of Nozdormu or Flames of Neltharion is guaranteed to critically strike and triggers Aspect of Time, casting an additional time for 30% of the damage dealt. Lasts 15 seconds.\n\nDamage dealt in this way can trigger up to 3 additional times."
+  },
+  "Auto Attack": {
+   "name": "Auto Attack",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 6603,
+   "ranks": null,
+   "spellIds": [
+    6603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Binding Flames": {
+   "name": "Binding Flames",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807686,
+   "ranks": null,
+   "spellIds": [
+    807686
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_babyfireelemental_shadowflame",
+   "description": "When you use Essence of Malygos on an ally other than yourself, you now instantly regenerate 25% of your missing mana."
+  },
+  "Black Magic": {
+   "name": "Black Magic",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520381,
+   "ranks": null,
+   "spellIds": [
+    520381
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\moutn-deathwing",
+   "description": "Generating Heat now reduces the cooldown of Draconic Invocation and Essence of Malygos by 3%. \n\nCan only occur once per sec."
+  },
+  "Blackflight Resurgence": {
+   "name": "Blackflight Resurgence",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805587,
+   "ranks": null,
+   "spellIds": [
+    805587
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\INV_dragonhawkmountshadowlands",
+   "description": "Level 50 Passive\nLegacy of Deathwing now also increases the damage of your next Destroyer's Maw or Firefall by 25%."
+  },
+  "Blackrock Mountaineer": {
+   "name": "Blackrock Mountaineer",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707494,
+   "ranks": null,
+   "spellIds": [
+    707494
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rhyolith_volcano",
+   "description": "Reduces the cooldown of Eruption by -30 sec."
+  },
+  "Blaze": {
+   "name": "Blaze",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572160,
+   "ranks": {
+    "1": 805500,
+    "2": 534600,
+    "3": 534601,
+    "4": 534602,
+    "5": 534603,
+    "6": 534604,
+    "7": 572159,
+    "8": 572160
+   },
+   "spellIds": [
+    534600,
+    534601,
+    534602,
+    534603,
+    534604,
+    572159,
+    572160,
+    805500
+   ],
+   "cost": 100,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffff3232Consumes 1 Ember|r\r\nBurn an enemy for 126 Fire Damage every 3 sec and reduce their healing received by 1 to 0% for 15 sec. "
+  },
+  "Blessing of the Firelands": {
+   "name": "Blessing of the Firelands",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504397,
+   "ranks": null,
+   "spellIds": [
+    504397
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fire_soul_Border",
+   "description": "Each stack of Heat now increases the damage dealt by Dragon Leap by 6%."
+  },
+  "Blessing of the Inferno": {
+   "name": "Blessing of the Inferno",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707451,
+   "ranks": null,
+   "spellIds": [
+    707451
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_EnslaveSpell_Fire",
+   "description": "Reduces the healing done by Inferno by -20%, but increases its chance to trigger by 50%."
+  },
+  "Block": {
+   "name": "Block",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 107,
+   "ranks": null,
+   "spellIds": [
+    107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Breath of Neltharion": {
+   "name": "Breath of Neltharion",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 511109,
+   "ranks": null,
+   "spellIds": [
+    511109
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievment_boss_madnessofdeathwing",
+   "description": "Breath superheated flames in a cone in front of you that melts the weapons of affected enemies, disarming their melee and ranged weapons for 6 seconds."
+  },
+  "Bright Flames": {
+   "name": "Bright Flames",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300759,
+   "ranks": null,
+   "spellIds": [
+    300759
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Frost_FireResistanceTotem",
+   "description": "Increases the amount absorbed by Inferno Barrier by 10% and the damage it deals by 15%."
+  },
+  "Brilliance": {
+   "name": "Brilliance",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 570207,
+   "ranks": null,
+   "spellIds": [
+    570207
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_Brilliance",
+   "description": "Flamecasting can now stack 2 additional times.FlamecastingIncreases your spell haste by 5% for 15 seconds. Stacks 5 times.\n\nAdditional applications do not refresh duration."
+  },
+  "Burn Impurities": {
+   "name": "Burn Impurities",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520149,
+   "ranks": null,
+   "spellIds": [
+    520149
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_fire_spell_04_Border",
+   "description": "Burn away 1 harmful magic effect and 1 disease effect from an ally."
+  },
+  "Burned": {
+   "name": "Burned",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572582,
+   "ranks": null,
+   "spellIds": [
+    572582
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Fire_Immolation",
+   "description": "Level 50 Passive\nDirect Fire damage dealt now applies Burned to the target for 15 seconds.Burned (Proc)Increases the targets damage taken from your periodic effects by 3% stacking 5 times."
+  },
+  "Burning Crescendo": {
+   "name": "Burning Crescendo",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805378,
+   "ranks": null,
+   "spellIds": [
+    805378
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_siege_engineer_purification_beam",
+   "description": "Increases the tick rate of your Phoenix Egg by -2 sec."
+  },
+  "Burning Passion": {
+   "name": "Burning Passion",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504733,
+   "ranks": null,
+   "spellIds": [
+    504733
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\uico_fire_spell_03_Border",
+   "description": "Level 50 Passive\nEffective healing critical strikes now generate 10 Heat."
+  },
+  "Cataclysm": {
+   "name": "Cataclysm",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520218,
+   "ranks": null,
+   "spellIds": [
+    520218
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_zone_cataclysm",
+   "description": "Launch into the air, dealing 11 Fire damage, knocking back enemies within 6 yds and dazing them for 6 sec.\n\nUpon landing, deal -5 Fire damage, knock back enemies within 6 yds and daze them for 6 sec."
+  },
+  "Cataclysmic Power": {
+   "name": "Cataclysmic Power",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804617,
+   "ranks": null,
+   "spellIds": [
+    804617
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_siege_engineer_purification_beam",
+   "description": "Increases the damage of Flare Bolt by 3% for each periodic effect you have on the target."
+  },
+  "Cauterize": {
+   "name": "Cauterize",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 560749,
+   "ranks": {
+    "1": 560749
+   },
+   "spellIds": [
+    560749
+   ],
+   "cost": 3700,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Cauterize an ally's wound, removing 1 bleed effect from them."
+  },
+  "Cauterizing Wounds": {
+   "name": "Cauterizing Wounds",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 570001,
+   "ranks": null,
+   "spellIds": [
+    570001
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_butcher_gushingwounds",
+   "description": "Healing done by Ember Touch now grants you Flamecasting.FlamecastingIncreases your spell haste by 5% for 15 seconds. Stacks 5 times.\n\nAdditional applications do not refresh duration."
+  },
+  "Chains of Fire": {
+   "name": "Chains of Fire",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706862,
+   "ranks": null,
+   "spellIds": [
+    706862
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(37)_Border",
+   "description": "Reduces the cast time of Cindergrip by 0.25 sec and increases its range by 10 yds."
+  },
+  "Cindergrip": {
+   "name": "Cindergrip",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 535508,
+   "ranks": {
+    "1": 805476,
+    "2": 535505,
+    "3": 535506,
+    "4": 535507,
+    "5": 535508
+   },
+   "spellIds": [
+    535505,
+    535506,
+    535507,
+    535508,
+    805476
+   ],
+   "cost": 60,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Raise a lava crag from beneath an enemy, rooting them in place, dealing 4 Fire damage every 3 sec for 12 sec (8 sec vs players).\n\nDamage caused may interrupt the effect. Only 1 enemy may be affected at a time."
+  },
+  "Cinderheart": {
+   "name": "Cinderheart",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 502052,
+   "ranks": {
+    "1": 800806,
+    "2": 502044,
+    "3": 502045,
+    "4": 502046,
+    "5": 502047,
+    "6": 502048,
+    "7": 502049,
+    "8": 502050,
+    "9": 502051,
+    "10": 502052
+   },
+   "spellIds": [
+    502044,
+    502045,
+    502046,
+    502047,
+    502048,
+    502049,
+    502050,
+    502051,
+    502052,
+    800806
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffff7f7fGenerates 30 Heat|r\r\nMend an ally with healing flames, healing for 71, additionally scaling with your Spirit."
+  },
+  "Cinderstorm": {
+   "name": "Cinderstorm",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706875,
+   "ranks": null,
+   "spellIds": [
+    706875
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireblast_Border",
+   "description": "Reduces all threat generated by Firefall by -25% and increases its critical strike chance by 10%."
+  },
+  "Circle of Fire": {
+   "name": "Circle of Fire",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800807,
+   "ranks": null,
+   "spellIds": [
+    800807
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_firerune_(2)_Border",
+   "description": "Creates a circle of fire at the target location for 10 seconds, dealing 223 + 31% fire SP Fire damage and incapacitating all enemies inside for 6 seconds."
+  },
+  "Cleansing Flames": {
+   "name": "Cleansing Flames",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 681374,
+   "ranks": {
+    "2": 681369,
+    "3": 681370,
+    "4": 681371,
+    "5": 681372,
+    "6": 681373,
+    "7": 681374
+   },
+   "spellIds": [
+    681145,
+    681369,
+    681370,
+    681371,
+    681372,
+    681373,
+    681374
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_firebreath_(2)_Border",
+   "description": "|cffff7f7fGenerates 10 Heat Each Tick|r\r\nSpread cleansing flames on 5 allies and enemies in front of you, damaging or healing for 192 over 3 sec."
+  },
+  "Combustion": {
+   "name": "Combustion",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520884,
+   "ranks": null,
+   "spellIds": [
+    520884
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_Burnout",
+   "description": "Damage dealt by Explode is now increased by 15% for each of your Pyromancer periodic effects on the target."
+  },
+  "Concentrated Fire": {
+   "name": "Concentrated Fire",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704864,
+   "ranks": null,
+   "spellIds": [
+    704864
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_6_2raid_trinket_1c",
+   "description": "Increases the damage and healing of Cleansing Flames by 20%."
+  },
+  "Conjure Campfire": {
+   "name": "Conjure Campfire",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 570121,
+   "ranks": {
+    "1": 570121
+   },
+   "spellIds": [
+    570121
+   ],
+   "cost": 70,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Light a special campfire that allows cooking for 30 sec."
+  },
+  "Constant Burning": {
+   "name": "Constant Burning",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707126,
+   "ranks": null,
+   "spellIds": [
+    707126
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_fire_moltenblood",
+   "description": "Reduces the cooldown of Spellburn by -4 sec and increases its duration by 1 sec."
+  },
+  "Critical Pressure": {
+   "name": "Critical Pressure",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704804,
+   "ranks": null,
+   "spellIds": [
+    704804
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_Boss_Overlord_Wyrmthalak",
+   "description": "Increases your Intellect and critical strike chance by 3%."
+  },
+  "Dark Iron Legacy": {
+   "name": "Dark Iron Legacy",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680970,
+   "ranks": null,
+   "spellIds": [
+    680970
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_darkirondwarf_d_01",
+   "description": "Targets affected by the disorient from Meteor take an additional 40% increased damage from the next Explode or Lava Shard."
+  },
+  "Death From Above": {
+   "name": "Death From Above",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520402,
+   "ranks": null,
+   "spellIds": [
+    520402
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_FireBreath_Border",
+   "description": "Root enemies in a 40 yd line for 3 seconds and then soar forward in a blaze of glory, dealing 776 + 100% fire SP Fire damage every 1 sec to enemies beneath you for 10 seconds."
+  },
+  "Destroyer's Legacy": {
+   "name": "Destroyer's Legacy",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704815,
+   "ranks": null,
+   "spellIds": [
+    704815
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shaman_firenova",
+   "description": "Damage dealt by Lava Shard on enemies affected by Blaze now blasts nearby enemies for 20% of the damage dealt as Fire damage."
+  },
+  "Destroyer's Maw": {
+   "name": "Destroyer's Maw",
+   "spec": "Draconic",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502112,
+   "ranks": {
+    "2": 502107,
+    "3": 502108,
+    "4": 502109,
+    "5": 502110,
+    "6": 502111,
+    "7": 502112
+   },
+   "spellIds": [
+    502107,
+    502108,
+    502109,
+    502110,
+    502111,
+    502112,
+    802107
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathwing_cataclysm",
+   "description": "|cffff7f7fGenerates 30 Heat|r\r\nUnleash a vicious draconic maw on an enemy, dealing 191 Fire damage that cannot be resisted."
+  },
+  "Dodge": {
+   "name": "Dodge",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 81,
+   "ranks": null,
+   "spellIds": [
+    81
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Draconic Aspect": {
+   "name": "Draconic Aspect",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92128,
+   "ranks": null,
+   "spellIds": [
+    92128
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\achievement_boss_generaldrakkisath",
+   "description": "$8d"
+  },
+  "Draconic Invocation": {
+   "name": "Draconic Invocation",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802119,
+   "ranks": null,
+   "spellIds": [
+    802119
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_warrior_dragoncharge",
+   "description": "Invoke all of the Dragon Aspects, instantly generating 5 Embers."
+  },
+  "Draconic Rage": {
+   "name": "Draconic Rage",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802164,
+   "ranks": null,
+   "spellIds": [
+    802164
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_boss_drakkisath",
+   "description": "Consuming Embers now has a 25% chance to trigger Dragon's Wrath on all enemies affected by Blaze."
+  },
+  "Draconic Tempest": {
+   "name": "Draconic Tempest",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802170,
+   "ranks": null,
+   "spellIds": [
+    802170
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_FireTwist_Border",
+   "description": "Your Dragon's Wrath now melts enemies, increasing their chance to be hit by spells by 3% for 10 seconds."
+  },
+  "Dragon Leap": {
+   "name": "Dragon Leap",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 807619,
+   "ranks": {
+    "2": 807615,
+    "3": 807616,
+    "4": 807617,
+    "5": 807618,
+    "6": 807619
+   },
+   "spellIds": [
+    806611,
+    807615,
+    807616,
+    807617,
+    807618,
+    807619
+   ],
+   "cost": 2000,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_dragonwing_Border",
+   "description": "Leap to a target location and come crashing down, dealing 50 Fire damage to up to 10 nearby enemies."
+  },
+  "Dragon Skin": {
+   "name": "Dragon Skin",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 681314,
+   "ranks": {
+    "1": 681314
+   },
+   "spellIds": [
+    681314
+   ],
+   "cost": 20000,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Imbue your skin with draconic scales, reducing the duration of stun effects on you by 25%, and increasing all resistances by 5 and Fire Resistance by an additional 10. Lasts 30 min.\r\n\r\n@ext:Can only have 1 |cffffffffSkin|r active at a time.:ext@"
+  },
+  "Dragon's Bane": {
+   "name": "Dragon's Bane",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706877,
+   "ranks": null,
+   "spellIds": [
+    706877
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Head_Dragon_Blue",
+   "description": "Increases the critical strike chance of Lava Shard and Cinderheart by 6% against Burning targets."
+  },
+  "Dragon's Edge": {
+   "name": "Dragon's Edge",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300755,
+   "ranks": null,
+   "spellIds": [
+    300755
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Inv_misc_head_dragon_nexus",
+   "description": "Level 10 Passive\nDirect critical strikes now generate an additional 20 Heat."
+  },
+  "Dragonscales": {
+   "name": "Dragonscales",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524818,
+   "ranks": null,
+   "spellIds": [
+    524818
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_artifact_dragonscales",
+   "description": "When you are stunned, damage taken is reduced by -20% for 3 seconds."
+  },
+  "Earthwarder": {
+   "name": "Earthwarder",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706239,
+   "ranks": null,
+   "spellIds": [
+    706239
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_voiddredragonmount",
+   "description": "Being struck by a melee attack while Draconic Aspect is active now has a 20% chance to make your next Flare Bolt within 8 seconds instant cast."
+  },
+  "Echo of Nozdormu": {
+   "name": "Echo of Nozdormu",
+   "spec": "Draconic",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 567590,
+   "ranks": {
+    "2": 803407,
+    "3": 803408,
+    "4": 803409,
+    "5": 803410,
+    "6": 578307,
+    "7": 578308,
+    "8": 578309,
+    "9": 567589,
+    "10": 567590
+   },
+   "spellIds": [
+    520937,
+    567589,
+    567590,
+    578307,
+    578308,
+    578309,
+    803407,
+    803408,
+    803409,
+    803410
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\NozdormuIcon",
+   "description": "Obliterate an enemy, dealing 165 Chromatic Damage and reducing all spell and ability cooldowns by 5%."
+  },
+  "Ember Charm": {
+   "name": "Ember Charm",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704861,
+   "ranks": null,
+   "spellIds": [
+    704861
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_cat_trinket08",
+   "description": "Reduces the cast time of Cinderheart and Kindle by -15%."
+  },
+  "Ember Skin": {
+   "name": "Ember Skin",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 504707,
+   "ranks": {
+    "1": 504707
+   },
+   "spellIds": [
+    504707
+   ],
+   "cost": 9900,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Imbue your skin with quickening flames, increasing your spell haste rating by 10% of your Spirit and increasing your movement speed and mounted movement speed by 15%. Lasts 30 min.\r\n\r\n@ext:Can only have 1 |cffffffffSkin|r active at a time.:ext@"
+  },
+  "Ember Touch": {
+   "name": "Ember Touch",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572894,
+   "ranks": {
+    "2": 502085,
+    "3": 502086,
+    "4": 502087,
+    "5": 520320,
+    "6": 520751,
+    "7": 572892,
+    "8": 572893,
+    "9": 572894
+   },
+   "spellIds": [
+    502085,
+    502086,
+    502087,
+    520320,
+    520751,
+    572892,
+    572893,
+    572894,
+    800818
+   ],
+   "cost": 700,
+   "levelReq": 16,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_firehands_Border",
+   "description": "|cffff7f7fConsumes 1 Ember|r\r\nWarm an ally with everliving flames, healing them for 154, additonally scaling with your Spirit."
+  },
+  "Emberheart": {
+   "name": "Emberheart",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680378,
+   "ranks": null,
+   "spellIds": [
+    680378
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_soulburn_Border",
+   "description": "$85"
+  },
+  "Embrace the Fire": {
+   "name": "Embrace the Fire",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503636,
+   "ranks": null,
+   "spellIds": [
+    503636
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_dragonfirebreath_Border",
+   "description": "Increases the damage of Blaze and Ignite by 20%."
+  },
+  "Eruption": {
+   "name": "Eruption",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800103,
+   "ranks": {
+    "1": 800103
+   },
+   "spellIds": [
+    800103
+   ],
+   "cost": 15500,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increases your damage and healing by 20% and generates 5 |cffff7f7fHeat|r every 0.50 sec for 15 sec."
+  },
+  "Essence of Malygos": {
+   "name": "Essence of Malygos",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802120,
+   "ranks": null,
+   "spellIds": [
+    802120
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_petdragonwhelptarecgosa",
+   "description": "Imbue an ally with the essence of Malygos, restoring 4% of their maximum mana every 1 sec for 6 seconds.\n\nIf used on yourself this effect is doubled."
+  },
+  "Expediting Power": {
+   "name": "Expediting Power",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704814,
+   "ranks": null,
+   "spellIds": [
+    704814
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_orbofdragonscale_Border",
+   "description": "Your Echo of Nozdormu now reduces the cooldown of Aspect's Blessing by an additional 5%."
+  },
+  "Explode": {
+   "name": "Explode",
+   "spec": "Incineration",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 570750,
+   "ranks": {
+    "2": 502057,
+    "3": 502058,
+    "4": 502059,
+    "5": 502060,
+    "6": 502061,
+    "7": 502062,
+    "8": 502063,
+    "9": 570750
+   },
+   "spellIds": [
+    502057,
+    502058,
+    502059,
+    502060,
+    502061,
+    502062,
+    502063,
+    570750,
+    800792
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Explode an enemy, dealing 52 Fire damage."
+  },
+  "Explosive": {
+   "name": "Explosive",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704845,
+   "ranks": null,
+   "spellIds": [
+    704845
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_T_FireInOurHands_Border",
+   "description": "Increases the tick rate of Blaze and Ignite by -10%."
+  },
+  "Fiery Demeanor": {
+   "name": "Fiery Demeanor",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 525059,
+   "ranks": null,
+   "spellIds": [
+    525059
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_CasterCloak_Fire",
+   "description": "Reduces spell pushback suffered from damaging attacks by 50% and increases the pushback resistance provided by Ascension of Thaurissan by 15%."
+  },
+  "Fiery Faith": {
+   "name": "Fiery Faith",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503913,
+   "ranks": null,
+   "spellIds": [
+    503913
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\nhi_fireshield_Border",
+   "description": "Level 40 Passive\nIncreases your spell critical strike rating by 15% of your Spirit."
+  },
+  "Fiery Intent": {
+   "name": "Fiery Intent",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 525018,
+   "ranks": null,
+   "spellIds": [
+    525018
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_warlock_burningembers",
+   "description": "Reduces the cooldown of Cataclysm by 30 sec."
+  },
+  "Fiery Passion": {
+   "name": "Fiery Passion",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560525,
+   "ranks": null,
+   "spellIds": [
+    560525
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_monk_breathoffire",
+   "description": "Increases the spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, your spell haste is increased by 3%."
+  },
+  "Fire Safety": {
+   "name": "Fire Safety",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300970,
+   "ranks": null,
+   "spellIds": [
+    300970
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_firehands_Border",
+   "description": "Increases your Fire damage and healing by 2% and reduces your threat generated by -10%."
+  },
+  "Fire and Brimstone": {
+   "name": "Fire and Brimstone",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704849,
+   "ranks": null,
+   "spellIds": [
+    704849
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireball_Border",
+   "description": "Generating an Ember now increases the damage and healing of Ember spenders by 1% for 10 seconds, stacking 5 times."
+  },
+  "Fired Up!": {
+   "name": "Fired Up!",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704823,
+   "ranks": null,
+   "spellIds": [
+    704823
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_dungeon_ignitionmagevalyri",
+   "description": "Your Ember spenders are now instant and have a 30% chance to refund their cost and increases your chance to critically strike by 20% for 15 seconds."
+  },
+  "Firefall": {
+   "name": "Firefall",
+   "spec": "Draconic",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572890,
+   "ranks": {
+    "2": 556833,
+    "3": 556834,
+    "4": 556835,
+    "5": 556836,
+    "6": 556837,
+    "7": 572890
+   },
+   "spellIds": [
+    556833,
+    556834,
+    556835,
+    556836,
+    556837,
+    572890,
+    801905
+   ],
+   "cost": 5200,
+   "levelReq": 26,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_ironmaidens_grapeshotblast",
+   "description": "|cffff7f7fGenerates 10 Heat Per Target|r\r\nCall down streaks of fire upon an enemy and up to 8 enemies within 15 yds of them, dealing 207 Fire damage."
+  },
+  "Firestorm": {
+   "name": "Firestorm",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802791,
+   "ranks": null,
+   "spellIds": [
+    802791
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_holy_tornado_Border",
+   "description": "Create a fiery tornado at a location for 10 seconds.\n\nEnemies who enter its radius suffer 313 + 40% fire SP Fire damage and are knocked back slightly."
+  },
+  "Flame Bonding": {
+   "name": "Flame Bonding",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706858,
+   "ranks": null,
+   "spellIds": [
+    706858
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_misc_matchbook",
+   "description": "Level 20 Passive\nYour Inferno Barrier now triggers a -15 sec reduced cooldown when used on an ally other than yourself."
+  },
+  "Flame Seeker": {
+   "name": "Flame Seeker",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804868,
+   "ranks": {
+    "1": 804868
+   },
+   "spellIds": [
+    804868
+   ],
+   "cost": 18000,
+   "levelReq": 32,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Allows you to track elementals and dragonkin on the minimap."
+  },
+  "Flame Step": {
+   "name": "Flame Step",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801911,
+   "ranks": {
+    "1": 801911
+   },
+   "spellIds": [
+    801911
+   ],
+   "cost": 2500,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Dash 20 yds in the direction you're moving, dealing 11 Fire Damage to enemies in your path, freeing the caster from stuns and bonds."
+  },
+  "Flamecasting": {
+   "name": "Flamecasting",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804300,
+   "ranks": null,
+   "spellIds": [
+    804300
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_fire_playingwithfire",
+   "description": "Generating Heat now has a 25% chance to grant Flamecasting.FlamecastingIncreases your spell haste by 5% for 15 seconds. Stacks 5 times.\n\nAdditional applications do not refresh duration."
+  },
+  "Flamer": {
+   "name": "Flamer",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680836,
+   "ranks": null,
+   "spellIds": [
+    680836
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_elemental_mote_fire01",
+   "description": "Increases your spell haste by 4%."
+  },
+  "Flames of Execution": {
+   "name": "Flames of Execution",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706238,
+   "ranks": null,
+   "spellIds": [
+    706238
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_FireBolt",
+   "description": "Damage dealt by Blaze is increased by 25% on enemies below 35% of their maximum health."
+  },
+  "Flames of Fate": {
+   "name": "Flames of Fate",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707325,
+   "ranks": null,
+   "spellIds": [
+    707325
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_UnleashedRage",
+   "description": "Your Aspect's Blessing now affects 2 additional casts of Echo of Nozdormu, but its cooldown is doubled, and its mana cost is increased by 50%."
+  },
+  "Flames of Focus": {
+   "name": "Flames of Focus",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680977,
+   "ranks": null,
+   "spellIds": [
+    680977
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_FireInYourHand_Border",
+   "description": "Adds 1 additional stack to Flamecasting and increases its duration by 5 sec."
+  },
+  "Flames of Neltharion": {
+   "name": "Flames of Neltharion",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572622,
+   "ranks": {
+    "1": 801915,
+    "2": 535509,
+    "3": 535510,
+    "4": 535511,
+    "5": 535512,
+    "6": 572618,
+    "7": 572619,
+    "8": 572620,
+    "9": 572621,
+    "10": 572622
+   },
+   "spellIds": [
+    535509,
+    535510,
+    535511,
+    535512,
+    572618,
+    572619,
+    572620,
+    572621,
+    572622,
+    801915
+   ],
+   "cost": 300,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Unleash draconic flames, dealing 74 Fire damage to an enemy and up to 2 additional nearby enemies."
+  },
+  "Flames of the Aspects": {
+   "name": "Flames of the Aspects",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707493,
+   "ranks": null,
+   "spellIds": [
+    707493
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_fire_0006s_0000_fire-elemental_Border",
+   "description": "Casting Destroyer's Maw now grants 2 stacks of Flamecasting.FlamecastingIncreases your spell haste by 5% for 15 seconds. Stacks 5 times.\n\nAdditional applications do not refresh duration."
+  },
+  "Flames of the Firelord": {
+   "name": "Flames of the Firelord",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 538441,
+   "ranks": null,
+   "spellIds": [
+    538441
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_firelands_raid_ragnaros",
+   "description": "Your periodic damage dealt now has a 5% chance to grant you Eruption for 5 sec."
+  },
+  "Flamespiller": {
+   "name": "Flamespiller",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805468,
+   "ranks": null,
+   "spellIds": [
+    805468
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_volatilefire",
+   "description": "Critical strikes with Explode or Flames of Neltharion now extend the duration of Fired Up by 0.5 sec."
+  },
+  "Flaming Finesse": {
+   "name": "Flaming Finesse",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706878,
+   "ranks": null,
+   "spellIds": [
+    706878
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fire_explosion_Border",
+   "description": "Increases the effectiveness of your Seal spells by 20%."
+  },
+  "Flare Bolt": {
+   "name": "Flare Bolt",
+   "spec": "Draconic",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 502018,
+   "ranks": {
+    "2": 502011,
+    "3": 502012,
+    "4": 502013,
+    "5": 502014,
+    "6": 502015,
+    "7": 502016,
+    "8": 502017,
+    "9": 502018
+   },
+   "spellIds": [
+    502011,
+    502012,
+    502013,
+    502014,
+    502015,
+    502016,
+    502017,
+    502018,
+    800790
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffff7f7fGenerates 20 Heat|r\r\nInvoke flames upon an enemy, dealing 40 Fire damage."
+  },
+  "From The Ashes": {
+   "name": "From The Ashes",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560561,
+   "ranks": null,
+   "spellIds": [
+    560561
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_phoenix_Border",
+   "description": "Increases your healing done to allies below 35% health by 25%."
+  },
+  "Fueling the Fire": {
+   "name": "Fueling the Fire",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806747,
+   "ranks": null,
+   "spellIds": [
+    806747
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_FireInOurHands_Border",
+   "description": "Using Ember Touch on your Roaring Pyre or Phoenix will cause them to erupt in flames, healing 12 allies within 30 yds for 232 + 100% Spirit, additionally scaling with Spirit.\n\nAllied Pyromancers can also fuel the fire with your Roaring Pyre and Phoenix."
+  },
+  "Gaze of Ysera": {
+   "name": "Gaze of Ysera",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806148,
+   "ranks": null,
+   "spellIds": [
+    806148
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ysera3",
+   "description": "Set Ysera's gaze upon an enemy, putting them to sleep for 40 seconds (8 sec vs players).\n\nDirect damage dealt may interrupt this effect."
+  },
+  "Grace of Alexstrasza": {
+   "name": "Grace of Alexstrasza",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802167,
+   "ranks": null,
+   "spellIds": [
+    802167
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Head_Dragon_01",
+   "description": "Burns off all movement impairing effects from all allies in a 20 yd radius around you and grants them stun, slow and root immunity for 4 seconds."
+  },
+  "Greater Seal of Al'ar": {
+   "name": "Greater Seal of Al'ar",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 808060,
+   "ranks": {
+    "1": 808060
+   },
+   "spellIds": [
+    808060
+   ],
+   "cost": 51000,
+   "levelReq": 58,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Bless all party and raid members with the power of Al'ar, restoring 33 mana every 5 sec."
+  },
+  "Greater Seal of Alysrazor": {
+   "name": "Greater Seal of Alysrazor",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 570170,
+   "ranks": {
+    "1": 570170
+   },
+   "spellIds": [
+    570170
+   ],
+   "cost": 51000,
+   "levelReq": 58,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Empowers you and nearby allies with the power of the eternal phoenix, increasing their Intellect by 31 for 30 min."
+  },
+  "Hasty Incantation": {
+   "name": "Hasty Incantation",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802169,
+   "ranks": null,
+   "spellIds": [
+    802169
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_SealOfFire",
+   "description": "Increases the range of Flame Step by 10 yds."
+  },
+  "Heat Wave": {
+   "name": "Heat Wave",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503804,
+   "ranks": null,
+   "spellIds": [
+    503804
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireball_Border",
+   "description": "Flamecasting stacks now also increase the damage of Explode and Flames of Neltharion by 4% per stack."
+  },
+  "Heated": {
+   "name": "Heated",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504754,
+   "ranks": null,
+   "spellIds": [
+    504754
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_Fireball02",
+   "description": "Damage dealt by Dragon Leap now generates 10 Heat."
+  },
+  "Hellscape": {
+   "name": "Hellscape",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706886,
+   "ranks": null,
+   "spellIds": [
+    706886
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(9)_Border",
+   "description": "Increases the duration of Blaze by 4 sec."
+  },
+  "Hot Headed": {
+   "name": "Hot Headed",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503806,
+   "ranks": null,
+   "spellIds": [
+    503806
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Warlock_FireandBrimstone",
+   "description": "Reduces the cooldown of Circle of Fire by -30 sec and increases its disorient duration by 1 sec. \n\nEnemies disoriented by Circle of Fire cannot receive any healing."
+  },
+  "Ignis Fatalis": {
+   "name": "Ignis Fatalis",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706893,
+   "ranks": null,
+   "spellIds": [
+    706893
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Fireball_Border",
+   "description": "Ignis Ultimatus is now guaranteed to critically strike, has 20% more critical damage, and channels 0.5 sec faster."
+  },
+  "Ignis Ultimatus": {
+   "name": "Ignis Ultimatus",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680369,
+   "ranks": null,
+   "spellIds": [
+    680369
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Mage_FireStarter",
+   "description": "Channel for 2 seconds, gathering a surge of fiery power before unleashing it in a 50 yd line, dealing 1094 + 100% fire SP Fire damage to enemies while also healing allies for 814 + 200% healing.\n\nIgnores invulnerabilities, immunities, and resistances.\n\nConsumes Flamecasting stacks to increase this spell's damage and healing by 15% per stack."
+  },
+  "Ignite": {
+   "name": "Ignite",
+   "spec": "Incineration",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502029,
+   "ranks": {
+    "2": 502020,
+    "3": 502021,
+    "4": 502022,
+    "5": 502023,
+    "6": 502024,
+    "7": 502025,
+    "8": 502026,
+    "9": 502027,
+    "10": 502028,
+    "11": 502029
+   },
+   "spellIds": [
+    502020,
+    502021,
+    502022,
+    502023,
+    502024,
+    502025,
+    502026,
+    502027,
+    502028,
+    502029,
+    800791
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Mage_FieryPayback",
+   "description": "|cffff7f7fGenerates 10 Heat Per Tick|r\r\nBurn an enemy, inflicting 161 to 175 Fire damage over 21 sec. If |cffffffffIgnite|r is dispelled it will cause 111 Fire damage to the dispeller.\r\n\r\nCastable while moving."
+  },
+  "Incinerator": {
+   "name": "Incinerator",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807510,
+   "ranks": null,
+   "spellIds": [
+    807510
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_tradeskillitem_sorcerersfire_tong",
+   "description": "Level 40 Passive\nIncreases your spell penetration by 30, scaling with your level."
+  },
+  "Inferno": {
+   "name": "Inferno",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806736,
+   "ranks": null,
+   "spellIds": [
+    806736
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_brutal_icon_0009s_0000_fire_Border",
+   "description": "Direct healing critical strikes have a 50% chance to create an Inferno around the target. Can only occur once every 5 sec.InfernoEngulf an ally in cleansing flames for 5 seconds, healing them for 161 and party and raid members within 40 yds of them for 91 every 1 sec.\n\nAt the end of the duration, party and raid members are healed for 383 to 403."
+  },
+  "Inferno Barrier": {
+   "name": "Inferno Barrier",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 582764,
+   "ranks": {
+    "2": 535650,
+    "3": 535651,
+    "4": 582762,
+    "5": 582763,
+    "6": 582764
+   },
+   "spellIds": [
+    504380,
+    535650,
+    535651,
+    582762,
+    582763,
+    582764
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rhyolith_magmaflow_wave",
+   "description": "|cffff7f7fGenerates 30 Heat|r\r\nShield an ally with molten lava, absorbing 150 damage. While active, attackers take 10 Fire damage each time they deal damage to them. Lasts 30 sec."
+  },
+  "Infernus": {
+   "name": "Infernus",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92124,
+   "ranks": null,
+   "spellIds": [
+    92124
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_corruptionfire_Border",
+   "description": "Damage dealt by Lava Shard now applies Infernus, causing enemies to Burn, dealing an additional 1122 + 72% SP Fire damage over 18 seconds."
+  },
+  "Inner Flame": {
+   "name": "Inner Flame",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301974,
+   "ranks": null,
+   "spellIds": [
+    301974
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireborn_Border",
+   "description": "Increases critical strike chance of all party and raid members by 3%.\n\nDoes not stack with similar effects."
+  },
+  "Invigoration": {
+   "name": "Invigoration",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704863,
+   "ranks": null,
+   "spellIds": [
+    704863
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_FireWorm_Border",
+   "description": "Healing done by your Phoenix now generates you 5 Heat."
+  },
+  "Invocation of Flames": {
+   "name": "Invocation of Flames",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704809,
+   "ranks": null,
+   "spellIds": [
+    704809
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_RainOfFire",
+   "description": "Your Draconic Invocation now grants 5 stacks of Flamecasting.\n\nIn addition, allows Flamecasting to stack 5 additional times and increases its duration by 5 sec."
+  },
+  "Kael's Command": {
+   "name": "Kael's Command",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800816,
+   "ranks": null,
+   "spellIds": [
+    800816
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_UnleashedRage",
+   "description": "Generates 50 Heat\nCommand your Phoenix to go dormant for 10 seconds. \n\nWhile dormant, it radiates healing to nearby allies for 611 + 100% healing every 2 sec."
+  },
+  "Kindle": {
+   "name": "Kindle",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803825,
+   "ranks": {
+    "1": 803819,
+    "2": 803820,
+    "3": 803821,
+    "4": 803822,
+    "5": 803823,
+    "6": 803824,
+    "7": 803825
+   },
+   "spellIds": [
+    803819,
+    803820,
+    803821,
+    803822,
+    803823,
+    803824,
+    803825
+   ],
+   "cost": 450,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffff7f7fGenerates 20 Heat|r\r\nMend an ally with flames, healing them for 126, additionally scaling with your Spirit."
+  },
+  "Lava Shard": {
+   "name": "Lava Shard",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 503237,
+   "ranks": {
+    "1": 803950,
+    "2": 503231,
+    "3": 503232,
+    "4": 503233,
+    "5": 503234,
+    "6": 503235,
+    "7": 503236,
+    "8": 503237
+   },
+   "spellIds": [
+    503231,
+    503232,
+    503233,
+    503234,
+    503235,
+    503236,
+    503237,
+    803950
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffff7f7fGenerates 1 Ember|r\r\nHurl a molten rock, smashing into an enemy dealing 26 Physical damage."
+  },
+  "Lava-Drenched": {
+   "name": "Lava-Drenched",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706650,
+   "ranks": null,
+   "spellIds": [
+    706650
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_physical_ability_(52)_Border",
+   "description": "Reduces the chance for your spells to be dispelled by -30%."
+  },
+  "Legacy of Deathwing": {
+   "name": "Legacy of Deathwing",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707217,
+   "ranks": null,
+   "spellIds": [
+    707217
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\achievement_emeraldnightmare_dragonsofnightmare",
+   "description": "Level 40 Passive\nConsuming Embers now has a 30% chance to reset the cooldown of Destroyer's Maw and Firefall and grant you Legacy of Deathwing.Legacy of DeathwingYour next Destroyer's Maw or Firefall within 10 seconds is instant cast and free of cost."
+  },
+  "Legacy of Ragnaros": {
+   "name": "Legacy of Ragnaros",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704824,
+   "ranks": null,
+   "spellIds": [
+    704824
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_fire_ragnaros_splittingblow",
+   "description": "Pyroclasm now causes your next 3 Lava Shards within 12 seconds to trigger no cooldown and be free of cost."
+  },
+  "Lifebinder's Fire": {
+   "name": "Lifebinder's Fire",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704862,
+   "ranks": null,
+   "spellIds": [
+    704862
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_jewelry_trinket_09",
+   "description": "Generating an Ember now increases your healing done by 3% for 8 seconds, stacking 5 times."
+  },
+  "Lifebringer's Blessing": {
+   "name": "Lifebringer's Blessing",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707479,
+   "ranks": null,
+   "spellIds": [
+    707479
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_dragonfirebreath_Border",
+   "description": "Damage dealt by Aspect of Time now heals you equal to 200% of the damage dealt."
+  },
+  "Lighting the Fuse": {
+   "name": "Lighting the Fuse",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807509,
+   "ranks": null,
+   "spellIds": [
+    807509
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_wildfirebomb_blood",
+   "description": "Level 30 Passive\nAllows your periodic effects to critically strike and increases your spell critical strike chance by 15% of your Intellect."
+  },
+  "Living Flame": {
+   "name": "Living Flame",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704851,
+   "ranks": null,
+   "spellIds": [
+    704851
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_belt_leather_firelandsdruid_d_01",
+   "description": "Increases the critical strike chance of Ember Touch by 10%."
+  },
+  "Lucifron's Rage": {
+   "name": "Lucifron's Rage",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300932,
+   "ranks": null,
+   "spellIds": [
+    300932
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_burningbladeshaman_blazing_radiance",
+   "description": "Effective healing done by your Phoenix now causes allies to deal additional Fire damage with all attacks for 6 seconds."
+  },
+  "Mad Aspect's Scepter": {
+   "name": "Mad Aspect's Scepter",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706896,
+   "ranks": null,
+   "spellIds": [
+    706896
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_stave_2h_deathwingraid_d_03",
+   "description": "Increases the damage of Destroyer's Maw by 20%."
+  },
+  "Magic Resistance": {
+   "name": "Magic Resistance",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 822,
+   "ranks": null,
+   "spellIds": [
+    822
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Magma Guardian": {
+   "name": "Magma Guardian",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706872,
+   "ranks": null,
+   "spellIds": [
+    706872
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_pvp410_c_01",
+   "description": "Increases the effectiveness of your Skin spells by 50%."
+  },
+  "Magma Skin": {
+   "name": "Magma Skin",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680387,
+   "ranks": {
+    "1": 680387
+   },
+   "spellIds": [
+    680387
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Imbue your skin with magma, increasing your Armor by 200% of your Intellect and causing melee and ranged damage taken to deal 2 Fire damage to the attacker and generate |cffff7f7fHeat|r. Lasts 30 min.\r\n\r\n@ext:Can only have 1 |cffffffffSkin|r active at a time.:ext@"
+  },
+  "Magmatic": {
+   "name": "Magmatic",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704807,
+   "ranks": null,
+   "spellIds": [
+    704807
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_fire_0003s_0000_phoenix_Border",
+   "description": "$89"
+  },
+  "Magnitude 10": {
+   "name": "Magnitude 10",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520485,
+   "ranks": null,
+   "spellIds": [
+    520485
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_FireRain_Border",
+   "description": "Increases the critical strike chance of Flare Bolt by 5%."
+  },
+  "Melt Lock": {
+   "name": "Melt Lock",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804662,
+   "ranks": {
+    "1": 804662
+   },
+   "spellIds": [
+    804662
+   ],
+   "cost": 2000,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Magically unlocks treasure chests and other locked items."
+  },
+  "Melting Point": {
+   "name": "Melting Point",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300757,
+   "ranks": null,
+   "spellIds": [
+    300757
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shaman_stormearthfire",
+   "description": "Critical strikes with Fire spells now increases the chance for the enemy to by critically hit with spells by 3% for 12 seconds."
+  },
+  "Meteor": {
+   "name": "Meteor",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502056,
+   "ranks": {
+    "2": 500649,
+    "3": 500650,
+    "4": 500651,
+    "5": 500652,
+    "6": 502055,
+    "7": 502056
+   },
+   "spellIds": [
+    500135,
+    500649,
+    500650,
+    500651,
+    500652,
+    502055,
+    502056
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3meteor",
+   "description": "|cffff7f7fGenerates 50 Heat|r\r\nCall down a meteor in an 8 yd area, dealing 160 Fire damage to 8 enemies and disorienting them for 4 sec. Direct damage dealt will break the effect."
+  },
+  "Molten Fury": {
+   "name": "Molten Fury",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704818,
+   "ranks": null,
+   "spellIds": [
+    704818
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mount_fireravengodmount",
+   "description": "Increases the damage and healing provided by Eruption by 15%, but reduces its duration by -50%."
+  },
+  "Molten Storm": {
+   "name": "Molten Storm",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805483,
+   "ranks": null,
+   "spellIds": [
+    805483
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_offhand_1h_artifactdoomhammer_d_01",
+   "description": "Increases the critical strike chance and damage of Lava Shard by 10%."
+  },
+  "Neltharion's Resolve": {
+   "name": "Neltharion's Resolve",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520488,
+   "ranks": null,
+   "spellIds": [
+    520488
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Head_Dragon_Black_Nightmare",
+   "description": "Place Neltharion's resolve on all party members, warding them against fear. The next fear effect used against the target will fail, using up the ward. Lasts 1 minute."
+  },
+  "Obliteration": {
+   "name": "Obliteration",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706894,
+   "ranks": null,
+   "spellIds": [
+    706894
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fire_rune_Border",
+   "description": "Eruption now also increases spell haste and movement speed by 20% for 10 seconds."
+  },
+  "Offering of Executus": {
+   "name": "Offering of Executus",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806779,
+   "ranks": null,
+   "spellIds": [
+    806779
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_InfernalMadness_Border",
+   "description": "When your Phoenix dies or expires, it now heals all allies within 30 yds equal to its maximum health."
+  },
+  "Overwhelming Flames": {
+   "name": "Overwhelming Flames",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704813,
+   "ranks": null,
+   "spellIds": [
+    704813
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_normal04firerain_Border",
+   "description": "Your Lava Shard now spreads Blaze to up to 1 additional enemy within 8 yds of the primary target."
+  },
+  "Perpetual Burning": {
+   "name": "Perpetual Burning",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707503,
+   "ranks": null,
+   "spellIds": [
+    707503
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_Burnout",
+   "description": "The duration of Blaze is now increased by 1 sec for each Ember you have when you cast it."
+  },
+  "Phoenix Dive": {
+   "name": "Phoenix Dive",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706854,
+   "ranks": null,
+   "spellIds": [
+    706854
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(37)_Border",
+   "description": "Command your Phoenix to swoop to the target ally and shield allies in their path with fire, absorbing 175 + 50% SP + 100% Spirit damage for 30 seconds, scaling with your Spirit."
+  },
+  "Phoenix Egg": {
+   "name": "Phoenix Egg",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800796,
+   "ranks": null,
+   "spellIds": [
+    800796
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_phoenixegg",
+   "description": "Summon a Phoenix for 1 minute at the target location that heals nearby party members for 117 + 15% healing every 5 sec.\n\nYou may only have 1 Phoenix active at a time."
+  },
+  "Phoenix Rebirth": {
+   "name": "Phoenix Rebirth",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 707645,
+   "ranks": {
+    "1": 706867,
+    "2": 707641,
+    "3": 707642,
+    "4": 707643,
+    "5": 707644,
+    "6": 707645
+   },
+   "spellIds": [
+    706867,
+    707641,
+    707642,
+    707643,
+    707644,
+    707645
+   ],
+   "cost": 200,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Brings a dead ally back to life with 70 health and 135 mana. \r\n\r\nCannot be cast when in combat."
+  },
+  "Pillar of Flame": {
+   "name": "Pillar of Flame",
+   "spec": "Incineration",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 807410,
+   "ranks": {
+    "2": 807406,
+    "3": 807407,
+    "4": 807408,
+    "5": 807409,
+    "6": 807410
+   },
+   "spellIds": [
+    805496,
+    807406,
+    807407,
+    807408,
+    807409,
+    807410
+   ],
+   "cost": 12500,
+   "levelReq": 34,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireblow_Border",
+   "description": "|cffff7f7fGenerates 20 Heat Per Target|r\r\nCreate a pillar of lava beneath an enemy, dealing 50 Fire damage.\r\n\r\nDeals an additional 154 Fire damage to enemies near the primary target."
+  },
+  "Purifying Flames": {
+   "name": "Purifying Flames",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807159,
+   "ranks": null,
+   "spellIds": [
+    807159
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_DryadDispelMagic",
+   "description": "Increases the duration of Essence of Malygos by 3 sec."
+  },
+  "Pyroclasm": {
+   "name": "Pyroclasm",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520019,
+   "ranks": null,
+   "spellIds": [
+    520019
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_Incinerate",
+   "description": "Consumes 1 Ember\nCreate a pyroclasm instantly consuming your Burning effects on a target to deal the two times total periodic damage plus an additional 2100 to 2220 over 10 seconds, piercing absorption effects and resistances."
+  },
+  "Pyroclastic Flow": {
+   "name": "Pyroclastic Flow",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524875,
+   "ranks": null,
+   "spellIds": [
+    524875
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_FlameWave_Border",
+   "description": "Flare Bolt now increases the damage of subsequent Flare Bolts by 3% for 10 seconds, stacking 5 times.\n\nFlames of Neltharion and Explode now increase the damage of subsequent Explodes or Flames of Neltharion by 3% for 5 seconds, stacking 5 times."
+  },
+  "Pyromancy": {
+   "name": "Pyromancy",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704831,
+   "ranks": null,
+   "spellIds": [
+    704831
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_SelfDestruct",
+   "description": "Increases your critical damage by 100%."
+  },
+  "Pyromaniac": {
+   "name": "Pyromaniac",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500166,
+   "ranks": null,
+   "spellIds": [
+    500166
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_ironmaidens_rapidfire",
+   "description": "Increases the critical strike chance of Ember spenders by 5%."
+  },
+  "Pyromantic Accelerants": {
+   "name": "Pyromantic Accelerants",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706889,
+   "ranks": null,
+   "spellIds": [
+    706889
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_DestructiveSoul",
+   "description": "Your Flames of Neltharion and Explode now deal 15% increased damage to Burning targets."
+  },
+  "Rapid Incineration": {
+   "name": "Rapid Incineration",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504394,
+   "ranks": null,
+   "spellIds": [
+    504394
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_FireBolt02",
+   "description": "Consuming Embers now reduces the cooldown of Lava Shard and Pillar of Flame by 10%."
+  },
+  "Reborn from Ash": {
+   "name": "Reborn from Ash",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807679,
+   "ranks": {
+    "1": 804231,
+    "2": 807678,
+    "3": 807679
+   },
+   "spellIds": [
+    804231,
+    807678,
+    807679
+   ],
+   "cost": 22500,
+   "levelReq": 46,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Returns a dead ally to life with 400 health and 635 mana, can also be used on self while dead.\n\nCan be used in combat."
+  },
+  "Rekindle": {
+   "name": "Rekindle",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805448,
+   "ranks": null,
+   "spellIds": [
+    805448
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_Fire",
+   "description": "Healing done by Kindle now increases your healing done on the target 5% for 20 seconds, stacking 2 times."
+  },
+  "Residual Power": {
+   "name": "Residual Power",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300751,
+   "ranks": null,
+   "spellIds": [
+    300751
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_jewelcrafting_dragonseye05",
+   "description": "Each active Ember now reduces the cast time of Explode by -8%."
+  },
+  "Resilient Constitution": {
+   "name": "Resilient Constitution",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 552011,
+   "ranks": null,
+   "spellIds": [
+    552011
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Roaring Pyre": {
+   "name": "Roaring Pyre",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704278,
+   "ranks": null,
+   "spellIds": [
+    704278
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_summerfest_firespirit",
+   "description": "Conjure a Roaring Pyre at the target location for 20 seconds. \n\nAllies within 30 yds of the bonfire are healed for 35 + 10% healing + 50% Spirit, scaling with your Spirit and healing spell power, every 2 sec and their Spirit is increased by 10%."
+  },
+  "Roasted Alive": {
+   "name": "Roasted Alive",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707482,
+   "ranks": null,
+   "spellIds": [
+    707482
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_herb_cinderbloom_petal",
+   "description": "Increases the chance to trigger Fired Up by 20%."
+  },
+  "Sageweaving": {
+   "name": "Sageweaving",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503915,
+   "ranks": null,
+   "spellIds": [
+    503915
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fire_solar_Border",
+   "description": "Consuming an Ember now reduces the cast time of your next Cinderheart or Kindle by -15% for 12 seconds, stacking 2 times."
+  },
+  "Scepter of Fire": {
+   "name": "Scepter of Fire",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706860,
+   "ranks": null,
+   "spellIds": [
+    706860
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_passivemastery_(17)_Border",
+   "description": "Increases the duration of Inferno by 5 sec, causing its end of duration explosion of healing to trigger every 5 sec instead."
+  },
+  "Scorched": {
+   "name": "Scorched",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704801,
+   "ranks": null,
+   "spellIds": [
+    704801
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\uico_fire_spell_09_nobg_Border",
+   "description": "Level 20 Passive\nDirect critical strikes with Ember spenders now Scorch the target, Burning them for an additional 30% of the damage dealt over 3 seconds."
+  },
+  "Scorching Spirit": {
+   "name": "Scorching Spirit",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805552,
+   "ranks": null,
+   "spellIds": [
+    805552
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_FireDancer_01",
+   "description": "Increases your Spirit by 10%."
+  },
+  "Seal of Al'ar": {
+   "name": "Seal of Al'ar",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 808012,
+   "ranks": {
+    "1": 803649,
+    "2": 803729,
+    "3": 807704,
+    "4": 807770,
+    "5": 808012
+   },
+   "spellIds": [
+    803649,
+    803729,
+    807704,
+    807770,
+    808012
+   ],
+   "cost": 700,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Bless an ally with the power of Al'ar, restoring 10 mana every 5 sec."
+  },
+  "Seal of Alysrazor": {
+   "name": "Seal of Alysrazor",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802822,
+   "ranks": {
+    "1": 800196,
+    "2": 802819,
+    "3": 802820,
+    "4": 802821,
+    "5": 802822
+   },
+   "spellIds": [
+    800196,
+    802819,
+    802820,
+    802821,
+    802822
+   ],
+   "cost": 10,
+   "levelReq": 1,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Empowers an ally with the power of the eternal phoenix, increasing their Intellect by 2 for 30 min."
+  },
+  "Searing Flames": {
+   "name": "Searing Flames",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503863,
+   "ranks": null,
+   "spellIds": [
+    503863
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_FireRealm_Border",
+   "description": "Increases the spell bonus scaling of Lava Shard by 30%."
+  },
+  "Searing Power": {
+   "name": "Searing Power",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680959,
+   "ranks": null,
+   "spellIds": [
+    680959
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_fire_spell_09_nobg_Border",
+   "description": "Increases the spell power scaling of Flare Bolt by 20%."
+  },
+  "Searing Speed": {
+   "name": "Searing Speed",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704800,
+   "ranks": null,
+   "spellIds": [
+    704800
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holy_speed_Border",
+   "description": "Dealing periodic damage or healing now has a 15% chance to grant you Searing Speed.Searing SpeedIncreases your movement speed by 50% for 2 seconds."
+  },
+  "Shazzrah's Boon": {
+   "name": "Shazzrah's Boon",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807126,
+   "ranks": null,
+   "spellIds": [
+    807126
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_MC_Shazzrah",
+   "description": "Consuming an Ember now regenerates 2% of your maximum mana."
+  },
+  "Shielded by Flames": {
+   "name": "Shielded by Flames",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704275,
+   "ranks": null,
+   "spellIds": [
+    704275
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_normal03fireball_Border",
+   "description": "Healing critical strikes now apply an absorption shield to allies equal to 30% of the healing done for 8 seconds."
+  },
+  "Sizzle": {
+   "name": "Sizzle",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800811,
+   "ranks": null,
+   "spellIds": [
+    800811
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_FlameTounge",
+   "description": "When Flamecasting expires your active Pyromancer periodic effects flare up on all enemies, instantly striking them with Flare Bolts.Flare BoltGenerates 20 Heat\nInvoke flames upon an enemy, dealing 19 + 57.1% fire SP Fire damage."
+  },
+  "Soothing Flames": {
+   "name": "Soothing Flames",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704855,
+   "ranks": null,
+   "spellIds": [
+    704855
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_monk_breathoffire",
+   "description": "Healing done by Kindle and Cinderheart now additionally heals the target for 30% of the healing done over 3 seconds."
+  },
+  "Soul of the Dragon": {
+   "name": "Soul of the Dragon",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704816,
+   "ranks": null,
+   "spellIds": [
+    704816
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_fire_0008s_0000_breath_Border",
+   "description": "Casting Flare Bolt now has a 15% chance to cast it again free of cost."
+  },
+  "Spellburn": {
+   "name": "Spellburn",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800808,
+   "ranks": {
+    "1": 800808
+   },
+   "spellIds": [
+    800808
+   ],
+   "cost": 6600,
+   "levelReq": 24,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Counters the enemy's spellcast, preventing any spell from that school of magic from being cast for 5 sec."
+  },
+  "Spirit of Fire": {
+   "name": "Spirit of Fire",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500167,
+   "ranks": null,
+   "spellIds": [
+    500167
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(33)_Border",
+   "description": "Increases the effectiveness of your absorption effects by 20%."
+  },
+  "Spirit of the Phoenix": {
+   "name": "Spirit of the Phoenix",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92126,
+   "ranks": null,
+   "spellIds": [
+    92126
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\custom_T_Phoenix_Border",
+   "description": "Level 10 Passive\nUpon taking damage that would otherwise kill you, you are instead transformed into the Spirit of the Phoenix for 15 seconds.\n\nWhile transformed, your spells have no mana cost and your Spirit is increased by 100%. At the end of the duration, you will be reborn. Can only occur once every 10 min."
+  },
+  "Stoke": {
+   "name": "Stoke",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704856,
+   "ranks": null,
+   "spellIds": [
+    704856
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_FlameShock",
+   "description": "Critical strikes with Ignite and Infernus now extend their own duration on the target by 3 sec, up to a maximum of 12 sec."
+  },
+  "Sulfuron Harbinger": {
+   "name": "Sulfuron Harbinger",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807146,
+   "ranks": null,
+   "spellIds": [
+    807146
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_MC_Lucifron",
+   "description": "$87"
+  },
+  "Sunstrider Array": {
+   "name": "Sunstrider Array",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804230,
+   "ranks": null,
+   "spellIds": [
+    804230
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_ability_sunfurymage_spellfirespheres",
+   "description": "For 15 seconds, you generate 1 Ember every 3 sec and your Cinderheart generates double the amount of Heat with each cast."
+  },
+  "Superheated": {
+   "name": "Superheated",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681196,
+   "ranks": null,
+   "spellIds": [
+    681196
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(51)_Border",
+   "description": "Consuming or generating an Ember now has a 10% chance to superheat you, increasing all damage and healing done by 10% for 6 sec."
+  },
+  "Supernova": {
+   "name": "Supernova",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803546,
+   "ranks": {
+    "1": 803546
+   },
+   "spellIds": [
+    803546
+   ],
+   "cost": 63000,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Scorch the ground around you, marking the area for 5 sec, and pulling all enemies near you. \r\n\r\nEnemies inside have their movement speed slowed by 80% and the duration of stun and root effects on them increased by 50%.\r\n\r\nAfter 5.00 sec, you deal 2214 Fire damage to nearby enemies, ignoring absorption effects, resistances, and immunities.\r\n\r\nWhile channeling, you are immune to crowd control but cannot move or cancel the effect once begun."
+  },
+  "Tender Touch": {
+   "name": "Tender Touch",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704273,
+   "ranks": null,
+   "spellIds": [
+    704273
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_FireDancer_01",
+   "description": "Effective healing done by Ember Touch now heals up to 3 of the lowest health allies near your target for an additional 15% of the amount healed."
+  },
+  "Timed Attacks": {
+   "name": "Timed Attacks",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704812,
+   "ranks": null,
+   "spellIds": [
+    704812
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_raptortalon_nightmare",
+   "description": "Increases your spell haste by 4%."
+  },
+  "To Ashes": {
+   "name": "To Ashes",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300975,
+   "ranks": null,
+   "spellIds": [
+    300975
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_moltensmash_Border",
+   "description": "Damaging critical strikes now generate 10 Heat and restore 3% of your base mana."
+  },
+  "Touched by Fire": {
+   "name": "Touched by Fire",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704848,
+   "ranks": null,
+   "spellIds": [
+    704848
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fire_phoenix_Border",
+   "description": "Your Cinderheart, Ember Touch, and Kindle now gains an additional 15% of your bonus healing spell power."
+  },
+  "Unfathomably Hot!": {
+   "name": "Unfathomably Hot!",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807404,
+   "ranks": null,
+   "spellIds": [
+    807404
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_SelfDestruct",
+   "description": "Each tick of Cleansing Flames now generates 5 additional Heat."
+  },
+  "Veins of Fire": {
+   "name": "Veins of Fire",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706859,
+   "ranks": null,
+   "spellIds": [
+    706859
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_drinkable_(4)_Border",
+   "description": "Flamecasting now also grants 3% increased Spirit per stack."
+  },
+  "Volcanic Shell": {
+   "name": "Volcanic Shell",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 807622,
+   "ranks": {
+    "2": 807620,
+    "3": 807621,
+    "4": 807622
+   },
+   "spellIds": [
+    805477,
+    807620,
+    807621,
+    807622
+   ],
+   "cost": 12000,
+   "levelReq": 36,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_firestone_Border",
+   "description": "|cffff7f7fGenerates 50 Heat|r\r\nConjure a shield of magma and fire around you, absorbing 844 damage. Lasts 10 sec."
+  },
+  "Wand": {
+   "name": "Wand",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 5019,
+   "ranks": null,
+   "spellIds": [
+    5019
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Warmth": {
+   "name": "Warmth",
+   "spec": "Flameweaving",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706464,
+   "ranks": null,
+   "spellIds": [
+    706464
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_FlameShock",
+   "description": "You now radiate warmth to nearby allies, healing the lowest health nearby ally equal to 25% of your periodic damage dealt."
+  },
+  "Wild Magic": {
+   "name": "Wild Magic",
+   "spec": "Draconic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705559,
+   "ranks": null,
+   "spellIds": [
+    705559
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(62)_Border",
+   "description": "Damage dealt by Dragon's Wrath now has a 50% chance to become unstable, dealing 50 + 16.5% Intellect% additional damage as Magic damage, but burning 85 + 40% Intellect mana.\n\nBoth the damage dealt and mana burned scale with your Intellect."
+  },
+  "Wreath of Flames": {
+   "name": "Wreath of Flames",
+   "spec": "Incineration",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802068,
+   "ranks": null,
+   "spellIds": [
+    802068
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_InnerFire",
+   "description": "Periodic Fire damage now has a 10% chance to grant a stack of Flamecasting, or 2 stacks if they critically strike.FlamecastingIncreases your spell haste by 5% for 15 seconds. Stacks 5 times.\n\nAdditional applications do not refresh duration."
+  },
+  "Ysera's Blessing": {
+   "name": "Ysera's Blessing",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704820,
+   "ranks": null,
+   "spellIds": [
+    704820
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Head_Dragon_Green",
+   "description": "Reduces the cast time of Gaze of Ysera by -0.5 sec and causes it to have a -10% reduced chance to break from damage."
+  }
+ }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "Corpse Explosion Rotation",
+  "uid": "reNje)a33Nd",
+  "note": "Generative JOIN proof (T5-shape rotation icon): always visible, desaturates while on cooldown. Two triggers (cooldown state + usable state) OR'd via combine:any so the footprint persists; a join desaturates when the cooldown trigger shows. Corpse Explosion 533236, NECROMANCER. Parts + join structure byte-real from the Target set; the assembler composes them generatively (roles->indices, condition wiring).",
+  "base": "icon",
+  "parts": [
+    {
+      "part": "region.icon"
+    },
+    {
+      "part": "subregion.subbackground"
+    },
+    {
+      "part": "subregion.subborder"
+    },
+    {
+      "part": "subregion.subtext"
+    },
+    {
+      "part": "trigger.cooldown",
+      "role": "cooldown",
+      "fills": {
+        "spellName": 533236
+      }
+    },
+    {
+      "part": "trigger.availability",
+      "role": "usable",
+      "fills": {
+        "spellName": 533236
+      }
+    },
+    {
+      "part": "load.by_class",
+      "fills": {
+        "class.single": "NECROMANCER"
+      }
+    }
+  ],
+  "combine": "any",
+  "join": [
+    {
+      "when": {
+        "role": "cooldown",
+        "var": "show",
+        "value": 1
+      },
+      "then": [
+        {
+          "set": "desaturate",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

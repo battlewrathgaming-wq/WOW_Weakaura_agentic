@@ -665,6 +665,24 @@ class-implementer pass.
   traceability: `necromancer_trainer_raw.json` (125 entries),
   `necromancer_talentnodes_raw.json` (80 entries).
 
+- [ability_inventory/](ability_inventory/README.md) (2026-07-11) - **the complete,
+  spellID-keyed ability inventory for ALL 21 classes**, plus a single-file community HTML
+  reference (`ability_inventory/reference.html`: search + Class/Spec filters + two views,
+  abilities-with-talents-attached and talents-with-abilities-referenced). Generalises the
+  single-class `necromancer_live_reference.json` above to the whole roster and adds two
+  things: the **spellbook** scrape (learned abilities, spec-tagged by book tab) alongside
+  the trainer scrape, and **per-rank spellIds** grouped under each base ability
+  (`ranks{2:803768, 3:803769,...}`) - the `COA_DevDump` trainer dump now recovers the id
+  via the tooltip's `GetSpell`, so the "too many rank IDs to track cleanly" concern the
+  live_reference noted is answered by base-ability grouping rather than dropping the ids.
+  Merges three sources per class - trainer (trainable) + spellbook (learned) +
+  `Input/<class>_talents.json` (talents) - matched by the real `UnitClass` token (7
+  dev-holdover tokens overridden in `wa_index/coa_value_domains.json`, e.g.
+  `SONOFARUGAL`->Bloodmage, `DEMONHUNTER`->Felsworn). 21 classes / 4565 abilities / 3612
+  talents, zero spellId fragmentation. Also wires the talent<->ability `referencedTerms`
+  attachments (5610) - the embryo of the proc basis (`memory/proc-basis-plan.md`). Full
+  pipeline in `ability_inventory/README.md`.
+
 ## Reference materials (dip into Display for these)
 
 Designing an actual aura needs more context than the index alone gives you

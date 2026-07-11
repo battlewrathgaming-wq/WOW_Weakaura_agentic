@@ -1,0 +1,23 @@
+{
+ "unresolved_domains": {
+  "class_types": 5,
+  "specialization_types": 1,
+  "race_types": 1,
+  "item_weapon_types": 2,
+  "<function>": 4,
+  "raid_mark_check_type": 4,
+  "actual_unit_types_with_specific": 4,
+  "spec_types_all": 4,
+  "actual_unit_types_cast": 4,
+  "unit_types_range_check": 1,
+  "form_types": 1,
+  "threat_unit_types": 1,
+  "weapon_enchant_types": 1
+ },
+ "inventory_sourced": [
+  "class_types",
+  "form_types",
+  "spec_types_all",
+  "specialization_types"
+ ]
+}

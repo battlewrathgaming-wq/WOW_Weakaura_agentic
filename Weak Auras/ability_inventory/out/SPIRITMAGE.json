@@ -1,0 +1,3839 @@
+{
+ "class": "SPIRITMAGE",
+ "display": "Runemaster",
+ "classId": 32,
+ "abilityCount": 208,
+ "bySpec": {
+  "General": 47,
+  "Engravement": 2,
+  "Runic": 40,
+  "Arcane": 41,
+  "Riftblade": 41,
+  "Class": 37
+ },
+ "abilities": {
+  "Advanced Magi": {
+   "name": "Advanced Magi",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804557,
+   "ranks": null,
+   "spellIds": [
+    804557
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_icetorch_Border",
+   "description": "Increases the spell power scaling of Elemental Burst by 25%."
+  },
+  "Alteration": {
+   "name": "Alteration",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705619,
+   "ranks": null,
+   "spellIds": [
+    705619
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_custom_hearthstone_frost",
+   "description": "Increases the effectiveness of your Runic Tattoos by 25%."
+  },
+  "Ancient Teachings": {
+   "name": "Ancient Teachings",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806797,
+   "ranks": null,
+   "spellIds": [
+    806797
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mage_potentspirit",
+   "description": "Increases the effectiveness of Etching of the Dextrous by 20%."
+  },
+  "Ancient Warrior": {
+   "name": "Ancient Warrior",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520755,
+   "ranks": null,
+   "spellIds": [
+    520755
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_warriorskill14_Border",
+   "description": "Reduces the cooldown of Fist of the Ancients by -2 sec whenever you use Runeblade or Primordial Blast."
+  },
+  "Arcane Affinity": {
+   "name": "Arcane Affinity",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 28877,
+   "ranks": null,
+   "spellIds": [
+    28877
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Arcane Glyph": {
+   "name": "Arcane Glyph",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805727,
+   "ranks": null,
+   "spellIds": [
+    805727
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\70_inscription_vantus_rune_suramar",
+   "description": "Using Elemental Burst or Primordial Blast while Flame Glyph is active now grants you Arcane Glyph.Arcane GlyphUnleash: Deals 276 + 18% arcane SP Arcane Damage to up to 0 enemies near the primary target."
+  },
+  "Arcane Student": {
+   "name": "Arcane Student",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300576,
+   "ranks": null,
+   "spellIds": [
+    300576
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_books_(6)_Border",
+   "description": "While Glyphic Overload is active, your Glyphic Ruin is guaranteed to critically strike."
+  },
+  "Arcane Torrent": {
+   "name": "Arcane Torrent",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 814287,
+   "ranks": null,
+   "spellIds": [
+    814287
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Auto Attack": {
+   "name": "Auto Attack",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 6603,
+   "ranks": null,
+   "spellIds": [
+    6603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Battle Engravings": {
+   "name": "Battle Engravings",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706674,
+   "ranks": null,
+   "spellIds": [
+    706674
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_manaclone_Border",
+   "description": "Removes the cast time from Ley Lock, but reduces its duration by 0.5 sec."
+  },
+  "Blade Rift": {
+   "name": "Blade Rift",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520237,
+   "ranks": null,
+   "spellIds": [
+    520237
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_magicresistance_Border",
+   "description": "While stealthed, using Warpdagger now increases your Magic Damage dealt by 10% for 8 seconds."
+  },
+  "Block": {
+   "name": "Block",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 107,
+   "ranks": null,
+   "spellIds": [
+    107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Branded": {
+   "name": "Branded",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707717,
+   "ranks": null,
+   "spellIds": [
+    707717
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\novart_magicspell_(51)_Border",
+   "description": "Level 50 Passive\nGaining Power Overwhelming now also guarantees your next Runic Brand to critically strike."
+  },
+  "Brandmaster": {
+   "name": "Brandmaster",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520524,
+   "ranks": null,
+   "spellIds": [
+    520524
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_MagicArtifact_37",
+   "description": "Increases your critical strike chance with Runic Brand's explosion effect by 10%."
+  },
+  "Burned Etching": {
+   "name": "Burned Etching",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500476,
+   "ranks": null,
+   "spellIds": [
+    500476
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\70_inscription_vantus_rune_light",
+   "description": "While Weapon Engraving: Fire is active, your Elemental Burst now deals 10% increased damage as Fire damage and your chance to trigger Weapon Engraving: Fire is increased by 5%."
+  },
+  "Bursting Pulses": {
+   "name": "Bursting Pulses",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300584,
+   "ranks": null,
+   "spellIds": [
+    300584
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(57)_Border",
+   "description": "Each weapon enchanted by Weapon Engraving: Earth now reduces the cooldown of Primordial Pulse by -4 sec and increases it's damage by 15%."
+  },
+  "Cinderstorm Runes": {
+   "name": "Cinderstorm Runes",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706458,
+   "ranks": null,
+   "spellIds": [
+    706458
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_firetwist_Border",
+   "description": "Hurricane and Smolder now deal 50% more damage against enemies below 20% maximum health."
+  },
+  "Cinderwake": {
+   "name": "Cinderwake",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807828,
+   "ranks": {
+    "1": 807828
+   },
+   "spellIds": [
+    807828
+   ],
+   "cost": 7800,
+   "levelReq": 26,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Incinerate the ground beneath you periodically with fire for 10 sec. \r\n\r\nEnemies that walk through the fire are revealed from stealth or invisibility and marked for 1 min, allowing you to track them on your minimap and see them even while stealthed or invisible.\r\n\r\nDoes not break stealth. "
+  },
+  "Cold Elements": {
+   "name": "Cold Elements",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520138,
+   "ranks": null,
+   "spellIds": [
+    520138
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_frost_0004s_0000_bolt_Border",
+   "description": "Damage dealt with Elemental Burst and Primordial Blast now has a 20% chance to reset the cooldown of Frigid Blast and make its next use within 10 seconds instant cast."
+  },
+  "Concentrated Magic": {
+   "name": "Concentrated Magic",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560995,
+   "ranks": null,
+   "spellIds": [
+    560995
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_arcaneburst_Border",
+   "description": "Increases your Spirit by 5% and reduces spell pushback suffered from damaging attacks by 35%."
+  },
+  "Convergence": {
+   "name": "Convergence",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801086,
+   "ranks": null,
+   "spellIds": [
+    801086
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_arcaneaid_Border",
+   "description": "For 15 seconds, the next 10 Weapon Engravings you trigger will now deal an additional 348 + 30% SP + 20% AP Elemental Damage."
+  },
+  "Cryobrand": {
+   "name": "Cryobrand",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807822,
+   "ranks": {
+    "1": 807822
+   },
+   "spellIds": [
+    807822
+   ],
+   "cost": 150,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Blast an enemy with frost magic, freezing them in place for 40 sec (8 sec vs players). Can only affect 1 enemy at a time.\r\n\r\nDoes not break stealth. Damage caused may interrupt the effect."
+  },
+  "Cryomagi": {
+   "name": "Cryomagi",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805726,
+   "ranks": null,
+   "spellIds": [
+    805726
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_icelaser_Border",
+   "description": "Increases the range of Cryobrand by 10 yds."
+  },
+  "Decoder": {
+   "name": "Decoder",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706523,
+   "ranks": null,
+   "spellIds": [
+    706523
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_MagicArtifact_10",
+   "description": "Your Elemental Burst and Runeblade now have a 20% chance to instantly trigger your Weapon Engravings."
+  },
+  "Devastating Flames": {
+   "name": "Devastating Flames",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806993,
+   "ranks": null,
+   "spellIds": [
+    806993
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_burningsoul",
+   "description": "Increases the damage dealt of Weapon Engraving: Fire by 20%."
+  },
+  "Dodge": {
+   "name": "Dodge",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 81,
+   "ranks": null,
+   "spellIds": [
+    81
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Dual Wield": {
+   "name": "Dual Wield",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 674,
+   "ranks": null,
+   "spellIds": [
+    674
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Earth, Wind, and Fire": {
+   "name": "Earth, Wind, and Fire",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706531,
+   "ranks": null,
+   "spellIds": [
+    706531
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_shaman_ascendance",
+   "description": "Striking at least 5 enemies with Runic Explosion now unleashes Wild Steam.Wild Steam (Transform)Stomp the ground in a 5 yd radius around you and release steam, dealing 128 + 25% AP Frostfire Damage to nearby enemies."
+  },
+  "Earthen Codex": {
+   "name": "Earthen Codex",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707460,
+   "ranks": null,
+   "spellIds": [
+    707460
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_book_10_b_Border",
+   "description": "When you active a Palm Sigil, you are now guaranteed to critically strike for 20% increased critical damage for 10 seconds or your next 3 attacks."
+  },
+  "Echo Rune": {
+   "name": "Echo Rune",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500270,
+   "ranks": null,
+   "spellIds": [
+    500270
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\EchoRune",
+   "description": "Mark your current location with an echo rune for 20 seconds.\n\nAt the end of the duration or upon reactivation, warp back to the marked location and heal for 880 + 150% AP health."
+  },
+  "Echoes of Eternity": {
+   "name": "Echoes of Eternity",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 521211,
+   "ranks": null,
+   "spellIds": [
+    521211
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Mount_elementalfcca06",
+   "description": "Your Zenith now has 2 charges.Zenith2 Charges, 45 sec recharge\nFor 6 seconds, your runic tattoos flare up, increasing your chance to trigger your Weapon Engravings by 100%."
+  },
+  "Elemental Acuity": {
+   "name": "Elemental Acuity",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706671,
+   "ranks": null,
+   "spellIds": [
+    706671
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shaman_shockinglava",
+   "description": "Increases all Fire, Frost, and Nature damage dealt by 10%."
+  },
+  "Elemental Assassin": {
+   "name": "Elemental Assassin",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705541,
+   "ranks": null,
+   "spellIds": [
+    705541
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_smallazeritefragment",
+   "description": "Level 20 Passive\nIncreases your spell damage by 20% of your Agility, your spell critical strike chance by 10% of your Agility, and your hit rating by 5% of your Agility."
+  },
+  "Elemental Burst": {
+   "name": "Elemental Burst",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 502834,
+   "ranks": {
+    "1": 802202,
+    "2": 502828,
+    "3": 502829,
+    "4": 502830,
+    "5": 502831,
+    "6": 502832,
+    "7": 502833,
+    "8": 502834
+   },
+   "spellIds": [
+    502828,
+    502829,
+    502830,
+    502831,
+    502832,
+    502833,
+    502834,
+    802202
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Blasts an enemy for 31 Elemental Damage."
+  },
+  "Elemental Carvings": {
+   "name": "Elemental Carvings",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705618,
+   "ranks": null,
+   "spellIds": [
+    705618
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\INV_Ascend_carvings_b_01",
+   "description": "$dd"
+  },
+  "Elemental Inscription": {
+   "name": "Elemental Inscription",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806737,
+   "ranks": null,
+   "spellIds": [
+    806737
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Scroll3_Frostfire",
+   "description": "Casting Smolder now reduces the cooldown of Primordial Fury by -10 sec and Zenith by -5 sec."
+  },
+  "Elemental Mastery": {
+   "name": "Elemental Mastery",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806711,
+   "ranks": null,
+   "spellIds": [
+    806711
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(58)_Border",
+   "description": "Damage dealt by Runic Brand now has a 33% chance to transform your Primordial Blast into a random unique elemental version of itself."
+  },
+  "Elemental Secrets": {
+   "name": "Elemental Secrets",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707149,
+   "ranks": null,
+   "spellIds": [
+    707149
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_books_(7)_Border",
+   "description": "Increases the cooldown of Speed Rune by 30 sec, but it now applies stealth to allies who walk on the pathway for the duration."
+  },
+  "Elemental Strikes": {
+   "name": "Elemental Strikes",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806704,
+   "ranks": null,
+   "spellIds": [
+    806704
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_ElementalPrecision_1",
+   "description": "Increases your critical strike chance with Fire, Frost, and Nature spells by 3% and your expertise by 4."
+  },
+  "Elements of Fury": {
+   "name": "Elements of Fury",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707413,
+   "ranks": null,
+   "spellIds": [
+    707413
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_shaman_echooftheelements",
+   "description": "Your Palm Sigils now affect 1 additional instance of damage."
+  },
+  "Elements, Heed My Call!": {
+   "name": "Elements, Heed My Call!",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706670,
+   "ranks": null,
+   "spellIds": [
+    706670
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_ElementalAbsorption",
+   "description": "Increases the critical damage of Smolder, Hurricane, and Hoarfrost by 15%."
+  },
+  "Etching of the Dextrous": {
+   "name": "Etching of the Dextrous",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561240,
+   "ranks": {
+    "1": 561237,
+    "2": 561238,
+    "3": 561239,
+    "4": 561240
+   },
+   "spellIds": [
+    561237,
+    561238,
+    561239,
+    561240
+   ],
+   "cost": 850,
+   "levelReq": 18,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Enhance an ally, increasing their Agility by 10. Lasts 30 min."
+  },
+  "Etching of the Leylines": {
+   "name": "Etching of the Leylines",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561236,
+   "ranks": {
+    "1": 561236
+   },
+   "spellIds": [
+    561236
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Enhance an ally, increasing their total stats by 10%."
+  },
+  "Etching of the Magi": {
+   "name": "Etching of the Magi",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 560295,
+   "ranks": {
+    "1": 560295
+   },
+   "spellIds": [
+    560295
+   ],
+   "cost": 25500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Enhance an ally, reducing their resource costs by 5%."
+  },
+  "Eternal Magic": {
+   "name": "Eternal Magic",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806698,
+   "ranks": null,
+   "spellIds": [
+    806698
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(2)_Border",
+   "description": "Reduces the cooldown of Primordial Blast by -4 sec and it now refreshes 3 charges of Runeblade."
+  },
+  "Expert Elementalist": {
+   "name": "Expert Elementalist",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807505,
+   "ranks": null,
+   "spellIds": [
+    807505
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_elemental_eternal_shadow",
+   "description": "Reduces the cast time of Elemental Burst and Glyphic Ruin by 0.5 sec and increases your chance to hit by 3%."
+  },
+  "Explosive Runes": {
+   "name": "Explosive Runes",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 521219,
+   "ranks": null,
+   "spellIds": [
+    521219
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireinyourhand_Border",
+   "description": "Your Weapon Engraving: Fire now detonates after 2 sec and its critical damage is increased by 10%."
+  },
+  "Eye of the Beholder": {
+   "name": "Eye of the Beholder",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500121,
+   "ranks": null,
+   "spellIds": [
+    500121
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_arcanevision_Border",
+   "description": "Increases your spell critical strike chance by 25% for 15 seconds.\n\nWhile active, the damage of your Glyphic Ruin and Primordial Blast is increased by 25%."
+  },
+  "Fist of the Ancients": {
+   "name": "Fist of the Ancients",
+   "spec": "Runic",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 712334,
+   "ranks": {
+    "2": 712330,
+    "3": 712331,
+    "4": 712332,
+    "5": 712333,
+    "6": 712334
+   },
+   "spellIds": [
+    712326,
+    712330,
+    712331,
+    712332,
+    712333,
+    712334
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\skill_icon_skill150_Border",
+   "description": "Smash an enemy and 1 nearby enemy with your rune-engraved fists, dealing 72 Elemental Damage and triggering your |cffffffffWeapon Engraving|r."
+  },
+  "Fists of Power": {
+   "name": "Fists of Power",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92153,
+   "ranks": null,
+   "spellIds": [
+    92153,
+    805796
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\novart_magicspell_(14)_Border",
+   "description": "Level 10 Passive\nRuneblade now strikes your target an additional time for 50% of the damage dealt with your offhand weapon."
+  },
+  "Flame Glyph": {
+   "name": "Flame Glyph",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705625,
+   "ranks": null,
+   "spellIds": [
+    705625
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\70_inscription_vantus_rune_nightmare",
+   "description": "Using Elemental Burst or Primordial Blast while Frost Glyph is active now grants you a Flame Glyph.Flame GlyphUnleash: Deals 250 + 65% fire SP Fire Damage and an additional 750 + 30% SP Fire Damage over 6 seconds."
+  },
+  "Flowing Rivers": {
+   "name": "Flowing Rivers",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524697,
+   "ranks": null,
+   "spellIds": [
+    524697
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_waterstrick_Border",
+   "description": "Increases the chance to trigger Replenishment with Runic Tattoos: Water by 10% and its mana restored by 25%."
+  },
+  "Focusing Crystals": {
+   "name": "Focusing Crystals",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705564,
+   "ranks": null,
+   "spellIds": [
+    705564
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Arcane_Blast",
+   "description": "Increases your Magic Damage dealt by 3% and allows 30% of your mana regeneration to continue while in combat."
+  },
+  "Forbidden Engraving": {
+   "name": "Forbidden Engraving",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705543,
+   "ranks": null,
+   "spellIds": [
+    705543
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(49)_Border",
+   "description": "Increases the effectiveness of your Weapon Engravings by 20%."
+  },
+  "Fracture": {
+   "name": "Fracture",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803018,
+   "ranks": null,
+   "spellIds": [
+    803018
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_manaspike_Border",
+   "description": "Strike an enemy with frozen fury, dealing 1021 + 100% AP Frost damage and Burning 25 + 35% AP of the target's mana.\n\nDamage dealt is guaranteed to critically strike against frozen targets."
+  },
+  "Freezing Codex": {
+   "name": "Freezing Codex",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705577,
+   "ranks": null,
+   "spellIds": [
+    705577
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\item_icecrownringd",
+   "description": "Reduces the cooldown of Ice Rune by -20 sec and increases the mana cost by 50%, but reduces its range by -10 yds."
+  },
+  "Frigid Blast": {
+   "name": "Frigid Blast",
+   "spec": "Arcane",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502858,
+   "ranks": {
+    "2": 502853,
+    "3": 502854,
+    "4": 502855,
+    "5": 502856,
+    "6": 502857,
+    "7": 502858
+   },
+   "spellIds": [
+    500118,
+    502853,
+    502854,
+    502855,
+    502856,
+    502857,
+    502858
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\skill_icon_skill40_Border",
+   "description": "Blast an enemy with frigid runic magic, dealing 73 Frost damage and applying |cFFFFFFFFFrigid Fusion|r. @s:803225:0@"
+  },
+  "Frigid Elements": {
+   "name": "Frigid Elements",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707654,
+   "ranks": null,
+   "spellIds": [
+    707654
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_magicdevour_Border",
+   "description": "Increases the spell power scaling of Frigid Blast by 50%, but the cast time is increased by 1 sec.\n\nAdditionally, Frigid Fusion now accumulates 10% more damage on the target."
+  },
+  "Frost Glyph": {
+   "name": "Frost Glyph",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92152,
+   "ranks": null,
+   "spellIds": [
+    92152
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\70_inscription_vantus_rune_azure",
+   "description": "Level 10 Passive\nUsing Elemental Burst and Primordial Blast now grants you Frost Glyph. \n\nFrost GlyphUnleash: Deals 437 Frost Damage and slows movement speed by -30% for 4 seconds."
+  },
+  "Frost Spectre": {
+   "name": "Frost Spectre",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560039,
+   "ranks": null,
+   "spellIds": [
+    560039
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(3)_Border",
+   "description": "Increases the critical strike chance and critical damage of Smolder and Primordial Blast against Frozen targets by 25%."
+  },
+  "Frostburn": {
+   "name": "Frostburn",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705594,
+   "ranks": null,
+   "spellIds": [
+    705594
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_frost_knife_Border",
+   "description": "Removes the cast time of Glacial Rune and Permafrost Rune."
+  },
+  "Frozen Earth": {
+   "name": "Frozen Earth",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705592,
+   "ranks": null,
+   "spellIds": [
+    705592
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_frost_staff_Border",
+   "description": "Increases the duration of Ice Rune and the stun effect from Palm Sigil: Earth by 1 sec."
+  },
+  "Genesis": {
+   "name": "Genesis",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500501,
+   "ranks": null,
+   "spellIds": [
+    500501
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(60)_Border",
+   "description": "Apply a runic brand to an enemy for 8 seconds, accumulating 50% of your damage dealt, and unleashing after 8 seconds as Elemental Damage.\n\nWhen this deals damage, it triggers your Weapon Engraving."
+  },
+  "Glacial Rune": {
+   "name": "Glacial Rune",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807842,
+   "ranks": null,
+   "spellIds": [
+    807842
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_icespectator_Border",
+   "description": "Place a rune at the target location that explodes after 1 sec with frigid magic, dealing 128 + 30% SP Frost damage to enemies inside and freezing them in place for 40 seconds (8 sec vs players).\n\nDamage caused may interrupt the effect."
+  },
+  "Glyph God": {
+   "name": "Glyph God",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520156,
+   "ranks": null,
+   "spellIds": [
+    520156
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Racial_Ultravision",
+   "description": "Reduces the cooldown of Glyphic Overload by -15 sec."
+  },
+  "Glyph Master": {
+   "name": "Glyph Master",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520015,
+   "ranks": null,
+   "spellIds": [
+    520015
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_arcanestone_Border",
+   "description": "Scroll of Magic now also increases the critical damage and critical strike chance of Unleashed Glyphs by 5% for 15 seconds, stacking 3 times."
+  },
+  "Glyph Seeker": {
+   "name": "Glyph Seeker",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705627,
+   "ranks": null,
+   "spellIds": [
+    705627
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_pet_wretchedelf",
+   "description": "Increases the damage of Primordial Blast and Thaumaturgy by 20%."
+  },
+  "Glyph of Disappearance": {
+   "name": "Glyph of Disappearance",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560037,
+   "ranks": null,
+   "spellIds": [
+    560037
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\_D3familiar",
+   "description": "Level 40 Passive\nYour Phase Out can now be used 1 additional time within 15 seconds before incurring a cooldown."
+  },
+  "Glyphic Destruction": {
+   "name": "Glyphic Destruction",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800758,
+   "ranks": null,
+   "spellIds": [
+    800758
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_Zone_CrystalSong_01",
+   "description": "Increases the damage of Glyphic Ruin by 100% against Frozen targets."
+  },
+  "Glyphic Overload": {
+   "name": "Glyphic Overload",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520099,
+   "ranks": null,
+   "spellIds": [
+    520099
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\glyphicoverload",
+   "description": "$d9"
+  },
+  "Glyphic Ruin": {
+   "name": "Glyphic Ruin",
+   "spec": "Arcane",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572120,
+   "ranks": {
+    "2": 520067,
+    "3": 520068,
+    "4": 520069,
+    "5": 520070,
+    "6": 572119,
+    "7": 572120
+   },
+   "spellIds": [
+    520067,
+    520068,
+    520069,
+    520070,
+    572119,
+    572120,
+    801179
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_raidprimalist_council",
+   "description": "Unleash your active |cffffffffGlyph|r effect on an enemy and deal 153 Elemental Damage."
+  },
+  "Glyphs of Power": {
+   "name": "Glyphs of Power",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520145,
+   "ranks": null,
+   "spellIds": [
+    520145
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_rune_03",
+   "description": "Your direct damage dealt has a 10% chance to restore 3% of your maximum mana."
+  },
+  "Graceful": {
+   "name": "Graceful",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806708,
+   "ranks": null,
+   "spellIds": [
+    806708
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_MagicInYourHands_Border",
+   "description": "Increases your haste by 5%."
+  },
+  "Granite Resolve": {
+   "name": "Granite Resolve",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520229,
+   "ranks": null,
+   "spellIds": [
+    520229
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_earthtranquility_Border",
+   "description": "Become hard as stone, reducing your Physical damage taken by -30% for 8 seconds.\n\nUsable while stunned."
+  },
+  "Granite Shield": {
+   "name": "Granite Shield",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806996,
+   "ranks": null,
+   "spellIds": [
+    806996
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_druidstone01",
+   "description": "While Runic Tattoos: Earth is active, you now periodically gain Granite Shield every 20 sec.Granite ShieldAbsorbs 780 + 10% AP + 30% SP damage for 20 seconds."
+  },
+  "Greater Etching of the Dextrous": {
+   "name": "Greater Etching of the Dextrous",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561241,
+   "ranks": {
+    "1": 561241
+   },
+   "spellIds": [
+    561241
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Enhance all party and raid members, increasing their Agility by 77. Lasts 30 min."
+  },
+  "Greater Etching of the Leylines": {
+   "name": "Greater Etching of the Leylines",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561242,
+   "ranks": {
+    "1": 561242
+   },
+   "spellIds": [
+    561242
+   ],
+   "cost": 48000,
+   "levelReq": 52,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Enhance all party and raid members, increasing their total stats by 10%."
+  },
+  "Greater Etching of the Magi": {
+   "name": "Greater Etching of the Magi",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561243,
+   "ranks": {
+    "1": 561243
+   },
+   "spellIds": [
+    561243
+   ],
+   "cost": 53000,
+   "levelReq": 54,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Enhance all party and raid members, reducing their resource costs by 5%."
+  },
+  "Guarding Rune": {
+   "name": "Guarding Rune",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500464,
+   "ranks": null,
+   "spellIds": [
+    500464
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\ever_probe_sprite_296_Border",
+   "description": "Inscribe a defensive rune beneath you in a 10 yd radius, summoning a barrier that causes allies within the radius to take -40% reduced Magic damage. Lasts 15 seconds."
+  },
+  "Harnessing Leylines": {
+   "name": "Harnessing Leylines",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704139,
+   "ranks": null,
+   "spellIds": [
+    704139
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(25)_Border",
+   "description": "You now gain a stack of Harnessed Leylines every 1 sec for until cancelled. After the duration, the stacks reset.\nHarnessed Leylines (Proc)Increases the damage of your Runeblade and Elemental Burst by 3%, stacking up to 10 times.\n\nAdditional applications do not refresh the effect."
+  },
+  "Hoarfrost": {
+   "name": "Hoarfrost",
+   "spec": "Riftblade",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572737,
+   "ranks": {
+    "2": 572733,
+    "3": 572734,
+    "4": 572735,
+    "5": 572736,
+    "6": 572737
+   },
+   "spellIds": [
+    572733,
+    572734,
+    572735,
+    572736,
+    572737,
+    801104
+   ],
+   "cost": 4400,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_iceempower_Border",
+   "description": "Slash in a frozen fury in front of you, dealing 15 Frost Damage to up to 3 nearby enemies, plus an additional 15 every 3 sec for 21 sec.\r\n\r\nEnemies hit by the initial strike are frozen in place for 3 sec."
+  },
+  "Homebound Runestone": {
+   "name": "Homebound Runestone",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 560316,
+   "ranks": {
+    "1": 560316
+   },
+   "spellIds": [
+    560316
+   ],
+   "cost": 18000,
+   "levelReq": 32,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Create a |cFFFFFFFFHomebound Runestone|r for 2 min, allowing you to set your |cFFFFFFFFHearthstone|r at its destination.\r\n\r\nNot usable in combat."
+  },
+  "Hurricane": {
+   "name": "Hurricane",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 645435,
+   "ranks": null,
+   "spellIds": [
+    645435
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\skill_icon_skill153_Border",
+   "description": "Strike an enemy 5 times over 2 seconds, each strike dealing 125% Weapon Damage as Nature Damage, scaling with level.\n\nWhile striking your target, your chance to dodge is increased by 100%, but you cannot use any spells or abilities."
+  },
+  "Ice Rune": {
+   "name": "Ice Rune",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 524930,
+   "ranks": {
+    "1": 524930
+   },
+   "spellIds": [
+    524930
+   ],
+   "cost": 500,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cff3399ffRequires Frozen Target|r\r\nUnleash a frost rune at an enemy, stunning them for 4 sec.\r\n\r\nAffected enemies are considered |cff3399ffFrozen|R."
+  },
+  "Inscription: Leyline": {
+   "name": "Inscription: Leyline",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561263,
+   "ranks": {
+    "1": 561260,
+    "2": 561261,
+    "3": 561262,
+    "4": 561263
+   },
+   "spellIds": [
+    561260,
+    561261,
+    561262,
+    561263
+   ],
+   "cost": 700,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Attunes an ally to the leylines, increasing damage taken from spells by up to 15 and healing spells by up to 16. Lasts 30 min."
+  },
+  "Kirin Tor Agent": {
+   "name": "Kirin Tor Agent",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705634,
+   "ranks": null,
+   "spellIds": [
+    705634
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_artifactaegwynsstaff_d_06",
+   "description": "Casting Eye of the Beholder now rapidly reduces the coldown of your Rune spells and Phase Out for the duration."
+  },
+  "Ley Constitution": {
+   "name": "Ley Constitution",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705562,
+   "ranks": null,
+   "spellIds": [
+    705562
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_mindtwisting",
+   "description": "Your Armor contribution from items is increased by 30%."
+  },
+  "Ley Lock": {
+   "name": "Ley Lock",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800995,
+   "ranks": {
+    "1": 800995
+   },
+   "spellIds": [
+    800995
+   ],
+   "cost": 1900,
+   "levelReq": 18,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Interrupt your target's spellcasting, preventing any spell in that school from being cast for 2.50 sec."
+  },
+  "Ley Magician": {
+   "name": "Ley Magician",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804580,
+   "ranks": null,
+   "spellIds": [
+    804580
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\_AuraCloak_Fire",
+   "description": "Level 20 Passive\nIncreases your spell damage by 30% of Spirit and 10% of your Intellect, and spell hit rating by 6% of your Spirit."
+  },
+  "Ley Power": {
+   "name": "Ley Power",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801096,
+   "ranks": null,
+   "spellIds": [
+    801096
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_MagicArtifact_13",
+   "description": "$db"
+  },
+  "Ley Walker": {
+   "name": "Ley Walker",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500250,
+   "ranks": null,
+   "spellIds": [
+    500250
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "interface\\icons\\LeyWalk",
+   "description": "Casting or reactivating Warpdagger now removes all root and snare effects from you."
+  },
+  "Leyborn": {
+   "name": "Leyborn",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705609,
+   "ranks": null,
+   "spellIds": [
+    705609
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_zone_newshadowmoonvalley",
+   "description": "Your Marked: Runic Brand now stacks 3 times."
+  },
+  "Leyfeed": {
+   "name": "Leyfeed",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 520269,
+   "ranks": {
+    "1": 520269
+   },
+   "spellIds": [
+    520269
+   ],
+   "cost": 3700,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Feed off the latent magic of an enemy, stealing 2 beneficial magic effects from them."
+  },
+  "Leyfrost": {
+   "name": "Leyfrost",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 712308,
+   "ranks": null,
+   "spellIds": [
+    712308
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_magicstrike_Border",
+   "description": "Critical strikes with Hoarfrost now cause your next spell within 15 seconds to cast as if the target were Frozen."
+  },
+  "Leyline Adjustment": {
+   "name": "Leyline Adjustment",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561265,
+   "ranks": {
+    "1": 561265
+   },
+   "spellIds": [
+    561265
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Adjust the leylines beneath you, causing them to redirect the threat you generate for 30 sec to the targeted party member."
+  },
+  "Leyline Disturbance": {
+   "name": "Leyline Disturbance",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560540,
+   "ranks": null,
+   "spellIds": [
+    560540
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_arcaneshuriken_Border",
+   "description": "Increases melee and ranged haste of party and raid members within 100 yds by 10%.\n\nDoes not stack with similar effects.\n\nAdditionally, the duration of stun effects on you is reduced by -20%."
+  },
+  "Leyline Magician": {
+   "name": "Leyline Magician",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706823,
+   "ranks": null,
+   "spellIds": [
+    706823
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_arcane_massdispel",
+   "description": "Casting Primordial Blast now reduces the cooldown of Primordial Pulse by -5 sec."
+  },
+  "Leystone Springs": {
+   "name": "Leystone Springs",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300581,
+   "ranks": null,
+   "spellIds": [
+    300581
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_ghostwater_Border",
+   "description": "Your melee auto attacks now have a 15% chance to restore 49 + 5% AP mana. \n\nWhile Runic Tattoos: Water is active, the mana restored is increased by 200%."
+  },
+  "Magebreaker": {
+   "name": "Magebreaker",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804061,
+   "ranks": null,
+   "spellIds": [
+    804061
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_magemount",
+   "description": "Dealing damage with Hurricane now also reduces the targets Magic damage dealt by -15% for 8 seconds and dispels 1 harmful magic effect from you with each strike."
+  },
+  "Magic Etchings": {
+   "name": "Magic Etchings",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300582,
+   "ranks": null,
+   "spellIds": [
+    300582
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_RuneSauvagePourpre",
+   "description": "Dealing damage with Primordial Blast now reduces the affected target's armor by -4% for 12 seconds, stacking 5 times."
+  },
+  "Magic Feeder": {
+   "name": "Magic Feeder",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705546,
+   "ranks": null,
+   "spellIds": [
+    705546
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Racial_ShadowMeld",
+   "description": "Your Leyfeed now steals 1 additional magic effect from the target."
+  },
+  "Magic Resistance": {
+   "name": "Magic Resistance",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 822,
+   "ranks": null,
+   "spellIds": [
+    822
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Manuscription": {
+   "name": "Manuscription",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524952,
+   "ranks": null,
+   "spellIds": [
+    524952
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_inscription_80_contract_vulpera",
+   "description": "$d7"
+  },
+  "Mark of Strength": {
+   "name": "Mark of Strength",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560050,
+   "ranks": null,
+   "spellIds": [
+    560050
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_arcane_rune",
+   "description": "Increases the spell power scaling of Primordial Blast by 30%."
+  },
+  "Master Engraver": {
+   "name": "Master Engraver",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705605,
+   "ranks": null,
+   "spellIds": [
+    705605
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_blacksmithing_greatersharpeningstone",
+   "description": "Increases the chance to trigger your Weapon Engravings by 5%."
+  },
+  "Master of Runes": {
+   "name": "Master of Runes",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804531,
+   "ranks": null,
+   "spellIds": [
+    804531
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_custom_rune",
+   "description": "Reduces the cooldown of your Rune spells by -25%."
+  },
+  "Melting Runes": {
+   "name": "Melting Runes",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803013,
+   "ranks": null,
+   "spellIds": [
+    803013
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(44)_Border",
+   "description": "Weapon Engraving: Fire now deals 25% increased damage against Frozen enemies."
+  },
+  "Mind Over Matter": {
+   "name": "Mind Over Matter",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802669,
+   "ranks": null,
+   "spellIds": [
+    802669
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_arcane_mindmastery",
+   "description": "Increases the duration of Ley Lock by 0.5 sec."
+  },
+  "Mind Wrath": {
+   "name": "Mind Wrath",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800757,
+   "ranks": null,
+   "spellIds": [
+    800757
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_corruptionmind_Border",
+   "description": "Your Ley Lock now interrupts 1 additional enemy near your primary target."
+  },
+  "Mystical Etchings": {
+   "name": "Mystical Etchings",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806795,
+   "ranks": null,
+   "spellIds": [
+    806795
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_arcanestone_Border",
+   "description": "Reduces all Fire, Nature, Frost, and Arcane damage taken by -8%."
+  },
+  "Nomad's Scroll": {
+   "name": "Nomad's Scroll",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707653,
+   "ranks": null,
+   "spellIds": [
+    707653
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_scroll_07_b",
+   "description": "Swapping to Runic Tattoos: Air now instantly dispels 1 movement slowing effect on you."
+  },
+  "Palm Sigil: Arcane": {
+   "name": "Palm Sigil: Arcane",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807323,
+   "ranks": {
+    "1": 805380,
+    "2": 807322,
+    "3": 807323
+   },
+   "spellIds": [
+    805380,
+    807322,
+    807323
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Engrave an arcane rune into your palm, causing your next instance of direct Magic damage within 6 sec to deal an additional 5% of the damage dealt as Arcane damage every 3 sec for 12 sec and silences the target for 3 sec.\r\n\r\nUsable while moving."
+  },
+  "Palm Sigil: Earth": {
+   "name": "Palm Sigil: Earth",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 805382,
+   "ranks": {
+    "1": 805382
+   },
+   "spellIds": [
+    805382
+   ],
+   "cost": 150,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Engrave an earth rune into your palm, causing your next instance of direct Magic damage within 6 sec to stun a target enemy for 4 sec.\r\n\r\nUsable while moving."
+  },
+  "Palm Sigil: Fire": {
+   "name": "Palm Sigil: Fire",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 534807,
+   "ranks": {
+    "1": 534803,
+    "2": 534804,
+    "3": 534805,
+    "4": 534806,
+    "5": 534807
+   },
+   "spellIds": [
+    534803,
+    534804,
+    534805,
+    534806,
+    534807
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Engrave a fire rune into your palm, your next direct damaging spell deals 70% bonus damage as Fire. Lasts for 6 sec.\r\n\r\nUsable while moving."
+  },
+  "Palm Sigil: Frost": {
+   "name": "Palm Sigil: Frost",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 805381,
+   "ranks": {
+    "1": 805381
+   },
+   "spellIds": [
+    805381
+   ],
+   "cost": 12500,
+   "levelReq": 34,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Engrave a frost rune into your palm, causing your next instance of direct Magic damage within 6 sec to deal 30% of the damage dealt as Frost damage and slow the enemy's movement speed by 70% for 8 sec. \r\n\r\nUsable while moving."
+  },
+  "Palm Sigil: Water": {
+   "name": "Palm Sigil: Water",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 500639,
+   "ranks": {
+    "1": 500639
+   },
+   "spellIds": [
+    500639
+   ],
+   "cost": 15000,
+   "levelReq": 32,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Engrave a water rune into your palm, causing your next instance of direct Magic damage within 6 sec to drain the target's mana equal to 50% of the damage dealt.\r\n\r\nUsable while moving."
+  },
+  "Palm Sigil: Wind": {
+   "name": "Palm Sigil: Wind",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807013,
+   "ranks": {
+    "1": 807013
+   },
+   "spellIds": [
+    807013
+   ],
+   "cost": 25500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Engrave a wind rune into your palm, causing your next instance of direct Magic damage within 6 sec to make you immune to movement impairing effects and increase your movement speed by 20% for 6 sec.\r\n\r\nUsable while moving."
+  },
+  "Permafrost Rune": {
+   "name": "Permafrost Rune",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804060,
+   "ranks": null,
+   "spellIds": [
+    804060
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_icestone_Border",
+   "description": "Requires Frozen Target\nInscribe a rune of permafrost and unleash it on an enemy, incapacitating them for 40 seconds (8 sec vs players). Damage taken will end the effect. \n\nAffected enemies are considered Frozen.\n\nUsing this while in Runeshroud causes it to incur an -80% reduced cooldown."
+  },
+  "Phase Out": {
+   "name": "Phase Out",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500671,
+   "ranks": null,
+   "spellIds": [
+    500671
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mage_greaterinvisibility",
+   "description": "Disappear from sight, entering an improved stealth for 6 seconds and applying Runeshroud."
+  },
+  "Phase Rush": {
+   "name": "Phase Rush",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805724,
+   "ranks": null,
+   "spellIds": [
+    805724
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_socererking_arcaneacceleration",
+   "description": "Casting Thaumaturgy now grants you 25% increased movement speed for 5 seconds."
+  },
+  "Phaser": {
+   "name": "Phaser",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706518,
+   "ranks": null,
+   "spellIds": [
+    706518
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mage_invisibility",
+   "description": "Reduces the cooldown of Phase Out by -30 sec and removes its mana cost."
+  },
+  "Power Engraving": {
+   "name": "Power Engraving",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500296,
+   "ranks": null,
+   "spellIds": [
+    500296
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathknight_hungeringruneblade",
+   "description": "Create a Power Engraving beneath you for 20 seconds, granting 20% increased Magic Damage dealt and 20% increased critical strike chance to up to 5 allies standing in the area."
+  },
+  "Power Overwhelming": {
+   "name": "Power Overwhelming",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707876,
+   "ranks": null,
+   "spellIds": [
+    707876
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\ability_socererking_arcanefortification",
+   "description": "Level 40 Passive\nYour Runeblade and Primordial Blast now have a 35% chance to grant you Power Overwhelming, resetting the cooldown of Runic Brand."
+  },
+  "Primal Rune": {
+   "name": "Primal Rune",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705636,
+   "ranks": null,
+   "spellIds": [
+    705636
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_druid_fortifiedbark",
+   "description": "Granite Resolve now reduces damage taken by an additional -10%."
+  },
+  "Primordial Blast": {
+   "name": "Primordial Blast",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 502827,
+   "ranks": {
+    "1": 800732,
+    "2": 502823,
+    "3": 502824,
+    "4": 502825,
+    "5": 502826,
+    "6": 502827
+   },
+   "spellIds": [
+    502823,
+    502824,
+    502825,
+    502826,
+    502827,
+    800732
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Launch a primordial missile at an enemy, dealing 27 Elemental Damage."
+  },
+  "Primordial Echoes": {
+   "name": "Primordial Echoes",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705572,
+   "ranks": null,
+   "spellIds": [
+    705572
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_MagicVortex_Border",
+   "description": "Your critical strikes dealt with Primordial Blast now have a 40% chance to strike an additional time."
+  },
+  "Primordial Fury": {
+   "name": "Primordial Fury",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806543,
+   "ranks": null,
+   "spellIds": [
+    806543
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_mageskill04_Border",
+   "description": "Your runic tattoos flare up for 15 seconds, causing Runeblade to strike up to 5 additional enemies.\n\nFor the duration, your Runic Tattoos have 100% increased effectiveness."
+  },
+  "Primordial Power": {
+   "name": "Primordial Power",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705556,
+   "ranks": null,
+   "spellIds": [
+    705556
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_mage_overpowered",
+   "description": "Increases the duration of Frigid Fusion by 2 sec."
+  },
+  "Primordial Pulse": {
+   "name": "Primordial Pulse",
+   "spec": "Arcane",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 563206,
+   "ranks": {
+    "2": 563203,
+    "3": 563204,
+    "4": 563205,
+    "5": 563206
+   },
+   "spellIds": [
+    300578,
+    563203,
+    563204,
+    563205,
+    563206
+   ],
+   "cost": 12500,
+   "levelReq": 34,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\primordialpulse",
+   "description": "Inscribe an area with runes for 2 sec, dealing 34 Elemental Damage every 0.50 sec to up to 5 enemies inside."
+  },
+  "Primordial Salvos": {
+   "name": "Primordial Salvos",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800752,
+   "ranks": null,
+   "spellIds": [
+    800752
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_shaman_ascendance",
+   "description": "Unleashing a Glyph now deals an additional 115 + 6% SP damage of the same magic school to all enemies within 8 yds of the target."
+  },
+  "Primordial Strength": {
+   "name": "Primordial Strength",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301149,
+   "ranks": null,
+   "spellIds": [
+    301149
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\spell_holy_fistofjustice",
+   "description": "Level 20 Passive\nIncreases your spell damage by 25% of your attack power, your chance to hit by 3% of your Agility and your spell hit rating by 3% of your Agility."
+  },
+  "Primordialism": {
+   "name": "Primordialism",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520054,
+   "ranks": null,
+   "spellIds": [
+    520054
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_AstralRecalGroup",
+   "description": "Increases your critical strike chance by 10% for 5 seconds after leaving Runeshroud."
+  },
+  "Prismatic Flow": {
+   "name": "Prismatic Flow",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705581,
+   "ranks": null,
+   "spellIds": [
+    705581
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_shadow_manafeed",
+   "description": "Phase Out now increases your movement speed by 40% for 2 seconds."
+  },
+  "Protective Warding": {
+   "name": "Protective Warding",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800756,
+   "ranks": null,
+   "spellIds": [
+    800756
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_bastion_mage",
+   "description": "Critical damage taken reduces the cooldown of Rune of Guarding by 10%."
+  },
+  "Residual Power": {
+   "name": "Residual Power",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560040,
+   "ranks": null,
+   "spellIds": [
+    560040
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(17)_Border",
+   "description": "Increases the damage replicated by Weapon Engraving: Air by 15%."
+  },
+  "Resilient Constitution": {
+   "name": "Resilient Constitution",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 552011,
+   "ranks": null,
+   "spellIds": [
+    552011
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Resonance Rune": {
+   "name": "Resonance Rune",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803679,
+   "ranks": {
+    "1": 803679
+   },
+   "spellIds": [
+    803679
+   ],
+   "cost": 9900,
+   "levelReq": 28,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Place an arcane rune on the ground that dispels 3 harmful magic effects from allies in the radius, and purges 3 beneficial magic effects from enemies."
+  },
+  "Rift Clones": {
+   "name": "Rift Clones",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707463,
+   "ranks": null,
+   "spellIds": [
+    707463
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nature_mirrorimage",
+   "description": "Casting Phase Out now summons 10 clones of yourself that run in a random direction for 5 seconds.\n\nRift Clones periodically explode dealing 1 + 19.5% AP Arcane damage to all enemies within 5 yds of them."
+  },
+  "Riftblade": {
+   "name": "Riftblade",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92154,
+   "ranks": null,
+   "spellIds": [
+    92154
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\trade_archaeology_zinrokh_sword",
+   "description": "Level 10 Passive\nYour Primordial Blast and Smolder now refresh a charge of Runeblade.\n\nIn addition, every 3rd Runeblade now restores 388 + 30% AP mana, increased by 20% while Runic Tattoos: Water is active."
+  },
+  "Runeblade": {
+   "name": "Runeblade",
+   "spec": "Engravement",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 573447,
+   "ranks": {
+    "2": 707143,
+    "3": 707144,
+    "4": 707145,
+    "5": 707146,
+    "6": 707147,
+    "7": 707148,
+    "8": 573444,
+    "9": 573445,
+    "10": 573446,
+    "11": 573447
+   },
+   "spellIds": [
+    573444,
+    573445,
+    573446,
+    573447,
+    707141,
+    707143,
+    707144,
+    707145,
+    707146,
+    707147,
+    707148
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffff3 Charges, 6 sec recharge|r\r\nSlice an enemy with a rune-etched blade, dealing 32 Elemental Damage."
+  },
+  "Runebound Surge": {
+   "name": "Runebound Surge",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707423,
+   "ranks": null,
+   "spellIds": [
+    707423
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_ArcaneTwist_Border",
+   "description": "Casting Runeshroud now increases your movement speed by 75% for 3 seconds."
+  },
+  "Runelord": {
+   "name": "Runelord",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806984,
+   "ranks": null,
+   "spellIds": [
+    806984
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nature_elementalprecision_2",
+   "description": "After activating Zenith, deal 900 + 33% AP Elemental Damage to your target and increase the damage dealt by your Runic Brand and Weapon Engravings by 30% for 8 seconds."
+  },
+  "Runes of Quickness": {
+   "name": "Runes of Quickness",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560527,
+   "ranks": null,
+   "spellIds": [
+    560527
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_unholyrune_Border",
+   "description": "Increases the spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, the range of your Glyphic spells is increased by 6 yds."
+  },
+  "Runeshroud": {
+   "name": "Runeshroud",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 500288,
+   "ranks": {
+    "1": 500288
+   },
+   "spellIds": [
+    500288
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Shroud your form in mist, entering stealth, and reducing your movement speed by 30%.\r\n\r\nCannot be used while in combat."
+  },
+  "Runeslinger": {
+   "name": "Runeslinger",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705550,
+   "ranks": null,
+   "spellIds": [
+    705550
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_archaeology_70_starlightbeacon",
+   "description": "Direct damage dealt has a 5% chance to increase your spell haste by 20% for 5 seconds."
+  },
+  "Runic Affinity": {
+   "name": "Runic Affinity",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705621,
+   "ranks": null,
+   "spellIds": [
+    705621
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Rune_05",
+   "description": "Increases the duration of Zenith by 6 sec."
+  },
+  "Runic Brand": {
+   "name": "Runic Brand",
+   "spec": "Runic",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 712307,
+   "ranks": {
+    "2": 712301,
+    "3": 712302,
+    "4": 712303,
+    "5": 712304,
+    "6": 712305,
+    "7": 712306,
+    "8": 712307
+   },
+   "spellIds": [
+    712299,
+    712301,
+    712302,
+    712303,
+    712304,
+    712305,
+    712306,
+    712307
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_mageskill14_Border",
+   "description": "Brand an enemy, dealing 23 Fire damage with each weapon, and marking the enemy for 8 sec.@s:712323:0@"
+  },
+  "Runic Breakout": {
+   "name": "Runic Breakout",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705583,
+   "ranks": null,
+   "spellIds": [
+    705583
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_Teleport",
+   "description": "Abilities requiring Runeshroud can now be used for 3 sec and have no cast time after Runeshroud breaks."
+  },
+  "Runic Invocation": {
+   "name": "Runic Invocation",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807204,
+   "ranks": null,
+   "spellIds": [
+    807204
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_rune_06_b",
+   "description": "Increases the critical strike chance of Hoarfrost by 10% and allows its periodic damage to critically strike."
+  },
+  "Runic Obliteration": {
+   "name": "Runic Obliteration",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705560,
+   "ranks": null,
+   "spellIds": [
+    705560
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\novart_magicspell_(58)_Border",
+   "description": "$d5"
+  },
+  "Runic Omen": {
+   "name": "Runic Omen",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705580,
+   "ranks": null,
+   "spellIds": [
+    705580
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_MagicRune_Border",
+   "description": "Every 3rd cast of Runeblade now deals 30% increased damage."
+  },
+  "Runic Power": {
+   "name": "Runic Power",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300944,
+   "ranks": null,
+   "spellIds": [
+    300944
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_arcane_scroll_Border",
+   "description": "Increases the all damage dealt by party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, critical strikes now increase the chance for the target to be critically struck by your spells by 3% for 10 seconds."
+  },
+  "Runic Tattoos": {
+   "name": "Runic Tattoos",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800736,
+   "ranks": null,
+   "spellIds": [
+    800736
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\70_inscription_vantus_rune_azure",
+   "description": "Reduces the resource costs of your spells and abilities by -10%."
+  },
+  "Runic Tattoos: Air": {
+   "name": "Runic Tattoos: Air",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802630,
+   "ranks": {
+    "1": 802630
+   },
+   "spellIds": [
+    802630
+   ],
+   "cost": 12000,
+   "levelReq": 32,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Attune yourself with air, increasing your movement speed by 20% and gives you a 20% chance to resist movement impairing effects."
+  },
+  "Runic Tattoos: Arcane": {
+   "name": "Runic Tattoos: Arcane",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803762,
+   "ranks": {
+    "1": 803748,
+    "2": 803759,
+    "3": 803760,
+    "4": 803761,
+    "5": 803762
+   },
+   "spellIds": [
+    803748,
+    803759,
+    803760,
+    803761,
+    803762
+   ],
+   "cost": 1300,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Attune yourself to arcane, increasing your Arcane resistance by 5 and reducing the duration of harmful magic and curse effects against you by 20%."
+  },
+  "Runic Tattoos: Earth": {
+   "name": "Runic Tattoos: Earth",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803758,
+   "ranks": {
+    "1": 801094,
+    "2": 803754,
+    "3": 803755,
+    "4": 803756,
+    "5": 803757,
+    "6": 803758
+   },
+   "spellIds": [
+    801094,
+    803754,
+    803755,
+    803756,
+    803757,
+    803758
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Attune yourself with the earth, increasing your armor by 75 and your Nature resistance by 5."
+  },
+  "Runic Tattoos: Fire": {
+   "name": "Runic Tattoos: Fire",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803752,
+   "ranks": {
+    "1": 801106,
+    "2": 803749,
+    "3": 803750,
+    "4": 803751,
+    "5": 803752
+   },
+   "spellIds": [
+    801106,
+    803749,
+    803750,
+    803751,
+    803752
+   ],
+   "cost": 2900,
+   "levelReq": 24,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Attune yourself to fire, increasing your Fire resistance by 5. and your critical damage by 15%."
+  },
+  "Runic Tattoos: Frost": {
+   "name": "Runic Tattoos: Frost",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807838,
+   "ranks": {
+    "1": 807834,
+    "2": 807835,
+    "3": 807836,
+    "4": 807837,
+    "5": 807838
+   },
+   "spellIds": [
+    807834,
+    807835,
+    807836,
+    807837,
+    807838
+   ],
+   "cost": 150,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Attune yourself to frost, increasing your Frost resistance by 5 and causing melee and ranged attacks against you to slow the attackers movement speed and attack speed by 20% for 8 sec."
+  },
+  "Runic Tattoos: Water": {
+   "name": "Runic Tattoos: Water",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803785,
+   "ranks": {
+    "1": 801107,
+    "2": 803783,
+    "3": 803784,
+    "4": 803785
+   },
+   "spellIds": [
+    801107,
+    803783,
+    803784,
+    803785
+   ],
+   "cost": 300,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Attune yourself with water, restoring 10 mana every 5 seconds and reduces the mana cost of your spells and abilities by 5%."
+  },
+  "Runic Tempest": {
+   "name": "Runic Tempest",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560036,
+   "ranks": null,
+   "spellIds": [
+    560036
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\runictempest",
+   "description": "Harness the power of your runic tattoos, resetting the cooldown of Fist of the Ancients and allowing the use of abilities that require Runeshroud and making them able to be cast while moving for 8 seconds."
+  },
+  "Scroll of Magic": {
+   "name": "Scroll of Magic",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802204,
+   "ranks": null,
+   "spellIds": [
+    802204
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_ScrollOfMagic_Border",
+   "description": "Unleashing a Glyph increases the damage of your Unleashed Glyphs by 5% for 15 seconds, stacking 3 times."
+  },
+  "Scrying Orb": {
+   "name": "Scrying Orb",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804674,
+   "ranks": {
+    "1": 804674
+   },
+   "spellIds": [
+    804674
+   ],
+   "cost": 4500,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Conjure a |cFFFFFFFFScrying Orb|r for 1 min that you can control directly and see through."
+  },
+  "Shroudwalker": {
+   "name": "Shroudwalker",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705563,
+   "ranks": null,
+   "spellIds": [
+    705563
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_shroudofconcealment",
+   "description": "Your Warpdagger now incurs no cooldown if used while your Runeshroud is active."
+  },
+  "Sigilist": {
+   "name": "Sigilist",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705586,
+   "ranks": null,
+   "spellIds": [
+    705586
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_runestone_05",
+   "description": "After using a Palm Sigil, the duration of your crowd control effects is increased by 20%.\n\nReduces the cast time of all Palm Sigils by -0.5 sec and increases the duration of your Palm Sigil buffs by 50%."
+  },
+  "Silencing Rune": {
+   "name": "Silencing Rune",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802631,
+   "ranks": null,
+   "spellIds": [
+    802631
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mage_arcanesurge",
+   "description": "Inscribe a rune in a 5 yd radius at target location that activates after 1 sec, silencing all enemies within for 10 seconds."
+  },
+  "Sky and Stone": {
+   "name": "Sky and Stone",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560053,
+   "ranks": null,
+   "spellIds": [
+    560053
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_StoneTablet_ShamanAir",
+   "description": "Damage dealt by Weapon Engraving: Air and Weapon Engraving: Earth now have a 10% chance to increase the melee attack speed of your next 10 attacks within 10 seconds by 10%."
+  },
+  "Smolder": {
+   "name": "Smolder",
+   "spec": "Riftblade",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502628,
+   "ranks": {
+    "2": 502623,
+    "3": 502624,
+    "4": 502625,
+    "5": 502626,
+    "6": 502627,
+    "7": 502628
+   },
+   "spellIds": [
+    502623,
+    502624,
+    502625,
+    502626,
+    502627,
+    502628,
+    801087
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_fire_spell_02_Border",
+   "description": "Ignite your blade and strike an enemy, dealing 140% Weapon Damage plus 37 Fire Damage."
+  },
+  "Speed Rune": {
+   "name": "Speed Rune",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801103,
+   "ranks": null,
+   "spellIds": [
+    801103
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\runeofspeed",
+   "description": "Conjure a path of runes in the direction you are facing for 10 seconds, increasing the movement speed of allies by 70%.\n\nThis effect can persist for a short duration after leaving the runic path."
+  },
+  "Speedy Attuner": {
+   "name": "Speedy Attuner",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705554,
+   "ranks": null,
+   "spellIds": [
+    705554
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_MagicSpeed_Border",
+   "description": "Increases your movement speed by 8% and reduces the mana cost of your Runic Tattoos by -25%."
+  },
+  "Spellblade": {
+   "name": "Spellblade",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705540,
+   "ranks": null,
+   "spellIds": [
+    705540
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_SwordOfFlame_Border",
+   "description": "Increases your Agility and Intellect by 5%."
+  },
+  "Spellfire Runes": {
+   "name": "Spellfire Runes",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801511,
+   "ranks": null,
+   "spellIds": [
+    801511
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_FireRune_Border",
+   "description": "Your Runeblade now has a 20% chance, and Warpdagger a 100% chance, to reset the cooldown of Smolder, and increase the damage of your next Smolder by 20%."
+  },
+  "Steam Conjurer": {
+   "name": "Steam Conjurer",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805743,
+   "ranks": null,
+   "spellIds": [
+    805743
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(77)_Border",
+   "description": "Damage dealt by Weapon Engraving: Earth now has a 5% chance to cast Wild Steam. Can only occur once every 3 sec.Wild Steam (Transform)Stomp the ground in a 5 yd radius around you and release steam, dealing 128 + 25% AP Frostfire Damage to nearby enemies."
+  },
+  "Stone Petroglyph": {
+   "name": "Stone Petroglyph",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707157,
+   "ranks": null,
+   "spellIds": [
+    707157
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_earthmask_Border",
+   "description": "While in Runic Tattoos: Earth, you now heal for 3% of your maximum health every 4 sec and you become immune to knockbacks."
+  },
+  "Stone Savant": {
+   "name": "Stone Savant",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520917,
+   "ranks": null,
+   "spellIds": [
+    520917
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_sumstonearmy_Border",
+   "description": "While Earthen Fists is active, critical strikes with Weapon Engraving: Earth now causes you to strike twice with your next auto attack."
+  },
+  "Surging Slash": {
+   "name": "Surging Slash",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705579,
+   "ranks": null,
+   "spellIds": [
+    705579
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "interface\\icons\\Runeblade2",
+   "description": "Level 50 Passive\nEvery 3rd cast of Runeblade now transforms your next Runeblade within 15 seconds into Surging Slash.\nSurging Slash (Transform)Strike an enemy with a rune-infused weapon, dealing 110% Weapon Damage plus 60 Elemental Damage, bouncing to up to 4 additional enemies, dealing less damage with each bounce."
+  },
+  "Swift Etching": {
+   "name": "Swift Etching",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705600,
+   "ranks": null,
+   "spellIds": [
+    705600
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_rune_14",
+   "description": "After Hurricane ends, your melee attack speed is increased by 15% and critical strike chance by 10% for 10 seconds."
+  },
+  "Symbols of Power": {
+   "name": "Symbols of Power",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705613,
+   "ranks": null,
+   "spellIds": [
+    705613
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(17)_Border",
+   "description": "Increases the damage of Fist of the Ancients while you have Weapon Engraving: Fire active by 15%."
+  },
+  "Tempo": {
+   "name": "Tempo",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807172,
+   "ranks": null,
+   "spellIds": [
+    807172
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\runeofimpermanence",
+   "description": "Increases the damage of Runeblade by 20%."
+  },
+  "Terraglyphs": {
+   "name": "Terraglyphs",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705551,
+   "ranks": null,
+   "spellIds": [
+    705551
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_ScrollofEarth_Border",
+   "description": "Increases the chance to trigger Weapon Engraving: Earth by 4%."
+  },
+  "Thaumaturgy": {
+   "name": "Thaumaturgy",
+   "spec": "Arcane",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 520074,
+   "ranks": {
+    "2": 520071,
+    "3": 520072,
+    "4": 520073,
+    "5": 520074
+   },
+   "spellIds": [
+    520071,
+    520072,
+    520073,
+    520074,
+    804550
+   ],
+   "cost": 12000,
+   "levelReq": 36,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nature_elementalprecision_2",
+   "description": "Blast an enemy for 99 Arcane damage and unleash your active |cffffffffGlyph|r effect."
+  },
+  "Throw": {
+   "name": "Throw",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 2764,
+   "ranks": null,
+   "spellIds": [
+    2764
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Turbulence": {
+   "name": "Turbulence",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705575,
+   "ranks": null,
+   "spellIds": [
+    705575
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\skill_icon_skill79_Border",
+   "description": "Send out a gust of wind from your weapon that strikes nearby enemies in a 6 yd radius for 200% Weapon Damage as Nature damage every 1 sec for 3 seconds.\n\nWhile active, you leave behind a Turbulent Spiral every 1 sec for 6 seconds.\nTurbulent Spiral (Damage)Enemies in the area take an additional 97 + 13.5% AP Nature Damage every 1 sec."
+  },
+  "Unbound": {
+   "name": "Unbound",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806718,
+   "ranks": null,
+   "spellIds": [
+    806718
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_azerite_explosion",
+   "description": "Reduces the duration of harmful magic and curse effects on you by -20%."
+  },
+  "Unbound Energy": {
+   "name": "Unbound Energy",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705570,
+   "ranks": null,
+   "spellIds": [
+    705570
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_ScrollofEarth_Border",
+   "description": "Increases your critical strike chance by 3% and your expertise by 4."
+  },
+  "Uncovered Engravings": {
+   "name": "Uncovered Engravings",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 567233,
+   "ranks": null,
+   "spellIds": [
+    567233
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_socererking_arcanemines",
+   "description": "Using Fist of the Ancients now increases your chance to trigger Weapon Engravings by 20% for 5 sec."
+  },
+  "Unleashed Power": {
+   "name": "Unleashed Power",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807504,
+   "ranks": null,
+   "spellIds": [
+    807504
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_glyph_primepriest",
+   "description": "Level 40 Passive\nIncreases the spell power scaling of your Unleashed Glyphs by 10%.\n\nIn addition, dealing damage with Elemental Burst now increases the target's spell damage taken by 10% for 12 seconds."
+  },
+  "Unleashed Tattoos": {
+   "name": "Unleashed Tattoos",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804561,
+   "ranks": null,
+   "spellIds": [
+    804561
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\skill_icon_skill127_Border",
+   "description": "Level 30 Passive\nWhile Runic Tattoos: Fire is active, your Glyphic Ruin now has 30% increased critical damage.\n\nWhile Runic Tattoos: Water is active, the cost of your Glyphic Ruin is now reduced by -50%."
+  },
+  "Volcanic Etching": {
+   "name": "Volcanic Etching",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705615,
+   "ranks": null,
+   "spellIds": [
+    705615
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_MagicArtifact_3",
+   "description": "Increases the chance to trigger Weapon Engraving: Fire and Weapon Engraving: Earth by 5%."
+  },
+  "Wand": {
+   "name": "Wand",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 5019,
+   "ranks": null,
+   "spellIds": [
+    5019
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Warding Rune": {
+   "name": "Warding Rune",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804232,
+   "ranks": null,
+   "spellIds": [
+    804232
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_qiraj_jewelglyphed",
+   "description": "Engrave anti-magic runes around you, removing all harmful magic effects and causing harmful magic effects to have no duration when cast on you for 6 seconds."
+  },
+  "Warpdagger": {
+   "name": "Warpdagger",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500287,
+   "ranks": null,
+   "spellIds": [
+    500287
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Warpblade",
+   "description": "Toss an enchanted dagger forward in a line. Upon reactivation, you instantly teleport to the location of the dagger and deal 124 + 44% SP + 20% AP Elemental Damage to nearby enemies.\n\nUsable while stealthed."
+  },
+  "Warpmaster": {
+   "name": "Warpmaster",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560992,
+   "ranks": null,
+   "spellIds": [
+    560992
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_Dungeon_UlduarRaid_Archway_01",
+   "description": "Reduces the cooldown of Warpdagger by -5 sec."
+  },
+  "Water Runes": {
+   "name": "Water Runes",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707150,
+   "ranks": null,
+   "spellIds": [
+    707150
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Rune_09",
+   "description": "Each strike from Hurricane is now guaranteed to apply Weapon Engraving: Water or Weapon Engraving: Ice to your target while they are active."
+  },
+  "Waveforged": {
+   "name": "Waveforged",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705565,
+   "ranks": null,
+   "spellIds": [
+    705565
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_watersword_Border",
+   "description": "After Hurricane ends, you may now use abilties that require Runeshroud for 5 seconds."
+  },
+  "Weapon Engraving: Air": {
+   "name": "Weapon Engraving: Air",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 653222,
+   "ranks": {
+    "1": 653222
+   },
+   "spellIds": [
+    653222
+   ],
+   "cost": 5500,
+   "levelReq": 24,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Engrave an air rune onto your weapon for 1 hour.\r\n\r\nGrants your direct damage dealt a 15% chance to replicate 30% of the damage dealt to the target.\r\n\r\n@ext:Can only have 1 type of |cffffffffWeapon Engraving|r active at a time.:ext@"
+  },
+  "Weapon Engraving: Arcane": {
+   "name": "Weapon Engraving: Arcane",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 653265,
+   "ranks": {
+    "1": 653265
+   },
+   "spellIds": [
+    653265
+   ],
+   "cost": 25500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Engrave an arcane rune onto your weapon for 1 hour.\r\n\r\nGrants your direct damage dealt a 25% chance to deal 54 Arcane damage to the target and reduce their healing received by 30% for 10 sec.\r\n\r\n@ext:Can only have 1 type of |cffffffffWeapon Engraving|r active at a time.:ext@"
+  },
+  "Weapon Engraving: Earth": {
+   "name": "Weapon Engraving: Earth",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 653218,
+   "ranks": {
+    "1": 653218
+   },
+   "spellIds": [
+    653218
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Engrave an earth rune onto your weapon for 1 hour.\r\n\r\nGrants your direct damage dealt a 15% chance to deal an additional 1 Nature damage to enemies within 5 yds of your target.\r\n\r\n@ext:Can only have 1 type of |cffffffffWeapon Engraving|r active at a time.:ext@"
+  },
+  "Weapon Engraving: Fire": {
+   "name": "Weapon Engraving: Fire",
+   "spec": "Engravement",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 653022,
+   "ranks": null,
+   "spellIds": [
+    653022
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Weapon Engraving: Ice": {
+   "name": "Weapon Engraving: Ice",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 653264,
+   "ranks": {
+    "1": 653264
+   },
+   "spellIds": [
+    653264
+   ],
+   "cost": 70,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Engrave an ice rune onto your weapon for 1 hour.\r\n\r\nGrants your direct damage dealt a 40% chance to deal 5 Frost damage and slow the target's movement speed by 1 to 0% for until cancelled.\r\n\r\n@ext:Can only have 1 type of |cffffffffWeapon Engraving|r active at a time.:ext@"
+  },
+  "Weapon Engraving: Water": {
+   "name": "Weapon Engraving: Water",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 653213,
+   "ranks": {
+    "1": 653213
+   },
+   "spellIds": [
+    653213
+   ],
+   "cost": 7800,
+   "levelReq": 26,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Engrave a water rune onto your weapon for 1 hour.\r\n\r\nGrants your direct damage dealt a 30% chance to deal 1 Frost damage, drain 1 mana from the target, and grant allies |cffffffffReplenishment|r.@s:560582:0@\r\n\r\n@ext:Can only have 1 type of |cffffffffWeapon Engraving|r active at a time.:ext@"
+  },
+  "Whisperwind": {
+   "name": "Whisperwind",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807823,
+   "ranks": {
+    "1": 807823
+   },
+   "spellIds": [
+    807823
+   ],
+   "cost": 3700,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Create a gust of wind at target location, shifting the wind in a 10 yd radius, distracting all enemies and increasing their movement speed by 20% for 2 sec.\r\n\r\nDoes not break stealth."
+  },
+  "Wind Runes": {
+   "name": "Wind Runes",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706672,
+   "ranks": null,
+   "spellIds": [
+    706672
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_StoneTablet_ShamanAir",
+   "description": "Increases the duration of Hurricane by 1 sec, allowing it to strike 2 additional times."
+  },
+  "Wind Surge": {
+   "name": "Wind Surge",
+   "spec": "Runic",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805750,
+   "ranks": null,
+   "spellIds": [
+    805750
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_wind_icon_0000s_0000_elemental_Border",
+   "description": "Your Weapon Engraving: Air will now strike 2 additional enemies near its target."
+  },
+  "Wind Walker": {
+   "name": "Wind Walker",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807376,
+   "ranks": null,
+   "spellIds": [
+    807376
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Frost_WindWalkOn",
+   "description": "While Runic Tattoos: Air is active, the cooldown of Rune spells is reduced by 5% every 5 sec."
+  },
+  "Windbreaker": {
+   "name": "Windbreaker",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804094,
+   "ranks": null,
+   "spellIds": [
+    804094
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(28)_Border",
+   "description": "While Weapon Engraving: Air is active, the damage of each strike of your Hurricane is increased by 30%."
+  },
+  "Windsage": {
+   "name": "Windsage",
+   "spec": "Riftblade",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705568,
+   "ranks": null,
+   "spellIds": [
+    705568
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_weapon_shortblade_83",
+   "description": "Level 30 Passive\nSmolder now envelops you in wind, causing your next 3 Runeblades to strike an additional time equal to 30% of the damage dealt as Nature damage."
+  },
+  "Wizardry": {
+   "name": "Wizardry",
+   "spec": "Arcane",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705632,
+   "ranks": null,
+   "spellIds": [
+    705632
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_arcanearrow_Border",
+   "description": "Increases your Intellect by 10% and increases the mana gained for each point of Intellect by 10%."
+  },
+  "Zenith": {
+   "name": "Zenith",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 712325,
+   "ranks": null,
+   "spellIds": [
+    712325
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_MagicKeeper_Border",
+   "description": "For 6 seconds, your runic tattoos flare up, increasing your chance to trigger your Weapon Engravings by 100%."
+  }
+ }
+}

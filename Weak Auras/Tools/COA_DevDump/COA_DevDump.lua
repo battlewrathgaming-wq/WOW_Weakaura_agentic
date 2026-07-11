@@ -438,6 +438,21 @@ local function DumpTrainerStockAPI()
             entry.skillRank = skillRank
         end)
         pcall(function() entry.levelReq = GetTrainerServiceLevelReq(i) end)
+        -- The stock trainer API returns NO spellID, but the tooltip does:
+        -- SetTrainerService(i) then GetSpell() -> name, rank, spellID. Confirmed live
+        -- 2026-07-11 (e.g. "Create Bone Reliquary" Rank 2 = 803768, "Raise: Skeletal
+        -- Rogue" = 500969). Reuses the module tooltip; pcall so header rows (which raise
+        -- "Invalid trainer service") just skip without an id. This is the metadata that
+        -- was missing - it makes the trainer dump a spellID-keyed baseline-ability source.
+        pcall(function()
+            dumpTooltip:SetOwner(UIParent, "ANCHOR_NONE")
+            dumpTooltip:SetTrainerService(i)
+            local sName, sRank, sId = dumpTooltip:GetSpell()
+            entry.spellName = sName
+            entry.spellRank = sRank
+            entry.spellId = sId
+            dumpTooltip:Hide()
+        end)
 
         table.insert(services, entry)
     end
@@ -502,6 +517,12 @@ local function DumpTrainer()
     COA_DevDumpDB.trainer = COA_DevDumpDB.trainer or {}
     table.insert(COA_DevDumpDB.trainer, {
         capturedAt = date("%Y-%m-%d %H:%M:%S"),
+        -- stamp the capture with the player's CLASS so multi-class trainer scrapes
+        -- (all against the same universal "Nightmarish Book of Ascension") can be told
+        -- apart at consolidation - baseline spells aren't in the talent data, so there's
+        -- no way to back-derive the class after the fact.
+        playerClass = select(2, UnitClass("player")),
+        playerName = UnitName("player"),
         npcTarget = UnitExists("npc") and UnitName("npc") or nil,
         numServicesStockAPI = numServices,
         services = services,
@@ -670,6 +691,54 @@ local function DumpProbe(rootName, fieldsCSV)
 end
 
 -- ---------------------------------------------------------------------
+-- Spellbook dump - the LEARNED-abilities half of the ability inventory
+-- (complements the trainer scrape, which lists the TRAINABLE half). The
+-- spellID is recovered from GetSpellLink's |Hspell:ID| hyperlink, since
+-- GetSpellName alone gives no id. Captures every tab (incl. professions/
+-- general - filter offline by tabName). Stamped by class like the trainer.
+-- Matters for fresh (level 1) chars: they can't yet TRAIN high-level
+-- abilities, but their book already holds the starting/base-rank skills.
+-- ---------------------------------------------------------------------
+
+local function DumpSpellbook()
+    local numTabs = GetNumSpellTabs() or 0
+    local tabs = {}
+    for tabIndex = 1, numTabs do
+        local tabName, _, offset, numSpells = GetSpellTabInfo(tabIndex)
+        local spells = {}
+        for j = 1, (numSpells or 0) do
+            local slot = (offset or 0) + j
+            local entry = { slot = slot }
+            pcall(function() entry.name = GetSpellName(slot, BOOKTYPE_SPELL) end)
+            pcall(function()
+                local link = GetSpellLink(slot, BOOKTYPE_SPELL)
+                entry.link = link
+                if link then entry.spellId = tonumber(link:match("spell:(%d+)")) end
+            end)
+            table.insert(spells, entry)
+        end
+        table.insert(tabs, {
+            tabIndex = tabIndex, tabName = tabName,
+            numSpells = numSpells, spells = spells,
+        })
+    end
+
+    COA_DevDumpDB.spellbook = COA_DevDumpDB.spellbook or {}
+    table.insert(COA_DevDumpDB.spellbook, {
+        capturedAt = date("%Y-%m-%d %H:%M:%S"),
+        playerClass = select(2, UnitClass("player")),
+        playerName = UnitName("player"),
+        numTabs = numTabs,
+        tabs = tabs,
+    })
+
+    local total = 0
+    for _, t in ipairs(tabs) do total = total + #t.spells end
+    Print(string.format("Spellbook: %d tab(s), %d spell(s) for %s. /reload to flush.",
+        numTabs, total, tostring(select(2, UnitClass("player")))))
+end
+
+-- ---------------------------------------------------------------------
 -- Slash command
 -- ---------------------------------------------------------------------
 
@@ -687,6 +756,8 @@ SlashCmdList["COADEVDUMP"] = function(msg)
         DumpTalentFrameStructure()
     elseif cmd == "trainer" then
         DumpTrainer()
+    elseif cmd == "spellbook" then
+        DumpSpellbook()
     elseif cmd == "frames" then
         DumpFrames()
     elseif cmd == "probe" then
@@ -696,6 +767,6 @@ SlashCmdList["COADEVDUMP"] = function(msg)
         COA_DevDumpDB = {}
         Print("Cleared saved data.")
     else
-        Print("Usage: /coadump talents | /coadump talentnodes | /coadump talentframe | /coadump trainer | /coadump frames | /coadump probe <FrameName> [fields] | /coadump clear")
+        Print("Usage: /coadump talents | /coadump talentnodes | /coadump talentframe | /coadump trainer | /coadump spellbook | /coadump frames | /coadump probe <FrameName> [fields] | /coadump clear")
     end
 end

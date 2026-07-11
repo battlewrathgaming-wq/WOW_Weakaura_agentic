@@ -1,0 +1,4250 @@
+{
+ "class": "WITCHHUNTER",
+ "display": "Witch Hunter",
+ "classId": 15,
+ "abilityCount": 228,
+ "bySpec": {
+  "General": 37,
+  "Black Knight": 38,
+  "Boltslinger": 40,
+  "Houndmaster": 37,
+  "Inquisition": 41,
+  "Class": 35
+ },
+ "abilities": {
+  "Alchemical Research": {
+   "name": "Alchemical Research",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705498,
+   "ranks": null,
+   "spellIds": [
+    705498
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_enchant_alchemistcauldron",
+   "description": "Increases the effectiveness of your Tonics by 25%."
+  },
+  "Alertness": {
+   "name": "Alertness",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681152,
+   "ranks": null,
+   "spellIds": [
+    681152
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_Brainwash",
+   "description": "Reduces the cooldown of Witching Shroud by -10 sec when you are struck by a Shadow or Arcane critical strike."
+  },
+  "Anguish": {
+   "name": "Anguish",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504742,
+   "ranks": null,
+   "spellIds": [
+    504742
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_DemonHand_Red",
+   "description": "Your Shadow damage dealt now has a 5% chance to reduce the channel time of your next Darkflock within 15 seconds by -50%."
+  },
+  "Arbalest Mastery": {
+   "name": "Arbalest Mastery",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706240,
+   "ranks": null,
+   "spellIds": [
+    706240
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\artifactability_marksmanhunter_legacyofthewindrunners",
+   "description": "Each subsequent shot of a Witchbane cast deals 15% more damage, up to a maximum of 150%."
+  },
+  "Arbalist": {
+   "name": "Arbalist",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520851,
+   "ranks": null,
+   "spellIds": [
+    520851
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_PainSpike",
+   "description": "Level 30 Passive\nIncreases your attack power by 100% of your Intellect."
+  },
+  "Auto Attack": {
+   "name": "Auto Attack",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 6603,
+   "ranks": null,
+   "spellIds": [
+    6603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Auto Shot": {
+   "name": "Auto Shot",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 75,
+   "ranks": null,
+   "spellIds": [
+    75
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Bane of Witches": {
+   "name": "Bane of Witches",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500055,
+   "ranks": null,
+   "spellIds": [
+    500055
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_demonhunter_darkness",
+   "description": "Casting Heartseeking Bolt now increases your Physical damage dealt by 10% for 8 seconds."
+  },
+  "Blade of the Misbegotten": {
+   "name": "Blade of the Misbegotten",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680530,
+   "ranks": null,
+   "spellIds": [
+    680530
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Weapon_Shortblade_60",
+   "description": "Damage dealt by Dawn Blade now increases your health by 15% of the damage dealt for 8 seconds, stacking 3 times."
+  },
+  "Block": {
+   "name": "Block",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 107,
+   "ranks": null,
+   "spellIds": [
+    107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Bola Throw": {
+   "name": "Bola Throw",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 501342,
+   "ranks": {
+    "1": 500093,
+    "2": 501337,
+    "3": 501338,
+    "4": 501339,
+    "5": 501340,
+    "6": 501341,
+    "7": 501342
+   },
+   "spellIds": [
+    500093,
+    501337,
+    501338,
+    501339,
+    501340,
+    501341,
+    501342
+   ],
+   "cost": 60,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Throw a bola at an enemy, dealing 14 Physical damage and slowing their movement speed by 50% for 8 sec."
+  },
+  "Bolt and Dash": {
+   "name": "Bolt and Dash",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520670,
+   "ranks": null,
+   "spellIds": [
+    520670
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_bow_2h_crossbow_draenordungeon_c_01",
+   "description": "Your next Heartseeking Bolt within 10 seconds deals 25% more damage and incurs no cooldown.\n\nWhen this buff is consumed you gain 50% increased movement speed for 3 seconds."
+  },
+  "Boltslinger": {
+   "name": "Boltslinger",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92091,
+   "ranks": null,
+   "spellIds": [
+    92091
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_weapon_crossbow_21",
+   "description": "Level 10 Passive\nYou may now cast Darkslayer while moving.\n\nRanged attacks and abilities now have a 25% chance to shoot an additional shot, dealing 20% ranged AP Physical damage and generating 5 Rage."
+  },
+  "Bounty Hunter": {
+   "name": "Bounty Hunter",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805773,
+   "ranks": null,
+   "spellIds": [
+    805773
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_corruptiongold_Border",
+   "description": "Casting Darkslayer or Witchbane now applies a stack of Bounty Hunter to you for 8 seconds, which can be consumed by casting Heartseeking Bolt to deal an additional 305 + 45% SP + 30% ranged AP Physical damage, stacking 2 times."
+  },
+  "Brand of the Condemned": {
+   "name": "Brand of the Condemned",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 562573,
+   "ranks": {
+    "1": 562573
+   },
+   "spellIds": [
+    562573
+   ],
+   "cost": 15000,
+   "levelReq": 32,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Brand an enemy, cursing them and reducing their casting speed by 30% for 10 sec. Can only affect 1 target at a time.\r\n\r\n@ext:You can only have 1 |CffffffffBrand|r on an enemy at a time|r.:ext@"
+  },
+  "Brand of the Damned": {
+   "name": "Brand of the Damned",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807710,
+   "ranks": {
+    "1": 807682,
+    "2": 807705,
+    "3": 807706,
+    "4": 807707,
+    "5": 807708,
+    "6": 807709,
+    "7": 807710
+   },
+   "spellIds": [
+    807682,
+    807705,
+    807706,
+    807707,
+    807708,
+    807709,
+    807710
+   ],
+   "cost": 700,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Brand an enemy for 12 sec. \r\n\r\nIf their health falls below 10% while branded, they are instantly dealt 98 Twilight Damage and are cursed, increasing your Magical critical strike chance against them by 10% for 12 sec. \r\n\r\nDeals 100% increased damage to Undead and Demons.\r\n\r\n@ext:You can only have 1 |CffffffffBrand|r on an enemy at a time|r.:ext@"
+  },
+  "Brand of the Profane": {
+   "name": "Brand of the Profane",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 562390,
+   "ranks": {
+    "1": 562390
+   },
+   "spellIds": [
+    562390
+   ],
+   "cost": 150,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Brand an enemy increasing their chance to be hit by melee and ranged attacks by 2% for 5 min.\r\n\r\nYou can see marked targets on the mini-map and through stealth or invisibility.\r\n\r\n@ext:You can only have 1 |CffffffffBrand|r on an enemy at a time|r:ext@"
+  },
+  "Brand of the Unworthy": {
+   "name": "Brand of the Unworthy",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 501380,
+   "ranks": null,
+   "spellIds": [
+    501380
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_skyreach_overwhelmed",
+   "description": "Expose an enemy's darkest faults, disorienting them for 40 seconds (8 sec vs players).\n\nDamage caused will end this effect. Only usable on Humanoids, Demons, and Undead."
+  },
+  "Brimming Hatred": {
+   "name": "Brimming Hatred",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705496,
+   "ranks": null,
+   "spellIds": [
+    705496
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3mantraofretribution",
+   "description": "Your critical strikes now generate 10 Rage. Can only occur every 3 sec."
+  },
+  "Bringer of Darkness": {
+   "name": "Bringer of Darkness",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500101,
+   "ranks": null,
+   "spellIds": [
+    500101
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_shadow_spell_04_Border",
+   "description": "Your Repulse now resets the cooldown of Vault and makes your next Vault within 6 seconds free of cost."
+  },
+  "Bringing the Law": {
+   "name": "Bringing the Law",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705500,
+   "ranks": null,
+   "spellIds": [
+    705500
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_engineerskill41_Border",
+   "description": "Increases the critical strike chance of Shadowblast by 10%."
+  },
+  "Brooding Hatred": {
+   "name": "Brooding Hatred",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301251,
+   "ranks": null,
+   "spellIds": [
+    301251
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_Metamorphosis",
+   "description": "Increases your off-hand Weapon Damage by 20% and increases your chance to hit by 3%."
+  },
+  "Brushin' Off The Dusk": {
+   "name": "Brushin' Off The Dusk",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681329,
+   "ranks": null,
+   "spellIds": [
+    681329
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_DarkHand_Fire",
+   "description": "Your off-hand auto attacks now have a 10% chance to strike 2 additional times."
+  },
+  "Bulwark of Darkness": {
+   "name": "Bulwark of Darkness",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680496,
+   "ranks": null,
+   "spellIds": [
+    680496
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_SealOfKings",
+   "description": "Damage dealt by Dawn Blade is now increased by 5% for each stack of Pommel Smash on the target."
+  },
+  "Burned Alive": {
+   "name": "Burned Alive",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705478,
+   "ranks": null,
+   "spellIds": [
+    705478
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_FlameBlades",
+   "description": "Increases your critical strike chance by 25% on enemies below 20% health."
+  },
+  "Burrow Bolt": {
+   "name": "Burrow Bolt",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802269,
+   "ranks": null,
+   "spellIds": [
+    802269
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Burrow Bolt",
+   "description": "Shoot a bolt with a rope attached to it at an enemy dealing 6 + 25% AP Physical damage and pulling them to you."
+  },
+  "Calm Under Pressure": {
+   "name": "Calm Under Pressure",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705519,
+   "ranks": null,
+   "spellIds": [
+    705519
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\warrior_talent_icon_deadlycalm",
+   "description": "Reduces the cooldown of Stoicism by -30 sec and Burrow Bolt by -5 sec."
+  },
+  "Caltrops": {
+   "name": "Caltrops",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 503679,
+   "ranks": {
+    "1": 503679
+   },
+   "spellIds": [
+    503679
+   ],
+   "cost": 6600,
+   "levelReq": 24,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Throw caltrops over a 5 yd area, lasting for 12 sec.\r\n\r\nEnemies that walk over the caltrops suffer 7 Physical Damage and 50% slowed movement speed for 2 sec."
+  },
+  "Cannibalize": {
+   "name": "Cannibalize",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 20577,
+   "ranks": null,
+   "spellIds": [
+    20577
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Chains of Darkness": {
+   "name": "Chains of Darkness",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680521,
+   "ranks": null,
+   "spellIds": [
+    680521
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowchains_Border",
+   "description": "Pull all nearby enemies to you, dealing 84 + 55% shadow SP + 15% AP Shadow damage and taunting them for 3 seconds."
+  },
+  "Charming Conversation": {
+   "name": "Charming Conversation",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804667,
+   "ranks": {
+    "1": 804667
+   },
+   "spellIds": [
+    804667
+   ],
+   "cost": 450,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increase reputation gains of your party by 5% for 1 |4hour:hrs;."
+  },
+  "Cinder and Ashes": {
+   "name": "Cinder and Ashes",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707317,
+   "ranks": null,
+   "spellIds": [
+    707317
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_druideskill26_Border",
+   "description": "Increases the spell power scaling of Purifier's Edge and Fiery Judgement by 25%."
+  },
+  "Clinch Fighting": {
+   "name": "Clinch Fighting",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680492,
+   "ranks": null,
+   "spellIds": [
+    680492
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_2h_blood_c_03",
+   "description": "Attacks which would otherwise kill you now heal you for 50% maximum health and increases the damage of Noctis Blade by 50% for 6 seconds.\n\nCan only occur once every 2 min."
+  },
+  "Combat Training": {
+   "name": "Combat Training",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680529,
+   "ranks": null,
+   "spellIds": [
+    680529
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Sword_2H_Blood_C_01",
+   "description": "Increases your Physical damage dealt and parry chance by 3%."
+  },
+  "Contract Killing": {
+   "name": "Contract Killing",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705506,
+   "ranks": null,
+   "spellIds": [
+    705506
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_garrison_blueprints2",
+   "description": "Increases damage dealt against enemies above 75% health and below 35% health by 15%."
+  },
+  "Coordinated Killing": {
+   "name": "Coordinated Killing",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705463,
+   "ranks": null,
+   "spellIds": [
+    705463
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_revendreth_demonhunter",
+   "description": "Casting Unleash the Hounds now casts Shadow Rage on you for 10 seconds.Shadow RageRanged auto attacks deal an additional 50 Shadow Damage."
+  },
+  "Crossbow Expert": {
+   "name": "Crossbow Expert",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680384,
+   "ranks": null,
+   "spellIds": [
+    680384
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_crossbow_07",
+   "description": "Increases the damage of Shadowblast by 10% and Witchbane by 5%."
+  },
+  "Crossbow Frenzy": {
+   "name": "Crossbow Frenzy",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705499,
+   "ranks": null,
+   "spellIds": [
+    705499
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3strafe",
+   "description": "While Twilight Frenzy is active, your movement speed is now increased by 40%."
+  },
+  "Cycle of Despair": {
+   "name": "Cycle of Despair",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503664,
+   "ranks": null,
+   "spellIds": [
+    503664
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_moon_Border",
+   "description": "Increases the amount of stacks of Dawn and Dusk by 10.\n\nIn addition, reaching 20 stacks with both buffs will consume them to grant you 20% increased damage, melee haste, movement speed, and critical strike chance for 6 seconds."
+  },
+  "Damnation": {
+   "name": "Damnation",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 520217,
+   "ranks": {
+    "2": 520214,
+    "3": 520215,
+    "4": 520216,
+    "5": 520217
+   },
+   "spellIds": [
+    520062,
+    520214,
+    520215,
+    520216,
+    520217
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_archerskill18_Border",
+   "description": "Deplete your rage to shoot a powerful bolt dealing 130% Weapon Damage plus 35 Twilight Damage and converting each point of Rage into additional damage.\r\n\r\nOnly usable on enemies below 35% health."
+  },
+  "Daredevil": {
+   "name": "Daredevil",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681173,
+   "ranks": null,
+   "spellIds": [
+    681173
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_BloodyEye",
+   "description": "Level 40 Passive\nWhen you take damage that would reduce your health to 35% or less, you summon 3 lesser Shadow Hounds and reset the cooldown of Vault.\n\nCan only occur once every 2 min."
+  },
+  "Daring Escape": {
+   "name": "Daring Escape",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500086,
+   "ranks": null,
+   "spellIds": [
+    500086
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3vault",
+   "description": "Jump backwards, causing all ranged attacks to miss you for 2 seconds."
+  },
+  "Dark Aura": {
+   "name": "Dark Aura",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680585,
+   "ranks": {
+    "1": 680535,
+    "2": 680584,
+    "3": 680585
+   },
+   "spellIds": [
+    680535,
+    680584,
+    680585
+   ],
+   "cost": 17500,
+   "levelReq": 44,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Activate a dark aura, increasing your Stamina by 5% and increasing the Shadow Resistance of all party and raid members by 45. Does not stack with similar effects."
+  },
+  "Dark Barrier": {
+   "name": "Dark Barrier",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705520,
+   "ranks": null,
+   "spellIds": [
+    705520
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_soulbarrier",
+   "description": "Increases the duration of Stoicism by 5 sec."
+  },
+  "Dark Chivalry": {
+   "name": "Dark Chivalry",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680525,
+   "ranks": null,
+   "spellIds": [
+    680525
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowthrow_Border",
+   "description": "Increases your Armor contribution from mail items by 100%."
+  },
+  "Dark Intuition": {
+   "name": "Dark Intuition",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806195,
+   "ranks": null,
+   "spellIds": [
+    806195
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_darkness",
+   "description": "Whenever you parry or dodge an attack, your attack speed is increased by 5%, and your parry chance by 2% for 15 seconds, stacking 2 times."
+  },
+  "Dark Juggernaut": {
+   "name": "Dark Juggernaut",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560208,
+   "ranks": null,
+   "spellIds": [
+    560208
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowentagle_Border",
+   "description": "Desecrate now restores 10 + 20% shadow SP + 10% AP health plus an additional 1% maximum health for each target struck affected by Shadow Brand."
+  },
+  "Dark Mind": {
+   "name": "Dark Mind",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 574148,
+   "ranks": null,
+   "spellIds": [
+    574148
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\achievement_boss_korkrondarkshaman",
+   "description": "Level 30 Passive\nIncreases your critical strike rating by 25% of your Intellect."
+  },
+  "Dark Penance": {
+   "name": "Dark Penance",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805533,
+   "ranks": null,
+   "spellIds": [
+    805533
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_cloth_raidpriest_r_01_gold",
+   "description": "Increases your Agility and your chance to parry and dodge by 2%."
+  },
+  "Dark Power": {
+   "name": "Dark Power",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681340,
+   "ranks": null,
+   "spellIds": [
+    681340
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Call_of_the_Sepulcher_64x64",
+   "description": "Level 30 Passive\nYou now gain 1 Stamina for every 2 Agility."
+  },
+  "Dark Ranger": {
+   "name": "Dark Ranger",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705465,
+   "ranks": null,
+   "spellIds": [
+    705465
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_leader_sylvanas",
+   "description": "Increases the Shadow damage dealt by your Shadow Hounds by 5%."
+  },
+  "Dark Regeneration": {
+   "name": "Dark Regeneration",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 500094,
+   "ranks": {
+    "1": 500094
+   },
+   "spellIds": [
+    500094
+   ],
+   "cost": 150,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Embrace the darkness inside you, instantly generating 20% maximum mana and 50% maximum Rage."
+  },
+  "Dark Riposte": {
+   "name": "Dark Riposte",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503659,
+   "ranks": null,
+   "spellIds": [
+    503659
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_shortblade_110",
+   "description": "Parrying enemy attacks now restores 5% of your missing health and Rage."
+  },
+  "Dark Souls": {
+   "name": "Dark Souls",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802011,
+   "ranks": null,
+   "spellIds": [
+    802011
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowbreath_Border",
+   "description": "Increases the duration of Tonics by 5 sec."
+  },
+  "Dark Tonic": {
+   "name": "Dark Tonic",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572298,
+   "ranks": {
+    "1": 680491,
+    "2": 572295,
+    "3": 572296,
+    "4": 572297,
+    "5": 572298
+   },
+   "spellIds": [
+    572295,
+    572296,
+    572297,
+    572298,
+    680491
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Drink a dark tonic, healing you for 115, scaling with your Stamina, and increasing your maximum health by 15% for 15 sec.\r\n\r\n@ext:Only 1 |cffffffffTonic|r can be active at a time.:ext@"
+  },
+  "Darkflock": {
+   "name": "Darkflock",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 562025,
+   "ranks": {
+    "2": 520708,
+    "3": 520709,
+    "4": 562024,
+    "5": 562025
+   },
+   "spellIds": [
+    520270,
+    520708,
+    520709,
+    562024,
+    562025
+   ],
+   "cost": 12000,
+   "levelReq": 36,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_13_summon_raven_Border",
+   "description": "Channel for 8 sec, commanding a flock of crows to deal 81 Shadow damage to enemies in a wide cone every 2 sec.\r\n\r\nCan channel while moving."
+  },
+  "Darkhunter": {
+   "name": "Darkhunter",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503669,
+   "ranks": null,
+   "spellIds": [
+    503669
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_shadesofdarkness",
+   "description": "Your Quickdraw now additionally causes your next Darkslayer within 15 seconds to be instant cast."
+  },
+  "Darkrider": {
+   "name": "Darkrider",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705453,
+   "ranks": null,
+   "spellIds": [
+    705453
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_skeletalwarhorse_01_brown",
+   "description": "Reduces the Rage cost of Shadowblast, Vault, and Unleash the Hounds by -10."
+  },
+  "Darkslayer": {
+   "name": "Darkslayer",
+   "spec": "Boltslinger",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 681203,
+   "ranks": {
+    "2": 680256,
+    "3": 680257,
+    "4": 680258,
+    "5": 680259,
+    "6": 680260,
+    "7": 680261,
+    "8": 680262,
+    "9": 681203
+   },
+   "spellIds": [
+    680256,
+    680257,
+    680258,
+    680259,
+    680260,
+    680261,
+    680262,
+    681203,
+    804179
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Fire a dark shot at an enemy, dealing 105% Ranged Weapon Damage plus 15 and generating Rage."
+  },
+  "Darkslayer's Lantern": {
+   "name": "Darkslayer's Lantern",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802139,
+   "ranks": null,
+   "spellIds": [
+    802139
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_trinket6oih_lanternb1",
+   "description": "Empower a lantern with your Flames of Sin and let it shine, dealing 291 + 15% AP Fire damage and stunning all enemies within 5 yds for 5 seconds."
+  },
+  "Dawn": {
+   "name": "Dawn",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705484,
+   "ranks": null,
+   "spellIds": [
+    705484
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_SunOrb_Border",
+   "description": "Dealing Fire damage now increases the damage dealt by Torchlight and Dusk Blade by 2% for 5 seconds, stacking 10 times."
+  },
+  "Dawn Blade": {
+   "name": "Dawn Blade",
+   "spec": "Inquisition",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 574343,
+   "ranks": {
+    "2": 802248,
+    "3": 802249,
+    "4": 802250,
+    "5": 802251,
+    "6": 802252,
+    "7": 574342,
+    "8": 574343
+   },
+   "spellIds": [
+    574342,
+    574343,
+    802024,
+    802248,
+    802249,
+    802250,
+    802251,
+    802252
+   ],
+   "cost": 100,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Slash an enemy, dealing Weapon Damage plus 23 as Holyfire Damage."
+  },
+  "Dawn Knight": {
+   "name": "Dawn Knight",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680497,
+   "ranks": null,
+   "spellIds": [
+    680497
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_helm_plate_challengedeathknight_d_01",
+   "description": "Level 50 Passive\nAvoiding damage or dealing damage with auto attacks now has a 40% chance to grant you Dawn Knight.Dawn KnightYour next Dawn Blade within 15 seconds is free of cost and deals 25% increased damage."
+  },
+  "Dead and Gone": {
+   "name": "Dead and Gone",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705524,
+   "ranks": null,
+   "spellIds": [
+    705524
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_archaeology_80_witch_skull",
+   "description": "Your Bolt and Dash now affects an additional use of a Heartseeking Bolt.\n\nYour Pavise now lasts 2 additional sec and has a -30 sec reduced cooldown."
+  },
+  "Deal With The Devil": {
+   "name": "Deal With The Devil",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680255,
+   "ranks": null,
+   "spellIds": [
+    680255
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_06_summon_demon_Border",
+   "description": "Your and your Shadow Hounds critical damage dealt with Shadow damage is increased by 50%, but the cost of your spells and abilities is increased by 25%."
+  },
+  "Death Trap": {
+   "name": "Death Trap",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681450,
+   "ranks": null,
+   "spellIds": [
+    681450
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_traplauncher",
+   "description": "Place a death trap on the ground lasting 1 minute that will curse the first enemy to approach it, marking them for death, causing them to take 3100 + 100% AP Shadow damage after 1 minute."
+  },
+  "Decimate": {
+   "name": "Decimate",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804194,
+   "ranks": null,
+   "spellIds": [
+    804194
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_foreshadowing_Border",
+   "description": "Empowers your Shadow Hounds for 20 seconds, granting them 30% increased damage and haste and allowing them to ignore Armor."
+  },
+  "Defender of Darkshire": {
+   "name": "Defender of Darkshire",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705531,
+   "ranks": null,
+   "spellIds": [
+    705531
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_shieldnobg_Border",
+   "description": "Critical strikes with ranged auto attacks now increase the melee haste of your Shadow Hounds by 10% for 5 seconds."
+  },
+  "Desecrate": {
+   "name": "Desecrate",
+   "spec": "Black Knight",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 681211,
+   "ranks": {
+    "2": 681207,
+    "3": 681208,
+    "4": 681209,
+    "5": 681210,
+    "6": 681211
+   },
+   "spellIds": [
+    680518,
+    681207,
+    681208,
+    681209,
+    681210,
+    681211
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_sword_b_05_Border",
+   "description": "Desecrate up to 8 enemies in front of you, dealing Weapon Damage plus 40 as Shadow damage, piercing resistances.\r\n\r\nOnly usable after avoiding an attack."
+  },
+  "Destroyer of Evil": {
+   "name": "Destroyer of Evil",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680528,
+   "ranks": null,
+   "spellIds": [
+    680528
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_shadow_spell_03_Border",
+   "description": "Damage dealt by Dawn Blade now deals an additional 20% of the damage dealt as Twilight Damage every 1 sec for 3 seconds.Shadow BrandMarks the target for 12 seconds, dealing 36 High Threat Shadow Damage over 12 seconds."
+  },
+  "Dodge": {
+   "name": "Dodge",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 81,
+   "ranks": null,
+   "spellIds": [
+    81
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Dual Wield": {
+   "name": "Dual Wield",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 674,
+   "ranks": null,
+   "spellIds": [
+    674
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Dusk": {
+   "name": "Dusk",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300571,
+   "ranks": null,
+   "spellIds": [
+    300571
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\World_Marker_Moon",
+   "description": "Dealing Physical damage now increases the damage dealt by Stake and Dawn Blade by 2% for 5 seconds, stacking 10 times."
+  },
+  "Dusk Blade": {
+   "name": "Dusk Blade",
+   "spec": "Inquisition",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 802258,
+   "ranks": {
+    "2": 802253,
+    "3": 802254,
+    "4": 802255,
+    "5": 802256,
+    "6": 802257,
+    "7": 802258
+   },
+   "spellIds": [
+    802020,
+    802253,
+    802254,
+    802255,
+    802256,
+    802257,
+    802258
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_passivemastery_(6)_Border",
+   "description": "Strike an enemy with both weapons, dealing Weapon Damage plus 20 Shadow damage, piercing resistances. Heals for 25% of damage dealt."
+  },
+  "Dusk Knight": {
+   "name": "Dusk Knight",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681200,
+   "ranks": null,
+   "spellIds": [
+    681200
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\novart_helmet_(12)_Border",
+   "description": "Level 20 Passive\nIncreases your parry rating by 40% of your Agility and your dodge rating by 25% of your Intellect."
+  },
+  "Duskwood Renegade": {
+   "name": "Duskwood Renegade",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504677,
+   "ranks": null,
+   "spellIds": [
+    504677
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_zone_duskwood",
+   "description": "Reduces the cooldown of Burrow Bolt by -5 sec."
+  },
+  "Enchanted Bolts": {
+   "name": "Enchanted Bolts",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520548,
+   "ranks": null,
+   "spellIds": [
+    520548
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_archerskill47_Border",
+   "description": "Increases your Magic damage dealt by 5% and your Armor penetration by 10%."
+  },
+  "Escape Artist": {
+   "name": "Escape Artist",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705490,
+   "ranks": null,
+   "spellIds": [
+    705490
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_QuickRecovery",
+   "description": "Your Daring Escape now resets the cooldown of Vault and generates 10 Rage."
+  },
+  "Evasive": {
+   "name": "Evasive",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805767,
+   "ranks": null,
+   "spellIds": [
+    805767
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_Charm",
+   "description": "Twilight Frenzy now grants you -20% reduced damage taken while active."
+  },
+  "Everything You Have": {
+   "name": "Everything You Have",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503680,
+   "ranks": null,
+   "spellIds": [
+    503680
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_plate_pvpdeathknight_f_01",
+   "description": "Increases the duration of Twilight Frenzy by 5 sec, and gives damage dealt by it a 15% chance to strike again."
+  },
+  "Evil Doers, Beware!": {
+   "name": "Evil Doers, Beware!",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681328,
+   "ranks": null,
+   "spellIds": [
+    681328
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\5_archerskill05_Border",
+   "description": "Level 50 Passive\nStake is now guaranteed to critically strike enemies above 75% health."
+  },
+  "Evil Never Sleeps": {
+   "name": "Evil Never Sleeps",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804185,
+   "ranks": null,
+   "spellIds": [
+    561210,
+    804185
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_SpectralSight",
+   "description": "In the night time, your Agility is increased by 4%.\n\nIn the day time, your haste is increased by 3%."
+  },
+  "Expert Shot": {
+   "name": "Expert Shot",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705467,
+   "ranks": null,
+   "spellIds": [
+    705467
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hisek_aim",
+   "description": "Increases the damage of Shadowblast by 10% and your hit chance by 2%."
+  },
+  "Expulsion of Evil": {
+   "name": "Expulsion of Evil",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 139778,
+   "ranks": null,
+   "spellIds": [
+    139778
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_DarkHand_Sha",
+   "description": "Direct ranged attacks and abilities now have a 5% chance to reset the cooldown of Houndmaster's Call."
+  },
+  "Feast of Talons": {
+   "name": "Feast of Talons",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500056,
+   "ranks": null,
+   "spellIds": [
+    500056
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mount_fireravengodmountpurple",
+   "description": "Striking at least 5 enemies with Darkflock now causes you to unleash a flock of crows around each enemy struck, dealing 762 + 78.75% SP + 45% ranged AP Twilight Damage over 9 seconds."
+  },
+  "Fiery Judgement": {
+   "name": "Fiery Judgement",
+   "spec": "Inquisition",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 803369,
+   "ranks": {
+    "2": 803366,
+    "3": 803367,
+    "4": 803368,
+    "5": 803369
+   },
+   "spellIds": [
+    802140,
+    803366,
+    803367,
+    803368,
+    803369
+   ],
+   "cost": 16000,
+   "levelReq": 38,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_physical_ability_(37)_Border",
+   "description": "Judge an enemy, dealing 431 Fire damage to them and nearby enemies.\r\n\r\nGrants |cffff7a24Flames of Sin|r or increases the duration by 3 sec."
+  },
+  "Flames of Sin": {
+   "name": "Flames of Sin",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92094,
+   "ranks": null,
+   "spellIds": [
+    92094
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_ShadowandFlame",
+   "description": "Level 10 Passive\nUsing Dawn Blade now grants you Flames of Sin for 3 sec, causing your auto attacks to deal an additional 30% of the damage dealt as Fire damage.\n\nGranting yourself Flames of Sin in this way while it's already active will increase the current duration by 3 sec."
+  },
+  "Flames of the Sinned": {
+   "name": "Flames of the Sinned",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560207,
+   "ranks": null,
+   "spellIds": [
+    560207
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_AuraCloak_Fire",
+   "description": "Your Smite Evil now has a 25% chance to strike again.\n\nWhile you have Flames of Sin active, the chance to trigger this effect is increased by 10%."
+  },
+  "Flexible Fighter": {
+   "name": "Flexible Fighter",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681341,
+   "ranks": null,
+   "spellIds": [
+    681341
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_rollthebones02",
+   "description": "Increases your Agility by 6%."
+  },
+  "Flourish": {
+   "name": "Flourish",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805365,
+   "ranks": null,
+   "spellIds": [
+    805365
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_UnfairAdvantage",
+   "description": "Perform an advanced flourish, dealing 207 + 100% AP Fire damage to nearby enemies, repeating every 4 sec, and causing your Flames of Sin to cleave up to 3 additional enemies for 20 seconds.\n\nGrants you Flames of Sin and increases the duration by 10 sec."
+  },
+  "Follow The Edict": {
+   "name": "Follow The Edict",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503698,
+   "ranks": null,
+   "spellIds": [
+    503698
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_WrongfullyAccused",
+   "description": "Increases the effectiveness of your Edicts by 20%."
+  },
+  "Foresight": {
+   "name": "Foresight",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680599,
+   "ranks": null,
+   "spellIds": [
+    680599
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(50)_Border",
+   "description": "Your direct Physical critical strikes now grant allies Replenishment.\n\nIn addition, Dawn Blade is now guaranteed to critically strike against Undead or Demons.ReplenishmentRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 seconds."
+  },
+  "Gaze of the Black Knight": {
+   "name": "Gaze of the Black Knight",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802138,
+   "ranks": null,
+   "spellIds": [
+    802138
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\gazeoftheblackknight",
+   "description": "Apply a dark shield to yourself, absorbing 3255 + 700% Stamina + 41% AP damage and then gaze upon your party members, causing 25% of the damage they take to be transferred to you for 12 seconds.\n\nDamage which reduces your health below 20% will break the effect.\n\nUsable while stunned."
+  },
+  "Grasp of the Undying": {
+   "name": "Grasp of the Undying",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707064,
+   "ranks": null,
+   "spellIds": [
+    707064
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\novart_physical_ability_(49)_Border",
+   "description": "Level 10 Passive\nAuto attacks while wielding a two-handed weapon now have a 25% chance to unleash Grasp of the Undying, leeching 20 + 15% SP + 10% AP health from the target."
+  },
+  "Greater Inquisitor's Edict": {
+   "name": "Greater Inquisitor's Edict",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680303,
+   "ranks": {
+    "1": 680303
+   },
+   "spellIds": [
+    680303
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Declare a knight's edict to all party and raid members,  increasing Agility by 54."
+  },
+  "Greater Knight's Edict": {
+   "name": "Greater Knight's Edict",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 523510,
+   "ranks": {
+    "1": 523510
+   },
+   "spellIds": [
+    523510
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Declare a knight's edict to all party and raid members, increasing their armor by 285 and all primary attributes by 12 for 30 min."
+  },
+  "Greater Witching Edict": {
+   "name": "Greater Witching Edict",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 681442,
+   "ranks": {
+    "1": 681442
+   },
+   "spellIds": [
+    681442
+   ],
+   "cost": 51000,
+   "levelReq": 58,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Declare a witching edict to all party and raid members, increasing their spell power by 62."
+  },
+  "Guard Strike": {
+   "name": "Guard Strike",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804432,
+   "ranks": null,
+   "spellIds": [
+    804432
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_qiraj_hiltornate",
+   "description": "Bash an enemy with your weapon's hilt, interrupting them and preventing any spell from that school of magic from being cast for 3 seconds."
+  },
+  "Guardbreaker": {
+   "name": "Guardbreaker",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681097,
+   "ranks": null,
+   "spellIds": [
+    681097
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_warrior_intervene",
+   "description": "Your Pommel Smash now strikes an additional nearby enemy."
+  },
+  "Hail of Gunfire": {
+   "name": "Hail of Gunfire",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804187,
+   "ranks": null,
+   "spellIds": [
+    804187
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_SmallGun_Orange",
+   "description": "Increases your ranged haste by 10%."
+  },
+  "Hatred & Vitriol": {
+   "name": "Hatred & Vitriol",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504470,
+   "ranks": null,
+   "spellIds": [
+    504470
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Diablo3_CursedMonster_Yellow",
+   "description": "Damage dealt by Stake now ignores enemy armor and its critical strikes refund half of its cost."
+  },
+  "Heartless": {
+   "name": "Heartless",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680326,
+   "ranks": null,
+   "spellIds": [
+    680326
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_boss_kilrogg_heartseeker",
+   "description": "Increases your Physical ranged critical damage by 15%."
+  },
+  "Heartseeking Bolt": {
+   "name": "Heartseeking Bolt",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 807284,
+   "ranks": {
+    "2": 807279,
+    "3": 807280,
+    "4": 807281,
+    "5": 807282,
+    "6": 807283,
+    "7": 807284
+   },
+   "spellIds": [
+    805754,
+    807279,
+    807280,
+    807281,
+    807282,
+    807283,
+    807284
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_shadowarrow_Border",
+   "description": "Charge up a powerful bolt that deals 200% Ranged Weapon Damage plus 85 to an enemy and reduces their healing received by 30% for 10 sec.\r\n\r\nGenerates Rage based on the damage dealt."
+  },
+  "Heartstopper": {
+   "name": "Heartstopper",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680540,
+   "ranks": null,
+   "spellIds": [
+    680540
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\5_devilmark_Border",
+   "description": "Level 40 Passive\nCasting Purifier's Edge or Fiery Judgement now has a 30% chance to allow the use of Stake within 8 seconds regardless of the target's health percentage."
+  },
+  "Heavy Crossbows": {
+   "name": "Heavy Crossbows",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503681,
+   "ranks": null,
+   "spellIds": [
+    503681
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_crossbow_17",
+   "description": "Increases the damage of Darkslayer by 50%, but increases its cast time by 0.5 sec.\n\nYour Heartseeking Bolt and Darkslayer now have a 25% chance to strike an additional time."
+  },
+  "Holy Frenzy": {
+   "name": "Holy Frenzy",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681327,
+   "ranks": null,
+   "spellIds": [
+    681327
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Warrior_Challange_yellow",
+   "description": "Increases your melee haste by 15%."
+  },
+  "Holy Water Tonic": {
+   "name": "Holy Water Tonic",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802826,
+   "ranks": {
+    "1": 802826
+   },
+   "spellIds": [
+    802826
+   ],
+   "cost": 30500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Smash a holy water tonic beneath you, banishing all Undead and Demon enemies within 8 yds for 6 sec and increasing your damage dealt against Undead and Demons by 15% for 20 sec.\r\n\r\n@ext:Only 1 |cffffffffTonic|r can be active at a time.:ext@"
+  },
+  "Houndfeeder": {
+   "name": "Houndfeeder",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705477,
+   "ranks": null,
+   "spellIds": [
+    705477
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_sumshadowwolf_Border",
+   "description": "Increases the critical strike chance of you and your Shadow Hound by 4%."
+  },
+  "Houndmaster": {
+   "name": "Houndmaster",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92093,
+   "ranks": null,
+   "spellIds": [
+    92093,
+    705450
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\custom_14_summon_dogs_Border",
+   "description": "Level 10 Passive\nYour ranged auto attacks now generate Rage.\n\nIn addition, teaches you Houndmaster's Whistle.Houndmaster's WhistleSummons a permanent Shadowhound companion to aid you in combat.\n\nYour Shadowhound receives 25% of healing done to you."
+  },
+  "Houndmaster's Call": {
+   "name": "Houndmaster's Call",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802273,
+   "ranks": null,
+   "spellIds": [
+    802273
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowroar_Border",
+   "description": "Command your Shadow Hounds to leap upon an enemy target, dealing two strikes for 1164 + 30% ranged AP Shadow damage."
+  },
+  "Hunt": {
+   "name": "Hunt",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802006,
+   "ranks": null,
+   "spellIds": [
+    802006
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_run_Border",
+   "description": "2 Charges, 25 sec recharge\nCharge an enemy, slowing their movement speed by -70% for 2 seconds and generating 20 Rage."
+  },
+  "Infiltrate": {
+   "name": "Infiltrate",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802281,
+   "ranks": {
+    "1": 802281
+   },
+   "spellIds": [
+    802281
+   ],
+   "cost": 3700,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Take on the form of the target enemy Undead or Demon. Lasts until cancelled, or until you mount up or deal or receive damage.\n\nWhile active you will appear as neutral to all aggressive creatures. Can only be used in the open world."
+  },
+  "Inquisitor's Edict": {
+   "name": "Inquisitor's Edict",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 707355,
+   "ranks": {
+    "1": 706741,
+    "2": 707351,
+    "3": 707352,
+    "4": 707353,
+    "5": 707354,
+    "6": 707355
+   },
+   "spellIds": [
+    706741,
+    707351,
+    707352,
+    707353,
+    707354,
+    707355
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Convince your ally to make a deal with darkness, increasing Agility by 3."
+  },
+  "Inquisitor's Trap": {
+   "name": "Inquisitor's Trap",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681445,
+   "ranks": null,
+   "spellIds": [
+    681445
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_pet_pettrap02",
+   "description": "Place a cruel trap on the ground lasting 1 minute that will curse the first enemy to approach it silencing them and all enemies in a 5 yd radius for 6 seconds."
+  },
+  "Interrogator": {
+   "name": "Interrogator",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806188,
+   "ranks": null,
+   "spellIds": [
+    806188
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Holy_RetributionAura",
+   "description": "Level 20 Passive\nDamage dealt by Dawn Blade now deals an additional 100% of the damage dealt over 10 seconds as Fire damage."
+  },
+  "Just A Sip": {
+   "name": "Just A Sip",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705533,
+   "ranks": null,
+   "spellIds": [
+    705533
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_potion_68",
+   "description": "Drinking Tonics now also restores 5% of your maximum health and mana."
+  },
+  "Kennel Master": {
+   "name": "Kennel Master",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706365,
+   "ranks": null,
+   "spellIds": [
+    706365
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Box_PetCarrier_01",
+   "description": "Casting Unleash The Hounds now has a 25% chance to summon an additional Lesser Shadow Hound for 15 seconds."
+  },
+  "Kingdom Hearts": {
+   "name": "Kingdom Hearts",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 582310,
+   "ranks": null,
+   "spellIds": [
+    582310
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_BrokenHeart",
+   "description": "Level 20 Passive\nYour Heartseeking Bolt is now guaranteed to critically strike on enemies below 20% health and it now restores 10% of your maximum mana."
+  },
+  "Knight's Edict": {
+   "name": "Knight's Edict",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 523488,
+   "ranks": {
+    "1": 523485,
+    "2": 523486,
+    "3": 523487,
+    "4": 523488
+   },
+   "spellIds": [
+    523485,
+    523486,
+    523487,
+    523488
+   ],
+   "cost": 6600,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increase the friendly target's armor by 150 and all primary attributes by 6 for 30 min.\r\n\r\n@ext:Does not stack with other similar effects.:ext@"
+  },
+  "Knight's Seal": {
+   "name": "Knight's Seal",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680498,
+   "ranks": null,
+   "spellIds": [
+    680498
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_ShadowCatcher_Border",
+   "description": "Curse an enemy, dealing 66 + 19.2% shadow SP + 14.6% AP Shadow damage every 2 sec and applying Dark Oath to you, reducing all damage taken by -5% for 8 seconds.\n\nYour next Desecrate within 8 seconds now restores 15% of your maximum health and mana."
+  },
+  "Lethal Pursuit": {
+   "name": "Lethal Pursuit",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572530,
+   "ranks": null,
+   "spellIds": [
+    572530
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_ironmaidens_darkhunt",
+   "description": "Shadow Rage now also grants your Shadow Hounds 10% increased haste and it now stacks 3 additional times."
+  },
+  "Lightbringer": {
+   "name": "Lightbringer",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680538,
+   "ranks": null,
+   "spellIds": [
+    680538
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_HolyThrow_Border",
+   "description": "Damage dealt by Dusk Blade now has a 15% chance to reduce the mana cost of your next Purifier's Edge by -100%. This effect has a 25% chance to not be consumed by Purifier's Edge."
+  },
+  "Loksey's Journal": {
+   "name": "Loksey's Journal",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504903,
+   "ranks": null,
+   "spellIds": [
+    504903
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Book1_Purple",
+   "description": "Increases the damage of Shadow Rage by 20% of your ranged attack power."
+  },
+  "Low Dawn": {
+   "name": "Low Dawn",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680247,
+   "ranks": null,
+   "spellIds": [
+    680247
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_gun_b_03_Border",
+   "description": "Increases the damage of Sixfold Shot by 25% and causes it to channel 0.5 sec quicker."
+  },
+  "Malice": {
+   "name": "Malice",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707535,
+   "ranks": null,
+   "spellIds": [
+    707535
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\sha_spell_shaman_lavaburst_nightborne",
+   "description": "Level 30 Passive\nIncreases your Fire spell damage by 50% of your Agility and your attack power by 100% of your Intellect."
+  },
+  "March of the Black King": {
+   "name": "March of the Black King",
+   "spec": "Black Knight",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 681217,
+   "ranks": {
+    "2": 681212,
+    "3": 681213,
+    "4": 681214,
+    "5": 681215,
+    "6": 681216,
+    "7": 681217
+   },
+   "spellIds": [
+    681095,
+    681212,
+    681213,
+    681214,
+    681215,
+    681216,
+    681217
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_shadowclones_Border",
+   "description": "Expel darkness from within you, dealing 85 Shadow damage to nearby enemies over 10 sec.\r\n\r\nGenerates 5 Rage every 2 sec."
+  },
+  "Mechanized Crossbows": {
+   "name": "Mechanized Crossbows",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705514,
+   "ranks": null,
+   "spellIds": [
+    705514
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_blindingshot",
+   "description": "Increases your ranged attack power by 10% and the range of your ranged abilities by 5 yds."
+  },
+  "Monster Hunting": {
+   "name": "Monster Hunting",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300872,
+   "ranks": null,
+   "spellIds": [
+    300872
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_physical_ability_(44)_Border",
+   "description": "Increases melee and ranged haste of party and raid members within 100 yds by 10%. Does not stack with similar effects.\n\nIn addition, increases your damage dealt against Undead and Demons by 10%."
+  },
+  "My Trusty Arbalest": {
+   "name": "My Trusty Arbalest",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503682,
+   "ranks": null,
+   "spellIds": [
+    503682
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_crossbow_32",
+   "description": "Reduces the Rage cost of Witchbane and Shadowblast by -10% and increases your chance to hit by 2%."
+  },
+  "Neverending Pursuit": {
+   "name": "Neverending Pursuit",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524970,
+   "ranks": null,
+   "spellIds": [
+    524970
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_boss_triumvirate_darknaaru",
+   "description": "Critically striking with Damnation now refunds 40 Rage."
+  },
+  "Night Hunter": {
+   "name": "Night Hunter",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 562225,
+   "ranks": {
+    "1": 562225
+   },
+   "spellIds": [
+    562225
+   ],
+   "cost": 22500,
+   "levelReq": 34,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Shows the location of all nearby Humanoids, Demons, and Undead on the minimap and increases your stealth detection significantly.\r\n\r\nOnly works at night."
+  },
+  "Night King": {
+   "name": "Night King",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707067,
+   "ranks": null,
+   "spellIds": [
+    707067
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(72)_Border",
+   "description": "Noctis Blade now consumes Shadow Brand to deal 50% increased damage."
+  },
+  "Night Stalker": {
+   "name": "Night Stalker",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300792,
+   "ranks": null,
+   "spellIds": [
+    300792
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_nightblade",
+   "description": "Increases your critical strike chance by 3%."
+  },
+  "Night Walker": {
+   "name": "Night Walker",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 789256,
+   "ranks": null,
+   "spellIds": [
+    789256
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_arcanespeed_Border",
+   "description": "Increases the base range of Vault by 3 yds."
+  },
+  "Night's Watch": {
+   "name": "Night's Watch",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807733,
+   "ranks": {
+    "1": 807733
+   },
+   "spellIds": [
+    807733
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "You put yourself on guard against evil, increasing your threat generated by 125%."
+  },
+  "No Regrets": {
+   "name": "No Regrets",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681093,
+   "ranks": null,
+   "spellIds": [
+    681093
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_shadow_spell_08_Border",
+   "description": "Your March of the Black King now increases your Armor by 15%."
+  },
+  "Noctis Blade": {
+   "name": "Noctis Blade",
+   "spec": "Black Knight",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 680615,
+   "ranks": {
+    "2": 680612,
+    "3": 680613,
+    "4": 680614,
+    "5": 680615
+   },
+   "spellIds": [
+    680612,
+    680613,
+    680614,
+    680615,
+    802280
+   ],
+   "cost": 5200,
+   "levelReq": 26,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_brokensword_Border",
+   "description": "Strike an enemy, dealing 100% Weapon Damage plus 45, scaling with your parry rating, and healing you for 50% of the damage dealt. "
+  },
+  "Noctis Protection": {
+   "name": "Noctis Protection",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681100,
+   "ranks": null,
+   "spellIds": [
+    681100
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_cascade_shadow",
+   "description": "Casting Noctis Blade now applies a shield absorbing 166 + 200% Stamina + 10% AP damage for 4 seconds."
+  },
+  "One Shot": {
+   "name": "One Shot",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680331,
+   "ranks": null,
+   "spellIds": [
+    680331
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_bow_1h_draenorraid_d_01",
+   "description": "Increases the critical strike chance of Heartseeking Bolt by 20%."
+  },
+  "Parry": {
+   "name": "Parry",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3124,
+   "ranks": null,
+   "spellIds": [
+    3124
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Pavise Crossbowman": {
+   "name": "Pavise Crossbowman",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681453,
+   "ranks": null,
+   "spellIds": [
+    681453
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_18_shield_nobg_Border",
+   "description": "Teaches you how to use Shields and teaches you Pavise.PaviseSlam your shield into the ground, forming a pavise for 10 sec.\n\nWhile you remain near it, hostile spells targeting you are deflected."
+  },
+  "Plagueland Survivalist": {
+   "name": "Plagueland Survivalist",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681169,
+   "ranks": null,
+   "spellIds": [
+    681169
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_shadowworld_Border",
+   "description": "Reduces the duration of disease effects on you by -30%."
+  },
+  "Pommel Smash": {
+   "name": "Pommel Smash",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680515,
+   "ranks": {
+    "1": 680515
+   },
+   "spellIds": [
+    680515
+   ],
+   "cost": 300,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Smash an enemy with your pommel, dealing High Threat Weapon Damage, and increasing their Magic damage taken by 2% for 30 sec, stacking 5 times."
+  },
+  "Protector of Darkshire": {
+   "name": "Protector of Darkshire",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300575,
+   "ranks": null,
+   "spellIds": [
+    300575
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Diablo3_Cleave_Rogue",
+   "description": "Increases the damage of Dawn Blade and Dusk Blade by 15%."
+  },
+  "Pure Agony": {
+   "name": "Pure Agony",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300789,
+   "ranks": null,
+   "spellIds": [
+    300789
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_darkness",
+   "description": "Increases the critical damage of Quickdraw by 50%."
+  },
+  "Purge Evil": {
+   "name": "Purge Evil",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572306,
+   "ranks": {
+    "1": 572306
+   },
+   "spellIds": [
+    572306
+   ],
+   "cost": 25500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Purge the evil from an enemy, removing all enrage effects from them."
+  },
+  "Purified Bola": {
+   "name": "Purified Bola",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707230,
+   "ranks": null,
+   "spellIds": [
+    707230
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_engineering_90_bola",
+   "description": "Your Bola Throw now has 2 charges, deals additional damage, and lasts 2 additional sec, but now costs 10 Rage instead of mana.Purified Bola Throw2 Charges, 15 sec recharge\nThrow a bola at an enemy, dealing 348 + 40% AP Holy damage and slowing movement speed by -60% for 8 seconds."
+  },
+  "Purifier's Edge": {
+   "name": "Purifier's Edge",
+   "spec": "Inquisition",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 802434,
+   "ranks": {
+    "2": 802429,
+    "3": 802430,
+    "4": 802431,
+    "5": 802432,
+    "6": 802433,
+    "7": 802434
+   },
+   "spellIds": [
+    802019,
+    802429,
+    802430,
+    802431,
+    802432,
+    802433,
+    802434
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_assassinskill28_Border",
+   "description": "Strike an enemy with searing blades, dealing Weapon Damage plus 50 with both weapons as Fire damage.\r\n\r\nGrants |cffff7a24Flames of Sin|r or increases the duration by 3 sec."
+  },
+  "Purity & Wickedness": {
+   "name": "Purity & Wickedness",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680544,
+   "ranks": null,
+   "spellIds": [
+    680544
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_1h_artifactfelomelorn_d_01dual",
+   "description": "Main-hand auto attacks now apply a stack of Purity to the target, increasing the Fire and Holy damage you deal to them by 2% per stack, stacking 6 times.\n\nOff-hand auto attacks now apply a stack of Wickedness to the target, increasing the Shadow and Physical damage you deal to them by 2% per stack, stacking 6 times.\n\nTorchlight can now consume these stacks to deal 1028 + 25% holy SP + 45% AP Holyflame or Shadowstrike damage to the target."
+  },
+  "Pyro Tonic": {
+   "name": "Pyro Tonic",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802277,
+   "ranks": null,
+   "spellIds": [
+    802277
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\trade_alchemy_potione6",
+   "description": "Drink a fiery tonic, increasing your Fire damage dealt by 20% and your critical damage by 10% for 15 seconds."
+  },
+  "Quickdraw": {
+   "name": "Quickdraw",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 806851,
+   "ranks": {
+    "2": 806846,
+    "3": 806847,
+    "4": 806848,
+    "5": 806849,
+    "6": 806850,
+    "7": 806851
+   },
+   "spellIds": [
+    804193,
+    806846,
+    806847,
+    806848,
+    806849,
+    806850,
+    806851
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_gun_b_05_Border",
+   "description": "Unleash a quick shot, dealing 175% Ranged Weapon Damage plus 32 Physical damage and generates Rage.\r\n\r\nOnly usable after critically striking with an ability."
+  },
+  "Rampaging Hounds": {
+   "name": "Rampaging Hounds",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 570726,
+   "ranks": null,
+   "spellIds": [
+    570726
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_sickem",
+   "description": "Your Shadow Hounds melee attacks now cleave 1 additional nearby enemy."
+  },
+  "Rapid": {
+   "name": "Rapid",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680323,
+   "ranks": null,
+   "spellIds": [
+    680323
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_archerskill02_Border",
+   "description": "Your Witchbane now deals its full damage over -1 second shorter period."
+  },
+  "Rapid Reload": {
+   "name": "Rapid Reload",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705512,
+   "ranks": null,
+   "spellIds": [
+    705512
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_crossbow_2h_maw_c_01",
+   "description": "Increases your ranged haste by 8%."
+  },
+  "Rearmament": {
+   "name": "Rearmament",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805738,
+   "ranks": null,
+   "spellIds": [
+    805738
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowbombs_Border",
+   "description": "Arm yourself against evil, resetting the cooldown of all Traps and Decimate."
+  },
+  "Refined Combatant": {
+   "name": "Refined Combatant",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572770,
+   "ranks": null,
+   "spellIds": [
+    572770
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Warrior_OffensiveStance",
+   "description": "Increases your expertise by 10."
+  },
+  "Regenerative Elixirs": {
+   "name": "Regenerative Elixirs",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705528,
+   "ranks": null,
+   "spellIds": [
+    705528
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_potion_55",
+   "description": "Drinking Tonics now also restores 30 Rage."
+  },
+  "Relentless": {
+   "name": "Relentless",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520593,
+   "ranks": null,
+   "spellIds": [
+    520593
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\skill_icon_skill101_Border",
+   "description": "Allows Witchbane to hit an additional nearby enemy."
+  },
+  "Reload": {
+   "name": "Reload",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804190,
+   "ranks": null,
+   "spellIds": [
+    804190
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_bountyhunting",
+   "description": "Reduces the cooldown of Quickdraw by -4 sec."
+  },
+  "Renegade": {
+   "name": "Renegade",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524812,
+   "ranks": null,
+   "spellIds": [
+    524812
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_sinistercalling",
+   "description": "You now drop caltrops below you each time you use Vault that last 6 seconds."
+  },
+  "Repulse": {
+   "name": "Repulse",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 680273,
+   "ranks": {
+    "2": 680270,
+    "3": 680271,
+    "4": 680272,
+    "5": 680273
+   },
+   "spellIds": [
+    680236,
+    680270,
+    680271,
+    680272,
+    680273
+   ],
+   "cost": 16000,
+   "levelReq": 38,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(26)_Border",
+   "description": "Emit a burst of shadow from your musket that strikes enemies in front of you, dealing 73 Shadow damage and knocking all affected targets back."
+  },
+  "Resilient Constitution": {
+   "name": "Resilient Constitution",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 552011,
+   "ranks": null,
+   "spellIds": [
+    552011
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Resilient to Darkness": {
+   "name": "Resilient to Darkness",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681092,
+   "ranks": null,
+   "spellIds": [
+    681092
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\trade_archaeology_engravedscimitarpommel",
+   "description": "Direct Magic damage taken now heals you and restores mana to you equal to 3% of the damage done."
+  },
+  "Resourceful Pursuit": {
+   "name": "Resourceful Pursuit",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707648,
+   "ranks": null,
+   "spellIds": [
+    707648
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Weapon_Crossbow_01",
+   "description": "Reduces the Rage cost of Tormentor and Damnation by -20%."
+  },
+  "Scarlet Inquisitor": {
+   "name": "Scarlet Inquisitor",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301338,
+   "ranks": null,
+   "spellIds": [
+    301338
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Token_ScarletCrusade",
+   "description": "Reduces the mana cost of your Traps and Brands by -50%."
+  },
+  "Scent of Magic": {
+   "name": "Scent of Magic",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706260,
+   "ranks": null,
+   "spellIds": [
+    706260
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\artifactability_vengeancedemonhunter_painbringer",
+   "description": "Critical strikes now apply Scent of Magic for 15 seconds, causing your Shadow Hound's next Shadow Leap to incur a -10 sec reduced cooldown."
+  },
+  "Scourge Trap": {
+   "name": "Scourge Trap",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 681455,
+   "ranks": {
+    "1": 681455
+   },
+   "spellIds": [
+    681455
+   ],
+   "cost": 22500,
+   "levelReq": 34,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Place a scourge trap on the ground lasting 1 min that will explode on the first Undead or Demon enemy to approach it, instantly dealing 1513 Holy damage to enemies within 5 yds."
+  },
+  "Searing Hilt": {
+   "name": "Searing Hilt",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705480,
+   "ranks": null,
+   "spellIds": [
+    705480
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_1h_pvppandarias1_c_02",
+   "description": "Purifier's Edge now grants you Searing Hilt for 10 seconds.Searing HiltIncreases your melee attack speed by 10% for 10 seconds."
+  },
+  "Secret Society": {
+   "name": "Secret Society",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680611,
+   "ranks": null,
+   "spellIds": [
+    680611
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowcup_Border",
+   "description": "Increases your Shadow critical strike chance and Shadow damage dealt by 4% and your expertise by 5."
+  },
+  "Secret of Raven Hill": {
+   "name": "Secret of Raven Hill",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680513,
+   "ranks": null,
+   "spellIds": [
+    680513
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowsilence_Border",
+   "description": "$4b"
+  },
+  "Sermon of Flame": {
+   "name": "Sermon of Flame",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503655,
+   "ranks": null,
+   "spellIds": [
+    503655
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_T_Nhance_RPG_Icons_SwordOfFlame_Border",
+   "description": "Increases your Fire damage dealt by 5%."
+  },
+  "Shadow Brand": {
+   "name": "Shadow Brand",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680516,
+   "ranks": null,
+   "spellIds": [
+    680516
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_shadow_Border",
+   "description": "Direct ability damage now applies Shadow Brand to enemies.Shadow BrandMarks the target for 12 seconds, dealing 36 High Threat Shadow Damage over 12 seconds."
+  },
+  "Shadow Order": {
+   "name": "Shadow Order",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680503,
+   "ranks": null,
+   "spellIds": [
+    680503
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_AntiShadow",
+   "description": "Increases the damage of Shadow Brand by 20% and your hit rating by 3% of your Agility."
+  },
+  "Shadow Rage": {
+   "name": "Shadow Rage",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705455,
+   "ranks": null,
+   "spellIds": [
+    705455
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_CurseOfShadow_Border",
+   "description": "Casting Shadowblast now grants Shadow Rage to your Shadow Hound.Shadow RageAuto attacks have a 50% chance to deal an additional 57*1+AP*0.07t Shadow Damage. Lasts 15 seconds."
+  },
+  "Shadow Resistance": {
+   "name": "Shadow Resistance",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 20579,
+   "ranks": null,
+   "spellIds": [
+    20579
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Shadow Trap": {
+   "name": "Shadow Trap",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680238,
+   "ranks": null,
+   "spellIds": [
+    680238
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_shadow_spell_07_Border",
+   "description": "Place a dark trap on the ground lasting 30 seconds that will curse the first enemy to approach it and up to 5 enemies within 3 yds, stunning them for 4 seconds and dealing 461 + 136% AP Shadow damage over 8 seconds."
+  },
+  "Shadowblast": {
+   "name": "Shadowblast",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680269,
+   "ranks": {
+    "1": 804191,
+    "2": 680264,
+    "3": 680265,
+    "4": 680266,
+    "5": 680267,
+    "6": 680268,
+    "7": 680269
+   },
+   "spellIds": [
+    680264,
+    680265,
+    680266,
+    680267,
+    680268,
+    680269,
+    804191
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Fire a shadowy shot at an enemy, dealing 100% Ranged Weapon Damage plus 5 as Shadow damage."
+  },
+  "Shadowstorm": {
+   "name": "Shadowstorm",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520277,
+   "ranks": null,
+   "spellIds": [
+    520277
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowstab_Border",
+   "description": "Damage dealt by Pommel Smash now has a 20% chance to trigger a Shadowstorm.ShadowstormLeeches 350 + 30% SP + 10% AP health from enemies within 8 yds."
+  },
+  "Shadowy Tendrils": {
+   "name": "Shadowy Tendrils",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707407,
+   "ranks": null,
+   "spellIds": [
+    707407
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_shortblade_88",
+   "description": "Your Grasp of the Undying now strikes 2 additional nearby enemies."
+  },
+  "Sharpshooter": {
+   "name": "Sharpshooter",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705456,
+   "ranks": null,
+   "spellIds": [
+    705456
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_FocusedPower",
+   "description": "Level 20 Passive\nCasting Shadowblast now regenerates 5% of your maximum mana."
+  },
+  "Silver Bolts": {
+   "name": "Silver Bolts",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804026,
+   "ranks": null,
+   "spellIds": [
+    804026
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_ironmaidens_ironshot",
+   "description": "Damage dealt by Heartseeking Bolt and Damnation is increased by 15%, doubled against Undead or Demons or enemies affected by Shadow Trap."
+  },
+  "Silver Bullets": {
+   "name": "Silver Bullets",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 574149,
+   "ranks": null,
+   "spellIds": [
+    574149
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_ammo_bullet_05",
+   "description": "Increases the damage of Darkslayer by 10%, increased by an additional 10% against Undead."
+  },
+  "Sin Eater": {
+   "name": "Sin Eater",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680542,
+   "ranks": null,
+   "spellIds": [
+    680542
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_animarevendreth_debuff",
+   "description": "Increases the amount of next attacks that grant Flames of Sin through Torchlight by 5."
+  },
+  "Sinner": {
+   "name": "Sinner",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681411,
+   "ranks": null,
+   "spellIds": [
+    681411
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_SealOfFire",
+   "description": "Increases the damage of Torchlight by 100%."
+  },
+  "Sixfold Shot": {
+   "name": "Sixfold Shot",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500567,
+   "ranks": null,
+   "spellIds": [
+    500567
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\custom_32_gun_shot_Border",
+   "description": "$49"
+  },
+  "Slayer": {
+   "name": "Slayer",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300968,
+   "ranks": null,
+   "spellIds": [
+    300968
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_assassinate",
+   "description": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 3%."
+  },
+  "Slayer of Darkness": {
+   "name": "Slayer of Darkness",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804024,
+   "ranks": null,
+   "spellIds": [
+    804024
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Retribution",
+   "description": "Increases damage dealt by 5% when fighting Demons or Undead. \n\nAdditionally, direct damage dealt with spells or abilities now has a 10% chance to deal 151 Holy damage."
+  },
+  "Slayer's Mark": {
+   "name": "Slayer's Mark",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804068,
+   "ranks": null,
+   "spellIds": [
+    804068
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_blackhand_marked4death",
+   "description": "Mark an enemy, increasing the attack power of all attackers against that target by 150 and your critical strike chance against them by 3%, increasing by 3% every 1 sec for 8 seconds.\n\nFor the duration, the enemy is unable to stealth."
+  },
+  "Slinging Bolts": {
+   "name": "Slinging Bolts",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804404,
+   "ranks": null,
+   "spellIds": [
+    804404
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\ability_rogue_ruthlessness",
+   "description": "Level 40 Passive\nDirect ranged damage dealt now has an 8% chance to grant you Slinging Bolts.Slinging Bolts (Proc)Your next Damnation is usable regardless of the target's current health. Lasts 20 seconds.\n\nCan only occur once every 5 sec."
+  },
+  "Smite Evil": {
+   "name": "Smite Evil",
+   "spec": "Inquisition",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 803364,
+   "ranks": {
+    "2": 803359,
+    "3": 803360,
+    "4": 803361,
+    "5": 803362,
+    "6": 803363,
+    "7": 803364
+   },
+   "spellIds": [
+    802004,
+    803359,
+    803360,
+    803361,
+    803362,
+    803363,
+    803364
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_BlessedResillience",
+   "description": "Strike an enemy with your blade, dealing Weapon Damage plus 49 as Holy damage to them and 5 nearby enemies."
+  },
+  "Smoke Grenade": {
+   "name": "Smoke Grenade",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805756,
+   "ranks": null,
+   "spellIds": [
+    805756
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_pyriumgrenade",
+   "description": "Throw down a smoke grenade, enemies are unable to target into or out of the Smoke for 8 seconds. \n\nAny damage caused will remove the effect.\n\nAll allies in the Smoke area gain 40% increased movement speed and all enemies have their movement speed slowed by -60%."
+  },
+  "Stake": {
+   "name": "Stake",
+   "spec": "Inquisition",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 681350,
+   "ranks": {
+    "2": 681347,
+    "3": 681348,
+    "4": 681349,
+    "5": 681350
+   },
+   "spellIds": [
+    680537,
+    681347,
+    681348,
+    681349,
+    681350
+   ],
+   "cost": 16000,
+   "levelReq": 38,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_stake_02_b",
+   "description": "Drive your concealed stake into the chest of an injured enemy, dealing 246 Physical damage.\r\n\r\nGrants |cffff7a24Flames of Sin|r and increases the duration by 3 sec.\r\n\r\nOnly usable on enemies at or below 35% health."
+  },
+  "Stoicism": {
+   "name": "Stoicism",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804802,
+   "ranks": {
+    "1": 804802
+   },
+   "spellIds": [
+    804802
+   ],
+   "cost": 2500,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Strengthen your mental resolve and enhance your reflexes, increasing your chance to parry and dodge attacks by 30% for 8 sec. "
+  },
+  "Strafing Shot": {
+   "name": "Strafing Shot",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705515,
+   "ranks": null,
+   "spellIds": [
+    705515
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3evasivefire",
+   "description": "Critical strikes with ranged abilities now spread Tormentor to a nearby enemy."
+  },
+  "Strategist": {
+   "name": "Strategist",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681156,
+   "ranks": null,
+   "spellIds": [
+    681156
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_heroicleap",
+   "description": "Your Vault now regenerates 5% maximum mana."
+  },
+  "Surging Tonic": {
+   "name": "Surging Tonic",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802308,
+   "ranks": {
+    "1": 802279,
+    "2": 802308
+   },
+   "spellIds": [
+    802279,
+    802308
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Drink a bitter tonic, reducing the cost of all abilities by 20% for 15 sec.\r\n\r\n@ext:Only 1 |cffffffffTonic|r can be active at a time.:ext@"
+  },
+  "The Hunt Continues": {
+   "name": "The Hunt Continues",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560219,
+   "ranks": null,
+   "spellIds": [
+    560219
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3spiritwalk",
+   "description": "Hunt now generates an additional 15 Rage and the mana cost is reduced by -15%."
+  },
+  "Three Sevens": {
+   "name": "Three Sevens",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300572,
+   "ranks": null,
+   "spellIds": [
+    300572
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_72_creating_shadow_Border",
+   "description": "Increases the duration that Traps last on the ground by 7 sec, reduces the cooldown of Burrow Bolt by -7 sec, and reduces the cost of Dawn Blade by -7."
+  },
+  "Tonic Supply": {
+   "name": "Tonic Supply",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705497,
+   "ranks": null,
+   "spellIds": [
+    705497
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_5potionbag_special",
+   "description": "Using a Tonic now reduces the cooldown of all other Tonics by -10 sec."
+  },
+  "Torch the Wicked!": {
+   "name": "Torch the Wicked!",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560226,
+   "ranks": null,
+   "spellIds": [
+    560226
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_fishing_nethooks01",
+   "description": "Dealing damage with Flames of Sin now grants 2% attack speed, stacking up to 12 times for 6 seconds. Application of this effect does not refresh the duration.\n\nAdditionally, Pyro Tonic now also resets the cooldown of Torchlight."
+  },
+  "Torchlight": {
+   "name": "Torchlight",
+   "spec": "Inquisition",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503662,
+   "ranks": null,
+   "spellIds": [
+    503662
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_enchanting_70_pet_torch",
+   "description": "Throw a torch at an enemy, dealing 166 + 30% AP + 45% fire SP Fire damage, and causing up to 5 of the next attacks you make against them to grant you Flames of Sin and increasing the duration by 2 sec."
+  },
+  "Tormenting the Tormented": {
+   "name": "Tormenting the Tormented",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805758,
+   "ranks": null,
+   "spellIds": [
+    805758
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\_WetBag2_Blood3",
+   "description": "Level 50 Passive\nYour Tormentor can now critically strike."
+  },
+  "Tormentor": {
+   "name": "Tormentor",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 501349,
+   "ranks": {
+    "2": 501344,
+    "3": 501345,
+    "4": 501346,
+    "5": 501347,
+    "6": 501348,
+    "7": 501349
+   },
+   "spellIds": [
+    501344,
+    501345,
+    501346,
+    501347,
+    501348,
+    501349,
+    800162
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_ammo_arrow_05",
+   "description": "Fire a deadly bolt dealing 10 Twilight Damage plus 119 over 14 sec."
+  },
+  "Trap Card": {
+   "name": "Trap Card",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680253,
+   "ranks": null,
+   "spellIds": [
+    680253
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_inscription_tarot_6omagecard",
+   "description": "Increases the duration of your Traps by 50%."
+  },
+  "Trapper": {
+   "name": "Trapper",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681180,
+   "ranks": null,
+   "spellIds": [
+    681180
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_steeltrap",
+   "description": "Reduces the cooldown of your Trap spells by -25%."
+  },
+  "Trickster": {
+   "name": "Trickster",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705526,
+   "ranks": null,
+   "spellIds": [
+    705526
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_smoke",
+   "description": "Reduces the cooldown of Smoke Grenade by -30 sec and increases its duration by 1 sec."
+  },
+  "Twilight Frenzy": {
+   "name": "Twilight Frenzy",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805751,
+   "ranks": null,
+   "spellIds": [
+    805751
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Diablo3_ArrowRain_Warlock",
+   "description": "Spin around, unable to stop moving for 5 seconds, firing shots at nearby enemies for 50% Ranged Weapon Damage plus cond(gt(SPS, SPH), 15+31+SPS*0.2+ranged AP*0.1, 15+31+SPH*0.2+ranged AP*0.1) as Twilight Damage.\n\nCan dodge and parry while active."
+  },
+  "Underwater Breathing": {
+   "name": "Underwater Breathing",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 5227,
+   "ranks": null,
+   "spellIds": [
+    5227
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Undying": {
+   "name": "Undying",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680504,
+   "ranks": null,
+   "spellIds": [
+    680504
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_RitualOfSacrifice",
+   "description": "While below 75% maximum health, Dawn Blade now increases the critical strike chance of Noctis Blade by 40% for 10 seconds."
+  },
+  "Unleash the Hounds": {
+   "name": "Unleash the Hounds",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 807933,
+   "ranks": {
+    "2": 807933
+   },
+   "spellIds": [
+    807918,
+    807933
+   ],
+   "cost": 15000,
+   "levelReq": 34,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Shadowhound_Summon_Icon",
+   "description": "Summon 2 |cffffffffLesser Shadow Hounds|r to aid you in combat for 20 sec."
+  },
+  "Vampire Hunter": {
+   "name": "Vampire Hunter",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803638,
+   "ranks": null,
+   "spellIds": [
+    803638
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_physical_ability_(60)_Border",
+   "description": "When an enemy applies a curse to you, your Magic damage taken is reduced by -10% for 8 seconds.\n\nThe damage reduction is increased by 5% and duration is increased by 2 seconds for every curse active."
+  },
+  "Vampiric Tonic": {
+   "name": "Vampiric Tonic",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802276,
+   "ranks": null,
+   "spellIds": [
+    802276
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\trade_alchemy_potione5",
+   "description": "Drink a vampiric tonic, allowing Physical damage dealt to heal you equal to 20% of the damage dealt for 10 seconds."
+  },
+  "Vault": {
+   "name": "Vault",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500085,
+   "ranks": null,
+   "spellIds": [
+    500085
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_demonhunter_vengefulretreat2",
+   "description": "Dash in the direction you are moving. Distance scales with movement speed.\n\nNot usable while rooted."
+  },
+  "Veiled in Darkness": {
+   "name": "Veiled in Darkness",
+   "spec": "Houndmaster",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524854,
+   "ranks": null,
+   "spellIds": [
+    524854
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_priest_surgeofdarkness",
+   "description": "A veil of dark magic encircles you at all times, granting 5% increased Attack Power to party and raid members within 100 yds.\n\nDoes not stack with similar effects."
+  },
+  "Vengeful Intent": {
+   "name": "Vengeful Intent",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705534,
+   "ranks": null,
+   "spellIds": [
+    705534
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Diablo3_Cleave_DeathKnight",
+   "description": "Whenever you take direct damage you have a 10% chance to strike back for 75% Weapon Damage."
+  },
+  "Vicious Mockery": {
+   "name": "Vicious Mockery",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802013,
+   "ranks": {
+    "1": 802013
+   },
+   "spellIds": [
+    802013
+   ],
+   "cost": 200,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Taunt an enemy to attack you for 3 sec. If the target is a Demon or Undead, they take 6 additional Shadow damage."
+  },
+  "Vishas' Memoir": {
+   "name": "Vishas' Memoir",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300795,
+   "ranks": null,
+   "spellIds": [
+    300795
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_book_02_b_Border",
+   "description": "Reduces the cooldown of your Brand spells by -25%."
+  },
+  "Wicked Intent": {
+   "name": "Wicked Intent",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504645,
+   "ranks": null,
+   "spellIds": [
+    504645
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_61",
+   "description": "Casting Desecrate now has a 15% chance to reset the cooldown of Noctis Blade."
+  },
+  "Wide Swings": {
+   "name": "Wide Swings",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681098,
+   "ranks": null,
+   "spellIds": [
+    681098
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Weapon_Shortblade_28",
+   "description": "Increases the damage of Noctis Blade and Grasp of the Undying by 20% on enemies affected by Shadow Brand."
+  },
+  "Will of the Forsaken": {
+   "name": "Will of the Forsaken",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 667803,
+   "ranks": null,
+   "spellIds": [
+    667803
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Witch Knight": {
+   "name": "Witch Knight",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805346,
+   "ranks": null,
+   "spellIds": [
+    805346
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_161",
+   "description": "Direct ability damage with a two-handed weapon now reduces the remaining cooldown of your Tonics by -1 sec and grants Witching.\nWitchingIncreases magic resistances by 10%, and melee haste by 10% for 8 seconds, stacking 3 times."
+  },
+  "Witchbane": {
+   "name": "Witchbane",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 574320,
+   "ranks": {
+    "2": 520211,
+    "3": 520212,
+    "4": 520213,
+    "5": 578297,
+    "6": 574319,
+    "7": 574320
+   },
+   "spellIds": [
+    520211,
+    520212,
+    520213,
+    574319,
+    574320,
+    578297,
+    800165
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3rapidfire",
+   "description": "Unleash a series of devastating shots dealing 121 Physical damage over 3 sec."
+  },
+  "Witchblight": {
+   "name": "Witchblight",
+   "spec": "Black Knight",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 681220,
+   "ranks": {
+    "2": 681540,
+    "3": 681218,
+    "4": 681219,
+    "5": 681220
+   },
+   "spellIds": [
+    680494,
+    681218,
+    681219,
+    681220,
+    681540
+   ],
+   "cost": 12000,
+   "levelReq": 36,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowbeam_(2)_Border",
+   "description": "Explode with dark energy, dealing 65 Shadow damage to up to to 10 nearby enemies and healing you for 20% of your maximum health.\r\n\r\nEach target struck is guaranteed to miss their next instance of damage within 6 sec."
+  },
+  "Witchblood Tonic": {
+   "name": "Witchblood Tonic",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802278,
+   "ranks": null,
+   "spellIds": [
+    802278
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\trade_alchemy_potione2",
+   "description": "Drink a shadowy tonic, removing all curse effects from you and reducing all Magic damage taken by -40% for 10 seconds."
+  },
+  "Witching Bolt": {
+   "name": "Witching Bolt",
+   "spec": "Boltslinger",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680322,
+   "ranks": null,
+   "spellIds": [
+    680322
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_arrow_01_b",
+   "description": "Increases the critical strike chance of Damnation against Undead and Demons by 25%."
+  },
+  "Witching Edict": {
+   "name": "Witching Edict",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 707687,
+   "ranks": {
+    "1": 707684,
+    "2": 707685,
+    "3": 707686,
+    "4": 707687
+   },
+   "spellIds": [
+    707684,
+    707685,
+    707686,
+    707687
+   ],
+   "cost": 1300,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Create a magic edict with an ally, increasing their spell power by 25."
+  },
+  "Witching Idol": {
+   "name": "Witching Idol",
+   "spec": "Black Knight",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804051,
+   "ranks": null,
+   "spellIds": [
+    804051
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_archaeology_80_witch_fetishofthequestioningmind",
+   "description": "Drop a Witching Idol that periodically dispels fear, sleep, and charm effects every 3 sec from party members within 20 yds."
+  },
+  "Witching Shroud": {
+   "name": "Witching Shroud",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805770,
+   "ranks": null,
+   "spellIds": [
+    805770
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Sylvanas_Warlock",
+   "description": "Enter a powerful stealth mode for 3 seconds, granting immunity to all harmful magic effects.\n\nOnly usable for 10 seconds after being hit by a magical critical strike. Usable while stunned or feared."
+  }
+ }
+}

@@ -1,122 +1,252 @@
 {
  "part_id": "region.icon",
  "lane": "region",
- "holes": [],
+ "namespace": "icon",
+ "allow": [
+  "actions",
+  "adjustedMax",
+  "adjustedMin",
+  "alpha",
+  "anchorFrameType",
+  "anchorPoint",
+  "animation",
+  "authorOptions",
+  "color",
+  "config",
+  "cooldown",
+  "cooldownEdge",
+  "desaturate",
+  "frameStrata",
+  "height",
+  "icon",
+  "iconSource",
+  "id",
+  "information",
+  "internalVersion",
+  "inverse",
+  "keepAspectRatio",
+  "progressSource",
+  "regionType",
+  "selfPoint",
+  "tocversion",
+  "uid",
+  "width",
+  "xOffset",
+  "yOffset",
+  "zoom"
+ ],
+ "holes": [
+  {
+   "name": "adjustedMax",
+   "type": "str",
+   "input": "reference",
+   "default": "",
+   "values": null
+  },
+  {
+   "name": "adjustedMin",
+   "type": "str",
+   "input": "reference",
+   "default": "",
+   "values": null
+  },
+  {
+   "name": "anchorFrameType",
+   "type": "str",
+   "input": "reference",
+   "default": "SCREEN",
+   "values": null
+  },
+  {
+   "name": "anchorPoint",
+   "type": "str",
+   "input": "reference",
+   "default": "CENTER",
+   "values": null
+  },
+  {
+   "name": "color",
+   "type": "list",
+   "input": "color",
+   "default": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "values": null
+  },
+  {
+   "name": "cooldown",
+   "type": "bool",
+   "input": "toggle",
+   "default": true,
+   "values": null
+  },
+  {
+   "name": "cooldownEdge",
+   "type": "bool",
+   "input": "toggle",
+   "default": false,
+   "values": null
+  },
+  {
+   "name": "desaturate",
+   "type": "bool",
+   "input": "toggle",
+   "default": false,
+   "values": null
+  },
+  {
+   "name": "frameStrata",
+   "type": "int",
+   "input": "value",
+   "default": 1,
+   "values": null
+  },
+  {
+   "name": "height",
+   "type": "int",
+   "input": "value",
+   "default": 64,
+   "values": null
+  },
+  {
+   "name": "icon",
+   "type": "bool",
+   "input": "toggle",
+   "default": true,
+   "values": null
+  },
+  {
+   "name": "iconSource",
+   "type": "int",
+   "input": "structured",
+   "default": -1,
+   "values": null
+  },
+  {
+   "name": "inverse",
+   "type": "bool",
+   "input": "toggle",
+   "default": false,
+   "values": null
+  },
+  {
+   "name": "keepAspectRatio",
+   "type": "bool",
+   "input": "toggle",
+   "default": false,
+   "values": null
+  },
+  {
+   "name": "progressSource",
+   "type": "list",
+   "input": "structured",
+   "default": [
+    -1,
+    ""
+   ],
+   "values": null
+  },
+  {
+   "name": "selfPoint",
+   "type": "str",
+   "input": "reference",
+   "default": "CENTER",
+   "values": null
+  },
+  {
+   "name": "width",
+   "type": "int",
+   "input": "value",
+   "default": 64,
+   "values": null
+  },
+  {
+   "name": "xOffset",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  },
+  {
+   "name": "yOffset",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  },
+  {
+   "name": "zoom",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  }
+ ],
+ "change_targets": [
+  "color",
+  "cooldownEdge",
+  "desaturate",
+  "displayIcon",
+  "height",
+  "iconSource",
+  "inverse",
+  "width",
+  "zoom"
+ ],
  "template": {
-  "iconSource": -1,
+  "actions": {
+   "finish": [],
+   "init": [],
+   "start": []
+  },
+  "alpha": 1,
+  "anchorFrameType": "SCREEN",
+  "anchorPoint": "CENTER",
+  "animation": {
+   "finish": {
+    "duration_type": "seconds",
+    "easeStrength": 3,
+    "easeType": "none",
+    "type": "none"
+   },
+   "main": {
+    "duration_type": "seconds",
+    "easeStrength": 3,
+    "easeType": "none",
+    "type": "none"
+   },
+   "start": {
+    "duration_type": "seconds",
+    "easeStrength": 3,
+    "easeType": "none",
+    "type": "none"
+   }
+  },
+  "authorOptions": [],
   "color": [
    1,
    1,
    1,
    1
   ],
-  "adjustedMax": "",
-  "adjustedMin": "",
-  "anchorPoint": "CENTER",
+  "config": [],
+  "cooldown": false,
   "cooldownEdge": false,
-  "internalVersion": 86,
-  "progressSource": [
-   -1,
-   ""
-  ],
-  "selfPoint": "CENTER",
   "desaturate": false,
-  "subRegions": [
-   {
-    "type": "subbackground"
-   },
-   {
-    "text_shadowXOffset": 0,
-    "text_text_format_s_format": "none",
-    "text_text": "%s",
-    "text_shadowColor": [
-     0,
-     0,
-     0,
-     1
-    ],
-    "text_selfPoint": "AUTO",
-    "text_automaticWidth": "Auto",
-    "text_fixedWidth": 64,
-    "anchorYOffset": 0,
-    "text_justify": "CENTER",
-    "type": "subtext",
-    "text_color": [
-     1,
-     1,
-     1,
-     1
-    ],
-    "text_font": "Friz Quadrata TT",
-    "text_shadowYOffset": 0,
-    "text_wordWrap": "WordWrap",
-    "text_visible": true,
-    "anchor_point": "INNER_BOTTOMRIGHT",
-    "text_fontSize": 12,
-    "anchorXOffset": 0,
-    "text_fontType": "OUTLINE"
-   },
-   {
-    "glowFrequency": 0.25,
-    "type": "subglow",
-    "useGlowColor": false,
-    "glowType": "buttonOverlay",
-    "glowLength": 10,
-    "glowYOffset": 0,
-    "glowColor": [
-     1,
-     1,
-     1,
-     1
-    ],
-    "glowDuration": 1,
-    "glowXOffset": 0,
-    "glowThickness": 1,
-    "glowScale": 1,
-    "glow": false,
-    "glowLines": 8,
-    "glowBorder": false
-   }
-  ],
-  "height": 64,
-  "useAdjustededMax": false,
-  "useAdjustededMin": false,
-  "regionType": "icon",
-  "animation": {
-   "start": {
-    "easeStrength": 3,
-    "type": "none",
-    "duration_type": "seconds",
-    "easeType": "none"
-   },
-   "main": {
-    "easeStrength": 3,
-    "type": "none",
-    "duration_type": "seconds",
-    "easeType": "none"
-   },
-   "finish": {
-    "easeStrength": 3,
-    "type": "none",
-    "duration_type": "seconds",
-    "easeType": "none"
-   }
-  },
-  "keepAspectRatio": false,
+  "frameStrata": 2,
+  "height": 28,
+  "iconSource": -1,
   "information": {},
-  "zoom": 0,
-  "actions": {
-   "start": {},
-   "finish": {},
-   "init": {}
-  },
-  "anchorFrameType": "SCREEN",
-  "frameStrata": 1,
-  "width": 64,
-  "authorOptions": {},
-  "config": {},
+  "internalVersion": 53,
   "inverse": false,
-  "alpha": 1,
-  "cooldown": true
+  "keepAspectRatio": false,
+  "regionType": "icon",
+  "selfPoint": "CENTER",
+  "tocversion": 30300,
+  "width": 38,
+  "zoom": 0.3
  }
 }

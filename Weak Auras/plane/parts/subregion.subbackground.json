@@ -1,0 +1,12 @@
+{
+ "part_id": "subregion.subbackground",
+ "lane": "subregion",
+ "namespace": "subbackground",
+ "allow": [
+  "type"
+ ],
+ "holes": [],
+ "template": {
+  "type": "subbackground"
+ }
+}

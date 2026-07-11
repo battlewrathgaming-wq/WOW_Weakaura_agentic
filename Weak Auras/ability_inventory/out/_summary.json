@@ -1,0 +1,285 @@
+[
+ {
+  "class": "BARBARIAN",
+  "display": "Barbarian",
+  "classId": 12,
+  "abilityCount": 193,
+  "bySpec": {
+   "General": 33,
+   "Ancestry": 43,
+   "Class": 41,
+   "Brutality": 37,
+   "Headhunting": 39
+  }
+ },
+ {
+  "class": "CHRONOMANCER",
+  "display": "Chronomancer",
+  "classId": 22,
+  "abilityCount": 192,
+  "bySpec": {
+   "General": 34,
+   "Artificer": 41,
+   "Infinite": 39,
+   "Time": 40,
+   "Class": 38
+  }
+ },
+ {
+  "class": "CULTIST",
+  "display": "Cultist",
+  "classId": 25,
+  "abilityCount": 235,
+  "bySpec": {
+   "General": 40,
+   "Corruption": 39,
+   "Dreadnought": 38,
+   "Godblade": 38,
+   "Heretic": 41,
+   "Class": 39
+  }
+ },
+ {
+  "class": "DEMONHUNTER",
+  "display": "Felsworn",
+  "classId": 14,
+  "abilityCount": 205,
+  "bySpec": {
+   "General": 47,
+   "Infernal": 40,
+   "Slayer": 40,
+   "Class": 35,
+   "Tyrant": 43
+  }
+ },
+ {
+  "class": "FLESHWARDEN",
+  "display": "Knight of Xoroth",
+  "classId": 17,
+  "abilityCount": 201,
+  "bySpec": {
+   "General": 43,
+   "Defiance": 42,
+   "Hellfire": 39,
+   "Class": 37,
+   "War": 40
+  }
+ },
+ {
+  "class": "GUARDIAN",
+  "display": "Guardian",
+  "classId": 18,
+  "abilityCount": 210,
+  "bySpec": {
+   "General": 47,
+   "Gladiator": 41,
+   "Inspiration": 45,
+   "Vanguard": 38,
+   "Class": 39
+  }
+ },
+ {
+  "class": "MONK",
+  "display": "Templar",
+  "classId": 19,
+  "abilityCount": 193,
+  "bySpec": {
+   "General": 36,
+   "Class": 38,
+   "Crusader": 37,
+   "Oathkeeper": 41,
+   "Zealot": 41
+  }
+ },
+ {
+  "class": "NECROMANCER",
+  "display": "Necromancer",
+  "classId": 23,
+  "abilityCount": 225,
+  "bySpec": {
+   "Animation": 56,
+   "General": 42,
+   "Death": 45,
+   "Rime": 45,
+   "Class": 37
+  }
+ },
+ {
+  "class": "PROPHET",
+  "display": "Venomancer",
+  "classId": 29,
+  "abilityCount": 254,
+  "bySpec": {
+   "General": 53,
+   "Fortitude": 42,
+   "Rot": 1,
+   "Venom": 38,
+   "Stalking": 43,
+   "Class": 37,
+   "Vizier": 40
+  }
+ },
+ {
+  "class": "PYROMANCER",
+  "display": "Pyromancer",
+  "classId": 24,
+  "abilityCount": 196,
+  "bySpec": {
+   "Draconic": 42,
+   "General": 35,
+   "Class": 40,
+   "Flameweaving": 40,
+   "Incineration": 39
+  }
+ },
+ {
+  "class": "RANGER",
+  "display": "Ranger",
+  "classId": 21,
+  "abilityCount": 227,
+  "bySpec": {
+   "General": 62,
+   "Archery": 42,
+   "Class": 39,
+   "Brigand": 39,
+   "Farstrider": 45
+  }
+ },
+ {
+  "class": "REAPER",
+  "display": "Reaper",
+  "classId": 30,
+  "abilityCount": 207,
+  "bySpec": {
+   "Domination": 44,
+   "General": 37,
+   "Class": 35,
+   "Harvest": 43,
+   "Soul": 48
+  }
+ },
+ {
+  "class": "SONOFARUGAL",
+  "display": "Bloodmage",
+  "classId": 20,
+  "abilityCount": 267,
+  "bySpec": {
+   "Accursed": 44,
+   "General": 46,
+   "Eternal": 46,
+   "Fleshweaver": 47,
+   "Class": 38,
+   "Sanguine": 46
+  }
+ },
+ {
+  "class": "SPIRITMAGE",
+  "display": "Runemaster",
+  "classId": 32,
+  "abilityCount": 208,
+  "bySpec": {
+   "General": 47,
+   "Engravement": 2,
+   "Runic": 40,
+   "Arcane": 41,
+   "Riftblade": 41,
+   "Class": 37
+  }
+ },
+ {
+  "class": "STARCALLER",
+  "display": "Starcaller",
+  "classId": 26,
+  "abilityCount": 229,
+  "bySpec": {
+   "General": 37,
+   "Moon Guard": 35,
+   "Moon Priest": 38,
+   "Sentinel": 39,
+   "Warden": 41,
+   "Class": 39
+  }
+ },
+ {
+  "class": "STORMBRINGER",
+  "display": "Stormbringer",
+  "classId": 16,
+  "abilityCount": 206,
+  "bySpec": {
+   "General": 47,
+   "Lightning": 40,
+   "Class": 39,
+   "Maelstrom": 37,
+   "Wind": 43
+  }
+ },
+ {
+  "class": "SUNCLERIC",
+  "display": "Sun Cleric",
+  "classId": 27,
+  "abilityCount": 242,
+  "bySpec": {
+   "General": 41,
+   "Blessings": 41,
+   "Piety": 39,
+   "Class": 39,
+   "Seraphim": 41,
+   "Valkyrie": 41
+  }
+ },
+ {
+  "class": "TINKER",
+  "display": "Tinker",
+  "classId": 28,
+  "abilityCount": 197,
+  "bySpec": {
+   "General": 38,
+   "Demolition": 41,
+   "Class": 35,
+   "Invention": 38,
+   "Mechanics": 45
+  }
+ },
+ {
+  "class": "WILDWALKER",
+  "display": "Primalist",
+  "classId": 31,
+  "abilityCount": 247,
+  "bySpec": {
+   "General": 44,
+   "Geomancy": 40,
+   "Life": 46,
+   "Class": 37,
+   "Mountain King": 40,
+   "Wildwalker": 1,
+   "Primal": 39
+  }
+ },
+ {
+  "class": "WITCHDOCTOR",
+  "display": "Witch Doctor",
+  "classId": 13,
+  "abilityCount": 203,
+  "bySpec": {
+   "General": 43,
+   "Brewing": 42,
+   "Shadowhunting": 43,
+   "Voodoo": 37,
+   "Class": 38
+  }
+ },
+ {
+  "class": "WITCHHUNTER",
+  "display": "Witch Hunter",
+  "classId": 15,
+  "abilityCount": 228,
+  "bySpec": {
+   "General": 37,
+   "Black Knight": 38,
+   "Boltslinger": 40,
+   "Houndmaster": 37,
+   "Inquisition": 41,
+   "Class": 35
+  }
+ }
+]

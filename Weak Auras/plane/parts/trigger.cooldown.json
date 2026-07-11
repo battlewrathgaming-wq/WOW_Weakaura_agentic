@@ -1,0 +1,120 @@
+{
+ "part_id": "trigger.cooldown",
+ "lane": "trigger",
+ "namespace": "Cooldown Progress (Spell)",
+ "allow": [
+  "charges",
+  "event",
+  "genericShowOn",
+  "ignoreSpellKnown",
+  "matchedRune",
+  "realSpellName",
+  "remaining",
+  "showgcd",
+  "spellCount",
+  "spellName",
+  "track",
+  "trackcharge",
+  "type",
+  "use_charges",
+  "use_exact_spellName",
+  "use_genericShowOn",
+  "use_ignoreSpellKnown",
+  "use_matchedRune",
+  "use_remaining",
+  "use_showgcd",
+  "use_spellCount",
+  "use_spellName",
+  "use_track",
+  "use_trackcharge"
+ ],
+ "holes": [
+  {
+   "name": "spellName",
+   "type": "spell",
+   "input": "reference",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "track",
+   "type": "select",
+   "input": "dropdown",
+   "default": null,
+   "values": "cooldown_types"
+  },
+  {
+   "name": "showgcd",
+   "type": "toggle",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "matchedRune",
+   "type": "toggle",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "ignoreSpellKnown",
+   "type": "toggle",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "trackcharge",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "remaining",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "charges",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "spellCount",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "genericShowOn",
+   "type": "select",
+   "input": "dropdown",
+   "default": null,
+   "values": "cooldown_progress_behavior_types"
+  }
+ ],
+ "template": {
+  "trigger": {
+   "event": "Cooldown Progress (Spell)",
+   "genericShowOn": "showAlways",
+   "realSpellName": "",
+   "spellName": "",
+   "track": "auto",
+   "type": "spell",
+   "use_exact_spellName": true,
+   "use_genericShowOn": true,
+   "use_ignoreSpellKnown": false,
+   "use_showgcd": true,
+   "use_spellName": true,
+   "use_track": true
+  },
+  "untrigger": {}
+ }
+}

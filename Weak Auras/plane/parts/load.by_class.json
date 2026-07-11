@@ -1,20 +1,26 @@
 {
  "part_id": "load.by_class",
  "lane": "load",
- "holes": [
+ "namespace": "load",
+ "allow": [
+  "class",
+  "use_class",
   "class"
  ],
- "template": {
-  "use_class": true,
-  "spec": {
-   "multi": {}
-  },
-  "class": {
-   "single": "{{class}}",
-   "multi": {}
-  },
-  "size": {
-   "multi": {}
+ "holes": [
+  {
+   "name": "class",
+   "type": "multiselect",
+   "input": "dropdown",
+   "default": null,
+   "values": "class_types"
   }
+ ],
+ "template": {
+  "class": {
+   "multi": {},
+   "single": ""
+  },
+  "use_class": true
  }
 }

@@ -1,0 +1,229 @@
+{
+ "part_id": "subregion.subtext",
+ "lane": "subregion",
+ "namespace": "subtext",
+ "allow": [
+  "anchorXOffset",
+  "anchorYOffset",
+  "anchor_point",
+  "text_anchorXOffset",
+  "text_anchorYOffset",
+  "text_automaticWidth",
+  "text_color",
+  "text_fixedWidth",
+  "text_font",
+  "text_fontSize",
+  "text_fontType",
+  "text_justify",
+  "text_selfPoint",
+  "text_shadowColor",
+  "text_shadowXOffset",
+  "text_shadowYOffset",
+  "text_text",
+  "text_visible",
+  "text_wordWrap",
+  "type"
+ ],
+ "holes": [
+  {
+   "name": "anchorXOffset",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  },
+  {
+   "name": "anchorYOffset",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  },
+  {
+   "name": "anchor_point",
+   "type": "str",
+   "input": "reference",
+   "default": "INNER_RIGHT",
+   "values": null
+  },
+  {
+   "name": "text_automaticWidth",
+   "type": "str",
+   "input": "reference",
+   "default": "Auto",
+   "values": null
+  },
+  {
+   "name": "text_color",
+   "type": "list",
+   "input": "color",
+   "default": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "values": null
+  },
+  {
+   "name": "text_fixedWidth",
+   "type": "int",
+   "input": "value",
+   "default": 64,
+   "values": null
+  },
+  {
+   "name": "text_font",
+   "type": "dict",
+   "input": "structured",
+   "default": {},
+   "values": null
+  },
+  {
+   "name": "text_fontSize",
+   "type": "dict",
+   "input": "value",
+   "default": {},
+   "values": null
+  },
+  {
+   "name": "text_fontType",
+   "type": "str",
+   "input": "reference",
+   "default": "None",
+   "values": null
+  },
+  {
+   "name": "text_justify",
+   "type": "str",
+   "input": "reference",
+   "default": "CENTER",
+   "values": null
+  },
+  {
+   "name": "text_selfPoint",
+   "type": "str",
+   "input": "reference",
+   "default": "AUTO",
+   "values": null
+  },
+  {
+   "name": "text_shadowColor",
+   "type": "list",
+   "input": "structured",
+   "default": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "values": null
+  },
+  {
+   "name": "text_shadowXOffset",
+   "type": "int",
+   "input": "value",
+   "default": 1,
+   "values": null
+  },
+  {
+   "name": "text_shadowYOffset",
+   "type": "int",
+   "input": "value",
+   "default": -1,
+   "values": null
+  },
+  {
+   "name": "text_text",
+   "type": "str",
+   "input": "reference",
+   "default": "%n",
+   "values": null
+  },
+  {
+   "name": "text_visible",
+   "type": "bool",
+   "input": "toggle",
+   "default": true,
+   "values": null
+  },
+  {
+   "name": "text_wordWrap",
+   "type": "str",
+   "input": "reference",
+   "default": "WordWrap",
+   "values": null
+  },
+  {
+   "name": "text_anchorXOffset",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "text_anchorYOffset",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "text_color",
+   "type": "color",
+   "input": "color",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "text_fontSize",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "text_text",
+   "type": "string",
+   "input": "reference",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "text_visible",
+   "type": "bool",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  }
+ ],
+ "template": {
+  "anchorXOffset": 0,
+  "anchorYOffset": 0,
+  "text_automaticWidth": "Auto",
+  "text_color": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "text_fixedWidth": 64,
+  "text_font": "Expressway",
+  "text_fontSize": 14,
+  "text_fontType": "OUTLINE",
+  "text_justify": "CENTER",
+  "text_selfPoint": "AUTO",
+  "text_shadowColor": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "text_shadowXOffset": 0,
+  "text_shadowYOffset": 0,
+  "text_text": "%p",
+  "text_visible": true,
+  "text_wordWrap": "WordWrap",
+  "type": "subtext"
+ }
+}

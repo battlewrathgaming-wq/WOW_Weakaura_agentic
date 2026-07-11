@@ -1,0 +1,30 @@
+{
+  "name": "Runic Power Bar",
+  "uid": "JTzKVaM1uK0",
+  "note": "Palette-expansion proof: a resource bar - a DIFFERENT slice type (aurabar region + Power trigger + subforeground) built by the SAME agnostic assembler from the enriched parts library. No new assembler code; just more parts. Runic Power (powertype 6), NECROMANCER.",
+  "base": "aurabar",
+  "parts": [
+    {
+      "part": "region.aurabar"
+    },
+    {
+      "part": "subregion.subbackground"
+    },
+    {
+      "part": "subregion.subforeground"
+    },
+    {
+      "part": "trigger.power",
+      "role": "power",
+      "fills": {
+        "powertype": 6
+      }
+    },
+    {
+      "part": "load.by_class",
+      "fills": {
+        "class.single": "NECROMANCER"
+      }
+    }
+  ]
+}

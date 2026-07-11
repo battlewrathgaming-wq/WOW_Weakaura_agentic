@@ -1,0 +1,337 @@
+{
+ "class_types": {
+  "BARBARIAN": "Barbarian",
+  "SONOFARUGAL": "Bloodmage",
+  "CHRONOMANCER": "Chronomancer",
+  "CULTIST": "Cultist",
+  "DEMONHUNTER": "Felsworn",
+  "GUARDIAN": "Guardian",
+  "FLESHWARDEN": "Knight of Xoroth",
+  "NECROMANCER": "Necromancer",
+  "WILDWALKER": "Primalist",
+  "PYROMANCER": "Pyromancer",
+  "RANGER": "Ranger",
+  "REAPER": "Reaper",
+  "SPIRITMAGE": "Runemaster",
+  "STARCALLER": "Starcaller",
+  "STORMBRINGER": "Stormbringer",
+  "SUNCLERIC": "Sun Cleric",
+  "MONK": "Templar",
+  "TINKER": "Tinker",
+  "PROPHET": "Venomancer",
+  "WITCHDOCTOR": "Witch Doctor",
+  "WITCHHUNTER": "Witch Hunter"
+ },
+ "class_ids": {
+  "BARBARIAN": 12,
+  "SONOFARUGAL": 20,
+  "CHRONOMANCER": 22,
+  "CULTIST": 25,
+  "DEMONHUNTER": 14,
+  "GUARDIAN": 18,
+  "FLESHWARDEN": 17,
+  "NECROMANCER": 23,
+  "WILDWALKER": 31,
+  "PYROMANCER": 24,
+  "RANGER": 21,
+  "REAPER": 30,
+  "SPIRITMAGE": 32,
+  "STARCALLER": 26,
+  "STORMBRINGER": 16,
+  "SUNCLERIC": 27,
+  "MONK": 19,
+  "TINKER": 28,
+  "PROPHET": 29,
+  "WITCHDOCTOR": 13,
+  "WITCHHUNTER": 15
+ },
+ "class_trees": {
+  "BARBARIAN": [
+   "Ancestry",
+   "Brutality",
+   "Class",
+   "Headhunting"
+  ],
+  "SONOFARUGAL": [
+   "Accursed",
+   "Class",
+   "Eternal",
+   "Fleshweaver",
+   "Sanguine"
+  ],
+  "CHRONOMANCER": [
+   "Artificer",
+   "Class",
+   "Infinite",
+   "Time"
+  ],
+  "CULTIST": [
+   "Class",
+   "Corruption",
+   "Dreadnought",
+   "Godblade",
+   "Heretic"
+  ],
+  "DEMONHUNTER": [
+   "Class",
+   "Infernal",
+   "Slayer",
+   "Tyrant"
+  ],
+  "GUARDIAN": [
+   "Class",
+   "Gladiator",
+   "Inspiration",
+   "Vanguard"
+  ],
+  "FLESHWARDEN": [
+   "Class",
+   "Defiance",
+   "Hellfire",
+   "War"
+  ],
+  "NECROMANCER": [
+   "Animation",
+   "Class",
+   "Death",
+   "Rime"
+  ],
+  "WILDWALKER": [
+   "Class",
+   "Geomancy",
+   "Life",
+   "Mountain King",
+   "Primal"
+  ],
+  "PYROMANCER": [
+   "Class",
+   "Draconic",
+   "Flameweaving",
+   "Incineration"
+  ],
+  "RANGER": [
+   "Archery",
+   "Brigand",
+   "Class",
+   "Farstrider"
+  ],
+  "REAPER": [
+   "Class",
+   "Domination",
+   "Harvest",
+   "Soul"
+  ],
+  "SPIRITMAGE": [
+   "Arcane",
+   "Class",
+   "Riftblade",
+   "Runic"
+  ],
+  "STARCALLER": [
+   "Class",
+   "Moon Guard",
+   "Moon Priest",
+   "Sentinel",
+   "Warden"
+  ],
+  "STORMBRINGER": [
+   "Class",
+   "Lightning",
+   "Maelstrom",
+   "Wind"
+  ],
+  "SUNCLERIC": [
+   "Blessings",
+   "Class",
+   "Piety",
+   "Seraphim",
+   "Valkyrie"
+  ],
+  "MONK": [
+   "Class",
+   "Crusader",
+   "Oathkeeper",
+   "Zealot"
+  ],
+  "TINKER": [
+   "Class",
+   "Demolition",
+   "Invention",
+   "Mechanics"
+  ],
+  "PROPHET": [
+   "Class",
+   "Fortitude",
+   "Stalking",
+   "Venom",
+   "Vizier"
+  ],
+  "WITCHDOCTOR": [
+   "Brewing",
+   "Class",
+   "Shadowhunting",
+   "Voodoo"
+  ],
+  "WITCHHUNTER": [
+   "Black Knight",
+   "Boltslinger",
+   "Class",
+   "Houndmaster",
+   "Inquisition"
+  ]
+ },
+ "class_specs": {
+  "BARBARIAN": [
+   "Ancestry",
+   "Brutality",
+   "Headhunting"
+  ],
+  "SONOFARUGAL": [
+   "Accursed",
+   "Eternal",
+   "Fleshweaver",
+   "Sanguine"
+  ],
+  "CHRONOMANCER": [
+   "Artificer",
+   "Infinite",
+   "Time"
+  ],
+  "CULTIST": [
+   "Corruption",
+   "Dreadnought",
+   "Godblade",
+   "Heretic"
+  ],
+  "DEMONHUNTER": [
+   "Infernal",
+   "Slayer",
+   "Tyrant"
+  ],
+  "GUARDIAN": [
+   "Gladiator",
+   "Inspiration",
+   "Vanguard"
+  ],
+  "FLESHWARDEN": [
+   "Defiance",
+   "Hellfire",
+   "War"
+  ],
+  "NECROMANCER": [
+   "Animation",
+   "Death",
+   "Rime"
+  ],
+  "WILDWALKER": [
+   "Geomancy",
+   "Life",
+   "Mountain King",
+   "Primal"
+  ],
+  "PYROMANCER": [
+   "Draconic",
+   "Flameweaving",
+   "Incineration"
+  ],
+  "RANGER": [
+   "Archery",
+   "Brigand",
+   "Farstrider"
+  ],
+  "REAPER": [
+   "Domination",
+   "Harvest",
+   "Soul"
+  ],
+  "SPIRITMAGE": [
+   "Arcane",
+   "Riftblade",
+   "Runic"
+  ],
+  "STARCALLER": [
+   "Moon Guard",
+   "Moon Priest",
+   "Sentinel",
+   "Warden"
+  ],
+  "STORMBRINGER": [
+   "Lightning",
+   "Maelstrom",
+   "Wind"
+  ],
+  "SUNCLERIC": [
+   "Blessings",
+   "Piety",
+   "Seraphim",
+   "Valkyrie"
+  ],
+  "MONK": [
+   "Crusader",
+   "Oathkeeper",
+   "Zealot"
+  ],
+  "TINKER": [
+   "Demolition",
+   "Invention",
+   "Mechanics"
+  ],
+  "PROPHET": [
+   "Fortitude",
+   "Stalking",
+   "Venom",
+   "Vizier"
+  ],
+  "WITCHDOCTOR": [
+   "Brewing",
+   "Shadowhunting",
+   "Voodoo"
+  ],
+  "WITCHHUNTER": [
+   "Black Knight",
+   "Boltslinger",
+   "Houndmaster",
+   "Inquisition"
+  ]
+ },
+ "token_confidence": {
+  "BARBARIAN": "confirmed",
+  "SONOFARUGAL": "confirmed",
+  "CHRONOMANCER": "confirmed",
+  "CULTIST": "confirmed",
+  "DEMONHUNTER": "confirmed",
+  "GUARDIAN": "confirmed",
+  "FLESHWARDEN": "confirmed",
+  "NECROMANCER": "confirmed",
+  "WILDWALKER": "confirmed",
+  "PYROMANCER": "confirmed",
+  "RANGER": "confirmed",
+  "REAPER": "confirmed",
+  "SPIRITMAGE": "confirmed",
+  "STARCALLER": "confirmed",
+  "STORMBRINGER": "confirmed",
+  "SUNCLERIC": "confirmed",
+  "MONK": "confirmed",
+  "TINKER": "confirmed",
+  "PROPHET": "confirmed",
+  "WITCHDOCTOR": "confirmed",
+  "WITCHHUNTER": "confirmed"
+ },
+ "_provenance": {
+  "source": "Input/*_talents.json (display+classId+trees) + in-game UnitClass captures",
+  "token_rule": "Tokens are SERVER-DEFINED dev-process holdovers, NOT derivable from display. ALL 21 now CONFIRMED first-hand via UnitClass (trainer/spellbook scrape stamped playerClass). 7 are holdover overrides (display->token); the other 14 match display-upper (also capture-confirmed).",
+  "holdover_tokens": {
+   "DEMONHUNTER": "Felsworn",
+   "FLESHWARDEN": "Knight of Xoroth",
+   "MONK": "Templar",
+   "PROPHET": "Venomancer",
+   "SONOFARUGAL": "Bloodmage",
+   "SPIRITMAGE": "Runemaster",
+   "WILDWALKER": "Primalist"
+  },
+  "gaps": [
+   "form_types not sourced here (not in talent files)",
+   "spec-reference mapping: how load.spec references specs (tab-index vs name) - needs WA spec model / a real load block"
+  ]
+ }
+}

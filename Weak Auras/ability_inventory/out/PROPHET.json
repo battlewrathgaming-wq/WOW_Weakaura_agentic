@@ -1,0 +1,4801 @@
+{
+ "class": "PROPHET",
+ "display": "Venomancer",
+ "classId": 29,
+ "abilityCount": 254,
+ "bySpec": {
+  "General": 53,
+  "Fortitude": 42,
+  "Rot": 1,
+  "Venom": 38,
+  "Stalking": 43,
+  "Class": 37,
+  "Vizier": 40
+ },
+ "abilities": {
+  "A Pit of Snakes": {
+   "name": "A Pit of Snakes",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706007,
+   "ranks": null,
+   "spellIds": [
+    706007
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_snake_yellowblack",
+   "description": "Serpent's Fang now increases the damage of subsequent Serpent's Fangs by 15% for 8 seconds, stacking up to 3 times."
+  },
+  "Acid Bolt": {
+   "name": "Acid Bolt",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706025,
+   "ranks": null,
+   "spellIds": [
+    706025
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_alchemy_90_reagent_green",
+   "description": "Increases the damage of Venom Bolt by 10% and its critical strike chance by 2%."
+  },
+  "Acidfang": {
+   "name": "Acidfang",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806603,
+   "ranks": null,
+   "spellIds": [
+    806603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_misc_herb_fellotus",
+   "description": "$b3"
+  },
+  "Acute Senses": {
+   "name": "Acute Senses",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300664,
+   "ranks": null,
+   "spellIds": [
+    300664
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_bonespider2_slate",
+   "description": "Increases your Intellect and Agility by 5%."
+  },
+  "Adrenal Venom": {
+   "name": "Adrenal Venom",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805775,
+   "ranks": null,
+   "spellIds": [
+    805775
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\trade_alchemy_dpotion_a26",
+   "description": "Activate Adrenal Venom for 120 minutes, giving your casts a 25% chance to increase your haste by 6% for 6 seconds, stacking 3 times.\n\nYou can have a maximum of 2 unique Venoms active at a time."
+  },
+  "Advisor's Perfidy": {
+   "name": "Advisor's Perfidy",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300684,
+   "ranks": null,
+   "spellIds": [
+    300684
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_AQ_BugTrio",
+   "description": "Increases the bonus healing scaling of Serpent's Fang, Mending Mist, and Shadra's Balm by 15%."
+  },
+  "Agitation": {
+   "name": "Agitation",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705969,
+   "ranks": null,
+   "spellIds": [
+    705969
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_beetlemount",
+   "description": "Dodging an attack now generates 3 Rage."
+  },
+  "Alacrity": {
+   "name": "Alacrity",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705980,
+   "ranks": null,
+   "spellIds": [
+    705980
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathwing_grasping_tendrilsgreen",
+   "description": "Damage dealt by Chitin Rush now increases your dodge chance by 1% for 5 seconds, stacking 8 times."
+  },
+  "Alkahest": {
+   "name": "Alkahest",
+   "spec": "Vizier",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 578310,
+   "ranks": {
+    "2": 504714,
+    "3": 504715,
+    "4": 504716,
+    "5": 504717,
+    "6": 504718,
+    "7": 504735,
+    "8": 578310
+   },
+   "spellIds": [
+    504342,
+    504714,
+    504715,
+    504716,
+    504717,
+    504718,
+    504735,
+    578310
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_natureburn_Border",
+   "description": "|cffffffff2 Charges, 12 sec recharge|r\r\nBless an ally with Shadra's grace, healing them for 152 and extending the duration of |cFFFFFFFFShadra's Prayer|r on them by 9 sec."
+  },
+  "Ambush Predator": {
+   "name": "Ambush Predator",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800878,
+   "ranks": null,
+   "spellIds": [
+    800878
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_assassinskill12_Border",
+   "description": "Casting Burrow will now apply Tunnel Below to you.\n\nWhile Skulk is active every 1 sec you reduce the cooldown of Burrow by -1 sec."
+  },
+  "Antivenom": {
+   "name": "Antivenom",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800905,
+   "ranks": {
+    "1": 800905
+   },
+   "spellIds": [
+    800905
+   ],
+   "cost": 1000,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Cure 1 poison effect on the target, repeating every 4 seconds for 12 sec."
+  },
+  "Arachnophobia": {
+   "name": "Arachnophobia",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804970,
+   "ranks": {
+    "1": 804970
+   },
+   "spellIds": [
+    804970
+   ],
+   "cost": 100,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Emerge from the shadows and horrify all nearby enemies for 3.50 sec."
+  },
+  "Auto Attack": {
+   "name": "Auto Attack",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 6603,
+   "ranks": null,
+   "spellIds": [
+    6603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Avatar of Shadra": {
+   "name": "Avatar of Shadra",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503856,
+   "ranks": null,
+   "spellIds": [
+    503856
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_monsterspidercarapace_01",
+   "description": "Damage and healing done now has a 10% chance to apply Curse of Shadra for 10 seconds.\n\nDealing damage or healing with Serpent's Fang, Claw Strike, or Venom Fang on an enemy that is cursed will deal damage or heal them for an additional 25% of the value and heal you for 90."
+  },
+  "Barbed Stinger": {
+   "name": "Barbed Stinger",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803196,
+   "ranks": null,
+   "spellIds": [
+    803196
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_knife_1h_artifactfangs_d_02",
+   "description": "Clears Exposed Flesh stacks and flings a Barbed Stinger into an enemy for 10 seconds, plus an additional 1 sec per cleared stack.\n\nRecasting this ability on the same target will rip the stinger out, pulling them to you and dealing Nature damage, scaling based on how long the stinger was left in them."
+  },
+  "Beast Slaying": {
+   "name": "Beast Slaying",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 20557,
+   "ranks": null,
+   "spellIds": [
+    20557
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Beetle Form": {
+   "name": "Beetle Form",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803183,
+   "ranks": {
+    "1": 803183
+   },
+   "spellIds": [
+    803183
+   ],
+   "cost": 300,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Shapeshift into |cffffffffBeetle Form|r, allowing the use of abilities that require this form and increasing your armor contribution by 100% and your maximum health by 500% of your Intellect and Agility.\r\n\r\nWhile active, your damage taken is reduced by 10% and your threat generated is increased by 80%, plus an additional 50% from Nature damage dealt."
+  },
+  "Beetle Pheromones": {
+   "name": "Beetle Pheromones",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803655,
+   "ranks": {
+    "1": 803651,
+    "2": 803652,
+    "3": 803653,
+    "4": 803654,
+    "5": 803655
+   },
+   "spellIds": [
+    803651,
+    803652,
+    803653,
+    803654,
+    803655
+   ],
+   "cost": 1300,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increase the friendly target's armor by 105 and all primary stats by 4 for 30 min.\r\n\r\n@ext:Does not stack with other similar effects.:ext@"
+  },
+  "Beetle Poison": {
+   "name": "Beetle Poison",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705876,
+   "ranks": null,
+   "spellIds": [
+    705876
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_10_alchemy_bottle_shape1_green",
+   "description": "Allows Wicked Poison to stack an additional time."
+  },
+  "Berserking": {
+   "name": "Berserking",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 26297,
+   "ranks": null,
+   "spellIds": [
+    26297
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Bile Eruption": {
+   "name": "Bile Eruption",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500230,
+   "ranks": null,
+   "spellIds": [
+    500230
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_poisonblister_Border",
+   "description": "Triggering a Venom now has a 25% chance to generate you 5 Energy."
+  },
+  "Black Widow": {
+   "name": "Black Widow",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805933,
+   "ranks": null,
+   "spellIds": [
+    805933
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_deathsembrace",
+   "description": "Damage dealt to enemies below 35% health now reduces the cooldown of Noxious Empowerment by -2 sec.\n\nIn addition, your Widowmaker now deals 20% increased damage to enemies below 35% health."
+  },
+  "Blight Antidote": {
+   "name": "Blight Antidote",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520153,
+   "ranks": null,
+   "spellIds": [
+    520153
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_Potions_02",
+   "description": "Inject an ally with a powerful magic antidote, dispelling 2 curse effects from them."
+  },
+  "Blight Venom": {
+   "name": "Blight Venom",
+   "spec": "Stalking",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 805776,
+   "ranks": null,
+   "spellIds": [
+    805776
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Blightcap Injestion": {
+   "name": "Blightcap Injestion",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560282,
+   "ranks": null,
+   "spellIds": [
+    560282
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_Mushrooms_14",
+   "description": "Increases your chance to resist poison and disease effects by 30%."
+  },
+  "Blightfang": {
+   "name": "Blightfang",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680763,
+   "ranks": null,
+   "spellIds": [
+    680763
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\druid_ability_wildmushroom_b",
+   "description": "Casting Serpent's Fang now spawns a Mushroom below the target that will explode after 2 sec, dealing 217 + 12.5% SP Nature damage to nearby enemies."
+  },
+  "Blistering Fangs": {
+   "name": "Blistering Fangs",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706270,
+   "ranks": null,
+   "spellIds": [
+    706270
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_monsterfang_02",
+   "description": "Casting spells that consume Brood Marks now refunds 30 Energy when used with at least 5 Brood Marks on your target."
+  },
+  "Block": {
+   "name": "Block",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 107,
+   "ranks": null,
+   "spellIds": [
+    107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Boding Dread": {
+   "name": "Boding Dread",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804975,
+   "ranks": null,
+   "spellIds": [
+    804975
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_tarantula2_green",
+   "description": "Increases your Shadow damage dealt and your critical strike chance with Shadow spells by 3%."
+  },
+  "Book of Shadra": {
+   "name": "Book of Shadra",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705957,
+   "ranks": null,
+   "spellIds": [
+    705957
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_books_(3)_Border",
+   "description": "Doubles the duration, cooldown, and healing of Green Salve.\n\nIn addition, it now seeks another nearby ally to heal every 6 sec, instead of at the end of the duration."
+  },
+  "Bountiful Gifts": {
+   "name": "Bountiful Gifts",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706009,
+   "ranks": null,
+   "spellIds": [
+    706009
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_natureseye_Border",
+   "description": "Increases the healing of Shadra's Prayer, Green Salve, and Alkahest by 10%."
+  },
+  "Bow Specialization": {
+   "name": "Bow Specialization",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 26290,
+   "ranks": null,
+   "spellIds": [
+    26290
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Brood Lord": {
+   "name": "Brood Lord",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707668,
+   "ranks": null,
+   "spellIds": [
+    707668
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_WebSight",
+   "description": "Augments Spider Form into a Brood Lord, causing your Brood Mark spenders to launch webs at the target, sticking to them for 10 seconds.\n\nEach webbed target has their movement speed slowed by -25%.\n\nCritically striking an enemy who is webbed summons 1 to 2 Spiderlings to aid you in combat for 8 seconds."
+  },
+  "Brood Marks": {
+   "name": "Brood Marks",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92143,
+   "ranks": null,
+   "spellIds": [
+    92143
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\_D3corpsespiders",
+   "description": "Level 10 Passive\nYour Venom Fang now applies a Brood Mark for 15 seconds, stacking 5 times. Some abilities will consume them for an additional effect."
+  },
+  "Brood Trap": {
+   "name": "Brood Trap",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803525,
+   "ranks": {
+    "1": 803525
+   },
+   "spellIds": [
+    803525
+   ],
+   "cost": 14500,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Lay a clutch of eggs in front of you for 30 sec, enemies who walk over the eggs take 21 Nature damage and are rooted for 1 min (12 sec vs players), and then attacked by |cFFFFFFFFSpiderlings|r. Damage caused may interrupt the effect.\r\n\r\nYou can have a maximum of 6 |cFFFFFFFFBrood Traps|r active at once.\r\n\r\nUsable while |cffffffffSkulking|r. Cannot be used in combat."
+  },
+  "Bugging": {
+   "name": "Bugging",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706026,
+   "ranks": null,
+   "spellIds": [
+    706026
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_naturevision_Border",
+   "description": "Harmful spells cast out of Skulk increase the damage you deal to the enemy by 30% for 4 seconds."
+  },
+  "Burrow": {
+   "name": "Burrow",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806154,
+   "ranks": null,
+   "spellIds": [
+    806154
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Burrow",
+   "description": "Burrow beneath the ground for 8 seconds, becoming immune to all physical attacks and spells, but unable to move or act for the duration.\n\nWhile burrowed, you can choose a new location within 30 yds to unburrow."
+  },
+  "Captivation": {
+   "name": "Captivation",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503930,
+   "ranks": null,
+   "spellIds": [
+    503930
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_natureseye_Border",
+   "description": "Increases Mycosis's damage through Fungal Growth stacks by 5%."
+  },
+  "Carapace Crash": {
+   "name": "Carapace Crash",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 573063,
+   "ranks": {
+    "1": 803199,
+    "2": 803231,
+    "3": 803232,
+    "4": 803233,
+    "5": 803234,
+    "6": 803235,
+    "7": 573061,
+    "8": 573062,
+    "9": 573063
+   },
+   "spellIds": [
+    573061,
+    573062,
+    573063,
+    803199,
+    803231,
+    803232,
+    803233,
+    803234,
+    803235
+   ],
+   "cost": 200,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Slam your body against the ground dealing 33 Nature damage to enemies within 8 yds."
+  },
+  "Carapace Regeneration": {
+   "name": "Carapace Regeneration",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805931,
+   "ranks": null,
+   "spellIds": [
+    805931
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_vehicle_shellshieldgenerator_green",
+   "description": "3 Charges, 20 sec recharge\nRegenerate your carapace, reducing your Physical damage taken by -4% and restoring 1% maximum health every 1 sec, draining 10 Rage every tick to remain active, stacking 3 times."
+  },
+  "Catalyst": {
+   "name": "Catalyst",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800895,
+   "ranks": null,
+   "spellIds": [
+    800895
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathknight_deathsiphon2",
+   "description": "Generates 15 Rage plus 5 every 1 sec and reduces the cost of all of your spells and abilities by -25% for 10 seconds.\n\nPrevents out of combat Rage decay for its duration."
+  },
+  "Caustic": {
+   "name": "Caustic",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807610,
+   "ranks": null,
+   "spellIds": [
+    807610
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nature_nullifypoison",
+   "description": "Reduces the cooldown of Noxious Empowerment by -60 sec."
+  },
+  "Celerity": {
+   "name": "Celerity",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804962,
+   "ranks": null,
+   "spellIds": [
+    804962
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_lifegivingspeed",
+   "description": "Increases your movement speed by 60% for 10 seconds.\n\nLeaving Spider Form will cancel this effect.\n\nUsable while Skulking."
+  },
+  "Charm of Warding": {
+   "name": "Charm of Warding",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705967,
+   "ranks": null,
+   "spellIds": [
+    705967
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Trinket_Naxxramas01",
+   "description": "When a stack of Exposed Flesh is applied you are now healed for 1% of your maximum health."
+  },
+  "Charmed Plating": {
+   "name": "Charmed Plating",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300974,
+   "ranks": null,
+   "spellIds": [
+    300974
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_MonsterScales_01",
+   "description": "Reduces damage taken by all party and raid members by -3%. Does not stack with similar effects.\n\nIn addition, reduces your chance to be hit by spells by -2%."
+  },
+  "Chitin Rush": {
+   "name": "Chitin Rush",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803644,
+   "ranks": {
+    "1": 803570,
+    "2": 803641,
+    "3": 803642,
+    "4": 803643,
+    "5": 803644
+   },
+   "spellIds": [
+    803570,
+    803641,
+    803642,
+    803643,
+    803644
+   ],
+   "cost": 6600,
+   "levelReq": 28,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Rush forward and strike enemies in your path, dealing 38 Nature damage.\r\n\r\nDamage dealt generates increased threat."
+  },
+  "Chitinous Spikes": {
+   "name": "Chitinous Spikes",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504406,
+   "ranks": null,
+   "spellIds": [
+    504406
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_PoisonSpikes_Border",
+   "description": "Taking direct damage has a 20% chance to retaliate for 5% of the damage taken."
+  },
+  "Chitinous Surge": {
+   "name": "Chitinous Surge",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705973,
+   "ranks": null,
+   "spellIds": [
+    705973
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Druid_Dash",
+   "description": "Reduces the cooldown of Chitin Rush by -3 sec and increases its damage by 15%."
+  },
+  "Claw Strike": {
+   "name": "Claw Strike",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 503172,
+   "ranks": {
+    "1": 803198,
+    "2": 503165,
+    "3": 503166,
+    "4": 503167,
+    "5": 503168,
+    "6": 503169,
+    "7": 503170,
+    "8": 503171,
+    "9": 503172
+   },
+   "spellIds": [
+    503165,
+    503166,
+    503167,
+    503168,
+    503169,
+    503170,
+    503171,
+    503172,
+    803198
+   ],
+   "cost": 300,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Smash an enemy and up to 3 enemies with your claw, dealing 25 Nature damage, scaling with your Stamina.\r\n\r\nGenerates 20 Rage."
+  },
+  "Contagion": {
+   "name": "Contagion",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503851,
+   "ranks": null,
+   "spellIds": [
+    503851
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_poisonwhirl_Border",
+   "description": "For 15 seconds, all periodic damage dealt now has a 30% chance to burst dealing 92 + 20% shadow SP Shadow damage to 8 enemies within 8 yds."
+  },
+  "Corrosive Bile": {
+   "name": "Corrosive Bile",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 630934,
+   "ranks": null,
+   "spellIds": [
+    630934
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_creature_poison_03",
+   "description": "After using Facemelter, your next Widowmaker within 15 seconds now deals 20% increased damage and strikes 2 additional nearby enemies."
+  },
+  "Corrosive Toxin": {
+   "name": "Corrosive Toxin",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807243,
+   "ranks": null,
+   "spellIds": [
+    807243
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_SkullCurse2_AcidIce",
+   "description": "Withering Venom now deals an additional 1 + 125% shadow SP Shadow damage at the end of its duration."
+  },
+  "Cover": {
+   "name": "Cover",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300680,
+   "ranks": null,
+   "spellIds": [
+    300680
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_chitin_b_01_Border",
+   "description": "Casting Harden now clears Exposed Flesh."
+  },
+  "Cunning": {
+   "name": "Cunning",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805093,
+   "ranks": null,
+   "spellIds": [
+    805093
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\skill_icon_skill151_Border",
+   "description": "Increases the critical strike chance of Chitin Rush by 20% and its critical damage by 10%."
+  },
+  "Cunning of the Nerub'ar": {
+   "name": "Cunning of the Nerub'ar",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805140,
+   "ranks": null,
+   "spellIds": [
+    805140
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_Dungeon_AzjolLowercity_10man",
+   "description": "Augments your Spider Form, increasing your damage dealt by 10% and causing it to allow your Nerubian Sting to stack 1 additional time."
+  },
+  "Cycle of Decay": {
+   "name": "Cycle of Decay",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500219,
+   "ranks": null,
+   "spellIds": [
+    500219
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_DeathAndDecay",
+   "description": "Level 50 Passive\nWhen you cast any spell you now have a 20% chance to gain Cycle of Decay.Cycle of Decay (Proc)Your Venom Bolt is now castable while moving and casts -30% faster for 6 seconds."
+  },
+  "Cycle of Rebirth": {
+   "name": "Cycle of Rebirth",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560200,
+   "ranks": null,
+   "spellIds": [
+    560200
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_LiquidStone_Poison",
+   "description": "Effective periodic healing with Shadra's Balm now has a 10% chance to make your next Alkahest within 8 seconds is free and instant."
+  },
+  "Da Voodoo Shuffle": {
+   "name": "Da Voodoo Shuffle",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 58943,
+   "ranks": null,
+   "spellIds": [
+    58943
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Deadly Kiss": {
+   "name": "Deadly Kiss",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504704,
+   "ranks": null,
+   "spellIds": [
+    504704
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_fishbite_Border",
+   "description": "Increases critical damage dealt by Widow's Kiss, Widowmaker and Venom Fang by 50% against Poisoned targets."
+  },
+  "Deadly Neurotoxins": {
+   "name": "Deadly Neurotoxins",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504375,
+   "ranks": null,
+   "spellIds": [
+    504375
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_creature_poison_06",
+   "description": "Critical strikes with Venom Fang and Nerubian Sting now deals an additional 25% of their direct damage instantly as Nature damage.\n\nDamage dealt in this way has a 40% chance to extend the duration of Rotfang by 1 sec."
+  },
+  "Deadly Sting": {
+   "name": "Deadly Sting",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560264,
+   "ranks": null,
+   "spellIds": [
+    560264
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\hunter_pvp_vipersting",
+   "description": "Dealing periodic damage now has a 10% chance to make your next Hivebreak within 8 seconds free of cost and deal 50% increased damage."
+  },
+  "Death Spray": {
+   "name": "Death Spray",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706271,
+   "ranks": null,
+   "spellIds": [
+    706271
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_creature_poison_01",
+   "description": "Periodic damage dealt now has a 5% chance to remove the Energy cost from your next Venom Fang or Widow's Kiss within 8 seconds and increase its damage by 20%.\n\nCan occur only once every 2 sec."
+  },
+  "Debilitating Venom": {
+   "name": "Debilitating Venom",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 805731,
+   "ranks": {
+    "1": 805731
+   },
+   "spellIds": [
+    805731
+   ],
+   "cost": 150,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Activate |cffffffffDebilitating Venom|r for 2 |4hour:hrs;, giving your casts a 30% chance to inject a target and enemies around them with a crippling venom that slows their movement speed by 40% for 8 sec.\r\n\r\nYou can have a maximum of 2 unique |cffffffffVenoms|r active at a time."
+  },
+  "Decay": {
+   "name": "Decay",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800910,
+   "ranks": null,
+   "spellIds": [
+    800910
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_natureritual_Border",
+   "description": "Apply Wilt to up to 5 enemies at target location and drop a Mushroom that will explode after 2 sec, dealing 217 + 25% nature SP Nature damage all enemies within 5 yds."
+  },
+  "Disciple of Shadra": {
+   "name": "Disciple of Shadra",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 503907,
+   "ranks": {
+    "1": 503907
+   },
+   "spellIds": [
+    503907
+   ],
+   "cost": 300,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Shapeshifting frees you from root and snare effects."
+  },
+  "Dodge": {
+   "name": "Dodge",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 81,
+   "ranks": null,
+   "spellIds": [
+    81
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Drown In Poison": {
+   "name": "Drown In Poison",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504407,
+   "ranks": null,
+   "spellIds": [
+    504407
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_SpellCasting_Green",
+   "description": "Increases the damage of Venomtip Poison by 30%."
+  },
+  "Dual Wield": {
+   "name": "Dual Wield",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 674,
+   "ranks": null,
+   "spellIds": [
+    674
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Empowered Exoskeleton": {
+   "name": "Empowered Exoskeleton",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804993,
+   "ranks": null,
+   "spellIds": [
+    804993
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_antorus_green",
+   "description": "Removes the Rage cost of Chitin Rush and increases its range by 5 yds."
+  },
+  "Empowering Pheromones": {
+   "name": "Empowering Pheromones",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705996,
+   "ranks": null,
+   "spellIds": [
+    705996
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_DeadenedNerves",
+   "description": "Increases the effectiveness of your Pheromones by 20% and their duration by 50%."
+  },
+  "Enchanted Chitin": {
+   "name": "Enchanted Chitin",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706955,
+   "ranks": null,
+   "spellIds": [
+    706955
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_inscription_pigment_bug06",
+   "description": "Increases your Armor contribution from mail by 25%."
+  },
+  "Enduring Exoskeleton": {
+   "name": "Enduring Exoskeleton",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503960,
+   "ranks": null,
+   "spellIds": [
+    503960
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_SkinofEarth",
+   "description": "Direct damage taken now has a 30% chance to generate 2 Rage and 3% base mana.\n\nCan only occur once per sec."
+  },
+  "Envenom": {
+   "name": "Envenom",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805900,
+   "ranks": null,
+   "spellIds": [
+    805900
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_venom_spell_01_Border",
+   "description": "Reduces the cast time of Venom Bolt by -0.3 sec."
+  },
+  "Envenomed Weapons": {
+   "name": "Envenomed Weapons",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300855,
+   "ranks": null,
+   "spellIds": [
+    300855
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_creepingvenom",
+   "description": "Envenoms the weapons of all nearby allies for 30 minutes, giving them a 5% chance to launch a jet of poison at their target whenever they deal damage, dealing 8 + 10% nature SP + 10% AP Nature damage."
+  },
+  "Essence of Decay": {
+   "name": "Essence of Decay",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707382,
+   "ranks": null,
+   "spellIds": [
+    707382
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_CorrosiveBreath",
+   "description": "Critical strikes with Widow's Kiss now apply 1 additional Brood Mark."
+  },
+  "Exposed Flesh": {
+   "name": "Exposed Flesh",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92144,
+   "ranks": null,
+   "spellIds": [
+    92144
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_nerubianbeetlepet_green",
+   "description": "Level 10 Passive\nHostile attacks against you now have a 50% chance to grant a stack of Exposed Flesh.\nExposed FleshGenerates 10 Rage and increases your Physical Damage taken 3% for 20 seconds, stacking 10 times."
+  },
+  "Expulsion": {
+   "name": "Expulsion",
+   "spec": "Fortitude",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 807598,
+   "ranks": {
+    "2": 807591,
+    "3": 807592,
+    "4": 807593,
+    "5": 807594,
+    "6": 807595,
+    "7": 807596,
+    "8": 807597,
+    "9": 807598
+   },
+   "spellIds": [
+    805094,
+    807591,
+    807592,
+    807593,
+    807594,
+    807595,
+    807596,
+    807597,
+    807598
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievment_boss_wellofeternity",
+   "description": "Clears |cff66ff66Exposed Flesh|r stacks to poison nearby enemies for 5 sec, and an additional 1 sec per cleared stack, dealing 18 Nature damage every 1 sec."
+  },
+  "Extraction": {
+   "name": "Extraction",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805884,
+   "ranks": null,
+   "spellIds": [
+    805884
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_nature_stab_Border",
+   "description": "For 15 seconds, your Intellect and Spirit are doubled and all critical periodic healing done by you restores 5% of your missing mana."
+  },
+  "Facemelter": {
+   "name": "Facemelter",
+   "spec": "Stalking",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572901,
+   "ranks": {
+    "2": 502877,
+    "3": 502878,
+    "4": 502879,
+    "5": 502880,
+    "6": 572900,
+    "7": 572901
+   },
+   "spellIds": [
+    502877,
+    502878,
+    502879,
+    502880,
+    572900,
+    572901,
+    800871
+   ],
+   "cost": 12500,
+   "levelReq": 34,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_deathvortex",
+   "description": "|cffff3232Requires Spider Form|r\r\n|cff66ff66Consumes Brood Marks|r\r\nSpray poison upon an enemy and nearby enemies, dealing Nature damage over 15 sec.\r\n   1 Mark: 144 Nature damage.\r\n   2 Marks: 184 Nature damage.\r\n   3 Marks: 236 Nature damage.\r\n   4 Marks: 299 Nature damage.\r\n   5 Marks: 403 Nature damage."
+  },
+  "Fang Blessing": {
+   "name": "Fang Blessing",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503970,
+   "ranks": null,
+   "spellIds": [
+    503970
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_inscription_deck_jadeserpent",
+   "description": "Increases your critical strike chance by 3%."
+  },
+  "Fangbinder": {
+   "name": "Fangbinder",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560195,
+   "ranks": null,
+   "spellIds": [
+    560195
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_poison_icon_0003s_0000_cloud_Border",
+   "description": "Increases the healing of Serpent's Fang by 50% and Serpent's Fang can no longer miss."
+  },
+  "From Death Comes Life": {
+   "name": "From Death Comes Life",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504355,
+   "ranks": null,
+   "spellIds": [
+    504355
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_natureempower_(2)_Border",
+   "description": "Damage dealt by Spore now reduces the cooldown of Decay by -1 sec."
+  },
+  "From Life Comes Death": {
+   "name": "From Life Comes Death",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504855,
+   "ranks": null,
+   "spellIds": [
+    504855
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_T_NaturesWrath_Border",
+   "description": "For 20 seconds, when you kill an enemy that yields experience or honor they now spawn a Mushroom beneath them. Can only occur once per sec.Mushroom (dmg)Drop a Mushroom near the target that explodes after 2 sec, dealing 217 + 35% SP Plague Damage to all nearby enemies."
+  },
+  "Fungal Allies": {
+   "name": "Fungal Allies",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681054,
+   "ranks": null,
+   "spellIds": [
+    681054
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_poison_icon_0003s_0000_cloud_Border",
+   "description": "Fungal Assailant now summons 2 additional Fungarians."
+  },
+  "Fungal Assailant": {
+   "name": "Fungal Assailant",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504344,
+   "ranks": null,
+   "spellIds": [
+    504344
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_fungarian_blue",
+   "description": "Summon a Fungarian to attack an enemy, dealing 226 + 65% SP Nature damage, and instantly apply Debilitating Venom to your target. Lasts 20 seconds.Debilitating Venom (Slow)Movement speed slowed by -40% for 8 seconds.\n\nCan be used in any form."
+  },
+  "Fungal Growth": {
+   "name": "Fungal Growth",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804987,
+   "ranks": null,
+   "spellIds": [
+    804987
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_starspecklemushroom",
+   "description": "Shadow and Nature damage dealt now has a 35% chance to increase periodic damage you deal to the target by 2% for 30 seconds, stacking 10 times."
+  },
+  "Fungal Link": {
+   "name": "Fungal Link",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300959,
+   "ranks": null,
+   "spellIds": [
+    300959
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_Mushrooms_18",
+   "description": "Increases the spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, the range of your Rot spells is increased by 20% and the threat they generate is reduced by -20%."
+  },
+  "Fungic": {
+   "name": "Fungic",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706455,
+   "ranks": null,
+   "spellIds": [
+    706455
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_druid_wildmushroom_bloom",
+   "description": "You now apply Fungic to enemies affected by Lethargy, dealing an additional 20% of the damage dealt by your Venom Bolt or Serpent's Fang as Nature damage over 3 seconds, stacking up to 2 times."
+  },
+  "Fury of Anub'Rekhan": {
+   "name": "Fury of Anub'Rekhan",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800894,
+   "ranks": null,
+   "spellIds": [
+    800894
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_mechanicalspiderpet",
+   "description": "Increases your maximum mana, Energy, and Rage by 10%."
+  },
+  "Fury of Shadra": {
+   "name": "Fury of Shadra",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503850,
+   "ranks": null,
+   "spellIds": [
+    503850
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_PoisonCleansingTotem",
+   "description": "Increases your damage and healing against targets below 35% health by 15%."
+  },
+  "Genesis": {
+   "name": "Genesis",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705962,
+   "ranks": null,
+   "spellIds": [
+    705962
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_venom_spell_08_Border",
+   "description": "Increases your haste by 4%."
+  },
+  "Glory To Shadra!": {
+   "name": "Glory To Shadra!",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706033,
+   "ranks": null,
+   "spellIds": [
+    706033
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_sumspiders_Border",
+   "description": "Increases the critical strike chance of Venom Fang and Nerubian Sting by 10%."
+  },
+  "Good Venom": {
+   "name": "Good Venom",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680797,
+   "ranks": null,
+   "spellIds": [
+    680797
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nature_nullifypoison_02",
+   "description": "Rejuvenating Venom will now affect 1 additional nearby ally."
+  },
+  "Greater Beetle Pheromones": {
+   "name": "Greater Beetle Pheromones",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803657,
+   "ranks": {
+    "1": 803657
+   },
+   "spellIds": [
+    803657
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increase all nearby party and raid member's armor by 285 and all primary stats by 12 for 30 min.\r\n\r\n@ext:Does not stack with other similar effects.:ext@"
+  },
+  "Greater Spider Pheromones": {
+   "name": "Greater Spider Pheromones",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680312,
+   "ranks": {
+    "1": 680312
+   },
+   "spellIds": [
+    680312
+   ],
+   "cost": 51000,
+   "levelReq": 58,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Give your allies spider pheromones, increasing their Agility by 77. Lasts 30 min.\r\n\r\nCan be used in any form."
+  },
+  "Greater Toxic Pheromones": {
+   "name": "Greater Toxic Pheromones",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 712459,
+   "ranks": {
+    "1": 712459
+   },
+   "spellIds": [
+    712459
+   ],
+   "cost": 51000,
+   "levelReq": 58,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Create a magic edict with an ally, increasing their spell power by 62."
+  },
+  "Green Salve": {
+   "name": "Green Salve",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502981,
+   "ranks": {
+    "2": 502974,
+    "3": 502975,
+    "4": 502976,
+    "5": 502977,
+    "6": 502978,
+    "7": 502979,
+    "8": 502980,
+    "9": 502981
+   },
+   "spellIds": [
+    502974,
+    502975,
+    502976,
+    502977,
+    502978,
+    502979,
+    502980,
+    502981,
+    800902
+   ],
+   "cost": 700,
+   "levelReq": 16,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_firstaid_healingsalve",
+   "description": "Rapidly heal an ally for 60 over 6 sec.\r\n\r\nAt the end of the duration, this will seek another nearby ally with the lowest health and heal them for 13. "
+  },
+  "Hallucinogenic Venom": {
+   "name": "Hallucinogenic Venom",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560188,
+   "ranks": null,
+   "spellIds": [
+    560188
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_inscription_pigment_bug07",
+   "description": "Allows 50% of your mana to regenerate while in combat."
+  },
+  "Harden": {
+   "name": "Harden",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800892,
+   "ranks": {
+    "1": 800892
+   },
+   "spellIds": [
+    800892
+   ],
+   "cost": 8300,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Harden your carapace, reducing damage taken by 45%, decaying quickly over 10 sec and healing for 1% maximum health each time a stack is removed.\r\n\r\nTaking Physical Damage during this time will cause it to decay faster.\r\n\r\nLeaving |cffffffffBeetle Form|r will cancel this effect."
+  },
+  "Hive Instinct": {
+   "name": "Hive Instinct",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804968,
+   "ranks": null,
+   "spellIds": [
+    804968
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_pet_shalespider",
+   "description": "The swarm stirs within you, preparing you for battle, instantly generating 100 Rage or Energy.\n\nUsable while Skulking."
+  },
+  "Hivebreak": {
+   "name": "Hivebreak",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572038,
+   "ranks": {
+    "1": 803193,
+    "2": 503149,
+    "3": 503150,
+    "4": 503151,
+    "5": 503152,
+    "6": 503153,
+    "7": 503154,
+    "8": 503155,
+    "9": 572037,
+    "10": 572038
+   },
+   "spellIds": [
+    503149,
+    503150,
+    503151,
+    503152,
+    503153,
+    503154,
+    503155,
+    572037,
+    572038,
+    803193
+   ],
+   "cost": 200,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Pierce an enemy with your front leg, dealing 33 Nature damage."
+  },
+  "Impale": {
+   "name": "Impale",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560248,
+   "ranks": null,
+   "spellIds": [
+    560248
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\impale",
+   "description": "Fire spikes through the floor impaling all enemies in a 15 yd line for 83 + 51.07% shadow SP Shadow damage and stunning them for 3.5 seconds."
+  },
+  "Infestation": {
+   "name": "Infestation",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706030,
+   "ranks": null,
+   "spellIds": [
+    706030
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_herb_evergreenmoss",
+   "description": "Periodic damage dealt now has a 10% chance to reduce the cooldown of Serpent's Fang and Fungal Assailant by 20% of the remaining cooldown."
+  },
+  "Intoxicating Venoms": {
+   "name": "Intoxicating Venoms",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706023,
+   "ranks": null,
+   "spellIds": [
+    706023
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\nhi_poisonbottle_Border",
+   "description": "Level 40 Passive\nMycosis is now enhanced based on your currently active Venom.\n\nDebilitating Venom: Reduces the cast time by -20%.\n\nBlight Venom: Extends the duration of Spore on the target by 4 sec.\n\nAdrenal Venom: Strikes 1 additional nearby target."
+  },
+  "Lethality": {
+   "name": "Lethality",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503852,
+   "ranks": null,
+   "spellIds": [
+    503852
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_poisonbottle_Border",
+   "description": "Increases the critical strike chance of Widow's Kiss on Diseased targets by 30%."
+  },
+  "Lethargy": {
+   "name": "Lethargy",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573307,
+   "ranks": null,
+   "spellIds": [
+    573307
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_PlagueCloud",
+   "description": "Damage dealt by your Wilt now applies Lethargy to affected enemies.Lethargy (Dummy)Reduces an enemy's chance to hit and increases their Nature Damage taken by you by -5% for 6 seconds.\n\nDispelling this effect increases the dispeller's resource costs by 100% for 5 seconds."
+  },
+  "Lifeblood": {
+   "name": "Lifeblood",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804963,
+   "ranks": null,
+   "spellIds": [
+    804963
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_volatilelife_green",
+   "description": "Embrace Shadra's lifeblood, reducing your damage taken and pushback from casting spells by -20% and causing all damage taken to cast Rejuvenating Venom. Lasts for 10 seconds.Rejuvenating Venom (Heal)Heal a random ally within 30 yds of your target for 67 + 9.2% healing over 6 seconds."
+  },
+  "Lifemender": {
+   "name": "Lifemender",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706477,
+   "ranks": null,
+   "spellIds": [
+    706477
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_ZG_Veno",
+   "description": "Your Serpent's Fang now heals up to 5 additional nearby allies and Alkahest now heals an additional nearby target."
+  },
+  "Limb Decayer": {
+   "name": "Limb Decayer",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681057,
+   "ranks": null,
+   "spellIds": [
+    681057
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_venom_spell_04_Border",
+   "description": "Reduces the cast time and increases the mana cost of Decay by 50%."
+  },
+  "Locust Swarm": {
+   "name": "Locust Swarm",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560247,
+   "ranks": null,
+   "spellIds": [
+    560247
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3locustswarm",
+   "description": "Leeches 67 + 10% SP + 3% AP health from nearby enemies every 2 sec for 10 seconds."
+  },
+  "Lure": {
+   "name": "Lure",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807759,
+   "ranks": {
+    "1": 807759
+   },
+   "spellIds": [
+    807759
+   ],
+   "cost": 350,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Lure an enemy, attracting their attention for 3 sec and forcing players to move. Does not break stealth."
+  },
+  "Magic Shell": {
+   "name": "Magic Shell",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705970,
+   "ranks": null,
+   "spellIds": [
+    705970
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_shield_pandariaquest_b_03",
+   "description": "Level 20 Passive\nIncreases all primary attributes by 15% while in Beetle Form.\n\nIn addition, increases your hit rating by 3% of all primary attributes."
+  },
+  "Mamba Mentality": {
+   "name": "Mamba Mentality",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503976,
+   "ranks": null,
+   "spellIds": [
+    503976
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_giantsnake_green",
+   "description": "Critical strikes with Venom Bolt, Hivebreak, or Venom Fang now increase your movement speed by 20% for 3 seconds."
+  },
+  "Mantid Descent": {
+   "name": "Mantid Descent",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 570123,
+   "ranks": {
+    "1": 570123
+   },
+   "spellIds": [
+    570123
+   ],
+   "cost": 3700,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Grant an ally magical wings, slows their falling speed for 30 sec."
+  },
+  "Master of Venoms": {
+   "name": "Master of Venoms",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504326,
+   "ranks": null,
+   "spellIds": [
+    504326
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\rogue_venomzest",
+   "description": "Increases the duration of your Venoms by 50%."
+  },
+  "Melioration": {
+   "name": "Melioration",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706945,
+   "ranks": null,
+   "spellIds": [
+    706945
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_deathblow_Border",
+   "description": "Your Serpent's Fang now refreshes a charge of Alkahest."
+  },
+  "Mending Mist": {
+   "name": "Mending Mist",
+   "spec": "Vizier",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502957,
+   "ranks": {
+    "2": 502951,
+    "3": 502952,
+    "4": 502953,
+    "5": 502954,
+    "6": 502955,
+    "7": 502956,
+    "8": 502957
+   },
+   "spellIds": [
+    502951,
+    502952,
+    502953,
+    502954,
+    502955,
+    502956,
+    502957,
+    800899
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_druid_focusedgrowth",
+   "description": "Spread a precarious mist to up to 8 allies within 30 yds, healing them for 15 every 1 sec for 7 sec.\r\n\r\nAfter 1.6 sec, all allies within 30 yds are healed for an additional 149."
+  },
+  "Molt": {
+   "name": "Molt",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805102,
+   "ranks": null,
+   "spellIds": [
+    805102
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_skinning_80_hardenedtempesthide",
+   "description": "Shatters your exoskeleton, instantly applying 15 stacks of Exposed Flesh and increasing your movement speed by 30% for 8 seconds."
+  },
+  "Mycelial Healing": {
+   "name": "Mycelial Healing",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806449,
+   "ranks": null,
+   "spellIds": [
+    806449
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nethers_spore",
+   "description": "All effective healing done now increases your periodic healing done to an ally by 1% for 30 seconds, stacking 10 times."
+  },
+  "Mycelial Replenishment": {
+   "name": "Mycelial Replenishment",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706021,
+   "ranks": null,
+   "spellIds": [
+    706021
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_fire_burnoutgreen",
+   "description": "Increases your critical strike chance and critical healing done by 20% for 20 seconds and instantly restore 30% of your maximum mana, but consumes all stacks of Mycelial Healing on all nearby allies.\n\nWhile active, all periodic critical strikes heal for an additional 20% of the healing done."
+  },
+  "Mycelial Ring": {
+   "name": "Mycelial Ring",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681056,
+   "ranks": null,
+   "spellIds": [
+    681056
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_Mushrooms_02",
+   "description": "Create an 8 yd ring beneath you for 10 seconds that deals 59 Nature damage every 1 sec to enemies inside and immediately grows 12 Mushrooms in a circle around you.\n\nAt the end of the duration, up to 15 allies inside are healed for 845 + 65% nature SP.\n\nCan be used in any form."
+  },
+  "Mycelial Synchronization": {
+   "name": "Mycelial Synchronization",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504356,
+   "ranks": null,
+   "spellIds": [
+    504356
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_NatureTouchGrow",
+   "description": "Casting Shadra's Aid on an ally now also casts it on yourself."
+  },
+  "Mycosis": {
+   "name": "Mycosis",
+   "spec": "Venom",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572156,
+   "ranks": {
+    "2": 572150,
+    "3": 572151,
+    "4": 572153,
+    "5": 572154,
+    "6": 572155,
+    "7": 572156
+   },
+   "spellIds": [
+    572150,
+    572151,
+    572153,
+    572154,
+    572155,
+    572156,
+    804986
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_druid_wildmushroom",
+   "description": "Fungus grows throughout the body of an enemy, dealing 202 Nature damage and applying a shield that absorbs the next 160 healing done to them for 8 sec.\r\n\r\nDeals 20% increased damage for each stack of |cffffffffFungal Growth|r on the target."
+  },
+  "Myotoxin": {
+   "name": "Myotoxin",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572304,
+   "ranks": {
+    "1": 572304
+   },
+   "spellIds": [
+    572304
+   ],
+   "cost": 25500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Inject an enemy with myotoxins, removing 1 enrage effect, repeating every 4 sec for 20 sec."
+  },
+  "Natural Weapons": {
+   "name": "Natural Weapons",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504393,
+   "ranks": null,
+   "spellIds": [
+    504393
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_felsaber_claw",
+   "description": "Increases the critical strike chance of all Beetle Form abilities by 10%."
+  },
+  "Nature Against Nature": {
+   "name": "Nature Against Nature",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680871,
+   "ranks": null,
+   "spellIds": [
+    680871
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_archerskill37_Border",
+   "description": "Each stack of Nerubian Sting now increases the damage dealt to the target by your Widowmaker and Venom Fang by 8%."
+  },
+  "Necessary Preparations": {
+   "name": "Necessary Preparations",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503919,
+   "ranks": null,
+   "spellIds": [
+    503919
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_SacrificialDagger_Unholy",
+   "description": "Increases the damage of Wilt by 20% and it now increases the chance to hit the target with spells by 3% for 20 seconds."
+  },
+  "Nerubian Sting": {
+   "name": "Nerubian Sting",
+   "spec": "Stalking",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502911,
+   "ranks": {
+    "2": 502905,
+    "3": 502906,
+    "4": 502907,
+    "5": 502908,
+    "6": 502909,
+    "7": 502910,
+    "8": 502911
+   },
+   "spellIds": [
+    502905,
+    502906,
+    502907,
+    502908,
+    502909,
+    502910,
+    502911,
+    800882
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Head_Nerubian_01",
+   "description": "|cff66ff66Applies 1 Brood Mark|r\r\nSting an enemy, dealing 32 Shadow damage and an additional 35 over 15 sec, stacking up to 3 times."
+  },
+  "Noxious Empowerment": {
+   "name": "Noxious Empowerment",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804964,
+   "ranks": null,
+   "spellIds": [
+    804964
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_battleground_templeofkotmogu_02_green",
+   "description": "Enrage for 12 seconds, increasing your chance to trigger Venoms by 50%, your Energy regeneration by 100%, and increasing your damage dealt by 20% for 12 seconds."
+  },
+  "Nullifying Toxin": {
+   "name": "Nullifying Toxin",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 805096,
+   "ranks": {
+    "1": 805096
+   },
+   "spellIds": [
+    805096
+   ],
+   "cost": 4500,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Inject an enemy with nullifying toxin, interrupting them and preventing any spell from that school from being cast for 3 sec."
+  },
+  "Nullifying Venom": {
+   "name": "Nullifying Venom",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 805777,
+   "ranks": {
+    "1": 805777
+   },
+   "spellIds": [
+    805777
+   ],
+   "cost": 1600,
+   "levelReq": 18,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Activate |cffffffffNullifying Venom|r for 2 |4hour:hrs;, giving your casts a 30% chance to reduce an enemy's casting speed by 30% for 8 sec.\r\n\r\nYou can have a maximum of 2 unique |cffffffffVenoms|r active at a time."
+  },
+  "Occultist": {
+   "name": "Occultist",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504339,
+   "ranks": null,
+   "spellIds": [
+    504339
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\nhi_naturevision_Border",
+   "description": "Level 40 Passive\nCasting Green Salve or Serpent's Fang now has a 30% chance to refresh a charge of Alkahest."
+  },
+  "One Man's Poison...": {
+   "name": "One Man's Poison...",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503799,
+   "ranks": null,
+   "spellIds": [
+    503799
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_deviouspoisons",
+   "description": "Casting spells that consume Brood Marks now has a -25% chance to refund their Brood Mark cost."
+  },
+  "Ophidian Renewal": {
+   "name": "Ophidian Renewal",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706938,
+   "ranks": null,
+   "spellIds": [
+    706938
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_natureentagle_Border",
+   "description": "Increases the duration of Shadra's Balm and Mending Mist and Shadra's Prayer by 3 sec."
+  },
+  "Parasite": {
+   "name": "Parasite",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800921,
+   "ranks": {
+    "1": 800921
+   },
+   "spellIds": [
+    800921
+   ],
+   "cost": 2500,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffff3232Requires Skulk|r\r\nEmbed yourself into an enemy or ally player for 1 min, becoming immune to all damage, but unable to attack or cast spells.\r\n\r\nAt the end of the duration, or upon casting |cffffffffParasite: Unburrow|r, you reappear at their location. If they are an enemy, you inflict them with |cffffffffParasite Poison|r.@s:807758:0@\r\n\r\nNot usable in combat."
+  },
+  "Parry": {
+   "name": "Parry",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3124,
+   "ranks": null,
+   "spellIds": [
+    3124
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Pendo's Charm": {
+   "name": "Pendo's Charm",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504400,
+   "ranks": null,
+   "spellIds": [
+    504400
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_necklace_shell01",
+   "description": "Increases the rage generated by your damage dealt by 15%."
+  },
+  "Pinch": {
+   "name": "Pinch",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704235,
+   "ranks": null,
+   "spellIds": [
+    704235
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_monsterclaw_10",
+   "description": "Disarm an enemy's melee weapons with your claws for 5 seconds and apply Weakening Venom to them for 10 sec.Weakening Venom (Proc)Deals 59 + 12.5% SP Shadow Damage and reduces attack power by 23."
+  },
+  "Playing With Poison": {
+   "name": "Playing With Poison",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707563,
+   "ranks": null,
+   "spellIds": [
+    707563
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_NullifyDisease",
+   "description": "Increases your Nature damage and healing done by 5%."
+  },
+  "Poison for Everyone!": {
+   "name": "Poison for Everyone!",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504837,
+   "ranks": null,
+   "spellIds": [
+    504837
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_poison_icon_0004s_0000_arrow_Border",
+   "description": "Reduces the Rage cost of Venomtip Poison by -10."
+  },
+  "Poisonous": {
+   "name": "Poisonous",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707320,
+   "ranks": null,
+   "spellIds": [
+    707320
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_misc_claw_deepcrab_green",
+   "description": "Level 40 Passive\nIncreases your spell damage by 30% of your attack power and allows periodic damage dealt by Expulsion to critically strike."
+  },
+  "Potency": {
+   "name": "Potency",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503854,
+   "ranks": null,
+   "spellIds": [
+    503854
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_knife_1h_artifactfangs_d_02dual",
+   "description": "Increases the damage dealt by Venom Fang by 15% and causes it to increase the target's chance to be critically struck by spells by 3% for 15 seconds."
+  },
+  "Potent Expulsion": {
+   "name": "Potent Expulsion",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560266,
+   "ranks": null,
+   "spellIds": [
+    560266
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_ability_wildstalkerdruid_thrivinggrowth",
+   "description": "Increases the damage dealt by Expulsion by 20%."
+  },
+  "Prayer Beads": {
+   "name": "Prayer Beads",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 520848,
+   "ranks": {
+    "1": 520681,
+    "2": 520844,
+    "3": 520845,
+    "4": 520846,
+    "5": 520847,
+    "6": 520848
+   },
+   "spellIds": [
+    520681,
+    520844,
+    520845,
+    520846,
+    520847,
+    520848
+   ],
+   "cost": 200,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Pray to Shadra and honor the venomcult, allowing you to bring a dead ally back to life with 70 health and 135 mana. Cannot be cast when in combat."
+  },
+  "Prophetic Speaker": {
+   "name": "Prophetic Speaker",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706956,
+   "ranks": null,
+   "spellIds": [
+    706956
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_Dungeon_AzjolLowercity_Heroic",
+   "description": "Each time you spawn a Mushroom, you now reduce the cooldown of Decay by -1 sec."
+  },
+  "Protogenesis": {
+   "name": "Protogenesis",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707620,
+   "ranks": null,
+   "spellIds": [
+    707620
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\nhi_natureheal_Border",
+   "description": "Level 50 Passive\nCritical strikes dealt with direct damage now apply Protogenesis to you, stacking 10 times.ProtogenesisHeals for 65 every 3 sec for 10 seconds.\n\nAt 10 stacks, all stacks are consumed and the cooldown of Expulsion is reduced by -3 sec."
+  },
+  "Protraction": {
+   "name": "Protraction",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706942,
+   "ranks": null,
+   "spellIds": [
+    706942
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_NaturePortal_Border",
+   "description": "Increases the duration of your Venomancer periodic damage effects by 3 sec."
+  },
+  "Prowler": {
+   "name": "Prowler",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804342,
+   "ranks": null,
+   "spellIds": [
+    804342
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_poison_icon_0001s_0000_spider_Border",
+   "description": "Level 20 Passive\nIncreases your spell damage by 25% of your Intellect and your hit rating by 3% of your Intellect."
+  },
+  "Reconstructive Carapace": {
+   "name": "Reconstructive Carapace",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705999,
+   "ranks": null,
+   "spellIds": [
+    705999
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_scales_stonygreen",
+   "description": "Reduces the amount of Rage drained by Carapace Regeneration by -3."
+  },
+  "Reformed": {
+   "name": "Reformed",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805103,
+   "ranks": null,
+   "spellIds": [
+    805103
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\ability_monk_effuse",
+   "description": "Level 30 Passive\nClearing Exposed Flesh stacks inside Beetle Form now restores health based on stacks cleared."
+  },
+  "Regeneration": {
+   "name": "Regeneration",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 20555,
+   "ranks": null,
+   "spellIds": [
+    20555
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Regenerative Properties": {
+   "name": "Regenerative Properties",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803210,
+   "ranks": null,
+   "spellIds": [
+    803210
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_skinning_80_snakescales",
+   "description": "Reduces all damage taken by -5%, but damage taken now has a 10% chance to shatter your exoskeleton, removing this damage reduction effect.\n\nWhen your exoskeleton shatters you regenerate 12% of your maximum health over 12 seconds, after this duration your exoskeleton regenerates."
+  },
+  "Regrow Exoskeleton": {
+   "name": "Regrow Exoskeleton",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803197,
+   "ranks": null,
+   "spellIds": [
+    803197
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_stave_2h_pvppandarias2_c_03green",
+   "description": "Clears Exposed Flesh stacks to reduce your damage taken by -20% for 5 seconds and an additional 1 sec per stack."
+  },
+  "Reinforced Exoskeleton": {
+   "name": "Reinforced Exoskeleton",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706002,
+   "ranks": null,
+   "spellIds": [
+    706002
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_cloth_outdooremeralddream_d_01_cape",
+   "description": "Increases your maximum health and your dodge chance by 3%."
+  },
+  "Reinforced Shell": {
+   "name": "Reinforced Shell",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705966,
+   "ranks": null,
+   "spellIds": [
+    705966
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_leather_shellfragment",
+   "description": "Increases your total armor by 20%.\n\nIn addition, while Spider or Beetle form is active your attacks are unable to be parried or dodged."
+  },
+  "Rejuvenating Venom": {
+   "name": "Rejuvenating Venom",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 630868,
+   "ranks": {
+    "1": 630868
+   },
+   "spellIds": [
+    630868
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Activate |cffffffffRejuvenating Venom|r for 2 |4hour:hrs;, giving your casts a 20% chance to heal a random ally within 30 yds of your target for 2 over 6 sec.\r\n\r\nYou can have a maximum of 2 unique |cffffffffVenoms|r active at a time."
+  },
+  "Relentless": {
+   "name": "Relentless",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 578320,
+   "ranks": null,
+   "spellIds": [
+    578320
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_evoker_dreambreath",
+   "description": "Increases your Energy and mana regeneration rate by 20%."
+  },
+  "Remove Venoms": {
+   "name": "Remove Venoms",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 630872,
+   "ranks": {
+    "1": 630872
+   },
+   "spellIds": [
+    630872
+   ],
+   "cost": 1000,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Clear your currently active |cffffffffVenoms|r.\r\n\r\nCan be used in any form."
+  },
+  "Resilient Constitution": {
+   "name": "Resilient Constitution",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 552011,
+   "ranks": null,
+   "spellIds": [
+    552011
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Ritual Healing": {
+   "name": "Ritual Healing",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681047,
+   "ranks": null,
+   "spellIds": [
+    681047
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\achievement_zone_swampsorrows_01",
+   "description": "Level 50 Passive\nEvery 9 sec, your Shadra's Prayer will now restore 1% of the target's maximum mana, 8 Energy or Focus, 4 Rage and 4 Runic Power."
+  },
+  "Ritualistic": {
+   "name": "Ritualistic",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503918,
+   "ranks": null,
+   "spellIds": [
+    503918
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_SpiritualSummoning_Border",
+   "description": "Casting Green Salve now also refunds you 20% of your base mana."
+  },
+  "Rot Lich": {
+   "name": "Rot Lich",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92142,
+   "ranks": null,
+   "spellIds": [
+    92142
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\_InstableAffliction_Green",
+   "description": "Level 10 Passive\nDirect damage dealt now has a 20% chance to reset the cooldown of Serpent's Fang and grant you Rot Lich.Rot Lich (Proc)Your next Serpent's Fang within 15 seconds is free of cost."
+  },
+  "Rotfang": {
+   "name": "Rotfang",
+   "spec": "Stalking",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 807605,
+   "ranks": {
+    "2": 807602,
+    "3": 807603,
+    "4": 807604,
+    "5": 807605
+   },
+   "spellIds": [
+    804977,
+    807602,
+    807603,
+    807604,
+    807605
+   ],
+   "cost": 12000,
+   "levelReq": 36,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_volatilefiregreen",
+   "description": "|cffff3232Requires Spider Form|r\r\n|cff66ff66Consumes Brood Marks|r\r\nInject venom into an enemy that rots them from the inside out, dealing Plague damage over 24 sec.\r\n   1 Mark: 320 Plague damage.\r\n   2 Marks: 410 Plague damage.\r\n   3 Marks: 525 Plague damage.\r\n   4 Marks: 666 Plague damage.\r\n   5 Marks: 896 Plague damage.\r\nDamage dealt pierces absorption effects and resistances."
+  },
+  "Rotpriest": {
+   "name": "Rotpriest",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706209,
+   "ranks": null,
+   "spellIds": [
+    706209
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(89)_Border",
+   "description": "Increases your spell critical damage by 100%."
+  },
+  "Rotting Away": {
+   "name": "Rotting Away",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706370,
+   "ranks": null,
+   "spellIds": [
+    706370
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\crest_druid",
+   "description": "Your Wilt now has a 15% chance when it deals damage to strike again as Shadow damage."
+  },
+  "Rotting Sores": {
+   "name": "Rotting Sores",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807601,
+   "ranks": null,
+   "spellIds": [
+    807601
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_creature_poison_06",
+   "description": "Increases the tick rate of Rotfang by -20% and allows its periodic damage dealt to critically strike."
+  },
+  "Runed Carapace": {
+   "name": "Runed Carapace",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705961,
+   "ranks": null,
+   "spellIds": [
+    705961
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Shield_21",
+   "description": "Whenever you take Magic damage, reduce damage taken by that magic school by -10% for 10 seconds.\n\nCan only occur once every 30 sec per school of magic."
+  },
+  "Sage": {
+   "name": "Sage",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680768,
+   "ranks": null,
+   "spellIds": [
+    680768
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_poison_icon_0002s_0000_poison-nova_Border",
+   "description": "Direct healing done by Alkahest now spreads an active Shadra's Balm from the primary target to a nearby ally."
+  },
+  "Sepsis Bloom": {
+   "name": "Sepsis Bloom",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504867,
+   "ranks": null,
+   "spellIds": [
+    504867
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_natureroots_Border",
+   "description": "Create pustules that swell and then burst, disorienting a target enemy for 6 seconds.\n\nAll of your Venomancer poison effects are purged from the target, dealing damage equal to their remaining duration at the end of the duration."
+  },
+  "Septic Trauma": {
+   "name": "Septic Trauma",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504361,
+   "ranks": null,
+   "spellIds": [
+    504361
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_deviouspoisons",
+   "description": "Harmful critical strikes now increase the duration of Wilt by 2 sec."
+  },
+  "Serpent Lord": {
+   "name": "Serpent Lord",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805104,
+   "ranks": null,
+   "spellIds": [
+    805104
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_giantsnake_green",
+   "description": "$b5"
+  },
+  "Serpent Lord's Amulet": {
+   "name": "Serpent Lord's Amulet",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800914,
+   "ranks": null,
+   "spellIds": [
+    800914
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_cloth_zandalardungeon_c_01",
+   "description": "Draw power from the Serpent Lord's Amulet, increasing your spell haste by 20% and reduces your mana costs by -50% for 15 seconds."
+  },
+  "Serpent Lord's Ring": {
+   "name": "Serpent Lord's Ring",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503923,
+   "ranks": null,
+   "spellIds": [
+    503923
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_60pvp_ring3c",
+   "description": "Draw power from the Serpent Lord's Ring instantly regenerating 20% of your maximum mana and causing your Mycosiss to trigger no cooldown and be free of cost for 15 seconds."
+  },
+  "Serpent Lord's Ritual": {
+   "name": "Serpent Lord's Ritual",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706018,
+   "ranks": null,
+   "spellIds": [
+    706018
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_monk_summonserpentstatue",
+   "description": "Direct healing done now has a 5% chance to grant you 5 sec of Serpent Lord's Amulet.Serpent Lord's AmuletDraw power from the Serpent Lord's Amulet, increasing your spell haste by 20% and reduces your mana costs by -50% for 15 seconds."
+  },
+  "Serpent's Embrace": {
+   "name": "Serpent's Embrace",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560194,
+   "ranks": null,
+   "spellIds": [
+    560194
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_sumsnakearmy_Border",
+   "description": "Increases the damage of Serpent's Fang and its spell power scaling by 15%."
+  },
+  "Serpent's Fang": {
+   "name": "Serpent's Fang",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 552783,
+   "ranks": {
+    "1": 800946,
+    "2": 503931,
+    "3": 503932,
+    "4": 503933,
+    "5": 503934,
+    "6": 503935,
+    "7": 552781,
+    "8": 552783
+   },
+   "spellIds": [
+    503931,
+    503932,
+    503933,
+    503934,
+    503935,
+    552781,
+    552783,
+    800946
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Launch vile poison at an enemy, dealing 27 Nature damage and healing up to 5 allies near them for 32."
+  },
+  "Shadra's Aid": {
+   "name": "Shadra's Aid",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504352,
+   "ranks": null,
+   "spellIds": [
+    504352
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_natureempower_Border",
+   "description": "Envelop an ally in Shadra's grace, reducing all damage taken by -20% and causing direct damage taken to restore 3% maximum health for 15 seconds."
+  },
+  "Shadra's Balm": {
+   "name": "Shadra's Balm",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502973,
+   "ranks": {
+    "2": 502968,
+    "3": 502969,
+    "4": 502970,
+    "5": 502971,
+    "6": 502972,
+    "7": 502973
+   },
+   "spellIds": [
+    502968,
+    502969,
+    502970,
+    502971,
+    502972,
+    502973,
+    800901
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_naturepotion_Border",
+   "description": "Envelop an ally with a restorative balm, healing them for 26 every 3 sec for 18 sec."
+  },
+  "Shadra's Boon": {
+   "name": "Shadra's Boon",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 681443,
+   "ranks": {
+    "1": 681443
+   },
+   "spellIds": [
+    681443
+   ],
+   "cost": 31500,
+   "levelReq": 50,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increases the Nature Resistance of all party and raid members by 1.\r\n\r\nDoes not stack with similar effects."
+  },
+  "Shadra's Gift": {
+   "name": "Shadra's Gift",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 503812,
+   "ranks": null,
+   "spellIds": [
+    503812,
+    570336,
+    706937
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_LiquidStone_Poison",
+   "description": "Dealing damage with Barbed Stinger now increases the target's Nature damage taken by 5% for 12 seconds."
+  },
+  "Shadra's Lair": {
+   "name": "Shadra's Lair",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804978,
+   "ranks": null,
+   "spellIds": [
+    804978
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_spiderweb_b_01",
+   "description": "Designate the area around you as your Lair for 8 seconds. \n\nEnemies are unable to target into or out of the Lair and their movement speed is slowed by -60%."
+  },
+  "Shadra's Prayer": {
+   "name": "Shadra's Prayer",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 502947,
+   "ranks": {
+    "1": 800870,
+    "2": 502939,
+    "3": 502940,
+    "4": 502941,
+    "5": 502942,
+    "6": 502943,
+    "7": 502944,
+    "8": 502945,
+    "9": 502946,
+    "10": 502947
+   },
+   "spellIds": [
+    502939,
+    502940,
+    502941,
+    502942,
+    502943,
+    502944,
+    502945,
+    502946,
+    502947,
+    800870
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Bring the glory of Shadra to an ally, healing them for 32, plus 5 every 3 sec for 21 sec."
+  },
+  "Shadra's Presence": {
+   "name": "Shadra's Presence",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504348,
+   "ranks": null,
+   "spellIds": [
+    504348
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_dungeon_plaguefall_dominavenomblade",
+   "description": "Allies within 100 yds receive 6% more healing. Does not stack with similar effects.\n\nIn addition, your Antivenom now dispels 1 additional effect."
+  },
+  "Shadra's Seance": {
+   "name": "Shadra's Seance",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300678,
+   "ranks": null,
+   "spellIds": [
+    300678
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_HealingSwirl_Border",
+   "description": "Facemelter now ticks -20% faster and the duration is increased by 6 sec."
+  },
+  "Shadra's Vigil": {
+   "name": "Shadra's Vigil",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680800,
+   "ranks": null,
+   "spellIds": [
+    680800
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\nhi_naturestaff_Border",
+   "description": "Level 10 Passive\nHealing done by Serpent's Fang now applies Shadra's Vigil to allies.Shadra's VigilThe next 5 instances of periodic healing by you on this target will heal them for an additional 10% of the value."
+  },
+  "Shoot": {
+   "name": "Shoot",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3018,
+   "ranks": null,
+   "spellIds": [
+    3018
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Skin Shedder": {
+   "name": "Skin Shedder",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705949,
+   "ranks": null,
+   "spellIds": [
+    705949
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_MoonGlow",
+   "description": "Reduces the cost of shapeshift spells by -50%."
+  },
+  "Skitter": {
+   "name": "Skitter",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800848,
+   "ranks": {
+    "1": 800848
+   },
+   "spellIds": [
+    800848
+   ],
+   "cost": 2500,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Skitter forward 18 yds.\r\n\r\nCan be used 3 times within 10 sec before triggering a cooldown.\r\n\r\nUsable while |cffffffffSkulking|r."
+  },
+  "Skulk": {
+   "name": "Skulk",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800843,
+   "ranks": {
+    "1": 800843
+   },
+   "spellIds": [
+    800843
+   ],
+   "cost": 60,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Skulk through the shadows, entering stealth. Lasts until cancelled. \r\n\r\nWhile stealthed, |cffffffffVenom Fang|r has no cost and deals 50% increased damage, scaling with your level."
+  },
+  "Slimy": {
+   "name": "Slimy",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705998,
+   "ranks": null,
+   "spellIds": [
+    705998
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_slime_b_01",
+   "description": "Direct damage taken now has a 20% chance to create a pool of Beetle Slime under the enemy.Beetle SlimeDeals 49 Nature Damage to up to 10 enemies within 5 yds every 2 sec for 8 seconds.\n\nCan only occur once every 3 sec."
+  },
+  "Slimy Stingers": {
+   "name": "Slimy Stingers",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706001,
+   "ranks": null,
+   "spellIds": [
+    706001
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv__hydrasbite",
+   "description": "Carapace Crash now creates a pool of Beetle Slime under each enemy struck.Beetle SlimeDeals 49 Nature Damage to up to 10 enemies within 5 yds every 2 sec for 8 seconds."
+  },
+  "Soothing Venoms": {
+   "name": "Soothing Venoms",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707726,
+   "ranks": null,
+   "spellIds": [
+    707726
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_potentvenom",
+   "description": "Increases the critical healing of Shadra's Prayer by 25%."
+  },
+  "Spawn": {
+   "name": "Spawn",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807675,
+   "ranks": {
+    "1": 805568,
+    "2": 807674,
+    "3": 807675
+   },
+   "spellIds": [
+    805568,
+    807674,
+    807675
+   ],
+   "cost": 17000,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Bring a dead ally back to life with 400 health and 635 mana.\n\nCan be used in combat. Not usable in arena."
+  },
+  "Spider Form": {
+   "name": "Spider Form",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800841,
+   "ranks": {
+    "1": 800841
+   },
+   "spellIds": [
+    800841
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Shapeshift into |cffffffffSpider Form|r, increasing movement speed by 20% and allowing the use of abilities that require this form."
+  },
+  "Spider Lord": {
+   "name": "Spider Lord",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704264,
+   "ranks": null,
+   "spellIds": [
+    704264
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\CryptLord",
+   "description": "Augments Beetle Form into a Spider Lord, reducing damage taken by -5%, and while Locust Swarm is active your summons now gain 30% increased haste and damage.\n\nCasting Hivebreak now has a 40% chance, and melee auto attacks now have a 5% chance, to summon 1 Scarab to aid you in combat for 12 seconds."
+  },
+  "Spider Pheromones": {
+   "name": "Spider Pheromones",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803650,
+   "ranks": {
+    "1": 803177,
+    "2": 803306,
+    "3": 803307,
+    "4": 803308,
+    "5": 803309,
+    "6": 803650
+   },
+   "spellIds": [
+    803177,
+    803306,
+    803307,
+    803308,
+    803309,
+    803650
+   ],
+   "cost": 150,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Inject an ally with spider pheromones, increasing their Agility by 6. Lasts 30 min."
+  },
+  "Spindlebind": {
+   "name": "Spindlebind",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 502895,
+   "ranks": {
+    "2": 502890,
+    "3": 502891,
+    "4": 502892,
+    "5": 502893,
+    "6": 502894,
+    "7": 502895
+   },
+   "spellIds": [
+    502890,
+    502891,
+    502892,
+    502893,
+    502894,
+    502895,
+    800887
+   ],
+   "cost": 4400,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_poisonweb_Border",
+   "description": "Emit webs at all enemies behind you, rooting them for 4 sec, and unleashing a beetle on the trapped enemy from below, inflicting 83 Nature damage."
+  },
+  "Spirit of the Jungle": {
+   "name": "Spirit of the Jungle",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681048,
+   "ranks": null,
+   "spellIds": [
+    681048
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_zone_tanaanjungle",
+   "description": "Increases the proc chance of Rejuvenating Venom by 10%."
+  },
+  "Spiritual Healing": {
+   "name": "Spiritual Healing",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706211,
+   "ranks": null,
+   "spellIds": [
+    706211
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\priest_icon_chakra_green",
+   "description": "Level 20 Passive\nIncreases your spell critical strike rating and your healing power by 20% of your Intellect."
+  },
+  "Spore": {
+   "name": "Spore",
+   "spec": "Venom",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572869,
+   "ranks": {
+    "2": 503983,
+    "3": 503984,
+    "4": 503985,
+    "5": 503986,
+    "6": 572868,
+    "7": 572869
+   },
+   "spellIds": [
+    503983,
+    503984,
+    503985,
+    503986,
+    572868,
+    572869,
+    804983
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_unholy_mushroom_Border",
+   "description": "Inject an enemy with parasitic spores, dealing 50 Shadow damage, plus an additional 308 to 329 over 21 sec.\r\n\r\nAfter 10 sec, drop a |cffffffffMushroom|r below the target that explodes after 2 sec, dealing 10 Nature damage to nearby enemies."
+  },
+  "Sporelord": {
+   "name": "Sporelord",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804989,
+   "ranks": null,
+   "spellIds": [
+    804989
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_mushroom_02",
+   "description": "Fungal Assailant now spawns 3 Mushrooms below the target.Mushroom (dmg)Drop a Mushroom near the target that explodes after 2 sec, dealing 217 + 35% SP Plague Damage to all nearby enemies."
+  },
+  "Sublime Extraction": {
+   "name": "Sublime Extraction",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681320,
+   "ranks": null,
+   "spellIds": [
+    681320
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_druideskill10_Border",
+   "description": "Casting Green Salve now resets the cooldown of Serpent's Fang and removes the cost of your next Serpent's Fang for 8 seconds."
+  },
+  "Suffocating Coils": {
+   "name": "Suffocating Coils",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707233,
+   "ranks": null,
+   "spellIds": [
+    707233
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_natureweb_Border",
+   "description": "$af"
+  },
+  "Surprise Strategy": {
+   "name": "Surprise Strategy",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706035,
+   "ranks": null,
+   "spellIds": [
+    706035
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_fixated_state_green",
+   "description": "Critical strikes now have a 15% chance to increase the healing of your next Shadra's Prayer by 20% and make it instant cast for 10 seconds.\n\nCan only occur once per 5 sec."
+  },
+  "The Antidote": {
+   "name": "The Antidote",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681315,
+   "ranks": null,
+   "spellIds": [
+    681315
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_MagicImmunity",
+   "description": "Increases the duration of Rejuvenating Venom by 2 sec and increases its tick rate by -30%."
+  },
+  "Throw": {
+   "name": "Throw",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 2764,
+   "ranks": null,
+   "spellIds": [
+    2764
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Throwing Specialization": {
+   "name": "Throwing Specialization",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 20558,
+   "ranks": null,
+   "spellIds": [
+    20558
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Tome of Ahn'kahet": {
+   "name": "Tome of Ahn'kahet",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705993,
+   "ranks": null,
+   "spellIds": [
+    705993
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Book4_Purple",
+   "description": "Damage and effective healing done now has an 8% chance to grant Tome of Ahn'kahet for 15 seconds.Tome of Ahn'kahetThe next spell has its costs reduced by -100%."
+  },
+  "Toxic Communion": {
+   "name": "Toxic Communion",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680767,
+   "ranks": null,
+   "spellIds": [
+    680767
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_natureunity_Border",
+   "description": "Extend the duration of Shadra's Balm and Mending Mist by 15 sec on all allies within 30 yds."
+  },
+  "Toxic Expulsion": {
+   "name": "Toxic Expulsion",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705959,
+   "ranks": null,
+   "spellIds": [
+    705959
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\rogue_venomzest",
+   "description": "Hivebreak now consumes -2 sec of Venomtip Poison's duration to gush toxic slime, dealing 20 Nature damage to 5 enemies within 5 yds."
+  },
+  "Toxic Pheromones": {
+   "name": "Toxic Pheromones",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 707692,
+   "ranks": {
+    "1": 707689,
+    "2": 707690,
+    "3": 707691,
+    "4": 707692
+   },
+   "spellIds": [
+    707689,
+    707690,
+    707691,
+    707692
+   ],
+   "cost": 5200,
+   "levelReq": 28,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Create a magic edict with an ally, increasing their spell power by 28."
+  },
+  "Toxic Stride": {
+   "name": "Toxic Stride",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504347,
+   "ranks": null,
+   "spellIds": [
+    504347
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_naturepoisonedstep_Border",
+   "description": "Embrace Shadra's blessing, granting you immunity to all silence and interrupt effects and allowing you to cast your spells while moving for 15 seconds."
+  },
+  "Tranquil Essence": {
+   "name": "Tranquil Essence",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504799,
+   "ranks": null,
+   "spellIds": [
+    504799
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ui_notoriety_thevizier",
+   "description": "Reduces the threat generated by your healing spells by -10% and increases your periodic healing by 5%."
+  },
+  "Tunneler": {
+   "name": "Tunneler",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 630932,
+   "ranks": null,
+   "spellIds": [
+    630932
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_55_bug_Border",
+   "description": "Your Spindlebind now has 2 charges, a 25 sec cooldown, and deals increased damage.Spindlebind (Tunneler)2 Charges, 25 sec recharge\nCommand a tunnel beetle to attack your target from below, inflicting 159 + 65% nature SP Nature damage and rooting them for 4 seconds."
+  },
+  "Unbreakable": {
+   "name": "Unbreakable",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705991,
+   "ranks": null,
+   "spellIds": [
+    705991
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_scarabmount_green",
+   "description": "Allows Exposed Flesh to stack 5 additional times and increase your Physical damage taken by -1% less."
+  },
+  "Venom Bolt": {
+   "name": "Venom Bolt",
+   "spec": "Rot",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 573334,
+   "ranks": {
+    "2": 502870,
+    "3": 502871,
+    "4": 502872,
+    "5": 502873,
+    "6": 502874,
+    "7": 502875,
+    "8": 502876,
+    "9": 573333,
+    "10": 573334
+   },
+   "spellIds": [
+    502870,
+    502871,
+    502872,
+    502873,
+    502874,
+    502875,
+    502876,
+    573333,
+    573334,
+    800869
+   ],
+   "cost": 100,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Spew poison on an enemy, dealing 42 Nature damage."
+  },
+  "Venom Fanatic": {
+   "name": "Venom Fanatic",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681059,
+   "ranks": null,
+   "spellIds": [
+    681059
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_venom_(3)_Border",
+   "description": "Your Serpent's Fang now strikes 2 additional nearby enemies."
+  },
+  "Venom Fang": {
+   "name": "Venom Fang",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 502903,
+   "ranks": {
+    "1": 800880,
+    "2": 502896,
+    "3": 502897,
+    "4": 502898,
+    "5": 502899,
+    "6": 502900,
+    "7": 502901,
+    "8": 502902,
+    "9": 502903
+   },
+   "spellIds": [
+    502896,
+    502897,
+    502898,
+    502899,
+    502900,
+    502901,
+    502902,
+    502903,
+    800880
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Bite an enemy for 24 Nature damage."
+  },
+  "Venom Glands": {
+   "name": "Venom Glands",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706015,
+   "ranks": null,
+   "spellIds": [
+    706015
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Creature_Poison_02",
+   "description": "Increases your healing done by 15% on allies below 35% health or if they are Poisoned."
+  },
+  "Venom Saturation": {
+   "name": "Venom Saturation",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804984,
+   "ranks": null,
+   "spellIds": [
+    804984
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_CorrosiveBreath",
+   "description": "Increases the damage of your poison effects by 25% against enemies above 50% health."
+  },
+  "Venom Shield": {
+   "name": "Venom Shield",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804687,
+   "ranks": {
+    "1": 804687
+   },
+   "spellIds": [
+    804687
+   ],
+   "cost": 25500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Reduces the duration of all poison effects used on you by 10%, and reduces all periodic Magic damage taken by 5%. Lasts 30 min."
+  },
+  "Venom Weaving": {
+   "name": "Venom Weaving",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504736,
+   "ranks": null,
+   "spellIds": [
+    504736
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_ResistMagic",
+   "description": "Your Serpent's Fang now increases the healing of your next 2 Alkahests by 25%."
+  },
+  "Venomagus": {
+   "name": "Venomagus",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300682,
+   "ranks": null,
+   "spellIds": [
+    300682
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_passivemastery_(23)_Border",
+   "description": "Increases the damage of Blight Venom by 20%."
+  },
+  "Venomancy Expert": {
+   "name": "Venomancy Expert",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706027,
+   "ranks": null,
+   "spellIds": [
+    706027
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_warlock_infernogreen",
+   "description": "Reduces the cost of all spells and abilities by -5%."
+  },
+  "Venomcult Scrolls": {
+   "name": "Venomcult Scrolls",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707574,
+   "ranks": null,
+   "spellIds": [
+    707574
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_custom_scrollofunlearning_Talent_seasonal20",
+   "description": "Reduces the cooldown of Green Salve by -2 sec and increases the healing done at the end of the duration by 50%."
+  },
+  "Venomics": {
+   "name": "Venomics",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705975,
+   "ranks": null,
+   "spellIds": [
+    705975
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_monk_renewingmists",
+   "description": "Increases the effectiveness of your Venoms by 30%."
+  },
+  "Venomizer": {
+   "name": "Venomizer",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680794,
+   "ranks": null,
+   "spellIds": [
+    680794
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_venom_spell_06_Border",
+   "description": "Increases the proc chance of all Venoms by 10%."
+  },
+  "Venomous Bite": {
+   "name": "Venomous Bite",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 630900,
+   "ranks": null,
+   "spellIds": [
+    630900
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Poisons",
+   "description": "Increases the amount of times Brood Marks can stack by 2."
+  },
+  "Venomtip Poison": {
+   "name": "Venomtip Poison",
+   "spec": "Fortitude",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 503160,
+   "ranks": {
+    "2": 503156,
+    "3": 503157,
+    "4": 503158,
+    "5": 503159,
+    "6": 503160
+   },
+   "spellIds": [
+    503156,
+    503157,
+    503158,
+    503159,
+    503160,
+    803195
+   ],
+   "cost": 12500,
+   "levelReq": 34,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_poisonclaw_Border",
+   "description": "Spray poison on an enemy and all enemies near them, dealing 38 Nature damage and reducing their attack speed by 20% for 15 sec."
+  },
+  "Venomwing Form": {
+   "name": "Venomwing Form",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 520307,
+   "ranks": {
+    "1": 520307
+   },
+   "spellIds": [
+    520307
+   ],
+   "cost": 800,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Shapeshift into a |cFFFFFFFFVenom Spitter|r, increasing your movement speed by 40%, allowing you to hover, and slowing your falling speed. \r\n\r\nWhile falling, you can control your direction and will slowly descend downwards. Can only be used outdoors."
+  },
+  "Venoxis Rage": {
+   "name": "Venoxis Rage",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707224,
+   "ranks": null,
+   "spellIds": [
+    707224
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nature_poisoncleansingtotem",
+   "description": "Your Mycosis now enrages your Fungarians for 6 seconds, increasing its damage and attack speed by 30% for 6 seconds."
+  },
+  "Versatile and Deadly": {
+   "name": "Versatile and Deadly",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681052,
+   "ranks": null,
+   "spellIds": [
+    681052
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_fishing_f_seascorpion3",
+   "description": "Reduce all damage taken while in Beetle Form by -3% and increases your movement speed while in Spider Form by 5%."
+  },
+  "Vile Fangs": {
+   "name": "Vile Fangs",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706036,
+   "ranks": null,
+   "spellIds": [
+    706036
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_SoulFire_Shadow",
+   "description": "Periodic damage dealt now has a 10% chance to generate a Brood Mark."
+  },
+  "Vile Fury": {
+   "name": "Vile Fury",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706006,
+   "ranks": null,
+   "spellIds": [
+    706006
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_RemoveDisease",
+   "description": "Reduces the Rage cost of Hivebreak and Carapace Crash by -3 and increases your chance to hit by 2%."
+  },
+  "Vile Sting": {
+   "name": "Vile Sting",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 805097,
+   "ranks": {
+    "1": 805097
+   },
+   "spellIds": [
+    805097
+   ],
+   "cost": 450,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Taunts an enemy target to attack you for 3 sec.  If the target is tauntable and not currently targeting you, you trigger your current |cFFFFFFFFVenoms|r."
+  },
+  "Virulent Opening": {
+   "name": "Virulent Opening",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 574353,
+   "ranks": null,
+   "spellIds": [
+    574353
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_dungeon_plaguefall_dominavenomblade",
+   "description": "Increases the critical strike chance of your poisons by 20% on enemies above 75% health."
+  },
+  "Virulent Resonance": {
+   "name": "Virulent Resonance",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804969,
+   "ranks": null,
+   "spellIds": [
+    804969
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\epic_rpg_icon_pack_poison_icon_0005s_0000_fire_Border",
+   "description": "Increases the effectiveness of Brood Marks by 10% and your hit chance by 5%."
+  },
+  "Vizier Form": {
+   "name": "Vizier Form",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504798,
+   "ranks": null,
+   "spellIds": [
+    504798
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\achievement_boss_eldernadox",
+   "description": "$bb"
+  },
+  "Vulnerability": {
+   "name": "Vulnerability",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 574354,
+   "ranks": null,
+   "spellIds": [
+    574354
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_DualWeild",
+   "description": "Level 40 Passive\nWhile Blight Venom is active, your auto attacks now have a 10% chance to apply it.\n\nIn addition, your offensive critical strikes now increase the target's spell damage taken by 10% for 15 seconds."
+  },
+  "Wand": {
+   "name": "Wand",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 5019,
+   "ranks": null,
+   "spellIds": [
+    5019
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Weakening Venom": {
+   "name": "Weakening Venom",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805778,
+   "ranks": null,
+   "spellIds": [
+    805778
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\trade_alchemy_dpotion_a23",
+   "description": "Activate Weakening Venom for 120 minutes, giving your casts a 35% chance to deal 59 + 12.5% SP Shadow damage and reduce an enemy's attack power by 234 for 8 seconds.\n\nYou can have a maximum of 2 unique Venoms active at a time."
+  },
+  "Weaver Form": {
+   "name": "Weaver Form",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706940,
+   "ranks": null,
+   "spellIds": [
+    706940
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\WeaverForm",
+   "description": "$b1"
+  },
+  "Web Wrap": {
+   "name": "Web Wrap",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 504335,
+   "ranks": {
+    "1": 504335
+   },
+   "spellIds": [
+    504335
+   ],
+   "cost": 1200,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Wrap your target in a cocoon, stunning them for 5 sec."
+  },
+  "Wicked Barbs": {
+   "name": "Wicked Barbs",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504402,
+   "ranks": null,
+   "spellIds": [
+    504402
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_poisons",
+   "description": "Your Barbed Stinger and Chitin Rush now applies Wicked Poison.Wicked PoisonDeals 60 + 5.67% shadow SP + 3.2% AP Shadow Damage every 2 sec for 6 seconds."
+  },
+  "Wicked Poison": {
+   "name": "Wicked Poison",
+   "spec": "Fortitude",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705982,
+   "ranks": null,
+   "spellIds": [
+    705982
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Creature_Poison_05",
+   "description": "Critical strikes with Chitin Rush, Carapace Crash, and Hivebreak now apply Wicked Poison.Wicked PoisonDeals 60 + 5.67% shadow SP + 3.2% AP Shadow Damage every 2 sec for 6 seconds."
+  },
+  "Widow's Fang": {
+   "name": "Widow's Fang",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504322,
+   "ranks": null,
+   "spellIds": [
+    504322
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_viciousalliancespider",
+   "description": "Level 50 Passive\nYour Venom Fang now costs -20% less Energy when while Widow's Kiss is active."
+  },
+  "Widow's Kiss": {
+   "name": "Widow's Kiss",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807600,
+   "ranks": null,
+   "spellIds": [
+    807600
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_boss_maexxna",
+   "description": "Every 3rd Venom Fang becomes Widow's Kiss, dealing increased damage and granting you increased haste.Widow's Kiss (Transform)Applies 1 Brood Mark\nBite an enemy for 41 + 50% shadow SP + 10% AP Shadow damage, increasing your haste by 20% for 4 seconds. Scales with modifiers to Venom Fang."
+  },
+  "Widow's Watch": {
+   "name": "Widow's Watch",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706014,
+   "ranks": null,
+   "spellIds": [
+    706014
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Druid_ManaTree",
+   "description": "Allies affected by Shadra's Balm now have a 20% increased chance to resist poison and curse effects."
+  },
+  "Widowmaker": {
+   "name": "Widowmaker",
+   "spec": "Stalking",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 573342,
+   "ranks": {
+    "2": 805513,
+    "3": 805514,
+    "4": 805515,
+    "5": 805516,
+    "6": 805517,
+    "7": 805518,
+    "8": 573341,
+    "9": 573342
+   },
+   "spellIds": [
+    573341,
+    573342,
+    804961,
+    805513,
+    805514,
+    805515,
+    805516,
+    805517,
+    805518
+   ],
+   "cost": 700,
+   "levelReq": 16,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_spidermountc5",
+   "description": "|cffff3232Requires Spider Form|r\r\n|cff66ff66Consumes Brood Marks|r\r\nInject shadow venom into an enemy, dealing Shadow damage and reducing their healing received by 50% for 8 sec.\r\n   1 Mark: 95 Shadow damage.\r\n   2 Marks: 122 Shadow damage.\r\n   3 Marks: 156 Shadow damage.\r\n   4 Marks: 198 Shadow damage.\r\n   5 Marks: 266 Shadow damage."
+  },
+  "Wilt": {
+   "name": "Wilt",
+   "spec": "Venom",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 620072,
+   "ranks": {
+    "2": 620067,
+    "3": 620068,
+    "4": 620069,
+    "5": 620070,
+    "6": 620071,
+    "7": 620072
+   },
+   "spellIds": [
+    620067,
+    620068,
+    620069,
+    620070,
+    620071,
+    620072,
+    804982
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_NatureWrath_Border",
+   "description": "Wilt the life of an enemy with vile poison, dealing 234 Nature damage over 18 sec."
+  },
+  "Wilting Away": {
+   "name": "Wilting Away",
+   "spec": "Venom",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706012,
+   "ranks": null,
+   "spellIds": [
+    706012
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_NatureTouchGrow",
+   "description": "Your Wilt now strikes an additional nearby enemy."
+  },
+  "Withered": {
+   "name": "Withered",
+   "spec": "Stalking",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706038,
+   "ranks": null,
+   "spellIds": [
+    706038
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_DemonicCircleSummon",
+   "description": "Increases the spell power scaling of Withering Venom by 15%."
+  },
+  "Withering Venom": {
+   "name": "Withering Venom",
+   "spec": "Stalking",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 707090,
+   "ranks": {
+    "2": 707084,
+    "3": 707085,
+    "4": 707086,
+    "5": 707087,
+    "6": 707088,
+    "7": 707089,
+    "8": 707090
+   },
+   "spellIds": [
+    706962,
+    707084,
+    707085,
+    707086,
+    707087,
+    707088,
+    707089,
+    707090
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Creature_Disease_03",
+   "description": "Inject an enemy with a devastating venom, dealing 24 Nature damage every 3 sec for 21 sec. Damage is dealt slowly at first, and builds up over time."
+  },
+  "Worship": {
+   "name": "Worship",
+   "spec": "Vizier",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706016,
+   "ranks": null,
+   "spellIds": [
+    706016
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nature_abolishmagic",
+   "description": "Allows all critical heals to increase periodic healing the target receives from you by 10% for 5 seconds."
+  }
+ }
+}

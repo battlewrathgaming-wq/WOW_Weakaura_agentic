@@ -1,0 +1,4214 @@
+{
+ "class": "RANGER",
+ "display": "Ranger",
+ "classId": 21,
+ "abilityCount": 227,
+ "bySpec": {
+  "General": 62,
+  "Archery": 42,
+  "Class": 39,
+  "Brigand": 39,
+  "Farstrider": 45
+ },
+ "abilities": {
+  "'Tactical' Advantage": {
+   "name": "'Tactical' Advantage",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706748,
+   "ranks": null,
+   "spellIds": [
+    706748
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_passivemastery_(10)_Border",
+   "description": "Knockout and Bushwhack now increases your damage dealt against the target by 10% for 5 seconds."
+  },
+  "2 Bushcraft Gliders": {
+   "name": "2 Bushcraft Gliders",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803673,
+   "ranks": {
+    "2": 803673
+   },
+   "spellIds": [
+    803673
+   ],
+   "cost": 9900,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Craft 2 |cffffffffGliders|r for an ally, causing them to glide while in the air and reducing their damage taken from falling for 1 |4hour:hrs;.\r\n\r\nNot usable while in combat."
+  },
+  "3 Bushcraft Gliders": {
+   "name": "3 Bushcraft Gliders",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803674,
+   "ranks": {
+    "3": 803674
+   },
+   "spellIds": [
+    803674
+   ],
+   "cost": 20000,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Craft 3 |cffffffffGliders|r for an ally, causing them to glide while in the air and reducing their damage taken from falling for 1 |4hour:hrs;.\r\n\r\nNot usable while in combat."
+  },
+  "4 Bushcraft Gliders": {
+   "name": "4 Bushcraft Gliders",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803675,
+   "ranks": {
+    "4": 803675
+   },
+   "spellIds": [
+    803675
+   ],
+   "cost": 31500,
+   "levelReq": 50,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Craft 4 |cffffffffGliders|r for an ally, causing them to glide while in the air and reducing their damage taken from falling for 1 |4hour:hrs;.\r\n\r\nNot usable while in combat."
+  },
+  "A Quick Demise": {
+   "name": "A Quick Demise",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560810,
+   "ranks": null,
+   "spellIds": [
+    560810
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_mongoosebite",
+   "description": "Auto shots now have a 20% chance to extend the duration of your Serrated Shot by 2 sec."
+  },
+  "Adrenaline Rush": {
+   "name": "Adrenaline Rush",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520578,
+   "ranks": null,
+   "spellIds": [
+    520578
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_archerskill19_Border",
+   "description": "Surge with vitality, dispeling all harmful effects from yourself and increasing your movement speed by 40% for 10 seconds.\n\nUsable while stealthed."
+  },
+  "Aerial Assault": {
+   "name": "Aerial Assault",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705068,
+   "ranks": null,
+   "spellIds": [
+    705068
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\icon_orangebird_toy",
+   "description": "Removes the Focus cost of Falcon's Call, allows it to strike 2 additional targets, and increases its range by 10 yds."
+  },
+  "Ambuscade": {
+   "name": "Ambuscade",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705053,
+   "ranks": null,
+   "spellIds": [
+    705053
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_warrior_throwdown_2",
+   "description": "Increases the damage of Skullpiercer and Flank by 20%, plus an additional 35% if you have a polearm equipped."
+  },
+  "An Arrow for Everything": {
+   "name": "An Arrow for Everything",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560812,
+   "ranks": null,
+   "spellIds": [
+    560812
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Diablo3_ArrowRain_Hunter",
+   "description": "Increases the effectiveness of Quivers by 25%."
+  },
+  "Arcane Affinity": {
+   "name": "Arcane Affinity",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 28877,
+   "ranks": null,
+   "spellIds": [
+    28877
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Arcane Torrent": {
+   "name": "Arcane Torrent",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 814292,
+   "ranks": null,
+   "spellIds": [
+    814292
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Archery Master": {
+   "name": "Archery Master",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706281,
+   "ranks": null,
+   "spellIds": [
+    706281
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\artifactability_marksmanhunter_legacyofthewindrunners",
+   "description": "Critical strikes with Quick Shot now generate an additional stack of Advantage."
+  },
+  "Assassin": {
+   "name": "Assassin",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807626,
+   "ranks": null,
+   "spellIds": [
+    803871,
+    807626
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_deadliness",
+   "description": "Increases the duration of Knockout and Crippling Shot by 1 sec."
+  },
+  "Assault": {
+   "name": "Assault",
+   "spec": "Brigand",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 503103,
+   "ranks": {
+    "2": 503099,
+    "3": 503100,
+    "4": 503101,
+    "5": 503102,
+    "6": 503103
+   },
+   "spellIds": [
+    503099,
+    503100,
+    503101,
+    503102,
+    503103,
+    803108
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_ruthlessness",
+   "description": "Assault a low health enemy, dealing 100% Weapon Damage (175% with a dagger equipped) plus an additional 50 Physical damage. If the target is bleeding, this deals 50% increased damage.\r\n\r\nDamage increased by 30% for each stack of |cff8fff7aAdvantage|r.\r\n\r\nOnly usable on enemies below 20% health."
+  },
+  "Auto Attack": {
+   "name": "Auto Attack",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 6603,
+   "ranks": null,
+   "spellIds": [
+    6603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Auto Shot": {
+   "name": "Auto Shot",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 75,
+   "ranks": null,
+   "spellIds": [
+    75
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Backstep": {
+   "name": "Backstep",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800685,
+   "ranks": null,
+   "spellIds": [
+    800685
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_karoz_leap",
+   "description": "Leap backwards up to 10 yds."
+  },
+  "Banditry": {
+   "name": "Banditry",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520574,
+   "ranks": null,
+   "spellIds": [
+    520574
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_CheatDeath",
+   "description": "Increases your critical strike chance by 2% and Focus regeneration by 15%."
+  },
+  "Barbed Quills": {
+   "name": "Barbed Quills",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800077,
+   "ranks": null,
+   "spellIds": [
+    800077
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Gouge",
+   "description": "Damage dealt by Wild Strike and Quills will now tear into enemies, causing them to bleed for 78 Physical damage over 9 seconds, stacking 4 times.\n\nDamage dealt by Quills now spreads your periodic effects to 5 enemies within 10 yds and extends their duration by 2 sec."
+  },
+  "Battle Prowess": {
+   "name": "Battle Prowess",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805888,
+   "ranks": null,
+   "spellIds": [
+    805888
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\skill_icon_skill105_Border",
+   "description": "Increases chance to hit with all spells and attacks by 1% for you and party and raid members.\n\nDoes not stack with similar effects."
+  },
+  "Battle Screech": {
+   "name": "Battle Screech",
+   "spec": "Farstrider",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 706399,
+   "ranks": {
+    "2": 706394,
+    "3": 706395,
+    "4": 706396,
+    "5": 706397,
+    "6": 706398,
+    "7": 706399
+   },
+   "spellIds": [
+    705070,
+    706394,
+    706395,
+    706396,
+    706397,
+    706398,
+    706399
+   ],
+   "cost": 12000,
+   "levelReq": 36,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_druidflightzandalaritroll",
+   "description": "Empower party and raid members within 40 yds, increasing their attack or spell power by 80 for 15 sec.\r\n\r\nDoes not stack with similar effects."
+  },
+  "Beatdown": {
+   "name": "Beatdown",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705047,
+   "ranks": null,
+   "spellIds": [
+    705047
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_KidneyShot",
+   "description": "Level 20 Passive\nAuto attacks now have a 5% chance to reveal a fault in the enemy's defenses, causing your next instance of Physical ability damage to ignore Armor.\n\nChance increased by 15% while wielding a polearm."
+  },
+  "Befriend Beast": {
+   "name": "Befriend Beast",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 562301,
+   "ranks": {
+    "1": 562301
+   },
+   "spellIds": [
+    562301
+   ],
+   "cost": 18000,
+   "levelReq": 32,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Befriend a beast, taking control of it for 40 sec (8 sec vs players). Only one beast can be befriended at a time."
+  },
+  "Blackjack": {
+   "name": "Blackjack",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 520568,
+   "ranks": {
+    "1": 520568
+   },
+   "spellIds": [
+    520568
+   ],
+   "cost": 500,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Knock an enemy over the head, sapping them for 40 sec (8 sec vs players).\r\n\r\nCan only affect 1 target at a time. Damage dealt will interrupt this effect. Can only be used on Humanoids and Beasts and cannot be used in combat."
+  },
+  "Bleeding Edge": {
+   "name": "Bleeding Edge",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300460,
+   "ranks": null,
+   "spellIds": [
+    300460
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_misc_thornnecklace",
+   "description": "Level 40 Passive\nAllows the periodic damage dealt by Serrated Shot to critically strike."
+  },
+  "Block": {
+   "name": "Block",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 107,
+   "ranks": null,
+   "spellIds": [
+    107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Bloody Focus": {
+   "name": "Bloody Focus",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520804,
+   "ranks": null,
+   "spellIds": [
+    520804
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Gouge",
+   "description": "Reduces the Focus cost of Toxic Dart by -15."
+  },
+  "Blow the Horns!": {
+   "name": "Blow the Horns!",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573042,
+   "ranks": null,
+   "spellIds": [
+    573042
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_horn_b_01",
+   "description": "Reduces the cooldown of Horn spells by -25%."
+  },
+  "Blur": {
+   "name": "Blur",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520369,
+   "ranks": null,
+   "spellIds": [
+    520369
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_Invisibilty",
+   "description": "Increases your chance to dodge and parry by 4%."
+  },
+  "Boots of Elvenkind": {
+   "name": "Boots of Elvenkind",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704317,
+   "ranks": null,
+   "spellIds": [
+    704317
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ivn_boot_cloth_warfrontshorde_b_01",
+   "description": "Increases your Agility by 5% and reduces the duration of movement slowing effects on you by -20%."
+  },
+  "Bounty Hunter": {
+   "name": "Bounty Hunter",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803114,
+   "ranks": null,
+   "spellIds": [
+    803114
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_polearm_2h_pandariaquest_b_01",
+   "description": "Damage dealt by Flank and Rusty Shiv now increases the target's damage taken from your Advantage spenders by 25% for 8 seconds."
+  },
+  "Briar Veil": {
+   "name": "Briar Veil",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800084,
+   "ranks": null,
+   "spellIds": [
+    800084
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_natureempower_Border",
+   "description": "Thorns and leaves swirl around you, masking your movements for 10 seconds, increasing your dodge chance by 50% and causing dodging attacks to restore 2% maximum health and 5 Focus."
+  },
+  "Brutal Shot": {
+   "name": "Brutal Shot",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 570014,
+   "ranks": null,
+   "spellIds": [
+    570014
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_archerskill31_Border",
+   "description": "Fire a volley of powerful shots that pierce through Armor, dealing 450% Ranged Weapon Damage plus 300 to all targets in a 40 yd line.\n\nWhile Skirmish is active this ability is guaranteed to critically strike."
+  },
+  "Bushcraft": {
+   "name": "Bushcraft",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 800267,
+   "ranks": null,
+   "spellIds": [
+    800267
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Bushcraft Glider": {
+   "name": "Bushcraft Glider",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802811,
+   "ranks": {
+    "1": 802811
+   },
+   "spellIds": [
+    802811
+   ],
+   "cost": 2000,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Craft a |cffffffffGlider|r for an ally, causing them to glide while in the air and reducing their damage taken from falling for 1 |4hour:hrs;.\r\n\r\nNot usable while in combat."
+  },
+  "Bushwhack": {
+   "name": "Bushwhack",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 557333,
+   "ranks": {
+    "1": 557333
+   },
+   "spellIds": [
+    557333
+   ],
+   "cost": 6600,
+   "levelReq": 24,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Appear behind your target from the shadows, stunning them for 4 sec."
+  },
+  "Camper": {
+   "name": "Camper",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705026,
+   "ranks": null,
+   "spellIds": [
+    705026
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_racial_makecamp",
+   "description": "Reduces the cast time of your Bushcraft abilities by -50%."
+  },
+  "Campsite": {
+   "name": "Campsite",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804682,
+   "ranks": {
+    "1": 804682
+   },
+   "spellIds": [
+    804682
+   ],
+   "cost": 6600,
+   "levelReq": 25,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Construct a |cffffffffCampsite|r and place a |cffffffffCampfire|r nearby for until cancelled. Allies may interact with it to become well rested for 2 |4hour:hrs;."
+  },
+  "Close Quarters": {
+   "name": "Close Quarters",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301146,
+   "ranks": null,
+   "spellIds": [
+    301146
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Warrior_Cleave",
+   "description": "Increases your attack power and Agility by 3%."
+  },
+  "Command Aura": {
+   "name": "Command Aura",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524600,
+   "ranks": null,
+   "spellIds": [
+    524600
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_trueshot",
+   "description": "Emanate an aura for 15 seconds, causing allied players to deal 35% ranged AP additional damage as Stormstrike Damage when they deal direct damage.\n\nApplies Exhaustion, preventing you from benefiting from similar effects for 1 minute."
+  },
+  "Coordination": {
+   "name": "Coordination",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520621,
+   "ranks": null,
+   "spellIds": [
+    520621
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_BeastWithin",
+   "description": "Your War Falcons and Dragonhawks now grant you a stack of Coordination when they deal damage.\nCoordination (Proc)Increases your critical strike chance and critical damage by 1% for 15 seconds, stacking 10 times."
+  },
+  "Corrosive Poison": {
+   "name": "Corrosive Poison",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572372,
+   "ranks": null,
+   "spellIds": [
+    572372
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_PiercingShots",
+   "description": "Your ranged abilities against Poisoned targets now ignores 25% of enemy armor."
+  },
+  "Crippling Shot": {
+   "name": "Crippling Shot",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804725,
+   "ranks": null,
+   "spellIds": [
+    804725
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Custom_dismounting_Shot",
+   "description": "Fire a crippling shot at an enemy slowing movement speed by -50% and knocking them off their mounts, making them unable to mount again for 5 seconds."
+  },
+  "Cunning": {
+   "name": "Cunning",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520615,
+   "ranks": null,
+   "spellIds": [
+    520615
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\misc_legionfall_hunter",
+   "description": "Increases your Focus regeneration by 15%."
+  },
+  "Cure Heavy Leather": {
+   "name": "Cure Heavy Leather",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804792,
+   "ranks": {
+    "1": 804792
+   },
+   "spellIds": [
+    804792
+   ],
+   "cost": 9900,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Turn 1 |cFFFFFFFFHeavy Leather|r into 3 |cFFFFFFFFCrude Leather|r that you can use for your Craft abilities."
+  },
+  "Cure Light Leather": {
+   "name": "Cure Light Leather",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804790,
+   "ranks": {
+    "1": 804790
+   },
+   "spellIds": [
+    804790
+   ],
+   "cost": 100,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Turn 1 |cffffffffLight Leather|r into 1 |cffffffffCrude Leather|r that you can use for your craft abilities."
+  },
+  "Cure Medium Leather": {
+   "name": "Cure Medium Leather",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804791,
+   "ranks": {
+    "1": 804791
+   },
+   "spellIds": [
+    804791
+   ],
+   "cost": 500,
+   "levelReq": 15,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Turn 1 |cFFFFFFFFMedium Leather|r into 2 |cFFFFFFFFCrude Leather|r that you can use for your craft abilities."
+  },
+  "Cure Rugged Leather": {
+   "name": "Cure Rugged Leather",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804794,
+   "ranks": {
+    "1": 804794
+   },
+   "spellIds": [
+    804794
+   ],
+   "cost": 31500,
+   "levelReq": 50,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Turn 1 |cFFFFFFFFRugged Leather|r into 5 |cFFFFFFFFCrude Leather|r that you can use for your craft abilities."
+  },
+  "Cure Thick Leather": {
+   "name": "Cure Thick Leather",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804793,
+   "ranks": {
+    "1": 804793
+   },
+   "spellIds": [
+    804793
+   ],
+   "cost": 20000,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Turn 1 |cFFFFFFFFThick Leather|r into 4 |cFFFFFFFFCrude Leather|r that you can use for your Craft abilities."
+  },
+  "Cutthroat": {
+   "name": "Cutthroat",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800359,
+   "ranks": null,
+   "spellIds": [
+    800359
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_Archerskill_04_nobg_Border",
+   "description": "Shoot a powerful arrow that deals Weapon Damage plus 40 and stuns the target for 1 seconds. \n\nDuration increased by 1 sec per stack of Advantage."
+  },
+  "Dastardly": {
+   "name": "Dastardly",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706483,
+   "ranks": null,
+   "spellIds": [
+    706483
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_HungerforBlood",
+   "description": "Level 50 Passive\nIncreases your critical damage dealt by 15% on enemies above 80% health or below 20% health."
+  },
+  "Deadeye": {
+   "name": "Deadeye",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300700,
+   "ranks": null,
+   "spellIds": [
+    300700
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_bloodyeye",
+   "description": "Increases the range of your ranged abilities and Auto Shot by 5 yds."
+  },
+  "Deadshot": {
+   "name": "Deadshot",
+   "spec": "Archery",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 573246,
+   "ranks": {
+    "2": 573243,
+    "3": 573244,
+    "4": 573245,
+    "5": 573246
+   },
+   "spellIds": [
+    520227,
+    573243,
+    573244,
+    573245,
+    573246
+   ],
+   "cost": 12500,
+   "levelReq": 34,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_bloodarrow_Border",
+   "description": "|cff8fff7aGenerates 2 Advantage|r\r\nShoot a powerful arrow at the target dealing 293% Ranged Weapon Damage plus 32.\r\n\r\nOnly usable on enemies below 20% health."
+  },
+  "Defense of the Ancients": {
+   "name": "Defense of the Ancients",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705094,
+   "ranks": null,
+   "spellIds": [
+    705094
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\skill_icon_skill118_Border",
+   "description": "You now emanate an aura around you, increasing the Armor of party and raid members by 390.\n\nDoes not stack with similar effects."
+  },
+  "Deft Hands": {
+   "name": "Deft Hands",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707417,
+   "ranks": null,
+   "spellIds": [
+    707417
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_paladin_handoflight",
+   "description": "Increases your melee and ranged haste by 5%."
+  },
+  "Devastating Shots": {
+   "name": "Devastating Shots",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705032,
+   "ranks": null,
+   "spellIds": [
+    705032
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_trickshot",
+   "description": "Increases your critical strike chance by 2% and your hit chance by 1%."
+  },
+  "Dice Games": {
+   "name": "Dice Games",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801438,
+   "ranks": null,
+   "spellIds": [
+    801438
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_rollthebones",
+   "description": "Increases the critical strike chance of Wild Strike and Assault by 5%."
+  },
+  "Dirty Blades": {
+   "name": "Dirty Blades",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680276,
+   "ranks": null,
+   "spellIds": [
+    680276
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_rollthebones02",
+   "description": "For 4 seconds, your melee auto attacks deal an additional 30% (doubled with a dagger equipped) of the damage dealt as Nature damage and reduces your target's healing received by -20% for 8 seconds, stacking 2 times.\n\nDuration increased by 4 sec for each stack of Advantage.\n\nUsable while in Elude."
+  },
+  "Dirty Fighter": {
+   "name": "Dirty Fighter",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806978,
+   "ranks": null,
+   "spellIds": [
+    705044,
+    806978
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_monk_quipunch",
+   "description": "$7f"
+  },
+  "Dodge": {
+   "name": "Dodge",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 81,
+   "ranks": null,
+   "spellIds": [
+    81
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Double The Pace": {
+   "name": "Double The Pace",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705031,
+   "ranks": null,
+   "spellIds": [
+    705031
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Diablo3_ArrowRain_Hunter",
+   "description": "Increases all party and raid member's melee and ranged haste by 10%. Does not stack with similar effects.\n\nIn addition, increases your critical strike chance by 2%."
+  },
+  "Dragonhawk Tamer": {
+   "name": "Dragonhawk Tamer",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573056,
+   "ranks": null,
+   "spellIds": [
+    573056
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_pet_dragonhawk",
+   "description": "Using a Horn now summons a Dragonhawk to assist you in combat for 15 seconds."
+  },
+  "Dream Flowers": {
+   "name": "Dream Flowers",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92117,
+   "ranks": null,
+   "spellIds": [
+    92117
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_legion_faction_dreamweavers",
+   "description": "Level 10 Passive\nYour damaging critical strikes now spawn a green Dream Flower at a random location within 15 yds of you. Dream Flower (Spawner)When an ally runs over the flower, they consume it to heal for 3% maximum health and gain 40% increased movement speed for 5 seconds.Can only occur once per sec."
+  },
+  "Dual Wield": {
+   "name": "Dual Wield",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 674,
+   "ranks": null,
+   "spellIds": [
+    674
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Dust Toss": {
+   "name": "Dust Toss",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807820,
+   "ranks": {
+    "1": 807820
+   },
+   "spellIds": [
+    807820
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cff8fff7aGenerates 1 Advantage|r\r\nThrow dust in an enemy's eyes, reducing their chance to hit by 100% and dazing them for 3 sec.\r\n\r\nWhile in combat, you remain stealthed for 2 sec after using |cffffffffDust Toss|r."
+  },
+  "Elude": {
+   "name": "Elude",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801345,
+   "ranks": {
+    "1": 801345
+   },
+   "spellIds": [
+    801345
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Allows you to sneak around in stealth. Reducing your movement speed by 20% while stealthed. Lasts until cancelled.\r\n\r\nCannot be used while in combat."
+  },
+  "Elusive Character": {
+   "name": "Elusive Character",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560340,
+   "ranks": null,
+   "spellIds": [
+    560340
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_16_shadow_swords_Border",
+   "description": "Increases your damage dealt by 10% for 12 seconds after leaving Elude."
+  },
+  "Elven Enchantments": {
+   "name": "Elven Enchantments",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705054,
+   "ranks": null,
+   "spellIds": [
+    705054
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_character_nightelf_female",
+   "description": "$7d"
+  },
+  "Elven Tactics": {
+   "name": "Elven Tactics",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560701,
+   "ranks": null,
+   "spellIds": [
+    560701
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ui_darkshore_warfront_alliance_archer",
+   "description": "You now have a -20% chance to not consume Advantage on cast."
+  },
+  "Emerald Arrow": {
+   "name": "Emerald Arrow",
+   "spec": "Farstrider",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 806924,
+   "ranks": {
+    "2": 806921,
+    "3": 806922,
+    "4": 806923,
+    "5": 806924
+   },
+   "spellIds": [
+    804712,
+    806921,
+    806922,
+    806923,
+    806924
+   ],
+   "cost": 12000,
+   "levelReq": 36,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_emerald_staff_b_Border",
+   "description": "Set up a powerful magical arrow and then shoot it, dealing 19 Nature damage to the target, increased by 30% for each stack of |cff8fff7aAdvantage|r.\r\n\r\nCreates an enchanted flare on the ground, causing nearby enemies to take 10 Nature damage every 2 sec, lasting 2 sec for each stack of |cff8fff7aAdvantage|r."
+  },
+  "Endurance Training": {
+   "name": "Endurance Training",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705039,
+   "ranks": null,
+   "spellIds": [
+    705039
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_recuperate",
+   "description": "Increases your maximum Focus by 20."
+  },
+  "Excessive But Necessary": {
+   "name": "Excessive But Necessary",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804939,
+   "ranks": null,
+   "spellIds": [
+    804939
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_MindSteal",
+   "description": "Reduces the cooldown of Elude and Knockout by -4 sec."
+  },
+  "Falcon Charmer": {
+   "name": "Falcon Charmer",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705076,
+   "ranks": null,
+   "spellIds": [
+    705076
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\trade_archaeology_carved_wildhammer_gryphon_figurine",
+   "description": "Increases the duration of War Falcons by 3 sec."
+  },
+  "Falcon Diving": {
+   "name": "Falcon Diving",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520783,
+   "ranks": null,
+   "spellIds": [
+    520783
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_unholybird_Border",
+   "description": "Killing an enemy that yields experience or honor now summons a War Falcon to aid you in combat for 12 seconds. Can only occur once every 4 sec."
+  },
+  "Falcon Guide": {
+   "name": "Falcon Guide",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520586,
+   "ranks": null,
+   "spellIds": [
+    520586
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_redbird",
+   "description": "Falconstrike and Battle Screech now increase your movement speed by 30% for 3 seconds."
+  },
+  "Falcon Scout": {
+   "name": "Falcon Scout",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561395,
+   "ranks": {
+    "1": 561395
+   },
+   "spellIds": [
+    561395
+   ],
+   "cost": 4500,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Summon a falcon and see through its eyes for 1 min, allowing you to see stealthed and invisible enemies and to track humanoids for the duration.\r\n\r\nUsable while in |cffffffffElude|r."
+  },
+  "Falcon's Aid": {
+   "name": "Falcon's Aid",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705075,
+   "ranks": null,
+   "spellIds": [
+    705075
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_aspectoftheironhawk",
+   "description": "Periodic damage dealt now has a 10% chance to summon a War Falcon to aid you in battle for 6 seconds."
+  },
+  "Falcon's Call": {
+   "name": "Falcon's Call",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804715,
+   "ranks": null,
+   "spellIds": [
+    804715
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_skyreach_castdown",
+   "description": "Call down war falcons upon a targeted area, slowing up to 8 enemies within the area by -60% for 5 seconds.\n\nA Falcon is summoned for each enemy affected for 12 seconds."
+  },
+  "Falconstrike": {
+   "name": "Falconstrike",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573060,
+   "ranks": null,
+   "spellIds": [
+    573060
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_felarakkoa_focusedblast",
+   "description": "$37"
+  },
+  "Feral Pressure": {
+   "name": "Feral Pressure",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 534605,
+   "ranks": {
+    "1": 534605
+   },
+   "spellIds": [
+    534605
+   ],
+   "cost": 37500,
+   "levelReq": 48,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "The current party or raid member targeted will receive the threat caused by your next damaging attack and all actions taken for 4 sec afterwards."
+  },
+  "Flank": {
+   "name": "Flank",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 582530,
+   "ranks": {
+    "1": 804940,
+    "2": 805082,
+    "3": 805083,
+    "4": 805084,
+    "5": 805085,
+    "6": 805086,
+    "7": 805087,
+    "8": 805088,
+    "9": 582530
+   },
+   "spellIds": [
+    582530,
+    804940,
+    805082,
+    805083,
+    805084,
+    805085,
+    805086,
+    805087,
+    805088
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cff8fff7aGenerates 2 Advantage|r\r\nFlank an enemy from behind, taking them by surprise and dealing 150% Weapon Damage (300% if a dagger is equipped) plus 10 Physical damage. "
+  },
+  "Focused Fighter": {
+   "name": "Focused Fighter",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807206,
+   "ranks": null,
+   "spellIds": [
+    807206
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_CheapShot",
+   "description": "Reduces the Focus cost of Flank, Blackjack, and Wild Strike by -10%."
+  },
+  "Footpad's Adaptation": {
+   "name": "Footpad's Adaptation",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 523493,
+   "ranks": {
+    "1": 523489,
+    "2": 523490,
+    "3": 523491,
+    "4": 523492,
+    "5": 523493
+   },
+   "spellIds": [
+    523489,
+    523490,
+    523491,
+    523492,
+    523493
+   ],
+   "cost": 1300,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increase the friendly target's armor by 105 and all primary attributes by 4 for 30 min.\r\n\r\n@ext:Does not stack with other similar effects.:ext@"
+  },
+  "Forest Dweller": {
+   "name": "Forest Dweller",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524864,
+   "ranks": null,
+   "spellIds": [
+    524864
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_druid_manatree",
+   "description": "While in Elude, gain 20% increased movement speed and regenerate 3% maximum health every 3 sec."
+  },
+  "Forest Fighter": {
+   "name": "Forest Fighter",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706282,
+   "ranks": null,
+   "spellIds": [
+    706282
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_accurate_bow_b_Border",
+   "description": "Your Skullpiercers or Emerald Arrows used with 5 stacks of Advantage now reduce the cooldown of Woodland Arrow by -5 sec."
+  },
+  "Forest Herald": {
+   "name": "Forest Herald",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800150,
+   "ranks": null,
+   "spellIds": [
+    800150
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_druid_treeoflife_Red",
+   "description": "Casting Toxic Dart and abilities that spend stacks of Advantage now have a 20% chance to spawn a green Dreamflower at a random location nearby within 15 yds of you.Dream Flower (Spawner)When an ally runs over the flower, they consume it to heal for 3% maximum health and gain 40% increased movement speed for 5 seconds."
+  },
+  "Forestwood Key": {
+   "name": "Forestwood Key",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804759,
+   "ranks": {
+    "1": 804759
+   },
+   "spellIds": [
+    804759
+   ],
+   "cost": 800,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Creates a temporary magical grove key to open locks that require up to 25 lockpicking skill."
+  },
+  "Freedom": {
+   "name": "Freedom",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520628,
+   "ranks": null,
+   "spellIds": [
+    520628
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_tournaments_symbol_bloodelf",
+   "description": "Free up to 10 nearby allies within 15 yds of you for 8 seconds, causing them to become immune to roots and snares, and allowing their critical strikes to increase their movement speed by 30% for 5 seconds."
+  },
+  "Frenzy": {
+   "name": "Frenzy",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520492,
+   "ranks": null,
+   "spellIds": [
+    520492
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_druid_treeoflife_Red",
+   "description": "Enrage all nearby allies, increasing their haste by 30% for 20 seconds.\n\nAfter being affected by this spell, allies cannot benefit from similar effects for 5 minutes."
+  },
+  "Grace": {
+   "name": "Grace",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705092,
+   "ranks": null,
+   "spellIds": [
+    705092
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_archerskill10_Border",
+   "description": "Increases your Agility and movement speed by 4%."
+  },
+  "Grappling Arrows": {
+   "name": "Grappling Arrows",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561106,
+   "ranks": null,
+   "spellIds": [
+    561106
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_21_Light_arrow_Border",
+   "description": "Increases the range of Snatch by 15 yds."
+  },
+  "Greater Footpad's Adaptation": {
+   "name": "Greater Footpad's Adaptation",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 523513,
+   "ranks": {
+    "1": 523513
+   },
+   "spellIds": [
+    523513
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increases nearby party and raid member's armor by 285 and all primary attributes by 12 for 30 min."
+  },
+  "Greater Woodsman's Adaptation": {
+   "name": "Greater Woodsman's Adaptation",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680294,
+   "ranks": {
+    "1": 680294
+   },
+   "spellIds": [
+    680294
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Enhance your party and raid members focus, increasing their melee and ranged attack power by 232. Lasts 30 min"
+  },
+  "Grovewood Key": {
+   "name": "Grovewood Key",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807959,
+   "ranks": {
+    "3": 807959
+   },
+   "spellIds": [
+    807959
+   ],
+   "cost": 14000,
+   "levelReq": 36,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Creates a temporary magical grove key to open locks that require up to 200 lockpicking skill."
+  },
+  "Guidance": {
+   "name": "Guidance",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 532261,
+   "ranks": null,
+   "spellIds": [
+    532261
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_garrison_orangebird",
+   "description": "Increases your Physical and Nature damage dealt by 1% for each War Falcon or Dragonhawk you have active."
+  },
+  "Guile of the Cutthroat": {
+   "name": "Guile of the Cutthroat",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560531,
+   "ranks": null,
+   "spellIds": [
+    560531
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shoulder_mail_raidhunter_l_01",
+   "description": "Increases party and raid member's melee and ranged attack power by 5%. Does not stack with similar effects.\n\nIn addition, increases your damage dealt by 3%."
+  },
+  "Guile of the Ranger": {
+   "name": "Guile of the Ranger",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520353,
+   "ranks": null,
+   "spellIds": [
+    520353
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_archerskill27_Border",
+   "description": "Your Instinct now additionally increases your critical strike rating by 20% of your Agility."
+  },
+  "Guise": {
+   "name": "Guise",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520753,
+   "ranks": null,
+   "spellIds": [
+    520753
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_StayofExecution",
+   "description": "Instantly generates 5 stacks of Advantage and allows you see nearby stealthed enemies for 5 seconds.\n\nUsable while stealthed."
+  },
+  "Gutpiercer": {
+   "name": "Gutpiercer",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573059,
+   "ranks": null,
+   "spellIds": [
+    573059
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_bloodsplatter",
+   "description": "Damage dealt by War Falcons and Dragonhawks now has a 15% chance to reduce the enemy's resistances by 75 and increase their Magic damage taken by -2% for 15 seconds."
+  },
+  "Hawkeye": {
+   "name": "Hawkeye",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800358,
+   "ranks": null,
+   "spellIds": [
+    800358
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_SilentHunter",
+   "description": "You now fire an arrow every 3 sec at enemies within 30 yds affected by your Hunting Shot, dealing 75% Ranged Weapon Damage.\n\nScales with Hunting Shot modifiers."
+  },
+  "Headshots Only": {
+   "name": "Headshots Only",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680931,
+   "ranks": null,
+   "spellIds": [
+    680931
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_headshot_Border",
+   "description": "Periodic damage dealt with Serrated Shot and Toxic Dart now increases the damage of your next Precision Shot within 8 seconds by 10%, stacking 10 times."
+  },
+  "Heightened Senses": {
+   "name": "Heightened Senses",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561320,
+   "ranks": null,
+   "spellIds": [
+    561320
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Racial_BearForm",
+   "description": "Reduces the Focus cost Adrenaline Rush by -50% and increases the movement speed granted by 20%."
+  },
+  "Highlander": {
+   "name": "Highlander",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707534,
+   "ranks": null,
+   "spellIds": [
+    707534
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_zone_jadeforest",
+   "description": "Each time you spawn a green Dreamflower you are granted 1 stack of Highlander.Highlander (Stacks)At 3 stacks, your next Falconstrike within 10 seconds deals 25% increased damage and reduces the enemy's healing received by -40% for 8 seconds."
+  },
+  "Highwayman": {
+   "name": "Highwayman",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707744,
+   "ranks": null,
+   "spellIds": [
+    707744
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_druideskill44_Border",
+   "description": "Direct critical strikes while behind your target increase your haste by 15% for 5 seconds, or for your next 2 attacks."
+  },
+  "Hookshot": {
+   "name": "Hookshot",
+   "spec": "Brigand",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 802397,
+   "ranks": {
+    "2": 802394,
+    "3": 802395,
+    "4": 802396,
+    "5": 802397
+   },
+   "spellIds": [
+    800360,
+    802394,
+    802395,
+    802396,
+    802397
+   ],
+   "cost": 12000,
+   "levelReq": 36,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_versatility",
+   "description": "Launch a hook at a target attempting to lodge it into an open wound, dealing 119 Physical damage. \r\n\r\nIf the target is bleeding, you can reactivate this to pull yourself to them, dealing 150% Weapon Damage and generating 2 |cff8fff7aAdvantage|r"
+  },
+  "Horn of Alacrity": {
+   "name": "Horn of Alacrity",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806360,
+   "ranks": null,
+   "spellIds": [
+    806360
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\FarstriderHorn",
+   "description": "Generates 1 Advantage\nEmanate an aura for 30 seconds that grants 5% increased haste to party and raid members. Does not stack with similar effects.\n\nWhile active, you generate 3 Focus every 1 sec."
+  },
+  "Horn of Endurance": {
+   "name": "Horn of Endurance",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 806359,
+   "ranks": {
+    "1": 806359
+   },
+   "spellIds": [
+    806359
+   ],
+   "cost": 70,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cff8fff7aGenerates 1 Advantage|r\r\nEmanate an aura for 30 sec that grants allies a 30% chance when they cast a spell or ability to heal themselves for 4.\r\n\r\nWhile active, you generate 3 Focus every 1 sec.\r\n\r\n@ext:All |cffffffffRanger's Horn|r spells share a cooldown.:ext@"
+  },
+  "Horn of Perseverance": {
+   "name": "Horn of Perseverance",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800088,
+   "ranks": {
+    "1": 800088
+   },
+   "spellIds": [
+    800088
+   ],
+   "cost": 12000,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cff8fff7aGenerates 1 Advantage|r\r\nEmanate an aura for 30 sec that reduces the resource costs of spells by 10% for allies within 100 yds.\r\n\r\nWhile active, you generate 3 Focus every 1 sec.\r\n\r\n@ext:All |cffffffffRanger's Horn|r spells share a cooldown.:ext@"
+  },
+  "Horn of War": {
+   "name": "Horn of War",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800086,
+   "ranks": null,
+   "spellIds": [
+    800086
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Horn_03",
+   "description": "Generates 1 Advantage\nEmanate an aura for 30 seconds that grants 5% increased critical strike chance to party and raid members. Does not stack with similar effects.\n\nWhile active, you generate 3 Focus every 1 sec."
+  },
+  "Hunting Quiver": {
+   "name": "Hunting Quiver",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800262,
+   "ranks": {
+    "1": 800262
+   },
+   "spellIds": [
+    800262
+   ],
+   "cost": 39500,
+   "levelReq": 44,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increases your damage against Beasts and Dragonkin by 20% and your critical strike chance against them by 10%.\r\n\r\nOnly 1 |cffffffffQuiver|r may be active at a time.\r\n\r\n@ext:Shares a cooldown with other |cffffffffQuivers|r.:ext@"
+  },
+  "Hunting Shot": {
+   "name": "Hunting Shot",
+   "spec": "Archery",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 547205,
+   "ranks": {
+    "2": 547202,
+    "3": 547203,
+    "4": 547204,
+    "5": 547205
+   },
+   "spellIds": [
+    547202,
+    547203,
+    547204,
+    547205,
+    801191
+   ],
+   "cost": 12000,
+   "levelReq": 36,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_arrow_spell_01_Border",
+   "description": "Fire a shot that ricochets between 3 enemies, dealing Ranged Weapon Damage plus 10 to each enemy.\r\n\r\nGenerates 1 stack of |cff8fff7aAdvantage|r for each enemy hit."
+  },
+  "Hunting Tactics": {
+   "name": "Hunting Tactics",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300897,
+   "ranks": null,
+   "spellIds": [
+    300897
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_druideskill08_Border",
+   "description": "Damage dealt by Skullpiercer is increased by 30% against Poisoned targets."
+  },
+  "Hunting with Precision": {
+   "name": "Hunting with Precision",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524867,
+   "ranks": null,
+   "spellIds": [
+    524867
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_archerskill28_Border",
+   "description": "Your Hunting Shot now deals 25% increased damage for each subsequent target it ricochets to."
+  },
+  "Improved Serrated Shot": {
+   "name": "Improved Serrated Shot",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707888,
+   "ranks": null,
+   "spellIds": [
+    707888
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_assassinate2",
+   "description": "Increases the damage of Serrated Shot by 30%."
+  },
+  "Improved Waterskins": {
+   "name": "Improved Waterskins",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573057,
+   "ranks": null,
+   "spellIds": [
+    573057
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_drink_waterskin_03",
+   "description": "Increases the effectiveness of your Waterskins by 25%."
+  },
+  "Incendiary Shot": {
+   "name": "Incendiary Shot",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524870,
+   "ranks": null,
+   "spellIds": [
+    524870
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fire_shot_Border",
+   "description": "Shoot a burning arrow dealing 791 + 35% ranged AP + 45% fire SP Fire damage to an enemy and up to 5 enemies within 6 yds, and causing your next 3 direct damage Advantage spenders to deal 50% of their damage to nearby enemies.\n\nDirect damage increased by 20% for each stack of Advantage."
+  },
+  "Instinct": {
+   "name": "Instinct",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801434,
+   "ranks": {
+    "1": 801434
+   },
+   "spellIds": [
+    801434
+   ],
+   "cost": 15000,
+   "levelReq": 34,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Your instinct kicks in, instantly restoring 40 Focus and increasing your attack power by 40% of your Agility for 15 sec.\r\n\r\nUsable while stealthed."
+  },
+  "Instinctual Combatant": {
+   "name": "Instinctual Combatant",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707319,
+   "ranks": null,
+   "spellIds": [
+    707319
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_MirrorImage",
+   "description": "Casting Instinct now also restores 40 extra Focus and guarantees your next 3 Skullpiercers or Assaults within 20 seconds to critically strike.\n\nIn addition, Instinct now grants you an additional 10% of your Agility as melee attack power."
+  },
+  "Jagged Cuts": {
+   "name": "Jagged Cuts",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807668,
+   "ranks": null,
+   "spellIds": [
+    807668
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_SwiftStrike",
+   "description": "Increases the damage and duration of Toxic Dart and Ravage by 25%."
+  },
+  "Knockout": {
+   "name": "Knockout",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801435,
+   "ranks": null,
+   "spellIds": [
+    801435
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_monk_blackoutkick",
+   "description": "Knock an enemy out, incapacitating them for 4 seconds and removing bleed and poison effects from them. Damage caused will interrupt this effect.\n\nUsable while in Elude."
+  },
+  "Knotted Cord": {
+   "name": "Knotted Cord",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803865,
+   "ranks": {
+    "1": 803865
+   },
+   "spellIds": [
+    803865
+   ],
+   "cost": 2000,
+   "levelReq": 24,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Craft a |cffffffffKnotted Cord|r you can give to an ally, increasing their First Aid and Skinning speed by $%."
+  },
+  "Knuckleduster": {
+   "name": "Knuckleduster",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806957,
+   "ranks": null,
+   "spellIds": [
+    806957
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_leather_a_03defias",
+   "description": "Periodic damage dealt now generates 5 Focus."
+  },
+  "Lacerations": {
+   "name": "Lacerations",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573044,
+   "ranks": null,
+   "spellIds": [
+    573044
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Ability_CriticalStrike",
+   "description": "Level 40 Passive\nAllows the periodic damage dealt by Ravage to critically strike."
+  },
+  "Lethal Cunning": {
+   "name": "Lethal Cunning",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704320,
+   "ranks": null,
+   "spellIds": [
+    704320
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_AimedShot_Red",
+   "description": "Entering Elude generates 1 stack of Advantage and 10 Focus every 5 sec for 30 seconds."
+  },
+  "Lethal Wounds": {
+   "name": "Lethal Wounds",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705055,
+   "ranks": null,
+   "spellIds": [
+    705055
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_blood_spell_02_Border",
+   "description": "Increases the tick rate of your periodic damage effects by -20%."
+  },
+  "Light Arrows": {
+   "name": "Light Arrows",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681292,
+   "ranks": null,
+   "spellIds": [
+    681292
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3elementalarrow",
+   "description": "Increases the damage of Precision Shot by 20% when used from 40 yds or further away from your target."
+  },
+  "Light Quiver": {
+   "name": "Light Quiver",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800261,
+   "ranks": {
+    "1": 800261
+   },
+   "spellIds": [
+    800261
+   ],
+   "cost": 12000,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increases melee and ranged haste by 10% and reduces the Focus costs of abilities by 15%.\r\n\r\nOnly 1 |cffffffffQuiver|r may be active at a time.\r\n\r\n@ext:Shares a cooldown with other |cffffffffQuivers|r.:ext@"
+  },
+  "Magic Resistance": {
+   "name": "Magic Resistance",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 822,
+   "ranks": null,
+   "spellIds": [
+    822
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Marked for Death": {
+   "name": "Marked for Death",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806973,
+   "ranks": null,
+   "spellIds": [
+    806973
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_thiefsbargain",
+   "description": "While you have daggers equipped, direct critical strikes on enemies below 35% health now have a chance to allow the use of abilities as if you were in Elude for 5 sec."
+  },
+  "Masterful Archery": {
+   "name": "Masterful Archery",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680469,
+   "ranks": null,
+   "spellIds": [
+    680469
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_mastermarksman",
+   "description": "While in Elude, gain a stack of Masterful Archery every 2 sec.Masterful Archery (Aura)Your next Precision Shot now deals 10% increased damage for 10 seconds, stacking up to 5 times."
+  },
+  "Maximum Power": {
+   "name": "Maximum Power",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560688,
+   "ranks": null,
+   "spellIds": [
+    560688
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_SniperTraining",
+   "description": "Abilities used with 5 stacks of Advantage now refresh the duration of your active Skirmish by 5 sec."
+  },
+  "Mortal Shots": {
+   "name": "Mortal Shots",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707380,
+   "ranks": null,
+   "spellIds": [
+    707380
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_arrow_spell_02_Border",
+   "description": "Reduces the cooldown of Crippling Shot by -4 sec."
+  },
+  "Natural Disguise": {
+   "name": "Natural Disguise",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520585,
+   "ranks": null,
+   "spellIds": [
+    520585
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_natureambush_Border",
+   "description": "Instantly dispels all movement slowing effects from allies within 30 yds and transforms them into a bush, stealthing them for 20 seconds."
+  },
+  "Neurotoxin Arrow": {
+   "name": "Neurotoxin Arrow",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500071,
+   "ranks": null,
+   "spellIds": [
+    500071
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_naturearrow_Border",
+   "description": "Shoot at an enemy's throat with a toxin-laced arrow, dealing 25 + 36.07% ranged AP Nature damage and silencing them for 1 seconds.\n\nDuration increased by 1 sec per stack of Advantage."
+  },
+  "New-Age Archery": {
+   "name": "New-Age Archery",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704312,
+   "ranks": null,
+   "spellIds": [
+    704312
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_goldenarrow_Border",
+   "description": "Increases the damage of Skullpiercer and Precision Shot by 20%."
+  },
+  "Nimble": {
+   "name": "Nimble",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301066,
+   "ranks": null,
+   "spellIds": [
+    301066
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\INV_Weapon_Bow_02",
+   "description": "Level 30 Passive\nIncreases your ranged haste by 20% of your Agility."
+  },
+  "No Mercy": {
+   "name": "No Mercy",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520581,
+   "ranks": null,
+   "spellIds": [
+    520581
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_BloodyEye",
+   "description": "Increases the critical damage of Flank by 10%."
+  },
+  "One Shot, One Kill": {
+   "name": "One Shot, One Kill",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 525048,
+   "ranks": null,
+   "spellIds": [
+    525048
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_revendreth_demonhunter",
+   "description": "Increases the damage of Deadshot by 75%."
+  },
+  "Onslaught": {
+   "name": "Onslaught",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801951,
+   "ranks": null,
+   "spellIds": [
+    801951
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_FocusedMind",
+   "description": "Your senses heighten, causing you to instantly generate 5 Advantage and allowing the use of abilities that require Elude for 15 seconds."
+  },
+  "Opportunist": {
+   "name": "Opportunist",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807493,
+   "ranks": null,
+   "spellIds": [
+    807493
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_archerskill03_Border",
+   "description": "Increases the critical strike chance of Precision Shot by 50% on enemies above 80% health."
+  },
+  "Outlaw": {
+   "name": "Outlaw",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706277,
+   "ranks": null,
+   "spellIds": [
+    706277
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Human_04",
+   "description": "Increases the effectiveness of your Adaptations by 20%."
+  },
+  "Outmaneuver": {
+   "name": "Outmaneuver",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 557325,
+   "ranks": null,
+   "spellIds": [
+    557325
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_findweakness",
+   "description": "Teleport to an enemy, summon a decoy beneath them, and mark them for 8 seconds. Dealing melee damage to them adds a stack to this effect, up to 20 stacks.\n\nReactivating this ability within 8 seconds deals 1 + 55% AP Physical damage to your target, increased by 20% for each stack on the target, and then teleports you back to your decoy.\n\nUsable while in Elude."
+  },
+  "Pathfinder": {
+   "name": "Pathfinder",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706284,
+   "ranks": null,
+   "spellIds": [
+    706284
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_zone_jadeforest",
+   "description": "Your Adrenaline Rush now incurs a -90% reduced cooldown when used while Elude is active."
+  },
+  "Pecking": {
+   "name": "Pecking",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 570737,
+   "ranks": null,
+   "spellIds": [
+    570737
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\artifactability_survivalhunter_eaglesbite",
+   "description": "Your War Falcons and Dragonhawks now have a 25% chance to deal additional Physical damage to 3 nearby enemies."
+  },
+  "Petalkeeper": {
+   "name": "Petalkeeper",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520925,
+   "ranks": null,
+   "spellIds": [
+    520925
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_magicflower_Border",
+   "description": "$35"
+  },
+  "Phoenix Plumes": {
+   "name": "Phoenix Plumes",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705074,
+   "ranks": null,
+   "spellIds": [
+    705074
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_icon_feather06a",
+   "description": "Your Skullpiercers and Woodland Arrows used with 5 stacks of Advantage now restore 3% Focus and summon a War Falcon for 6 seconds."
+  },
+  "Pierced": {
+   "name": "Pierced",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705033,
+   "ranks": null,
+   "spellIds": [
+    705033
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_blood_shot_Border",
+   "description": "Critical strikes with Skullpiercer and Precision Shot cause the enemy to bleed for an additional 50% damage of the damage dealt over 4 seconds."
+  },
+  "Pilfering": {
+   "name": "Pilfering",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705087,
+   "ranks": null,
+   "spellIds": [
+    705087
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_boss_edwinvancleef",
+   "description": "Adds 10% to the damage dealt by Dirty Blades and causes its damage dealt to heal you equal to 50% of the value."
+  },
+  "Pinpoint Accuracy": {
+   "name": "Pinpoint Accuracy",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801468,
+   "ranks": null,
+   "spellIds": [
+    801468
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_bow_01",
+   "description": "Critical strikes with direct damaging abilities now generate 4 Focus."
+  },
+  "Plumes of War": {
+   "name": "Plumes of War",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705071,
+   "ranks": null,
+   "spellIds": [
+    705071
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_AnimalHandler",
+   "description": "Increases the critical strike chance of Falconstrike and Emerald Arrow by 15%.\n\nIn addition, critical strikes with Falconstrike now increase the damage of subsequent Falconstrikes by 5% for 15 seconds, stacking 5 times."
+  },
+  "Poison Quiver": {
+   "name": "Poison Quiver",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800260,
+   "ranks": {
+    "1": 800260
+   },
+   "spellIds": [
+    800260
+   ],
+   "cost": 70,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Ranged abilities fire a poisoned arrow, dealing 30 Nature damage over 15 sec, stacks 3 times.\n\r\nOnly 1 |cffffffffQuiver|r may be active at a time. \r\n\r\n@ext:Shares a cooldown with other |cffffffffQuivers|r.:ext@"
+  },
+  "Polearm Craft": {
+   "name": "Polearm Craft",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707885,
+   "ranks": null,
+   "spellIds": [
+    707885
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Spear_02",
+   "description": "While a polearm is equipped, your chance to trigger your Weapon Crafts and their damage dealt is increased by 25%."
+  },
+  "Precision Shot": {
+   "name": "Precision Shot",
+   "spec": "Archery",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572113,
+   "ranks": {
+    "2": 572108,
+    "3": 572109,
+    "4": 572110,
+    "5": 572111,
+    "6": 572112,
+    "7": 572113
+   },
+   "spellIds": [
+    500075,
+    572108,
+    572109,
+    572110,
+    572111,
+    572112,
+    572113
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_archerskill07_Border",
+   "description": "Precisely shoot an enemy from a great distance, inflicting 48 Physical damage.\r\n\r\nDamage increased by 25% for each stack of |cff8fff7aAdvantage|r.\r\n\r\nUsable while in |cffffffffElude|r."
+  },
+  "Quel'dorei Poison": {
+   "name": "Quel'dorei Poison",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560802,
+   "ranks": null,
+   "spellIds": [
+    560802
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_SpiritualArrow_Border",
+   "description": "Damage dealt by Woodland Arrow and Emerald Arrow now poison enemies for 3 seconds, dealing 91 + 10% ranged AP Nature damage every 1 sec."
+  },
+  "Quick Shot": {
+   "name": "Quick Shot",
+   "spec": "Archery",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 572732,
+   "ranks": {
+    "2": 572727,
+    "3": 572728,
+    "4": 572729,
+    "5": 572730,
+    "6": 572731,
+    "7": 572732
+   },
+   "spellIds": [
+    500074,
+    572727,
+    572728,
+    572729,
+    572730,
+    572731,
+    572732
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cff8fff7aGenerates 1 Advantage|r\r\nShoot an enemy, dealing 90% Ranged Weapon Damage plus 9."
+  },
+  "Quick-Witted": {
+   "name": "Quick-Witted",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704311,
+   "ranks": null,
+   "spellIds": [
+    704311
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_quiver_05",
+   "description": "Avoiding an attack now causes you to quickly stab an enemy with one of the arrows from your quiver, dealing 1 + 100% AP Physical damage and reducing their attack speed by -20% for 8 seconds."
+  },
+  "Quills": {
+   "name": "Quills",
+   "spec": "Brigand",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 561186,
+   "ranks": {
+    "2": 561184,
+    "3": 561185,
+    "4": 561186
+   },
+   "spellIds": [
+    560966,
+    561184,
+    561185,
+    561186
+   ],
+   "cost": 16000,
+   "levelReq": 38,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_FanOfKnives_Yellow",
+   "description": "Launch darts at up to 5 nearby enemies, dealing 39 Ranged Physical damage.\r\n\r\nDeals 50% additional damage and strikes 1 additional target for each stack of |cff8fff7aAdvantage|r."
+  },
+  "Ranger's Map": {
+   "name": "Ranger's Map",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803868,
+   "ranks": {
+    "1": 803868
+   },
+   "spellIds": [
+    803868
+   ],
+   "cost": 3000,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Craft a |cFFFFFFFFMap|r you can give to an ally, allowing the reader to locate nearby treasure, making it appear on the minimap. Lasts 30 min."
+  },
+  "Rapid Strikes": {
+   "name": "Rapid Strikes",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560341,
+   "ranks": null,
+   "spellIds": [
+    560341
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_CrossingSwords_ColorsGreen",
+   "description": "Melee and ranged auto attacks now have a 25% chance to strike an additional time for 50% of the damage dealt.\n\nCan only occur once per sec."
+  },
+  "Ravage": {
+   "name": "Ravage",
+   "spec": "Brigand",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 803864,
+   "ranks": {
+    "2": 803859,
+    "3": 803860,
+    "4": 803861,
+    "5": 803862,
+    "6": 803863,
+    "7": 803864
+   },
+   "spellIds": [
+    803851,
+    803859,
+    803860,
+    803861,
+    803862,
+    803863,
+    803864
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_mongoosebite",
+   "description": "|cff8fff7aGenerates 1 Advantage|r\r\nRavage an enemy, causing them to bleed out dealing 184 Physical damage over 12 sec."
+  },
+  "Ravager": {
+   "name": "Ravager",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92116,
+   "ranks": null,
+   "spellIds": [
+    92116
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\ability_rogue_energeticrecovery",
+   "description": "Level 10 Passive\nYour Wild Strike now generates 1 additional Advantage.\n\nRemoves the minimum range of your ranged abilities."
+  },
+  "Razorquills": {
+   "name": "Razorquills",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705072,
+   "ranks": null,
+   "spellIds": [
+    705072
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_archerskill43_Border",
+   "description": "Increases the tick rate of Toxic Dart and Emerald Arrows by -20%."
+  },
+  "Resilient Constitution": {
+   "name": "Resilient Constitution",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 552011,
+   "ranks": null,
+   "spellIds": [
+    552011
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Resourceful": {
+   "name": "Resourceful",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504008,
+   "ranks": null,
+   "spellIds": [
+    504008
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_HealingTouch",
+   "description": "Reduces the cooldown of Crippling Shot and Snapseed by -20%."
+  },
+  "Rider's Harness": {
+   "name": "Rider's Harness",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803869,
+   "ranks": {
+    "1": 803869
+   },
+   "spellIds": [
+    803869
+   ],
+   "cost": 30500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Craft a |cffffffffRider's Harness|r that you can give to an ally, increasing their mounted movement speed by 25% for 30 min."
+  },
+  "Rub It In": {
+   "name": "Rub It In",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705085,
+   "ranks": null,
+   "spellIds": [
+    705085
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\custom_Warriorskill_02_Border",
+   "description": "Level 30 Passive\nEach stack of Advantage spent now gives you a 20% chance to refund 1 stack of Advantage."
+  },
+  "Rusty Shiv": {
+   "name": "Rusty Shiv",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 561315,
+   "ranks": {
+    "1": 561315
+   },
+   "spellIds": [
+    561315
+   ],
+   "cost": 30500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Stab an enemy with a rusty shiv, accumulating 10% of all damage you deal to them over the next 10 sec and dealing damage at the end of the duration for the total amount."
+  },
+  "Scavenger": {
+   "name": "Scavenger",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520834,
+   "ranks": null,
+   "spellIds": [
+    520834
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_DryadDispelMagic",
+   "description": "Increases the duration of Battle Screech and reduces the cooldown of Snapseed by 5 sec."
+  },
+  "Searing Quiver": {
+   "name": "Searing Quiver",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 500103,
+   "ranks": {
+    "1": 500103
+   },
+   "spellIds": [
+    500103
+   ],
+   "cost": 30000,
+   "levelReq": 42,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Ranged abilities deal 15% additional direct Fire damage to your target and up to 3 nearby enemies. This damage can benefit from your |cffffffffBurning Toxin|r and other effects that increase Fire damage and is able to critically strike.\r\n\r\nOnly 1 |cffffffffQuiver|r may be active at a time.\r\n\r\n@ext:Shares a cooldown with other |cffffffffQuivers|r.:ext@"
+  },
+  "Serrated Shot": {
+   "name": "Serrated Shot",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 575836,
+   "ranks": {
+    "1": 500073,
+    "2": 501704,
+    "3": 501705,
+    "4": 501706,
+    "5": 501707,
+    "6": 575836
+   },
+   "spellIds": [
+    500073,
+    501704,
+    501705,
+    501706,
+    501707,
+    575836
+   ],
+   "cost": 700,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Fire a serrated arrow at an enemy, causing them to bleed for 39 Physical damage, repeating every 3 sec for 4 sec.\r\n\r\nDuration increased by 4 sec per stack of |cff8fff7aAdvantage|r."
+  },
+  "Serrations": {
+   "name": "Serrations",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705050,
+   "ranks": null,
+   "spellIds": [
+    705050
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_knife_1h_thunderisleraid_d_02",
+   "description": "Increases your damage against bleeding or Poisoned targets by 5%."
+  },
+  "Sharpshooter": {
+   "name": "Sharpshooter",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 582855,
+   "ranks": null,
+   "spellIds": [
+    582855
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Ability_TrueShot",
+   "description": "Level 50 Passive\nAdds 25% to the bonuses that your stacks of Advantage provide."
+  },
+  "Shoot": {
+   "name": "Shoot",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3018,
+   "ranks": null,
+   "spellIds": [
+    3018
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Silent, But Deadly": {
+   "name": "Silent, But Deadly",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524873,
+   "ranks": null,
+   "spellIds": [
+    524873
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_archerskill13_Border",
+   "description": "Direct Physical damage dealt now has an 8% chance to allow you to use Deadshot regardless of the targets health for 8 seconds."
+  },
+  "Skinner's Grip": {
+   "name": "Skinner's Grip",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803866,
+   "ranks": {
+    "1": 803866
+   },
+   "spellIds": [
+    803866
+   ],
+   "cost": 4500,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Craft a |cFFFFFFFFSkinner's Grip|r you can give to an ally, Increasing their Skinning skill by 10 for 1 |4hour:hrs;."
+  },
+  "Skinning": {
+   "name": "Skinning",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 8613,
+   "ranks": null,
+   "spellIds": [
+    8613
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Skirmish": {
+   "name": "Skirmish",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802039,
+   "ranks": null,
+   "spellIds": [
+    802039
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_RunningShot",
+   "description": "Increases your critical strike chance by 15% and reduces your Focus costs by -25%.\n\nLasts 4 sec for each stack of Advantage."
+  },
+  "Skirmisher": {
+   "name": "Skirmisher",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92115,
+   "ranks": null,
+   "spellIds": [
+    92115
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_archaeology_70_tauren_stonewoodbow",
+   "description": "Level 10 Passive\nIncreases the damage and tick rate of Toxic Dart by -30%, but reduces the duration of its damaging effect by -30%."
+  },
+  "Skirmisher's Quiver": {
+   "name": "Skirmisher's Quiver",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801069,
+   "ranks": {
+    "1": 801069
+   },
+   "spellIds": [
+    801069
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increases your Physical damage and your critical damage by 10%.\r\n\r\nOnly 1 |cffffffffQuiver|r may be active at a time.\r\n\r\n@ext:Shares a cooldown with other |cffffffffQuivers|r.:ext@"
+  },
+  "Skullpiercer": {
+   "name": "Skullpiercer",
+   "spec": "Archery",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 501721,
+   "ranks": {
+    "2": 501715,
+    "3": 501716,
+    "4": 501717,
+    "5": 501718,
+    "6": 501719,
+    "7": 501720,
+    "8": 501721
+   },
+   "spellIds": [
+    501715,
+    501716,
+    501717,
+    501718,
+    501719,
+    501720,
+    501721,
+    802036
+   ],
+   "cost": 200,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Aim for the skull, dealing 27 Physical damage.\r\n\r\nDamage increased by 30% for each stack of |cff8fff7aAdvantage|r."
+  },
+  "Sly": {
+   "name": "Sly",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560339,
+   "ranks": null,
+   "spellIds": [
+    560339
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_disgustingpizza",
+   "description": "Your Woodland Adept now triggers a -10% reduced cooldown for each stack of Advantage active when cast."
+  },
+  "Snapseed": {
+   "name": "Snapseed",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 503453,
+   "ranks": {
+    "2": 503449,
+    "3": 503450,
+    "4": 503451,
+    "5": 503452,
+    "6": 503453
+   },
+   "spellIds": [
+    503449,
+    503450,
+    503451,
+    503452,
+    503453,
+    804027
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\twisted_seed",
+   "description": "Toss a snapseed at an enemy, dealing 61 Physical damage and knocking them back."
+  },
+  "Snatch": {
+   "name": "Snatch",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803115,
+   "ranks": null,
+   "spellIds": [
+    803115
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\rogue_subterfuge",
+   "description": "Snatch an enemy's melee weapons, disarming them for 4 seconds.\n\nIf you are disarmed, you also return your weapon to yourself."
+  },
+  "Sniper's Focus": {
+   "name": "Sniper's Focus",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680470,
+   "ranks": null,
+   "spellIds": [
+    680470
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_crossbow_2h_kultirasquest_b_01",
+   "description": "Consuming Advantage now has a 20% chance per Archery Point spent to refund 20 Focus."
+  },
+  "Stalker": {
+   "name": "Stalker",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561110,
+   "ranks": null,
+   "spellIds": [
+    561110
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Diablo3_Execute_Hunter",
+   "description": "Reduces the cooldown of Cutthroat by -15 sec, but reduces the range of Cutthroat by -10 yds."
+  },
+  "Sticky Fingers": {
+   "name": "Sticky Fingers",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804669,
+   "ranks": {
+    "1": 804669
+   },
+   "spellIds": [
+    804669
+   ],
+   "cost": 450,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Pick an enemy target's pocket."
+  },
+  "Stonemason's Secret": {
+   "name": "Stonemason's Secret",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524654,
+   "ranks": null,
+   "spellIds": [
+    524654
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_inscription_runescrolloffortitude_green",
+   "description": "Your Skullpiercer used with 5 stacks of Advantage now extends the duration of Dirty Blades by 6 sec."
+  },
+  "Strike Where It Hurts": {
+   "name": "Strike Where It Hurts",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804178,
+   "ranks": null,
+   "spellIds": [
+    804178
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_KillCommand",
+   "description": "Your ability critical strikes now increase the damage the target takes from bleeds by 30% for 15 seconds."
+  },
+  "Studded Arrows": {
+   "name": "Studded Arrows",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300706,
+   "ranks": null,
+   "spellIds": [
+    300706
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_D3hungeringarrow",
+   "description": "Increases the ranged weapon damage dealt by Quick Shot by 10%."
+  },
+  "Superb Shot": {
+   "name": "Superb Shot",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301249,
+   "ranks": null,
+   "spellIds": [
+    301249
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_ammo_arrow_04",
+   "description": "Damage dealt by Auto Shot now restores 4 Focus."
+  },
+  "Surefooted": {
+   "name": "Surefooted",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560814,
+   "ranks": null,
+   "spellIds": [
+    560814
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_zone_hillsbradfoothills",
+   "description": "Reduces the cooldown of Adrenaline Rush by -30 sec."
+  },
+  "Survival Expert": {
+   "name": "Survival Expert",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560959,
+   "ranks": null,
+   "spellIds": [
+    560959
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Druid_NaturalPerfection",
+   "description": "Increases the dodge chance provided by Briar Veil by 25%."
+  },
+  "Survival Kit": {
+   "name": "Survival Kit",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504329,
+   "ranks": null,
+   "spellIds": [
+    504329
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_bag_06_b",
+   "description": "Your Survival Potion now also heals you for 10% of your maximum health with each tick."
+  },
+  "Survival Potion": {
+   "name": "Survival Potion",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802839,
+   "ranks": null,
+   "spellIds": [
+    802839
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_naturecocktail_Border",
+   "description": "Drink a survival potion, dispelling all poison and disease effects and removing 1 poison and disease effect every 3 sec for 9 seconds."
+  },
+  "Survivalist": {
+   "name": "Survivalist",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707418,
+   "ranks": null,
+   "spellIds": [
+    707418
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_NatureTouchGrow",
+   "description": "Reduces the cooldown of Survival Potion by -25%."
+  },
+  "Swiftshot": {
+   "name": "Swiftshot",
+   "spec": "Archery",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705028,
+   "ranks": null,
+   "spellIds": [
+    705028
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_combatexpertise",
+   "description": "Damage dealt by Precision Shot now increases enemy Physical damage taken by 4% for 10 seconds."
+  },
+  "Thalassian Brand": {
+   "name": "Thalassian Brand",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560805,
+   "ranks": null,
+   "spellIds": [
+    560805
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_naturetarget_Border",
+   "description": "Mark an enemy for total destruction, increasing your allies ranged attack power against the target by 300 and dealing 1120 Nature damage every 3 sec for 15 seconds.\n\nThe marked target can always be seen by the Ranger whether it stealths or turns invisible"
+  },
+  "Thread The Needle": {
+   "name": "Thread The Needle",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524831,
+   "ranks": null,
+   "spellIds": [
+    524831
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_spiritualarrow_Border",
+   "description": "Critical strikes with Quick Shot or Falconstrike now reduce the cast time and cost of your next ability that consumes Advantage by -34% for 15 seconds, stacking 3 times."
+  },
+  "Throatpunch": {
+   "name": "Throatpunch",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500617,
+   "ranks": null,
+   "spellIds": [
+    500617
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\custom_Warriorskill_05_Border",
+   "description": "Punch an enemy in the throat, interrupting the enemy's spellcast, preventing any spell from that school of magic from being cast for 2 seconds."
+  },
+  "Throw": {
+   "name": "Throw",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 2764,
+   "ranks": null,
+   "spellIds": [
+    2764
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Tip of the Spear": {
+   "name": "Tip of the Spear",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807023,
+   "ranks": null,
+   "spellIds": [
+    807023
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_spear_01",
+   "description": "While you have a polearm equipped, your Wild Strike now has a 15% chance to strike 3 additional times."
+  },
+  "To The Skies!": {
+   "name": "To The Skies!",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301365,
+   "ranks": null,
+   "spellIds": [
+    301365
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_pet_butterfly_green",
+   "description": "Reduces the cooldown of Bushcraft Glider by -30 sec."
+  },
+  "Toxic Dart": {
+   "name": "Toxic Dart",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807330,
+   "ranks": {
+    "1": 807237,
+    "2": 807324,
+    "3": 807325,
+    "4": 807326,
+    "5": 807327,
+    "6": 807328,
+    "7": 807329,
+    "8": 807330
+   },
+   "spellIds": [
+    807237,
+    807324,
+    807325,
+    807326,
+    807327,
+    807328,
+    807329,
+    807330
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cff8fff7aGenerates 1 Advantage|r\r\nToss a poison-coated dart at an enemy, dealing 99 Nature damage over 24 sec, and silencing them for 2.50 sec.\r\n\r\n@ext:Periodic damage dealt by this benefits from your ranged haste:ext@"
+  },
+  "Trueshot Lodge Training": {
+   "name": "Trueshot Lodge Training",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803113,
+   "ranks": null,
+   "spellIds": [
+    803113
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_druid_improvedmoonkinform",
+   "description": "Increases your off-hand weapon damage by 25%.\n\nWhile wielding a polearm, your Physical damage dealt is increased by 3%."
+  },
+  "Twineweave Line": {
+   "name": "Twineweave Line",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803867,
+   "ranks": {
+    "1": 803867
+   },
+   "spellIds": [
+    803867
+   ],
+   "cost": 11500,
+   "levelReq": 28,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Craft a |cffffffffTwineweave Line|r you can give to an ally, increasing their skill in Fishing by 10 for 1 |4hour:hrs;."
+  },
+  "Uncover Weakness": {
+   "name": "Uncover Weakness",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572178,
+   "ranks": {
+    "1": 572178
+   },
+   "spellIds": [
+    572178
+   ],
+   "cost": 7800,
+   "levelReq": 26,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Launch a heavy blunt arrow at an enemy that reduces their armor by 25% for 5 sec.\r\n\r\nDuration increased by 5 sec per stack of |cff8fff7aAdvantage|r."
+  },
+  "Underhanded": {
+   "name": "Underhanded",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705061,
+   "ranks": null,
+   "spellIds": [
+    705061
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_cobrashot",
+   "description": "Increases the attack power scaling of Skullpiercer by 15%."
+  },
+  "Venom-Coated Seeds": {
+   "name": "Venom-Coated Seeds",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807459,
+   "ranks": null,
+   "spellIds": [
+    807459
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_Druideskill_01_Border",
+   "description": "Damage dealt by Snapseed now reduces the enemy's chance to hit by -15% for 10 seconds."
+  },
+  "Viper's Bite": {
+   "name": "Viper's Bite",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803104,
+   "ranks": null,
+   "spellIds": [
+    803104
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_poisonedknife",
+   "description": "Generates 2 Advantage\nUnleash 4 quick strikes over 1 seconds to an enemy, each dealing 85% Weapon Damage.\n\nIf the target is bleeding, each strike deals an additional 400 + 25% AP Physical damage.\n\nIf the target is poisoned, each strike deals Nature damage instead of Physical damage."
+  },
+  "War Falconer": {
+   "name": "War Falconer",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705067,
+   "ranks": null,
+   "spellIds": [
+    705067
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_hunter_eagleeye",
+   "description": "Reduces the cooldowns of Falcon's Call by -30 sec."
+  },
+  "Weapon Craft: Burning Toxin": {
+   "name": "Weapon Craft: Burning Toxin",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 808027,
+   "ranks": {
+    "1": 808027
+   },
+   "spellIds": [
+    808027
+   ],
+   "cost": 6600,
+   "levelReq": 24,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Coat your weapon in a burning toxin, giving auto attacks a 30% chance to deal 14 Fire damage."
+  },
+  "Weapon Craft: Freezing Toxin": {
+   "name": "Weapon Craft: Freezing Toxin",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 808652,
+   "ranks": {
+    "1": 808652
+   },
+   "spellIds": [
+    808652
+   ],
+   "cost": 21500,
+   "levelReq": 36,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Coat your weapon in a freezing toxin, giving auto attacks a 30% chance to reduce the target's movement speed and attack speed by 20% for 6 sec."
+  },
+  "Weapon Craft: Jagged Edge": {
+   "name": "Weapon Craft: Jagged Edge",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 808878,
+   "ranks": {
+    "1": 808878
+   },
+   "spellIds": [
+    808878
+   ],
+   "cost": 18000,
+   "levelReq": 32,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Line your melee weapon with jagged edges, giving auto attacks a 30% chance to increase the damage the target takes from bleeds by 30% for 10 sec."
+  },
+  "Weapon Craft: Nerve Venom": {
+   "name": "Weapon Craft: Nerve Venom",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 808063,
+   "ranks": {
+    "1": 808063
+   },
+   "spellIds": [
+    808063
+   ],
+   "cost": 1900,
+   "levelReq": 18,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Coat your weapon in nerve venom, giving auto attacks a 30% chance to deal 4 Nature damage and reduce your target's casting speed by 30% for 6 sec."
+  },
+  "Weapon Craft: Oil Dip": {
+   "name": "Weapon Craft: Oil Dip",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807926,
+   "ranks": {
+    "1": 807926
+   },
+   "spellIds": [
+    807926
+   ],
+   "cost": 11500,
+   "levelReq": 28,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Coat your weapon in oil for until cancelled, giving auto attacks a 30% chance to increase the Fire damage your target takes from you by 50% for 10 sec."
+  },
+  "Whats Yours Is Mine": {
+   "name": "Whats Yours Is Mine",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560495,
+   "ranks": null,
+   "spellIds": [
+    560495
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_boss_edwinvancleef",
+   "description": "Removes the Focus cost of Snatch."
+  },
+  "Whipvine Arrow": {
+   "name": "Whipvine Arrow",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806342,
+   "ranks": null,
+   "spellIds": [
+    806342
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_herb_nightmarevine",
+   "description": "Launch an arrow with magical vines attached to it at your target, dealing 78 + 33% ranged AP Nature damage and rooting them for 40 seconds (8 sec vs players). Damage caused may interrupt the effect.\n\nHits 1 additional nearby target per stack of Advantage."
+  },
+  "Wild Blessing": {
+   "name": "Wild Blessing",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 681539,
+   "ranks": {
+    "1": 681527,
+    "2": 681538,
+    "3": 681539
+   },
+   "spellIds": [
+    681527,
+    681538,
+    681539
+   ],
+   "cost": 22500,
+   "levelReq": 46,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increases the Nature Resistance of all party and raid members by 45 for 30 min.\r\n\r\nDoes not stack with similar effects."
+  },
+  "Wild Man": {
+   "name": "Wild Man",
+   "spec": "Brigand",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560344,
+   "ranks": null,
+   "spellIds": [
+    560344
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_druid_supriseattack",
+   "description": "Your Wild Strike now strikes 2 additional nearby enemies, but deals reduced damage with each enemy struck."
+  },
+  "Wild Strike": {
+   "name": "Wild Strike",
+   "spec": "Brigand",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 501732,
+   "ranks": {
+    "2": 501724,
+    "3": 501725,
+    "4": 501726,
+    "5": 501727,
+    "6": 501728,
+    "7": 501729,
+    "8": 501730,
+    "9": 501731,
+    "10": 501732
+   },
+   "spellIds": [
+    501724,
+    501725,
+    501726,
+    501727,
+    501728,
+    501729,
+    501730,
+    501731,
+    501732,
+    800083
+   ],
+   "cost": 100,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cff8fff7aGenerates 1 Advantage|r\r\nStrike an enemy wildly for 100% Weapon Damage plus 12.\r\n\r\nIf dual wielding, deals additional Weapon Damage with your off-hand weapon."
+  },
+  "Wildwood Key": {
+   "name": "Wildwood Key",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807958,
+   "ranks": {
+    "2": 807958
+   },
+   "spellIds": [
+    807958
+   ],
+   "cost": 6200,
+   "levelReq": 26,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Creates a temporary magical grove key to open locks that require up to 125 lockpicking skill."
+  },
+  "Windrunner's Reach": {
+   "name": "Windrunner's Reach",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573043,
+   "ranks": null,
+   "spellIds": [
+    573043
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_HighElf_01",
+   "description": "Increases the range of your ranged abilities by 5 yds.\n\nIn addition, your critical strike chance against Undead, Beasts, and Dragonkin is increased by 2%."
+  },
+  "Wingman": {
+   "name": "Wingman",
+   "spec": "Farstrider",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705098,
+   "ranks": null,
+   "spellIds": [
+    705098
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_icon_wing04d",
+   "description": "Reduces all damage taken by -2% for each War Falcon or Dragonhawk you have active."
+  },
+  "Woodland Adept": {
+   "name": "Woodland Adept",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 570015,
+   "ranks": null,
+   "spellIds": [
+    570015
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_naturepoisonedstep_Border",
+   "description": "Slip into the shadows, entering an improved stealth mode, increases your movement speed by 25% for 10 seconds, and applies Elude."
+  },
+  "Woodland Arrow": {
+   "name": "Woodland Arrow",
+   "spec": "Farstrider",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 806448,
+   "ranks": {
+    "2": 806444,
+    "3": 806445,
+    "4": 806446,
+    "5": 806447,
+    "6": 806448
+   },
+   "spellIds": [
+    806368,
+    806444,
+    806445,
+    806446,
+    806447,
+    806448
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_naturegoldenarrow_Border",
+   "description": "Shoot a magical arrow, dealing 60 Physical damage and reducing the cooldown of active |cFFFFFFFFHorn|r spells by 15 sec.\r\n\r\nDamage increased by 30% for each stack of |cff8fff7aAdvantage|r."
+  },
+  "Woodland Stalker": {
+   "name": "Woodland Stalker",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705034,
+   "ranks": null,
+   "spellIds": [
+    705034
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_StrangleVines",
+   "description": "While in Elude, your critical strike chance is now increased by 20%."
+  },
+  "Woodsman's Adaptation": {
+   "name": "Woodsman's Adaptation",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803666,
+   "ranks": {
+    "1": 800266,
+    "2": 803320,
+    "3": 803321,
+    "4": 803322,
+    "5": 803323,
+    "6": 803324,
+    "7": 803666
+   },
+   "spellIds": [
+    800266,
+    803320,
+    803321,
+    803322,
+    803323,
+    803324,
+    803666
+   ],
+   "cost": 80,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Enhance an ally's focus, increasing their melee and ranged attack power by 30. Lasts 30 min"
+  }
+ }
+}

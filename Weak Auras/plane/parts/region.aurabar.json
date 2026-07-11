@@ -1,0 +1,512 @@
+{
+ "part_id": "region.aurabar",
+ "lane": "region",
+ "namespace": "aurabar",
+ "allow": [
+  "actions",
+  "adjustedMax",
+  "adjustedMin",
+  "alpha",
+  "anchorFrameType",
+  "anchorPoint",
+  "animation",
+  "authorOptions",
+  "backgroundColor",
+  "barColor",
+  "barColor2",
+  "config",
+  "desaturate",
+  "enableGradient",
+  "frameStrata",
+  "gradientOrientation",
+  "height",
+  "icon",
+  "iconSource",
+  "icon_color",
+  "icon_side",
+  "id",
+  "information",
+  "internalVersion",
+  "inverse",
+  "orientation",
+  "progressSource",
+  "regionType",
+  "selfPoint",
+  "spark",
+  "sparkBlendMode",
+  "sparkColor",
+  "sparkHeight",
+  "sparkHidden",
+  "sparkOffsetX",
+  "sparkOffsetY",
+  "sparkRotation",
+  "sparkRotationMode",
+  "sparkTexture",
+  "sparkWidth",
+  "texture",
+  "textureSource",
+  "tocversion",
+  "uid",
+  "useAdjustededMax",
+  "useAdjustededMin",
+  "width",
+  "xOffset",
+  "yOffset",
+  "zoom"
+ ],
+ "holes": [
+  {
+   "name": "adjustedMax",
+   "type": "str",
+   "input": "reference",
+   "default": "",
+   "values": null
+  },
+  {
+   "name": "adjustedMin",
+   "type": "str",
+   "input": "reference",
+   "default": "",
+   "values": null
+  },
+  {
+   "name": "anchorFrameType",
+   "type": "str",
+   "input": "reference",
+   "default": "SCREEN",
+   "values": null
+  },
+  {
+   "name": "anchorPoint",
+   "type": "str",
+   "input": "reference",
+   "default": "CENTER",
+   "values": null
+  },
+  {
+   "name": "backgroundColor",
+   "type": "list",
+   "input": "color",
+   "default": [
+    0,
+    0,
+    0,
+    0.5
+   ],
+   "values": null
+  },
+  {
+   "name": "barColor",
+   "type": "list",
+   "input": "color",
+   "default": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "values": null
+  },
+  {
+   "name": "barColor2",
+   "type": "list",
+   "input": "color",
+   "default": [
+    1,
+    1,
+    0,
+    1
+   ],
+   "values": null
+  },
+  {
+   "name": "desaturate",
+   "type": "bool",
+   "input": "toggle",
+   "default": false,
+   "values": null
+  },
+  {
+   "name": "enableGradient",
+   "type": "bool",
+   "input": "toggle",
+   "default": false,
+   "values": null
+  },
+  {
+   "name": "frameStrata",
+   "type": "int",
+   "input": "value",
+   "default": 1,
+   "values": null
+  },
+  {
+   "name": "gradientOrientation",
+   "type": "str",
+   "input": "structured",
+   "default": "HORIZONTAL",
+   "values": null
+  },
+  {
+   "name": "height",
+   "type": "int",
+   "input": "value",
+   "default": 15,
+   "values": null
+  },
+  {
+   "name": "icon",
+   "type": "bool",
+   "input": "toggle",
+   "default": false,
+   "values": null
+  },
+  {
+   "name": "iconSource",
+   "type": "int",
+   "input": "structured",
+   "default": -1,
+   "values": null
+  },
+  {
+   "name": "icon_color",
+   "type": "list",
+   "input": "color",
+   "default": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "values": null
+  },
+  {
+   "name": "icon_side",
+   "type": "str",
+   "input": "reference",
+   "default": "RIGHT",
+   "values": null
+  },
+  {
+   "name": "inverse",
+   "type": "bool",
+   "input": "toggle",
+   "default": false,
+   "values": null
+  },
+  {
+   "name": "orientation",
+   "type": "str",
+   "input": "structured",
+   "default": "HORIZONTAL",
+   "values": null
+  },
+  {
+   "name": "progressSource",
+   "type": "list",
+   "input": "structured",
+   "default": [
+    -1,
+    ""
+   ],
+   "values": null
+  },
+  {
+   "name": "selfPoint",
+   "type": "str",
+   "input": "reference",
+   "default": "CENTER",
+   "values": null
+  },
+  {
+   "name": "spark",
+   "type": "bool",
+   "input": "toggle",
+   "default": false,
+   "values": null
+  },
+  {
+   "name": "sparkBlendMode",
+   "type": "str",
+   "input": "reference",
+   "default": "ADD",
+   "values": null
+  },
+  {
+   "name": "sparkColor",
+   "type": "list",
+   "input": "color",
+   "default": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "values": null
+  },
+  {
+   "name": "sparkHeight",
+   "type": "int",
+   "input": "value",
+   "default": 30,
+   "values": null
+  },
+  {
+   "name": "sparkHidden",
+   "type": "str",
+   "input": "reference",
+   "default": "NEVER",
+   "values": null
+  },
+  {
+   "name": "sparkOffsetX",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  },
+  {
+   "name": "sparkOffsetY",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  },
+  {
+   "name": "sparkRotation",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  },
+  {
+   "name": "sparkRotationMode",
+   "type": "str",
+   "input": "reference",
+   "default": "AUTO",
+   "values": null
+  },
+  {
+   "name": "sparkTexture",
+   "type": "str",
+   "input": "reference",
+   "default": "Interface\\CastingBar\\UI-CastingBar-Spark",
+   "values": null
+  },
+  {
+   "name": "sparkWidth",
+   "type": "int",
+   "input": "value",
+   "default": 10,
+   "values": null
+  },
+  {
+   "name": "texture",
+   "type": "str",
+   "input": "reference",
+   "default": "Blizzard",
+   "values": null
+  },
+  {
+   "name": "textureSource",
+   "type": "str",
+   "input": "structured",
+   "default": "LSM",
+   "values": null
+  },
+  {
+   "name": "width",
+   "type": "int",
+   "input": "value",
+   "default": 200,
+   "values": null
+  },
+  {
+   "name": "xOffset",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  },
+  {
+   "name": "yOffset",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  },
+  {
+   "name": "zoom",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  }
+ ],
+ "change_targets": [
+  "backgroundColor",
+  "barColor",
+  "barColor2",
+  "desaturate",
+  "displayIcon",
+  "enableGradient",
+  "gradientOrientation",
+  "height",
+  "icon",
+  "iconSource",
+  "icon_color",
+  "inverse",
+  "orientation",
+  "sparkColor",
+  "sparkHeight",
+  "sparkWidth",
+  "texture",
+  "textureInput",
+  "textureSource",
+  "width"
+ ],
+ "template": {
+  "actions": {
+   "finish": [],
+   "init": {
+    "custom": "aura_env.region.configGroup = \"maelstrom_bar\"\naura_env.power = {}\naura_env.power.unmodified = false\naura_env.spells = {\n    \n    --[[SHAMAN]]--\n    [188196] = { --Lightning Bolt\n        power = 8,\n        type = Enum.PowerType.Maelstrom,\n        mods = {\n            {\n                requirement = 2, --1 = any, 2 = all\n                modType = 1, --1 = flat, 2 = percentage\n                modAmount = 2,\n                conditions = { --Type:1 = buff, Type:2 = talent/spell/conduit\n                    {type=2,id=381708}\n                },\n            }\n        }\n    },\n    [51505] = { --Lava Burst\n        power = 10,\n        type = Enum.PowerType.Maelstrom,\n        mods = {\n            {\n                requirement = 2, --1 = any, 2 = all\n                modType = 1, --1 = flat, 2 = percentage\n                modAmount = 2,\n                conditions = { --Type:1 = buff, Type:2 = talent/spell/conduit\n                    {type=2,id=381708}\n                },\n            }\n        }\n    },\n    [188443] = { --Chain Lightning\n        power = 4,\n        type = Enum.PowerType.Maelstrom,\n    },\n    [210714] = { --Icefury\n        power = 25,\n        type = Enum.PowerType.Maelstrom,\n    },\n}\naura_env.events = {\n    \"UNIT_SPELLCAST_START\",\n    \"UNIT_SPELLCAST_STOP\" ,\n    \"UNIT_POWER_FREQUENT\",\n    \"OPTIONS\",\n    \"PLAYER_SPECIALIZATION_CHANGED\",\n}\n\n--Accepts a table and returns all indices as keypairs with value true\nlocal function Set(list)\n    local set = {}\n    for _,v in ipairs(list) do set[v] = true end\n    return set\nend\naura_env.events = Set(aura_env.events)\n\naura_env.power.PowerTypes = Enum.PowerType.Maelstrom\n\naura_env.GetCurrentSpecializationID = function()\n    return GetSpecializationInfo(GetSpecialization())\nend\n\naura_env.findAndReplaceOrNew = function(tMain, tNew)\n    for k,v in pairs(tNew) do\n        tMain[v.id] = v\n    end    \n    return tMain\nend\n\naura_env.getPowerModifierAmounts = function(spellID)\n    local spell = aura_env.spells[spellID]\n    if not spell or spell and not spell.mods then return 0,nil end\n    local modAmounts = {}\n    \n    for i,mod in pairs(spell.mods) do\n        local modStates = {}\n        \n        --Check modifier conditions\n        for i,condition in pairs(mod.conditions) do\n            modStates[i] = false\n            \n            if condition.type == 1 then --Buff\n                local name, _, _, _, _, expirationTime = GetPlayerAuraBySpellID(condition.id)\n                local endTimeMS = select(5, UnitCastingInfo(\"player\"))\n                if name and expirationTime and endTimeMS \n                and (endTimeMS/1000) <= expirationTime then modStates[i] = true end\n                \n            elseif condition.type == 2 then --Talent\n                if IsPlayerSpell(condition.id) then modStates[i] = true end\n            end            \n        end\n        \n        --Check if modifier passes its Any/All requirement\n        local requirements = false\n        if mod.requirement == 1 then --Any\n            for _,modState in pairs(modStates) do\n                if modState then requirements = true end\n            end     \n        elseif mod.requirement == 2 then --All\n            requirements = true\n            for _,modState in pairs(modStates) do\n                if not modState then requirements = false end\n            end\n        end \n        \n        --Calculate modifier amounts\n        if requirements then\n            local total = mod.modType == 1 and spell.power+mod.modAmount or mod.modType == 2 and spell.power*mod.modAmount or spell.power   \n            local change = total-spell.power\n            modAmounts[i] = {total=total,change=change}\n        end        \n    end\n    \n    --Calculate total power change of all modifiers\n    local totalChange = 0\n    if #modAmounts > 0 then\n        for _,v in pairs(modAmounts) do totalChange = totalChange+v.change end\n    end\n    \n    return totalChange, modAmounts\nend\n\naura_env.isDestruction = function()\n    return GetSpecializationInfo(GetSpecialization()) == 267\nend",
+    "do_custom": false
+   },
+   "start": {
+    "custom": "",
+    "do_custom": false,
+    "do_message": false
+   }
+  },
+  "adjustedMax": "",
+  "adjustedMin": "",
+  "alpha": 1,
+  "anchorFrameType": "SCREEN",
+  "anchorPoint": "CENTER",
+  "animation": {
+   "finish": {
+    "duration_type": "seconds",
+    "easeStrength": 3,
+    "easeType": "none",
+    "type": "none"
+   },
+   "main": {
+    "alpha": 0,
+    "colorA": 1,
+    "colorB": 1,
+    "colorG": 1,
+    "colorR": 1,
+    "duration_type": "relative",
+    "easeStrength": 3,
+    "easeType": "easeOutIn",
+    "preset": "alphaPulse",
+    "rotate": 0,
+    "scalex": 1,
+    "scaley": 1,
+    "translateFunc": "function(progress, startX, startY, deltaX, deltaY)\n    return startX + (progress * deltaX), startY + (progress * deltaY)\nend\n",
+    "translateType": "straightTranslate",
+    "type": "none",
+    "use_translate": true,
+    "x": 35,
+    "y": 0
+   },
+   "start": {
+    "duration_type": "seconds",
+    "easeStrength": 3,
+    "easeType": "none",
+    "type": "none"
+   }
+  },
+  "authorOptions": [],
+  "auto": true,
+  "backgroundColor": [
+   0.87843143939972,
+   0,
+   0.019607843831182,
+   1
+  ],
+  "barColor": [
+   0.4588235294117647,
+   0.8274509803921568,
+   1,
+   1
+  ],
+  "barColor2": [
+   0.42352944612503,
+   1,
+   0.53725492954254,
+   1
+  ],
+  "config": [],
+  "configGroup": "mana_bar",
+  "customText": "function()\n    if aura_env.states[1].percentpower then\n        return Round(aura_env.states[1].percentpower)..\"\"\n    end\nend",
+  "desaturate": false,
+  "enableGradient": true,
+  "frameStrata": 4,
+  "gradientOrientation": "HORIZONTAL",
+  "height": 10,
+  "iconSource": -1,
+  "icon_color": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "icon_side": "RIGHT",
+  "information": {},
+  "internalVersion": 78,
+  "inverse": false,
+  "isPrimaryResource": true,
+  "orientation": "HORIZONTAL",
+  "overlayclip": true,
+  "overlays": [
+   [
+    0.8117647767067,
+    0.70196080207825,
+    1,
+    1
+   ],
+   [
+    0.8117647767067,
+    0.70196080207825,
+    1,
+    1
+   ]
+  ],
+  "overlaysTexture": [
+   "Gradient",
+   "Gradient"
+  ],
+  "progressSource": [
+   -1,
+   ""
+  ],
+  "regionType": "aurabar",
+  "selfPoint": "CENTER",
+  "smoothProgress": true,
+  "spark": true,
+  "sparkBlendMode": "ADD",
+  "sparkColor": [
+   0.98823535442352,
+   0.99215692281723,
+   1,
+   1
+  ],
+  "sparkDesaturate": false,
+  "sparkHeight": 29,
+  "sparkHidden": "FULL",
+  "sparkOffsetX": 0,
+  "sparkOffsetY": 0,
+  "sparkRotation": 0,
+  "sparkRotationMode": "AUTO",
+  "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+  "sparkWidth": 10,
+  "texture": "Atrocity",
+  "textureSource": "LSM",
+  "tocversion": 30300,
+  "useAdjustededMax": false,
+  "useAdjustededMin": false,
+  "width": 220,
+  "zoom": 0
+ }
+}

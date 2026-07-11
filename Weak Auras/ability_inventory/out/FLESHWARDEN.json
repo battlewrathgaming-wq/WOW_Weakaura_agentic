@@ -1,0 +1,3675 @@
+{
+ "class": "FLESHWARDEN",
+ "display": "Knight of Xoroth",
+ "classId": 17,
+ "abilityCount": 201,
+ "bySpec": {
+  "General": 43,
+  "Defiance": 42,
+  "Hellfire": 39,
+  "Class": 37,
+  "War": 40
+ },
+ "abilities": {
+  "A Curse from Hell": {
+   "name": "A Curse from Hell",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 302548,
+   "ranks": null,
+   "spellIds": [
+    302548
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireenchantment_Border",
+   "description": "Periodic damage dealt now has a 15% chance to reduce the cooldown of Curse of Xoroth by -3 sec.\n\nChance to trigger is increased by 2% for each stack of Demonfire active."
+  },
+  "A Gift from Hell": {
+   "name": "A Gift from Hell",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300390,
+   "ranks": null,
+   "spellIds": [
+    300390
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Ascend_Blacksmith_25",
+   "description": "Reduces the Rage cost of Infernal Strike, Meatsaw, and Melt by -10."
+  },
+  "Absolutism": {
+   "name": "Absolutism",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706501,
+   "ranks": null,
+   "spellIds": [
+    706501
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_axe_1h_draenorraid_d_03",
+   "description": "Damage dealt by Meatsaw now ignores -10% of the target's Armor."
+  },
+  "Ascended Warlock": {
+   "name": "Ascended Warlock",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802610,
+   "ranks": null,
+   "spellIds": [
+    802610
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_demonhunter_demonictrample",
+   "description": "Your Skulltaker used with 6 stacks of Demonfire now reduces the cooldown of Doom by -5 seconds.\n\nIn addition, while Doom is active, your Doomguard will now copy your Skulltaker, dealing reduced damage."
+  },
+  "Auto Attack": {
+   "name": "Auto Attack",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 6603,
+   "ranks": null,
+   "spellIds": [
+    6603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Axe and Fist Weapons Specialization": {
+   "name": "Axe and Fist Weapons Specialization",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 20574,
+   "ranks": null,
+   "spellIds": [
+    20574
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Black Shield": {
+   "name": "Black Shield",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805679,
+   "ranks": null,
+   "spellIds": [
+    805679
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_warlock_soulburn_haunt",
+   "description": "Consume all of your Demon's Blood stacks to create a demonic shield that absorbs 860 damage, increased by 20% per Demon's Blood stack, for 30 seconds."
+  },
+  "Black Skull Shield": {
+   "name": "Black Skull Shield",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804354,
+   "ranks": null,
+   "spellIds": [
+    804354
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Shield_01",
+   "description": "Reduces the Rage cost of Shieldgore by -5 and increases its damage by 25%."
+  },
+  "Block": {
+   "name": "Block",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 107,
+   "ranks": null,
+   "spellIds": [
+    107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Blood Frenzy": {
+   "name": "Blood Frenzy",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520008,
+   "ranks": null,
+   "spellIds": [
+    520008
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_unholyfrenzy",
+   "description": "Abilities that spend Demonfire now refund 1 Demonfire when used with at least 4 stacks."
+  },
+  "Blood Fury": {
+   "name": "Blood Fury",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 814285,
+   "ranks": null,
+   "spellIds": [
+    814285
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Bloodied Blade": {
+   "name": "Bloodied Blade",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800997,
+   "ranks": null,
+   "spellIds": [
+    800997
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_artifactelune_d_05",
+   "description": "Melee Physical damage dealt now generates a stack of Demon's Blood."
+  },
+  "Bloodrider": {
+   "name": "Bloodrider",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 704964,
+   "ranks": {
+    "1": 704964
+   },
+   "spellIds": [
+    704964
+   ],
+   "cost": 39500,
+   "levelReq": 50,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Reduces the chance that you will lose your |cffffffffPath of Hellfire|r stacks from taking damage by 25% and increases the duration of |cFFFFFFFFLosing Momentum|r by 50%. "
+  },
+  "Boiling Blood": {
+   "name": "Boiling Blood",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300395,
+   "ranks": null,
+   "spellIds": [
+    300395
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_bloodboil_Border",
+   "description": "Casting Suffuse now increases your healing received by 25% for the first 6 seconds of it's duration."
+  },
+  "Boundless Fury": {
+   "name": "Boundless Fury",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704954,
+   "ranks": null,
+   "spellIds": [
+    704954
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_warlock_improveddemonictactics",
+   "description": "Increases the effectiveness of the unleash effect from Pestilence of Death by 30%."
+  },
+  "Brimstone Bludgeon": {
+   "name": "Brimstone Bludgeon",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800710,
+   "ranks": null,
+   "spellIds": [
+    800710
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_mace_1h_pvp410_c_01",
+   "description": "Transforms your Sever into Brimstone Bludgeon.Brimstone BludgeonGenerates 1 Demonfire\nBludgeon an enemy and all nearby enemies, dealing 250% Weapon Damage.\n\nUnleashes your active Pestilence to trigger a powerful effect.\n\nScales with modifiers to Sever."
+  },
+  "Brimstone Buckler": {
+   "name": "Brimstone Buckler",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92104,
+   "ranks": null,
+   "spellIds": [
+    92104
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Ability_Warlock_ImprovedDemonicTactics",
+   "description": "Level 10 Passive\nSuccessful blocks now have a 30% chance to summon 1 Hellfire Imp to aid you in battle for 12 seconds. Can only occur once every 3 sec."
+  },
+  "Brimstone Flames": {
+   "name": "Brimstone Flames",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807671,
+   "ranks": null,
+   "spellIds": [
+    807671
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_firestone_Border",
+   "description": "Damage dealt by Seeking Flame is increased by 20% on enemies affected by Pestilence of Apocalypse.\n\nDamage dealt is increased by an additional 10% for each Demonfire you have active."
+  },
+  "Brimstone Knight": {
+   "name": "Brimstone Knight",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704972,
+   "ranks": null,
+   "spellIds": [
+    704972
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_brutal_icon_0009s_0000_fire_Border",
+   "description": "Increases your Fire damage dealt by 3% and dealing Fire damage increases the enemy spell damage taken by 10% for 15 seconds."
+  },
+  "Brimstone Splinters": {
+   "name": "Brimstone Splinters",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805703,
+   "ranks": null,
+   "spellIds": [
+    805703
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_flaming_splinter",
+   "description": "Grants Seeking Flame a 30% chance to generate 1 additional Demonfire when it deals damage.\n\nChance to trigger is increased by 5% for each Demonfire you have active."
+  },
+  "Brimstone Striker": {
+   "name": "Brimstone Striker",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807144,
+   "ranks": null,
+   "spellIds": [
+    807144
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_implosion",
+   "description": "Damage dealt by Stoke the Flames now reduces the cooldown of Sever and Juggernaut by -4 sec."
+  },
+  "Brimstone's Blood": {
+   "name": "Brimstone's Blood",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300387,
+   "ranks": null,
+   "spellIds": [
+    300387
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireghost_Border",
+   "description": "Increases the chance of gaining a stack of Demon's Blood by 25%."
+  },
+  "Bringer of Destruction": {
+   "name": "Bringer of Destruction",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681449,
+   "ranks": null,
+   "spellIds": [
+    681449
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_Reincarnation",
+   "description": "Critical damage taken now grants you 1 Demonfire and 5 Rage. Can only occur once every 3 sec."
+  },
+  "Brute Strength": {
+   "name": "Brute Strength",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680723,
+   "ranks": null,
+   "spellIds": [
+    680723
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_Strength",
+   "description": "Increases your critical damage dealt with Physical attacks by 10% and increases the range of Flesh Hook, Chains of Malice, and Chainwhip by 5 yds."
+  },
+  "Bulwark of Xoroth": {
+   "name": "Bulwark of Xoroth",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300388,
+   "ranks": null,
+   "spellIds": [
+    300388
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_pvp410_c_01",
+   "description": "Damage dealt by Shieldgore will now apply Torn Flesh, causing the target to bleed for 105 over 15 seconds."
+  },
+  "Burning Blade": {
+   "name": "Burning Blade",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524920,
+   "ranks": null,
+   "spellIds": [
+    524920,
+    572370
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_fire_flameblades",
+   "description": "Ignite your weapon, causing you to send out searing fire with each melee critical strike, dealing 270 + 32.5% AP Fire damage in a line and increasing your Armor penetration by 30% while active. Lasts for 6 attacks.\n\nLasts for 1 additional attack per Demonfire consumed."
+  },
+  "Burning Power": {
+   "name": "Burning Power",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500004,
+   "ranks": null,
+   "spellIds": [
+    500004
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_helmet_103",
+   "description": "Level 20 Passive\nIncreases your attack power by 100% of your Intellect and your spell damage by 50% of your Strength."
+  },
+  "Burning Rage": {
+   "name": "Burning Rage",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520295,
+   "ranks": null,
+   "spellIds": [
+    520295
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\warrior_talent_icon_angermanagement",
+   "description": "Enrage, generating 15 Rage every 1 sec and making you immune to incapacitate, banish, and polymorph effects for 6 seconds.\n\nUsable while incapacitated, banished, or polymorphed."
+  },
+  "Burning Swings": {
+   "name": "Burning Swings",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707632,
+   "ranks": null,
+   "spellIds": [
+    707632
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_EnchantWeapon",
+   "description": "Your Burning Blade now affects 4 additional attacks."
+  },
+  "Calamity": {
+   "name": "Calamity",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300393,
+   "ranks": null,
+   "spellIds": [
+    300393
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_burningeyes_Border",
+   "description": "Increases the damage of the Unleash effect of Pestilence of Apocalypse by 25% and its duration is increased by 5 sec."
+  },
+  "Call: Hellfire Abyssal": {
+   "name": "Call: Hellfire Abyssal",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805074,
+   "ranks": null,
+   "spellIds": [
+    805074
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_warlock_summonabyssal",
+   "description": "Call down a Hellfire Abyssal from the sky to crash down upon the targeted 8 yd area, dealing 1500 + 100% SP + 100% AP Fire damage.\n\nThe abyssal remains to aid you in battle for 15 seconds and emits an aura that reduces the damage taken by party and raid members within 40 yds by -5%.\n\nCosts -15 less Rage for each active Hellfire Imp."
+  },
+  "Call: Hellfire Imp": {
+   "name": "Call: Hellfire Imp",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804883,
+   "ranks": null,
+   "spellIds": [
+    804883
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Warlock_EmpoweredImp",
+   "description": "Generates 2 Demonfire\nBeckon 1 Hellfire Imp to aid you in battle for 12 seconds and generate 20 Rage.\n\nThreat generated by Hellfire Imps is transferred to you."
+  },
+  "Carver": {
+   "name": "Carver",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707390,
+   "ranks": null,
+   "spellIds": [
+    707390
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\polearm_2h_deathwingraiddw_d_01",
+   "description": "Level 30 Passive\nCritical strikes with Gore now generate 1 additional Demonfire."
+  },
+  "Chain Warden": {
+   "name": "Chain Warden",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704185,
+   "ranks": null,
+   "spellIds": [
+    704185
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\warlock_sacrificial_pact",
+   "description": "Reduces the cooldown of Chains of Malice by -30 sec, and allows Flesh Hook and Chainwhip to strike up to 2 additional enemies near your primary target."
+  },
+  "Chains of Malice": {
+   "name": "Chains of Malice",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803185,
+   "ranks": null,
+   "spellIds": [
+    803185
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_nightmarechain_Border",
+   "description": "Lock an enemy down with magical chains, stunning them and dragging them with you for 5 seconds.\n\nEvery 1 sec, the enemy will suffer 16 Physical damage.\n\nEnemies that cannot be stunned or rooted cannot be dragged."
+  },
+  "Chains of Xoroth": {
+   "name": "Chains of Xoroth",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706756,
+   "ranks": null,
+   "spellIds": [
+    706756
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_holychains_Border",
+   "description": "Create demonic chains at target location that slow enemies inside by -80% for 5 seconds. At the end of the duration, it pulls all affected enemies to it."
+  },
+  "Chainwhip": {
+   "name": "Chainwhip",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 503365,
+   "ranks": {
+    "2": 503361,
+    "3": 503362,
+    "4": 503363,
+    "5": 503364,
+    "6": 503365
+   },
+   "spellIds": [
+    503361,
+    503362,
+    503363,
+    503364,
+    503365,
+    800081
+   ],
+   "cost": 2000,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_EnslaveSpell_Fire",
+   "description": "Swing a chain at an enemy dealing 38 Physical damage and silencing them for 2 sec, generating a large amount of threat.\r\n\r\nIf you successfully interrupt an enemy, this will refund 20% of the cooldown."
+  },
+  "Chop Shop": {
+   "name": "Chop Shop",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704953,
+   "ranks": null,
+   "spellIds": [
+    704953
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_weapon_shortblade_40",
+   "description": "Each stack of Demon's Blood now increases the critical strike chance of Sever and Meatsaw by 1%."
+  },
+  "Cinderblade": {
+   "name": "Cinderblade",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704959,
+   "ranks": null,
+   "spellIds": [
+    704959
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\spell_fire_felflamering_red",
+   "description": "Level 30 Passive\nIncreases your critical strike rating by 20% of your Intellect and your spell hit chance by 6%."
+  },
+  "Claws of Hell": {
+   "name": "Claws of Hell",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805706,
+   "ranks": null,
+   "spellIds": [
+    805706
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_DeathGrip_Fire",
+   "description": "When you spend at least 4 Demonfire stacks you now refresh the duration of your Unleash Apocalypse on the target."
+  },
+  "Combusting Blade": {
+   "name": "Combusting Blade",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704999,
+   "ranks": null,
+   "spellIds": [
+    704999
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_MoltenBlood",
+   "description": "Increases your Intellect by 5% and reduces the Rage cost of Infernal Strike by -5."
+  },
+  "Command": {
+   "name": "Command",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 20575,
+   "ranks": null,
+   "spellIds": [
+    20575
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Conqueror's Will": {
+   "name": "Conqueror's Will",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520372,
+   "ranks": null,
+   "spellIds": [
+    520372
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireghost_Border",
+   "description": "Increases the critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, Physical critical strikes now increase the target's Physical damage taken by 4% for 8 seconds."
+  },
+  "Consuming Blade": {
+   "name": "Consuming Blade",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707388,
+   "ranks": null,
+   "spellIds": [
+    707388
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_stave_2h_pvppandarias1_c_02",
+   "description": "Increases the critical strike chance of Gore by 25% and your expertise by 5."
+  },
+  "Crusher": {
+   "name": "Crusher",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92100,
+   "ranks": null,
+   "spellIds": [
+    92100
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\warrior_skullbanner",
+   "description": "Level 10 Passive\nDoubles the base Weapon Damage dealt by Infernal Strike and increases all critical damage dealt by 25%."
+  },
+  "Curse of Xoroth": {
+   "name": "Curse of Xoroth",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804169,
+   "ranks": null,
+   "spellIds": [
+    804169
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shadowflame_groundstate",
+   "description": "Curse an enemy for 15 seconds, dealing 1575 + 100% AP Shadowflame Damage over 15 seconds.\n\nYour next Shieldgore within 12 seconds grants you Black Shield, absorbing 860 + 200% Stamina damage for 30 seconds."
+  },
+  "Darkrider": {
+   "name": "Darkrider",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704980,
+   "ranks": null,
+   "spellIds": [
+    704980
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_carrionswarm",
+   "description": "Increases the duration of your Mark spells by 50%."
+  },
+  "Decimation": {
+   "name": "Decimation",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524913,
+   "ranks": null,
+   "spellIds": [
+    524913
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\warrior_talent_icon_innerrage",
+   "description": "Your next Skulltaker or Warbringer is guaranteed to critically strike for 25% increased damage. Lasts 30 seconds."
+  },
+  "Demolisher": {
+   "name": "Demolisher",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807336,
+   "ranks": null,
+   "spellIds": [
+    807336
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helmet_103",
+   "description": "Casting Flesh Hook or Chainwhip now taunts the target for 2 seconds and reduces your Physical damage taken by -5% for 10 seconds."
+  },
+  "Demon Heart": {
+   "name": "Demon Heart",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805669,
+   "ranks": null,
+   "spellIds": [
+    805669
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_ragnaros_heart",
+   "description": "Embrace your inner demon, instantly generating 6 stacks of Demonfire and 50 Rage."
+  },
+  "Demon's Blood": {
+   "name": "Demon's Blood",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804345,
+   "ranks": {
+    "1": 804345
+   },
+   "spellIds": [
+    804345
+   ],
+   "cost": 70,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "You are a demon.\r\n\r\nDamage taken has a 25% chance to generate 3 Rage and grant |cffffffffDemon's Blood|r for 1 min.@s:800999:0@"
+  },
+  "Demon's Breath": {
+   "name": "Demon's Breath",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706563,
+   "ranks": null,
+   "spellIds": [
+    706563
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_demonicfortitude",
+   "description": "Critical strikes with Shieldgore now unleash an eruption of hellfire, causing 111 + 20% AP Fire damage and generating 1 additional Demonfire."
+  },
+  "Demonfire Command": {
+   "name": "Demonfire Command",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707028,
+   "ranks": null,
+   "spellIds": [
+    707028
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_RainOfFire",
+   "description": "Reduces the cooldown of Implosion by -10 sec and its Rage cost by -5."
+  },
+  "Demonfire Plating": {
+   "name": "Demonfire Plating",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704966,
+   "ranks": null,
+   "spellIds": [
+    704966
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_UnholyStrength",
+   "description": "Reduces your damage taken by -2% and increases your Stamina by 3%."
+  },
+  "Demonfire Retaliation": {
+   "name": "Demonfire Retaliation",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573034,
+   "ranks": null,
+   "spellIds": [
+    573034
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_druideskill41_Border",
+   "description": "Grants you a 30% chance to generate a stack of Demonfire when attacked."
+  },
+  "Demonic Blade": {
+   "name": "Demonic Blade",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704957,
+   "ranks": null,
+   "spellIds": [
+    704957
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_blood_blade_Border",
+   "description": "Damaging abilities that spend Demonfire now increase the damage and cost of your next 2 Gores by 25% for 12 seconds.\n\nAt the end of the duration, or when all stacks are consumed, you instantly cast Meatsaw free of cost."
+  },
+  "Demonic Bulwark": {
+   "name": "Demonic Bulwark",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573066,
+   "ranks": null,
+   "spellIds": [
+    573066
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Fire_FireArmor",
+   "description": "Level 50 Passive\nYour successful blocks now have a 30% chance to critically block for twice the normal amount.\n\nChance to trigger is increased by 2% for each Hellfire Imp you have active."
+  },
+  "Demonic Frenzy": {
+   "name": "Demonic Frenzy",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705008,
+   "ranks": null,
+   "spellIds": [
+    705008
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_knife_1h_pvppandarias1_c_01",
+   "description": "Casting Sever now increases your attack speed by 20% for 10 seconds.\n\nCasting Gore extends the duration of this effect by 3 sec."
+  },
+  "Demonic Grit": {
+   "name": "Demonic Grit",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805678,
+   "ranks": null,
+   "spellIds": [
+    805678
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_cloth_raidwarlock_r_01",
+   "description": "Grant your summons demonic grit, increasing their total health by 15% and reducing their damage taken by by 10%."
+  },
+  "Demonic Power": {
+   "name": "Demonic Power",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 807730,
+   "ranks": {
+    "1": 807730
+   },
+   "spellIds": [
+    807730
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Your inner demon radiates from within, increasing your threat generated by 100%."
+  },
+  "Demonic Rage": {
+   "name": "Demonic Rage",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524922,
+   "ranks": null,
+   "spellIds": [
+    524922
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_plate_challengewarrior_d_01",
+   "description": "Generating Demon's Blood stacks now generates 1 additional Rage."
+  },
+  "Demonskin": {
+   "name": "Demonskin",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 302581,
+   "ranks": null,
+   "spellIds": [
+    302581
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_wand_1h_firelandsraid_d_01",
+   "description": "Each stack of Demon's Blood also increases your Armor by 1%."
+  },
+  "Dismemberment": {
+   "name": "Dismemberment",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705018,
+   "ranks": null,
+   "spellIds": [
+    705018
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_artifactdeadwind_d_06",
+   "description": "Damaging abilities that spend Demonfire now reduces the target's healing received by -20% for 8 seconds."
+  },
+  "Dodge": {
+   "name": "Dodge",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 81,
+   "ranks": null,
+   "spellIds": [
+    81
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Domination": {
+   "name": "Domination",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704979,
+   "ranks": null,
+   "spellIds": [
+    704979
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_glaive_1h_artifactazgalor_d_03",
+   "description": "Melee critical strikes now reduce the cooldown of Searing Blade by -1 sec."
+  },
+  "Doom": {
+   "name": "Doom",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802602,
+   "ranks": null,
+   "spellIds": [
+    802602
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_warlock_improveddemonictactics",
+   "description": "Transforms your Greater Imp into a Doomguard for 12 seconds.\n\nWhile transformed, your Doomguard deals 20% more damage, and its auto attacks ignite the target, dealing 10% of the damage dealt as Fire damage over 6 seconds, stacking 6 times."
+  },
+  "Drag Through Hell": {
+   "name": "Drag Through Hell",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804773,
+   "ranks": {
+    "1": 804773
+   },
+   "spellIds": [
+    804773
+   ],
+   "cost": 14500,
+   "levelReq": 30,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Summons a friendly party or raid member to your location from anywhere in the world."
+  },
+  "Dread": {
+   "name": "Dread",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706502,
+   "ranks": null,
+   "spellIds": [
+    706502
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_Incinerate",
+   "description": "$5d"
+  },
+  "Dreadrider's Stomp": {
+   "name": "Dreadrider's Stomp",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804702,
+   "ranks": {
+    "1": 804702
+   },
+   "spellIds": [
+    804702
+   ],
+   "cost": 2500,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Command your steed to stomp, dealing 115 Flamestrike Damage to nearby enemies.\r\n\r\nDamage increased by 25% for each stack of |cffffffffPath of Hellfire|r you have."
+  },
+  "Dreadsteed Portal": {
+   "name": "Dreadsteed Portal",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804774,
+   "ranks": {
+    "1": 804774
+   },
+   "spellIds": [
+    804774
+   ],
+   "cost": 40500,
+   "levelReq": 46,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Summon a |cFFFFFFFFDreadsteed Portal|r for 1 min. \r\n\r\nAllies can interact with the portal to mount a |cFFFFFFFFDreadsteed|r."
+  },
+  "Evil Duo": {
+   "name": "Evil Duo",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704961,
+   "ranks": null,
+   "spellIds": [
+    704961
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\spell_shadow_summonimp",
+   "description": "Level 50 Passive\nUnleashing a Pestilence now causes your Greater Imp to unleash it's Pestilence.\n\nThe Imp's unleash effect is equivalent to your own unleash effect for the equivalent Pestilence."
+  },
+  "Fiend": {
+   "name": "Fiend",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705005,
+   "ranks": null,
+   "spellIds": [
+    705005
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_mace_1h_pvppandarias1_d_01",
+   "description": "Casting Sever now removes the cost of your next Infernal Strike."
+  },
+  "Fiend of Forges": {
+   "name": "Fiend of Forges",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300386,
+   "ranks": null,
+   "spellIds": [
+    300386
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_fire_spell_03_Border",
+   "description": "Forgefiend's Bulwark now also increases your critical strike chance by 10%."
+  },
+  "Fiery Retribution": {
+   "name": "Fiery Retribution",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804013,
+   "ranks": null,
+   "spellIds": [
+    804013
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_stave_2h_firelandsraid_d_01",
+   "description": "Each time a Hellfire Imp dies, you reduce the cooldown of Sacrificial Circle by -2 sec and Implosion by -1 sec."
+  },
+  "Flames of Xoroth": {
+   "name": "Flames of Xoroth",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 573448,
+   "ranks": {
+    "1": 801059,
+    "2": 802411,
+    "3": 802412,
+    "4": 802413,
+    "5": 802414,
+    "6": 802415,
+    "7": 573448
+   },
+   "spellIds": [
+    573448,
+    801059,
+    802411,
+    802412,
+    802413,
+    802414,
+    802415
+   ],
+   "cost": 100,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Burn up to 6 enemies in front of you for 22 Fire damage.\r\n\r\nDeals increased damage per |cffff9933Demonfire|r consumed.\r\n\r\n@ifknown:704997:|cffffffffInfernal Strike|r blasts nearby enemies affected by this for bonus Fire damage.:ifknown@"
+  },
+  "Flamewrath": {
+   "name": "Flamewrath",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301358,
+   "ranks": null,
+   "spellIds": [
+    301358
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_LavaSpawn",
+   "description": "Increases the critical strike chance of Seeking Flame by 20%."
+  },
+  "Flay Corpse": {
+   "name": "Flay Corpse",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801042,
+   "ranks": {
+    "1": 801042
+   },
+   "spellIds": [
+    801042
+   ],
+   "cost": 150,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Consume the target corpse, generating 20 Rage and then healing you and your summons for 4% maximum health every 1 sec for 5 sec.\r\n\nOnce a corpse has been flayed, it cannot be flayed again. \r\n\r\nCannot be used in combat. Only usable on Humanoids, Beasts, or Demons."
+  },
+  "Flesh Hook": {
+   "name": "Flesh Hook",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 501490,
+   "ranks": {
+    "1": 500020,
+    "2": 501488,
+    "3": 501489,
+    "4": 501490
+   },
+   "spellIds": [
+    500020,
+    501488,
+    501489,
+    501490
+   ],
+   "cost": 50,
+   "levelReq": 6,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Hook an enemy, pulling them to you, dealing 27 Physical damage and generating 10 Rage."
+  },
+  "Forgefiend's Bulwark": {
+   "name": "Forgefiend's Bulwark",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801065,
+   "ranks": null,
+   "spellIds": [
+    801065
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_fire_0004s_0000_armor_Border",
+   "description": "Successful blocks, parries and dodges now have a 30% chance to Enrage you, increasing your damage dealt by 10% for 10 seconds."
+  },
+  "Fury of Xoroth": {
+   "name": "Fury of Xoroth",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802615,
+   "ranks": null,
+   "spellIds": [
+    802615
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_argusfelstalkermount_red",
+   "description": "Infernal Strike now grants you a stack of Xorothian Fury, increasing the chance for your next Skulltaker within 10 seconds to critically strike by 10% per stack, up to 3 stacks.\n\nAdditionally, using Skulltaker with 6 stacks of Demonfire grants you Xorothian Rage, causing your next Infernal Strike within 10 seconds to be guaranteed to critically strike."
+  },
+  "Gore": {
+   "name": "Gore",
+   "spec": "War",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 680944,
+   "ranks": {
+    "2": 680939,
+    "3": 680940,
+    "4": 680941,
+    "5": 680942,
+    "6": 680943,
+    "7": 680944
+   },
+   "spellIds": [
+    680939,
+    680940,
+    680941,
+    680942,
+    680943,
+    680944,
+    805555
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_140",
+   "description": "|cffffffff2 Charges, 8 sec recharge|r\r\n|cffff9933Generates 1 Demonfire|r\r\nQuickly gore an enemy, dealing 100% Weapon Damage plus 30."
+  },
+  "Gored": {
+   "name": "Gored",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705015,
+   "ranks": null,
+   "spellIds": [
+    705015
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sha_ability_warrior_bloodnova_nightmare",
+   "description": "Damage dealt by Gore and Meatsaw now increases your target's damage taken from Skulltaker and Warbringer by 15% for 10 seconds, stacking 2 times."
+  },
+  "Gorged": {
+   "name": "Gorged",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680199,
+   "ranks": null,
+   "spellIds": [
+    680199
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_BloodMaw_Border",
+   "description": "Gore now heals you for 50% of the damage dealt over 3 sec and grants a stack of Gorged for 30 seconds.\n\nAt 3 stacks, your next Sever will consume the stacks to leech an additional 200% of the damage dealt by it from up to 5 enemies within 5 yds.\n\nIn addition, Sever now strikes an additional time after 1 sec but has a 2 increased cooldown."
+  },
+  "Greater Imp": {
+   "name": "Greater Imp",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92101,
+   "ranks": null,
+   "spellIds": [
+    92101
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\5_sumimparmy_Border",
+   "description": "Level 10 Passive\nTeaches you Summon: Greater Imp and increases your expertise by 10.\nSummon: Greater ImpSummon a Greater Imp to aid you in combat.\n\nGreater Imp has various combat abilities that provide excellent single target damage and control."
+  },
+  "Greater Mark of Blaumeux": {
+   "name": "Greater Mark of Blaumeux",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 712460,
+   "ranks": {
+    "1": 712460
+   },
+   "spellIds": [
+    712460
+   ],
+   "cost": 51000,
+   "levelReq": 58,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Mark an ally with the power of Blaumeux, increasing their spell power by 62."
+  },
+  "Greater Mark of Korth’azz": {
+   "name": "Greater Mark of Korth’azz",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680300,
+   "ranks": {
+    "1": 680300
+   },
+   "spellIds": [
+    680300
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Strength increased by 77. Fire Resistance increased by 60."
+  },
+  "Greater Mark of Rivendare": {
+   "name": "Greater Mark of Rivendare",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803730,
+   "ranks": {
+    "1": 803730
+   },
+   "spellIds": [
+    803730
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Mark nearby party and raid members with the guile of Rivendare increasing their Stamina by 54 and Frost Resistance by 60 for 30 min. "
+  },
+  "Greater Mark of Zeliek": {
+   "name": "Greater Mark of Zeliek",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803731,
+   "ranks": {
+    "1": 803731
+   },
+   "spellIds": [
+    803731
+   ],
+   "cost": 51000,
+   "levelReq": 58,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Empowers nearby party and raid members with the mark of Zeliek, reducing their resource costs by 5% and increasing their Arcane Resistance by 60. Lasts 30 min."
+  },
+  "Grotesque": {
+   "name": "Grotesque",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707515,
+   "ranks": null,
+   "spellIds": [
+    707515
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_demonhunter_torment",
+   "description": "While Hellfire Form is active, your Seeking Flame now has no cooldown and generates an additional Demonfire."
+  },
+  "Hand of Doom": {
+   "name": "Hand of Doom",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704186,
+   "ranks": null,
+   "spellIds": [
+    704186
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireclaw_Border",
+   "description": "Increases the Weapon Damage dealt by Sever by 10%, increased by 10% for each Demonfire you have active."
+  },
+  "Harbinger of Pestilence": {
+   "name": "Harbinger of Pestilence",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704182,
+   "ranks": null,
+   "spellIds": [
+    704182
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\warlock_pvp_endlessaffliction",
+   "description": "Increases the effectiveness of your Pestilences by 50%."
+  },
+  "Hardiness": {
+   "name": "Hardiness",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 20573,
+   "ranks": null,
+   "spellIds": [
+    20573
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Heart of Xoroth": {
+   "name": "Heart of Xoroth",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704956,
+   "ranks": null,
+   "spellIds": [
+    704956
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_sanguinaryvein",
+   "description": "Allows Demon's Blood to stack 5 additional times."
+  },
+  "Hell Blender": {
+   "name": "Hell Blender",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704975,
+   "ranks": null,
+   "spellIds": [
+    704975
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_warrior_unrelentingassault",
+   "description": "Casting Meatsaw now has a 40% chance to refund 10 Rage."
+  },
+  "Hell's Forge": {
+   "name": "Hell's Forge",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804683,
+   "ranks": {
+    "1": 804683
+   },
+   "spellIds": [
+    804683
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Create a |cffffffffBlacksmithing Forge|r and an |cffffffffAnvil|r at your location for 2 min."
+  },
+  "Hellborn": {
+   "name": "Hellborn",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707631,
+   "ranks": null,
+   "spellIds": [
+    707631
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_druideskill47_Border",
+   "description": "Generating a stack of Demon's Blood now has a 5% chance to unleash your active Pestilence at half of their effectiveness."
+  },
+  "Hellbound Charge": {
+   "name": "Hellbound Charge",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807247,
+   "ranks": null,
+   "spellIds": [
+    807247
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_CrimsonDeathcharger_64x",
+   "description": "2 Charges, 60 sec recharge\nBriefly jump atop your Xorothian Warsteed, increasing your movement speed by 70% for 3 seconds.\n\nUsable while indoors, but you cannot use your Mounted Combat abilities while riding your Warsteed in this way."
+  },
+  "Hellbound Leash": {
+   "name": "Hellbound Leash",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804168,
+   "ranks": {
+    "1": 804168
+   },
+   "spellIds": [
+    804168
+   ],
+   "cost": 36000,
+   "levelReq": 42,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Bind an enemy Demon up to level 42, forcing it to do your bidding for 5 min (8 sec vs players).\n\nWhile active, 20% of all damage it takes is redirected to you."
+  },
+  "Hellbreaker": {
+   "name": "Hellbreaker",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680216,
+   "ranks": null,
+   "spellIds": [
+    680216
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_blackhand_marked4death",
+   "description": "Casting Unleash Pestilence now removes all active movement impairing effects from you."
+  },
+  "Hellbringer": {
+   "name": "Hellbringer",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300963,
+   "ranks": null,
+   "spellIds": [
+    300963
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_felbatmountdh",
+   "description": "Increases the all damage dealt by party and raid members by 3%.\n\nDoes not stack with similar effects."
+  },
+  "Hellfire Advance": {
+   "name": "Hellfire Advance",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804788,
+   "ranks": {
+    "1": 804788
+   },
+   "spellIds": [
+    804788
+   ],
+   "cost": 30500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Your |cFFFFFFFFWarsteed|r launches forward 30 yds. Distance scales with |cffffffffPath of Hellfire|r stacks.\r\n\r\nCannot be used in combat."
+  },
+  "Hellfire Bellows": {
+   "name": "Hellfire Bellows",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807587,
+   "ranks": null,
+   "spellIds": [
+    807587
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_corruptionfire_Border",
+   "description": "Transforms your Flames of Xoroth into Hellfire Bellows.Hellfire BellowsBellow fire on all enemies in a 6 yd cone in front of and behind you, dealing 252 + 17.63% AP + 40% fire SP Fire damage and reducing the cooldown of Chains of Xoroth by 0 to 0 sec per enemy hit.\n\nCooldown is reduced by -3 sec for each Demonfire consumed."
+  },
+  "Hellfire Embers": {
+   "name": "Hellfire Embers",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807669,
+   "ranks": null,
+   "spellIds": [
+    807669
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_Incinerate",
+   "description": "Increases the Fire damage dealt by your Hellfire Imp by 30% against enemies above 80% maximum health."
+  },
+  "Hellfire Forgemaster": {
+   "name": "Hellfire Forgemaster",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560655,
+   "ranks": null,
+   "spellIds": [
+    560655
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_zone_ironforge",
+   "description": "Increases your block value by 20%."
+  },
+  "Hellfire Form": {
+   "name": "Hellfire Form",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805696,
+   "ranks": null,
+   "spellIds": [
+    805696
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_racial_foregedinflames",
+   "description": "Enter your Hellfire Form, increasing your Fire damage dealt by 20% and Fire critical strike chance by 15% for 15 seconds."
+  },
+  "Hellfire Reprimand": {
+   "name": "Hellfire Reprimand",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706565,
+   "ranks": null,
+   "spellIds": [
+    706565
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_plate_firelands_d_01",
+   "description": "Your Hellfire Imps now have a 20% chance on hit to launch a firebolt dealing 40% Strength Fire damage and reducing enemy attack power by 190 for 10 seconds."
+  },
+  "Hellfire Resolve": {
+   "name": "Hellfire Resolve",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573035,
+   "ranks": null,
+   "spellIds": [
+    573035
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\ability_warlock_moltencore",
+   "description": "Level 30 Passive\nIncreases your block rating by 15% of your Strength and increases your hit rating by 5% of your Strength."
+  },
+  "Hellfire Rituals": {
+   "name": "Hellfire Rituals",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500551,
+   "ranks": null,
+   "spellIds": [
+    500551
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_warlock_cremation",
+   "description": "Critical strikes with Skulltaker now increases the haste of your Greater Imp by 15% for 8 seconds."
+  },
+  "Hellfire Sieger": {
+   "name": "Hellfire Sieger",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560828,
+   "ranks": null,
+   "spellIds": [
+    560828
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_magemount_fire",
+   "description": "Doubles the absorption of Black Shield while below 35% health."
+  },
+  "Hellfire Stirrups": {
+   "name": "Hellfire Stirrups",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804785,
+   "ranks": {
+    "1": 804785
+   },
+   "spellIds": [
+    804785
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increases the mount speed of |cffffffffXorothian Warsteed|r by 75% for 5 sec.\r\n\r\nWhile active, you cannot lose your |cffffffffPath of Hellfire|r stacks.\r\n\r\nCannot be used in combat."
+  },
+  "Hellfire Striker": {
+   "name": "Hellfire Striker",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 573036,
+   "ranks": null,
+   "spellIds": [
+    573036
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Warrior_TitansGrip",
+   "description": "Increases your critical strike and hit chance by 3%."
+  },
+  "Hellfire Trample": {
+   "name": "Hellfire Trample",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804704,
+   "ranks": {
+    "1": 804704
+   },
+   "spellIds": [
+    804704
+   ],
+   "cost": 3000,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Your |cFFFFFFFFWarsteed|r surges forward 25 yds and deals 70 Fire damage to enemies in your path.\r\n\r\nGains 25% increased damage for every stack of |cffffffffPath of Hellfire|r you have."
+  },
+  "Hellish Rebuke": {
+   "name": "Hellish Rebuke",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300391,
+   "ranks": null,
+   "spellIds": [
+    300391
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_bow_1h_firelandsraid_d_01",
+   "description": "Generating a stack of Demon's Blood now has a 15% chance to trigger a fiery explosion on up to 5 nearby enemies, dealing 96 Fire damage."
+  },
+  "Hellknight": {
+   "name": "Hellknight",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800702,
+   "ranks": null,
+   "spellIds": [
+    800702
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_mail_pvphuntergladiator_o_01",
+   "description": "While above 75% health, all direct Physical damage dealt will grant a stack of Hellknight.HellknightMovement speed increased and global cooldowns reduced by -5%. Physical Damage and critical strike chance increased by 1%, stacking 5 times. Lasts 20 seconds."
+  },
+  "Hellmaw": {
+   "name": "Hellmaw",
+   "spec": "Hellfire",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 573336,
+   "ranks": {
+    "2": 806966,
+    "3": 806967,
+    "4": 806968,
+    "5": 806969,
+    "6": 806970,
+    "7": 573336
+   },
+   "spellIds": [
+    573336,
+    806965,
+    806966,
+    806967,
+    806968,
+    806969,
+    806970
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_firecatmount",
+   "description": "Burn an enemy with a fiery strike, dealing 34 Shadowflame Damage, plus an additional 128 over 12 sec.\r\n\r\nDeals 20% increased damage per |cffff9933Demonfire|r consumed."
+  },
+  "Hellrider": {
+   "name": "Hellrider",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803889,
+   "ranks": {
+    "1": 803889
+   },
+   "spellIds": [
+    803889
+   ],
+   "cost": 2000,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Increases your melee haste, movement speed, and mounted movement speed by 10% for 10 sec.\r\n\r\nDuration and effectiveness increased by 20% per |cffff9933Demonfire|r consumed.\r\n\r\nUsable while mounted."
+  },
+  "Hellsmelted": {
+   "name": "Hellsmelted",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705016,
+   "ranks": null,
+   "spellIds": [
+    705016
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_Incinerate",
+   "description": "Increases the critical strike chance and damage of Burning Blade by 30%."
+  },
+  "Hellsmelted Armor": {
+   "name": "Hellsmelted Armor",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706569,
+   "ranks": null,
+   "spellIds": [
+    706569
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_glove_armor_orcclan_d_01",
+   "description": "Each Hellfire Imp active now increases your chance to block by 1%."
+  },
+  "Hellstorm": {
+   "name": "Hellstorm",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802342,
+   "ranks": null,
+   "spellIds": [
+    802342
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_xavius_darkruination",
+   "description": "Create a hellstorm, dealing 77 + 32.04% fire SP + 8% AP Fire damage to up to 8 nearby enemies.\n\nEmbers then flare every 1 sec for 2 seconds, dealing 28 + 2.5% fire SP + 2.5% AP Fire damage.\n\nDuration is increased by 100% for each stack of Demonfire consumed."
+  },
+  "Hellstriker": {
+   "name": "Hellstriker",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704991,
+   "ranks": null,
+   "spellIds": [
+    704991
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Mace_80",
+   "description": "Direct critical strikes now increase the duration of Hellrider on you by 2 sec."
+  },
+  "Hellwrath": {
+   "name": "Hellwrath",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804014,
+   "ranks": null,
+   "spellIds": [
+    804014
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_trinket_firelands_03",
+   "description": "Your Demon's Blood can now stack 5 additional times and each stack now increases the absorption amount of Black Shield by 1%."
+  },
+  "Hook, Line, and Sinker": {
+   "name": "Hook, Line, and Sinker",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680991,
+   "ranks": null,
+   "spellIds": [
+    680991
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_axe_2h_artifactmaw_d_01",
+   "description": "Reduces the cooldown of Flesh Hook and Chainwhip by -5 sec."
+  },
+  "Imp Aura": {
+   "name": "Imp Aura",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560546,
+   "ranks": null,
+   "spellIds": [
+    560546
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_fabric_spellfire",
+   "description": "Level 40 Passive\nEach Hellfire Imp now reduces your Magic damage taken by 1%."
+  },
+  "Imp Gang Boss": {
+   "name": "Imp Gang Boss",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706754,
+   "ranks": null,
+   "spellIds": [
+    706754
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_impphaseshift",
+   "description": "Your Call: Hellfire Imp now summons 2 additional imps."
+  },
+  "Imp Guards": {
+   "name": "Imp Guards",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804340,
+   "ranks": null,
+   "spellIds": [
+    804340
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\uico_fire_spell_09_Border",
+   "description": "Level 20 Passive\nEach Hellfire Imp now reduces your Physical damage taken by 1%."
+  },
+  "Impcaller": {
+   "name": "Impcaller",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706755,
+   "ranks": null,
+   "spellIds": [
+    706755
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_warlock_summonimpoutland",
+   "description": "Transforms your Call: Hellfire Imp into Impcaller.Impcaller (Aura)Your Infernal Strike now summons a Hellfire Imp to aid you in combat for 10 seconds, but its Rage cost is increased by 10.\n\nIn addition, the maximum health of your imps is increased by 30%."
+  },
+  "Impish Pestilence": {
+   "name": "Impish Pestilence",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300398,
+   "ranks": null,
+   "spellIds": [
+    300398
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_misc_herb_fireweedbranch",
+   "description": "$5b"
+  },
+  "Implosion": {
+   "name": "Implosion",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524897,
+   "ranks": null,
+   "spellIds": [
+    524897
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_12_summon_imp_army_Border",
+   "description": "Explode with hellish fire, dealing 51 + 25% Strength + 50% fire SP + 10% AP Fire damage to nearby enemies, beckoning Hellfire Imps to aid you in battle for 12 seconds, and generating 30 Rage.\n\nDeals increased damage and increases the amount of imps summoned by 1 for each Demonfire consumed."
+  },
+  "Imprison": {
+   "name": "Imprison",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801067,
+   "ranks": {
+    "1": 801067
+   },
+   "spellIds": [
+    801067
+   ],
+   "cost": 22500,
+   "levelReq": 34,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Imprison a Demon for 30 sec (6 sec vs players), banishing them, preventing all action, and making them invulnerable to all spells and attacks.\r\n\r\nCan only affect 1 enemy at a time."
+  },
+  "Indiscriminate": {
+   "name": "Indiscriminate",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704958,
+   "ranks": null,
+   "spellIds": [
+    704958
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_glaive_1h_artifactaldrochi_d_04",
+   "description": "Seeking Flame now spreads Hellmaw and Melt from the target to up to 3 enemies within 6 yds."
+  },
+  "Infernal Bulwark": {
+   "name": "Infernal Bulwark",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706564,
+   "ranks": null,
+   "spellIds": [
+    706564
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_firelandsraid_d_01",
+   "description": "Casting Unleash Pestilence now generates 4 stacks of Demonfire and grants Infernal Bulwark.Infernal Bulwark (Proc)Increases block value by 20% for 18 seconds."
+  },
+  "Infernal Pummeling": {
+   "name": "Infernal Pummeling",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680900,
+   "ranks": null,
+   "spellIds": [
+    680900
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_infernalmadness_Border",
+   "description": "Melt now increases the damage your target takes from Flames of Xoroth and Skulltaker by 10%."
+  },
+  "Infernal Pursuit": {
+   "name": "Infernal Pursuit",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704992,
+   "ranks": null,
+   "spellIds": [
+    704992
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_boots_plate_raiddeathknight_i_01",
+   "description": "Increases your melee haste by 3% and reduces the duration of root effects against you by -15%."
+  },
+  "Infernal Steel": {
+   "name": "Infernal Steel",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805693,
+   "ranks": null,
+   "spellIds": [
+    805693
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sword_1h_artifactfelomelorn_d_02",
+   "description": "Casting Skulltaker with 6 Demonfire stacks now causes your next Hellmaw within 15 seconds to tick -25% faster and cost -50% less Rage."
+  },
+  "Infernal Strike": {
+   "name": "Infernal Strike",
+   "spec": "Hellfire",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 501518,
+   "ranks": {
+    "2": 501511,
+    "3": 501512,
+    "4": 501513,
+    "5": 501514,
+    "6": 501515,
+    "7": 501516,
+    "8": 501517,
+    "9": 501518
+   },
+   "spellIds": [
+    501511,
+    501512,
+    501513,
+    501514,
+    501515,
+    501516,
+    501517,
+    501518,
+    801016
+   ],
+   "cost": 100,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffff9933Generates 2 Demonfire|r\r\nStrike an enemy for 55% Weapon Damage plus 17 as Fire damage."
+  },
+  "Inferno Blast": {
+   "name": "Inferno Blast",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805697,
+   "ranks": null,
+   "spellIds": [
+    805697
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_offhand_1h_artifactdoomhammer_d_01",
+   "description": "Increases your critical damage against Burning targets by 20%."
+  },
+  "Into the Maw": {
+   "name": "Into the Maw",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802619,
+   "ranks": null,
+   "spellIds": [
+    802619
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fire_explosion_Border",
+   "description": "Hellmaw causes a Hellfire Explosion at the end of its duration, dealing additional Fire damage to all nearby enemies within 5 yards equal to 50% of the periodic damage dealt over the duration."
+  },
+  "Invasion": {
+   "name": "Invasion",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300374,
+   "ranks": null,
+   "spellIds": [
+    300374
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_AuraCloak_Fire",
+   "description": "All Fire damage dealt is increased by 10% to enemies above 80% health."
+  },
+  "Jagged Edge": {
+   "name": "Jagged Edge",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707614,
+   "ranks": null,
+   "spellIds": [
+    707614
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_axe_07",
+   "description": "Increases your Rage generated from damage dealt by 20%."
+  },
+  "Juggernaut": {
+   "name": "Juggernaut",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520294,
+   "ranks": null,
+   "spellIds": [
+    520294
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_fire_0004s_0000_armor_Border",
+   "description": "Consume all of your Demon's Blood to become a juggernaut, reducing all damage taken by -30% for 10 seconds. \n\nFor the duration, you heal every 3 sec for 6 + 10% AP, increased per Demon's Blood stack consumed."
+  },
+  "Knight of Pestilence": {
+   "name": "Knight of Pestilence",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704981,
+   "ranks": null,
+   "spellIds": [
+    704981
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nature_insect_swarm2",
+   "description": "Increases the critical damage of your Pestilences by 50%."
+  },
+  "Knight of the Apocalypse": {
+   "name": "Knight of the Apocalypse",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520296,
+   "ranks": null,
+   "spellIds": [
+    520296
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\spell_winston_rage",
+   "description": "Level 50 Passive\nUnleash Pestilence now triggers no cooldown on it's first use.\n\nUnleash Pestilence can only be reset this way once every 30 sec."
+  },
+  "Legion's Presence": {
+   "name": "Legion's Presence",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804879,
+   "ranks": null,
+   "spellIds": [
+    804879
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_dungeon_blackrockcaverns",
+   "description": "Emanate an aura to allies within 25 yds for 15 seconds, increasing their damage dealt by 10%.\n\nFire damage dealt by Hellfire Imps is increased by 150% and total health increased by 50% while this effect is active on them."
+  },
+  "Mark of Blaumeux": {
+   "name": "Mark of Blaumeux",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 707696,
+   "ranks": {
+    "1": 707693,
+    "2": 707694,
+    "3": 707695,
+    "4": 707696
+   },
+   "spellIds": [
+    707693,
+    707694,
+    707695,
+    707696
+   ],
+   "cost": 1300,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Mark an ally with the power of Blaumeux, increasing their spell power by 25 and Shadow Resist by 15 for 30 min."
+  },
+  "Mark of Korth’azz": {
+   "name": "Mark of Korth’azz",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 707345,
+   "ranks": {
+    "1": 706589,
+    "2": 707341,
+    "3": 707342,
+    "4": 707343,
+    "5": 707344,
+    "6": 707345
+   },
+   "spellIds": [
+    706589,
+    707341,
+    707342,
+    707343,
+    707344,
+    707345
+   ],
+   "cost": 10,
+   "levelReq": 2,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Mark an ally with the power of Korth’azz, increasing Strength by 3 and Fire Resistance by 5 for 30 min."
+  },
+  "Mark of Rivendare": {
+   "name": "Mark of Rivendare",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803670,
+   "ranks": {
+    "1": 803667,
+    "2": 803668,
+    "3": 803669,
+    "4": 803670
+   },
+   "spellIds": [
+    803667,
+    803668,
+    803669,
+    803670
+   ],
+   "cost": 12500,
+   "levelReq": 38,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Mark an ally with the guile of Rivendare increasing their Stamina by 32 and Frost Resistance by 25 for 30 min."
+  },
+  "Mark of Zeliek": {
+   "name": "Mark of Zeliek",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803671,
+   "ranks": {
+    "1": 803671
+   },
+   "spellIds": [
+    803671
+   ],
+   "cost": 31500,
+   "levelReq": 50,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Empower an ally with the mark of Zeliek, reducing their resource costs by 5% and increasing their Arcane Resistance by 60. Lasts 30 min."
+  },
+  "Meatsaw": {
+   "name": "Meatsaw",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 578119,
+   "ranks": {
+    "1": 800340,
+    "2": 501508,
+    "3": 501509,
+    "4": 501510,
+    "5": 578119
+   },
+   "spellIds": [
+    501508,
+    501509,
+    501510,
+    578119,
+    800340
+   ],
+   "cost": 300,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffff9933Generates 2 Demonfire|r\r\nQuickly swing a massive blade at up to 5 nearby enemies, dealing 50% Weapon Damage plus 8."
+  },
+  "Melt": {
+   "name": "Melt",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 803334,
+   "ranks": {
+    "1": 803334
+   },
+   "spellIds": [
+    803334
+   ],
+   "cost": 7800,
+   "levelReq": 26,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Incinerate an enemy with hellish flames, reducing their Armor by 4% per |cffff9933Demonfire|r consumed for 24 sec."
+  },
+  "Mounted Champion": {
+   "name": "Mounted Champion",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706295,
+   "ranks": null,
+   "spellIds": [
+    706295
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mount_clockworkhorse",
+   "description": "Your Xorothian Warsteed is now instant cast and prevents roots and slows for 2 sec when cast, but now has a 10 sec cooldown."
+  },
+  "Mounted Reaver": {
+   "name": "Mounted Reaver",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707835,
+   "ranks": null,
+   "spellIds": [
+    707835
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_deathelementalmount_red",
+   "description": "Reduces the cooldown of all Mounted Combat abilities by -20%."
+  },
+  "Murderous Might": {
+   "name": "Murderous Might",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520290,
+   "ranks": null,
+   "spellIds": [
+    520290
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_offhand_1h_artifactskulloferedar_d_05",
+   "description": "Increases the damage of abilities that spend Demonfire by 25%."
+  },
+  "Mutilation": {
+   "name": "Mutilation",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805695,
+   "ranks": null,
+   "spellIds": [
+    805695
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_skeer_bloodletting",
+   "description": "Increases the damage of Gore and Sever by 10%."
+  },
+  "Omen of Rage": {
+   "name": "Omen of Rage",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706590,
+   "ranks": null,
+   "spellIds": [
+    706590
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_06_summon_demon_Border",
+   "description": "Periodic damage and healing done has a 10% chance to grant a stack of Demonfire."
+  },
+  "Parry": {
+   "name": "Parry",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3124,
+   "ranks": null,
+   "spellIds": [
+    3124
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Partners in Flames": {
+   "name": "Partners in Flames",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500578,
+   "ranks": null,
+   "spellIds": [
+    500578
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_sumimp_Border",
+   "description": "Fire damage dealt by your Greater Imp now has a 25% chance to empower you, increasing your damage dealt by 5% for 10 seconds."
+  },
+  "Pestilence Unbound": {
+   "name": "Pestilence Unbound",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560633,
+   "ranks": null,
+   "spellIds": [
+    560633
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_axe_1h_blacksmithing_03",
+   "description": "When you use an ability that consumes Demonfire with 6 stacks, you now unleash your active Pestilence at half of their effectiveness."
+  },
+  "Pestilence of Apocalypse": {
+   "name": "Pestilence of Apocalypse",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804786,
+   "ranks": null,
+   "spellIds": [
+    804786
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\KoX_Apoc",
+   "description": "Emanate the Pestilence of Apocalypse, causing targets within 8 yds to take 10% increased Fire damage from you."
+  },
+  "Pestilence of Conquest": {
+   "name": "Pestilence of Conquest",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801053,
+   "ranks": {
+    "1": 801053
+   },
+   "spellIds": [
+    801053
+   ],
+   "cost": 1000,
+   "levelReq": 16,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Emanate a pestilence, slowing the casting speed of all enemies within 12 yds by 10%."
+  },
+  "Pestilence of Death": {
+   "name": "Pestilence of Death",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801054,
+   "ranks": null,
+   "spellIds": [
+    801054
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\KoX_Death",
+   "description": "Emanate a pestilence, increasing your critical damage by 10%."
+  },
+  "Pestilence of Famine": {
+   "name": "Pestilence of Famine",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802344,
+   "ranks": {
+    "1": 802344
+   },
+   "spellIds": [
+    802344
+   ],
+   "cost": 450,
+   "levelReq": 12,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Emanate a pestilence reducing the movement speed by 25% and attack speed of nearby enemies by 10%."
+  },
+  "Pestilence of War": {
+   "name": "Pestilence of War",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 802345,
+   "ranks": {
+    "1": 802345
+   },
+   "spellIds": [
+    802345
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Emanate a pestilence, causing each |cffff9933Demonfire|r spent to heal for 1% of your maximum health."
+  },
+  "Pestilent Retaliation": {
+   "name": "Pestilent Retaliation",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704971,
+   "ranks": null,
+   "spellIds": [
+    704971
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_bull_Border",
+   "description": "When you block an attack you now have a 5% chance to unleash your active Pestilence at half of its effectiveness.\n\nCan only occur once every 5 sec."
+  },
+  "Punisher": {
+   "name": "Punisher",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704988,
+   "ranks": null,
+   "spellIds": [
+    704988
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_magicspell_(36)_Border",
+   "description": "Increases the attack power and spell power scaling of Seeking Flame by 25%."
+  },
+  "Rage of Xoroth": {
+   "name": "Rage of Xoroth",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300376,
+   "ranks": null,
+   "spellIds": [
+    300376
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Warrior_FocusedRage",
+   "description": "Your critical strikes now enrage you, increasing your melee attack speed by 15%."
+  },
+  "Ragefist": {
+   "name": "Ragefist",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300384,
+   "ranks": null,
+   "spellIds": [
+    300384
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_relics_totemofrage",
+   "description": "Increases your maximum Rage by 10 and reduces the duration of disarm effects against you by -15%."
+  },
+  "Rain of Chaos": {
+   "name": "Rain of Chaos",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704452,
+   "ranks": null,
+   "spellIds": [
+    704452
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_RainOfFire",
+   "description": "Casting Flames of Xoroth with 6 Demonfire now calls down a Rain of Chaos.Rain of ChaosMolten rain burns enemies in the area causing 234 Fire Damage over 9 seconds."
+  },
+  "Render": {
+   "name": "Render",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704951,
+   "ranks": null,
+   "spellIds": [
+    704951
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_axe_104",
+   "description": "Level 40 Passive\nIncreases your melee haste rating by 30% of your Strength."
+  },
+  "Resilient Constitution": {
+   "name": "Resilient Constitution",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 552011,
+   "ranks": null,
+   "spellIds": [
+    552011
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Ripper": {
+   "name": "Ripper",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706331,
+   "ranks": null,
+   "spellIds": [
+    706331
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\_Diablo3_Execute_DeathKnight",
+   "description": "Level 20 Passive\nDamaging abilities that spend Demonfire now refresh a charge of Gore."
+  },
+  "Sacrificial Circle": {
+   "name": "Sacrificial Circle",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805677,
+   "ranks": null,
+   "spellIds": [
+    805677
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_firerune_(2)_Border",
+   "description": "Sacrifice your Hellfire Imps within 15 yds, healing you 15% of your maximum health, plus an additional amount equal to 25% of each of your Hellfire Imp's maximum health.\n\nHellfire Imps sacrificed in this way leave behind corpses."
+  },
+  "Screamin' Demon": {
+   "name": "Screamin' Demon",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804947,
+   "ranks": null,
+   "spellIds": [
+    804947
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_fomor_boss_shout",
+   "description": "Reduces the cooldown of Unleash Pestilence by -15 sec."
+  },
+  "Seeking Flame": {
+   "name": "Seeking Flame",
+   "spec": "Hellfire",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 560668,
+   "ranks": {
+    "2": 560664,
+    "3": 560665,
+    "4": 560666,
+    "5": 560667,
+    "6": 560668
+   },
+   "spellIds": [
+    560664,
+    560665,
+    560666,
+    560667,
+    560668,
+    805671
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shadowflame_missile",
+   "description": "|cffff9933Generates 1 Demonfire|r\r\nSear an enemy, dealing 130 Fire damage."
+  },
+  "Seething Strikes": {
+   "name": "Seething Strikes",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300375,
+   "ranks": null,
+   "spellIds": [
+    300375
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_fire_0000s_0000_sword_Border",
+   "description": "Increases the damage of Sever by 30% against Burning targets and it now increases the targets chance to be critically struck by 3% for 12 seconds."
+  },
+  "Sever": {
+   "name": "Sever",
+   "spec": "War",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 501505,
+   "ranks": {
+    "2": 501499,
+    "3": 501500,
+    "4": 501501,
+    "5": 501502,
+    "6": 501503,
+    "7": 501504,
+    "8": 501505
+   },
+   "spellIds": [
+    500904,
+    501499,
+    501500,
+    501501,
+    501502,
+    501503,
+    501504,
+    501505
+   ],
+   "cost": 200,
+   "levelReq": 10,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Strike an enemy with demonic might, dealing 100% Weapon Damage plus 11 and generating 20 Rage."
+  },
+  "Shadowflame Forge": {
+   "name": "Shadowflame Forge",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704989,
+   "ranks": null,
+   "spellIds": [
+    704989
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_racial_forgeoflight",
+   "description": "Increases the duration of Hellmaw by 3 sec."
+  },
+  "Shieldgore": {
+   "name": "Shieldgore",
+   "spec": "Defiance",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 806874,
+   "ranks": {
+    "2": 806869,
+    "3": 806870,
+    "4": 806871,
+    "5": 806872,
+    "6": 806873,
+    "7": 806874
+   },
+   "spellIds": [
+    301302,
+    806869,
+    806870,
+    806871,
+    806872,
+    806873,
+    806874
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_shield_draenorraid_d_02",
+   "description": "|cffff9933Generates 2 Demonfire|r\r\nGore the target with your spiked shield, causing 44 High Threat Fire Damage, scaling with your block value."
+  },
+  "Shoot": {
+   "name": "Shoot",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3018,
+   "ranks": null,
+   "spellIds": [
+    3018
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Skulltaker": {
+   "name": "Skulltaker",
+   "spec": "War",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 803900,
+   "ranks": {
+    "2": 802416,
+    "3": 802417,
+    "4": 802418,
+    "5": 802419,
+    "6": 802420,
+    "7": 802421,
+    "8": 803899,
+    "9": 803900
+   },
+   "spellIds": [
+    800168,
+    802416,
+    802417,
+    802418,
+    802419,
+    802420,
+    802421,
+    803899,
+    803900
+   ],
+   "cost": 100,
+   "levelReq": 8,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Slash an enemy viciously, dealing 70% Weapon Damage plus 10.\r\n\r\nDeals increased damage per |cffff9933Demonfire|r consumed."
+  },
+  "Snarl": {
+   "name": "Snarl",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 800169,
+   "ranks": {
+    "1": 800169
+   },
+   "spellIds": [
+    800169
+   ],
+   "cost": 650,
+   "levelReq": 14,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Taunts an enemy target to attack you."
+  },
+  "Soul Furnace": {
+   "name": "Soul Furnace",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706758,
+   "ranks": null,
+   "spellIds": [
+    706758
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_fireblast_Border",
+   "description": "Sacrificial Circle now grants you a damage absorption shield equal to 15% of the total health of each destroyed imp for 10 sec."
+  },
+  "Speed Demon": {
+   "name": "Speed Demon",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707232,
+   "ranks": null,
+   "spellIds": [
+    707232
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_Zone_HellfirePeninsula_01",
+   "description": "Your Suffuse now increases your movement speed by 20%."
+  },
+  "Spiked Chains": {
+   "name": "Spiked Chains",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704987,
+   "ranks": null,
+   "spellIds": [
+    704987
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\creatureportrait_blackrock_chainsofwoe",
+   "description": "Your Chainwhip now deals 321 + 30% AP additional Physical damage, increased by 100% on Humanoids."
+  },
+  "Stoke the Flames": {
+   "name": "Stoke the Flames",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704973,
+   "ranks": null,
+   "spellIds": [
+    704973
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_belt_plate_raidwarrior_j_01",
+   "description": "Your Skulltaker and Melt used with 6 Demonfire now refund 2 Demonfire.\n\nSkulltaker used with 6 Demonfire now deals an additional 30% Fire damage."
+  },
+  "Suffuse": {
+   "name": "Suffuse",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801063,
+   "ranks": null,
+   "spellIds": [
+    801063
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\diabloanniversary_achievement",
+   "description": "Embrace your mortal body, restoring 103 + 10% Stamina health every 3 sec, scaling with Stamina and defense rating.\n\nLasts 3 sec for each Demonfire consumed."
+  },
+  "Suffusion of Essence": {
+   "name": "Suffusion of Essence",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706566,
+   "ranks": null,
+   "spellIds": [
+    706566
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_trinket_firelands_03",
+   "description": "Increases the duration of Suffuse by 2 sec for each Demonfire consumed."
+  },
+  "Taskmaster": {
+   "name": "Taskmaster",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500003,
+   "ranks": null,
+   "spellIds": [
+    500003
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Warrior_ImprovedDisciplines",
+   "description": "Increases your critical strike chance by 3% plus an additional 15% against Demons."
+  },
+  "The Butcher": {
+   "name": "The Butcher",
+   "spec": "War",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704952,
+   "ranks": null,
+   "spellIds": [
+    704952
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\artifactability_unholydeathknight_flagellation",
+   "description": "Damage dealt by Meatsaw now increases the damage dealt by subsequent Meatsaws by 10% and reduces its global cooldown by -5% for 10 seconds, stacking 5 times."
+  },
+  "Throw": {
+   "name": "Throw",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 2764,
+   "ranks": null,
+   "spellIds": [
+    2764
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "To Ashes": {
+   "name": "To Ashes",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705000,
+   "ranks": null,
+   "spellIds": [
+    705000
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_Volcano",
+   "description": "Increases the critical strike chance of abilities that spend Demonfire by 5%."
+  },
+  "Unbound Inferno": {
+   "name": "Unbound Inferno",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704997,
+   "ranks": null,
+   "spellIds": [
+    704997
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Fire_FlameBlades",
+   "description": "Your Infernal Strikes against enemies affected by your Flames of Xoroth now blasts nearby enemies for 75 + 10% fire SP + 5% AP Fire damage."
+  },
+  "Unleash Pestilence": {
+   "name": "Unleash Pestilence",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 801002,
+   "ranks": {
+    "1": 801002
+   },
+   "spellIds": [
+    801002
+   ],
+   "cost": 25,
+   "levelReq": 4,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Let out a terrifying howl, unleashing your active |cffffffffPestilence|r on nearby enemies to trigger a powerful effect."
+  },
+  "War Pig": {
+   "name": "War Pig",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705020,
+   "ranks": null,
+   "spellIds": [
+    705020
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathwing_assualtaspects",
+   "description": "Increases your Physical damage dealt by 4%."
+  },
+  "Warbringer": {
+   "name": "Warbringer",
+   "spec": "War",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 802586,
+   "ranks": {
+    "2": 802582,
+    "3": 802583,
+    "4": 802584,
+    "5": 802585,
+    "6": 802586
+   },
+   "spellIds": [
+    570727,
+    802582,
+    802583,
+    802584,
+    802585,
+    802586
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_mace_2h_pvpcataclysms3_c_01",
+   "description": "Slam the ground, dealing 65% Weapon Damage plus 12 to nearby enemies, reducing the effectiveness of any healing by 50% for 10 sec.\r\n\r\nDeals increased damage per |cffff9933Demonfire|r consumed."
+  },
+  "Warden of Hellfire": {
+   "name": "Warden of Hellfire",
+   "spec": "Defiance",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704986,
+   "ranks": null,
+   "spellIds": [
+    704986
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_guild_forgreatjusticerank2",
+   "description": "Increases the damage dealt by Skulltaker and Flames of Xoroth by 20%."
+  },
+  "Warpath": {
+   "name": "Warpath",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805793,
+   "ranks": null,
+   "spellIds": [
+    805793
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_warrior_intensifyrage",
+   "description": "While Unleash Pestilence is active it now protects your movement speed from being reduced below 90% of normal speed."
+  },
+  "Xorothian Empowerment": {
+   "name": "Xorothian Empowerment",
+   "spec": "Hellfire",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704994,
+   "ranks": null,
+   "spellIds": [
+    704994
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_firelands_raid_ragnaros",
+   "description": "Increases the attack power of all party and raid members 5%. Does not stack with similar effects."
+  },
+  "Xorothian Finesse": {
+   "name": "Xorothian Finesse",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300385,
+   "ranks": null,
+   "spellIds": [
+    300385
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_blood_aim_Border",
+   "description": "Increases your chance to parry by 5%."
+  },
+  "Xorothian Sigil": {
+   "name": "Xorothian Sigil",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801061,
+   "ranks": null,
+   "spellIds": [
+    801061
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_AhnQirajTrinket_04",
+   "description": "Create a demonic sigil that protects party members within 20 yds of you, causing them to deflect the next harmful spell cast against them within 3 seconds."
+  },
+  "Xorothian Strength": {
+   "name": "Xorothian Strength",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300382,
+   "ranks": null,
+   "spellIds": [
+    300382
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_DemonicPact",
+   "description": "Increases your Strength by 5%."
+  },
+  "Xorothian Warsteed": {
+   "name": "Xorothian Warsteed",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804703,
+   "ranks": {
+    "1": 804703
+   },
+   "spellIds": [
+    804703
+   ],
+   "cost": 2500,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Mount your |cFFFFFFFFXorothian Warsteed|r, increasing movement speed by 20%.\r\n\r\nGenerate |cffffffffPath of Hellfire|r if you haven't dealt or taken damage for 3 sec, stacking up to 2 times. This increases to 3 times at level 30 and 5 times at level 40.\r\n\r\nCan be used in combat and is castable while moving.\r\n@s:804787:0@"
+  }
+ }
+}

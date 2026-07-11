@@ -1,0 +1,4965 @@
+{
+ "class": "SONOFARUGAL",
+ "display": "Bloodmage",
+ "classId": 20,
+ "abilityCount": 267,
+ "bySpec": {
+  "Accursed": 44,
+  "General": 46,
+  "Eternal": 46,
+  "Fleshweaver": 47,
+  "Class": 38,
+  "Sanguine": 46
+ },
+ "abilities": {
+  "Accursed Form": {
+   "name": "Accursed Form",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504710,
+   "ranks": null,
+   "spellIds": [
+    504710
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_dungeon_hallsofattonement_echelon",
+   "description": "Transforms your Blood Curse into Accursed Form.Accursed Form (Cursed Form)Embrace your demonic curse for 30 seconds, entering an improved Cursed Form, increasing your attack power by 50% of your Agility and causing your melee attacks to reduce all healing done to the target by -20% for 10 seconds, stacking 2 times."
+  },
+  "Acquired Taste": {
+   "name": "Acquired Taste",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807566,
+   "ranks": null,
+   "spellIds": [
+    807566
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_ShamanTotam_Blood",
+   "description": "Casting Infuse or Vampyr's Kiss now generates 2 additional stacks of Pooled Vitality."
+  },
+  "Adrenaline": {
+   "name": "Adrenaline",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300986,
+   "ranks": null,
+   "spellIds": [
+    300986
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_Reincarnation",
+   "description": "Reduces the duration of bleed, root, and movement slowing effects against you by -25%."
+  },
+  "Adrenaline Boost": {
+   "name": "Adrenaline Boost",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680675,
+   "ranks": null,
+   "spellIds": [
+    680675
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_SealOfSacrifice",
+   "description": "Increases the critical strike chance of abilities that require Cursed Form on enemies above 75% or below 35% health by 20%.\n\nIn addition, melee critical strikes now have a 50% chance to make your next Dark Liturgy or Bloodmoon Blast instant cast."
+  },
+  "Agonizing Pain": {
+   "name": "Agonizing Pain",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680745,
+   "ranks": null,
+   "spellIds": [
+    680745
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\warlock_bloodstone",
+   "description": "Damage dealt by your Atherann's Anguish now causes enemies hit to bleed, dealing 1405 + 100% shadow SP Shadow damage over 10 seconds."
+  },
+  "Alacrity": {
+   "name": "Alacrity",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504285,
+   "ranks": null,
+   "spellIds": [
+    504285
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_run_Border",
+   "description": "Increases all primary stats by 4%."
+  },
+  "Aneurysm": {
+   "name": "Aneurysm",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806099,
+   "ranks": null,
+   "spellIds": [
+    806099
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_argus_psychic_scarring",
+   "description": "Counter the enemy's spellcast, preventing any spell from that school of magic from being cast for 4 seconds. \n\nSuccessfully interrupting an enemy heals you for 5% of your maximum health."
+  },
+  "Animated Blood": {
+   "name": "Animated Blood",
+   "spec": "Sanguine",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 573357,
+   "ranks": {
+    "2": 573356,
+    "3": 573357
+   },
+   "spellIds": [
+    573299,
+    573356,
+    573357
+   ],
+   "cost": 2000,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Animate 5 blood parasites to aid you in combat for 15 sec. \r\n\r\n|cFFE53935Empowered|r: Duration increased by 5 sec and you summon 1 additional amalgam."
+  },
+  "Aortic Aegis": {
+   "name": "Aortic Aegis",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806274,
+   "ranks": null,
+   "spellIds": [
+    806274
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_animusorbs",
+   "description": "Your Blood Veil now applies to the party members of the target."
+  },
+  "Aortic Assault": {
+   "name": "Aortic Assault",
+   "spec": "Accursed",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 807785,
+   "ranks": {
+    "2": 807780,
+    "3": 807781,
+    "4": 807782,
+    "5": 807783,
+    "6": 807784,
+    "7": 807785
+   },
+   "spellIds": [
+    806212,
+    807780,
+    807781,
+    807782,
+    807783,
+    807784,
+    807785
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_moguraid_06",
+   "description": "Extend the duration of your active |cffa966f0Cursed Form|r by 2 sec and strike nearby enemies every 0.50 sec for 3 sec, each strike causing 32 Physical damage."
+  },
+  "Apotheosis": {
+   "name": "Apotheosis",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 804203,
+   "ranks": {
+    "1": 804203
+   },
+   "spellIds": [
+    804203
+   ],
+   "cost": 25500,
+   "levelReq": 40,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Enter a blood trance, consuming Rage every sec to allow you to heal for 100% of all damage dealt for 30 sec.\r\n\r\nIf you run out of Rage the effect will end early."
+  },
+  "Appetite for Blood": {
+   "name": "Appetite for Blood",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560479,
+   "ranks": null,
+   "spellIds": [
+    560479
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_BullRush",
+   "description": "Increases the damage dealt by Bloodfang Bite and Claw Sweep by 20% against Humanoids and Beasts."
+  },
+  "Apprentice Woodworking": {
+   "name": "Apprentice Woodworking",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 1005008,
+   "ranks": null,
+   "spellIds": [
+    1005008
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Arterial Bind": {
+   "name": "Arterial Bind",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681077,
+   "ranks": null,
+   "spellIds": [
+    681077
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_EnslaveSpell_Blood",
+   "description": "Place a pool of blood on the ground beneath enemies and allies, healing allies for 203 + 33% healing every 1 sec and silencing all enemies for 4 seconds."
+  },
+  "Atherann's Anguish": {
+   "name": "Atherann's Anguish",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680680,
+   "ranks": null,
+   "spellIds": [
+    680680
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_BloodPlague_Red",
+   "description": "Unleash a hemoplague upon the target area, accumulating 30% of the damage you deal to affected enemies for 10 seconds, and then exploding for that amount of Shadow damage.\n\nDamage caused by this ability cannot critically strike."
+  },
+  "Atherann's Wickedness": {
+   "name": "Atherann's Wickedness",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704642,
+   "ranks": null,
+   "spellIds": [
+    704642
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_DestructiveSoul",
+   "description": "Increases your Shadow damage dealt by 4% and increases your hit chance by 3%."
+  },
+  "Auto Attack": {
+   "name": "Auto Attack",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 6603,
+   "ranks": null,
+   "spellIds": [
+    6603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Bare Fangs": {
+   "name": "Bare Fangs",
+   "spec": "Eternal",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 801957,
+   "ranks": null,
+   "spellIds": [
+    801957
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Barely Human": {
+   "name": "Barely Human",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504254,
+   "ranks": null,
+   "spellIds": [
+    504254
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nzinsanity_bloodthirst",
+   "description": "Increases your armor penetration and the damage of spells that cost health by 15%."
+  },
+  "Basic Campfire": {
+   "name": "Basic Campfire",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 818,
+   "ranks": null,
+   "spellIds": [
+    818
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Battleweaver": {
+   "name": "Battleweaver",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801963,
+   "ranks": null,
+   "spellIds": [
+    801963
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\warlock_charredremains",
+   "description": "Casting Cursed Form abilities now has a 50% chance to generate 1 Blood Shard for 10 minutes, up to 8.\n\nDealing damage with Bloodbolt will launch 1 Blood Shard, dealing 18 + 15% AP + 35% SP Arcane damage to your target."
+  },
+  "Black Heart": {
+   "name": "Black Heart",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680731,
+   "ranks": null,
+   "spellIds": [
+    680731
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_misc_hearty_04",
+   "description": "Your Vampyr's Rage now regenerates 20% of your maximum Rage."
+  },
+  "Block": {
+   "name": "Block",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 107,
+   "ranks": null,
+   "spellIds": [
+    107
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Blood Banquet": {
+   "name": "Blood Banquet",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560250,
+   "ranks": null,
+   "spellIds": [
+    560250
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_BloodBoil",
+   "description": "Increases the damage of Valanar's Vengeance and Taldaram's Torment by 15%."
+  },
+  "Blood Bond": {
+   "name": "Blood Bond",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504627,
+   "ranks": null,
+   "spellIds": [
+    504627
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_bloodsacrifice_Border",
+   "description": "Bond yourself to an ally for 30 minutes, causing direct damage taken by the ally to generate 1 Rage and 3% base health and redirect their threat generated to you.\n\nIn addition, while out of combat, you and your bonded ally have 30% increased movement speed."
+  },
+  "Blood Clot": {
+   "name": "Blood Clot",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680657,
+   "ranks": null,
+   "spellIds": [
+    680657
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_EnslaveSpell_Blood",
+   "description": "Your Scarlet Delirium now deals 100% increased damage."
+  },
+  "Blood Constructor": {
+   "name": "Blood Constructor",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561196,
+   "ranks": null,
+   "spellIds": [
+    561196
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_CorpseExplode",
+   "description": "Increases the duration of Animated Blood by 1 sec per stack of Thirst."
+  },
+  "Blood Craving": {
+   "name": "Blood Craving",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800780,
+   "ranks": null,
+   "spellIds": [
+    800780
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_lifedrain",
+   "description": "Requires Mortal Form\nYou crave blood for 12 seconds, for the duration you cannot be interrupted or silenced, and you regain 5% of your maximum health and 15% of your missing Rage every 2 sec."
+  },
+  "Blood Curse": {
+   "name": "Blood Curse",
+   "spec": "Accursed",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 562720,
+   "ranks": null,
+   "spellIds": [
+    562720
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Blood Feast": {
+   "name": "Blood Feast",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 706605,
+   "ranks": {
+    "1": 706605
+   },
+   "spellIds": [
+    706605
+   ],
+   "cost": 39500,
+   "levelReq": 50,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffffRequires Mortal Form|r\nDrains the essence from up to 3 nearby enemy corpses over 5 sec to quickly regain 5% maximum health and Rage every 0.50 sec.\r\n\r\nCannot be used in combat."
+  },
+  "Blood Howl": {
+   "name": "Blood Howl",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800782,
+   "ranks": null,
+   "spellIds": [
+    800782
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_nightmarehowl_Border",
+   "description": "Taunts nearby enemies within 10 yds, forcing them to attack you for 5 seconds."
+  },
+  "Blood Lord": {
+   "name": "Blood Lord",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704636,
+   "ranks": null,
+   "spellIds": [
+    704636
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_boss_kael'thassunstrider_01",
+   "description": "Grants your Bloodsore a -15% chance to provide its benefits without being consumed."
+  },
+  "Blood Mark": {
+   "name": "Blood Mark",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707624,
+   "ranks": null,
+   "spellIds": [
+    707624
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Deathknight_BloodPresence",
+   "description": "Increases the Physical damage taken by enemies within 5 yds of you by 3%."
+  },
+  "Blood Moon": {
+   "name": "Blood Moon",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804199,
+   "ranks": null,
+   "spellIds": [
+    707623,
+    804199
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathwing_bloodcorruption_earth",
+   "description": "Your Animated Blood now spawns an additional amalgam."
+  },
+  "Blood Pact": {
+   "name": "Blood Pact",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560256,
+   "ranks": null,
+   "spellIds": [
+    560256,
+    801955
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_revendreth_deathknight",
+   "description": "Increases your maximum Rage by 20 and you now regenerate 4 Rage every 5 sec."
+  },
+  "Blood Parasites": {
+   "name": "Blood Parasites",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802315,
+   "ranks": null,
+   "spellIds": [
+    802315
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mount_bloodtick_red",
+   "description": "Your Taldaram's Torment now generates 3 additional Rage per tick and increases spell critical strike chance against the target by 3% for 15 seconds."
+  },
+  "Blood Plague": {
+   "name": "Blood Plague",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 575335,
+   "ranks": null,
+   "spellIds": [
+    575335
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_creepingplague",
+   "description": "Increases the critical strike chance and critical damage of Ravenous Strike and Claw Sweep by 10% against Diseased targets."
+  },
+  "Blood Prince's Command": {
+   "name": "Blood Prince's Command",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704641,
+   "ranks": null,
+   "spellIds": [
+    704641
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_foreshadowblood_Border",
+   "description": "Your Bloodbolt is now guaranteed to critically strike on enemies affected by Taldaram's Torment."
+  },
+  "Blood Redistribution": {
+   "name": "Blood Redistribution",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706256,
+   "ranks": null,
+   "spellIds": [
+    706256
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_druid_massentanglement_nightmare",
+   "description": "Increases the maximum health restored by Fleshcraft by 25%."
+  },
+  "Blood Runs Cold": {
+   "name": "Blood Runs Cold",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560257,
+   "ranks": null,
+   "spellIds": [
+    560257
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sha_ability_warrior_bloodnova",
+   "description": "Your Blood Pact now also increases your healing received by 20%."
+  },
+  "Blood Rush": {
+   "name": "Blood Rush",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560254,
+   "ranks": null,
+   "spellIds": [
+    560254
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_BloodyEye",
+   "description": "Periodic damage dealt now has a 20% chance to grant you Blood Rush. Can only occur once every 5 sec.Blood RushIncreases your haste by 20% for 5 seconds."
+  },
+  "Blood Scent": {
+   "name": "Blood Scent",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804223,
+   "ranks": null,
+   "spellIds": [
+    804223
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Physical_Taunt",
+   "description": "While in Accursed Form, you now deal 15% increased damage to targets below 35% maximum health.\n\nDealing direct damage to enemies below 35% maximum health now leeches health equal to 10% of the damage dealt."
+  },
+  "Blood Shards": {
+   "name": "Blood Shards",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804849,
+   "ranks": null,
+   "spellIds": [
+    804849
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\uico_blood_spell_02_Border",
+   "description": "Level 30 Passive\nShadow Damage dealt now generates 1 Blood Shard, plus 1 additional if it critically strikes, for 10 minutes, up to 8.\n\nDealing damage with Veinburst will now expend all stacks of Blood Shards, each dealing 18 + 9% AP + 15% SP Arcane damage to your target."
+  },
+  "Blood Shield": {
+   "name": "Blood Shield",
+   "spec": "Fleshweaver",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 504296,
+   "ranks": null,
+   "spellIds": [
+    504296
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Blood Tap": {
+   "name": "Blood Tap",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 707900,
+   "ranks": {
+    "1": 707900
+   },
+   "spellIds": [
+    707900
+   ],
+   "cost": 1600,
+   "levelReq": 18,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Instantly regenerate 50% of your maximum Rage in exchange for health."
+  },
+  "Blood Trails": {
+   "name": "Blood Trails",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804858,
+   "ranks": null,
+   "spellIds": [
+    804858
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_blood_spell_07_Border",
+   "description": "Periodic damage and healing now causes targets to spill a pool of blood beneath them.\n\nAllies in a Cursed Form who move through the pools of blood gain Trail of Blood for 6 seconds.Trail of BloodMovement speed cannot be reduced below 80%. Movement speed increased by 20%. Damage dealt increased by 5%."
+  },
+  "Blood Veil": {
+   "name": "Blood Veil",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572279,
+   "ranks": {
+    "2": 572277,
+    "3": 572278,
+    "4": 572279
+   },
+   "spellIds": [
+    504263,
+    572277,
+    572278,
+    572279
+   ],
+   "cost": 17000,
+   "levelReq": 40,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_blood_drain_Border",
+   "description": "Create a magical veil around an ally, absorbing 50% of incoming damage, up to a maximum of 810 for 8 sec."
+  },
+  "Blood-Cursed Armor": {
+   "name": "Blood-Cursed Armor",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 685028,
+   "ranks": null,
+   "spellIds": [
+    685028
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_CurseOfTounges",
+   "description": "You now emanate an aura around you, increasing the Armor of party and raid members by 390.\n\nDoes not stack with similar effects."
+  },
+  "Blood-Cursed Weapons": {
+   "name": "Blood-Cursed Weapons",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 684331,
+   "ranks": null,
+   "spellIds": [
+    684331
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_assassinskill09_Border",
+   "description": "Casting Crimson Tide now additionally increases the haste of all party and raid members by 5% for 15 seconds.\n\nDoes not stack with similar effects."
+  },
+  "Bloodbender": {
+   "name": "Bloodbender",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704635,
+   "ranks": null,
+   "spellIds": [
+    704635
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_handsofblood_Border",
+   "description": "Increases the effectiveness of Offerings by 20%."
+  },
+  "Bloodbolt": {
+   "name": "Bloodbolt",
+   "spec": "Accursed",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 578305,
+   "ranks": {
+    "3": 806929,
+    "4": 806930,
+    "5": 806931,
+    "6": 806932,
+    "7": 578304,
+    "8": 578305
+   },
+   "spellIds": [
+    578304,
+    578305,
+    804685,
+    806928,
+    806929,
+    806930,
+    806931,
+    806932
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Hurl a bolt of blood at an enemy, dealing 72 Shadow damage, healing you equal to the damage dealt.\r\n\r\n|cFFE53935Empowered|r: Deals 100% increased damage."
+  },
+  "Bloodbound Etchings": {
+   "name": "Bloodbound Etchings",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 570758,
+   "ranks": null,
+   "spellIds": [
+    570758
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_StoneTablet_StainedBlood",
+   "description": "Your Blood Shield now increases your health regeneration by 50% more."
+  },
+  "Bloodcraft": {
+   "name": "Bloodcraft",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680733,
+   "ranks": null,
+   "spellIds": [
+    680733
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_skeer_bloodletting",
+   "description": "Your damage dealt by Darkfallen Lament now applies Bloodcraft to affected enemies, reducing damage dealt by -2% for 5 seconds, stacking 4 times."
+  },
+  "Bloodfang Bite": {
+   "name": "Bloodfang Bite",
+   "spec": "Eternal",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 572551,
+   "ranks": {
+    "3": 501696,
+    "4": 501697,
+    "5": 503613,
+    "6": 503614,
+    "7": 503615,
+    "8": 572549,
+    "9": 572550,
+    "10": 572551
+   },
+   "spellIds": [
+    501695,
+    501696,
+    501697,
+    503613,
+    503614,
+    503615,
+    572549,
+    572550,
+    572551,
+    800156
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Bite an enemy, dealing 160 Physical damage and creates a |cffffffffBite Wound|r.@s:706654:0@"
+  },
+  "Bloodguard": {
+   "name": "Bloodguard",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 570746,
+   "ranks": null,
+   "spellIds": [
+    570746
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_MonkSpecialAttack_DodgeBloodElf",
+   "description": "Increases the duration of Blood Pact by 4 sec."
+  },
+  "Bloodleaper": {
+   "name": "Bloodleaper",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806423,
+   "ranks": null,
+   "spellIds": [
+    806423
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_boot_cloth_raidwarlock_r_01",
+   "description": "Reduces the cooldown of your Lunge by -10 sec."
+  },
+  "Bloodmoon Blast": {
+   "name": "Bloodmoon Blast",
+   "spec": "Sanguine",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 501614,
+   "ranks": {
+    "4": 501609,
+    "5": 501610,
+    "6": 501611,
+    "7": 501612,
+    "8": 501613,
+    "9": 501614
+   },
+   "spellIds": [
+    500125,
+    501607,
+    501608,
+    501609,
+    501610,
+    501611,
+    501612,
+    501613,
+    501614
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffffRequires Mortal Form|r\r\nBlast an enemy for 109 Shadow damage and generates Rage."
+  },
+  "Bloodmoon Power": {
+   "name": "Bloodmoon Power",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801961,
+   "ranks": null,
+   "spellIds": [
+    578120,
+    801961
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sha_ability_rogue_bloodyeye_nightmare",
+   "description": "Your Liquify now cleanses all negative effects when used."
+  },
+  "Bloodsoaked Offering": {
+   "name": "Bloodsoaked Offering",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572403,
+   "ranks": {
+    "1": 572400,
+    "2": 572401,
+    "3": 572402,
+    "4": 572403
+   },
+   "spellIds": [
+    572400,
+    572401,
+    572402,
+    572403
+   ],
+   "cost": 8000,
+   "levelReq": 32,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Blood magic infuses the target ally, increasing their Spirit by 17 for 30 min."
+  },
+  "Bloodsores": {
+   "name": "Bloodsores",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805591,
+   "ranks": null,
+   "spellIds": [
+    805591
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\ability_deathknight_desolation",
+   "description": "$6f"
+  },
+  "Bloodsurge": {
+   "name": "Bloodsurge",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 553267,
+   "ranks": null,
+   "spellIds": [
+    553267
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_SkullCurse2_Red",
+   "description": "$77"
+  },
+  "Bloodthorns": {
+   "name": "Bloodthorns",
+   "spec": "Fleshweaver",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 501667,
+   "ranks": {
+    "3": 501663,
+    "4": 501664,
+    "5": 501665,
+    "6": 501666,
+    "7": 501667
+   },
+   "spellIds": [
+    501662,
+    501663,
+    501664,
+    501665,
+    501666,
+    501667,
+    802313
+   ],
+   "cost": 5200,
+   "levelReq": 26,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Bloodthorns sprout from an ally for 30 min, causing 10 Shadow damage to attackers when hit.\r\n\r\nCan occur only once every half a second."
+  },
+  "Bloodwell Eruption": {
+   "name": "Bloodwell Eruption",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560072,
+   "ranks": null,
+   "spellIds": [
+    560072
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\artifactability_blooddeathknight_umbilicuseternus",
+   "description": "Increases the radius of Sanguine Rupture by 5 yds and its critical strike chance by 10%."
+  },
+  "Bloody Claws": {
+   "name": "Bloody Claws",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572800,
+   "ranks": null,
+   "spellIds": [
+    572800
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_DeathKnight_BloodTap",
+   "description": "You now generate 20% increased Rage from damage dealt and critical strikes with auto attacks now reduces the cooldown of Animated Blood, Blood Veil, and Blood Pact by 1 sec."
+  },
+  "Bloody Sacrifice": {
+   "name": "Bloody Sacrifice",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705742,
+   "ranks": null,
+   "spellIds": [
+    705742
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_SacrificialDagger_Blood",
+   "description": "Increases your healing received by 15%."
+  },
+  "Cardiac Arrest": {
+   "name": "Cardiac Arrest",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806944,
+   "ranks": null,
+   "spellIds": [
+    806944
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_bloodeye_Border",
+   "description": "Your Valanar's Vengeance now deals an additional 50% of its initial damage dealt over 10 seconds, healing you for 50% of the damage dealt."
+  },
+  "Claw Sweep": {
+   "name": "Claw Sweep",
+   "spec": "Eternal",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 500444,
+   "ranks": {
+    "2": 500436,
+    "3": 500437,
+    "4": 500438,
+    "5": 500439,
+    "6": 500440,
+    "7": 500441,
+    "8": 500444
+   },
+   "spellIds": [
+    500169,
+    500436,
+    500437,
+    500438,
+    500439,
+    500440,
+    500441,
+    500444
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Swipe at nearby enemies, dealing 38 Physical damage."
+  },
+  "Clotting": {
+   "name": "Clotting",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704115,
+   "ranks": null,
+   "spellIds": [
+    704115
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_hand_1h_pvpdraenors2_d_01",
+   "description": "At the end of Aortic Assault's duration, all enemies in a 10 yd frontal cone suffer 600 + 50% AP Physical damage.\n\nDamage dealt by this effect is increased by 25% against bleeding targets."
+  },
+  "Coagulated Shield": {
+   "name": "Coagulated Shield",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 504897,
+   "ranks": {
+    "1": 504897
+   },
+   "spellIds": [
+    504897
+   ],
+   "cost": 2500,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Protects the caster with a coagulated barrier, causing them to suffer no spell pushback from damaging attacks and reducing the duration of interrupt and silence effects by 30%. Lasts 30 min.\r\n\r\n@ext: Only 1 |cffffffffShield|r can be active at a time.:ext@"
+  },
+  "Coagulation": {
+   "name": "Coagulation",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706258,
+   "ranks": null,
+   "spellIds": [
+    706258
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_maldraxxusslime_red",
+   "description": "Your Blood Shield now also dispels 1 bleed effect from you with each tick."
+  },
+  "Coated In Blood": {
+   "name": "Coated In Blood",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707626,
+   "ranks": null,
+   "spellIds": [
+    707626
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_racial_pureblood",
+   "description": "Increases the effectiveness of Blood Pact by 50%."
+  },
+  "Coated In Darkness": {
+   "name": "Coated In Darkness",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704625,
+   "ranks": null,
+   "spellIds": [
+    704625
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_shaman_freedomwolf",
+   "description": "Casting Bloodbolt or Bloodfang Bite now reduces the cooldown of your Blood Pact by -0.5 sec."
+  },
+  "Consolidation": {
+   "name": "Consolidation",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706603,
+   "ranks": null,
+   "spellIds": [
+    706603
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_FelMending",
+   "description": "Increases your haste by 5%."
+  },
+  "Cooking": {
+   "name": "Cooking",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 2550,
+   "ranks": null,
+   "spellIds": [
+    2550
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Corrupted Blood": {
+   "name": "Corrupted Blood",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704692,
+   "ranks": null,
+   "spellIds": [
+    704692
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\artifactability_blooddeathknight_umbilicuseternus",
+   "description": "When you use Taldaram's Torment on a Humanoid or Beast it now corrupts their blood, increasing your damage dealt against them by 10%."
+  },
+  "Crimson Curse": {
+   "name": "Crimson Curse",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706656,
+   "ranks": null,
+   "spellIds": [
+    706656
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\novart_physical_ability_(14)_Border",
+   "description": "Your direct damage critical strikes increase the damage the target takes from bleed effects by 30% for 15 seconds."
+  },
+  "Crimson Etchings": {
+   "name": "Crimson Etchings",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 570735,
+   "ranks": null,
+   "spellIds": [
+    570735
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_engineerskill03_Border",
+   "description": "Removes the health cost of your Blood Shield and Vital Shield."
+  },
+  "Crimson Expedition": {
+   "name": "Crimson Expedition",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 523727,
+   "ranks": null,
+   "spellIds": [
+    523727
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_CriticalStrike",
+   "description": "Increases the critical strike chance of your Bloodbolt, Blood Shards, and Aortic Assault by 10%."
+  },
+  "Crimson Feast": {
+   "name": "Crimson Feast",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804602,
+   "ranks": null,
+   "spellIds": [
+    804602
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_blood_grawl_Border",
+   "description": "Every 5 second you remain in a Cursed Form now reduces the cooldown of your Bloodsurge by -5 sec."
+  },
+  "Crimson Scion": {
+   "name": "Crimson Scion",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806424,
+   "ranks": null,
+   "spellIds": [
+    806424
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_animarevendreth_buff",
+   "description": "Direct damage dealt now has a 10% chance to make your next Sanguine Mend within 10 seconds instant cast."
+  },
+  "Crimson Terror": {
+   "name": "Crimson Terror",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560073,
+   "ranks": null,
+   "spellIds": [
+    560073
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_bloodhand_Border",
+   "description": "Your Transgression now grants spell damage equal to 50% of your Spirit for the duration."
+  },
+  "Crimson Tide": {
+   "name": "Crimson Tide",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 504134,
+   "ranks": {
+    "2": 504129,
+    "3": 504130,
+    "4": 504131,
+    "5": 504132,
+    "6": 504133,
+    "7": 504134
+   },
+   "spellIds": [
+    504129,
+    504130,
+    504131,
+    504132,
+    504133,
+    504134,
+    504282
+   ],
+   "cost": 12500,
+   "levelReq": 34,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_blood_slash_Border",
+   "description": "|cffffffffRequires Mortal Form|r\r\nCreate a pool of blood beneath up to 10 enemies within 10 yds of you, causing them to bleed for 212 Shadow damage over 15 sec.\r\n\r\n|cFFE53935Empowered|r: Radius increased by 5 yds and costs 100% less Rage."
+  },
+  "Cruel Intent": {
+   "name": "Cruel Intent",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704653,
+   "ranks": null,
+   "spellIds": [
+    704653
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_amalgamofrage",
+   "description": "When you Lunge at an enemy you now strike them 3 times with auto attacks."
+  },
+  "Cunning of Atherann": {
+   "name": "Cunning of Atherann",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706599,
+   "ranks": null,
+   "spellIds": [
+    706599
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\atherann2",
+   "description": "Level 20 Passive\nIncreases your spell damage by 25% of your Stamina and Spirit."
+  },
+  "Cursed Blood": {
+   "name": "Cursed Blood",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707435,
+   "ranks": null,
+   "spellIds": [
+    681792,
+    707435
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_CurseOfTounges",
+   "description": "Damage dealt by Taldaram's Torment now has a 20% chance to internally rupture, causing it to deal its damage an additional time to all enemies near the target."
+  },
+  "Cursed Ground": {
+   "name": "Cursed Ground",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561195,
+   "ranks": null,
+   "spellIds": [
+    561195
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_DeathAndDecay",
+   "description": "Increases the cast time of Sanguine Rupture by 2 sec, but now when you strike at least 5 enemies it causes them to bleed out, dealing an additional 352 Shadow damage over 2 seconds."
+  },
+  "Cursed Strikes": {
+   "name": "Cursed Strikes",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300982,
+   "ranks": null,
+   "spellIds": [
+    300982
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_BloodBite_Border",
+   "description": "Increases the duration of Rotclaw and Hypovolemic Shock by 50%."
+  },
+  "Dark Blood": {
+   "name": "Dark Blood",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804807,
+   "ranks": null,
+   "spellIds": [
+    804807
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_DemonicFortitude",
+   "description": "Reduces the cost of your abilities that require Cursed Form and increases the healing done by Blood Rituals by -25%."
+  },
+  "Dark Curse": {
+   "name": "Dark Curse",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704649,
+   "ranks": null,
+   "spellIds": [
+    704649
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Racial_Cannibalize",
+   "description": "Increases critical strike chance by 3%."
+  },
+  "Dark Essence": {
+   "name": "Dark Essence",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680732,
+   "ranks": null,
+   "spellIds": [
+    680732
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathwing_bloodcorruption_earth",
+   "description": "Casting Cursed Form abilities or Bloodbolt will now heal allies affected by Blood Rituals for 114 + 10% healing every 1 sec for 3 seconds."
+  },
+  "Dark Frenzy": {
+   "name": "Dark Frenzy",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704644,
+   "ranks": null,
+   "spellIds": [
+    704644
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Warlock_PlaieFuneste1",
+   "description": "Increases spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, while a Cursed Form is active, your global cooldowns are reduced by -25%."
+  },
+  "Dark Hunt": {
+   "name": "Dark Hunt",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705733,
+   "ranks": null,
+   "spellIds": [
+    705733
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_deathknight_bladedarmor",
+   "description": "Increases your Shadow damage dealt by 10% against bleeding targets."
+  },
+  "Dark Intent": {
+   "name": "Dark Intent",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707622,
+   "ranks": null,
+   "spellIds": [
+    707622
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathknight_roilingblood",
+   "description": "When you Lunge at an enemy you now heal for 5% of your maximum health."
+  },
+  "Dark Liturgy": {
+   "name": "Dark Liturgy",
+   "spec": "Fleshweaver",
+   "sources": [
+    "spellbook",
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572575,
+   "ranks": {
+    "2": 501623,
+    "3": 501624,
+    "4": 503611,
+    "5": 503612,
+    "6": 572575
+   },
+   "spellIds": [
+    501623,
+    501624,
+    503611,
+    503612,
+    572575,
+    800781
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sanctum_features_animadiversion_revendreth",
+   "description": "|cffffffffRequires Mortal Form|r\r\nForm a blood bond, healing a friendly target for 118 and applying |cffffffffBlood Rituals|r to them, bouncing to up to 10 nearby allies, healing for less for each target struck.@s:706624:0@"
+  },
+  "Dark Mark": {
+   "name": "Dark Mark",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705731,
+   "ranks": null,
+   "spellIds": [
+    705731
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\NathriaSymbol",
+   "description": "Reduces the chance to hit for enemies within 5 yds of you by -3%."
+  },
+  "Dark Mending": {
+   "name": "Dark Mending",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561278,
+   "ranks": null,
+   "spellIds": [
+    561278
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowtouch_Border",
+   "description": "Reduces the cast time of Sanguine Mend by -0.5 sec."
+  },
+  "Dark Presence": {
+   "name": "Dark Presence",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300957,
+   "ranks": null,
+   "spellIds": [
+    300957
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sha_ability_rogue_envelopingshadows_nightmare",
+   "description": "Increases spell haste of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, increases your spell haste by 3%."
+  },
+  "Dark Sigil": {
+   "name": "Dark Sigil",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560535,
+   "ranks": null,
+   "spellIds": [
+    560535
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_HearthStoneDark_DeathKnight",
+   "description": "Increases critical strike chance of all party and raid members by 3%. Does not stack with similar effects.\n\nIn addition, you now heal for 15% of all critical damage dealt."
+  },
+  "Darkcasting": {
+   "name": "Darkcasting",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706247,
+   "ranks": null,
+   "spellIds": [
+    706247
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_DevouringShadow_Red",
+   "description": "$71"
+  },
+  "Darkfallen Lament": {
+   "name": "Darkfallen Lament",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680828,
+   "ranks": null,
+   "spellIds": [
+    680828
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_venthyr_doorofshadows",
+   "description": "Chant a sinister ritual, healing up to 12 allies affected by Blood Rituals for 648 + 80% healing over 8 seconds and leeching 684 + 800% healing health from enemies within 10 yds over 8 seconds.\n\nWhile active, you are immune to silence and interrupt effects, but cannot move."
+  },
+  "Darkfallen's Embrace": {
+   "name": "Darkfallen's Embrace",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560261,
+   "ranks": null,
+   "spellIds": [
+    560261
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_staff_2h_artifactdeadwind_d_06",
+   "description": "Increases your spell haste by 3% and increases the range of your Sanguine spells and Bloodbolt by 5 yds."
+  },
+  "Detect Life": {
+   "name": "Detect Life",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 562228,
+   "ranks": {
+    "1": 562228
+   },
+   "spellIds": [
+    562228
+   ],
+   "cost": 4500,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Shows the location of all nearby Humanoids, Giants, and Beasts on the minimap."
+  },
+  "Diplomacy": {
+   "name": "Diplomacy",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 20599,
+   "ranks": null,
+   "spellIds": [
+    20599
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Disenchant": {
+   "name": "Disenchant",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 13262,
+   "ranks": null,
+   "spellIds": [
+    13262
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Dissipation": {
+   "name": "Dissipation",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680730,
+   "ranks": null,
+   "spellIds": [
+    680730
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_artifact_corruptedbloodofzakajz",
+   "description": "Reduces the cooldown of Fleshcraft and the duration of the Sated debuff by -60 sec."
+  },
+  "Dodge": {
+   "name": "Dodge",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 81,
+   "ranks": null,
+   "spellIds": [
+    81
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Dominion of Blood": {
+   "name": "Dominion of Blood",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680716,
+   "ranks": null,
+   "spellIds": [
+    680716
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Achievement_Zone_BloodmystIsle_01",
+   "description": "Your Vampiric Fang now heals you for an additional 50% of the damage dealt."
+  },
+  "Easy Prey": {
+   "name": "Easy Prey",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704621,
+   "ranks": null,
+   "spellIds": [
+    704621
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_mount_epicbatmount",
+   "description": "Increases the duration of Hemostasis by 1 sec."
+  },
+  "Enchanting": {
+   "name": "Enchanting",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 7412,
+   "ranks": null,
+   "spellIds": [
+    7412
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Endure the Curse": {
+   "name": "Endure the Curse",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681190,
+   "ranks": null,
+   "spellIds": [
+    681190
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_sulfurelemental_blood",
+   "description": "Reduce all damage taken by -30% for 10 seconds.\n\nWhile active, taking damage that would reduce your health below 10% will instantly heal you for 30% of your maximum health. Can only occur once."
+  },
+  "Enduring": {
+   "name": "Enduring",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300585,
+   "ranks": null,
+   "spellIds": [
+    300585
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_PainAndSuffering",
+   "description": "Increases the damage of Bloodbolt by 25%, plus an additional 25% while below 35% health."
+  },
+  "Enraging Howls": {
+   "name": "Enraging Howls",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800766,
+   "ranks": null,
+   "spellIds": [
+    800766
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_08_Death_Border",
+   "description": "Casting Howl spells now increases the damage dealt and reduces damage taken by nearby party members by 5% for 10 seconds."
+  },
+  "Enraging Wounds": {
+   "name": "Enraging Wounds",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300978,
+   "ranks": null,
+   "spellIds": [
+    300978
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\5_wound_Border",
+   "description": "Level 40 Passive\nMelee critical strikes now leech 46 + 18.5% Stamina health from the target, scaling with your Stamina."
+  },
+  "Enthraller": {
+   "name": "Enthraller",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706619,
+   "ranks": null,
+   "spellIds": [
+    706619
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_deadliness",
+   "description": "Increases the critical strike chance of Valanar's Vengeance and Keleseth's Calamity by 10%."
+  },
+  "Essence Harvester": {
+   "name": "Essence Harvester",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806421,
+   "ranks": null,
+   "spellIds": [
+    806421
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_animarevendreth_debuff",
+   "description": "Being struck by an enemy while below 35% health instantly resets the cooldown of your Vampiric Fang and grants you Wretched.\n\nCan only occur once per minute.WretchedGenerates 10 Rage and 1 stack of Thirst every 1 sec for 10 seconds. Vampiric Fang removes this effect."
+  },
+  "Eternal Curse": {
+   "name": "Eternal Curse",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92114,
+   "ranks": null,
+   "spellIds": [
+    92114
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\ability_racial_viciousness",
+   "description": "$79"
+  },
+  "Eternal Hunt": {
+   "name": "Eternal Hunt",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804201,
+   "ranks": null,
+   "spellIds": [
+    804201
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_helm_cloth_raidpriest_l_01",
+   "description": "Increases your maximum health and reduces the cost of your spells and abilities by 5%."
+  },
+  "Eternal Presence": {
+   "name": "Eternal Presence",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560001,
+   "ranks": null,
+   "spellIds": [
+    560001
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_trinket6oih_wolf1",
+   "description": "Increases the attack power of party and raid members by 5%. Does not stack with similar effects.\n\nIn addition, you now gain attack power equal to 15% of the damage taken for 10 seconds. Can only occur once every 10 sec."
+  },
+  "Eternal Resolve": {
+   "name": "Eternal Resolve",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801962,
+   "ranks": null,
+   "spellIds": [
+    801962
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\skill_icon_skill73_Border",
+   "description": "Activate your eternal resolve for 30 seconds, sending you into a feral frenzy, increasing your melee attack speed, maximum health, and healing received by 50%."
+  },
+  "Everhungry": {
+   "name": "Everhungry",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804599,
+   "ranks": null,
+   "spellIds": [
+    804599
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_food_legion_heartyfeast",
+   "description": "Direct critical strikes now increase your haste by 10% for 5 seconds."
+  },
+  "Everlasting Hunt": {
+   "name": "Everlasting Hunt",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804686,
+   "ranks": null,
+   "spellIds": [
+    804686
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_RapidKilling",
+   "description": "Damage dealt by Blood Shards now reduces the cooldown of Veinburst and Reave by -1.5 sec."
+  },
+  "Every Man for Himself": {
+   "name": "Every Man for Himself",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 59752,
+   "ranks": null,
+   "spellIds": [
+    59752
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Excess Blood": {
+   "name": "Excess Blood",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504100,
+   "ranks": null,
+   "spellIds": [
+    504100
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sha_inv_misc_slime_01_nightmare",
+   "description": "Your healing done now has a 10% chance to heal the target for an additional 240 + 3% healing over 6 seconds."
+  },
+  "Eyes In The Night": {
+   "name": "Eyes In The Night",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801959,
+   "ranks": null,
+   "spellIds": [
+    801959
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sha_spell_shadow_shadesofdarkness_nightmare",
+   "description": "Allies within 20 yds are protected by Shadow Colony, giving them a 40% chance to trigger a Call of the Darkwing when they take direct damage. Can only occur once every 5 sec.\n\nIf allies have less health than you when this occurs, generate a large amount of threat against the enemy that triggered it."
+  },
+  "Fang Over Fang": {
+   "name": "Fang Over Fang",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504116,
+   "ranks": null,
+   "spellIds": [
+    504116
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_monsterfang_02",
+   "description": "Casting Bloodfang Bite now has a 20% chance to reset the cooldown of Reave."
+  },
+  "Fearmonger": {
+   "name": "Fearmonger",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 501132,
+   "ranks": null,
+   "spellIds": [
+    501132
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_assassinskill02_Border",
+   "description": "Increases the tick rate and cost of Taldaram's Torment by -30%."
+  },
+  "Feral Strength": {
+   "name": "Feral Strength",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704661,
+   "ranks": null,
+   "spellIds": [
+    704661
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\nhi_unholy_wounds_Border",
+   "description": "Level 30 Passive\nWhile in Eternal Curse, you now gain 50% more attack power from Agility and Strength."
+  },
+  "Festering Maw": {
+   "name": "Festering Maw",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706683,
+   "ranks": null,
+   "spellIds": [
+    706683
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_fishbite_Border",
+   "description": "Healing with Bite Wound now reduces the cooldown of Lunge by 1 sec."
+  },
+  "Final Embrace": {
+   "name": "Final Embrace",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524865,
+   "ranks": null,
+   "spellIds": [
+    524865
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\nhi_bloodmaw_Border",
+   "description": "$73"
+  },
+  "Find Trees": {
+   "name": "Find Trees",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 109498,
+   "ranks": null,
+   "spellIds": [
+    109498
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "First Aid": {
+   "name": "First Aid",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3273,
+   "ranks": null,
+   "spellIds": [
+    3273
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Fishing": {
+   "name": "Fishing",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 7620,
+   "ranks": null,
+   "spellIds": [
+    7620
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Flesh Foundry": {
+   "name": "Flesh Foundry",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704633,
+   "ranks": null,
+   "spellIds": [
+    704633
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_raid_hall_of_flesh",
+   "description": "Your critical strikes now reduce the cooldown of Fleshcraft and the duration of Sated on the target by -4 sec.\n\nIn addition, increases your critical strike rating by 15% of your Spirit."
+  },
+  "Fleshbending": {
+   "name": "Fleshbending",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680684,
+   "ranks": null,
+   "spellIds": [
+    680684
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_RottenFlesh_Border",
+   "description": "Your critical strikes now increase the critical strike chance of all party and raid members by 5% for 10 seconds.\n\nDoes not stack with similar effects."
+  },
+  "Fleshcraft": {
+   "name": "Fleshcraft",
+   "spec": "Class",
+   "sources": [
+    "spellbook",
+    "talent"
+   ],
+   "primarySpellId": 801952,
+   "ranks": null,
+   "spellIds": [
+    801952
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_bloodtear_Border",
+   "description": "Mend blood and bone, healing an ally for 50% of their maximum health and applies Sated.\nSatedCannot be affected by Fleshcraft for 3 minutes."
+  },
+  "For the Alliance!": {
+   "name": "For the Alliance!",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 101101,
+   "ranks": null,
+   "spellIds": [
+    101101
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Forbidden Power": {
+   "name": "Forbidden Power",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500445,
+   "ranks": null,
+   "spellIds": [
+    500445
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\5_bull_Border",
+   "description": "Level 20 Passive\nIncreases your spell critical strike rating by 30% of your Agility and spell hit rating by 5% of your Agility."
+  },
+  "Gift of Lana'thel": {
+   "name": "Gift of Lana'thel",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706598,
+   "ranks": null,
+   "spellIds": [
+    706598
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\lanathel2",
+   "description": "Become blessed by Lana'thel, increasing your spell power by 25% of your Spirit and your hit rating by 4% of your Spirit."
+  },
+  "Gore Barrage": {
+   "name": "Gore Barrage",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807345,
+   "ranks": null,
+   "spellIds": [
+    807345
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_BloodSpikes_Border",
+   "description": "Reduces the cost of spells that cost health and Animated Blood by -30%."
+  },
+  "Gore Tome": {
+   "name": "Gore Tome",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807788,
+   "ranks": null,
+   "spellIds": [
+    807788
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Book2Motif_KaelThas",
+   "description": "For the first 5 sec after activating a Cursed Form, your Bloodfang Bite is now guaranteed to critically strike."
+  },
+  "Gorge": {
+   "name": "Gorge",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804805,
+   "ranks": null,
+   "spellIds": [
+    804805
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\sha_ability_rogue_sturdyrecuperate_nightmare",
+   "description": "Instantly gain 10 stacks of Pooled Vitality every 5 sec for 15 seconds."
+  },
+  "Greater Bloodsoaked Offering": {
+   "name": "Greater Bloodsoaked Offering",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572404,
+   "ranks": {
+    "1": 572404
+   },
+   "spellIds": [
+    572404
+   ],
+   "cost": 52500,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Blood magic infuses the target ally, increasing their Spirit by 40 for 30 min."
+  },
+  "Greater Bloodthorns": {
+   "name": "Greater Bloodthorns",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572116,
+   "ranks": {
+    "1": 572116
+   },
+   "spellIds": [
+    572116
+   ],
+   "cost": 35000,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Bloodthorns sprout from all party and raid members for 30 min, causing 21 Shadow damage to attackers when hit.\r\n\r\nCan occur only once every half a second."
+  },
+  "Greater Sanguinary Offering": {
+   "name": "Greater Sanguinary Offering",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 680299,
+   "ranks": {
+    "1": 680299
+   },
+   "spellIds": [
+    680299
+   ],
+   "cost": 42000,
+   "levelReq": 60,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Establish a sanguine pact with all nearby allies, increasing their Stamina by 54. Lasts 30 min."
+  },
+  "Grim Omen": {
+   "name": "Grim Omen",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800154,
+   "ranks": null,
+   "spellIds": [
+    800154
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_ChillTouch",
+   "description": "Critical strikes with Ravenous Strike or Bloodfang Bite, or using Howl spells, now triggers Call of the Darkwing.\nCall of the DarkwingCalls 1 to 2 Shadow Bats to appear from the shadows and strike the target for 28 + 40% SP + 20% AP Physical Damage, healing you equal to the damage dealt."
+  },
+  "Gruesome Rituals": {
+   "name": "Gruesome Rituals",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680696,
+   "ranks": null,
+   "spellIds": [
+    680696
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_BloodFog_Border",
+   "description": "Your damage dealt is now increased by 1% for each stack of Pooled Vitality."
+  },
+  "Heart Rupturer": {
+   "name": "Heart Rupturer",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680685,
+   "ranks": null,
+   "spellIds": [
+    680685
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_lifedrain",
+   "description": "Increases the damage of Claw Sweep, Sanguine Rupture, Ravenous Strike and Bloodmoon Blast by 20%."
+  },
+  "Heartbreak": {
+   "name": "Heartbreak",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572895,
+   "ranks": {
+    "2": 520836,
+    "3": 520837,
+    "4": 520838,
+    "5": 572895
+   },
+   "spellIds": [
+    520314,
+    520836,
+    520837,
+    520838,
+    572895
+   ],
+   "cost": 22500,
+   "levelReq": 46,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_blooddrop_Border",
+   "description": "Unleash a powerful surge of blood, dealing 267 Shadow damage to an enemy, and healing 12 allies within 20 yds of the target for 252.\r\n\r\n|cFFE53935Empowered|r: Increases your party and raid members attack or spell power by 110 for 20 sec, plus an additional 15 for you, scaling with level."
+  },
+  "Heightened Reflexes": {
+   "name": "Heightened Reflexes",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704627,
+   "ranks": null,
+   "spellIds": [
+    704627
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_skinning_80_coarsefur",
+   "description": "Increases your chance to dodge by 4% and your expertise by 5."
+  },
+  "Hemal Excision": {
+   "name": "Hemal Excision",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 803681,
+   "ranks": null,
+   "spellIds": [
+    803681
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_blood_blade_Border",
+   "description": "Cut into an ally's vital essence, siphoning all curse effects from them. You may reactivate this ability again within 10 seconds to place these curse effects on an enemy."
+  },
+  "Hematoma": {
+   "name": "Hematoma",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504758,
+   "ranks": null,
+   "spellIds": [
+    504758
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_Possession",
+   "description": "Your Bloodbolt now heals for an additional 20% of the damage dealt."
+  },
+  "Hemoburst": {
+   "name": "Hemoburst",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572855,
+   "ranks": null,
+   "spellIds": [
+    572855
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_bloodbolt_Border",
+   "description": "Requires Mortal Form\nUnleash a powerful burst of blood at an enemy, dealing 1480 + 65% AP + 50% SP Shadow damage. This ability is guaranteed to critically strike against bleeding targets.\n\nExtends the duration of your next Cursed Form by 5 sec for 30 seconds, stacking 2 times."
+  },
+  "Hemoglobe": {
+   "name": "Hemoglobe",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 524907,
+   "ranks": null,
+   "spellIds": [
+    524907
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_BloodEye_Border",
+   "description": "Coalesce a powerful sanguine orb above you, healing up to 12 allies within 20 yds for 4247 + 84.38% healing + 337.5% Spirit + 262.5% Stamina over 15 seconds.\n\nGenerates 2 stacks of Pooled Vitality, and 150 Rage every 2 sec."
+  },
+  "Hemostasis": {
+   "name": "Hemostasis",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681304,
+   "ranks": null,
+   "spellIds": [
+    681304
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_bloodvision_Border",
+   "description": "Trap an enemy in a blood orb, horrifying them in place for 4 seconds.\n\nReactivating this ability within 4 seconds, instantly pops the Hemostasis, dealing 137 + 43% AP + 103% shadow SP Shadow damage and reducing their healing received by -60% for 10 seconds."
+  },
+  "High-Risk (PvP)": {
+   "name": "High-Risk (PvP)",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 84421,
+   "ranks": null,
+   "spellIds": [
+    84421
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Hypovolemic Shock": {
+   "name": "Hypovolemic Shock",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 572412,
+   "ranks": {
+    "1": 572305,
+    "2": 572409,
+    "3": 572410,
+    "4": 572411,
+    "5": 572412
+   },
+   "spellIds": [
+    572305,
+    572409,
+    572410,
+    572411,
+    572412
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Induce your blood into an enemy to shock their nervous system, reducing their attack power by 60 for 15 sec and removing 1 enrage effect."
+  },
+  "Infected Blood": {
+   "name": "Infected Blood",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 805035,
+   "ranks": null,
+   "spellIds": [
+    805035
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_yorsahj_bloodboil_orangeoil",
+   "description": "Periodic damage dealt now reduces the enemy's movement speed by -30%."
+  },
+  "Infection": {
+   "name": "Infection",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704624,
+   "ranks": null,
+   "spellIds": [
+    704624
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_monsterclaw_06",
+   "description": "Auto attacking a bleeding target will now infect the wound, increasing their chance to be critically struck from you by 1% for 6 seconds, stacking 10 times."
+  },
+  "Infuse": {
+   "name": "Infuse",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681403,
+   "ranks": null,
+   "spellIds": [
+    681403
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowraise_Border",
+   "description": "Accumulates 10% of all damage dealt to the target and unleashes it after 10 seconds, dealing Shadow damage and absorbing healing done to the target equal to the damage done for 10 seconds."
+  },
+  "Inhumane": {
+   "name": "Inhumane",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807488,
+   "ranks": null,
+   "spellIds": [
+    807488
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_boss_breaker_darmac",
+   "description": "Dealing damage with Aortic Assault will now launch 1 Blood Shard, dealing 18 + 15% AP + 35% SP Arcane damage to your target."
+  },
+  "Invigorated Flesh": {
+   "name": "Invigorated Flesh",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704632,
+   "ranks": null,
+   "spellIds": [
+    704632
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_butcher_exsanguination",
+   "description": "Increases chance to hit with all spells and attacks by 1% for you and party and raid members.\n\nDoes not stack with similar effects."
+  },
+  "Iron Claws": {
+   "name": "Iron Claws",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 572783,
+   "ranks": null,
+   "spellIds": [
+    572783
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_druid_malfurionstenacity",
+   "description": "Allows Rotclaw's periodic effect to stack up 2 additional times for 50% longer duration and cause you to ignore 3% of the target's armor per stack."
+  },
+  "Keleseth's Calamity": {
+   "name": "Keleseth's Calamity",
+   "spec": "Sanguine",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 561179,
+   "ranks": {
+    "2": 561175,
+    "3": 561176,
+    "4": 561177,
+    "5": 561178,
+    "6": 561179
+   },
+   "spellIds": [
+    560249,
+    561175,
+    561176,
+    561177,
+    561178,
+    561179
+   ],
+   "cost": 12500,
+   "levelReq": 34,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_revendreth_paladin",
+   "description": "|cffffffffRequires Mortal Form|r\r\nBend blood in an area, dealing 252 Shadow damage to enemies.\r\n\r\nEach stack of |cffffffffThirst|r reduces the cast time of this ability and increases its damage."
+  },
+  "Killer Instinct": {
+   "name": "Killer Instinct",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704690,
+   "ranks": null,
+   "spellIds": [
+    704690
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathknight_roilingblood",
+   "description": "Each point of Rage now increases the critical strike chance of Veinburst and Reave by 0.5%, up to a maximum of 50%."
+  },
+  "Leeching Tome": {
+   "name": "Leeching Tome",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807489,
+   "ranks": null,
+   "spellIds": [
+    807489
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Book1_Red",
+   "description": "Your Bloodbolt now leeches 50% more health, but it now costs 5 additional Rage."
+  },
+  "Life Scent": {
+   "name": "Life Scent",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 706617,
+   "ranks": null,
+   "spellIds": [
+    706617
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_Garrote",
+   "description": "Increases your stealth detection significantly."
+  },
+  "Lifedrinker": {
+   "name": "Lifedrinker",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 802576,
+   "ranks": null,
+   "spellIds": [
+    802576
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_blood_slash_Border",
+   "description": "Increases the damage of your Vampiric Fang by 25%."
+  },
+  "Lingering Essence": {
+   "name": "Lingering Essence",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680695,
+   "ranks": null,
+   "spellIds": [
+    680695
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_greateressence",
+   "description": "Periodic damage and healing done now has a 50% chance to reduce the cooldown of Vampyr's Kiss by -1 sec."
+  },
+  "Liquify": {
+   "name": "Liquify",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806310,
+   "ranks": null,
+   "spellIds": [
+    806310
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_ironmaidens_corruptedblood",
+   "description": "Requires Mortal Form\nDissipate into a pool of blood, making you immune to damage from spells and attacks, but preventing you from attacking or casting spells and slowing your movement speed by -30% for 6 seconds.\n\nUsable while stunned, feared or confused."
+  },
+  "Lunge": {
+   "name": "Lunge",
+   "spec": "Eternal",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 500126,
+   "ranks": null,
+   "spellIds": [
+    500126
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Mace Specialization": {
+   "name": "Mace Specialization",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 20864,
+   "ranks": null,
+   "spellIds": [
+    20864
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Malediction": {
+   "name": "Malediction",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800776,
+   "ranks": null,
+   "spellIds": [
+    800776
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_SoulHarvest2__Red",
+   "description": "Condemn an enemy, dealing 248 + 77.33% shadow SP Shadow damage over 12 seconds and increasing the damage they take from your next 5 direct damage spells by 20%."
+  },
+  "Mercenary for Hire!": {
+   "name": "Mercenary for Hire!",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 9930874,
+   "ranks": null,
+   "spellIds": [
+    9930874
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Monstrous Hunger": {
+   "name": "Monstrous Hunger",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804811,
+   "ranks": null,
+   "spellIds": [
+    804811
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_dungeon_sanguinedepths_tarvold",
+   "description": "Enrage for 10 seconds, causing the next 6 Bloodfang Bites to have a -50% reduced global cooldown and cost and to trigger Call of the Darkwing.Call of the DarkwingCalls 1 to 2 Shadow Bats to appear from the shadows and strike the target for 28 + 40% SP + 20% AP Physical Damage, healing you equal to the damage dealt."
+  },
+  "Moon Gaze": {
+   "name": "Moon Gaze",
+   "spec": "Eternal",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 562723,
+   "ranks": null,
+   "spellIds": [
+    562723
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Mortal Wounds": {
+   "name": "Mortal Wounds",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504292,
+   "ranks": null,
+   "spellIds": [
+    504292
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathwing_bloodcorruption_death",
+   "description": "Your direct harmful critical strikes with spells and abilities now cause the target to bleed for 306 + 6% AP + 30% SP over 6 seconds."
+  },
+  "Mucking Around": {
+   "name": "Mucking Around",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681444,
+   "ranks": null,
+   "spellIds": [
+    681444
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_AbominationExplosion",
+   "description": "Reduces the cast time of Scarlet Delirium by -1 sec, but increases the health cost by 100%."
+  },
+  "Night Feast": {
+   "name": "Night Feast",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 563736,
+   "ranks": null,
+   "spellIds": [
+    563736
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_ironmaidens_maraksbloodcalling",
+   "description": "Each point of Rage now increases the damage of Bloodbolt by 1%, but its Rage cost is increased by 10."
+  },
+  "Night Hunter": {
+   "name": "Night Hunter",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704659,
+   "ranks": null,
+   "spellIds": [
+    704659
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_nethercloak",
+   "description": "Your Veinburst now has a 40% chance to not trigger a cooldown when cast.\n\nYour Bloodbolt now has a 40% chance to refund half of its Rage cost when cast."
+  },
+  "Night Hunter's Howl": {
+   "name": "Night Hunter's Howl",
+   "spec": "Eternal",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 501682,
+   "ranks": {
+    "2": 501680,
+    "3": 501681,
+    "4": 501682
+   },
+   "spellIds": [
+    500124,
+    501680,
+    501681,
+    501682
+   ],
+   "cost": 16000,
+   "levelReq": 38,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\achievement_raid_revendrethraid_huntsmangargon",
+   "description": "Howl into the souls of nearby enemies, dealing 113 Shadow damage and slowing their movement speed by 60% for 6 sec."
+  },
+  "Night Stalker": {
+   "name": "Night Stalker",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807774,
+   "ranks": null,
+   "spellIds": [
+    807774
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_eye_04",
+   "description": "All damage and healing done is increased by 5% at night."
+  },
+  "Nightmare": {
+   "name": "Nightmare",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300226,
+   "ranks": null,
+   "spellIds": [
+    300226
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_DeathCoilV2_Blood",
+   "description": "While above 50% maximum health, abilities that cost Rage now consume 2% of your maximum health to damage or heal your target for an additional 10% of the value."
+  },
+  "No Mercy": {
+   "name": "No Mercy",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704660,
+   "ranks": null,
+   "spellIds": [
+    704660
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\INV_Ascend_Hunting_90",
+   "description": "Allows your Thick Pelt to affect an additional hit."
+  },
+  "One Man's Curse...": {
+   "name": "One Man's Curse...",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680661,
+   "ranks": null,
+   "spellIds": [
+    680661
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_Nhance_RPG_Icons_BloodDrop_Border",
+   "description": "Removes the health cost of Accursed Form and entering it now instantly restores 15% of your maximum health."
+  },
+  "Organ Orbs": {
+   "name": "Organ Orbs",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807490,
+   "ranks": null,
+   "spellIds": [
+    807490
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_SoulGem",
+   "description": "Each stack of Pooled Vitality now increases your Spirit by 3%."
+  },
+  "Packleader": {
+   "name": "Packleader",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504290,
+   "ranks": null,
+   "spellIds": [
+    504290
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_WorgenFlayer_Priest",
+   "description": "Casting Howl spell now enrages your summons, increasing their damage dealt by 10% for 8 seconds."
+  },
+  "Parry": {
+   "name": "Parry",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3124,
+   "ranks": null,
+   "spellIds": [
+    3124
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Perception": {
+   "name": "Perception",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 58985,
+   "ranks": null,
+   "spellIds": [
+    58985
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Petrified Legions": {
+   "name": "Petrified Legions",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 500012,
+   "ranks": null,
+   "spellIds": [
+    500012
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_reforgedarchstone_01",
+   "description": "Physical damage you deal or take now has a 10% chance to trigger a Call of the Darkwing.Call of the DarkwingCalls 1 to 2 Shadow Bats to appear from the shadows and strike the target for 28 + 40% SP + 20% AP Physical Damage, healing you equal to the damage dealt."
+  },
+  "Pooled Vitality": {
+   "name": "Pooled Vitality",
+   "spec": "Fleshweaver",
+   "sources": [
+    "spellbook",
+    "talent"
+   ],
+   "primarySpellId": 681078,
+   "ranks": null,
+   "spellIds": [
+    681078
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_misc_food_legion_gooamber_pool",
+   "description": "Level 10 Passive\nSpells that cost health now grant a stack of Pooled Vitality, stacking 10 times.\n\nMortal Form spells that cost Rage consume 10 stacks of Pooled Vitality to become empowered."
+  },
+  "Predator": {
+   "name": "Predator",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300590,
+   "ranks": null,
+   "spellIds": [
+    300590
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_SummonFelHunter",
+   "description": "Your Claw Sweep, Sanguine Mend, and Sanguine Rupture can now strike 1 additional nearby target."
+  },
+  "Puncturing Fangs": {
+   "name": "Puncturing Fangs",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804604,
+   "ranks": null,
+   "spellIds": [
+    804604
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathwing_bloodcorruption_death",
+   "description": "Your Bloodmoon Blast now generates 3 additional Rage per hit."
+  },
+  "Purify Blood": {
+   "name": "Purify Blood",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680679,
+   "ranks": null,
+   "spellIds": [
+    680679
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_animarevendreth_nova",
+   "description": "Emanate an aura for 15 seconds, causing allied players to deal 70% shadow SP additional damage as Shadow damage when they deal direct damage.\n\nApplies Exhaustion, preventing you from benefiting from similar effects for 1 minute."
+  },
+  "PvE Mode": {
+   "name": "PvE Mode",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 84422,
+   "ranks": null,
+   "spellIds": [
+    84422
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Rabid": {
+   "name": "Rabid",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705732,
+   "ranks": null,
+   "spellIds": [
+    705732
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Hunter_Pet_Wolf",
+   "description": "Reduces the cooldown of Howl spells by -25%."
+  },
+  "Rage": {
+   "name": "Rage",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504241,
+   "ranks": null,
+   "spellIds": [
+    504241
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_artifact_corruptedbloodofzakajz",
+   "description": "Increases your spell damage by 15% of your attack power and the damage dealt by Reave by 10%."
+  },
+  "Raging Hunger": {
+   "name": "Raging Hunger",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681336,
+   "ranks": null,
+   "spellIds": [
+    681336
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Holy_Silence",
+   "description": "Triggering Pooled Vitality now also generates 3 Rage."
+  },
+  "Ravenous Strike": {
+   "name": "Ravenous Strike",
+   "spec": "Accursed",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 501679,
+   "ranks": {
+    "3": 501672,
+    "4": 501673,
+    "5": 501674,
+    "6": 501675,
+    "7": 501676,
+    "8": 501677,
+    "9": 501678,
+    "10": 501679
+   },
+   "spellIds": [
+    500123,
+    501671,
+    501672,
+    501673,
+    501674,
+    501675,
+    501676,
+    501677,
+    501678,
+    501679
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Strike an enemy, dealing 47 Physical damage and generating Rage."
+  },
+  "Reave": {
+   "name": "Reave",
+   "spec": "Accursed",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 802469,
+   "ranks": {
+    "2": 802463,
+    "3": 802464,
+    "4": 802465,
+    "5": 802466,
+    "6": 802467,
+    "7": 802468,
+    "8": 802469
+   },
+   "spellIds": [
+    800490,
+    802463,
+    802464,
+    802465,
+    802466,
+    802467,
+    802468,
+    802469
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Weapon_Shortblade_40",
+   "description": "Lacerate an enemy, dealing 125% Weapon Damage plus 68.\r\n\r\nIf the enemy is bleeding, below 35% health, or if you are behind them, deal 100% additional Shadow damage for each condition met."
+  },
+  "Reckless Abandon": {
+   "name": "Reckless Abandon",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504252,
+   "ranks": null,
+   "spellIds": [
+    504252
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\nhi_bloodavatar_Border",
+   "description": "Level 40 Passive\nEach stack of Thirst now increases your critical strike chance by 1%."
+  },
+  "Red Thirst": {
+   "name": "Red Thirst",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 520493,
+   "ranks": null,
+   "spellIds": [
+    520493
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_revendreth_priest",
+   "description": "Enrage allies within 40 yds, increasing haste by 30% for 20 seconds.\n\nAfter being affected by this spell, allies cannot benefit from similar effects for 5 minutes."
+  },
+  "Rejuvenating Shadows": {
+   "name": "Rejuvenating Shadows",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704623,
+   "ranks": null,
+   "spellIds": [
+    704623
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_antishadow",
+   "description": "Nearby party and raid members receive 6% more healing. Does not stack with similar effects.\n\nIn addition, increases the health leeched by Bloodbolt by 50%."
+  },
+  "Relentless": {
+   "name": "Relentless",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704652,
+   "ranks": null,
+   "spellIds": [
+    704652
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\inv_shoulder_mail_pvphunter_g_01",
+   "description": "$75"
+  },
+  "Resilient Constitution": {
+   "name": "Resilient Constitution",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 552011,
+   "ranks": null,
+   "spellIds": [
+    552011
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Resurrect in Capital City": {
+   "name": "Resurrect in Capital City",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 84433,
+   "ranks": null,
+   "spellIds": [
+    84433
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Resurrect in Closest Town": {
+   "name": "Resurrect in Closest Town",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 84423,
+   "ranks": null,
+   "spellIds": [
+    84423
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Rotclaw": {
+   "name": "Rotclaw",
+   "spec": "Eternal",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 503484,
+   "ranks": {
+    "2": 503476,
+    "3": 503477,
+    "4": 503478,
+    "5": 503479,
+    "6": 503480,
+    "7": 503481,
+    "8": 503482,
+    "9": 503483,
+    "10": 503484
+   },
+   "spellIds": [
+    503476,
+    503477,
+    503478,
+    503479,
+    503480,
+    503481,
+    503482,
+    503483,
+    503484,
+    804197
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\5_clawstrike_Border",
+   "description": "|cffffffff2 Charges, 6 sec recharge|r\r\nRavage all nearby enemies, dealing 47 Shadow damage, generating Rage and infecting their wounds, causing them to bleed for 67 Shadow damage over 4 sec."
+  },
+  "Sacrificial Rite": {
+   "name": "Sacrificial Rite",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 800785,
+   "ranks": null,
+   "spellIds": [
+    800785
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_shadowtentacle_Border",
+   "description": "Requires Mortal Form\nInvoke a dark ritual, increasing your haste by 20% for 15 seconds.\n\nWhile active, attackers are afflicted with Cursed Blood. Can only occur once per sec.\n\nAt the end of the duration, your healing done is increased by 15% and you are healed for 795 + 150% SP over 15 seconds."
+  },
+  "Sanguinary Offering": {
+   "name": "Sanguinary Offering",
+   "spec": "Sanguine",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 707339,
+   "ranks": {
+    "2": 707336,
+    "3": 707337,
+    "4": 707338,
+    "5": 707339
+   },
+   "spellIds": [
+    706630,
+    707336,
+    707337,
+    707338,
+    707339
+   ],
+   "cost": 4100,
+   "levelReq": 26,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Enact a sanguinary ritual with an ally, increasing their Stamina by 20. Lasts 30 min."
+  },
+  "Sanguine Essence": {
+   "name": "Sanguine Essence",
+   "spec": "Fleshweaver",
+   "sources": [
+    "spellbook",
+    "talent"
+   ],
+   "primarySpellId": 680692,
+   "ranks": null,
+   "spellIds": [
+    505188,
+    680692
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_animarevendreth_orb",
+   "description": "$7b"
+  },
+  "Sanguine Mend": {
+   "name": "Sanguine Mend",
+   "spec": "Fleshweaver",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 504085,
+   "ranks": {
+    "4": 504081,
+    "5": 504082,
+    "6": 504083,
+    "7": 504084,
+    "8": 504085
+   },
+   "spellIds": [
+    504079,
+    504080,
+    504081,
+    504082,
+    504083,
+    504084,
+    504085,
+    802310
+   ],
+   "cost": 5200,
+   "levelReq": 26,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffffRequires Mortal Form|r\r\nMend an ally's wounds, healing them for 268.\r\n\r\n|cFFE53935Empowered|r: Becomes instant cast and heals yourself for 50% of the heal value."
+  },
+  "Sanguine Rupture": {
+   "name": "Sanguine Rupture",
+   "spec": "Sanguine",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 572907,
+   "ranks": {
+    "2": 802456,
+    "3": 802457,
+    "4": 802458,
+    "5": 802459,
+    "6": 802460,
+    "7": 802461,
+    "8": 572907
+   },
+   "spellIds": [
+    572907,
+    800774,
+    802456,
+    802457,
+    802458,
+    802459,
+    802460,
+    802461
+   ],
+   "cost": 3700,
+   "levelReq": 24,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffffRequires Mortal Form|r\r\nExplode with boiling blood, dealing 46 Shadow damage to enemies and generating Rage for each enemy hit."
+  },
+  "Sanguine Scion": {
+   "name": "Sanguine Scion",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807292,
+   "ranks": null,
+   "spellIds": [
+    807292
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\5_assassinskill37_Border",
+   "description": "Increases the critical strike chance of Sanguine Mend and Bloodbolt by 10%."
+  },
+  "Sanguine Scripture": {
+   "name": "Sanguine Scripture",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804851,
+   "ranks": null,
+   "spellIds": [
+    804851
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Book6_Red",
+   "description": "Upon exiting Accursed Form, you gain 70% movement speed and spell haste for 5 seconds."
+  },
+  "Saturating Sutures": {
+   "name": "Saturating Sutures",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504098,
+   "ranks": null,
+   "spellIds": [
+    504098
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\trade_archaeology_bloodysatyrscepter",
+   "description": "Your periodic damage and healing has a 15% chance to reduce the cost your next Sanguine Mend by -100% for 8 seconds."
+  },
+  "Scarlet Delirium": {
+   "name": "Scarlet Delirium",
+   "spec": "Class",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 803688,
+   "ranks": {
+    "2": 803684,
+    "3": 803685,
+    "4": 803686,
+    "5": 803687,
+    "6": 803688
+   },
+   "spellIds": [
+    801074,
+    803684,
+    803685,
+    803686,
+    803687,
+    803688
+   ],
+   "cost": 2000,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_blooddrop_(2)_Border",
+   "description": "|cffffffffRequires Mortal Form|r\r\nFlood the minds of up to 5 nearby enemies with visions of unraveling flesh, fearing them for 40 sec (8 sec versus players) while draining their life essence, siphoning 17 health every 3 sec.\r\n\r\nDamage caused may interrupt the effect."
+  },
+  "Screech of the Darkwing": {
+   "name": "Screech of the Darkwing",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 300260,
+   "ranks": null,
+   "spellIds": [
+    300260
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Priest_ShadowyApparition",
+   "description": "Your effects that trigger Call of the Darkwing now trigger an additional Call of the Darkwing.\n\nCan only occur once per sec."
+  },
+  "Shadow Howl": {
+   "name": "Shadow Howl",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806177,
+   "ranks": null,
+   "spellIds": [
+    806177
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_warlock_howlofterror",
+   "description": "Let loose a dark howl that inspires your allies, granting immunity to movement impairing effects to all allies for 6 seconds."
+  },
+  "Shadow Pact": {
+   "name": "Shadow Pact",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 561227,
+   "ranks": null,
+   "spellIds": [
+    561227
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_BlackPlague",
+   "description": "Increases the effectiveness of your Shields by 50%."
+  },
+  "Shadow Strength": {
+   "name": "Shadow Strength",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 801960,
+   "ranks": null,
+   "spellIds": [
+    801960
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_icon_shadowcouncilorb_purple",
+   "description": "Casting Howl spells now deal 65 + 25% Stamina + 25% Agility + 10% AP Shadow damage to all nearby enemies and triggering Call of the Darkwing now reduces the cooldown of all Howl spells by -1 sec.\n\nCan only occur once per sec."
+  },
+  "Shadow Vigil": {
+   "name": "Shadow Vigil",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 806182,
+   "ranks": {
+    "1": 806182
+   },
+   "spellIds": [
+    806182
+   ],
+   "cost": 9900,
+   "levelReq": 28,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Envelop an ally in darkness, temporarily reducing all threat for 8 sec.\r\n\r\nWhile active, the target's stealth detection is significantly increased."
+  },
+  "Shadows In The Night": {
+   "name": "Shadows In The Night",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704662,
+   "ranks": null,
+   "spellIds": [
+    704662
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_nzinsanity_chasedbyshadows",
+   "description": "While above 75% health, your damage taken is reduced by -5%."
+  },
+  "Shoot": {
+   "name": "Shoot",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3018,
+   "ranks": null,
+   "spellIds": [
+    3018
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Slaughterhouse Offering": {
+   "name": "Slaughterhouse Offering",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 1108493,
+   "ranks": {
+    "1": 1108459,
+    "2": 1108463,
+    "3": 1108493
+   },
+   "spellIds": [
+    1108459,
+    1108463,
+    1108493
+   ],
+   "cost": 12500,
+   "levelReq": 34,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Amplifies magic used against the targeted party member, increasing damage taken from spells by up to 30 and healing spells by up to 32.  Lasts 10 min."
+  },
+  "Sovereignty": {
+   "name": "Sovereignty",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806049,
+   "ranks": null,
+   "spellIds": [
+    806049
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_Seed_GraineDeCorruption",
+   "description": "Damage dealt by Crimson Tide now grants you Sovereignty.SovereigntyReduces the cost of your next Bloodbolt within 12 seconds by -10% and causes it to strike 1 additional nearby enemy for each target damaged, stacking up to 5 times."
+  },
+  "Spice of Life": {
+   "name": "Spice of Life",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 680823,
+   "ranks": null,
+   "spellIds": [
+    680823
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Rogue_BloodyEye",
+   "description": "Your periodic damage and healing now has a 10% chance to grant a stack of Pooled Vitality."
+  },
+  "Swarm of Flies": {
+   "name": "Swarm of Flies",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704646,
+   "ranks": null,
+   "spellIds": [
+    704646
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_warlock_burningembers",
+   "description": "Your Bloodbolt now refreshes the duration of Taldaram's Torment."
+  },
+  "Sword Specialization": {
+   "name": "Sword Specialization",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 20597,
+   "ranks": null,
+   "spellIds": [
+    20597
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Tailoring": {
+   "name": "Tailoring",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 3909,
+   "ranks": null,
+   "spellIds": [
+    3909
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Taldaram's Torment": {
+   "name": "Taldaram's Torment",
+   "spec": "Sanguine",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 802580,
+   "ranks": {
+    "3": 802569,
+    "4": 802570,
+    "5": 802571,
+    "6": 802572,
+    "7": 802573,
+    "8": 802580
+   },
+   "spellIds": [
+    800772,
+    802568,
+    802569,
+    802570,
+    802571,
+    802572,
+    802573,
+    802580
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "|cffffffffRequires Mortal Form|r\r\nCorrupt an enemy's heart, causing them to bleed for 190 to 200 Shadow damage over 15 sec.\r\n\r\nGenerates 3 Rage every time it deals damage.\r\n\r\n@ext:Periodic damage dealt through this can critically strike.:ext@"
+  },
+  "Terrorizer": {
+   "name": "Terrorizer",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806210,
+   "ranks": null,
+   "spellIds": [
+    806210
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Racial_BloodRage",
+   "description": "Increases the damage of Veinburst, Bloodfang Bite, and Claw Sweep on enemies below 35% health by 25%."
+  },
+  "The Council Assembled": {
+   "name": "The Council Assembled",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504103,
+   "ranks": null,
+   "spellIds": [
+    504103
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\uico_blood_spell_06_Border",
+   "description": "Atherann's Anguish now costs -25 less Rage.\n\nTaldaram's Torment now increases the damage of your next Valanar's Vengeance or Keleseth's Calamity by 3% per tick for 10 seconds, stacking 5 times.\n\nValanar's Vengeance and Keleseth's Calamity now reduce the cooldown of Malediction by -5 sec."
+  },
+  "The Cup Runneth Over": {
+   "name": "The Cup Runneth Over",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807544,
+   "ranks": null,
+   "spellIds": [
+    807544
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\INV_Misc_Cauldron_Fire",
+   "description": "Increases the spell power scaling of Bloodmoon Blast, Taldaram's Torment and Bloodbolt by 20%."
+  },
+  "The Human Spirit": {
+   "name": "The Human Spirit",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 20598,
+   "ranks": null,
+   "spellIds": [
+    20598
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "The Hunter and the Hunted": {
+   "name": "The Hunter and the Hunted",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807487,
+   "ranks": null,
+   "spellIds": [
+    807487
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\nhi_blood_aura_Border",
+   "description": "Level 50 Passive\nWhen you activate a Cursed Form you now charge to your target if they are within 20 yds. If they're an enemy you root them for 2 seconds.\n\nUpon expiration, your Accursed Form can be reactivated to cause you to erupt in a burst of blood magic, leeching 364 + 33% shadow SP + 12.5% AP health from nearby enemies and teleporting you backwards."
+  },
+  "Thick Pelt": {
+   "name": "Thick Pelt",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704626,
+   "ranks": null,
+   "spellIds": [
+    704626
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_pelt_15",
+   "description": "Physical damage taken now reduces the Physical damage taken from the next attack within 10 seconds by -15 + 20% AP. Can only occur once every 5 sec."
+  },
+  "Thirst": {
+   "name": "Thirst",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92112,
+   "ranks": null,
+   "spellIds": [
+    92112
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_blood_0003s_0000_hand_Border",
+   "description": "$6b"
+  },
+  "Thirst for Blood": {
+   "name": "Thirst for Blood",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 570023,
+   "ranks": null,
+   "spellIds": [
+    570023
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\epic_rpg_icon_pack_blood_0002s_0000_foreground_Border",
+   "description": "$6d"
+  },
+  "Throw": {
+   "name": "Throw",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 2764,
+   "ranks": null,
+   "spellIds": [
+    2764
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Torture": {
+   "name": "Torture",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504071,
+   "ranks": null,
+   "spellIds": [
+    504071
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_offhand_1h_artifactskulloferedar_d_05",
+   "description": "Increases the leech of Vampiric Feast by 50%.\n\nConsuming at least 9 stacks of Thirst with Vampiric Fang now extends the duration of Transgression by 5 sec."
+  },
+  "Transfusion": {
+   "name": "Transfusion",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 705734,
+   "ranks": null,
+   "spellIds": [
+    705734
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_bloodboil_Border",
+   "description": "Swap health percentages with an ally.\n\nIncreases the lower health percentage of the two to 40%, if below that amount."
+  },
+  "Transgression": {
+   "name": "Transgression",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504728,
+   "ranks": null,
+   "spellIds": [
+    504728
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\epic_rpg_icon_pack_blood_0002s_0000_foreground_Border",
+   "description": "$69"
+  },
+  "Twisted Magic": {
+   "name": "Twisted Magic",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704634,
+   "ranks": null,
+   "spellIds": [
+    704634
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\_DeathCoilV2_Blood",
+   "description": "Your direct harmful critical strikes increase the target's Shadow damage taken from you by 2%, stacking up to 5 times, for 12 seconds."
+  },
+  "Ultra Instinct": {
+   "name": "Ultra Instinct",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704654,
+   "ranks": null,
+   "spellIds": [
+    704654
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Ability_Druid_PredatoryInstincts",
+   "description": "Direct ability critical strikes now increase your spell and ability critical strike chance and critical damage by 3% for 10 sec.\n\nEach additional critical strike increases this by an additional 3%, but reduces its duration by -1 sec."
+  },
+  "Uncanny Movement": {
+   "name": "Uncanny Movement",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 301064,
+   "ranks": null,
+   "spellIds": [
+    301064
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\Icons\\Spell_Shadow_SpectralSight",
+   "description": "Level 20 Passive\nIncreases your Agility by 25% and your hit rating by 5% of your Agility.\n\nIn addition, Claw Sweep now generates additional threat."
+  },
+  "Uncanny Speed": {
+   "name": "Uncanny Speed",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 807491,
+   "ranks": null,
+   "spellIds": [
+    807491
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Nature_SpiritWolf",
+   "description": "Increases your melee haste by 5% and your movement speed and mounted movement speed by 20%."
+  },
+  "Unchained": {
+   "name": "Unchained",
+   "spec": "Accursed",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 92113,
+   "ranks": null,
+   "spellIds": [
+    92113
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": true,
+   "iconPath": "Interface\\icons\\nhi_foreshadowblood_Border",
+   "description": "Level 10 Passive\nYour damaging Mortal Form spells can now be cast while moving."
+  },
+  "Universal Donor": {
+   "name": "Universal Donor",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 806428,
+   "ranks": null,
+   "spellIds": [
+    806428
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_animusdraw",
+   "description": "Casting Infuse or Vampyr's Kiss now increases the healing received by all allies by 6% for 10 seconds."
+  },
+  "Valanar's Vengeance": {
+   "name": "Valanar's Vengeance",
+   "spec": "Sanguine",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 572795,
+   "ranks": {
+    "2": 561027,
+    "3": 561028,
+    "4": 561029,
+    "5": 572793,
+    "6": 572794,
+    "7": 572795
+   },
+   "spellIds": [
+    560315,
+    561027,
+    561028,
+    561029,
+    572793,
+    572794,
+    572795
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_deathknight_necroticaura",
+   "description": "|cffffffffRequires Mortal Form|r\r\nLaunch a powerful blood bolt at an enemy, dealing 279 Shadow damage.\r\n\r\nEach stack of |cffffffffThirst|r reduces the cast time of this ability and increases its damage."
+  },
+  "Vampiric Fang": {
+   "name": "Vampiric Fang",
+   "spec": "Sanguine",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 553272,
+   "ranks": {
+    "2": 504093,
+    "3": 504094,
+    "4": 504095,
+    "5": 504096,
+    "6": 504097,
+    "7": 553271,
+    "8": 553272
+   },
+   "spellIds": [
+    504093,
+    504094,
+    504095,
+    504096,
+    504097,
+    553271,
+    553272,
+    804726
+   ],
+   "cost": 1100,
+   "levelReq": 18,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_BloodHaze_Border",
+   "description": "|cffffffffExpends Thirst Stacks|r\r\nSteal 61 health from an enemy.\r\n\r\nDamage increased by 10% for each |cffffffffThirst|r stack. \r\n\r\nClears |cffffffffInsatiable|r and |cffffffffThirst|r stacks."
+  },
+  "Vampiric Pools": {
+   "name": "Vampiric Pools",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 504088,
+   "ranks": null,
+   "spellIds": [
+    504088
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\warlock_bloodstone",
+   "description": "When Liquify ends, you now leech 474 + 100% SP health from nearby enemies."
+  },
+  "Vampyr Bite": {
+   "name": "Vampyr Bite",
+   "spec": "Sanguine",
+   "sources": [
+    "spellbook",
+    "trainer"
+   ],
+   "primarySpellId": 803585,
+   "ranks": {
+    "2": 803581,
+    "3": 803582,
+    "4": 803583,
+    "5": 803584,
+    "6": 803585
+   },
+   "spellIds": [
+    801563,
+    803581,
+    803582,
+    803583,
+    803584,
+    803585
+   ],
+   "cost": 1700,
+   "levelReq": 20,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Brings a dead player back to life with 145% health and mana.\n\nFor the next 20 sec, the target takes 50% increased healing, but being damaged ends the effect. Cannot be cast when in combat."
+  },
+  "Vampyr Lord": {
+   "name": "Vampyr Lord",
+   "spec": "Sanguine",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560259,
+   "ranks": null,
+   "spellIds": [
+    560259
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\spell_shadow_improvedvampiricembrace",
+   "description": "Increases the damage dealt by your Animated Blood by 35%."
+  },
+  "Vampyr's Kiss": {
+   "name": "Vampyr's Kiss",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 504281,
+   "ranks": {
+    "2": 504276,
+    "3": 504277,
+    "4": 504278,
+    "5": 504279,
+    "6": 504280,
+    "7": 504281
+   },
+   "spellIds": [
+    504275,
+    504276,
+    504277,
+    504278,
+    504279,
+    504280,
+    504281
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_kiss_Border",
+   "description": "Curse an enemy, causing them to bleed for 342 Shadow damage over 30 sec.\r\n\r\nAll periodic damage dealt to an enemy affected by |cffffffffVampyr's Kiss|r is replicated on them equal to 25% of the value."
+  },
+  "Veinburst": {
+   "name": "Veinburst",
+   "spec": "Accursed",
+   "sources": [
+    "talent",
+    "trainer"
+   ],
+   "primarySpellId": 504819,
+   "ranks": {
+    "2": 504813,
+    "3": 504814,
+    "4": 504815,
+    "5": 504816,
+    "6": 504817,
+    "7": 504818,
+    "8": 504819
+   },
+   "spellIds": [
+    504260,
+    504813,
+    504814,
+    504815,
+    504816,
+    504817,
+    504818,
+    504819
+   ],
+   "cost": 2500,
+   "levelReq": 22,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_ironmaidens_bloodritual",
+   "description": "|cffffffffRequires Mortal Form|r\r\nBlast an enemy, dealing 231 Shadow damage.\r\n\r\nDeals 25% increased damage to bleeding targets."
+  },
+  "Veins of Vengeance": {
+   "name": "Veins of Vengeance",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 560074,
+   "ranks": null,
+   "spellIds": [
+    560074
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\ability_rogue_sanguinaryvein",
+   "description": "Increases your chance to resist curse effects by 15%."
+  },
+  "Visceral Magic": {
+   "name": "Visceral Magic",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 707371,
+   "ranks": null,
+   "spellIds": [
+    707371
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\Spell_Deathknight_BloodPresence",
+   "description": "Adds 40% to the Armor contribution from items by Blood Shield."
+  },
+  "Vital Shield": {
+   "name": "Vital Shield",
+   "spec": "General",
+   "sources": [
+    "trainer"
+   ],
+   "primarySpellId": 504849,
+   "ranks": {
+    "1": 504849
+   },
+   "spellIds": [
+    504849
+   ],
+   "cost": 18500,
+   "levelReq": 34,
+   "isPassive": null,
+   "iconPath": null,
+   "description": "Protects the caster with vital magic, increasing your Shadow and Nature healing received by 15% and restoring 2% of your maximum health every 5 sec. Lasts 30 min.\r\n\r\n@ext: Only 1 |cffffffffShield|r can be active at a time.:ext@"
+  },
+  "Vitality": {
+   "name": "Vitality",
+   "spec": "Eternal",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 704166,
+   "ranks": null,
+   "spellIds": [
+    704166
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_expulsom",
+   "description": "Increases your Stamina while in Eternal Curse by an additional 10%."
+  },
+  "Vitality For Later": {
+   "name": "Vitality For Later",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681026,
+   "ranks": null,
+   "spellIds": [
+    681026
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\nhi_bloodsacrifice_Border",
+   "description": "Consuming Pooled Vitality now heals up to 10 allies within 30 yds for 176 + 25% SP + 50% Spirit, scaling with Spirit and healing power."
+  },
+  "Wand": {
+   "name": "Wand",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 5019,
+   "ranks": null,
+   "spellIds": [
+    5019
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "War Mode (PvP)": {
+   "name": "War Mode (PvP)",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 84420,
+   "ranks": null,
+   "spellIds": [
+    84420
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Waves of Blood": {
+   "name": "Waves of Blood",
+   "spec": "Fleshweaver",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 681427,
+   "ranks": null,
+   "spellIds": [
+    681427
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\Icons\\inv_misc_boilingblood",
+   "description": "Each tick of Crimson Tide now has a 10% chance to heal a nearby ally for 25% of the damage dealt."
+  },
+  "Wicked Howl": {
+   "name": "Wicked Howl",
+   "spec": "Class",
+   "sources": [
+    "talent"
+   ],
+   "primarySpellId": 804207,
+   "ranks": null,
+   "spellIds": [
+    804207
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": false,
+   "iconPath": "Interface\\icons\\custom_T_BloodMaw_Border",
+   "description": "Let loose a wicked howl, increasing your maximum health by 30% for 20 seconds."
+  },
+  "Wildcard Flying Mount": {
+   "name": "Wildcard Flying Mount",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 93539,
+   "ranks": null,
+   "spellIds": [
+    93539
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Wildcard Mount": {
+   "name": "Wildcard Mount",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 91944,
+   "ranks": null,
+   "spellIds": [
+    91944
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  },
+  "Woodcutting": {
+   "name": "Woodcutting",
+   "spec": "General",
+   "sources": [
+    "spellbook"
+   ],
+   "primarySpellId": 13977860,
+   "ranks": null,
+   "spellIds": [
+    13977860
+   ],
+   "cost": null,
+   "levelReq": null,
+   "isPassive": null,
+   "iconPath": null,
+   "description": null
+  }
+ }
+}

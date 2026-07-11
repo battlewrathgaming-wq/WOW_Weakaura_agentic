@@ -1,0 +1,247 @@
+{
+ "part_id": "subregion.subglow",
+ "lane": "subregion",
+ "namespace": "subglow",
+ "allow": [
+  "anchor_area",
+  "glow",
+  "glowBorder",
+  "glowColor",
+  "glowDuration",
+  "glowFrequency",
+  "glowLength",
+  "glowLines",
+  "glowScale",
+  "glowStartAnim",
+  "glowThickness",
+  "glowType",
+  "glowXOffset",
+  "glowYOffset",
+  "type",
+  "useGlowColor"
+ ],
+ "holes": [
+  {
+   "name": "anchor_area",
+   "type": "str",
+   "input": "reference",
+   "default": "bar",
+   "values": null
+  },
+  {
+   "name": "glow",
+   "type": "bool",
+   "input": "toggle",
+   "default": false,
+   "values": null
+  },
+  {
+   "name": "glowBorder",
+   "type": "bool",
+   "input": "toggle",
+   "default": false,
+   "values": null
+  },
+  {
+   "name": "glowColor",
+   "type": "list",
+   "input": "color",
+   "default": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "values": null
+  },
+  {
+   "name": "glowDuration",
+   "type": "int",
+   "input": "value",
+   "default": 1,
+   "values": null
+  },
+  {
+   "name": "glowFrequency",
+   "type": "float",
+   "input": "value",
+   "default": 0.25,
+   "values": null
+  },
+  {
+   "name": "glowLength",
+   "type": "int",
+   "input": "value",
+   "default": 10,
+   "values": null
+  },
+  {
+   "name": "glowLines",
+   "type": "int",
+   "input": "value",
+   "default": 8,
+   "values": null
+  },
+  {
+   "name": "glowScale",
+   "type": "int",
+   "input": "value",
+   "default": 1,
+   "values": null
+  },
+  {
+   "name": "glowThickness",
+   "type": "int",
+   "input": "value",
+   "default": 1,
+   "values": null
+  },
+  {
+   "name": "glowType",
+   "type": "str",
+   "input": "structured",
+   "default": "Pixel",
+   "values": null
+  },
+  {
+   "name": "glowXOffset",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  },
+  {
+   "name": "glowYOffset",
+   "type": "int",
+   "input": "value",
+   "default": 0,
+   "values": null
+  },
+  {
+   "name": "useGlowColor",
+   "type": "bool",
+   "input": "toggle",
+   "default": false,
+   "values": null
+  },
+  {
+   "name": "glow",
+   "type": "bool",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "glowBorder",
+   "type": "bool",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "glowColor",
+   "type": "color",
+   "input": "color",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "glowDuration",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "glowFrequency",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "glowLength",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "glowLines",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "glowScale",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "glowStartAnim",
+   "type": "bool",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "glowThickness",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "glowType",
+   "type": "list",
+   "input": "structured",
+   "default": null,
+   "values": {}
+  },
+  {
+   "name": "glowXOffset",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "glowYOffset",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "useGlowColor",
+   "type": "bool",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  }
+ ],
+ "template": {
+  "glow": false,
+  "glowBorder": false,
+  "glowColor": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "glowDuration": 1,
+  "glowFrequency": 0.25,
+  "glowLength": 10,
+  "glowLines": 8,
+  "glowScale": 1,
+  "glowThickness": 1,
+  "glowType": "buttonOverlay",
+  "glowXOffset": 0,
+  "glowYOffset": 0,
+  "type": "subglow",
+  "useGlowColor": false
+ }
+}

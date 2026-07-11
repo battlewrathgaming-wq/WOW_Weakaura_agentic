@@ -1,0 +1,52 @@
+{
+  "name": "Corpse Explosion Rotation",
+  "uid": "tqiKqJuUyDw",
+  "note": "Confirmed COHERENT slice (Battlewrath verified in-game vs live runic power): ONE Cooldown Progress trigger, genericShowOn=showAlways (persistence + tracking), + a single condition reading spellUsable==0 -> desaturate (dims when not castable - catches the 40 RP gate that onCooldown would miss). Minimal and complete. This is the BASIS for the cooldown-rotation-icon slice; the desaturate variable (spellUsable vs onCooldown) is its first OPTION, chosen by the ability's binding constraint.",
+  "base": "icon",
+  "version": 1,
+  "desc": "Conquest of Azeroth - Necromancer",
+  "parts": [
+    {
+      "part": "region.icon"
+    },
+    {
+      "part": "subregion.subbackground"
+    },
+    {
+      "part": "subregion.subborder"
+    },
+    {
+      "part": "subregion.subtext"
+    },
+    {
+      "part": "trigger.cooldown",
+      "role": "cooldown",
+      "fills": {
+        "spellName": 533236,
+        "realSpellName": "Corpse Explosion",
+        "genericShowOn": "showAlways"
+      }
+    },
+    {
+      "part": "load.by_class",
+      "fills": {
+        "class.single": "NECROMANCER"
+      }
+    }
+  ],
+  "join": [
+    {
+      "when": {
+        "role": "cooldown",
+        "var": "spellUsable",
+        "value": 0
+      },
+      "then": [
+        {
+          "set": "desaturate",
+          "value": true
+        }
+      ]
+    }
+  ]
+}

@@ -28,3 +28,10 @@ Weak Auras/plane/out/
 # ingest.py moves them to processed/ (tracked) + writes reference/ (tracked);
 # the inbox itself is local staging, not content.
 Weak Auras/ingest/inbox/
+
+# ability_inventory/reference.html - the community HTML reference (~1.5MB), regenerated
+# wholesale from the tracked out/*.json via build_reference.py on every rebuild. Track the
+# DATA (out/*.json, incl. captures.json - the game scrape, not reproducible from the repo);
+# regenerate this deliverable on demand. NOTE: ability_inventory/out/ is TRACKED (it holds
+# the scraped+consolidated dataset), unlike plane/out/ which is pure regenerable build output.
+Weak Auras/ability_inventory/reference.html

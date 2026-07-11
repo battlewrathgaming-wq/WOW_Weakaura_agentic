@@ -1,0 +1,228 @@
+{
+ "part_id": "trigger.power",
+ "lane": "trigger",
+ "namespace": "Power",
+ "allow": [
+  "class",
+  "deficit",
+  "event",
+  "ignoreDead",
+  "ignoreDisconnected",
+  "ignoreSelf",
+  "inRange",
+  "includePets",
+  "maxpower",
+  "name",
+  "nameplateType",
+  "namerealm",
+  "npcId",
+  "percentpower",
+  "power",
+  "powertype",
+  "raidMarkIndex",
+  "raid_role",
+  "realm",
+  "requirePowerType",
+  "role",
+  "showCost",
+  "specId",
+  "type",
+  "unit",
+  "use_class",
+  "use_deficit",
+  "use_ignoreDead",
+  "use_ignoreDisconnected",
+  "use_ignoreSelf",
+  "use_inRange",
+  "use_includePets",
+  "use_maxpower",
+  "use_name",
+  "use_nameplateType",
+  "use_namerealm",
+  "use_npcId",
+  "use_percentpower",
+  "use_power",
+  "use_powertype",
+  "use_raidMarkIndex",
+  "use_raid_role",
+  "use_realm",
+  "use_requirePowerType",
+  "use_role",
+  "use_showCost",
+  "use_specId",
+  "use_unit"
+ ],
+ "holes": [
+  {
+   "name": "unit",
+   "type": "unit",
+   "input": "dropdown",
+   "default": null,
+   "values": "actual_unit_types_cast"
+  },
+  {
+   "name": "powertype",
+   "type": "select",
+   "input": "dropdown",
+   "default": null,
+   "values": "<function>"
+  },
+  {
+   "name": "requirePowerType",
+   "type": "toggle",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "showCost",
+   "type": "toggle",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "power",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "percentpower",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "deficit",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "maxpower",
+   "type": "number",
+   "input": "value",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "name",
+   "type": "string",
+   "input": "reference",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "realm",
+   "type": "string",
+   "input": "reference",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "namerealm",
+   "type": "string",
+   "input": "reference",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "npcId",
+   "type": "string",
+   "input": "reference",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "class",
+   "type": "select",
+   "input": "dropdown",
+   "default": null,
+   "values": "class_types"
+  },
+  {
+   "name": "specId",
+   "type": "multiselect",
+   "input": "dropdown",
+   "default": null,
+   "values": "spec_types_all"
+  },
+  {
+   "name": "role",
+   "type": "select",
+   "input": "dropdown",
+   "default": null,
+   "values": "role_types"
+  },
+  {
+   "name": "raid_role",
+   "type": "select",
+   "input": "dropdown",
+   "default": null,
+   "values": "raid_role_types"
+  },
+  {
+   "name": "raidMarkIndex",
+   "type": "multiselect",
+   "input": "dropdown",
+   "default": null,
+   "values": "raid_mark_check_type"
+  },
+  {
+   "name": "includePets",
+   "type": "select",
+   "input": "dropdown",
+   "default": null,
+   "values": "include_pets_types"
+  },
+  {
+   "name": "ignoreSelf",
+   "type": "toggle",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "ignoreDead",
+   "type": "toggle",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "ignoreDisconnected",
+   "type": "toggle",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "inRange",
+   "type": "toggle",
+   "input": "toggle",
+   "default": null,
+   "values": null
+  },
+  {
+   "name": "nameplateType",
+   "type": "select",
+   "input": "dropdown",
+   "default": null,
+   "values": "hostility_types"
+  }
+ ],
+ "template": {
+  "trigger": {
+   "event": "Power",
+   "powertype": 6,
+   "type": "unit",
+   "unit": "player",
+   "use_powertype": true
+  },
+  "untrigger": {}
+ }
+}
