@@ -123,7 +123,9 @@ If reasoning has drifted, one of these is being violated:
 - Claiming an aura "works" when the bytes weren't **pipeline-produced + unedited**.
 
 ## Docs
-This · [REFERENCE_MODEL](REFERENCE_MODEL.md) (generic 11-component scaffold) ·
+This · [DATA_ROUTES](DATA_ROUTES.md) (flight record: how we route through the data + where
+each route stops; the behaviour log) · [BEHAVIOUR](BEHAVIOUR.md) (next item: intent = class
+of action; sourced terminology, not hardened) · [REFERENCE_MODEL](REFERENCE_MODEL.md) (generic 11-component scaffold) ·
 [COMPOSITION_GRAMMAR](COMPOSITION_GRAMMAR.md) · [SLICE_CLAIM_MODEL](SLICE_CLAIM_MODEL.md)
 · [REQUIREMENTS_AND_MVP](REQUIREMENTS_AND_MVP.md) · [RECONCILIATION](RECONCILIATION.md)
 (why the bespoke `template_filler` was retired for a data-driven approach).

@@ -36,6 +36,12 @@ Weak Auras/ingest/inbox/
 # the scraped+consolidated dataset), unlike plane/out/ which is pure regenerable build output.
 Weak Auras/ability_inventory/reference.html
 
+# Outputs/lane_index.json - the FIRST-CUT behavioural lane classification (grab-by-class,
+# traceable), regenerated on demand via `py Scripts/classify_lanes.py --emit` from
+# dependencies/coa_spells.json + the inventory. Cheap + provisional (lane names not yet
+# hardened -> would churn). Regenerate, don't track. Source is classify_lanes.py + spell_enums.py.
+Outputs/lane_index.json
+
 # Outputs/spell_dbc/ - the full Spell.dbc manifest dump (~163MB, 237k spells), regenerable
 # from the live client MPQ via Scripts/extract_spell_dbc.py. Pure "store all" scratch: the
 # whole dir is regenerable and ignored. The COA-relevant FILTERED subset is written to the

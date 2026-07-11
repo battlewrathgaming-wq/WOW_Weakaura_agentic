@@ -683,6 +683,26 @@ class-implementer pass.
   attachments (5610) - the embryo of the proc basis (`memory/proc-basis-plan.md`). Full
   pipeline in `ability_inventory/README.md`.
 
+- [dependencies/coa_spells.json](../dependencies/coa_spells.json) (2026-07-11) - **the DBC
+  spell foundation**: every COA-relevant spell (9152: 6922 class-hooked + 2230 pulled in via
+  the `effectTriggerSpell` proc graph), class:spec-keyed, carrying the full manifest
+  (cooldown/cast/duration/range/cost + effect×aura×target×attr×procFlags across all 3 slots).
+  Read from the live client `Spell.dbc` by `Scripts/extract_spell_dbc.py` (store-all →
+  `Outputs/spell_dbc/`, gitignored 163MB) then filtered by
+  `Weak Auras/ability_inventory/filter_coa_spells.py`. DBC = source (validated 99.97% vs the
+  live scrape); see `blueprint/DATA_ROUTES.md` for how to route through it. The behaviour
+  reasoning lives on top of this: `Scripts/spell_enums.py` grounds the effect/aura/target/attr
+  enums (sourced verbatim from TrinityCore/WPP), and `Scripts/classify_lanes.py` assigns each
+  rank-collapsed ability to a behavioural **lane** —
+
+  ```bash
+  py Scripts/classify_lanes.py          # print the lane distribution (active/passive split)
+  py Scripts/classify_lanes.py --emit   # -> Outputs/lane_index.json (grab-by-class, traceable)
+  ```
+
+  The design + the first-cut result (ACTIVE 34% / PASSIVE 65%; provisional lane names) are in
+  `blueprint/BEHAVIOUR.md`.
+
 ## Reference materials (dip into Display for these)
 
 Designing an actual aura needs more context than the index alone gives you

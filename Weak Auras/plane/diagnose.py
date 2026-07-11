@@ -99,6 +99,40 @@ def classify_source(t):
     return "other"
 
 
+def native_signal(t):
+    """The NATIVE game signal a trigger READS - keyed on trigger TYPE, because `event` is
+    RESIDUE on aura2 (grounded in the corpus: 173 aura2 triggers carry a stale event=Health,
+    etc.; a clean aura2 has event=None). A WA reads native state and flattens it - this names
+    which state. `[[wa-reads-and-flattens-native-state]]`"""
+    ty = t.get("type")
+    if ty in ("aura2", "aura"):
+        return "buff-window"       # the Aura/BuffTrigger2 read: present / stacks / remaining
+    if ty == "custom":
+        return "scripted"
+    if ty == "combatlog":
+        return "combat-event"
+    if ty == "item":
+        return "item"
+    ev = t.get("event") or ""
+    if ty == "spell":
+        if "Cooldown" in ev:
+            return "cooldown"
+        if ev == "Totem":
+            return "totem"
+        return "usable"            # Action Usable / Spell Known / Global Cooldown
+    if ty == "unit":
+        if ev == "Health":
+            return "health"
+        if ev in ("Power", "Combo Points", "Death Knight Rune"):
+            return "resource"
+        if ev == "Cast":
+            return "cast"
+        if ev == "Swing Timer":
+            return "swing"
+        return "unit-state"        # Unit Characteristics / Stance-Form-Aura / Conditions / Threat
+    return "other"
+
+
 def spell_of(t):
     for f in ("spellName", "spellId", "auranames", "spellIds", "names"):
         v = t.get(f)
@@ -324,6 +358,50 @@ def cmd_inspect(rows, arg):
         print()
 
 
+def cmd_lens():
+    """The signal->reader lens: index the corpus by which NATIVE signal each aura reads,
+    and how it's shown/gated. Proves, empirically, the patterns people care about."""
+    trig_freq = Counter()
+    aura_freq = Counter()
+    combos = Counter()
+    inv_region = defaultdict(Counter)
+    inv_change = defaultdict(Counter)
+    n = 0
+    for src, node in pool():
+        n += 1
+        sigs = [native_signal(t) for _, t in triggers_of(node)]
+        for s in sigs:
+            trig_freq[s] += 1
+        sset = frozenset(sigs) or frozenset({"(no-trigger)"})
+        for s in sset:
+            aura_freq[s] += 1
+        combos[sset] += 1
+        region = node.get("regionType")
+        changes = sorted({p for c in condition_shapes(node) for p in c["sets"] if p})
+        for s in sset:
+            inv_region[s][region] += 1
+            for ch in changes:
+                inv_change[s][ch] += 1
+    print(f"=== {n} corpus auras — the native signals people actually READ ===\n")
+    print("what people care about (auras reading each signal, + how it's shown):")
+    for s, c in aura_freq.most_common():
+        shown = ", ".join(f"{r}×{cnt}" for r, cnt in inv_region[s].most_common(3))
+        print(f"  {c:4d} ({100*c//n:2d}%)  {s:13} shown: {shown}")
+    print("\ntop signal COMPOSITIONS (read together = the real building blocks):")
+    for cs, c in combos.most_common(12):
+        print(f"  x{c:<3} {' + '.join(sorted(cs))}")
+    out = {"count": n,
+           "by_signal": {s: {"auras": aura_freq[s], "triggers": trig_freq[s],
+                             "shown_as": dict(inv_region[s].most_common()),
+                             "gates_changes": dict(inv_change[s].most_common(8))}
+                         for s, _ in aura_freq.most_common()},
+           "compositions": {" + ".join(sorted(cs)): c for cs, c in combos.most_common()}}
+    os.makedirs(OUT, exist_ok=True)
+    p = os.path.join(OUT, "signal_index.json")
+    json.dump(out, open(p, "w", encoding="utf-8"), indent=1, ensure_ascii=False)
+    print(f"\nwrote {os.path.relpath(p, _ROOT)} — signal→reader index (inverted)")
+
+
 def main():
     argv = sys.argv[1:]
     cmd = argv[0] if argv else "pivot"
@@ -339,8 +417,10 @@ def main():
         if len(argv) < 2:
             raise SystemExit("usage: py diagnose.py inspect <#|text>")
         cmd_inspect(load_rows(), " ".join(argv[1:]))
+    elif cmd == "lens":
+        cmd_lens()
     else:
-        raise SystemExit(f"unknown command {cmd!r}. use: pivot | subjects | inspect <#|text>")
+        raise SystemExit(f"unknown command {cmd!r}. use: pivot | subjects | inspect <#|text> | lens")
 
 
 if __name__ == "__main__":
