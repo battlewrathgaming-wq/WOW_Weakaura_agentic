@@ -1,0 +1,1612 @@
+{
+ "provenance": {
+  "source": "Retail_Runes_Interactive_buttons.txt",
+  "origin": "retail",
+  "wa_version": "5.18.1",
+  "format_version": 1421,
+  "internalVersion": 79,
+  "internalVersion_range": [
+   79,
+   79
+  ],
+  "modernized": false,
+  "node_count": 8,
+  "decoded_at": "2026-07-11T03:12:16"
+ },
+ "root": {
+  "yOffset": 353.33337402344,
+  "version": 13,
+  "information": {
+   "forceEvents": true
+  },
+  "anchorFrameType": "SCREEN",
+  "animation": {
+   "main": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   },
+   "start": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   },
+   "finish": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   }
+  },
+  "uid": "bhsFBYcCdS1",
+  "url": "https://wago.io/TazaveshConsole/13",
+  "borderColor": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "borderEdge": "Square Full White",
+  "semver": "1.0.12",
+  "subRegions": [],
+  "actions": {
+   "init": [],
+   "start": [],
+   "finish": []
+  },
+  "tocversion": 110007,
+  "borderSize": 2,
+  "groupIcon": 135949,
+  "backdropColor": [
+   1,
+   1,
+   1,
+   0.5
+  ],
+  "internalVersion": 79,
+  "border": false,
+  "borderBackdrop": "Blizzard Tooltip",
+  "borderOffset": 4,
+  "frameStrata": 1,
+  "xOffset": 428.3330078125,
+  "wagoID": "rVCG0ULzx",
+  "conditions": [],
+  "config": [],
+  "borderInset": 1,
+  "anchorPoint": "CENTER",
+  "id": "Tazavesh Hylbrande Titan Console (Sanitizing Cycle)",
+  "load": {
+   "talent": {
+    "multi": []
+   },
+   "class": {
+    "multi": []
+   },
+   "size": {
+    "multi": []
+   },
+   "spec": {
+    "multi": []
+   }
+  },
+  "authorOptions": [],
+  "triggers": [
+   {
+    "untrigger": [],
+    "trigger": {
+     "spellIds": [],
+     "type": "aura2",
+     "unit": "player",
+     "event": "Health",
+     "debuffType": "HELPFUL",
+     "subeventSuffix": "_CAST_START",
+     "subeventPrefix": "SPELL",
+     "names": []
+    }
+   }
+  ],
+  "regionType": "group",
+  "scale": 1,
+  "alpha": 1,
+  "selfPoint": "CENTER"
+ },
+ "children": [
+  {
+   "yOffset": 42,
+   "desaturate": false,
+   "information": {
+    "forceEvents": true
+   },
+   "anchorFrameType": "SCREEN",
+   "animation": {
+    "main": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "start": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "finish": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    }
+   },
+   "keepAspectRatio": false,
+   "selfPoint": "CENTER",
+   "cooldownEdge": false,
+   "iconSource": -1,
+   "xOffset": -42,
+   "semver": "1.0.12",
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "text_text_format_s_format": "none",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_fixedWidth": 64,
+     "text_font": "000 PFSquareSansPro-Medium",
+     "text_justify": "CENTER",
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "RIGHT",
+     "text_text": "TOP LEFT",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "OUTER_LEFT",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_visible": true,
+     "text_shadowXOffset": 0,
+     "text_fontSize": 15
+    }
+   ],
+   "cooldown": false,
+   "height": 80,
+   "config": [],
+   "adjustedMin": "",
+   "wagoID": "rVCG0ULzx",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "useAdjustededMax": false,
+   "progressSource": [
+    -1,
+    ""
+   ],
+   "cooldownTextDisabled": false,
+   "internalVersion": 79,
+   "url": "https://wago.io/TazaveshConsole/13",
+   "width": 80,
+   "anchorPoint": "CENTER",
+   "version": 13,
+   "useCooldownModRate": true,
+   "useAdjustededMin": false,
+   "zoom": 0,
+   "uid": "w7VX6KBATFc",
+   "frameStrata": 1,
+   "icon": true,
+   "displayIcon": "237290",
+   "conditions": [
+    {
+     "check": {
+      "trigger": 1,
+      "variable": "show",
+      "value": 0
+     },
+     "changes": [
+      {
+       "property": "color",
+       "value": [
+        1,
+        1,
+        1,
+        0
+       ]
+      }
+     ]
+    }
+   ],
+   "triggers": {
+    "1": {
+     "untrigger": [],
+     "trigger": {
+      "unit": "player",
+      "debuffType": "HELPFUL",
+      "type": "custom",
+      "subeventSuffix": "_CAST_START",
+      "custom": "function(states, event, arg1, arg2, arg3)\n    if event == \"OPTIONS\" then\n        states[\"\"] = {\n            text = \"\",\n            icon = 1323035,\n            progressType = \"static\",\n            changed = true,\n            show = true\n        }\n        return true\n    end\n    if event == \"HYLB_TOPLEFT\" and arg1 and arg2 then\n        states[\"\"] = {\n            text = arg2,\n            icon = arg1,\n            progressType = \"static\",\n            changed = true,\n            show = true\n        }\n        aura_env.handle()\n        return true\n    elseif event == \"HYLB_RESET\" and arg1 then\n        aura_env.handle(true)\n        if states[\"\"] then\n            states[\"\"].show = false\n            states[\"\"].changed = true\n        end\n        return true\n    elseif (event == \"HYLB_TOPRIGHT\" or event == \"HYLB_BOTTOMLEFT\" or event == \"HYLB_BOTTOMRIGHT\") and arg3 then\n        aura_env.region[\"button\"..arg3]:Hide()\n    end\nend",
+      "subeventPrefix": "SPELL",
+      "events": "HYLB_TOPLEFT HYLB_TOPRIGHT HYLB_BOTTOMLEFT HYLB_BOTTOMRIGHT HYLB_RESET",
+      "event": "Health",
+      "names": [],
+      "custom_type": "stateupdate",
+      "spellIds": [],
+      "check": "event"
+     }
+    },
+    "2": {
+     "untrigger": [],
+     "trigger": {
+      "use_spellId": true,
+      "unit": "player",
+      "debuffType": "HARMFUL",
+      "use_unit": true,
+      "use_absorbMode": true,
+      "spellId": 346427,
+      "event": "Cast",
+      "use_absorbHealMode": true,
+      "useExactSpellId": true,
+      "auraspellids": [
+       "346427"
+      ],
+      "type": "aura2"
+     }
+    },
+    "3": {
+     "untrigger": [],
+     "trigger": {
+      "custom": "function(states, event, ...)\n    if event == \"COMBAT_LOG_EVENT_UNFILTERED\" and ... then\n        local _, message, _, srcGUID, srcName, _, _, destGUID, destName, _, _, spellid = ...\n        if message == \"SPELL_AURA_APPLIED\"\n        and destGUID == WeakAuras.myGUID\n        and spellid == 346427\n        then\n            states[\"\"] = {\n                name = \"Titanic Insight\",\n                icon = 135918,\n                duration = 15,\n                expirationTime = GetTime() + 15,\n                progressType = \"timed\",\n                autoHide = true,\n                changed = true,\n                show = true,\n            }\n        elseif message == \"SPELL_AURA_REMOVED\"\n        and destGUID == WeakAuras.myGUID\n        and spellid == 346427\n        and states[\"\"]\n        then\n            states[\"\"].show = false\n            states[\"\"].changed = true\n            return true\n        end\n    end\nend",
+      "events": "CLEU:SPELL_AURA_APPLIED:SPELL_AURA_REMOVED",
+      "unit": "player",
+      "debuffType": "HELPFUL",
+      "custom_type": "stateupdate",
+      "type": "custom",
+      "check": "event"
+     }
+    },
+    "customTriggerLogic": "function(t)\n    return t[2] or t[3]\nend",
+    "activeTriggerMode": -10,
+    "disjunctive": "custom"
+   },
+   "cooldownSwipe": true,
+   "tocversion": 110007,
+   "inverse": false,
+   "load": {
+    "use_never": false,
+    "size": {
+     "multi": {
+      "party": true
+     },
+     "single": "party"
+    },
+    "use_encounterid": false,
+    "talent": {
+     "multi": []
+    },
+    "zoneIds": "g423",
+    "spec": {
+     "multi": []
+    },
+    "use_zoneIds": false,
+    "use_size": true,
+    "class": {
+     "multi": []
+    },
+    "encounterid": "2426"
+   },
+   "actions": {
+    "init": {
+     "custom": "local t = {\n    [1] = {\"TOPLEFT\", 1323035, \"BLUE\", \"{rt6}\"},\n    [2] = {\"TOPRIGHT\", 1323037, \"PURPLE\", \"{rt3}\"},\n    [3] = {\"BOTTOMLEFT\", 1323038, \"YELLOW\", \"{rt1}\"},\n    [4] = {\"BOTTOMRIGHT\", 1323039, \"ORANGE\", \"{rt2}\"},\n}\n\nlocal name = \"HYLB\"\nlocal w, h = aura_env.region:GetSize()\nfor i=1, 4 do\n    aura_env.region[\"button\"..i] = aura_env.region[\"button\"..i] or CreateFrame(\"Button\", name..i, aura_env.region)\n    aura_env.region[\"button\"..i]:SetSize(w/2, h/2)\n    aura_env.region[\"button\"..i]:SetPoint(t[i][1])\n    aura_env.region[\"button\"..i]:SetScript(\"OnClick\", function()\n            WeakAuras.ScanEvents(\"HYLB_TOPLEFT\", t[i][2], t[i][3], i, t[i][4])\n    end)\n    \n    aura_env.region[\"button\"..i]:SetNormalTexture(t[i][2])\n    aura_env.region[\"button\"..i]:SetHighlightTexture(\"Interface\\\\QuestFrame\\\\UI-QuestLogTitleHighlight\", \"ADD\")\nend\n\naura_env.handle = function(show)\n    for i=1, 4 do\n        if show then\n            aura_env.region[\"button\"..i]:Show()\n        else\n            aura_env.region[\"button\"..i]:Hide()\n        end\n    end\nend\naura_env.handle(not WeakAuras.IsOptionsOpen())",
+     "do_custom": true
+    },
+    "start": {
+     "custom": "if not WeakAuras.IsOptionsOpen() then\n    aura_env.handle(true)\nend\n\n",
+     "do_custom": true
+    },
+    "finish": []
+   },
+   "adjustedMax": "",
+   "alpha": 1,
+   "authorOptions": [],
+   "id": "TOP LEFT RUNE",
+   "regionType": "icon"
+  },
+  {
+   "yOffset": 42,
+   "desaturate": false,
+   "information": {
+    "forceEvents": true
+   },
+   "anchorFrameType": "SCREEN",
+   "animation": {
+    "main": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "start": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "finish": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    }
+   },
+   "keepAspectRatio": false,
+   "selfPoint": "CENTER",
+   "cooldownEdge": false,
+   "iconSource": -1,
+   "xOffset": 42,
+   "semver": "1.0.12",
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "text_text_format_s_format": "none",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_fixedWidth": 64,
+     "text_font": "000 PFSquareSansPro-Medium",
+     "text_justify": "CENTER",
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "LEFT",
+     "text_text": "TOP RIGHT",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "OUTER_RIGHT",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_visible": true,
+     "text_shadowXOffset": 0,
+     "text_fontSize": 15
+    }
+   ],
+   "cooldown": false,
+   "height": 80,
+   "config": [],
+   "adjustedMin": "",
+   "wagoID": "rVCG0ULzx",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "useAdjustededMax": false,
+   "progressSource": [
+    -1,
+    ""
+   ],
+   "cooldownTextDisabled": false,
+   "internalVersion": 79,
+   "url": "https://wago.io/TazaveshConsole/13",
+   "width": 80,
+   "anchorPoint": "CENTER",
+   "version": 13,
+   "useCooldownModRate": true,
+   "useAdjustededMin": false,
+   "zoom": 0,
+   "uid": "StxeW0tUh7c",
+   "frameStrata": 1,
+   "icon": true,
+   "displayIcon": 237290,
+   "conditions": [
+    {
+     "check": {
+      "trigger": 1,
+      "variable": "show",
+      "value": 0
+     },
+     "changes": [
+      {
+       "property": "color",
+       "value": [
+        1,
+        1,
+        1,
+        0
+       ]
+      }
+     ]
+    }
+   ],
+   "triggers": {
+    "1": {
+     "untrigger": [],
+     "trigger": {
+      "unit": "player",
+      "debuffType": "HELPFUL",
+      "type": "custom",
+      "subeventSuffix": "_CAST_START",
+      "custom": "function(states, event, arg1, arg2, arg3)\n    if event == \"OPTIONS\" then\n        states[\"\"] = {\n            text = \"\",\n            icon = 1323037,\n            progressType = \"static\",\n            changed = true,\n            show = true\n        }\n        return true\n    end\n    if event == \"HYLB_TOPRIGHT\" and arg1 and arg2 then\n        states[\"\"] = {\n            text = arg2,\n            icon = arg1,\n            progressType = \"static\",\n            changed = true,\n            show = true\n        }\n        aura_env.handle()\n        return true\n    elseif event == \"HYLB_RESET\" and arg1 then\n        aura_env.handle(true)\n        if states[\"\"] then\n            states[\"\"].show = false\n            states[\"\"].changed = true\n        end\n        return true\n    elseif (event == \"HYLB_TOPLEFT\" or event == \"HYLB_BOTTOMLEFT\" or event == \"HYLB_BOTTOMRIGHT\") and arg3 then\n        aura_env.region[\"button\"..arg3]:Hide()\n    end        \nend",
+      "subeventPrefix": "SPELL",
+      "events": "HYLB_TOPLEFT HYLB_TOPRIGHT HYLB_BOTTOMLEFT HYLB_BOTTOMRIGHT HYLB_RESET",
+      "event": "Health",
+      "names": [],
+      "custom_type": "stateupdate",
+      "spellIds": [],
+      "check": "event"
+     }
+    },
+    "2": {
+     "untrigger": [],
+     "trigger": {
+      "use_spellId": true,
+      "unit": "player",
+      "debuffType": "HARMFUL",
+      "use_unit": true,
+      "use_absorbMode": true,
+      "spellId": 346427,
+      "event": "Cast",
+      "use_absorbHealMode": true,
+      "useExactSpellId": true,
+      "auraspellids": [
+       "346427"
+      ],
+      "type": "aura2"
+     }
+    },
+    "3": {
+     "untrigger": [],
+     "trigger": {
+      "custom": "function(states, event, ...)\n    if event == \"COMBAT_LOG_EVENT_UNFILTERED\" and ... then\n        local _, message, _, srcGUID, srcName, _, _, destGUID, destName, _, _, spellid = ...\n        if message == \"SPELL_AURA_APPLIED\"\n        and destGUID == WeakAuras.myGUID\n        and spellid == 346427\n        then\n            states[\"\"] = {\n                name = \"Titanic Insight\",\n                icon = 135918,\n                duration = 15,\n                expirationTime = GetTime() + 15,\n                progressType = \"timed\",\n                autoHide = true,\n                changed = true,\n                show = true,\n            }\n        elseif message == \"SPELL_AURA_REMOVED\"\n        and destGUID == WeakAuras.myGUID\n        and spellid == 346427\n        and states[\"\"]\n        then\n            states[\"\"].show = false\n            states[\"\"].changed = true\n            return true\n        end\n    end\nend",
+      "events": "CLEU:SPELL_AURA_APPLIED:SPELL_AURA_REMOVED",
+      "unit": "player",
+      "debuffType": "HELPFUL",
+      "custom_type": "stateupdate",
+      "type": "custom",
+      "check": "event"
+     }
+    },
+    "customTriggerLogic": "function(t)\n    return t[2] or t[3]\nend",
+    "activeTriggerMode": -10,
+    "disjunctive": "custom"
+   },
+   "cooldownSwipe": true,
+   "tocversion": 110007,
+   "inverse": false,
+   "load": {
+    "use_never": false,
+    "size": {
+     "multi": {
+      "party": true
+     },
+     "single": "party"
+    },
+    "use_encounterid": false,
+    "talent": {
+     "multi": []
+    },
+    "zoneIds": "g423",
+    "spec": {
+     "multi": []
+    },
+    "use_zoneIds": false,
+    "use_size": true,
+    "class": {
+     "multi": []
+    },
+    "encounterid": "2426"
+   },
+   "actions": {
+    "init": {
+     "custom": "local t = {\n    [1] = {\"TOPLEFT\", 1323035, \"BLUE\", \"{rt6}\"},\n    [2] = {\"TOPRIGHT\", 1323037, \"PURPLE\", \"{rt3}\"},\n    [3] = {\"BOTTOMLEFT\", 1323038, \"YELLOW\", \"{rt1}\"},\n    [4] = {\"BOTTOMRIGHT\", 1323039, \"ORANGE\", \"{rt2}\"},\n}\n\nlocal name = \"HYLB\"\nlocal w, h = aura_env.region:GetSize()\nfor i=1, 4 do\n    \n    aura_env.region[\"button\"..i] = aura_env.region[\"button\"..i] or CreateFrame(\"Button\", name..i, aura_env.region)\n    aura_env.region[\"button\"..i]:SetSize(w/2, h/2)\n    aura_env.region[\"button\"..i]:SetPoint(t[i][1])\n    aura_env.region[\"button\"..i]:SetScript(\"OnClick\", function()\n            WeakAuras.ScanEvents(\"HYLB_TOPRIGHT\", t[i][2], t[i][3], i, t[i][4])\n    end)\n    \n    aura_env.region[\"button\"..i]:SetNormalTexture(t[i][2])\n    aura_env.region[\"button\"..i]:SetHighlightTexture(\"Interface\\\\QuestFrame\\\\UI-QuestLogTitleHighlight\", \"ADD\")\nend\n\naura_env.handle = function(show)\n    for i=1, 4 do\n        if show then\n            aura_env.region[\"button\"..i]:Show()\n        else\n            aura_env.region[\"button\"..i]:Hide()\n        end\n    end\nend\naura_env.handle(not WeakAuras.IsOptionsOpen())",
+     "do_custom": true
+    },
+    "start": {
+     "custom": "if not WeakAuras.IsOptionsOpen() then\n    aura_env.handle(true)\nend",
+     "do_custom": true
+    },
+    "finish": []
+   },
+   "adjustedMax": "",
+   "alpha": 1,
+   "authorOptions": [],
+   "id": "TOP RIGHT RUNE",
+   "regionType": "icon"
+  },
+  {
+   "yOffset": -42,
+   "desaturate": false,
+   "information": {
+    "forceEvents": true
+   },
+   "anchorFrameType": "SCREEN",
+   "animation": {
+    "main": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "start": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "finish": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    }
+   },
+   "keepAspectRatio": false,
+   "selfPoint": "CENTER",
+   "cooldownEdge": false,
+   "iconSource": -1,
+   "xOffset": -42,
+   "semver": "1.0.12",
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "text_text_format_s_format": "none",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_fixedWidth": 64,
+     "text_font": "000 PFSquareSansPro-Medium",
+     "text_justify": "CENTER",
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "RIGHT",
+     "text_text": "BOTTOM LEFT",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "OUTER_LEFT",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_visible": true,
+     "text_shadowXOffset": 0,
+     "text_fontSize": 15
+    }
+   ],
+   "cooldown": false,
+   "height": 80,
+   "config": [],
+   "adjustedMin": "",
+   "wagoID": "rVCG0ULzx",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "useAdjustededMax": false,
+   "progressSource": [
+    -1,
+    ""
+   ],
+   "cooldownTextDisabled": false,
+   "internalVersion": 79,
+   "url": "https://wago.io/TazaveshConsole/13",
+   "width": 80,
+   "anchorPoint": "CENTER",
+   "version": 13,
+   "useCooldownModRate": true,
+   "useAdjustededMin": false,
+   "zoom": 0,
+   "uid": "Ru5(Px873ER",
+   "frameStrata": 1,
+   "icon": true,
+   "displayIcon": 237290,
+   "conditions": [
+    {
+     "check": {
+      "trigger": 1,
+      "variable": "show",
+      "value": 0
+     },
+     "changes": [
+      {
+       "property": "color",
+       "value": [
+        1,
+        1,
+        1,
+        0
+       ]
+      }
+     ]
+    }
+   ],
+   "triggers": {
+    "1": {
+     "untrigger": [],
+     "trigger": {
+      "unit": "player",
+      "debuffType": "HELPFUL",
+      "type": "custom",
+      "subeventSuffix": "_CAST_START",
+      "custom": "function(states, event, arg1, arg2, arg3)\n    if event == \"OPTIONS\" then\n        states[\"\"] = {\n            text = \"\",\n            icon = 1323038,\n            progressType = \"static\",\n            changed = true,\n            show = true\n        }\n        return true\n    end\n    if event == \"HYLB_BOTTOMLEFT\" and arg1 and arg2 then\n        states[\"\"] = {\n            text = arg2,\n            icon = arg1,\n            progressType = \"static\",\n            changed = true,\n            show = true\n        }\n        aura_env.handle()\n        return true\n    elseif event == \"HYLB_RESET\" and arg1 then\n        aura_env.handle(true)\n        if states[\"\"] then\n            states[\"\"].show = false\n            states[\"\"].changed = true\n        end\n        return true\n    elseif (event == \"HYLB_TOPLEFT\" or event == \"HYLB_TOPRIGHT\" or event == \"HYLB_BOTTOMRIGHT\") and arg3 then\n        aura_env.region[\"button\"..arg3]:Hide()\n    end\nend",
+      "subeventPrefix": "SPELL",
+      "events": "HYLB_TOPLEFT HYLB_TOPRIGHT HYLB_BOTTOMLEFT HYLB_BOTTOMRIGHT HYLB_RESET",
+      "event": "Health",
+      "names": [],
+      "custom_type": "stateupdate",
+      "spellIds": [],
+      "check": "event"
+     }
+    },
+    "2": {
+     "untrigger": [],
+     "trigger": {
+      "use_spellId": true,
+      "unit": "player",
+      "debuffType": "HARMFUL",
+      "use_unit": true,
+      "use_absorbMode": true,
+      "spellId": 346427,
+      "event": "Cast",
+      "use_absorbHealMode": true,
+      "useExactSpellId": true,
+      "auraspellids": [
+       "346427"
+      ],
+      "type": "aura2"
+     }
+    },
+    "3": {
+     "untrigger": [],
+     "trigger": {
+      "custom": "function(states, event, ...)\n    if event == \"COMBAT_LOG_EVENT_UNFILTERED\" and ... then\n        local _, message, _, srcGUID, srcName, _, _, destGUID, destName, _, _, spellid = ...\n        if message == \"SPELL_AURA_APPLIED\"\n        and destGUID == WeakAuras.myGUID\n        and spellid == 346427\n        then\n            states[\"\"] = {\n                name = \"Titanic Insight\",\n                icon = 135918,\n                duration = 15,\n                expirationTime = GetTime() + 15,\n                progressType = \"timed\",\n                autoHide = true,\n                changed = true,\n                show = true,\n            }\n        elseif message == \"SPELL_AURA_REMOVED\"\n        and destGUID == WeakAuras.myGUID\n        and spellid == 346427\n        and states[\"\"]\n        then\n            states[\"\"].show = false\n            states[\"\"].changed = true\n            return true\n        end\n    end\nend",
+      "events": "CLEU:SPELL_AURA_APPLIED:SPELL_AURA_REMOVED",
+      "unit": "player",
+      "debuffType": "HELPFUL",
+      "custom_type": "stateupdate",
+      "type": "custom",
+      "check": "event"
+     }
+    },
+    "customTriggerLogic": "function(t)\n    return t[2] or t[3]\nend",
+    "activeTriggerMode": -10,
+    "disjunctive": "custom"
+   },
+   "cooldownSwipe": true,
+   "tocversion": 110007,
+   "inverse": false,
+   "load": {
+    "use_never": false,
+    "size": {
+     "multi": {
+      "party": true
+     },
+     "single": "party"
+    },
+    "use_encounterid": false,
+    "talent": {
+     "multi": []
+    },
+    "zoneIds": "g423",
+    "spec": {
+     "multi": []
+    },
+    "use_zoneIds": false,
+    "use_size": true,
+    "class": {
+     "multi": []
+    },
+    "encounterid": "2426"
+   },
+   "actions": {
+    "init": {
+     "custom": "local t = {\n    [1] = {\"TOPLEFT\", 1323035, \"BLUE\", \"{rt6}\"},\n    [2] = {\"TOPRIGHT\", 1323037, \"PURPLE\", \"{rt3}\"},\n    [3] = {\"BOTTOMLEFT\", 1323038, \"YELLOW\", \"{rt1}\"},\n    [4] = {\"BOTTOMRIGHT\", 1323039, \"ORANGE\", \"{rt2}\"},\n}\n\nlocal name = \"HYLB\"\nlocal w, h = aura_env.region:GetSize()\nfor i=1, 4 do\n    \n    aura_env.region[\"button\"..i] = aura_env.region[\"button\"..i] or CreateFrame(\"Button\", name..i, aura_env.region)\n    aura_env.region[\"button\"..i]:SetSize(w/2, h/2)\n    aura_env.region[\"button\"..i]:SetPoint(t[i][1])\n    aura_env.region[\"button\"..i]:SetScript(\"OnClick\", function()\n            WeakAuras.ScanEvents(\"HYLB_BOTTOMLEFT\", t[i][2], t[i][3], i, t[i][4])\n    end)\n    \n    aura_env.region[\"button\"..i]:SetNormalTexture(t[i][2])\n    aura_env.region[\"button\"..i]:SetHighlightTexture(\"Interface\\\\QuestFrame\\\\UI-QuestLogTitleHighlight\", \"ADD\")\nend\n\naura_env.handle = function(show)\n    for i=1, 4 do\n        if show then\n            aura_env.region[\"button\"..i]:Show()\n        else\n            aura_env.region[\"button\"..i]:Hide()\n        end\n    end\nend\naura_env.handle(not WeakAuras.IsOptionsOpen())",
+     "do_custom": true
+    },
+    "start": {
+     "custom": "if not WeakAuras.IsOptionsOpen() then\n    aura_env.handle(true)\nend\n\n",
+     "do_custom": true
+    },
+    "finish": []
+   },
+   "adjustedMax": "",
+   "alpha": 1,
+   "authorOptions": [],
+   "id": "BOTTOM LEFT RUNE",
+   "regionType": "icon"
+  },
+  {
+   "yOffset": -42,
+   "desaturate": false,
+   "information": {
+    "forceEvents": true
+   },
+   "anchorFrameType": "SCREEN",
+   "animation": {
+    "main": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "start": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "finish": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    }
+   },
+   "keepAspectRatio": false,
+   "selfPoint": "CENTER",
+   "cooldownEdge": false,
+   "iconSource": -1,
+   "xOffset": 42,
+   "semver": "1.0.12",
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "text_text_format_s_format": "none",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_fixedWidth": 64,
+     "text_font": "000 PFSquareSansPro-Medium",
+     "text_justify": "CENTER",
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "LEFT",
+     "text_text": "BOTTOM RIGHT",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "OUTER_RIGHT",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_visible": true,
+     "text_shadowXOffset": 0,
+     "text_fontSize": 15
+    }
+   ],
+   "cooldown": false,
+   "height": 80,
+   "config": [],
+   "adjustedMin": "",
+   "wagoID": "rVCG0ULzx",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "useAdjustededMax": false,
+   "progressSource": [
+    -1,
+    ""
+   ],
+   "cooldownTextDisabled": false,
+   "internalVersion": 79,
+   "url": "https://wago.io/TazaveshConsole/13",
+   "width": 80,
+   "anchorPoint": "CENTER",
+   "version": 13,
+   "useCooldownModRate": true,
+   "useAdjustededMin": false,
+   "zoom": 0,
+   "uid": "Ca4EWGmD5y9",
+   "frameStrata": 1,
+   "icon": true,
+   "displayIcon": 237290,
+   "conditions": [
+    {
+     "check": {
+      "trigger": 1,
+      "variable": "show",
+      "value": 0
+     },
+     "changes": [
+      {
+       "property": "color",
+       "value": [
+        1,
+        1,
+        1,
+        0
+       ]
+      }
+     ]
+    }
+   ],
+   "triggers": {
+    "1": {
+     "untrigger": [],
+     "trigger": {
+      "unit": "player",
+      "debuffType": "HELPFUL",
+      "type": "custom",
+      "subeventSuffix": "_CAST_START",
+      "custom": "function(states, event, arg1, arg2, arg3)\n    if event == \"OPTIONS\" then\n        states[\"\"] = {\n            text = \"\",\n            icon = 1323039,\n            progressType = \"static\",\n            changed = true,\n            show = true\n        }\n        return true\n    end\n    if event == \"HYLB_BOTTOMRIGHT\" and arg1 and arg2 then\n        states[\"\"] = {\n            text = arg2,\n            icon = arg1,\n            progressType = \"static\",\n            changed = true,\n            show = true\n        }\n        aura_env.handle()\n        return true\n    elseif event == \"HYLB_RESET\" and arg1 then\n        aura_env.handle(true)\n        if states[\"\"] then\n            states[\"\"].show = false\n            states[\"\"].changed = true\n        end\n        return true\n    elseif (event == \"HYLB_TOPLEFT\" or event == \"HYLB_TOPRIGHT\" or event == \"HYLB_BOTTOMLEFT\") and arg3 then\n        aura_env.region[\"button\"..arg3]:Hide()\n    end\nend",
+      "subeventPrefix": "SPELL",
+      "events": "HYLB_TOPLEFT HYLB_TOPRIGHT HYLB_BOTTOMLEFT HYLB_BOTTOMRIGHT HYLB_RESET",
+      "event": "Health",
+      "names": [],
+      "custom_type": "stateupdate",
+      "spellIds": [],
+      "check": "event"
+     }
+    },
+    "2": {
+     "untrigger": [],
+     "trigger": {
+      "use_spellId": true,
+      "unit": "player",
+      "debuffType": "HARMFUL",
+      "use_unit": true,
+      "use_exact_spellId": false,
+      "use_absorbMode": true,
+      "spellId": 346427,
+      "event": "Cast",
+      "use_absorbHealMode": true,
+      "useExactSpellId": true,
+      "auraspellids": [
+       "346427"
+      ],
+      "type": "aura2"
+     }
+    },
+    "3": {
+     "untrigger": [],
+     "trigger": {
+      "custom": "function(states, event, ...)\n    if event == \"COMBAT_LOG_EVENT_UNFILTERED\" and ... then\n        local _, message, _, srcGUID, srcName, _, _, destGUID, destName, _, _, spellid = ...\n        if message == \"SPELL_AURA_APPLIED\"\n        and destGUID == WeakAuras.myGUID\n        and spellid == 346427\n        then\n            states[\"\"] = {\n                name = \"Titanic Insight\",\n                icon = 135918,\n                duration = 15,\n                expirationTime = GetTime() + 15,\n                progressType = \"timed\",\n                autoHide = true,\n                changed = true,\n                show = true,\n            }\n        elseif message == \"SPELL_AURA_REMOVED\"\n        and destGUID == WeakAuras.myGUID\n        and spellid == 346427\n        and states[\"\"]\n        then\n            states[\"\"].show = false\n            states[\"\"].changed = true\n            return true\n        end\n    end\nend",
+      "events": "CLEU:SPELL_AURA_APPLIED:SPELL_AURA_REMOVED",
+      "unit": "player",
+      "debuffType": "HELPFUL",
+      "custom_type": "stateupdate",
+      "type": "custom",
+      "check": "event"
+     }
+    },
+    "customTriggerLogic": "function(t)\n    return t[2] or t[3]\nend",
+    "activeTriggerMode": -10,
+    "disjunctive": "custom"
+   },
+   "cooldownSwipe": true,
+   "tocversion": 110007,
+   "inverse": false,
+   "load": {
+    "use_never": false,
+    "size": {
+     "multi": {
+      "party": true
+     },
+     "single": "party"
+    },
+    "use_encounterid": false,
+    "talent": {
+     "multi": []
+    },
+    "zoneIds": "g423",
+    "spec": {
+     "multi": []
+    },
+    "use_zoneIds": false,
+    "use_size": true,
+    "class": {
+     "multi": []
+    },
+    "encounterid": "2426"
+   },
+   "actions": {
+    "init": {
+     "custom": "local t = {\n    [1] = {\"TOPLEFT\", 1323035, \"BLUE\", \"{rt6}\"},\n    [2] = {\"TOPRIGHT\", 1323037, \"PURPLE\", \"{rt3}\"},\n    [3] = {\"BOTTOMLEFT\", 1323038, \"YELLOW\", \"{rt1}\"},\n    [4] = {\"BOTTOMRIGHT\", 1323039, \"ORANGE\", \"{rt2}\"},\n}\n\nlocal name = \"HYLB\"\nlocal w, h = aura_env.region:GetSize()\nfor i=1, 4 do\n    aura_env.region[\"button\"..i] = aura_env.region[\"button\"..i] or CreateFrame(\"Button\", name..i, aura_env.region)\n    aura_env.region[\"button\"..i]:SetSize(w/2, h/2)\n    aura_env.region[\"button\"..i]:SetPoint(t[i][1])\n    aura_env.region[\"button\"..i]:SetScript(\"OnClick\", function()\n            WeakAuras.ScanEvents(\"HYLB_BOTTOMRIGHT\", t[i][2], t[i][3], i, t[i][4])\n    end)\n    \n    aura_env.region[\"button\"..i]:SetNormalTexture(t[i][2])\n    aura_env.region[\"button\"..i]:SetHighlightTexture(\"Interface\\\\QuestFrame\\\\UI-QuestLogTitleHighlight\", \"ADD\")\nend\n\naura_env.handle = function(show)\n    for i=1, 4 do\n        if show then\n            aura_env.region[\"button\"..i]:Show()\n        else\n            aura_env.region[\"button\"..i]:Hide()\n        end\n    end\nend\naura_env.handle(not WeakAuras.IsOptionsOpen())",
+     "do_custom": true
+    },
+    "start": {
+     "custom": "if not WeakAuras.IsOptionsOpen() then\n    aura_env.handle(true)\nend\n\n",
+     "do_custom": true
+    },
+    "finish": []
+   },
+   "adjustedMax": "",
+   "alpha": 1,
+   "authorOptions": [],
+   "id": "BOTTOM RIGHT RUNE",
+   "regionType": "icon"
+  },
+  {
+   "discrete_rotation": 0,
+   "desaturate": false,
+   "information": {
+    "forceEvents": true
+   },
+   "regionType": "texture",
+   "animation": {
+    "main": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "start": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "finish": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    }
+   },
+   "keepAspectRatio": false,
+   "selfPoint": "CENTER",
+   "cooldownEdge": false,
+   "mirror": false,
+   "iconSource": -1,
+   "xOffset": -42,
+   "semver": "1.0.12",
+   "authorOptions": [],
+   "cooldown": false,
+   "rotate": false,
+   "height": 40,
+   "config": [],
+   "rotation": 0,
+   "color": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "uid": "fALyKB5a2)P",
+   "cooldownTextDisabled": false,
+   "internalVersion": 79,
+   "yOffset": -126.00006103516,
+   "width": 80,
+   "wagoID": "rVCG0ULzx",
+   "alpha": 1,
+   "version": 13,
+   "url": "https://wago.io/TazaveshConsole/13",
+   "blendMode": "BLEND",
+   "zoom": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "text_text_format_s_format": "none",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_fixedWidth": 64,
+     "text_font": "000 PFSquareSansPro-Medium",
+     "text_justify": "CENTER",
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "AUTO",
+     "text_text": "SEND",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "INNER_BOTTOMRIGHT",
+     "text_color": [
+      0,
+      1,
+      0,
+      1
+     ],
+     "type": "subtext",
+     "text_visible": true,
+     "text_shadowXOffset": 0,
+     "text_fontSize": 16
+    }
+   ],
+   "frameStrata": 1,
+   "icon": true,
+   "displayIcon": "",
+   "conditions": [],
+   "textureWrapMode": "CLAMPTOBLACKADDITIVE",
+   "cooldownSwipe": true,
+   "tocversion": 110007,
+   "inverse": false,
+   "load": {
+    "use_never": false,
+    "size": {
+     "multi": {
+      "party": true
+     },
+     "single": "party"
+    },
+    "use_encounterid": false,
+    "talent": {
+     "multi": []
+    },
+    "zoneIds": "g423",
+    "spec": {
+     "multi": []
+    },
+    "use_zoneIds": false,
+    "use_size": true,
+    "class": {
+     "multi": []
+    },
+    "encounterid": "2426"
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_White_Border",
+   "triggers": {
+    "1": {
+     "untrigger": [],
+     "trigger": {
+      "custom_hide": "custom",
+      "debuffType": "HELPFUL",
+      "unit": "player",
+      "type": "custom",
+      "custom": "function(event, arg1, arg2, arg3, arg4)\n    if event == \"HYLB_RESET\" and arg1 then\n        aura_env.topLeft = false\n        aura_env.topRight = false\n        aura_env.bottomLeft = false\n        aura_env.bottomRight = false\n        \n        aura_env.topLeftM = \"\"\n        aura_env.topRightM = \"\"\n        aura_env.bottomLeftM = \"\"\n        aura_env.bottomRightM = \"\"\n    elseif event == \"HYLB_TOPLEFT\" and arg2 then\n        aura_env.topLeft = arg2\n        aura_env.topLeftM = arg4 or \"\"\n    elseif event == \"HYLB_TOPRIGHT\" and arg2 then\n        aura_env.topRight = arg2\n        aura_env.topRightM = arg4 or \"\"\n    elseif event == \"HYLB_BOTTOMLEFT\" and arg2 then\n        aura_env.bottomLeft = arg2\n        aura_env.bottomLeftM = arg4 or \"\"\n    elseif event == \"HYLB_BOTTOMRIGHT\" and arg2 then\n        aura_env.bottomRight = arg2\n        aura_env.bottomRightM = arg4 or \"\"\n    elseif event == \"HYLB_SEND\" and arg1 \n    and aura_env.topLeft and aura_env.topRight\n    and aura_env.bottomLeft and aura_env.bottomRight\n    then\n        local message = format(\"%s*%s*%s*%s\", aura_env.topLeft, aura_env.topRight, aura_env.bottomLeft, aura_env.bottomRight)\n        C_ChatInfo.SendAddonMessage(\"HYLB_PERSONAL\", message, IsInGroup(LE_PARTY_CATEGORY_INSTANCE) and \"INSTANCE_CHAT\" or \"PARTY\")\n        \n        local text = format(\"%s%s   %s%s\", aura_env.topLeftM, aura_env.topLeft, aura_env.topRightM, aura_env.topRight)\n        aura_env.send(text)\n        \n        text = format(\"%s%s   %s%s\", aura_env.bottomLeftM, aura_env.bottomLeft, aura_env.bottomRightM, aura_env.bottomRight)\n        aura_env.send(text)\n    end\nend",
+      "subeventSuffix": "_CAST_START",
+      "events": "HYLB_TOPLEFT HYLB_TOPRIGHT HYLB_BOTTOMLEFT HYLB_BOTTOMRIGHT HYLB_RESET HYLB_SEND",
+      "event": "Health",
+      "names": [],
+      "custom_type": "event",
+      "subeventPrefix": "SPELL",
+      "spellIds": []
+     }
+    },
+    "2": {
+     "untrigger": [],
+     "trigger": {
+      "use_spellId": true,
+      "unit": "player",
+      "use_unit": true,
+      "debuffType": "HARMFUL",
+      "use_absorbMode": true,
+      "use_absorbHealMode": true,
+      "useExactSpellId": true,
+      "spellIds": [],
+      "type": "aura2",
+      "names": [],
+      "event": "Cast",
+      "spellId": 346427,
+      "subeventSuffix": "_CAST_START",
+      "auraspellids": [
+       "346427"
+      ],
+      "subeventPrefix": "SPELL"
+     }
+    },
+    "3": {
+     "untrigger": [],
+     "trigger": {
+      "custom": "function(states, event, ...)\n    if event == \"COMBAT_LOG_EVENT_UNFILTERED\" and ... then\n        local _, message, _, srcGUID, srcName, _, _, destGUID, destName, _, _, spellid = ...\n        if message == \"SPELL_AURA_APPLIED\"\n        and destGUID == WeakAuras.myGUID\n        and spellid == 346427\n        then\n            states[\"\"] = {\n                name = \"Titanic Insight\",\n                icon = 135918,\n                duration = 15,\n                expirationTime = GetTime() + 15,\n                progressType = \"timed\",\n                autoHide = true,\n                changed = true,\n                show = true,\n            }\n        elseif message == \"SPELL_AURA_REMOVED\"\n        and destGUID == WeakAuras.myGUID\n        and spellid == 346427\n        and states[\"\"]\n        then\n            states[\"\"].show = false\n            states[\"\"].changed = true\n            return true\n        end\n    end\nend",
+      "events": "CLEU:SPELL_AURA_APPLIED:SPELL_AURA_REMOVED",
+      "unit": "player",
+      "debuffType": "HELPFUL",
+      "custom_type": "stateupdate",
+      "type": "custom",
+      "check": "event"
+     }
+    },
+    "customTriggerLogic": "function(t)\n    return t[2] or t[3]\nend",
+    "activeTriggerMode": -10,
+    "disjunctive": "custom"
+   },
+   "actions": {
+    "init": {
+     "custom": "aura_env.region.clickMe = aura_env.region.clickMe or CreateFrame(\"Button\", nil, aura_env.region)\naura_env.region.clickMe:SetAllPoints()\naura_env.region.clickMe:SetScript(\"OnClick\", function()\n        WeakAuras.ScanEvents(\"HYLB_SEND\", true)\nend)\naura_env.region.clickMe:SetHighlightTexture(\"Interface\\\\QuestFrame\\\\UI-QuestLogTitleHighlight\", \"ADD\")\n\naura_env.topLeft = false\naura_env.topRight = false\naura_env.bottomLeft = false\naura_env.bottomRight = false\n\naura_env.topLeftM = \"\"\naura_env.topRightM = \"\"\naura_env.bottomLeftM = \"\"\naura_env.bottomRightM = \"\"\n\naura_env.send = function(text)\n    local chatType = \"PARTY\"\n    if IsInGroup(LE_PARTY_CATEGORY_INSTANCE) then\n        chatType = \"INSTANCE_CHAT\"\n    end\n    if not IsInGroup() then\n        if text then\n            local newtext = text:gsub(\"  \", \"-\")\n            local new1, new2 = strsplit(\"-\", newtext)\n            if new1 and new2 then\n                local index1 = new1:match(\"%d+\")\n                index1 = index1 and tonumber(index1)\n                local side1 = new1:match(\"}(.+)\")\n                \n                local index2 = new2:match(\"%d+\")\n                index2 = index2 and tonumber(index2)\n                local side2 = new2:match(\"}(.+)\")\n                if index1 and side1 and index2 and side2 then\n                    local fixprint = format(\"%s0|t%s  %s0|t%s\", ICON_LIST[index1], side1, ICON_LIST[index2], side2)\n                    print(fixprint)\n                else\n                    print(text)\n                end\n            else\n                print(text)\n            end\n        end\n    else\n        SendChatMessage(text, chatType)\n    end\nend\n\n\n\n",
+     "do_custom": true
+    },
+    "start": {
+     "custom": "aura_env.topLeft = false\naura_env.topRight = false\naura_env.bottomLeft = false\naura_env.bottomRight = false\n\naura_env.topLeftM = \"\"\naura_env.topRightM = \"\"\naura_env.bottomLeftM = \"\"\naura_env.bottomRightM = \"\"\n\nWeakAuras.ScanEvents(\"HYLB_RESET\", true)",
+     "do_custom": true
+    },
+    "finish": []
+   },
+   "anchorPoint": "CENTER",
+   "id": "RUNE SEND",
+   "anchorFrameType": "SCREEN"
+  },
+  {
+   "discrete_rotation": 0,
+   "desaturate": false,
+   "information": {
+    "forceEvents": true
+   },
+   "regionType": "texture",
+   "animation": {
+    "main": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "start": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "finish": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    }
+   },
+   "keepAspectRatio": false,
+   "selfPoint": "CENTER",
+   "cooldownEdge": false,
+   "mirror": false,
+   "iconSource": -1,
+   "xOffset": 42,
+   "semver": "1.0.12",
+   "authorOptions": [],
+   "cooldown": false,
+   "rotate": false,
+   "height": 40,
+   "config": [],
+   "rotation": 0,
+   "color": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "uid": "RnbG9pA0SNq",
+   "cooldownTextDisabled": false,
+   "internalVersion": 79,
+   "yOffset": -126,
+   "width": 80,
+   "wagoID": "rVCG0ULzx",
+   "alpha": 1,
+   "version": 13,
+   "url": "https://wago.io/TazaveshConsole/13",
+   "blendMode": "BLEND",
+   "zoom": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "text_text_format_s_format": "none",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_fixedWidth": 64,
+     "text_font": "000 PFSquareSansPro-Medium",
+     "text_justify": "CENTER",
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "AUTO",
+     "text_text": "RESET",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "INNER_BOTTOMRIGHT",
+     "text_color": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "type": "subtext",
+     "text_visible": true,
+     "text_shadowXOffset": 0,
+     "text_fontSize": 16
+    }
+   ],
+   "frameStrata": 1,
+   "icon": true,
+   "displayIcon": "",
+   "conditions": [],
+   "textureWrapMode": "CLAMPTOBLACKADDITIVE",
+   "cooldownSwipe": true,
+   "tocversion": 110007,
+   "inverse": false,
+   "load": {
+    "use_never": false,
+    "size": {
+     "multi": {
+      "party": true
+     },
+     "single": "party"
+    },
+    "use_encounterid": false,
+    "talent": {
+     "multi": []
+    },
+    "zoneIds": "g423",
+    "spec": {
+     "multi": []
+    },
+    "use_zoneIds": false,
+    "use_size": true,
+    "class": {
+     "multi": []
+    },
+    "encounterid": "2426"
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_White_Border",
+   "triggers": {
+    "1": {
+     "untrigger": [],
+     "trigger": {
+      "use_unit": true,
+      "use_spellId": true,
+      "unit": "player",
+      "use_exact_spellId": false,
+      "debuffType": "HARMFUL",
+      "use_absorbMode": true,
+      "use_absorbHealMode": true,
+      "useExactSpellId": true,
+      "spellIds": [],
+      "type": "aura2",
+      "names": [],
+      "event": "Cast",
+      "spellId": 346427,
+      "subeventSuffix": "_CAST_START",
+      "auraspellids": [
+       "346427"
+      ],
+      "subeventPrefix": "SPELL"
+     }
+    },
+    "2": {
+     "untrigger": [],
+     "trigger": {
+      "custom": "function(states, event, ...)\n    if event == \"COMBAT_LOG_EVENT_UNFILTERED\" and ... then\n        local _, message, _, srcGUID, srcName, _, _, destGUID, destName, _, _, spellid = ...\n        if message == \"SPELL_AURA_APPLIED\"\n        and destGUID == WeakAuras.myGUID\n        and spellid == 346427\n        then\n            states[\"\"] = {\n                name = \"Titanic Insight\",\n                icon = 135918,\n                duration = 15,\n                expirationTime = GetTime() + 15,\n                progressType = \"timed\",\n                autoHide = true,\n                changed = true,\n                show = true,\n            }\n        elseif message == \"SPELL_AURA_REMOVED\"\n        and destGUID == WeakAuras.myGUID\n        and spellid == 346427\n        and states[\"\"]\n        then\n            states[\"\"].show = false\n            states[\"\"].changed = true\n            return true\n        end\n    end\nend",
+      "events": "CLEU:SPELL_AURA_APPLIED:SPELL_AURA_REMOVED",
+      "unit": "player",
+      "debuffType": "HELPFUL",
+      "custom_type": "stateupdate",
+      "type": "custom",
+      "check": "event"
+     }
+    },
+    "disjunctive": "any",
+    "activeTriggerMode": -10
+   },
+   "actions": {
+    "init": {
+     "custom": "aura_env.region.clickMe = aura_env.region.clickMe or CreateFrame(\"Button\", nil, aura_env.region)\naura_env.region.clickMe:SetAllPoints()\naura_env.region.clickMe:SetScript(\"OnClick\", function()\n        WeakAuras.ScanEvents(\"HYLB_RESET\", true)\nend)\naura_env.region.clickMe:SetHighlightTexture(\"Interface\\\\QuestFrame\\\\UI-QuestLogTitleHighlight\", \"ADD\")\n\n\n",
+     "do_custom": true
+    },
+    "start": [],
+    "finish": []
+   },
+   "anchorPoint": "CENTER",
+   "id": "RUNE RESET",
+   "anchorFrameType": "SCREEN"
+  },
+  {
+   "yOffset": -22.499877929688,
+   "desaturate": false,
+   "information": {
+    "forceEvents": true
+   },
+   "regionType": "icon",
+   "animation": {
+    "main": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "start": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "finish": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    }
+   },
+   "keepAspectRatio": false,
+   "selfPoint": "CENTER",
+   "cooldownEdge": false,
+   "iconSource": 1,
+   "xOffset": -419.16613769531,
+   "semver": "1.0.12",
+   "authorOptions": [
+    {
+     "noMerge": false,
+     "type": "header",
+     "width": 1,
+     "useName": true,
+     "text": "LOCALISATION DISPLAY"
+    },
+    {
+     "width": 1,
+     "useLength": false,
+     "length": 10,
+     "multiline": false,
+     "key": "1",
+     "type": "input",
+     "useDesc": false,
+     "name": "|cFF00FFFFTOP LEFT|r",
+     "default": "TOP LEFT"
+    },
+    {
+     "width": 1,
+     "useLength": false,
+     "length": 10,
+     "multiline": false,
+     "key": "2",
+     "type": "input",
+     "useDesc": false,
+     "name": "|cFF00FFFFTOP RIGHT|r",
+     "default": "TOP RIGHT"
+    },
+    {
+     "width": 1,
+     "useLength": false,
+     "length": 10,
+     "multiline": false,
+     "key": "3",
+     "type": "input",
+     "useDesc": false,
+     "name": "|cFF00FFFFBOTTOM LEFT|r",
+     "default": "BOTTOM LEFT"
+    },
+    {
+     "width": 1,
+     "useLength": false,
+     "length": 10,
+     "multiline": false,
+     "key": "4",
+     "type": "input",
+     "useDesc": false,
+     "name": "|cFF00FFFFBOTTOM RIGHT|r",
+     "default": "BOTTOM RIGHT"
+    }
+   ],
+   "cooldown": false,
+   "height": 64,
+   "config": {
+    "2": "TOP RIGHT",
+    "4": "BOTTOM RIGHT",
+    "1": "TOP LEFT",
+    "3": "BOTTOM LEFT"
+   },
+   "adjustedMin": "",
+   "wagoID": "rVCG0ULzx",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "useAdjustededMax": false,
+   "progressSource": [
+    -1,
+    ""
+   ],
+   "cooldownTextDisabled": false,
+   "internalVersion": 79,
+   "uid": "YkWC((iZ1MS",
+   "width": 64,
+   "version": 13,
+   "anchorPoint": "CENTER",
+   "useCooldownModRate": true,
+   "useAdjustededMin": false,
+   "url": "https://wago.io/TazaveshConsole/13",
+   "zoom": 0,
+   "triggers": {
+    "1": {
+     "untrigger": [],
+     "trigger": {
+      "unit": "player",
+      "debuffType": "HARMFUL",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "names": [],
+      "event": "Health",
+      "type": "aura2",
+      "subeventSuffix": "_CAST_START",
+      "auraspellids": [
+       "348450",
+       "348451",
+       "348447",
+       "348437"
+      ],
+      "subeventPrefix": "SPELL"
+     }
+    },
+    "2": {
+     "untrigger": [],
+     "trigger": {
+      "unit": "player",
+      "debuffType": "HELPFUL",
+      "type": "custom",
+      "subeventSuffix": "_CAST_START",
+      "custom": "function(states, event, ...)\n    if event == \"CHAT_MSG_ADDON\" and ... then\n        local prefix, message = ...\n        if prefix == \"HYLB_PERSONAL\" and message then\n            local topLeft, topRight, bottomLeft, bottomRight = strsplit(\"*\", message)\n            if topLeft and topRight and bottomLeft and bottomRight then\n                local cfg = aura_env.config\n                states[\"\"] = {\n                    side = {\n                        [topLeft] = cfg[\"1\"],\n                        [topRight] = cfg[\"2\"],\n                        [bottomLeft] = cfg[\"3\"],\n                        [bottomRight] = cfg[\"4\"],\n                    },\n                    progressType = \"static\",\n                    changed = true,\n                    show = true,\n                }\n                return true\n            end\n            \n        end\n    elseif event == \"COMBAT_LOG_EVENT_UNFILTERED\" and ... then\n        local _, message, _, _, _, _, _, _, _, _, _, spellid = ...\n        local state = states[\"\"]\n        if state and (message == \"SPELL_AURA_APPLIED\" or message == \"SPELL_AURA_REMOVED\") and spellid == 347097 then\n            state.show = false\n            state.changed = true\n            return true\n        end\n    end\nend",
+      "subeventPrefix": "SPELL",
+      "events": "CHAT_MSG_ADDON CLEU:SPELL_AURA_APPLIED:SPELL_AURA_REMOVED",
+      "event": "Health",
+      "names": [],
+      "custom_type": "stateupdate",
+      "spellIds": [],
+      "check": "event"
+     }
+    },
+    "disjunctive": "all",
+    "activeTriggerMode": -10
+   },
+   "frameStrata": 1,
+   "icon": true,
+   "displayIcon": "",
+   "conditions": [],
+   "customText": "function()\n    if aura_env.states[2].show\n    and aura_env.states[1].show\n    and aura_env.states[1].spellId\n    then\n        local spellID = aura_env.states[1].spellId\n        local convert = aura_env.list[spellID]\n        if convert and aura_env.states[2].side[convert] then\n            return aura_env.states[2].side[convert]\n        end\n    end\nend\n\n\n",
+   "cooldownSwipe": true,
+   "tocversion": 110007,
+   "inverse": false,
+   "load": {
+    "use_never": false,
+    "size": {
+     "multi": {
+      "party": true
+     },
+     "single": "party"
+    },
+    "use_encounterid": false,
+    "talent": {
+     "multi": []
+    },
+    "zoneIds": "g423",
+    "spec": {
+     "multi": []
+    },
+    "use_zoneIds": false,
+    "use_size": true,
+    "class": {
+     "multi": []
+    },
+    "encounterid": "2426"
+   },
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "text_text_format_c_format": "none",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_fixedWidth": 64,
+     "text_font": "000 PFSquareSansPro-Medium",
+     "text_justify": "CENTER",
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "BOTTOM",
+     "text_visible": true,
+     "text_text": "%c",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "OUTER_TOP",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_text_format_s_format": "none",
+     "text_shadowXOffset": 0,
+     "text_fontSize": 45
+    },
+    {
+     "glowColor": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "useGlowColor": false,
+     "glowLines": 8,
+     "glow": false,
+     "type": "subglow",
+     "glowType": "buttonOverlay",
+     "glowThickness": 1,
+     "glowYOffset": 0,
+     "glowLength": 10,
+     "glowBorder": false,
+     "glowScale": 1,
+     "glowXOffset": 0,
+     "glowDuration": 1,
+     "glowFrequency": 0.25
+    }
+   ],
+   "adjustedMax": "",
+   "actions": {
+    "init": {
+     "custom": "C_ChatInfo.RegisterAddonMessagePrefix(\"HYLB_PERSONAL\")\naura_env.list = {\n    [348450] = \"BLUE\",\n    [348451] = \"PURPLE\",\n    [348447] = \"YELLOW\",\n    [348437] = \"ORANGE\",\n}",
+     "do_custom": true
+    },
+    "start": [],
+    "finish": {
+     "custom": "",
+     "do_custom": false
+    }
+   },
+   "alpha": 1,
+   "id": "RUNE PERSONAL",
+   "anchorFrameType": "SCREEN"
+  }
+ ]
+}

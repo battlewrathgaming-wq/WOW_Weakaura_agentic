@@ -1,0 +1,1404 @@
+{
+ "provenance": {
+  "source": "Retail_Party_debuff_frame_timers.txt",
+  "origin": "retail",
+  "wa_version": "5.3.3",
+  "format_version": 2000,
+  "internalVersion": 61,
+  "internalVersion_range": [
+   61,
+   61
+  ],
+  "modernized": false,
+  "node_count": 5,
+  "decoded_at": "2026-07-11T03:12:16"
+ },
+ "root": {
+  "yOffset": 371.67,
+  "version": 4,
+  "information": [],
+  "anchorFrameType": "SCREEN",
+  "animation": {
+   "main": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   },
+   "start": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   },
+   "finish": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   }
+  },
+  "uid": "))cHRqBLu7a",
+  "url": "https://wago.io/7I9nLveu5/4",
+  "controlledChildren": [
+   "Negative Thundering Buff",
+   "Positive Thundering Buff",
+   "Thundering Party List Dynamic Group"
+  ],
+  "borderColor": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "borderEdge": "Square Full White",
+  "semver": "1.0.3",
+  "subRegions": [],
+  "actions": {
+   "init": [],
+   "start": [],
+   "finish": []
+  },
+  "tocversion": 100002,
+  "borderSize": 2,
+  "groupIcon": 136050,
+  "backdropColor": [
+   1,
+   1,
+   1,
+   0.5
+  ],
+  "internalVersion": 61,
+  "border": false,
+  "anchorPoint": "CENTER",
+  "borderOffset": 4,
+  "frameStrata": 1,
+  "xOffset": -299.17,
+  "conditions": [],
+  "wagoID": "7I9nLveu5",
+  "config": [],
+  "borderBackdrop": "Blizzard Tooltip",
+  "borderInset": 1,
+  "load": {
+   "talent": {
+    "multi": []
+   },
+   "class": {
+    "multi": []
+   },
+   "size": {
+    "multi": []
+   },
+   "spec": {
+    "multi": []
+   }
+  },
+  "authorOptions": [],
+  "triggers": [
+   {
+    "untrigger": [],
+    "trigger": {
+     "spellIds": [],
+     "type": "aura2",
+     "unit": "player",
+     "event": "Health",
+     "debuffType": "HELPFUL",
+     "subeventSuffix": "_CAST_START",
+     "subeventPrefix": "SPELL",
+     "names": []
+    }
+   }
+  ],
+  "regionType": "group",
+  "scale": 1,
+  "id": "Thundering Party List",
+  "selfPoint": "CENTER"
+ },
+ "children": [
+  {
+   "yOffset": -41.5,
+   "desaturate": false,
+   "information": [],
+   "parent": "Thundering Party List",
+   "anchorFrameType": "SCREEN",
+   "animation": {
+    "main": {
+     "colorA": 1,
+     "x": 0,
+     "y": 0,
+     "colorType": "custom",
+     "alpha": 0,
+     "colorG": 1,
+     "colorR": 1,
+     "colorB": 1,
+     "scalex": 1,
+     "easeStrength": 3,
+     "scaley": 1,
+     "duration_type": "seconds",
+     "colorFunc": "function(progress, start, delta)\n    local angle = (progress * 4 * math.pi) - (math.pi / 2)\n    aura_env.region.icon:SetDesaturation((math.sin(angle) + 1)/2)\n    return start\nend",
+     "type": "none",
+     "use_color": false,
+     "easeType": "none",
+     "rotate": 0
+    },
+    "start": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "finish": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    }
+   },
+   "keepAspectRatio": false,
+   "source": "import",
+   "cooldownEdge": false,
+   "iconSource": -1,
+   "xOffset": -175.00012207031,
+   "semver": "1.0.3",
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "glowColor": [
+      1,
+      0.49411767721176,
+      0.49411767721176,
+      1
+     ],
+     "glowLines": 8,
+     "glow": false,
+     "useGlowColor": true,
+     "glowType": "Pixel",
+     "glowThickness": 2,
+     "type": "subglow",
+     "glowLength": 10,
+     "glowBorder": true,
+     "glowScale": 1,
+     "glowYOffset": 0,
+     "glowXOffset": 0,
+     "glowFrequency": 0.25
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text_format_p_format": "timed",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_text_format_p_time_dynamic_threshold": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_text_format_p_time_mod_rate": true,
+     "text_text_format_p_time_legacy_floor": false,
+     "text_fixedWidth": 64,
+     "text_visible": true,
+     "text_text_format_tooltip1_format": "none",
+     "text_font": "Expressway",
+     "text_fontSize": 20,
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "AUTO",
+     "text_text_format_p_time_format": 0,
+     "text_text": "NEGATIVE",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "INNER_TOP",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_anchorYOffset": 0,
+     "text_shadowXOffset": 0,
+     "text_justify": "CENTER"
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text_format_p_format": "timed",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_text_format_p_time_dynamic_threshold": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_text_format_p_time_mod_rate": true,
+     "text_text_format_p_time_legacy_floor": false,
+     "text_fixedWidth": 64,
+     "text_visible": true,
+     "text_text_format_tooltip1_format": "none",
+     "text_font": "Expressway",
+     "text_fontSize": 20,
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "AUTO",
+     "text_text_format_p_time_format": 0,
+     "text_text": "%p",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "INNER_BOTTOM",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_anchorYOffset": 0,
+     "text_shadowXOffset": 0,
+     "text_justify": "CENTER"
+    }
+   ],
+   "cooldown": true,
+   "actions": {
+    "init": [],
+    "start": [],
+    "finish": []
+   },
+   "tocversion": 100002,
+   "wagoID": "7I9nLveu5",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "useCooldownModRate": true,
+   "cooldownTextDisabled": true,
+   "internalVersion": 61,
+   "anchorPoint": "CENTER",
+   "version": 4,
+   "width": 75,
+   "zoom": 0,
+   "url": "https://wago.io/7I9nLveu5/4",
+   "frameStrata": 1,
+   "icon": true,
+   "uid": "CliB07oDPX8",
+   "conditions": [
+    {
+     "check": {
+      "trigger": 1,
+      "variable": "show",
+      "value": 1
+     },
+     "changes": [
+      {
+       "property": "chat",
+       "value": {
+        "message": "{rt7}{rt7}{rt7}",
+        "message_type": "SAY"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "op": "==",
+      "trigger": 1,
+      "variable": "expirationTime",
+      "value": "5"
+     },
+     "changes": [
+      {
+       "property": "chat",
+       "value": {
+        "message": "{rt7}{rt7}{rt7}",
+        "message_type": "SAY"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "op": "==",
+      "trigger": 1,
+      "variable": "expirationTime",
+      "value": "4"
+     },
+     "changes": [
+      {
+       "property": "chat",
+       "value": {
+        "message": "{rt7}{rt7}{rt7}",
+        "message_type": "SAY"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "op": "==",
+      "trigger": 1,
+      "variable": "expirationTime",
+      "value": "3"
+     },
+     "changes": [
+      {
+       "property": "chat",
+       "value": {
+        "message": "{rt7}{rt7}{rt7}",
+        "message_type": "SAY"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "op": "==",
+      "trigger": 1,
+      "variable": "expirationTime",
+      "value": "2"
+     },
+     "changes": [
+      {
+       "property": "chat",
+       "value": {
+        "message": "{rt7}{rt7}{rt7}",
+        "message_type": "SAY"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "op": "==",
+      "trigger": 1,
+      "variable": "expirationTime",
+      "value": "1"
+     },
+     "changes": [
+      {
+       "property": "chat",
+       "value": {
+        "message": "{rt7}{rt7}{rt7}",
+        "message_type": "SAY"
+       }
+      }
+     ]
+    }
+   ],
+   "config": [],
+   "cooldownSwipe": true,
+   "height": 75,
+   "inverse": false,
+   "load": {
+    "use_never": false,
+    "size": {
+     "multi": []
+    },
+    "instance_type": {
+     "single": 8
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    },
+    "use_affixes": true,
+    "spec": {
+     "multi": []
+    },
+    "affixes": {
+     "single": 132
+    },
+    "use_instance_type": true
+   },
+   "alpha": 1,
+   "triggers": {
+    "1": {
+     "untrigger": [],
+     "trigger": {
+      "fetchTooltip": false,
+      "debuffType": "HARMFUL",
+      "useName": false,
+      "useExactSpellId": true,
+      "unit": "player",
+      "auranames": [],
+      "type": "aura2",
+      "auraspellids": [
+       "396364"
+      ],
+      "event": "Health",
+      "subeventPrefix": "SPELL",
+      "subeventSuffix": "_CAST_START",
+      "names": [],
+      "spellIds": []
+     }
+    },
+    "customTriggerLogic": "function(t)\n    return (t[1] and t[2]) or (t[3] and t[4])\nend",
+    "activeTriggerMode": -10,
+    "disjunctive": "any"
+   },
+   "authorOptions": [],
+   "id": "Negative Thundering Buff",
+   "regionType": "icon",
+   "selfPoint": "CENTER"
+  },
+  {
+   "yOffset": -41.5,
+   "desaturate": false,
+   "information": [],
+   "parent": "Thundering Party List",
+   "anchorFrameType": "SCREEN",
+   "animation": {
+    "main": {
+     "colorA": 1,
+     "x": 0,
+     "y": 0,
+     "colorType": "custom",
+     "alpha": 0,
+     "colorG": 1,
+     "colorR": 1,
+     "colorB": 1,
+     "scalex": 1,
+     "easeStrength": 3,
+     "scaley": 1,
+     "duration_type": "seconds",
+     "colorFunc": "function(progress, start, delta)\n    local angle = (progress * 4 * math.pi) - (math.pi / 2)\n    aura_env.region.icon:SetDesaturation((math.sin(angle) + 1)/2)\n    return start\nend",
+     "type": "none",
+     "use_color": false,
+     "easeType": "none",
+     "rotate": 0
+    },
+    "start": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "finish": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    }
+   },
+   "keepAspectRatio": false,
+   "source": "import",
+   "cooldownEdge": false,
+   "iconSource": -1,
+   "xOffset": -175.00012207031,
+   "semver": "1.0.3",
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "glowColor": [
+      1,
+      0.49411767721176,
+      0.49411767721176,
+      1
+     ],
+     "glowLines": 8,
+     "glow": false,
+     "useGlowColor": true,
+     "glowType": "Pixel",
+     "glowThickness": 2,
+     "type": "subglow",
+     "glowLength": 10,
+     "glowBorder": true,
+     "glowScale": 1,
+     "glowYOffset": 0,
+     "glowXOffset": 0,
+     "glowFrequency": 0.25
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text_format_p_format": "timed",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_text_format_p_time_dynamic_threshold": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_text_format_p_time_mod_rate": true,
+     "text_text_format_p_time_legacy_floor": false,
+     "text_fixedWidth": 64,
+     "text_visible": true,
+     "text_text_format_tooltip1_format": "none",
+     "text_font": "Expressway",
+     "text_fontSize": 20,
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "AUTO",
+     "text_text_format_p_time_format": 0,
+     "text_text": "POSITIVE",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "INNER_TOP",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_anchorYOffset": 0,
+     "text_shadowXOffset": 0,
+     "text_justify": "CENTER"
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text_format_p_format": "timed",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_text_format_p_time_dynamic_threshold": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_text_format_p_time_mod_rate": true,
+     "text_text_format_p_time_legacy_floor": false,
+     "text_fixedWidth": 64,
+     "text_visible": true,
+     "text_text_format_tooltip1_format": "none",
+     "text_font": "Expressway",
+     "text_fontSize": 20,
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "AUTO",
+     "text_text_format_p_time_format": 0,
+     "text_text": "%p",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "INNER_BOTTOM",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_anchorYOffset": 0,
+     "text_shadowXOffset": 0,
+     "text_justify": "CENTER"
+    }
+   ],
+   "cooldown": true,
+   "actions": {
+    "init": [],
+    "start": [],
+    "finish": []
+   },
+   "tocversion": 100002,
+   "wagoID": "7I9nLveu5",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "useCooldownModRate": true,
+   "cooldownTextDisabled": true,
+   "internalVersion": 61,
+   "anchorPoint": "CENTER",
+   "version": 4,
+   "width": 75,
+   "zoom": 0,
+   "url": "https://wago.io/7I9nLveu5/4",
+   "frameStrata": 1,
+   "icon": true,
+   "uid": "qOA2JK01gfx",
+   "conditions": [
+    {
+     "check": {
+      "trigger": 1,
+      "variable": "show",
+      "value": 1
+     },
+     "changes": [
+      {
+       "property": "chat",
+       "value": {
+        "message": "{rt6}{rt6}{rt6}",
+        "message_type": "SAY"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "op": "==",
+      "trigger": 1,
+      "variable": "expirationTime",
+      "value": "5"
+     },
+     "changes": [
+      {
+       "property": "chat",
+       "value": {
+        "message": "{rt6}{rt6}{rt6}",
+        "message_type": "SAY"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "op": "==",
+      "trigger": 1,
+      "variable": "expirationTime",
+      "value": "4"
+     },
+     "changes": [
+      {
+       "property": "chat",
+       "value": {
+        "message": "{rt6}{rt6}{rt6}",
+        "message_type": "SAY"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "op": "==",
+      "trigger": 1,
+      "variable": "expirationTime",
+      "value": "3"
+     },
+     "changes": [
+      {
+       "property": "chat",
+       "value": {
+        "message": "{rt6}{rt6}{rt6}",
+        "message_type": "SAY"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "op": "==",
+      "trigger": 1,
+      "variable": "expirationTime",
+      "value": "2"
+     },
+     "changes": [
+      {
+       "property": "chat",
+       "value": {
+        "message": "{rt6}{rt6}{rt6}",
+        "message_type": "SAY"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "op": "==",
+      "trigger": 1,
+      "variable": "expirationTime",
+      "value": "1"
+     },
+     "changes": [
+      {
+       "property": "chat",
+       "value": {
+        "message": "{rt6}{rt6}{rt6}",
+        "message_type": "SAY"
+       }
+      }
+     ]
+    }
+   ],
+   "config": [],
+   "cooldownSwipe": true,
+   "height": 75,
+   "inverse": false,
+   "load": {
+    "use_never": false,
+    "size": {
+     "multi": []
+    },
+    "instance_type": {
+     "single": 8
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    },
+    "use_affixes": true,
+    "spec": {
+     "multi": []
+    },
+    "affixes": {
+     "single": 132
+    },
+    "use_instance_type": true
+   },
+   "alpha": 1,
+   "triggers": {
+    "1": {
+     "untrigger": [],
+     "trigger": {
+      "fetchTooltip": false,
+      "debuffType": "HARMFUL",
+      "useName": false,
+      "useExactSpellId": true,
+      "unit": "player",
+      "auranames": [],
+      "type": "aura2",
+      "auraspellids": [
+       "396369"
+      ],
+      "event": "Health",
+      "subeventPrefix": "SPELL",
+      "subeventSuffix": "_CAST_START",
+      "names": [],
+      "spellIds": []
+     }
+    },
+    "customTriggerLogic": "function(t)\n    return (t[1] and t[2]) or (t[3] and t[4])\nend",
+    "activeTriggerMode": -10,
+    "disjunctive": "any"
+   },
+   "authorOptions": [],
+   "id": "Positive Thundering Buff",
+   "regionType": "icon",
+   "selfPoint": "CENTER"
+  },
+  {
+   "yOffset": 0,
+   "sortHybridTable": {
+    "Thundering Debuffs": false
+   },
+   "information": [],
+   "parent": "Thundering Party List",
+   "anchorFrameType": "SCREEN",
+   "animation": {
+    "main": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "start": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "finish": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    }
+   },
+   "limit": 5,
+   "selfPoint": "TOP",
+   "url": "https://wago.io/7I9nLveu5/4",
+   "arcLength": 360,
+   "controlledChildren": [
+    "Thundering Debuffs"
+   ],
+   "useLimit": false,
+   "xOffset": 0,
+   "borderColor": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "borderEdge": "Square Full White",
+   "wagoID": "7I9nLveu5",
+   "version": 4,
+   "animate": false,
+   "authorOptions": [],
+   "uid": "IhQDxh5I3Y4",
+   "fullCircle": true,
+   "tocversion": 100002,
+   "subRegions": [],
+   "gridType": "RD",
+   "config": [],
+   "stagger": 0,
+   "borderSize": 2,
+   "space": 2,
+   "id": "Thundering Party List Dynamic Group",
+   "source": "import",
+   "regionType": "dynamicgroup",
+   "grow": "DOWN",
+   "internalVersion": 61,
+   "border": false,
+   "semver": "1.0.3",
+   "scale": 1,
+   "borderBackdrop": "Blizzard Tooltip",
+   "rowSpace": 1,
+   "borderOffset": 4,
+   "gridWidth": 5,
+   "rotation": 0,
+   "sort": "custom",
+   "frameStrata": 1,
+   "radius": 200,
+   "borderInset": 1,
+   "conditions": [],
+   "actions": {
+    "init": [],
+    "start": [],
+    "finish": []
+   },
+   "anchorPoint": "CENTER",
+   "customSort": "WeakAuras.SortDescending{\"region\", \"state\", \"spellId\"}",
+   "columnSpace": 1,
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    }
+   },
+   "align": "CENTER",
+   "triggers": [
+    {
+     "untrigger": [],
+     "trigger": {
+      "spellIds": [],
+      "type": "aura2",
+      "unit": "player",
+      "event": "Health",
+      "debuffType": "HELPFUL",
+      "subeventSuffix": "_CAST_START",
+      "subeventPrefix": "SPELL",
+      "names": []
+     }
+    }
+   ],
+   "constantFactor": "RADIUS",
+   "groupIcon": 237587,
+   "backdropColor": [
+    1,
+    1,
+    1,
+    0.5
+   ],
+   "centerType": "LR"
+  },
+  {
+   "icon_side": "LEFT",
+   "source": "import",
+   "desaturate": false,
+   "information": {
+    "forceEvents": true
+   },
+   "yOffset": 0,
+   "uid": "q3KDyheB3BL",
+   "parent": "Thundering Party List Dynamic Group",
+   "anchorFrameType": "SCREEN",
+   "animation": {
+    "main": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "start": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "finish": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    }
+   },
+   "keepAspectRatio": false,
+   "selfPoint": "CENTER",
+   "width": 275,
+   "cooldownEdge": false,
+   "sparkRotation": 0,
+   "version": 4,
+   "texture": "Solid",
+   "useAdjustededMin": false,
+   "useAdjustededMax": false,
+   "iconSource": -1,
+   "url": "https://wago.io/7I9nLveu5/4",
+   "xOffset": 0,
+   "triggers": {
+    "1": {
+     "untrigger": [],
+     "trigger": {
+      "unit": "group",
+      "useGroup_count": true,
+      "debuffType": "HARMFUL",
+      "useExactSpellId": true,
+      "group_count": "1",
+      "type": "aura2",
+      "spellIds": [],
+      "event": "Health",
+      "subeventPrefix": "SPELL",
+      "auraspellids": [
+       "396369",
+       "396364"
+      ],
+      "names": [],
+      "subeventSuffix": "_CAST_START",
+      "group_countOperator": ">=",
+      "showClones": true
+     }
+    },
+    "activeTriggerMode": -10
+   },
+   "tocversion": 100002,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "type": "subforeground"
+    },
+    {
+     "text_text_format_s_format": "none",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_text_format_c1_format": "none",
+     "text_fixedWidth": 64,
+     "text_text_format_c3_format": "none",
+     "text_visible": true,
+     "text_font": "Friz Quadrata TT",
+     "text_fontSize": 18,
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "AUTO",
+     "text_text_format_c2_format": "none",
+     "text_text": "%c1%c2",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "LEFT",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_anchorYOffset": 0,
+     "text_shadowXOffset": 0,
+     "text_justify": "CENTER"
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text_format_p_format": "timed",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_shadowYOffset": 0,
+     "text_text_format_p_time_dynamic_threshold": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowXOffset": 0,
+     "text_visible": true,
+     "text_text_format_p_time_legacy_floor": true,
+     "text_fixedWidth": 64,
+     "text_text_format_s_format": "none",
+     "text_text_format_p_time_mod_rate": true,
+     "text_font": "Friz Quadrata TT",
+     "text_fontSize": 18,
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "AUTO",
+     "text_text_format_p_time_format": 0,
+     "text_text": "%p",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "RIGHT",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_anchorXOffset": 0,
+     "text_anchorYOffset": 0,
+     "text_justify": "CENTER"
+    },
+    {
+     "border_color": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "border_edge": "Square Full White",
+     "border_visible": true,
+     "type": "subborder",
+     "border_anchor": "bar",
+     "border_offset": 0,
+     "border_size": 1
+    }
+   ],
+   "semver": "1.0.3",
+   "authorOptions": [],
+   "sparkWidth": 10,
+   "cooldown": true,
+   "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+   "sparkRotationMode": "AUTO",
+   "height": 25,
+   "gradientOrientation": "HORIZONTAL",
+   "sparkOffsetY": 0,
+   "wagoID": "7I9nLveu5",
+   "orientation": "HORIZONTAL",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sparkBlendMode": "ADD",
+   "sparkOffsetX": 0,
+   "cooldownTextDisabled": false,
+   "internalVersion": 61,
+   "backgroundColor": [
+    0,
+    0,
+    0,
+    0.5
+   ],
+   "barColor": [
+    0.37647062540054,
+    0.78823536634445,
+    0.76862752437592,
+    1
+   ],
+   "sparkHidden": "NEVER",
+   "barColor2": [
+    1,
+    1,
+    0,
+    1
+   ],
+   "sparkHeight": 30,
+   "anchorPoint": "CENTER",
+   "spark": false,
+   "zoom": 0.3,
+   "regionType": "aurabar",
+   "frameStrata": 1,
+   "icon": true,
+   "displayIcon": 135833,
+   "conditions": [
+    {
+     "check": {
+      "op": "==",
+      "trigger": 1,
+      "variable": "spellId",
+      "value": "396364"
+     },
+     "changes": [
+      {
+       "property": "barColor",
+       "value": [
+        1,
+        0.30196079611778,
+        0.39215689897537,
+        1
+       ]
+      }
+     ]
+    },
+    {
+     "check": {
+      "checks": [
+       {
+        "op": ">",
+        "trigger": 1,
+        "variable": "unitCount",
+        "value": "1"
+       },
+       {
+        "op": "<=",
+        "trigger": 1,
+        "variable": "expirationTime",
+        "value": "5"
+       }
+      ],
+      "trigger": -2,
+      "variable": "AND"
+     },
+     "changes": [
+      {
+       "value": true
+      },
+      {
+       "property": "sound",
+       "value": {
+        "sound": "Interface\\Addons\\SharedMedia_Causese\\sound\\5.ogg",
+        "sound_type": "Play",
+        "sound_channel": "Master"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "checks": [
+       {
+        "op": ">",
+        "trigger": 1,
+        "variable": "unitCount",
+        "value": "1"
+       },
+       {
+        "op": "<=",
+        "trigger": 1,
+        "variable": "expirationTime",
+        "value": "4"
+       }
+      ],
+      "trigger": -2,
+      "variable": "AND"
+     },
+     "changes": [
+      {
+       "value": true
+      },
+      {
+       "property": "sound",
+       "value": {
+        "sound": "Interface\\Addons\\SharedMedia_Causese\\sound\\4.ogg",
+        "sound_type": "Play",
+        "sound_channel": "Master"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "checks": [
+       {
+        "op": ">",
+        "trigger": 1,
+        "variable": "unitCount",
+        "value": "1"
+       },
+       {
+        "op": "<=",
+        "trigger": 1,
+        "variable": "expirationTime",
+        "value": "3"
+       }
+      ],
+      "trigger": -2,
+      "variable": "AND"
+     },
+     "changes": [
+      {
+       "value": true
+      },
+      {
+       "property": "sound",
+       "value": {
+        "sound": "Interface\\Addons\\SharedMedia_Causese\\sound\\3.ogg",
+        "sound_type": "Play",
+        "sound_channel": "Master"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "checks": [
+       {
+        "op": ">",
+        "trigger": 1,
+        "variable": "unitCount",
+        "value": "1"
+       },
+       {
+        "op": "<=",
+        "trigger": 1,
+        "variable": "expirationTime",
+        "value": "2"
+       }
+      ],
+      "trigger": -2,
+      "variable": "AND"
+     },
+     "changes": [
+      {
+       "value": true
+      },
+      {
+       "property": "sound",
+       "value": {
+        "sound": "Interface\\Addons\\SharedMedia_Causese\\sound\\2.ogg",
+        "sound_type": "Play",
+        "sound_channel": "Master"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "checks": [
+       {
+        "op": ">",
+        "trigger": 1,
+        "variable": "unitCount",
+        "value": "1"
+       },
+       {
+        "op": "<=",
+        "trigger": 1,
+        "variable": "expirationTime",
+        "value": "1"
+       }
+      ],
+      "trigger": -2,
+      "variable": "AND"
+     },
+     "changes": [
+      {
+       "value": true
+      },
+      {
+       "property": "sound",
+       "value": {
+        "sound": "Interface\\Addons\\SharedMedia_Causese\\sound\\1.ogg",
+        "sound_type": "Play",
+        "sound_channel": "Master"
+       }
+      }
+     ]
+    },
+    {
+     "check": {
+      "checks": [
+       {
+        "op": "<=",
+        "trigger": 1,
+        "variable": "unitCount",
+        "value": "1"
+       },
+       {
+        "op": "<",
+        "trigger": 1,
+        "variable": "expirationTime",
+        "value": "13"
+       },
+       {
+        "op": ""
+       }
+      ],
+      "trigger": -2,
+      "op": "<=",
+      "variable": "AND"
+     },
+     "changes": [
+      {
+       "property": "sound",
+       "value": {
+        "sound": "Interface\\AddOns\\WeakAuras\\Media\\Sounds\\TadaFanfare.ogg",
+        "sound_type": "Play",
+        "sound_channel": "Master"
+       }
+      }
+     ]
+    }
+   ],
+   "icon_color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "cooldownSwipe": true,
+   "config": [],
+   "inverse": false,
+   "load": {
+    "use_never": false,
+    "affixes": {
+     "single": 132
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    },
+    "use_affixes": true,
+    "spec": {
+     "multi": []
+    },
+    "zoneIds": "",
+    "use_encounterid": false,
+    "size": {
+     "multi": []
+    },
+    "ingroup": [],
+    "encounterid": "2549"
+   },
+   "actions": {
+    "init": {
+     "custom": "aura_env.shorten = function(unit, num)\n    local classFilename = select(2, UnitClass(unit))\n    if classFilename then\n        local color = GetClassColorObj(classFilename)\n        if color then\n            local text = WA_Utf8Sub(UnitName(unit), num)\n            if text then\n                return color:WrapTextInColorCode(text)\n            end\n        end\n    end\nend\n\naura_env.roleicon = function(name)\n    local role = UnitGroupRolesAssigned(name)\n    if role ~= \"NONE\" then\n        return CreateTextureMarkup([[Interface\\LFGFrame\\UI-LFG-ICON-ROLES]], 256, 256, 0, 0, GetTexCoordsForRole(UnitGroupRolesAssigned(name)))\n    else\n        return \"\"\n    end\nend",
+     "do_custom": true
+    },
+    "start": {
+     "custom": "",
+     "sound": "Interface\\Addons\\SharedMedia_Causese\\sound\\Debuff.ogg",
+     "do_sound": false,
+     "do_custom": false
+    },
+    "finish": {
+     "custom": "",
+     "do_custom": false
+    }
+   },
+   "enableGradient": false,
+   "alpha": 1,
+   "sparkColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "customText": "function()\n    if aura_env.state then\n        local u = aura_env.state.unit\n        if u and UnitExists(u) then\n            return aura_env.roleicon(u), aura_env.shorten(u, 9)\n        end\n    end\nend",
+   "id": "Thundering Debuffs"
+  }
+ ]
+}

@@ -1,0 +1,255 @@
+{
+ "provenance": {
+  "source": "Pretty_visual_bars.txt",
+  "wa_version": "4.1.4",
+  "format_version": 1421,
+  "internalVersion": 52,
+  "internalVersion_range": [
+   52,
+   52
+  ],
+  "modernized": false,
+  "node_count": 1,
+  "decoded_at": "2026-07-11T02:40:35"
+ },
+ "root": {
+  "sparkWidth": 10,
+  "iconSource": 0,
+  "xOffset": -0.34734152471128255,
+  "yOffset": -132.9219992243519,
+  "anchorPoint": "CENTER",
+  "sparkRotation": 0,
+  "sparkRotationMode": "AUTO",
+  "url": "https://db.ascension.gg/?weakaura=221",
+  "backgroundColor": [
+   0,
+   0,
+   0,
+   0.5
+  ],
+  "triggers": {
+   "1": {
+    "trigger": {
+     "type": "unit",
+     "unevent": "auto",
+     "event": "Swing Timer",
+     "unit": "player",
+     "use_unit": true,
+     "subeventSuffix": "_CAST_START",
+     "spellIds": [],
+     "use_hand": true,
+     "subeventPrefix": "SPELL",
+     "names": [],
+     "hand": "main",
+     "debuffType": "HELPFUL"
+    },
+    "untrigger": []
+   },
+   "disjunctive": "any",
+   "activeTriggerMode": -10
+  },
+  "icon_color": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "internalVersion": 52,
+  "animation": {
+   "start": {
+    "type": "none",
+    "easeType": "none",
+    "duration_type": "seconds",
+    "easeStrength": 3,
+    "use_alpha": false
+   },
+   "main": {
+    "type": "none",
+    "easeType": "none",
+    "preset": "alphaPulse",
+    "duration_type": "seconds",
+    "easeStrength": 3
+   },
+   "finish": {
+    "type": "none",
+    "easeType": "none",
+    "duration_type": "seconds",
+    "preset": "fade",
+    "easeStrength": 3
+   }
+  },
+  "barColor": [
+   0.3176470588235294,
+   0.7137254901960784,
+   0.4980392156862745,
+   1
+  ],
+  "desaturate": false,
+  "sparkHidden": "NEVER",
+  "version": 1,
+  "subRegions": [
+   {
+    "type": "subbackground"
+   },
+   {
+    "type": "subborder",
+    "border_anchor": "bar",
+    "border_offset": 0,
+    "border_color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "border_visible": true,
+    "border_edge": "Blizzard Dialog Gold",
+    "border_size": 2
+   },
+   {
+    "type": "subforeground"
+   },
+   {
+    "text_text_format_p_time_precision": 1,
+    "text_text": "%p",
+    "text_shadowColor": [
+     0,
+     0,
+     0,
+     1
+    ],
+    "text_selfPoint": "AUTO",
+    "text_automaticWidth": "Auto",
+    "text_fixedWidth": 64,
+    "text_text_format_t_time_format": 0,
+    "anchorYOffset": 0,
+    "text_justify": "CENTER",
+    "text_text_format_t_format": "timed",
+    "text_shadowXOffset": 1,
+    "anchorXOffset": 0,
+    "type": "subtext",
+    "text_text_format_t_time_precision": 1,
+    "text_color": [
+     1,
+     1,
+     1,
+     1
+    ],
+    "text_font": "Expressway",
+    "text_text_format_p_format": "timed",
+    "text_shadowYOffset": -1,
+    "text_visible": true,
+    "text_wordWrap": "WordWrap",
+    "text_fontType": "None",
+    "text_anchorPoint": "INNER_RIGHT",
+    "text_text_format_p_time_format": 0,
+    "text_text_format_p_time_dynamic_threshold": 60,
+    "text_fontSize": 15,
+    "text_text_format_t_time_dynamic_threshold": 60,
+    "text_text_format_n_format": "none"
+   },
+   {
+    "glowFrequency": 0.1000000312924385,
+    "glow": false,
+    "useGlowColor": true,
+    "glowType": "ACShine",
+    "glowLength": 10,
+    "glowYOffset": 0,
+    "glowColor": [
+     0.4117647058823529,
+     1,
+     0.3450980392156863,
+     1
+    ],
+    "type": "subglow",
+    "glowThickness": 1,
+    "glowScale": 0.55,
+    "glow_anchor": "bar",
+    "glowXOffset": 0,
+    "glowLines": 2,
+    "glowBorder": false
+   }
+  ],
+  "height": 10,
+  "load": {
+   "talent2": {
+    "multi": []
+   },
+   "use_never": false,
+   "talent": {
+    "multi": []
+   },
+   "spec": {
+    "multi": []
+   },
+   "class": {
+    "single": "HERO",
+    "multi": []
+   },
+   "race": {
+    "multi": []
+   },
+   "difficulty": {
+    "multi": []
+   },
+   "role": {
+    "multi": []
+   },
+   "use_alive": true,
+   "faction": {
+    "multi": []
+   },
+   "pvptalent": {
+    "multi": []
+   },
+   "use_combat": true,
+   "use_class": true,
+   "size": {
+    "multi": []
+   }
+  },
+  "sparkBlendMode": "ADD",
+  "useAdjustededMax": false,
+  "actions": {
+   "start": [],
+   "finish": [],
+   "init": []
+  },
+  "sparkOffsetY": 0,
+  "fontFlags": "OUTLINE",
+  "selfPoint": "CENTER",
+  "sparkOffsetX": 0,
+  "useAdjustededMin": false,
+  "regionType": "aurabar",
+  "icon": false,
+  "sparkColor": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "icon_side": "RIGHT",
+  "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+  "width": 110,
+  "sparkHeight": 30,
+  "texture": "Melli",
+  "alpha": 1,
+  "zoom": 0,
+  "semver": "1.0.0",
+  "tocversion": 30300,
+  "id": "Minimalistic Melee Swing Timer",
+  "spark": false,
+  "frameStrata": 1,
+  "anchorFrameType": "SCREEN",
+  "uid": "IKptsnjU7)6",
+  "config": [],
+  "inverse": true,
+  "authorOptions": [],
+  "orientation": "HORIZONTAL",
+  "conditions": [],
+  "information": {
+   "ignoreOptionsEventErrors": true
+  },
+  "desc": "Minimal Melee Swing Timer by @Swaats\nVersion 1.0\n"
+ },
+ "children": []
+}

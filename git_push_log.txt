@@ -3,17 +3,16 @@ On branch main
 Your branch is up to date with 'origin/main'.
 
 Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
+  (use "git add/rm <file>..." to update what will be committed)
   (use "git restore <file>..." to discard changes in working directory)
-	modified:   Weak Auras/wa_index/build_index.py
-	modified:   Weak Auras/wa_index/extract.lua
-	modified:   Weak Auras/wa_index/index.json
-	modified:   Weak Auras/wa_index/index_summary.json
+	modified:   .gitignore
+	modified:   Weak Auras/blueprint/README.md
+	deleted:    Weak Auras/reference_captures/pitho_tinker_import.txt
 	modified:   git_push_log.txt
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
-	Weak Auras/wa_index/value_domains.json
-	Weak Auras/wa_index/vocabulary.json
+	Weak Auras/blueprint/COMPOSITION_GRAMMAR.md
+	Weak Auras/ingest/
 
 no changes added to commit (use "git add" and/or "git commit -a")

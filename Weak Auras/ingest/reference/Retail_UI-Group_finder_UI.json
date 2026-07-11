@@ -1,0 +1,132 @@
+{
+ "provenance": {
+  "source": "Retail_UI-Group_finder_UI.txt",
+  "origin": "retail",
+  "wa_version": "5.15.4",
+  "format_version": 1421,
+  "internalVersion": 75,
+  "internalVersion_range": [
+   75,
+   75
+  ],
+  "modernized": false,
+  "node_count": 1,
+  "decoded_at": "2026-07-11T03:12:17"
+ },
+ "root": {
+  "yOffset": 130,
+  "outline": "OUTLINE",
+  "version": 42,
+  "information": [],
+  "displayText_format_p_time_format": 0,
+  "displayText_format_p_time_legacy_floor": false,
+  "anchorFrameType": "SCREEN",
+  "animation": {
+   "main": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   },
+   "start": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   },
+   "finish": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   }
+  },
+  "selfPoint": "BOTTOM",
+  "url": "https://wago.io/6-GG3RMcC/42",
+  "xOffset": 0,
+  "semver": "1.0.41",
+  "authorOptions": [],
+  "actions": {
+   "init": [],
+   "start": [],
+   "finish": []
+  },
+  "config": [],
+  "displayText_format_p_time_precision": 1,
+  "wagoID": "6-GG3RMcC",
+  "color": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "customTextUpdate": "event",
+  "internalVersion": 75,
+  "wordWrap": "WordWrap",
+  "uid": "Z7INJcp73E(",
+  "fixedWidth": 200,
+  "anchorPoint": "CENTER",
+  "justify": "LEFT",
+  "shadowColor": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "tocversion": 110002,
+  "subRegions": [
+   {
+    "type": "subbackground"
+   }
+  ],
+  "shadowYOffset": -1,
+  "frameStrata": 1,
+  "displayText": "WA - Group Finder Custom Extension discontinued. \nPlease delete aura. Alternate Addon GroupFinderRio",
+  "shadowXOffset": 1,
+  "conditions": [],
+  "desc": "by Gallifrey87",
+  "automaticWidth": "Auto",
+  "displayText_format_p_format": "timed",
+  "displayText_format_p_time_mod_rate": true,
+  "load": {
+   "talent": {
+    "multi": []
+   },
+   "class": {
+    "multi": []
+   },
+   "size": {
+    "multi": []
+   },
+   "spec": {
+    "multi": []
+   }
+  },
+  "displayText_format_p_time_dynamic_threshold": 60,
+  "triggers": {
+   "1": {
+    "untrigger": [],
+    "trigger": {
+     "unit": "player",
+     "debuffType": "HELPFUL",
+     "use_unit": true,
+     "use_alwaystrue": true,
+     "spellIds": [],
+     "use_absorbMode": true,
+     "use_absorbHealMode": true,
+     "event": "Conditions",
+     "type": "unit",
+     "subeventSuffix": "_CAST_START",
+     "names": [],
+     "subeventPrefix": "SPELL"
+    }
+   },
+   "activeTriggerMode": -10
+  },
+  "font": "Friz Quadrata TT",
+  "regionType": "text",
+  "id": "Group Finder Custom Extension",
+  "fontSize": 21
+ },
+ "children": []
+}

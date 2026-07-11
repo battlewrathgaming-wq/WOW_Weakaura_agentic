@@ -1,0 +1,201 @@
+{
+ "provenance": {
+  "source": "Retail_TWW_MythickeysUI.txt",
+  "origin": "retail",
+  "wa_version": "5.15.2",
+  "format_version": 1421,
+  "internalVersion": 75,
+  "internalVersion_range": [
+   75,
+   75
+  ],
+  "modernized": false,
+  "node_count": 1,
+  "decoded_at": "2026-07-11T03:12:17"
+ },
+ "root": {
+  "yOffset": 0,
+  "outline": "OUTLINE",
+  "version": 46,
+  "information": {
+   "ignoreOptionsEventErrors": true,
+   "forceEvents": true
+  },
+  "displayText_format_p_time_format": 0,
+  "shadowYOffset": 0,
+  "anchorFrameType": "SCREEN",
+  "animation": {
+   "main": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   },
+   "start": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   },
+   "finish": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   }
+  },
+  "selfPoint": "BOTTOM",
+  "url": "https://wago.io/keystones/46",
+  "xOffset": 0,
+  "semver": "5.8.0",
+  "authorOptions": [
+   {
+    "noMerge": true,
+    "type": "header",
+    "width": 1,
+    "useName": true,
+    "text": "Options"
+   },
+   {
+    "width": 1,
+    "key": "party",
+    "type": "toggle",
+    "useDesc": false,
+    "name": "Party Chat",
+    "default": true
+   },
+   {
+    "width": 1,
+    "key": "guild",
+    "type": "toggle",
+    "useDesc": false,
+    "name": "Guild Chat",
+    "default": false
+   },
+   {
+    "width": 1,
+    "key": "spam",
+    "type": "toggle",
+    "useDesc": false,
+    "name": "Spam Protection",
+    "default": true
+   },
+   {
+    "noMerge": true,
+    "type": "header",
+    "width": 1,
+    "useName": true,
+    "text": "Credits"
+   },
+   {
+    "type": "description",
+    "width": 2,
+    "fontSize": "medium",
+    "text": "Author: Luckyone (EU) - LaughingSkull\n\nCredits: AcidWeb, Azilroka, Buds, Simpy, Stanzilla\n\nDiscord: discord.gg/xRY4bwA"
+   }
+  ],
+  "actions": {
+   "init": {
+    "custom": "-- Keystone item IDs\naura_env.ids = {\n    [138019] = true, -- Legion Dungeons\n    [158923] = true, -- BFA Dungeons\n    [180653] = true, -- Shadowlands & Dragonflight Dungeons\n    [187786] = true, -- Legion Timewalking Dungeons\n    [151086] = true, -- Tournament Realm & Beta Dungeons\n}\n\n-- Custom options\naura_env.options = {'party', 'guild', 'spam'}\naura_env.types = {}\n\nfor _, v in ipairs(aura_env.options) do\n    if aura_env.config['enabled'..v] then\n        aura_env.types[v] = true\n    end\nend\n\n-- Force update on init\naura_env.key = nil\n\n-- Search the bags for the item IDs from the table above\naura_env.update = function()\n    aura_env.keys = {}\n    \n    for bag = 0, NUM_BAG_SLOTS do\n        local bagSlots = C_Container.GetContainerNumSlots(bag)\n        for slot = 1, bagSlots do\n            local info = C_Container.GetContainerItemInfo(bag, slot)\n            if info then\n                local itemID, hyperlink = info.itemID, info.hyperlink\n                if aura_env.ids[itemID] then\n                    aura_env.keys[itemID] = hyperlink\n                end\n            end\n        end\n    end\nend\n\n-- Send message to channel\naura_env.link = function(channel)\n    -- No key found, force update\n    if not aura_env.keys then aura_env.update() end\n    \n    -- Key found - link it in chat\n    if aura_env.keys then\n        aura_env.message = ''\n        \n        for _, link in next, aura_env.keys do\n            aura_env.message = (aura_env.message ~= '' and (aura_env.message..' & ') or '')..link\n        end\n        \n        if aura_env.message ~= '' then\n            SendChatMessage(aura_env.message, channel)\n        end\n    end\nend\n\ndo -- Anti-Spam check\n    local spamTimes = { GUILD = 0, PARTY = 0 }\n    aura_env.isSpam = function(channel)\n        local current = GetTime()\n        if current > spamTimes[channel] then\n            spamTimes[channel] = current + 30 -- Next allowed time in seconds\n            return false\n        else\n            return true -- Its still spam\n        end\n    end\nend",
+    "do_custom": true
+   },
+   "start": [],
+   "finish": {
+    "do_glow": false
+   }
+  },
+  "config": {
+   "spam": true,
+   "party": true,
+   "guild": false
+  },
+  "displayText_format_p_time_precision": 1,
+  "wagoID": "ryBvnpvfX",
+  "color": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "customTextUpdate": "event",
+  "internalVersion": 75,
+  "wordWrap": "WordWrap",
+  "uid": "EwlIjQfR(4D",
+  "anchorPoint": "CENTER",
+  "justify": "CENTER",
+  "shadowColor": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "font": "Expressway",
+  "tocversion": 110000,
+  "subRegions": [
+   {
+    "type": "subbackground"
+   }
+  ],
+  "frameStrata": 1,
+  "displayText": "",
+  "source": "import",
+  "conditions": [],
+  "automaticWidth": "Auto",
+  "desc": "Made by Luckyone",
+  "displayText_format_p_format": "timed",
+  "fixedWidth": 200,
+  "load": {
+   "level": [
+    "60"
+   ],
+   "use_never": false,
+   "size": {
+    "multi": []
+   },
+   "class": {
+    "multi": []
+   },
+   "talent": {
+    "multi": []
+   },
+   "use_level": true,
+   "spec": {
+    "multi": []
+   },
+   "use_encounter": false,
+   "zoneIds": "",
+   "level_operator": [
+    ">="
+   ]
+  },
+  "displayText_format_p_time_dynamic_threshold": 60,
+  "triggers": {
+   "1": {
+    "untrigger": [],
+    "trigger": {
+     "unit": "player",
+     "custom_hide": "custom",
+     "subeventPrefix": "SPELL",
+     "debuffType": "HELPFUL",
+     "type": "custom",
+     "subeventSuffix": "_CAST_START",
+     "unevent": "timed",
+     "custom": "function(event, message)\n    if not aura_env.config.guild and not aura_env.config.party then return end\n    if event == 'BAG_UPDATE_DELAYED' then\n        aura_env.update()\n    elseif message and strlower(message) == '!keys' then\n        local channel = (event == 'CHAT_MSG_GUILD' and 'GUILD') or 'PARTY'\n        if (channel == 'GUILD' and not aura_env.config.guild) or (channel == 'PARTY' and not aura_env.config.party) then return end\n        if aura_env.config.spam and aura_env.isSpam(channel) then return end\n        aura_env.link(channel)\n    end\nend",
+     "spellIds": [],
+     "events": "BAG_UPDATE_DELAYED CHAT_MSG_PARTY CHAT_MSG_PARTY_LEADER CHAT_MSG_GUILD",
+     "dynamicDuration": true,
+     "names": [],
+     "custom_type": "event",
+     "duration": "1",
+     "event": "Combat Log"
+    }
+   },
+   "activeTriggerMode": -10
+  },
+  "shadowXOffset": 0,
+  "id": "Mythic+ !keys The War Within",
+  "regionType": "text",
+  "fontSize": 10
+ },
+ "children": []
+}

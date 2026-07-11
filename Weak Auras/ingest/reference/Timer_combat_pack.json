@@ -1,0 +1,3020 @@
+{
+ "provenance": {
+  "source": "Timer_combat_pack.txt",
+  "wa_version": "4.2",
+  "format_version": 2000,
+  "internalVersion": 52,
+  "internalVersion_range": [
+   52,
+   52
+  ],
+  "modernized": false,
+  "node_count": 17,
+  "decoded_at": "2026-07-11T02:40:35"
+ },
+ "root": {
+  "backdropColor": [
+   1,
+   1,
+   1,
+   0.5
+  ],
+  "controlledChildren": [
+   "Combo Point group",
+   "Swing timer and Resources"
+  ],
+  "borderBackdrop": "Blizzard Tooltip",
+  "xOffset": 1,
+  "border": false,
+  "yOffset": 0,
+  "anchorPoint": "CENTER",
+  "borderSize": 2,
+  "tocversion": 30300,
+  "borderColor": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "borderInset": 1,
+  "scale": 1,
+  "actions": {
+   "start": [],
+   "finish": [],
+   "init": []
+  },
+  "triggers": [
+   {
+    "trigger": {
+     "debuffType": "HELPFUL",
+     "type": "aura2",
+     "spellIds": [],
+     "subeventSuffix": "_CAST_START",
+     "unit": "player",
+     "names": [],
+     "event": "Health",
+     "subeventPrefix": "SPELL"
+    },
+    "untrigger": []
+   }
+  ],
+  "borderEdge": "Square Full White",
+  "borderOffset": 4,
+  "regionType": "group",
+  "animation": {
+   "start": {
+    "easeStrength": 3,
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none"
+   },
+   "main": {
+    "easeStrength": 3,
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none"
+   },
+   "finish": {
+    "easeStrength": 3,
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none"
+   }
+  },
+  "id": "Resource, Combo points and Swingtimers",
+  "load": {
+   "talent": {
+    "multi": []
+   },
+   "spec": {
+    "multi": []
+   },
+   "class": {
+    "multi": []
+   },
+   "size": {
+    "multi": []
+   }
+  },
+  "frameStrata": 1,
+  "anchorFrameType": "SCREEN",
+  "authorOptions": [],
+  "config": [],
+  "internalVersion": 52,
+  "subRegions": [],
+  "selfPoint": "CENTER",
+  "conditions": [],
+  "information": [],
+  "uid": "aqZOgeQsaX9"
+ },
+ "children": [
+  {
+   "backdropColor": [
+    1,
+    1,
+    1,
+    0.5
+   ],
+   "controlledChildren": [
+    "Combo point BG",
+    "Combo Points"
+   ],
+   "borderBackdrop": "Blizzard Tooltip",
+   "tocversion": 30300,
+   "xOffset": 0,
+   "selfPoint": "CENTER",
+   "border": false,
+   "borderEdge": "Square Full White",
+   "regionType": "group",
+   "borderSize": 2,
+   "parent": "Resource, Combo points and Swingtimers",
+   "borderColor": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "yOffset": -18,
+   "anchorPoint": "CENTER",
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "triggers": [
+    {
+     "trigger": {
+      "debuffType": "HELPFUL",
+      "type": "aura2",
+      "spellIds": [],
+      "subeventSuffix": "_CAST_START",
+      "unit": "player",
+      "names": [],
+      "event": "Health",
+      "subeventPrefix": "SPELL"
+     },
+     "untrigger": []
+    }
+   ],
+   "authorOptions": [],
+   "internalVersion": 52,
+   "scale": 1,
+   "animation": {
+    "start": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Combo Point group",
+   "anchorFrameFrame": "WeakAuras:Mana",
+   "frameStrata": 1,
+   "anchorFrameType": "SELECTFRAME",
+   "borderOffset": 4,
+   "config": [],
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "subRegions": [],
+   "borderInset": 1,
+   "conditions": [],
+   "information": [],
+   "uid": "3dhSqDEmjiF"
+  },
+  {
+   "sparkWidth": 10,
+   "sparkOffsetX": 0,
+   "parent": "Combo Point group",
+   "adjustedMax": "5",
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "sparkRotation": 0,
+   "sparkRotationMode": "AUTO",
+   "backgroundColor": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "triggers": {
+    "1": {
+     "trigger": {
+      "spellId": 954553,
+      "auranames": [],
+      "use_genericShowOn": true,
+      "genericShowOn": "showOnCooldown",
+      "unit": "target",
+      "debuffType": "HELPFUL",
+      "spellName": 0,
+      "subeventPrefix": "SPELL",
+      "useName": false,
+      "type": "unit",
+      "useExactSpellId": false,
+      "use_combopoints": true,
+      "names": [],
+      "event": "Combo Points",
+      "use_spellId": true,
+      "realSpellName": 0,
+      "use_spellName": true,
+      "spellIds": [],
+      "use_unit": true,
+      "combopoints_operator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "use_track": true,
+      "combopoints": "1"
+     },
+     "untrigger": []
+    },
+    "disjunctive": "any",
+    "activeTriggerMode": -10
+   },
+   "icon_color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "internalVersion": 52,
+   "animation": {
+    "start": {
+     "type": "none",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "easeStrength": 3,
+     "preset": "shrink"
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "easeStrength": 3,
+     "preset": "shrink"
+    }
+   },
+   "barColor": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "desaturate": false,
+   "sparkOffsetY": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "type": "subforeground"
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text": "",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": -1,
+     "anchorXOffset": 0,
+     "text_wordWrap": "WordWrap",
+     "text_visible": true,
+     "text_anchorPoint": "INNER_LEFT",
+     "text_text_format_p_time_format": 0,
+     "text_text_format_p_format": "timed",
+     "text_fontSize": 17,
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_shadowXOffset": 1
+    },
+    {
+     "text_text_format_t_time_precision": 1,
+     "text_text": "",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "text_text_format_t_time_format": 0,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "text_text_format_t_format": "timed",
+     "type": "subtext",
+     "text_text_format_1.spell_format": "none",
+     "text_font": "Expressway",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_shadowYOffset": -1,
+     "anchorXOffset": 0,
+     "text_wordWrap": "WordWrap",
+     "text_visible": true,
+     "text_anchorPoint": "INNER_RIGHT",
+     "text_fontType": "OUTLINE",
+     "text_text_format_n_format": "none",
+     "text_fontSize": 18,
+     "text_text_format_t_time_dynamic_threshold": 60,
+     "text_shadowXOffset": 1
+    }
+   ],
+   "height": 16,
+   "id": "Combo point BG",
+   "load": {
+    "use_never": false,
+    "talent": {
+     "multi": []
+    },
+    "use_alive": true,
+    "class": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "sparkBlendMode": "ADD",
+   "useAdjustededMax": true,
+   "uid": "6nBZpYvEhvJ",
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "smoothProgress": false,
+   "useAdjustededMin": false,
+   "regionType": "aurabar",
+   "authorOptions": [],
+   "selfPoint": "CENTER",
+   "icon_side": "RIGHT",
+   "anchorFrameType": "SCREEN",
+   "xOffset": 0,
+   "sparkHeight": 30,
+   "texture": "Blizzard",
+   "config": [],
+   "zoom": 0,
+   "spark": false,
+   "tocversion": 30300,
+   "sparkHidden": "NEVER",
+   "frameStrata": 3,
+   "alpha": 1,
+   "width": 250,
+   "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+   "sparkColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "inverse": false,
+   "iconSource": -1,
+   "orientation": "HORIZONTAL",
+   "conditions": [],
+   "information": [],
+   "icon": false
+  },
+  {
+   "arcLength": 360,
+   "controlledChildren": [
+    "Combo Point 1",
+    "Combo Point 2",
+    "Combo Point 3",
+    "Combo Point 4",
+    "Combo Point 5"
+   ],
+   "borderBackdrop": "Blizzard Tooltip",
+   "xOffset": -125,
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "borderColor": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "rowSpace": 1,
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "triggers": [
+    {
+     "trigger": {
+      "debuffType": "HELPFUL",
+      "type": "aura2",
+      "spellIds": [],
+      "subeventSuffix": "_CAST_START",
+      "unit": "player",
+      "names": [],
+      "event": "Health",
+      "subeventPrefix": "SPELL"
+     },
+     "untrigger": []
+    }
+   ],
+   "columnSpace": 1,
+   "radius": 200,
+   "useLimit": false,
+   "align": "CENTER",
+   "rotation": 0,
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "backdropColor": [
+    1,
+    1,
+    1,
+    0.5
+   ],
+   "gridWidth": 5,
+   "animate": true,
+   "scale": 1,
+   "stagger": 0,
+   "border": false,
+   "borderEdge": "Square Full White",
+   "regionType": "dynamicgroup",
+   "borderSize": 2,
+   "sort": "none",
+   "selfPoint": "LEFT",
+   "fullCircle": true,
+   "internalVersion": 52,
+   "config": [],
+   "constantFactor": "RADIUS",
+   "gridType": "RD",
+   "borderOffset": 4,
+   "limit": 5,
+   "tocversion": 30300,
+   "id": "Combo Points",
+   "borderInset": 1,
+   "frameStrata": 4,
+   "anchorFrameType": "SCREEN",
+   "grow": "RIGHT",
+   "uid": "SQ7Qug6nUKZ",
+   "parent": "Combo Point group",
+   "authorOptions": [],
+   "space": 0,
+   "conditions": [],
+   "information": [],
+   "animation": {
+    "start": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   }
+  },
+  {
+   "xOffset": 0,
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "spellId": 954553,
+      "auranames": [],
+      "use_genericShowOn": true,
+      "genericShowOn": "showOnCooldown",
+      "unit": "target",
+      "debuffType": "HELPFUL",
+      "spellName": 0,
+      "subeventSuffix": "_CAST_START",
+      "type": "unit",
+      "use_spellName": true,
+      "useExactSpellId": false,
+      "use_combopoints": true,
+      "use_unit": true,
+      "event": "Combo Points",
+      "names": [],
+      "realSpellName": 0,
+      "use_spellId": true,
+      "spellIds": [],
+      "useName": false,
+      "combopoints_operator": ">=",
+      "subeventPrefix": "SPELL",
+      "use_track": true,
+      "combopoints": "1"
+     },
+     "untrigger": []
+    },
+    "disjunctive": "any",
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 52,
+   "animation": {
+    "start": {
+     "colorR": 1,
+     "duration_type": "seconds",
+     "alphaType": "straight",
+     "colorB": 1,
+     "colorG": 1,
+     "alphaFunc": "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+     "scalex": 2,
+     "duration": "0.1",
+     "use_alpha": false,
+     "easeStrength": 1,
+     "scaleType": "pulse",
+     "scaley": 2,
+     "easeType": "easeOut",
+     "colorA": 1,
+     "preset": "starShakeDecay",
+     "alpha": 0,
+     "use_scale": false,
+     "y": 0,
+     "x": 0,
+     "colorType": "straightColor",
+     "scaleFunc": "function(progress, startX, startY, scaleX, scaleY)\n    local angle = (progress * 2 * math.pi) - (math.pi / 2)\n    return startX + (((math.sin(angle) + 1)/2) * (scaleX - 1)), startY + (((math.sin(angle) + 1)/2) * (scaleY - 1))\nend\n",
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "use_color": true,
+     "type": "none"
+    },
+    "main": {
+     "colorR": 1,
+     "duration": "0.3",
+     "colorB": 0.2941176470588235,
+     "colorG": 0.3137254901960784,
+     "type": "none",
+     "easeType": "easeOutIn",
+     "duration_type": "seconds",
+     "use_color": true,
+     "alpha": 0,
+     "colorA": 1,
+     "y": 0,
+     "colorType": "pulseColor",
+     "easeStrength": 1,
+     "x": 0,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    local angle = (progress * 2 * math.pi) - (math.pi / 2)\n    local newProgress = ((math.sin(angle) + 1)/2);\n    return r1 + (newProgress * (r2 - r1)),\n         g1 + (newProgress * (g2 - g1)),\n         b1 + (newProgress * (b2 - b1)),\n         a1 + (newProgress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "scaley": 1,
+     "scalex": 1
+    },
+    "finish": {
+     "colorR": 1,
+     "duration_type": "seconds",
+     "alphaType": "straight",
+     "colorB": 0.9725490196078431,
+     "colorG": 0.9607843137254902,
+     "alphaFunc": "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+     "scalex": 2,
+     "duration": "0.1",
+     "use_alpha": true,
+     "easeStrength": 1,
+     "scaleType": "straightScale",
+     "scaley": 2,
+     "easeType": "easeIn",
+     "colorA": 1,
+     "preset": "slideleft",
+     "alpha": 0,
+     "use_scale": true,
+     "y": 0,
+     "x": 0,
+     "colorType": "straightColor",
+     "scaleFunc": "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "use_color": true,
+     "type": "none"
+    }
+   },
+   "desaturate": false,
+   "discrete_rotation": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 16,
+   "rotate": false,
+   "load": {
+    "use_talentknown": false,
+    "use_mysticenchantactive": false,
+    "use_never": false,
+    "use_ignoreNameRealm": false,
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "talentknown2": 8676,
+    "use_talentknown2": false,
+    "mysticenchantactive": 978992,
+    "use_spellknown": false,
+    "specialization": [],
+    "use_exact_talentknown": false,
+    "class": {
+     "multi": []
+    },
+    "use_alive": true,
+    "talentknown": 703,
+    "size": {
+     "multi": []
+    }
+   },
+   "source": "import",
+   "mirror": false,
+   "regionType": "texture",
+   "blendMode": "BLEND",
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\square_border_1px.tga",
+   "selfPoint": "CENTER",
+   "frameStrata": 4,
+   "tocversion": 30300,
+   "id": "Combo Point 1",
+   "parent": "Combo Points",
+   "alpha": 1,
+   "anchorFrameType": "SCREEN",
+   "config": [],
+   "uid": "7QfPdDefoNh",
+   "authorOptions": [],
+   "color": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "width": 50,
+   "conditions": [
+    {
+     "check": [],
+     "changes": [
+      []
+     ]
+    }
+   ],
+   "information": [],
+   "rotation": 0
+  },
+  {
+   "parent": "Combo Points",
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "spellId": 954553,
+      "auranames": [],
+      "use_genericShowOn": true,
+      "genericShowOn": "showOnCooldown",
+      "names": [],
+      "spellName": 0,
+      "debuffType": "HELPFUL",
+      "use_unit": true,
+      "useName": false,
+      "useExactSpellId": false,
+      "subeventSuffix": "_CAST_START",
+      "use_combopoints": true,
+      "type": "unit",
+      "event": "Combo Points",
+      "unit": "target",
+      "realSpellName": 0,
+      "use_spellName": true,
+      "spellIds": [],
+      "use_spellId": true,
+      "combopoints_operator": ">=",
+      "subeventPrefix": "SPELL",
+      "use_track": true,
+      "combopoints": "2"
+     },
+     "untrigger": []
+    },
+    "disjunctive": "any",
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 52,
+   "selfPoint": "CENTER",
+   "desaturate": false,
+   "discrete_rotation": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 16,
+   "rotate": false,
+   "load": {
+    "use_talentknown": false,
+    "use_mysticenchantactive": false,
+    "use_never": false,
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "talentknown2": 8676,
+    "talentknown": 703,
+    "use_talentknown2": false,
+    "use_alive": true,
+    "use_spellknown": false,
+    "specialization": [],
+    "use_exact_talentknown": false,
+    "class": {
+     "multi": []
+    },
+    "mysticenchantactive": 978992,
+    "use_ignoreNameRealm": false,
+    "size": {
+     "multi": []
+    }
+   },
+   "source": "import",
+   "mirror": false,
+   "regionType": "texture",
+   "blendMode": "BLEND",
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\square_border_1px.tga",
+   "rotation": 0,
+   "alpha": 1,
+   "tocversion": 30300,
+   "id": "Combo Point 2",
+   "width": 50,
+   "frameStrata": 4,
+   "anchorFrameType": "SCREEN",
+   "color": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "config": [],
+   "authorOptions": [],
+   "xOffset": 0,
+   "uid": "0SCo5(Gejvj",
+   "conditions": [
+    {
+     "check": [],
+     "changes": [
+      []
+     ]
+    }
+   ],
+   "information": [],
+   "animation": {
+    "start": {
+     "scaleFunc": "function(progress, startX, startY, scaleX, scaleY)\n    local angle = (progress * 2 * math.pi) - (math.pi / 2)\n    return startX + (((math.sin(angle) + 1)/2) * (scaleX - 1)), startY + (((math.sin(angle) + 1)/2) * (scaleY - 1))\nend\n",
+     "duration": "0.1",
+     "alphaType": "straight",
+     "colorB": 1,
+     "colorG": 1,
+     "alphaFunc": "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+     "duration_type": "seconds",
+     "scalex": 2,
+     "use_alpha": false,
+     "easeStrength": 1,
+     "type": "none",
+     "colorR": 1,
+     "easeType": "easeOut",
+     "scaley": 2,
+     "use_color": true,
+     "alpha": 0,
+     "use_scale": false,
+     "y": 0,
+     "colorType": "straightColor",
+     "x": 0,
+     "colorA": 1,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "preset": "slideleft",
+     "scaleType": "pulse"
+    },
+    "main": {
+     "colorR": 1,
+     "scalex": 1,
+     "colorB": 0.2941176470588235,
+     "colorG": 0.3137254901960784,
+     "type": "none",
+     "easeType": "easeOutIn",
+     "duration": "0.3",
+     "use_color": true,
+     "alpha": 0,
+     "x": 0,
+     "y": 0,
+     "colorType": "pulseColor",
+     "easeStrength": 1,
+     "scaley": 1,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    local angle = (progress * 2 * math.pi) - (math.pi / 2)\n    local newProgress = ((math.sin(angle) + 1)/2);\n    return r1 + (newProgress * (r2 - r1)),\n         g1 + (newProgress * (g2 - g1)),\n         b1 + (newProgress * (b2 - b1)),\n         a1 + (newProgress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "colorA": 1,
+     "duration_type": "seconds"
+    },
+    "finish": {
+     "scaleFunc": "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+     "duration": "0.1",
+     "alphaType": "straight",
+     "colorB": 0.9725490196078431,
+     "colorG": 0.9607843137254902,
+     "alphaFunc": "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+     "duration_type": "seconds",
+     "scalex": 2,
+     "use_alpha": true,
+     "easeStrength": 1,
+     "type": "none",
+     "colorR": 1,
+     "easeType": "easeIn",
+     "scaley": 2,
+     "use_color": true,
+     "alpha": 0,
+     "use_scale": true,
+     "y": 0,
+     "colorType": "straightColor",
+     "x": 0,
+     "colorA": 1,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "preset": "slideleft",
+     "scaleType": "straightScale"
+    }
+   }
+  },
+  {
+   "color": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "spellId": 954553,
+      "auranames": [],
+      "use_genericShowOn": true,
+      "genericShowOn": "showOnCooldown",
+      "unit": "target",
+      "debuffType": "HELPFUL",
+      "spellName": 0,
+      "subeventPrefix": "SPELL",
+      "useName": false,
+      "type": "unit",
+      "useExactSpellId": false,
+      "use_combopoints": true,
+      "names": [],
+      "event": "Combo Points",
+      "use_spellId": true,
+      "realSpellName": 0,
+      "use_spellName": true,
+      "spellIds": [],
+      "use_unit": true,
+      "combopoints_operator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "use_track": true,
+      "combopoints": "3"
+     },
+     "untrigger": []
+    },
+    "disjunctive": "any",
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 52,
+   "selfPoint": "CENTER",
+   "desaturate": false,
+   "discrete_rotation": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 16,
+   "rotate": false,
+   "load": {
+    "use_talentknown": false,
+    "use_mysticenchantactive": false,
+    "use_never": false,
+    "talent": {
+     "multi": []
+    },
+    "talentknown2": 8676,
+    "spec": {
+     "multi": []
+    },
+    "use_ignoreNameRealm": false,
+    "use_talentknown2": false,
+    "mysticenchantactive": 978992,
+    "use_spellknown": false,
+    "talentknown": 703,
+    "use_exact_talentknown": false,
+    "class": {
+     "multi": []
+    },
+    "use_alive": true,
+    "specialization": [],
+    "size": {
+     "multi": []
+    }
+   },
+   "source": "import",
+   "mirror": false,
+   "regionType": "texture",
+   "blendMode": "BLEND",
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\square_border_1px.tga",
+   "animation": {
+    "start": {
+     "scaleFunc": "function(progress, startX, startY, scaleX, scaleY)\n    local angle = (progress * 2 * math.pi) - (math.pi / 2)\n    return startX + (((math.sin(angle) + 1)/2) * (scaleX - 1)), startY + (((math.sin(angle) + 1)/2) * (scaleY - 1))\nend\n",
+     "duration": "0.1",
+     "alphaType": "straight",
+     "colorB": 1,
+     "colorG": 1,
+     "alphaFunc": "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+     "duration_type": "seconds",
+     "scalex": 2,
+     "use_alpha": false,
+     "easeStrength": 1,
+     "type": "none",
+     "colorR": 1,
+     "easeType": "easeOut",
+     "scaley": 2,
+     "use_color": true,
+     "alpha": 0,
+     "use_scale": false,
+     "y": 0,
+     "colorType": "straightColor",
+     "x": 0,
+     "colorA": 1,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "preset": "slideleft",
+     "scaleType": "pulse"
+    },
+    "main": {
+     "colorR": 1,
+     "scalex": 1,
+     "colorB": 0.2941176470588235,
+     "colorG": 0.3137254901960784,
+     "type": "none",
+     "easeType": "easeOutIn",
+     "duration": "0.3",
+     "use_color": true,
+     "alpha": 0,
+     "x": 0,
+     "y": 0,
+     "colorType": "pulseColor",
+     "easeStrength": 1,
+     "scaley": 1,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    local angle = (progress * 2 * math.pi) - (math.pi / 2)\n    local newProgress = ((math.sin(angle) + 1)/2);\n    return r1 + (newProgress * (r2 - r1)),\n         g1 + (newProgress * (g2 - g1)),\n         b1 + (newProgress * (b2 - b1)),\n         a1 + (newProgress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "colorA": 1,
+     "duration_type": "seconds"
+    },
+    "finish": {
+     "scaleFunc": "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+     "duration": "0.1",
+     "alphaType": "straight",
+     "colorB": 0.9725490196078431,
+     "colorG": 0.9607843137254902,
+     "alphaFunc": "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+     "duration_type": "seconds",
+     "scalex": 2,
+     "use_alpha": true,
+     "easeStrength": 1,
+     "type": "none",
+     "colorR": 1,
+     "easeType": "easeIn",
+     "scaley": 2,
+     "use_color": true,
+     "alpha": 0,
+     "use_scale": true,
+     "y": 0,
+     "colorType": "straightColor",
+     "x": 0,
+     "colorA": 1,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "preset": "slideleft",
+     "scaleType": "straightScale"
+    }
+   },
+   "frameStrata": 4,
+   "tocversion": 30300,
+   "id": "Combo Point 3",
+   "anchorFrameType": "SCREEN",
+   "alpha": 1,
+   "width": 50,
+   "xOffset": 0,
+   "uid": "8iAZxZXC2tH",
+   "authorOptions": [],
+   "parent": "Combo Points",
+   "config": [],
+   "conditions": [
+    {
+     "check": [],
+     "changes": [
+      []
+     ]
+    }
+   ],
+   "information": [],
+   "rotation": 0
+  },
+  {
+   "parent": "Combo Points",
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "spellId": 954553,
+      "auranames": [],
+      "use_genericShowOn": true,
+      "genericShowOn": "showOnCooldown",
+      "use_unit": true,
+      "spellName": 0,
+      "debuffType": "HELPFUL",
+      "useExactSpellId": false,
+      "type": "unit",
+      "names": [],
+      "subeventSuffix": "_CAST_START",
+      "use_combopoints": true,
+      "useName": false,
+      "event": "Combo Points",
+      "unit": "target",
+      "realSpellName": 0,
+      "use_spellId": true,
+      "spellIds": [],
+      "use_spellName": true,
+      "combopoints_operator": ">=",
+      "subeventPrefix": "SPELL",
+      "use_track": true,
+      "combopoints": "4"
+     },
+     "untrigger": []
+    },
+    "disjunctive": "any",
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 52,
+   "animation": {
+    "start": {
+     "scaleFunc": "function(progress, startX, startY, scaleX, scaleY)\n    local angle = (progress * 2 * math.pi) - (math.pi / 2)\n    return startX + (((math.sin(angle) + 1)/2) * (scaleX - 1)), startY + (((math.sin(angle) + 1)/2) * (scaleY - 1))\nend\n",
+     "duration": "0.1",
+     "alphaType": "straight",
+     "colorB": 1,
+     "colorG": 1,
+     "alphaFunc": "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+     "duration_type": "seconds",
+     "scalex": 2,
+     "use_alpha": false,
+     "easeStrength": 1,
+     "type": "none",
+     "colorR": 1,
+     "easeType": "easeOut",
+     "scaley": 2,
+     "use_color": true,
+     "alpha": 0,
+     "use_scale": false,
+     "y": 0,
+     "colorType": "straightColor",
+     "x": 0,
+     "colorA": 1,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "preset": "slideleft",
+     "scaleType": "pulse"
+    },
+    "main": {
+     "colorR": 1,
+     "scalex": 1,
+     "colorB": 0.2941176470588235,
+     "colorG": 0.3137254901960784,
+     "type": "none",
+     "easeType": "easeOutIn",
+     "duration": "0.3",
+     "use_color": true,
+     "alpha": 0,
+     "x": 0,
+     "y": 0,
+     "colorType": "pulseColor",
+     "easeStrength": 1,
+     "scaley": 1,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    local angle = (progress * 2 * math.pi) - (math.pi / 2)\n    local newProgress = ((math.sin(angle) + 1)/2);\n    return r1 + (newProgress * (r2 - r1)),\n         g1 + (newProgress * (g2 - g1)),\n         b1 + (newProgress * (b2 - b1)),\n         a1 + (newProgress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "colorA": 1,
+     "duration_type": "seconds"
+    },
+    "finish": {
+     "scaleFunc": "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+     "duration": "0.1",
+     "alphaType": "straight",
+     "colorB": 0.9725490196078431,
+     "colorG": 0.9607843137254902,
+     "alphaFunc": "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+     "duration_type": "seconds",
+     "scalex": 2,
+     "use_alpha": true,
+     "easeStrength": 1,
+     "type": "none",
+     "colorR": 1,
+     "easeType": "easeIn",
+     "scaley": 2,
+     "use_color": true,
+     "alpha": 0,
+     "use_scale": true,
+     "y": 0,
+     "colorType": "straightColor",
+     "x": 0,
+     "colorA": 1,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "preset": "slideleft",
+     "scaleType": "straightScale"
+    }
+   },
+   "desaturate": false,
+   "discrete_rotation": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 16,
+   "rotate": false,
+   "load": {
+    "use_talentknown": false,
+    "use_mysticenchantactive": false,
+    "use_never": false,
+    "use_ignoreNameRealm": false,
+    "spec": {
+     "multi": []
+    },
+    "talentknown2": 8676,
+    "specialization": [],
+    "use_talentknown2": false,
+    "use_alive": true,
+    "use_spellknown": false,
+    "talentknown": 703,
+    "use_exact_talentknown": false,
+    "class": {
+     "multi": []
+    },
+    "mysticenchantactive": 978992,
+    "talent": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "source": "import",
+   "mirror": false,
+   "regionType": "texture",
+   "blendMode": "BLEND",
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\square_border_1px.tga",
+   "rotation": 0,
+   "alpha": 1,
+   "tocversion": 30300,
+   "id": "Combo Point 4",
+   "width": 50,
+   "frameStrata": 4,
+   "anchorFrameType": "SCREEN",
+   "authorOptions": [],
+   "config": [],
+   "uid": "kQsCmVUnfbt",
+   "color": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "xOffset": 0,
+   "conditions": [
+    {
+     "check": [],
+     "changes": [
+      []
+     ]
+    }
+   ],
+   "information": [],
+   "selfPoint": "CENTER"
+  },
+  {
+   "authorOptions": [],
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "spellId": 954553,
+      "auranames": [],
+      "use_genericShowOn": true,
+      "genericShowOn": "showOnCooldown",
+      "unit": "target",
+      "debuffType": "HELPFUL",
+      "spellName": 0,
+      "names": [],
+      "useName": false,
+      "subeventPrefix": "SPELL",
+      "useExactSpellId": false,
+      "use_combopoints": true,
+      "use_unit": true,
+      "event": "Combo Points",
+      "use_spellName": true,
+      "realSpellName": 0,
+      "use_spellId": true,
+      "spellIds": [],
+      "type": "unit",
+      "combopoints_operator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "use_track": true,
+      "combopoints": "5"
+     },
+     "untrigger": []
+    },
+    "disjunctive": "any",
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 52,
+   "animation": {
+    "start": {
+     "scaleFunc": "function(progress, startX, startY, scaleX, scaleY)\n    local angle = (progress * 2 * math.pi) - (math.pi / 2)\n    return startX + (((math.sin(angle) + 1)/2) * (scaleX - 1)), startY + (((math.sin(angle) + 1)/2) * (scaleY - 1))\nend\n",
+     "duration": "0.1",
+     "alphaType": "straight",
+     "colorB": 1,
+     "colorG": 1,
+     "alphaFunc": "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+     "duration_type": "seconds",
+     "scalex": 2,
+     "use_alpha": false,
+     "easeStrength": 1,
+     "type": "none",
+     "colorR": 1,
+     "easeType": "easeOut",
+     "scaley": 2,
+     "use_color": true,
+     "alpha": 0,
+     "use_scale": false,
+     "y": 0,
+     "colorType": "straightColor",
+     "x": 0,
+     "colorA": 1,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "preset": "slideleft",
+     "scaleType": "pulse"
+    },
+    "main": {
+     "colorR": 1,
+     "duration_type": "seconds",
+     "colorB": 0.2941176470588235,
+     "colorG": 0.3137254901960784,
+     "type": "none",
+     "duration": "0.3",
+     "easeType": "easeOutIn",
+     "x": 0,
+     "preset": "pulse",
+     "alpha": 0,
+     "easeStrength": 1,
+     "y": 0,
+     "colorType": "pulseColor",
+     "use_color": true,
+     "colorA": 1,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    local angle = (progress * 2 * math.pi) - (math.pi / 2)\n    local newProgress = ((math.sin(angle) + 1)/2);\n    return r1 + (newProgress * (r2 - r1)),\n         g1 + (newProgress * (g2 - g1)),\n         b1 + (newProgress * (b2 - b1)),\n         a1 + (newProgress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "scalex": 1,
+     "scaley": 1
+    },
+    "finish": {
+     "scaleFunc": "function(progress, startX, startY, scaleX, scaleY)\n    return startX + (progress * (scaleX - startX)), startY + (progress * (scaleY - startY))\nend\n",
+     "duration": "0.1",
+     "alphaType": "straight",
+     "colorB": 0.9725490196078431,
+     "colorG": 0.9607843137254902,
+     "alphaFunc": "function(progress, start, delta)\n    return start + (progress * delta)\nend\n",
+     "duration_type": "seconds",
+     "scalex": 2,
+     "use_alpha": true,
+     "easeStrength": 1,
+     "type": "none",
+     "colorR": 1,
+     "easeType": "easeIn",
+     "scaley": 2,
+     "use_color": true,
+     "alpha": 0,
+     "use_scale": true,
+     "y": 0,
+     "colorType": "straightColor",
+     "x": 0,
+     "colorA": 1,
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+     "rotate": 0,
+     "preset": "slideleft",
+     "scaleType": "straightScale"
+    }
+   },
+   "desaturate": false,
+   "discrete_rotation": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 16,
+   "rotate": false,
+   "load": {
+    "use_talentknown": false,
+    "use_mysticenchantactive": false,
+    "use_never": false,
+    "use_ignoreNameRealm": false,
+    "talentknown2": 8676,
+    "spec": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    },
+    "use_talentknown2": false,
+    "mysticenchantactive": 978992,
+    "use_spellknown": false,
+    "specialization": [],
+    "use_exact_talentknown": false,
+    "class": {
+     "multi": []
+    },
+    "use_alive": true,
+    "talentknown": 703,
+    "size": {
+     "multi": []
+    }
+   },
+   "source": "import",
+   "mirror": false,
+   "regionType": "texture",
+   "blendMode": "BLEND",
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\square_border_1px.tga",
+   "selfPoint": "CENTER",
+   "frameStrata": 4,
+   "tocversion": 30300,
+   "id": "Combo Point 5",
+   "anchorFrameType": "SCREEN",
+   "alpha": 1,
+   "width": 50,
+   "color": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "config": [],
+   "uid": "huvVQIxlCvO",
+   "parent": "Combo Points",
+   "xOffset": 0,
+   "conditions": [
+    {
+     "check": [],
+     "changes": [
+      []
+     ]
+    }
+   ],
+   "information": [],
+   "rotation": 0
+  },
+  {
+   "arcLength": 360,
+   "controlledChildren": [
+    "Mana",
+    "Rage",
+    "Energy",
+    "Cast Bar",
+    "Ranged Swing timer",
+    "OH Swing timer",
+    "MH Swing timer"
+   ],
+   "borderBackdrop": "Blizzard Tooltip",
+   "parent": "Resource, Combo points and Swingtimers",
+   "yOffset": -320,
+   "anchorPoint": "CENTER",
+   "fullCircle": true,
+   "space": 2,
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "triggers": [
+    {
+     "trigger": {
+      "debuffType": "HELPFUL",
+      "type": "aura2",
+      "spellIds": [],
+      "subeventSuffix": "_CAST_START",
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "event": "Health",
+      "names": []
+     },
+     "untrigger": []
+    }
+   ],
+   "columnSpace": 1,
+   "internalVersion": 52,
+   "animation": {
+    "start": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "align": "CENTER",
+   "stagger": 0,
+   "subRegions": [],
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "backdropColor": [
+    1,
+    1,
+    1,
+    0.5
+   ],
+   "gridType": "RD",
+   "animate": false,
+   "scale": 1,
+   "authorOptions": [],
+   "border": false,
+   "borderEdge": "1 Pixel",
+   "regionType": "dynamicgroup",
+   "borderSize": 2,
+   "sort": "none",
+   "selfPoint": "BOTTOM",
+   "radius": 200,
+   "rotation": 0,
+   "uid": "0W(3pvgbYRM",
+   "constantFactor": "RADIUS",
+   "config": [],
+   "borderOffset": 4,
+   "rowSpace": 1,
+   "tocversion": 30300,
+   "id": "Swing timer and Resources",
+   "frameStrata": 3,
+   "gridWidth": 5,
+   "anchorFrameType": "SCREEN",
+   "limit": 5,
+   "borderInset": 1,
+   "grow": "UP",
+   "xOffset": 0,
+   "borderColor": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "conditions": [],
+   "information": [],
+   "useLimit": false
+  },
+  {
+   "sparkWidth": 10,
+   "iconSource": -1,
+   "parent": "Swing timer and Resources",
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "sparkRotation": 0,
+   "sparkRotationMode": "AUTO",
+   "backgroundColor": [
+    0,
+    0,
+    0,
+    0.5
+   ],
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "unit",
+      "subeventSuffix": "_CAST_START",
+      "event": "Power",
+      "subeventPrefix": "SPELL",
+      "powertype": 0,
+      "spellIds": [],
+      "unit": "player",
+      "use_unit": true,
+      "names": [],
+      "use_powertype": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "icon_color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "internalVersion": 52,
+   "selfPoint": "CENTER",
+   "barColor": [
+    0,
+    0,
+    1,
+    1
+   ],
+   "desaturate": false,
+   "sparkOffsetY": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "type": "subforeground"
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text": "%p",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": -1,
+     "anchorXOffset": 0,
+     "text_wordWrap": "WordWrap",
+     "text_visible": true,
+     "text_anchorPoint": "INNER_LEFT",
+     "text_text_format_p_time_format": 0,
+     "text_text_format_p_format": "timed",
+     "text_fontSize": 17,
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_shadowXOffset": 1
+    },
+    {
+     "text_text_format_t_time_precision": 1,
+     "text_text": "%t",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "text_text_format_t_time_format": 0,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "text_text_format_t_format": "timed",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_shadowYOffset": -1,
+     "text_fontType": "OUTLINE",
+     "text_wordWrap": "WordWrap",
+     "text_visible": true,
+     "text_anchorPoint": "INNER_RIGHT",
+     "anchorXOffset": 0,
+     "text_text_format_n_format": "none",
+     "text_fontSize": 18,
+     "text_text_format_t_time_dynamic_threshold": 60,
+     "text_shadowXOffset": 1
+    }
+   ],
+   "height": 16,
+   "load": {
+    "use_never": false,
+    "talent": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "use_alive": true,
+    "spec": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "sparkBlendMode": "ADD",
+   "useAdjustededMax": false,
+   "sparkHidden": "NEVER",
+   "animation": {
+    "start": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "useAdjustededMin": false,
+   "regionType": "aurabar",
+   "authorOptions": [],
+   "xOffset": 0,
+   "icon_side": "RIGHT",
+   "config": [],
+   "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+   "sparkHeight": 30,
+   "texture": "Blizzard",
+   "uid": "2gJh0toJ2Yl",
+   "zoom": 0,
+   "spark": false,
+   "tocversion": 30300,
+   "id": "Mana",
+   "width": 250,
+   "alpha": 1,
+   "anchorFrameType": "SCREEN",
+   "frameStrata": 1,
+   "sparkColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "inverse": false,
+   "sparkOffsetX": 0,
+   "orientation": "HORIZONTAL",
+   "conditions": [],
+   "information": [],
+   "icon": false
+  },
+  {
+   "sparkWidth": 10,
+   "sparkOffsetX": 0,
+   "xOffset": 0,
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "sparkRotation": 0,
+   "sparkRotationMode": "AUTO",
+   "icon": false,
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "unit",
+      "subeventSuffix": "_CAST_START",
+      "event": "Power",
+      "subeventPrefix": "SPELL",
+      "powertype": 1,
+      "spellIds": [],
+      "unit": "player",
+      "use_unit": true,
+      "names": [],
+      "use_powertype": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "icon_color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "internalVersion": 52,
+   "selfPoint": "CENTER",
+   "barColor": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "desaturate": false,
+   "sparkOffsetY": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "type": "subforeground"
+    },
+    {
+     "text_shadowXOffset": 1,
+     "text_text": "%p",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_text_format_p_time_precision": 1,
+     "text_shadowYOffset": -1,
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_wordWrap": "WordWrap",
+     "text_fontType": "OUTLINE",
+     "text_anchorPoint": "INNER_LEFT",
+     "text_text_format_p_time_format": 0,
+     "text_text_format_p_format": "timed",
+     "text_fontSize": 17,
+     "anchorXOffset": 0,
+     "text_visible": true
+    },
+    {
+     "text_shadowXOffset": 1,
+     "text_text": "%t",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "text_text_format_t_time_format": 0,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "text_text_format_t_format": "timed",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_shadowYOffset": -1,
+     "text_text_format_t_time_precision": 1,
+     "text_wordWrap": "WordWrap",
+     "text_fontType": "OUTLINE",
+     "text_anchorPoint": "INNER_RIGHT",
+     "text_text_format_t_time_dynamic_threshold": 60,
+     "text_text_format_n_format": "none",
+     "text_fontSize": 18,
+     "anchorXOffset": 0,
+     "text_visible": true
+    }
+   ],
+   "height": 16,
+   "load": {
+    "use_never": false,
+    "talent": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "use_alive": true,
+    "spec": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "sparkBlendMode": "ADD",
+   "useAdjustededMax": false,
+   "frameStrata": 1,
+   "iconSource": -1,
+   "backgroundColor": [
+    0,
+    0,
+    0,
+    0.5
+   ],
+   "useAdjustededMin": false,
+   "regionType": "aurabar",
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "parent": "Swing timer and Resources",
+   "icon_side": "RIGHT",
+   "authorOptions": [],
+   "zoom": 0,
+   "sparkHeight": 30,
+   "texture": "Blizzard",
+   "sparkColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+   "spark": false,
+   "tocversion": 30300,
+   "sparkHidden": "NEVER",
+   "anchorFrameType": "SCREEN",
+   "alpha": 1,
+   "width": 250,
+   "id": "Rage",
+   "config": [],
+   "inverse": false,
+   "uid": "0yxKtcYde11",
+   "orientation": "HORIZONTAL",
+   "conditions": [],
+   "information": [],
+   "animation": {
+    "start": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   }
+  },
+  {
+   "sparkWidth": 10,
+   "sparkOffsetX": 0,
+   "authorOptions": [],
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "sparkRotation": 0,
+   "sparkRotationMode": "AUTO",
+   "backgroundColor": [
+    0,
+    0,
+    0,
+    0.5
+   ],
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "unit",
+      "subeventSuffix": "_CAST_START",
+      "event": "Power",
+      "subeventPrefix": "SPELL",
+      "powertype": 3,
+      "spellIds": [],
+      "unit": "player",
+      "use_unit": true,
+      "names": [],
+      "use_powertype": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "icon_color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "internalVersion": 52,
+   "selfPoint": "CENTER",
+   "barColor": [
+    1,
+    1,
+    0,
+    1
+   ],
+   "desaturate": false,
+   "sparkOffsetY": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "type": "subforeground"
+    },
+    {
+     "text_shadowXOffset": 1,
+     "text_text": "%p",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_visible": true,
+     "text_shadowYOffset": -1,
+     "anchorXOffset": 0,
+     "text_wordWrap": "WordWrap",
+     "text_fontType": "OUTLINE",
+     "text_anchorPoint": "INNER_LEFT",
+     "text_text_format_p_time_format": 0,
+     "text_text_format_p_format": "timed",
+     "text_fontSize": 17,
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_text_format_p_time_precision": 1
+    },
+    {
+     "text_shadowXOffset": 1,
+     "text_text": "%t",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "text_text_format_t_time_format": 0,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "text_text_format_t_format": "timed",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_shadowYOffset": -1,
+     "text_visible": true,
+     "text_wordWrap": "WordWrap",
+     "text_fontType": "OUTLINE",
+     "text_anchorPoint": "INNER_RIGHT",
+     "anchorXOffset": 0,
+     "text_text_format_n_format": "none",
+     "text_fontSize": 18,
+     "text_text_format_t_time_dynamic_threshold": 60,
+     "text_text_format_t_time_precision": 1
+    }
+   ],
+   "height": 16,
+   "load": {
+    "use_never": false,
+    "talent": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "use_alive": true,
+    "spec": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "sparkBlendMode": "ADD",
+   "useAdjustededMax": false,
+   "id": "Energy",
+   "parent": "Swing timer and Resources",
+   "icon": false,
+   "useAdjustededMin": false,
+   "regionType": "aurabar",
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "xOffset": 0,
+   "icon_side": "RIGHT",
+   "uid": "wKEQjQEO0Ci",
+   "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+   "sparkHeight": 30,
+   "texture": "Blizzard",
+   "config": [],
+   "zoom": 0,
+   "spark": false,
+   "tocversion": 30300,
+   "sparkHidden": "NEVER",
+   "width": 250,
+   "frameStrata": 1,
+   "anchorFrameType": "SCREEN",
+   "alpha": 1,
+   "sparkColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "inverse": false,
+   "iconSource": -1,
+   "orientation": "HORIZONTAL",
+   "conditions": [],
+   "information": [],
+   "animation": {
+    "start": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   }
+  },
+  {
+   "sparkWidth": 10,
+   "sparkOffsetX": 0,
+   "parent": "Swing timer and Resources",
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "sparkRotation": 0,
+   "sparkRotationMode": "AUTO",
+   "icon": false,
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "unit",
+      "subeventSuffix": "_CAST_START",
+      "use_showLatency": false,
+      "use_inverse": false,
+      "use_spell": false,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "powertype": 3,
+      "spellIds": [],
+      "event": "Cast",
+      "use_unit": true,
+      "names": [],
+      "use_powertype": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "icon_color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "internalVersion": 52,
+   "selfPoint": "CENTER",
+   "barColor": [
+    0.5882352941176471,
+    1,
+    1,
+    1
+   ],
+   "desaturate": false,
+   "sparkOffsetY": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "type": "subforeground"
+    },
+    {
+     "text_shadowXOffset": 1,
+     "text_text": "%p",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_text_format_p_time_precision": 1,
+     "text_shadowYOffset": -1,
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_wordWrap": "WordWrap",
+     "text_visible": true,
+     "text_anchorPoint": "INNER_LEFT",
+     "text_text_format_p_time_format": 0,
+     "text_text_format_p_format": "timed",
+     "text_fontSize": 17,
+     "anchorXOffset": 0,
+     "text_fontType": "OUTLINE"
+    },
+    {
+     "text_shadowXOffset": 1,
+     "text_text": "%1.spell",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "text_text_format_t_time_format": 0,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "text_text_format_t_format": "timed",
+     "type": "subtext",
+     "text_text_format_1.spell_format": "none",
+     "text_font": "Expressway",
+     "text_text_format_t_time_precision": 1,
+     "text_shadowYOffset": -1,
+     "text_text_format_t_time_dynamic_threshold": 60,
+     "text_wordWrap": "WordWrap",
+     "text_visible": true,
+     "text_anchorPoint": "INNER_RIGHT",
+     "text_fontType": "OUTLINE",
+     "text_text_format_n_format": "none",
+     "text_fontSize": 18,
+     "anchorXOffset": 0,
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "height": 16,
+   "load": {
+    "use_never": false,
+    "talent": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "use_alive": true,
+    "spec": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "sparkBlendMode": "ADD",
+   "useAdjustededMax": false,
+   "alpha": 1,
+   "animation": {
+    "start": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "useAdjustededMin": false,
+   "regionType": "aurabar",
+   "xOffset": 0,
+   "authorOptions": [],
+   "icon_side": "RIGHT",
+   "iconSource": -1,
+   "zoom": 0,
+   "sparkHeight": 30,
+   "texture": "Blizzard",
+   "sparkColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+   "spark": false,
+   "tocversion": 30300,
+   "id": "Cast Bar",
+   "anchorFrameType": "SCREEN",
+   "frameStrata": 1,
+   "width": 250,
+   "sparkHidden": "NEVER",
+   "uid": "FZgftBCyZW9",
+   "inverse": false,
+   "config": [],
+   "orientation": "HORIZONTAL",
+   "conditions": [],
+   "information": [],
+   "backgroundColor": [
+    0,
+    0,
+    0,
+    0.5
+   ]
+  },
+  {
+   "sparkWidth": 10,
+   "sparkOffsetX": 0,
+   "xOffset": 0,
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "sparkRotation": 0,
+   "sparkRotationMode": "AUTO",
+   "icon": false,
+   "triggers": {
+    "1": {
+     "trigger": {
+      "use_remaining": false,
+      "subeventSuffix": "_CAST_START",
+      "names": [],
+      "hand": "ranged",
+      "event": "Swing Timer",
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "powertype": 3,
+      "spellIds": [],
+      "use_hand": true,
+      "use_unit": true,
+      "type": "unit",
+      "use_powertype": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "icon_color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "internalVersion": 52,
+   "selfPoint": "CENTER",
+   "barColor": [
+    0.5882352941176471,
+    0.9803921568627451,
+    0.5882352941176471,
+    1
+   ],
+   "desaturate": false,
+   "sparkOffsetY": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "type": "subforeground"
+    },
+    {
+     "text_shadowXOffset": 1,
+     "text_text": "%p",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_text_format_p_time_precision": 1,
+     "text_shadowYOffset": -1,
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_wordWrap": "WordWrap",
+     "text_fontType": "OUTLINE",
+     "text_anchorPoint": "INNER_LEFT",
+     "text_text_format_p_time_format": 0,
+     "text_text_format_p_format": "timed",
+     "text_fontSize": 17,
+     "anchorXOffset": 0,
+     "text_visible": true
+    },
+    {
+     "text_shadowXOffset": 1,
+     "text_text": "Ranged",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "text_text_format_t_time_format": 0,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "text_text_format_t_format": "timed",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_shadowYOffset": -1,
+     "text_text_format_t_time_precision": 1,
+     "text_wordWrap": "WordWrap",
+     "text_fontType": "OUTLINE",
+     "text_anchorPoint": "INNER_RIGHT",
+     "text_text_format_t_time_dynamic_threshold": 60,
+     "text_text_format_n_format": "none",
+     "text_fontSize": 18,
+     "anchorXOffset": 0,
+     "text_visible": true
+    }
+   ],
+   "height": 16,
+   "load": {
+    "use_never": false,
+    "talent": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "use_alive": true,
+    "spec": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "sparkBlendMode": "ADD",
+   "useAdjustededMax": false,
+   "frameStrata": 1,
+   "parent": "Swing timer and Resources",
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "useAdjustededMin": false,
+   "regionType": "aurabar",
+   "backgroundColor": [
+    0,
+    0,
+    0,
+    0.5
+   ],
+   "authorOptions": [],
+   "icon_side": "RIGHT",
+   "sparkColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "zoom": 0,
+   "sparkHeight": 30,
+   "texture": "Blizzard",
+   "uid": "5hc3q8sKKvA",
+   "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+   "spark": false,
+   "tocversion": 30300,
+   "sparkHidden": "NEVER",
+   "anchorFrameType": "SCREEN",
+   "alpha": 1,
+   "width": 250,
+   "id": "Ranged Swing timer",
+   "config": [],
+   "inverse": false,
+   "iconSource": -1,
+   "orientation": "HORIZONTAL",
+   "conditions": [],
+   "information": [],
+   "animation": {
+    "start": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   }
+  },
+  {
+   "sparkWidth": 10,
+   "sparkOffsetX": 0,
+   "authorOptions": [],
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "sparkRotation": 0,
+   "sparkRotationMode": "AUTO",
+   "icon": false,
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "unit",
+      "subeventSuffix": "_CAST_START",
+      "subeventPrefix": "SPELL",
+      "use_powertype": true,
+      "event": "Swing Timer",
+      "unit": "player",
+      "use_unit": true,
+      "powertype": 3,
+      "spellIds": [],
+      "use_hand": true,
+      "names": [],
+      "use_remaining": false,
+      "hand": "off",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "icon_color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "internalVersion": 52,
+   "animation": {
+    "start": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "barColor": [
+    1,
+    0.9803921568627451,
+    0.5882352941176471,
+    1
+   ],
+   "desaturate": false,
+   "sparkOffsetY": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "type": "subforeground"
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text": "%p",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": -1,
+     "anchorXOffset": 0,
+     "text_wordWrap": "WordWrap",
+     "text_visible": true,
+     "text_anchorPoint": "INNER_LEFT",
+     "text_text_format_p_time_format": 0,
+     "text_text_format_p_format": "timed",
+     "text_fontSize": 17,
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_shadowXOffset": 1
+    },
+    {
+     "text_text_format_t_time_precision": 1,
+     "text_text": "Off-hand",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "text_text_format_t_time_format": 0,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "text_text_format_t_format": "timed",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_shadowYOffset": -1,
+     "text_fontType": "OUTLINE",
+     "text_wordWrap": "WordWrap",
+     "text_visible": true,
+     "text_anchorPoint": "INNER_RIGHT",
+     "anchorXOffset": 0,
+     "text_text_format_n_format": "none",
+     "text_fontSize": 18,
+     "text_text_format_t_time_dynamic_threshold": 60,
+     "text_shadowXOffset": 1
+    }
+   ],
+   "height": 16,
+   "load": {
+    "use_never": false,
+    "talent": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "use_alive": true,
+    "spec": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "sparkBlendMode": "ADD",
+   "useAdjustededMax": false,
+   "sparkHidden": "NEVER",
+   "parent": "Swing timer and Resources",
+   "backgroundColor": [
+    0,
+    0,
+    0,
+    0.5
+   ],
+   "useAdjustededMin": false,
+   "regionType": "aurabar",
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "xOffset": 0,
+   "icon_side": "RIGHT",
+   "iconSource": -1,
+   "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+   "sparkHeight": 30,
+   "texture": "Blizzard",
+   "config": [],
+   "zoom": 0,
+   "spark": false,
+   "tocversion": 30300,
+   "id": "OH Swing timer",
+   "width": 250,
+   "alpha": 1,
+   "anchorFrameType": "SCREEN",
+   "frameStrata": 1,
+   "uid": "A)NZpQpN(uM",
+   "inverse": false,
+   "sparkColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "orientation": "HORIZONTAL",
+   "conditions": [],
+   "information": [],
+   "selfPoint": "CENTER"
+  },
+  {
+   "sparkWidth": 10,
+   "iconSource": -1,
+   "xOffset": 0,
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "sparkRotation": 0,
+   "sparkRotationMode": "AUTO",
+   "backgroundColor": [
+    0,
+    0,
+    0,
+    0.5
+   ],
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "unit",
+      "subeventSuffix": "_CAST_START",
+      "names": [],
+      "hand": "main",
+      "event": "Swing Timer",
+      "subeventPrefix": "SPELL",
+      "use_unit": true,
+      "powertype": 3,
+      "spellIds": [],
+      "use_hand": true,
+      "unit": "player",
+      "use_remaining": false,
+      "use_powertype": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "icon_color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "internalVersion": 52,
+   "animation": {
+    "start": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "barColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "desaturate": false,
+   "sparkOffsetY": 0,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "type": "subforeground"
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text": "%p",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_shadowXOffset": 1,
+     "text_shadowYOffset": -1,
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_wordWrap": "WordWrap",
+     "text_visible": true,
+     "text_anchorPoint": "INNER_LEFT",
+     "text_text_format_p_time_format": 0,
+     "text_text_format_p_format": "timed",
+     "text_fontSize": 17,
+     "anchorXOffset": 0,
+     "text_fontType": "OUTLINE"
+    },
+    {
+     "text_text_format_t_time_precision": 1,
+     "text_text": "Main-hand",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "text_text_format_t_time_format": 0,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "text_text_format_t_format": "timed",
+     "type": "subtext",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_shadowYOffset": -1,
+     "text_shadowXOffset": 1,
+     "text_wordWrap": "WordWrap",
+     "text_visible": true,
+     "text_anchorPoint": "INNER_RIGHT",
+     "text_text_format_t_time_dynamic_threshold": 60,
+     "text_text_format_n_format": "none",
+     "text_fontSize": 18,
+     "anchorXOffset": 0,
+     "text_fontType": "OUTLINE"
+    }
+   ],
+   "height": 16,
+   "load": {
+    "use_never": false,
+    "talent": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "use_alive": true,
+    "spec": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "sparkBlendMode": "ADD",
+   "useAdjustededMax": false,
+   "alpha": 1,
+   "parent": "Swing timer and Resources",
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "useAdjustededMin": false,
+   "regionType": "aurabar",
+   "icon": false,
+   "authorOptions": [],
+   "icon_side": "RIGHT",
+   "sparkOffsetX": 0,
+   "zoom": 0,
+   "sparkHeight": 30,
+   "texture": "Blizzard",
+   "sparkColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+   "spark": false,
+   "tocversion": 30300,
+   "id": "MH Swing timer",
+   "anchorFrameType": "SCREEN",
+   "frameStrata": 1,
+   "width": 250,
+   "sparkHidden": "NEVER",
+   "uid": "WRdWOct0YK3",
+   "inverse": false,
+   "config": [],
+   "orientation": "HORIZONTAL",
+   "conditions": [],
+   "information": [],
+   "selfPoint": "CENTER"
+  }
+ ]
+}

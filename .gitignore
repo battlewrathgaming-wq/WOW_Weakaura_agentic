@@ -23,3 +23,8 @@ Outputs/aura_corpus/
 # and the import string re-mints a fresh uid each run (would churn). Source is
 # the BOM/parts/scripts, not this generated table/string.
 Weak Auras/plane/out/
+
+# ingest/inbox/ - transient drop zone for import strings awaiting processing.
+# ingest.py moves them to processed/ (tracked) + writes reference/ (tracked);
+# the inbox itself is local staging, not content.
+Weak Auras/ingest/inbox/

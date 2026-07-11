@@ -1,0 +1,540 @@
+{
+ "provenance": {
+  "source": "Retail_Mythicplus_UI_elements.txt",
+  "origin": "retail",
+  "wa_version": "5.17.1",
+  "format_version": 1421,
+  "internalVersion": 77,
+  "internalVersion_range": [
+   77,
+   77
+  ],
+  "modernized": false,
+  "node_count": 2,
+  "decoded_at": "2026-07-11T03:12:16"
+ },
+ "root": {
+  "yOffset": -40,
+  "sortHybridTable": {
+   "Mythic+ Levels Icon": false
+  },
+  "information": {
+   "forceEvents": true
+  },
+  "anchorFrameType": "SELECTFRAME",
+  "animation": {
+   "main": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   },
+   "start": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   },
+   "finish": {
+    "type": "none",
+    "duration_type": "seconds",
+    "easeType": "none",
+    "easeStrength": 3
+   }
+  },
+  "limit": 5,
+  "selfPoint": "TOPLEFT",
+  "url": "https://wago.io/zYp2nc82S/31",
+  "arcLength": 360,
+  "useLimit": false,
+  "xOffset": 20,
+  "wagoID": "zYp2nc82S",
+  "version": 31,
+  "borderColor": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "borderInset": 1,
+  "uid": "AQrEmuA4Lw8",
+  "fullCircle": true,
+  "animate": false,
+  "authorOptions": [],
+  "tocversion": 110002,
+  "subRegions": [],
+  "stepAngle": 15,
+  "stagger": 0,
+  "gridType": "DR",
+  "config": [],
+  "space": 2,
+  "borderSize": 2,
+  "source": "import",
+  "id": "Mythic+ Key Levels",
+  "radius": 200,
+  "semver": "2.0.0",
+  "grow": "GRID",
+  "internalVersion": 77,
+  "border": false,
+  "scale": 1,
+  "rowSpace": 1,
+  "anchorPoint": "BOTTOMLEFT",
+  "rotation": 0,
+  "borderOffset": 4,
+  "gridWidth": 1,
+  "regionType": "dynamicgroup",
+  "sort": "none",
+  "frameStrata": 1,
+  "borderBackdrop": "Blizzard Tooltip",
+  "actions": {
+   "init": [],
+   "start": [],
+   "finish": []
+  },
+  "conditions": [],
+  "alpha": 1,
+  "borderEdge": "Square Full White",
+  "constantFactor": "RADIUS",
+  "columnSpace": 1,
+  "load": {
+   "talent": {
+    "multi": []
+   },
+   "class": {
+    "multi": []
+   },
+   "size": {
+    "multi": []
+   },
+   "spec": {
+    "multi": []
+   }
+  },
+  "align": "CENTER",
+  "triggers": [
+   {
+    "untrigger": [],
+    "trigger": {
+     "spellIds": [],
+     "type": "aura2",
+     "unit": "player",
+     "event": "Health",
+     "debuffType": "HELPFUL",
+     "subeventSuffix": "_CAST_START",
+     "subeventPrefix": "SPELL",
+     "names": []
+    }
+   }
+  ],
+  "anchorFrameFrame": "PVEFrame",
+  "groupIcon": "525134",
+  "backdropColor": [
+   1,
+   1,
+   1,
+   0.5
+  ],
+  "centerType": "LR"
+ },
+ "children": [
+  {
+   "yOffset": 0,
+   "desaturate": false,
+   "information": {
+    "forceEvents": true
+   },
+   "anchorFrameType": "SCREEN",
+   "animation": {
+    "main": {
+     "colorA": 1,
+     "x": 0,
+     "y": 0,
+     "colorType": "custom",
+     "alpha": 0,
+     "colorG": 1,
+     "colorR": 1,
+     "colorB": 1,
+     "scalex": 1,
+     "easeStrength": 3,
+     "scaley": 1,
+     "duration_type": "seconds",
+     "colorFunc": "function(progress, r1, g1, b1, a1, r2, g2, b2, a2)\n    return r1 + (progress * (r2 - r1)), g1 + (progress * (g2 - g1)), b1 + (progress * (b2 - b1)), a1 + (progress * (a2 - a1))\nend\n",
+     "type": "none",
+     "use_color": false,
+     "easeType": "none",
+     "rotate": 0
+    },
+    "start": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    },
+    "finish": {
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none",
+     "easeStrength": 3
+    }
+   },
+   "keepAspectRatio": false,
+   "source": "import",
+   "cooldownEdge": false,
+   "iconSource": -1,
+   "xOffset": 0,
+   "semver": "2.0.0",
+   "authorOptions": [
+    {
+     "width": 1,
+     "key": "sort_by_score",
+     "type": "toggle",
+     "useDesc": false,
+     "name": "Sort Dungeons by Score",
+     "default": true
+    },
+    {
+     "max": 100,
+     "width": 1,
+     "min": 0,
+     "name": "Debug Mode",
+     "step": 1,
+     "type": "range",
+     "useDesc": false,
+     "key": "debug",
+     "default": 0
+    }
+   ],
+   "cooldown": false,
+   "height": 48,
+   "config": {
+    "debug": 0,
+    "sort_by_score": true
+   },
+   "adjustedMin": "",
+   "wagoID": "zYp2nc82S",
+   "uid": "G62bmOC3DTh",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "useAdjustededMax": false,
+   "progressSource": [
+    -1,
+    ""
+   ],
+   "cooldownTextDisabled": false,
+   "internalVersion": 77,
+   "width": 48,
+   "version": 31,
+   "useCooldownModRate": true,
+   "anchorPoint": "CENTER",
+   "useTooltip": true,
+   "useAdjustededMin": false,
+   "url": "https://wago.io/zYp2nc82S/31",
+   "zoom": 0,
+   "triggers": {
+    "1": {
+     "untrigger": [],
+     "trigger": {
+      "unit": "player",
+      "customVariables": "{\n    level = \"number\",\n    score = \"number\",\n    deplete = \"bool\",\n    is_current_week = \"bool\",\n    is_header = \"bool\",\n    week = \"number\",\n}\n\n\n",
+      "debuffType": "HELPFUL",
+      "type": "custom",
+      "subeventSuffix": "_CAST_START",
+      "custom": "function(allstates, event)\n    \n    \n    if event == \"PLAYER_ENTERING_WORLD\" then\n        -- C_MythicPlus.RequestCurrentAffixes()\n        C_MythicPlus.RequestMapInfo()\n        return -- nothing else to do here.. other events will carry on\n    end\n    \n    \n    local map_table = C_ChallengeMode.GetMapTable()\n    \n    -- sort\n    if aura_env.config[\"sort_by_score\"] then\n        aura_env.sort_dungeons(map_table)\n    end\n    \n    \n    for i=1, #map_table do\n        local mapID = map_table[i]\n        local alts, score = C_MythicPlus.GetSeasonBestAffixScoreInfoForMap(mapID)\n        local name, _, _, icon = C_ChallengeMode.GetMapUIInfo(mapID)\n        \n        \n        allstates[i] = {\n            show = true,\n            changed = true,\n            name = name,\n            icon = icon,\n            level = 0,\n            score = score or 0,\n            deplete = false,\n            tooltip = name .. \"\\n\",\n            abbr = aura_env.dungeonNames[mapID] or \"\",\n        }\n        \n        for _, alt in pairs(alts or {}) do\n            local state = allstates[i]\n            state.level = alt.level            \n        end\n    end -- for map\n    \n    \n    return true\nend",
+      "subeventPrefix": "SPELL",
+      "events": "PLAYER_ENTERING_WORLD WEEKLY_REWARDS_UPDATE MYTHIC_PLUS_CURRENT_AFFIX_UPDATE",
+      "event": "Health",
+      "names": [],
+      "custom_type": "stateupdate",
+      "spellIds": [],
+      "check": "event"
+     }
+    },
+    "activeTriggerMode": -10
+   },
+   "frameStrata": 1,
+   "icon": true,
+   "tocversion": 110002,
+   "conditions": [
+    {
+     "check": {
+      "trigger": -1,
+      "variable": "customcheck",
+      "value": "function()\n    \n    -- Color Logic:\n    -- dealing with this in here so we can set them programatically\n    local state = aura_env.state\n    if not state then return false end\n    \n    local c = aura_env.colors[state.level or 0]\n    if state.deplete then\n        c = aura_env.color_deplete\n    end\n    if not c then return false end\n    \n    \n    local r, g, b = c.r/255, c.g/255, c.b/255\n    \n    local text1 = aura_env.region.subRegions[3]\n    text1:Color(r, g, b)\n    \n    local text2 = aura_env.region.subRegions[4]\n    text2:Color(r, g, b)\n    \n    return true\nend"
+     },
+     "changes": []
+    },
+    {
+     "check": {
+      "trigger": 1,
+      "variable": "deplete",
+      "value": 1
+     },
+     "changes": [
+      {
+       "property": "desaturate",
+       "value": true
+      },
+      {
+       "property": "sub.3.text_color",
+       "value": [
+        0.74901960784314,
+        0.74901960784314,
+        0.74901960784314,
+        1
+       ]
+      },
+      {
+       "property": "sub.4.text_color"
+      }
+     ]
+    },
+    {
+     "check": {
+      "op": "==",
+      "trigger": 1,
+      "variable": "score",
+      "value": "0"
+     },
+     "changes": [
+      {
+       "property": "alpha",
+       "value": 0.5
+      },
+      {
+       "property": "desaturate",
+       "value": true
+      }
+     ]
+    },
+    {
+     "check": {
+      "checks": [
+       {
+        "trigger": 1,
+        "variable": "is_header",
+        "value": 1
+       },
+       {
+        "trigger": 1,
+        "variable": "is_current_week",
+        "value": 1
+       }
+      ],
+      "trigger": -2,
+      "variable": "AND"
+     },
+     "changes": [
+      {
+       "property": "sub.2.border_visible",
+       "value": true
+      },
+      {
+       "property": "sub.2.border_color"
+      },
+      {
+       "property": "zoom",
+       "value": 0.3
+      }
+     ]
+    },
+    {
+     "check": {
+      "trigger": 1,
+      "variable": "show",
+      "value": 1
+     },
+     "changes": [
+      {
+       "property": "sub.5.text_color"
+      }
+     ]
+    }
+   ],
+   "subRegions": [
+    {
+     "type": "subbackground"
+    },
+    {
+     "border_color": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "border_edge": "Square Full White",
+     "type": "subborder",
+     "border_visible": true,
+     "border_offset": 0,
+     "border_size": 1
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text_format_level_format": "none",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_text_format_levelLabel_format": "none",
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_fixedWidth": 64,
+     "text_visible": true,
+     "text_text_format_p_format": "timed",
+     "text_font": "Roboto Medium",
+     "text_fontSize": 24,
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "AUTO",
+     "text_text_format_p_time_format": 0,
+     "text_text": "%level",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "CENTER",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_anchorYOffset": 4,
+     "text_shadowXOffset": 0,
+     "text_justify": "CENTER"
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text_format_level_format": "none",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_text_format_scoreLabel_format": "none",
+     "text_text_format_p_format": "timed",
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_visible": true,
+     "text_text_format_score_round_type": "round",
+     "text_fixedWidth": 64,
+     "text_text_format_score_format": "Number",
+     "text_text_format_score_decimal_precision": 0,
+     "text_font": "Roboto Medium",
+     "text_fontSize": 14,
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "BOTTOM",
+     "text_text_format_p_time_format": 0,
+     "text_text": "%{score}",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "INNER_BOTTOM",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_anchorYOffset": -1,
+     "text_shadowXOffset": 0,
+     "text_justify": "CENTER"
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text_format_level_format": "none",
+     "text_automaticWidth": "Auto",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_text_format_abbr_format": "none",
+     "text_text_format_p_format": "timed",
+     "text_fontType": "OUTLINE",
+     "text_shadowYOffset": 0,
+     "text_visible": true,
+     "text_text_format_score_format": "none",
+     "text_fixedWidth": 64,
+     "text_text_format_name_format": "none",
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_font": "Roboto Medium",
+     "text_fontSize": 12,
+     "text_wordWrap": "WordWrap",
+     "text_selfPoint": "AUTO",
+     "text_text_format_p_time_format": 0,
+     "text_text": "%abbr",
+     "anchorYOffset": 0,
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_anchorPoint": "TOP",
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "type": "subtext",
+     "text_anchorYOffset": 0,
+     "text_shadowXOffset": 0,
+     "text_justify": "CENTER"
+    }
+   ],
+   "cooldownSwipe": true,
+   "actions": {
+    "init": {
+     "custom": "\n\naura_env.dungeonNames = {\n    \n    -- Cata\n    [438] = \"VP\",\n    [507] = \"GB\", -- Grim Batol\n    \n    -- MOP\n    [2] = \"TJS\",\n    \n    -- WoD\n    [165] = \"SBG\",\n    [166] = \"GD\",\n    [169] = \"ID\",\n    \n    -- Legion\n    [200] = \"HoV\",\n    [206] = \"NL\",\n    [210] = \"CoS\",\n    [227] = \"LOWR\",\n    [234] = \"UPPR\",\n    \n    -- BFA\n    [239] = \"SotT\",  -- Seat of the Triumvirate\n    [244] = \"AD\",    -- Atal'Dazar\n    [245] = \"FH\",    -- Freehold\n    [246] = \"TD\",    -- Tol Dagor\n    [247] = \"ML\",    -- The MOTHERLODE!!\n    [248] = \"WCM\",   -- Waycrest Manor\n    [249] = \"KR\",    -- Kings' Rest\n    [250] = \"ToS\",   -- Temple of Sethraliss\n    [251] = \"UR\",    -- The Underrot\n    [252] = \"SotS\",  -- Shrine of the Storm\n    [353] = \"SoB\",   -- Siege of Boralus\n    [369] = \"Yard\",\n    [370] = \"Work\",\n    \n    -- SL\n    [375] = \"MotS\",\n    [376] = \"NW\",\n    [377] = \"DoS\",\n    [378] = \"HoA\",\n    [379] = \"PF\",\n    [380] = \"SD\",\n    [381] = \"SoA\",\n    [382] = \"ToP\",\n    [391] = \"Strt\",\n    [392] = \"Gmbt\",\n    \n    -- DF\n    [399] = \"RLP\",\n    [400] = \"NO\",\n    [401] = \"AV\",\n    [402] = \"AA\",\n    [405] = \"BH\",\n    [404] = \"NELT\",\n    [403] = \"ULD\",\n    [406] = \"HOI\",\n    \n    -- TWW\n    [499] = \"PotSF\", -- Priory of the Sacred Flame\n    [500] = \"RO\",    -- The Rookery\n    [501] = \"SV\",    -- The Stonevault\n    [502] = \"CoT\",   -- City of Threads\n    [503] = \"AraK\",  -- Ara-Kara, City of Echoes\n    [504] = \"DC\",    -- Darkflame Cleft\n    [505] = \"Dawn\",  -- Dawnbreaker\n    [506] = \"CM\",    -- Cinderbrew Meadery\n}\n\n\n\naura_env.colors = {\n    [0]  = {r=157, g=157, b=157}, -- Grey\n    [5]  = {r=255, g=255, b=255}, -- Common\n    [10] = {r=30, g=255, b=0}, -- Uncommon\n    [15] = {r=93, g=156, b=217}, -- Rare (blue, adjusted),\n    [20] = {r=185, g=116, b=232}, -- Epic (purple, adjusted)\n    [25] = {r=255, g=128, b=0}, -- Leggy\n    [28] = {r=226, g=104, b=168}, -- astounding\n    [30] = {r=229, g=204, b=128}, -- artifact\n    [32] = {r=0, g=204, b=255}, -- heirloom\n    [36] = {r=255, g=0, b=0}, -- deadge\n    [40] = {r=255, g=255, b=255}, -- deadge2\n}\n\naura_env.color_deplete = {r=195, g=195, b=195}\n\n\n\n----------- Blend Colors -----------\ndo\n    local blend = function(cA, cB, t)\n        local t1 = 1.0 - t\n        return {\n            r = (cA.r * t1) + (cB.r * t),\n            g = (cA.g * t1) + (cB.g * t),\n            b = (cA.b * t1) + (cB.b * t)\n        }\n    end\n    \n    -- find last (aka prev.) values\n    local last = 0\n    for i=0,40 do\n        local c = aura_env.colors[i]\n        if c then\n            last = i\n        else\n            aura_env.colors[i] = {last = last}\n        end\n    end\n    \n    -- find next value\n    for i=0,40 do\n        local j = 40 - i\n        \n        local c = aura_env.colors[j] or {}\n        if c.r then\n            last = j\n        else\n            c.next = last\n        end\n    end\n    \n    -- blend\n    for i=0,40 do\n        local c = aura_env.colors[i]\n        if c.last and c.next then\n            local t = (i - c.last) / (c.next - c.last)\n            local a = aura_env.colors[c.last]\n            local b = aura_env.colors[c.next]\n            aura_env.colors[i] = blend(a, b, t)\n            -- c.t = t\n        end\n    end\nend\n----------- Blend Colors (END) -----------\n\n\n-- Sort Dungeons using their highest score\n-- (suggested edit by Kir)\naura_env.sort_dungeons = function(map_table)\n    \n    -- 1) fetch score for each dungeon\n    local map_scores = {};\n    for _, mapID in ipairs(map_table) do\n        \n        local inTimeInfo, overtimeInfo = C_MythicPlus.GetSeasonBestForMap(mapID);\n        local dungeonScore = 0; \n        if(inTimeInfo and overtimeInfo) then \n            local inTimeScoreIsBetter = inTimeInfo.dungeonScore > overtimeInfo.dungeonScore; \n            dungeonScore = inTimeScoreIsBetter and inTimeInfo.dungeonScore or overtimeInfo.dungeonScore; \n        elseif(inTimeInfo or overtimeInfo) then \n            dungeonScore = inTimeInfo and inTimeInfo.dungeonScore or overtimeInfo.dungeonScore;\n        end\n        map_scores[mapID] = dungeonScore\n    end    \n    \n    -- 2) sort them!\n    table.sort(map_table, function(a,b) return map_scores[a] > map_scores[b] end);\n    return map_table\n    \nend\n\n\n\n\n\n\n\n",
+     "do_custom": true
+    },
+    "start": {
+     "custom": "\nlocal text1 = aura_env.region.subRegions[3]\nlocal c = aura_env.state.color\n\nif c then\n    text1:Color(c.r, c.g, c.b)\nend\n\n\ntext1:Color(1, 0.25, 0.75)",
+     "do_message": false,
+     "do_custom": false
+    },
+    "finish": {
+     "do_custom": false
+    }
+   },
+   "inverse": false,
+   "load": {
+    "level": [
+     "80"
+    ],
+    "spec": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    },
+    "use_never": false,
+    "use_level": true,
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    },
+    "level_operator": [
+     "=="
+    ]
+   },
+   "anchorFrameParent": false,
+   "adjustedMax": "",
+   "alpha": 1,
+   "id": "Mythic+ Levels Icon",
+   "regionType": "icon",
+   "selfPoint": "CENTER"
+  }
+ ]
+}

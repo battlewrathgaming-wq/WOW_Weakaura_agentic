@@ -1,0 +1,620 @@
+{
+ "provenance": {
+  "source": "Loot_tracker_UI.txt",
+  "wa_version": "4.2.5",
+  "format_version": 1421,
+  "internalVersion": 70,
+  "internalVersion_range": [
+   70,
+   70
+  ],
+  "modernized": false,
+  "node_count": 2,
+  "decoded_at": "2026-07-11T02:40:35"
+ },
+ "root": {
+  "grow": "DOWN",
+  "borderBackdrop": "Blizzard Tooltip",
+  "wagoID": "tQTAFfUCR",
+  "xOffset": -1716.999835099424,
+  "yOffset": -430.4997872834258,
+  "gridType": "RD",
+  "borderColor": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "fullCircle": true,
+  "space": 5,
+  "url": "",
+  "actions": {
+   "start": [],
+   "init": [],
+   "finish": []
+  },
+  "triggers": [
+   {
+    "trigger": {
+     "debuffType": "HELPFUL",
+     "type": "aura2",
+     "spellIds": [],
+     "subeventSuffix": "_CAST_START",
+     "subeventPrefix": "SPELL",
+     "unit": "player",
+     "event": "Health",
+     "names": []
+    },
+    "untrigger": []
+   }
+  ],
+  "columnSpace": 1,
+  "radius": 200,
+  "useLimit": false,
+  "align": "RIGHT",
+  "anchorPoint": "TOPRIGHT",
+  "desc": "WA Mod Original: https://wago.io/tQTAFfUCR",
+  "stagger": 0,
+  "version": 8,
+  "subRegions": [],
+  "sortHybridTable": {
+   "Item Toast Icons": false
+  },
+  "animation": {
+   "start": {
+    "type": "none",
+    "easeStrength": 3,
+    "duration_type": "seconds",
+    "easeType": "none"
+   },
+   "main": {
+    "type": "none",
+    "easeStrength": 3,
+    "duration_type": "seconds",
+    "easeType": "none"
+   },
+   "finish": {
+    "type": "none",
+    "easeStrength": 3,
+    "duration_type": "seconds",
+    "easeType": "none"
+   }
+  },
+  "load": {
+   "talent": {
+    "multi": []
+   },
+   "spec": {
+    "multi": []
+   },
+   "class": {
+    "multi": []
+   },
+   "size": {
+    "multi": []
+   }
+  },
+  "internalVersion": 70,
+  "backdropColor": [
+   1,
+   0.42352944612503,
+   0.31764706969261,
+   1
+  ],
+  "uid": "yNtUx6gblgt",
+  "source": "import",
+  "animate": true,
+  "scale": 1,
+  "centerType": "LR",
+  "border": false,
+  "borderEdge": "Square Full White",
+  "regionType": "dynamicgroup",
+  "borderSize": 6,
+  "limit": 5,
+  "sort": "ascending",
+  "gridWidth": 5,
+  "config": [],
+  "frameStrata": 1,
+  "constantFactor": "RADIUS",
+  "rowSpace": 1,
+  "borderOffset": 9,
+  "semver": "1.0.7",
+  "tocversion": 30300,
+  "id": "Loot Tracking - Ascension",
+  "stepAngle": 15,
+  "alpha": 1,
+  "anchorFrameType": "SCREEN",
+  "authorOptions": [],
+  "borderInset": 0,
+  "arcLength": 360,
+  "selfPoint": "TOPRIGHT",
+  "groupIcon": "Interface\\Icons\\inv_legion_paragoncache_legionfall",
+  "conditions": [],
+  "information": [],
+  "rotation": 0
+ },
+ "children": [
+  {
+   "sparkWidth": 10,
+   "iconSource": -1,
+   "xOffset": -220,
+   "yOffset": 0,
+   "anchorPoint": "CENTER",
+   "sparkRotation": 0,
+   "url": "",
+   "actions": {
+    "start": {
+     "custom": "local item = string.match(aura_env.state.name, \"%[(%u.+)%]\") \nif item == nil then\n    item = string.match(aura_env.state.name, \"%[(%d.+)%]\")\nend\nlocal letter = \"\"\nlocal switch\nlocal count1 = 0\nlocal count2 = 2\nlocal count3 = 0\nlocal count4 = 0\nlocal count5 = 0\nlocal short = {\"i\",\"I\",\"j\",\"l\",\"'\",\" \"}\nlocal medium = {\"-\",\"r\",\"f\",\"t\"}\nlocal long = {\"a\",\"A\",\"b\",\"B\",\"c\",\"C\",\"d\",\"D\",\"e\",\"E\",\"F\",\"g\",\"G\",\"h\",\"H\",\"J\",\"k\",\"K\",\"L\",\"n\",\"N\",\"o\",\"O\",\"p\",\"P\",\"q\",\"Q\",\"R\",\"s\",\"S\",\"T\",\"u\",\"U\",\"v\",\"V\",\"x\",\"X\",\"y\",\"Y\",\"z\",\"Z\"}\nlocal vlong = {\"m\",\"M\",\"w\",\"W\"}\n\n\nfor i=1, #item do\n    letter = string.sub(item, i, i)\n    switch = false\n    for _, j in pairs(short) do\n        if letter == j then\n            count1 = count1 + 1\n            switch = true\n            break\n        end\n    end\n    if not switch then\n        for _, j in pairs(medium) do\n            if letter == j then\n                count2 = count2 + 1\n                switch = true\n                break\n            end\n        end\n    end\n    if not switch then\n        for _, j in pairs(long) do\n            if letter == j then\n                count3 = count3 + 1\n                switch = true\n                break\n            end \n        end\n    end\n    if not switch then\n        for _, j in pairs(vlong) do\n            if letter == j then\n                count4 = count4 + 1\n                switch = true\n                break\n            end \n        end\n    end\n    if not switch then\n        count5 = count5 + 1\n    end\nend\n\nlocal width = count1*aura_env.config.w1 + count2*aura_env.config.w2 + count3*aura_env.config.w3 + count4*aura_env.config.w4 + count5*aura_env.config.w3 + aura_env.config.w0\n\naura_env.region:SetRegionWidth(width)",
+     "do_custom": true
+    },
+    "init": {
+     "custom": "--local text = \"Héllo-Fromshit receives loot: [Nighttime] (Greed - 67) there Sír man Mister dude.\"\n--local text = \"Testname\"\n--local playername\n--playername = string.match(text, \"([^%c%p%s%d]+)%-?\")\n--print(playername)\nprint(string.len(\"test\"))\n    \n    \n    ",
+     "do_custom": false
+    },
+    "finish": {
+     "do_glow": false,
+     "hide_all_glows": false,
+     "do_custom": false
+    }
+   },
+   "icon_color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "enableGradient": false,
+   "keepAspectRatio": true,
+   "selfPoint": "CENTER",
+   "barColor": [
+    0,
+    0.019607843831182,
+    1,
+    0
+   ],
+   "desaturate": false,
+   "sparkOffsetY": 0,
+   "gradientOrientation": "HORIZONTAL",
+   "load": {
+    "use_never": false,
+    "talent": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "useAdjustededMin": false,
+   "regionType": "aurabar",
+   "texture": "DGround",
+   "cooldownTextDisabled": true,
+   "spark": false,
+   "tocversion": 30300,
+   "alpha": 1,
+   "config": {
+    "w1": 5,
+    "w0": 40,
+    "w4": 18,
+    "filterevent": [
+     true,
+     true,
+     true
+    ],
+    "displayduration": 30,
+    "filterquality": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ],
+    "w3": 11,
+    "w2": 7
+   },
+   "displayIcon": 134493,
+   "sparkOffsetX": 0,
+   "wagoID": "tQTAFfUCR",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "customText": "function()\n    return aura_env.playername\nend",
+   "cooldownSwipe": false,
+   "sparkRotationMode": "AUTO",
+   "cooldownEdge": false,
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "custom",
+      "custom_type": "stateupdate",
+      "customVariables": "{\n    stacks = true,\n}\n\n\n\n",
+      "event": "Health",
+      "unit": "player",
+      "subeventSuffix": "_CAST_START",
+      "subeventPrefix": "SPELL",
+      "spellIds": [],
+      "names": [],
+      "check": "event",
+      "custom": "function(allstates, event, text, _, _, _, test, ...)\n    if event == \"CHAT_MSG_LOOT\" then\n        -- Texto de Loot\n        --print(text)\n        local itemname, playername, itemid, amount, itemicon, quality, a,b, _, mode, showmeloot\n        \n        --if aura_env.config[\"filterloot\"] then\n        --    playername = UnitName(\"player\")\n        --else\n        --    if test == \"\" then\n        --print(\"test was ^^\")\n        --        playername = string.match(text, \"(%u[^%c%p%s%d]-)[%s%-]\")\n        --    else\n        --print(\"test was: \"..test)\n        --        playername = string.match(test, \"([^%c%p%s%d]+)%-?\")\n        --    end\n        \n        --\n        --    if playername == \"You\" then\n        playername = UnitName(\"player\")\n        --    end\n        --end\n        \n        if test == \"\" then\n            --print(\"test was ^^\")\n            playername = string.match(text, \"(%u[^%c%p%s%d]-)[%s%-]\")\n        else\n            --print(\"test was: \"..test)\n            playername = string.match(test, \"([^%c%p%s%d]+)%-?\")\n        end\n        \n        --\n        if playername == \"You\" then\n            playername = UnitName(\"player\")\n        end\n        \n        if playername == UnitName(\"player\") then\n            --print(\"Filtro ACTIVO PlayerName: \" .. playername)\n            showmeloot = true\n        else\n            --print(\"Filtro INACTIVO PlayerName: \" .. playername)\n            showmeloot = false\n        end\n        \n        --print(\"playername: \" .. playername)\n        if showmeloot then\n            --from the text, extract the item id and with it get the item link and the icon\n            if event == \"CHAT_MSG_LOOT\" then\n                --itemid = string.match(text, \"m%:(%d+)\")\n                itemid = string.match(text, \"(|c.+|r) ?x?(%d*).?\")\n                --print(\"itemid: \" .. itemid)\n                _, itemname, quality, _, _, _, _, _, _, itemicon  = GetItemInfo(itemid)\n                --print(\"itemname: \" .. itemname)\n                amount = string.match(text, \"h%|rx(%d-)%.\")\n            end\n            \n            if amount == nil then\n                amount = 1\n            end\n            --print(\"amount: \" .. amount)\n            \n            if string.match(text, \"receive\") == nil then\n                if string.match(text, \"create\") == nil then\n                    if string.match(text, \"won\") == nil then\n                        mode = \"unknown\"\n                    else\n                        mode = 3 --win\n                    end\n                else\n                    mode = 1 --create\n                end\n            else\n                mode = 2 --receive\n            end\n            --print(test)\n            --print(\"mode: \" .. mode)\n            \n            if aura_env.config[\"filterquality\"][quality+1] then\n                if aura_env.config[\"filterevent\"][mode] then\n                    --setup the trigger information for each clone\n                    \n                    if allstates[itemid..playername] ~= nil then\n                        local data\n                        data = allstates[itemid..playername]\n                        amount = tonumber(amount) + tonumber(data.stacks)\n                    end\n                    \n                    allstates[itemid..playername] = {\n                        show = true,\n                        changed = true,\n                        progressType =\"timed\",\n                        duration = aura_env.config[\"displayduration\"],\n                        expirationTime = GetTime() + aura_env.config[\"displayduration\"],\n                        autoHide = true,\n                        receiver = WA_ClassColorName(playername), --custom var that will is accessed with  %1.receiver\n                        name = itemname, --%1.n\n                        link = itemname,\n                        icon = itemicon,\n                        stacks = tonumber(amount)\n                    }\n                end\n            end\n        end\n        \n        \n    elseif event == \"OPTIONS\" then\n        local examples = {\n            [3356] = \"John\",\n            [2447] = \"Freddy\",\n            [3820] = \"Bruno\"\n        }\n        for itemid, receiver in pairs(examples) do\n            local _, itemname, _, _, _, _, _, _, _, icon = GetItemInfo(itemid)\n            allstates[itemid] = {\n                show = true,\n                changed = true,\n                progressType = \"static\",\n                value = 1,\n                total = 1,\n                duration = aura_env.config[\"displayduration\"],\n                expirationTime = GetTime() + aura_env.config[\"displayduration\"],\n                autoHide = true,\n                receiver = receiver,\n                name = itemname,\n                icon = icon,\n                stacks = 1\n            }\n        end\n    end\n    \n    return true\nend",
+      "events": "CHAT_MSG_LOOT, CHAT_MSG_CURRENCY",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 70,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    }
+   },
+   "version": 8,
+   "subRegions": [
+    {
+     "type": "subforeground"
+    },
+    {
+     "type": "subbackground"
+    },
+    {
+     "text_text_format_p_time_format": 0,
+     "text_text": "%1.n",
+     "text_text_format_p_time_mod_rate": true,
+     "anchorXOffset": 0,
+     "text_text_format_p_format": "timed",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "LEFT",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "text_text_format_p_time_legacy_floor": false,
+     "anchorYOffset": 0,
+     "text_justify": "CENTER",
+     "rotateText": "NONE",
+     "text_text_format_n_format": "none",
+     "text_text_format_1.n_format": "none",
+     "text_visible": true,
+     "type": "subtext",
+     "text_anchorXOffset": 2,
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_shadowYOffset": 0,
+     "text_anchorYOffset": 7,
+     "text_shadowXOffset": 0,
+     "text_wordWrap": "WordWrap",
+     "text_fontType": "OUTLINE",
+     "text_anchorPoint": "ICON_RIGHT",
+     "text_text_format_1.n_abbreviate_max": 8,
+     "text_text_format_p_time_precision": 1,
+     "text_fontSize": 14,
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_text_format_1.n_abbreviate": false
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text": "%1.receiver",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_text_format_p_time_mod_rate": true,
+     "text_selfPoint": "LEFT",
+     "text_automaticWidth": "Auto",
+     "text_text_format_1.receiver_format": "none",
+     "anchorXOffset": 0,
+     "text_text_format_c_format": "none",
+     "text_justify": "CENTER",
+     "rotateText": "NONE",
+     "text_fixedWidth": 64,
+     "text_text_format_p_time_legacy_floor": false,
+     "text_text_format_p_format": "timed",
+     "type": "subtext",
+     "text_anchorXOffset": 32,
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_shadowYOffset": 0,
+     "text_anchorYOffset": -7,
+     "text_fontType": "OUTLINE",
+     "text_wordWrap": "WordWrap",
+     "text_visible": true,
+     "text_anchorPoint": "ICON_LEFT",
+     "text_shadowXOffset": 0,
+     "text_text_format_p_time_format": 0,
+     "text_fontSize": 10,
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "anchorYOffset": 0
+    },
+    {
+     "text_text_format_p_time_precision": 1,
+     "text_text": "%1.s",
+     "text_shadowColor": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "text_selfPoint": "AUTO",
+     "text_automaticWidth": "Auto",
+     "text_fixedWidth": 64,
+     "anchorYOffset": 0,
+     "text_text_format_p_time_legacy_floor": false,
+     "text_justify": "CENTER",
+     "rotateText": "NONE",
+     "anchorXOffset": 0,
+     "text_shadowXOffset": 0,
+     "text_text_format_p_format": "timed",
+     "type": "subtext",
+     "text_anchorXOffset": 0,
+     "text_color": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "text_font": "Expressway",
+     "text_text_format_p_time_mod_rate": true,
+     "text_anchorYOffset": 0,
+     "text_visible": true,
+     "text_wordWrap": "WordWrap",
+     "text_fontType": "THICKOUTLINE",
+     "text_anchorPoint": "ICON_BOTTOMRIGHT",
+     "text_shadowYOffset": 0,
+     "text_text_format_p_time_format": 0,
+     "text_fontSize": 12,
+     "text_text_format_p_time_dynamic_threshold": 60,
+     "text_text_format_1.s_format": "none"
+    }
+   ],
+   "height": 30,
+   "sparkBlendMode": "ADD",
+   "useAdjustededMax": false,
+   "source": "import",
+   "icon": true,
+   "information": [],
+   "uid": ")4BEJlLSNRE",
+   "sparkTexture": "Interface\\CastingBar\\UI-CastingBar-Spark",
+   "icon_side": "RIGHT",
+   "sparkColor": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "anchorFrameParent": false,
+   "backgroundColor": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "useTooltip": true,
+   "barColor2": [
+    1,
+    1,
+    0,
+    1
+   ],
+   "semver": "1.0.7",
+   "id": "Item Track",
+   "sparkHidden": "NEVER",
+   "width": 250,
+   "useCooldownModRate": false,
+   "anchorFrameType": "SCREEN",
+   "frameStrata": 1,
+   "sparkHeight": 30,
+   "inverse": false,
+   "zoom": 0.3,
+   "orientation": "HORIZONTAL_INVERSE",
+   "conditions": [
+    {
+     "check": {
+      "trigger": 1,
+      "op": "<",
+      "variable": "stacks",
+      "value": "2"
+     },
+     "changes": [
+      {
+       "value": false,
+       "property": "sub.5.text_visible"
+      }
+     ]
+    }
+   ],
+   "cooldown": false,
+   "authorOptions": [
+    {
+     "useName": false,
+     "type": "header",
+     "text": "",
+     "noMerge": false,
+     "width": 1
+    },
+    {
+     "type": "number",
+     "useDesc": true,
+     "max": 300,
+     "step": 1,
+     "width": 2,
+     "min": 0,
+     "key": "displayduration",
+     "desc": "Type in the amount of seconds that the loot toast should be displayed for.",
+     "name": "Display duration",
+     "default": 20
+    },
+    {
+     "useName": false,
+     "type": "header",
+     "text": "",
+     "noMerge": false,
+     "width": 1
+    },
+    {
+     "desc": "Tick the boxes of every item quality you want to show.",
+     "type": "multiselect",
+     "values": [
+      "Poor",
+      "Common",
+      "Uncommon",
+      "Rare",
+      "Epic",
+      "Legendary"
+     ],
+     "default": [
+      false,
+      false,
+      true,
+      true,
+      true,
+      true
+     ],
+     "key": "filterquality",
+     "useDesc": true,
+     "name": "Quality Filter",
+     "width": 2
+    },
+    {
+     "useName": false,
+     "type": "header",
+     "text": "",
+     "noMerge": false,
+     "width": 1
+    },
+    {
+     "desc": "Tick the boxes of all events you want to show.",
+     "type": "multiselect",
+     "values": [
+      "Create",
+      "Receive",
+      "Win"
+     ],
+     "default": [
+      false,
+      true,
+      false
+     ],
+     "key": "filterevent",
+     "useDesc": true,
+     "name": "Event Filter",
+     "width": 2
+    },
+    {
+     "useName": false,
+     "type": "header",
+     "text": "Backdrop Width",
+     "noMerge": false,
+     "width": 1
+    },
+    {
+     "type": "description",
+     "text": "Backdrop Settings",
+     "fontSize": "large",
+     "width": 2
+    },
+    {
+     "type": "number",
+     "useDesc": true,
+     "max": 30,
+     "step": 0.1,
+     "width": 1,
+     "min": 0,
+     "key": "w1",
+     "desc": "Roughly how wide the thinner letters are.",
+     "name": "Letter width (thin)",
+     "default": 5
+    },
+    {
+     "type": "number",
+     "useDesc": true,
+     "max": 30,
+     "step": 0.1,
+     "width": 1,
+     "min": 0,
+     "key": "w2",
+     "desc": "Roughly how wide the medium sized letters are.",
+     "name": "Letter width (medium)",
+     "default": 7
+    },
+    {
+     "type": "number",
+     "useDesc": true,
+     "max": 30,
+     "step": 0.1,
+     "width": 1,
+     "min": 0,
+     "key": "w3",
+     "desc": "Roughly how wide the wide letters are.",
+     "name": "Letter width (wide)",
+     "default": 11
+    },
+    {
+     "type": "number",
+     "useDesc": true,
+     "max": 30,
+     "step": 0.1,
+     "width": 1,
+     "min": 0,
+     "key": "w4",
+     "desc": "Roughly how wide the extra wide letters are.",
+     "name": "Letter width (extra-wide)",
+     "default": 18
+    },
+    {
+     "type": "number",
+     "useDesc": true,
+     "max": 1000,
+     "step": 1,
+     "width": 1,
+     "min": 0,
+     "key": "w0",
+     "desc": "A flat offset added to the backdrop width.",
+     "name": "Offset",
+     "default": 40
+    }
+   ]
+  }
+ ]
+}

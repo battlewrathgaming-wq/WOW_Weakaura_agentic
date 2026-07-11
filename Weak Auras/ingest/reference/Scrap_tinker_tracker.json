@@ -1,0 +1,3273 @@
+{
+ "provenance": {
+  "source": "Scrap_tinker_tracker.txt",
+  "wa_version": "4.2.5",
+  "format_version": 2000,
+  "internalVersion": 53,
+  "internalVersion_range": [
+   53,
+   53
+  ],
+  "modernized": false,
+  "node_count": 32,
+  "decoded_at": "2026-07-11T02:40:35"
+ },
+ "root": {
+  "backdropColor": [
+   1,
+   1,
+   1,
+   0.5
+  ],
+  "controlledChildren": [
+   "Ammo",
+   "Scrap"
+  ],
+  "borderBackdrop": "Blizzard Tooltip",
+  "authorOptions": [],
+  "border": false,
+  "borderEdge": "Square Full White",
+  "anchorPoint": "CENTER",
+  "borderSize": 2,
+  "borderColor": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "tocversion": 30300,
+  "internalVersion": 53,
+  "actions": {
+   "start": [],
+   "init": [],
+   "finish": []
+  },
+  "triggers": [
+   {
+    "trigger": {
+     "debuffType": "HELPFUL",
+     "type": "aura2",
+     "spellIds": [],
+     "subeventSuffix": "_CAST_START",
+     "unit": "player",
+     "subeventPrefix": "SPELL",
+     "event": "Health",
+     "names": []
+    },
+    "untrigger": []
+   }
+  ],
+  "scale": 1,
+  "borderOffset": 4,
+  "yOffset": 0,
+  "animation": {
+   "start": {
+    "type": "none",
+    "easeStrength": 3,
+    "duration_type": "seconds",
+    "easeType": "none"
+   },
+   "main": {
+    "type": "none",
+    "easeStrength": 3,
+    "duration_type": "seconds",
+    "easeType": "none"
+   },
+   "finish": {
+    "type": "none",
+    "easeStrength": 3,
+    "duration_type": "seconds",
+    "easeType": "none"
+   }
+  },
+  "id": "Tinker",
+  "regionType": "group",
+  "frameStrata": 1,
+  "anchorFrameType": "SCREEN",
+  "xOffset": 8.99978697374911,
+  "borderInset": 1,
+  "information": [],
+  "selfPoint": "CENTER",
+  "uid": "t((dSqEFL(e",
+  "conditions": [],
+  "load": {
+   "size": {
+    "multi": []
+   },
+   "spec": {
+    "multi": []
+   },
+   "class": {
+    "multi": []
+   },
+   "talent": {
+    "multi": []
+   }
+  },
+  "config": []
+ },
+ "children": [
+  {
+   "backdropColor": [
+    1,
+    1,
+    1,
+    0.5
+   ],
+   "controlledChildren": [
+    "Ammo 1",
+    "Ammo 2",
+    "Ammo 3",
+    "Ammo 4",
+    "Ammo 5",
+    "Ammo 6",
+    "Ammo 7",
+    "Ammo 8"
+   ],
+   "borderBackdrop": "Blizzard Tooltip",
+   "scale": 1,
+   "border": false,
+   "yOffset": -1.999949393442876,
+   "regionType": "group",
+   "borderSize": 2,
+   "tocversion": 30300,
+   "borderColor": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "internalVersion": 53,
+   "parent": "Tinker",
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": [
+    {
+     "trigger": {
+      "debuffType": "HELPFUL",
+      "type": "aura2",
+      "spellIds": [],
+      "subeventSuffix": "_CAST_START",
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "event": "Health",
+      "names": []
+     },
+     "untrigger": []
+    }
+   ],
+   "borderEdge": "Square Full White",
+   "borderOffset": 4,
+   "anchorPoint": "CENTER",
+   "selfPoint": "CENTER",
+   "id": "Ammo",
+   "authorOptions": [],
+   "frameStrata": 1,
+   "anchorFrameType": "SCREEN",
+   "information": [],
+   "uid": "7uF)2HFTTA6",
+   "xOffset": -8.499775792435457,
+   "animation": {
+    "start": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "borderInset": 1,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "config": []
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "width": 20,
+   "alpha": 1,
+   "xOffset": -60,
+   "information": [],
+   "mirror": false,
+   "yOffset": -200,
+   "anchorPoint": "CENTER",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "blendMode": "ADD",
+   "regionType": "texture",
+   "authorOptions": [],
+   "parent": "Ammo",
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": true,
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": true,
+      "stacks": "1",
+      "spellIds": [],
+      "names": [],
+      "auraspellids": [
+       "500238"
+      ],
+      "subeventPrefix": "SPELL",
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "internalVersion": 53,
+   "selfPoint": "CENTER",
+   "animation": {
+    "start": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Ammo 1",
+   "uid": "V6IOEhS8tcI",
+   "frameStrata": 1,
+   "anchorFrameType": "SCREEN",
+   "discrete_rotation": 0,
+   "config": [],
+   "desaturate": false,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 20,
+   "rotate": true,
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "selfPoint": "CENTER",
+   "desaturate": false,
+   "authorOptions": [],
+   "information": [],
+   "mirror": false,
+   "yOffset": -200,
+   "anchorPoint": "CENTER",
+   "xOffset": -20,
+   "blendMode": "ADD",
+   "regionType": "texture",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "parent": "Ammo",
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "500238"
+      ],
+      "stacks": "2",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "useStacks": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "width": 20,
+   "animation": {
+    "start": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Ammo 2",
+   "config": [],
+   "frameStrata": 1,
+   "anchorFrameType": "SCREEN",
+   "rotation": 0,
+   "uid": "H8K(rA3QOD7",
+   "alpha": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 20,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "desaturate": false,
+   "alpha": 1,
+   "authorOptions": [],
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -200,
+   "anchorPoint": "CENTER",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "blendMode": "ADD",
+   "regionType": "texture",
+   "xOffset": 20,
+   "parent": "Ammo",
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": true,
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": true,
+      "stacks": "3",
+      "spellIds": [],
+      "names": [],
+      "auraspellids": [
+       "500238"
+      ],
+      "subeventPrefix": "SPELL",
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "selfPoint": "CENTER",
+   "animation": {
+    "start": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Ammo 3",
+   "uid": "aAl1dhrRPH3",
+   "frameStrata": 1,
+   "anchorFrameType": "SCREEN",
+   "rotation": 0,
+   "config": [],
+   "width": 20,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 20,
+   "rotate": true,
+   "information": [],
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "selfPoint": "CENTER",
+   "anchorFrameType": "SCREEN",
+   "authorOptions": [],
+   "information": [],
+   "mirror": false,
+   "yOffset": -200,
+   "anchorPoint": "CENTER",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "blendMode": "ADD",
+   "regionType": "texture",
+   "xOffset": 60,
+   "parent": "Ammo",
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "500238"
+      ],
+      "stacks": "4",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "useStacks": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "internalVersion": 53,
+   "desaturate": false,
+   "animation": {
+    "start": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Ammo 4",
+   "config": [],
+   "alpha": 1,
+   "width": 20,
+   "rotation": 0,
+   "uid": "W4rF3Nw1d49",
+   "frameStrata": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 20,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "selfPoint": "CENTER",
+   "desaturate": false,
+   "xOffset": -60,
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -200,
+   "anchorPoint": "CENTER",
+   "authorOptions": [],
+   "blendMode": "ADD",
+   "regionType": "texture",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "parent": "Ammo",
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": false,
+      "subeventSuffix": "_CAST_START",
+      "matchesShowOn": "showAlways",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": false,
+      "stacks": "1",
+      "spellIds": [],
+      "subeventPrefix": "SPELL",
+      "names": [],
+      "auraspellids": [
+       "500238"
+      ],
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\square_mini.tga",
+   "internalVersion": 53,
+   "width": 35,
+   "animation": {
+    "start": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Ammo 5",
+   "config": [],
+   "alpha": 1,
+   "anchorFrameType": "SCREEN",
+   "rotation": 0,
+   "uid": "BuIdptd6Ps8",
+   "frameStrata": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 35,
+   "conditions": [],
+   "information": [],
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "desaturate": false,
+   "alpha": 1,
+   "xOffset": -20,
+   "information": [],
+   "mirror": false,
+   "yOffset": -200,
+   "regionType": "texture",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "blendMode": "ADD",
+   "anchorPoint": "CENTER",
+   "authorOptions": [],
+   "parent": "Ammo",
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "matchesShowOn": "showAlways",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "500238"
+      ],
+      "stacks": "1",
+      "spellIds": [],
+      "subeventPrefix": "SPELL",
+      "unit": "player",
+      "useExactSpellId": false,
+      "useStacks": false,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\square_mini.tga",
+   "internalVersion": 53,
+   "animation": {
+    "start": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "selfPoint": "CENTER",
+   "id": "Ammo 6",
+   "uid": "gP7N1wTkTos",
+   "frameStrata": 1,
+   "anchorFrameType": "SCREEN",
+   "discrete_rotation": 0,
+   "config": [],
+   "width": 35,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 35,
+   "rotate": true,
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "animation": {
+    "start": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "width": 35,
+   "xOffset": 20,
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -200,
+   "regionType": "texture",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "blendMode": "ADD",
+   "anchorPoint": "CENTER",
+   "authorOptions": [],
+   "parent": "Ammo",
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": false,
+      "subeventSuffix": "_CAST_START",
+      "matchesShowOn": "showAlways",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": false,
+      "stacks": "1",
+      "spellIds": [],
+      "subeventPrefix": "SPELL",
+      "names": [],
+      "auraspellids": [
+       "500238"
+      ],
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\square_mini.tga",
+   "internalVersion": 53,
+   "anchorFrameType": "SCREEN",
+   "selfPoint": "CENTER",
+   "id": "Ammo 7",
+   "config": [],
+   "frameStrata": 1,
+   "desaturate": false,
+   "rotation": 0,
+   "uid": "QpRKSoIYqvy",
+   "alpha": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 35,
+   "conditions": [],
+   "information": [],
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "width": 35,
+   "frameStrata": 1,
+   "xOffset": 60,
+   "information": [],
+   "mirror": false,
+   "yOffset": -200,
+   "regionType": "texture",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "blendMode": "ADD",
+   "anchorPoint": "CENTER",
+   "authorOptions": [],
+   "parent": "Ammo",
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "matchesShowOn": "showAlways",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "500238"
+      ],
+      "stacks": "1",
+      "spellIds": [],
+      "subeventPrefix": "SPELL",
+      "unit": "player",
+      "useExactSpellId": false,
+      "useStacks": false,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\square_mini.tga",
+   "internalVersion": 53,
+   "selfPoint": "CENTER",
+   "animation": {
+    "start": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Ammo 8",
+   "uid": "CJiPVX1EyR6",
+   "alpha": 1,
+   "anchorFrameType": "SCREEN",
+   "discrete_rotation": 0,
+   "config": [],
+   "desaturate": false,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 35,
+   "rotate": true,
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "rotation": 0
+  },
+  {
+   "backdropColor": [
+    1,
+    1,
+    1,
+    0.5
+   ],
+   "controlledChildren": [
+    "Scrap 1",
+    "Scrap 2",
+    "Scrap 3",
+    "Scrap 4",
+    "Scrap 5",
+    "Scrap 6",
+    "Scrap 7",
+    "Scrap 8",
+    "Scrap 9",
+    "Scrap 10",
+    "Scrap 11",
+    "Scrap 12",
+    "Scrap 13",
+    "Scrap 14",
+    "Scrap 15",
+    "Scrap 16",
+    "Scrap 17",
+    "Scrap 18",
+    "Scrap 19",
+    "Scrap 20",
+    "Scrap Outline"
+   ],
+   "borderBackdrop": "Blizzard Tooltip",
+   "scale": 1,
+   "border": false,
+   "borderEdge": "Square Full White",
+   "regionType": "group",
+   "borderSize": 2,
+   "tocversion": 30300,
+   "borderColor": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "anchorPoint": "CENTER",
+   "authorOptions": [],
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": [
+    {
+     "trigger": {
+      "debuffType": "HELPFUL",
+      "type": "aura2",
+      "spellIds": [],
+      "subeventSuffix": "_CAST_START",
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "event": "Health",
+      "names": []
+     },
+     "untrigger": []
+    }
+   ],
+   "yOffset": 0,
+   "borderOffset": 4,
+   "xOffset": 0,
+   "selfPoint": "CENTER",
+   "id": "Scrap",
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "frameStrata": 1,
+   "anchorFrameType": "SCREEN",
+   "parent": "Tinker",
+   "config": [],
+   "internalVersion": 53,
+   "animation": {
+    "start": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "borderInset": 1,
+   "conditions": [],
+   "information": [],
+   "uid": "d0kG)VxRinp"
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "width": 6.25,
+   "frameStrata": 1,
+   "authorOptions": [],
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -231.875082774205,
+   "regionType": "texture",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "blendMode": "BLEND",
+   "anchorPoint": "CENTER",
+   "xOffset": -64.62450132879826,
+   "parent": "Scrap",
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": true,
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": true,
+      "stacks": "5",
+      "spellIds": [],
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "subeventPrefix": "SPELL",
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "selfPoint": "CENTER",
+   "id": "Scrap 1",
+   "uid": "aOSqALiZ8he",
+   "alpha": 1,
+   "anchorFrameType": "SCREEN",
+   "discrete_rotation": 0,
+   "config": [],
+   "desaturate": false,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 16,
+   "rotate": true,
+   "information": [],
+   "rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "selfPoint": "CENTER",
+   "desaturate": false,
+   "parent": "Scrap",
+   "information": [],
+   "mirror": false,
+   "yOffset": -232.6250883648618,
+   "regionType": "texture",
+   "authorOptions": [],
+   "blendMode": "BLEND",
+   "anchorPoint": "CENTER",
+   "xOffset": -58.62473671767646,
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "stacks": "10",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "useStacks": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "internalVersion": 53,
+   "width": 6.25,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Scrap 2",
+   "config": [],
+   "frameStrata": 1,
+   "anchorFrameType": "SCREEN",
+   "rotation": 0,
+   "uid": "cerZj5rPCYG",
+   "alpha": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 16,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "width": 6.25,
+   "alpha": 1,
+   "parent": "Scrap",
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -232.6250883648618,
+   "anchorPoint": "CENTER",
+   "authorOptions": [],
+   "blendMode": "BLEND",
+   "regionType": "texture",
+   "xOffset": -52.62497210655477,
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": true,
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": true,
+      "stacks": "15",
+      "spellIds": [],
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "subeventPrefix": "SPELL",
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "selfPoint": "CENTER",
+   "id": "Scrap 3",
+   "uid": "dRddZs885ug",
+   "frameStrata": 1,
+   "desaturate": false,
+   "discrete_rotation": 0,
+   "config": [],
+   "anchorFrameType": "SCREEN",
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 16,
+   "rotate": true,
+   "information": [],
+   "rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "anchorFrameType": "SCREEN",
+   "parent": "Scrap",
+   "information": [],
+   "mirror": false,
+   "yOffset": -231.875082774205,
+   "anchorPoint": "CENTER",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "blendMode": "BLEND",
+   "regionType": "texture",
+   "xOffset": -46.62520749543296,
+   "authorOptions": [],
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "stacks": "20",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "useStacks": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "internalVersion": 53,
+   "width": 6.25,
+   "selfPoint": "CENTER",
+   "id": "Scrap 4",
+   "config": [],
+   "alpha": 1,
+   "desaturate": false,
+   "rotation": 0,
+   "uid": "njUEwXOMdla",
+   "frameStrata": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 16,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "width": 6.249978201567422,
+   "alpha": 1,
+   "authorOptions": [],
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -232.49952720482,
+   "anchorPoint": "CENTER",
+   "xOffset": -40.49869123920485,
+   "blendMode": "BLEND",
+   "regionType": "texture",
+   "parent": "Scrap",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": true,
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": true,
+      "stacks": "25",
+      "spellIds": [],
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "subeventPrefix": "SPELL",
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "selfPoint": "CENTER",
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Scrap 5",
+   "uid": "H)CYtGkDndT",
+   "frameStrata": 1,
+   "anchorFrameType": "SCREEN",
+   "rotation": 0,
+   "config": [],
+   "desaturate": false,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "rotate": true,
+   "information": [],
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "anchorFrameType": "SCREEN",
+   "parent": "Scrap",
+   "information": [],
+   "mirror": false,
+   "yOffset": -232.49952720482,
+   "regionType": "texture",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "blendMode": "BLEND",
+   "anchorPoint": "CENTER",
+   "xOffset": -34.49885659954987,
+   "authorOptions": [],
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "stacks": "30",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "useStacks": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "width": 6.249978201567422,
+   "selfPoint": "CENTER",
+   "id": "Scrap 6",
+   "config": [],
+   "alpha": 1,
+   "desaturate": false,
+   "rotation": 0,
+   "uid": "lHHGaJhjesr",
+   "frameStrata": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "width": 6.249978201567422,
+   "alpha": 1,
+   "parent": "Scrap",
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -232.49952720482,
+   "anchorPoint": "CENTER",
+   "xOffset": -28.49909198842806,
+   "blendMode": "BLEND",
+   "regionType": "texture",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "authorOptions": [],
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": true,
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": true,
+      "stacks": "35",
+      "spellIds": [],
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "subeventPrefix": "SPELL",
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "selfPoint": "CENTER",
+   "id": "Scrap 7",
+   "uid": "X7wN7eba9v7",
+   "frameStrata": 1,
+   "anchorFrameType": "SCREEN",
+   "discrete_rotation": 0,
+   "config": [],
+   "desaturate": false,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "rotate": true,
+   "information": [],
+   "rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "anchorFrameType": "SCREEN",
+   "desaturate": false,
+   "parent": "Scrap",
+   "information": [],
+   "mirror": false,
+   "yOffset": -232.49952720482,
+   "anchorPoint": "CENTER",
+   "xOffset": -22.49946743437272,
+   "blendMode": "BLEND",
+   "regionType": "texture",
+   "authorOptions": [],
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "stacks": "40",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "useStacks": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "internalVersion": 53,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "selfPoint": "CENTER",
+   "id": "Scrap 8",
+   "config": [],
+   "frameStrata": 1,
+   "width": 6.249978201567422,
+   "discrete_rotation": 0,
+   "uid": "y1J(5xfLQLe",
+   "alpha": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "width": 6.249978201567422,
+   "frameStrata": 1,
+   "parent": "Scrap",
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -232.49952720482,
+   "anchorPoint": "CENTER",
+   "authorOptions": [],
+   "blendMode": "BLEND",
+   "regionType": "texture",
+   "xOffset": -16.49963279471774,
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": true,
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": true,
+      "stacks": "45",
+      "spellIds": [],
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "subeventPrefix": "SPELL",
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "selfPoint": "CENTER",
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Scrap 9",
+   "uid": "MGPYXW52pXq",
+   "alpha": 1,
+   "anchorFrameType": "SCREEN",
+   "rotation": 0,
+   "config": [],
+   "desaturate": false,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "rotate": true,
+   "information": [],
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "desaturate": false,
+   "anchorFrameType": "SCREEN",
+   "parent": "Scrap",
+   "information": [],
+   "mirror": false,
+   "yOffset": -231.7495216141632,
+   "regionType": "texture",
+   "xOffset": -10.49993821212922,
+   "blendMode": "BLEND",
+   "anchorPoint": "CENTER",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "authorOptions": [],
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "stacks": "50",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "useStacks": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "selfPoint": "CENTER",
+   "id": "Scrap 10",
+   "config": [],
+   "frameStrata": 1,
+   "width": 6.249978201567422,
+   "rotation": 0,
+   "uid": "0L76W2qRLBJ",
+   "alpha": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "width": 6.249978201567422,
+   "frameStrata": 1,
+   "parent": "Scrap",
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -231.7495216141632,
+   "regionType": "texture",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "blendMode": "BLEND",
+   "anchorPoint": "CENTER",
+   "xOffset": -4.500243629540591,
+   "authorOptions": [],
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": true,
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": true,
+      "stacks": "55",
+      "spellIds": [],
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "subeventPrefix": "SPELL",
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "internalVersion": 53,
+   "selfPoint": "CENTER",
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Scrap 11",
+   "uid": "PH74zWw7Q61",
+   "alpha": 1,
+   "desaturate": false,
+   "discrete_rotation": 0,
+   "config": [],
+   "anchorFrameType": "SCREEN",
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "rotate": true,
+   "information": [],
+   "rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "anchorFrameType": "SCREEN",
+   "desaturate": false,
+   "parent": "Scrap",
+   "information": [],
+   "mirror": false,
+   "yOffset": -232.49952720482,
+   "anchorPoint": "CENTER",
+   "xOffset": 1.499591010114386,
+   "blendMode": "BLEND",
+   "regionType": "texture",
+   "authorOptions": [],
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "stacks": "60",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "useStacks": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "internalVersion": 53,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "selfPoint": "CENTER",
+   "id": "Scrap 12",
+   "config": [],
+   "frameStrata": 1,
+   "width": 6.249978201567422,
+   "discrete_rotation": 0,
+   "uid": "ZwYlV9SCqJA",
+   "alpha": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "width": 6.249978201567422,
+   "alpha": 1,
+   "parent": "Scrap",
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -232.2495327954769,
+   "regionType": "texture",
+   "xOffset": 7.499425649769364,
+   "blendMode": "BLEND",
+   "anchorPoint": "CENTER",
+   "authorOptions": [],
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": true,
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": true,
+      "stacks": "65",
+      "spellIds": [],
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "subeventPrefix": "SPELL",
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "internalVersion": 53,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "selfPoint": "CENTER",
+   "id": "Scrap 13",
+   "uid": "NVJKOfAbeab",
+   "frameStrata": 1,
+   "desaturate": false,
+   "rotation": 0,
+   "config": [],
+   "anchorFrameType": "SCREEN",
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "rotate": true,
+   "information": [],
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "selfPoint": "CENTER",
+   "anchorFrameType": "SCREEN",
+   "parent": "Scrap",
+   "information": [],
+   "mirror": false,
+   "yOffset": -232.2495253412678,
+   "regionType": "texture",
+   "authorOptions": [],
+   "blendMode": "BLEND",
+   "anchorPoint": "CENTER",
+   "xOffset": 13.49926028942434,
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "stacks": "70",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "useStacks": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "internalVersion": 53,
+   "width": 6.249978201567422,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Scrap 14",
+   "config": [],
+   "frameStrata": 1,
+   "desaturate": false,
+   "rotation": 0,
+   "uid": "eGTvWwvsITb",
+   "alpha": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "width": 6.249978201567422,
+   "alpha": 1,
+   "parent": "Scrap",
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -232.9995309319246,
+   "regionType": "texture",
+   "authorOptions": [],
+   "blendMode": "BLEND",
+   "anchorPoint": "CENTER",
+   "xOffset": 19.49909492907932,
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": true,
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": true,
+      "stacks": "75",
+      "spellIds": [],
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "subeventPrefix": "SPELL",
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "selfPoint": "CENTER",
+   "id": "Scrap 15",
+   "uid": "fu9BldXjrfT",
+   "frameStrata": 1,
+   "desaturate": false,
+   "discrete_rotation": 0,
+   "config": [],
+   "anchorFrameType": "SCREEN",
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "rotate": true,
+   "information": [],
+   "rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "anchorFrameType": "SCREEN",
+   "desaturate": false,
+   "parent": "Scrap",
+   "information": [],
+   "mirror": false,
+   "yOffset": -232.9995309319246,
+   "anchorPoint": "CENTER",
+   "xOffset": 25.49899959726747,
+   "blendMode": "BLEND",
+   "regionType": "texture",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "authorOptions": [],
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "stacks": "80",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "useStacks": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "selfPoint": "CENTER",
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Scrap 16",
+   "config": [],
+   "alpha": 1,
+   "width": 6.249978201567422,
+   "discrete_rotation": 0,
+   "uid": "p(90t1yHG4W",
+   "frameStrata": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "width": 6.249978201567422,
+   "alpha": 1,
+   "parent": "Scrap",
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -232.2495253412678,
+   "anchorPoint": "CENTER",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "blendMode": "BLEND",
+   "regionType": "texture",
+   "xOffset": 31.49897429398891,
+   "authorOptions": [],
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": true,
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": true,
+      "stacks": "85",
+      "spellIds": [],
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "subeventPrefix": "SPELL",
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "internalVersion": 53,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "selfPoint": "CENTER",
+   "id": "Scrap 17",
+   "uid": "nkYwcnGjrs6",
+   "frameStrata": 1,
+   "anchorFrameType": "SCREEN",
+   "rotation": 0,
+   "config": [],
+   "desaturate": false,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "rotate": true,
+   "information": [],
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "desaturate": false,
+   "anchorFrameType": "SCREEN",
+   "parent": "Scrap",
+   "information": [],
+   "mirror": false,
+   "yOffset": -232.2495253412678,
+   "regionType": "texture",
+   "xOffset": 37.49880893364389,
+   "blendMode": "BLEND",
+   "anchorPoint": "CENTER",
+   "authorOptions": [],
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "stacks": "90",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "useStacks": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "internalVersion": 53,
+   "selfPoint": "CENTER",
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Scrap 18",
+   "config": [],
+   "alpha": 1,
+   "width": 6.249978201567422,
+   "rotation": 0,
+   "uid": "XkMpLZS1wKr",
+   "frameStrata": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "discrete_rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "conditions": [],
+   "width": 6.249978201567422,
+   "alpha": 1,
+   "parent": "Scrap",
+   "load": {
+    "talent": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "size": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -232.2495253412678,
+   "regionType": "texture",
+   "authorOptions": [],
+   "blendMode": "BLEND",
+   "anchorPoint": "CENTER",
+   "xOffset": 43.49864357329886,
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "actions": {
+    "start": [],
+    "finish": [],
+    "init": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "useStacks": true,
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "unit": "player",
+      "useExactSpellId": true,
+      "stacks": "95",
+      "spellIds": [],
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "subeventPrefix": "SPELL",
+      "stacksOperator": ">=",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "easeStrength": 3,
+     "type": "none",
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "selfPoint": "CENTER",
+   "id": "Scrap 19",
+   "uid": "QkkMThaYAmH",
+   "frameStrata": 1,
+   "desaturate": false,
+   "discrete_rotation": 0,
+   "config": [],
+   "anchorFrameType": "SCREEN",
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "rotate": true,
+   "information": [],
+   "rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "anchorFrameType": "SCREEN",
+   "desaturate": false,
+   "parent": "Scrap",
+   "information": [],
+   "mirror": false,
+   "yOffset": -232.2495253412678,
+   "anchorPoint": "CENTER",
+   "xOffset": 49.49847821295384,
+   "blendMode": "BLEND",
+   "regionType": "texture",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "authorOptions": [],
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "texture": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\Square_FullWhite",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "stacksOperator": ">=",
+      "subeventSuffix": "_CAST_START",
+      "event": "Health",
+      "names": [],
+      "auraspellids": [
+       "801816"
+      ],
+      "stacks": "100",
+      "spellIds": [],
+      "useExactSpellId": true,
+      "unit": "player",
+      "subeventPrefix": "SPELL",
+      "useStacks": true,
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "selfPoint": "CENTER",
+   "animation": {
+    "start": {
+     "type": "preset",
+     "easeType": "none",
+     "duration_type": "seconds",
+     "preset": "fade",
+     "easeStrength": 3
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "id": "Scrap 20",
+   "config": [],
+   "alpha": 1,
+   "width": 6.249978201567422,
+   "discrete_rotation": 0,
+   "uid": "n(9dGho3eTY",
+   "frameStrata": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 15.99998796384586,
+   "conditions": [],
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "rotation": 0
+  },
+  {
+   "tocversion": 30300,
+   "rotate": true,
+   "animation": {
+    "start": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "main": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    },
+    "finish": {
+     "type": "none",
+     "easeStrength": 3,
+     "duration_type": "seconds",
+     "easeType": "none"
+    }
+   },
+   "desaturate": false,
+   "xOffset": -8.624994264020302,
+   "load": {
+    "size": {
+     "multi": []
+    },
+    "spec": {
+     "multi": []
+    },
+    "class": {
+     "multi": []
+    },
+    "talent": {
+     "multi": []
+    }
+   },
+   "mirror": false,
+   "yOffset": -231.7493465428302,
+   "anchorPoint": "CENTER",
+   "color": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "blendMode": "ADD",
+   "regionType": "texture",
+   "parent": "Scrap",
+   "authorOptions": [],
+   "actions": {
+    "start": [],
+    "init": [],
+    "finish": []
+   },
+   "texture": "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Auras\\Aura69",
+   "triggers": {
+    "1": {
+     "trigger": {
+      "type": "aura2",
+      "subeventSuffix": "_CAST_START",
+      "matchesShowOn": "showAlways",
+      "event": "Health",
+      "subeventPrefix": "SPELL",
+      "spellIds": [],
+      "names": [],
+      "unit": "player",
+      "debuffType": "HELPFUL"
+     },
+     "untrigger": []
+    },
+    "activeTriggerMode": -10
+   },
+   "internalVersion": 53,
+   "width": 223.2500359887848,
+   "selfPoint": "CENTER",
+   "id": "Scrap Outline",
+   "config": [],
+   "frameStrata": 1,
+   "anchorFrameType": "SCREEN",
+   "rotation": 0,
+   "uid": "0(ou33oWMKF",
+   "alpha": 1,
+   "subRegions": [
+    {
+     "type": "subbackground"
+    }
+   ],
+   "height": 164.0001370480279,
+   "conditions": [],
+   "information": [],
+   "discrete_rotation": 0
+  }
+ ]
+}
