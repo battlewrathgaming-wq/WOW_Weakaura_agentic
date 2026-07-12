@@ -1,0 +1,45 @@
+{
+ "trigger_type": "addons",
+ "type_display": "Other Addon",
+ "event_count": 1,
+ "events": [
+  {
+   "event": "GTFO",
+   "display": "GTFO Alert",
+   "default_state": {
+    "type": "addons",
+    "event": "GTFO"
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "alertType",
+      "display": "Alert Type",
+      "surface": "input",
+      "input_kind": "dropdown",
+      "arg_type": "select",
+      "value_domain": [
+       "High Damage",
+       "Low Damage",
+       "Fail Alert",
+       "Friendly Fire"
+      ],
+      "value_domain_source": "joined",
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "select"
+     }
+    ],
+    "provides": [],
+    "internal": []
+   }
+  }
+ ],
+ "_meta": {
+  "source": "extract.lua event_prototypes + index_grounded.json",
+  "note": "provides/internal fields are source-only (captures are blind to them); exact-spell-name is our-policy OFF (match-family-not-rank)"
+ }
+}

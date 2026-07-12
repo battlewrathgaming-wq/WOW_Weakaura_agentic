@@ -1,0 +1,391 @@
+{
+ "trigger_type": "event",
+ "type_display": "event",
+ "event_count": 5,
+ "events": [
+  {
+   "event": "Chat Message",
+   "display": "Chat Message",
+   "default_state": {
+    "type": "event",
+    "event": "Chat Message"
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "messageType",
+      "display": "Message Type",
+      "surface": "input",
+      "input_kind": "dropdown",
+      "arg_type": "select",
+      "value_domain": {
+       "CHAT_MSG_BATTLEGROUND": "Battleground",
+       "CHAT_MSG_BG_SYSTEM_ALLIANCE": "BG-System Alliance",
+       "CHAT_MSG_BG_SYSTEM_HORDE": "BG-System Horde",
+       "CHAT_MSG_BG_SYSTEM_NEUTRAL": "BG-System Neutral",
+       "CHAT_MSG_BN_WHISPER": "Battle.net Whisper",
+       "CHAT_MSG_CHANNEL": "Channel",
+       "CHAT_MSG_EMOTE": "Emote",
+       "CHAT_MSG_GUILD": "Guild",
+       "CHAT_MSG_LOOT": "Loot",
+       "CHAT_MSG_MONSTER_EMOTE": "Monster Emote",
+       "CHAT_MSG_MONSTER_PARTY": "Monster Party",
+       "CHAT_MSG_MONSTER_SAY": "Monster Say",
+       "CHAT_MSG_MONSTER_WHISPER": "Monster Whisper",
+       "CHAT_MSG_MONSTER_YELL": "Monster Yell",
+       "CHAT_MSG_OFFICER": "Officer",
+       "CHAT_MSG_PARTY": "Party",
+       "CHAT_MSG_RAID": "Raid",
+       "CHAT_MSG_RAID_BOSS_EMOTE": "Boss Emote",
+       "CHAT_MSG_RAID_BOSS_WHISPER": "Boss Whisper",
+       "CHAT_MSG_RAID_WARNING": "Raid Warning",
+       "CHAT_MSG_SAY": "Say",
+       "CHAT_MSG_SYSTEM": "System",
+       "CHAT_MSG_WHISPER": "Whisper",
+       "CHAT_MSG_YELL": "Yell"
+      },
+      "value_domain_source": "joined",
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "message",
+      "display": "Message",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "longstring",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "string"
+     },
+     {
+      "name": "sourceName",
+      "display": "Source Name",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "string",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "string"
+     },
+     {
+      "name": "destName",
+      "display": "Destination Name",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "string",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "string"
+     },
+     {
+      "name": "cloneId",
+      "display": "Clone per Event",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     }
+    ],
+    "provides": [
+     {
+      "name": "sourceGUID",
+      "display": "Source GUID",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     }
+    ],
+    "internal": []
+   }
+  },
+  {
+   "event": "Combat Events",
+   "display": "Entering/Leaving Combat",
+   "default_state": {
+    "type": "event",
+    "event": "Combat Events",
+    "use_eventtype": true
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "eventtype",
+      "display": "Type",
+      "surface": "input",
+      "input_kind": "dropdown",
+      "arg_type": "select",
+      "value_domain": {
+       "PLAYER_REGEN_DISABLED": "Entering",
+       "PLAYER_REGEN_ENABLED": "Leaving"
+      },
+      "value_domain_source": "joined",
+      "default": null,
+      "required_seed": true,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     }
+    ],
+    "provides": [],
+    "internal": []
+   }
+  },
+  {
+   "event": "Encounter Events",
+   "display": "Entering/Leaving Encounter",
+   "default_state": {
+    "type": "event",
+    "event": "Encounter Events",
+    "use_eventtype": true
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "note",
+      "display": "note",
+      "surface": "input",
+      "input_kind": "ui",
+      "arg_type": "description",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "eventtype",
+      "display": "Type",
+      "surface": "input",
+      "input_kind": "dropdown",
+      "arg_type": "select",
+      "value_domain": {
+       "ENCOUNTER_END": "Leaving",
+       "ENCOUNTER_START": "Entering"
+      },
+      "value_domain_source": "joined",
+      "default": null,
+      "required_seed": true,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "encounterId",
+      "display": "Id",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "string",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "number"
+     },
+     {
+      "name": "encounterName",
+      "display": "Name",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "string",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "string"
+     },
+     {
+      "name": "difficulty",
+      "display": "Difficulty",
+      "surface": "input",
+      "input_kind": "dropdown",
+      "arg_type": "select",
+      "value_domain": {
+       "ascended": "Ascended",
+       "heroic": {},
+       "mythic": "Mythic",
+       "none": "None",
+       "normal": {}
+      },
+      "value_domain_source": "joined",
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "select"
+     },
+     {
+      "name": "success",
+      "display": "Success",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": true,
+      "enabled_when": "conditional",
+      "stores_condition_var": true,
+      "conditionType": "bool"
+     }
+    ],
+    "provides": [],
+    "internal": []
+   }
+  },
+  {
+   "event": "Ready Check",
+   "display": "Ready Check",
+   "default_state": {
+    "type": "event",
+    "event": "Ready Check"
+   },
+   "options": {
+    "inputs": [],
+    "provides": [],
+    "internal": []
+   }
+  },
+  {
+   "event": "Spell Cast Succeeded",
+   "display": "Spell Cast Succeeded",
+   "default_state": {
+    "type": "event",
+    "event": "Spell Cast Succeeded"
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "unit",
+      "display": "Caster Unit",
+      "surface": "input",
+      "input_kind": "dropdown",
+      "arg_type": "unit",
+      "value_domain": null,
+      "value_domain_source": "runtime",
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "select"
+     },
+     {
+      "name": "spellNames",
+      "display": "Name(s)",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "spell",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "spellId",
+      "display": "Exact Spell ID(s)",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "spell",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     }
+    ],
+    "provides": [
+     {
+      "name": "icon",
+      "display": "icon",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     },
+     {
+      "name": "name",
+      "display": "name",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     }
+    ],
+    "internal": []
+   }
+  }
+ ],
+ "_meta": {
+  "source": "extract.lua event_prototypes + index_grounded.json",
+  "note": "provides/internal fields are source-only (captures are blind to them); exact-spell-name is our-policy OFF (match-family-not-rank)"
+ }
+}

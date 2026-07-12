@@ -1,0 +1,1149 @@
+{
+ "trigger_type": "spell",
+ "type_display": "Spell",
+ "event_count": 8,
+ "events": [
+  {
+   "event": "Action Usable",
+   "display": "Spell Usable",
+   "default_state": {
+    "type": "spell",
+    "event": "Action Usable",
+    "use_spellName": true
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "spellName",
+      "display": "Spell",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "spell",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": true,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null,
+      "policy": {
+       "knob": "use_exact_spellName",
+       "wa_default": true,
+       "our_policy": false,
+       "why": "match-family-not-rank (name-match catches the whole family)"
+      }
+     },
+     {
+      "name": "targetRequired",
+      "display": "Require Valid Target",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "ignoreSpellCooldown",
+      "display": "Ignore Spell Cooldown/Charges",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "charges",
+      "display": "Charges",
+      "surface": "input",
+      "input_kind": "value",
+      "arg_type": "number",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": true,
+      "enabled_when": "conditional",
+      "stores_condition_var": true,
+      "conditionType": "number"
+     },
+     {
+      "name": "spellCount",
+      "display": "Spell Count",
+      "surface": "input",
+      "input_kind": "value",
+      "arg_type": "number",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": true,
+      "enabled_when": "conditional",
+      "stores_condition_var": true,
+      "conditionType": "number"
+     },
+     {
+      "name": "inverse",
+      "display": "Inverse",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     }
+    ],
+    "provides": [
+     {
+      "name": "readyTime",
+      "display": "Since Ready",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": true,
+      "enabled_when": "conditional",
+      "stores_condition_var": true,
+      "conditionType": "elapsedTimer"
+     },
+     {
+      "name": "chargeGainTime",
+      "display": "Since Charge Gain",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": true,
+      "enabled_when": "conditional",
+      "stores_condition_var": true,
+      "conditionType": "elapsedTimer"
+     },
+     {
+      "name": "chargeLostTime",
+      "display": "Since Charge Lost",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": true,
+      "enabled_when": "conditional",
+      "stores_condition_var": true,
+      "conditionType": "elapsedTimer"
+     },
+     {
+      "name": "name",
+      "display": "Name",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "string"
+     },
+     {
+      "name": "icon",
+      "display": "icon",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     },
+     {
+      "name": "stacks",
+      "display": "Stacks",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": true,
+      "enabled_when": "conditional",
+      "stores_condition_var": true,
+      "conditionType": "number"
+     }
+    ],
+    "internal": [
+     {
+      "name": "spellInRange",
+      "display": "Spell in Range",
+      "surface": "internal",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": "bool"
+     }
+    ]
+   }
+  },
+  {
+   "event": "Charges Changed",
+   "display": "Charges Changed Event",
+   "default_state": {
+    "type": "spell",
+    "event": "Charges Changed",
+    "use_spellName": true,
+    "use_direction": true
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "spellName",
+      "display": "Spell",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "spell",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": true,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null,
+      "policy": {
+       "knob": "use_exact_spellName",
+       "wa_default": true,
+       "our_policy": false,
+       "why": "match-family-not-rank (name-match catches the whole family)"
+      }
+     },
+     {
+      "name": "direction",
+      "display": "Charge gained/lost",
+      "surface": "input",
+      "input_kind": "dropdown",
+      "arg_type": "select",
+      "value_domain": {
+       "CHANGED": "Changed",
+       "GAINED": "Gained",
+       "LOST": "Lost"
+      },
+      "value_domain_source": "joined",
+      "default": null,
+      "required_seed": true,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "select"
+     },
+     {
+      "name": "charges",
+      "display": "Charges",
+      "surface": "input",
+      "input_kind": "value",
+      "arg_type": "number",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "number"
+     }
+    ],
+    "provides": [
+     {
+      "name": "name",
+      "display": "Name",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "string"
+     },
+     {
+      "name": "icon",
+      "display": "icon",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     }
+    ],
+    "internal": []
+   }
+  },
+  {
+   "event": "Cooldown Progress (Spell)",
+   "display": "Cooldown/Charges/Count",
+   "default_state": {
+    "type": "spell",
+    "event": "Cooldown Progress (Spell)",
+    "use_spellName": true,
+    "use_track": true,
+    "track": "auto",
+    "use_genericShowOn": true,
+    "genericShowOn": "showOnCooldown"
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "spellName",
+      "display": "Spell",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "spell",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": true,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null,
+      "policy": {
+       "knob": "use_exact_spellName",
+       "wa_default": true,
+       "our_policy": false,
+       "why": "match-family-not-rank (name-match catches the whole family)"
+      }
+     },
+     {
+      "name": "extra Cooldown Progress (Spell)",
+      "display": "<function>",
+      "surface": "input",
+      "input_kind": "ui",
+      "arg_type": "collapse",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "track",
+      "display": "Track Cooldowns",
+      "surface": "input",
+      "input_kind": "dropdown",
+      "arg_type": "select",
+      "value_domain": {
+       "auto": "Auto",
+       "charges": "Charges",
+       "cooldown": "Cooldown"
+      },
+      "value_domain_source": "joined",
+      "default": "auto",
+      "required_seed": true,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "showgcd",
+      "display": "Show Global Cooldown",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "matchedRune",
+      "display": "Ignore Rune CD",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "ignoreSpellKnown",
+      "display": "Disable Spell Known Check",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "trackcharge",
+      "display": "Show CD of Charge",
+      "surface": "input",
+      "input_kind": "value",
+      "arg_type": "number",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": true,
+      "enabled_when": "conditional",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "remaining",
+      "display": "Remaining Time",
+      "surface": "input",
+      "input_kind": "value",
+      "arg_type": "number",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": true,
+      "enabled_when": "conditional",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "charges",
+      "display": "Charges",
+      "surface": "input",
+      "input_kind": "value",
+      "arg_type": "number",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "number"
+     },
+     {
+      "name": "spellCount",
+      "display": "Spell Count",
+      "surface": "input",
+      "input_kind": "value",
+      "arg_type": "number",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "number"
+     },
+     {
+      "name": "genericShowOn",
+      "display": "Show",
+      "surface": "input",
+      "input_kind": "dropdown",
+      "arg_type": "select",
+      "value_domain": {
+       "showAlways": "Always",
+       "showOnCooldown": "On Cooldown",
+       "showOnReady": "Not on Cooldown"
+      },
+      "value_domain_source": "joined",
+      "default": "showOnCooldown",
+      "required_seed": true,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     }
+    ],
+    "provides": [
+     {
+      "name": "stacks",
+      "display": "stacks",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     },
+     {
+      "name": "maxCharges",
+      "display": "Max Charges",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "number"
+     },
+     {
+      "name": "readyTime",
+      "display": "Since Ready",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "elapsedTimer"
+     },
+     {
+      "name": "chargeGainTime",
+      "display": "Since Charge Gain",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "elapsedTimer"
+     },
+     {
+      "name": "chargeLostTime",
+      "display": "Since Charge Lost",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "elapsedTimer"
+     },
+     {
+      "name": "effectiveSpellId",
+      "display": "Effective Spell Id",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "number"
+     },
+     {
+      "name": "gcdCooldown",
+      "display": "gcdCooldown",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     },
+     {
+      "name": "name",
+      "display": "Name",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "string"
+     },
+     {
+      "name": "icon",
+      "display": "icon",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     }
+    ],
+    "internal": [
+     {
+      "name": "onCooldown",
+      "display": "On Cooldown",
+      "surface": "internal",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": "bool"
+     },
+     {
+      "name": "spellUsable",
+      "display": "Spell Usable",
+      "surface": "internal",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": "bool"
+     },
+     {
+      "name": "insufficientResources",
+      "display": "Insufficient Resources",
+      "surface": "internal",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": "bool"
+     },
+     {
+      "name": "spellInRange",
+      "display": "Spell in Range",
+      "surface": "internal",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": "bool"
+     }
+    ]
+   }
+  },
+  {
+   "event": "Cooldown Ready (Spell)",
+   "display": "Cooldown Ready Event",
+   "default_state": {
+    "type": "spell",
+    "event": "Cooldown Ready (Spell)",
+    "use_spellName": true
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "spellName",
+      "display": "Spell",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "spell",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": true,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null,
+      "policy": {
+       "knob": "use_exact_spellName",
+       "wa_default": true,
+       "our_policy": false,
+       "why": "match-family-not-rank (name-match catches the whole family)"
+      }
+     }
+    ],
+    "provides": [
+     {
+      "name": "name",
+      "display": "Name",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "string"
+     },
+     {
+      "name": "icon",
+      "display": "icon",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     }
+    ],
+    "internal": []
+   }
+  },
+  {
+   "event": "Global Cooldown",
+   "display": "Global Cooldown",
+   "default_state": {
+    "type": "spell",
+    "event": "Global Cooldown"
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "inverse",
+      "display": "Inverse",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     }
+    ],
+    "provides": [
+     {
+      "name": "name",
+      "display": "Name",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "string"
+     },
+     {
+      "name": "icon",
+      "display": "icon",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     },
+     {
+      "name": "duration",
+      "display": "duration",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     },
+     {
+      "name": "expirationTime",
+      "display": "expirationTime",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     },
+     {
+      "name": "progressType",
+      "display": "progressType",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     }
+    ],
+    "internal": []
+   }
+  },
+  {
+   "event": "Queued Action",
+   "display": "Queued Action",
+   "default_state": {
+    "type": "spell",
+    "event": "Queued Action",
+    "use_spellName": true
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "spellName",
+      "display": "Spell",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "spell",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": true,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null,
+      "policy": {
+       "knob": "use_exact_spellName",
+       "wa_default": true,
+       "our_policy": false,
+       "why": "match-family-not-rank (name-match catches the whole family)"
+      }
+     }
+    ],
+    "provides": [],
+    "internal": []
+   }
+  },
+  {
+   "event": "Spell Known",
+   "display": "Spell Known",
+   "default_state": {
+    "type": "spell",
+    "event": "Spell Known",
+    "use_spellName": true
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "spellName",
+      "display": "Spell",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "spell",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": true,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "petspell",
+      "display": "Pet Spell",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "inverse",
+      "display": "Inverse",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     }
+    ],
+    "provides": [
+     {
+      "name": "name",
+      "display": "Name",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "string"
+     },
+     {
+      "name": "icon",
+      "display": "icon",
+      "surface": "provides",
+      "input_kind": "state",
+      "arg_type": null,
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": null
+     }
+    ],
+    "internal": []
+   }
+  },
+  {
+   "event": "Totem",
+   "display": "Totem",
+   "default_state": {
+    "type": "spell",
+    "event": "Totem"
+   },
+   "options": {
+    "inputs": [
+     {
+      "name": "totemType",
+      "display": "Totem Number",
+      "surface": "input",
+      "input_kind": "dropdown",
+      "arg_type": "select",
+      "value_domain": [
+       "Fire",
+       "Earth",
+       "Water",
+       "Air"
+      ],
+      "value_domain_source": "joined",
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "totemName",
+      "display": "Totem Name",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "string",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "string"
+     },
+     {
+      "name": "totemNamePattern",
+      "display": "Totem Name Pattern Match",
+      "surface": "input",
+      "input_kind": "reference",
+      "arg_type": "longstring",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "icon",
+      "display": "Totem Icon",
+      "surface": "input",
+      "input_kind": "value",
+      "arg_type": "number",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": true,
+      "conditionType": "number"
+     },
+     {
+      "name": "inverse",
+      "display": "Inverse",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": false,
+      "enabled_when": "always",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "clones",
+      "display": "Clone per Match",
+      "surface": "input",
+      "input_kind": "toggle",
+      "arg_type": "toggle",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": true,
+      "enabled_when": "conditional",
+      "stores_condition_var": false,
+      "conditionType": null
+     },
+     {
+      "name": "remaining",
+      "display": "Remaining Time",
+      "surface": "input",
+      "input_kind": "value",
+      "arg_type": "number",
+      "value_domain": null,
+      "value_domain_source": null,
+      "default": null,
+      "required_seed": false,
+      "gated": true,
+      "enabled_when": "conditional",
+      "stores_condition_var": false,
+      "conditionType": null
+     }
+    ],
+    "provides": [],
+    "internal": []
+   }
+  }
+ ],
+ "_meta": {
+  "source": "extract.lua event_prototypes + index_grounded.json",
+  "note": "provides/internal fields are source-only (captures are blind to them); exact-spell-name is our-policy OFF (match-family-not-rank)"
+ }
+}
