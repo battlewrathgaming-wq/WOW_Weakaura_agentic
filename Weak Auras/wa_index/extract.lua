@@ -71,6 +71,11 @@ local WeakAurasStub = {
     captured[#captured + 1] = { kind = "subregion", name = name, display = display,
       default = default, properties = properties }
   end,
+  -- Trigger systems (e.g. the Aura/aura2 system in BuffTrigger2) register here; capture the
+  -- system table so we can call its Add() and read the defaults it seeds onto a trigger.
+  RegisterTriggerSystem = function(types, system)
+    captured[#captured + 1] = { kind = "triggersystem", types = types, system = system }
+  end,
 }
 setmetatable(WeakAurasStub, { __index = function() return autoviv() end })
 
@@ -276,6 +281,53 @@ elseif mode == "types" then
     if type(v) == "table" and getmetatable(v) == nil then
       result[k] = v
     end
+  end
+elseif mode == "seed_defaults" then
+  -- The FUNCTION-DRIVEN defaults the arg-scan misses: run each event_prototype's
+  -- `init` on an EMPTY trigger and capture the scalar fields it writes back
+  -- (`trigger.X = trigger.X or <default>` mutates the table). WA's own code produces
+  -- them; we just read the result. Keyed by prototype `name` (WA's display) + the table key.
+  local protos = rawget(PrivateStub, "event_prototypes")
+  if type(protos) == "table" then
+    for key, proto in pairs(protos) do
+      if type(proto) == "table" then
+        local initfn = rawget(proto, "init")
+        if type(initfn) == "function" then
+          local trig = {}
+          pcall(initfn, trig)
+          local seeds = {}
+          for k, v in pairs(trig) do
+            local t = type(v)
+            if t == "string" or t == "number" or t == "boolean" then seeds[k] = v end
+          end
+          if next(seeds) then
+            local nm = rawget(proto, "name")
+            result[tostring(key)] = { name = (type(nm) == "string") and nm or nil, seeds = seeds }
+          end
+        end
+      end
+    end
+  end
+elseif mode == "aura_seed_defaults" then
+  -- The Aura (aura2) trigger seeds its defaults in the trigger-SYSTEM Add(data) (BuffTrigger2:
+  -- `trigger.unit = trigger.unit or "player"`, debuffType or "HELPFUL"), not in an event_prototype.
+  -- Call Add on a probe aura2 trigger and capture the scalars it writes back. Add's later scan-func
+  -- code may error under stubs, but the seeds run first, so pcall keeps what completed.
+  local system
+  for _, e in ipairs(captured) do
+    if e.kind == "triggersystem" and type(e.types) == "table" then
+      for _, ty in ipairs(e.types) do if ty == "aura2" then system = e.system end end
+    end
+  end
+  if type(system) == "table" and type(rawget(system, "Add")) == "function" then
+    local trig = { type = "aura2" }
+    pcall(rawget(system, "Add"), { id = "extract_probe", triggers = { { trigger = trig } } })
+    local seeds = {}
+    for k, v in pairs(trig) do
+      local t = type(v)
+      if k ~= "type" and (t == "string" or t == "number" or t == "boolean") then seeds[k] = v end
+    end
+    result = { aura2 = { name = "Aura", seeds = seeds } }
   end
 else
   io.stderr:write("unknown mode: " .. mode .. "\n"); os.exit(1)

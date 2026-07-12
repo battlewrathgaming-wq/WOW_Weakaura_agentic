@@ -469,6 +469,21 @@ def _aura2_defaults():
     return d
 
 
+def _seed_defaults():
+    """Per-event, function-driven prototype defaults frozen from WA source by
+    wa_index/extract_seed_defaults.py (runs each `init` on an empty trigger). AUTHORITATIVE and
+    PER-PROTOTYPE - e.g. Power/Health/Cast unit=player, Range Check/Threat unit=target (NOT a blanket;
+    hand-sourcing had wrongly assumed player for all). [[unit-trigger-seeding-and-powertype-content]]"""
+    p = os.path.join(_WA, "wa_index", "trigger_seed_defaults.json")
+    return json.load(open(p, encoding="utf-8")) if os.path.exists(p) else {}
+
+
+_SEED_DEFAULTS = _seed_defaults()
+# use_unit=true is UI creation-seeding (not an init mutation -> absent from the extracted table);
+# live-confirmed family-wide for type:unit triggers. Stays a small live-sourced constant.
+_UNIT_UI_SEEDS = {"use_unit": True}
+
+
 def settle_trigger(t, idx, a2, a2_comp, a2_def):
     """Partition a trigger's stored fields -> (ns, mode, active, off, xtype, defaulted). `active` =
     the LIVE, NON-DEFAULT levers (cross-type residue, touched-off toggles + companions, and
@@ -513,8 +528,13 @@ def settle_trigger(t, idx, a2, a2_comp, a2_def):
                             for b in off_bases):
             off.append(k); del active[k]
     # stage 2c: fold stored-equals-default (a lever at its prototype default was never a real choice)
-    defaults = a2_def if ty in ("aura2", "aura") else \
-        {s["name"]: s.get("default") for s in (slots or []) if s.get("default") is not None}
+    if ty in ("aura2", "aura"):
+        defaults = {**a2_def, **_SEED_DEFAULTS.get("aura2", {})}   # schema matchesShowOn + extracted seeds (unit/debuffType)
+    else:
+        defaults = {s["name"]: s.get("default") for s in (slots or []) if s.get("default") is not None}
+        defaults.update(_SEED_DEFAULTS.get(ns, {}))     # per-prototype init seeds (WA source; arg-scan misses)
+        if ty == "unit":
+            defaults.setdefault("use_unit", True)        # UI creation-seed (not an init mutation)
     defaulted = []
     for k in list(active):
         if k in defaults and defaults[k] == active[k]:

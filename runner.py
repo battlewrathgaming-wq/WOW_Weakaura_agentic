@@ -53,9 +53,18 @@ def _svc_verify(args):
     return ["py", os.path.join(_WA, "plane", "verify.py")] + [str(a) for a in args]
 
 
+def _svc_seeds(args):
+    """seeds probe <wa-source-file> [mode]  - READ-ONLY defaults probe (prints; writes nothing).
+    `freeze` (writing trigger_seed_defaults.json) is refused - that's a deliberate LOCAL action."""
+    if not args or str(args[0]) != "probe":
+        raise ValueError("seeds via the runner is probe-only (read-only); run `freeze` locally")
+    return ["py", os.path.join(_WA, "wa_index", "extract_seed_defaults.py")] + [str(a) for a in args]
+
+
 SERVICES = {
     "decode": _svc_decode,
     "verify": _svc_verify,           # read-only regression harness; `bless` refused
+    "seeds": _svc_seeds,             # read-only defaults probe; `freeze` refused
     # add here (one line each), only with Battlewrath's approval:
     #   "derive":  lambda a: ["py", os.path.join(_WA, "plane", "derive_contracts.py")],
     #   "assemble":lambda a: ["py", os.path.join(_WA, "plane", "assemble.py"), os.path.join(_WA,"plane","boms", str(a[0]))],

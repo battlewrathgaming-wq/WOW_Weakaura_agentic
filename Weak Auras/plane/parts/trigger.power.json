@@ -218,9 +218,8 @@
  "template": {
   "trigger": {
    "event": "Power",
-   "powertype": 6,
+   "powertype": "",
    "type": "unit",
-   "unit": "player",
    "use_powertype": true
   },
   "untrigger": {}

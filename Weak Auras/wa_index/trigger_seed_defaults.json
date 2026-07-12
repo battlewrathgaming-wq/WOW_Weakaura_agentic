@@ -1,0 +1,34 @@
+{
+ "Cast": {
+  "unit": "player"
+ },
+ "Currency": {
+  "value": "",
+  "value_operator": ""
+ },
+ "Death Knight Rune": {
+  "rune": 0
+ },
+ "Equipment Set": {
+  "itemSetName": ""
+ },
+ "Health": {
+  "unit": "player"
+ },
+ "Power": {
+  "unit": "player"
+ },
+ "Range Check": {
+  "unit": "target"
+ },
+ "Threat Situation": {
+  "unit": "target"
+ },
+ "Unit Characteristics": {
+  "unit": "target"
+ },
+ "aura2": {
+  "debuffType": "HELPFUL",
+  "unit": "player"
+ }
+}

@@ -110,7 +110,6 @@
    "type": "spell",
    "use_exact_spellName": true,
    "use_genericShowOn": true,
-   "use_ignoreSpellKnown": false,
    "use_showgcd": true,
    "use_spellName": true,
    "use_track": true

@@ -27,6 +27,7 @@ import os
 from collections import Counter
 
 import index_schema as ix
+import diagnose as _diag                       # shared settle engine (residue/off/companion/default)
 
 _THIS = os.path.dirname(os.path.abspath(__file__))
 _WA = os.path.dirname(_THIS)
@@ -37,7 +38,7 @@ PARTS = os.path.join(_THIS, "parts")
 
 # what a part points AT - blanked so only the inventory supplies content.
 _CONTENT = {"spellName", "realSpellName", "spellId", "spellIds", "names", "itemName",
-            "itemId", "auranames", "auraspellids"}
+            "itemId", "auranames", "auraspellids", "powertype"}
 # aura skeleton the region BASE legitimately carries (lanes re-added by the assembler
 # are stripped separately). Not indexed, but structural - preserved past the meta drop.
 _REGION_SKELETON = {"regionType", "internalVersion", "tocversion", "config",
@@ -66,6 +67,20 @@ def _modal(instances):
     """The most common WHOLE instance - a coherent real config, not a per-field
     frankenstein. Supplies byte-real representation for kept fields."""
     return json.loads(Counter(json.dumps(i, sort_keys=True) for i in instances).most_common(1)[0][0])
+
+
+_SCTX = None
+def _settle_active(tr, idx):
+    """Settle a harvested trigger to its REAL-CHOICE levers via the shared engine
+    (diagnose.settle_trigger): cross-type residue, touched-off toggles, their companions,
+    and stored-equals-default all stripped. So the modal runs over real choices, not history.
+    [[parts-were-only-allowlist-deep-need-settle-depth]]"""
+    global _SCTX
+    if _SCTX is None:
+        _SCTX = (_diag._aura2_allow(), _diag._aura2_companions(), _diag._aura2_defaults())
+    a2, a2_comp, a2_def = _SCTX
+    _ns, _mode, active, _off, _xt, _def = _diag.settle_trigger(tr, idx, a2, a2_comp, a2_def)
+    return active if active is not None else dict(tr)
 
 
 def _blank(v):
@@ -104,7 +119,10 @@ def main():
     nodes = pool()
     os.makedirs(PARTS, exist_ok=True)
 
-    # --- triggers: index namespace is complete & authoritative -> strict allowlist ---
+    # --- triggers: settle each harvested instance to its real-choice levers (4-layer:
+    #     cross-type / touched-off / companions / stored-equals-default), THEN modal over the
+    #     settled versions -> part = true minimal live config, not corpus residue baked in as
+    #     "defaults". [[parts-were-only-allowlist-deep-need-settle-depth]] ---
     for event, pid in (("Cooldown Progress (Spell)", "trigger.cooldown"),
                        ("Action Usable", "trigger.availability"),
                        ("Power", "trigger.power")):
@@ -112,7 +130,7 @@ def main():
         if not insts:
             continue
         allow, slots = ix.trigger_schema(idx, event)
-        core = _blank_content(_apply_allowlist(_modal(insts), allow))
+        core = _blank_content(_modal([_settle_active(tr, idx) for tr in insts]))
         emit({"part_id": pid, "lane": "trigger", "namespace": event,
               "allow": sorted(allow), "holes": slots,
               "template": {"trigger": core, "untrigger": {}}, "_tf": list(core)})
