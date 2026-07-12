@@ -36,6 +36,11 @@ Weak Auras/ingest/inbox/
 # the scraped+consolidated dataset), unlike plane/out/ which is pure regenerable build output.
 Weak Auras/ability_inventory/reference.html
 
+# export/ + the share zip - transient handoff staging (assembled copies of tracked data for
+# sharing, per SHARING.md). Regenerable via the copy step; not source, not preserved. Never commit.
+export/
+coa_data_share.zip
+
 # Outputs/lane_index.json - the FIRST-CUT behavioural lane classification (grab-by-class,
 # traceable), regenerated on demand via `py Scripts/classify_lanes.py --emit` from
 # dependencies/coa_spells.json + the inventory. Cheap + provisional (lane names not yet

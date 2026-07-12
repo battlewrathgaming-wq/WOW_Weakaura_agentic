@@ -11,8 +11,8 @@
 
   "catch": {
     "_role": "which auras match — the scan",
-    "unit":          {"value": "unit", "use": "use_unit", "domain_ref": ["baseUnitId", "multiUnitId"], "corpus_pct": {"player": 91, "target": 7, "pet": 1, "group": 1}, "role": "whose auras to scan"},
-    "debuffType":    {"value": "debuffType", "domain_ref": "debuff_types", "corpus_pct": {"HELPFUL": 87, "BOTH": 7, "HARMFUL": 7}, "role": "buff vs debuff"},
+    "unit":          {"value": "unit", "use": "use_unit", "default": "player", "domain_ref": ["baseUnitId", "multiUnitId"], "corpus_pct": {"player": 91, "target": 7, "pet": 1, "group": 1}, "role": "whose auras to scan"},
+    "debuffType":    {"value": "debuffType", "default": "HELPFUL", "domain_ref": "debuff_types", "corpus_pct": {"HELPFUL": 87, "BOTH": 7, "HARMFUL": 7}, "role": "buff vs debuff"},
     "by_name":       {"use": "useName", "value": "auranames", "kind": "list", "corpus_pct": 68, "role": "match by a display NAME or by an ID placed in this field ('ID-in-names') — either catches the whole rank FAMILY (all ranks). THE all-ranks catch. COA idiom (grounded): the Stormbringer aura puts 804591 in auranames."},
     "by_exact_id":   {"use": "useExactSpellId", "value": "auraspellids", "kind": "list", "corpus_pct": 51, "role": "match an EXACT spellId — pins ONE rank only (brittle for rank-variant abilities; corpus over-uses it)"},
     "by_pattern":    {"use": "useNamePattern", "value": "namePattern_name", "operator": "namePattern_operator", "op_domain_ref": "string_operator_types", "corpus_pct": 5, "role": "match by string pattern"},
@@ -35,7 +35,7 @@
 
   "show": {
     "_role": "when the aura displays (the show-axis — distinct from catch)",
-    "matchesShowOn": {"value": "matchesShowOn", "domain": ["showOnActive", "showOnMissing", "showOnMatches", "showAlways"], "corpus_pct": {"showOnActive": 48, "showOnMissing": 45, "showAlways": 7}, "role": "present / MISSING / by match-count / always — showOnMissing = dropped-buff reminder (domain confirmed vs BuffTrigger2.lua)"},
+    "matchesShowOn": {"value": "matchesShowOn", "default": "showOnActive", "domain": ["showOnActive", "showOnMissing", "showOnMatches", "showAlways"], "corpus_pct": {"showOnActive": 48, "showOnMissing": 45, "showAlways": 7}, "role": "present / MISSING / by match-count / always — showOnMissing = dropped-buff reminder (domain confirmed vs BuffTrigger2.lua)"},
     "unit_exists":   {"value": "unitExists", "kind": "bool", "corpus_pct": 8, "role": "only when the unit exists"},
     "inverse":       {"use": "use_inverse", "corpus_pct": 7, "role": "invert the match result"}
   },
