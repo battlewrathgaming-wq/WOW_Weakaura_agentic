@@ -81,7 +81,7 @@ default state: `{"type": "item", "event": "Item Count", "use_itemName": true}`
 
 | option | surface | input | domain | default | seed | gated | policy |
 |---|---|---|---|---|---|---|---|
-| itemName | input | reference |  |  | ✓ |  | exact→False |
+| itemName | input | reference |  |  | ✓ |  | →False |
 | name | input | state |  |  |  |  |  |
 | includeBank | input | toggle |  |  |  |  |  |
 | includeCharges | input | toggle |  |  |  |  |  |

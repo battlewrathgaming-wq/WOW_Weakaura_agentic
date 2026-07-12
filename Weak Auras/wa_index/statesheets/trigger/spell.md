@@ -8,7 +8,7 @@ default state: `{"type": "spell", "event": "Action Usable", "use_spellName": tru
 
 | option | surface | input | domain | default | seed | gated | policy |
 |---|---|---|---|---|---|---|---|
-| spellName | input | reference |  |  | ✓ |  | exact→False |
+| spellName | input | reference |  |  | ✓ |  | →False |
 | targetRequired | input | toggle |  |  |  |  |  |
 | ignoreSpellCooldown | input | toggle |  |  |  |  |  |
 | charges | input | value |  |  |  | ✓ |  |
@@ -27,7 +27,7 @@ default state: `{"type": "spell", "event": "Charges Changed", "use_spellName": t
 
 | option | surface | input | domain | default | seed | gated | policy |
 |---|---|---|---|---|---|---|---|
-| spellName | input | reference |  |  | ✓ |  | exact→False |
+| spellName | input | reference |  |  | ✓ |  | →False |
 | direction | input | dropdown | {'CHANGED': 'Changed', 'GAINED': 'Gained', 'LOST': 'Lost'} |  | ✓ |  |  |
 | charges | input | value |  |  |  |  |  |
 | name | provides | state |  |  |  |  |  |
@@ -38,7 +38,7 @@ default state: `{"type": "spell", "event": "Cooldown Progress (Spell)", "use_spe
 
 | option | surface | input | domain | default | seed | gated | policy |
 |---|---|---|---|---|---|---|---|
-| spellName | input | reference |  |  | ✓ |  | exact→False |
+| spellName | input | reference |  |  | ✓ |  | →False |
 | extra Cooldown Progress (Spell) | input | ui |  |  |  |  |  |
 | track | input | dropdown | {'auto': 'Auto', 'charges': 'Charges', 'cooldown': 'Cooldown'} | auto | ✓ |  |  |
 | showgcd | input | toggle |  |  |  |  |  |
@@ -68,7 +68,7 @@ default state: `{"type": "spell", "event": "Cooldown Ready (Spell)", "use_spellN
 
 | option | surface | input | domain | default | seed | gated | policy |
 |---|---|---|---|---|---|---|---|
-| spellName | input | reference |  |  | ✓ |  | exact→False |
+| spellName | input | reference |  |  | ✓ |  | →False |
 | name | provides | state |  |  |  |  |  |
 | icon | provides | state |  |  |  |  |  |
 
@@ -89,7 +89,7 @@ default state: `{"type": "spell", "event": "Queued Action", "use_spellName": tru
 
 | option | surface | input | domain | default | seed | gated | policy |
 |---|---|---|---|---|---|---|---|
-| spellName | input | reference |  |  | ✓ |  | exact→False |
+| spellName | input | reference |  |  | ✓ |  | →False |
 
 ## Spell Known  (`Spell Known`)
 default state: `{"type": "spell", "event": "Spell Known", "use_spellName": true}`

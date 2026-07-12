@@ -1,0 +1,460 @@
+{
+ "trigger_type": "aura2",
+ "type_display": "Aura",
+ "event_count": 1,
+ "events": [
+  {
+   "event": "Aura",
+   "display": "Aura",
+   "default_state": {
+    "type": "aura2",
+    "debuffType": "HELPFUL",
+    "unit": "player"
+   },
+   "drive_from_id": "put the spellId in auranames (useName) - family match; not auraspellids (useExactSpellId)",
+   "options": {
+    "inputs": [
+     {
+      "name": "unit",
+      "field": "unit",
+      "surface": "input",
+      "axis": "catch",
+      "use_toggle": "use_unit",
+      "kind": null,
+      "default": "player",
+      "value_domain": [
+       "baseUnitId",
+       "multiUnitId"
+      ],
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": {
+       "player": 91,
+       "target": 7,
+       "pet": 1,
+       "group": 1
+      },
+      "corpus_op": null,
+      "role": "whose auras to scan"
+     },
+     {
+      "name": "debuffType",
+      "field": "debuffType",
+      "surface": "input",
+      "axis": "catch",
+      "use_toggle": null,
+      "kind": null,
+      "default": "HELPFUL",
+      "value_domain": "debuff_types",
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": {
+       "HELPFUL": 87,
+       "BOTH": 7,
+       "HARMFUL": 7
+      },
+      "corpus_op": null,
+      "role": "buff vs debuff"
+     },
+     {
+      "name": "auranames",
+      "field": "by_name",
+      "surface": "input",
+      "axis": "catch",
+      "use_toggle": "useName",
+      "kind": "list",
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": 68,
+      "corpus_op": null,
+      "role": "match by a display NAME or by an ID placed in this field ('ID-in-names') — either catches the whole rank FAMILY (all ranks). THE all-ranks catch. COA idiom (grounded): the Stormbringer aura puts 804591 in auranames.",
+      "policy": {
+       "knob": "useName",
+       "our_policy": true,
+       "why": "match-family-not-rank: drive-from-ID = spellId in auranames, catches all ranks"
+      }
+     },
+     {
+      "name": "auraspellids",
+      "field": "by_exact_id",
+      "surface": "input",
+      "axis": "catch",
+      "use_toggle": "useExactSpellId",
+      "kind": "list",
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": 51,
+      "corpus_op": null,
+      "role": "match an EXACT spellId — pins ONE rank only (brittle for rank-variant abilities; corpus over-uses it)",
+      "policy": {
+       "knob": "useExactSpellId",
+       "our_policy": false,
+       "why": "match-family-not-rank: exact spellId pins one rank; corpus over-uses it"
+      }
+     },
+     {
+      "name": "namePattern_name",
+      "field": "by_pattern",
+      "surface": "input",
+      "axis": "catch",
+      "use_toggle": "useNamePattern",
+      "kind": null,
+      "default": null,
+      "value_domain": null,
+      "operator": "namePattern_operator",
+      "operator_domain": "string_operator_types",
+      "corpus_pct": 5,
+      "corpus_op": null,
+      "role": "match by string pattern"
+     },
+     {
+      "name": "ownOnly",
+      "field": "own_only",
+      "surface": "input",
+      "axis": "catch",
+      "use_toggle": null,
+      "kind": "bool",
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": 24,
+      "corpus_op": null,
+      "role": "only auras I applied"
+     },
+     {
+      "name": "debuffClass",
+      "field": "by_debuff_class",
+      "surface": "input",
+      "axis": "catch",
+      "use_toggle": "use_debuffClass",
+      "kind": null,
+      "default": null,
+      "value_domain": "debuff_class_types",
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": 3,
+      "corpus_op": null,
+      "role": "match by dispel class (magic/curse/disease/poison/enrage)"
+     },
+     {
+      "name": "ignoreAuraNames",
+      "field": "ignore_names",
+      "surface": "input",
+      "axis": "catch",
+      "use_toggle": "useIgnoreName",
+      "kind": "list",
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": 5,
+      "corpus_op": null,
+      "role": "EXCLUDE names — solves over-catch (e.g. Plague catching Plague Bolt)"
+     },
+     {
+      "name": "ignoreAuraSpellids",
+      "field": "ignore_ids",
+      "surface": "input",
+      "axis": "catch",
+      "use_toggle": "useIgnoreExactSpellId",
+      "kind": "list",
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": 0,
+      "corpus_op": null,
+      "role": "exclude specific spellIds"
+     },
+     {
+      "name": "match_count",
+      "field": "match_count",
+      "surface": "input",
+      "axis": "resolve",
+      "use_toggle": "useMatch_count",
+      "kind": null,
+      "default": null,
+      "value_domain": null,
+      "operator": "match_countOperator",
+      "operator_domain": "operator_types",
+      "corpus_pct": 6,
+      "corpus_op": null,
+      "role": "gate on HOW MANY auras match"
+     },
+     {
+      "name": "perUnitMode",
+      "field": "per_unit_mode",
+      "surface": "input",
+      "axis": "resolve",
+      "use_toggle": null,
+      "kind": null,
+      "default": null,
+      "value_domain": "bufftrigger_2_per_unit_mode",
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": null,
+      "corpus_op": null,
+      "role": "for multi-unit scans: affected / unaffected / all"
+     },
+     {
+      "name": "combineMatches",
+      "field": "combine",
+      "surface": "input",
+      "axis": "resolve",
+      "use_toggle": null,
+      "kind": null,
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": 3,
+      "corpus_op": null,
+      "role": "aggregate matches across units into one state"
+     },
+     {
+      "name": "autoclone",
+      "field": "clones",
+      "surface": "input",
+      "axis": "resolve",
+      "use_toggle": null,
+      "kind": "bool",
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": 14,
+      "corpus_op": null,
+      "role": "emit one dynamic clone per matching unit"
+     },
+     {
+      "name": "group_count",
+      "field": "group_count",
+      "surface": "input",
+      "axis": "resolve",
+      "use_toggle": "useGroup_count",
+      "kind": null,
+      "default": null,
+      "value_domain": null,
+      "operator": "group_countOperator",
+      "operator_domain": null,
+      "corpus_pct": 2,
+      "corpus_op": null,
+      "role": "how many group members match"
+     },
+     {
+      "name": "(options-layer; set on 0 of 319 corpus triggers)",
+      "field": "preferred_match",
+      "surface": "input",
+      "axis": "resolve",
+      "use_toggle": null,
+      "kind": null,
+      "default": null,
+      "value_domain": [
+       "Most remaining",
+       "Highest spell ID",
+       "Least remaining",
+       "Lowest spell ID"
+      ],
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": null,
+      "corpus_op": null,
+      "role": "runtime tiebreaker among currently-ACTIVE matches on the unit — 'Highest spell ID' picks among what's LIVE (what the player actually has), NOT a static highest-rank-in-DBC lookup. Rarely needed: catch-by-name already shows whatever rank is on you."
+     },
+     {
+      "name": "matchesShowOn",
+      "field": "matchesShowOn",
+      "surface": "input",
+      "axis": "show",
+      "use_toggle": null,
+      "kind": null,
+      "default": "showOnActive",
+      "value_domain": [
+       "showOnActive",
+       "showOnMissing",
+       "showOnMatches",
+       "showAlways"
+      ],
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": {
+       "showOnActive": 48,
+       "showOnMissing": 45,
+       "showAlways": 7
+      },
+      "corpus_op": null,
+      "role": "present / MISSING / by match-count / always — showOnMissing = dropped-buff reminder (domain confirmed vs BuffTrigger2.lua)"
+     },
+     {
+      "name": "unitExists",
+      "field": "unit_exists",
+      "surface": "input",
+      "axis": "show",
+      "use_toggle": null,
+      "kind": "bool",
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": 8,
+      "corpus_op": null,
+      "role": "only when the unit exists"
+     },
+     {
+      "name": "inverse",
+      "field": "inverse",
+      "surface": "input",
+      "axis": "show",
+      "use_toggle": "use_inverse",
+      "kind": null,
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": 7,
+      "corpus_op": null,
+      "role": "invert the match result"
+     }
+    ],
+    "provides": [
+     {
+      "name": "stacks",
+      "field": "stacks",
+      "surface": "provides",
+      "axis": "read",
+      "use_toggle": "useStacks",
+      "kind": null,
+      "default": null,
+      "value_domain": null,
+      "operator": "stacksOperator",
+      "operator_domain": "operator_types",
+      "corpus_pct": 19,
+      "corpus_op": {
+       ">=": 89,
+       "==": 8,
+       "<=": 3
+      },
+      "role": "stack count — the builder/spender read"
+     },
+     {
+      "name": "rem",
+      "field": "remaining",
+      "surface": "provides",
+      "axis": "read",
+      "use_toggle": "useRem",
+      "kind": null,
+      "default": null,
+      "value_domain": null,
+      "operator": "remOperator",
+      "operator_domain": "operator_types",
+      "corpus_pct": 11,
+      "corpus_op": {
+       "<": 89,
+       ">=": 8
+      },
+      "role": "time remaining — '<' = about to expire"
+     },
+     {
+      "name": "duration",
+      "field": "duration",
+      "surface": "provides",
+      "axis": "read",
+      "use_toggle": null,
+      "kind": null,
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": 9,
+      "corpus_op": null,
+      "role": "total duration of the match"
+     },
+     {
+      "name": "fetchTooltip",
+      "field": "tooltip",
+      "surface": "provides",
+      "axis": "read",
+      "use_toggle": "use_tooltip",
+      "kind": null,
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": 2,
+      "corpus_op": null,
+      "role": "read numeric values out of the aura tooltip"
+     },
+     {
+      "name": "isStealable",
+      "field": "is_stealable",
+      "surface": "provides",
+      "axis": "read",
+      "use_toggle": null,
+      "kind": "bool",
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": null,
+      "corpus_op": null,
+      "role": "filter/read: aura is stealable (Spellsteal)"
+     },
+     {
+      "name": "isBossDebuff",
+      "field": "is_boss_debuff",
+      "surface": "provides",
+      "axis": "read",
+      "use_toggle": null,
+      "kind": "bool",
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": null,
+      "corpus_op": null,
+      "role": "filter/read: applied by a boss (undispellable)"
+     },
+     {
+      "name": "isCastByPlayer",
+      "field": "cast_by_player",
+      "surface": "provides",
+      "axis": "read",
+      "use_toggle": null,
+      "kind": "bool",
+      "default": null,
+      "value_domain": null,
+      "operator": null,
+      "operator_domain": null,
+      "corpus_pct": null,
+      "corpus_op": null,
+      "role": "filter/read: cast by a player character vs an NPC"
+     }
+    ],
+    "internal": []
+   },
+   "auto_state": "exposed automatically as trigger state on a match (BuffTrigger2.lua UpdateMatchData): name, icon, stacks, debuffClass, duration, expirationTime, unitCaster, spellId, isStealable, isBossDebuff, isCastByPlayer, progressType.",
+   "idioms": {
+    "unit_is_usually_self": "91% read player (self-buffs/procs); 7% target",
+    "mostly_buffs": "debuffType 87% HELPFUL",
+    "show_on_missing_is_huge": "matchesShowOn showOnActive 82 vs showOnMissing 76 — ~45% of buff auras fire when the buff is GONE (the 'you dropped it' reminder)",
+    "gate_idioms": "stacks with '>=' (at least N), remaining with '<' (about to expire)"
+   },
+   "axis_roles": {
+    "catch": "which auras match — the scan",
+    "resolve": "which of the matches to use, when several",
+    "show": "when the aura displays (the show-axis — distinct from catch)",
+    "read": "the native state it FLATTENS — exposed as trigger fields for conditions/display"
+   }
+  }
+ ],
+ "_meta": {
+  "source": "aura_trigger_schema.json (corpus 319 aura2 triggers + BuffTrigger2.lua) - NOT a prototype scan; aura2 is function-driven. read-axis = the surface conditions pair on.",
+  "provenance": "Fields + corpus_pct from 319 aura2 triggers in the OUR-WA corpus (plane/diagnose.py lens). Value-domains referenced to wa_index/value_domains.json (already sourced from WA's own Types.lua via extract.lua) where a shared table exists; else the inline domain is confirmed against WeakAuras/BuffTrigger2.lua on disk. Residue fields (subeventPrefix/Suffix, itemName/itemSlot, powertype, castType, genericShowOn, use_showgcd, form — cross-type leftovers) are deliberately EXCLUDED.",
+  "why": "The single most-used reader in real authorship (66% of the corpus) but function-driven, so absent from index.json's prototype scan. This closes that gap. A WA reads native buff-window state and flattens it; this names the fields that do the reading. See memory/aura-trigger-schema-and-matching + wa-reads-and-flattens-native-state."
+ }
+}

@@ -29,6 +29,8 @@ EXTRACT = os.path.join(_THIS, "extract.lua")
 WA = "F:/games/Ascension_wow/resources/ascension-live/Interface/AddOns/WeakAuras"
 PROTOS = os.path.join(WA, "Prototypes.lua")
 INDEX = os.path.join(_THIS, "index_grounded.json")
+SCHEMA = os.path.join(_THIS, "aura_trigger_schema.json")   # aura2 surface (function-driven; corpus + BuffTrigger2.lua)
+SEEDS = os.path.join(_THIS, "trigger_seed_defaults.json")
 # statesheets/ is the home for every WA DOMAIN (load, trigger, display, animations, ...).
 # This emitter fills the TRIGGER domain; siblings emit the others in the same shape.
 DOMAIN = "trigger"
@@ -139,6 +141,51 @@ def build(category, protos, by_opt, display):
     }
 
 
+def build_aura2():
+    """The Aura trigger (BuffTrigger2) is function-driven, so it has no event_prototype to scan. But the UI
+    exposes that function AS choices, so it fits the same sheet shape - sourced from aura_trigger_schema.json
+    (corpus + BuffTrigger2.lua). catch/resolve/show axes -> inputs; the read axis -> provides (the fields
+    conditions pair on). Basic first; the axis + corpus_pct richness rides along."""
+    schema = json.load(open(SCHEMA, encoding="utf-8"))
+    default_state = {"type": "aura2"}
+    default_state.update(json.load(open(SEEDS, encoding="utf-8")).get("aura2", {}))  # unit=player, debuffType=HELPFUL
+    inputs, provides = [], []
+    for axis in ("catch", "resolve", "show", "read"):
+        surface = "provides" if axis == "read" else "input"
+        for field, e in schema.get(axis, {}).items():
+            if field.startswith("_") or not isinstance(e, dict):
+                continue
+            row = {
+                "name": e.get("value", field), "field": field, "surface": surface, "axis": axis,
+                "use_toggle": e.get("use"), "kind": e.get("kind"), "default": e.get("default"),
+                "value_domain": e.get("domain_ref") or e.get("domain"),
+                "operator": e.get("operator"), "operator_domain": e.get("op_domain_ref"),
+                "corpus_pct": e.get("corpus_pct"), "corpus_op": e.get("corpus_op"), "role": e.get("role"),
+            }
+            if field == "by_name":        # the family catch = our drive-from-ID path (ID-in-names)
+                row["policy"] = {"knob": "useName", "our_policy": True,
+                                 "why": "match-family-not-rank: drive-from-ID = spellId in auranames, catches all ranks"}
+            if field == "by_exact_id":    # rank-lock = deliberately NOT the default
+                row["policy"] = {"knob": "useExactSpellId", "our_policy": False,
+                                 "why": "match-family-not-rank: exact spellId pins one rank; corpus over-uses it"}
+            (provides if surface == "provides" else inputs).append(row)
+    event = {
+        "event": "Aura", "display": "Aura",
+        "default_state": default_state,
+        "drive_from_id": "put the spellId in auranames (useName) - family match; not auraspellids (useExactSpellId)",
+        "options": {"inputs": inputs, "provides": provides, "internal": []},
+        "auto_state": schema.get("read", {}).get("_auto_state"),
+        "idioms": schema.get("_idioms"),
+        "axis_roles": {a: schema.get(a, {}).get("_role") for a in ("catch", "resolve", "show", "read")},
+    }
+    return {
+        "trigger_type": "aura2", "type_display": "Aura", "event_count": 1, "events": [event],
+        "_meta": {"source": "aura_trigger_schema.json (corpus 319 aura2 triggers + BuffTrigger2.lua) - NOT a "
+                            "prototype scan; aura2 is function-driven. read-axis = the surface conditions pair on.",
+                  "provenance": schema.get("_provenance"), "why": schema.get("_why")},
+    }
+
+
 def _md(sheet):
     out = ["# Trigger type: %s  (`%s`)\n" % (sheet["type_display"], sheet["trigger_type"]),
            "_%d events. input = you fill · provides = trigger outputs (conditions/subregions) · "
@@ -152,9 +199,10 @@ def _md(sheet):
             for o in e["options"][grp]:
                 pol = o.get("policy", {})
                 out.append("| %s | %s | %s | %s | %s | %s | %s | %s |" % (
-                    o["name"], o["surface"], o["input_kind"] or "", o["value_domain"] or "",
-                    o["default"] if o["default"] is not None else "", "✓" if o["required_seed"] else "",
-                    "✓" if o["gated"] else "", ("exact→%s" % pol["our_policy"]) if pol else ""))
+                    o["name"], o.get("surface", ""), o.get("input_kind") or o.get("axis") or "",
+                    o.get("value_domain") or "", o.get("default") if o.get("default") is not None else "",
+                    "✓" if o.get("required_seed") else "", "✓" if o.get("gated") else "",
+                    ("→%s" % pol.get("our_policy")) if pol else ""))
     return "\n".join(out) + "\n"
 
 
@@ -172,7 +220,8 @@ def _emit(sheet, want_md):
 
 
 # trigger types WA drives outside event_prototypes (special-cased in GenericTrigger/options)
-SPECIAL_TYPES = ("aura2", "custom")
+IMPLEMENTED_SPECIALS = ("aura2",)   # function-driven; built from aura_trigger_schema.json
+TODO_SPECIALS = ("custom",)
 
 
 def main():
@@ -182,12 +231,13 @@ def main():
     # the sourced worklist: distinct prototype 'type' == Private.category_event_prototype
     proto_types = sorted({p.get("type") for p in protos.values()
                           if isinstance(p, dict) and p.get("type")})
-    print("trigger-type worklist (sourced): %s" % proto_types)
-    print("  + special (not event_prototypes, TODO): %s" % list(SPECIAL_TYPES))
-    cats = args if (args and args[0] != "all") else proto_types
+    print("trigger-type worklist (sourced): %s + specials %s" % (proto_types, list(IMPLEMENTED_SPECIALS)))
+    print("  still TODO (not event_prototypes): %s" % list(TODO_SPECIALS))
+    cats = args if (args and args[0] != "all") else proto_types + list(IMPLEMENTED_SPECIALS)
     print("emitting -> %s/" % os.path.relpath(OUTDIR, _ROOT))
     for category in cats:
-        _emit(build(category, protos, by_opt, display), "--no-md" not in sys.argv)
+        sheet = build_aura2() if category == "aura2" else build(category, protos, by_opt, display)
+        _emit(sheet, "--no-md" not in sys.argv)
 
 
 if __name__ == "__main__":
