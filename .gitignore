@@ -45,6 +45,10 @@ coa_data_share.zip
 # absolute paths), regenerated per machine. Not source.
 Launcher.lnk
 
+# runtime/ - the service-runner's transient queue/receipts/processed (Claude queues calls,
+# the runner executes + receipts back). Ephemeral IPC, not source.
+runtime/
+
 # Outputs/lane_index.json - the FIRST-CUT behavioural lane classification (grab-by-class,
 # traceable), regenerated on demand via `py Scripts/classify_lanes.py --emit` from
 # dependencies/coa_spells.json + the inventory. Cheap + provisional (lane names not yet

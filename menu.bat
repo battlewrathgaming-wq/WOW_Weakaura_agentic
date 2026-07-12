@@ -23,14 +23,16 @@ echo     [1]  Paste-drop     capture WA exports into the inbox
 echo     [2]  Git status     read-only: show changes ^& last commits
 echo     [3]  Decode drop    settled view of the newest capture
 echo     [4]  Diff drops     per-option write delta (last two)
+echo     [5]  Service-runner start it in its OWN window (leave open)
 echo.
 echo   --------------------------------------------------
 echo     [A]  Advanced...    push (changes or uploads)
 echo     [Q]  Quit
 echo.
-choice /c 1234AQ /n /m "   Press a key: "
-if errorlevel 6 goto END
-if errorlevel 5 goto ADVANCED
+choice /c 12345AQ /n /m "   Press a key: "
+if errorlevel 7 goto END
+if errorlevel 6 goto ADVANCED
+if errorlevel 5 goto RUN_RUNNER
 if errorlevel 4 goto RUN_DIFF
 if errorlevel 3 goto RUN_DECODE
 if errorlevel 2 goto RUN_STATUS
@@ -61,6 +63,13 @@ cls
 py "%ROOT%Weak Auras\plane\decode.py" diff
 echo.
 pause
+goto MAIN
+
+:RUN_RUNNER
+cls
+echo Opening the service-runner in its own window...
+echo (Leave it open. Press Ctrl-C in that window to stop the runner.)
+start "service-runner" cmd /k py "%ROOT%runner.py"
 goto MAIN
 
 :ADVANCED
