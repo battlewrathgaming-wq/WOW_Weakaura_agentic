@@ -63,7 +63,7 @@ def _load_inventory():
                                  "primary": sid == a.get("primarySpellId"),
                                  "description": desc or "", "text": _clean(desc),
                                  "iconPath": a.get("iconPath"),
-                                 "isPassive": bool(a.get("isPassive")), "cost": a.get("cost"),
+                                 "cost": a.get("cost"),      # isPassive set in main() from the DBC attr bit
                                  "levelReq": a.get("levelReq"), "sources": a.get("sources")}
     return ctx, byclass
 
@@ -84,7 +84,9 @@ def main():
         rec["effectAuraNames"] = _resolve(s.get("effectAura"), se.AURA, se.AURA_MAX)
         rec["effectTargetNames"] = [TARGET.get(n) for n in (s.get("effectTargetA") or []) if n]
         if sid in ctx:
-            rec["ability"] = ctx[sid]
+            ab = ctx[sid]
+            ab["isPassive"] = se.is_passive(s.get("attr"))   # authoritative DBC SPELL_ATTR0_PASSIVE, not the builder flag
+            rec["ability"] = ab
         abilities[sid] = rec
 
     proc = {str(t) for s in spells.values() for t in (s.get("effectTriggerSpell") or []) if t}
@@ -124,6 +126,9 @@ hand-asserted; every claim traces to a mechanical source.
 - **Effect / aura / target names** - the raw enum numbers are resolved via a table that was diffed
   index-by-index, by an automated script, against TrinityCore's frozen 3.3.5 headers (`SharedDefines.h`
   `SpellEffects`, `SpellAuraDefines.h` `AuraType`). A mechanical two-source check.
+- **Passive flag** - `ability.isPassive` is read from the client's own `SPELL_ATTR0_PASSIVE` attribute bit
+  in the DBC, not from any scraped/authored guess. (The attribute correlates as expected: passive-flagged
+  spells carry a cast time or GCD only ~3% of the time, versus ~59% for non-passive.)
 
 ## Outcome
 - **IDs:** DBC and live-scrape agree ~99.9%.
@@ -151,7 +156,8 @@ Everything is JSON (`json.load`) - no API, no lookup layer. {nsp} spells across 
   range, power type + cost, school, plus **resolved effect meanings** (`effectNames`, `effectAuraNames`,
   `effectTargetNames`) with the raw enum numbers kept alongside (`effect`, `effectAura`, `effectTargetA`)
   so raw stays authoritative. Where known, `ability` carries class / spec / ability name, a display-ready
-  `text`, the raw `description`, `iconPath`, passive flag, cost, level, and sources. Proc/trigger links
+  `text`, the raw `description`, `iconPath`, `isPassive` (from the client's own `SPELL_ATTR0_PASSIVE` bit),
+  cost, level, and sources. Proc/trigger links
   stay in `effectTriggerSpell` and `coa.relation`.
 - **by_class.json** - `class -> spec -> ability -> [spellId]`. The talent-calculator traversal; every id
   links straight into abilities.json. Key however suits your view - by spell, or by class/spec/ability.
