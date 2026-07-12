@@ -42,13 +42,13 @@ _EFFECT_SRC = """
 113=resurrect_new 114=attack_me 115=durability_damage_pct 116=skin_player_corpse 117=spirit_heal
 118=skill 119=apply_area_aura_pet 120=teleport_graveyard 121=normalized_weapon_dmg 122=unk122
 123=send_taxi 124=pull_towards 125=modify_threat_percent 126=steal_beneficial_buff 127=prospecting
-128=apply_area_aura_friend 129=apply_area_aura_enemy 130=redirect_threat 131=unk131 132=play_music
+128=apply_area_aura_friend 129=apply_area_aura_enemy 130=redirect_threat 131=play_sound 132=play_music
 133=unlearn_specialization 134=kill_credit2 135=call_pet 136=heal_pct 137=energize_pct 138=leap_back
 139=clear_quest 140=force_cast 141=force_cast_with_value 142=trigger_spell_with_value
 143=apply_area_aura_owner 144=knock_back_dest 145=pull_towards_dest 146=activate_rune 147=quest_fail
 148=trigger_missile_spell_with_value 149=charge_dest 150=quest_start 151=trigger_spell_2
 152=summon_raf_friend 153=create_tamed_pet 154=discover_taxi 155=titan_grip 156=enchant_item_prismatic
-157=create_item_2 158=milling 159=allow_rename_pet 160=unk160 161=talent_spec_count
+157=create_item_2 158=milling 159=allow_rename_pet 160=force_cast_2 161=talent_spec_count
 162=talent_spec_select 163=unk163 164=remove_aura
 """
 
