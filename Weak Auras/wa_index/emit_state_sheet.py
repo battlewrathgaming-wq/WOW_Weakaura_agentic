@@ -30,6 +30,7 @@ WA = "F:/games/Ascension_wow/resources/ascension-live/Interface/AddOns/WeakAuras
 PROTOS = os.path.join(WA, "Prototypes.lua")
 INDEX = os.path.join(_THIS, "index_grounded.json")
 AURA2_OPTS = os.path.join(os.path.dirname(WA), "WeakAurasOptions", "BuffTrigger2.lua")  # aura2 SELF-REPORT source
+GENERIC_OPTS = os.path.join(os.path.dirname(WA), "WeakAurasOptions", "GenericTrigger.lua")  # custom SELF-REPORT source
 SCHEMA = os.path.join(_THIS, "aura_trigger_schema.json")   # aura2 corpus ENRICHMENT (idioms / rank-resolution)
 SEEDS = os.path.join(_THIS, "trigger_seed_defaults.json")
 # statesheets/ is the home for every WA DOMAIN (load, trigger, display, animations, ...).
@@ -145,13 +146,27 @@ def build(category, protos, by_opt, display):
 LEVER_TYPES = {"toggle", "select", "input", "multiselect", "range", "number", "color", "toggleWithIcon"}
 
 
-def _extract_aura2_options():
-    """Run extract.lua triggeroptions -> aura2's OWN self-reported option surface (GetBuffTriggerOptions
-    called under stubs; every option WA's builder declares, complete by construction)."""
-    proc = subprocess.run([LUA, EXTRACT, "triggeroptions", AURA2_OPTS], capture_output=True, text=True)
+def _extract_trigger_options(optsfile, probetype=None):
+    """Run extract.lua triggeroptions -> a trigger system's OWN self-reported option surface (its options
+    builder called under stubs with a probe of `probetype`; every option WA's builder declares)."""
+    cmd = [LUA, EXTRACT, "triggeroptions", optsfile] + ([probetype] if probetype else [])
+    proc = subprocess.run(cmd, capture_output=True, text=True)
     if proc.returncode != 0:
         sys.exit("extract.lua triggeroptions failed: " + proc.stderr[:400])
     return json.loads(proc.stdout)
+
+
+def _lever_rows(raw):
+    """self-reported options -> input rows (levers only, ordered)."""
+    rows = []
+    for key, o in sorted(raw.items(), key=lambda kv: (kv[1].get("order") if isinstance(kv[1], dict) else 0) or 0):
+        if not isinstance(o, dict) or o.get("type") not in LEVER_TYPES:
+            continue
+        rows.append({"name": key, "display": o.get("name"), "surface": "input",
+                     "input_type": o.get("type"), "order": o.get("order"), "value_domain": o.get("values"),
+                     "conditional": bool(o.get("conditional")),
+                     "enabled_when": "conditional" if o.get("conditional") else "always"})
+    return rows
 
 
 def build_aura2():
@@ -160,23 +175,16 @@ def build_aura2():
     complete input surface (not a corpus-curated list). `conditional` = the option's hidden-fn gating (the
     tier-1 exclusivity FLAG; the readable relationship is the live-probe pass, still to come). provides = the
     auto-state the trigger flattens (UpdateMatchData). The corpus schema is demoted to an ENRICHMENT block."""
-    raw = _extract_aura2_options()
+    raw = _extract_trigger_options(AURA2_OPTS)
     schema = json.load(open(SCHEMA, encoding="utf-8"))
     default_state = {"type": "aura2"}
     default_state.update(json.load(open(SEEDS, encoding="utf-8")).get("aura2", {}))  # unit=player, debuffType=HELPFUL
-    inputs = []
-    for key, o in sorted(raw.items(), key=lambda kv: (kv[1].get("order") if isinstance(kv[1], dict) else 0) or 0):
-        if not isinstance(o, dict) or o.get("type") not in LEVER_TYPES:
-            continue
-        row = {"name": key, "display": o.get("name"), "surface": "input",
-               "input_type": o.get("type"), "order": o.get("order"), "value_domain": o.get("values"),
-               "conditional": bool(o.get("conditional")),
-               "enabled_when": "conditional" if o.get("conditional") else "always"}
-        if key == "useName":
+    inputs = _lever_rows(raw)
+    for row in inputs:                        # match-family-not-rank policy
+        if row["name"] == "useName":
             row["policy"] = {"our_policy": True, "why": "match-family-not-rank: drive-from-ID in auranames, all ranks"}
-        if key == "useExactSpellId":
+        elif row["name"] == "useExactSpellId":
             row["policy"] = {"our_policy": False, "why": "match-family-not-rank: exact spellId pins one rank"}
-        inputs.append(row)
     auto = schema.get("read", {}).get("_auto_state", "")
     provides = [{"name": f.strip().rstrip("."), "surface": "provides"}
                 for f in (auto.split(":", 1)[1] if ":" in auto else "").split(",") if f.strip()]
@@ -194,6 +202,28 @@ def build_aura2():
         "_meta": {"source": "SELF-REPORTED via extract.lua triggeroptions -> GetBuffTriggerOptions (WA's own "
                             "options builder). provides = auto-state (BuffTrigger2 UpdateMatchData). corpus schema "
                             "= enrichment only, NOT the surface. `conditional` = tier-1 exclusivity flag.",
+                  "input_count": len(inputs)},
+    }
+
+
+def build_custom():
+    """Custom has no event_prototype, but its options SELF-REPORT via GetGenericTriggerOptions (probed
+    type=custom). This is the custom-SPECIFIC surface (event/check/hide/duration config) - a thin wrapper.
+    The code boxes (Custom Trigger / Name / Icon / Texture / Stack Info) are COMMON trigger options
+    (AddCommonTriggerOptions, shared across ALL triggers), a separate common-options self-report - noted."""
+    inputs = _lever_rows(_extract_trigger_options(GENERIC_OPTS, "custom"))
+    event = {
+        "event": "Custom", "display": "Custom", "default_state": {"type": "custom", "custom_type": "event"},
+        "note": "code-entry wrapper: the user writes Lua. The Custom Trigger / Name / Icon / Texture / Stack "
+                "Info code boxes are COMMON trigger options (AddCommonTriggerOptions), shared across ALL "
+                "triggers - NOT custom-specific; a separate common-options self-report (stubbed here).",
+        "options": {"inputs": inputs, "provides": [], "internal": []},
+    }
+    return {
+        "trigger_type": "custom", "type_display": "Custom", "event_count": 1, "events": [event],
+        "_meta": {"source": "SELF-REPORTED via extract.lua triggeroptions -> GetGenericTriggerOptions (probe "
+                            "type=custom). Custom-specific options only; the common code-boxes are the shared "
+                            "common-options layer (TODO, applies to all types).",
                   "input_count": len(inputs)},
     }
 
@@ -232,8 +262,8 @@ def _emit(sheet, want_md):
 
 
 # trigger types WA drives outside event_prototypes (special-cased in GenericTrigger/options)
-IMPLEMENTED_SPECIALS = ("aura2",)   # function-driven; built from aura_trigger_schema.json
-TODO_SPECIALS = ("custom",)
+IMPLEMENTED_SPECIALS = ("aura2", "custom")   # function-driven; self-reported via triggeroptions
+TODO_SPECIALS = ()
 
 
 def main():
@@ -247,8 +277,9 @@ def main():
     print("  still TODO (not event_prototypes): %s" % list(TODO_SPECIALS))
     cats = args if (args and args[0] != "all") else proto_types + list(IMPLEMENTED_SPECIALS)
     print("emitting -> %s/" % os.path.relpath(OUTDIR, _ROOT))
+    special = {"aura2": build_aura2, "custom": build_custom}
     for category in cats:
-        sheet = build_aura2() if category == "aura2" else build(category, protos, by_opt, display)
+        sheet = special[category]() if category in special else build(category, protos, by_opt, display)
         _emit(sheet, "--no-md" not in sys.argv)
 
 

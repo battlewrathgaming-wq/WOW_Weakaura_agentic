@@ -53,8 +53,14 @@ end)
 -- dest without the method (nil-call error), so give dest the autoviv metatable -
 -- then dest:AnyMethod() resolves to an inert stub instead of erroring.
 local function MixinStub(dest, ...)
-  if type(dest) == "table" then return setmetatable(dest, AV_MT) end
-  return dest
+  if type(dest) ~= "table" then return dest end
+  -- real Mixin copies each source's fields into dest; options builders merge sub-tables this
+  -- way (e.g. GetGenericTriggerOptions Mixins in GetCustomTriggerOptions). A no-op dropped them.
+  for i = 1, select("#", ...) do
+    local src = select(i, ...)
+    if type(src) == "table" then for k, v in pairs(src) do dest[k] = v end end
+  end
+  return setmetatable(dest, AV_MT)
 end
 _G.Mixin = MixinStub
 
@@ -274,9 +280,11 @@ elseif mode == "triggeroptions" then
   -- mutual-exclusivity WA itself encodes. No field list defined by us - the builder emits it.
   for _, e in ipairs(captured) do
     if e.kind == "triggeroptions" and type(e.getOptions) == "function" then
-      local probe = setmetatable({
-        triggers = { [1] = { trigger = { type = "aura2", unit = "player", debuffType = "HELPFUL" } } },
-      }, AV_MT)
+      local ptype = arg[3] or "aura2"                     -- which trigger type to probe (arg 3)
+      local ptrig = { type = ptype }
+      if ptype == "aura2" then ptrig.unit = "player"; ptrig.debuffType = "HELPFUL"
+      elseif ptype == "custom" then ptrig.custom_type = "event" end
+      local probe = setmetatable({ triggers = { [1] = { trigger = ptrig } } }, AV_MT)
       local ok2, opts = pcall(e.getOptions, probe, 1)
       if ok2 and type(opts) == "table" then
         for _, group in pairs(opts) do          -- unwrap the "trigger.N.aura_options" group -> flat options

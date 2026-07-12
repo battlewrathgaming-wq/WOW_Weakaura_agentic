@@ -1,0 +1,126 @@
+{
+ "trigger_type": "custom",
+ "type_display": "Custom",
+ "event_count": 1,
+ "events": [
+  {
+   "event": "Custom",
+   "display": "Custom",
+   "default_state": {
+    "type": "custom",
+    "custom_type": "event"
+   },
+   "note": "code-entry wrapper: the user writes Lua. The Custom Trigger / Name / Icon / Texture / Stack Info code boxes are COMMON trigger options (AddCommonTriggerOptions), shared across ALL triggers - NOT custom-specific; a separate common-options self-report (stubbed here).",
+   "options": {
+    "inputs": [
+     {
+      "name": "custom_type",
+      "display": "Event Type",
+      "surface": "input",
+      "input_type": "select",
+      "order": 7,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "check",
+      "display": "Check On...",
+      "surface": "input",
+      "input_type": "select",
+      "order": 8,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "events",
+      "display": "Event(s)",
+      "surface": "input",
+      "input_type": "input",
+      "order": 8.1,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "check2",
+      "display": "Check On...",
+      "surface": "input",
+      "input_type": "select",
+      "order": 9,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "onUpdateThrottle",
+      "display": "Custom trigger Update Throttle",
+      "surface": "input",
+      "input_type": "range",
+      "order": 9.01,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "events2",
+      "display": "Event(s)",
+      "surface": "input",
+      "input_type": "input",
+      "order": 9.1,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "custom_hide",
+      "display": "Hide",
+      "surface": "input",
+      "input_type": "select",
+      "order": 12,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "custom_hide2",
+      "display": "Hide",
+      "surface": "input",
+      "input_type": "select",
+      "order": 12,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "dynamicDuration",
+      "display": "Dynamic Duration",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 12.5,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "duration",
+      "display": "Duration (s)",
+      "surface": "input",
+      "input_type": "input",
+      "order": 13,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     }
+    ],
+    "provides": [],
+    "internal": []
+   }
+  }
+ ],
+ "_meta": {
+  "source": "SELF-REPORTED via extract.lua triggeroptions -> GetGenericTriggerOptions (probe type=custom). Custom-specific options only; the common code-boxes are the shared common-options layer (TODO, applies to all types).",
+  "input_count": 10
+ }
+}
