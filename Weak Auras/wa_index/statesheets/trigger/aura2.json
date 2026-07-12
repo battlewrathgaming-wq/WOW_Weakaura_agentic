@@ -11,450 +11,909 @@
     "debuffType": "HELPFUL",
     "unit": "player"
    },
-   "drive_from_id": "put the spellId in auranames (useName) - family match; not auraspellids (useExactSpellId)",
+   "drive_from_id": "spellId in auranames (useName) - family match; not auraspellids (useExactSpellId)",
    "options": {
     "inputs": [
      {
-      "name": "unit",
-      "field": "unit",
+      "name": "useUnit",
+      "display": "Unit",
       "surface": "input",
-      "axis": "catch",
-      "use_toggle": "use_unit",
-      "kind": null,
-      "default": "player",
-      "value_domain": [
-       "baseUnitId",
-       "multiUnitId"
-      ],
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": {
-       "player": 91,
-       "target": 7,
-       "pet": 1,
-       "group": 1
-      },
-      "corpus_op": null,
-      "role": "whose auras to scan"
+      "input_type": "toggle",
+      "order": 10,
+      "value_domain": null,
+      "conditional": false,
+      "enabled_when": "always"
+     },
+     {
+      "name": "unit",
+      "display": "Unit",
+      "surface": "input",
+      "input_type": "select",
+      "order": 10.1,
+      "value_domain": null,
+      "conditional": false,
+      "enabled_when": "always"
+     },
+     {
+      "name": "useSpecificUnit",
+      "display": "Specific Unit",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 10.2,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "specificUnit",
+      "display": "Specific Unit",
+      "surface": "input",
+      "input_type": "input",
+      "order": 10.3,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useDebuffType",
+      "display": "Aura Type",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 11,
+      "value_domain": null,
+      "conditional": false,
+      "enabled_when": "always"
      },
      {
       "name": "debuffType",
-      "field": "debuffType",
+      "display": "Aura Type",
       "surface": "input",
-      "axis": "catch",
-      "use_toggle": null,
-      "kind": null,
-      "default": "HELPFUL",
-      "value_domain": "debuff_types",
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": {
-       "HELPFUL": 87,
-       "BOTH": 7,
-       "HARMFUL": 7
-      },
-      "corpus_op": null,
-      "role": "buff vs debuff"
+      "input_type": "select",
+      "order": 11.1,
+      "value_domain": null,
+      "conditional": false,
+      "enabled_when": "always"
      },
      {
-      "name": "auranames",
-      "field": "by_name",
+      "name": "use_debuffClass",
+      "display": "Debuff Type",
       "surface": "input",
-      "axis": "catch",
-      "use_toggle": "useName",
-      "kind": "list",
-      "default": null,
+      "input_type": "toggle",
+      "order": 11.2,
       "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": 68,
-      "corpus_op": null,
-      "role": "match by a display NAME or by an ID placed in this field ('ID-in-names') — either catches the whole rank FAMILY (all ranks). THE all-ranks catch. COA idiom (grounded): the Stormbringer aura puts 804591 in auranames.",
-      "policy": {
-       "knob": "useName",
-       "our_policy": true,
-       "why": "match-family-not-rank: drive-from-ID = spellId in auranames, catches all ranks"
-      }
-     },
-     {
-      "name": "auraspellids",
-      "field": "by_exact_id",
-      "surface": "input",
-      "axis": "catch",
-      "use_toggle": "useExactSpellId",
-      "kind": "list",
-      "default": null,
-      "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": 51,
-      "corpus_op": null,
-      "role": "match an EXACT spellId — pins ONE rank only (brittle for rank-variant abilities; corpus over-uses it)",
-      "policy": {
-       "knob": "useExactSpellId",
-       "our_policy": false,
-       "why": "match-family-not-rank: exact spellId pins one rank; corpus over-uses it"
-      }
-     },
-     {
-      "name": "namePattern_name",
-      "field": "by_pattern",
-      "surface": "input",
-      "axis": "catch",
-      "use_toggle": "useNamePattern",
-      "kind": null,
-      "default": null,
-      "value_domain": null,
-      "operator": "namePattern_operator",
-      "operator_domain": "string_operator_types",
-      "corpus_pct": 5,
-      "corpus_op": null,
-      "role": "match by string pattern"
-     },
-     {
-      "name": "ownOnly",
-      "field": "own_only",
-      "surface": "input",
-      "axis": "catch",
-      "use_toggle": null,
-      "kind": "bool",
-      "default": null,
-      "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": 24,
-      "corpus_op": null,
-      "role": "only auras I applied"
+      "conditional": true,
+      "enabled_when": "conditional"
      },
      {
       "name": "debuffClass",
-      "field": "by_debuff_class",
+      "display": "Debuff Type",
       "surface": "input",
-      "axis": "catch",
-      "use_toggle": "use_debuffClass",
-      "kind": null,
-      "default": null,
-      "value_domain": "debuff_class_types",
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": 3,
-      "corpus_op": null,
-      "role": "match by dispel class (magic/curse/disease/poison/enrage)"
-     },
-     {
-      "name": "ignoreAuraNames",
-      "field": "ignore_names",
-      "surface": "input",
-      "axis": "catch",
-      "use_toggle": "useIgnoreName",
-      "kind": "list",
-      "default": null,
+      "input_type": "multiselect",
+      "order": 11.3,
       "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": 5,
-      "corpus_op": null,
-      "role": "EXCLUDE names — solves over-catch (e.g. Plague catching Plague Bolt)"
+      "conditional": true,
+      "enabled_when": "conditional"
      },
      {
-      "name": "ignoreAuraSpellids",
-      "field": "ignore_ids",
+      "name": "useName",
+      "display": "Name(s)",
       "surface": "input",
-      "axis": "catch",
-      "use_toggle": "useIgnoreExactSpellId",
-      "kind": "list",
-      "default": null,
+      "input_type": "toggle",
+      "order": 12,
       "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": 0,
-      "corpus_op": null,
-      "role": "exclude specific spellIds"
+      "conditional": false,
+      "enabled_when": "always",
+      "policy": {
+       "our_policy": true,
+       "why": "match-family-not-rank: drive-from-ID in auranames, all ranks"
+      }
      },
      {
-      "name": "match_count",
-      "field": "match_count",
+      "name": "name1",
+      "display": "Aura Name",
       "surface": "input",
-      "axis": "resolve",
-      "use_toggle": "useMatch_count",
-      "kind": null,
-      "default": null,
+      "input_type": "input",
+      "order": 12.0103,
       "value_domain": null,
-      "operator": "match_countOperator",
-      "operator_domain": "operator_types",
-      "corpus_pct": 6,
-      "corpus_op": null,
-      "role": "gate on HOW MANY auras match"
+      "conditional": true,
+      "enabled_when": "conditional"
      },
      {
-      "name": "perUnitMode",
-      "field": "per_unit_mode",
+      "name": "useExactSpellId",
+      "display": "Exact Spell ID(s)",
       "surface": "input",
-      "axis": "resolve",
-      "use_toggle": null,
-      "kind": null,
-      "default": null,
-      "value_domain": "bufftrigger_2_per_unit_mode",
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": null,
-      "corpus_op": null,
-      "role": "for multi-unit scans: affected / unaffected / all"
-     },
-     {
-      "name": "combineMatches",
-      "field": "combine",
-      "surface": "input",
-      "axis": "resolve",
-      "use_toggle": null,
-      "kind": null,
-      "default": null,
+      "input_type": "toggle",
+      "order": 22,
       "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": 3,
-      "corpus_op": null,
-      "role": "aggregate matches across units into one state"
+      "conditional": false,
+      "enabled_when": "always",
+      "policy": {
+       "our_policy": false,
+       "why": "match-family-not-rank: exact spellId pins one rank"
+      }
      },
      {
-      "name": "autoclone",
-      "field": "clones",
+      "name": "spellid1",
+      "display": "Spell ID",
       "surface": "input",
-      "axis": "resolve",
-      "use_toggle": null,
-      "kind": "bool",
-      "default": null,
+      "input_type": "input",
+      "order": 22.0103,
       "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": 14,
-      "corpus_op": null,
-      "role": "emit one dynamic clone per matching unit"
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useIgnoreName",
+      "display": "Ignored Name(s)",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 32,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "ignorename1",
+      "display": "Ignored Aura Name",
+      "surface": "input",
+      "input_type": "input",
+      "order": 32.0103,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useIgnoreExactSpellId",
+      "display": "Ignored Exact Spell ID(s)",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 42,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "ignorespellid1",
+      "display": "Ignored Spell ID",
+      "surface": "input",
+      "input_type": "input",
+      "order": 42.0103,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useNamePattern",
+      "display": "Name Pattern Match",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 55,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "namePattern_operator",
+      "display": "Operator",
+      "surface": "input",
+      "input_type": "select",
+      "order": 55.1,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "namePattern_name",
+      "display": "Aura Name Pattern",
+      "surface": "input",
+      "input_type": "input",
+      "order": 55.2,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useStacks",
+      "display": "Stack Count",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 60,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "stacksOperator",
+      "display": "Operator",
+      "surface": "input",
+      "input_type": "select",
+      "order": 60.1,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "stacks",
+      "display": "Stack Count",
+      "surface": "input",
+      "input_type": "input",
+      "order": 60.2,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useRem",
+      "display": "Remaining Time",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 61,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "remOperator",
+      "display": "Operator",
+      "surface": "input",
+      "input_type": "select",
+      "order": 61.1,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "rem",
+      "display": "Remaining Time",
+      "surface": "input",
+      "input_type": "input",
+      "order": 61.2,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useTotal",
+      "display": "Total Time",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 61.4,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "totalOperator",
+      "display": "Operator",
+      "surface": "input",
+      "input_type": "select",
+      "order": 61.5,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "total",
+      "display": "Total Time",
+      "surface": "input",
+      "input_type": "input",
+      "order": 61.6,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "use_stealable",
+      "display": "Is Stealable",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 64,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "use_isBossDebuff",
+      "display": "Is Boss Debuff",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 64.1,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "use_castByPlayer",
+      "display": "Cast by a Player Character",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 64.2,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "ownOnly",
+      "display": "Own Only",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 64.3,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "fetchTooltip",
+      "display": "Fetch Tooltip Information",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 64.5,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "use_tooltip",
+      "display": "Tooltip Pattern Match",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 64.51,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "tooltip_operator",
+      "display": "Operator",
+      "surface": "input",
+      "input_type": "select",
+      "order": 64.53,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "tooltip",
+      "display": "Tooltip Content",
+      "surface": "input",
+      "input_type": "input",
+      "order": 64.54,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "use_tooltipValue",
+      "display": "Tooltip Value",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 64.55,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "tooltipValueNumber",
+      "display": "Tooltip Value #",
+      "surface": "input",
+      "input_type": "select",
+      "order": 64.56,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "tooltipValue_operator",
+      "display": "Operator",
+      "surface": "input",
+      "input_type": "select",
+      "order": 64.58,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "tooltipValue",
+      "display": "Tooltip",
+      "surface": "input",
+      "input_type": "input",
+      "order": 64.59,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useAffected",
+      "display": "Fetch Affected/Unaffected Names and Units",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 65.1,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "fetchRole",
+      "display": "Fetch Role Information",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 65.2,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "fetchRaidMark",
+      "display": "Fetch Raid Mark Information",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 65.3,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "use_includePets",
+      "display": "Include Pets",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 66.1,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "includePets",
+      "display": "Include Pets",
+      "surface": "input",
+      "input_type": "select",
+      "order": 66.15,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useActualSpec",
+      "display": "Filter by Specialization",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 66.3,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "actualSpec",
+      "display": "Actual Spec",
+      "surface": "input",
+      "input_type": "multiselect",
+      "order": 66.4,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useGroupRole",
+      "display": "Filter by Group Role",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 67.1,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "group_role",
+      "display": "Group Role",
+      "surface": "input",
+      "input_type": "multiselect",
+      "order": 67.2,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useRaidRole",
+      "display": "Filter by Raid Role",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 67.4,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "raid_role",
+      "display": "Raid Role",
+      "surface": "input",
+      "input_type": "multiselect",
+      "order": 67.5,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useClass",
+      "display": "Filter by Class",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 68.1,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "class",
+      "display": "Class",
+      "surface": "input",
+      "input_type": "multiselect",
+      "order": 68.2,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useUnitName",
+      "display": "Filter by Unit Name",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 68.4,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "unitName",
+      "display": "Filter by Unit Name",
+      "surface": "input",
+      "input_type": "input",
+      "order": 68.5,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useHostility",
+      "display": "Filter by Hostility",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 69.1,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "hostility",
+      "display": "Hostility",
+      "surface": "input",
+      "input_type": "select",
+      "order": 69.2,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useNpcId",
+      "display": "Filter by Npc ID",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 69.31,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "npcId",
+      "display": "Npc ID",
+      "surface": "input",
+      "input_type": "input",
+      "order": 69.32,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "ignoreSelf",
+      "display": "Ignore Self",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 69.35,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "ignoreDead",
+      "display": "Ignore Dead",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 69.4,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "ignoreDisconnected",
+      "display": "Ignore Disconnected",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 69.8,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "inRange",
+      "display": "Ignore out of casting range",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 69.81,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "ignoreInvisible",
+      "display": "Ignore out of checking range",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 69.9,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useGroup_count",
+      "display": "Unit Count",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 70,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "group_countOperator",
+      "display": "Operator",
+      "surface": "input",
+      "input_type": "select",
+      "order": 70.2,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
      },
      {
       "name": "group_count",
-      "field": "group_count",
+      "display": "Count",
       "surface": "input",
-      "axis": "resolve",
-      "use_toggle": "useGroup_count",
-      "kind": null,
-      "default": null,
+      "input_type": "input",
+      "order": 70.3,
       "value_domain": null,
-      "operator": "group_countOperator",
-      "operator_domain": null,
-      "corpus_pct": 2,
-      "corpus_op": null,
-      "role": "how many group members match"
+      "conditional": true,
+      "enabled_when": "conditional"
      },
      {
-      "name": "(options-layer; set on 0 of 319 corpus triggers)",
-      "field": "preferred_match",
+      "name": "use_matchesShowOn",
+      "display": "Show On",
       "surface": "input",
-      "axis": "resolve",
-      "use_toggle": null,
-      "kind": null,
-      "default": null,
-      "value_domain": [
-       "Most remaining",
-       "Highest spell ID",
-       "Least remaining",
-       "Lowest spell ID"
-      ],
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": null,
-      "corpus_op": null,
-      "role": "runtime tiebreaker among currently-ACTIVE matches on the unit — 'Highest spell ID' picks among what's LIVE (what the player actually has), NOT a static highest-rank-in-DBC lookup. Rarely needed: catch-by-name already shows whatever rank is on you."
+      "input_type": "toggle",
+      "order": 71,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
      },
      {
       "name": "matchesShowOn",
-      "field": "matchesShowOn",
+      "display": "Show On",
       "surface": "input",
-      "axis": "show",
-      "use_toggle": null,
-      "kind": null,
-      "default": "showOnActive",
-      "value_domain": [
-       "showOnActive",
-       "showOnMissing",
-       "showOnMatches",
-       "showAlways"
-      ],
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": {
-       "showOnActive": 48,
-       "showOnMissing": 45,
-       "showAlways": 7
-      },
-      "corpus_op": null,
-      "role": "present / MISSING / by match-count / always — showOnMissing = dropped-buff reminder (domain confirmed vs BuffTrigger2.lua)"
+      "input_type": "select",
+      "order": 71.1,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useMatch_count",
+      "display": "Match Count",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 71.2,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "match_countOperator",
+      "display": "Operator",
+      "surface": "input",
+      "input_type": "select",
+      "order": 71.4,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "match_count",
+      "display": "Count",
+      "surface": "input",
+      "input_type": "input",
+      "order": 71.5,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "useMatchPerUnit_count",
+      "display": "Match Count per Unit",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 71.6,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "matchPerUnit_countOperator",
+      "display": "Operator",
+      "surface": "input",
+      "input_type": "select",
+      "order": 71.8,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "matchPerUnit_count",
+      "display": "Count",
+      "surface": "input",
+      "input_type": "input",
+      "order": 71.9,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "showClones",
+      "display": "Auto-Clone (Show All Matches)",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 72,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "combinePerUnit",
+      "display": "Combine Matches Per Unit",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 72.2,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "use_perUnitMode",
+      "display": "Show Matches for Units",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 72.3,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "perUnitMode",
+      "display": "Show Matches for",
+      "surface": "input",
+      "input_type": "select",
+      "order": 72.4,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "use_combineMode",
+      "display": "Preferred Match",
+      "surface": "input",
+      "input_type": "toggle",
+      "order": 72.5,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
+     },
+     {
+      "name": "combineMode",
+      "display": "Preferred Match",
+      "surface": "input",
+      "input_type": "select",
+      "order": 72.6,
+      "value_domain": null,
+      "conditional": true,
+      "enabled_when": "conditional"
      },
      {
       "name": "unitExists",
-      "field": "unit_exists",
+      "display": "Show If Unit Does Not Exist",
       "surface": "input",
-      "axis": "show",
-      "use_toggle": null,
-      "kind": "bool",
-      "default": null,
+      "input_type": "toggle",
+      "order": 73,
       "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": 8,
-      "corpus_op": null,
-      "role": "only when the unit exists"
-     },
-     {
-      "name": "inverse",
-      "field": "inverse",
-      "surface": "input",
-      "axis": "show",
-      "use_toggle": "use_inverse",
-      "kind": null,
-      "default": null,
-      "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": 7,
-      "corpus_op": null,
-      "role": "invert the match result"
+      "conditional": true,
+      "enabled_when": "conditional"
      }
     ],
     "provides": [
      {
-      "name": "stacks",
-      "field": "stacks",
-      "surface": "provides",
-      "axis": "read",
-      "use_toggle": "useStacks",
-      "kind": null,
-      "default": null,
-      "value_domain": null,
-      "operator": "stacksOperator",
-      "operator_domain": "operator_types",
-      "corpus_pct": 19,
-      "corpus_op": {
-       ">=": 89,
-       "==": 8,
-       "<=": 3
-      },
-      "role": "stack count — the builder/spender read"
+      "name": "name",
+      "surface": "provides"
      },
      {
-      "name": "rem",
-      "field": "remaining",
-      "surface": "provides",
-      "axis": "read",
-      "use_toggle": "useRem",
-      "kind": null,
-      "default": null,
-      "value_domain": null,
-      "operator": "remOperator",
-      "operator_domain": "operator_types",
-      "corpus_pct": 11,
-      "corpus_op": {
-       "<": 89,
-       ">=": 8
-      },
-      "role": "time remaining — '<' = about to expire"
+      "name": "icon",
+      "surface": "provides"
+     },
+     {
+      "name": "stacks",
+      "surface": "provides"
+     },
+     {
+      "name": "debuffClass",
+      "surface": "provides"
      },
      {
       "name": "duration",
-      "field": "duration",
-      "surface": "provides",
-      "axis": "read",
-      "use_toggle": null,
-      "kind": null,
-      "default": null,
-      "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": 9,
-      "corpus_op": null,
-      "role": "total duration of the match"
+      "surface": "provides"
      },
      {
-      "name": "fetchTooltip",
-      "field": "tooltip",
-      "surface": "provides",
-      "axis": "read",
-      "use_toggle": "use_tooltip",
-      "kind": null,
-      "default": null,
-      "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": 2,
-      "corpus_op": null,
-      "role": "read numeric values out of the aura tooltip"
+      "name": "expirationTime",
+      "surface": "provides"
+     },
+     {
+      "name": "unitCaster",
+      "surface": "provides"
+     },
+     {
+      "name": "spellId",
+      "surface": "provides"
      },
      {
       "name": "isStealable",
-      "field": "is_stealable",
-      "surface": "provides",
-      "axis": "read",
-      "use_toggle": null,
-      "kind": "bool",
-      "default": null,
-      "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": null,
-      "corpus_op": null,
-      "role": "filter/read: aura is stealable (Spellsteal)"
+      "surface": "provides"
      },
      {
       "name": "isBossDebuff",
-      "field": "is_boss_debuff",
-      "surface": "provides",
-      "axis": "read",
-      "use_toggle": null,
-      "kind": "bool",
-      "default": null,
-      "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": null,
-      "corpus_op": null,
-      "role": "filter/read: applied by a boss (undispellable)"
+      "surface": "provides"
      },
      {
       "name": "isCastByPlayer",
-      "field": "cast_by_player",
-      "surface": "provides",
-      "axis": "read",
-      "use_toggle": null,
-      "kind": "bool",
-      "default": null,
-      "value_domain": null,
-      "operator": null,
-      "operator_domain": null,
-      "corpus_pct": null,
-      "corpus_op": null,
-      "role": "filter/read: cast by a player character vs an NPC"
+      "surface": "provides"
+     },
+     {
+      "name": "progressType",
+      "surface": "provides"
      }
     ],
     "internal": []
    },
-   "auto_state": "exposed automatically as trigger state on a match (BuffTrigger2.lua UpdateMatchData): name, icon, stacks, debuffClass, duration, expirationTime, unitCaster, spellId, isStealable, isBossDebuff, isCastByPlayer, progressType.",
-   "idioms": {
-    "unit_is_usually_self": "91% read player (self-buffs/procs); 7% target",
-    "mostly_buffs": "debuffType 87% HELPFUL",
-    "show_on_missing_is_huge": "matchesShowOn showOnActive 82 vs showOnMissing 76 — ~45% of buff auras fire when the buff is GONE (the 'you dropped it' reminder)",
-    "gate_idioms": "stacks with '>=' (at least N), remaining with '<' (about to expire)"
-   },
-   "axis_roles": {
-    "catch": "which auras match — the scan",
-    "resolve": "which of the matches to use, when several",
-    "show": "when the aura displays (the show-axis — distinct from catch)",
-    "read": "the native state it FLATTENS — exposed as trigger fields for conditions/display"
+   "enrichment": {
+    "idioms": {
+     "unit_is_usually_self": "91% read player (self-buffs/procs); 7% target",
+     "mostly_buffs": "debuffType 87% HELPFUL",
+     "show_on_missing_is_huge": "matchesShowOn showOnActive 82 vs showOnMissing 76 — ~45% of buff auras fire when the buff is GONE (the 'you dropped it' reminder)",
+     "gate_idioms": "stacks with '>=' (at least N), remaining with '<' (about to expire)"
+    },
+    "axis_roles": {
+     "catch": "which auras match — the scan",
+     "resolve": "which of the matches to use, when several",
+     "show": "when the aura displays (the show-axis — distinct from catch)",
+     "read": "the native state it FLATTENS — exposed as trigger fields for conditions/display"
+    },
+    "rank_resolution": "CORRECTED by corpus inspection (2026-07-12): the rank answer is the CATCH method, not preferred_match (used 0/319). ALL ranks = by_name with a name OR an ID (ID-in-names catches the family — the COA idiom, 804591 in auranames). ONE rank = by_exact_id. preferred_match is only a runtime tiebreaker over active matches. Same quality gradient as [[diagnosis-tool-and-corpus-findings]]: corpus over-uses brittle exact-id."
    }
   }
  ],
  "_meta": {
-  "source": "aura_trigger_schema.json (corpus 319 aura2 triggers + BuffTrigger2.lua) - NOT a prototype scan; aura2 is function-driven. read-axis = the surface conditions pair on.",
-  "provenance": "Fields + corpus_pct from 319 aura2 triggers in the OUR-WA corpus (plane/diagnose.py lens). Value-domains referenced to wa_index/value_domains.json (already sourced from WA's own Types.lua via extract.lua) where a shared table exists; else the inline domain is confirmed against WeakAuras/BuffTrigger2.lua on disk. Residue fields (subeventPrefix/Suffix, itemName/itemSlot, powertype, castType, genericShowOn, use_showgcd, form — cross-type leftovers) are deliberately EXCLUDED.",
-  "why": "The single most-used reader in real authorship (66% of the corpus) but function-driven, so absent from index.json's prototype scan. This closes that gap. A WA reads native buff-window state and flattens it; this names the fields that do the reading. See memory/aura-trigger-schema-and-matching + wa-reads-and-flattens-native-state."
+  "source": "SELF-REPORTED via extract.lua triggeroptions -> GetBuffTriggerOptions (WA's own options builder). provides = auto-state (BuffTrigger2 UpdateMatchData). corpus schema = enrichment only, NOT the surface. `conditional` = tier-1 exclusivity flag.",
+  "input_count": 82
  }
 }

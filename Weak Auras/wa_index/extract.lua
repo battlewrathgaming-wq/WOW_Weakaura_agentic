@@ -76,6 +76,12 @@ local WeakAurasStub = {
   RegisterTriggerSystem = function(types, system)
     captured[#captured + 1] = { kind = "triggersystem", types = types, system = system }
   end,
+  -- A trigger system's OPTIONS builder registers here (WeakAurasOptions/BuffTrigger2.lua:1420
+  -- RegisterTriggerSystemOptions({"aura2"}, GetBuffTriggerOptions)). Capture the builder so the
+  -- triggeroptions mode can CALL it and let the SOURCE self-report its full option surface.
+  RegisterTriggerSystemOptions = function(types, getOptions)
+    captured[#captured + 1] = { kind = "triggeroptions", types = types, getOptions = getOptions }
+  end,
 }
 setmetatable(WeakAurasStub, { __index = function() return autoviv() end })
 
@@ -200,7 +206,7 @@ end
 
 local chunk, err = loadfile(path)
 if not chunk then io.stderr:write("load failed: " .. tostring(err) .. "\n"); os.exit(1) end
-local _optmode = (mode == "regionoptions" or mode == "animoptions")
+local _optmode = (mode == "regionoptions" or mode == "animoptions" or mode == "triggeroptions")
 local addonName = _optmode and "WeakAurasOptions" or "WeakAuras"
 local secondArg = _optmode and OptionsPrivateStub or PrivateStub
 local ok, runErr = pcall(chunk, addonName, secondArg)
@@ -259,6 +265,40 @@ elseif mode == "animoptions" then
     local ok2, opts = pcall(fn, autoviv())
     if ok2 and type(opts) == "table" and type(opts.args) == "table" then
       result = opts.args
+    end
+  end
+elseif mode == "triggeroptions" then
+  -- The SOURCE self-reports its option surface: a trigger system registers its options builder
+  -- (aura2 -> GetBuffTriggerOptions); call it with a probe aura and keep EVERY declared key
+  -- (incl. conditionally-hidden). hidden=function is recorded as `conditional` = the tier-1
+  -- mutual-exclusivity WA itself encodes. No field list defined by us - the builder emits it.
+  for _, e in ipairs(captured) do
+    if e.kind == "triggeroptions" and type(e.getOptions) == "function" then
+      local probe = setmetatable({
+        triggers = { [1] = { trigger = { type = "aura2", unit = "player", debuffType = "HELPFUL" } } },
+      }, AV_MT)
+      local ok2, opts = pcall(e.getOptions, probe, 1)
+      if ok2 and type(opts) == "table" then
+        for _, group in pairs(opts) do          -- unwrap the "trigger.N.aura_options" group -> flat options
+          if type(group) == "table" then
+            for key, o in pairs(group) do
+              if type(o) == "table" then
+                local nm = rawget(o, "name")
+                if type(nm) == "function" then local okn, r = pcall(nm); nm = okn and r or nil end
+                local rec = { type = rawget(o, "type"), name = (type(nm) == "string") and nm or nil,
+                              order = rawget(o, "order") }
+                local vv = rawget(o, "values")
+                if type(vv) == "function" then local okv, r = pcall(vv)
+                  if okv and (type(r) == "string" or (type(r) == "table" and getmetatable(r) == nil)) then rec.values = r end
+                elseif type(vv) == "string" then rec.values = vv end
+                local hd = rawget(o, "hidden")
+                rec.conditional = (type(hd) == "function") or (hd == true) or nil
+                result[tostring(key)] = rec
+              end
+            end
+          end
+        end
+      end
     end
   end
 elseif mode == "regionprototype" then

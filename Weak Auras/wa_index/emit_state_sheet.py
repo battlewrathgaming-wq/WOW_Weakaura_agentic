@@ -29,7 +29,8 @@ EXTRACT = os.path.join(_THIS, "extract.lua")
 WA = "F:/games/Ascension_wow/resources/ascension-live/Interface/AddOns/WeakAuras"
 PROTOS = os.path.join(WA, "Prototypes.lua")
 INDEX = os.path.join(_THIS, "index_grounded.json")
-SCHEMA = os.path.join(_THIS, "aura_trigger_schema.json")   # aura2 surface (function-driven; corpus + BuffTrigger2.lua)
+AURA2_OPTS = os.path.join(os.path.dirname(WA), "WeakAurasOptions", "BuffTrigger2.lua")  # aura2 SELF-REPORT source
+SCHEMA = os.path.join(_THIS, "aura_trigger_schema.json")   # aura2 corpus ENRICHMENT (idioms / rank-resolution)
 SEEDS = os.path.join(_THIS, "trigger_seed_defaults.json")
 # statesheets/ is the home for every WA DOMAIN (load, trigger, display, animations, ...).
 # This emitter fills the TRIGGER domain; siblings emit the others in the same shape.
@@ -141,48 +142,59 @@ def build(category, protos, by_opt, display):
     }
 
 
+LEVER_TYPES = {"toggle", "select", "input", "multiselect", "range", "number", "color", "toggleWithIcon"}
+
+
+def _extract_aura2_options():
+    """Run extract.lua triggeroptions -> aura2's OWN self-reported option surface (GetBuffTriggerOptions
+    called under stubs; every option WA's builder declares, complete by construction)."""
+    proc = subprocess.run([LUA, EXTRACT, "triggeroptions", AURA2_OPTS], capture_output=True, text=True)
+    if proc.returncode != 0:
+        sys.exit("extract.lua triggeroptions failed: " + proc.stderr[:400])
+    return json.loads(proc.stdout)
+
+
 def build_aura2():
-    """The Aura trigger (BuffTrigger2) is function-driven, so it has no event_prototype to scan. But the UI
-    exposes that function AS choices, so it fits the same sheet shape - sourced from aura_trigger_schema.json
-    (corpus + BuffTrigger2.lua). catch/resolve/show axes -> inputs; the read axis -> provides (the fields
-    conditions pair on). Basic first; the axis + corpus_pct richness rides along."""
+    """The Aura trigger (BuffTrigger2) is function-driven, so no event_prototype to scan - but its options
+    builder SELF-REPORTS via GetBuffTriggerOptions (extract.lua triggeroptions). That is the authoritative,
+    complete input surface (not a corpus-curated list). `conditional` = the option's hidden-fn gating (the
+    tier-1 exclusivity FLAG; the readable relationship is the live-probe pass, still to come). provides = the
+    auto-state the trigger flattens (UpdateMatchData). The corpus schema is demoted to an ENRICHMENT block."""
+    raw = _extract_aura2_options()
     schema = json.load(open(SCHEMA, encoding="utf-8"))
     default_state = {"type": "aura2"}
     default_state.update(json.load(open(SEEDS, encoding="utf-8")).get("aura2", {}))  # unit=player, debuffType=HELPFUL
-    inputs, provides = [], []
-    for axis in ("catch", "resolve", "show", "read"):
-        surface = "provides" if axis == "read" else "input"
-        for field, e in schema.get(axis, {}).items():
-            if field.startswith("_") or not isinstance(e, dict):
-                continue
-            row = {
-                "name": e.get("value", field), "field": field, "surface": surface, "axis": axis,
-                "use_toggle": e.get("use"), "kind": e.get("kind"), "default": e.get("default"),
-                "value_domain": e.get("domain_ref") or e.get("domain"),
-                "operator": e.get("operator"), "operator_domain": e.get("op_domain_ref"),
-                "corpus_pct": e.get("corpus_pct"), "corpus_op": e.get("corpus_op"), "role": e.get("role"),
-            }
-            if field == "by_name":        # the family catch = our drive-from-ID path (ID-in-names)
-                row["policy"] = {"knob": "useName", "our_policy": True,
-                                 "why": "match-family-not-rank: drive-from-ID = spellId in auranames, catches all ranks"}
-            if field == "by_exact_id":    # rank-lock = deliberately NOT the default
-                row["policy"] = {"knob": "useExactSpellId", "our_policy": False,
-                                 "why": "match-family-not-rank: exact spellId pins one rank; corpus over-uses it"}
-            (provides if surface == "provides" else inputs).append(row)
+    inputs = []
+    for key, o in sorted(raw.items(), key=lambda kv: (kv[1].get("order") if isinstance(kv[1], dict) else 0) or 0):
+        if not isinstance(o, dict) or o.get("type") not in LEVER_TYPES:
+            continue
+        row = {"name": key, "display": o.get("name"), "surface": "input",
+               "input_type": o.get("type"), "order": o.get("order"), "value_domain": o.get("values"),
+               "conditional": bool(o.get("conditional")),
+               "enabled_when": "conditional" if o.get("conditional") else "always"}
+        if key == "useName":
+            row["policy"] = {"our_policy": True, "why": "match-family-not-rank: drive-from-ID in auranames, all ranks"}
+        if key == "useExactSpellId":
+            row["policy"] = {"our_policy": False, "why": "match-family-not-rank: exact spellId pins one rank"}
+        inputs.append(row)
+    auto = schema.get("read", {}).get("_auto_state", "")
+    provides = [{"name": f.strip().rstrip("."), "surface": "provides"}
+                for f in (auto.split(":", 1)[1] if ":" in auto else "").split(",") if f.strip()]
     event = {
-        "event": "Aura", "display": "Aura",
-        "default_state": default_state,
-        "drive_from_id": "put the spellId in auranames (useName) - family match; not auraspellids (useExactSpellId)",
+        "event": "Aura", "display": "Aura", "default_state": default_state,
+        "drive_from_id": "spellId in auranames (useName) - family match; not auraspellids (useExactSpellId)",
         "options": {"inputs": inputs, "provides": provides, "internal": []},
-        "auto_state": schema.get("read", {}).get("_auto_state"),
-        "idioms": schema.get("_idioms"),
-        "axis_roles": {a: schema.get(a, {}).get("_role") for a in ("catch", "resolve", "show", "read")},
+        "enrichment": {   # corpus REFERENCE, not the surface
+            "idioms": schema.get("_idioms"),
+            "axis_roles": {a: schema.get(a, {}).get("_role") for a in ("catch", "resolve", "show", "read")},
+            "rank_resolution": schema.get("resolve", {}).get("_rank_resolution")},
     }
     return {
         "trigger_type": "aura2", "type_display": "Aura", "event_count": 1, "events": [event],
-        "_meta": {"source": "aura_trigger_schema.json (corpus 319 aura2 triggers + BuffTrigger2.lua) - NOT a "
-                            "prototype scan; aura2 is function-driven. read-axis = the surface conditions pair on.",
-                  "provenance": schema.get("_provenance"), "why": schema.get("_why")},
+        "_meta": {"source": "SELF-REPORTED via extract.lua triggeroptions -> GetBuffTriggerOptions (WA's own "
+                            "options builder). provides = auto-state (BuffTrigger2 UpdateMatchData). corpus schema "
+                            "= enrichment only, NOT the surface. `conditional` = tier-1 exclusivity flag.",
+                  "input_count": len(inputs)},
     }
 
 
