@@ -15,7 +15,7 @@ boundary (what's whitelisted) and the escalations (a `verify` FLAG), never at th
   caller runtime                        |  your runtime
   --------------------------------------|------------------------------------------
     call.py  --write-->  runtime/queue/ | --poll(~1s)-->  runner.py  (SERVER)
-    `py call.py <svc> [args]`           |                 executes ONLY whitelisted {decode, verify};
+    `py call.py <svc> [args]`           |                 executes ONLY whitelisted {decode, verify, seeds};
         ^                               |                 unknown svc = REFUSED; process-once invariant
         | reason from receipt           |                       |
     call.py <--read--- runtime/receipts/| <--write--------------+   (-> processed/ or errored/)
@@ -28,7 +28,8 @@ boundary (what's whitelisted) and the escalations (a `verify` FLAG), never at th
 | `ingest/paste_drop.py` (+`.bat`) | Capture terminal. Paste a WeakAuras export (`!WA:2!…`) → timestamped `.txt` in `ingest/inbox/`. No clipboard, stdlib only. |
 | `Weak Auras/plane/decode.py` | Decode an inbox export → legible **settled** view. `peek` (true levers, residue stripped) · `diff` (per-option delta of the two newest) · `raw`. |
 | `Weak Auras/plane/verify.py` | Assemble-stage **regression harness**. `bless <bomstem>` saves a golden; default run verifies every golden reproduces and classifies each diff (inert → auto-pass, else → FLAG). Read-only. Goldens: `Weak Auras/plane/goldens/` (tracked). |
-| `runner.py` (+ `runner.bat`) | **SERVER.** You launch it (own window, your process). Polls `runtime/queue/`, executes only whitelisted services, prints each call live, writes `runtime/receipts/`. Whitelist: `decode`, `verify`. |
+| `Weak Auras/wa_index/extract_seed_defaults.py` (`seeds probe`) | Probe WA source for function-driven trigger defaults, read-only (prints). `freeze` (writes `trigger_seed_defaults.json`) is local-only, refused via the runner. |
+| `runner.py` (+ `runner.bat`) | **SERVER.** You launch it (own window, your process). Polls `runtime/queue/`, executes only whitelisted services, prints each call live, writes `runtime/receipts/`. Whitelist: `decode`, `verify`, `seeds`. |
 | `call.py` | **CLIENT.** `py call.py <service> [args]` writes a queue file, holds open for the receipt, prints it. Executes nothing itself. |
 | `menu.bat` / `Launcher.lnk` | Pinnable keys-only launcher (`choice`-gated): `[1]` paste-drop `[2]` git status `[3]` decode `[4]` diff `[5]` start runner; `[A]` advanced → git push (confirm). |
 
@@ -40,8 +41,9 @@ boundary (what's whitelisted) and the escalations (a `verify` FLAG), never at th
 
 ## Safety model
 
-- **Whitelist** — the runner runs ONLY the services in its `SERVICES` map (read-only: `decode`, `verify`).
-  An unknown service is **REFUSED** (a receipt records it; nothing executes). `verify bless` is refused
+- **Whitelist** — the runner runs ONLY the services in its `SERVICES` map (read-only: `decode`, `verify`,
+  `seeds`). An unknown service is **REFUSED** (a receipt records it; nothing executes). `verify bless` and
+  `seeds freeze` (both write) are refused
   through the runner — moving a golden is a deliberate *local* action.
 - **Decoupled** — the runner is *your* process; it survives the caller dying. In-flight calls finish,
   receipts land. Kill the caller, the machine still runs (the "kill-test").
