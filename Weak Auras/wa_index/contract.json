@@ -5263,6 +5263,11 @@
       "LEFT": "CENTER",
       "RIGHT": "CENTER"
      },
+     "CUSTOM": {
+      "CENTER": "CENTER",
+      "LEFT": "CENTER",
+      "RIGHT": "CENTER"
+     },
      "DOWN": {
       "CENTER": "TOP",
       "LEFT": "TOPLEFT",

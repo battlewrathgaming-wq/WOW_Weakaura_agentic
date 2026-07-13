@@ -360,7 +360,7 @@ elseif mode == "regioncoupling" then
   -- without its paired selfPoint renders wrong. Generate the pairing table by RUNNING WA's own set logic - the set
   -- closure captures selfPoints/gridSelfPoints as UPVALUES (the real tables), so we enumerate inputs but the OUTPUTS
   -- are genuinely WA's. Inputs cited from source (grow_types / align_types / gridSelfPoints keys). arg[3] = region.
-  local GROWS = { "RIGHT", "LEFT", "UP", "DOWN", "HORIZONTAL", "VERTICAL", "CIRCLE", "COUNTERCIRCLE" }  -- GRID: separate
+  local GROWS = { "RIGHT", "LEFT", "UP", "DOWN", "HORIZONTAL", "VERTICAL", "CIRCLE", "COUNTERCIRCLE", "CUSTOM" }  -- full grow_types minus GRID (separate); CUSTOM -> selfPoints.default
   local ALIGNS = { "LEFT", "RIGHT", "CENTER" }                    -- set branches LEFT/RIGHT/else; CENTER exercises else
   local GRIDTYPES = { "RU","UR","LU","UL","RD","DR","LD","DL","HD","HU","VR","VL","DH","UH","LV","RV","HV","VH" }
   local rr = rawget(OptionsPrivateStub, "registerRegions")
