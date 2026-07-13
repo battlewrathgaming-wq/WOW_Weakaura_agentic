@@ -85,6 +85,9 @@ def _options_surface(region_name, default):
         rec = {"type": o.get("type"), "name": o.get("name"), "order": o.get("order")}
         if "values" in o:
             rec["values"] = o["values"]                    # value-domain (str -> domains.json) or an inline table
+        for b in ("min", "max", "step", "softMin", "softMax", "bigStep"):
+            if b in o:
+                rec[b] = o[b]                              # numeric bounds for range levers - the numeric value-domain
         if o.get("conditional"):
             rec["conditional"] = True                      # context-gated visibility (grow-mode dependent, etc.)
         if isinstance(default, dict) and name in default:

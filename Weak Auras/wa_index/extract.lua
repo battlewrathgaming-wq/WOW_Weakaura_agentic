@@ -342,6 +342,10 @@ elseif mode == "regionoptionsurface" then
                 elseif type(vv) == "string" then rec.values = vv end
                 local hd = rawget(o, "hidden")
                 rec.conditional = (type(hd) == "function") or (hd == true) or nil
+                for _, b in ipairs({ "min", "max", "step", "softMin", "softMax", "bigStep" }) do
+                  local bv = rawget(o, b)                 -- numeric bounds = a range lever's value-domain
+                  if type(bv) == "number" then rec[b] = bv end
+                end
                 result[tostring(key)] = rec
               end
             end

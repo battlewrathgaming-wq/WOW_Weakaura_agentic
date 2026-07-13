@@ -248,7 +248,10 @@
    "alpha": {
     "type": "range",
     "name": "Group Alpha",
-    "order": 29
+    "order": 29,
+    "min": 0,
+    "max": 1,
+    "bigStep": 0.01
    },
    "anchorOn": {
     "type": "input",
@@ -277,6 +280,9 @@
     "type": "range",
     "name": "Total Angle",
     "order": 8,
+    "min": 0,
+    "max": 360,
+    "bigStep": 3,
     "conditional": true,
     "default": 360
    },
@@ -291,6 +297,9 @@
     "type": "range",
     "name": "Column Space",
     "order": 11,
+    "step": 1,
+    "softMin": 0,
+    "softMax": 300,
     "conditional": true,
     "default": 1
    },
@@ -320,6 +329,9 @@
     "type": "range",
     "name": "Row Width",
     "order": 9,
+    "min": 1,
+    "step": 1,
+    "softMax": 20,
     "conditional": true,
     "default": 5
    },
@@ -359,6 +371,9 @@
     "type": "range",
     "name": "Limit",
     "order": 26,
+    "min": 0,
+    "step": 1,
+    "softMax": 20,
     "conditional": true,
     "default": 5
    },
@@ -366,6 +381,9 @@
     "type": "range",
     "name": "Radius",
     "order": 9,
+    "softMin": 0,
+    "softMax": 500,
+    "bigStep": 1,
     "conditional": true,
     "default": 200
    },
@@ -380,6 +398,9 @@
     "type": "range",
     "name": "Start Angle",
     "order": 5,
+    "min": 0,
+    "max": 360,
+    "bigStep": 3,
     "conditional": true,
     "default": 0
    },
@@ -387,6 +408,9 @@
     "type": "range",
     "name": "Row Space",
     "order": 10,
+    "step": 1,
+    "softMin": 0,
+    "softMax": 300,
     "conditional": true,
     "default": 1
    },
@@ -394,6 +418,10 @@
     "type": "range",
     "name": "Group Scale",
     "order": 28,
+    "min": 0.05,
+    "max": 10,
+    "softMax": 2,
+    "bigStep": 0.05,
     "default": 1
    },
    "sharedFrameLevel": {
@@ -425,6 +453,9 @@
     "type": "range",
     "name": "Space",
     "order": 7,
+    "softMin": 0,
+    "softMax": 300,
+    "bigStep": 1,
     "conditional": true,
     "default": 2
    },
@@ -432,6 +463,10 @@
     "type": "range",
     "name": "Stagger",
     "order": 8,
+    "min": -50,
+    "max": 50,
+    "step": 0.1,
+    "bigStep": 1,
     "conditional": true,
     "default": 0
    },
@@ -439,6 +474,9 @@
     "type": "range",
     "name": "Angle Between Auras",
     "order": 12,
+    "min": 0,
+    "max": 180,
+    "bigStep": 1,
     "conditional": true,
     "default": 15
    },

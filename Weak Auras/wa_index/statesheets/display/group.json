@@ -132,17 +132,26 @@
    "alpha": {
     "type": "range",
     "name": "Group Alpha",
-    "order": 46
+    "order": 46,
+    "min": 0,
+    "max": 1,
+    "bigStep": 0.01
    },
    "distribute_h": {
     "type": "range",
     "name": "Distribute Horizontally",
-    "order": 20
+    "order": 20,
+    "softMin": -100,
+    "softMax": 100,
+    "bigStep": 1
    },
    "distribute_v": {
     "type": "range",
     "name": "Distribute Vertically",
-    "order": 25
+    "order": 25,
+    "softMin": -100,
+    "softMax": 100,
+    "bigStep": 1
    },
    "groupIcon": {
     "type": "input",
@@ -153,6 +162,10 @@
     "type": "range",
     "name": "Group Scale",
     "order": 45,
+    "min": 0.05,
+    "max": 10,
+    "softMax": 2,
+    "bigStep": 0.05,
     "default": 1
    },
    "sharedFrameLevel": {
@@ -164,12 +177,18 @@
    "space_h": {
     "type": "range",
     "name": "Space Horizontally",
-    "order": 30
+    "order": 30,
+    "softMin": -100,
+    "softMax": 100,
+    "bigStep": 1
    },
    "space_v": {
     "type": "range",
     "name": "Space Vertically",
-    "order": 35
+    "order": 35,
+    "softMin": -100,
+    "softMax": 100,
+    "bigStep": 1
    }
   },
   "_meta": {
