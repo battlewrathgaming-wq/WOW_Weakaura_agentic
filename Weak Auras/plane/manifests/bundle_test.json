@@ -1,0 +1,8 @@
+{
+  "group": { "id": "CoA Bundle Test", "type": "dynamicgroup" },
+  "children": [
+    "dockets/player_health.v1.docket.json",
+    "dockets/player_health_any.v1.docket.json",
+    "dockets/corpse_explosion.v3.docket.json"
+  ]
+}
