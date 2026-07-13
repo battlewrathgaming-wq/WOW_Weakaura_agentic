@@ -69,6 +69,9 @@ def _display_section():
         surf = sheet.get("option_surface")
         if surf:
             entry["option_surface"] = surf.get("levers", {})   # group/dynamicgroup: arrangement levers (trigger-grade)
+        cpl = sheet.get("coupling")
+        if cpl:
+            entry["coupling"] = cpl                             # dynamicgroup: grow/gridType -> selfPoint derivation
         out[rname] = entry
     return out, {"shared_change_targets": sorted(shared_targets),
                  "condition_actions": shared.get("condition_actions", [])}

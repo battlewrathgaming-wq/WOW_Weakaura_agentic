@@ -497,5 +497,78 @@
   "_meta": {
    "source": "extract.lua regionoptionsurface -> RegisterRegionOptions create(id,data). The configurable arrangement surface (type + value-domain + conditional) the per-region default misses. conditional = context-gated (grow-mode dependent). chrome dropped."
   }
+ },
+ "coupling": {
+  "derives": "selfPoint",
+  "from": [
+   "grow",
+   "align",
+   "gridType"
+  ],
+  "by_grow_align": {
+   "CIRCLE": {
+    "CENTER": "CENTER",
+    "LEFT": "CENTER",
+    "RIGHT": "CENTER"
+   },
+   "COUNTERCIRCLE": {
+    "CENTER": "CENTER",
+    "LEFT": "CENTER",
+    "RIGHT": "CENTER"
+   },
+   "DOWN": {
+    "CENTER": "TOP",
+    "LEFT": "TOPLEFT",
+    "RIGHT": "TOPRIGHT"
+   },
+   "HORIZONTAL": {
+    "CENTER": "CENTER",
+    "LEFT": "TOP",
+    "RIGHT": "BOTTOM"
+   },
+   "LEFT": {
+    "CENTER": "RIGHT",
+    "LEFT": "TOPRIGHT",
+    "RIGHT": "BOTTOMRIGHT"
+   },
+   "RIGHT": {
+    "CENTER": "LEFT",
+    "LEFT": "TOPLEFT",
+    "RIGHT": "BOTTOMLEFT"
+   },
+   "UP": {
+    "CENTER": "BOTTOM",
+    "LEFT": "BOTTOMLEFT",
+    "RIGHT": "BOTTOMRIGHT"
+   },
+   "VERTICAL": {
+    "CENTER": "CENTER",
+    "LEFT": "LEFT",
+    "RIGHT": "RIGHT"
+   }
+  },
+  "by_gridtype": {
+   "DH": "TOP",
+   "DL": "TOPRIGHT",
+   "DR": "TOPLEFT",
+   "HD": "TOP",
+   "HU": "BOTTOM",
+   "HV": "CENTER",
+   "LD": "TOPRIGHT",
+   "LU": "BOTTOMRIGHT",
+   "LV": "RIGHT",
+   "RD": "TOPLEFT",
+   "RU": "BOTTOMLEFT",
+   "RV": "LEFT",
+   "UH": "BOTTOM",
+   "UL": "BOTTOMRIGHT",
+   "UR": "BOTTOMLEFT",
+   "VH": "CENTER",
+   "VL": "RIGHT",
+   "VR": "LEFT"
+  },
+  "_meta": {
+   "source": "extract.lua regioncoupling -> WA's grow-lever set closure (selfPoints/gridSelfPoints upvalues = the real tables). The region reads data.selfPoint directly (never re-derives), so an authored grow needs its paired selfPoint; the expander injects it from here. Generated (inputs enumerated, outputs are WA's), not hand-built."
+  }
  }
 }

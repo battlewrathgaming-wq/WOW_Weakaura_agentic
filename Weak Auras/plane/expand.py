@@ -43,6 +43,25 @@ def _mint_uid():
     return "coa" + uuid.uuid4().hex[:13]
 
 
+def _couple_selfpoint(doc, contract):
+    """selfPoint is coupled to grow(+align)/gridType by WA's options set logic; the region reads data.selfPoint
+    DIRECTLY and never re-derives it. So when a dynamicgroup docket authors a grow/gridType (and hasn't pinned
+    selfPoint itself), inject the paired value from the contract's GENERATED coupling table - any grow ships correct.
+    Returns the selfPoint, or None if not applicable. Respects an explicitly-authored selfPoint (idempotent)."""
+    if doc.get("region") != "dynamicgroup" or doc.get("selfPoint") is not None:
+        return None
+    cpl = (contract.get("display", {}).get("dynamicgroup", {}) or {}).get("coupling")
+    if not cpl:
+        return None
+    grow = doc.get("grow")
+    if grow == "GRID":
+        return (cpl.get("by_gridtype") or {}).get(doc.get("gridType"))
+    if grow:
+        align = doc.get("align") or "CENTER"                     # unset/CENTER = the set function's else-branch
+        return ((cpl.get("by_grow_align") or {}).get(grow) or {}).get(align)
+    return None
+
+
 def expand(doc):
     contract = _contract()
     ev2type = _event_to_type(contract)
@@ -78,6 +97,17 @@ def expand(doc):
 
     if doc.get("combination"):
         out["activation"] = {"disjunctive": doc["combination"]}
+
+    if doc.get("region") == "dynamicgroup":                      # group arrangement: carry authored levers + couple selfPoint
+        surface = (contract.get("display", {}).get("dynamicgroup", {}) or {}).get("option_surface", {})
+        for lever in surface:
+            if lever in doc:
+                out[lever] = doc[lever]                          # authored arrangement rides through (validated lever)
+        sp = _couple_selfpoint(doc, contract)
+        if sp is not None:
+            out["selfPoint"] = sp                                # derived pairing (grow authored, selfPoint not pinned)
+        elif doc.get("selfPoint") is not None:
+            out["selfPoint"] = doc["selfPoint"]                  # explicit selfPoint respected
     return out
 
 

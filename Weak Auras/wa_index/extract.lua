@@ -215,7 +215,7 @@ end
 
 local chunk, err = loadfile(path)
 if not chunk then io.stderr:write("load failed: " .. tostring(err) .. "\n"); os.exit(1) end
-local _optmode = (mode == "regionoptions" or mode == "animoptions" or mode == "triggeroptions" or mode == "regionoptionsurface")
+local _optmode = (mode == "regionoptions" or mode == "animoptions" or mode == "triggeroptions" or mode == "regionoptionsurface" or mode == "regioncoupling")
 local addonName = _optmode and "WeakAurasOptions" or "WeakAuras"
 local secondArg = _optmode and OptionsPrivateStub or PrivateStub
 local ok, runErr = pcall(chunk, addonName, secondArg)
@@ -350,6 +350,51 @@ elseif mode == "regionoptionsurface" then
               end
             end
           end
+        end
+      end
+    end
+  end
+elseif mode == "regioncoupling" then
+  -- The grow/gridType -> selfPoint COUPLING. The options `set` closures DERIVE selfPoint (selfPoints[grow](data) /
+  -- gridSelfPoints[gridType]); the region reads data.selfPoint DIRECTLY and never re-derives it, so an authored grow
+  -- without its paired selfPoint renders wrong. Generate the pairing table by RUNNING WA's own set logic - the set
+  -- closure captures selfPoints/gridSelfPoints as UPVALUES (the real tables), so we enumerate inputs but the OUTPUTS
+  -- are genuinely WA's. Inputs cited from source (grow_types / align_types / gridSelfPoints keys). arg[3] = region.
+  local GROWS = { "RIGHT", "LEFT", "UP", "DOWN", "HORIZONTAL", "VERTICAL", "CIRCLE", "COUNTERCIRCLE" }  -- GRID: separate
+  local ALIGNS = { "LEFT", "RIGHT", "CENTER" }                    -- set branches LEFT/RIGHT/else; CENTER exercises else
+  local GRIDTYPES = { "RU","UR","LU","UL","RD","DR","LD","DL","HD","HU","VR","VL","DH","UH","LV","RV","HV","VH" }
+  local rr = rawget(OptionsPrivateStub, "registerRegions")
+  if type(rr) == "table" then for _, fn in ipairs(rr) do if type(fn) == "function" then pcall(fn) end end end
+  local target = arg[3] or "dynamicgroup"
+  for _, e in ipairs(captured) do
+    if e.kind == "regionoption" and e.name == target and type(e.create) == "function" then
+      local probe = setmetatable({ regionType = target, id = target }, AV_MT)
+      local ok2, opts = pcall(e.create, target, probe)
+      if ok2 and type(opts) == "table" then
+        local grow_set
+        for _, group in pairs(opts) do
+          if type(group) == "table" then
+            local gl = rawget(group, "grow")
+            if type(gl) == "table" and type(rawget(gl, "set")) == "function" then grow_set = rawget(gl, "set") end
+          end
+        end
+        if type(grow_set) == "function" then
+          local by_grow = {}
+          for _, g in ipairs(GROWS) do
+            by_grow[g] = {}
+            for _, a in ipairs(ALIGNS) do
+              rawset(probe, "align", a); rawset(probe, "selfPoint", nil)
+              pcall(grow_set, nil, g)                              -- set assigns selfPoint BEFORE its side-effect calls
+              by_grow[g][a] = rawget(probe, "selfPoint")
+            end
+          end
+          local by_grid = {}
+          for _, gt in ipairs(GRIDTYPES) do
+            rawset(probe, "gridType", gt); rawset(probe, "selfPoint", nil)
+            pcall(grow_set, nil, "GRID")
+            by_grid[gt] = rawget(probe, "selfPoint")
+          end
+          result = { by_grow_align = by_grow, by_gridtype = by_grid }
         end
       end
     end
