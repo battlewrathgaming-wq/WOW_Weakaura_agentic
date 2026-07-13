@@ -60,7 +60,10 @@ def build():
     return {
         "domain": "load",
         "chain": "AND - every ENABLED condition (use_X true) must be true for the aura to load; unset conditions "
-                 "impose no constraint. This is the load chain the docket declares into.",
+                 "impose no constraint. Source: ConstructFunction joins tests with ' and ' (GenericTrigger.lua:418). "
+                 "LIVE-CONFIRMED 2026-07-13: class+zone both set, not-on-class + in-zone -> does NOT load. Only "
+                 "exception: within the `knowntalent` condition, its multiple talent entries OR (know A or B) - the "
+                 "sole orConjunctionGroup in the prototype (Prototypes.lua:1090). Conditions never OR with each other.",
         "condition_count": len(conditions),
         "conditions": conditions,
         "_meta": {"source": "extract.lua prototypes -> load_prototype args, grounded via index_grounded.json "
