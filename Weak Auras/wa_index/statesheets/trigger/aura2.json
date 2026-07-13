@@ -70,7 +70,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 11.1,
-      "value_domain": null,
+      "value_domain": "debuff_types",
       "conditional": false,
       "enabled_when": "always"
      },
@@ -90,7 +90,7 @@
       "surface": "input",
       "input_type": "multiselect",
       "order": 11.3,
-      "value_domain": null,
+      "value_domain": "debuff_class_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -198,7 +198,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 55.1,
-      "value_domain": null,
+      "value_domain": "string_operator_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -228,7 +228,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 60.1,
-      "value_domain": null,
+      "value_domain": "operator_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -258,7 +258,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 61.1,
-      "value_domain": null,
+      "value_domain": "operator_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -288,7 +288,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 61.5,
-      "value_domain": null,
+      "value_domain": "operator_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -368,7 +368,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 64.53,
-      "value_domain": null,
+      "value_domain": "string_operator_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -398,7 +398,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 64.56,
-      "value_domain": null,
+      "value_domain": "tooltip_count",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -408,7 +408,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 64.58,
-      "value_domain": null,
+      "value_domain": "operator_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -468,7 +468,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 66.15,
-      "value_domain": null,
+      "value_domain": "include_pets_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -488,7 +488,7 @@
       "surface": "input",
       "input_type": "multiselect",
       "order": 66.4,
-      "value_domain": null,
+      "value_domain": "spec_types_all",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -508,7 +508,7 @@
       "surface": "input",
       "input_type": "multiselect",
       "order": 67.2,
-      "value_domain": null,
+      "value_domain": "role_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -528,7 +528,7 @@
       "surface": "input",
       "input_type": "multiselect",
       "order": 67.5,
-      "value_domain": null,
+      "value_domain": "raid_role_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -588,7 +588,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 69.2,
-      "value_domain": null,
+      "value_domain": "hostility_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -678,7 +678,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 70.2,
-      "value_domain": null,
+      "value_domain": "operator_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -728,7 +728,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 71.4,
-      "value_domain": null,
+      "value_domain": "operator_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -758,7 +758,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 71.8,
-      "value_domain": null,
+      "value_domain": "operator_types",
       "conditional": true,
       "enabled_when": "conditional"
      },

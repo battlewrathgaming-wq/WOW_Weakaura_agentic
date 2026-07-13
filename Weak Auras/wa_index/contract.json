@@ -6,14 +6,26 @@
   "handling": "each trigger input carries its shaping grammar: shape/multiEntry (ARRAY rule), operator_types, domain (names a domains key); event.handling = progressType (region-compat) + statesParameter (state scope). The sheet resolved the shape.",
   "domain_refs": [
    "align_types",
+   "debuff_class_types",
+   "debuff_types",
    "grid_types",
    "group_hybrid_position_types",
    "group_hybrid_sort_types",
    "group_sort_types",
    "grow_types",
-   "rotated_align_types"
+   "hostility_types",
+   "include_pets_types",
+   "operator_types",
+   "raid_role_types",
+   "role_types",
+   "rotated_align_types",
+   "spec_types_all",
+   "string_operator_types",
+   "tooltip_count"
   ],
-  "dangling_domains": []
+  "dangling_domains": [
+   "spec_types_all"
+  ]
  },
  "trigger": {
   "addons": {
@@ -86,7 +98,7 @@
      },
      "debuffType": {
       "default": null,
-      "domain": null,
+      "domain": "debuff_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -100,7 +112,7 @@
      },
      "debuffClass": {
       "default": null,
-      "domain": null,
+      "domain": "debuff_class_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -170,7 +182,7 @@
      },
      "namePattern_operator": {
       "default": null,
-      "domain": null,
+      "domain": "string_operator_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -191,7 +203,7 @@
      },
      "stacksOperator": {
       "default": null,
-      "domain": null,
+      "domain": "operator_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -212,7 +224,7 @@
      },
      "remOperator": {
       "default": null,
-      "domain": null,
+      "domain": "operator_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -233,7 +245,7 @@
      },
      "totalOperator": {
       "default": null,
-      "domain": null,
+      "domain": "operator_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -289,7 +301,7 @@
      },
      "tooltip_operator": {
       "default": null,
-      "domain": null,
+      "domain": "string_operator_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -310,14 +322,14 @@
      },
      "tooltipValueNumber": {
       "default": null,
-      "domain": null,
+      "domain": "tooltip_count",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
      },
      "tooltipValue_operator": {
       "default": null,
-      "domain": null,
+      "domain": "operator_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -359,7 +371,7 @@
      },
      "includePets": {
       "default": null,
-      "domain": null,
+      "domain": "include_pets_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -373,7 +385,7 @@
      },
      "actualSpec": {
       "default": null,
-      "domain": null,
+      "domain": "spec_types_all",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -387,7 +399,7 @@
      },
      "group_role": {
       "default": null,
-      "domain": null,
+      "domain": "role_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -401,7 +413,7 @@
      },
      "raid_role": {
       "default": null,
-      "domain": null,
+      "domain": "raid_role_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -443,7 +455,7 @@
      },
      "hostility": {
       "default": null,
-      "domain": null,
+      "domain": "hostility_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -506,7 +518,7 @@
      },
      "group_countOperator": {
       "default": null,
-      "domain": null,
+      "domain": "operator_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -541,7 +553,7 @@
      },
      "match_countOperator": {
       "default": null,
-      "domain": null,
+      "domain": "operator_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -562,7 +574,7 @@
      },
      "matchPerUnit_countOperator": {
       "default": null,
-      "domain": null,
+      "domain": "operator_types",
       "shape": null,
       "multiEntry": null,
       "operator_types": null

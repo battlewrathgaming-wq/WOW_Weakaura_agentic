@@ -131,6 +131,11 @@ for _, dom in ipairs({
   -- dynamic/static group arrangement domains (the group options builder references these)
   "grow_types", "align_types", "rotated_align_types", "group_sort_types",
   "group_hybrid_sort_types", "group_hybrid_position_types", "grid_types",
+  -- aura2 (BuffTrigger2) option-dropdown domains (the value-domains behind its dropdowns)
+  "operator_types", "string_operator_types", "debuff_types", "debuff_class_types",
+  "hostility_types", "include_pets_types", "raid_role_types", "role_types",
+  "spec_types_all", "tooltip_count", "bufftrigger_progress_behavior_types",
+  "unit_types", "actual_unit_types_with_specific",
 }) do rawset(_optPriv, dom, dom) end
 rawset(OptionsPrivateStub, "Private", _optPriv)
 
