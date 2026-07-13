@@ -1,0 +1,283 @@
+{
+ "domain": "display",
+ "region_type": "aurabar",
+ "option_count": 37,
+ "options": [
+  {
+   "name": "adjustedMax",
+   "default": "",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "adjustedMin",
+   "default": "",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "anchorFrameType",
+   "default": "SCREEN",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "anchorPoint",
+   "default": "CENTER",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "backgroundColor",
+   "default": [
+    0,
+    0,
+    0,
+    0.5
+   ],
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "barColor",
+   "default": [
+    1,
+    0,
+    0,
+    1
+   ],
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "barColor2",
+   "default": [
+    1,
+    1,
+    0,
+    1
+   ],
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "desaturate",
+   "default": false,
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "enableGradient",
+   "default": false,
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "frameStrata",
+   "default": 1,
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "gradientOrientation",
+   "default": "HORIZONTAL",
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "height",
+   "default": 15,
+   "condition_target": true,
+   "kind": "size"
+  },
+  {
+   "name": "icon",
+   "default": false,
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "iconSource",
+   "default": -1,
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "icon_color",
+   "default": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "icon_side",
+   "default": "RIGHT",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "inverse",
+   "default": false,
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "orientation",
+   "default": "HORIZONTAL",
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "progressSource",
+   "default": [
+    -1,
+    ""
+   ],
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "selfPoint",
+   "default": "CENTER",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "spark",
+   "default": false,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "sparkBlendMode",
+   "default": "ADD",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "sparkColor",
+   "default": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "sparkHeight",
+   "default": 30,
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "sparkHidden",
+   "default": "NEVER",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "sparkOffsetX",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "sparkOffsetY",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "sparkRotation",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "sparkRotationMode",
+   "default": "AUTO",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "sparkTexture",
+   "default": "Interface\\CastingBar\\UI-CastingBar-Spark",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "sparkWidth",
+   "default": 10,
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "texture",
+   "default": "Blizzard",
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "textureSource",
+   "default": "LSM",
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "width",
+   "default": 200,
+   "condition_target": true,
+   "kind": "size"
+  },
+  {
+   "name": "xOffset",
+   "default": 0,
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "yOffset",
+   "default": 0,
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "zoom",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  }
+ ],
+ "condition_change_targets": [
+  "backgroundColor",
+  "barColor",
+  "barColor2",
+  "desaturate",
+  "displayIcon",
+  "enableGradient",
+  "gradientOrientation",
+  "height",
+  "icon",
+  "iconSource",
+  "icon_color",
+  "inverse",
+  "orientation",
+  "progressSource",
+  "sparkColor",
+  "sparkHeight",
+  "sparkWidth",
+  "texture",
+  "textureInput",
+  "textureSource",
+  "width"
+ ],
+ "_meta": {
+  "source": "extract.lua region -> WA's RegisterRegionType default + GetProperties. The default IS the observed-defaults resource (matches canon); properties = condition change-targets. kind=position fields are mask-territory (reduced from the inventory slot-ref, not authored)."
+ }
+}

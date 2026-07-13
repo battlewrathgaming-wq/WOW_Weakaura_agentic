@@ -1,0 +1,254 @@
+{
+ "domain": "display",
+ "region_type": "stopmotion",
+ "option_count": 37,
+ "options": [
+  {
+   "name": "adjustedMax",
+   "default": "",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "adjustedMin",
+   "default": "",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "anchorFrameType",
+   "default": "SCREEN",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "anchorPoint",
+   "default": "CENTER",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "animationType",
+   "default": "loop",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "backgroundColor",
+   "default": [
+    0.5,
+    0.5,
+    0.5,
+    0.5
+   ],
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "backgroundPercent",
+   "default": 1,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "backgroundTexture",
+   "default": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\stopmotion",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "blendMode",
+   "default": "BLEND",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "customBackgroundColumns",
+   "default": 16,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "customBackgroundFrames",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "customBackgroundRows",
+   "default": 16,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "customForegroundColumns",
+   "default": 16,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "customForegroundFileHeight",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "customForegroundFileWidth",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "customForegroundFrameHeight",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "customForegroundFrameWidth",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "customForegroundFrames",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "customForegroundRows",
+   "default": 16,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "desaturateBackground",
+   "default": false,
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "desaturateForeground",
+   "default": false,
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "endPercent",
+   "default": 1,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "foregroundColor",
+   "default": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "foregroundTexture",
+   "default": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\stopmotion",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "frameRate",
+   "default": 15,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "frameStrata",
+   "default": 1,
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "height",
+   "default": 128,
+   "condition_target": true,
+   "kind": "size"
+  },
+  {
+   "name": "hideBackground",
+   "default": true,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "inverse",
+   "default": false,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "mirror",
+   "default": false,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "progressSource",
+   "default": [
+    -1,
+    ""
+   ],
+   "condition_target": true,
+   "kind": "option"
+  },
+  {
+   "name": "sameTexture",
+   "default": true,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "selfPoint",
+   "default": "CENTER",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "startPercent",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "width",
+   "default": 128,
+   "condition_target": true,
+   "kind": "size"
+  },
+  {
+   "name": "xOffset",
+   "default": 0,
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "yOffset",
+   "default": 0,
+   "condition_target": false,
+   "kind": "position"
+  }
+ ],
+ "condition_change_targets": [
+  "backgroundColor",
+  "desaturateBackground",
+  "desaturateForeground",
+  "foregroundColor",
+  "height",
+  "progressSource",
+  "width"
+ ],
+ "_meta": {
+  "source": "extract.lua region -> WA's RegisterRegionType default + GetProperties. The default IS the observed-defaults resource (matches canon); properties = condition change-targets. kind=position fields are mask-territory (reduced from the inventory slot-ref, not authored)."
+ }
+}

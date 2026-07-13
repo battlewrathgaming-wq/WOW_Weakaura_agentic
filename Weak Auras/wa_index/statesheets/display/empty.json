@@ -1,0 +1,59 @@
+{
+ "domain": "display",
+ "region_type": "empty",
+ "option_count": 8,
+ "options": [
+  {
+   "name": "anchorFrameType",
+   "default": "SCREEN",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "anchorPoint",
+   "default": "CENTER",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "frameStrata",
+   "default": 1,
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "height",
+   "default": 200,
+   "condition_target": false,
+   "kind": "size"
+  },
+  {
+   "name": "selfPoint",
+   "default": "CENTER",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "width",
+   "default": 200,
+   "condition_target": false,
+   "kind": "size"
+  },
+  {
+   "name": "xOffset",
+   "default": 0,
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "yOffset",
+   "default": 0,
+   "condition_target": false,
+   "kind": "position"
+  }
+ ],
+ "condition_change_targets": [],
+ "_meta": {
+  "source": "extract.lua region -> WA's RegisterRegionType default + GetProperties. The default IS the observed-defaults resource (matches canon); properties = condition change-targets. kind=position fields are mask-territory (reduced from the inventory slot-ref, not authored)."
+ }
+}

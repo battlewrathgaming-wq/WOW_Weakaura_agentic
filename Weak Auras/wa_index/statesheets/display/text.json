@@ -1,0 +1,135 @@
+{
+ "domain": "display",
+ "region_type": "text",
+ "option_count": 19,
+ "options": [
+  {
+   "name": "anchorFrameType",
+   "default": "SCREEN",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "anchorPoint",
+   "default": "CENTER",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "automaticWidth",
+   "default": "Auto",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "color",
+   "default": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "customTextUpdate",
+   "default": "event",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "displayText",
+   "default": "%p",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "fixedWidth",
+   "default": 200,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "font",
+   "default": {},
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "fontSize",
+   "default": {},
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "frameStrata",
+   "default": 1,
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "justify",
+   "default": "LEFT",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "outline",
+   "default": "OUTLINE",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "selfPoint",
+   "default": "BOTTOM",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "shadowColor",
+   "default": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "shadowXOffset",
+   "default": 1,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "shadowYOffset",
+   "default": -1,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "wordWrap",
+   "default": "WordWrap",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "xOffset",
+   "default": 0,
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "yOffset",
+   "default": 0,
+   "condition_target": false,
+   "kind": "position"
+  }
+ ],
+ "condition_change_targets": [],
+ "_meta": {
+  "source": "extract.lua region -> WA's RegisterRegionType default + GetProperties. The default IS the observed-defaults resource (matches canon); properties = condition change-targets. kind=position fields are mask-territory (reduced from the inventory slot-ref, not authored)."
+ }
+}

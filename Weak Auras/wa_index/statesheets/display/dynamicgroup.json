@@ -1,0 +1,237 @@
+{
+ "domain": "display",
+ "region_type": "dynamicgroup",
+ "option_count": 36,
+ "options": [
+  {
+   "name": "align",
+   "default": "CENTER",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "anchorFrameType",
+   "default": "SCREEN",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "anchorPoint",
+   "default": "CENTER",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "animate",
+   "default": false,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "arcLength",
+   "default": 360,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "backdropColor",
+   "default": [
+    1,
+    1,
+    1,
+    0.5
+   ],
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "border",
+   "default": false,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "borderBackdrop",
+   "default": "Blizzard Tooltip",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "borderColor",
+   "default": [
+    0,
+    0,
+    0,
+    1
+   ],
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "borderEdge",
+   "default": "Square Full White",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "borderInset",
+   "default": 1,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "borderOffset",
+   "default": 4,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "borderSize",
+   "default": 2,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "centerType",
+   "default": "LR",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "columnSpace",
+   "default": 1,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "constantFactor",
+   "default": "RADIUS",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "controlledChildren",
+   "default": {},
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "frameStrata",
+   "default": 1,
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "fullCircle",
+   "default": true,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "gridType",
+   "default": "RD",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "gridWidth",
+   "default": 5,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "grow",
+   "default": "DOWN",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "limit",
+   "default": 5,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "radius",
+   "default": 200,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "rotation",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "rowSpace",
+   "default": 1,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "scale",
+   "default": 1,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "selfPoint",
+   "default": "TOP",
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "sharedFrameLevel",
+   "default": true,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "sort",
+   "default": "none",
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "space",
+   "default": 2,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "stagger",
+   "default": 0,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "stepAngle",
+   "default": 15,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "useLimit",
+   "default": false,
+   "condition_target": false,
+   "kind": "option"
+  },
+  {
+   "name": "xOffset",
+   "default": 0,
+   "condition_target": false,
+   "kind": "position"
+  },
+  {
+   "name": "yOffset",
+   "default": 0,
+   "condition_target": false,
+   "kind": "position"
+  }
+ ],
+ "condition_change_targets": [],
+ "_meta": {
+  "source": "extract.lua region -> WA's RegisterRegionType default + GetProperties. The default IS the observed-defaults resource (matches canon); properties = condition change-targets. kind=position fields are mask-territory (reduced from the inventory slot-ref, not authored)."
+ }
+}
