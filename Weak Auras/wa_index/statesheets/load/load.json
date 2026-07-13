@@ -1,0 +1,423 @@
+{
+ "domain": "load",
+ "chain": "AND - every ENABLED condition (use_X true) must be true for the aura to load; unset conditions impose no constraint. This is the load chain the docket declares into.",
+ "condition_count": 41,
+ "conditions": [
+  {
+   "name": "combat",
+   "use_toggle": "use_combat",
+   "type": "tristate",
+   "input_kind": "dropdown",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "never",
+   "use_toggle": "use_never",
+   "type": "toggle",
+   "input_kind": "toggle",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "alive",
+   "use_toggle": "use_alive",
+   "type": "tristate",
+   "input_kind": "dropdown",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "encounter",
+   "use_toggle": "use_encounter",
+   "type": "tristate",
+   "input_kind": "dropdown",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "pvpmode",
+   "use_toggle": "use_pvpmode",
+   "type": "tristate",
+   "input_kind": "dropdown",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "manastorm",
+   "use_toggle": "use_manastorm",
+   "type": "tristate",
+   "input_kind": "dropdown",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "vehicle",
+   "use_toggle": "use_vehicle",
+   "type": "tristate",
+   "input_kind": "dropdown",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "vehicleUi",
+   "use_toggle": "use_vehicleUi",
+   "type": "tristate",
+   "input_kind": "dropdown",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "mounted",
+   "use_toggle": "use_mounted",
+   "type": "tristate",
+   "input_kind": "dropdown",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "class",
+   "use_toggle": "use_class",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": null,
+   "value_domain_source": "inventory",
+   "default": null
+  },
+  {
+   "name": "specialization",
+   "use_toggle": "use_specialization",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": null,
+   "value_domain_source": "inventory",
+   "default": null
+  },
+  {
+   "name": "knowntalent",
+   "use_toggle": "use_knowntalent",
+   "type": "talent",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "mysticenchantactive",
+   "use_toggle": "use_mysticenchantactive",
+   "type": "mysticenchant",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "not_mysticenchantactive",
+   "use_toggle": "use_not_mysticenchantactive",
+   "type": "mysticenchant",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "spellknown",
+   "use_toggle": "use_spellknown",
+   "type": "spell",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "not_spellknown",
+   "use_toggle": "use_not_spellknown",
+   "type": "spell",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "player",
+   "use_toggle": "use_player",
+   "type": null,
+   "input_kind": "state",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "realm",
+   "use_toggle": "use_realm",
+   "type": null,
+   "input_kind": "state",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "guild",
+   "use_toggle": "use_guild",
+   "type": null,
+   "input_kind": "state",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "namerealm",
+   "use_toggle": "use_namerealm",
+   "type": "string",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "ignoreNameRealm",
+   "use_toggle": "use_ignoreNameRealm",
+   "type": "string",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "guildcheck",
+   "use_toggle": "use_guildcheck",
+   "type": "string",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "race",
+   "use_toggle": "use_race",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": null,
+   "value_domain_source": "runtime",
+   "default": null
+  },
+  {
+   "name": "faction",
+   "use_toggle": "use_faction",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": {
+    "Alliance": "Alliance",
+    "Horde": "Horde",
+    "Neutral": "Neutral"
+   },
+   "value_domain_source": "joined",
+   "default": null
+  },
+  {
+   "name": "level",
+   "use_toggle": "use_level",
+   "type": "number",
+   "input_kind": "value",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "role",
+   "use_toggle": "use_role",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": {
+    "caster": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Ranged",
+    "healer": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:1:20|t ",
+    "melee": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Melee",
+    "tank": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:0:19:22:41|t "
+   },
+   "value_domain_source": "joined",
+   "default": null
+  },
+  {
+   "name": "spec_position",
+   "use_toggle": "use_spec_position",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": {
+    "caster": "Ranged",
+    "melee": "Melee"
+   },
+   "value_domain_source": "joined",
+   "default": null
+  },
+  {
+   "name": "raid_role",
+   "use_toggle": "use_raid_role",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": {
+    "MAINASSIST": "|TInterface\\GroupFrame\\UI-Group-mainassistIcon:16:16|t ",
+    "MAINTANK": "|TInterface\\GroupFrame\\UI-Group-maintankIcon:16:16|t ",
+    "NONE": "Other"
+   },
+   "value_domain_source": "joined",
+   "default": null
+  },
+  {
+   "name": "ingroup",
+   "use_toggle": "use_ingroup",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": {
+    "group": "In Party",
+    "raid": "In Raid",
+    "solo": "Not in Group"
+   },
+   "value_domain_source": "joined",
+   "default": null
+  },
+  {
+   "name": "groupSize",
+   "use_toggle": "use_groupSize",
+   "type": "number",
+   "input_kind": "value",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "group_leader",
+   "use_toggle": "use_group_leader",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": {
+    "ASSIST": "Assist",
+    "LEADER": "Leader",
+    "NONE": "None"
+   },
+   "value_domain_source": "joined",
+   "default": null
+  },
+  {
+   "name": "ruleset",
+   "use_toggle": "use_ruleset",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": {
+    "highrisk": {},
+    "one": "None",
+    "pve": {},
+    "pvp": {}
+   },
+   "value_domain_source": "joined",
+   "default": null
+  },
+  {
+   "name": "zone",
+   "use_toggle": "use_zone",
+   "type": "string",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "zoneId",
+   "use_toggle": "use_zoneId",
+   "type": "string",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "subzone",
+   "use_toggle": "use_subzone",
+   "type": "string",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "encounterid",
+   "use_toggle": "use_encounterid",
+   "type": "string",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "size",
+   "use_toggle": "use_size",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": {
+    "arena": "Arena",
+    "fortyman": "40 Man Raid",
+    "none": "No Instance",
+    "party": "5 Man Dungeon",
+    "pvp": "Battleground",
+    "ten": "10 Man Raid",
+    "twenty": "20 Man Raid",
+    "twentyfive": "25 Man Raid"
+   },
+   "value_domain_source": "joined",
+   "default": null
+  },
+  {
+   "name": "difficulty",
+   "use_toggle": "use_difficulty",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": {
+    "ascended": "Ascended",
+    "heroic": {},
+    "mythic": "Mythic",
+    "none": "None",
+    "normal": {}
+   },
+   "value_domain_source": "joined",
+   "default": null
+  },
+  {
+   "name": "itemequiped",
+   "use_toggle": "use_itemequiped",
+   "type": "item",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "not_itemequiped",
+   "use_toggle": "use_not_itemequiped",
+   "type": "item",
+   "input_kind": "reference",
+   "value_domain": null,
+   "value_domain_source": null,
+   "default": null
+  },
+  {
+   "name": "itemtypeequipped",
+   "use_toggle": "use_itemtypeequipped",
+   "type": "multiselect",
+   "input_kind": "dropdown",
+   "value_domain": null,
+   "value_domain_source": "runtime",
+   "default": null
+  }
+ ],
+ "_meta": {
+  "source": "extract.lua prototypes -> load_prototype args, grounded via index_grounded.json (section=load). Same arg structure as triggers; each condition has a use_X toggle."
+ }
+}
