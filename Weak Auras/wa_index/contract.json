@@ -1,0 +1,4578 @@
+{
+ "_meta": {
+  "built_from": "statesheets/{trigger,display,load} - a JOIN, no new extraction",
+  "pre_flight": "read by the class-inventory pre-flight (NOT the pipeline): assert must_assert present, values in domain, condition check-var in a trigger `condition_vars`, change-prop in a region `change_targets`. Docket + fill stay dumb.",
+  "condition_join": "check reads trigger[type][event].condition_vars (the conditionType axis) -> change hits display[region].change_targets"
+ },
+ "trigger": {
+  "addons": {
+   "GTFO": {
+    "must_assert": [],
+    "condition_vars": [
+     "alertType"
+    ],
+    "inputs": {
+     "alertType": {
+      "default": null,
+      "domain": [
+       "High Damage",
+       "Low Damage",
+       "Fail Alert",
+       "Friendly Fire"
+      ]
+     }
+    }
+   }
+  },
+  "aura2": {
+   "Aura": {
+    "must_assert": [],
+    "condition_vars": [],
+    "inputs": {
+     "useUnit": {
+      "default": null,
+      "domain": null
+     },
+     "unit": {
+      "default": null,
+      "domain": null
+     },
+     "useSpecificUnit": {
+      "default": null,
+      "domain": null
+     },
+     "specificUnit": {
+      "default": null,
+      "domain": null
+     },
+     "useDebuffType": {
+      "default": null,
+      "domain": null
+     },
+     "debuffType": {
+      "default": null,
+      "domain": null
+     },
+     "use_debuffClass": {
+      "default": null,
+      "domain": null
+     },
+     "debuffClass": {
+      "default": null,
+      "domain": null
+     },
+     "useName": {
+      "default": null,
+      "domain": null
+     },
+     "name1": {
+      "default": null,
+      "domain": null
+     },
+     "useExactSpellId": {
+      "default": null,
+      "domain": null
+     },
+     "spellid1": {
+      "default": null,
+      "domain": null
+     },
+     "useIgnoreName": {
+      "default": null,
+      "domain": null
+     },
+     "ignorename1": {
+      "default": null,
+      "domain": null
+     },
+     "useIgnoreExactSpellId": {
+      "default": null,
+      "domain": null
+     },
+     "ignorespellid1": {
+      "default": null,
+      "domain": null
+     },
+     "useNamePattern": {
+      "default": null,
+      "domain": null
+     },
+     "namePattern_operator": {
+      "default": null,
+      "domain": null
+     },
+     "namePattern_name": {
+      "default": null,
+      "domain": null
+     },
+     "useStacks": {
+      "default": null,
+      "domain": null
+     },
+     "stacksOperator": {
+      "default": null,
+      "domain": null
+     },
+     "stacks": {
+      "default": null,
+      "domain": null
+     },
+     "useRem": {
+      "default": null,
+      "domain": null
+     },
+     "remOperator": {
+      "default": null,
+      "domain": null
+     },
+     "rem": {
+      "default": null,
+      "domain": null
+     },
+     "useTotal": {
+      "default": null,
+      "domain": null
+     },
+     "totalOperator": {
+      "default": null,
+      "domain": null
+     },
+     "total": {
+      "default": null,
+      "domain": null
+     },
+     "use_stealable": {
+      "default": null,
+      "domain": null
+     },
+     "use_isBossDebuff": {
+      "default": null,
+      "domain": null
+     },
+     "use_castByPlayer": {
+      "default": null,
+      "domain": null
+     },
+     "ownOnly": {
+      "default": null,
+      "domain": null
+     },
+     "fetchTooltip": {
+      "default": null,
+      "domain": null
+     },
+     "use_tooltip": {
+      "default": null,
+      "domain": null
+     },
+     "tooltip_operator": {
+      "default": null,
+      "domain": null
+     },
+     "tooltip": {
+      "default": null,
+      "domain": null
+     },
+     "use_tooltipValue": {
+      "default": null,
+      "domain": null
+     },
+     "tooltipValueNumber": {
+      "default": null,
+      "domain": null
+     },
+     "tooltipValue_operator": {
+      "default": null,
+      "domain": null
+     },
+     "tooltipValue": {
+      "default": null,
+      "domain": null
+     },
+     "useAffected": {
+      "default": null,
+      "domain": null
+     },
+     "fetchRole": {
+      "default": null,
+      "domain": null
+     },
+     "fetchRaidMark": {
+      "default": null,
+      "domain": null
+     },
+     "use_includePets": {
+      "default": null,
+      "domain": null
+     },
+     "includePets": {
+      "default": null,
+      "domain": null
+     },
+     "useActualSpec": {
+      "default": null,
+      "domain": null
+     },
+     "actualSpec": {
+      "default": null,
+      "domain": null
+     },
+     "useGroupRole": {
+      "default": null,
+      "domain": null
+     },
+     "group_role": {
+      "default": null,
+      "domain": null
+     },
+     "useRaidRole": {
+      "default": null,
+      "domain": null
+     },
+     "raid_role": {
+      "default": null,
+      "domain": null
+     },
+     "useClass": {
+      "default": null,
+      "domain": null
+     },
+     "class": {
+      "default": null,
+      "domain": null
+     },
+     "useUnitName": {
+      "default": null,
+      "domain": null
+     },
+     "unitName": {
+      "default": null,
+      "domain": null
+     },
+     "useHostility": {
+      "default": null,
+      "domain": null
+     },
+     "hostility": {
+      "default": null,
+      "domain": null
+     },
+     "useNpcId": {
+      "default": null,
+      "domain": null
+     },
+     "npcId": {
+      "default": null,
+      "domain": null
+     },
+     "ignoreSelf": {
+      "default": null,
+      "domain": null
+     },
+     "ignoreDead": {
+      "default": null,
+      "domain": null
+     },
+     "ignoreDisconnected": {
+      "default": null,
+      "domain": null
+     },
+     "inRange": {
+      "default": null,
+      "domain": null
+     },
+     "ignoreInvisible": {
+      "default": null,
+      "domain": null
+     },
+     "useGroup_count": {
+      "default": null,
+      "domain": null
+     },
+     "group_countOperator": {
+      "default": null,
+      "domain": null
+     },
+     "group_count": {
+      "default": null,
+      "domain": null
+     },
+     "use_matchesShowOn": {
+      "default": null,
+      "domain": null
+     },
+     "matchesShowOn": {
+      "default": null,
+      "domain": null
+     },
+     "useMatch_count": {
+      "default": null,
+      "domain": null
+     },
+     "match_countOperator": {
+      "default": null,
+      "domain": null
+     },
+     "match_count": {
+      "default": null,
+      "domain": null
+     },
+     "useMatchPerUnit_count": {
+      "default": null,
+      "domain": null
+     },
+     "matchPerUnit_countOperator": {
+      "default": null,
+      "domain": null
+     },
+     "matchPerUnit_count": {
+      "default": null,
+      "domain": null
+     },
+     "showClones": {
+      "default": null,
+      "domain": null
+     },
+     "combinePerUnit": {
+      "default": null,
+      "domain": null
+     },
+     "use_perUnitMode": {
+      "default": null,
+      "domain": null
+     },
+     "perUnitMode": {
+      "default": null,
+      "domain": null
+     },
+     "use_combineMode": {
+      "default": null,
+      "domain": null
+     },
+     "combineMode": {
+      "default": null,
+      "domain": null
+     },
+     "unitExists": {
+      "default": null,
+      "domain": null
+     }
+    }
+   }
+  },
+  "combatlog": {
+   "Combat Log": {
+    "must_assert": [],
+    "condition_vars": [
+     "sourceUnit",
+     "sourceName",
+     "sourceNpcId",
+     "sourceFlags",
+     "sourceFlags2",
+     "sourceFlags3",
+     "destUnit",
+     "destName",
+     "destNpcId",
+     "destFlags",
+     "destFlags2",
+     "destFlags3",
+     "spellId",
+     "spellName",
+     "spellSchool",
+     "environmentalType",
+     "missType",
+     "extraSpellId",
+     "extraSpellName",
+     "auraType",
+     "amount",
+     "overkill",
+     "overhealing",
+     "resisted",
+     "blocked",
+     "absorbed",
+     "critical",
+     "glancing",
+     "crushing",
+     "number",
+     "overEnergize",
+     "powerType",
+     "extraAmount"
+    ],
+    "inputs": {
+     "sourceHeader": {
+      "default": null,
+      "domain": null
+     },
+     "sourceUnit": {
+      "default": null,
+      "domain": null
+     },
+     "sourceName": {
+      "default": null,
+      "domain": null
+     },
+     "sourceNpcId": {
+      "default": null,
+      "domain": null
+     },
+     "sourceFlags": {
+      "default": null,
+      "domain": {
+       "InGroup": "In Group",
+       "InParty": "In Party",
+       "Mine": "Mine",
+       "NotInGroup": "Not in Smart Group"
+      }
+     },
+     "sourceFlags2": {
+      "default": null,
+      "domain": {
+       "Friendly": "Friendly",
+       "Hostile": "Hostile",
+       "Neutral": "Neutral"
+      }
+     },
+     "sourceFlags3": {
+      "default": null,
+      "domain": {
+       "Guardian": "Guardian",
+       "NPC": "NPC",
+       "Object": "Object",
+       "Pet": "Pet",
+       "Player": "Player"
+      }
+     },
+     "destHeader": {
+      "default": null,
+      "domain": null
+     },
+     "destUnit": {
+      "default": null,
+      "domain": null
+     },
+     "destName": {
+      "default": null,
+      "domain": null
+     },
+     "destNpcId": {
+      "default": null,
+      "domain": null
+     },
+     "destFlags": {
+      "default": null,
+      "domain": {
+       "InGroup": "In Group",
+       "InParty": "In Party",
+       "Mine": "Mine",
+       "NotInGroup": "Not in Smart Group"
+      }
+     },
+     "destFlags2": {
+      "default": null,
+      "domain": {
+       "Friendly": "Friendly",
+       "Hostile": "Hostile",
+       "Neutral": "Neutral"
+      }
+     },
+     "destFlags3": {
+      "default": null,
+      "domain": {
+       "Guardian": "Guardian",
+       "NPC": "NPC",
+       "Object": "Object",
+       "Pet": "Pet",
+       "Player": "Player"
+      }
+     },
+     "subeventHeader": {
+      "default": null,
+      "domain": null
+     },
+     "spellId": {
+      "default": null,
+      "domain": null
+     },
+     "spellName": {
+      "default": null,
+      "domain": null
+     },
+     "spellSchool": {
+      "default": null,
+      "domain": {
+       "1": "001 - ",
+       "10": "010 - ",
+       "106": "106 - ",
+       "12": "012 - ",
+       "124": "124 - ",
+       "126": "126 - ",
+       "127": "127 - ",
+       "16": "016 - ",
+       "17": "017 - ",
+       "18": "018 - ",
+       "2": "002 - ",
+       "20": "020 - ",
+       "24": "024 - ",
+       "28": "028 - ",
+       "3": "003 - ",
+       "32": "032 - ",
+       "33": "033 - ",
+       "34": "034 - ",
+       "36": "036 - ",
+       "4": "004 - ",
+       "40": "040 - ",
+       "48": "048 - ",
+       "5": "005 - ",
+       "6": "006 - ",
+       "62": "062 - ",
+       "64": "064 - ",
+       "65": "065 - ",
+       "66": "066 - ",
+       "68": "068 - ",
+       "72": "072 - ",
+       "8": "008 - ",
+       "80": "080 - ",
+       "9": "009 - ",
+       "96": "096 - "
+      }
+     },
+     "environmentalType": {
+      "default": null,
+      "domain": {
+       "Drowning": {},
+       "Falling": {},
+       "Fatigue": {},
+       "Fire": {},
+       "Lava": {},
+       "Slime": {}
+      }
+     },
+     "missType": {
+      "default": null,
+      "domain": {
+       "ABSORB": "Absorb",
+       "BLOCK": "Block",
+       "DEFLECT": "Deflect",
+       "DODGE": "Dodge",
+       "EVADE": "Evade",
+       "IMMUNE": "Immune",
+       "MISS": "Miss",
+       "PARRY": "Parry",
+       "REFLECT": "Reflect",
+       "RESIST": "Resist"
+      }
+     },
+     "extraSpellId": {
+      "default": null,
+      "domain": null
+     },
+     "extraSpellName": {
+      "default": null,
+      "domain": null
+     },
+     "auraType": {
+      "default": null,
+      "domain": {
+       "BUFF": "Buff",
+       "DEBUFF": "Debuff"
+      }
+     },
+     "amount": {
+      "default": null,
+      "domain": null
+     },
+     "overkill": {
+      "default": null,
+      "domain": null
+     },
+     "overhealing": {
+      "default": null,
+      "domain": null
+     },
+     "resisted": {
+      "default": null,
+      "domain": null
+     },
+     "blocked": {
+      "default": null,
+      "domain": null
+     },
+     "absorbed": {
+      "default": null,
+      "domain": null
+     },
+     "critical": {
+      "default": null,
+      "domain": null
+     },
+     "glancing": {
+      "default": null,
+      "domain": null
+     },
+     "crushing": {
+      "default": null,
+      "domain": null
+     },
+     "number": {
+      "default": null,
+      "domain": null
+     },
+     "overEnergize": {
+      "default": null,
+      "domain": null
+     },
+     "powerType": {
+      "default": null,
+      "domain": {
+       "0": {},
+       "1": {},
+       "2": {},
+       "27": {},
+       "3": {},
+       "6": {}
+      }
+     },
+     "extraAmount": {
+      "default": null,
+      "domain": null
+     },
+     "miscellaneousHeader": {
+      "default": null,
+      "domain": null
+     },
+     "cloneId": {
+      "default": null,
+      "domain": null
+     }
+    }
+   }
+  },
+  "custom": {
+   "Custom": {
+    "must_assert": [],
+    "condition_vars": [],
+    "inputs": {
+     "custom_type": {
+      "default": null,
+      "domain": null
+     },
+     "check": {
+      "default": null,
+      "domain": null
+     },
+     "events": {
+      "default": null,
+      "domain": null
+     },
+     "check2": {
+      "default": null,
+      "domain": null
+     },
+     "onUpdateThrottle": {
+      "default": null,
+      "domain": null
+     },
+     "events2": {
+      "default": null,
+      "domain": null
+     },
+     "custom_hide": {
+      "default": null,
+      "domain": null
+     },
+     "custom_hide2": {
+      "default": null,
+      "domain": null
+     },
+     "dynamicDuration": {
+      "default": null,
+      "domain": null
+     },
+     "duration": {
+      "default": null,
+      "domain": null
+     }
+    }
+   }
+  },
+  "event": {
+   "Chat Message": {
+    "must_assert": [],
+    "condition_vars": [
+     "message",
+     "sourceName",
+     "destName"
+    ],
+    "inputs": {
+     "messageType": {
+      "default": null,
+      "domain": {
+       "CHAT_MSG_BATTLEGROUND": "Battleground",
+       "CHAT_MSG_BG_SYSTEM_ALLIANCE": "BG-System Alliance",
+       "CHAT_MSG_BG_SYSTEM_HORDE": "BG-System Horde",
+       "CHAT_MSG_BG_SYSTEM_NEUTRAL": "BG-System Neutral",
+       "CHAT_MSG_BN_WHISPER": "Battle.net Whisper",
+       "CHAT_MSG_CHANNEL": "Channel",
+       "CHAT_MSG_EMOTE": "Emote",
+       "CHAT_MSG_GUILD": "Guild",
+       "CHAT_MSG_LOOT": "Loot",
+       "CHAT_MSG_MONSTER_EMOTE": "Monster Emote",
+       "CHAT_MSG_MONSTER_PARTY": "Monster Party",
+       "CHAT_MSG_MONSTER_SAY": "Monster Say",
+       "CHAT_MSG_MONSTER_WHISPER": "Monster Whisper",
+       "CHAT_MSG_MONSTER_YELL": "Monster Yell",
+       "CHAT_MSG_OFFICER": "Officer",
+       "CHAT_MSG_PARTY": "Party",
+       "CHAT_MSG_RAID": "Raid",
+       "CHAT_MSG_RAID_BOSS_EMOTE": "Boss Emote",
+       "CHAT_MSG_RAID_BOSS_WHISPER": "Boss Whisper",
+       "CHAT_MSG_RAID_WARNING": "Raid Warning",
+       "CHAT_MSG_SAY": "Say",
+       "CHAT_MSG_SYSTEM": "System",
+       "CHAT_MSG_WHISPER": "Whisper",
+       "CHAT_MSG_YELL": "Yell"
+      }
+     },
+     "message": {
+      "default": null,
+      "domain": null
+     },
+     "sourceName": {
+      "default": null,
+      "domain": null
+     },
+     "destName": {
+      "default": null,
+      "domain": null
+     },
+     "cloneId": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Combat Events": {
+    "must_assert": [
+     "eventtype"
+    ],
+    "condition_vars": [],
+    "inputs": {
+     "eventtype": {
+      "default": null,
+      "domain": {
+       "PLAYER_REGEN_DISABLED": "Entering",
+       "PLAYER_REGEN_ENABLED": "Leaving"
+      }
+     }
+    }
+   },
+   "Encounter Events": {
+    "must_assert": [
+     "eventtype"
+    ],
+    "condition_vars": [
+     "encounterId",
+     "encounterName",
+     "difficulty",
+     "success"
+    ],
+    "inputs": {
+     "note": {
+      "default": null,
+      "domain": null
+     },
+     "eventtype": {
+      "default": null,
+      "domain": {
+       "ENCOUNTER_END": "Leaving",
+       "ENCOUNTER_START": "Entering"
+      }
+     },
+     "encounterId": {
+      "default": null,
+      "domain": null
+     },
+     "encounterName": {
+      "default": null,
+      "domain": null
+     },
+     "difficulty": {
+      "default": null,
+      "domain": {
+       "ascended": "Ascended",
+       "heroic": {},
+       "mythic": "Mythic",
+       "none": "None",
+       "normal": {}
+      }
+     },
+     "success": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Ready Check": {
+    "must_assert": [],
+    "condition_vars": [],
+    "inputs": {}
+   },
+   "Spell Cast Succeeded": {
+    "must_assert": [],
+    "condition_vars": [
+     "unit"
+    ],
+    "inputs": {
+     "unit": {
+      "default": null,
+      "domain": null
+     },
+     "spellNames": {
+      "default": null,
+      "domain": null
+     },
+     "spellId": {
+      "default": null,
+      "domain": null
+     }
+    }
+   }
+  },
+  "item": {
+   "Cooldown Progress (Equipment Slot)": {
+    "must_assert": [
+     "itemSlot"
+    ],
+    "condition_vars": [
+     "itemId",
+     "name",
+     "stacks",
+     "onCooldown"
+    ],
+    "inputs": {
+     "itemSlot": {
+      "default": null,
+      "domain": {
+       "0": {},
+       "1": {},
+       "10": {},
+       "11": {},
+       "12": {},
+       "13": {},
+       "14": {},
+       "15": {},
+       "16": {},
+       "17": {},
+       "18": {},
+       "19": {},
+       "2": {},
+       "3": {},
+       "5": {},
+       "6": {},
+       "7": {},
+       "8": {},
+       "9": {}
+      }
+     },
+     "extra Cooldown Progress (Equipment Slot)": {
+      "default": null,
+      "domain": null
+     },
+     "showgcd": {
+      "default": null,
+      "domain": null
+     },
+     "remaining": {
+      "default": null,
+      "domain": null
+     },
+     "testForCooldown": {
+      "default": null,
+      "domain": null
+     },
+     "genericShowOn": {
+      "default": "showOnCooldown",
+      "domain": {
+       "showAlways": "Always",
+       "showOnCooldown": "On Cooldown",
+       "showOnReady": "Not on Cooldown"
+      }
+     }
+    }
+   },
+   "Cooldown Progress (Item)": {
+    "must_assert": [
+     "itemName"
+    ],
+    "condition_vars": [
+     "name",
+     "onCooldown"
+    ],
+    "inputs": {
+     "itemName": {
+      "default": null,
+      "domain": null
+     },
+     "remaining": {
+      "default": null,
+      "domain": null
+     },
+     "extra Cooldown Progress (Item)": {
+      "default": null,
+      "domain": null
+     },
+     "showgcd": {
+      "default": null,
+      "domain": null
+     },
+     "genericShowOn": {
+      "default": "showOnCooldown",
+      "domain": {
+       "showAlways": "Always",
+       "showOnCooldown": "On Cooldown",
+       "showOnReady": "Not on Cooldown"
+      }
+     }
+    }
+   },
+   "Cooldown Ready (Equipment Slot)": {
+    "must_assert": [
+     "itemSlot"
+    ],
+    "condition_vars": [
+     "itemId",
+     "name"
+    ],
+    "inputs": {
+     "itemSlot": {
+      "default": null,
+      "domain": {
+       "0": {},
+       "1": {},
+       "10": {},
+       "11": {},
+       "12": {},
+       "13": {},
+       "14": {},
+       "15": {},
+       "16": {},
+       "17": {},
+       "18": {},
+       "19": {},
+       "2": {},
+       "3": {},
+       "5": {},
+       "6": {},
+       "7": {},
+       "8": {},
+       "9": {}
+      }
+     }
+    }
+   },
+   "Cooldown Ready (Item)": {
+    "must_assert": [
+     "itemName"
+    ],
+    "condition_vars": [
+     "name"
+    ],
+    "inputs": {
+     "itemName": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Equipment Set": {
+    "must_assert": [],
+    "condition_vars": [
+     "itemSetName",
+     "name"
+    ],
+    "inputs": {
+     "itemSetName": {
+      "default": null,
+      "domain": null
+     },
+     "partial": {
+      "default": null,
+      "domain": null
+     },
+     "inverse": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Item Count": {
+    "must_assert": [
+     "itemName"
+    ],
+    "condition_vars": [
+     "stacks",
+     "value",
+     "total"
+    ],
+    "inputs": {
+     "itemName": {
+      "default": null,
+      "domain": null
+     },
+     "name": {
+      "default": null,
+      "domain": null
+     },
+     "includeBank": {
+      "default": null,
+      "domain": null
+     },
+     "includeCharges": {
+      "default": null,
+      "domain": null
+     },
+     "count": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Item Equipped": {
+    "must_assert": [
+     "itemName"
+    ],
+    "condition_vars": [
+     "name"
+    ],
+    "inputs": {
+     "itemName": {
+      "default": null,
+      "domain": null
+     },
+     "itemSlot": {
+      "default": null,
+      "domain": {
+       "0": {},
+       "1": {},
+       "10": {},
+       "11": {},
+       "12": {},
+       "13": {},
+       "14": {},
+       "15": {},
+       "16": {},
+       "17": {},
+       "18": {},
+       "19": {},
+       "2": {},
+       "3": {},
+       "5": {},
+       "6": {},
+       "7": {},
+       "8": {},
+       "9": {}
+      }
+     },
+     "inverse": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Item Type Equipped": {
+    "must_assert": [
+     "itemTypeName"
+    ],
+    "condition_vars": [],
+    "inputs": {
+     "itemTypeName": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Weapon Enchant": {
+    "must_assert": [],
+    "condition_vars": [
+     "stacks",
+     "enchantID",
+     "enchanted"
+    ],
+    "inputs": {
+     "weapon": {
+      "default": "main",
+      "domain": {
+       "main": {},
+       "off": {},
+       "ranged": {}
+      }
+     },
+     "enchant": {
+      "default": null,
+      "domain": null
+     },
+     "stacks": {
+      "default": null,
+      "domain": null
+     },
+     "remaining": {
+      "default": null,
+      "domain": null
+     },
+     "showOn": {
+      "default": "showOnActive",
+      "domain": null
+     }
+    }
+   }
+  },
+  "spell": {
+   "Action Usable": {
+    "must_assert": [
+     "spellName"
+    ],
+    "condition_vars": [
+     "charges",
+     "spellCount",
+     "readyTime",
+     "chargeGainTime",
+     "chargeLostTime",
+     "name",
+     "stacks",
+     "spellInRange"
+    ],
+    "inputs": {
+     "spellName": {
+      "default": null,
+      "domain": null
+     },
+     "targetRequired": {
+      "default": null,
+      "domain": null
+     },
+     "ignoreSpellCooldown": {
+      "default": null,
+      "domain": null
+     },
+     "charges": {
+      "default": null,
+      "domain": null
+     },
+     "spellCount": {
+      "default": null,
+      "domain": null
+     },
+     "inverse": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Charges Changed": {
+    "must_assert": [
+     "spellName",
+     "direction"
+    ],
+    "condition_vars": [
+     "direction",
+     "charges",
+     "name"
+    ],
+    "inputs": {
+     "spellName": {
+      "default": null,
+      "domain": null
+     },
+     "direction": {
+      "default": null,
+      "domain": {
+       "CHANGED": "Changed",
+       "GAINED": "Gained",
+       "LOST": "Lost"
+      }
+     },
+     "charges": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Cooldown Progress (Spell)": {
+    "must_assert": [
+     "spellName"
+    ],
+    "condition_vars": [
+     "charges",
+     "spellCount",
+     "maxCharges",
+     "readyTime",
+     "chargeGainTime",
+     "chargeLostTime",
+     "effectiveSpellId",
+     "name",
+     "onCooldown",
+     "spellUsable",
+     "insufficientResources",
+     "spellInRange"
+    ],
+    "inputs": {
+     "spellName": {
+      "default": null,
+      "domain": null
+     },
+     "extra Cooldown Progress (Spell)": {
+      "default": null,
+      "domain": null
+     },
+     "track": {
+      "default": "auto",
+      "domain": {
+       "auto": "Auto",
+       "charges": "Charges",
+       "cooldown": "Cooldown"
+      }
+     },
+     "showgcd": {
+      "default": null,
+      "domain": null
+     },
+     "matchedRune": {
+      "default": null,
+      "domain": null
+     },
+     "ignoreSpellKnown": {
+      "default": null,
+      "domain": null
+     },
+     "trackcharge": {
+      "default": null,
+      "domain": null
+     },
+     "remaining": {
+      "default": null,
+      "domain": null
+     },
+     "charges": {
+      "default": null,
+      "domain": null
+     },
+     "spellCount": {
+      "default": null,
+      "domain": null
+     },
+     "genericShowOn": {
+      "default": "showOnCooldown",
+      "domain": {
+       "showAlways": "Always",
+       "showOnCooldown": "On Cooldown",
+       "showOnReady": "Not on Cooldown"
+      }
+     }
+    }
+   },
+   "Cooldown Ready (Spell)": {
+    "must_assert": [
+     "spellName"
+    ],
+    "condition_vars": [
+     "name"
+    ],
+    "inputs": {
+     "spellName": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Global Cooldown": {
+    "must_assert": [],
+    "condition_vars": [
+     "name"
+    ],
+    "inputs": {
+     "inverse": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Queued Action": {
+    "must_assert": [
+     "spellName"
+    ],
+    "condition_vars": [],
+    "inputs": {
+     "spellName": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Spell Known": {
+    "must_assert": [
+     "spellName"
+    ],
+    "condition_vars": [
+     "name"
+    ],
+    "inputs": {
+     "spellName": {
+      "default": null,
+      "domain": null
+     },
+     "petspell": {
+      "default": null,
+      "domain": null
+     },
+     "inverse": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Totem": {
+    "must_assert": [],
+    "condition_vars": [
+     "totemName",
+     "icon"
+    ],
+    "inputs": {
+     "totemType": {
+      "default": null,
+      "domain": [
+       "Fire",
+       "Earth",
+       "Water",
+       "Air"
+      ]
+     },
+     "totemName": {
+      "default": null,
+      "domain": null
+     },
+     "totemNamePattern": {
+      "default": null,
+      "domain": null
+     },
+     "icon": {
+      "default": null,
+      "domain": null
+     },
+     "inverse": {
+      "default": null,
+      "domain": null
+     },
+     "clones": {
+      "default": null,
+      "domain": null
+     },
+     "remaining": {
+      "default": null,
+      "domain": null
+     }
+    }
+   }
+  },
+  "unit": {
+   "Cast": {
+    "must_assert": [
+     "unit"
+    ],
+    "condition_vars": [
+     "spell",
+     "castType",
+     "interruptible",
+     "npcId",
+     "class",
+     "role",
+     "raid_role",
+     "raidMarkIndex",
+     "nameplateType",
+     "sourceUnit",
+     "sourceNameRealm",
+     "destUnit",
+     "destNameRealm",
+     "spellId"
+    ],
+    "inputs": {
+     "unit": {
+      "default": null,
+      "domain": null
+     },
+     "spellNames": {
+      "default": null,
+      "domain": null
+     },
+     "spellIds": {
+      "default": null,
+      "domain": null
+     },
+     "spell": {
+      "default": null,
+      "domain": null
+     },
+     "castType": {
+      "default": null,
+      "domain": {
+       "cast": "Cast",
+       "channel": "Channel (Spell)"
+      }
+     },
+     "interruptible": {
+      "default": null,
+      "domain": null
+     },
+     "remaining": {
+      "default": null,
+      "domain": null
+     },
+     "unitCharacteristicsHeader": {
+      "default": null,
+      "domain": null
+     },
+     "npcId": {
+      "default": null,
+      "domain": null
+     },
+     "class": {
+      "default": null,
+      "domain": null
+     },
+     "role": {
+      "default": null,
+      "domain": {
+       "caster": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Ranged",
+       "healer": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:1:20|t ",
+       "melee": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Melee",
+       "tank": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:0:19:22:41|t "
+      }
+     },
+     "raid_role": {
+      "default": null,
+      "domain": {
+       "MAINASSIST": "|TInterface\\GroupFrame\\UI-Group-mainassistIcon:16:16|t ",
+       "MAINTANK": "|TInterface\\GroupFrame\\UI-Group-maintankIcon:16:16|t ",
+       "NONE": "Other"
+      }
+     },
+     "raidMarkIndex": {
+      "default": null,
+      "domain": null
+     },
+     "nameplateType": {
+      "default": null,
+      "domain": {
+       "friendly": "Friendly",
+       "hostile": "Hostile"
+      }
+     },
+     "sourceUnit": {
+      "default": null,
+      "domain": null
+     },
+     "sourceName": {
+      "default": null,
+      "domain": null
+     },
+     "sourceRealm": {
+      "default": null,
+      "domain": null
+     },
+     "sourceNameRealm": {
+      "default": null,
+      "domain": null
+     },
+     "destUnit": {
+      "default": null,
+      "domain": null
+     },
+     "destName": {
+      "default": null,
+      "domain": null
+     },
+     "destRealm": {
+      "default": null,
+      "domain": null
+     },
+     "destNameRealm": {
+      "default": null,
+      "domain": null
+     },
+     "miscellaneousHeader": {
+      "default": null,
+      "domain": null
+     },
+     "showLatency": {
+      "default": null,
+      "domain": null
+     },
+     "includePets": {
+      "default": null,
+      "domain": {
+       "PetsOnly": "Pets only",
+       "PlayersAndPets": "Players and Pets"
+      }
+     },
+     "ignoreSelf": {
+      "default": null,
+      "domain": null
+     },
+     "onUpdateUnitTarget": {
+      "default": null,
+      "domain": null
+     },
+     "inverse": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Character Stats": {
+    "must_assert": [],
+    "condition_vars": [
+     "strength",
+     "agility",
+     "stamina",
+     "intellect",
+     "spirit",
+     "criticalrating",
+     "criticalpercent",
+     "hitrating",
+     "hitpercent",
+     "hasterating",
+     "hastepercent",
+     "expertiserating",
+     "expertisebonus",
+     "armorpenrating",
+     "armorpenpercent",
+     "spellpenpercent",
+     "resiliencerating",
+     "resiliencepercent",
+     "attackpower",
+     "spellpower",
+     "rangedattackpower",
+     "resistancefire",
+     "resistancenature",
+     "resistancefrost",
+     "resistanceshadow",
+     "resistancearcane",
+     "movespeedpercent",
+     "defense",
+     "defensevalue",
+     "defensepercent",
+     "dodgerating",
+     "dodgepercent",
+     "parryrating",
+     "parrypercent",
+     "blockpercent",
+     "blockvalue",
+     "armorrating",
+     "armorpercent",
+     "avoidancetotalpercent"
+    ],
+    "inputs": {
+     "primaryStatsHeader": {
+      "default": null,
+      "domain": null
+     },
+     "strength": {
+      "default": null,
+      "domain": null
+     },
+     "agility": {
+      "default": null,
+      "domain": null
+     },
+     "stamina": {
+      "default": null,
+      "domain": null
+     },
+     "intellect": {
+      "default": null,
+      "domain": null
+     },
+     "spirit": {
+      "default": null,
+      "domain": null
+     },
+     "secondaryStatsHeader": {
+      "default": null,
+      "domain": null
+     },
+     "criticalrating": {
+      "default": null,
+      "domain": null
+     },
+     "criticalpercent": {
+      "default": null,
+      "domain": null
+     },
+     "hitrating": {
+      "default": null,
+      "domain": null
+     },
+     "hitpercent": {
+      "default": null,
+      "domain": null
+     },
+     "hasterating": {
+      "default": null,
+      "domain": null
+     },
+     "hastepercent": {
+      "default": null,
+      "domain": null
+     },
+     "expertiserating": {
+      "default": null,
+      "domain": null
+     },
+     "expertisebonus": {
+      "default": null,
+      "domain": null
+     },
+     "armorpenrating": {
+      "default": null,
+      "domain": null
+     },
+     "armorpenpercent": {
+      "default": null,
+      "domain": null
+     },
+     "spellpenpercent": {
+      "default": null,
+      "domain": null
+     },
+     "resiliencerating": {
+      "default": null,
+      "domain": null
+     },
+     "resiliencepercent": {
+      "default": null,
+      "domain": null
+     },
+     "attackpower": {
+      "default": null,
+      "domain": null
+     },
+     "spellpower": {
+      "default": null,
+      "domain": null
+     },
+     "rangedattackpower": {
+      "default": null,
+      "domain": null
+     },
+     "resistanceHeader": {
+      "default": null,
+      "domain": null
+     },
+     "resistancefire": {
+      "default": null,
+      "domain": null
+     },
+     "resistancenature": {
+      "default": null,
+      "domain": null
+     },
+     "resistancefrost": {
+      "default": null,
+      "domain": null
+     },
+     "resistanceshadow": {
+      "default": null,
+      "domain": null
+     },
+     "resistancearcane": {
+      "default": null,
+      "domain": null
+     },
+     "tertiaryStatsHeader": {
+      "default": null,
+      "domain": null
+     },
+     "moveSpeed": {
+      "default": null,
+      "domain": null
+     },
+     "movespeedpercent": {
+      "default": null,
+      "domain": null
+     },
+     "defensiveStatsHeader": {
+      "default": null,
+      "domain": null
+     },
+     "defense": {
+      "default": null,
+      "domain": null
+     },
+     "defensevalue": {
+      "default": null,
+      "domain": null
+     },
+     "defensepercent": {
+      "default": null,
+      "domain": null
+     },
+     "dodgerating": {
+      "default": null,
+      "domain": null
+     },
+     "dodgepercent": {
+      "default": null,
+      "domain": null
+     },
+     "parryrating": {
+      "default": null,
+      "domain": null
+     },
+     "parrypercent": {
+      "default": null,
+      "domain": null
+     },
+     "blockpercent": {
+      "default": null,
+      "domain": null
+     },
+     "blockvalue": {
+      "default": null,
+      "domain": null
+     },
+     "armorrating": {
+      "default": null,
+      "domain": null
+     },
+     "armorpercent": {
+      "default": null,
+      "domain": null
+     },
+     "avoidancetotalpercent": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Class/Spec": {
+    "must_assert": [],
+    "condition_vars": [
+     "specId"
+    ],
+    "inputs": {
+     "specId": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Conditions": {
+    "must_assert": [],
+    "condition_vars": [],
+    "inputs": {
+     "alwaystrue": {
+      "default": null,
+      "domain": null
+     },
+     "incombat": {
+      "default": null,
+      "domain": null
+     },
+     "pvpflagged": {
+      "default": null,
+      "domain": null
+     },
+     "alive": {
+      "default": null,
+      "domain": null
+     },
+     "vehicle": {
+      "default": null,
+      "domain": null
+     },
+     "resting": {
+      "default": null,
+      "domain": null
+     },
+     "mounted": {
+      "default": null,
+      "domain": null
+     },
+     "HasPet": {
+      "default": null,
+      "domain": null
+     },
+     "ismoving": {
+      "default": null,
+      "domain": null
+     },
+     "afk": {
+      "default": null,
+      "domain": null
+     },
+     "ingroup": {
+      "default": null,
+      "domain": {
+       "group": "In Party",
+       "raid": "In Raid",
+       "solo": "Not in Group"
+      }
+     },
+     "ruleset": {
+      "default": null,
+      "domain": {
+       "highrisk": {},
+       "one": "None",
+       "pve": {},
+       "pvp": {}
+      }
+     },
+     "instance_size": {
+      "default": null,
+      "domain": {
+       "arena": "Arena",
+       "fortyman": "40 Man Raid",
+       "none": "No Instance",
+       "party": "5 Man Dungeon",
+       "pvp": "Battleground",
+       "ten": "10 Man Raid",
+       "twenty": "20 Man Raid",
+       "twentyfive": "25 Man Raid"
+      }
+     },
+     "instance_difficulty": {
+      "default": null,
+      "domain": {
+       "ascended": "Ascended",
+       "heroic": {},
+       "mythic": "Mythic",
+       "none": "None",
+       "normal": {}
+      }
+     }
+    }
+   },
+   "Crowd Controlled": {
+    "must_assert": [],
+    "condition_vars": [],
+    "inputs": {
+     "controlled": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Currency": {
+    "must_assert": [
+     "currencyId"
+    ],
+    "condition_vars": [
+     "value",
+     "totalEarned",
+     "discovered"
+    ],
+    "inputs": {
+     "currencyId": {
+      "default": null,
+      "domain": {}
+     },
+     "value": {
+      "default": null,
+      "domain": null
+     },
+     "totalEarned": {
+      "default": null,
+      "domain": null
+     },
+     "description": {
+      "default": null,
+      "domain": null
+     },
+     "discovered": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Death Knight Rune": {
+    "must_assert": [
+     "genericShowOn"
+    ],
+    "condition_vars": [
+     "isDeathRune",
+     "bloodRunes",
+     "frostRunes",
+     "unholyRunes",
+     "onCooldown"
+    ],
+    "inputs": {
+     "rune": {
+      "default": null,
+      "domain": [
+       "Blood Rune #1",
+       "Blood Rune #2",
+       "Unholy Rune #1",
+       "Unholy Rune #2",
+       "Frost Rune #1",
+       "Frost Rune #2"
+      ]
+     },
+     "isDeathRune": {
+      "default": null,
+      "domain": null
+     },
+     "remaining": {
+      "default": null,
+      "domain": null
+     },
+     "genericShowOn": {
+      "default": null,
+      "domain": {
+       "showAlways": "Always",
+       "showOnCooldown": "On Cooldown",
+       "showOnReady": "Not on Cooldown"
+      }
+     },
+     "runesCount": {
+      "default": null,
+      "domain": null
+     },
+     "bloodRunes": {
+      "default": null,
+      "domain": null
+     },
+     "frostRunes": {
+      "default": null,
+      "domain": null
+     },
+     "unholyRunes": {
+      "default": null,
+      "domain": null
+     },
+     "includeDeathRunes": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Experience": {
+    "must_assert": [],
+    "condition_vars": [
+     "level",
+     "currentXP",
+     "totalXP",
+     "percentXP",
+     "restedXP",
+     "percentrested"
+    ],
+    "inputs": {
+     "level": {
+      "default": null,
+      "domain": null
+     },
+     "currentXP": {
+      "default": null,
+      "domain": null
+     },
+     "totalXP": {
+      "default": null,
+      "domain": null
+     },
+     "value": {
+      "default": null,
+      "domain": null
+     },
+     "total": {
+      "default": null,
+      "domain": null
+     },
+     "percentXP": {
+      "default": null,
+      "domain": null
+     },
+     "restedExperienceHeader": {
+      "default": null,
+      "domain": null
+     },
+     "showRested": {
+      "default": null,
+      "domain": null
+     },
+     "restedXP": {
+      "default": null,
+      "domain": null
+     },
+     "percentrested": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Faction Reputation": {
+    "must_assert": [
+     "factionID"
+    ],
+    "condition_vars": [
+     "factionID",
+     "value",
+     "total",
+     "percentRep",
+     "standingId",
+     "capped",
+     "atWar"
+    ],
+    "inputs": {
+     "watched": {
+      "default": null,
+      "domain": null
+     },
+     "factionID": {
+      "default": null,
+      "domain": {}
+     },
+     "name": {
+      "default": null,
+      "domain": null
+     },
+     "value": {
+      "default": null,
+      "domain": null
+     },
+     "total": {
+      "default": null,
+      "domain": null
+     },
+     "percentRep": {
+      "default": null,
+      "domain": null
+     },
+     "standing": {
+      "default": null,
+      "domain": null
+     },
+     "standingId": {
+      "default": null,
+      "domain": null
+     },
+     "capped": {
+      "default": null,
+      "domain": null
+     },
+     "atWar": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Health": {
+    "must_assert": [
+     "unit",
+     "absorbMode"
+    ],
+    "condition_vars": [
+     "health",
+     "percenthealth",
+     "deficit",
+     "maxhealth",
+     "absorb",
+     "namerealm",
+     "npcId",
+     "class",
+     "specId",
+     "role",
+     "raid_role",
+     "raidMarkIndex",
+     "nameplateType"
+    ],
+    "inputs": {
+     "unit": {
+      "default": null,
+      "domain": null
+     },
+     "health": {
+      "default": null,
+      "domain": null
+     },
+     "percenthealth": {
+      "default": null,
+      "domain": null
+     },
+     "deficit": {
+      "default": null,
+      "domain": null
+     },
+     "maxhealth": {
+      "default": null,
+      "domain": null
+     },
+     "showAbsorb": {
+      "default": null,
+      "domain": null
+     },
+     "absorbMode": {
+      "default": null,
+      "domain": {
+       "OVERLAY_FROM_END": "Attach to End",
+       "OVERLAY_FROM_START": "Attach to Start"
+      }
+     },
+     "absorb": {
+      "default": null,
+      "domain": null
+     },
+     "unitCharacteristicsHeader": {
+      "default": null,
+      "domain": null
+     },
+     "name": {
+      "default": null,
+      "domain": null
+     },
+     "realm": {
+      "default": null,
+      "domain": null
+     },
+     "namerealm": {
+      "default": null,
+      "domain": null
+     },
+     "npcId": {
+      "default": null,
+      "domain": null
+     },
+     "class": {
+      "default": null,
+      "domain": null
+     },
+     "specId": {
+      "default": null,
+      "domain": null
+     },
+     "role": {
+      "default": null,
+      "domain": {
+       "caster": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Ranged",
+       "healer": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:1:20|t ",
+       "melee": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Melee",
+       "tank": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:0:19:22:41|t "
+      }
+     },
+     "raid_role": {
+      "default": null,
+      "domain": {
+       "MAINASSIST": "|TInterface\\GroupFrame\\UI-Group-mainassistIcon:16:16|t ",
+       "MAINTANK": "|TInterface\\GroupFrame\\UI-Group-maintankIcon:16:16|t ",
+       "NONE": "Other"
+      }
+     },
+     "raidMarkIndex": {
+      "default": null,
+      "domain": null
+     },
+     "miscellaneousHeader": {
+      "default": null,
+      "domain": null
+     },
+     "includePets": {
+      "default": null,
+      "domain": {
+       "PetsOnly": "Pets only",
+       "PlayersAndPets": "Players and Pets"
+      }
+     },
+     "ignoreSelf": {
+      "default": null,
+      "domain": null
+     },
+     "ignoreDead": {
+      "default": null,
+      "domain": null
+     },
+     "ignoreDisconnected": {
+      "default": null,
+      "domain": null
+     },
+     "inRange": {
+      "default": null,
+      "domain": null
+     },
+     "nameplateType": {
+      "default": null,
+      "domain": {
+       "friendly": "Friendly",
+       "hostile": "Hostile"
+      }
+     }
+    }
+   },
+   "Location": {
+    "must_assert": [],
+    "condition_vars": [
+     "zoneIds",
+     "zone",
+     "subzone",
+     "instanceSize",
+     "instanceDifficulty"
+    ],
+    "inputs": {
+     "zoneIds": {
+      "default": null,
+      "domain": null
+     },
+     "zone": {
+      "default": null,
+      "domain": null
+     },
+     "subzone": {
+      "default": null,
+      "domain": null
+     },
+     "instanceHeader": {
+      "default": null,
+      "domain": null
+     },
+     "instanceSize": {
+      "default": null,
+      "domain": {
+       "arena": "Arena",
+       "fortyman": "40 Man Raid",
+       "none": "No Instance",
+       "party": "5 Man Dungeon",
+       "pvp": "Battleground",
+       "ten": "10 Man Raid",
+       "twenty": "20 Man Raid",
+       "twentyfive": "25 Man Raid"
+      }
+     },
+     "instanceDifficulty": {
+      "default": null,
+      "domain": {
+       "ascended": "Ascended",
+       "heroic": {},
+       "mythic": "Mythic",
+       "none": "None",
+       "normal": {}
+      }
+     }
+    }
+   },
+   "Money": {
+    "must_assert": [],
+    "condition_vars": [
+     "gold"
+    ],
+    "inputs": {
+     "money": {
+      "default": null,
+      "domain": null
+     },
+     "gold": {
+      "default": null,
+      "domain": null
+     },
+     "silver": {
+      "default": null,
+      "domain": null
+     },
+     "copper": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Pet Behavior": {
+    "must_assert": [],
+    "condition_vars": [],
+    "inputs": {
+     "behavior": {
+      "default": null,
+      "domain": {
+       "aggressive": {},
+       "defensive": {},
+       "passive": {}
+      }
+     },
+     "inverse": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Power": {
+    "must_assert": [
+     "unit"
+    ],
+    "condition_vars": [
+     "powertype",
+     "power",
+     "percentpower",
+     "deficit",
+     "maxpower",
+     "namerealm",
+     "npcId",
+     "class",
+     "specId",
+     "role",
+     "raid_role",
+     "raidMarkIndex",
+     "nameplateType"
+    ],
+    "inputs": {
+     "unit": {
+      "default": null,
+      "domain": null
+     },
+     "powertype": {
+      "default": null,
+      "domain": null
+     },
+     "requirePowerType": {
+      "default": null,
+      "domain": null
+     },
+     "showCost": {
+      "default": null,
+      "domain": null
+     },
+     "power": {
+      "default": null,
+      "domain": null
+     },
+     "percentpower": {
+      "default": null,
+      "domain": null
+     },
+     "deficit": {
+      "default": null,
+      "domain": null
+     },
+     "maxpower": {
+      "default": null,
+      "domain": null
+     },
+     "name": {
+      "default": null,
+      "domain": null
+     },
+     "realm": {
+      "default": null,
+      "domain": null
+     },
+     "unitCharacteristicsHeader": {
+      "default": null,
+      "domain": null
+     },
+     "namerealm": {
+      "default": null,
+      "domain": null
+     },
+     "npcId": {
+      "default": null,
+      "domain": null
+     },
+     "class": {
+      "default": null,
+      "domain": null
+     },
+     "specId": {
+      "default": null,
+      "domain": null
+     },
+     "role": {
+      "default": null,
+      "domain": {
+       "caster": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Ranged",
+       "healer": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:1:20|t ",
+       "melee": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Melee",
+       "tank": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:0:19:22:41|t "
+      }
+     },
+     "raid_role": {
+      "default": null,
+      "domain": {
+       "MAINASSIST": "|TInterface\\GroupFrame\\UI-Group-mainassistIcon:16:16|t ",
+       "MAINTANK": "|TInterface\\GroupFrame\\UI-Group-maintankIcon:16:16|t ",
+       "NONE": "Other"
+      }
+     },
+     "raidMarkIndex": {
+      "default": null,
+      "domain": null
+     },
+     "miscellaneousHeader": {
+      "default": null,
+      "domain": null
+     },
+     "includePets": {
+      "default": null,
+      "domain": {
+       "PetsOnly": "Pets only",
+       "PlayersAndPets": "Players and Pets"
+      }
+     },
+     "ignoreSelf": {
+      "default": null,
+      "domain": null
+     },
+     "ignoreDead": {
+      "default": null,
+      "domain": null
+     },
+     "ignoreDisconnected": {
+      "default": null,
+      "domain": null
+     },
+     "inRange": {
+      "default": null,
+      "domain": null
+     },
+     "nameplateType": {
+      "default": null,
+      "domain": {
+       "friendly": "Friendly",
+       "hostile": "Hostile"
+      }
+     }
+    }
+   },
+   "Range Check": {
+    "must_assert": [
+     "unit"
+    ],
+    "condition_vars": [
+     "minRange",
+     "maxRange",
+     "range"
+    ],
+    "inputs": {
+     "note": {
+      "default": null,
+      "domain": null
+     },
+     "unit": {
+      "default": null,
+      "domain": null
+     },
+     "minRange": {
+      "default": null,
+      "domain": null
+     },
+     "maxRange": {
+      "default": null,
+      "domain": null
+     },
+     "range": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Stance/Form/Aura": {
+    "must_assert": [],
+    "condition_vars": [
+     "form"
+    ],
+    "inputs": {
+     "note": {
+      "default": null,
+      "domain": null
+     },
+     "form": {
+      "default": null,
+      "domain": null
+     },
+     "inverse": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Swing Timer": {
+    "must_assert": [
+     "hand"
+    ],
+    "condition_vars": [],
+    "inputs": {
+     "note": {
+      "default": null,
+      "domain": null
+     },
+     "hand": {
+      "default": null,
+      "domain": {
+       "main": {},
+       "off": {},
+       "ranged": {}
+      }
+     },
+     "remaining": {
+      "default": null,
+      "domain": null
+     },
+     "inverse": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Talent Known": {
+    "must_assert": [
+     "spellName"
+    ],
+    "condition_vars": [
+     "name"
+    ],
+    "inputs": {
+     "spellName": {
+      "default": null,
+      "domain": null
+     },
+     "inverse": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Threat Situation": {
+    "must_assert": [],
+    "condition_vars": [
+     "status",
+     "aggro",
+     "threatpct",
+     "rawthreatpct",
+     "threatvalue",
+     "name",
+     "npcId"
+    ],
+    "inputs": {
+     "unit": {
+      "default": "target",
+      "domain": null
+     },
+     "status": {
+      "default": null,
+      "domain": {
+       "-1": "Not On Threat Table",
+       "0": "|cFFB0B0B0Lower Than Tank|r",
+       "1": "|cFFFFFF77Higher Than Tank|r",
+       "2": "|cFFFF9900Tanking But Not Highest|r",
+       "3": "|cFFFF0000Tanking And Highest|r"
+      }
+     },
+     "aggro": {
+      "default": null,
+      "domain": null
+     },
+     "threatpct": {
+      "default": null,
+      "domain": null
+     },
+     "rawthreatpct": {
+      "default": null,
+      "domain": null
+     },
+     "threatvalue": {
+      "default": null,
+      "domain": null
+     },
+     "unitCharacteristicsHeader": {
+      "default": null,
+      "domain": null
+     },
+     "name": {
+      "default": null,
+      "domain": null
+     },
+     "npcId": {
+      "default": null,
+      "domain": null
+     }
+    }
+   },
+   "Unit Characteristics": {
+    "must_assert": [
+     "unit"
+    ],
+    "condition_vars": [
+     "namerealm",
+     "class",
+     "specId",
+     "classification",
+     "creatureTypeIndex",
+     "creatureFamilyIndex",
+     "role",
+     "raid_role",
+     "raidMarkIndex",
+     "dead",
+     "hostility",
+     "character",
+     "level",
+     "npcId",
+     "attackable",
+     "inCombat",
+     "afk",
+     "dnd"
+    ],
+    "inputs": {
+     "unit": {
+      "default": null,
+      "domain": null
+     },
+     "unitisunit": {
+      "default": null,
+      "domain": null
+     },
+     "name": {
+      "default": null,
+      "domain": null
+     },
+     "realm": {
+      "default": null,
+      "domain": null
+     },
+     "namerealm": {
+      "default": null,
+      "domain": null
+     },
+     "class": {
+      "default": null,
+      "domain": null
+     },
+     "specId": {
+      "default": null,
+      "domain": null
+     },
+     "classification": {
+      "default": null,
+      "domain": {
+       "elite": "Elite",
+       "minus": "Minus (Small Nameplate)",
+       "normal": "Normal",
+       "rare": "Rare",
+       "rareelite": "Rare Elite",
+       "trivial": "Trivial (Low Level)",
+       "worldboss": "World Boss"
+      }
+     },
+     "creatureTypeIndex": {
+      "default": null,
+      "domain": [
+       "Beast",
+       "Dragonkin",
+       {},
+       {},
+       {},
+       "Undead",
+       "Humanoid",
+       "Critter",
+       "Mechanical",
+       "Not specified",
+       "Totem",
+       "Non-combat Pet",
+       "Gas Cloud",
+       "Wild Pet",
+       "Aberration"
+      ]
+     },
+     "creatureFamilyIndex": {
+      "default": null,
+      "domain": {
+       "1": "Wolf",
+       "11": "Raptor",
+       "12": "Tallstrider",
+       "15": "Felhunter",
+       "16": "Voidwalker",
+       "17": "Succubus",
+       "19": "Doomguard",
+       "2": "Cat",
+       "20": {},
+       "21": "Turtle",
+       "23": "Imp",
+       "24": "Bat",
+       "25": "Hyena",
+       "26": "Bird of Prey",
+       "27": "Wind Serpent",
+       "28": "Remote Control",
+       "29": "Felguard",
+       "3": "Spider",
+       "30": "Dragonhawk",
+       "302": "Incubus",
+       "31": {},
+       "32": "Warp Stalker",
+       "33": "Sporebat",
+       "34": "Nether Ray",
+       "35": "Serpent",
+       "37": "Moth",
+       "38": "Chimaera",
+       "39": "Devilsaur",
+       "4": "Bear",
+       "40": "Ghoul",
+       "41": {},
+       "42": "Worm",
+       "43": "Rhino",
+       "44": "Wasp",
+       "45": "Core Hound",
+       "46": "Spirit Beast",
+       "5": "Boar",
+       "6": "Crocolisk",
+       "7": "Carrion Bird",
+       "8": "Crab",
+       "9": "Gorilla"
+      }
+     },
+     "role": {
+      "default": null,
+      "domain": {
+       "caster": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Ranged",
+       "healer": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:1:20|t ",
+       "melee": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Melee",
+       "tank": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:0:19:22:41|t "
+      }
+     },
+     "raid_role": {
+      "default": null,
+      "domain": {
+       "MAINASSIST": "|TInterface\\GroupFrame\\UI-Group-mainassistIcon:16:16|t ",
+       "MAINTANK": "|TInterface\\GroupFrame\\UI-Group-maintankIcon:16:16|t ",
+       "NONE": "Other"
+      }
+     },
+     "raidMarkIndex": {
+      "default": null,
+      "domain": null
+     },
+     "dead": {
+      "default": null,
+      "domain": null
+     },
+     "ignoreSelf": {
+      "default": null,
+      "domain": null
+     },
+     "ignoreDisconnected": {
+      "default": null,
+      "domain": null
+     },
+     "inRange": {
+      "default": null,
+      "domain": null
+     },
+     "hostility": {
+      "default": null,
+      "domain": {
+       "friendly": "Friendly",
+       "hostile": "Hostile"
+      }
+     },
+     "character": {
+      "default": null,
+      "domain": {
+       "npc": "Non-player Character",
+       "player": "Player Character"
+      }
+     },
+     "level": {
+      "default": null,
+      "domain": null
+     },
+     "npcId": {
+      "default": null,
+      "domain": null
+     },
+     "attackable": {
+      "default": null,
+      "domain": null
+     },
+     "inCombat": {
+      "default": null,
+      "domain": null
+     },
+     "afk": {
+      "default": null,
+      "domain": null
+     },
+     "dnd": {
+      "default": null,
+      "domain": null
+     }
+    }
+   }
+  }
+ },
+ "display": {
+  "aurabar": {
+   "fields": {
+    "adjustedMax": {
+     "default": "",
+     "kind": "option",
+     "condition_target": false
+    },
+    "adjustedMin": {
+     "default": "",
+     "kind": "option",
+     "condition_target": false
+    },
+    "anchorFrameType": {
+     "default": "SCREEN",
+     "kind": "position",
+     "condition_target": false
+    },
+    "anchorPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "backgroundColor": {
+     "default": [
+      0,
+      0,
+      0,
+      0.5
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "barColor": {
+     "default": [
+      1,
+      0,
+      0,
+      1
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "barColor2": {
+     "default": [
+      1,
+      1,
+      0,
+      1
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "desaturate": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "enableGradient": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "frameStrata": {
+     "default": 1,
+     "kind": "position",
+     "condition_target": false
+    },
+    "gradientOrientation": {
+     "default": "HORIZONTAL",
+     "kind": "option",
+     "condition_target": true
+    },
+    "height": {
+     "default": 15,
+     "kind": "size",
+     "condition_target": true
+    },
+    "icon": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "iconSource": {
+     "default": -1,
+     "kind": "option",
+     "condition_target": true
+    },
+    "icon_color": {
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "icon_side": {
+     "default": "RIGHT",
+     "kind": "option",
+     "condition_target": false
+    },
+    "inverse": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "orientation": {
+     "default": "HORIZONTAL",
+     "kind": "option",
+     "condition_target": true
+    },
+    "progressSource": {
+     "default": [
+      -1,
+      ""
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "selfPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "spark": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "sparkBlendMode": {
+     "default": "ADD",
+     "kind": "option",
+     "condition_target": false
+    },
+    "sparkColor": {
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "sparkHeight": {
+     "default": 30,
+     "kind": "option",
+     "condition_target": true
+    },
+    "sparkHidden": {
+     "default": "NEVER",
+     "kind": "option",
+     "condition_target": false
+    },
+    "sparkOffsetX": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "sparkOffsetY": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "sparkRotation": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "sparkRotationMode": {
+     "default": "AUTO",
+     "kind": "option",
+     "condition_target": false
+    },
+    "sparkTexture": {
+     "default": "Interface\\CastingBar\\UI-CastingBar-Spark",
+     "kind": "option",
+     "condition_target": false
+    },
+    "sparkWidth": {
+     "default": 10,
+     "kind": "option",
+     "condition_target": true
+    },
+    "texture": {
+     "default": "Blizzard",
+     "kind": "option",
+     "condition_target": true
+    },
+    "textureSource": {
+     "default": "LSM",
+     "kind": "option",
+     "condition_target": true
+    },
+    "width": {
+     "default": 200,
+     "kind": "size",
+     "condition_target": true
+    },
+    "xOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "yOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "zoom": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    }
+   },
+   "change_targets": [
+    "backgroundColor",
+    "barColor",
+    "barColor2",
+    "desaturate",
+    "displayIcon",
+    "enableGradient",
+    "gradientOrientation",
+    "height",
+    "icon",
+    "iconSource",
+    "icon_color",
+    "inverse",
+    "orientation",
+    "progressSource",
+    "sparkColor",
+    "sparkHeight",
+    "sparkWidth",
+    "texture",
+    "textureInput",
+    "textureSource",
+    "width"
+   ]
+  },
+  "dynamicgroup": {
+   "fields": {
+    "align": {
+     "default": "CENTER",
+     "kind": "option",
+     "condition_target": false
+    },
+    "anchorFrameType": {
+     "default": "SCREEN",
+     "kind": "position",
+     "condition_target": false
+    },
+    "anchorPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "animate": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "arcLength": {
+     "default": 360,
+     "kind": "option",
+     "condition_target": false
+    },
+    "backdropColor": {
+     "default": [
+      1,
+      1,
+      1,
+      0.5
+     ],
+     "kind": "option",
+     "condition_target": false
+    },
+    "border": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderBackdrop": {
+     "default": "Blizzard Tooltip",
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderColor": {
+     "default": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderEdge": {
+     "default": "Square Full White",
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderInset": {
+     "default": 1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderOffset": {
+     "default": 4,
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderSize": {
+     "default": 2,
+     "kind": "option",
+     "condition_target": false
+    },
+    "centerType": {
+     "default": "LR",
+     "kind": "option",
+     "condition_target": false
+    },
+    "columnSpace": {
+     "default": 1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "constantFactor": {
+     "default": "RADIUS",
+     "kind": "option",
+     "condition_target": false
+    },
+    "controlledChildren": {
+     "default": {},
+     "kind": "option",
+     "condition_target": false
+    },
+    "frameStrata": {
+     "default": 1,
+     "kind": "position",
+     "condition_target": false
+    },
+    "fullCircle": {
+     "default": true,
+     "kind": "option",
+     "condition_target": false
+    },
+    "gridType": {
+     "default": "RD",
+     "kind": "option",
+     "condition_target": false
+    },
+    "gridWidth": {
+     "default": 5,
+     "kind": "option",
+     "condition_target": false
+    },
+    "grow": {
+     "default": "DOWN",
+     "kind": "option",
+     "condition_target": false
+    },
+    "limit": {
+     "default": 5,
+     "kind": "option",
+     "condition_target": false
+    },
+    "radius": {
+     "default": 200,
+     "kind": "option",
+     "condition_target": false
+    },
+    "rotation": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "rowSpace": {
+     "default": 1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "scale": {
+     "default": 1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "selfPoint": {
+     "default": "TOP",
+     "kind": "position",
+     "condition_target": false
+    },
+    "sharedFrameLevel": {
+     "default": true,
+     "kind": "option",
+     "condition_target": false
+    },
+    "sort": {
+     "default": "none",
+     "kind": "option",
+     "condition_target": false
+    },
+    "space": {
+     "default": 2,
+     "kind": "option",
+     "condition_target": false
+    },
+    "stagger": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "stepAngle": {
+     "default": 15,
+     "kind": "option",
+     "condition_target": false
+    },
+    "useLimit": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "xOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "yOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    }
+   },
+   "change_targets": []
+  },
+  "empty": {
+   "fields": {
+    "anchorFrameType": {
+     "default": "SCREEN",
+     "kind": "position",
+     "condition_target": false
+    },
+    "anchorPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "frameStrata": {
+     "default": 1,
+     "kind": "position",
+     "condition_target": false
+    },
+    "height": {
+     "default": 200,
+     "kind": "size",
+     "condition_target": false
+    },
+    "selfPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "width": {
+     "default": 200,
+     "kind": "size",
+     "condition_target": false
+    },
+    "xOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "yOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    }
+   },
+   "change_targets": []
+  },
+  "fallback": {
+   "fields": {
+    "anchorFrameType": {
+     "default": "SCREEN",
+     "kind": "position",
+     "condition_target": false
+    },
+    "anchorPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "automaticWidth": {
+     "default": "Auto",
+     "kind": "option",
+     "condition_target": false
+    },
+    "color": {
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "kind": "option",
+     "condition_target": false
+    },
+    "customTextUpdate": {
+     "default": "event",
+     "kind": "option",
+     "condition_target": false
+    },
+    "displayText": {
+     "default": "%p",
+     "kind": "option",
+     "condition_target": false
+    },
+    "fixedWidth": {
+     "default": 200,
+     "kind": "option",
+     "condition_target": false
+    },
+    "font": {
+     "default": {},
+     "kind": "option",
+     "condition_target": false
+    },
+    "fontSize": {
+     "default": {},
+     "kind": "option",
+     "condition_target": false
+    },
+    "frameStrata": {
+     "default": 1,
+     "kind": "position",
+     "condition_target": false
+    },
+    "justify": {
+     "default": "LEFT",
+     "kind": "option",
+     "condition_target": false
+    },
+    "outline": {
+     "default": "OUTLINE",
+     "kind": "option",
+     "condition_target": false
+    },
+    "selfPoint": {
+     "default": "BOTTOM",
+     "kind": "position",
+     "condition_target": false
+    },
+    "shadowColor": {
+     "default": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "kind": "option",
+     "condition_target": false
+    },
+    "shadowXOffset": {
+     "default": 1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "shadowYOffset": {
+     "default": -1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "wordWrap": {
+     "default": "WordWrap",
+     "kind": "option",
+     "condition_target": false
+    },
+    "xOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "yOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    }
+   },
+   "change_targets": []
+  },
+  "group": {
+   "fields": {
+    "anchorFrameType": {
+     "default": "SCREEN",
+     "kind": "position",
+     "condition_target": false
+    },
+    "anchorPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "backdropColor": {
+     "default": [
+      1,
+      1,
+      1,
+      0.5
+     ],
+     "kind": "option",
+     "condition_target": false
+    },
+    "border": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderBackdrop": {
+     "default": "Blizzard Tooltip",
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderColor": {
+     "default": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderEdge": {
+     "default": "Square Full White",
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderInset": {
+     "default": 1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderOffset": {
+     "default": 4,
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderSize": {
+     "default": 2,
+     "kind": "option",
+     "condition_target": false
+    },
+    "controlledChildren": {
+     "default": {},
+     "kind": "option",
+     "condition_target": false
+    },
+    "frameStrata": {
+     "default": 1,
+     "kind": "position",
+     "condition_target": false
+    },
+    "scale": {
+     "default": 1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "sharedFrameLevel": {
+     "default": true,
+     "kind": "option",
+     "condition_target": false
+    },
+    "xOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "yOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    }
+   },
+   "change_targets": []
+  },
+  "icon": {
+   "fields": {
+    "adjustedMax": {
+     "default": "",
+     "kind": "option",
+     "condition_target": false
+    },
+    "adjustedMin": {
+     "default": "",
+     "kind": "option",
+     "condition_target": false
+    },
+    "anchorFrameType": {
+     "default": "SCREEN",
+     "kind": "position",
+     "condition_target": false
+    },
+    "anchorPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "color": {
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "cooldown": {
+     "default": true,
+     "kind": "option",
+     "condition_target": false
+    },
+    "cooldownEdge": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "desaturate": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "frameStrata": {
+     "default": 1,
+     "kind": "position",
+     "condition_target": false
+    },
+    "height": {
+     "default": 64,
+     "kind": "size",
+     "condition_target": true
+    },
+    "icon": {
+     "default": true,
+     "kind": "option",
+     "condition_target": false
+    },
+    "iconSource": {
+     "default": -1,
+     "kind": "option",
+     "condition_target": true
+    },
+    "inverse": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "keepAspectRatio": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "progressSource": {
+     "default": [
+      -1,
+      ""
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "selfPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "width": {
+     "default": 64,
+     "kind": "size",
+     "condition_target": true
+    },
+    "xOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "yOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "zoom": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": true
+    }
+   },
+   "change_targets": [
+    "color",
+    "cooldownEdge",
+    "desaturate",
+    "displayIcon",
+    "height",
+    "iconSource",
+    "inverse",
+    "progressSource",
+    "width",
+    "zoom"
+   ]
+  },
+  "model": {
+   "fields": {
+    "advance": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "anchorFrameType": {
+     "default": "SCREEN",
+     "kind": "position",
+     "condition_target": false
+    },
+    "anchorPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "backdropColor": {
+     "default": [
+      1,
+      1,
+      1,
+      0.5
+     ],
+     "kind": "option",
+     "condition_target": false
+    },
+    "border": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderBackdrop": {
+     "default": "Blizzard Tooltip",
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderColor": {
+     "default": [
+      1,
+      1,
+      1,
+      0.5
+     ],
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderEdge": {
+     "default": "None",
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderInset": {
+     "default": 11,
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderOffset": {
+     "default": 5,
+     "kind": "option",
+     "condition_target": false
+    },
+    "borderSize": {
+     "default": 16,
+     "kind": "option",
+     "condition_target": false
+    },
+    "frameStrata": {
+     "default": 1,
+     "kind": "position",
+     "condition_target": false
+    },
+    "height": {
+     "default": 200,
+     "kind": "size",
+     "condition_target": true
+    },
+    "modelIsUnit": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "model_path": {
+     "default": "Creature/Arthaslichking/arthaslichking.m2",
+     "kind": "option",
+     "condition_target": false
+    },
+    "model_x": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "model_y": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "model_z": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "rotation": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "scale": {
+     "default": 1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "selfPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "sequence": {
+     "default": 1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "width": {
+     "default": 200,
+     "kind": "size",
+     "condition_target": true
+    },
+    "xOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "yOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    }
+   },
+   "change_targets": [
+    "height",
+    "width"
+   ]
+  },
+  "progresstexture": {
+   "fields": {
+    "adjustedMax": {
+     "default": "",
+     "kind": "option",
+     "condition_target": false
+    },
+    "adjustedMin": {
+     "default": "",
+     "kind": "option",
+     "condition_target": false
+    },
+    "anchorFrameType": {
+     "default": "SCREEN",
+     "kind": "position",
+     "condition_target": false
+    },
+    "anchorPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "backgroundColor": {
+     "default": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "backgroundOffset": {
+     "default": 2,
+     "kind": "option",
+     "condition_target": false
+    },
+    "backgroundTexture": {
+     "default": "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Auras\\Aura3",
+     "kind": "option",
+     "condition_target": false
+    },
+    "blendMode": {
+     "default": "BLEND",
+     "kind": "option",
+     "condition_target": false
+    },
+    "compress": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "crop_x": {
+     "default": 0.41,
+     "kind": "option",
+     "condition_target": false
+    },
+    "crop_y": {
+     "default": 0.41,
+     "kind": "option",
+     "condition_target": false
+    },
+    "desaturateBackground": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "desaturateForeground": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "endAngle": {
+     "default": 360,
+     "kind": "option",
+     "condition_target": false
+    },
+    "font": {
+     "default": {},
+     "kind": "option",
+     "condition_target": false
+    },
+    "fontSize": {
+     "default": {},
+     "kind": "option",
+     "condition_target": false
+    },
+    "foregroundColor": {
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "foregroundTexture": {
+     "default": "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Auras\\Aura3",
+     "kind": "option",
+     "condition_target": false
+    },
+    "frameStrata": {
+     "default": 1,
+     "kind": "position",
+     "condition_target": false
+    },
+    "height": {
+     "default": 200,
+     "kind": "size",
+     "condition_target": true
+    },
+    "inverse": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "mirror": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "orientation": {
+     "default": "VERTICAL",
+     "kind": "option",
+     "condition_target": true
+    },
+    "progressSource": {
+     "default": [
+      -1,
+      ""
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "rotation": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "sameTexture": {
+     "default": true,
+     "kind": "option",
+     "condition_target": false
+    },
+    "selfPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "slantMode": {
+     "default": "INSIDE",
+     "kind": "option",
+     "condition_target": false
+    },
+    "startAngle": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "user_x": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "user_y": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "width": {
+     "default": 200,
+     "kind": "size",
+     "condition_target": true
+    },
+    "xOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "yOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    }
+   },
+   "change_targets": [
+    "backgroundColor",
+    "desaturateBackground",
+    "desaturateForeground",
+    "foregroundColor",
+    "height",
+    "inverse",
+    "mirror",
+    "orientation",
+    "progressSource",
+    "width"
+   ]
+  },
+  "stopmotion": {
+   "fields": {
+    "adjustedMax": {
+     "default": "",
+     "kind": "option",
+     "condition_target": false
+    },
+    "adjustedMin": {
+     "default": "",
+     "kind": "option",
+     "condition_target": false
+    },
+    "anchorFrameType": {
+     "default": "SCREEN",
+     "kind": "position",
+     "condition_target": false
+    },
+    "anchorPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "animationType": {
+     "default": "loop",
+     "kind": "option",
+     "condition_target": false
+    },
+    "backgroundColor": {
+     "default": [
+      0.5,
+      0.5,
+      0.5,
+      0.5
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "backgroundPercent": {
+     "default": 1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "backgroundTexture": {
+     "default": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\stopmotion",
+     "kind": "option",
+     "condition_target": false
+    },
+    "blendMode": {
+     "default": "BLEND",
+     "kind": "option",
+     "condition_target": false
+    },
+    "customBackgroundColumns": {
+     "default": 16,
+     "kind": "option",
+     "condition_target": false
+    },
+    "customBackgroundFrames": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "customBackgroundRows": {
+     "default": 16,
+     "kind": "option",
+     "condition_target": false
+    },
+    "customForegroundColumns": {
+     "default": 16,
+     "kind": "option",
+     "condition_target": false
+    },
+    "customForegroundFileHeight": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "customForegroundFileWidth": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "customForegroundFrameHeight": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "customForegroundFrameWidth": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "customForegroundFrames": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "customForegroundRows": {
+     "default": 16,
+     "kind": "option",
+     "condition_target": false
+    },
+    "desaturateBackground": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "desaturateForeground": {
+     "default": false,
+     "kind": "option",
+     "condition_target": true
+    },
+    "endPercent": {
+     "default": 1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "foregroundColor": {
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "foregroundTexture": {
+     "default": "Interface\\AddOns\\WeakAuras\\Media\\Textures\\stopmotion",
+     "kind": "option",
+     "condition_target": false
+    },
+    "frameRate": {
+     "default": 15,
+     "kind": "option",
+     "condition_target": false
+    },
+    "frameStrata": {
+     "default": 1,
+     "kind": "position",
+     "condition_target": false
+    },
+    "height": {
+     "default": 128,
+     "kind": "size",
+     "condition_target": true
+    },
+    "hideBackground": {
+     "default": true,
+     "kind": "option",
+     "condition_target": false
+    },
+    "inverse": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "mirror": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "progressSource": {
+     "default": [
+      -1,
+      ""
+     ],
+     "kind": "option",
+     "condition_target": true
+    },
+    "sameTexture": {
+     "default": true,
+     "kind": "option",
+     "condition_target": false
+    },
+    "selfPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "startPercent": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "width": {
+     "default": 128,
+     "kind": "size",
+     "condition_target": true
+    },
+    "xOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "yOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    }
+   },
+   "change_targets": [
+    "backgroundColor",
+    "desaturateBackground",
+    "desaturateForeground",
+    "foregroundColor",
+    "height",
+    "progressSource",
+    "width"
+   ]
+  },
+  "text": {
+   "fields": {
+    "anchorFrameType": {
+     "default": "SCREEN",
+     "kind": "position",
+     "condition_target": false
+    },
+    "anchorPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "automaticWidth": {
+     "default": "Auto",
+     "kind": "option",
+     "condition_target": false
+    },
+    "color": {
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "kind": "option",
+     "condition_target": false
+    },
+    "customTextUpdate": {
+     "default": "event",
+     "kind": "option",
+     "condition_target": false
+    },
+    "displayText": {
+     "default": "%p",
+     "kind": "option",
+     "condition_target": false
+    },
+    "fixedWidth": {
+     "default": 200,
+     "kind": "option",
+     "condition_target": false
+    },
+    "font": {
+     "default": {},
+     "kind": "option",
+     "condition_target": false
+    },
+    "fontSize": {
+     "default": {},
+     "kind": "option",
+     "condition_target": false
+    },
+    "frameStrata": {
+     "default": 1,
+     "kind": "position",
+     "condition_target": false
+    },
+    "justify": {
+     "default": "LEFT",
+     "kind": "option",
+     "condition_target": false
+    },
+    "outline": {
+     "default": "OUTLINE",
+     "kind": "option",
+     "condition_target": false
+    },
+    "selfPoint": {
+     "default": "BOTTOM",
+     "kind": "position",
+     "condition_target": false
+    },
+    "shadowColor": {
+     "default": [
+      0,
+      0,
+      0,
+      1
+     ],
+     "kind": "option",
+     "condition_target": false
+    },
+    "shadowXOffset": {
+     "default": 1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "shadowYOffset": {
+     "default": -1,
+     "kind": "option",
+     "condition_target": false
+    },
+    "wordWrap": {
+     "default": "WordWrap",
+     "kind": "option",
+     "condition_target": false
+    },
+    "xOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "yOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    }
+   },
+   "change_targets": []
+  },
+  "texture": {
+   "fields": {
+    "anchorFrameType": {
+     "default": "SCREEN",
+     "kind": "position",
+     "condition_target": false
+    },
+    "anchorPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "blendMode": {
+     "default": "BLEND",
+     "kind": "option",
+     "condition_target": false
+    },
+    "color": {
+     "default": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "kind": "option",
+     "condition_target": false
+    },
+    "desaturate": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "frameStrata": {
+     "default": 1,
+     "kind": "position",
+     "condition_target": false
+    },
+    "height": {
+     "default": 200,
+     "kind": "size",
+     "condition_target": false
+    },
+    "mirror": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "rotate": {
+     "default": false,
+     "kind": "option",
+     "condition_target": false
+    },
+    "rotation": {
+     "default": 0,
+     "kind": "option",
+     "condition_target": false
+    },
+    "selfPoint": {
+     "default": "CENTER",
+     "kind": "position",
+     "condition_target": false
+    },
+    "texture": {
+     "default": "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Auras\\Aura3",
+     "kind": "option",
+     "condition_target": false
+    },
+    "textureWrapMode": {
+     "default": "CLAMPTOBLACKADDITIVE",
+     "kind": "option",
+     "condition_target": false
+    },
+    "width": {
+     "default": 200,
+     "kind": "size",
+     "condition_target": false
+    },
+    "xOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    },
+    "yOffset": {
+     "default": 0,
+     "kind": "position",
+     "condition_target": false
+    }
+   },
+   "change_targets": []
+  }
+ },
+ "load": {
+  "chain": "AND - every ENABLED condition (use_X true) must be true for the aura to load; unset conditions impose no constraint. Source: ConstructFunction joins tests with ' and ' (GenericTrigger.lua:418). LIVE-CONFIRMED 2026-07-13: class+zone both set, not-on-class + in-zone -> does NOT load. Only exception: within the `knowntalent` condition, its multiple talent entries OR (know A or B) - the sole orConjunctionGroup in the prototype (Prototypes.lua:1090). Conditions never OR with each other.",
+  "conditions": {
+   "combat": {
+    "type": "tristate",
+    "domain": null
+   },
+   "never": {
+    "type": "toggle",
+    "domain": null
+   },
+   "alive": {
+    "type": "tristate",
+    "domain": null
+   },
+   "encounter": {
+    "type": "tristate",
+    "domain": null
+   },
+   "pvpmode": {
+    "type": "tristate",
+    "domain": null
+   },
+   "manastorm": {
+    "type": "tristate",
+    "domain": null
+   },
+   "vehicle": {
+    "type": "tristate",
+    "domain": null
+   },
+   "vehicleUi": {
+    "type": "tristate",
+    "domain": null
+   },
+   "mounted": {
+    "type": "tristate",
+    "domain": null
+   },
+   "class": {
+    "type": "multiselect",
+    "domain": null
+   },
+   "specialization": {
+    "type": "multiselect",
+    "domain": null
+   },
+   "knowntalent": {
+    "type": "talent",
+    "domain": null
+   },
+   "mysticenchantactive": {
+    "type": "mysticenchant",
+    "domain": null
+   },
+   "not_mysticenchantactive": {
+    "type": "mysticenchant",
+    "domain": null
+   },
+   "spellknown": {
+    "type": "spell",
+    "domain": null
+   },
+   "not_spellknown": {
+    "type": "spell",
+    "domain": null
+   },
+   "player": {
+    "type": null,
+    "domain": null
+   },
+   "realm": {
+    "type": null,
+    "domain": null
+   },
+   "guild": {
+    "type": null,
+    "domain": null
+   },
+   "namerealm": {
+    "type": "string",
+    "domain": null
+   },
+   "ignoreNameRealm": {
+    "type": "string",
+    "domain": null
+   },
+   "guildcheck": {
+    "type": "string",
+    "domain": null
+   },
+   "race": {
+    "type": "multiselect",
+    "domain": null
+   },
+   "faction": {
+    "type": "multiselect",
+    "domain": {
+     "Alliance": "Alliance",
+     "Horde": "Horde",
+     "Neutral": "Neutral"
+    }
+   },
+   "level": {
+    "type": "number",
+    "domain": null
+   },
+   "role": {
+    "type": "multiselect",
+    "domain": {
+     "caster": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Ranged",
+     "healer": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:1:20|t ",
+     "melee": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Melee",
+     "tank": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:0:19:22:41|t "
+    }
+   },
+   "spec_position": {
+    "type": "multiselect",
+    "domain": {
+     "caster": "Ranged",
+     "melee": "Melee"
+    }
+   },
+   "raid_role": {
+    "type": "multiselect",
+    "domain": {
+     "MAINASSIST": "|TInterface\\GroupFrame\\UI-Group-mainassistIcon:16:16|t ",
+     "MAINTANK": "|TInterface\\GroupFrame\\UI-Group-maintankIcon:16:16|t ",
+     "NONE": "Other"
+    }
+   },
+   "ingroup": {
+    "type": "multiselect",
+    "domain": {
+     "group": "In Party",
+     "raid": "In Raid",
+     "solo": "Not in Group"
+    }
+   },
+   "groupSize": {
+    "type": "number",
+    "domain": null
+   },
+   "group_leader": {
+    "type": "multiselect",
+    "domain": {
+     "ASSIST": "Assist",
+     "LEADER": "Leader",
+     "NONE": "None"
+    }
+   },
+   "ruleset": {
+    "type": "multiselect",
+    "domain": {
+     "highrisk": {},
+     "one": "None",
+     "pve": {},
+     "pvp": {}
+    }
+   },
+   "zone": {
+    "type": "string",
+    "domain": null
+   },
+   "zoneId": {
+    "type": "string",
+    "domain": null
+   },
+   "subzone": {
+    "type": "string",
+    "domain": null
+   },
+   "encounterid": {
+    "type": "string",
+    "domain": null
+   },
+   "size": {
+    "type": "multiselect",
+    "domain": {
+     "arena": "Arena",
+     "fortyman": "40 Man Raid",
+     "none": "No Instance",
+     "party": "5 Man Dungeon",
+     "pvp": "Battleground",
+     "ten": "10 Man Raid",
+     "twenty": "20 Man Raid",
+     "twentyfive": "25 Man Raid"
+    }
+   },
+   "difficulty": {
+    "type": "multiselect",
+    "domain": {
+     "ascended": "Ascended",
+     "heroic": {},
+     "mythic": "Mythic",
+     "none": "None",
+     "normal": {}
+    }
+   },
+   "itemequiped": {
+    "type": "item",
+    "domain": null
+   },
+   "not_itemequiped": {
+    "type": "item",
+    "domain": null
+   },
+   "itemtypeequipped": {
+    "type": "multiselect",
+    "domain": null
+   }
+  }
+ }
+}
