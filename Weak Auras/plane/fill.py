@@ -46,7 +46,10 @@ def fill(docket):
         aura["load"] = {"class": {"single": load["class"]}}
     for field, value in (docket.get("display") or {}).items():   # positive display declarations (top-level)
         aura[field] = value
-    conditions = docket.get("conditions") or []                  # check (trigger var) -> changes (display prop)
+    subregions = docket.get("subregions") or []                  # {type, ...declared props}; canon fills the rest
+    if subregions:
+        aura["subRegions"] = [dict(s) for s in subregions]
+    conditions = docket.get("conditions") or []                  # check (trigger var) -> changes (LOCAL prop or sub.N.prop reach)
     if conditions:
         aura["conditions"] = [
             {"check": c["check"],

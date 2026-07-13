@@ -1,0 +1,31 @@
+{
+  "id": "CoA Corpse Explosion",
+  "uid": "coaCorpExpl0003",
+  "region": "icon",
+  "triggers": [
+    {
+      "type": "spell",
+      "event": "Cooldown Progress (Spell)",
+      "declare": {
+        "spellName": 533236,
+        "use_spellName": true,
+        "use_exact_spellName": false,
+        "genericShowOn": "showAlways"
+      }
+    }
+  ],
+  "load": { "class": "NECROMANCER" },
+  "subregions": [
+    { "type": "subglow" }
+  ],
+  "conditions": [
+    {
+      "check": { "trigger": 1, "variable": "spellUsable", "value": 0 },
+      "changes": { "desaturate": true }
+    },
+    {
+      "check": { "trigger": 1, "variable": "spellUsable", "value": 1 },
+      "changes": { "sub.1.glow": true }
+    }
+  ]
+}
