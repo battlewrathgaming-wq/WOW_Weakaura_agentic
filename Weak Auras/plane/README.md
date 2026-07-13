@@ -7,11 +7,16 @@ lever). No corpus reproduction in this path.
 ## The flow
 
 ```
-docket --fill--> delta --bounce(canon+reconcile)--> A --encode--> import string
-                                                     │
-                    live client = ground truth ◄─────┘ (import, re-export, diff)
+reasoning-docket --expand(contract)--> full docket --fill--> delta --bounce(canon+reconcile)--> A --encode--> import string
+                                                                                                │
+                                          live client = ground truth ◄─────────────────────────┘ (import, re-export, diff)
 ```
 
+- **`expand.py`** — the EXPANDER (plane_v2 `THE_SPLIT.md` L3). Reasoning-only docket → the full-declare docket (fill's
+  input) by DERIVING what the contract implies but was never chosen: `type`←event, `use_X`←filter-present,
+  multiEntry→arrays+coerce, `combination`→`activation.disjunctive`, uid present→use / blank→mint. Contract-DRIVEN (reads
+  `../wa_index/contract.json`), never a hand ruleset; idempotent (fill-missing); gaps are LOUD (`sys.exit` wall→expand,
+  never a silent guess). An elaboration/defaulting pass — its output is exactly what `fill` takes, so fill is unchanged.
 - **`fill.py`** — the DUMB filler. Docket (intent) → the aura-table DELTA in WA's shapes: nesting
   (`class`→`load.class.single`), dict→array (`changes`), triggers + the `activation` combination (disjunctive /
   activeTriggerMode), conditions, subregions, and a **sourced** `internalVersion`. No defaults, no validation, no reasoning.
@@ -26,17 +31,21 @@ docket --fill--> delta --bounce(canon+reconcile)--> A --encode--> import string
 - **`roundtrip.py`** — the anchor test: `fill → bounce → encode → decode → bounce → diff == clean`. GREEN = reimport-
   stable headless; the **ground-truth gate stays the live client** (`../wa_lua_verify` is a fast proxy, not truth).
 - **`diff.py`** — deep diff for the round-trip.
-- **`dockets/`** — the settled-fact specs. `corpse_explosion.v2–v4` (icon: single spell → 2-trigger + condition),
-  `player_health.v1` (health bar), `player_health_any.v1` (2-trigger "any" existence-filter bar).
+- **`dockets/`** — the specs, in **two forms**: the `*.reasoning.json` (reasoning-only — what the inventory emits, what
+  the expander consumes) and the full `*.docket.json` (expand's output = fill's input). `corpse_explosion.v2–v4` (icon:
+  single spell → 2-trigger + condition), `player_health.v1` (health bar), `player_health_any` (2-trigger "any" existence-
+  filter bar — has both a `.reasoning.json` and the `.v1.docket.json` golden they expand to).
 
 ## Run
 
 ```
-py roundtrip.py corpse_explosion.v4.docket.json     # round-trip one docket → GREEN/RED + weight
+py expand.py dockets/player_health_any.reasoning.json   # reasoning-docket → full docket (contract-derived)
+py roundtrip.py corpse_explosion.v4.docket.json         # round-trip a full docket → GREEN/RED + weight
 ```
 
-The docket is authored against the **sheets/contract** in `../wa_index/` (select + handling), so it is born
-shape-correct; fill and reconcile stay dumb and the contract's pre-flight lives in the class inventory.
+The reasoning-docket is authored against the **sheets/contract** in `../wa_index/` (select + handling); the **expander**
+derives the rest, so it is born shape-correct. fill and reconcile stay dumb; the contract's pre-flight lives in the class
+inventory. See `../plane_v2/THE_SPLIT.md` for the full layer stack + proving order.
 
 ## Lineage (earlier corpus-based tooling in this folder)
 

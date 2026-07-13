@@ -1,0 +1,10 @@
+{
+  "id": "CoA Health Any 80-70",
+  "uid": "coaHealthAny00001",
+  "region": "aurabar",
+  "triggers": [
+    { "event": "Health", "unit": "player", "filter": { "percenthealth": { "op": ">", "value": 80 } } },
+    { "event": "Health", "unit": "player", "filter": { "percenthealth": { "op": "<", "value": 70 } } }
+  ],
+  "combination": "any"
+}

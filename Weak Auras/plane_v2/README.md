@@ -26,12 +26,13 @@ The agent's entire write surface is `docket.json`. It reads the sheets (select *
 - `../wa_index/statesheets/` — the MENU: per-type/region sheets with **handling** (the shaping grammar) + light
   `.routes.md` browse-indexes + `domains.json` (shared catalog) + `_shared.json` (regionPrototype layer).
 - `../wa_index/contract.json` — the pre-flight resource (must-assert · condition-vars · change-targets · handling).
-- `../plane/` — `fill.py` (dumb filler) → `reconcile.py` (the canon+reconcile **bounce** gate) → codec; proven on
-  icon, bar, and 2-trigger + existence-filter dockets.
+- `../plane/` — **`expand.py`** (the L3 expander: reasoning-docket → full docket, contract-derived) → `fill.py` (dumb
+  filler) → `reconcile.py` (the canon+reconcile **bounce** gate) → codec. Proven on icon, bar, and 2-trigger + existence-
+  filter dockets; the expander is red-green against the live golden (`THE_SPLIT.md`).
 
 **Spec — still to build** (phase docs below):
-- The **docket generator** (inventory → dockets, the "reduce" — where one hand-aura becomes the BATCH).
-- Batch services + receipts (unattended runs at scale).
+- The **docket generator** (inventory → *reasoning*-dockets, the "reduce" — where one hand-aura becomes the BATCH). NEXT.
+- Batch services + receipts (unattended runs at scale) · groups/dynamic-groups (the multi-aura structure).
 
 ## Why it holds
 
@@ -43,6 +44,8 @@ rather than fixed by round-tripping (memory: `source-is-authority-for-rule-sets`
 
 ## Docs
 
+- [THE_SPLIT.md](THE_SPLIT.md) — **the current build plan**: the layer stack (inventory→docket→expander→fill→bounce→codec),
+  the contracts between layers, and the one-layer-at-a-time proving order. Start here for *how we build it next*.
 - [ACCEPTANCE.md](ACCEPTANCE.md) — **the chosen path** (spell-first, P11-leveraged); the decision, not just the possibility.
 - [PRINCIPLES.md](PRINCIPLES.md) · [GAP_BRIDGE.md](GAP_BRIDGE.md) — the principles + the reuse/extend/new map.
 - phases: [0 extraction](phase_0_extraction_contract.md) · [1 docket schema](phase_1_docket_schema.md) · [2 filler](phase_2_filler.md) · [3 backend](phase_3_backend_services.md) · [4 verify](phase_4_verify_receipts.md) · [5 first product](phase_5_first_product.md).
