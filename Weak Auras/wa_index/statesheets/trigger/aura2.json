@@ -488,7 +488,7 @@
       "surface": "input",
       "input_type": "multiselect",
       "order": 66.4,
-      "value_domain": "spec_types_all",
+      "value_domain": null,
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -708,7 +708,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 71.1,
-      "value_domain": null,
+      "value_domain": "bufftrigger_2_progress_behavior_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -808,7 +808,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 72.4,
-      "value_domain": null,
+      "value_domain": "bufftrigger_2_per_unit_mode",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -828,7 +828,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 72.6,
-      "value_domain": null,
+      "value_domain": "bufftrigger_2_preferred_match_types",
       "conditional": true,
       "enabled_when": "conditional"
      },

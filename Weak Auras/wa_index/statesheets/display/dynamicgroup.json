@@ -307,6 +307,7 @@
     "type": "select",
     "name": "Constant Factor",
     "order": 4,
+    "values": "circular_group_constant_factor_types",
     "conditional": true,
     "default": "RADIUS"
    },

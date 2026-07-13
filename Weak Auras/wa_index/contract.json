@@ -4,28 +4,8 @@
   "pre_flight": "read by the class-inventory pre-flight (NOT the pipeline): assert must_assert present, values in domain, condition check-var in a trigger `condition_vars`, change-prop in a region `change_targets`. Docket + fill stay dumb.",
   "condition_join": "check reads trigger[type][event].condition_vars (the conditionType axis) -> change hits display[region].change_targets",
   "handling": "each trigger input carries its shaping grammar: shape/multiEntry (ARRAY rule), operator_types, domain (names a domains key); event.handling = progressType (region-compat) + statesParameter (state scope). The sheet resolved the shape.",
-  "domain_refs": [
-   "align_types",
-   "debuff_class_types",
-   "debuff_types",
-   "grid_types",
-   "group_hybrid_position_types",
-   "group_hybrid_sort_types",
-   "group_sort_types",
-   "grow_types",
-   "hostility_types",
-   "include_pets_types",
-   "operator_types",
-   "raid_role_types",
-   "role_types",
-   "rotated_align_types",
-   "spec_types_all",
-   "string_operator_types",
-   "tooltip_count"
-  ],
-  "dangling_domains": [
-   "spec_types_all"
-  ]
+  "domain_refs": [],
+  "dangling_domains": []
  },
  "trigger": {
   "addons": {
@@ -98,7 +78,11 @@
      },
      "debuffType": {
       "default": null,
-      "domain": "debuff_types",
+      "domain": {
+       "BOTH": "Buff/Debuff",
+       "HARMFUL": "Debuff",
+       "HELPFUL": "Buff"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -112,7 +96,14 @@
      },
      "debuffClass": {
       "default": null,
-      "domain": "debuff_class_types",
+      "domain": {
+       "curse": "Curse",
+       "disease": "Disease",
+       "enrage": "Enrage",
+       "magic": "Magic",
+       "none": "None",
+       "poison": "Poison"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -182,7 +173,11 @@
      },
      "namePattern_operator": {
       "default": null,
-      "domain": "string_operator_types",
+      "domain": {
+       "==": "Is Exactly",
+       "find('%s')": "Contains",
+       "match('%s')": "Matches (Pattern)"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -203,7 +198,14 @@
      },
      "stacksOperator": {
       "default": null,
-      "domain": "operator_types",
+      "domain": {
+       "<": "<",
+       "<=": "<=",
+       "==": "=",
+       ">": ">",
+       ">=": ">=",
+       "~=": "!="
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -224,7 +226,14 @@
      },
      "remOperator": {
       "default": null,
-      "domain": "operator_types",
+      "domain": {
+       "<": "<",
+       "<=": "<=",
+       "==": "=",
+       ">": ">",
+       ">=": ">=",
+       "~=": "!="
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -245,7 +254,14 @@
      },
      "totalOperator": {
       "default": null,
-      "domain": "operator_types",
+      "domain": {
+       "<": "<",
+       "<=": "<=",
+       "==": "=",
+       ">": ">",
+       ">=": ">=",
+       "~=": "!="
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -301,7 +317,11 @@
      },
      "tooltip_operator": {
       "default": null,
-      "domain": "string_operator_types",
+      "domain": {
+       "==": "Is Exactly",
+       "find('%s')": "Contains",
+       "match('%s')": "Matches (Pattern)"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -322,14 +342,25 @@
      },
      "tooltipValueNumber": {
       "default": null,
-      "domain": "tooltip_count",
+      "domain": [
+       "First",
+       "Second",
+       "Third"
+      ],
       "shape": null,
       "multiEntry": null,
       "operator_types": null
      },
      "tooltipValue_operator": {
       "default": null,
-      "domain": "operator_types",
+      "domain": {
+       "<": "<",
+       "<=": "<=",
+       "==": "=",
+       ">": ">",
+       ">=": ">=",
+       "~=": "!="
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -371,7 +402,10 @@
      },
      "includePets": {
       "default": null,
-      "domain": "include_pets_types",
+      "domain": {
+       "PetsOnly": "Pets only",
+       "PlayersAndPets": "Players and Pets"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -385,7 +419,7 @@
      },
      "actualSpec": {
       "default": null,
-      "domain": "spec_types_all",
+      "domain": null,
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -399,7 +433,12 @@
      },
      "group_role": {
       "default": null,
-      "domain": "role_types",
+      "domain": {
+       "caster": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Ranged",
+       "healer": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:1:20|t ",
+       "melee": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Melee",
+       "tank": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:0:19:22:41|t "
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -413,7 +452,11 @@
      },
      "raid_role": {
       "default": null,
-      "domain": "raid_role_types",
+      "domain": {
+       "MAINASSIST": "|TInterface\\GroupFrame\\UI-Group-mainassistIcon:16:16|t ",
+       "MAINTANK": "|TInterface\\GroupFrame\\UI-Group-maintankIcon:16:16|t ",
+       "NONE": "Other"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -455,7 +498,10 @@
      },
      "hostility": {
       "default": null,
-      "domain": "hostility_types",
+      "domain": {
+       "friendly": "Friendly",
+       "hostile": "Hostile"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -518,7 +564,14 @@
      },
      "group_countOperator": {
       "default": null,
-      "domain": "operator_types",
+      "domain": {
+       "<": "<",
+       "<=": "<=",
+       "==": "=",
+       ">": ">",
+       ">=": ">=",
+       "~=": "!="
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -539,7 +592,12 @@
      },
      "matchesShowOn": {
       "default": null,
-      "domain": null,
+      "domain": {
+       "showAlways": "Always",
+       "showOnActive": "Aura(s) Found",
+       "showOnMatches": "Match Count",
+       "showOnMissing": "Aura(s) Missing"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -553,7 +611,14 @@
      },
      "match_countOperator": {
       "default": null,
-      "domain": "operator_types",
+      "domain": {
+       "<": "<",
+       "<=": "<=",
+       "==": "=",
+       ">": ">",
+       ">=": ">=",
+       "~=": "!="
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -574,7 +639,14 @@
      },
      "matchPerUnit_countOperator": {
       "default": null,
-      "domain": "operator_types",
+      "domain": {
+       "<": "<",
+       "<=": "<=",
+       "==": "=",
+       ">": ">",
+       ">=": ">=",
+       "~=": "!="
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -609,7 +681,11 @@
      },
      "perUnitMode": {
       "default": null,
-      "domain": null,
+      "domain": {
+       "affected": "Affected",
+       "all": "All",
+       "unaffected": "Unaffected"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -623,7 +699,12 @@
      },
      "combineMode": {
       "default": null,
-      "domain": null,
+      "domain": {
+       "showHighest": "Most remaining time",
+       "showHighestSpellId": "Highest Spell Id",
+       "showLowest": "Least remaining time",
+       "showLowestSpellId": "Lowest Spell Id"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -1219,14 +1300,21 @@
     "inputs": {
      "custom_type": {
       "default": null,
-      "domain": null,
+      "domain": {
+       "event": "Event",
+       "stateupdate": "Trigger State Updater (Advanced)",
+       "status": "Status"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
      },
      "check": {
       "default": null,
-      "domain": null,
+      "domain": {
+       "event": "Event(s)",
+       "update": "Every Frame (High CPU usage)"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -1240,7 +1328,10 @@
      },
      "check2": {
       "default": null,
-      "domain": null,
+      "domain": {
+       "event": "Event(s)",
+       "update": "Every Frame (High CPU usage)"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -1261,14 +1352,20 @@
      },
      "custom_hide": {
       "default": null,
-      "domain": null,
+      "domain": {
+       "custom": "Custom",
+       "timed": "Timed"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
      },
      "custom_hide2": {
       "default": null,
-      "domain": null,
+      "domain": {
+       "custom": "Custom",
+       "timed": "Timed"
+      },
       "shape": null,
       "multiEntry": null,
       "operator_types": null
@@ -5165,7 +5262,11 @@
      "type": "select",
      "name": "Align",
      "order": 2,
-     "values": "align_types",
+     "values": {
+      "CENTER": "Center",
+      "LEFT": "Left",
+      "RIGHT": "Right"
+     },
      "conditional": true,
      "default": "CENTER"
     },
@@ -5231,6 +5332,11 @@
      "type": "select",
      "name": "Constant Factor",
      "order": 4,
+     "values": {
+      "ANGLE": "Angle and Radius",
+      "RADIUS": "Radius",
+      "SPACING": "Spacing"
+     },
      "conditional": true,
      "default": "RADIUS"
     },
@@ -5245,7 +5351,26 @@
      "type": "select",
      "name": "Grid direction",
      "order": 8,
-     "values": "grid_types",
+     "values": {
+      "DH": "Down, then Centered Horizontal",
+      "DL": "Down, then Left",
+      "DR": "Down, then Right",
+      "HD": "Centered Horizontal, then Down",
+      "HU": "Centered Horizontal, then Up",
+      "HV": "Centered Horizontal, then Centered Vertical",
+      "LD": "Left, then Down",
+      "LU": "Left, then Up",
+      "LV": "Left, then Centered Vertical",
+      "RD": "Right, then Down",
+      "RU": "Right, then Up",
+      "RV": "Right, then Centered Vertical",
+      "UH": "Up, then Centered Horizontal",
+      "UL": "Up, then Left",
+      "UR": "Up, then Right",
+      "VH": "Centered Vertical, then Centered Horizontal",
+      "VL": "Centered Vertical, then Left",
+      "VR": "Centered Vertical, then Right"
+     },
      "conditional": true,
      "default": "RD"
     },
@@ -5268,7 +5393,18 @@
      "type": "select",
      "name": "Grow",
      "order": 1,
-     "values": "grow_types",
+     "values": {
+      "CIRCLE": "Counter Clockwise",
+      "COUNTERCIRCLE": "Clockwise",
+      "CUSTOM": "Custom",
+      "DOWN": "Down",
+      "GRID": "Grid",
+      "HORIZONTAL": "Centered Horizontal",
+      "LEFT": "Left",
+      "RIGHT": "Right",
+      "UP": "Up",
+      "VERTICAL": "Centered Vertical"
+     },
      "default": "DOWN"
     },
     "growOn": {
@@ -5281,14 +5417,20 @@
      "type": "select",
      "name": "Hybrid Position",
      "order": 21,
-     "values": "group_hybrid_position_types",
+     "values": {
+      "hybridFirst": "Marked First",
+      "hybridLast": "Marked Last"
+     },
      "conditional": true
     },
     "hybridSortMode": {
      "type": "select",
      "name": "Hybrid Sort Mode",
      "order": 22,
-     "values": "group_hybrid_sort_types",
+     "values": {
+      "ascending": "Ascending",
+      "descending": "Descending"
+     },
      "conditional": true
     },
     "limit": {
@@ -5315,7 +5457,11 @@
      "type": "select",
      "name": "Align",
      "order": 3,
-     "values": "rotated_align_types",
+     "values": {
+      "CENTER": "Center",
+      "LEFT": "Top",
+      "RIGHT": "Bottom"
+     },
      "conditional": true
     },
     "rotation": {
@@ -5358,7 +5504,13 @@
      "type": "select",
      "name": "Sort",
      "order": 20,
-     "values": "group_sort_types",
+     "values": {
+      "ascending": "Ascending",
+      "custom": "Custom",
+      "descending": "Descending",
+      "hybrid": "Hybrid",
+      "none": "None"
+     },
      "default": "none"
     },
     "sortHybrid": {
@@ -5760,13 +5912,21 @@
      "type": "select",
      "name": "Horizontal Align",
      "order": 10,
-     "values": "align_types"
+     "values": {
+      "CENTER": "Center",
+      "LEFT": "Left",
+      "RIGHT": "Right"
+     }
     },
     "align_v": {
      "type": "select",
      "name": "Vertical Align",
      "order": 15,
-     "values": "rotated_align_types"
+     "values": {
+      "CENTER": "Center",
+      "LEFT": "Top",
+      "RIGHT": "Bottom"
+     }
     },
     "alpha": {
      "type": "range",

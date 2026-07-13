@@ -19,7 +19,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 7,
-      "value_domain": null,
+      "value_domain": "custom_trigger_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -29,7 +29,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 8,
-      "value_domain": null,
+      "value_domain": "check_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -49,7 +49,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 9,
-      "value_domain": null,
+      "value_domain": "check_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -79,7 +79,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 12,
-      "value_domain": null,
+      "value_domain": "eventend_types",
       "conditional": true,
       "enabled_when": "conditional"
      },
@@ -89,7 +89,7 @@
       "surface": "input",
       "input_type": "select",
       "order": 12,
-      "value_domain": null,
+      "value_domain": "eventend_types",
       "conditional": true,
       "enabled_when": "conditional"
      },

@@ -13,9 +13,9 @@ default state: `{"type": "aura2", "debuffType": "HELPFUL", "unit": "player"}`
 | useSpecificUnit | input |  |  |  |  |  |  |
 | specificUnit | input |  |  |  |  |  |  |
 | useDebuffType | input |  |  |  |  |  |  |
-| debuffType | input |  |  |  |  |  |  |
+| debuffType | input |  | debuff_types |  |  |  |  |
 | use_debuffClass | input |  |  |  |  |  |  |
-| debuffClass | input |  |  |  |  |  |  |
+| debuffClass | input |  | debuff_class_types |  |  |  |  |
 | useName | input |  |  |  |  |  | →True |
 | name1 | input |  |  |  |  |  |  |
 | useExactSpellId | input |  |  |  |  |  | →False |
@@ -25,16 +25,16 @@ default state: `{"type": "aura2", "debuffType": "HELPFUL", "unit": "player"}`
 | useIgnoreExactSpellId | input |  |  |  |  |  |  |
 | ignorespellid1 | input |  |  |  |  |  |  |
 | useNamePattern | input |  |  |  |  |  |  |
-| namePattern_operator | input |  |  |  |  |  |  |
+| namePattern_operator | input |  | string_operator_types |  |  |  |  |
 | namePattern_name | input |  |  |  |  |  |  |
 | useStacks | input |  |  |  |  |  |  |
-| stacksOperator | input |  |  |  |  |  |  |
+| stacksOperator | input |  | operator_types |  |  |  |  |
 | stacks | input |  |  |  |  |  |  |
 | useRem | input |  |  |  |  |  |  |
-| remOperator | input |  |  |  |  |  |  |
+| remOperator | input |  | operator_types |  |  |  |  |
 | rem | input |  |  |  |  |  |  |
 | useTotal | input |  |  |  |  |  |  |
-| totalOperator | input |  |  |  |  |  |  |
+| totalOperator | input |  | operator_types |  |  |  |  |
 | total | input |  |  |  |  |  |  |
 | use_stealable | input |  |  |  |  |  |  |
 | use_isBossDebuff | input |  |  |  |  |  |  |
@@ -42,29 +42,29 @@ default state: `{"type": "aura2", "debuffType": "HELPFUL", "unit": "player"}`
 | ownOnly | input |  |  |  |  |  |  |
 | fetchTooltip | input |  |  |  |  |  |  |
 | use_tooltip | input |  |  |  |  |  |  |
-| tooltip_operator | input |  |  |  |  |  |  |
+| tooltip_operator | input |  | string_operator_types |  |  |  |  |
 | tooltip | input |  |  |  |  |  |  |
 | use_tooltipValue | input |  |  |  |  |  |  |
-| tooltipValueNumber | input |  |  |  |  |  |  |
-| tooltipValue_operator | input |  |  |  |  |  |  |
+| tooltipValueNumber | input |  | tooltip_count |  |  |  |  |
+| tooltipValue_operator | input |  | operator_types |  |  |  |  |
 | tooltipValue | input |  |  |  |  |  |  |
 | useAffected | input |  |  |  |  |  |  |
 | fetchRole | input |  |  |  |  |  |  |
 | fetchRaidMark | input |  |  |  |  |  |  |
 | use_includePets | input |  |  |  |  |  |  |
-| includePets | input |  |  |  |  |  |  |
+| includePets | input |  | include_pets_types |  |  |  |  |
 | useActualSpec | input |  |  |  |  |  |  |
 | actualSpec | input |  |  |  |  |  |  |
 | useGroupRole | input |  |  |  |  |  |  |
-| group_role | input |  |  |  |  |  |  |
+| group_role | input |  | role_types |  |  |  |  |
 | useRaidRole | input |  |  |  |  |  |  |
-| raid_role | input |  |  |  |  |  |  |
+| raid_role | input |  | raid_role_types |  |  |  |  |
 | useClass | input |  |  |  |  |  |  |
 | class | input |  |  |  |  |  |  |
 | useUnitName | input |  |  |  |  |  |  |
 | unitName | input |  |  |  |  |  |  |
 | useHostility | input |  |  |  |  |  |  |
-| hostility | input |  |  |  |  |  |  |
+| hostility | input |  | hostility_types |  |  |  |  |
 | useNpcId | input |  |  |  |  |  |  |
 | npcId | input |  |  |  |  |  |  |
 | ignoreSelf | input |  |  |  |  |  |  |
@@ -73,22 +73,22 @@ default state: `{"type": "aura2", "debuffType": "HELPFUL", "unit": "player"}`
 | inRange | input |  |  |  |  |  |  |
 | ignoreInvisible | input |  |  |  |  |  |  |
 | useGroup_count | input |  |  |  |  |  |  |
-| group_countOperator | input |  |  |  |  |  |  |
+| group_countOperator | input |  | operator_types |  |  |  |  |
 | group_count | input |  |  |  |  |  |  |
 | use_matchesShowOn | input |  |  |  |  |  |  |
-| matchesShowOn | input |  |  |  |  |  |  |
+| matchesShowOn | input |  | bufftrigger_2_progress_behavior_types |  |  |  |  |
 | useMatch_count | input |  |  |  |  |  |  |
-| match_countOperator | input |  |  |  |  |  |  |
+| match_countOperator | input |  | operator_types |  |  |  |  |
 | match_count | input |  |  |  |  |  |  |
 | useMatchPerUnit_count | input |  |  |  |  |  |  |
-| matchPerUnit_countOperator | input |  |  |  |  |  |  |
+| matchPerUnit_countOperator | input |  | operator_types |  |  |  |  |
 | matchPerUnit_count | input |  |  |  |  |  |  |
 | showClones | input |  |  |  |  |  |  |
 | combinePerUnit | input |  |  |  |  |  |  |
 | use_perUnitMode | input |  |  |  |  |  |  |
-| perUnitMode | input |  |  |  |  |  |  |
+| perUnitMode | input |  | bufftrigger_2_per_unit_mode |  |  |  |  |
 | use_combineMode | input |  |  |  |  |  |  |
-| combineMode | input |  |  |  |  |  |  |
+| combineMode | input |  | bufftrigger_2_preferred_match_types |  |  |  |  |
 | unitExists | input |  |  |  |  |  |  |
 | auranames | runtime-read |  |  |  |  |  |  |
 | auraspellids | runtime-read |  |  |  |  |  |  |

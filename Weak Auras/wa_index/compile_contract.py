@@ -29,7 +29,18 @@ def _load(domain):
             for f in glob.glob(os.path.join(SHEETS, domain, "*.json"))}
 
 
+def _inline_domain(dom, domvals):
+    """Resolve a domain REFERENCE (a name string) to its inline values dict from domains.json, so EVERY field carries
+    its dropdown options right in its own context - one shape across prototype + function-driven types, granular, no
+    lookup. An already-inline dict passes through; an unresolvable ref (runtime-computed domain: class_types /
+    spec_types_all / ...) stays the name string, honestly flagging it as unresolved."""
+    if isinstance(dom, str):
+        return domvals.get(dom, dom)      # resolvable -> the values dict; dangling -> keep the name (honest)
+    return dom
+
+
 def _trigger_section():
+    domvals = _domains()
     out = {}
     for tname, sheet in _load("trigger").items():
         events = {}
@@ -37,7 +48,8 @@ def _trigger_section():
             opts = e.get("options", {})
             allopts = opts.get("inputs", []) + opts.get("provides", []) + opts.get("internal", [])
             # inputs carry the HANDLING (shaping grammar): value_shape/multiEntry (ARRAY rule), operator set, domain.
-            inputs = {o["name"]: {"default": o.get("default"), "domain": o.get("value_domain"),
+            inputs = {o["name"]: {"default": o.get("default"),
+                                  "domain": _inline_domain(o.get("value_domain"), domvals),
                                   "shape": o.get("value_shape"), "multiEntry": o.get("multiEntry"),
                                   "operator_types": o.get("operator_types")}
                       for o in opts.get("inputs", []) if o.get("name")}
@@ -55,6 +67,7 @@ def _trigger_section():
 
 
 def _display_section():
+    domvals = _domains()
     sheets = _load("display")
     shared = sheets.pop("_shared", None) or {}                 # the regionPrototype cross-cutting layer
     shared_targets = set(shared.get("shared_change_targets", []))
@@ -68,7 +81,11 @@ def _display_section():
                  "change_targets": sorted(region_t | shared_targets)}       # region-specific UNION shared
         surf = sheet.get("option_surface")
         if surf:
-            entry["option_surface"] = surf.get("levers", {})   # group/dynamicgroup: arrangement levers (trigger-grade)
+            levers = surf.get("levers", {})
+            for lv in levers.values():                         # inline the lever value-domains (dropdowns) - one shape
+                if isinstance(lv.get("values"), str):
+                    lv["values"] = _inline_domain(lv["values"], domvals)
+            entry["option_surface"] = levers
         cpl = sheet.get("coupling")
         if cpl:
             entry["coupling"] = cpl                             # dynamicgroup: grow/gridType -> selfPoint derivation

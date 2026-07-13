@@ -128,14 +128,18 @@ for _, dom in ipairs({
   "anim_finish_preset_types", "duration_types", "duration_types_no_choice",
   "anim_translate_types", "anim_scale_types", "anim_rotate_types",
   "anim_alpha_types", "anim_color_types",
-  -- dynamic/static group arrangement domains (the group options builder references these)
-  "grow_types", "align_types", "rotated_align_types", "group_sort_types",
-  "group_hybrid_sort_types", "group_hybrid_position_types", "grid_types",
-  -- aura2 (BuffTrigger2) option-dropdown domains (the value-domains behind its dropdowns)
-  "operator_types", "string_operator_types", "debuff_types", "debuff_class_types",
-  "hostility_types", "include_pets_types", "raid_role_types", "role_types",
-  "spec_types_all", "tooltip_count", "bufftrigger_progress_behavior_types",
-  "unit_types", "actual_unit_types_with_specific",
+  -- ALL trigger + display option-dropdown domains - COMPREHENSIVE, scanned from every options builder
+  -- (`values = Private.<X>` -> the domain name, resolvable in domains.json). Runtime-computed ones
+  -- (class_types / spec_types_all / IconSources / GetReputations / ExecEnv) stay dangling = honest gaps.
+  "grow_types", "align_types", "rotated_align_types", "group_sort_types", "group_hybrid_sort_types",
+  "group_hybrid_position_types", "grid_types", "circular_group_constant_factor_types",
+  "operator_types", "string_operator_types", "debuff_types", "debuff_class_types", "hostility_types",
+  "include_pets_types", "raid_role_types", "role_types", "tooltip_count", "check_types", "custom_trigger_types",
+  "bufftrigger_2_per_unit_mode", "bufftrigger_2_preferred_match_types", "bufftrigger_2_progress_behavior_types",
+  "eventend_types", "subevent_prefix_types", "subevent_suffix_types",
+  "blend_types", "font_flags", "gradient_orientations", "icon_side_types", "rotated_icon_side_types",
+  "justify_types", "orientation_types", "orientation_with_circle_types", "slant_mode",
+  "spark_hide_types", "spark_rotation_types", "text_automatic_width", "text_check_types", "text_word_wrap",
 }) do rawset(_optPriv, dom, dom) end
 rawset(OptionsPrivateStub, "Private", _optPriv)
 
