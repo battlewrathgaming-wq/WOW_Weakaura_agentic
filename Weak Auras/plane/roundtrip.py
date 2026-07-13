@@ -27,7 +27,8 @@ import fill as fillmod
 
 LUA = os.path.join(_ROOT, ".tools", "lua51", "lua5.1.exe")
 CANON = os.path.join(_WA, "wa_lua_verify", "canon.lua")
-DOCKET = os.path.join(_THIS, "dockets", "corpse_explosion.docket.json")
+DOCKET = os.path.join(_THIS, "dockets",
+                      sys.argv[1] if len(sys.argv) > 1 else "corpse_explosion.v2.docket.json")
 
 
 def _to_lua(o):
