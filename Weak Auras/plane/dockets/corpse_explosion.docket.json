@@ -1,0 +1,19 @@
+{
+  "id": "CoA Corpse Explosion",
+  "uid": "coaCorpExpl0001",
+  "region": "icon",
+  "triggers": [
+    {
+      "type": "spell",
+      "event": "Cooldown Progress (Spell)",
+      "declare": {
+        "spellName": 533236,
+        "use_spellName": true,
+        "use_exact_spellName": false,
+        "genericShowOn": "showAlways"
+      }
+    }
+  ],
+  "load": { "class": "NECROMANCER" },
+  "display": { "cooldownEdge": false }
+}

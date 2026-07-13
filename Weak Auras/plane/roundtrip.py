@@ -23,9 +23,11 @@ sys.path.insert(0, _WA)
 sys.path.insert(0, _THIS)
 import weakaura_codec as wc
 import diff as diffmod
+import fill as fillmod
 
 LUA = os.path.join(_ROOT, ".tools", "lua51", "lua5.1.exe")
 CANON = os.path.join(_WA, "wa_lua_verify", "canon.lua")
+DOCKET = os.path.join(_THIS, "dockets", "corpse_explosion.docket.json")
 
 
 def _to_lua(o):
@@ -65,22 +67,8 @@ def canon(aura):
         os.unlink(path)
 
 
-# ------------------------------------------------------------------ the source-authored MINIMAL
-# reasoned delta ONLY: a cooldown-button icon for one spell. Everything else, WA completes.
-MINIMAL = {
-    "id": "CoA Corpse Explosion",
-    "uid": "coaCorpExpl0001",
-    "internalVersion": 86,               # current (WeakAuras.lua:4) -> Modernize no-ops
-    "regionType": "icon",
-    "triggers": {
-        1: {
-            "trigger": {"type": "spell", "event": "Cooldown Progress (Spell)",
-                        "spellName": 533236, "use_spellName": True, "genericShowOn": "showAlways"},
-            "untrigger": {},
-        },
-    },
-    "load": {"class": {"single": "NECROMANCER"}},
-}
+# the aura-table delta comes from the DOCKET via the dumb filler (no hand-literal, no reasoning in the docket).
+MINIMAL = fillmod.fill(json.load(open(DOCKET, encoding="utf-8")))
 
 
 def main():
