@@ -97,6 +97,18 @@ def _option(ns, arg, by_opt):
     if arg.get("showExactOption"):
         row["policy"] = {"knob": "use_exact_" + name, "wa_default": True, "our_policy": False,
                          "why": "match-family-not-rank (name-match catches the whole family)"}
+    # --- HANDLING rules (the shaping grammar sourced with the lever: HOW its value must be shaped) ---
+    me = arg.get("multiEntry")
+    if isinstance(me, dict):
+        row["multiEntry"] = {"operator": me.get("operator"), "limit": me.get("limit")}
+        row["value_shape"] = "array"                 # value + operator stored as ARRAYS (limit = MAX, AND-combined)
+    if arg.get("operator_types"):
+        row["operator_types"] = arg.get("operator_types")   # constrains the operator set (else full < <= = > >= ~=)
+    init = arg.get("init")
+    if isinstance(init, str) and not init.startswith("<func"):
+        row["reads"] = init                          # flatten/semantic: the native signal the value derives from
+    if arg.get("formatter"):
+        row["formatter"] = arg.get("formatter")
     return row
 
 
@@ -126,9 +138,14 @@ def build(category, protos, by_opt, display):
                 continue
             row = _option(ns, arg, by_opt)
             {"input": inputs, "provides": provides}.get(row["surface"], internal).append(row)
+        proto_h = {k: proto.get(k) for k in ("progressType", "statesParameter") if proto.get(k) is not None}
+        for flag in ("timedrequired", "automatic", "automaticrequired"):
+            if proto.get(flag):
+                proto_h[flag] = proto.get(flag)
         events.append({
             "event": ns,
             "display": display.get(ns, ns),
+            "handling": proto_h,                     # prototype-level rules: progress model (region-compat) + state scope
             "default_state": _default_state(ns, proto),
             "options": {"inputs": inputs, "provides": provides, "internal": internal},
         })
@@ -248,6 +265,34 @@ def _md(sheet):
     return "\n".join(out) + "\n"
 
 
+def _routes(sheet):
+    """ROUTING INDEX (light MD): the MAIN levers (input surface) as one line each, grouped by event, pointing to
+    the full sheet for detail. The inventory's browse-MENU and a routed-read locator - choosing a lever never
+    requires reading how EVERY lever works (context-in-flight is expensive; overload -> drift). Pure projection,
+    regenerated with the sheet. `rule` = the one thing to know before opening detail (array-shape / value-domain);
+    the full handling waits in <type>.json."""
+    cat = sheet.get("trigger_type")
+    out = ["# %s - routing index" % cat,
+           "_Main (input) levers only. Open `%s.json` for full handling. "
+           "rule: `array`=multiEntry (value+operator as arrays) - `dom:X`=value-domain X (see domains.json)._" % cat]
+    for e in sheet.get("events", []):
+        pt = (e.get("handling") or {}).get("progressType")
+        out.append("\n## %s%s" % (e.get("event"), ("  - progress: %s" % pt) if pt else ""))
+        rows = e.get("options", {}).get("inputs", [])
+        if not rows:
+            out.append("_(no input levers)_")
+            continue
+        out.append("| lever | type | rule |")
+        out.append("|---|---|---|")
+        for o in rows:
+            rule = "array" if o.get("value_shape") == "array" else \
+                   ("dom:%s" % o["value_domain"] if o.get("value_domain") else "")
+            nm, disp = o.get("name"), o.get("display")
+            label = "%s (%s)" % (nm, disp) if disp and disp != nm else nm
+            out.append("| %s | %s | %s |" % (label, o.get("arg_type") or o.get("input_type") or "", rule))
+    return "\n".join(out) + "\n"
+
+
 def _emit(sheet, want_md):
     os.makedirs(OUTDIR, exist_ok=True)
     cat = sheet["trigger_type"]
@@ -255,10 +300,12 @@ def _emit(sheet, want_md):
     with open(jpath, "w", encoding="utf-8") as f:
         json.dump(sheet, f, ensure_ascii=False, indent=1)
         f.write("\n")
+    with open(os.path.join(OUTDIR, cat + ".routes.md"), "w", encoding="utf-8") as f:  # the routing index (light)
+        f.write(_routes(sheet))
     if want_md:
         with open(os.path.join(OUTDIR, cat + ".md"), "w", encoding="utf-8") as f:
             f.write(_md(sheet))
-    print("  %-10s -> %-12s %d events" % (cat, cat + ".json", sheet["event_count"]))
+    print("  %-10s -> %-12s %d events (+routes)" % (cat, cat + ".json", sheet["event_count"]))
 
 
 # trigger types WA drives outside event_prototypes (special-cased in GenericTrigger/options)

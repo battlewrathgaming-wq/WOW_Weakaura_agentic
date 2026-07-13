@@ -6,6 +6,11 @@
   {
    "event": "Chat Message",
    "display": "Chat Message",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "all",
+    "timedrequired": true
+   },
    "default_state": {
     "type": "event",
     "event": "Chat Message"
@@ -65,7 +70,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "arg"
      },
      {
       "name": "sourceName",
@@ -80,7 +86,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "arg"
      },
      {
       "name": "destName",
@@ -95,7 +102,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "arg"
      },
      {
       "name": "cloneId",
@@ -110,7 +118,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "use_cloneId and WeakAuras.GetUniqueCloneId() or ''"
      }
     ],
     "provides": [
@@ -127,7 +136,9 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "arg",
+      "formatter": "guid"
      }
     ],
     "internal": []
@@ -136,6 +147,11 @@
   {
    "event": "Combat Events",
    "display": "Entering/Leaving Combat",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "timedrequired": true
+   },
    "default_state": {
     "type": "event",
     "event": "Combat Events",
@@ -169,6 +185,11 @@
   {
    "event": "Encounter Events",
    "display": "Entering/Leaving Encounter",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "timedrequired": true
+   },
    "default_state": {
     "type": "event",
     "event": "Encounter Events",
@@ -222,7 +243,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "arg"
      },
      {
       "name": "encounterName",
@@ -237,7 +259,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "arg"
      },
      {
       "name": "difficulty",
@@ -258,7 +281,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "arg"
      },
      {
       "name": "success",
@@ -273,7 +297,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "arg"
      }
     ],
     "provides": [],
@@ -283,6 +308,11 @@
   {
    "event": "Ready Check",
    "display": "Ready Check",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "timedrequired": true
+   },
    "default_state": {
     "type": "event",
     "event": "Ready Check"
@@ -296,6 +326,11 @@
   {
    "event": "Spell Cast Succeeded",
    "display": "Spell Cast Succeeded",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "unit",
+    "timedrequired": true
+   },
    "default_state": {
     "type": "event",
     "event": "Spell Cast Succeeded"
@@ -315,7 +350,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "arg"
      },
      {
       "name": "spellNames",
@@ -330,7 +366,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "multiEntry": {
+       "operator": "preamble",
+       "limit": null
+      },
+      "value_shape": "array",
+      "reads": "arg"
      },
      {
       "name": "spellId",
@@ -345,7 +387,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "multiEntry": {
+       "operator": "preamble",
+       "limit": null
+      },
+      "value_shape": "array",
+      "reads": "spellNames"
      }
     ],
     "provides": [
@@ -362,7 +410,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "(spellId and select(3, GetSpellInfo(spellId))) or 'Interface\\\\Icons\\\\INV_Misc_QuestionMark'"
      },
      {
       "name": "name",
@@ -377,7 +426,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "GetSpellInfo(spellId or 0)"
      }
     ],
     "internal": []

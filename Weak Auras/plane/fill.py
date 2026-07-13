@@ -40,6 +40,10 @@ def fill(docket):
         trig = {"type": t["type"], "event": t["event"]}
         trig.update(t.get("declare", {}))                # the declared trigger fields
         triggers[i] = {"trigger": trig, "untrigger": {}}
+    activation = docket.get("activation") or {}          # trigger COMBINATION: string keys on the triggers table
+    for k in ("disjunctive", "activeTriggerMode", "customTriggerLogic"):
+        if k in activation:                              # assert-only; absent -> WA defaults (all / first_active)
+            triggers[k] = activation[k]
     aura["triggers"] = triggers
     load = docket.get("load") or {}
     if "class" in load:

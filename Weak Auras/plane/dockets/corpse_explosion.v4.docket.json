@@ -1,0 +1,35 @@
+{
+  "id": "CoA Corpse Explosion T2",
+  "uid": "coaCorpExpl0004",
+  "region": "icon",
+  "triggers": [
+    {
+      "type": "spell",
+      "event": "Cooldown Progress (Spell)",
+      "declare": {
+        "spellName": 533236,
+        "use_spellName": true,
+        "use_exact_spellName": false,
+        "genericShowOn": "showAlways"
+      }
+    },
+    {
+      "type": "unit",
+      "event": "Health",
+      "declare": {
+        "unit": "player"
+      }
+    }
+  ],
+  "activation": {
+    "disjunctive": "all",
+    "activeTriggerMode": 1
+  },
+  "load": { "class": "NECROMANCER" },
+  "conditions": [
+    {
+      "check": { "trigger": 2, "variable": "percenthealth", "op": "<", "value": 50 },
+      "changes": { "desaturate": true }
+    }
+  ]
+}

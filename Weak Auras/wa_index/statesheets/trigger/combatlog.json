@@ -6,6 +6,11 @@
   {
    "event": "Combat Log",
    "display": "Combat Log",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "all",
+    "timedrequired": true
+   },
    "default_state": {
     "type": "combatlog",
     "event": "Combat Log"
@@ -55,7 +60,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "arg"
      },
      {
       "name": "sourceNpcId",
@@ -70,7 +76,9 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none",
+      "reads": "tostring(tonumber(string.sub(sourceGUID or '', 8, 12), 16) or '')"
      },
      {
       "name": "sourceFlags",
@@ -90,7 +98,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "arg"
      },
      {
       "name": "sourceFlags2",
@@ -175,7 +184,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "arg"
      },
      {
       "name": "destNpcId",
@@ -190,7 +200,9 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none",
+      "reads": "tostring(tonumber(string.sub(destGUID or '', 8, 12), 16) or '')"
      },
      {
       "name": "destFlags",
@@ -210,7 +222,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "arg"
      },
      {
       "name": "destFlags2",
@@ -280,7 +293,13 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "preamble",
+       "limit": null
+      },
+      "value_shape": "array",
+      "reads": "arg"
      },
      {
       "name": "spellName",
@@ -295,7 +314,13 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "multiEntry": {
+       "operator": "preamble",
+       "limit": null
+      },
+      "value_shape": "array",
+      "reads": "arg"
      },
      {
       "name": "spellSchool",
@@ -345,7 +370,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "arg"
      },
      {
       "name": "environmentalType",
@@ -367,7 +393,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "arg"
      },
      {
       "name": "missType",
@@ -393,7 +420,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "arg"
      },
      {
       "name": "extraSpellId",
@@ -408,7 +436,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "arg"
      },
      {
       "name": "extraSpellName",
@@ -423,7 +452,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "arg"
      },
      {
       "name": "auraType",
@@ -441,7 +471,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "arg"
      },
      {
       "name": "amount",
@@ -456,7 +487,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "arg"
      },
      {
       "name": "overkill",
@@ -471,7 +503,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "arg"
      },
      {
       "name": "overhealing",
@@ -486,7 +519,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "arg"
      },
      {
       "name": "resisted",
@@ -501,7 +535,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "arg"
      },
      {
       "name": "blocked",
@@ -516,7 +551,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "arg"
      },
      {
       "name": "absorbed",
@@ -531,7 +567,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "arg"
      },
      {
       "name": "critical",
@@ -546,7 +583,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "arg"
      },
      {
       "name": "glancing",
@@ -561,7 +599,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "arg"
      },
      {
       "name": "crushing",
@@ -576,7 +615,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "arg"
      },
      {
       "name": "number",
@@ -591,7 +631,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "arg"
      },
      {
       "name": "overEnergize",
@@ -606,7 +647,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "arg"
      },
      {
       "name": "powerType",
@@ -628,7 +670,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "arg"
      },
      {
       "name": "extraAmount",
@@ -643,7 +686,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "arg"
      },
      {
       "name": "miscellaneousHeader",
@@ -673,7 +717,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "use_cloneId and WeakAuras.GetUniqueCloneId() or ''"
      }
     ],
     "provides": [
@@ -690,7 +735,9 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "arg",
+      "formatter": "guid"
      },
      {
       "name": "destGUID",
@@ -705,7 +752,9 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "arg",
+      "formatter": "guid"
      },
      {
       "name": "icon",
@@ -720,7 +769,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "(spellId and select(3, GetSpellInfo(spellId))) or 'Interface\\\\Icons\\\\INV_Misc_QuestionMark'"
      }
     ],
     "internal": []

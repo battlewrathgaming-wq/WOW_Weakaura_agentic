@@ -12,60 +12,19 @@ This is the red/green anchor the rest of the pipeline is built to turn green. No
 """
 import json
 import os
-import subprocess
 import sys
-import tempfile
 
 _THIS = os.path.dirname(os.path.abspath(__file__))
 _WA = os.path.dirname(_THIS)                 # Weak Auras/
-_ROOT = os.path.dirname(_WA)
 sys.path.insert(0, _WA)
 sys.path.insert(0, _THIS)
 import weakaura_codec as wc
 import diff as diffmod
 import fill as fillmod
+import reconcile as rec                       # the fill/canon -> codec gate (bounce); owns canon now
 
-LUA = os.path.join(_ROOT, ".tools", "lua51", "lua5.1.exe")
-CANON = os.path.join(_WA, "wa_lua_verify", "canon.lua")
 DOCKET = os.path.join(_THIS, "dockets",
                       sys.argv[1] if len(sys.argv) > 1 else "corpse_explosion.v2.docket.json")
-
-
-def _to_lua(o):
-    """python value -> Lua literal (canon reads `return <literal>`)."""
-    if isinstance(o, bool):
-        return "true" if o else "false"
-    if o is None:
-        return "nil"
-    if isinstance(o, (int, float)):
-        return repr(o)
-    if isinstance(o, str):
-        return '"' + o.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n").replace("\r", "\\r") + '"'
-    if isinstance(o, (list, tuple)):
-        return "{" + ",".join(_to_lua(v) for v in o) + "}"
-    if isinstance(o, dict):
-        parts = []
-        for k, v in o.items():
-            if v is None:
-                continue
-            key = "[%d]" % k if isinstance(k, int) else "[%s]" % _to_lua(str(k))
-            parts.append("%s=%s" % (key, _to_lua(v)))
-        return "{" + ",".join(parts) + "}"
-    raise TypeError("cannot serialise %r" % type(o))
-
-
-def canon(aura):
-    """run WA's acceptor on an aura table -> the completed table."""
-    fd, path = tempfile.mkstemp(suffix=".lua")
-    try:
-        with os.fdopen(fd, "w", encoding="utf-8") as f:
-            f.write("return " + _to_lua(aura) + "\n")
-        p = subprocess.run([LUA, CANON, path], capture_output=True, text=True)
-        if p.returncode != 0:
-            sys.exit("canon failed:\n" + p.stderr[:600])
-        return json.loads(p.stdout)
-    finally:
-        os.unlink(path)
 
 
 # the aura-table delta comes from the DOCKET via the dumb filler (no hand-literal, no reasoning in the docket).
@@ -73,10 +32,10 @@ MINIMAL = fillmod.fill(json.load(open(DOCKET, encoding="utf-8")))
 
 
 def main():
-    A = canon(MINIMAL)                                   # WA completes our minimal
+    A = rec.bounce(MINIMAL)                              # WA completes our minimal, reconciled codec-ready
     s = wc.encode_import_string(A)                       # export
     B = wc.decode_import_string(s)                       # reimport (decode)
-    B2 = canon(B)                                        # WA completes the reimport
+    B2 = rec.bounce(B)                                   # WA completes the reimport, reconciled
     d = diffmod.deep_diff(A, B2)                         # reimport-stable?
     diffs = d if isinstance(d, list) else ([] if not d else [d])
     print("minimal authored : %d fields" % len(MINIMAL))

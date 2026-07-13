@@ -6,6 +6,11 @@
   {
    "event": "Cooldown Progress (Equipment Slot)",
    "display": "Cooldown Progress (Slot)",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "item",
     "event": "Cooldown Progress (Equipment Slot)",
@@ -93,7 +98,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "remaining"
      },
      {
       "name": "testForCooldown",
@@ -144,7 +150,9 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "operator_types": "only_equal",
+      "reads": "item"
      },
      {
       "name": "progressType",
@@ -159,7 +167,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'timed'"
      },
      {
       "name": "duration",
@@ -174,7 +183,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "duration"
      },
      {
       "name": "expirationTime",
@@ -189,7 +199,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "expirationTime"
      },
      {
       "name": "name",
@@ -204,7 +215,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -219,7 +231,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      },
      {
       "name": "stacks",
@@ -234,7 +247,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "stacks"
      },
      {
       "name": "gcdCooldown",
@@ -274,6 +288,11 @@
   {
    "event": "Cooldown Progress (Item)",
    "display": "Cooldown Progress (Item)",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "item",
     "event": "Cooldown Progress (Item)",
@@ -311,7 +330,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "remaining"
      },
      {
       "name": "extra Cooldown Progress (Item)",
@@ -407,7 +427,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -422,7 +443,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      },
      {
       "name": "progressType",
@@ -437,7 +459,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'timed'"
      },
      {
       "name": "duration",
@@ -452,7 +475,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "duration"
      },
      {
       "name": "expirationTime",
@@ -467,7 +491,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "expirationTime"
      }
     ],
     "internal": [
@@ -492,6 +517,11 @@
   {
    "event": "Cooldown Ready (Equipment Slot)",
    "display": "Cooldown Ready Event (Slot)",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "timedrequired": true
+   },
    "default_state": {
     "type": "item",
     "event": "Cooldown Ready (Equipment Slot)",
@@ -532,7 +562,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "arg"
      }
     ],
     "provides": [
@@ -549,7 +580,9 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "operator_types": "only_equal",
+      "reads": "item"
      },
      {
       "name": "name",
@@ -564,7 +597,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -579,7 +613,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      }
     ],
     "internal": []
@@ -588,6 +623,11 @@
   {
    "event": "Cooldown Ready (Item)",
    "display": "Cooldown Ready Event (Item)",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "timedrequired": true
+   },
    "default_state": {
     "type": "item",
     "event": "Cooldown Ready (Item)",
@@ -608,7 +648,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "arg"
      }
     ],
     "provides": [
@@ -625,7 +666,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -640,7 +682,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      }
     ],
     "internal": []
@@ -649,6 +692,11 @@
   {
    "event": "Equipment Set",
    "display": "Equipment Set Equipped",
+   "handling": {
+    "progressType": "static",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "item",
     "event": "Equipment Set"
@@ -668,7 +716,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "itemSetName"
      },
      {
       "name": "partial",
@@ -715,7 +764,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -730,7 +780,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      },
      {
       "name": "value",
@@ -745,7 +796,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "numEquipped"
      },
      {
       "name": "total",
@@ -760,7 +812,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "numItems"
      },
      {
       "name": "progressType",
@@ -775,7 +828,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'static'"
      }
     ],
     "internal": []
@@ -784,6 +838,11 @@
   {
    "event": "Item Count",
    "display": "Item Count",
+   "handling": {
+    "progressType": "static",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "item",
     "event": "Item Count",
@@ -825,7 +884,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "itemName"
      },
      {
       "name": "includeBank",
@@ -887,7 +947,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "count"
      },
      {
       "name": "value",
@@ -902,7 +963,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "count"
      },
      {
       "name": "total",
@@ -932,7 +994,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'static'"
      },
      {
       "name": "icon",
@@ -947,7 +1010,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "GetItemIcon(itemName or '')"
      },
      {
       "name": "name",
@@ -962,7 +1026,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "itemName and itemName ~= '' and GetItemInfo(itemName) or itemName"
      }
     ],
     "internal": []
@@ -971,6 +1036,11 @@
   {
    "event": "Item Equipped",
    "display": "Item Equipped",
+   "handling": {
+    "progressType": "none",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "item",
     "event": "Item Equipped",
@@ -1058,7 +1128,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "itemName"
      },
      {
       "name": "icon",
@@ -1073,7 +1144,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      }
     ],
     "internal": []
@@ -1082,6 +1154,10 @@
   {
    "event": "Item Type Equipped",
    "display": "Item Type Equipped",
+   "handling": {
+    "progressType": "none",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "item",
     "event": "Item Type Equipped"
@@ -1111,6 +1187,11 @@
   {
    "event": "Weapon Enchant",
    "display": "Weapon Enchant / Fishing Lure",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "item",
     "event": "Weapon Enchant",
@@ -1215,7 +1296,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "operator_types": "only_equal"
      },
      {
       "name": "duration",
@@ -1230,7 +1312,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "duration"
      },
      {
       "name": "expirationTime",
@@ -1245,7 +1328,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "expirationTime"
      },
      {
       "name": "progressType",
@@ -1260,7 +1344,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "duration and 'timed'"
      },
      {
       "name": "name",
@@ -1275,7 +1360,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -1290,7 +1376,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      },
      {
       "name": "enchanted",
@@ -1305,7 +1392,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "found == true"
      }
     ],
     "internal": []

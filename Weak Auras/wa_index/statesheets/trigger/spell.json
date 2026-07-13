@@ -6,6 +6,11 @@
   {
    "event": "Action Usable",
    "display": "Spell Usable",
+   "handling": {
+    "progressType": "none",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "spell",
     "event": "Action Usable",
@@ -169,7 +174,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -184,7 +190,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      },
      {
       "name": "stacks",
@@ -199,7 +206,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "stacks"
      }
     ],
     "internal": [
@@ -224,6 +232,11 @@
   {
    "event": "Charges Changed",
    "display": "Charges Changed Event",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "timedrequired": true
+   },
    "default_state": {
     "type": "spell",
     "event": "Charges Changed",
@@ -251,7 +264,8 @@
        "wa_default": true,
        "our_policy": false,
        "why": "match-family-not-rank (name-match catches the whole family)"
-      }
+      },
+      "reads": "arg"
      },
      {
       "name": "direction",
@@ -270,7 +284,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "arg"
      },
      {
       "name": "charges",
@@ -285,7 +300,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "arg"
      }
     ],
     "provides": [
@@ -302,7 +318,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -317,7 +334,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      }
     ],
     "internal": []
@@ -326,6 +344,11 @@
   {
    "event": "Cooldown Progress (Spell)",
    "display": "Cooldown/Charges/Count",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "spell",
     "event": "Cooldown Progress (Spell)",
@@ -531,7 +554,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "stacks"
      },
      {
       "name": "maxCharges",
@@ -606,7 +630,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "operator_types": "only_equal"
      },
      {
       "name": "gcdCooldown",
@@ -636,7 +661,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -651,7 +677,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      }
     ],
     "internal": [
@@ -721,6 +748,11 @@
   {
    "event": "Cooldown Ready (Spell)",
    "display": "Cooldown Ready Event",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "timedrequired": true
+   },
    "default_state": {
     "type": "spell",
     "event": "Cooldown Ready (Spell)",
@@ -747,7 +779,8 @@
        "wa_default": true,
        "our_policy": false,
        "why": "match-family-not-rank (name-match catches the whole family)"
-      }
+      },
+      "reads": "arg"
      }
     ],
     "provides": [
@@ -764,7 +797,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -779,7 +813,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      }
     ],
     "internal": []
@@ -788,6 +823,11 @@
   {
    "event": "Global Cooldown",
    "display": "Global Cooldown",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "spell",
     "event": "Global Cooldown"
@@ -824,7 +864,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -839,7 +880,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      },
      {
       "name": "duration",
@@ -854,7 +896,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "duration"
      },
      {
       "name": "expirationTime",
@@ -869,7 +912,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "expirationTime"
      },
      {
       "name": "progressType",
@@ -884,7 +928,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'timed'"
      }
     ],
     "internal": []
@@ -893,6 +938,10 @@
   {
    "event": "Queued Action",
    "display": "Queued Action",
+   "handling": {
+    "progressType": "none",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "spell",
     "event": "Queued Action",
@@ -929,6 +978,11 @@
   {
    "event": "Spell Known",
    "display": "Spell Known",
+   "handling": {
+    "progressType": "none",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "spell",
     "event": "Spell Known",
@@ -996,7 +1050,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -1011,7 +1066,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      }
     ],
     "internal": []
@@ -1020,6 +1076,11 @@
   {
    "event": "Totem",
    "display": "Totem",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "full",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "spell",
     "event": "Totem"
@@ -1089,7 +1150,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "operator_types": "only_equal"
      },
      {
       "name": "inverse",

@@ -1,8 +1,11 @@
 {
  "_meta": {
-  "built_from": "statesheets/{trigger,display,load} - a JOIN, no new extraction",
+  "built_from": "statesheets/{trigger,display,load} + domains.json - a JOIN, no new extraction",
   "pre_flight": "read by the class-inventory pre-flight (NOT the pipeline): assert must_assert present, values in domain, condition check-var in a trigger `condition_vars`, change-prop in a region `change_targets`. Docket + fill stay dumb.",
-  "condition_join": "check reads trigger[type][event].condition_vars (the conditionType axis) -> change hits display[region].change_targets"
+  "condition_join": "check reads trigger[type][event].condition_vars (the conditionType axis) -> change hits display[region].change_targets",
+  "handling": "each trigger input carries its shaping grammar: shape/multiEntry (ARRAY rule), operator_types, domain (names a domains key); event.handling = progressType (region-compat) + statesParameter (state scope). The sheet resolved the shape.",
+  "domain_refs": [],
+  "dangling_domains": []
  },
  "trigger": {
   "addons": {
@@ -11,6 +14,11 @@
     "condition_vars": [
      "alertType"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "timedrequired": true
+    },
     "inputs": {
      "alertType": {
       "default": null,
@@ -19,7 +27,10 @@
        "Low Damage",
        "Fail Alert",
        "Friendly Fire"
-      ]
+      ],
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    }
@@ -28,334 +39,581 @@
    "Aura": {
     "must_assert": [],
     "condition_vars": [],
+    "handling": {},
     "inputs": {
      "useUnit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "unit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useSpecificUnit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "specificUnit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useDebuffType": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "debuffType": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "use_debuffClass": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "debuffClass": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "name1": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useExactSpellId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "spellid1": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useIgnoreName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignorename1": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useIgnoreExactSpellId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignorespellid1": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useNamePattern": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "namePattern_operator": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "namePattern_name": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useStacks": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "stacksOperator": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "stacks": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useRem": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "remOperator": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "rem": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useTotal": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "totalOperator": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "total": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "use_stealable": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "use_isBossDebuff": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "use_castByPlayer": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ownOnly": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "fetchTooltip": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "use_tooltip": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "tooltip_operator": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "tooltip": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "use_tooltipValue": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "tooltipValueNumber": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "tooltipValue_operator": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "tooltipValue": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useAffected": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "fetchRole": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "fetchRaidMark": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "use_includePets": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "includePets": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useActualSpec": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "actualSpec": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useGroupRole": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "group_role": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useRaidRole": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "raid_role": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useClass": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "class": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useUnitName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "unitName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useHostility": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "hostility": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useNpcId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "npcId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreSelf": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreDead": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreDisconnected": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inRange": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreInvisible": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useGroup_count": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "group_countOperator": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "group_count": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "use_matchesShowOn": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "matchesShowOn": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useMatch_count": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "match_countOperator": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "match_count": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "useMatchPerUnit_count": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "matchPerUnit_countOperator": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "matchPerUnit_count": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "showClones": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "combinePerUnit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "use_perUnitMode": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "perUnitMode": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "use_combineMode": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "combineMode": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "unitExists": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    }
@@ -398,22 +656,39 @@
      "powerType",
      "extraAmount"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "all",
+     "timedrequired": true
+    },
     "inputs": {
      "sourceHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "sourceUnit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "sourceName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "sourceNpcId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "sourceFlags": {
       "default": null,
@@ -422,7 +697,10 @@
        "InParty": "In Party",
        "Mine": "Mine",
        "NotInGroup": "Not in Smart Group"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "sourceFlags2": {
       "default": null,
@@ -430,7 +708,10 @@
        "Friendly": "Friendly",
        "Hostile": "Hostile",
        "Neutral": "Neutral"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "sourceFlags3": {
       "default": null,
@@ -440,23 +721,38 @@
        "Object": "Object",
        "Pet": "Pet",
        "Player": "Player"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "destHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "destUnit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "destName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "destNpcId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "destFlags": {
       "default": null,
@@ -465,7 +761,10 @@
        "InParty": "In Party",
        "Mine": "Mine",
        "NotInGroup": "Not in Smart Group"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "destFlags2": {
       "default": null,
@@ -473,7 +772,10 @@
        "Friendly": "Friendly",
        "Hostile": "Hostile",
        "Neutral": "Neutral"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "destFlags3": {
       "default": null,
@@ -483,19 +785,37 @@
        "Object": "Object",
        "Pet": "Pet",
        "Player": "Player"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "subeventHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "spellId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "preamble",
+       "limit": null
+      },
+      "operator_types": null
      },
      "spellName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "preamble",
+       "limit": null
+      },
+      "operator_types": null
      },
      "spellSchool": {
       "default": null,
@@ -534,7 +854,10 @@
        "80": "080 - ",
        "9": "009 - ",
        "96": "096 - "
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "environmentalType": {
       "default": null,
@@ -545,7 +868,10 @@
        "Fire": {},
        "Lava": {},
        "Slime": {}
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "missType": {
       "default": null,
@@ -560,66 +886,111 @@
        "PARRY": "Parry",
        "REFLECT": "Reflect",
        "RESIST": "Resist"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "extraSpellId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "extraSpellName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "auraType": {
       "default": null,
       "domain": {
        "BUFF": "Buff",
        "DEBUFF": "Debuff"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "amount": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "overkill": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "overhealing": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "resisted": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "blocked": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "absorbed": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "critical": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "glancing": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "crushing": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "number": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "overEnergize": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "powerType": {
       "default": null,
@@ -630,19 +1001,31 @@
        "27": {},
        "3": {},
        "6": {}
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "extraAmount": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "miscellaneousHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "cloneId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    }
@@ -651,46 +1034,77 @@
    "Custom": {
     "must_assert": [],
     "condition_vars": [],
+    "handling": {},
     "inputs": {
      "custom_type": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "check": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "events": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "check2": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "onUpdateThrottle": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "events2": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "custom_hide": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "custom_hide2": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "dynamicDuration": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "duration": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    }
@@ -703,6 +1117,11 @@
      "sourceName",
      "destName"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "all",
+     "timedrequired": true
+    },
     "inputs": {
      "messageType": {
       "default": null,
@@ -731,23 +1150,38 @@
        "CHAT_MSG_SYSTEM": "System",
        "CHAT_MSG_WHISPER": "Whisper",
        "CHAT_MSG_YELL": "Yell"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "message": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "sourceName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "destName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "cloneId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -756,13 +1190,21 @@
      "eventtype"
     ],
     "condition_vars": [],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "timedrequired": true
+    },
     "inputs": {
      "eventtype": {
       "default": null,
       "domain": {
        "PLAYER_REGEN_DISABLED": "Entering",
        "PLAYER_REGEN_ENABLED": "Leaving"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -776,25 +1218,42 @@
      "difficulty",
      "success"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "timedrequired": true
+    },
     "inputs": {
      "note": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "eventtype": {
       "default": null,
       "domain": {
        "ENCOUNTER_END": "Leaving",
        "ENCOUNTER_START": "Entering"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "encounterId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "encounterName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "difficulty": {
       "default": null,
@@ -804,17 +1263,28 @@
        "mythic": "Mythic",
        "none": "None",
        "normal": {}
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "success": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
    "Ready Check": {
     "must_assert": [],
     "condition_vars": [],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "timedrequired": true
+    },
     "inputs": {}
    },
    "Spell Cast Succeeded": {
@@ -822,18 +1292,38 @@
     "condition_vars": [
      "unit"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "unit",
+     "timedrequired": true
+    },
     "inputs": {
      "unit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "spellNames": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "preamble",
+       "limit": null
+      },
+      "operator_types": null
      },
      "spellId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "preamble",
+       "limit": null
+      },
+      "operator_types": null
      }
     }
    }
@@ -849,6 +1339,11 @@
      "stacks",
      "onCooldown"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "itemSlot": {
       "default": null,
@@ -872,23 +1367,38 @@
        "7": {},
        "8": {},
        "9": {}
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "extra Cooldown Progress (Equipment Slot)": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "showgcd": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "remaining": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "testForCooldown": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "genericShowOn": {
       "default": "showOnCooldown",
@@ -896,7 +1406,10 @@
        "showAlways": "Always",
        "showOnCooldown": "On Cooldown",
        "showOnReady": "Not on Cooldown"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -908,22 +1421,39 @@
      "name",
      "onCooldown"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "itemName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "remaining": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "extra Cooldown Progress (Item)": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "showgcd": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "genericShowOn": {
       "default": "showOnCooldown",
@@ -931,7 +1461,10 @@
        "showAlways": "Always",
        "showOnCooldown": "On Cooldown",
        "showOnReady": "Not on Cooldown"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -943,6 +1476,11 @@
      "itemId",
      "name"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "timedrequired": true
+    },
     "inputs": {
      "itemSlot": {
       "default": null,
@@ -966,7 +1504,10 @@
        "7": {},
        "8": {},
        "9": {}
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -977,10 +1518,18 @@
     "condition_vars": [
      "name"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "timedrequired": true
+    },
     "inputs": {
      "itemName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -990,18 +1539,32 @@
      "itemSetName",
      "name"
     ],
+    "handling": {
+     "progressType": "static",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "itemSetName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "partial": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inverse": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1014,26 +1577,46 @@
      "value",
      "total"
     ],
+    "handling": {
+     "progressType": "static",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "itemName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "name": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "includeBank": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "includeCharges": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "count": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1044,10 +1627,18 @@
     "condition_vars": [
      "name"
     ],
+    "handling": {
+     "progressType": "none",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "itemName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "itemSlot": {
       "default": null,
@@ -1071,11 +1662,17 @@
        "7": {},
        "8": {},
        "9": {}
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inverse": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1084,10 +1681,17 @@
      "itemTypeName"
     ],
     "condition_vars": [],
+    "handling": {
+     "progressType": "none",
+     "automaticrequired": true
+    },
     "inputs": {
      "itemTypeName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1098,6 +1702,11 @@
      "enchantID",
      "enchanted"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "weapon": {
       "default": "main",
@@ -1105,23 +1714,38 @@
        "main": {},
        "off": {},
        "ranged": {}
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "enchant": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "stacks": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "remaining": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "showOn": {
       "default": "showOnActive",
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    }
@@ -1141,30 +1765,53 @@
      "stacks",
      "spellInRange"
     ],
+    "handling": {
+     "progressType": "none",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "spellName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "targetRequired": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreSpellCooldown": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "charges": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "spellCount": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inverse": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1178,10 +1825,18 @@
      "charges",
      "name"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "timedrequired": true
+    },
     "inputs": {
      "spellName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "direction": {
       "default": null,
@@ -1189,11 +1844,17 @@
        "CHANGED": "Changed",
        "GAINED": "Gained",
        "LOST": "Lost"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "charges": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1215,14 +1876,25 @@
      "insufficientResources",
      "spellInRange"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "spellName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "extra Cooldown Progress (Spell)": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "track": {
       "default": "auto",
@@ -1230,35 +1902,59 @@
        "auto": "Auto",
        "charges": "Charges",
        "cooldown": "Cooldown"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "showgcd": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "matchedRune": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreSpellKnown": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "trackcharge": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "remaining": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "charges": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "spellCount": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "genericShowOn": {
       "default": "showOnCooldown",
@@ -1266,7 +1962,10 @@
        "showAlways": "Always",
        "showOnCooldown": "On Cooldown",
        "showOnReady": "Not on Cooldown"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1277,10 +1976,18 @@
     "condition_vars": [
      "name"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "timedrequired": true
+    },
     "inputs": {
      "spellName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1289,10 +1996,18 @@
     "condition_vars": [
      "name"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "inverse": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1301,10 +2016,17 @@
      "spellName"
     ],
     "condition_vars": [],
+    "handling": {
+     "progressType": "none",
+     "automaticrequired": true
+    },
     "inputs": {
      "spellName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1315,18 +2037,32 @@
     "condition_vars": [
      "name"
     ],
+    "handling": {
+     "progressType": "none",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "spellName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "petspell": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inverse": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1336,6 +2072,11 @@
      "totemName",
      "icon"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "full",
+     "automaticrequired": true
+    },
     "inputs": {
      "totemType": {
       "default": null,
@@ -1344,31 +2085,52 @@
        "Earth",
        "Water",
        "Air"
-      ]
+      ],
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "totemName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "totemNamePattern": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "icon": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "only_equal"
      },
      "inverse": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "clones": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "remaining": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    }
@@ -1394,49 +2156,90 @@
      "destNameRealm",
      "spellId"
     ],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "unit",
+     "automaticrequired": true
+    },
     "inputs": {
      "unit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "spellNames": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "preamble",
+       "limit": null
+      },
+      "operator_types": null
      },
      "spellIds": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "preamble",
+       "limit": null
+      },
+      "operator_types": null
      },
      "spell": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "castType": {
       "default": null,
       "domain": {
        "cast": "Cast",
        "channel": "Channel (Spell)"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "interruptible": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "remaining": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "unitCharacteristicsHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "npcId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "class": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "role": {
       "default": null,
@@ -1445,7 +2248,10 @@
        "healer": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:1:20|t ",
        "melee": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Melee",
        "tank": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:0:19:22:41|t "
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "raid_role": {
       "default": null,
@@ -1453,77 +2259,128 @@
        "MAINASSIST": "|TInterface\\GroupFrame\\UI-Group-mainassistIcon:16:16|t ",
        "MAINTANK": "|TInterface\\GroupFrame\\UI-Group-maintankIcon:16:16|t ",
        "NONE": "Other"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "raidMarkIndex": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "nameplateType": {
       "default": null,
       "domain": {
        "friendly": "Friendly",
        "hostile": "Hostile"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "sourceUnit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "sourceName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "sourceRealm": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "sourceNameRealm": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "destUnit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "destName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "destRealm": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "destNameRealm": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "miscellaneousHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "showLatency": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "includePets": {
       "default": null,
       "domain": {
        "PetsOnly": "Pets only",
        "PlayersAndPets": "Players and Pets"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreSelf": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "onUpdateUnitTarget": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inverse": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1570,186 +2427,434 @@
      "armorpercent",
      "avoidancetotalpercent"
     ],
+    "handling": {
+     "progressType": "none",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "primaryStatsHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "strength": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "agility": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "stamina": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "intellect": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "spirit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "secondaryStatsHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "criticalrating": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "criticalpercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "hitrating": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "hitpercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "hasterating": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "hastepercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "expertiserating": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "expertisebonus": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "armorpenrating": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "armorpenpercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "spellpenpercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "resiliencerating": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "resiliencepercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "attackpower": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "spellpower": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "rangedattackpower": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "resistanceHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "resistancefire": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "resistancenature": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "resistancefrost": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "resistanceshadow": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "resistancearcane": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "tertiaryStatsHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "moveSpeed": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "movespeedpercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "defensiveStatsHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "defense": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "defensevalue": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "defensepercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "dodgerating": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "dodgepercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "parryrating": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "parrypercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "blockpercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "blockvalue": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "armorrating": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "armorpercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "avoidancetotalpercent": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1758,56 +2863,98 @@
     "condition_vars": [
      "specId"
     ],
+    "handling": {
+     "progressType": "none",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "specId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
    "Conditions": {
     "must_assert": [],
     "condition_vars": [],
+    "handling": {
+     "progressType": "none",
+     "automaticrequired": true
+    },
     "inputs": {
      "alwaystrue": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "incombat": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "pvpflagged": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "alive": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "vehicle": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "resting": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "mounted": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "HasPet": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ismoving": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "afk": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ingroup": {
       "default": null,
@@ -1815,7 +2962,10 @@
        "group": "In Party",
        "raid": "In Raid",
        "solo": "Not in Group"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ruleset": {
       "default": null,
@@ -1824,7 +2974,10 @@
        "one": "None",
        "pve": {},
        "pvp": {}
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "instance_size": {
       "default": null,
@@ -1837,7 +2990,10 @@
        "ten": "10 Man Raid",
        "twenty": "20 Man Raid",
        "twentyfive": "25 Man Raid"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "instance_difficulty": {
       "default": null,
@@ -1847,17 +3003,26 @@
        "mythic": "Mythic",
        "none": "None",
        "normal": {}
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
    "Crowd Controlled": {
     "must_assert": [],
     "condition_vars": [],
+    "handling": {
+     "automaticrequired": true
+    },
     "inputs": {
      "controlled": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1870,26 +3035,46 @@
      "totalEarned",
      "discovered"
     ],
+    "handling": {
+     "progressType": "static",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "currencyId": {
       "default": null,
-      "domain": {}
+      "domain": {},
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "value": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "totalEarned": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "description": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "discovered": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1904,6 +3089,11 @@
      "unholyRunes",
      "onCooldown"
     ],
+    "handling": {
+     "progressType": "<function>",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "rune": {
       "default": null,
@@ -1914,15 +3104,24 @@
        "Unholy Rune #2",
        "Frost Rune #1",
        "Frost Rune #2"
-      ]
+      ],
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "isDeathRune": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "remaining": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "genericShowOn": {
       "default": null,
@@ -1930,27 +3129,45 @@
        "showAlways": "Always",
        "showOnCooldown": "On Cooldown",
        "showOnReady": "Not on Cooldown"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "runesCount": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "bloodRunes": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "frostRunes": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "unholyRunes": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "includeDeathRunes": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -1964,46 +3181,99 @@
      "restedXP",
      "percentrested"
     ],
+    "handling": {
+     "progressType": "static",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "level": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "currentXP": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "totalXP": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "value": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "total": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "percentXP": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "restedExperienceHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "showRested": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "restedXP": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "percentrested": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      }
     }
    },
@@ -2020,46 +3290,90 @@
      "capped",
      "atWar"
     ],
+    "handling": {
+     "progressType": "static",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "watched": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "factionID": {
       "default": null,
-      "domain": {}
+      "domain": {},
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "name": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "value": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "total": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "percentRep": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "standing": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "standingId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "capped": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "atWar": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -2083,69 +3397,131 @@
      "raidMarkIndex",
      "nameplateType"
     ],
+    "handling": {
+     "progressType": "static",
+     "statesParameter": "unit",
+     "automaticrequired": true
+    },
     "inputs": {
      "unit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "health": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "percenthealth": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "deficit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "maxhealth": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "showAbsorb": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "absorbMode": {
       "default": null,
       "domain": {
        "OVERLAY_FROM_END": "Attach to End",
        "OVERLAY_FROM_START": "Attach to Start"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "absorb": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "unitCharacteristicsHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "name": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "realm": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "namerealm": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "npcId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "class": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "specId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "role": {
       "default": null,
@@ -2154,7 +3530,10 @@
        "healer": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:1:20|t ",
        "melee": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Melee",
        "tank": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:0:19:22:41|t "
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "raid_role": {
       "default": null,
@@ -2162,45 +3541,72 @@
        "MAINASSIST": "|TInterface\\GroupFrame\\UI-Group-mainassistIcon:16:16|t ",
        "MAINTANK": "|TInterface\\GroupFrame\\UI-Group-maintankIcon:16:16|t ",
        "NONE": "Other"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "raidMarkIndex": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "miscellaneousHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "includePets": {
       "default": null,
       "domain": {
        "PetsOnly": "Pets only",
        "PlayersAndPets": "Players and Pets"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreSelf": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreDead": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreDisconnected": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inRange": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "nameplateType": {
       "default": null,
       "domain": {
        "friendly": "Friendly",
        "hostile": "Hostile"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -2213,22 +3619,45 @@
      "instanceSize",
      "instanceDifficulty"
     ],
+    "handling": {
+     "progressType": "none",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "zoneIds": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "zone": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "or",
+       "limit": null
+      },
+      "operator_types": null
      },
      "subzone": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "or",
+       "limit": null
+      },
+      "operator_types": null
      },
      "instanceHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "instanceSize": {
       "default": null,
@@ -2241,7 +3670,10 @@
        "ten": "10 Man Raid",
        "twenty": "20 Man Raid",
        "twentyfive": "25 Man Raid"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "instanceDifficulty": {
       "default": null,
@@ -2251,7 +3683,10 @@
        "mythic": "Mythic",
        "none": "None",
        "normal": {}
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -2260,28 +3695,50 @@
     "condition_vars": [
      "gold"
     ],
+    "handling": {
+     "progressType": "none",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "money": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "gold": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "silver": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "copper": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
    "Pet Behavior": {
     "must_assert": [],
     "condition_vars": [],
+    "handling": {
+     "progressType": "none",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "behavior": {
       "default": null,
@@ -2289,11 +3746,17 @@
        "aggressive": {},
        "defensive": {},
        "passive": {}
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inverse": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -2316,66 +3779,128 @@
      "raidMarkIndex",
      "nameplateType"
     ],
+    "handling": {
+     "progressType": "static",
+     "statesParameter": "unit",
+     "automaticrequired": true
+    },
     "inputs": {
      "unit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "powertype": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "requirePowerType": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "showCost": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "power": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "percentpower": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "deficit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "maxpower": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "name": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "realm": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "unitCharacteristicsHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "namerealm": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "npcId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "class": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "specId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "role": {
       "default": null,
@@ -2384,7 +3909,10 @@
        "healer": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:1:20|t ",
        "melee": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Melee",
        "tank": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:0:19:22:41|t "
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "raid_role": {
       "default": null,
@@ -2392,45 +3920,72 @@
        "MAINASSIST": "|TInterface\\GroupFrame\\UI-Group-mainassistIcon:16:16|t ",
        "MAINTANK": "|TInterface\\GroupFrame\\UI-Group-maintankIcon:16:16|t ",
        "NONE": "Other"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "raidMarkIndex": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "miscellaneousHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "includePets": {
       "default": null,
       "domain": {
        "PetsOnly": "Pets only",
        "PlayersAndPets": "Players and Pets"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreSelf": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreDead": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreDisconnected": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inRange": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "nameplateType": {
       "default": null,
       "domain": {
        "friendly": "Friendly",
        "hostile": "Hostile"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -2443,26 +3998,46 @@
      "maxRange",
      "range"
     ],
+    "handling": {
+     "progressType": "none",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "note": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "unit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "minRange": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "without_equal"
      },
      "maxRange": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "without_equal"
      },
      "range": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "without_equal"
      }
     }
    },
@@ -2471,18 +4046,32 @@
     "condition_vars": [
      "form"
     ],
+    "handling": {
+     "progressType": "none",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "note": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "form": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inverse": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -2491,10 +4080,18 @@
      "hand"
     ],
     "condition_vars": [],
+    "handling": {
+     "progressType": "timed",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "note": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "hand": {
       "default": null,
@@ -2502,15 +4099,24 @@
        "main": {},
        "off": {},
        "ranged": {}
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "remaining": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inverse": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -2521,14 +4127,25 @@
     "condition_vars": [
      "name"
     ],
+    "handling": {
+     "progressType": "none",
+     "statesParameter": "one",
+     "automaticrequired": true
+    },
     "inputs": {
      "spellName": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inverse": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    },
@@ -2543,10 +4160,18 @@
      "name",
      "npcId"
     ],
+    "handling": {
+     "progressType": "static",
+     "statesParameter": "unit",
+     "automaticrequired": true
+    },
     "inputs": {
      "unit": {
       "default": "target",
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "status": {
       "default": null,
@@ -2556,35 +4181,68 @@
        "1": "|cFFFFFF77Higher Than Tank|r",
        "2": "|cFFFF9900Tanking But Not Highest|r",
        "3": "|cFFFF0000Tanking And Highest|r"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "aggro": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "threatpct": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "rawthreatpct": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "threatvalue": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "unitCharacteristicsHeader": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "name": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "npcId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      }
     }
    },
@@ -2612,34 +4270,60 @@
      "afk",
      "dnd"
     ],
+    "handling": {
+     "progressType": "none",
+     "statesParameter": "unit",
+     "automaticrequired": true
+    },
     "inputs": {
      "unit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "unitisunit": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "name": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "realm": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "namerealm": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "class": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "specId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "classification": {
       "default": null,
@@ -2651,7 +4335,10 @@
        "rareelite": "Rare Elite",
        "trivial": "Trivial (Low Level)",
        "worldboss": "World Boss"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "creatureTypeIndex": {
       "default": null,
@@ -2671,7 +4358,10 @@
        "Gas Cloud",
        "Wild Pet",
        "Aberration"
-      ]
+      ],
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "creatureFamilyIndex": {
       "default": null,
@@ -2717,7 +4407,10 @@
        "7": "Carrion Bird",
        "8": "Crab",
        "9": "Gorilla"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "role": {
       "default": null,
@@ -2726,7 +4419,10 @@
        "healer": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:1:20|t ",
        "melee": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:20:39:22:41|t Melee",
        "tank": "|TInterface\\LFGFrame\\UI-LFG-ICON-PORTRAITROLES:16:16:0:0:64:64:0:19:22:41|t "
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "raid_role": {
       "default": null,
@@ -2734,65 +4430,110 @@
        "MAINASSIST": "|TInterface\\GroupFrame\\UI-Group-mainassistIcon:16:16|t ",
        "MAINTANK": "|TInterface\\GroupFrame\\UI-Group-maintankIcon:16:16|t ",
        "NONE": "Other"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "raidMarkIndex": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "dead": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreSelf": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "ignoreDisconnected": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inRange": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "hostility": {
       "default": null,
       "domain": {
        "friendly": "Friendly",
        "hostile": "Hostile"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "character": {
       "default": null,
       "domain": {
        "npc": "Non-player Character",
        "player": "Player Character"
-      }
+      },
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "level": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": "array",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "operator_types": null
      },
      "npcId": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": "none"
      },
      "attackable": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "inCombat": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "afk": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      },
      "dnd": {
       "default": null,
-      "domain": null
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    }
@@ -3036,7 +4777,9 @@
     "texture",
     "textureInput",
     "textureSource",
-    "width"
+    "width",
+    "xOffsetRelative",
+    "yOffsetRelative"
    ]
   },
   "dynamicgroup": {
@@ -3232,7 +4975,10 @@
      "condition_target": false
     }
    },
-   "change_targets": []
+   "change_targets": [
+    "xOffsetRelative",
+    "yOffsetRelative"
+   ]
   },
   "empty": {
    "fields": {
@@ -3277,7 +5023,10 @@
      "condition_target": false
     }
    },
-   "change_targets": []
+   "change_targets": [
+    "xOffsetRelative",
+    "yOffsetRelative"
+   ]
   },
   "fallback": {
    "fields": {
@@ -3387,7 +5136,10 @@
      "condition_target": false
     }
    },
-   "change_targets": []
+   "change_targets": [
+    "xOffsetRelative",
+    "yOffsetRelative"
+   ]
   },
   "group": {
    "fields": {
@@ -3482,7 +5234,10 @@
      "condition_target": false
     }
    },
-   "change_targets": []
+   "change_targets": [
+    "xOffsetRelative",
+    "yOffsetRelative"
+   ]
   },
   "icon": {
    "fields": {
@@ -3605,6 +5360,8 @@
     "inverse",
     "progressSource",
     "width",
+    "xOffsetRelative",
+    "yOffsetRelative",
     "zoom"
    ]
   },
@@ -3748,7 +5505,9 @@
    },
    "change_targets": [
     "height",
-    "width"
+    "width",
+    "xOffsetRelative",
+    "yOffsetRelative"
    ]
   },
   "progresstexture": {
@@ -3947,7 +5706,9 @@
     "mirror",
     "orientation",
     "progressSource",
-    "width"
+    "width",
+    "xOffsetRelative",
+    "yOffsetRelative"
    ]
   },
   "stopmotion": {
@@ -4158,7 +5919,9 @@
     "foregroundColor",
     "height",
     "progressSource",
-    "width"
+    "width",
+    "xOffsetRelative",
+    "yOffsetRelative"
    ]
   },
   "text": {
@@ -4269,7 +6032,10 @@
      "condition_target": false
     }
    },
-   "change_targets": []
+   "change_targets": [
+    "xOffsetRelative",
+    "yOffsetRelative"
+   ]
   },
   "texture": {
    "fields": {
@@ -4359,8 +6125,23 @@
      "condition_target": false
     }
    },
-   "change_targets": []
+   "change_targets": [
+    "xOffsetRelative",
+    "yOffsetRelative"
+   ]
   }
+ },
+ "display_shared": {
+  "shared_change_targets": [
+   "xOffsetRelative",
+   "yOffsetRelative"
+  ],
+  "condition_actions": [
+   "chat",
+   "customcode",
+   "glowexternal",
+   "sound"
+  ]
  },
  "load": {
   "chain": "AND - every ENABLED condition (use_X true) must be true for the aura to load; unset conditions impose no constraint. Source: ConstructFunction joins tests with ' and ' (GenericTrigger.lua:418). LIVE-CONFIRMED 2026-07-13: class+zone both set, not-on-class + in-zone -> does NOT load. Only exception: within the `knowntalent` condition, its multiple talent entries OR (know A or B) - the sole orConjunctionGroup in the prototype (Prototypes.lua:1090). Conditions never OR with each other.",
@@ -4574,5 +6355,142 @@
     "domain": null
    }
   }
- }
+ },
+ "domains_available": [
+  "TocToExpansion",
+  "absorb_modes",
+  "align_types",
+  "anchor_frame_types",
+  "anchor_frame_types_group",
+  "anchor_mode",
+  "anim_alpha_types",
+  "anim_color_types",
+  "anim_ease_functions",
+  "anim_ease_types",
+  "anim_finish_preset_types",
+  "anim_main_preset_types",
+  "anim_rotate_types",
+  "anim_scale_types",
+  "anim_start_preset_types",
+  "anim_translate_types",
+  "anim_types",
+  "array_entry_name_types",
+  "aura_types",
+  "author_option_classes",
+  "author_option_media_controls",
+  "author_option_media_defaults",
+  "author_option_media_itemControls",
+  "author_option_types",
+  "baseUnitId",
+  "big_number_types",
+  "blend_types",
+  "bool_types",
+  "bufftrigger_2_per_unit_mode",
+  "bufftrigger_2_preferred_match_types",
+  "bufftrigger_2_progress_behavior_types",
+  "bufftrigger_progress_behavior_types",
+  "cast_types",
+  "centered_types_h",
+  "centered_types_v",
+  "character_types",
+  "charges_change_condition_type",
+  "charges_change_type",
+  "chat_message_leader_event",
+  "chat_message_types",
+  "check_types",
+  "circular_group_constant_factor_types",
+  "classification_types",
+  "coin_icons",
+  "combat_event_type",
+  "combatlog_flags_check_object_type",
+  "combatlog_flags_check_reaction",
+  "combatlog_flags_check_type",
+  "combatlog_raidFlags",
+  "combatlog_spell_school_types_for_ui",
+  "cooldown_progress_behavior_types",
+  "cooldown_types",
+  "custom_trigger_types",
+  "debuff_class_types",
+  "debuff_types",
+  "duration_types",
+  "duration_types_no_choice",
+  "encounter_event_type",
+  "equality_operator_types",
+  "eventend_types",
+  "faction_group",
+  "font_flags",
+  "font_sizes",
+  "format_types_display",
+  "frame_strata_types",
+  "glow_action_types",
+  "glow_frame_types",
+  "glow_types",
+  "gradient_orientations",
+  "grid_types",
+  "group_aura_name_info_types",
+  "group_aura_stack_info_types",
+  "group_hybrid_position_types",
+  "group_hybrid_sort_types",
+  "group_limit_types",
+  "group_member_types",
+  "group_option_types",
+  "group_sort_types",
+  "group_types",
+  "grow_types",
+  "gtfo_types",
+  "hostility_types",
+  "icon_side_types",
+  "include_pets_types",
+  "instance_types",
+  "internal_fields",
+  "inverse_point_types",
+  "justify_types",
+  "miss_types",
+  "money_precision_types",
+  "multiUnitId",
+  "name_source_option_types",
+  "operator_types",
+  "operator_types_without_equal",
+  "orientation_types",
+  "orientation_with_circle_types",
+  "pad_types",
+  "player_target_events",
+  "point_types",
+  "precision_types",
+  "raid_role_types",
+  "role_types",
+  "rotated_align_types",
+  "rotated_icon_side_types",
+  "round_types",
+  "rune_specific_types",
+  "send_chat_message_types",
+  "shared_media_types",
+  "slant_mode",
+  "sound_condition_types",
+  "sound_types",
+  "spark_hide_types",
+  "spark_rotation_types",
+  "spec_position_types",
+  "string_operator_types",
+  "subevent_actual_prefix_types",
+  "subevent_prefix_types",
+  "subevent_suffix_types",
+  "text_automatic_width",
+  "text_check_types",
+  "text_rotate_types",
+  "text_word_wrap",
+  "tick_placement_modes",
+  "time_format_types",
+  "time_precision_types",
+  "timedeventend_types",
+  "tooltip_count",
+  "totalcount_currencies",
+  "totem_types",
+  "trigger_modes",
+  "trigger_require_types",
+  "trigger_require_types_one",
+  "unit_color_types",
+  "unit_realm_name_types",
+  "unit_threat_situation_types"
+ ]
 }

@@ -6,6 +6,11 @@
   {
    "event": "Cast",
    "display": "Cast",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "unit",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Cast",
@@ -26,7 +31,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "arg"
      },
      {
       "name": "spellNames",
@@ -41,7 +47,12 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "multiEntry": {
+       "operator": "preamble",
+       "limit": null
+      },
+      "value_shape": "array"
      },
      {
       "name": "spellIds",
@@ -56,7 +67,12 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "multiEntry": {
+       "operator": "preamble",
+       "limit": null
+      },
+      "value_shape": "array"
      },
      {
       "name": "spell",
@@ -149,7 +165,9 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none",
+      "reads": "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')"
      },
      {
       "name": "class",
@@ -164,7 +182,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "select(2, UnitClass(unit))"
      },
      {
       "name": "role",
@@ -184,7 +203,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.LGT:GetUnitRole(unit)"
      },
      {
       "name": "raid_role",
@@ -203,7 +223,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.UnitRaidRole(unit)"
      },
      {
       "name": "raidMarkIndex",
@@ -218,7 +239,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "GetRaidTargetIndex(unit) or 0"
      },
      {
       "name": "nameplateType",
@@ -236,7 +258,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.GetPlayerReaction(unit)"
      },
      {
       "name": "sourceUnit",
@@ -251,7 +274,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "unit"
+      "conditionType": "unit",
+      "reads": "unit"
      },
      {
       "name": "sourceName",
@@ -296,7 +320,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none"
      },
      {
       "name": "destUnit",
@@ -356,7 +381,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none"
      },
      {
       "name": "miscellaneousHeader",
@@ -419,7 +445,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "not UnitIsUnit(\"player\", unit)"
      },
      {
       "name": "onUpdateUnitTarget",
@@ -481,7 +508,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "spell"
      },
      {
       "name": "icon",
@@ -496,7 +524,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      },
      {
       "name": "duration",
@@ -511,7 +540,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "endTime and startTime and (endTime - startTime)/1000 or 0"
      },
      {
       "name": "expirationTime",
@@ -526,7 +556,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "expirationTime"
      },
      {
       "name": "progressType",
@@ -541,7 +572,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'timed'"
      },
      {
       "name": "inverse",
@@ -556,7 +588,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "castType == 'cast'"
      },
      {
       "name": "autoHide",
@@ -571,7 +604,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "true"
      },
      {
       "name": "raidMark",
@@ -586,7 +620,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "raidMarkIndex > 0 and '{rt'..raidMarkIndex..'}' or ''"
      }
     ],
     "internal": []
@@ -595,6 +630,11 @@
   {
    "event": "Character Stats",
    "display": "Character Stats",
+   "handling": {
+    "progressType": "none",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Character Stats"
@@ -629,7 +669,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "UnitStat('player', 1)"
      },
      {
       "name": "agility",
@@ -644,7 +690,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "UnitStat('player', 2)"
      },
      {
       "name": "stamina",
@@ -659,7 +711,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "UnitStat('player', 3)"
      },
      {
       "name": "intellect",
@@ -674,7 +732,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "UnitStat('player', 4)"
      },
      {
       "name": "spirit",
@@ -689,7 +753,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "UnitStat('player', 5)"
      },
      {
       "name": "secondaryStatsHeader",
@@ -719,7 +789,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "max(GetCombatRating(CR_CRIT_MELEE), GetCombatRating(CR_CRIT_RANGED), GetCombatRating(CR_CRIT_SPELL))"
      },
      {
       "name": "criticalpercent",
@@ -734,7 +810,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "WeakAuras.GetCritChance()",
+      "formatter": "Number"
      },
      {
       "name": "hitrating",
@@ -749,7 +832,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "max(GetCombatRating(CR_HIT_MELEE), GetCombatRating(CR_HIT_RANGED), GetCombatRating(CR_HIT_SPELL))"
      },
      {
       "name": "hitpercent",
@@ -764,7 +853,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "WeakAuras.GetHitChance()",
+      "formatter": "Number"
      },
      {
       "name": "hasterating",
@@ -779,7 +875,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "max(GetCombatRating(CR_HASTE_SPELL), GetCombatRating(CR_HASTE_MELEE), GetCombatRating(CR_HASTE_RANGED))"
      },
      {
       "name": "hastepercent",
@@ -794,7 +896,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "max(GetCombatRatingBonus(CR_HASTE_SPELL), GetCombatRatingBonus(CR_HASTE_MELEE), GetCombatRatingBonus(CR_HASTE_RANGED))",
+      "formatter": "Number"
      },
      {
       "name": "expertiserating",
@@ -809,7 +918,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetCombatRating(CR_EXPERTISE)"
      },
      {
       "name": "expertisebonus",
@@ -824,7 +939,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetCombatRatingBonus(CR_EXPERTISE)"
      },
      {
       "name": "armorpenrating",
@@ -839,7 +960,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetCombatRating(CR_ARMOR_PENETRATION)"
      },
      {
       "name": "armorpenpercent",
@@ -854,7 +981,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetArmorPenetration()",
+      "formatter": "Number"
      },
      {
       "name": "spellpenpercent",
@@ -869,7 +1003,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetSpellPenetration()",
+      "formatter": "Number"
      },
      {
       "name": "resiliencerating",
@@ -884,7 +1025,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetCombatRating(CR_CRIT_TAKEN_MELEE)"
      },
      {
       "name": "resiliencepercent",
@@ -899,7 +1046,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetCombatRatingBonus(CR_CRIT_TAKEN_MELEE)",
+      "formatter": "Number"
      },
      {
       "name": "attackpower",
@@ -914,7 +1068,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "WeakAuras.GetEffectiveAttackPower()"
      },
      {
       "name": "spellpower",
@@ -929,7 +1089,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "WeakAuras.GetEffectiveSpellPower()"
      },
      {
       "name": "rangedattackpower",
@@ -944,7 +1110,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "WeakAuras.GetEffectiveRangedAttackPower()"
      },
      {
       "name": "resistanceHeader",
@@ -974,7 +1146,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "select(2, UnitResistance('player', 2))"
      },
      {
       "name": "resistancenature",
@@ -989,7 +1167,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "select(2, UnitResistance('player', 3))"
      },
      {
       "name": "resistancefrost",
@@ -1004,7 +1188,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "select(2, UnitResistance('player', 4))"
      },
      {
       "name": "resistanceshadow",
@@ -1019,7 +1209,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "select(2, UnitResistance('player', 5))"
      },
      {
       "name": "resistancearcane",
@@ -1034,7 +1230,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "select(2, UnitResistance('player', 6))"
      },
      {
       "name": "tertiaryStatsHeader",
@@ -1079,7 +1281,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetUnitSpeed('player') / 7 * 100",
+      "formatter": "Number"
      },
      {
       "name": "defensiveStatsHeader",
@@ -1109,7 +1318,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "UnitDefense('player') + select(2, UnitDefense('player'))"
      },
      {
       "name": "defensevalue",
@@ -1124,7 +1339,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "UnitDefense('player')"
      },
      {
       "name": "defensepercent",
@@ -1139,7 +1355,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "0.04 * ( UnitDefense('player') + select(2,UnitDefense('player') ) - UnitLevel('player')*5 )"
      },
      {
       "name": "dodgerating",
@@ -1154,7 +1371,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetCombatRating(CR_DODGE)"
      },
      {
       "name": "dodgepercent",
@@ -1169,7 +1392,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetDodgeChance()",
+      "formatter": "Number"
      },
      {
       "name": "parryrating",
@@ -1184,7 +1414,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetCombatRating(CR_PARRY)"
      },
      {
       "name": "parrypercent",
@@ -1199,7 +1435,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetParryChance()",
+      "formatter": "Number"
      },
      {
       "name": "blockpercent",
@@ -1214,7 +1457,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetBlockChance()",
+      "formatter": "Number"
      },
      {
       "name": "blockvalue",
@@ -1229,7 +1479,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetShieldBlock()"
      },
      {
       "name": "armorrating",
@@ -1244,7 +1500,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "select(2, UnitArmor('player'))"
      },
      {
       "name": "armorpercent",
@@ -1259,7 +1521,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "PaperDollFrame_GetArmorReduction(select(2, UnitArmor('player')), UnitLevel('player'))",
+      "formatter": "Number"
      },
      {
       "name": "avoidancetotalpercent",
@@ -1274,7 +1543,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "0.04 * ( UnitDefense('player') + select(2,UnitDefense('player') ) - UnitLevel('player')*5 ) + GetDodgeChance() + GetParryChance() + GetBlockChance()"
      }
     ],
     "provides": [],
@@ -1284,6 +1554,11 @@
   {
    "event": "Class/Spec",
    "display": "Class and Specialization",
+   "handling": {
+    "progressType": "none",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Class/Spec"
@@ -1320,7 +1595,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "specIcon"
      },
      {
       "name": "name",
@@ -1335,7 +1611,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "specName"
      }
     ],
     "internal": []
@@ -1344,6 +1621,10 @@
   {
    "event": "Conditions",
    "display": "Conditions",
+   "handling": {
+    "progressType": "none",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Conditions"
@@ -1363,7 +1644,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "true"
      },
      {
       "name": "incombat",
@@ -1378,7 +1660,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitAffectingCombat('player')"
      },
      {
       "name": "pvpflagged",
@@ -1393,7 +1676,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitIsPVP('player') or UnitIsPVPFreeForAll('player')"
      },
      {
       "name": "alive",
@@ -1408,7 +1692,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "not UnitIsDeadOrGhost('player')"
      },
      {
       "name": "vehicle",
@@ -1423,7 +1708,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitInVehicle('player')"
      },
      {
       "name": "resting",
@@ -1438,7 +1724,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "IsResting()"
      },
      {
       "name": "mounted",
@@ -1453,7 +1740,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "IsMounted()"
      },
      {
       "name": "HasPet",
@@ -1468,7 +1756,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitExists('pet') and not UnitIsDead('pet')"
      },
      {
       "name": "ismoving",
@@ -1483,7 +1772,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "GetUnitSpeed('player') > 0"
      },
      {
       "name": "afk",
@@ -1498,7 +1788,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitIsAFK('player')"
      },
      {
       "name": "ingroup",
@@ -1517,7 +1808,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "Private.ExecEnv.GroupType()"
      },
      {
       "name": "ruleset",
@@ -1537,7 +1829,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "WeakAuras.Ruleset()"
      },
      {
       "name": "instance_size",
@@ -1561,7 +1854,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "WeakAuras.InstanceType()"
      },
      {
       "name": "instance_difficulty",
@@ -1582,7 +1876,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "WeakAuras.InstanceDifficulty()"
      }
     ],
     "provides": [],
@@ -1592,6 +1887,9 @@
   {
    "event": "Crowd Controlled",
    "display": "Crowd Controlled",
+   "handling": {
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Crowd Controlled"
@@ -1611,7 +1909,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "not HasFullControl()"
      }
     ],
     "provides": [],
@@ -1621,6 +1920,11 @@
   {
    "event": "Currency",
    "display": "Currency",
+   "handling": {
+    "progressType": "static",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Currency",
@@ -1656,7 +1960,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "currencyInfo.quantity"
      },
      {
       "name": "totalEarned",
@@ -1671,7 +1976,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "currencyInfo.totalEarned"
      },
      {
       "name": "description",
@@ -1686,7 +1992,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "currencyInfo.description"
      },
      {
       "name": "discovered",
@@ -1701,7 +2008,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "currencyInfo.discovered"
      }
     ],
     "provides": [
@@ -1718,7 +2026,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "currencyInfo.name"
      },
      {
       "name": "progressType",
@@ -1733,7 +2042,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'static'"
      },
      {
       "name": "icon",
@@ -1748,7 +2058,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "currencyInfo.icon"
      }
     ],
     "internal": []
@@ -1757,6 +2068,11 @@
   {
    "event": "Death Knight Rune",
    "display": "Death Knight Rune",
+   "handling": {
+    "progressType": "<function>",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Death Knight Rune",
@@ -1799,7 +2115,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "isDeathRune"
      },
      {
       "name": "remaining",
@@ -1848,7 +2165,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "numRunes"
      },
      {
       "name": "bloodRunes",
@@ -1863,7 +2181,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "numBloodRunes"
      },
      {
       "name": "frostRunes",
@@ -1878,7 +2197,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "numFrostRunes"
      },
      {
       "name": "unholyRunes",
@@ -1893,7 +2213,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "numUnholyRunes"
      },
      {
       "name": "includeDeathRunes",
@@ -1934,6 +2255,11 @@
   {
    "event": "Experience",
    "display": "Player Experience",
+   "handling": {
+    "progressType": "static",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Experience"
@@ -1953,7 +2279,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "UnitLevel(\"player\")"
      },
      {
       "name": "currentXP",
@@ -1968,7 +2300,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "UnitXP(\"player\")"
      },
      {
       "name": "totalXP",
@@ -1983,7 +2321,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "UnitXPMax(\"player\")"
      },
      {
       "name": "value",
@@ -1998,7 +2342,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "currentXP"
      },
      {
       "name": "total",
@@ -2013,7 +2358,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "totalXP"
      },
      {
       "name": "percentXP",
@@ -2028,7 +2374,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "total ~= 0 and (value / total) * 100 or nil",
+      "formatter": "Number"
      },
      {
       "name": "restedExperienceHeader",
@@ -2073,7 +2426,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "GetXPExhaustion() or 0"
      },
      {
       "name": "percentrested",
@@ -2088,7 +2447,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "total ~= 0 and (restedXP / total) * 100 or nil",
+      "formatter": "Number"
      }
     ],
     "provides": [
@@ -2105,7 +2471,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'static'"
      }
     ],
     "internal": []
@@ -2114,6 +2481,11 @@
   {
    "event": "Faction Reputation",
    "display": "Faction Reputation",
+   "handling": {
+    "progressType": "static",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Faction Reputation",
@@ -2164,7 +2536,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "name"
      },
      {
       "name": "value",
@@ -2179,7 +2552,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "currentValue - minValue"
      },
      {
       "name": "total",
@@ -2194,7 +2573,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "maxValue - minValue"
      },
      {
       "name": "percentRep",
@@ -2209,7 +2594,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "total ~= 0 and (value / total) * 100 or nil",
+      "formatter": "Number"
      },
      {
       "name": "standing",
@@ -2224,7 +2616,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "standing"
      },
      {
       "name": "standingId",
@@ -2239,7 +2632,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "standingID"
      },
      {
       "name": "capped",
@@ -2254,7 +2648,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "isCapped"
      },
      {
       "name": "atWar",
@@ -2269,7 +2664,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "atWarWith"
      }
     ],
     "provides": [
@@ -2286,7 +2682,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'static'"
      }
     ],
     "internal": []
@@ -2295,6 +2692,11 @@
   {
    "event": "Health",
    "display": "Health",
+   "handling": {
+    "progressType": "static",
+    "statesParameter": "unit",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Health",
@@ -2316,7 +2718,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "arg"
      },
      {
       "name": "health",
@@ -2331,7 +2734,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "UnitHealth(unit)",
+      "formatter": "BigNumber"
      },
      {
       "name": "percenthealth",
@@ -2346,7 +2756,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "total ~= 0 and (value / total) * 100 or nil",
+      "formatter": "Number"
      },
      {
       "name": "deficit",
@@ -2361,7 +2778,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "total - value",
+      "formatter": "BigNumber"
      },
      {
       "name": "maxhealth",
@@ -2376,7 +2800,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "total",
+      "formatter": "BigNumber"
      },
      {
       "name": "showAbsorb",
@@ -2424,7 +2855,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "UnitGetTotalAbsorbs(unit)"
      },
      {
       "name": "unitCharacteristicsHeader",
@@ -2484,7 +2916,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none"
      },
      {
       "name": "npcId",
@@ -2499,7 +2932,9 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none",
+      "reads": "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')"
      },
      {
       "name": "class",
@@ -2514,7 +2949,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "select(2, UnitClass(unit))"
      },
      {
       "name": "specId",
@@ -2529,7 +2965,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.SpecForUnit(unit)"
      },
      {
       "name": "role",
@@ -2549,7 +2986,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.LGT:GetUnitRole(unit)"
      },
      {
       "name": "raid_role",
@@ -2568,7 +3006,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.UnitRaidRole(unit)"
      },
      {
       "name": "raidMarkIndex",
@@ -2583,7 +3022,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "GetRaidTargetIndex(unit) or 0"
      },
      {
       "name": "miscellaneousHeader",
@@ -2631,7 +3071,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "not UnitIsUnit(\"player\", unit)"
      },
      {
       "name": "ignoreDead",
@@ -2646,7 +3087,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "not UnitIsDeadOrGhost(unit)"
      },
      {
       "name": "ignoreDisconnected",
@@ -2661,7 +3103,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitIsConnected(unit)"
      },
      {
       "name": "inRange",
@@ -2676,7 +3119,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "Private.ExecEnv.UnitInRangeFixed(unit)"
      },
      {
       "name": "nameplateType",
@@ -2694,7 +3138,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.GetPlayerReaction(unit)"
      }
     ],
     "provides": [
@@ -2711,7 +3156,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "health"
      },
      {
       "name": "total",
@@ -2726,7 +3172,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitHealthMax(unit)"
      },
      {
       "name": "progressType",
@@ -2741,7 +3188,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'static'"
      },
      {
       "name": "raidMark",
@@ -2756,7 +3204,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "raidMarkIndex > 0 and '{rt'..raidMarkIndex..'}' or ''"
      }
     ],
     "internal": [
@@ -2773,7 +3222,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitName(unit)"
      }
     ]
    }
@@ -2781,6 +3231,11 @@
   {
    "event": "Location",
    "display": "Location",
+   "handling": {
+    "progressType": "none",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Location"
@@ -2800,7 +3255,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none"
      },
      {
       "name": "zone",
@@ -2815,7 +3271,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "multiEntry": {
+       "operator": "or",
+       "limit": null
+      },
+      "value_shape": "array",
+      "reads": "zoneText"
      },
      {
       "name": "subzone",
@@ -2830,7 +3292,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "multiEntry": {
+       "operator": "or",
+       "limit": null
+      },
+      "value_shape": "array",
+      "reads": "minimapZoneText"
      },
      {
       "name": "instanceHeader",
@@ -2869,7 +3337,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.InstanceType()"
      },
      {
       "name": "instanceDifficulty",
@@ -2890,7 +3359,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.InstanceDifficulty()"
      }
     ],
     "provides": [
@@ -2907,7 +3377,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "uiMapId"
      },
      {
       "name": "instance",
@@ -2931,6 +3402,11 @@
   {
    "event": "Money",
    "display": "Player Money",
+   "handling": {
+    "progressType": "none",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Money"
@@ -2950,7 +3426,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "money"
      },
      {
       "name": "gold",
@@ -2965,7 +3442,9 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "reads": "gold",
+      "formatter": "BigNumber"
      },
      {
       "name": "silver",
@@ -2980,7 +3459,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "silver"
      },
      {
       "name": "copper",
@@ -2995,7 +3475,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "copper"
      }
     ],
     "provides": [
@@ -3012,7 +3493,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "GetCoinIcon(money)"
      }
     ],
     "internal": []
@@ -3021,6 +3503,11 @@
   {
    "event": "Pet Behavior",
    "display": "Pet",
+   "handling": {
+    "progressType": "none",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Pet Behavior"
@@ -3076,7 +3563,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "activeIcon"
      }
     ],
     "internal": []
@@ -3085,6 +3573,11 @@
   {
    "event": "Power",
    "display": "Power",
+   "handling": {
+    "progressType": "static",
+    "statesParameter": "unit",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Power",
@@ -3105,7 +3598,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "arg"
      },
      {
       "name": "powertype",
@@ -3120,7 +3614,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "powerTypeToCheck"
      },
      {
       "name": "requirePowerType",
@@ -3165,7 +3660,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "power"
      },
      {
       "name": "percentpower",
@@ -3180,7 +3681,14 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "total ~= 0 and (value / total) * 100 or nil",
+      "formatter": "Number"
      },
      {
       "name": "deficit",
@@ -3195,7 +3703,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "total - value"
      },
      {
       "name": "maxpower",
@@ -3210,7 +3724,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "total"
      },
      {
       "name": "name",
@@ -3270,7 +3790,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none"
      },
      {
       "name": "npcId",
@@ -3285,7 +3806,9 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none",
+      "reads": "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')"
      },
      {
       "name": "class",
@@ -3300,7 +3823,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "select(2, UnitClass(unit))"
      },
      {
       "name": "specId",
@@ -3315,7 +3839,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.SpecForUnit(unit)"
      },
      {
       "name": "role",
@@ -3335,7 +3860,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.LGT:GetUnitRole(unit)"
      },
      {
       "name": "raid_role",
@@ -3354,7 +3880,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.UnitRaidRole(unit)"
      },
      {
       "name": "raidMarkIndex",
@@ -3369,7 +3896,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "GetRaidTargetIndex(unit) or 0"
      },
      {
       "name": "miscellaneousHeader",
@@ -3417,7 +3945,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "not UnitIsUnit(\"player\", unit)"
      },
      {
       "name": "ignoreDead",
@@ -3432,7 +3961,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "not UnitIsDeadOrGhost(unit)"
      },
      {
       "name": "ignoreDisconnected",
@@ -3447,7 +3977,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitIsConnected(unit)"
      },
      {
       "name": "inRange",
@@ -3462,7 +3993,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "Private.ExecEnv.UnitInRangeFixed(unit)"
      },
      {
       "name": "nameplateType",
@@ -3480,7 +4012,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.GetPlayerReaction(unit)"
      }
     ],
     "provides": [
@@ -3497,7 +4030,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "power"
      },
      {
       "name": "total",
@@ -3512,7 +4046,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "total"
      },
      {
       "name": "stacks",
@@ -3527,7 +4062,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "power"
      },
      {
       "name": "progressType",
@@ -3542,7 +4078,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'static'"
      },
      {
       "name": "raidMark",
@@ -3557,7 +4094,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "raidMarkIndex > 0 and '{rt'..raidMarkIndex..'}' or ''"
      }
     ],
     "internal": []
@@ -3566,6 +4104,11 @@
   {
    "event": "Range Check",
    "display": "Range Check",
+   "handling": {
+    "progressType": "none",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Range Check",
@@ -3601,7 +4144,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "unit"
      },
      {
       "name": "minRange",
@@ -3616,7 +4160,9 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "operator_types": "without_equal",
+      "reads": "min"
      },
      {
       "name": "maxRange",
@@ -3631,7 +4177,9 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "operator_types": "without_equal",
+      "reads": "max"
      },
      {
       "name": "range",
@@ -3646,7 +4194,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": "number"
+      "conditionType": "number",
+      "operator_types": "without_equal"
      }
     ],
     "provides": [],
@@ -3656,6 +4205,11 @@
   {
    "event": "Stance/Form/Aura",
    "display": "Stance/Form/Aura",
+   "handling": {
+    "progressType": "none",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Stance/Form/Aura"
@@ -3715,6 +4269,11 @@
   {
    "event": "Swing Timer",
    "display": "Swing Timer",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Swing Timer",
@@ -3801,7 +4360,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "duration"
      },
      {
       "name": "expirationTime",
@@ -3816,7 +4376,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "expirationTime"
      },
      {
       "name": "progressType",
@@ -3831,7 +4392,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'timed'"
      },
      {
       "name": "name",
@@ -3846,7 +4408,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "name"
      },
      {
       "name": "icon",
@@ -3861,7 +4424,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "icon"
      }
     ],
     "internal": []
@@ -3870,6 +4434,11 @@
   {
    "event": "Talent Known",
    "display": "Talent Known",
+   "handling": {
+    "progressType": "none",
+    "statesParameter": "one",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Talent Known",
@@ -3922,7 +4491,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "activeIcon"
      },
      {
       "name": "name",
@@ -3937,7 +4507,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "reads": "activeName"
      }
     ],
     "internal": []
@@ -3946,6 +4517,11 @@
   {
    "event": "Threat Situation",
    "display": "Threat Situation",
+   "handling": {
+    "progressType": "static",
+    "statesParameter": "unit",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Threat Situation",
@@ -3967,7 +4543,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "arg"
      },
      {
       "name": "status",
@@ -4018,7 +4595,13 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "formatter": "Number"
      },
      {
       "name": "rawthreatpct",
@@ -4033,7 +4616,13 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "formatter": "Number"
      },
      {
       "name": "threatvalue",
@@ -4048,7 +4637,12 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array"
      },
      {
       "name": "unitCharacteristicsHeader",
@@ -4078,7 +4672,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none"
      },
      {
       "name": "npcId",
@@ -4093,7 +4688,9 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none",
+      "reads": "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')"
      }
     ],
     "provides": [
@@ -4110,7 +4707,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "threatvalue"
      },
      {
       "name": "total",
@@ -4125,7 +4723,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "threattotal"
      },
      {
       "name": "progressType",
@@ -4140,7 +4739,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "'static'"
      }
     ],
     "internal": []
@@ -4149,6 +4749,11 @@
   {
    "event": "Unit Characteristics",
    "display": "Unit Characteristics",
+   "handling": {
+    "progressType": "none",
+    "statesParameter": "unit",
+    "automaticrequired": true
+   },
    "default_state": {
     "type": "unit",
     "event": "Unit Characteristics",
@@ -4169,7 +4774,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "arg"
      },
      {
       "name": "unitisunit",
@@ -4184,7 +4790,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitIsUnit(unit, extraUnit)"
      },
      {
       "name": "name",
@@ -4229,7 +4836,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": false,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none"
      },
      {
       "name": "class",
@@ -4244,7 +4852,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "select(2, UnitClass(unit))"
      },
      {
       "name": "specId",
@@ -4259,7 +4868,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.SpecForUnit(unit)"
      },
      {
       "name": "classification",
@@ -4282,7 +4892,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "UnitClassification(unit)"
      },
      {
       "name": "creatureTypeIndex",
@@ -4313,7 +4924,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "Private.ExecEnv.creature_type_name_to_id[UnitCreatureType(unit or '') or 0]"
      },
      {
       "name": "creatureFamilyIndex",
@@ -4370,7 +4982,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "Private.ExecEnv.creature_family_name_to_id[UnitCreatureFamily(unit or '') or 0]"
      },
      {
       "name": "role",
@@ -4390,7 +5003,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.LGT:GetUnitRole(unit)"
      },
      {
       "name": "raid_role",
@@ -4409,7 +5023,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.UnitRaidRole(unit)"
      },
      {
       "name": "raidMarkIndex",
@@ -4424,7 +5039,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "GetRaidTargetIndex(unit) or 0"
      },
      {
       "name": "dead",
@@ -4439,7 +5055,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "UnitIsDeadOrGhost(unit)"
      },
      {
       "name": "ignoreSelf",
@@ -4454,7 +5071,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "not UnitIsUnit(\"player\", unit)"
      },
      {
       "name": "ignoreDisconnected",
@@ -4469,7 +5087,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitIsConnected(unit)"
      },
      {
       "name": "inRange",
@@ -4484,7 +5103,8 @@
       "gated": true,
       "enabled_when": "conditional",
       "stores_condition_var": false,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "Private.ExecEnv.UnitInRangeFixed(unit)"
      },
      {
       "name": "hostility",
@@ -4502,7 +5122,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "WeakAuras.GetPlayerReaction(unit)"
      },
      {
       "name": "character",
@@ -4520,7 +5141,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "UnitIsPlayer(unit) and 'player' or 'npc'"
      },
      {
       "name": "level",
@@ -4535,7 +5157,13 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "number"
+      "conditionType": "number",
+      "multiEntry": {
+       "operator": "and",
+       "limit": 2
+      },
+      "value_shape": "array",
+      "reads": "UnitLevel(unit)"
      },
      {
       "name": "npcId",
@@ -4550,7 +5178,9 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "string"
+      "conditionType": "string",
+      "operator_types": "none",
+      "reads": "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')"
      },
      {
       "name": "attackable",
@@ -4565,7 +5195,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "UnitCanAttack('player', unit)"
      },
      {
       "name": "inCombat",
@@ -4580,7 +5211,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "UnitAffectingCombat(unit)"
      },
      {
       "name": "afk",
@@ -4595,7 +5227,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "UnitIsAFK(unit)"
      },
      {
       "name": "dnd",
@@ -4610,7 +5243,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "bool"
+      "conditionType": "bool",
+      "reads": "UnitIsDND(unit)"
      }
     ],
     "provides": [
@@ -4627,7 +5261,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitCreatureType(unit)"
      },
      {
       "name": "creatureFamily",
@@ -4642,7 +5277,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "UnitCreatureFamily(unit)"
      },
      {
       "name": "raidMark",
@@ -4657,7 +5293,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": null
+      "conditionType": null,
+      "reads": "raidMarkIndex > 0 and '{rt'..raidMarkIndex..'}' or ''"
      }
     ],
     "internal": []

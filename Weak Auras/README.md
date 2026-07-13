@@ -24,6 +24,14 @@ REGISTRY entry/fragment/builder - never patch around it locally. Written
 self-contained, same handoff pattern as `Mob_Autogroup/DESIGN.md`, so it
 can be dropped into a brand-new agent session with zero prior context.
 
+**[plane_v2/README.md](plane_v2/README.md)** (2026-07-13) - the GENERATION
+reasoning space: the agentic pipeline that turns a class's abilities into
+WeakAuras with no human steering each artifact. A light map into the sourced
+`wa_index/statesheets/` MENU (sheets + handling + routing), the dumb round-trip
+pipeline in `plane/` (fill -> bounce -> codec), and the spec/decision docs.
+Start here for the "how auras get generated" half of the project - the rest of
+this README is the data foundation that feeds it.
+
 **[Necromancer/Necromancer_fantasy_playstyle.md](Necromancer/Necromancer_fantasy_playstyle.md)**
 / **[Reaper/Reaper_fantasy_playstyle.md](Reaper/Reaper_fantasy_playstyle.md)**
 (2026-07-10) - the "what is this class and what matters to it" doc

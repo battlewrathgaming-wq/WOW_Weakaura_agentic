@@ -1,0 +1,30 @@
+{
+  "id": "CoA Health Any 80-70",
+  "uid": "coaHealthAny00001",
+  "region": "aurabar",
+  "triggers": [
+    {
+      "type": "unit",
+      "event": "Health",
+      "declare": {
+        "unit": "player",
+        "use_percenthealth": true,
+        "percenthealth_operator": [">"],
+        "percenthealth": ["80"]
+      }
+    },
+    {
+      "type": "unit",
+      "event": "Health",
+      "declare": {
+        "unit": "player",
+        "use_percenthealth": true,
+        "percenthealth_operator": ["<"],
+        "percenthealth": ["70"]
+      }
+    }
+  ],
+  "activation": {
+    "disjunctive": "any"
+  }
+}

@@ -1,0 +1,43 @@
+{
+ "domain": "display",
+ "layer": "regionPrototype.AddProperties (inherited by EVERY region)",
+ "shared_change_targets": [
+  "xOffsetRelative",
+  "yOffsetRelative"
+ ],
+ "condition_actions": [
+  "chat",
+  "customcode",
+  "glowexternal",
+  "sound"
+ ],
+ "records": {
+  "chat": {
+   "type": "chat",
+   "display": "Chat Message"
+  },
+  "customcode": {
+   "type": "customcode",
+   "display": "Run Custom Code"
+  },
+  "glowexternal": {
+   "type": "glowexternal",
+   "display": "Glow External Element"
+  },
+  "sound": {
+   "type": "sound",
+   "display": "Sound"
+  },
+  "xOffsetRelative": {
+   "type": "number",
+   "display": "Relative X-Offset"
+  },
+  "yOffsetRelative": {
+   "type": "number",
+   "display": "Relative Y-Offset"
+  }
+ },
+ "_meta": {
+  "source": "extract.lua regionprototype -> RegionPrototype.AddProperties. Cross-cutting: the contract UNIONs these into each region's change_targets. actions = condition side-effects (a distinct 'Then' category). shared_defaults empty under stubs (TODO)."
+ }
+}

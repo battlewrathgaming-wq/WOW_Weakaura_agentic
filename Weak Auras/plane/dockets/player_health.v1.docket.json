@@ -1,0 +1,14 @@
+{
+  "id": "CoA Player Health",
+  "uid": "coaHealthBar0001",
+  "region": "aurabar",
+  "triggers": [
+    {
+      "type": "unit",
+      "event": "Health",
+      "declare": {
+        "unit": "player"
+      }
+    }
+  ]
+}

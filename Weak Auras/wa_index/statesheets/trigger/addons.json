@@ -6,6 +6,11 @@
   {
    "event": "GTFO",
    "display": "GTFO Alert",
+   "handling": {
+    "progressType": "timed",
+    "statesParameter": "one",
+    "timedrequired": true
+   },
    "default_state": {
     "type": "addons",
     "event": "GTFO"
@@ -30,7 +35,8 @@
       "gated": false,
       "enabled_when": "always",
       "stores_condition_var": true,
-      "conditionType": "select"
+      "conditionType": "select",
+      "reads": "arg"
      }
     ],
     "provides": [],
