@@ -1383,6 +1383,55 @@
       "shape": null,
       "multiEntry": null,
       "operator_types": null
+     },
+     "custom": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "customDuration": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "customIcon": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "customName": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "customStacks": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "customTexture": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "customVariables": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    }

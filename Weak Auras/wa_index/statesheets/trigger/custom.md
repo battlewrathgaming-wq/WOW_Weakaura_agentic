@@ -18,3 +18,10 @@ default state: `{"type": "custom", "custom_type": "event"}`
 | custom_hide2 | input |  | eventend_types |  |  |  |  |
 | dynamicDuration | input |  |  |  |  |  |  |
 | duration | input |  |  |  |  |  |  |
+| custom | runtime-read |  |  |  |  |  |  |
+| customDuration | runtime-read |  |  |  |  |  |  |
+| customIcon | runtime-read |  |  |  |  |  |  |
+| customName | runtime-read |  |  |  |  |  |  |
+| customStacks | runtime-read |  |  |  |  |  |  |
+| customTexture | runtime-read |  |  |  |  |  |  |
+| customVariables | runtime-read |  |  |  |  |  |  |

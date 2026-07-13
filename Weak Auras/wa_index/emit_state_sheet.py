@@ -33,6 +33,7 @@ INDEX = os.path.join(_THIS, "index_grounded.json")
 AURA2_OPTS = os.path.join(os.path.dirname(WA), "WeakAurasOptions", "BuffTrigger2.lua")  # aura2 SELF-REPORT source
 AURA2_RUNTIME = os.path.join(WA, "BuffTrigger2.lua")   # aura2 RUNTIME handler - the READ form (the trigger.X it reads)
 GENERIC_OPTS = os.path.join(os.path.dirname(WA), "WeakAurasOptions", "GenericTrigger.lua")  # custom SELF-REPORT source
+GENERIC_RUNTIME = os.path.join(WA, "GenericTrigger.lua")   # custom RUNTIME handler - the READ form (trigger.X it reads)
 SCHEMA = os.path.join(_THIS, "aura_trigger_schema.json")   # aura2 corpus ENRICHMENT (idioms / rank-resolution)
 SEEDS = os.path.join(_THIS, "trigger_seed_defaults.json")
 # statesheets/ is the home for every WA DOMAIN (load, trigger, display, animations, ...).
@@ -249,6 +250,16 @@ def build_custom():
     The code boxes (Custom Trigger / Name / Icon / Texture / Stack Info) are COMMON trigger options
     (AddCommonTriggerOptions, shared across ALL triggers), a separate common-options self-report - noted."""
     inputs = _lever_rows(_extract_trigger_options(GENERIC_OPTS, "custom"))
+    # UNION the code-entry code-box slots the OPTIONS builder hides (they render as multiline editors, not option rows):
+    # custom / customVariables / customName / customIcon / customTexture / customDuration / customStacks. Same divergence
+    # aura2 had, SOURCED from the runtime GenericTrigger.lua's own `trigger.X` reads. But GenericTrigger is the SHARED
+    # runtime for ALL generic types, so a blanket union would pull in event/spellId/unit/... - scope to WA's own `custom`
+    # naming convention (every user-Lua box is prefixed `custom`). Slots become KNOWN fields; the Lua VALUE stays trusted
+    # user-content-by-construction (the gate's custom exception: "slots verified, payload trusted").
+    _opt = {r.get("name") for r in inputs}
+    for name in sorted(r for r in _runtime_reads(GENERIC_RUNTIME) if r.startswith("custom") and r not in _opt):
+        inputs.append({"name": name, "surface": "runtime-read",
+                       "note": "code-entry box read off the trigger at runtime; hidden from the options self-report"})
     event = {
         "event": "Custom", "display": "Custom", "default_state": {"type": "custom", "custom_type": "event"},
         "note": "code-entry wrapper: the user writes Lua. The Custom Trigger / Name / Icon / Texture / Stack "

@@ -14,3 +14,10 @@ _Main (input) levers only. Open `custom.json` for full handling. rule: `array`=m
 | custom_hide2 (Hide) | select | dom:eventend_types |
 | dynamicDuration (Dynamic Duration) | toggle |  |
 | duration (Duration (s)) | input |  |
+| custom |  |  |
+| customDuration |  |  |
+| customIcon |  |  |
+| customName |  |  |
+| customStacks |  |  |
+| customTexture |  |  |
+| customVariables |  |  |
