@@ -16,10 +16,13 @@ to WA; an unproven "fact" collapses silently (that's the whole reason for the ga
 
 ## What's here
 
-- **class_table.json** — the class **API-token ↔ user-facing name** pairing.
-  - `class_name` (user-facing, e.g. "Bloodmage") is **ours** — translated/scraped, proven.
-  - `api_name` (what WA's `load.class` actually accepts internally) is **proof-PENDING** for the COA custom classes.
-    WA may use a codename that differs entirely from the display name. We do NOT guess it.
-  - **To prove one:** on that COA class, make an aura with *Load → Class = <that class>*, export it, decode
-    `load.class.single` → that's the real `api_name`. Fill it in, set `proven: true`. (Same "live export is ground
-    truth" move that proved the Tome tracker.)
+- **class_table.json** — the class **user-facing name ↔ API token ↔ classId** fact basis (21 COA classes).
+  Regenerable: `py build_class_table.py`.
+  - `class_name` — user-facing, ours (e.g. "Bloodmage").
+  - `api_name` — **FACT**: the game class API token (GetClassInfo), sourced from the trainer scrape. COA classes ride
+    base-class shells, so the token is an **opaque codename you can't guess**: `SONOFARUGAL`=Bloodmage, `MONK`=Templar,
+    `DEMONHUNTER`=Felsworn, `WILDWALKER`=Primalist, `PROPHET`=Venomancer, `SPIRITMAGE`=Runemaster. Never guessed — sourced.
+  - `wa_load_verified` — the **separate claim** (Battlewrath's distinction: the token is fact; *WA using it* is not):
+    `true` iff the token was seen in a real aura's `load.class` in the corpus (WA-usage proven live). Currently 3
+    (Necromancer, Reaper, Bloodmage — the classes with corpus auras); the other 18 are fact-but-not-yet-corpus-confirmed
+    (they *are* the game class token, so expected to work — a live class-loaded export flips them to `true`).

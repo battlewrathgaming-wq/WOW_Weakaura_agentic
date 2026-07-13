@@ -1,33 +1,137 @@
 {
-  "_meta": {
-    "what": "COA class API-token <-> user-facing name pairing (the load.class fact basis).",
-    "class_name": "user-facing, OURS (translated/scraped) - proven fact.",
-    "api_name": "what WA's load.class accepts INTERNALLY - PROOF-PENDING for COA custom classes; null until live-proven. WA may use a codename that differs from the display name (do NOT guess).",
-    "how_to_prove": "on that COA class, make an aura with Load -> Class = <that class>, export, decode load.class.single -> the api_name; set proven: true.",
-    "governed_by": "adr-inventiveness-confined-to-contained-spaces (don't assert an unproven WA-internal token as fact)",
-    "count": 21
+ "_meta": {
+  "what": "COA class fact basis: user-facing name <-> WA/game class API token <-> classId.",
+  "api_name": "FACT - the game class API token (GetClassInfo, from the trainer scrape). COA classes ride base-class shells so the token is an opaque codename (SONOFARUGAL=Bloodmage, MONK=Templar).",
+  "wa_load_verified": "whether this token was seen in a real aura load.class in the corpus (WA-usage proven live). false = token is fact but WA-load usage not yet corpus-confirmed (still the game class token, so expected).",
+  "source": "api_name/classId/display <- ability_inventory/out/<TOKEN>.json (trainer scrape); wa_load_verified <- Outputs/aura_corpus/battlewrath_displays.json load.class.",
+  "count": 21
+ },
+ "classes": [
+  {
+   "class_name": "Barbarian",
+   "api_name": "BARBARIAN",
+   "classId": 12,
+   "wa_load_verified": false
   },
-  "classes": [
-    {"class_name": "Barbarian",        "slug": "barbarian",        "api_name": null, "proven": false},
-    {"class_name": "Bloodmage",        "slug": "bloodmage",        "api_name": null, "proven": false},
-    {"class_name": "Chronomancer",     "slug": "chronomancer",     "api_name": null, "proven": false},
-    {"class_name": "Cultist",          "slug": "cultist",          "api_name": null, "proven": false},
-    {"class_name": "Felsworn",         "slug": "felsworn",         "api_name": null, "proven": false},
-    {"class_name": "Guardian",         "slug": "guardian",         "api_name": null, "proven": false},
-    {"class_name": "Knight of Xoroth", "slug": "knight_of_xoroth", "api_name": null, "proven": false},
-    {"class_name": "Necromancer",      "slug": "necromancer",      "api_name": null, "proven": false},
-    {"class_name": "Primalist",        "slug": "primalist",        "api_name": null, "proven": false},
-    {"class_name": "Pyromancer",       "slug": "pyromancer",       "api_name": null, "proven": false},
-    {"class_name": "Ranger",           "slug": "ranger",           "api_name": null, "proven": false},
-    {"class_name": "Reaper",           "slug": "reaper",           "api_name": null, "proven": false},
-    {"class_name": "Runemaster",       "slug": "runemaster",       "api_name": null, "proven": false},
-    {"class_name": "Starcaller",       "slug": "starcaller",       "api_name": null, "proven": false},
-    {"class_name": "Stormbringer",     "slug": "stormbringer",     "api_name": null, "proven": false},
-    {"class_name": "Sun Cleric",       "slug": "sun_cleric",       "api_name": null, "proven": false},
-    {"class_name": "Templar",          "slug": "templar",          "api_name": null, "proven": false},
-    {"class_name": "Tinker",           "slug": "tinker",           "api_name": null, "proven": false},
-    {"class_name": "Venomancer",       "slug": "venomancer",       "api_name": null, "proven": false},
-    {"class_name": "Witch Doctor",     "slug": "witch_doctor",     "api_name": null, "proven": false},
-    {"class_name": "Witch Hunter",     "slug": "witch_hunter",     "api_name": null, "proven": false}
-  ]
+  {
+   "class_name": "Chronomancer",
+   "api_name": "CHRONOMANCER",
+   "classId": 22,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Cultist",
+   "api_name": "CULTIST",
+   "classId": 25,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Felsworn",
+   "api_name": "DEMONHUNTER",
+   "classId": 14,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Knight of Xoroth",
+   "api_name": "FLESHWARDEN",
+   "classId": 17,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Guardian",
+   "api_name": "GUARDIAN",
+   "classId": 18,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Templar",
+   "api_name": "MONK",
+   "classId": 19,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Necromancer",
+   "api_name": "NECROMANCER",
+   "classId": 23,
+   "wa_load_verified": true
+  },
+  {
+   "class_name": "Venomancer",
+   "api_name": "PROPHET",
+   "classId": 29,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Pyromancer",
+   "api_name": "PYROMANCER",
+   "classId": 24,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Ranger",
+   "api_name": "RANGER",
+   "classId": 21,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Reaper",
+   "api_name": "REAPER",
+   "classId": 30,
+   "wa_load_verified": true
+  },
+  {
+   "class_name": "Bloodmage",
+   "api_name": "SONOFARUGAL",
+   "classId": 20,
+   "wa_load_verified": true
+  },
+  {
+   "class_name": "Runemaster",
+   "api_name": "SPIRITMAGE",
+   "classId": 32,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Starcaller",
+   "api_name": "STARCALLER",
+   "classId": 26,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Stormbringer",
+   "api_name": "STORMBRINGER",
+   "classId": 16,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Sun Cleric",
+   "api_name": "SUNCLERIC",
+   "classId": 27,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Tinker",
+   "api_name": "TINKER",
+   "classId": 28,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Primalist",
+   "api_name": "WILDWALKER",
+   "classId": 31,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Witch Doctor",
+   "api_name": "WITCHDOCTOR",
+   "classId": 13,
+   "wa_load_verified": false
+  },
+  {
+   "class_name": "Witch Hunter",
+   "api_name": "WITCHHUNTER",
+   "classId": 15,
+   "wa_load_verified": false
+  }
+ ]
 }
