@@ -15,7 +15,6 @@
     }
   ],
   "load": { "class": "NECROMANCER" },
-  "display": { "cooldownEdge": false },
   "conditions": [
     {
       "check": { "trigger": 1, "variable": "spellUsable", "value": 0 },
