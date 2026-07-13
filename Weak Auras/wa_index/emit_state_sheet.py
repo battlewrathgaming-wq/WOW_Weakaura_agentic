@@ -19,6 +19,7 @@ fills the TRIGGER domain (one file per trigger TYPE: spell, aura, unit, ...).
 """
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -30,6 +31,7 @@ WA = "F:/games/Ascension_wow/resources/ascension-live/Interface/AddOns/WeakAuras
 PROTOS = os.path.join(WA, "Prototypes.lua")
 INDEX = os.path.join(_THIS, "index_grounded.json")
 AURA2_OPTS = os.path.join(os.path.dirname(WA), "WeakAurasOptions", "BuffTrigger2.lua")  # aura2 SELF-REPORT source
+AURA2_RUNTIME = os.path.join(WA, "BuffTrigger2.lua")   # aura2 RUNTIME handler - the READ form (the trigger.X it reads)
 GENERIC_OPTS = os.path.join(os.path.dirname(WA), "WeakAurasOptions", "GenericTrigger.lua")  # custom SELF-REPORT source
 SCHEMA = os.path.join(_THIS, "aura_trigger_schema.json")   # aura2 corpus ENRICHMENT (idioms / rank-resolution)
 SEEDS = os.path.join(_THIS, "trigger_seed_defaults.json")
@@ -186,6 +188,16 @@ def _lever_rows(raw):
     return rows
 
 
+def _runtime_reads(handler_path):
+    """The fields a runtime handler READS off the trigger table (`trigger.X`) - the read/stored form, sourced from the
+    runtime itself. Needed for FUNCTION-DRIVEN triggers whose options-builder names diverge from what WA actually reads
+    (aura2: options spellid1/name1 vs read auranames/auraspellids; WA's Modernize collapses one to the other)."""
+    if not os.path.exists(handler_path):
+        return set()
+    txt = open(handler_path, encoding="utf-8", errors="replace").read()
+    return set(re.findall(r"trigger\.([a-zA-Z_][a-zA-Z0-9_]*)", txt))
+
+
 def build_aura2():
     """The Aura trigger (BuffTrigger2) is function-driven, so no event_prototype to scan - but its options
     builder SELF-REPORTS via GetBuffTriggerOptions (extract.lua triggeroptions). That is the authoritative,
@@ -197,6 +209,14 @@ def build_aura2():
     default_state = {"type": "aura2"}
     default_state.update(json.load(open(SEEDS, encoding="utf-8")).get("aura2", {}))  # unit=player, debuffType=HELPFUL
     inputs = _lever_rows(raw)
+    # UNION the RUNTIME-READ fields: BuffTrigger2's own `trigger.X` reads = the read/stored form a docket authors and
+    # WA matches on. The OPTIONS builder names diverge for spell-matching (spellid1/name1); the runtime reads
+    # auranames/auraspellids, and Modernize collapses one into the other (BuffTrigger2:3200-3247). SOURCED from the
+    # runtime, not invented - the sheet must reflect the form WA reads, else the gate flags a correct docket malform.
+    _opt = {r.get("name") for r in inputs}
+    for name in sorted(_runtime_reads(AURA2_RUNTIME) - _opt):
+        inputs.append({"name": name, "surface": "runtime-read",
+                       "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"})
     for row in inputs:                        # match-family-not-rank policy
         if row["name"] == "useName":
             row["policy"] = {"our_policy": True, "why": "match-family-not-rank: drive-from-ID in auranames, all ranks"}

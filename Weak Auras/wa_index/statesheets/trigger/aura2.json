@@ -841,6 +841,121 @@
       "value_domain": null,
       "conditional": true,
       "enabled_when": "conditional"
+     },
+     {
+      "name": "auranames",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "auraspellids",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "autoclone",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "buffShowOn",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "combineMatches",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "count",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "countOperator",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "fullscan",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "groupclone",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "hideAlone",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "ignoreAuraNames",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "ignoreAuraSpellids",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "name",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "name_info",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "name_operator",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "names",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "spellId",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "spellIds",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "subcount",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "type",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "useCount",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "use_name",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
+     },
+     {
+      "name": "use_spellId",
+      "surface": "runtime-read",
+      "note": "read off the trigger by BuffTrigger2 (read form); the options-builder name diverges"
      }
     ],
     "provides": [
@@ -914,6 +1029,6 @@
  ],
  "_meta": {
   "source": "SELF-REPORTED via extract.lua triggeroptions -> GetBuffTriggerOptions (WA's own options builder). provides = auto-state (BuffTrigger2 UpdateMatchData). corpus schema = enrichment only, NOT the surface. `conditional` = tier-1 exclusivity flag.",
-  "input_count": 82
+  "input_count": 105
  }
 }

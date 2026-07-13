@@ -622,6 +622,167 @@
       "shape": null,
       "multiEntry": null,
       "operator_types": null
+     },
+     "auranames": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "auraspellids": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "autoclone": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "buffShowOn": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "combineMatches": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "count": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "countOperator": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "fullscan": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "groupclone": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "hideAlone": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "ignoreAuraNames": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "ignoreAuraSpellids": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "name": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "name_info": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "name_operator": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "names": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "spellId": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "spellIds": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "subcount": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "type": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "useCount": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "use_name": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
+     },
+     "use_spellId": {
+      "default": null,
+      "domain": null,
+      "shape": null,
+      "multiEntry": null,
+      "operator_types": null
      }
     }
    }

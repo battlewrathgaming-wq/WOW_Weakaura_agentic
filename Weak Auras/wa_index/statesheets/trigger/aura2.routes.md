@@ -86,3 +86,26 @@ _Main (input) levers only. Open `aura2.json` for full handling. rule: `array`=mu
 | use_combineMode (Preferred Match) | toggle |  |
 | combineMode (Preferred Match) | select |  |
 | unitExists (Show If Unit Does Not Exist) | toggle |  |
+| auranames |  |  |
+| auraspellids |  |  |
+| autoclone |  |  |
+| buffShowOn |  |  |
+| combineMatches |  |  |
+| count |  |  |
+| countOperator |  |  |
+| fullscan |  |  |
+| groupclone |  |  |
+| hideAlone |  |  |
+| ignoreAuraNames |  |  |
+| ignoreAuraSpellids |  |  |
+| name |  |  |
+| name_info |  |  |
+| name_operator |  |  |
+| names |  |  |
+| spellId |  |  |
+| spellIds |  |  |
+| subcount |  |  |
+| type |  |  |
+| useCount |  |  |
+| use_name |  |  |
+| use_spellId |  |  |
