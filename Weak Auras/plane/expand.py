@@ -98,16 +98,20 @@ def expand(doc):
     if doc.get("combination"):
         out["activation"] = {"disjunctive": doc["combination"]}
 
-    if doc.get("region") == "dynamicgroup":                      # group arrangement: carry authored levers + couple selfPoint
-        surface = (contract.get("display", {}).get("dynamicgroup", {}) or {}).get("option_surface", {})
+    region = doc.get("region")
+    if region in ("dynamicgroup", "group"):                      # group arrangement -> the display bucket (fill copies it to top-level)
+        surface = (contract.get("display", {}).get(region, {}) or {}).get("option_surface", {})
+        display = dict(out.get("display") or {})
         for lever in surface:
             if lever in doc:
-                out[lever] = doc[lever]                          # authored arrangement rides through (validated lever)
-        sp = _couple_selfpoint(doc, contract)
+                display[lever] = doc[lever]                      # authored arrangement rides through (validated lever)
+        sp = _couple_selfpoint(doc, contract)                    # dynamicgroup-only inside; couples grow(+align)/gridType -> selfPoint
         if sp is not None:
-            out["selfPoint"] = sp                                # derived pairing (grow authored, selfPoint not pinned)
+            display["selfPoint"] = sp                            # derived pairing (grow authored, selfPoint not pinned)
         elif doc.get("selfPoint") is not None:
-            out["selfPoint"] = doc["selfPoint"]                  # explicit selfPoint respected
+            display["selfPoint"] = doc["selfPoint"]              # explicit selfPoint respected
+        if display:
+            out["display"] = display
     return out
 
 

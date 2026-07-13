@@ -2,9 +2,9 @@
 bundle.py - the flat-group ASSEMBLER (the group layer over the single-aura chain).
 
 Bundles N child auras into ONE WeakAuras GROUP import string. NOT the deprecated `assemble.py` (parts/BOM lineage) -
-this builds ONLY on the current proven pipeline: each child runs the single-aura chain (expand -> fill -> bounce), then
-the codec's group encode bundles them. A THIN wrapper - bundle, never mutate (live-proven 2026-07-13, both group types,
-zero per-aura mutation on import).
+this builds ONLY on the current proven pipeline. The GROUP is a FIRST-CLASS aura: its docket runs the SAME chain as the
+children (expand -> fill -> bounce), then the codec's group encode wraps them. bundle CONSTRUCTS NOTHING itself - it just
+wraps produced auras (live-proven 2026-07-13, both group types, zero per-aura mutation on import).
 
 FLAT groups only. WA rebuilds child wiring from the `c` list on import (version 1421); the codec's
 `encode_group_import_string` auto-sets `controlledChildren`. NESTED (2-level) is unbuilt - hand-group flat groups
@@ -14,8 +14,10 @@ in-game for a per-class pack (the codec's documented path).
   py bundle.py <manifest.json>          -> the group import string on stdout
 
 manifest:
-  { "group":    { "id": <str>, "type": "dynamicgroup"|"group" (default dynamicgroup), "uid": <optional; else minted> },
+  { "group":    <group docket: { "id", "region"|"type" (default dynamicgroup), "uid"? (else minted),
+                                  + authored arrangement e.g. "grow","align","sort"... }>,
     "children": [ <child docket path, relative to plane/>, ... ] }   # children in group order
+  Authored arrangement flows through expand (a non-default grow gets its coupled selfPoint injected automatically).
 """
 import json
 import os
@@ -31,11 +33,14 @@ import weakaura_codec as wc
 
 
 def _member_aura(docket):
-    """one child docket -> a bounced aura, through the proven single-aura chain. A reasoning-docket (triggers lack
-    `declare`) is expanded first; a full docket goes straight to fill. bundle NEVER mutates the result."""
+    """ANY docket -> a bounced aura, through the proven chain (expand -> fill -> bounce). A reasoning-docket (triggers
+    lack `declare`) OR a group (region is a group type - arrangement/coupling live in expand) goes through expand; a
+    full leaf docket goes straight to fill. bundle NEVER mutates the result. The GROUP is a first-class citizen here -
+    same path as any child, no hand-construction."""
     trigs = docket.get("triggers") or []
     reasoning = bool(trigs) and isinstance(trigs[0], dict) and "declare" not in trigs[0]
-    full = expand.expand(docket) if reasoning else docket
+    is_group = docket.get("region") in ("dynamicgroup", "group")
+    full = expand.expand(docket) if (reasoning or is_group) else docket
     return rec.bounce(fill.fill(full))
 
 
@@ -56,12 +61,12 @@ def bundle(manifest):
     if len(set(uids)) != len(uids):
         sys.exit("bundle: duplicate child uid(s) - would collide on import: %s" % sorted({x for x in uids if uids.count(x) > 1}))
 
-    parent = rec.bounce({
-        "id": g["id"],
-        "uid": g.get("uid") or wc.generate_unique_id(),      # provided -> use; blank -> mint
-        "regionType": g.get("type", "dynamicgroup"),
-        "internalVersion": fill._internal_version(),
-    })
+    # The group is an aura too: run its docket through the SAME chain as the children (no hand-construction).
+    # `type` is the legacy manifest key for the group region; map it to `region`. expand mints uid if absent.
+    group_docket = dict(g)
+    group_docket["region"] = g.get("region") or g.get("type", "dynamicgroup")
+    group_docket.pop("type", None)
+    parent = _member_aura(group_docket)
     s = wc.encode_group_import_string(parent, children)
 
     # verify: decode the string back; the group must round-trip its members + controlledChildren exactly.
