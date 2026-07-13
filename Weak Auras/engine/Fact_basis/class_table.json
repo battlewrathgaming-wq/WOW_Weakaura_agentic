@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "what": "COA class API-token <-> user-facing name pairing (the load.class fact basis).",
+    "class_name": "user-facing, OURS (translated/scraped) - proven fact.",
+    "api_name": "what WA's load.class accepts INTERNALLY - PROOF-PENDING for COA custom classes; null until live-proven. WA may use a codename that differs from the display name (do NOT guess).",
+    "how_to_prove": "on that COA class, make an aura with Load -> Class = <that class>, export, decode load.class.single -> the api_name; set proven: true.",
+    "governed_by": "adr-inventiveness-confined-to-contained-spaces (don't assert an unproven WA-internal token as fact)",
+    "count": 21
+  },
+  "classes": [
+    {"class_name": "Barbarian",        "slug": "barbarian",        "api_name": null, "proven": false},
+    {"class_name": "Bloodmage",        "slug": "bloodmage",        "api_name": null, "proven": false},
+    {"class_name": "Chronomancer",     "slug": "chronomancer",     "api_name": null, "proven": false},
+    {"class_name": "Cultist",          "slug": "cultist",          "api_name": null, "proven": false},
+    {"class_name": "Felsworn",         "slug": "felsworn",         "api_name": null, "proven": false},
+    {"class_name": "Guardian",         "slug": "guardian",         "api_name": null, "proven": false},
+    {"class_name": "Knight of Xoroth", "slug": "knight_of_xoroth", "api_name": null, "proven": false},
+    {"class_name": "Necromancer",      "slug": "necromancer",      "api_name": null, "proven": false},
+    {"class_name": "Primalist",        "slug": "primalist",        "api_name": null, "proven": false},
+    {"class_name": "Pyromancer",       "slug": "pyromancer",       "api_name": null, "proven": false},
+    {"class_name": "Ranger",           "slug": "ranger",           "api_name": null, "proven": false},
+    {"class_name": "Reaper",           "slug": "reaper",           "api_name": null, "proven": false},
+    {"class_name": "Runemaster",       "slug": "runemaster",       "api_name": null, "proven": false},
+    {"class_name": "Starcaller",       "slug": "starcaller",       "api_name": null, "proven": false},
+    {"class_name": "Stormbringer",     "slug": "stormbringer",     "api_name": null, "proven": false},
+    {"class_name": "Sun Cleric",       "slug": "sun_cleric",       "api_name": null, "proven": false},
+    {"class_name": "Templar",          "slug": "templar",          "api_name": null, "proven": false},
+    {"class_name": "Tinker",           "slug": "tinker",           "api_name": null, "proven": false},
+    {"class_name": "Venomancer",       "slug": "venomancer",       "api_name": null, "proven": false},
+    {"class_name": "Witch Doctor",     "slug": "witch_doctor",     "api_name": null, "proven": false},
+    {"class_name": "Witch Hunter",     "slug": "witch_hunter",     "api_name": null, "proven": false}
+  ]
+}
