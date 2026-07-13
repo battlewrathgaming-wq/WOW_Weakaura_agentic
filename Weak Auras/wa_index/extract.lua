@@ -359,10 +359,13 @@ elseif mode == "regioncoupling" then
   -- gridSelfPoints[gridType]); the region reads data.selfPoint DIRECTLY and never re-derives it, so an authored grow
   -- without its paired selfPoint renders wrong. Generate the pairing table by RUNNING WA's own set logic - the set
   -- closure captures selfPoints/gridSelfPoints as UPVALUES (the real tables), so we enumerate inputs but the OUTPUTS
-  -- are genuinely WA's. Inputs cited from source (grow_types / align_types / gridSelfPoints keys). arg[3] = region.
-  local GROWS = { "RIGHT", "LEFT", "UP", "DOWN", "HORIZONTAL", "VERTICAL", "CIRCLE", "COUNTERCIRCLE", "CUSTOM" }  -- full grow_types minus GRID (separate); CUSTOM -> selfPoints.default
-  local ALIGNS = { "LEFT", "RIGHT", "CENTER" }                    -- set branches LEFT/RIGHT/else; CENTER exercises else
-  local GRIDTYPES = { "RU","UR","LU","UL","RD","DR","LD","DL","HD","HU","VR","VL","DH","UH","LV","RV","HV","VH" }
+  -- are genuinely WA's. Enum INPUTS are SOURCED (passed in from domains.json by the caller - grow_types /
+  -- align_types / grid_types keys), never hardcoded here, so they cannot drift from Types.lua. arg[3] = region;
+  -- arg[4..6] = comma-joined grows (minus GRID, handled via by_gridtype) / aligns / gridtypes.
+  local function _split(s) local t = {}; if s then for x in string.gmatch(s, "[^,]+") do t[#t + 1] = x end end; return t end
+  local GROWS = _split(arg[4])
+  local ALIGNS = _split(arg[5])
+  local GRIDTYPES = _split(arg[6])
   local rr = rawget(OptionsPrivateStub, "registerRegions")
   if type(rr) == "table" then for _, fn in ipairs(rr) do if type(fn) == "function" then pcall(fn) end end end
   local target = arg[3] or "dynamicgroup"

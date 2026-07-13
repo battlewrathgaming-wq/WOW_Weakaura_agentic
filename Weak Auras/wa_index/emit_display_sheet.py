@@ -106,8 +106,13 @@ def _coupling(region_name):
     here -> any grow is shippable. GENERATED not hand-built: inputs enumerated, outputs are WA's own set closure."""
     if region_name != "dynamicgroup":
         return None
-    proc = subprocess.run([LUA, EXTRACT, "regioncoupling",
-                           os.path.join(REGION_OPTIONS, "DynamicGroup.lua"), region_name], capture_output=True, text=True)
+    # enums SOURCED from domains.json (not hardcoded in the Lua probe) so they can't drift from Types.lua.
+    doms = json.load(open(os.path.join(_THIS, "statesheets", "domains.json"), encoding="utf-8"))["domains"]
+    grows = ",".join(g for g in doms["grow_types"] if g != "GRID")     # GRID resolves via by_gridtype, not by_grow_align
+    aligns = ",".join(doms["align_types"])
+    gridtypes = ",".join(doms["grid_types"])
+    proc = subprocess.run([LUA, EXTRACT, "regioncoupling", os.path.join(REGION_OPTIONS, "DynamicGroup.lua"),
+                           region_name, grows, aligns, gridtypes], capture_output=True, text=True)
     if proc.returncode != 0:
         return None
     try:
