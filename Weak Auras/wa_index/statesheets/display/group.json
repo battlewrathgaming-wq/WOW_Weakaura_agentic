@@ -113,5 +113,67 @@
  "condition_change_targets": [],
  "_meta": {
   "source": "extract.lua region -> WA's RegisterRegionType default + GetProperties. The default IS the observed-defaults resource (matches canon); properties = condition change-targets. kind=position fields are mask-territory (reduced from the inventory slot-ref, not authored)."
+ },
+ "option_surface": {
+  "lever_count": 10,
+  "levers": {
+   "align_h": {
+    "type": "select",
+    "name": "Horizontal Align",
+    "order": 10,
+    "values": "align_types"
+   },
+   "align_v": {
+    "type": "select",
+    "name": "Vertical Align",
+    "order": 15,
+    "values": "rotated_align_types"
+   },
+   "alpha": {
+    "type": "range",
+    "name": "Group Alpha",
+    "order": 46
+   },
+   "distribute_h": {
+    "type": "range",
+    "name": "Distribute Horizontally",
+    "order": 20
+   },
+   "distribute_v": {
+    "type": "range",
+    "name": "Distribute Vertically",
+    "order": 25
+   },
+   "groupIcon": {
+    "type": "input",
+    "name": "Group Icon",
+    "order": 0.5
+   },
+   "scale": {
+    "type": "range",
+    "name": "Group Scale",
+    "order": 45,
+    "default": 1
+   },
+   "sharedFrameLevel": {
+    "type": "toggle",
+    "name": "Flat Framelevels",
+    "order": 47,
+    "default": true
+   },
+   "space_h": {
+    "type": "range",
+    "name": "Space Horizontally",
+    "order": 30
+   },
+   "space_v": {
+    "type": "range",
+    "name": "Space Vertically",
+    "order": 35
+   }
+  },
+  "_meta": {
+   "source": "extract.lua regionoptionsurface -> RegisterRegionOptions create(id,data). The configurable arrangement surface (type + value-domain + conditional) the per-region default misses. conditional = context-gated (grow-mode dependent). chrome dropped."
+  }
  }
 }

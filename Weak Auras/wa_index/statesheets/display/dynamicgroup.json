@@ -233,5 +233,231 @@
  "condition_change_targets": [],
  "_meta": {
   "source": "extract.lua region -> WA's RegisterRegionType default + GetProperties. The default IS the observed-defaults resource (matches canon); properties = condition change-targets. kind=position fields are mask-territory (reduced from the inventory slot-ref, not authored)."
+ },
+ "option_surface": {
+  "lever_count": 32,
+  "levers": {
+   "align": {
+    "type": "select",
+    "name": "Align",
+    "order": 2,
+    "values": "align_types",
+    "conditional": true,
+    "default": "CENTER"
+   },
+   "alpha": {
+    "type": "range",
+    "name": "Group Alpha",
+    "order": 29
+   },
+   "anchorOn": {
+    "type": "input",
+    "name": "Run on...",
+    "order": 1.61,
+    "conditional": true
+   },
+   "anchorPerUnit": {
+    "type": "select",
+    "name": "Group by Frame",
+    "order": 1.6,
+    "values": {
+     "CUSTOM": "Custom Frames",
+     "NAMEPLATE": "Nameplates",
+     "UNITFRAME": "Unit Frames"
+    },
+    "conditional": true
+   },
+   "animate": {
+    "type": "toggle",
+    "name": "Animated Expand and Collapse",
+    "order": 27,
+    "default": false
+   },
+   "arcLength": {
+    "type": "range",
+    "name": "Total Angle",
+    "order": 8,
+    "conditional": true,
+    "default": 360
+   },
+   "centerType": {
+    "type": "select",
+    "name": "Aura Order",
+    "order": 3,
+    "conditional": true,
+    "default": "LR"
+   },
+   "columnSpace": {
+    "type": "range",
+    "name": "Column Space",
+    "order": 11,
+    "conditional": true,
+    "default": 1
+   },
+   "constantFactor": {
+    "type": "select",
+    "name": "Constant Factor",
+    "order": 4,
+    "conditional": true,
+    "default": "RADIUS"
+   },
+   "fullCircle": {
+    "type": "toggle",
+    "name": "Full Circle",
+    "order": 7,
+    "conditional": true,
+    "default": true
+   },
+   "gridType": {
+    "type": "select",
+    "name": "Grid direction",
+    "order": 8,
+    "values": "grid_types",
+    "conditional": true,
+    "default": "RD"
+   },
+   "gridWidth": {
+    "type": "range",
+    "name": "Row Width",
+    "order": 9,
+    "conditional": true,
+    "default": 5
+   },
+   "groupIcon": {
+    "type": "input",
+    "name": "Group Icon",
+    "order": 0.5
+   },
+   "grow": {
+    "type": "select",
+    "name": "Grow",
+    "order": 1,
+    "values": "grow_types",
+    "default": "DOWN"
+   },
+   "growOn": {
+    "type": "input",
+    "name": "Run on...",
+    "order": 1.9,
+    "conditional": true
+   },
+   "hybridPosition": {
+    "type": "select",
+    "name": "Hybrid Position",
+    "order": 21,
+    "values": "group_hybrid_position_types",
+    "conditional": true
+   },
+   "hybridSortMode": {
+    "type": "select",
+    "name": "Hybrid Sort Mode",
+    "order": 22,
+    "values": "group_hybrid_sort_types",
+    "conditional": true
+   },
+   "limit": {
+    "type": "range",
+    "name": "Limit",
+    "order": 26,
+    "conditional": true,
+    "default": 5
+   },
+   "radius": {
+    "type": "range",
+    "name": "Radius",
+    "order": 9,
+    "conditional": true,
+    "default": 200
+   },
+   "rotated_align": {
+    "type": "select",
+    "name": "Align",
+    "order": 3,
+    "values": "rotated_align_types",
+    "conditional": true
+   },
+   "rotation": {
+    "type": "range",
+    "name": "Start Angle",
+    "order": 5,
+    "conditional": true,
+    "default": 0
+   },
+   "rowSpace": {
+    "type": "range",
+    "name": "Row Space",
+    "order": 10,
+    "conditional": true,
+    "default": 1
+   },
+   "scale": {
+    "type": "range",
+    "name": "Group Scale",
+    "order": 28,
+    "default": 1
+   },
+   "sharedFrameLevel": {
+    "type": "toggle",
+    "name": "Flat Framelevels",
+    "order": 30,
+    "default": true
+   },
+   "sort": {
+    "type": "select",
+    "name": "Sort",
+    "order": 20,
+    "values": "group_sort_types",
+    "default": "none"
+   },
+   "sortHybrid": {
+    "type": "multiselect",
+    "name": "Select the auras you always want to be listed first",
+    "order": 23,
+    "conditional": true
+   },
+   "sortOn": {
+    "type": "input",
+    "name": "Run on...",
+    "order": 20.9,
+    "conditional": true
+   },
+   "space": {
+    "type": "range",
+    "name": "Space",
+    "order": 7,
+    "conditional": true,
+    "default": 2
+   },
+   "stagger": {
+    "type": "range",
+    "name": "Stagger",
+    "order": 8,
+    "conditional": true,
+    "default": 0
+   },
+   "stepAngle": {
+    "type": "range",
+    "name": "Angle Between Auras",
+    "order": 12,
+    "conditional": true,
+    "default": 15
+   },
+   "useAnchorPerUnit": {
+    "type": "toggle",
+    "name": "Group by Frame",
+    "order": 1.5,
+    "conditional": true
+   },
+   "useLimit": {
+    "type": "toggle",
+    "name": "Limit",
+    "order": 25,
+    "conditional": true,
+    "default": false
+   }
+  },
+  "_meta": {
+   "source": "extract.lua regionoptionsurface -> RegisterRegionOptions create(id,data). The configurable arrangement surface (type + value-domain + conditional) the per-region default misses. conditional = context-gated (grow-mode dependent). chrome dropped."
+  }
  }
 }

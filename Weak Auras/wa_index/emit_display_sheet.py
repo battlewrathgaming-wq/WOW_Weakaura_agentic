@@ -27,6 +27,12 @@ POSITION = {"xOffset", "yOffset", "anchorPoint", "selfPoint", "anchorFrameType",
 SIZE = {"width", "height"}
 REGIONPROTO = os.path.join(REGIONS, "RegionPrototype.lua")
 ACTION_TYPES = {"chat", "customcode", "glowexternal", "sound"}   # condition side-effects, not property-changes
+REGION_OPTIONS = "F:/games/Ascension_wow/resources/ascension-live/Interface/AddOns/WeakAurasOptions/RegionOptions"
+# region types whose OWN options surface (arrangement/config levers) we fold in. group + dynamicgroup are FIRST-CLASS:
+# their arrangement behaviour over children IS authored content, so it needs trigger-grade detail. Other regions author
+# their look via the mask (reduced from the slot-ref), not here - not pre-generalized past the group need.
+OPTION_SURFACE_FILES = {"group": "Group.lua", "dynamicgroup": "DynamicGroup.lua"}
+_CHROME_TYPES = {"header", "description", "execute"}             # options-table UI chrome, not configurable levers
 
 
 def _region(path):
@@ -54,6 +60,40 @@ def build(region_name, default, properties):
                             "the observed-defaults resource (matches canon); properties = condition change-targets. "
                             "kind=position fields are mask-territory (reduced from the inventory slot-ref, not authored)."},
     }
+
+
+def _options_surface(region_name, default):
+    """A region's OWN options surface (the config levers WA's UI exposes for it) via extract.lua regionoptionsurface.
+    The per-region DEFAULT gives field VALUES; this gives each lever's TYPE + value-domain + conditional-visibility -
+    the trigger-grade detail the default alone misses (the group-arrangement blind spot). Merges the default value in.
+    conditional=True marks a context-gated lever (e.g. grid levers only apply under GRID grow) - WA's own visibility rule."""
+    fname = OPTION_SURFACE_FILES.get(region_name)
+    if not fname:
+        return None
+    proc = subprocess.run([LUA, EXTRACT, "regionoptionsurface",
+                           os.path.join(REGION_OPTIONS, fname), region_name], capture_output=True, text=True)
+    if proc.returncode != 0:
+        return None
+    try:
+        raw = json.loads(proc.stdout)
+    except Exception:
+        return None
+    levers = {}
+    for name, o in raw.items():
+        if o.get("type") in _CHROME_TYPES:                 # drop header/description/execute UI chrome
+            continue
+        rec = {"type": o.get("type"), "name": o.get("name"), "order": o.get("order")}
+        if "values" in o:
+            rec["values"] = o["values"]                    # value-domain (str -> domains.json) or an inline table
+        if o.get("conditional"):
+            rec["conditional"] = True                      # context-gated visibility (grow-mode dependent, etc.)
+        if isinstance(default, dict) and name in default:
+            rec["default"] = default[name]                 # merge the region-default value for this lever
+        levers[name] = rec
+    return {"lever_count": len(levers), "levers": levers,
+            "_meta": {"source": "extract.lua regionoptionsurface -> RegisterRegionOptions create(id,data). The "
+                                "configurable arrangement surface (type + value-domain + conditional) the per-region "
+                                "default misses. conditional = context-gated (grow-mode dependent). chrome dropped."}}
 
 
 def _routes(sheet):
@@ -84,9 +124,11 @@ def _emit(sheet):
     kinds = {}
     for o in sheet["options"]:
         kinds[o["kind"]] = kinds.get(o["kind"], 0) + 1
-    print("  %-16s -> %2d fields (%s), %d condition-targets"
+    surf = sheet.get("option_surface")
+    print("  %-16s -> %2d fields (%s), %d condition-targets%s"
           % (sheet["region_type"], sheet["option_count"],
-             " ".join("%s:%d" % (k, kinds[k]) for k in sorted(kinds)), len(sheet["condition_change_targets"])))
+             " ".join("%s:%d" % (k, kinds[k]) for k in sorted(kinds)), len(sheet["condition_change_targets"]),
+             (" + %d option-surface levers" % surf["lever_count"]) if surf else ""))
 
 
 def _shared():
@@ -123,7 +165,11 @@ def main():
             if want and region_name != want:
                 continue
             if isinstance(rd, dict) and isinstance(rd.get("default"), dict):
-                _emit(build(region_name, rd.get("default"), rd.get("properties")))
+                sheet = build(region_name, rd.get("default"), rd.get("properties"))
+                surf = _options_surface(region_name, rd.get("default"))
+                if surf:
+                    sheet["option_surface"] = surf         # group/dynamicgroup: their arrangement levers, trigger-grade
+                _emit(sheet)
     if not want:                                          # the cross-cutting shared layer, once
         sh = _shared()
         if sh:

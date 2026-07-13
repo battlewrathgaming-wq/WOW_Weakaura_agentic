@@ -64,8 +64,12 @@ def _display_section():
                               "condition_target": bool(o.get("condition_target"))}
                   for o in sheet.get("options", []) if o.get("name")}
         region_t = set(sheet.get("condition_change_targets", []))
-        out[rname] = {"fields": fields,
-                      "change_targets": sorted(region_t | shared_targets)}   # region-specific UNION shared
+        entry = {"fields": fields,
+                 "change_targets": sorted(region_t | shared_targets)}       # region-specific UNION shared
+        surf = sheet.get("option_surface")
+        if surf:
+            entry["option_surface"] = surf.get("levers", {})   # group/dynamicgroup: arrangement levers (trigger-grade)
+        out[rname] = entry
     return out, {"shared_change_targets": sorted(shared_targets),
                  "condition_actions": shared.get("condition_actions", [])}
 
@@ -94,11 +98,22 @@ def _domain_refs(trigger):
     return refs
 
 
+def _display_domain_refs(display):
+    """value-domains named across region option_surfaces (group/dynamicgroup arrangement levers) -> for dangling check."""
+    refs = set()
+    for region in display.values():
+        for lever in (region.get("option_surface") or {}).values():
+            d = lever.get("values")
+            if isinstance(d, str):
+                refs.add(d)
+    return refs
+
+
 def main():
     trigger = _trigger_section()
     display, display_shared = _display_section()
     domains = _domains()
-    refs = _domain_refs(trigger)
+    refs = _domain_refs(trigger) | _display_domain_refs(display)
     dangling = sorted(r for r in refs if r not in domains)   # a lever pointing at a missing domain = loud
     contract = {
         "_meta": {"built_from": "statesheets/{trigger,display,load} + domains.json - a JOIN, no new extraction",

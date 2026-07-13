@@ -118,7 +118,7 @@ setmetatable(_G, { __index = function(_, k) return autoviv() end })
 local OptionsPrivateStub = autoviv()
 local _optPriv = autoviv()
 rawset(_optPriv, "RegisterRegionOptions", function(name, create, icon, displayName, ...)
-  captured[#captured + 1] = { kind = "regionoption", name = name, display = displayName }
+  captured[#captured + 1] = { kind = "regionoption", name = name, create = create, display = displayName }
 end)
 -- Seed value-domain names as string MARKERS so an options builder's
 -- `values = OptionsPrivate.Private.anim_types` yields the domain NAME "anim_types"
@@ -128,6 +128,9 @@ for _, dom in ipairs({
   "anim_finish_preset_types", "duration_types", "duration_types_no_choice",
   "anim_translate_types", "anim_scale_types", "anim_rotate_types",
   "anim_alpha_types", "anim_color_types",
+  -- dynamic/static group arrangement domains (the group options builder references these)
+  "grow_types", "align_types", "rotated_align_types", "group_sort_types",
+  "group_hybrid_sort_types", "group_hybrid_position_types", "grid_types",
 }) do rawset(_optPriv, dom, dom) end
 rawset(OptionsPrivateStub, "Private", _optPriv)
 
@@ -212,7 +215,7 @@ end
 
 local chunk, err = loadfile(path)
 if not chunk then io.stderr:write("load failed: " .. tostring(err) .. "\n"); os.exit(1) end
-local _optmode = (mode == "regionoptions" or mode == "animoptions" or mode == "triggeroptions")
+local _optmode = (mode == "regionoptions" or mode == "animoptions" or mode == "triggeroptions" or mode == "regionoptionsurface")
 local addonName = _optmode and "WeakAurasOptions" or "WeakAuras"
 local secondArg = _optmode and OptionsPrivateStub or PrivateStub
 local ok, runErr = pcall(chunk, addonName, secondArg)
@@ -288,6 +291,44 @@ elseif mode == "triggeroptions" then
       local ok2, opts = pcall(e.getOptions, probe, 1)
       if ok2 and type(opts) == "table" then
         for _, group in pairs(opts) do          -- unwrap the "trigger.N.aura_options" group -> flat options
+          if type(group) == "table" then
+            for key, o in pairs(group) do
+              if type(o) == "table" then
+                local nm = rawget(o, "name")
+                if type(nm) == "function" then local okn, r = pcall(nm); nm = okn and r or nil end
+                local rec = { type = rawget(o, "type"), name = (type(nm) == "string") and nm or nil,
+                              order = rawget(o, "order") }
+                local vv = rawget(o, "values")
+                if type(vv) == "function" then local okv, r = pcall(vv)
+                  if okv and (type(r) == "string" or (type(r) == "table" and getmetatable(r) == nil)) then rec.values = r end
+                elseif type(vv) == "string" then rec.values = vv end
+                local hd = rawget(o, "hidden")
+                rec.conditional = (type(hd) == "function") or (hd == true) or nil
+                result[tostring(key)] = rec
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+elseif mode == "regionoptionsurface" then
+  -- A REGION self-reports its OWN options surface (parallel to triggeroptions, for the group blind spot):
+  -- RegisterRegionOptions(name, create, ...) -> we captured `create`; call create(id, data) with a probe
+  -- and keep every declared lever (type/name/values/order). create returns {<region>=levers, position=levers};
+  -- the unwrap flattens both. arg[3] = region name (e.g. dynamicgroup). Options files may defer registration
+  -- into OptionsPrivate.registerRegions - fire those first.
+  local rr = rawget(OptionsPrivateStub, "registerRegions")
+  if type(rr) == "table" then
+    for _, fn in ipairs(rr) do if type(fn) == "function" then pcall(fn) end end
+  end
+  local target = arg[3] or "dynamicgroup"
+  for _, e in ipairs(captured) do
+    if e.kind == "regionoption" and e.name == target and type(e.create) == "function" then
+      local probe = setmetatable({ regionType = target, id = target }, AV_MT)
+      local ok2, opts = pcall(e.create, target, probe)
+      if ok2 and type(opts) == "table" then
+        for _, group in pairs(opts) do          -- unwrap {dynamicgroup=levers, position=levers} -> flat levers
           if type(group) == "table" then
             for key, o in pairs(group) do
               if type(o) == "table" then

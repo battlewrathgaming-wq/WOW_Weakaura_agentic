@@ -4,7 +4,15 @@
   "pre_flight": "read by the class-inventory pre-flight (NOT the pipeline): assert must_assert present, values in domain, condition check-var in a trigger `condition_vars`, change-prop in a region `change_targets`. Docket + fill stay dumb.",
   "condition_join": "check reads trigger[type][event].condition_vars (the conditionType axis) -> change hits display[region].change_targets",
   "handling": "each trigger input carries its shaping grammar: shape/multiEntry (ARRAY rule), operator_types, domain (names a domains key); event.handling = progressType (region-compat) + statesParameter (state scope). The sheet resolved the shape.",
-  "domain_refs": [],
+  "domain_refs": [
+   "align_types",
+   "grid_types",
+   "group_hybrid_position_types",
+   "group_hybrid_sort_types",
+   "group_sort_types",
+   "grow_types",
+   "rotated_align_types"
+  ],
   "dangling_domains": []
  },
  "trigger": {
@@ -4978,7 +4986,227 @@
    "change_targets": [
     "xOffsetRelative",
     "yOffsetRelative"
-   ]
+   ],
+   "option_surface": {
+    "align": {
+     "type": "select",
+     "name": "Align",
+     "order": 2,
+     "values": "align_types",
+     "conditional": true,
+     "default": "CENTER"
+    },
+    "alpha": {
+     "type": "range",
+     "name": "Group Alpha",
+     "order": 29
+    },
+    "anchorOn": {
+     "type": "input",
+     "name": "Run on...",
+     "order": 1.61,
+     "conditional": true
+    },
+    "anchorPerUnit": {
+     "type": "select",
+     "name": "Group by Frame",
+     "order": 1.6,
+     "values": {
+      "CUSTOM": "Custom Frames",
+      "NAMEPLATE": "Nameplates",
+      "UNITFRAME": "Unit Frames"
+     },
+     "conditional": true
+    },
+    "animate": {
+     "type": "toggle",
+     "name": "Animated Expand and Collapse",
+     "order": 27,
+     "default": false
+    },
+    "arcLength": {
+     "type": "range",
+     "name": "Total Angle",
+     "order": 8,
+     "conditional": true,
+     "default": 360
+    },
+    "centerType": {
+     "type": "select",
+     "name": "Aura Order",
+     "order": 3,
+     "conditional": true,
+     "default": "LR"
+    },
+    "columnSpace": {
+     "type": "range",
+     "name": "Column Space",
+     "order": 11,
+     "conditional": true,
+     "default": 1
+    },
+    "constantFactor": {
+     "type": "select",
+     "name": "Constant Factor",
+     "order": 4,
+     "conditional": true,
+     "default": "RADIUS"
+    },
+    "fullCircle": {
+     "type": "toggle",
+     "name": "Full Circle",
+     "order": 7,
+     "conditional": true,
+     "default": true
+    },
+    "gridType": {
+     "type": "select",
+     "name": "Grid direction",
+     "order": 8,
+     "values": "grid_types",
+     "conditional": true,
+     "default": "RD"
+    },
+    "gridWidth": {
+     "type": "range",
+     "name": "Row Width",
+     "order": 9,
+     "conditional": true,
+     "default": 5
+    },
+    "groupIcon": {
+     "type": "input",
+     "name": "Group Icon",
+     "order": 0.5
+    },
+    "grow": {
+     "type": "select",
+     "name": "Grow",
+     "order": 1,
+     "values": "grow_types",
+     "default": "DOWN"
+    },
+    "growOn": {
+     "type": "input",
+     "name": "Run on...",
+     "order": 1.9,
+     "conditional": true
+    },
+    "hybridPosition": {
+     "type": "select",
+     "name": "Hybrid Position",
+     "order": 21,
+     "values": "group_hybrid_position_types",
+     "conditional": true
+    },
+    "hybridSortMode": {
+     "type": "select",
+     "name": "Hybrid Sort Mode",
+     "order": 22,
+     "values": "group_hybrid_sort_types",
+     "conditional": true
+    },
+    "limit": {
+     "type": "range",
+     "name": "Limit",
+     "order": 26,
+     "conditional": true,
+     "default": 5
+    },
+    "radius": {
+     "type": "range",
+     "name": "Radius",
+     "order": 9,
+     "conditional": true,
+     "default": 200
+    },
+    "rotated_align": {
+     "type": "select",
+     "name": "Align",
+     "order": 3,
+     "values": "rotated_align_types",
+     "conditional": true
+    },
+    "rotation": {
+     "type": "range",
+     "name": "Start Angle",
+     "order": 5,
+     "conditional": true,
+     "default": 0
+    },
+    "rowSpace": {
+     "type": "range",
+     "name": "Row Space",
+     "order": 10,
+     "conditional": true,
+     "default": 1
+    },
+    "scale": {
+     "type": "range",
+     "name": "Group Scale",
+     "order": 28,
+     "default": 1
+    },
+    "sharedFrameLevel": {
+     "type": "toggle",
+     "name": "Flat Framelevels",
+     "order": 30,
+     "default": true
+    },
+    "sort": {
+     "type": "select",
+     "name": "Sort",
+     "order": 20,
+     "values": "group_sort_types",
+     "default": "none"
+    },
+    "sortHybrid": {
+     "type": "multiselect",
+     "name": "Select the auras you always want to be listed first",
+     "order": 23,
+     "conditional": true
+    },
+    "sortOn": {
+     "type": "input",
+     "name": "Run on...",
+     "order": 20.9,
+     "conditional": true
+    },
+    "space": {
+     "type": "range",
+     "name": "Space",
+     "order": 7,
+     "conditional": true,
+     "default": 2
+    },
+    "stagger": {
+     "type": "range",
+     "name": "Stagger",
+     "order": 8,
+     "conditional": true,
+     "default": 0
+    },
+    "stepAngle": {
+     "type": "range",
+     "name": "Angle Between Auras",
+     "order": 12,
+     "conditional": true,
+     "default": 15
+    },
+    "useAnchorPerUnit": {
+     "type": "toggle",
+     "name": "Group by Frame",
+     "order": 1.5,
+     "conditional": true
+    },
+    "useLimit": {
+     "type": "toggle",
+     "name": "Limit",
+     "order": 25,
+     "conditional": true,
+     "default": false
+    }
+   }
   },
   "empty": {
    "fields": {
@@ -5237,7 +5465,63 @@
    "change_targets": [
     "xOffsetRelative",
     "yOffsetRelative"
-   ]
+   ],
+   "option_surface": {
+    "align_h": {
+     "type": "select",
+     "name": "Horizontal Align",
+     "order": 10,
+     "values": "align_types"
+    },
+    "align_v": {
+     "type": "select",
+     "name": "Vertical Align",
+     "order": 15,
+     "values": "rotated_align_types"
+    },
+    "alpha": {
+     "type": "range",
+     "name": "Group Alpha",
+     "order": 46
+    },
+    "distribute_h": {
+     "type": "range",
+     "name": "Distribute Horizontally",
+     "order": 20
+    },
+    "distribute_v": {
+     "type": "range",
+     "name": "Distribute Vertically",
+     "order": 25
+    },
+    "groupIcon": {
+     "type": "input",
+     "name": "Group Icon",
+     "order": 0.5
+    },
+    "scale": {
+     "type": "range",
+     "name": "Group Scale",
+     "order": 45,
+     "default": 1
+    },
+    "sharedFrameLevel": {
+     "type": "toggle",
+     "name": "Flat Framelevels",
+     "order": 47,
+     "default": true
+    },
+    "space_h": {
+     "type": "range",
+     "name": "Space Horizontally",
+     "order": 30
+    },
+    "space_v": {
+     "type": "range",
+     "name": "Space Vertically",
+     "order": 35
+    }
+   }
   },
   "icon": {
    "fields": {
