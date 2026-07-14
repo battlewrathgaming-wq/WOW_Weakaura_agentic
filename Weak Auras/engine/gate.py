@@ -28,6 +28,7 @@ _THIS = os.path.dirname(os.path.abspath(__file__))
 CONTRACT = os.path.join(_THIS, "Fact_basis", "contract", "contract.json")
 CLASSDATA = os.path.join(_THIS, "..", "..", "dependencies", "coa_spells.json")   # moved to tracked deps/ (was Outputs/spell_dbc)
 DOMAINS = os.path.join(_THIS, "Fact_basis", "sheets", "domains.json")
+LIVEKEYS = os.path.join(_THIS, "Fact_basis", "maps", "live_keys.json")           # key LIVENESS map (harvest_live_keys.py)
 
 ID_REF_FIELDS = {"spellIds", "spellid1"}                       # values are spell IDs -> checkable vs class-data
 NAME_REF_FIELDS = {"auranames", "name1", "spellName"}          # values are names -> user-input (no name index yet)
@@ -42,10 +43,12 @@ def _as_list(v):
     return v if isinstance(v, list) else [v]
 
 
-def gate(docket, contract=None, classdata=None, domains=None):
+def gate(docket, contract=None, classdata=None, domains=None, livekeys=None):
     contract = contract if contract is not None else _load(CONTRACT)
     if domains is None:
         domains = (_load(DOMAINS) or {}).get("domains", {})
+    if livekeys is None:
+        livekeys = _load(LIVEKEYS) or {}
     v = []
     def mark(path, verdict, note=""):
         v.append({"path": path, "verdict": verdict, "note": note})
@@ -76,6 +79,10 @@ def gate(docket, contract=None, classdata=None, domains=None):
             io = inputs.get(key)
             if io is None:
                 mark(fp, "malform", "%r not a field of %s/%s" % (key, ttype, event)); continue
+            lk = (livekeys.get(ttype) or {}).get("keys", {}).get(key)
+            if lk and not lk.get("live"):                     # a REAL WA word the handler never reads = dead config
+                mark(fp, "invalid", "residue key - stored by WA but never read by the %s handler (only %s); "
+                                    "silently dead config - incorrect input" % (ttype, lk.get("via_convert"))); continue
             dom = io.get("domain")
             if isinstance(dom, str):                          # a domain REFERENCE -> resolve via domains.json
                 dom = domains.get(dom)

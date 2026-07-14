@@ -1,0 +1,682 @@
+{
+ "_meta": {
+  "what": "key LIVENESS per trigger type: read by the handler (live) vs stored-but-only-converter (residue). Harvested from the fork's handler source; the gate blocks residue declares.",
+  "source_root": "F:\\games\\Ascension_wow\\resources\\ascension-live\\Interface\\AddOns\\WeakAuras",
+  "harvested": "2026-07-14",
+  "derivation": "trigger.<key> accesses attributed to enclosing top-level function; convert/migration spans = not-live context"
+ },
+ "aura2": {
+  "handler": "BuffTrigger2.lua",
+  "convert_funcs": [
+   "CanConvertBuffTrigger2",
+   "ConvertBuffTrigger2"
+  ],
+  "keys": {
+   "unit": {
+    "n_live": 45,
+    "n_convert": 8,
+    "via": "BuffTrigger2.lua:183 (IsGroupTrigger)",
+    "via_convert": "BuffTrigger2.lua:3147 (Private.CanConvertBuffTrigger2)",
+    "live": true
+   },
+   "matchesShowOn": {
+    "n_live": 10,
+    "n_convert": 3,
+    "via": "BuffTrigger2.lua:188 (IsSingleMissing)",
+    "via_convert": "BuffTrigger2.lua:3257 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "showClones": {
+    "n_live": 5,
+    "n_convert": 2,
+    "via": "BuffTrigger2.lua:202 (CanHaveMatchCheck)",
+    "via_convert": "BuffTrigger2.lua:3239 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "useMatch_count": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:207 (HasMatchCount)",
+    "via_convert": null,
+    "live": true
+   },
+   "useStacks": {
+    "n_live": 1,
+    "n_convert": 1,
+    "via": "BuffTrigger2.lua:2306 (createScanFunc)",
+    "via_convert": "BuffTrigger2.lua:3251 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "use_stealable": {
+    "n_live": 1,
+    "n_convert": 3,
+    "via": "BuffTrigger2.lua:2310 (createScanFunc)",
+    "via_convert": "BuffTrigger2.lua:3184 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "use_isBossDebuff": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2311 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "use_castByPlayer": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2312 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "use_debuffClass": {
+    "n_live": 1,
+    "n_convert": 2,
+    "via": "BuffTrigger2.lua:2314 (createScanFunc)",
+    "via_convert": "BuffTrigger2.lua:3190 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "fetchTooltip": {
+    "n_live": 6,
+    "n_convert": 2,
+    "via": "BuffTrigger2.lua:2315 (createScanFunc)",
+    "via_convert": "BuffTrigger2.lua:3196 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "use_tooltip": {
+    "n_live": 1,
+    "n_convert": 2,
+    "via": "BuffTrigger2.lua:2315 (createScanFunc)",
+    "via_convert": "BuffTrigger2.lua:3195 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "use_tooltipValue": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2316 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "useTotal": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2317 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "total": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2317 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "useIgnoreName": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2318 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "ignoreAuraNames": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2318 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "useIgnoreExactSpellId": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2319 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "ignoreAuraSpellids": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2319 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "ownOnly": {
+    "n_live": 4,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2322 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "useNamePattern": {
+    "n_live": 2,
+    "n_convert": 1,
+    "via": "BuffTrigger2.lua:2323 (createScanFunc)",
+    "via_convert": "BuffTrigger2.lua:3206 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "totalOperator": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2340 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "stacksOperator": {
+    "n_live": 1,
+    "n_convert": 1,
+    "via": "BuffTrigger2.lua:2349 (createScanFunc)",
+    "via_convert": "BuffTrigger2.lua:3252 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "stacks": {
+    "n_live": 1,
+    "n_convert": 1,
+    "via": "BuffTrigger2.lua:2349 (createScanFunc)",
+    "via_convert": "BuffTrigger2.lua:3253 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "debuffClass": {
+    "n_live": 3,
+    "n_convert": 1,
+    "via": "BuffTrigger2.lua:2401 (createScanFunc)",
+    "via_convert": "BuffTrigger2.lua:3190 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "tooltip_operator": {
+    "n_live": 4,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2418 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "tooltip": {
+    "n_live": 4,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2418 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "tooltipValueNumber": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2443 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "tooltipValue_operator": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2443 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "tooltipValue": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2443 (createScanFunc)",
+    "via_convert": null,
+    "live": true
+   },
+   "namePattern_operator": {
+    "n_live": 4,
+    "n_convert": 1,
+    "via": "BuffTrigger2.lua:2453 (createScanFunc)",
+    "via_convert": "BuffTrigger2.lua:3207 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "namePattern_name": {
+    "n_live": 4,
+    "n_convert": 1,
+    "via": "BuffTrigger2.lua:2453 (createScanFunc)",
+    "via_convert": "BuffTrigger2.lua:3208 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "type": {
+    "n_live": 1,
+    "n_convert": 2,
+    "via": "BuffTrigger2.lua:2569 (BuffTrigger.Add)",
+    "via_convert": "BuffTrigger2.lua:3143 (Private.CanConvertBuffTrigger2)",
+    "live": true
+   },
+   "debuffType": {
+    "n_live": 3,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2572 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "combinePerUnit": {
+    "n_live": 3,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2577 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "perUnitMode": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2582 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useRem": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2592 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "remOperator": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2593 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "rem": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2593 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useName": {
+    "n_live": 4,
+    "n_convert": 3,
+    "via": "BuffTrigger2.lua:2598 (BuffTrigger.Add)",
+    "via_convert": "BuffTrigger2.lua:3216 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "auranames": {
+    "n_live": 10,
+    "n_convert": 6,
+    "via": "BuffTrigger2.lua:2598 (BuffTrigger.Add)",
+    "via_convert": "BuffTrigger2.lua:3217 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "unitExists": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2608 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useGroup_count": {
+    "n_live": 1,
+    "n_convert": 2,
+    "via": "BuffTrigger2.lua:2610 (BuffTrigger.Add)",
+    "via_convert": "BuffTrigger2.lua:3274 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "group_count": {
+    "n_live": 1,
+    "n_convert": 1,
+    "via": "BuffTrigger2.lua:2614 (BuffTrigger.Add)",
+    "via_convert": "BuffTrigger2.lua:3273 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "group_countOperator": {
+    "n_live": 3,
+    "n_convert": 1,
+    "via": "BuffTrigger2.lua:2615 (BuffTrigger.Add)",
+    "via_convert": "BuffTrigger2.lua:3273 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "match_countOperator": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2628 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "match_count": {
+    "n_live": 3,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2628 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useMatchPerUnit_count": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2645 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "matchPerUnit_count": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2646 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "matchPerUnit_countOperator": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2646 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "ignoreSelf": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2653 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useGroupRole": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2654 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "group_role": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2654 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useRaidRole": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2655 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "raid_role": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2655 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useClass": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2656 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "class": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2656 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useActualSpec": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2657 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "actualSpec": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2657 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useHostility": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2658 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "hostility": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2658 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "ignoreDead": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2659 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "ignoreDisconnected": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2660 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "ignoreInvisible": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2661 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useUnitName": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2662 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "unitName": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2662 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useNpcId": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2663 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "npcId": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2663 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "inRange": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2664 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useExactSpellId": {
+    "n_live": 3,
+    "n_convert": 1,
+    "via": "BuffTrigger2.lua:2671 (BuffTrigger.Add)",
+    "via_convert": "BuffTrigger2.lua:3222 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "auraspellids": {
+    "n_live": 8,
+    "n_convert": 2,
+    "via": "BuffTrigger2.lua:2671 (BuffTrigger.Add)",
+    "via_convert": "BuffTrigger2.lua:3223 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "specificUnit": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2686 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "combineMode": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2710 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "fetchRole": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2713 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "fetchRaidMark": {
+    "n_live": 2,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2714 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "useAffected": {
+    "n_live": 2,
+    "n_convert": 1,
+    "via": "BuffTrigger2.lua:2730 (BuffTrigger.Add)",
+    "via_convert": "BuffTrigger2.lua:3269 (Private.ConvertBuffTrigger2)",
+    "live": true
+   },
+   "use_includePets": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2733 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "includePets": {
+    "n_live": 1,
+    "n_convert": 0,
+    "via": "BuffTrigger2.lua:2733 (BuffTrigger.Add)",
+    "via_convert": null,
+    "live": true
+   },
+   "hideAlone": {
+    "n_live": 0,
+    "n_convert": 1,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3151 (Private.CanConvertBuffTrigger2)",
+    "live": false
+   },
+   "fullscan": {
+    "n_live": 0,
+    "n_convert": 10,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3159 (Private.CanConvertBuffTrigger2)",
+    "live": false
+   },
+   "subcount": {
+    "n_live": 0,
+    "n_convert": 2,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3160 (Private.CanConvertBuffTrigger2)",
+    "live": false
+   },
+   "use_name": {
+    "n_live": 0,
+    "n_convert": 3,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3164 (Private.CanConvertBuffTrigger2)",
+    "live": false
+   },
+   "use_spellId": {
+    "n_live": 0,
+    "n_convert": 2,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3164 (Private.CanConvertBuffTrigger2)",
+    "live": false
+   },
+   "autoclone": {
+    "n_live": 0,
+    "n_convert": 2,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3178 (Private.ConvertBuffTrigger2)",
+    "live": false
+   },
+   "combineMatches": {
+    "n_live": 0,
+    "n_convert": 2,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3179 (Private.ConvertBuffTrigger2)",
+    "live": false
+   },
+   "name_operator": {
+    "n_live": 0,
+    "n_convert": 2,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3207 (Private.ConvertBuffTrigger2)",
+    "live": false
+   },
+   "name": {
+    "n_live": 0,
+    "n_convert": 3,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3208 (Private.ConvertBuffTrigger2)",
+    "live": false
+   },
+   "spellId": {
+    "n_live": 0,
+    "n_convert": 2,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3224 (Private.ConvertBuffTrigger2)",
+    "live": false
+   },
+   "spellIds": {
+    "n_live": 0,
+    "n_convert": 2,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3233 (Private.ConvertBuffTrigger2)",
+    "live": false
+   },
+   "names": {
+    "n_live": 0,
+    "n_convert": 1,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3233 (Private.ConvertBuffTrigger2)",
+    "live": false
+   },
+   "useCount": {
+    "n_live": 0,
+    "n_convert": 2,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3250 (Private.ConvertBuffTrigger2)",
+    "live": false
+   },
+   "countOperator": {
+    "n_live": 0,
+    "n_convert": 1,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3252 (Private.ConvertBuffTrigger2)",
+    "live": false
+   },
+   "count": {
+    "n_live": 0,
+    "n_convert": 1,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3253 (Private.ConvertBuffTrigger2)",
+    "live": false
+   },
+   "buffShowOn": {
+    "n_live": 0,
+    "n_convert": 1,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3259 (Private.ConvertBuffTrigger2)",
+    "live": false
+   },
+   "groupclone": {
+    "n_live": 0,
+    "n_convert": 2,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3264 (Private.ConvertBuffTrigger2)",
+    "live": false
+   },
+   "name_info": {
+    "n_live": 0,
+    "n_convert": 2,
+    "via": null,
+    "via_convert": "BuffTrigger2.lua:3268 (Private.ConvertBuffTrigger2)",
+    "live": false
+   }
+  }
+ }
+}
