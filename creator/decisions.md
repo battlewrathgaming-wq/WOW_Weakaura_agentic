@@ -39,6 +39,9 @@ fixed touchstones → `operations/WHAT.md` / `HOW.md` · moving present → `ope
   biggest win: folded into the apply-aura path, **+113** recovered aura edges); six **trigger-variants** (175/183/178/…)
   already captured by the `triggers` edge; and **structural ops** — named **195 `reset_cooldown` · 177 `extend_duration`
   · 192 `reduce_remaining_cooldown` · 112 `weapon_augment`**. Sourced from the game's own render, same bar as 165. Gaps
-  502→270 spells, 19→14 codes. Residue: ~8 small structural codes (`168` biggest) = the real scrape/dev-ask target, half
-  the original. Target-edge wiring (what a reset/extend points at — often a *family*, cf. Rearmament "all Traps") held
-  for a follow-up. Battlewrath cracked 190 from the DB (radius the invariant); our carried `effectAura` completed it.
+  502→270 spells, 19→14 codes. Residue: ~8 small structural codes (`168` biggest), **probed on the DB and ACCEPTED as
+  bounded-opaque** — no dev channel to resolve them ([[dev-channel-unavailable-for-gaps]]), and the structure is enough:
+  173/171 target a spell (`misc` — the target-edge pass captures them), 168 links an out-of-scope pet spell, 166/181/174
+  are bare flags, 187 a value-param. None block classification (it runs on the axes + the spell's other slots). Target-edge
+  wiring (what a reset/extend points at — often a *family*, cf. Rearmament "all Traps") still held for a follow-up.
+  Battlewrath cracked 190 from the DB (radius the invariant); our carried `effectAura` completed it.
