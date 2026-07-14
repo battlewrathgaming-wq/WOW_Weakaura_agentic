@@ -53,12 +53,19 @@ happens here: wiring provides → conditions → region changes.
 
 | provides | good for |
 |---|---|
-| `stacks` | counters; trigger-2 threshold flips (the payoff pattern) |
+| `stacks` / `totalStacks` | counters; trigger-2 threshold flips (the payoff pattern) |
+| `matchCount` / `matchCountPerUnit` | **instance counting** — how many of THIS buff (each application its own instance): the minion-count pattern's engine (`%1.matchCountPerUnit` text) |
+| `unitCount` / `maxUnitCount` | how many units matched (raid coverage) |
 | `duration` / `expirationTime` | the timer; refresh-window warnings (pair with a `rem` condition) |
 | `name` / `icon` / `spellId` | auto icon + %text — never hardcode what these provide |
 | `unitCaster` | "mine vs theirs" displays beyond ownOnly |
 | `debuffClass` | color-by-dispel-type |
+| `affected` / `unaffected` (+`Units`) | who has / lacks it (fetch toggles) |
 | `progressType` | what the bar/sweep shows — timed here |
+
+_Every var above is also **text-addressable**: `%var` (own trigger) / `%<N>.var` (trigger N) in any subtext — plus the
+four named tokens `%p` progress · `%t` total · `%n` name · `%i` icon (`Prototypes.lua:8875`). The full per-trigger
+catalog = `maps/condition_vars.json`._
 
 ## Traps (learned live)
 

@@ -1,8 +1,15 @@
 {
  "_meta": {
-  "what": "condition check.variable surface per trigger namespace. Prototype rows = args with conditionType (index_grounded, from Prototypes.lua); aura2 = the sheet's provides (function-driven trigger - names are the auto-state fields).",
+  "what": "condition check.variable surface per trigger namespace. Prototype rows = args with conditionType (index_grounded, from Prototypes.lua); aura2 = the sheet's provides + the match-STATE family (UpdateStateWithMatch signature).",
   "emitted": "2026-07-14",
+  "text_addressing": "these surfaces DOUBLE as the dynamic-TEXT catalog: any state var is text-addressable as %var / %<triggernum>.var (e.g. %1.matchCountPerUnit). Plus 4 named tokens: %p progress, %t total, %n name, %i icon (Private.dynamic_texts, Prototypes.lua:8875).",
   "caveat": "aura2 condition-var NAMES via GetTriggerConditions may refine the provides list - live grading of the coverage packet's condition members is the check."
+ },
+ "dynamic_texts": {
+  "p": "progress",
+  "t": "total duration",
+  "n": "name",
+  "i": "icon"
  },
  "surfaces": {
   "Action Usable": {
@@ -1255,6 +1262,50 @@
    "progressType": {
     "conditionType": "provides",
     "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   },
+   "matchCount": {
+    "conditionType": "state",
+    "source": "BuffTrigger2 UpdateStateWithMatch signature"
+   },
+   "unitCount": {
+    "conditionType": "state",
+    "source": "BuffTrigger2 UpdateStateWithMatch signature"
+   },
+   "maxUnitCount": {
+    "conditionType": "state",
+    "source": "BuffTrigger2 UpdateStateWithMatch signature"
+   },
+   "matchCountPerUnit": {
+    "conditionType": "state",
+    "source": "BuffTrigger2 UpdateStateWithMatch signature"
+   },
+   "totalStacks": {
+    "conditionType": "state",
+    "source": "BuffTrigger2 UpdateStateWithMatch signature"
+   },
+   "affected": {
+    "conditionType": "state",
+    "source": "BuffTrigger2 UpdateStateWithMatch signature"
+   },
+   "affectedUnits": {
+    "conditionType": "state",
+    "source": "BuffTrigger2 UpdateStateWithMatch signature"
+   },
+   "unaffected": {
+    "conditionType": "state",
+    "source": "BuffTrigger2 UpdateStateWithMatch signature"
+   },
+   "unaffectedUnits": {
+    "conditionType": "state",
+    "source": "BuffTrigger2 UpdateStateWithMatch signature"
+   },
+   "role": {
+    "conditionType": "state",
+    "source": "BuffTrigger2 UpdateStateWithMatch signature"
+   },
+   "raidMark": {
+    "conditionType": "state",
+    "source": "BuffTrigger2 UpdateStateWithMatch signature"
    }
   }
  }

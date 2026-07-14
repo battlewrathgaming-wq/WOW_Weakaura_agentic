@@ -35,14 +35,26 @@ def main():
     for ev in a2.get("events", []):
         for p in ev.get("options", {}).get("provides", []):
             prov[p["name"]] = {"conditionType": "provides", "source": "BuffTrigger2 UpdateMatchData (sheet provides)"}
+    # the match-STATE family - harvested from UpdateStateWithMatch's own signature (the state fields it sets)
+    bt2 = open(r"F:\games\Ascension_wow\resources\ascension-live\Interface\AddOns\WeakAuras\BuffTrigger2.lua",
+               encoding="utf-8", errors="replace").read()
+    import re
+    m = re.search(r"local function UpdateStateWithMatch\(time, bestMatch, triggerStates, cloneId, ([^)]+)\)", bt2)
+    for name in (m.group(1).split(", ") if m else []):
+        prov.setdefault(name, {"conditionType": "state", "source": "BuffTrigger2 UpdateStateWithMatch signature"})
     out["aura2/Aura"] = prov
 
     table = {"_meta": {"what": "condition check.variable surface per trigger namespace. Prototype rows = args with "
-                               "conditionType (index_grounded, from Prototypes.lua); aura2 = the sheet's provides "
-                               "(function-driven trigger - names are the auto-state fields).",
+                               "conditionType (index_grounded, from Prototypes.lua); aura2 = the sheet's provides + "
+                               "the match-STATE family (UpdateStateWithMatch signature).",
                        "emitted": time.strftime("%Y-%m-%d"),
+                       "text_addressing": "these surfaces DOUBLE as the dynamic-TEXT catalog: any state var is "
+                                          "text-addressable as %var / %<triggernum>.var (e.g. %1.matchCountPerUnit). "
+                                          "Plus 4 named tokens: %p progress, %t total, %n name, %i icon "
+                                          "(Private.dynamic_texts, Prototypes.lua:8875).",
                        "caveat": "aura2 condition-var NAMES via GetTriggerConditions may refine the provides list - "
                                  "live grading of the coverage packet's condition members is the check."},
+             "dynamic_texts": {"p": "progress", "t": "total duration", "n": "name", "i": "icon"},
              "surfaces": out}
     json.dump(table, open(OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     n = sum(len(v) for v in out.values())
