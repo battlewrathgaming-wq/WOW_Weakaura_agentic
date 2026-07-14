@@ -27,6 +27,8 @@ why this lives in `creator/`, not the engine). Curated OVER the sheets, never in
 
 Upstream WeakAuras2: the [wiki](https://github.com/WeakAuras/WeakAuras2/wiki) (custom-trigger guides, %text docs,
 condition semantics — the "why" behind the surfaces) and the [source](https://github.com/weakauras/weakauras2).
+Cold-start page: [Aura Types](https://github.com/WeakAuras/WeakAuras2/wiki/Aura-Types) — the display-model overview
+(the upstream mirror of the `region.*` files here).
 **Caveat: our client runs Ascension's 3.3.5 backport (5.21.2 / iv86)** — upstream documents retail-era WA. Use it for
 orientation and meaning; the INSTALLED FORK stays the authority for every fact (that's what the maps harvest from).
 Invariant 7 applies: nothing is accepted from upstream without a fork-source confirm.
