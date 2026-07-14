@@ -45,3 +45,7 @@ fixed touchstones → `operations/WHAT.md` / `HOW.md` · moving present → `ope
   are bare flags, 187 a value-param. None block classification (it runs on the axes + the spell's other slots). Target-edge
   wiring (what a reset/extend points at — often a *family*, cf. Rearmament "all Traps") still held for a follow-up.
   Battlewrath cracked 190 from the DB (radius the invariant); our carried `effectAura` completed it.
+- **Target-edge wiring — done.** The spell-targeting custom ops (`165/177/192/195` + structural `173/171`) emit a unified
+  **`targets_spell`** edge (`op` + `dst` = the `misc` spell). 351 cross-links, **329 to in-scope COA abilities** — "this
+  spell resets/reduces/extends *that tracked ability*". `modify_cooldown` folded in. "All Traps"-style fan-out is
+  server-side (not in the DBC — Rearmament resolves to one `misc` target); we capture what the data holds, accept the rest.

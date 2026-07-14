@@ -35,6 +35,9 @@ KNOWN_CUSTOM = {
 }
 # codes that apply an aura (carry an effectAura subtype). 190 is Ascension's area-scoped APPLY_AREA_AURA.
 APPLY_AURA_CODES = {6, 190}
+# custom ops whose effectMisc IS the spell they operate ON (modify/reset/reduce a cooldown, extend a duration).
+# 173/171 sit here structurally (misc -> a spell) though their exact verb is unconfirmed - bounded-opaque, honest as-is.
+TARGETS_SPELL_OPS = {165, 177, 192, 195, 173, 171}
 
 
 def _slot(s, key, i):
@@ -98,8 +101,8 @@ def resolve(s, byset):
         # --- derived typed EDGES ---
         if trig:
             edges.append({"rel": "triggers", "dst": str(trig), "slot": i})
-        if name == "modify_cooldown":
-            edges.append({"rel": "modify_cooldown", "dst": str(misc), "slot": i})   # direct-id target (in effectMisc)
+        if code in TARGETS_SPELL_OPS and misc:                  # op targets a specific spell via effectMisc
+            edges.append({"rel": "targets_spell", "op": name, "dst": str(misc), "slot": i})
         if code in APPLY_AURA_CODES:
             edges.append({"rel": "applies_aura", "aura": aura, "aura_name": se.aura_name(aura),
                           "area": code == 190, "durationMs": s.get("durationMs"), "slot": i})
