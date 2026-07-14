@@ -1,0 +1,14 @@
+{
+ "pid": "witchdoctor-shadowhunting-target",
+ "id": "WITCHDOCTOR Shadowhunting - Target Tracker",
+ "uid": "coaWitShadoTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WITCHDOCTOR": true
+   }
+  }
+ }
+}

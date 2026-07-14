@@ -1,0 +1,14 @@
+{
+ "pid": "starcaller-class-target",
+ "id": "STARCALLER Class - Target Tracker",
+ "uid": "coaStaClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "STARCALLER": true
+   }
+  }
+ }
+}

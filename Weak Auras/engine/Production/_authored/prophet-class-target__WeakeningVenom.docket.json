@@ -1,0 +1,29 @@
+{
+ "pid": "prophet-class-target",
+ "id": "Weakening Venom",
+ "uid": "coaProClassWeakeningVen",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "706000"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PROPHET": true
+   }
+  }
+ }
+}

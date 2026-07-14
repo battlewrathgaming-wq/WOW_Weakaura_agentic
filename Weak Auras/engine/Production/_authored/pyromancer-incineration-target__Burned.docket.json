@@ -1,0 +1,29 @@
+{
+ "pid": "pyromancer-incineration-target",
+ "id": "Burned",
+ "uid": "coaPyrIncinBurned",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "572626"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PYROMANCER": true
+   }
+  }
+ }
+}

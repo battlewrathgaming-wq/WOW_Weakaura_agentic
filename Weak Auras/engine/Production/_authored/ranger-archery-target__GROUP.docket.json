@@ -1,0 +1,14 @@
+{
+ "pid": "ranger-archery-target",
+ "id": "RANGER Archery - Target Tracker",
+ "uid": "coaRanArcheTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "RANGER": true
+   }
+  }
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "pid": "guardian-inspiration-target",
+ "id": "GUARDIAN Inspiration - Target Tracker",
+ "uid": "coaGuaInspiTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "GUARDIAN": true
+   }
+  }
+ }
+}

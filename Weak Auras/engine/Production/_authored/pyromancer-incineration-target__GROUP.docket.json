@@ -1,0 +1,14 @@
+{
+ "pid": "pyromancer-incineration-target",
+ "id": "PYROMANCER Incineration - Target Tracker",
+ "uid": "coaPyrIncinTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PYROMANCER": true
+   }
+  }
+ }
+}

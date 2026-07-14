@@ -1,0 +1,29 @@
+{
+ "pid": "starcaller-general-target",
+ "id": "Aspect of the Stars",
+ "uid": "coaStaGenerAspectOfTheS",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "800507"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "STARCALLER": true
+   }
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "pid": "prophet-fortitude-target",
+ "id": "Barbed Stinger",
+ "uid": "coaProFortiBarbedStinge",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "680854"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PROPHET": true
+   }
+  }
+ }
+}

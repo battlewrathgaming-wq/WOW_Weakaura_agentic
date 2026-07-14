@@ -1,0 +1,29 @@
+{
+ "pid": "cultist-godblade-target",
+ "id": "Touch of the Void",
+ "uid": "coaCulGodblTouchOfTheVo",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "572046"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CULTIST": true
+   }
+  }
+ }
+}

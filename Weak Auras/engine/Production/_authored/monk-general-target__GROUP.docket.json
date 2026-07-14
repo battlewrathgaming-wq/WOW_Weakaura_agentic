@@ -1,0 +1,14 @@
+{
+ "pid": "monk-general-target",
+ "id": "MONK General - Target Tracker",
+ "uid": "coaMonGenerTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "MONK": true
+   }
+  }
+ }
+}

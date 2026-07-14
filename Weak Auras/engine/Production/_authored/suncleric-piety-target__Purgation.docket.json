@@ -1,0 +1,29 @@
+{
+ "pid": "suncleric-piety-target",
+ "id": "Purgation",
+ "uid": "coaSunPietyPurgation",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "806025"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SUNCLERIC": true
+   }
+  }
+ }
+}

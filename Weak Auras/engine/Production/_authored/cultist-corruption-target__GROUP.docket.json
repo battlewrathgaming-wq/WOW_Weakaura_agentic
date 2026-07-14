@@ -1,0 +1,14 @@
+{
+ "pid": "cultist-corruption-target",
+ "id": "CULTIST Corruption - Target Tracker",
+ "uid": "coaCulCorruTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CULTIST": true
+   }
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "pid": "chronomancer-infinite-target",
+ "id": "Unmake",
+ "uid": "coaChrInfinUnmake",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "503784"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CHRONOMANCER": true
+   }
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "pid": "witchhunter-general-target",
+ "id": "Brand of the Profane",
+ "uid": "coaWitGenerBrandOfThePr",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "562390"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WITCHHUNTER": true
+   }
+  }
+ }
+}

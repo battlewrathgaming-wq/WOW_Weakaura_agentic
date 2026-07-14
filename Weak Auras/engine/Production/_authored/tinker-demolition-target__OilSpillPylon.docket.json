@@ -1,0 +1,29 @@
+{
+ "pid": "tinker-demolition-target",
+ "id": "Oil Spill Pylon",
+ "uid": "coaTinDemolOilSpillPylo",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "707290"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "TINKER": true
+   }
+  }
+ }
+}

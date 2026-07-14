@@ -1,0 +1,14 @@
+{
+ "pid": "fleshwarden-class-target",
+ "id": "FLESHWARDEN Class - Target Tracker",
+ "uid": "coaFleClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "FLESHWARDEN": true
+   }
+  }
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "pid": "tinker-invention-target",
+ "id": "TINKER Invention - Target Tracker",
+ "uid": "coaTinInvenTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "TINKER": true
+   }
+  }
+ }
+}

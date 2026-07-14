@@ -1,0 +1,29 @@
+{
+ "pid": "chronomancer-class-target",
+ "id": "Gravity Bomb",
+ "uid": "coaChrClassGravityBomb",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "801281"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CHRONOMANCER": true
+   }
+  }
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "pid": "tinker-mechanics-target",
+ "id": "TINKER Mechanics - Target Tracker",
+ "uid": "coaTinMechaTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "TINKER": true
+   }
+  }
+ }
+}

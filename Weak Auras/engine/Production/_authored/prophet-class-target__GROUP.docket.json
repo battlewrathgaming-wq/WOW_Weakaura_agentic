@@ -1,0 +1,14 @@
+{
+ "pid": "prophet-class-target",
+ "id": "PROPHET Class - Target Tracker",
+ "uid": "coaProClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PROPHET": true
+   }
+  }
+ }
+}

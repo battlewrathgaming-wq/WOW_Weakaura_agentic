@@ -1,0 +1,14 @@
+{
+ "pid": "wildwalker-geomancy-target",
+ "id": "WILDWALKER Geomancy - Target Tracker",
+ "uid": "coaWilGeomaTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WILDWALKER": true
+   }
+  }
+ }
+}

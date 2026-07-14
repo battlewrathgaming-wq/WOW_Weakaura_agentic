@@ -1,0 +1,14 @@
+{
+ "pid": "fleshwarden-defiance-target",
+ "id": "FLESHWARDEN Defiance - Target Tracker",
+ "uid": "coaFleDefiaTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "FLESHWARDEN": true
+   }
+  }
+ }
+}

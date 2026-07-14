@@ -1,0 +1,29 @@
+{
+ "pid": "spiritmage-general-target",
+ "id": "Cinderwake",
+ "uid": "coaSpiGenerCinderwake",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "808023"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SPIRITMAGE": true
+   }
+  }
+ }
+}

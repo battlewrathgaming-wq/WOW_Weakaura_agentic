@@ -1,0 +1,14 @@
+{
+ "pid": "barbarian-headhunting-target",
+ "id": "BARBARIAN Headhunting - Target Tracker",
+ "uid": "coaBarHeadhTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "BARBARIAN": true
+   }
+  }
+ }
+}

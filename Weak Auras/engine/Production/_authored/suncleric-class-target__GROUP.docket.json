@@ -1,0 +1,14 @@
+{
+ "pid": "suncleric-class-target",
+ "id": "SUNCLERIC Class - Target Tracker",
+ "uid": "coaSunClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SUNCLERIC": true
+   }
+  }
+ }
+}

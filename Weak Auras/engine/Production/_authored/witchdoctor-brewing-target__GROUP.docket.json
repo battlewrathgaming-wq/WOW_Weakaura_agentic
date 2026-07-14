@@ -1,0 +1,14 @@
+{
+ "pid": "witchdoctor-brewing-target",
+ "id": "WITCHDOCTOR Brewing - Target Tracker",
+ "uid": "coaWitBrewiTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WITCHDOCTOR": true
+   }
+  }
+ }
+}

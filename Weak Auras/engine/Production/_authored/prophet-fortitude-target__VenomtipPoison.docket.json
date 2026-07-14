@@ -1,0 +1,29 @@
+{
+ "pid": "prophet-fortitude-target",
+ "id": "Venomtip Poison",
+ "uid": "coaProFortiVenomtipPois",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "572058"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PROPHET": true
+   }
+  }
+ }
+}

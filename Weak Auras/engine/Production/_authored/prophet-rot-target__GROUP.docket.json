@@ -1,0 +1,14 @@
+{
+ "pid": "prophet-rot-target",
+ "id": "PROPHET Rot - Target Tracker",
+ "uid": "coaProRotTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PROPHET": true
+   }
+  }
+ }
+}

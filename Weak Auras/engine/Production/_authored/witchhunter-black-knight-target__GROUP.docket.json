@@ -1,0 +1,14 @@
+{
+ "pid": "witchhunter-black-knight-target",
+ "id": "WITCHHUNTER Black Knight - Target Tracker",
+ "uid": "coaWitBlackTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WITCHHUNTER": true
+   }
+  }
+ }
+}

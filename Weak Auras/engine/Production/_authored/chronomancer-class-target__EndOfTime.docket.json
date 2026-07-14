@@ -1,0 +1,29 @@
+{
+ "pid": "chronomancer-class-target",
+ "id": "End of Time",
+ "uid": "coaChrClassEndOfTime",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "525050"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CHRONOMANCER": true
+   }
+  }
+ }
+}

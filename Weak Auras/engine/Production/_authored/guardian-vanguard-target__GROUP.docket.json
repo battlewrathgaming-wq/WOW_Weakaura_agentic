@@ -1,0 +1,14 @@
+{
+ "pid": "guardian-vanguard-target",
+ "id": "GUARDIAN Vanguard - Target Tracker",
+ "uid": "coaGuaVanguTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "GUARDIAN": true
+   }
+  }
+ }
+}

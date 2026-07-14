@@ -1,0 +1,14 @@
+{
+ "pid": "sonofarugal-accursed-target",
+ "id": "SONOFARUGAL Accursed - Target Tracker",
+ "uid": "coaSonAccurTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SONOFARUGAL": true
+   }
+  }
+ }
+}

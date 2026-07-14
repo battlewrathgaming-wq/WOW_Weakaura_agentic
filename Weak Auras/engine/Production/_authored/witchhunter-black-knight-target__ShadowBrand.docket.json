@@ -1,0 +1,29 @@
+{
+ "pid": "witchhunter-black-knight-target",
+ "id": "Shadow Brand",
+ "uid": "coaWitBlackShadowBrand",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "680517"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WITCHHUNTER": true
+   }
+  }
+ }
+}

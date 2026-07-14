@@ -1,0 +1,14 @@
+{
+ "pid": "witchhunter-boltslinger-target",
+ "id": "WITCHHUNTER Boltslinger - Target Tracker",
+ "uid": "coaWitBoltsTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WITCHHUNTER": true
+   }
+  }
+ }
+}

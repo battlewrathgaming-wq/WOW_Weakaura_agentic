@@ -1,0 +1,14 @@
+{
+ "pid": "starcaller-sentinel-target",
+ "id": "STARCALLER Sentinel - Target Tracker",
+ "uid": "coaStaSentiTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "STARCALLER": true
+   }
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "pid": "wildwalker-life-target",
+ "id": "Bioerosion",
+ "uid": "coaWilLifeBioerosion",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "575848"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WILDWALKER": true
+   }
+  }
+ }
+}

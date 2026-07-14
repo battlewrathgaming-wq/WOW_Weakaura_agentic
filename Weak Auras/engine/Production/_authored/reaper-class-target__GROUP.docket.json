@@ -1,0 +1,14 @@
+{
+ "pid": "reaper-class-target",
+ "id": "REAPER Class - Target Tracker",
+ "uid": "coaReaClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "REAPER": true
+   }
+  }
+ }
+}

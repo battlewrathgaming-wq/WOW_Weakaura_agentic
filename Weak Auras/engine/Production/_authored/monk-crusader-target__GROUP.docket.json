@@ -1,0 +1,14 @@
+{
+ "pid": "monk-crusader-target",
+ "id": "MONK Crusader - Target Tracker",
+ "uid": "coaMonCrusaTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "MONK": true
+   }
+  }
+ }
+}

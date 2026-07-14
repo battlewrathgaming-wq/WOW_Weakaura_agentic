@@ -1,0 +1,29 @@
+{
+ "pid": "pyromancer-general-target",
+ "id": "Spellburn",
+ "uid": "coaPyrGenerSpellburn",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "800808"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PYROMANCER": true
+   }
+  }
+ }
+}

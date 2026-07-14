@@ -1,0 +1,14 @@
+{
+ "pid": "prophet-venom-target",
+ "id": "PROPHET Venom - Target Tracker",
+ "uid": "coaProVenomTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PROPHET": true
+   }
+  }
+ }
+}

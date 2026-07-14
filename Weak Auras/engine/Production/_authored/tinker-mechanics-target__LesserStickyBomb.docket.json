@@ -1,0 +1,29 @@
+{
+ "pid": "tinker-mechanics-target",
+ "id": "Lesser Sticky Bomb",
+ "uid": "coaTinMechaLesserSticky",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500612"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "TINKER": true
+   }
+  }
+ }
+}

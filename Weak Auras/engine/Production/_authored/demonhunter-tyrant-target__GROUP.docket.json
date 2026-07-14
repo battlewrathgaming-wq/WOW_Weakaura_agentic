@@ -1,0 +1,14 @@
+{
+ "pid": "demonhunter-tyrant-target",
+ "id": "DEMONHUNTER Tyrant - Target Tracker",
+ "uid": "coaDemTyranTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "DEMONHUNTER": true
+   }
+  }
+ }
+}

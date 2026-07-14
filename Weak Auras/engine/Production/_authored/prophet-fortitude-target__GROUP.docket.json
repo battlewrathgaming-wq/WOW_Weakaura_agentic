@@ -1,0 +1,14 @@
+{
+ "pid": "prophet-fortitude-target",
+ "id": "PROPHET Fortitude - Target Tracker",
+ "uid": "coaProFortiTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PROPHET": true
+   }
+  }
+ }
+}

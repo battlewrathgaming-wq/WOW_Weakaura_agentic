@@ -1,0 +1,14 @@
+{
+ "pid": "witchhunter-general-target",
+ "id": "WITCHHUNTER General - Target Tracker",
+ "uid": "coaWitGenerTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WITCHHUNTER": true
+   }
+  }
+ }
+}

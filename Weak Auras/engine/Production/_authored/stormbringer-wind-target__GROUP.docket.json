@@ -1,0 +1,14 @@
+{
+ "pid": "stormbringer-wind-target",
+ "id": "STORMBRINGER Wind - Target Tracker",
+ "uid": "coaStoWindTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "STORMBRINGER": true
+   }
+  }
+ }
+}

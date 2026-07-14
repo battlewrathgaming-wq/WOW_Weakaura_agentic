@@ -1,0 +1,14 @@
+{
+ "pid": "fleshwarden-war-target",
+ "id": "FLESHWARDEN War - Target Tracker",
+ "uid": "coaFleWarTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "FLESHWARDEN": true
+   }
+  }
+ }
+}

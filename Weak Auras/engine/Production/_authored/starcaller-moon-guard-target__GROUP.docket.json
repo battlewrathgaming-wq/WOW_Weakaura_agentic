@@ -1,0 +1,14 @@
+{
+ "pid": "starcaller-moon-guard-target",
+ "id": "STARCALLER Moon Guard - Target Tracker",
+ "uid": "coaStaMoon TargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "STARCALLER": true
+   }
+  }
+ }
+}

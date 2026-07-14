@@ -1,0 +1,14 @@
+{
+ "pid": "spiritmage-general-target",
+ "id": "SPIRITMAGE General - Target Tracker",
+ "uid": "coaSpiGenerTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SPIRITMAGE": true
+   }
+  }
+ }
+}

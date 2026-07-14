@@ -1,0 +1,14 @@
+{
+ "pid": "monk-oathkeeper-target",
+ "id": "MONK Oathkeeper - Target Tracker",
+ "uid": "coaMonOathkTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "MONK": true
+   }
+  }
+ }
+}

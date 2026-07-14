@@ -1,0 +1,29 @@
+{
+ "pid": "spiritmage-general-target",
+ "id": "Ley Lock",
+ "uid": "coaSpiGenerLeyLock",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "800995"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SPIRITMAGE": true
+   }
+  }
+ }
+}

@@ -101,7 +101,8 @@ def main():
     lsheet = json.load(open(LOAD_SHEET, encoding="utf-8"))
     ltypes = {c["name"]: c.get("type") for c in lsheet.get("conditions", [])}
 
-    subs_base = {"class_lower": cls.lower(), "spec_lower": spec.lower(), "class_token": token, "spec": spec}
+    kebab = lambda s: re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")   # "Black Knight" -> black-knight (pid-clean)
+    subs_base = {"class_lower": kebab(cls), "spec_lower": kebab(spec), "class_token": token, "spec": spec}
     pid = fill(contract["pid"], subs_base)
     os.makedirs(AUTHORED, exist_ok=True)                             # stage reads _authored/ FLAT (machine's contract)
 

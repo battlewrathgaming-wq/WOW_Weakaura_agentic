@@ -1,0 +1,29 @@
+{
+ "pid": "fleshwarden-war-target",
+ "id": "Gored",
+ "uid": "coaFleWarGored",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "680979"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "FLESHWARDEN": true
+   }
+  }
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "pid": "demonhunter-class-target",
+ "id": "DEMONHUNTER Class - Target Tracker",
+ "uid": "coaDemClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "DEMONHUNTER": true
+   }
+  }
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "pid": "cultist-general-target",
+ "id": "CULTIST General - Target Tracker",
+ "uid": "coaCulGenerTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CULTIST": true
+   }
+  }
+ }
+}

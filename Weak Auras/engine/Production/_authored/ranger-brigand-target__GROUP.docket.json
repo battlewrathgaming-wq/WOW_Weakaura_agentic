@@ -1,0 +1,14 @@
+{
+ "pid": "ranger-brigand-target",
+ "id": "RANGER Brigand - Target Tracker",
+ "uid": "coaRanBrigaTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "RANGER": true
+   }
+  }
+ }
+}

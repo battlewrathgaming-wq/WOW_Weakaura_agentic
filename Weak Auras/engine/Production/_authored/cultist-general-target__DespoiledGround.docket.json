@@ -1,0 +1,29 @@
+{
+ "pid": "cultist-general-target",
+ "id": "Despoiled Ground",
+ "uid": "coaCulGenerDespoiledGro",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "805180"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CULTIST": true
+   }
+  }
+ }
+}

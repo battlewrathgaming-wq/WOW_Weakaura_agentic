@@ -1,0 +1,29 @@
+{
+ "pid": "wildwalker-general-target",
+ "id": "Earthquake",
+ "uid": "coaWilGenerEarthquake",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "520412"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WILDWALKER": true
+   }
+  }
+ }
+}

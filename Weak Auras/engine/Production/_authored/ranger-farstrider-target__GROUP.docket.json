@@ -1,0 +1,14 @@
+{
+ "pid": "ranger-farstrider-target",
+ "id": "RANGER Farstrider - Target Tracker",
+ "uid": "coaRanFarstTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "RANGER": true
+   }
+  }
+ }
+}

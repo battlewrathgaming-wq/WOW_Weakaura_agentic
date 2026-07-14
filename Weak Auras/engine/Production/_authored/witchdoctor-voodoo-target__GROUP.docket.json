@@ -1,0 +1,14 @@
+{
+ "pid": "witchdoctor-voodoo-target",
+ "id": "WITCHDOCTOR Voodoo - Target Tracker",
+ "uid": "coaWitVoodoTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WITCHDOCTOR": true
+   }
+  }
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "pid": "pyromancer-draconic-target",
+ "id": "PYROMANCER Draconic - Target Tracker",
+ "uid": "coaPyrDracoTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PYROMANCER": true
+   }
+  }
+ }
+}

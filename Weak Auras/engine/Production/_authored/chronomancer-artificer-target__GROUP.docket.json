@@ -1,0 +1,14 @@
+{
+ "pid": "chronomancer-artificer-target",
+ "id": "CHRONOMANCER Artificer - Target Tracker",
+ "uid": "coaChrArtifTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CHRONOMANCER": true
+   }
+  }
+ }
+}

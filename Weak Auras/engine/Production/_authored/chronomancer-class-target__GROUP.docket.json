@@ -1,0 +1,14 @@
+{
+ "pid": "chronomancer-class-target",
+ "id": "CHRONOMANCER Class - Target Tracker",
+ "uid": "coaChrClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CHRONOMANCER": true
+   }
+  }
+ }
+}

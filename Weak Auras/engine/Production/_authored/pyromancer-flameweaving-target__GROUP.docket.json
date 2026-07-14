@@ -1,0 +1,14 @@
+{
+ "pid": "pyromancer-flameweaving-target",
+ "id": "PYROMANCER Flameweaving - Target Tracker",
+ "uid": "coaPyrFlameTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PYROMANCER": true
+   }
+  }
+ }
+}

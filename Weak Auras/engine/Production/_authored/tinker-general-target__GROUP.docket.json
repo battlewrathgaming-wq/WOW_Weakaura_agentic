@@ -1,0 +1,14 @@
+{
+ "pid": "tinker-general-target",
+ "id": "TINKER General - Target Tracker",
+ "uid": "coaTinGenerTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "TINKER": true
+   }
+  }
+ }
+}

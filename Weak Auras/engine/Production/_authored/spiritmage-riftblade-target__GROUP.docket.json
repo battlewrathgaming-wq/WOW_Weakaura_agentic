@@ -1,0 +1,14 @@
+{
+ "pid": "spiritmage-riftblade-target",
+ "id": "SPIRITMAGE Riftblade - Target Tracker",
+ "uid": "coaSpiRiftbTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SPIRITMAGE": true
+   }
+  }
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "pid": "cultist-godblade-target",
+ "id": "CULTIST Godblade - Target Tracker",
+ "uid": "coaCulGodblTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CULTIST": true
+   }
+  }
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "pid": "ranger-brigand-target",
+ "id": "Bounty",
+ "uid": "coaRanBrigaBounty",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "560722"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "RANGER": true
+   }
+  }
+ }
+}

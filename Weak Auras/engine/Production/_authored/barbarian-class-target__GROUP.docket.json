@@ -1,0 +1,14 @@
+{
+ "pid": "barbarian-class-target",
+ "id": "BARBARIAN Class - Target Tracker",
+ "uid": "coaBarClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "BARBARIAN": true
+   }
+  }
+ }
+}

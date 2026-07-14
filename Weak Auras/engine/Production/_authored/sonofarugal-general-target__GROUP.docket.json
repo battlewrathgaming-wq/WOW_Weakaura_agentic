@@ -1,0 +1,14 @@
+{
+ "pid": "sonofarugal-general-target",
+ "id": "SONOFARUGAL General - Target Tracker",
+ "uid": "coaSonGenerTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SONOFARUGAL": true
+   }
+  }
+ }
+}

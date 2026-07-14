@@ -1,0 +1,14 @@
+{
+ "pid": "wildwalker-class-target",
+ "id": "WILDWALKER Class - Target Tracker",
+ "uid": "coaWilClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WILDWALKER": true
+   }
+  }
+ }
+}

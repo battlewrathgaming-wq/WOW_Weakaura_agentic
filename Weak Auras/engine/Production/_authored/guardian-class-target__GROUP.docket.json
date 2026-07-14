@@ -1,0 +1,14 @@
+{
+ "pid": "guardian-class-target",
+ "id": "GUARDIAN Class - Target Tracker",
+ "uid": "coaGuaClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "GUARDIAN": true
+   }
+  }
+ }
+}

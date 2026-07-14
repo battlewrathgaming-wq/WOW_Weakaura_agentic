@@ -1,0 +1,14 @@
+{
+ "pid": "wildwalker-general-target",
+ "id": "WILDWALKER General - Target Tracker",
+ "uid": "coaWilGenerTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WILDWALKER": true
+   }
+  }
+ }
+}

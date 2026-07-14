@@ -1,0 +1,14 @@
+{
+ "pid": "spiritmage-runic-target",
+ "id": "SPIRITMAGE Runic - Target Tracker",
+ "uid": "coaSpiRunicTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SPIRITMAGE": true
+   }
+  }
+ }
+}

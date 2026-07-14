@@ -1,0 +1,14 @@
+{
+ "pid": "ranger-general-target",
+ "id": "RANGER General - Target Tracker",
+ "uid": "coaRanGenerTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "RANGER": true
+   }
+  }
+ }
+}

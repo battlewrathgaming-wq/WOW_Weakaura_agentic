@@ -1,0 +1,29 @@
+{
+ "pid": "suncleric-seraphim-target",
+ "id": "Calm",
+ "uid": "coaSunSerapCalm",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "804057"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SUNCLERIC": true
+   }
+  }
+ }
+}

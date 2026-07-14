@@ -1,0 +1,14 @@
+{
+ "pid": "guardian-gladiator-target",
+ "id": "GUARDIAN Gladiator - Target Tracker",
+ "uid": "coaGuaGladiTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "GUARDIAN": true
+   }
+  }
+ }
+}

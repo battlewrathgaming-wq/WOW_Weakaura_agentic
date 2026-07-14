@@ -1,0 +1,14 @@
+{
+ "pid": "necromancer-animation-target",
+ "id": "NECROMANCER Animation - Target Tracker",
+ "uid": "coaNecAnimaTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "NECROMANCER": true
+   }
+  }
+ }
+}

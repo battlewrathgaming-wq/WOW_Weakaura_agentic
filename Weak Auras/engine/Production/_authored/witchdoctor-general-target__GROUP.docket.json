@@ -1,0 +1,14 @@
+{
+ "pid": "witchdoctor-general-target",
+ "id": "WITCHDOCTOR General - Target Tracker",
+ "uid": "coaWitGenerTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WITCHDOCTOR": true
+   }
+  }
+ }
+}

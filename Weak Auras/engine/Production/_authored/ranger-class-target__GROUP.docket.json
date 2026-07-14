@@ -1,0 +1,14 @@
+{
+ "pid": "ranger-class-target",
+ "id": "RANGER Class - Target Tracker",
+ "uid": "coaRanClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "RANGER": true
+   }
+  }
+ }
+}

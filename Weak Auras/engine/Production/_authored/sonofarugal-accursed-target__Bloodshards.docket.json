@@ -1,0 +1,29 @@
+{
+ "pid": "sonofarugal-accursed-target",
+ "id": "Bloodshards",
+ "uid": "coaSonAccurBloodshards",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "504741"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SONOFARUGAL": true
+   }
+  }
+ }
+}

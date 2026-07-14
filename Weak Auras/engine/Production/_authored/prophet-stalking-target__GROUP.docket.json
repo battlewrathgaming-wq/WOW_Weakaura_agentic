@@ -1,0 +1,14 @@
+{
+ "pid": "prophet-stalking-target",
+ "id": "PROPHET Stalking - Target Tracker",
+ "uid": "coaProStalkTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PROPHET": true
+   }
+  }
+ }
+}

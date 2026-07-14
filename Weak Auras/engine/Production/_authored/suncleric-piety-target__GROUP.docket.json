@@ -1,0 +1,14 @@
+{
+ "pid": "suncleric-piety-target",
+ "id": "SUNCLERIC Piety - Target Tracker",
+ "uid": "coaSunPietyTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SUNCLERIC": true
+   }
+  }
+ }
+}

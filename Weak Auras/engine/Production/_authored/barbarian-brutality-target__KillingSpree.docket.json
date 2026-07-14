@@ -1,0 +1,29 @@
+{
+ "pid": "barbarian-brutality-target",
+ "id": "Killing Spree",
+ "uid": "coaBarBrutaKillingSpree",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "850021"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "BARBARIAN": true
+   }
+  }
+ }
+}

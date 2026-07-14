@@ -1,0 +1,14 @@
+{
+ "pid": "suncleric-blessings-target",
+ "id": "SUNCLERIC Blessings - Target Tracker",
+ "uid": "coaSunBlessTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SUNCLERIC": true
+   }
+  }
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "pid": "witchhunter-inquisition-target",
+ "id": "WITCHHUNTER Inquisition - Target Tracker",
+ "uid": "coaWitInquiTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WITCHHUNTER": true
+   }
+  }
+ }
+}

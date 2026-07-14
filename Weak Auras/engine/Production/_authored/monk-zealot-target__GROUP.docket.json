@@ -1,0 +1,14 @@
+{
+ "pid": "monk-zealot-target",
+ "id": "MONK Zealot - Target Tracker",
+ "uid": "coaMonZealoTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "MONK": true
+   }
+  }
+ }
+}

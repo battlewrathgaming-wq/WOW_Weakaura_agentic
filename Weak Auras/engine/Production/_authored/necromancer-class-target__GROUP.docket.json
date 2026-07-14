@@ -1,0 +1,14 @@
+{
+ "pid": "necromancer-class-target",
+ "id": "NECROMANCER Class - Target Tracker",
+ "uid": "coaNecClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "NECROMANCER": true
+   }
+  }
+ }
+}

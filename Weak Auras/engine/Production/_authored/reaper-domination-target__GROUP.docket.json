@@ -1,0 +1,14 @@
+{
+ "pid": "reaper-domination-target",
+ "id": "REAPER Domination - Target Tracker",
+ "uid": "coaReaDominTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "REAPER": true
+   }
+  }
+ }
+}

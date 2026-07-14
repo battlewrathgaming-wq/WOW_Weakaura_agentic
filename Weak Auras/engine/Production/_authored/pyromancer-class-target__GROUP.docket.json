@@ -1,0 +1,14 @@
+{
+ "pid": "pyromancer-class-target",
+ "id": "PYROMANCER Class - Target Tracker",
+ "uid": "coaPyrClassTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PYROMANCER": true
+   }
+  }
+ }
+}

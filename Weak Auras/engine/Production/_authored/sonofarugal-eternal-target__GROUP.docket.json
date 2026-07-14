@@ -1,0 +1,14 @@
+{
+ "pid": "sonofarugal-eternal-target",
+ "id": "SONOFARUGAL Eternal - Target Tracker",
+ "uid": "coaSonEternTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SONOFARUGAL": true
+   }
+  }
+ }
+}

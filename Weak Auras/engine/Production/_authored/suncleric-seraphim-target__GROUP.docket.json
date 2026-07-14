@@ -1,0 +1,14 @@
+{
+ "pid": "suncleric-seraphim-target",
+ "id": "SUNCLERIC Seraphim - Target Tracker",
+ "uid": "coaSunSerapTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SUNCLERIC": true
+   }
+  }
+ }
+}

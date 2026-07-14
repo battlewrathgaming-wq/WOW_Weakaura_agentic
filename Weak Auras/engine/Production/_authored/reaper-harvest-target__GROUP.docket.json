@@ -1,0 +1,14 @@
+{
+ "pid": "reaper-harvest-target",
+ "id": "REAPER Harvest - Target Tracker",
+ "uid": "coaReaHarveTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "REAPER": true
+   }
+  }
+ }
+}

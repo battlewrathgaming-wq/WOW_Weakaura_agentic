@@ -1,0 +1,14 @@
+{
+ "pid": "necromancer-rime-target",
+ "id": "NECROMANCER Rime - Target Tracker",
+ "uid": "coaNecRimeTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "NECROMANCER": true
+   }
+  }
+ }
+}

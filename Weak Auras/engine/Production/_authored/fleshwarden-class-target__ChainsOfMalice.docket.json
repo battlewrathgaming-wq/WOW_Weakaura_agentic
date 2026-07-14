@@ -1,0 +1,29 @@
+{
+ "pid": "fleshwarden-class-target",
+ "id": "Chains of Malice",
+ "uid": "coaFleClassChainsOfMali",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "803185"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "FLESHWARDEN": true
+   }
+  }
+ }
+}

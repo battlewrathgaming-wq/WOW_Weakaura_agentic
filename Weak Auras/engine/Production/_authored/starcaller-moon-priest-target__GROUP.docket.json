@@ -1,0 +1,14 @@
+{
+ "pid": "starcaller-moon-priest-target",
+ "id": "STARCALLER Moon Priest - Target Tracker",
+ "uid": "coaStaMoon TargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "STARCALLER": true
+   }
+  }
+ }
+}

@@ -1,0 +1,14 @@
+{
+ "pid": "tinker-demolition-target",
+ "id": "TINKER Demolition - Target Tracker",
+ "uid": "coaTinDemolTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "TINKER": true
+   }
+  }
+ }
+}

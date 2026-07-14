@@ -1,0 +1,14 @@
+{
+ "pid": "starcaller-warden-target",
+ "id": "STARCALLER Warden - Target Tracker",
+ "uid": "coaStaWardeTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "STARCALLER": true
+   }
+  }
+ }
+}

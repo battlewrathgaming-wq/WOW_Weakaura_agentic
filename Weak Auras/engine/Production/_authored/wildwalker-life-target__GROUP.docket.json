@@ -1,0 +1,14 @@
+{
+ "pid": "wildwalker-life-target",
+ "id": "WILDWALKER Life - Target Tracker",
+ "uid": "coaWilLifeTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "WILDWALKER": true
+   }
+  }
+ }
+}

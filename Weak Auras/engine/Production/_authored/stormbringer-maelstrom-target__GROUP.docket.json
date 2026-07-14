@@ -1,0 +1,14 @@
+{
+ "pid": "stormbringer-maelstrom-target",
+ "id": "STORMBRINGER Maelstrom - Target Tracker",
+ "uid": "coaStoMaelsTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "STORMBRINGER": true
+   }
+  }
+ }
+}

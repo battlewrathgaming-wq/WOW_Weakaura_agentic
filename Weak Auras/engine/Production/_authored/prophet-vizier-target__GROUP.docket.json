@@ -1,0 +1,14 @@
+{
+ "pid": "prophet-vizier-target",
+ "id": "PROPHET Vizier - Target Tracker",
+ "uid": "coaProVizieTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PROPHET": true
+   }
+  }
+ }
+}

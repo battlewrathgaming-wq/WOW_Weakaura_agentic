@@ -1,0 +1,14 @@
+{
+ "pid": "barbarian-brutality-target",
+ "id": "BARBARIAN Brutality - Target Tracker",
+ "uid": "coaBarBrutaTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "BARBARIAN": true
+   }
+  }
+ }
+}

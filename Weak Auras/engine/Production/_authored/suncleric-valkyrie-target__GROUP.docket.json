@@ -1,0 +1,14 @@
+{
+ "pid": "suncleric-valkyrie-target",
+ "id": "SUNCLERIC Valkyrie - Target Tracker",
+ "uid": "coaSunValkyTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SUNCLERIC": true
+   }
+  }
+ }
+}

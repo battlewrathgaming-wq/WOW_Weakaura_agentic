@@ -1,0 +1,14 @@
+{
+ "pid": "stormbringer-general-target",
+ "id": "STORMBRINGER General - Target Tracker",
+ "uid": "coaStoGenerTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "STORMBRINGER": true
+   }
+  }
+ }
+}

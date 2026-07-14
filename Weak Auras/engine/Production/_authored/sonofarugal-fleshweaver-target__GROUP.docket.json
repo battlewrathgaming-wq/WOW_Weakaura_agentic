@@ -1,0 +1,14 @@
+{
+ "pid": "sonofarugal-fleshweaver-target",
+ "id": "SONOFARUGAL Fleshweaver - Target Tracker",
+ "uid": "coaSonFleshTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "SONOFARUGAL": true
+   }
+  }
+ }
+}

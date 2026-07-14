@@ -1,0 +1,14 @@
+{
+ "pid": "stormbringer-lightning-target",
+ "id": "STORMBRINGER Lightning - Target Tracker",
+ "uid": "coaStoLightTargetGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "STORMBRINGER": true
+   }
+  }
+ }
+}
