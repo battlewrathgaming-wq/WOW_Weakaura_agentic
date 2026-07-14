@@ -1,0 +1,2 @@
+{"pid": "venomancer-procs", "group": "Venomancer Procs", "members": ["Tome of Ahn'kahet"], "chars": 942, "when": "2026-07-14T05:17:17", "output": "Docket_complete\\venomancer-procs.txt"}
+{"pid": "necromancer-death-target", "group": "NECROMANCER Death - Target Tracker", "members": ["Blight", "Festering Decay", "Flesh to Worms", "Harvest Plague", "Lichplague", "Parasites", "Plague of Undeath"], "chars": 1336, "when": "2026-07-14T15:23:03", "output": "Docket_complete\\necromancer-death-target.txt"}
