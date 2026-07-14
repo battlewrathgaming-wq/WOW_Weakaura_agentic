@@ -1,0 +1,14 @@
+{
+ "pid": "necromancer-oneoff",
+ "id": "Necromancer Oneoffs",
+ "uid": "coaNecOneoffGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "NECROMANCER": true
+   }
+  }
+ }
+}

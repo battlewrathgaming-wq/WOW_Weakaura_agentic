@@ -1,0 +1,34 @@
+{
+ "pid": "necromancer-oneoff",
+ "id": "Festering Decay - missing",
+ "uid": "coaNecOneoffFDMiss",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "806324"
+    ],
+    "use_matchesShowOn": true,
+    "matchesShowOn": "showOnMissing"
+   }
+  }
+ ],
+ "display": {
+  "desaturate": true
+ },
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "NECROMANCER": true
+   }
+  }
+ }
+}
