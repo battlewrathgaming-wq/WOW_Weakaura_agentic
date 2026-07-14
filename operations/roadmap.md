@@ -18,11 +18,17 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
   family_effect · targets_spell); Pass 2 signal view; the bucket map; custom-effect gaps named or accepted.
 - ✅ **First product through the machine (2026-07-14)** — Target tracker contract → populate → gate → stage → pickup →
   the Necro/Death 7-icon pack; two live catches fixed at the right layers (live-key gate tier; load-shape finding).
+- **★ HEADING: contracts as repeatable mechanisms of code construct.** The creation pipeline's core primitive, proven
+  in three species on 2026-07-14 (bucket contract pressed per class:spec · micro-contract for one-offs · the coverage
+  matrix as a verification contract): **select + emit, written once, pressed forever** — populate the compiler, gate +
+  canon the type-checker and linker. The remaining creation-pipeline work rides this: the **Ready tracker** contract
+  (spell-trigger palette file + its liveness first — `trigger_args`/`condition_vars` already harvested), the **Self
+  tracker** (boons · proc-on-consumer · payoff pairs), **resource bars**, `spellknown` per-member gates, and the batch
+  press (all classes × specs unattended — the defined-I/O end-state).
 - **Enrich** the class:spec tables + taxonomy with the resolved signal + edges; name-map the remaining DBC enum codes.
 - **Graduate** the classification tool + contracts from `creator/planning/` into `creator/` once the design firms up.
-- **Next contracts** — Ready tracker (cooldown progress; needs its live-key harvest) · Self tracker · resource bars.
-- **Pending in-game:** the corrected pack's live re-import; the specialization list's names (20 index entries) →
-  wire `load.specialization`.
+- **Pending in-game:** the specialization list's names (20 index entries) → wire `load.specialization`; re-import the
+  re-pressed packs at convenience (subRegions fix).
 
 ## Further
 
