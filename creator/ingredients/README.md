@@ -29,6 +29,13 @@ ask → pick the trigger type (what native signal tracks it) → compose CATCH /
 region (how it looks) + its reactive surface (what conditions may change) → docket (micro-contract) → populate → gate →
 machine → live. The **asset library** (proven compositions: the Target tracker, the tome) is advisory reference, never a gate.
 
+## The form and the chain (read these first)
+
+- `docket.blank.md` — **what a single slot item looks like**: the blank form, slot by slot, who reads each, + a
+  live-proven minimal example. The table structure to engrain.
+- `custody.md` — **how it works, forever**: the chain of custody from author to live, what each station may and may
+  not do, the proofs behind each claim, and where a fix goes when something's wrong.
+
 ## Coverage — the aura's main levers (the UI's own top level)
 
 - **trigger** — `trigger.aura2.md` (the buff/debuff window reader; 66% of real-world authorship)
