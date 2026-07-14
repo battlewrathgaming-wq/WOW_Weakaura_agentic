@@ -75,7 +75,9 @@ ROWS = [
      # never enumerates - the aura2-residue story's cousin). Harvest boundary recorded; spellId route used.
  ("icon", "custom status static-true", [T("custom", "Custom", {"custom_type": "status", "check": "update",
      "custom": "function() return true end"})], {}),
- ("icon", "addons GTFO High Damage", [T("addons", "GTFO", {"use_alertType": True, "alertType": "High Damage"})], {}),
+ ("icon", "addons GTFO High Damage", [T("addons", "GTFO", {"use_alertType": True, "alertType": 1})], {}),
+     # FINDING (live, V17): a select stores the KEY - gtfo_types is array-keyed, so 1 = High Damage. The display
+     # string shipped and landed as an unset select. Gate now validates list-domains as 1-based indices.
 
  # -- bars --
  ("aurabar", "a2 baseline + icon LEFT", [T("aura2", "Aura", A())], {"display": {"icon": True, "icon_side": "LEFT"}}),

@@ -101,7 +101,15 @@ def gate(docket, contract=None, classdata=None, domains=None, livekeys=None):
             dom = io.get("domain")
             if isinstance(dom, str):                          # a domain REFERENCE -> resolve via domains.json
                 dom = domains.get(dom)
-            if isinstance(dom, dict):                         # a SELECT box: the value must be one of the domain's
+            if isinstance(dom, list):                         # ARRAY-keyed Lua domain ({[1]=..}): the select stores the
+                vals = list(val.keys()) if isinstance(val, dict) else _as_list(val)   # 1-based INDEX - displays are not values
+                def _ok(x):
+                    return (isinstance(x, int) or str(x).lstrip("-").isdigit()) and 1 <= int(x) <= len(dom)
+                bad = [x for x in vals if not _ok(x)]
+                mark(fp, "known-value" if not bad else "invalid",
+                     "" if not bad else "value(s) %s - this select stores the KEY (1..%d): %s - incorrect input"
+                     % (bad, len(dom), ", ".join("%d=%s" % (i + 1, v) for i, v in enumerate(dom))))
+            elif isinstance(dom, dict):                       # a SELECT box: the value must be one of the domain's
                 vals = list(val.keys()) if isinstance(val, dict) else _as_list(val)   # multiselect stored form
                 bad = [x for x in vals if str(x) not in dom and x not in dom]         #  ({key: true}) checks its KEYS
                 mark(fp, "known-value" if not bad else "invalid",

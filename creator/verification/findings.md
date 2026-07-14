@@ -36,6 +36,15 @@ progresstexture 2 · stopmotion 1 · model 1 · empty 2.
   (GenericTrigger builds the CLEU registration from them in code). Their harvest = a GenericTrigger code-scan
   (live_keys' method), when combatlog earns its palette file.
 
+## 2026-07-14 — LIVE GRADING (Battlewrath, in-game; packet landed clean in whole)
+
+6. **V17 (GTFO alertType): a SELECT stores the KEY, not the display string.** Landed as an unset select —
+   `"High Damage"` shipped, but `gtfo_types` is array-keyed (`1=High Damage`). Root: an array-keyed Lua domain
+   serializes to a JSON LIST → displays kept, keys became positions → the gate's dict-only domain check couldn't run.
+   The keys are DERIVABLE (list domain ⇒ 1-based indices), so: **FIXED at the gate** (list-domains validated as
+   indices, the verdict note carries the key→display mapping) + the row corrected (`alertType: 1`). Demonstrated:
+   the old form now BLOCKS. Class closed for every array-keyed select domain, not just GTFO.
+
 ## Awaiting the live half
 
 Import `Docket_complete/verification-coverage.txt`. The checklist IS the member ids. Watch especially:
