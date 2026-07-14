@@ -1,0 +1,29 @@
+{
+ "pid": "reaper-soul-target",
+ "id": "Soul Shock",
+ "uid": "coaReaSoulSoulShock",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "803989"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "REAPER": true
+   }
+  }
+ }
+}

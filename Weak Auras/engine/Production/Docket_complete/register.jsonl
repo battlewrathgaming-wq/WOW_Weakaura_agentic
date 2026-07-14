@@ -5,3 +5,5 @@
 {"pid": "venomancer-procs", "group": "Venomancer Procs", "members": ["Tome of Ahn'kahet"], "chars": 958, "when": "2026-07-14T16:02:39", "output": "Docket_complete\\venomancer-procs.txt"}
 {"pid": "necromancer-death-target", "group": "NECROMANCER Death - Target Tracker", "members": ["Blight", "Festering Decay", "Flesh to Worms", "Harvest Plague", "Lichplague", "Parasites", "Plague of Undeath"], "chars": 1362, "when": "2026-07-14T16:38:25", "output": "Docket_complete\\necromancer-death-target.txt"}
 {"pid": "venomancer-procs", "group": "Venomancer Procs", "members": ["Tome of Ahn'kahet"], "chars": 964, "when": "2026-07-14T16:38:25", "output": "Docket_complete\\venomancer-procs.txt"}
+{"pid": "reaper-soul-target", "group": "REAPER Soul - Target Tracker", "members": ["Anima Ambush", "Chasing Death", "Soul Shock", "Soulrend", "Soulrot"], "chars": 1269, "when": "2026-07-14T17:11:39", "output": "Docket_complete\\reaper-soul-target.txt"}
+{"pid": "necromancer-oneoff", "group": "Necromancer Oneoffs", "members": ["Festering Decay - missing"], "chars": 1033, "when": "2026-07-14T17:12:55", "output": "Docket_complete\\necromancer-oneoff.txt"}
