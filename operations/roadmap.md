@@ -40,9 +40,12 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
   spec × spell × **4 styles**, pressed as SINGLE-aura import strings; a static HTML page (class → spec → spell search →
   style → copy). No server — per-class JSON chunks; hosting precedent = bisbeard.com (the ability-index export);
   the Discord pin links to it. Machinery mostly exists (signal→config, contracts, the codec's single-aura encode —
-  a batch-press variant). **The open design = the 4 STYLES (the taste seat, formalized):** likely the attention ladder
-  (Minimal · Standard · Bold · Loud) or form variants (icon/bar/icon+text) — defined once as shared emit templates,
-  the whole catalog styled forever. This is the "users arrange their own UI" MVP vision's final face.
+  a batch-press variant). **The 4 STYLES = SHOW-LOGIC presets (Battlewrath's correction — basic logic, not looks):**
+  1) always-on dim-when-unavailable · 2) appear-when-ready · 3) appear-while-running · 4) appear-at-the-moment
+  (proc/usable). Pure lever presets on proven surfaces (`genericShowOn` / `matchesShowOn` + a desat/alpha condition) —
+  the bucket map's check-vs-react laws handed to the PLAYER as a choice. Four tiny emit templates shared by every
+  contract; the spell's signal still picks the trigger (fact), the style picks the visibility behavior (the player's).
+  This is the "users arrange their own UI" MVP vision's final face.
 
 - **Generation side** — type-configured tracker packs from the classified data: the flat bulk auto-generated through the
   engine, the custom scaffolds reasoned. Then bespoke aura products.
