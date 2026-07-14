@@ -71,3 +71,15 @@ Everything else passed. Yield of the full loop: **a reference sheet** (the ingre
 (the select-key gate rule · the subRegions container · the V17 row). Post-grading re-press: all five packs regenerated
 with the fixes — every member in every pack carries `subRegions`, V17 ships `alertType=1`. The packet re-imports
 whenever the next system change wants its pressure test: `py coverage.py` → stage → pickup → import.
+
+## 2026-07-14 — the reverse gear's first ore (the Necromancer capture, 36 auras)
+
+8. **PRESS-PATH ESCAPE BUG (gear finding):** an aura whose custom-code string contains `\` escapes (LF Delta Test)
+   breaks the fill→canon JSON/Lua boundary (`Invalid \escape`). The one closure failure in 36. Home: the canon
+   bridge's string escaping (reconcile `_to_lua` / canon.lua's JSON emitter). OPEN — fix at the gear.
+9. **Residue quantified in the wild:** hand-built auras carry heavy type-switch residue (the UI keeps old trigger
+   fields — Blight 18, Lich frost 18, Glacial tap 14...). The stub's residue LEDGER measures pack hygiene per aura;
+   the docket is cleaner than its source, and closure stays honest (CLEAN +n residue).
+10. **Trigger-side participation law = a named wall:** event-prototype triggers are consumed by GenericTrigger's
+   test path, NOT ConstructFunction:815 (that's the LOAD law) — ungated selects still count. v1 keeps present args;
+   the GenericTrigger harvest closes it properly.

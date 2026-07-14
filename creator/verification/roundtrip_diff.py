@@ -36,13 +36,20 @@ def _load_string(arg):
 
 def _num_eq(a, b):
     try:
-        return float(a) == float(b)
-    except (TypeError, ValueError):
+        fa, fb = float(a), float(b)
+        return fa == fb or abs(fa - fb) <= 1e-9 * max(abs(fa), abs(fb), 1.0)   # Lua 5.1 formats %.14g -
+    except (TypeError, ValueError):                                            #  the canon round-trip truncates doubles
         return False
 
 
 def deep(a, b, path=""):
     """yield (kind, path, ours, theirs); dict-recursive, list-positional EXCEPT subRegions (type-aligned)."""
+    if a in ({}, []) and b in ({}, []):                       # an empty Lua table has NO canonical JSON form
+        return                                                #  ({} vs [] is decode ambiguity, not a delta)
+    if a in ({}, []) and isinstance(b, (dict, list)):
+        a = type(b)()                                         # coerce an empty to the partner's container type
+    elif b in ({}, []) and isinstance(a, (dict, list)):
+        b = type(a)()
     if isinstance(a, dict) and isinstance(b, dict):
         for k in sorted(set(a) | set(b), key=str):
             p = "%s.%s" % (path, k) if path else str(k)

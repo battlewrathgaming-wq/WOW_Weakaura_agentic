@@ -48,6 +48,8 @@
   {"kind": "ADDED", "path": "^(backgroundOffset|backgroundTexture|foregroundTexture|compress|crop_[xy]|endAngle|startAngle|slantMode|slant|inverseSlanted|user_[xy]|texRotation)$",
    "verdict": "client-default", "why": "progresstexture region defaults (crop/angle/texture family)"},
   {"kind": "ADDED", "path": "^(animationType|frameRate|hideBackground|(start|end|background)Percent|customBackground(Rows|Columns|Frames|FileWidth|FileHeight|FrameWidth|FrameHeight)|customForeground(Rows|Columns|Frames|FileWidth|FileHeight|FrameWidth|FrameHeight))$",
-   "verdict": "client-default", "why": "stopmotion region defaults (the frame-grid family)"}
+   "verdict": "client-default", "why": "stopmotion region defaults (the frame-grid family)"},
+  {"kind": "ADDED", "path": "^parent$", "verdict": "group-wiring",
+   "why": "group membership (parent/c-array) is pack structure, not aura content; closure presses solo - triaged from the Necromancer capture 2026-07-14"}
  ]
 }

@@ -59,8 +59,9 @@ def fill(docket):
     conditions = docket.get("conditions") or []                  # check (trigger var) -> changes (LOCAL prop or sub.N.prop reach)
     if conditions:
         aura["conditions"] = [
-            {"check": c["check"],
-             "changes": [{"property": p, "value": v} for p, v in c["changes"].items()]}
+            dict({k: v for k, v in c.items() if k not in ("check", "changes")},   # authored extras (linked, ...) verbatim
+                 check=c["check"],
+                 changes=[{"property": p, "value": v} for p, v in c["changes"].items()])
             for c in conditions
         ]
     return aura
