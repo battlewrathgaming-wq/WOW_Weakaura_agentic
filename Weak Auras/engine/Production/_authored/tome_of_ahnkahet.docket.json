@@ -1,0 +1,16 @@
+{
+ "pid": "venomancer-procs",
+ "id": "Tome of Ahn'kahet",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "spellIds": ["504341"]
+   }
+  }
+ ],
+ "load": { "class": "PROPHET" }
+}
