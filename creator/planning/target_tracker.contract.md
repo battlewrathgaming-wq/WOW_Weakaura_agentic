@@ -46,7 +46,7 @@ Proven container (`_authored/tome_of_ahnkahet.docket.json` form; declare = read-
    }
   }
  ],
- "load": { "class": "<CLASS>" }
+ "load": { "class": "<API TOKEN>", "specialization": "<SPEC>" }
 }
 ```
 Grounding, token by token (aura2 sheet):
@@ -56,6 +56,10 @@ Grounding, token by token (aura2 sheet):
 - `spellIds: [id]` — the drive-from-ID family catch (sheet `rank_resolution`: ID-in-names catches ALL ranks; the COA
   idiom). NOT `useExactSpellId` (pins one rank — policy off).
 - show-on-active is canon default (`matchesShowOn`) — no declare needed; no target / no debuff → hidden. Correct.
+- `load.class` — the game API token from `Fact_basis/maps/class_table.json` (NECROMANCER: `wa_load_verified: true`,
+  seen in a real aura's load). `load.specialization` — on the load surface (sheet: `class`/`specialization`/`knowntalent`);
+  the spec NAME comes from our class:spec axis (the dev-authored tree names, e.g. `Death`). The specialization value's
+  exact stored form gets its `wa_load_verified` moment at the live confirm — same pattern the class token went through.
 
 ## The first pull — NECROMANCER Death (final membership, 7)
 | flavour | family | rep id | dur / cd | note |
