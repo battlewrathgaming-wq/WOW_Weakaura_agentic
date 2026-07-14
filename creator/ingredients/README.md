@@ -29,9 +29,12 @@ ask → pick the trigger type (what native signal tracks it) → compose CATCH /
 region (how it looks) + its reactive surface (what conditions may change) → docket (micro-contract) → populate → gate →
 machine → live. The **asset library** (proven compositions: the Target tracker, the tome) is advisory reference, never a gate.
 
-## Coverage
+## Coverage — the aura's main levers (the UI's own top level)
 
-- `trigger.aura2.md` — the buff/debuff window reader (66% of real-world authorship)
-- `region.icon.md` · `region.aurabar.md` · `region.dynamicgroup.md` — the display set (boolean/timed · progress · container)
-- Cooldown/spell trigger, aurabar, text… — **unharvested walls**: when an ask needs one, harvest its liveness first
-  (`harvest_live_keys.py` grows per type), then it earns its file here.
+- **trigger** — `trigger.aura2.md` (the buff/debuff window reader; 66% of real-world authorship)
+- **display** — `display.md` (the shared layer + subRegions + the choosing rule) · per region:
+  `region.icon.md` · `region.aurabar.md` · `region.dynamicgroup.md` (boolean/timed · progress · container)
+- **load** — `load.md` (when the aura exists at all; 41 fields; the pack idiom + the spellknown gate)
+- **conditions** — `conditions.md` (the reaction layer: check → changes, the three reactive surfaces, the four actions)
+- Cooldown/spell trigger, text/glow subregion detail… — **unharvested walls**: when an ask needs one, harvest its
+  liveness first (`harvest_live_keys.py` grows per type), then it earns its file here.
