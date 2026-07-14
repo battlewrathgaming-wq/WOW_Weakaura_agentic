@@ -23,3 +23,12 @@ fixed touchstones → `operations/WHAT.md` / `HOW.md` · moving present → `ope
 - **The DBC resolver, right-sized:** edge-and-attribute effects (trigger · modify-cooldown `165` · apply-aura/buff ·
   resource-gen), **not** full spell simulation. Sourced from the authority; honest gaps (`custom_<n>`) — same discipline
   as the sheets.
+- **Store the AXES (fact), derive the LABELS (view).** The `citizenship` enum (controlled/empowering/offensive/…) was
+  never an axis — it was a hand-drawn region in coordinate space, so it kept needing re-cutting and lost the info the
+  pairing needed. The data varies on five real fields: **invocation · persistence · target · verb · centrality(hub)**
+  (grounded — the cross-tab proved `passive` ≡ `permanent`, and `hub` is a 2.3% *flag* not a partition). Decision:
+  resolver Pass 1 stores the axes as coordinates; Pass 2 (`citizenship.py`) derives the native **signal**
+  (mechanic·cooldown·buff-window·debuff·resource·none) as a view, `first-class = earns a tracker`. Taste layers on fact.
+- **The signal view self-validates.** Derived cold from the axes, buff-window + cooldown = ~76% of the 3,729 first-class
+  spells — the corpus's own "two readers carry 2/3 of authorship". The debuff→source pairing dissolved (walk the applier
+  edge); per-spec now reads as a play profile (the generator's fingerprint).

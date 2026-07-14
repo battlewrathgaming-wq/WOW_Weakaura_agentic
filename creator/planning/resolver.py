@@ -2,9 +2,10 @@
 resolver.py - PASS 1: resolve BROAD (creator/planning/, incubating; graduates to creator/ when it proves out).
 
 For every spell, decode its 3 effect slots via Scripts/spell_enums (the TrinityCore-sourced EFFECT/AURA enum) and
-STRUCTURE them into a resolved record: everything populated in `effects`, the typed relationships derived into `edges`,
-and the unidentified custom codes kept as NAMED gaps (never guessed). NO citizenship here (controlled vs empowering is
-pass 2) - this is the mechanical "what does each spell do", complete.
+STRUCTURE them into a resolved record: the deterministic classification `axes` (invocation/persistence/target/verb/hub -
+pure field reads, the coordinates), everything populated in `effects`, the typed relationships derived into `edges`, and
+the unidentified custom codes kept as NAMED gaps (never guessed). NO citizenship here - the labels are a DERIVED VIEW over
+these axes (pass 2). This is the mechanical "what does each spell do", complete: we store the fact, derive the taste.
 
   py resolver.py    -> resolved.json (per-spell) + coverage report
 """
@@ -37,6 +38,38 @@ def _overlap(a, b):
         return False
 
 
+def _axes(s):
+    """the classification COORDINATES - deterministic field reads (fact). Views (citizenship/signal) derive from these."""
+    coa = s.get("coa") or {}
+    if se.is_passive(s.get("attr")):                                # invocation: how it enters play
+        inv = "passive"
+    elif coa.get("relation") == "direct" and ((s.get("gcdMs") or 0) > 0 or (s.get("castTimeMs") or 0) > 0):
+        inv = "pressed"
+    elif coa.get("relation") == "triggered":
+        inv = "triggered"
+    else:
+        inv = "other"
+    dm = s.get("durationMs")                                        # persistence: is it a state you can watch
+    per = "permanent" if dm == -1 else "window" if (dm and dm > 0) else "instant"
+    eff, tgt = s.get("effect") or [], s.get("effectTargetA") or []  # target: buff side vs debuff side (across slots)
+    cats = set()
+    for i in range(3):
+        if i < len(eff) and eff[i]:
+            c = se.target_category(tgt[i] if i < len(tgt) else 0)
+            if c:
+                cats.add(c)
+    hasE = any("enemy" in c for c in cats)
+    hasS = any(("self" in c or "ally" in c) for c in cats)
+    target = "both" if (hasE and hasS) else "enemy" if hasE else "self/ally" if hasS else "none"
+    verb = "(none)"                                                 # verb: the primary mechanical effect
+    for c in eff:
+        if c:
+            verb = KNOWN_CUSTOM.get(c) or se.effect_name(c)
+            break
+    return {"invocation": inv, "persistence": per, "target": target, "verb": verb,
+            "hub": len(coa.get("triggeredBy") or []) >= 5}          # centrality flag: a mechanic hub
+
+
 def resolve(s, byset):
     effects, edges, gaps = [], [], []
     for i in range(3):
@@ -66,7 +99,7 @@ def resolve(s, byset):
             if fam:
                 edges.append({"rel": "family_effect", "effect": name, "targets": fam[:40],
                               "target_count": len(fam), "slot": i})
-    return {"effects": effects, "edges": edges, "gaps": sorted(set(gaps))}
+    return {"axes": _axes(s), "effects": effects, "edges": edges, "gaps": sorted(set(gaps))}
 
 
 def main():
