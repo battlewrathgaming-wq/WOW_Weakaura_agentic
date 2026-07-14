@@ -61,6 +61,15 @@ fixed touchstones → `operations/WHAT.md` / `HOW.md` · moving present → `ope
   ID in `auranames` → `GetSpellInfo` → name → family match. Contract corrected; gear untouched; decode-verified.
   **Gate lesson:** word-match proves a token EXISTS on the surface, not that it's LIVE — a live-key tier for the gate is
   the earned improvement. (The tome sample carries the same latent flaw.)
+- **Custom AURA codes (>316): gravity mapped, strategy set (2026-07-14 late).** 18 codes / 420 carriers, top-4 = 77%.
+  Two populations: **the big four (354/344/345/333) are ENGINE codes** — diffuse at class AND spec grain — and their
+  mass sits in *self-side* geography → they're a **Self-tracker-slice concern** (name before/alongside that contract;
+  the Target slice shipped largely clean of them). **The tail is SPEC-BOUND** — 338 = SONOFARUGAL/**Eternal** 77% (the
+  spec mechanic itself) · 330 = RANGER/Archery 52% · **353+319 = STORMBRINGER/Maelstrom** (two codes = the clearest
+  mechanic-in-custom-clothing) — these file into their class hives. Isolation lead: 353's second home is
+  WITCHDOCTOR/Brewing (35%) — two accumulation specs sharing a code ⇒ 353 is likely a charge/stack-accumulation aura.
+  Void analysis: no code-shaped holes in the Target slice (custom-only ≤1/spec, sprinkled) — the voids will show in
+  the Self slice.
 - **Target-edge wiring — done.** The spell-targeting custom ops (`165/177/192/195` + structural `173/171`) emit a unified
   **`targets_spell`** edge (`op` + `dst` = the `misc` spell). 351 cross-links, **329 to in-scope COA abilities** — "this
   spell resets/reduces/extends *that tracked ability*". `modify_cooldown` folded in. "All Traps"-style fan-out is
