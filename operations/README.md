@@ -29,8 +29,11 @@ or grounding a new direction — is NOT "read everything." They change rarely, o
   the code + `engine/Fact_basis/`; this is the flattened read of it.
 
 **TRACKING — moving, updated often.** Where we are and what we're doing.
-- **STATE.md** — the current "where are we" + what's open.
-- **DECISIONS.md** (growing) — the decisions log: what we chose and why, appended over time.
+- **STATE.md** — the current "where are we" + what's open (the moving present).
+- **roadmap.md** — forward-looking, slower notes: where we're headed (near / further).
+
+_The fast, granular decisions taken *while building* live local to the work, in **`creator/decisions.md`** — not here.
+Operations keeps the slower cadence (STATE now, roadmap ahead); the work keeps its own trail._
 
 The rule of thumb: touchstones answer "what/how/why is this" and rarely change; tracking answers "where are we right
 now" and changes every session. Don't let tracking churn leak into a touchstone.
