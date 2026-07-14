@@ -52,8 +52,11 @@ finishes. See `Weak Auras/engine/Production/README.md` and `Weak Auras/engine/Fa
   live_keys) · fill drops its load translation (verbatim; fully dumb) · populate shapes load from sheet-type × template ·
   expand's filter shaping goes type-aware off the same map · tome refit · **regression = re-press all dockets, diff:
   byte-identical except load gaining its live form** · rider: flip class_table's 18 unverified tokens off the capture.
-- **LIVE-CLIENT re-import confirm** — the corrected pack (`useName`+`auranames`) awaits its live re-test (first import
-  caught the dead keys — the loop works). Also pending in-game: the specialization list's NAMES (20 index entries).
+- ✅ **LIVE-PROVEN (2026-07-14 evening):** all four packs imported cleanly and correctly in the live client —
+  necromancer-death-target (both live fixes aboard), reaper-soul-target, the necromancer-oneoff (showOnMissing), the
+  refit tome. Plus the full dry-run battery (green ×4 distinct packs · red 7/7 at the correct tiers) and Battlewrath's
+  independent pickup run reproducing the products **byte-identical**. The chain is live-proven end to end.
+- Still pending in-game: the specialization list's NAMES (20 index entries) → wire `load.specialization`.
 - **Runtime — deferred half:** online/unattended operation + menu-spawn already done for the console; a true
   push-and-leave drainer + receipts hardening remain.
 - **Cheap gate wins:** validate `load.class` against `maps/class_table.json`; populate a `unit`-value domain.
