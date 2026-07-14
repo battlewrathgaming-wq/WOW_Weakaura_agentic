@@ -45,6 +45,16 @@ fixed touchstones → `operations/WHAT.md` / `HOW.md` · moving present → `ope
   are bare flags, 187 a value-param. None block classification (it runs on the axes + the spell's other slots). Target-edge
   wiring (what a reset/extend points at — often a *family*, cf. Rearmament "all Traps") still held for a follow-up.
   Battlewrath cracked 190 from the DB (radius the invariant); our carried `effectAura` completed it.
+- **Buckets = "why you press it"** (with Battlewrath). The player-intent lens, not the mechanism, is the true bucket — and
+  it maps 1:1 onto the tracker type: **maintain** (dmg=DoT / advantage=vuln·shred·weaken·heal-cut → *uptime*) · **opportunity**
+  (long-CD burst → *readiness*) · **control** (CC + taunt/aggro → *remaining*) · **builder/spender** (the resource engine).
+  Data-validated: 85% of first-class spells flatten to one bucket; the 15% multi-role resolve on a secondary lever (periodic
+  → DoT; CD-length ≥~30s → opportunity). `mechanic` field is a dead end for CC (78% unset) — the **aura subtype** classifies.
+- **Builder/spender: tag now, resolve later.** The no-CD filler/spender strikes are a real bucket, but cleanly splitting
+  builder (generates) from spender (costs) needs the per-class **secondary** resource — class-inventory knowledge the flat
+  DBC doesn't hold (`powerType`/`manaCost` = *primary* cost; COA builders generate via custom effects 175/184). So the axes
+  carry two raw flags — `costed` (3441) · `generates` (167, standard-energize only, under-catches) — ingredients to revisit,
+  not a solved bucket. Product-aligned: spenders track on resource threshold now; builders are HUD-deferred.
 - **Target-edge wiring — done.** The spell-targeting custom ops (`165/177/192/195` + structural `173/171`) emit a unified
   **`targets_spell`** edge (`op` + `dst` = the `misc` spell). 351 cross-links, **329 to in-scope COA abilities** — "this
   spell resets/reduces/extends *that tracked ability*". `modify_cooldown` folded in. "All Traps"-style fan-out is

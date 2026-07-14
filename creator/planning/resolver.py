@@ -80,8 +80,14 @@ def _axes(s):
         if c:
             verb = KNOWN_CUSTOM.get(c) or se.effect_name(c)
             break
+    costed = bool((s.get("manaCost") or 0) or (s.get("manaCostPct") or 0))   # spender ingredient (raw tag)
+    generates = any(c and "energize" in se.effect_name(c) for c in eff)      # builder ingredient - standard energize ONLY;
+    # NOTE: COA builders often generate via custom/triggered effects (175 "Add Insanity", 184 "Generate Heat"), so
+    # `generates` under-catches them by design. Builder/spender separation needs the per-class secondary resource -
+    # that's class-inventory knowledge, parked for later. These two are just raw flags to revisit, not a solved bucket.
     return {"invocation": inv, "persistence": per, "target": target, "verb": verb,
-            "hub": len(coa.get("triggeredBy") or []) >= 5}          # centrality flag: a mechanic hub
+            "hub": len(coa.get("triggeredBy") or []) >= 5,          # centrality flag: a mechanic hub
+            "costed": costed, "generates": generates}               # resource ingredients (tagged, unresolved)
 
 
 def resolve(s, byset):
