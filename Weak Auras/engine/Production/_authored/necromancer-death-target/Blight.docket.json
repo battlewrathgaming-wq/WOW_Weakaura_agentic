@@ -1,0 +1,23 @@
+{
+ "pid": "necromancer-death-target",
+ "id": "Blight",
+ "uid": "coaNecDeathBlight",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "spellIds": [
+     "500217"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "class": "NECROMANCER"
+ }
+}

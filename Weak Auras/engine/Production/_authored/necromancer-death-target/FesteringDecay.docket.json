@@ -1,0 +1,23 @@
+{
+ "pid": "necromancer-death-target",
+ "id": "Festering Decay",
+ "uid": "coaNecDeathFesteringDec",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "spellIds": [
+     "806325"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "class": "NECROMANCER"
+ }
+}

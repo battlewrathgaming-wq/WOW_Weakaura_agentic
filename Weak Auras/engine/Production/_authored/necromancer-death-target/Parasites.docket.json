@@ -1,0 +1,23 @@
+{
+ "pid": "necromancer-death-target",
+ "id": "Parasites",
+ "uid": "coaNecDeathParasites",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "spellIds": [
+     "560729"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "class": "NECROMANCER"
+ }
+}

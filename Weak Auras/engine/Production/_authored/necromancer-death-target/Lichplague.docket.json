@@ -1,0 +1,23 @@
+{
+ "pid": "necromancer-death-target",
+ "id": "Lichplague",
+ "uid": "coaNecDeathLichplague",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "spellIds": [
+     "802132"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "class": "NECROMANCER"
+ }
+}

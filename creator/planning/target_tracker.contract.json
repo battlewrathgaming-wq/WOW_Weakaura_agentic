@@ -1,0 +1,29 @@
+{
+ "_contract": "Target tracker - machine half. The prose/grounding is target_tracker.contract.md. The populate utility reads THIS: runs `select` over our spell info, fills `emit` per member family. All WA-literal lives here; the utility is a dumb gear.",
+ "pid": "{class_lower}-{spec_lower}-target",
+ "select": {
+  "axes": { "target": ["enemy", "both"], "persistence": ["window"] },
+  "exclude": ["control_only", "builder"],
+  "dedupe": "family"
+ },
+ "emit": {
+  "pid": "{pid}",
+  "id": "{family}",
+  "uid": "{uid}",
+  "regionType": "icon",
+  "triggers": [
+   {
+    "type": "aura2",
+    "event": "Aura",
+    "declare": {
+     "unit": "target",
+     "debuffType": "HARMFUL",
+     "ownOnly": true,
+     "spellIds": ["{rep_id}"]
+    }
+   }
+  ],
+  "load": { "class": "{class_token}" }
+ },
+ "_held": "load.specialization joins when the spec-index order is captured (COADump at live confirm) - no invented value meanwhile."
+}

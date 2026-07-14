@@ -1,0 +1,23 @@
+{
+ "pid": "necromancer-death-target",
+ "id": "Flesh to Worms",
+ "uid": "coaNecDeathFleshToWorms",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "spellIds": [
+     "500338"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "class": "NECROMANCER"
+ }
+}

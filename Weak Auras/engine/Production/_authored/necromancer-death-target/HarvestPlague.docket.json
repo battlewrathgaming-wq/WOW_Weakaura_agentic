@@ -1,0 +1,23 @@
+{
+ "pid": "necromancer-death-target",
+ "id": "Harvest Plague",
+ "uid": "coaNecDeathHarvestPlagu",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "spellIds": [
+     "500968"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "class": "NECROMANCER"
+ }
+}
