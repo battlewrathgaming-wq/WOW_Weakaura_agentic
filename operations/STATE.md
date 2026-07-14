@@ -1,7 +1,29 @@
 # STATE — where the machine is
 
-_Last updated 2026-07-14 (late evening — restore point before the corpus build). The single "where are we" read.
-Detail lives in the code + READMEs this points at._
+_Last updated 2026-07-14 (SESSION CLOSE). The single "where are we" read. Detail lives in the code + READMEs this points at._
+
+## Session close (the day's final state — everything below it stands)
+
+- **THE PRODUCTION RUN:** `batch_press.py` pressed the Target tracker across the whole game — **110 packs · 427 member
+  auras · 578 staged 0 blocked · 0 failures**. `Docket_complete/` = the product catalog. 5 honest zero-specs noted
+  (pet/healer profiles — Self-tracker/friendly-select territory).
+- **The corpus fired:** `corpus/planning/stub.py` (the reverse gear) — **35/36 closures** on Battlewrath's own Necro pack
+  (residue LEDGER quantifies UI type-switch leftovers; 1 failure = the open press-path `\`-escape bug, findings #8).
+  First two **patterns/** entries: minion-count-tracker (candidate primitive, the exact-id policy exception) ·
+  backing-pair (workaround-lead, prune criteria). Selection law + **invariant 7** (versioned source backing) locked.
+- **Validation triangle** (`description_report.py`: mine/rows/agree): select × description-words × effect-mechanics.
+  After lexicon iteration 1: **AGREE 175 · MECH? 76 · DESC? 62 · ?? 114** (the ?? = custom AURA codes). Aura-code
+  gravity mapped then **corrected by family-dedupe** (grain is a claim): big-four = engine codes (Self-slice concern);
+  338 = a 4-class shared bleed. **Probe shortlist ready:** Greater Devotion of Radiance 575045 · Aspect of the
+  Huntress 805356 · Bane of Fire 707901 · Soulrend 572341 · Stormflow 567555.
+- **The custom backlog WORKS:** two Discord requests → **live-confirmed packs in minutes each**
+  (cultist-godblade-voidseeker: the PowerAuras proc swirl, corpus resolved the player's whole description;
+  prophet-fortitude-exposedflesh: stack bands + max alarm). Third exact-id case = a STANDING PATTERN (shared-name
+  variants; exact-id is the norm for proc/mechanic buffs). `spellknown` load gate live-proven.
+- **The seats named:** taste/feel/subtlety = Battlewrath's; computational logic/composition = Claude's. Attention
+  intensity (calm/warn/alarm) = a future taste dial in the palette.
+- **Awaiting:** dev reply (DOT/HOT register = potential third→fourth witness; Discord pinning = distribution) ·
+  spec-name capture (20 entries → `load.specialization`) · Battlewrath's aura-code DB probes.
 
 ## Late-evening additions (after the derived-gears restore point below)
 
