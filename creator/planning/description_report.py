@@ -31,12 +31,19 @@ INV = os.path.join(_ROOT, "Weak Auras", "ability_inventory", "out")
 
 # ---- THE LEXICON (DRAFT - curate from `mine` output; tolerance = regex, stems welcome) --------------------------
 LEXICON = {
-    "dot":      [r"damage over (\d+ )?(sec|time)", r"(every|each)\s+(\d+(\.\d+)?\s*)?sec", r"per second",
-                 r"\btick", r"\bbleed", r"\bburn(?:ing|s)?\b", r"\bpoison", r"\bdisease", r"\bdot\b"],
-    "maintain": [r"(takes?|taking|deal(s|ing)?)\s+\d+%\s*(increased|more|additional)", r"increas\w+ damage taken",
+    # NOTE: talent-scrape texts carry $-variable numbers ("for $8s seconds") which clean() strips -> numbers are
+    # OPTIONAL in every pattern (the 51-hit "for seconds" lesson, mined from the DESC? pile 2026-07-14).
+    "dot":      [r"damage over\s+(\d+\s*)?(sec|time)", r"over\s+(\d+(\.\d+)?\s*)?sec", r"(every|each)\s+(\d+(\.\d+)?\s*)?sec",
+                 r"per second", r"\btick", r"\bbleed", r"\bburn(?:ing|s)?\b", r"\bpoison", r"\bdisease", r"\bdot\b",
+                 r"builds over time", r"dealt slowly"],
+    "maintain": [r"(takes?|taking|deal(s|ing)?)\s+(\d+%\s*)?(increased|more|additional)", r"increas\w+ damage taken",
                  r"damage taken by", r"vulnerab", r"reduc\w+ (their )?armor", r"armor (is )?reduced",
-                 r"reduc\w+ healing", r"healing (received|taken)"],
-    "window":   [r"(for|lasts?|over( the)? next)\s+\d+(\.\d+)?\s*sec", r"until (removed|cancelled)"],
+                 r"reduc\w+ healing", r"healing (received|taken)",
+                 r"stacking(\s+\w+)?\s+times", r"\bstack(s|ing)\b",
+                 r"(melee|ranged|attack|casting|movement)\s+(and\s+\w+\s+)?speed", r"reduc\w+[^.]{0,24}speed",
+                 r"\bcurse", r"\binject", r"\bmark(s|ed|ing)?\b"],
+    "window":   [r"(for|lasts?|over( the)? next)\s+(\d+(\.\d+)?\s*)?sec", r"until (removed|cancelled)",
+                 r"\bappl(y|ies|ying)\b"],
     "builder":  [r"generat\w+", r"gain(s|ing)?\s+\d+", r"restor\w+ \d+", r"grant\w+ \d+ \w+$"],
     "cc":       [r"\bstun", r"\broot", r"\bslow(s|ed|ing)?\b", r"\bsilenc", r"\bimmobiliz", r"\bfear",
                  r"\bincapacitat", r"knock(s|ed)? (back|down)", r"\bdisorient"],
@@ -48,6 +55,24 @@ def clean(t):
     t = re.sub(r"\|c[0-9a-fA-F]{8}|\|r", "", t or "")
     t = re.sub(r"\$\w+", "", t)
     return re.sub(r"\s+", " ", t).strip().lower()
+
+
+def find_text(d, desc, sids, depth=3):
+    """a member's meaning text: own description, else walk the triggeredBy via-chain (triggered debuffs carry
+    their text on the applying ability - sometimes two hops up)."""
+    seen, frontier = set(), [str(s) for s in sids]
+    for _ in range(depth):
+        nxt = []
+        for s in frontier:
+            if s in seen:
+                continue
+            seen.add(s)
+            if s in desc:
+                return desc[s]
+            for t in (d.get(s, {}).get("coa") or {}).get("triggeredBy") or []:
+                nxt.append(str(t.get("via")))
+        frontier = nxt
+    return None
 
 
 def load_descs():
@@ -125,14 +150,7 @@ def rows(show_misses=False):
     d = json.load(open(COA, encoding="utf-8"))
     hit_rows, miss_rows = [], []
     for cls, spec, fam, rep, sids in sorted(members):
-        text = next((desc[str(s)] for s in sids if str(s) in desc), None)
-        if text is None:                                       # triggered debuffs carry no text of their own -
-            for s in sids:                                     #  the MEANING lives on the applying ability
-                tb = (d.get(str(s), {}).get("coa") or {}).get("triggeredBy") or []
-                text = next((desc[str(t.get("via"))] for t in tb if str(t.get("via")) in desc), None)
-                if text:
-                    break
-        text = clean(text or "")
+        text = clean(find_text(d, desc, sids) or "")
         hits = []
         for family, pats in lex.items():
             words = sorted({m.group(0)[:24] for p in pats for m in [p.search(text)] if m})
@@ -163,14 +181,7 @@ def agree():
     verdicts = Counter()
     review = []
     for cls, spec, fam, rep, sids in sorted(members):
-        text = next((desc[str(s)] for s in sids if str(s) in desc), None)
-        if text is None:
-            for s in sids:
-                tb = (d.get(str(s), {}).get("coa") or {}).get("triggeredBy") or []
-                text = next((desc[str(t.get("via"))] for t in tb if str(t.get("via")) in desc), None)
-                if text:
-                    break
-        text = clean(text or "")
+        text = clean(find_text(d, desc, sids) or "")
         words = {family for family, pats in lex.items() if any(p.search(text) for p in pats)}
         auras = set()
         for s in sids:
