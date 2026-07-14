@@ -41,7 +41,17 @@ Both are DoTs.
 It might also carry an amp/vulnerability, but that's a rider — you press it for the tick, not the amp.
 So when something's both, the DoT wins the "why."
 
-Aura side: both flavours live in the **same DoT tracker** — a dynamic group, a bar per active DoT.
+Aura side — sharpened: the mechanism is **one trigger: aura2, unit=target, ownOnly** — *"for my target, do they have it?"*
+**Ship form (settled):** an **icon** per DoT of yours, in a **dynamic group**, on your **target enemy** — the group is for
+multi-*DoT* (a 3-DoT spec shows up to 3 icons, growing/shrinking as they apply/drop), not multi-target.
+This deliberately flattens multi-dot tracking:
+what's lost is the *ambient prompt* ("a dot elsewhere is about to fall — tab now"); you tab on rhythm instead. Accepted:
+- the actionable half survives (show-on-missing: you land on a hostile target, it says "dot absent");
+- true multi-unit on a 3.3.5 client is the least-verified path (no nameplate unitIDs; WA "multi" mode = CLEU-based,
+  backport support unconfirmed) — wrong stone to build the default on;
+- if the ambient view ever earns a build, the data scopes it: duration≫CD DoTs cluster per spec → a **spec-targeted**
+  enhancement later, not a global dependency.
+unit=target also deletes the printed target name — it's *your* target.
 We're not replacing the game's debuff frames or the dedicated DoT addons; we just **localize** the
 info — bring it to where you're already looking. _(This "localize, don't replace" line probably holds for most buckets.)_
 
