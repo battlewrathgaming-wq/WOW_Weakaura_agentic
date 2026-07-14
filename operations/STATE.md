@@ -1,7 +1,26 @@
 # STATE — where the machine is
 
-_Last updated 2026-07-14 (evening — restore point before the derived-gears rewrite). The single "where are we" read.
+_Last updated 2026-07-14 (late evening — restore point before the corpus build). The single "where are we" read.
 Detail lives in the code + READMEs this points at._
+
+## Late-evening additions (after the derived-gears restore point below)
+
+- **Everything below LANDED and was LIVE-PROVEN** (see roadmap ✅s): five packs imported clean; the dry-run battery
+  (green ×4 · red 7/7); Battlewrath's independent pickup byte-identical; three live fixes (select-stores-KEY gate rule ·
+  `subRegions` always-present · V17); **the round trip verified LOSSLESS** (client adds only its own furniture —
+  custody's central claim proven from the client's mouth).
+- **`creator/verification/`** — the instrument set: `coverage.py` (36-member pressure test) · `roundtrip_diff.py` **with
+  memory** (`known_deltas.json` — 768 deltas → 19 recognized lines → CLEAN; judgment appends, recognition mechanical) ·
+  `findings.md` (all dispositioned).
+- **`creator/ingredients/`** — the agent menu complete: the aura's full anatomy (trigger/display+3 regions/load/
+  conditions/custom), the blank docket, the custody chain.
+- **`corpus/` at root** (sibling of creator/operations; engine joins when we uproot): refinement stages
+  intake→raw→dockets→patterns + planning. Goal: **noise → signal**. Selection: unique-lead or anti-common, not
+  precious, primitive-or-perish. First occupant queued: **the stub tool** (aura → docket, closure-loop parity proof).
+- **The terminology bridge** (HOW.md): block era → now (blocks→patterns · inventory→a class's contracts in
+  `creator/<class>/` hives · mask unchanged + sharpened as the human-feel stabilizer, foldable into contracts).
+- **Expected flatten:** the corpus exercise should flatten the spell-index/table work — the settled maps
+  (condition_vars · trigger_args · signals) already hold answers those tables were waiting on.
 
 ## The shape (two halves at the gate)
 
