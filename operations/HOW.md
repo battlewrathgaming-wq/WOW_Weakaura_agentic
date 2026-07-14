@@ -39,6 +39,19 @@ CREATOR  (invent — "what should exist?")     GATE (validate)      ENGINE  (mec
 `inventory authors docket → gate validates → Docket_stage/<PID> → pickup bundles a pack into one group string →
 Docket_complete + register → import into WA`. A **PID is a pack id**; a pack is one group of many auras.
 
+## The terminology bridge (2026-07-14 — the block era maps onto the proven machinery; concepts survive, terms matured)
+
+| block era | now |
+|---|---|
+| blocks / BOM / parts catalog | **patterns** (`corpus/` — rebuilt through the gears: raw → stub → dockets → patterns; never recovered from blocks.db) |
+| class inventory | **a class's CONTRACTS** (`creator/<class>/` hives — support materials, what makes a class tick; "populate the inventory" = press its contract set) |
+| mask | **mask — unchanged in role, foldable into the contract.** The WHERE authority, and the **human-feel stabilizer**: it pins the layout/feel so machine regeneration can't drift the experience (a 90 doesn't shift to a 70 across re-presses) |
+| fragment scrape / corpus jsons | **corpus/raw** (provenance-stamped ore) |
+| blocks.db · native_blocks · gravity_wells | archaeology — superseded artifacts, nothing rebuilt *from* them |
+
+Same five-part spine as ever, every part now load-tested: **mask** = WHERE · **contracts** = WHAT · **palette + maps** =
+HOW expressed · **the machine** = join + wrap · **WA** = filter.
+
 ## The architecture is the touchstone; the folders are transitional
 
 What's stable here is the two halves + the invariants. The specific **folders are in flux** — `plane/` deprecates, and a
