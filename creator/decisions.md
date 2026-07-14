@@ -61,15 +61,17 @@ fixed touchstones → `operations/WHAT.md` / `HOW.md` · moving present → `ope
   ID in `auranames` → `GetSpellInfo` → name → family match. Contract corrected; gear untouched; decode-verified.
   **Gate lesson:** word-match proves a token EXISTS on the surface, not that it's LIVE — a live-key tier for the gate is
   the earned improvement. (The tome sample carries the same latent flaw.)
-- **Custom AURA codes (>316): gravity mapped, strategy set (2026-07-14 late).** 18 codes / 420 carriers, top-4 = 77%.
-  Two populations: **the big four (354/344/345/333) are ENGINE codes** — diffuse at class AND spec grain — and their
-  mass sits in *self-side* geography → they're a **Self-tracker-slice concern** (name before/alongside that contract;
-  the Target slice shipped largely clean of them). **The tail is SPEC-BOUND** — 338 = SONOFARUGAL/**Eternal** 77% (the
-  spec mechanic itself) · 330 = RANGER/Archery 52% · **353+319 = STORMBRINGER/Maelstrom** (two codes = the clearest
-  mechanic-in-custom-clothing) — these file into their class hives. Isolation lead: 353's second home is
-  WITCHDOCTOR/Brewing (35%) — two accumulation specs sharing a code ⇒ 353 is likely a charge/stack-accumulation aura.
-  Void analysis: no code-shaped holes in the Target slice (custom-only ≤1/spec, sprinkled) — the voids will show in
-  the Self slice.
+- **Custom AURA codes (>316): gravity mapped — then CORRECTED by family-dedupe (2026-07-14 late).** 18 codes / 420
+  carrier slots / but the honest grain is FAMILIES (Battlewrath's catch: rank-stacks inflate gravity). At family grain:
+  **the big four (354/344/345/333) stay ENGINE codes** (diffuse both grains ✓; mass in self-side geography → a
+  **Self-tracker-slice concern**), but the "spec-bound tail" claim was substantially a **rank artifact** — 330's
+  "Archery 52%" → RANGER 25%; 353/319's Maelstrom concentration dissolves; **338's "Eternal 77%" = 4 families across
+  4 DIFFERENT classes** (Bane of Frailty DH · Guts Splatter Barb · Rotclaw Bloodmage · Soulrend Reaper — a shared
+  bleed-ish mechanism, NOT a spec mechanic). Only tiny singletons stay truly class-bound. **NAME leads (dedupe-safe)
+  stand:** 345 = the "Greater X" radiated party-aura family (strongest tell) · 354 = aspects/forms/major self-states ·
+  330 = the banes (vulnerability/amp) · 338 = bleeds (and Soulrend is IN a shipped pack) · 353 = accumulation/channel
+  states. Probe shortlist: Greater Devotion of Radiance / Aspect of the Huntress / Bane of Fire / Soulrend / Stormflow.
+  Void analysis: no code-shaped holes in the Target slice — the voids will show in the Self slice.
 - **Target-edge wiring — done.** The spell-targeting custom ops (`165/177/192/195` + structural `173/171`) emit a unified
   **`targets_spell`** edge (`op` + `dst` = the `misc` spell). 351 cross-links, **329 to in-scope COA abilities** — "this
   spell resets/reduces/extends *that tracked ability*". `modify_cooldown` folded in. "All Traps"-style fan-out is
