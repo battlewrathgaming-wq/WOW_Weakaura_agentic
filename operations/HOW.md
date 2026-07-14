@@ -33,6 +33,9 @@ CREATOR  (invent — "what should exist?")     GATE (validate)      ENGINE  (mec
    the rest. Shortening field *names* was a bug; keeping the field *set* small is the design.
 6. **Headless-green ≠ live-proven.** The fast proxy (canon.lua) confirms reimport-stability; the live client is the
    ground-truth authority.
+7. **Nothing is accepted without source backing — versioned** (Battlewrath, 2026-07-14, for pattern-seeking and
+   inspection). Corpus/observation frequency is evidence of USE, never TRUTH; acceptance requires the source citation
+   plus the fork's version anchor (WeakAuras toc Version + internalVersion). Current fork ≠ cited fork → re-verify.
 
 ## The flow (one line)
 

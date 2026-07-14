@@ -20,6 +20,11 @@ graph / feature-store / slice storage.
   novel; the corpus keeps only what teaches.)
 - **Not precious.** A pattern's value is whether it **becomes a primitive** — adopted into the creator machinery.
   Entries that never graduate are disposable; prune without ceremony.
+- **NOTHING is accepted without source backing — versioned.** Corpus frequency is evidence of USE, never of TRUTH:
+  an observation in ore is a LEAD; acceptance (into a pattern, a map, a registry) requires the source citation
+  (file:line) **plus the fork's version anchor** — `WeakAuras <toc Version> / internalVersion <n>` (currently
+  5.21.2 / iv86). Staleness is then mechanical: current fork ≠ cited fork → re-verify before trusting. The proven
+  sequence (`%matchCountPerUnit`: observed in ore → traced to BuffTrigger2:551 → accepted cited) is the mandatory one.
 - *(Eventually, maybe: the creators' single look-up source for known patterns. Noted, deliberately not built toward —
   that's rushing.)*
 
