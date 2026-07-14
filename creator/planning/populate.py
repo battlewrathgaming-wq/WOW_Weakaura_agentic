@@ -66,21 +66,27 @@ def main():
     res = json.load(open(RESOLVED, encoding="utf-8"))
     token = next(c["api_name"] for c in json.load(open(MAPS, encoding="utf-8"))["classes"]
                  if c["api_name"] == cls)                            # the maps table is the class-token authority
-    subs_base = {"class_lower": cls.lower(), "spec_lower": spec.lower(), "class_token": token}
+    subs_base = {"class_lower": cls.lower(), "spec_lower": spec.lower(), "class_token": token, "spec": spec}
     pid = fill(contract["pid"], subs_base)
-    outdir = os.path.join(AUTHORED, pid)
-    os.makedirs(outdir, exist_ok=True)
+    os.makedirs(AUTHORED, exist_ok=True)                             # stage reads _authored/ FLAT (machine's contract)
+
+    def press(form, subs, fname):
+        doc = fill(form, subs)
+        fp = os.path.join(AUTHORED, "%s.docket.json" % fname[:60])
+        json.dump(doc, open(fp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        print("populated  %s" % os.path.relpath(fp, _ROOT))
+
+    # a pack IS a group (pickup: exactly 1 group docket + members) - press the group document first
+    press(contract["emit_group"], dict(subs_base, pid=pid,
+          group_uid="coa%s%sTargetGrp" % (cls[:3].title(), spec[:5].title())), pid + "__GROUP")
 
     members = seek(contract, d, res, cls, spec)
     for fam, rep in sorted(members.items()):
         camel = re.sub(r"[^A-Za-z0-9]", "", fam.title())
-        subs = dict(subs_base, pid=pid, family=fam, rep_id=rep,
-                    uid="coa%s%s%s" % (cls[:3].title(), spec[:5].title(), camel[:12]))  # deterministic; inventory-provided uids win when they exist
-        doc = fill(contract["emit"], subs)
-        fp = os.path.join(outdir, "%s.docket.json" % camel[:40])
-        json.dump(doc, open(fp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-        print("populated  %s  (rep %s)" % (os.path.relpath(fp, _ROOT), rep))
-    print("\n%d documents -> _authored/%s/  (gate takes it from here)" % (len(members), pid))
+        press(contract["emit"], dict(subs_base, pid=pid, family=fam, rep_id=rep,
+              uid="coa%s%s%s" % (cls[:3].title(), spec[:5].title(), camel[:12])),   # deterministic; inventory uids win when they exist
+              "%s__%s" % (pid, camel[:40]))
+    print("\n1 group + %d members -> _authored/ (flat)  |  stage.py gates from here" % len(members))
 
 
 if __name__ == "__main__":

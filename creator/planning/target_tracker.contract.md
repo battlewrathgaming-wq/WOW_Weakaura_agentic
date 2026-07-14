@@ -12,7 +12,10 @@ group, on your target. unit=target deliberately flattens multi-dot (accepted; th
 ## aura_target — what a member becomes
 - **Region:** `icon` — one per member, drive-from-ID (auto icon).
 - **Arrangement:** the pack's icons grouped; dynamic-group presentation is the settled ship form (grow/shrink as
-  applied/drop). _The bundle step owns the group wrapper — presentation, not per-member emit._
+  applied/drop). _Corrected by source trace: a pack **IS** a group — pickup demands exactly one **group docket**
+  (`regionType: dynamicgroup`) beside the members, and bundle wraps `{group, children}`. The group is an authored
+  document the contract emits (`emit_group`), form grounded in `plane/bundle.py` (id/regionType/uid + optional
+  arrangement; canon defaults for v1 — users arrange). Stage reads `_authored/` **flat**._
 - **Mechanism:** aura2 (BuffTrigger2), the buff-window reader.
 
 ## select — who's in (query over `resolved.json` axes + edges)

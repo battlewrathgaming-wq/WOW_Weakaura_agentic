@@ -6,6 +6,13 @@
   "exclude": ["control_only", "builder"],
   "dedupe": "family"
  },
+ "emit_group": {
+  "pid": "{pid}",
+  "id": "{class_token} {spec} - Target Tracker",
+  "uid": "{group_uid}",
+  "regionType": "dynamicgroup",
+  "load": { "class": "{class_token}" }
+ },
  "emit": {
   "pid": "{pid}",
   "id": "{family}",
@@ -25,5 +32,6 @@
   ],
   "load": { "class": "{class_token}" }
  },
- "_held": "load.specialization joins when the spec-index order is captured (COADump at live confirm) - no invented value meanwhile."
+ "_held": "load.specialization joins when the spec-index order is captured (COADump at live confirm) - no invented value meanwhile.",
+ "_machine": "a pack IS a group (pickup: exactly 1 group docket + members per PID). emit_group form grounded in plane/bundle.py (id/regionType/uid + optional arrangement; default dynamicgroup arrangement = canon, users arrange). stage reads _authored/ FLAT."
 }
