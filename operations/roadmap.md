@@ -37,9 +37,10 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
 ## Further
 
 - **★ THE HTML WA PICKER (Battlewrath, 2026-07-14 close — the distribution layer, heading candidate).** Every class ×
-  spec × spell × **4 styles**, pressed as SINGLE-aura import strings; a static HTML page (class → spec → spell search →
-  style → copy). No server — per-class JSON chunks; hosting precedent = bisbeard.com (the ability-index export);
-  the Discord pin links to it. Machinery mostly exists (signal→config, contracts, the codec's single-aura encode —
+  spec × spell × **4 styles**, pressed as SINGLE-aura import strings; **ONE PORTABLE self-contained .html** (strings
+  embedded, class → spec → spell search → style → copy) — no server, no host: **pinned in the Discord as the file
+  itself**. Optional future IF a hosting partner (bisbeard.com precedent): the hosted variant, where picks-as-votes
+  becomes the grammar's training data. Machinery mostly exists (signal→config, contracts, the codec's single-aura encode —
   a batch-press variant). **The 4 STYLES = SHOW-LOGIC presets (Battlewrath's correction — basic logic, not looks):**
   1) always-on dim-when-unavailable · 2) appear-when-ready · 3) appear-while-running · 4) appear-at-the-moment
   (proc/usable). Pure lever presets on proven surfaces (`genericShowOn` / `matchesShowOn` + a desat/alpha condition) —
