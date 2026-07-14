@@ -48,7 +48,7 @@ def _couple_selfpoint(doc, contract):
     DIRECTLY and never re-derives it. So when a dynamicgroup docket authors a grow/gridType (and hasn't pinned
     selfPoint itself), inject the paired value from the contract's GENERATED coupling table - any grow ships correct.
     Returns the selfPoint, or None if not applicable. Respects an explicitly-authored selfPoint (idempotent)."""
-    if doc.get("region") != "dynamicgroup" or doc.get("selfPoint") is not None:
+    if doc.get("regionType") != "dynamicgroup" or doc.get("selfPoint") is not None:
         return None
     cpl = (contract.get("display", {}).get("dynamicgroup", {}) or {}).get("coupling")
     if not cpl:
@@ -70,7 +70,7 @@ def expand(doc):
     if doc.get("id"):
         out["id"] = doc["id"]
     out["uid"] = doc["uid"] if doc.get("uid") else _mint_uid()   # present -> use; blank -> mint
-    out["region"] = doc["region"]
+    out["regionType"] = doc["regionType"]                        # WA-literal (was slim `region`)
 
     triggers = []
     for t in doc.get("triggers", []):
@@ -98,9 +98,9 @@ def expand(doc):
     if doc.get("combination"):
         out["activation"] = {"disjunctive": doc["combination"]}
 
-    region = doc.get("region")
-    if region in ("dynamicgroup", "group"):                      # group arrangement -> the display bucket (fill copies it to top-level)
-        surface = (contract.get("display", {}).get(region, {}) or {}).get("option_surface", {})
+    regionType = doc.get("regionType")
+    if regionType in ("dynamicgroup", "group"):                  # group arrangement -> the display bucket (fill copies it to top-level)
+        surface = (contract.get("display", {}).get(regionType, {}) or {}).get("option_surface", {})
         display = dict(out.get("display") or {})
         for lever in surface:
             if lever in doc:

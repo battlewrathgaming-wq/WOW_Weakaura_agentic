@@ -14,7 +14,7 @@ in-game for a per-class pack (the codec's documented path).
   py bundle.py <manifest.json>          -> the group import string on stdout
 
 manifest:
-  { "group":    <group docket: { "id", "region"|"type" (default dynamicgroup), "uid"? (else minted),
+  { "group":    <group docket: { "id", "regionType"|"type" (default dynamicgroup), "uid"? (else minted),
                                   + authored arrangement e.g. "grow","align","sort"... }>,
     "children": [ <child docket path, relative to plane/>, ... ] }   # children in group order
   Authored arrangement flows through expand (a non-default grow gets its coupled selfPoint injected automatically).
@@ -39,7 +39,7 @@ def _member_aura(docket):
     same path as any child, no hand-construction."""
     trigs = docket.get("triggers") or []
     reasoning = bool(trigs) and isinstance(trigs[0], dict) and "declare" not in trigs[0]
-    is_group = docket.get("region") in ("dynamicgroup", "group")
+    is_group = docket.get("regionType") in ("dynamicgroup", "group")
     full = expand.expand(docket) if (reasoning or is_group) else docket
     return rec.bounce(fill.fill(full))
 
@@ -62,9 +62,9 @@ def bundle(manifest):
         sys.exit("bundle: duplicate child uid(s) - would collide on import: %s" % sorted({x for x in uids if uids.count(x) > 1}))
 
     # The group is an aura too: run its docket through the SAME chain as the children (no hand-construction).
-    # `type` is the legacy manifest key for the group region; map it to `region`. expand mints uid if absent.
+    # `type` is the legacy manifest key for the group region; map it to WA-literal `regionType`. expand mints uid if absent.
     group_docket = dict(g)
-    group_docket["region"] = g.get("region") or g.get("type", "dynamicgroup")
+    group_docket["regionType"] = g.get("regionType") or g.get("type", "dynamicgroup")
     group_docket.pop("type", None)
     parent = _member_aura(group_docket)
     s = wc.encode_group_import_string(parent, children)
