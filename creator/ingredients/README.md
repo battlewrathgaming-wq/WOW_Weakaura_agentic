@@ -32,6 +32,6 @@ machine → live. The **asset library** (proven compositions: the Target tracker
 ## Coverage
 
 - `trigger.aura2.md` — the buff/debuff window reader (66% of real-world authorship)
-- `region.icon.md` · `region.dynamicgroup.md` — the proven pair
+- `region.icon.md` · `region.aurabar.md` · `region.dynamicgroup.md` — the display set (boolean/timed · progress · container)
 - Cooldown/spell trigger, aurabar, text… — **unharvested walls**: when an ask needs one, harvest its liveness first
   (`harvest_live_keys.py` grows per type), then it earns its file here.
