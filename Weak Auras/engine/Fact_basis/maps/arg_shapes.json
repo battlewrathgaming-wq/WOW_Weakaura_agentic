@@ -1,0 +1,155 @@
+{
+ "_meta": {
+  "what": "stored-form grammar per arg.type (load + prototype args). Gears apply TEMPLATE; accesses = the mechanical extraction the template is audited against.",
+  "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\Interface\\AddOns\\WeakAuras\\WeakAuras.lua",
+  "harvested": "2026-07-14",
+  "spans": {
+   "singleTest": "653-785",
+   "ConstructFunction": "786-905"
+  },
+  "participation_gate": {
+   "cite": "WeakAuras.lua:814",
+   "rule": "tristate/toggle/tristatestring: always evaluated | multiselect: ONLY when use_<name> ~= nil (true=single, false=multi) | all others: ONLY when (use_<name> or required) and <name>"
+  },
+  "multiEntry": {
+   "cite": "WeakAuras.lua:819",
+   "rule": "when the arg carries multiEntry, <name>/<name>_operator/<name>_caseInsensitive/use_exact_<name> are ARRAYS"
+  },
+  "generic_reads": {
+   "use_<name>": "WeakAuras.lua:814",
+   "<name>": "WeakAuras.lua:815",
+   "<name>_operator": "WeakAuras.lua:823",
+   "<name>_caseInsensitive": "WeakAuras.lua:824",
+   "use_exact_<name>": "WeakAuras.lua:825"
+  }
+ },
+ "types": {
+  "tristate": {
+   "branch_lines": [
+    "655-664"
+   ],
+   "accesses": {},
+   "template": {
+    "require_true": {
+     "use_<name>": true
+    },
+    "require_false": {
+     "use_<name>": false
+    },
+    "dont_care": "omit use_<name>"
+   }
+  },
+  "tristatestring": {
+   "branch_lines": [
+    "665-670"
+   ],
+   "accesses": {},
+   "template": {
+    "equals": {
+     "use_<name>": true,
+     "<name>": "<value>"
+    },
+    "not_equals": {
+     "use_<name>": false,
+     "<name>": "<value>"
+    }
+   }
+  },
+  "multiselect": {
+   "branch_lines": [
+    "671-740"
+   ],
+   "accesses": {
+    "use_<name>": "WeakAuras.lua:676",
+    "<name>": "WeakAuras.lua:677",
+    "<name>.multi": "WeakAuras.lua:678",
+    "<name>.single": "WeakAuras.lua:679",
+    "<name>_extraOption": "WeakAuras.lua:693"
+   },
+   "template": {
+    "single_pick": {
+     "use_<name>": true,
+     "<name>": {
+      "single": "<value>"
+     }
+    },
+    "multi_pick": {
+     "use_<name>": false,
+     "<name>": {
+      "multi": {
+       "<value>": true
+      }
+     }
+    },
+    "off": "omit use_<name> entirely (participates only when use_<name> ~= nil)"
+   }
+  },
+  "toggle": {
+   "branch_lines": [
+    "741-748"
+   ],
+   "accesses": {},
+   "template": {
+    "on": {
+     "use_<name>": true
+    },
+    "off": {
+     "use_<name>": false
+    }
+   }
+  },
+  "spell": {
+   "branch_lines": [
+    "749-756"
+   ],
+   "accesses": {},
+   "template": {
+    "on": {
+     "use_<name>": true,
+     "<name>": "<value>",
+     "use_exact_<name>": false
+    }
+   }
+  },
+  "longstring": {
+   "branch_lines": [
+    "757-771"
+   ],
+   "accesses": {},
+   "template": {
+    "on": {
+     "use_<name>": true,
+     "<name>": "<value>",
+     "<name>_operator": "<op>"
+    }
+   }
+  },
+  "number": {
+   "branch_lines": [
+    "772-785"
+   ],
+   "accesses": {},
+   "template": {
+    "on": {
+     "use_<name>": true,
+     "<name>": "<value>",
+     "<name>_operator": "<op>"
+    }
+   }
+  }
+ },
+ "_templates_multiEntry": {
+  "on": {
+   "use_<name>": true,
+   "<name>": [
+    "<value>",
+    "..."
+   ],
+   "<name>_operator": [
+    "<op>",
+    "..."
+   ]
+  },
+  "note": "when the arg carries multiEntry, <name>/<name>_operator/<name>_caseInsensitive/use_exact_<name> are ARRAYS"
+ }
+}
