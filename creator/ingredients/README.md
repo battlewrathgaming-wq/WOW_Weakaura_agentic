@@ -36,5 +36,7 @@ machine → live. The **asset library** (proven compositions: the Target tracker
   `region.icon.md` · `region.aurabar.md` · `region.dynamicgroup.md` (boolean/timed · progress · container)
 - **load** — `load.md` (when the aura exists at all; 41 fields; the pack idiom + the spellknown gate)
 - **conditions** — `conditions.md` (the reaction layer: check → changes, the three reactive surfaces, the four actions)
-- Cooldown/spell trigger, text/glow subregion detail… — **unharvested walls**: when an ask needs one, harvest its
-  liveness first (`harvest_live_keys.py` grows per type), then it earns its file here.
+- **custom** — `custom.md` (the scripting surface: the custom trigger/TSU, aura_env + the sandbox, the scaffold lane;
+  packs stay structured, scripting earns its place where structure can't reach)
+- Cooldown/spell trigger, text/glow subregion detail, the WA-env surface for scripting… — **unharvested walls**: when
+  an ask needs one, harvest its liveness first (`harvest_live_keys.py` grows per type), then it earns its file here.
