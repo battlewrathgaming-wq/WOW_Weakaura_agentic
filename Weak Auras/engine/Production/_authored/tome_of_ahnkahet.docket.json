@@ -14,5 +14,5 @@
    }
   }
  ],
- "load": { "class": "PROPHET" }
+ "load": { "use_class": false, "class": { "multi": { "PROPHET": true } } }
 }

@@ -4,6 +4,11 @@
  "uid": "coaNecDeathTargetGrp",
  "regionType": "dynamicgroup",
  "load": {
-  "class": "NECROMANCER"
+  "use_class": false,
+  "class": {
+   "multi": {
+    "NECROMANCER": true
+   }
+  }
  }
 }

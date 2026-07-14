@@ -2,7 +2,7 @@
  "_meta": {
   "what": "COA class fact basis: user-facing name <-> WA/game class API token <-> classId.",
   "api_name": "FACT - the game class API token (GetClassInfo, trainer scrape). COA rides base-class shells so the token is an opaque codename (SONOFARUGAL=Bloodmage, MONK=Templar). Sourced, never guessed.",
-  "wa_load_verified": "token seen in a real aura's load.class in the corpus (WA-usage proven live). false = the token is fact but WA-load use not yet corpus-confirmed (it IS the game class token, so expected).",
+  "wa_load_verified": "token seen in a real aura's load.class in the corpus (WA-usage proven live). false = the token is fact but WA-load use not yet corpus-confirmed (it IS the game class token, so expected). | 2026-07-14: roster verified against a live-captured load.class.multi (ingest/inbox/export_20260714_161244_01.txt, 32 tokens incl. base classes + HERO).",
   "source": "api_name/classId/display <- ability_inventory/out/<TOKEN>.json; wa_load_verified <- Outputs/aura_corpus/battlewrath_displays.json load.class. Regenerate: py build_class_table.py.",
   "count": 21
  },
@@ -11,43 +11,43 @@
    "class_name": "Barbarian",
    "api_name": "BARBARIAN",
    "classId": 12,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Chronomancer",
    "api_name": "CHRONOMANCER",
    "classId": 22,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Cultist",
    "api_name": "CULTIST",
    "classId": 25,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Felsworn",
    "api_name": "DEMONHUNTER",
    "classId": 14,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Knight of Xoroth",
    "api_name": "FLESHWARDEN",
    "classId": 17,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Guardian",
    "api_name": "GUARDIAN",
    "classId": 18,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Templar",
    "api_name": "MONK",
    "classId": 19,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Necromancer",
@@ -59,19 +59,19 @@
    "class_name": "Venomancer",
    "api_name": "PROPHET",
    "classId": 29,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Pyromancer",
    "api_name": "PYROMANCER",
    "classId": 24,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Ranger",
    "api_name": "RANGER",
    "classId": 21,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Reaper",
@@ -89,49 +89,49 @@
    "class_name": "Runemaster",
    "api_name": "SPIRITMAGE",
    "classId": 32,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Starcaller",
    "api_name": "STARCALLER",
    "classId": 26,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Stormbringer",
    "api_name": "STORMBRINGER",
    "classId": 16,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Sun Cleric",
    "api_name": "SUNCLERIC",
    "classId": 27,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Tinker",
    "api_name": "TINKER",
    "classId": 28,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Primalist",
    "api_name": "WILDWALKER",
    "classId": 31,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Witch Doctor",
    "api_name": "WITCHDOCTOR",
    "classId": 13,
-   "wa_load_verified": false
+   "wa_load_verified": true
   },
   {
    "class_name": "Witch Hunter",
    "api_name": "WITCHHUNTER",
    "classId": 15,
-   "wa_load_verified": false
+   "wa_load_verified": true
   }
  ]
 }

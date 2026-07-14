@@ -24,10 +24,20 @@ import uuid
 
 _THIS = os.path.dirname(os.path.abspath(__file__))
 CONTRACT = os.path.join(_THIS, "..", "engine", "Fact_basis", "contract", "contract.json")
+ARG_SHAPES = os.path.join(_THIS, "..", "engine", "Fact_basis", "maps", "arg_shapes.json")
 
 
 def _contract():
     return json.load(open(CONTRACT, encoding="utf-8"))
+
+
+def _arg_shapes():
+    """the stored-form grammar (harvested from ConstructFunction - harvest_arg_shapes.py). expand's filter shaping
+    follows it; the asserts tie the gear to the map so a re-harvested grammar change flags here instead of drifting."""
+    shapes = json.load(open(ARG_SHAPES, encoding="utf-8"))
+    assert shapes["_meta"]["multiEntry"], "arg_shapes: multiEntry rule missing"
+    assert "use_<name>" not in shapes and shapes["_meta"]["participation_gate"], "arg_shapes: gate rule missing"
+    return shapes
 
 
 def _event_to_type(contract):
@@ -64,6 +74,7 @@ def _couple_selfpoint(doc, contract):
 
 def expand(doc):
     contract = _contract()
+    _arg_shapes()                                                # consistency tie: the grammar map must be present/sane
     ev2type = _event_to_type(contract)
 
     out = {}
@@ -84,14 +95,16 @@ def expand(doc):
         if "unit" in t:
             declare["unit"] = t["unit"]
         for var, spec in (t.get("filter") or {}).items():        # existence-surface filters
-            declare["use_" + var] = True                         # enable-from-presence
-            op, value = spec["op"], spec["value"]
+            declare["use_" + var] = True                         # participation gate: (use_<name> or required) and <name>
+            op, value = spec.get("op"), spec["value"]            #   [arg_shapes _meta.participation_gate, WeakAuras.lua:815]
             io = tinputs.get(var, {})
-            if io.get("multiEntry"):                             # multiEntry -> arrays + string-coerce
-                declare[var + "_operator"] = [op]
+            if io.get("multiEntry"):                             # multiEntry -> ARRAYS of value/operator
+                declare[var + "_operator"] = [op]                #   [arg_shapes _meta.multiEntry, WeakAuras.lua:819-838]
                 declare[var] = [str(value)]
-            else:                                                # non-multiEntry: TBD (flag when a case hits it)
-                sys.exit("expand: %r is not multiEntry - non-multiEntry filter shape not yet derived (wall->expand)" % var)
+            else:                                                # scalar stored form: <name> + optional <name>_operator
+                declare[var] = value                             #   [arg_shapes _meta.generic_reads, WeakAuras.lua:842-849]
+                if op is not None:
+                    declare[var + "_operator"] = op
         triggers.append({"type": ttype, "event": event, "declare": declare})
     out["triggers"] = triggers
 

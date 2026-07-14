@@ -20,7 +20,10 @@ _THIS = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.normpath(os.path.join(_THIS, "..", ".."))
 COA = os.path.join(_ROOT, "dependencies", "coa_spells.json")
 RESOLVED = os.path.join(_THIS, "resolved.json")
-MAPS = os.path.join(_ROOT, "Weak Auras", "engine", "Fact_basis", "maps", "class_table.json")
+_FB = os.path.join(_ROOT, "Weak Auras", "engine", "Fact_basis")
+MAPS = os.path.join(_FB, "maps", "class_table.json")
+ARG_SHAPES = os.path.join(_FB, "maps", "arg_shapes.json")        # stored-form grammar (harvest_arg_shapes.py)
+LOAD_SHEET = os.path.join(_FB, "sheets", "load", "load.json")    # load field -> arg type
 AUTHORED = os.path.join(_ROOT, "Weak Auras", "engine", "Production", "_authored")
 
 
@@ -59,6 +62,34 @@ def fill(node, subs):
     return node
 
 
+def _apply_template(tpl, name, value):
+    """mechanical substitution of <name>/<value> through a stored-form template (zero shape knowledge here)."""
+    def sub(x):
+        if isinstance(x, dict):
+            return {sub(k): sub(v) for k, v in x.items()}
+        if isinstance(x, str):
+            x = x.replace("<name>", name)
+            return value if x == "<value>" else x.replace("<value>", str(value))
+        return x
+    return sub(tpl)
+
+
+def shape_load(load, ltypes, shapes):
+    """meaning-level load ({class: TOKEN}) -> the WA-literal stored form, via load-sheet type x arg_shapes template.
+    The shape comes from the MAP (harvested from ConstructFunction), never hand-written here."""
+    out = {}
+    for field, value in load.items():
+        ty = ltypes.get(field)
+        tpl = ((shapes.get("types") or {}).get(ty) or {}).get("template")
+        if ty == "multiselect" and isinstance(tpl, dict):        # multi_pick = the UI-native form (live-capture shape)
+            out.update(_apply_template(tpl["multi_pick"], field, str(value)))
+        elif ty is None:
+            out[field] = value                                   # not a load-sheet field - pass through, gate judges
+        else:
+            raise SystemExit("populate: load field %r is type %r - shaping not wired yet (wall->expand)" % (field, ty))
+    return out
+
+
 def main():
     cpath, cls, spec = sys.argv[1], sys.argv[2], sys.argv[3]
     contract = json.load(open(os.path.join(_THIS, cpath), encoding="utf-8"))
@@ -66,12 +97,18 @@ def main():
     res = json.load(open(RESOLVED, encoding="utf-8"))
     token = next(c["api_name"] for c in json.load(open(MAPS, encoding="utf-8"))["classes"]
                  if c["api_name"] == cls)                            # the maps table is the class-token authority
+    shapes = json.load(open(ARG_SHAPES, encoding="utf-8"))
+    lsheet = json.load(open(LOAD_SHEET, encoding="utf-8"))
+    ltypes = {c["name"]: c.get("type") for c in lsheet.get("conditions", [])}
+
     subs_base = {"class_lower": cls.lower(), "spec_lower": spec.lower(), "class_token": token, "spec": spec}
     pid = fill(contract["pid"], subs_base)
     os.makedirs(AUTHORED, exist_ok=True)                             # stage reads _authored/ FLAT (machine's contract)
 
     def press(form, subs, fname):
         doc = fill(form, subs)
+        if doc.get("load"):                                          # meaning-level -> WA-literal stored form (map-driven)
+            doc["load"] = shape_load(doc["load"], ltypes, shapes)
         fp = os.path.join(AUTHORED, "%s.docket.json" % fname[:60])
         json.dump(doc, open(fp, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         print("populated  %s" % os.path.relpath(fp, _ROOT))

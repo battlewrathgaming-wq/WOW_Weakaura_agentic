@@ -46,8 +46,10 @@ def fill(docket):
             triggers[k] = activation[k]
     aura["triggers"] = triggers
     load = docket.get("load") or {}
-    if "class" in load:
-        aura["load"] = {"class": {"single": load["class"]}}
+    if load:
+        aura["load"] = load                              # VERBATIM - the docket carries the WA-literal stored form
+                                                         # (shaping = authoring-side, from maps/arg_shapes.json; fill
+                                                         #  translating load is how the use_class dead-config shipped)
     for field, value in (docket.get("display") or {}).items():   # positive display declarations (top-level)
         aura[field] = value
     subregions = docket.get("subregions") or []                  # {type, ...declared props}; canon fills the rest
