@@ -52,6 +52,18 @@ progresstexture 2 · stopmotion 1 · model 1 · empty 2.
    (anchor resolution, test events) crashes. **FIXED at fill**: `subRegions` always present, `[]` minimum,
    capture-grounded. Affects ALL products latently → the end-of-grading re-press picks it up everywhere.
 
+## The round trip — VERIFIED LOSSLESS (2026-07-14, the final check)
+
+Battlewrath re-exported the imported packet from WA; full table diff vs our shipped string
+(`ingest/inbox/export_20260714_roundtrip_coverage.txt`, diff classified ADDED/MUTATED/DROPPED):
+- **36/36 members both ways; zero of our content mutated; zero dropped.** uid/id/loads byte-stable (the
+  `use_class` multi form and the `use_never` sentinel round-trip exactly); V10's spell trigger field-identical.
+- **Every delta is client-ADDED**: `tocversion`, per-region option defaults (the aurabar spark family, text font,
+  progresstexture fore/background…), default subregions (icons +1 subbackground, bars +2 — our declared subtext
+  preserved beneath the insertion), `activeTriggerMode: -10` on the triggers table. WA completing its own table on
+  its own side — exactly the custody chain's claim, now proven from the client's mouth: **the only author of
+  non-docket content is WA.**
+
 ## The live half — GRADED (2026-07-14, Battlewrath): landed clean in whole
 
 Everything else passed. Yield of the full loop: **a reference sheet** (the ingredients palette), **a pressure test**
