@@ -1,3 +1,4 @@
 # generated inspection artifacts - regenerate with the scripts
 out/
 tables/
+resolved.json
