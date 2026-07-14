@@ -145,7 +145,7 @@ HELP = __doc__[__doc__.index("Commands:"):__doc__.index("\n\n  py")]
 
 
 def main():
-    print("=== COA Production console ===   (type 'help', 'quit' to leave)")
+    print("=== COA Production console  [build: select-picker] ===   (type 'help', 'quit' to leave)")
     while True:
         try:
             line = input("prod> ").strip()
