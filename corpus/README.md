@@ -7,9 +7,21 @@ into their proven shape, not by being carried over._
 
 ## What this space is for
 
-The WA reference material as a **worked resource**, not scattered json: imports stripped to dockets (the reverse
-gear), compositions recognized as patterns, the knowledge re-applied instead of re-reasoned. The long direction
-(roadmap): the corpus decomposes into graph / feature-store / slice storage.
+**The goal of the corpus is to reduce noise to signal — so we can learn and replicate.** The WA reference material
+as a worked resource, not scattered json: imports stripped to dockets (the reverse gear), compositions recognized as
+patterns, the knowledge re-applied instead of re-reasoned. The long direction (roadmap): the corpus decomposes into
+graph / feature-store / slice storage.
+
+## The selection principle (what earns a place in patterns/)
+
+- **Unique lead, or anti-common.** The common is already known — it collapses into the registries/maps and is not
+  worth shelf space. What lands is what DEVIATES: a novel composition, an uncommon solution, a lead worth chasing.
+  (The same by-exception law as everywhere: the gate speaks only on disagreement; roundtrip_diff surfaces only the
+  novel; the corpus keeps only what teaches.)
+- **Not precious.** A pattern's value is whether it **becomes a primitive** — adopted into the creator machinery.
+  Entries that never graduate are disposable; prune without ceremony.
+- *(Eventually, maybe: the creators' single look-up source for known patterns. Noted, deliberately not built toward —
+  that's rushing.)*
 
 ## Structure (settled 2026-07-14 — refinement stages, ore → metal)
 
