@@ -1,9 +1,0 @@
-{
- "pid": "necromancer-death-target",
- "id": "NECROMANCER Death - Target Tracker",
- "uid": "coaNecDeathTargetGrp",
- "regionType": "dynamicgroup",
- "load": {
-  "class": "NECROMANCER"
- }
-}

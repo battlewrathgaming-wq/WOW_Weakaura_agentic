@@ -9,7 +9,8 @@
    "event": "Aura",
    "declare": {
     "unit": "player",
-    "spellIds": ["504341"]
+    "useName": true,
+    "auranames": ["504341"]
    }
   }
  ],
