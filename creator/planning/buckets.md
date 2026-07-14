@@ -16,6 +16,17 @@ Everything you watch lands in one of these — and it held across DPS, healers, 
 Deliberately **not tracked:** control/CC (skill; the interrupt's just a cooldown) · the fillers & builders that feed the
 gate · health values (raid frames) · mana (its own resource-bar pack). Running principle throughout: **localize, don't replace.**
 
+**These seven are the meaning, not the display.** They're the *pre-filter* — "why you press it." The **visual primitives**
+(the actual shapes on screen) are a *smaller* set, because several buckets wear the same shape (all the kept-up things → a
+duration bar; everything that folds into cooldown → an icon; stacks → a count). The buckets aren't the picture — they're what
+lets us **decide how to populate** each shape (the trigger, the unit, the grouping). Classify by meaning first, pour into the
+shapes second.
+
+_How far the shapes actually collapse (does the cooldown icon = the payoff icon? proc = stack?) is a **build-time** question —
+you make them and see if they truly perform the same, not decide it in the abstract. The meaning (the buckets) is locked and
+held across every role; the picture is leanings on top, settled at the bench. A **pair** (show the spell + show its reaction)
+keeps recurring and may be the base shape._
+
 ---
 
 ## DoT
@@ -57,6 +68,7 @@ Watch: **is it ready** — a **static** icon showing its cooldown sweep, bright/
 Come in CD brackets: short 30s–1min, then 90s, 5min.
 Some get **reset by procs** — the native cooldown reflects that on its own, so the icon just updates; we read it.
 Opportunity folds in here — it's a cooldown you pop in the window.
+Visual: **always shown, desaturate + recolor** as it counts down — you *check* it to stage your next move (anticipatory).
 
 ## Control (CC) — mostly NOT tracked
 Stuns, slows, silences. Situational, governed by diminishing returns — this is instinct and class mastery, not
@@ -78,6 +90,14 @@ Aura side: a **dynamic group** that shows abilities as they become usable. Users
 fixed/stacking placement if they prefer that. (Works out of the box, bends to taste.)
 The fillers you press to *feed* the gate aren't tracked — they're the chaff that builds toward the payoff.
 
+Visual: a **pair** —
+1. the **ability it impacts**, shown *static* so you anticipate it, that **reacts when its gate opens** (anchored on the
+   consumer, like a proc — but kept visible the whole time, not hidden-till-live).
+2. a **stack counter** alongside, counting up, that **flips via trigger 2** to the payoff state once the threshold is met.
+
+So the counter shows you closing on it; the ability itself lights the moment it's live. (This is why payoff and proc stay
+visually distinct: a proc appears from nothing; a payoff is a static thing that wakes up.)
+
 ## Stack counters — showing the build, not just the open
 Worth showing the **stack count itself** as it climbs toward its target — the high-target ones especially.
 Same **dynamic group**, same principle: curate the useful ones first, users drop out what they don't care about.
@@ -98,6 +118,11 @@ the consuming spell lights up while the proc is live → "use this now." (Read t
 Two kinds:
 - **Weather** — ambient procs that don't change what you press. Skip.
 - **Behaviour drivers** — "have proc, use spell" relationships. These are the useful ones — the ones we track.
+
+Visual: **show only when it's live** — you *react* to it appearing (not something you check). The opposite of the
+cooldown's always-shown-and-styled: a cooldown you anticipate, a proc you react to.
+(Open lean: might be better to **show the spell + show the proc** — the ability plus its reaction, like the payoff pair.
+Test when building.)
 
 ## Healers / support — same shapes, pointed at allies
 Mostly the same buckets: procs, cooldowns, boons to maintain — nothing new *in kind*.
