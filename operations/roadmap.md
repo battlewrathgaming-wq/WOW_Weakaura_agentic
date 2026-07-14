@@ -36,6 +36,14 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
 
 ## Further
 
+- **★ THE HTML WA PICKER (Battlewrath, 2026-07-14 close — the distribution layer, heading candidate).** Every class ×
+  spec × spell × **4 styles**, pressed as SINGLE-aura import strings; a static HTML page (class → spec → spell search →
+  style → copy). No server — per-class JSON chunks; hosting precedent = bisbeard.com (the ability-index export);
+  the Discord pin links to it. Machinery mostly exists (signal→config, contracts, the codec's single-aura encode —
+  a batch-press variant). **The open design = the 4 STYLES (the taste seat, formalized):** likely the attention ladder
+  (Minimal · Standard · Bold · Loud) or form variants (icon/bar/icon+text) — defined once as shared emit templates,
+  the whole catalog styled forever. This is the "users arrange their own UI" MVP vision's final face.
+
 - **Generation side** — type-configured tracker packs from the classified data: the flat bulk auto-generated through the
   engine, the custom scaffolds reasoned. Then bespoke aura products.
 - **WoW addons** beyond auras (the capability, applied wider).
