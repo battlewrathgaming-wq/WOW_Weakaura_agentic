@@ -5,13 +5,23 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
 
 ## Near
 
+- **★ HEADING (restore point 2026-07-14): the derived-gears rewrite.** Kill hand-written stored-form shapes everywhere:
+  harvest `ConstructFunction` → `maps/arg_shapes.json` (per arg.type: stored form + `use_` gate, source-cited) · fill
+  drops its load translation (fully dumb: containers + verbatim) · populate shapes load via load-sheet type × template ·
+  expand's filter shaping goes type-aware · regression = re-press everything, diff byte-identical except load's live
+  form. Principle: **leverage what is known and proven true — derive handling, never hand-write it** (three instances
+  of the same disease found: fill's load, expand's type-blind `use_`, expand's hand multiEntry shape).
 - ✅ **Heal the merge (done 2026-07-14)** — `filter_coa_spells.py` now carries `effectClassMask`; `coa_spells.json`
   regenerated, verified purely additive (graph + gate unaffected). Family-based cross-links unblocked.
-- **The DBC resolver** — interpret the effect slots into typed edges (trigger · modify-cooldown · apply-aura/buff ·
-  resource-gen) → the full web + the proc→cooldown cross-links. Right-sized to edge-and-attribute effects.
-- **Enrich** the class:spec tables + taxonomy with the resolved edges; sharpen the shape-hint triage; name-map the DBC
-  enum codes (powerType/mechanic/effect → names).
-- **Graduate** the classification tool from `creator/planning/` into `creator/` once the design firms up.
+- ✅ **The DBC resolver (done 2026-07-14)** — Pass 1 axes + typed edges (triggers · applies_aura incl. area-190 ·
+  family_effect · targets_spell); Pass 2 signal view; the bucket map; custom-effect gaps named or accepted.
+- ✅ **First product through the machine (2026-07-14)** — Target tracker contract → populate → gate → stage → pickup →
+  the Necro/Death 7-icon pack; two live catches fixed at the right layers (live-key gate tier; load-shape finding).
+- **Enrich** the class:spec tables + taxonomy with the resolved signal + edges; name-map the remaining DBC enum codes.
+- **Graduate** the classification tool + contracts from `creator/planning/` into `creator/` once the design firms up.
+- **Next contracts** — Ready tracker (cooldown progress; needs its live-key harvest) · Self tracker · resource bars.
+- **Pending in-game:** the corrected pack's live re-import; the specialization list's names (20 index entries) →
+  wire `load.specialization`.
 
 ## Further
 
