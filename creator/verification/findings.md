@@ -52,10 +52,10 @@ progresstexture 2 · stopmotion 1 · model 1 · empty 2.
    (anchor resolution, test events) crashes. **FIXED at fill**: `subRegions` always present, `[]` minimum,
    capture-grounded. Affects ALL products latently → the end-of-grading re-press picks it up everywhere.
 
-## Awaiting the live half
+## The live half — GRADED (2026-07-14, Battlewrath): landed clean in whole
 
-Import `Docket_complete/verification-coverage.txt`. The checklist IS the member ids. Watch especially:
-- **V34 MUST NOT APPEAR** (use_never sentinel) — if visible, load is broken.
-- The prototype-trigger members (V10-V15, V17, V21-V22, V26, V28, V30): which are alive vs dead-config = the
-  priority list for the next liveness harvests.
-- V16/V23 (custom): do the functions run in the sandbox.
+Everything else passed. Yield of the full loop: **a reference sheet** (the ingredients palette), **a pressure test**
+(this packet), **a validation loop** (press → gate → machine → decode → live grading → findings), and **3 live fixes**
+(the select-key gate rule · the subRegions container · the V17 row). Post-grading re-press: all five packs regenerated
+with the fixes — every member in every pack carries `subRegions`, V17 ships `alertType=1`. The packet re-imports
+whenever the next system change wants its pressure test: `py coverage.py` → stage → pickup → import.
