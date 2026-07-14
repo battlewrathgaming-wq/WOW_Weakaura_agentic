@@ -23,6 +23,14 @@ why this lives in `creator/`, not the engine). Curated OVER the sheets, never in
 - **Per-aura conditions read local state** (this ability's cooldown), not compound global state.
 - **Cross-aura effects: pull, not push** — each aura reads the native buff-window itself.
 
+## Further reading (secondary — concepts, never facts)
+
+Upstream WeakAuras2: the [wiki](https://github.com/WeakAuras/WeakAuras2/wiki) (custom-trigger guides, %text docs,
+condition semantics — the "why" behind the surfaces) and the [source](https://github.com/weakauras/weakauras2).
+**Caveat: our client runs Ascension's 3.3.5 backport (5.21.2 / iv86)** — upstream documents retail-era WA. Use it for
+orientation and meaning; the INSTALLED FORK stays the authority for every fact (that's what the maps harvest from).
+Invariant 7 applies: nothing is accepted from upstream without a fork-source confirm.
+
 ## The walk
 
 ask → pick the trigger type (what native signal tracks it) → compose CATCH / SHOW / READ from its ingredients → pick the
