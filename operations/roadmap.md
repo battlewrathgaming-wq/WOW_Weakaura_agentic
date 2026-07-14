@@ -29,6 +29,10 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
 - **Graduate** the classification tool + contracts from `creator/planning/` into `creator/` once the design firms up.
 - **Pending in-game:** the specialization list's names (20 index entries) → wire `load.specialization`; re-import the
   re-pressed packs at convenience (subRegions fix).
+- **Pending external (never blocked on):** dev reply re class design docs / a DOT-HOT register — if it lands, it's the
+  THIRD witness in the validation triangle (designer intent × words × mechanics). **Distribution channel emerging:**
+  devs discussed pinning the packs in the Discord → when close, a packaging pass (per-class strings + a public
+  import/what-loads-when readme).
 
 ## Further
 
