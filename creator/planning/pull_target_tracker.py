@@ -3,8 +3,9 @@ pull_target_tracker.py - the first bucket PULL: the Target tracker's members for
 
 Select recipe (from buckets.md): your kept-up things on the enemy - target:enemy|both, persistence:window.
 Flavour-tagged: DoT (periodic damage aura) vs bane (non-periodic amp/vuln/weaken/heal-cut) vs control-only
-(CC auras - deliberately NOT tracked, listed as the near-miss so the exclusion is readable too).
-Deduped by family name (match family, not rank). Read the pull, tune the recipe - nothing is emitted.
+(CC auras - deliberately NOT tracked) vs builder (its trigger chain references resource gain - a filler/builder
+in DoT clothing, e.g. Crypt Swarm; builders feed the gate, not the tracker). Exclusions stay LISTED so the
+near-miss is readable. Deduped by family name (match family, not rank). Read the pull - nothing is emitted.
 
   py pull_target_tracker.py NECROMANCER Death
 """
@@ -15,11 +16,27 @@ from collections import defaultdict
 
 _THIS = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.normpath(os.path.join(_THIS, "..", ".."))
+sys.path.insert(0, os.path.join(_ROOT, "Scripts"))
 COA = os.path.join(_ROOT, "dependencies", "coa_spells.json")
 RESOLVED = os.path.join(_THIS, "resolved.json")
 
 CC = {"mod_stun", "mod_root", "mod_decrease_speed", "mod_silence", "mod_confuse", "mod_fear", "mod_taunt",
       "transform", "mod_pacify", "mod_disarm", "mod_charm"}          # transform added: Ghoulify leaked as "bane"
+GEN_CUSTOM = {175, 184}   # custom gen-shape codes (Add Insanity / Generate Heat) - unnamed, known shape
+
+
+def references_gain(d, res, sid, depth=0, seen=None):
+    """walk the spell + its trigger chain (2 deep): does anything energize / custom-generate? -> a builder."""
+    seen = seen if seen is not None else set()
+    if sid in seen or depth > 2 or sid not in d:
+        return False
+    seen.add(sid)
+    import spell_enums as se
+    for c in d[sid].get("effect") or []:
+        if c and ("energize" in se.effect_name(c) or c in GEN_CUSTOM):
+            return True
+    return any(e.get("rel") == "triggers" and references_gain(d, res, e["dst"], depth + 1, seen)
+               for e in (res.get(sid, {}).get("edges") or []))
 
 
 def spec_spells(d, cls, spec):
@@ -50,6 +67,8 @@ def main():
         periodic = any("periodic" in a for a in auras)
         non_cc = auras - CC
         flav = "DoT" if periodic else ("bane" if non_cc else "control")
+        if flav != "control" and references_gain(d, res, sid):
+            flav = "builder"                                            # feeds the gate, not the tracker
         f = fams[s.get("name") or sid]
         f["flav"].add(flav)
         f["sids"].append(sid)
@@ -59,14 +78,15 @@ def main():
         tb = (s.get("coa") or {}).get("triggeredBy") or []
         f["src"].add(tb[0].get("ability") if tb else "(pressed)")
 
-    order = {"DoT": 0, "bane": 1, "control": 2}
+    order = {"DoT": 0, "bane": 1, "builder": 2, "control": 3}
     print("TARGET TRACKER pull - %s %s  (%d spells in spec pool -> %d families selected)\n"
           % (cls, spec, len(pool), len(fams)))
     for name, f in sorted(fams.items(), key=lambda kv: (min(order[x] for x in kv[1]["flav"]), kv[0])):
         flav = "/".join(sorted(f["flav"], key=lambda x: order[x]))
         dur = ",".join(str(x) for x in sorted(f["dur"]))
         cd = ",".join(str(x) for x in sorted(f["cd"]))
-        mark = "  [EXCLUDED - CC only]" if f["flav"] == {"control"} else ""
+        mark = ("  [EXCLUDED - CC only]" if f["flav"] == {"control"}
+                else "  [EXCLUDED - resource builder]" if f["flav"] == {"builder"} else "")
         print("  %-7s %-28s dur %ss cd %ss  x%d  src:%s%s" % (flav, name[:28], dur, cd, len(f["sids"]),
                                                               "/".join(sorted(f["src"]))[:30], mark))
         print("          auras: %s" % ", ".join(sorted(f["auras"]))[:100])

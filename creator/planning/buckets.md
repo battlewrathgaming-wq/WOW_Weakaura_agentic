@@ -57,6 +57,8 @@ Both are DoTs.
 
 It might also carry an amp/vulnerability, but that's a rider — you press it for the tick, not the amp.
 So when something's both, the DoT wins the "why."
+**Builder rule:** if its trigger chain references resource gain, it's a filler/builder in DoT clothing — skip it
+(builders feed the gate, not the tracker). Verified on Necro/Death: catches exactly Crypt Swarm (tick → energize), no one else.
 
 Aura side — sharpened: the mechanism is **one trigger: aura2, unit=target, ownOnly** — *"for my target, do they have it?"*
 **Ship form (settled):** an **icon** per DoT of yours, in a **dynamic group**, on your **target enemy** — the group is for
