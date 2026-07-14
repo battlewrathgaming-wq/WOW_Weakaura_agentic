@@ -26,7 +26,8 @@
      "unit": "target",
      "debuffType": "HARMFUL",
      "ownOnly": true,
-     "spellIds": ["{rep_id}"]
+     "useName": true,
+     "auranames": ["{rep_id}"]
     }
    }
   ],

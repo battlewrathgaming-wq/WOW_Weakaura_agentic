@@ -56,8 +56,12 @@ Grounding, token by token (aura2 sheet):
 - `unit: target` — sheet input `unit` (our delta from canon default `player`).
 - `debuffType: HARMFUL` — sheet input `debuffType`, domain `debuff_types` (delta from canon `HELPFUL`).
 - `ownOnly: true` — sheet input `ownOnly`: *my* debuff, not another Necro's.
-- `spellIds: [id]` — the drive-from-ID family catch (sheet `rank_resolution`: ID-in-names catches ALL ranks; the COA
-  idiom). NOT `useExactSpellId` (pins one rank — policy off).
+- `useName: true` + `auranames: [id]` — the drive-from-ID family catch, **live-corrected 2026-07-14**: the first import
+  shipped `spellIds` (the tome sample's form) and the game showed the Name(s) tick unset — `spellIds` is BuffTrigger1
+  residue, stored but read by nothing. The live read-form is `useName`+`auranames` (fork source `BuffTrigger2.lua:2598`:
+  an ID in auranames → `SafeToNumber` → `GetSpellInfo` → the NAME → family match — the rank_resolution idiom natively).
+  NOT `useExactSpellId` (pins one rank — policy off). _Gate lesson: word-match proves a token exists on the surface,
+  not that it's live — `spellIds` passed the gate honestly._
 - show-on-active is canon default (`matchesShowOn`) — no declare needed; no target / no debuff → hidden. Correct.
 - `load.class` — the game API token from `Fact_basis/maps/class_table.json` (NECROMANCER: `wa_load_verified: true`,
   seen in a real aura's load).

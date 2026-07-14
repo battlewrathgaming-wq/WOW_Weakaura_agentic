@@ -55,6 +55,12 @@ fixed touchstones → `operations/WHAT.md` / `HOW.md` · moving present → `ope
   DBC doesn't hold (`powerType`/`manaCost` = *primary* cost; COA builders generate via custom effects 175/184). So the axes
   carry two raw flags — `costed` (3441) · `generates` (167, standard-energize only, under-catches) — ingredients to revisit,
   not a solved bucket. Product-aligned: spenders track on resource threshold now; builders are HUD-deferred.
+- **Live catch: `spellIds` is dead residue; the aura2 catch is `useName`+`auranames`.** First bucket-born pack imported
+  structurally clean but matched nothing — the declare followed the tome sample's `spellIds` (BuffTrigger1 residue,
+  stored/never read) instead of the sheet's own `drive_from_id` line. Fork source confirms (`BuffTrigger2.lua:2598`):
+  ID in `auranames` → `GetSpellInfo` → name → family match. Contract corrected; gear untouched; decode-verified.
+  **Gate lesson:** word-match proves a token EXISTS on the surface, not that it's LIVE — a live-key tier for the gate is
+  the earned improvement. (The tome sample carries the same latent flaw.)
 - **Target-edge wiring — done.** The spell-targeting custom ops (`165/177/192/195` + structural `173/171`) emit a unified
   **`targets_spell`** edge (`op` + `dst` = the `misc` spell). 351 cross-links, **329 to in-scope COA abilities** — "this
   spell resets/reduces/extends *that tracked ability*". `modify_cooldown` folded in. "All Traps"-style fan-out is
