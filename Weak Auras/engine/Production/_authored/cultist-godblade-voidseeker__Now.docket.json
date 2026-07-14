@@ -1,0 +1,48 @@
+{
+ "pid": "cultist-godblade-voidseeker",
+ "id": "Voidseeker Proc - NETHERSTRIKE NOW",
+ "uid": "coaCulVoidNow",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useExactSpellId": true,
+    "auraspellids": [
+     "561288"
+    ]
+   }
+  }
+ ],
+ "display": {
+  "width": 48,
+  "height": 48,
+  "zoom": 0.3
+ },
+ "subregions": [
+  {
+   "type": "subtext",
+   "text_text": "NETHERSTRIKE!",
+   "text_color": [
+    1,
+    0.85,
+    0.2,
+    1
+   ]
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CULTIST": true
+   }
+  },
+  "use_spellknown": true,
+  "spellknown": 806826
+ }
+}

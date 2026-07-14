@@ -1,0 +1,42 @@
+{
+ "pid": "cultist-godblade-voidseeker",
+ "id": "Voidseeker Proc - swirl",
+ "uid": "coaCulVoidSwirl",
+ "regionType": "texture",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useExactSpellId": true,
+    "auraspellids": [
+     "561288"
+    ]
+   }
+  }
+ ],
+ "display": {
+  "texture": "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Auras\\Aura3",
+  "color": [
+   0.62,
+   0.32,
+   1,
+   0.9
+  ],
+  "width": 220,
+  "height": 220
+ },
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CULTIST": true
+   }
+  },
+  "use_spellknown": true,
+  "spellknown": 806826
+ }
+}

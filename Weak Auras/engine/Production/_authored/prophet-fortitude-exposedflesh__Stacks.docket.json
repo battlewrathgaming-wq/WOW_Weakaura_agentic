@@ -1,0 +1,82 @@
+{
+ "pid": "prophet-fortitude-exposedflesh",
+ "id": "Exposed Flesh - stacks",
+ "uid": "coaProExpStacks",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HARMFUL",
+    "useExactSpellId": true,
+    "auraspellids": [
+     "805095"
+    ]
+   }
+  }
+ ],
+ "display": {
+  "width": 56,
+  "height": 56,
+  "zoom": 0.3
+ },
+ "subregions": [
+  {
+   "type": "subtext",
+   "text_text": "%s",
+   "text_fontSize": 22,
+   "text_color": [
+    1,
+    1,
+    1,
+    1
+   ]
+  }
+ ],
+ "conditions": [
+  {
+   "check": {
+    "trigger": 1,
+    "variable": "stacks",
+    "op": ">=",
+    "value": "6"
+   },
+   "changes": {
+    "color": [
+     1,
+     0.6,
+     0.1,
+     1
+    ]
+   }
+  },
+  {
+   "check": {
+    "trigger": 1,
+    "variable": "stacks",
+    "op": ">=",
+    "value": "10"
+   },
+   "changes": {
+    "color": [
+     1,
+     0.15,
+     0.15,
+     1
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PROPHET": true
+   }
+  },
+  "use_spellknown": true,
+  "spellknown": 805102
+ }
+}

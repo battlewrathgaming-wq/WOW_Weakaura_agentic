@@ -1,0 +1,44 @@
+{
+ "pid": "prophet-fortitude-exposedflesh",
+ "id": "Exposed Flesh - MAX DISPEL",
+ "uid": "coaProExpMax",
+ "regionType": "texture",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HARMFUL",
+    "useExactSpellId": true,
+    "auraspellids": [
+     "805095"
+    ],
+    "useStacks": true,
+    "stacksOperator": "==",
+    "stacks": "10"
+   }
+  }
+ ],
+ "display": {
+  "texture": "Interface\\Addons\\WeakAuras\\PowerAurasMedia\\Auras\\Aura3",
+  "color": [
+   1,
+   0.12,
+   0.12,
+   0.95
+  ],
+  "width": 240,
+  "height": 240
+ },
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PROPHET": true
+   }
+  },
+  "use_spellknown": true,
+  "spellknown": 805102
+ }
+}

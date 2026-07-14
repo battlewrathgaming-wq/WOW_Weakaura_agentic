@@ -1,0 +1,16 @@
+{
+ "pid": "prophet-fortitude-exposedflesh",
+ "id": "Exposed Flesh (Venomancer tank)",
+ "uid": "coaProExpGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "PROPHET": true
+   }
+  },
+  "use_spellknown": true,
+  "spellknown": 805102
+ }
+}

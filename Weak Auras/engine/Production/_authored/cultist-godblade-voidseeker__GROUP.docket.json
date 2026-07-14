@@ -1,0 +1,16 @@
+{
+ "pid": "cultist-godblade-voidseeker",
+ "id": "Voidseeker Proc (Cultist Godblade)",
+ "uid": "coaCulVoidGrp",
+ "regionType": "dynamicgroup",
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "CULTIST": true
+   }
+  },
+  "use_spellknown": true,
+  "spellknown": 806826
+ }
+}
