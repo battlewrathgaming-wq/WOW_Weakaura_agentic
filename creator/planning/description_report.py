@@ -10,6 +10,9 @@ Two modes:
                                        LEXICON below - the trigger words are DEFINED from evidence, then human-locked.
   py description_report.py rows     -> the index: CLASS:spec:family:spellID: hit-words   (tolerance = regex families)
   py description_report.py rows -misses  -> also report selected members with ZERO hits (leak candidates)
+  py description_report.py agree    -> append each member's EFFECT CHAIN (the mechanics witness) and verdict the
+                                       agreement: AGREE (both witnesses) | DESC? (mech speaks, words silent) |
+                                       MECH? (words speak, mech scripted/dummy) | ?? (both silent - the dark rows)
 """
 import json
 import os
@@ -146,9 +149,70 @@ def rows(show_misses=False):
             print("  MISS  " + r)
 
 
+# the mechanics witness: aura families (from the flat-debuff work) that corroborate each word family
+MAINTAIN_AURAS = {"mod_damage_percent_taken", "mod_spell_damage_from_caster", "mod_resistance", "mod_resistance_pct",
+                  "mod_crit_chance_for_caster", "mod_healing_pct", "school_heal_absorb", "mod_damage_percent_done",
+                  "mod_melee_ranged_haste", "mod_attack_power", "mod_hit_chance"}
+
+
+def agree():
+    desc = load_descs()
+    members, d = selected_members()
+    res = json.load(open(RESOLVED, encoding="utf-8"))
+    lex = {fam: [re.compile(p) for p in pats] for fam, pats in LEXICON.items()}
+    verdicts = Counter()
+    review = []
+    for cls, spec, fam, rep, sids in sorted(members):
+        text = next((desc[str(s)] for s in sids if str(s) in desc), None)
+        if text is None:
+            for s in sids:
+                tb = (d.get(str(s), {}).get("coa") or {}).get("triggeredBy") or []
+                text = next((desc[str(t.get("via"))] for t in tb if str(t.get("via")) in desc), None)
+                if text:
+                    break
+        text = clean(text or "")
+        words = {family for family, pats in lex.items() if any(p.search(text) for p in pats)}
+        auras = set()
+        for s in sids:
+            for e in (res.get(str(s), {}).get("edges") or []):
+                if e.get("rel") == "applies_aura" and e.get("aura_name"):
+                    auras.add(e["aura_name"])
+        mech = set()
+        if any("periodic" in a for a in auras):
+            mech.add("dot")
+        if auras & MAINTAIN_AURAS:
+            mech.add("maintain")
+        if auras & CC:
+            mech.add("cc")
+        core_w, core_m = words & {"dot", "maintain"}, mech & {"dot", "maintain"}
+        if core_w & core_m:
+            v = "AGREE"
+        elif core_m and not core_w:
+            v = "DESC?"
+        elif core_w and not core_m:
+            v = "MECH?"
+        else:
+            v = "??"
+        if mech & {"cc"} or words & {"cc"}:
+            v += "+cc"
+        verdicts[v] += 1
+        if not v.startswith("AGREE"):
+            review.append("%-7s %s:%s:%s:%d: words=%s mech=%s auras=%s"
+                          % (v, cls, spec, fam, rep, sorted(words) or "-", sorted(mech) or "-",
+                             ",".join(sorted(auras))[:48] or "-"))
+    print("verdicts over %d members:" % sum(verdicts.values()))
+    for v, n in verdicts.most_common():
+        print("  %-9s %d" % (v, n))
+    print("\nREVIEW (everything not AGREE):")
+    for r in review:
+        print("  " + r)
+
+
 if __name__ == "__main__":
     mode = sys.argv[1] if len(sys.argv) > 1 else "rows"
     if mode == "mine":
         mine()
+    elif mode == "agree":
+        agree()
     else:
         rows("-misses" in sys.argv)
