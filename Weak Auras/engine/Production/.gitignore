@@ -1,7 +1,8 @@
-# Docket_stage + Docket_complete are TRACKED (Battlewrath): transient in INTENT (consumed/cleared as they process),
-# but a big staged batch and its OUTPUTS must SURVIVE git - we don't want to regenerate 1000s of files just because
-# they weren't committed. Commit them via the normal push when a batch is worth keeping.
-#
-# receipts/ stays ignored - verbose per-run execution logs, genuinely disposable. The survivable run-log is the
-# compact Docket_complete/register.jsonl (one line per pack), which rides along with Docket_complete.
+# What survives git here (Battlewrath), and what doesn't:
+#   Docket_complete/            TRACKED - the .txt import strings + register.jsonl are durable PRODUCTS, expensive to
+#                               regenerate. This is what "don't reproduce 1000 files" means.
+#   Docket_stage/*.docket.json  TRACKED - the staged dockets survive so we don't repeat the staging work.
+#   *.gate.json                 IGNORED - per-docket gate stubs are EPHEMERAL by design (a per-run verdict, not a keeper).
+#   receipts/                   IGNORED - verbose per-run execution logs; the survivable run-log is Docket_complete/register.jsonl.
 receipts/
+*.gate.json

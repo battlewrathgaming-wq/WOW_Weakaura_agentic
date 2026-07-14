@@ -35,7 +35,14 @@ finishes. See `Weak Auras/engine/Production/README.md` and `Weak Auras/engine/Fa
   push-and-leave drainer + receipts hardening remain.
 - **Cheap gate wins:** validate `load.class` against `maps/class_table.json`; populate a `unit`-value domain.
 - **Migrate `plane/`'s wrap gears** (expand/fill/bounce/bundle/codec) into `engine/Production/`.
-- **The CREATOR half** — its own consolidation (class inventories + the class compile + products), mirroring the engine.
+- **The CREATOR half — STARTED (`creator/` at root).** The invent home is established (README states its role +
+  the consolidation direction: engine folds in over time; the weakauras corpus decomposes into better storage). The
+  **headline work** living there: the **classification / signal-platform tool** — turn 9,152 spells into
+  *auto-generate-these · reason-about-those* via spell **nodes** + the (already-materialized) **`coa.triggeredBy` web** +
+  **traffic** (in-degree centrality) + lane **buckets** + the clear-vs-hard **triage**. Grounded 2026-07-14: the web is
+  materialized in `coa_spells.json`; centrality **finds the class mechanics** (Reaper's souls surfaced). STAGED next (not
+  a dive): **research** (adtech / graph-centrality prior art) + **settlement** (what migrates in, in what order) + build.
+- **`operations/` + memory split done** — tracking/touchstones → operations; memory slimmed to how-to-find + how-we-work.
 
 ## Ground rules (the how, in one place)
 
