@@ -27,6 +27,23 @@ you make them and see if they truly perform the same, not decide it in the abstr
 held across every role; the picture is leanings on top, settled at the bench. A **pair** (show the spell + show its reaction)
 keeps recurring and may be the base shape._
 
+## The reduction
+Seven meanings → **three mechanisms** → **four products**. The unit=target cut does most of the collapsing — it applies to
+both sides (the healer's ask is the same flatten: "does *this* one have my HoT?").
+
+Mechanisms (= the corpus's own authorship split): **aura2 window** (all kept-up things + stacks) · **cooldown progress**
+(all ready-checks) · **usability/threshold** (the payoff gate — bolted on as trigger 2/conditions, never standalone).
+
+| product | buckets folded in | mechanism · ship form |
+|---|---|---|
+| **Target tracker** | DoT + bane (+ HoT friendly-side) | aura2 `unit=target` ownOnly · dynamic icon group |
+| **Ready tracker** | cooldown · opportunity · interrupt · external | cooldown progress · static icons, desat+recolor |
+| **Self tracker** | boon · proc-on-consumer · payoff pair · stack counter | aura2 `unit=player` + threshold · static + reactive |
+| **Resource bars** | every power type | resolved — cheap, ship it |
+
+The buckets survive as the **select recipes** deciding what populates each product. Plan: pull one spec's Target tracker →
+contract it → one through the real machine → live confirm → then widen.
+
 ---
 
 ## DoT
