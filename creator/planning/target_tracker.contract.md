@@ -57,9 +57,14 @@ Grounding, token by token (aura2 sheet):
   idiom). NOT `useExactSpellId` (pins one rank — policy off).
 - show-on-active is canon default (`matchesShowOn`) — no declare needed; no target / no debuff → hidden. Correct.
 - `load.class` — the game API token from `Fact_basis/maps/class_table.json` (NECROMANCER: `wa_load_verified: true`,
-  seen in a real aura's load). `load.specialization` — on the load surface (sheet: `class`/`specialization`/`knowntalent`);
-  the spec NAME comes from our class:spec axis (the dev-authored tree names, e.g. `Death`). The specialization value's
-  exact stored form gets its `wa_load_verified` moment at the live confirm — same pattern the class token went through.
+  seen in a real aura's load).
+- `load.specialization` — **settled from the fork's own source** (client `WeakAuras/Prototypes.lua:1075`): Ascension wired
+  COA specs natively into WA's load — `type=multiselect, values=specialization_types, test=WeakAuras.IsSpecActive(i)`,
+  domain built per-class at runtime (`SpecializationUtil.GetSpecializationInfo(i)`, event
+  `ASCENSION_CA_SPECIALIZATION_ACTIVE_ID_CHANGED`). **Stored form = the spec INDEX `i`** (multiselect key); the name is
+  display only. Spec names are API-sourced fact (the scrape); the one residual datum is each class's index *order* —
+  a COADump capture on that class's character (Necro's lands at the live confirm; `specialization_types` is precisely
+  one of the dangling value-domains COADump exists to resolve).
 
 ## The first pull — NECROMANCER Death (final membership, 7)
 | flavour | family | rep id | dur / cd | note |
