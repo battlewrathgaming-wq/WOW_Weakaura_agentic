@@ -53,8 +53,9 @@ def fill(docket):
     for field, value in (docket.get("display") or {}).items():   # positive display declarations (top-level)
         aura[field] = value
     subregions = docket.get("subregions") or []                  # {type, ...declared props}; canon fills the rest
-    if subregions:
-        aura["subRegions"] = [dict(s) for s in subregions]
+    aura["subRegions"] = [dict(s) for s in subregions]           # ALWAYS present, [] minimum: WA runtime iterates it
+                                                                 # unguarded (RegionPrototype.lua:45 ipairs - live crash
+                                                                 # 2026-07-14); UI-made auras always carry it (capture: [])
     conditions = docket.get("conditions") or []                  # check (trigger var) -> changes (LOCAL prop or sub.N.prop reach)
     if conditions:
         aura["conditions"] = [

@@ -45,6 +45,13 @@ progresstexture 2 · stopmotion 1 · model 1 · empty 2.
    indices, the verdict note carries the key→display mapping) + the row corrected (`alertType: 1`). Demonstrated:
    the old form now BLOCKS. Class closed for every array-keyed select domain, not just GTFO.
 
+7. **LIVE CRASH (test events): machine-made auras lacked `subRegions` entirely.** `RegionPrototype.lua:45
+   ipairs(data.subRegions)` — WA's runtime iterates the field unguarded because every UI-created aura carries it
+   (the UI seeds it; the live capture's aura has `subRegions: []`). Canon does NOT seed it (our shipped Blight: 32
+   fields, no subRegions) — ours were the first bare auras WA has ever met. Import/display fine; any subregion walk
+   (anchor resolution, test events) crashes. **FIXED at fill**: `subRegions` always present, `[]` minimum,
+   capture-grounded. Affects ALL products latently → the end-of-grading re-press picks it up everywhere.
+
 ## Awaiting the live half
 
 Import `Docket_complete/verification-coverage.txt`. The checklist IS the member ids. Watch especially:
