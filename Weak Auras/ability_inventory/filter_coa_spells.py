@@ -30,7 +30,7 @@ _MANIFEST = ("name", "rank", "icon", "cooldownMs", "castTimeMs", "durationMs", "
              "maxRange", "powerType", "manaCost", "manaCostPct", "schoolMask", "mechanic",
              "attr", "targets", "procFlags", "procChance", "procCharges", "spellClassSet",
              "spellClassMask", "effect", "effectAura", "effectMisc", "effectTriggerSpell",
-             "effectTargetA", "baseLevel", "spellLevel")
+             "effectTargetA", "effectClassMask", "baseLevel", "spellLevel")
 
 
 def main():

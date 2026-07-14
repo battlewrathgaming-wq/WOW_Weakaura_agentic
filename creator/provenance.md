@@ -28,7 +28,7 @@ three slots, identical to raw. **The resolver can read the effect slots straight
 
 | dropped field | resolver-critical? | reach back to |
 |---|---|---|
-| **`effectClassMask`** | **YES.** The per-effect *family-target mask*. `effectTriggerSpell` gives a *direct* spell→spell edge (we have it); but *family-based* effects — "reduce the cooldown of all [family] spells" — resolve their targets via `effectClassMask` × the targets' `spellClassMask`. Without it, **family-based cross-links are underivable.** | raw DBC — or heal the filter to carry it |
+| **`effectClassMask`** — ✅ **HEALED (2026-07-14)** | was the resolver-critical drop: the per-effect *family-target mask*. Family-based effects — "reduce the cooldown of all [family] spells" — resolve targets via `effectClassMask` × the targets' `spellClassMask`. **Now carried** in `coa_spells.json` (filter extended, regenerated, verified purely additive). Family-based cross-links are now derivable. | (fixed) |
 | `desc` | no (meaning, not mechanics) | scrapes (resolved `description`) / raw DBC |
 | `casterAuraState`, `targetAuraState`, `shapeshift`, `dispelType` | not yet | raw DBC |
 | `id` | redundant (it's the key) | — |
@@ -36,11 +36,11 @@ three slots, identical to raw. **The resolver can read the effect slots straight
 ## The resolver's grounding (the decision)
 
 - Build the effect interpretation on `coa_spells.json` — faithful for the effect slots.
-- **Heal at the source, not around it:** extend `filter_coa_spells.py` to carry **`effectClassMask`** into
-  `coa_spells.json`, so the family-based cross-links you want (proc → modify-cooldown-of-family) are derivable and the
-  working set stops flattening the one field the resolver needs. (A one-field filter change + a regenerate — confirm before
-  regenerating, since everything reads `coa_spells.json`.)
-- `desc`/meaning comes from the scrapes; the condition fields from the raw DBC if reasoning later needs them.
+- **Healed at the source (2026-07-14):** `filter_coa_spells.py` now carries **`effectClassMask`**; `coa_spells.json`
+  regenerated and verified **purely additive** (only that field added, 0 pre-existing fields changed; graph + gate
+  unaffected). The family-based cross-links (proc → modify-cooldown-of-family) are now derivable.
+- `desc`/meaning comes from the scrapes; the condition fields (`casterAuraState`/`targetAuraState`/`shapeshift`/
+  `dispelType`) stay in the raw DBC — heal them the same way if reasoning later needs them.
 
 ## The rule
 

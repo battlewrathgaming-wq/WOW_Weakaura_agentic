@@ -5,8 +5,8 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
 
 ## Near
 
-- **Heal the merge** — extend `Weak Auras/ability_inventory/filter_coa_spells.py` to carry `effectClassMask`, regenerate
-  `coa_spells.json` (additive-verify: only that field appears, nothing else moves). Unblocks family-based cross-links.
+- ✅ **Heal the merge (done 2026-07-14)** — `filter_coa_spells.py` now carries `effectClassMask`; `coa_spells.json`
+  regenerated, verified purely additive (graph + gate unaffected). Family-based cross-links unblocked.
 - **The DBC resolver** — interpret the effect slots into typed edges (trigger · modify-cooldown · apply-aura/buff ·
   resource-gen) → the full web + the proc→cooldown cross-links. Right-sized to edge-and-attribute effects.
 - **Enrich** the class:spec tables + taxonomy with the resolved edges; sharpen the shape-hint triage; name-map the DBC
