@@ -2,6 +2,14 @@
 
 _Prototype here without ceremony. What proves out graduates to its real home and this folder dissolves._
 
+## Queued second (Battlewrath, 2026-07-14 — not needed yet)
+
+**The inspection tool — the gate's mirror.** The gate faces inward (blocks our authoring at the edge of the known);
+this faces outward: walk stubbed corpus ore, resolve every token/field/value against the sources we hold
+(sheets · maps · domains · contract), and report what resolves against NOTHING — aggregated and ranked across the
+whole corpus ("this token appears in N auras, unmapped"). Output = the harvest agenda, chosen by evidence.
+The stub's "unknown field — kept" flags are its raw material.
+
 ## First occupant (queued, not yet built)
 
 **The stub tool — WA aura → docket (the reverse gear).** Strip any import down to exactly what an author declared,
