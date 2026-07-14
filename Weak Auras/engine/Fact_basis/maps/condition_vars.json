@@ -1,0 +1,1261 @@
+{
+ "_meta": {
+  "what": "condition check.variable surface per trigger namespace. Prototype rows = args with conditionType (index_grounded, from Prototypes.lua); aura2 = the sheet's provides (function-driven trigger - names are the auto-state fields).",
+  "emitted": "2026-07-14",
+  "caveat": "aura2 condition-var NAMES via GetTriggerConditions may refine the provides list - live grading of the coverage packet's condition members is the check."
+ },
+ "surfaces": {
+  "Action Usable": {
+   "charges": {
+    "conditionType": "number",
+    "display": "Charges",
+    "source": "Prototypes.lua"
+   },
+   "spellCount": {
+    "conditionType": "number",
+    "display": "Spell Count",
+    "source": "Prototypes.lua"
+   },
+   "readyTime": {
+    "conditionType": "elapsedTimer",
+    "display": "Since Ready",
+    "source": "Prototypes.lua"
+   },
+   "chargeGainTime": {
+    "conditionType": "elapsedTimer",
+    "display": "Since Charge Gain",
+    "source": "Prototypes.lua"
+   },
+   "chargeLostTime": {
+    "conditionType": "elapsedTimer",
+    "display": "Since Charge Lost",
+    "source": "Prototypes.lua"
+   },
+   "spellInRange": {
+    "conditionType": "bool",
+    "display": "Spell in Range",
+    "source": "Prototypes.lua"
+   },
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   },
+   "stacks": {
+    "conditionType": "number",
+    "display": "Stacks",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Cast": {
+   "spellId": {
+    "conditionType": "number",
+    "display": "Spell ID",
+    "source": "Prototypes.lua"
+   },
+   "spell": {
+    "conditionType": "string",
+    "display": "Spellname",
+    "source": "Prototypes.lua"
+   },
+   "castType": {
+    "conditionType": "select",
+    "display": "Cast Type",
+    "source": "Prototypes.lua"
+   },
+   "interruptible": {
+    "conditionType": "bool",
+    "display": "Interruptible",
+    "source": "Prototypes.lua"
+   },
+   "npcId": {
+    "conditionType": "string",
+    "display": "Npc ID",
+    "source": "Prototypes.lua"
+   },
+   "class": {
+    "conditionType": "select",
+    "display": "Class",
+    "source": "Prototypes.lua"
+   },
+   "role": {
+    "conditionType": "select",
+    "display": "Spec Role",
+    "source": "Prototypes.lua"
+   },
+   "raid_role": {
+    "conditionType": "select",
+    "display": "Raid Role",
+    "source": "Prototypes.lua"
+   },
+   "raidMarkIndex": {
+    "conditionType": "select",
+    "display": "Raid Mark",
+    "source": "Prototypes.lua"
+   },
+   "nameplateType": {
+    "conditionType": "select",
+    "display": "Hostility",
+    "source": "Prototypes.lua"
+   },
+   "sourceUnit": {
+    "conditionType": "unit",
+    "display": "Caster",
+    "source": "Prototypes.lua"
+   },
+   "sourceNameRealm": {
+    "conditionType": "string",
+    "display": "Source Unit Name/Realm",
+    "source": "Prototypes.lua"
+   },
+   "destUnit": {
+    "conditionType": "unit",
+    "display": "Caster's Target",
+    "source": "Prototypes.lua"
+   },
+   "destNameRealm": {
+    "conditionType": "string",
+    "display": "Name/Realm of Caster's Target",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Character Stats": {
+   "strength": {
+    "conditionType": "number",
+    "display": "Strength",
+    "source": "Prototypes.lua"
+   },
+   "agility": {
+    "conditionType": "number",
+    "display": "Agility",
+    "source": "Prototypes.lua"
+   },
+   "stamina": {
+    "conditionType": "number",
+    "display": "Stamina",
+    "source": "Prototypes.lua"
+   },
+   "intellect": {
+    "conditionType": "number",
+    "display": "Intellect",
+    "source": "Prototypes.lua"
+   },
+   "spirit": {
+    "conditionType": "number",
+    "display": "Spirit",
+    "source": "Prototypes.lua"
+   },
+   "criticalrating": {
+    "conditionType": "number",
+    "display": "Critical Rating",
+    "source": "Prototypes.lua"
+   },
+   "criticalpercent": {
+    "conditionType": "number",
+    "display": "Critical (%)",
+    "source": "Prototypes.lua"
+   },
+   "hitrating": {
+    "conditionType": "number",
+    "display": "Hit Rating",
+    "source": "Prototypes.lua"
+   },
+   "hitpercent": {
+    "conditionType": "number",
+    "display": "Hit (%)",
+    "source": "Prototypes.lua"
+   },
+   "hasterating": {
+    "conditionType": "number",
+    "display": "Haste Rating",
+    "source": "Prototypes.lua"
+   },
+   "hastepercent": {
+    "conditionType": "number",
+    "display": "Haste (%)",
+    "source": "Prototypes.lua"
+   },
+   "expertiserating": {
+    "conditionType": "number",
+    "display": "Expertise Rating",
+    "source": "Prototypes.lua"
+   },
+   "expertisebonus": {
+    "conditionType": "number",
+    "display": "Expertise Bonus",
+    "source": "Prototypes.lua"
+   },
+   "armorpenrating": {
+    "conditionType": "number",
+    "display": "Armor Peneration Rating",
+    "source": "Prototypes.lua"
+   },
+   "armorpenpercent": {
+    "conditionType": "number",
+    "display": "Armor Peneration (%)",
+    "source": "Prototypes.lua"
+   },
+   "spellpenpercent": {
+    "conditionType": "number",
+    "display": "Spell Peneration (%)",
+    "source": "Prototypes.lua"
+   },
+   "resiliencerating": {
+    "conditionType": "number",
+    "display": "Resilience Rating",
+    "source": "Prototypes.lua"
+   },
+   "resiliencepercent": {
+    "conditionType": "number",
+    "display": "Resilience (%)",
+    "source": "Prototypes.lua"
+   },
+   "attackpower": {
+    "conditionType": "number",
+    "display": "Attack Power",
+    "source": "Prototypes.lua"
+   },
+   "spellpower": {
+    "conditionType": "number",
+    "display": "Spell Power",
+    "source": "Prototypes.lua"
+   },
+   "rangedattackpower": {
+    "conditionType": "number",
+    "display": "Ranged Attack Power",
+    "source": "Prototypes.lua"
+   },
+   "resistancefire": {
+    "conditionType": "number",
+    "display": "Fire Resistance",
+    "source": "Prototypes.lua"
+   },
+   "resistancenature": {
+    "conditionType": "number",
+    "display": "Nature Resistance",
+    "source": "Prototypes.lua"
+   },
+   "resistancefrost": {
+    "conditionType": "number",
+    "display": "Frost Resistance",
+    "source": "Prototypes.lua"
+   },
+   "resistanceshadow": {
+    "conditionType": "number",
+    "display": "Shadow Resistance",
+    "source": "Prototypes.lua"
+   },
+   "resistancearcane": {
+    "conditionType": "number",
+    "display": "Arcane Resistance",
+    "source": "Prototypes.lua"
+   },
+   "movespeedpercent": {
+    "conditionType": "number",
+    "display": "Current Movement Speed (%)",
+    "source": "Prototypes.lua"
+   },
+   "defense": {
+    "conditionType": "number",
+    "display": "Defense",
+    "source": "Prototypes.lua"
+   },
+   "defensevalue": {
+    "conditionType": "number",
+    "display": "Defense Value",
+    "source": "Prototypes.lua"
+   },
+   "defensepercent": {
+    "conditionType": "number",
+    "display": "Defense (%)",
+    "source": "Prototypes.lua"
+   },
+   "dodgerating": {
+    "conditionType": "number",
+    "display": "Dodge Rating",
+    "source": "Prototypes.lua"
+   },
+   "dodgepercent": {
+    "conditionType": "number",
+    "display": "Dodge (%)",
+    "source": "Prototypes.lua"
+   },
+   "parryrating": {
+    "conditionType": "number",
+    "display": "Parry Rating",
+    "source": "Prototypes.lua"
+   },
+   "parrypercent": {
+    "conditionType": "number",
+    "display": "Parry (%)",
+    "source": "Prototypes.lua"
+   },
+   "blockpercent": {
+    "conditionType": "number",
+    "display": "Block (%)",
+    "source": "Prototypes.lua"
+   },
+   "blockvalue": {
+    "conditionType": "number",
+    "display": "Block Value",
+    "source": "Prototypes.lua"
+   },
+   "armorrating": {
+    "conditionType": "number",
+    "display": "Armor Rating",
+    "source": "Prototypes.lua"
+   },
+   "armorpercent": {
+    "conditionType": "number",
+    "display": "Armor (%)",
+    "source": "Prototypes.lua"
+   },
+   "avoidancetotalpercent": {
+    "conditionType": "number",
+    "display": "Total Avoidance (%)",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Charges Changed": {
+   "direction": {
+    "conditionType": "select",
+    "display": "Charge gained/lost",
+    "source": "Prototypes.lua"
+   },
+   "charges": {
+    "conditionType": "number",
+    "display": "Charges",
+    "source": "Prototypes.lua"
+   },
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Chat Message": {
+   "message": {
+    "conditionType": "string",
+    "display": "Message",
+    "source": "Prototypes.lua"
+   },
+   "sourceName": {
+    "conditionType": "string",
+    "display": "Source Name",
+    "source": "Prototypes.lua"
+   },
+   "destName": {
+    "conditionType": "string",
+    "display": "Destination Name",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Class/Spec": {
+   "specId": {
+    "conditionType": "select",
+    "display": "Class and Specialization",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Combat Log": {
+   "sourceUnit": {
+    "conditionType": "select",
+    "display": "Source Unit",
+    "source": "Prototypes.lua"
+   },
+   "sourceName": {
+    "conditionType": "string",
+    "display": "Source Name",
+    "source": "Prototypes.lua"
+   },
+   "sourceNpcId": {
+    "conditionType": "string",
+    "display": "Source NPC Id",
+    "source": "Prototypes.lua"
+   },
+   "sourceFlags": {
+    "conditionType": "select",
+    "display": "Source Affiliation",
+    "source": "Prototypes.lua"
+   },
+   "sourceFlags2": {
+    "conditionType": "select",
+    "display": "Source Reaction",
+    "source": "Prototypes.lua"
+   },
+   "sourceFlags3": {
+    "conditionType": "select",
+    "display": "Source Object Type",
+    "source": "Prototypes.lua"
+   },
+   "destUnit": {
+    "conditionType": "select",
+    "display": "Destination Unit",
+    "source": "Prototypes.lua"
+   },
+   "destName": {
+    "conditionType": "string",
+    "display": "Destination Name",
+    "source": "Prototypes.lua"
+   },
+   "destNpcId": {
+    "conditionType": "string",
+    "display": "Destination NPC Id",
+    "source": "Prototypes.lua"
+   },
+   "destFlags": {
+    "conditionType": "select",
+    "display": "Destination Affiliation",
+    "source": "Prototypes.lua"
+   },
+   "destFlags2": {
+    "conditionType": "select",
+    "display": "Destination Reaction",
+    "source": "Prototypes.lua"
+   },
+   "destFlags3": {
+    "conditionType": "select",
+    "display": "Destination Object Type",
+    "source": "Prototypes.lua"
+   },
+   "spellId": {
+    "conditionType": "number",
+    "display": "Spell Id",
+    "source": "Prototypes.lua"
+   },
+   "spellName": {
+    "conditionType": "string",
+    "display": "Spell Name",
+    "source": "Prototypes.lua"
+   },
+   "spellSchool": {
+    "conditionType": "select",
+    "display": "Spell School",
+    "source": "Prototypes.lua"
+   },
+   "environmentalType": {
+    "conditionType": "select",
+    "display": "Environment Type",
+    "source": "Prototypes.lua"
+   },
+   "missType": {
+    "conditionType": "select",
+    "display": "Miss Type",
+    "source": "Prototypes.lua"
+   },
+   "extraSpellId": {
+    "conditionType": "number",
+    "display": "Extra Spell Id",
+    "source": "Prototypes.lua"
+   },
+   "extraSpellName": {
+    "conditionType": "string",
+    "display": "Extra Spell Name",
+    "source": "Prototypes.lua"
+   },
+   "auraType": {
+    "conditionType": "select",
+    "display": "Aura Type",
+    "source": "Prototypes.lua"
+   },
+   "amount": {
+    "conditionType": "number",
+    "display": "Amount",
+    "source": "Prototypes.lua"
+   },
+   "overkill": {
+    "conditionType": "number",
+    "display": "Overkill",
+    "source": "Prototypes.lua"
+   },
+   "overhealing": {
+    "conditionType": "number",
+    "display": "Overhealing",
+    "source": "Prototypes.lua"
+   },
+   "resisted": {
+    "conditionType": "number",
+    "display": "Resisted",
+    "source": "Prototypes.lua"
+   },
+   "blocked": {
+    "conditionType": "number",
+    "display": "Blocked",
+    "source": "Prototypes.lua"
+   },
+   "absorbed": {
+    "conditionType": "number",
+    "display": "Absorbed",
+    "source": "Prototypes.lua"
+   },
+   "critical": {
+    "conditionType": "bool",
+    "display": "Critical",
+    "source": "Prototypes.lua"
+   },
+   "glancing": {
+    "conditionType": "bool",
+    "display": "Glancing",
+    "source": "Prototypes.lua"
+   },
+   "crushing": {
+    "conditionType": "bool",
+    "display": "Crushing",
+    "source": "Prototypes.lua"
+   },
+   "number": {
+    "conditionType": "number",
+    "display": "Number",
+    "source": "Prototypes.lua"
+   },
+   "overEnergize": {
+    "conditionType": "number",
+    "display": "Over Energize",
+    "source": "Prototypes.lua"
+   },
+   "powerType": {
+    "conditionType": "select",
+    "display": "Power Type",
+    "source": "Prototypes.lua"
+   },
+   "extraAmount": {
+    "conditionType": "number",
+    "display": "Extra Amount",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Cooldown Progress (Equipment Slot)": {
+   "itemId": {
+    "conditionType": "number",
+    "display": "ItemId",
+    "source": "Prototypes.lua"
+   },
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   },
+   "stacks": {
+    "conditionType": "number",
+    "display": "Stacks",
+    "source": "Prototypes.lua"
+   },
+   "onCooldown": {
+    "conditionType": "bool",
+    "display": "On Cooldown",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Cooldown Progress (Item)": {
+   "onCooldown": {
+    "conditionType": "bool",
+    "display": "On Cooldown",
+    "source": "Prototypes.lua"
+   },
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Cooldown Progress (Spell)": {
+   "charges": {
+    "conditionType": "number",
+    "display": "Charges",
+    "source": "Prototypes.lua"
+   },
+   "spellCount": {
+    "conditionType": "number",
+    "display": "Spell Count",
+    "source": "Prototypes.lua"
+   },
+   "maxCharges": {
+    "conditionType": "number",
+    "display": "Max Charges",
+    "source": "Prototypes.lua"
+   },
+   "readyTime": {
+    "conditionType": "elapsedTimer",
+    "display": "Since Ready",
+    "source": "Prototypes.lua"
+   },
+   "chargeGainTime": {
+    "conditionType": "elapsedTimer",
+    "display": "Since Charge Gain",
+    "source": "Prototypes.lua"
+   },
+   "chargeLostTime": {
+    "conditionType": "elapsedTimer",
+    "display": "Since Charge Lost",
+    "source": "Prototypes.lua"
+   },
+   "effectiveSpellId": {
+    "conditionType": "number",
+    "display": "Effective Spell Id",
+    "source": "Prototypes.lua"
+   },
+   "onCooldown": {
+    "conditionType": "bool",
+    "display": "On Cooldown",
+    "source": "Prototypes.lua"
+   },
+   "spellUsable": {
+    "conditionType": "bool",
+    "display": "Spell Usable",
+    "source": "Prototypes.lua"
+   },
+   "insufficientResources": {
+    "conditionType": "bool",
+    "display": "Insufficient Resources",
+    "source": "Prototypes.lua"
+   },
+   "spellInRange": {
+    "conditionType": "bool",
+    "display": "Spell in Range",
+    "source": "Prototypes.lua"
+   },
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Cooldown Ready (Equipment Slot)": {
+   "itemId": {
+    "conditionType": "number",
+    "display": "ItemId",
+    "source": "Prototypes.lua"
+   },
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Cooldown Ready (Item)": {
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Cooldown Ready (Spell)": {
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Currency": {
+   "value": {
+    "conditionType": "number",
+    "display": "Quantity",
+    "source": "Prototypes.lua"
+   },
+   "totalEarned": {
+    "conditionType": "number",
+    "display": "Total",
+    "source": "Prototypes.lua"
+   },
+   "discovered": {
+    "conditionType": "bool",
+    "display": "Discovered",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Death Knight Rune": {
+   "isDeathRune": {
+    "conditionType": "bool",
+    "display": "Is Death Rune",
+    "source": "Prototypes.lua"
+   },
+   "onCooldown": {
+    "conditionType": "bool",
+    "display": "On Cooldown",
+    "source": "Prototypes.lua"
+   },
+   "bloodRunes": {
+    "conditionType": "number",
+    "display": "Rune Count - Blood",
+    "source": "Prototypes.lua"
+   },
+   "frostRunes": {
+    "conditionType": "number",
+    "display": "Rune Count - Frost",
+    "source": "Prototypes.lua"
+   },
+   "unholyRunes": {
+    "conditionType": "number",
+    "display": "Rune Count - Unholy",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Encounter Events": {
+   "encounterId": {
+    "conditionType": "number",
+    "display": "Id",
+    "source": "Prototypes.lua"
+   },
+   "encounterName": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   },
+   "difficulty": {
+    "conditionType": "select",
+    "display": "Difficulty",
+    "source": "Prototypes.lua"
+   },
+   "success": {
+    "conditionType": "bool",
+    "display": "Success",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Equipment Set": {
+   "itemSetName": {
+    "conditionType": "string",
+    "display": "Equipment Set",
+    "source": "Prototypes.lua"
+   },
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Experience": {
+   "level": {
+    "conditionType": "number",
+    "display": "Level",
+    "source": "Prototypes.lua"
+   },
+   "currentXP": {
+    "conditionType": "number",
+    "display": "Current Experience",
+    "source": "Prototypes.lua"
+   },
+   "totalXP": {
+    "conditionType": "number",
+    "display": "Total Experience",
+    "source": "Prototypes.lua"
+   },
+   "percentXP": {
+    "conditionType": "number",
+    "display": "Experience (%)",
+    "source": "Prototypes.lua"
+   },
+   "restedXP": {
+    "conditionType": "number",
+    "display": "Rested Experience",
+    "source": "Prototypes.lua"
+   },
+   "percentrested": {
+    "conditionType": "number",
+    "display": "Rested Experience (%)",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Faction Reputation": {
+   "factionID": {
+    "conditionType": "select",
+    "display": "Faction",
+    "source": "Prototypes.lua"
+   },
+   "value": {
+    "conditionType": "number",
+    "display": "Reputation",
+    "source": "Prototypes.lua"
+   },
+   "total": {
+    "conditionType": "number",
+    "display": "Total Reputation",
+    "source": "Prototypes.lua"
+   },
+   "percentRep": {
+    "conditionType": "number",
+    "display": "Reputation (%)",
+    "source": "Prototypes.lua"
+   },
+   "standingId": {
+    "conditionType": "select",
+    "display": "Standing",
+    "source": "Prototypes.lua"
+   },
+   "capped": {
+    "conditionType": "bool",
+    "display": "Capped",
+    "source": "Prototypes.lua"
+   },
+   "atWar": {
+    "conditionType": "bool",
+    "display": "At War",
+    "source": "Prototypes.lua"
+   }
+  },
+  "GTFO": {
+   "alertType": {
+    "conditionType": "select",
+    "display": "Alert Type",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Global Cooldown": {
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Health": {
+   "health": {
+    "conditionType": "number",
+    "display": "Health",
+    "source": "Prototypes.lua"
+   },
+   "percenthealth": {
+    "conditionType": "number",
+    "display": "Health (%)",
+    "source": "Prototypes.lua"
+   },
+   "deficit": {
+    "conditionType": "number",
+    "display": "Health Deficit",
+    "source": "Prototypes.lua"
+   },
+   "maxhealth": {
+    "conditionType": "number",
+    "display": "Max Health",
+    "source": "Prototypes.lua"
+   },
+   "absorb": {
+    "conditionType": "number",
+    "display": "Absorb",
+    "source": "Prototypes.lua"
+   },
+   "namerealm": {
+    "conditionType": "string",
+    "display": "Unit Name/Realm",
+    "source": "Prototypes.lua"
+   },
+   "npcId": {
+    "conditionType": "string",
+    "display": "Npc ID",
+    "source": "Prototypes.lua"
+   },
+   "class": {
+    "conditionType": "select",
+    "display": "Class",
+    "source": "Prototypes.lua"
+   },
+   "specId": {
+    "conditionType": "select",
+    "display": "Specialization",
+    "source": "Prototypes.lua"
+   },
+   "role": {
+    "conditionType": "select",
+    "display": "Spec Role",
+    "source": "Prototypes.lua"
+   },
+   "raid_role": {
+    "conditionType": "select",
+    "display": "Raid Role",
+    "source": "Prototypes.lua"
+   },
+   "raidMarkIndex": {
+    "conditionType": "select",
+    "display": "Raid Mark",
+    "source": "Prototypes.lua"
+   },
+   "nameplateType": {
+    "conditionType": "select",
+    "display": "Hostility",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Item Count": {
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   },
+   "stacks": {
+    "conditionType": "number",
+    "display": "Stacks",
+    "source": "Prototypes.lua"
+   },
+   "value": {
+    "conditionType": "number",
+    "display": "Progress Value",
+    "source": "Prototypes.lua"
+   },
+   "total": {
+    "conditionType": "number",
+    "display": "Progress Total",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Item Equipped": {
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Location": {
+   "zoneIds": {
+    "conditionType": "string",
+    "display": "Player Location ID(s)",
+    "source": "Prototypes.lua"
+   },
+   "zone": {
+    "conditionType": "string",
+    "display": "Zone Name",
+    "source": "Prototypes.lua"
+   },
+   "subzone": {
+    "conditionType": "string",
+    "display": "Subzone Name",
+    "source": "Prototypes.lua"
+   },
+   "instanceSize": {
+    "conditionType": "select",
+    "display": "Instance Size Type",
+    "source": "Prototypes.lua"
+   },
+   "instanceDifficulty": {
+    "conditionType": "select",
+    "display": "Instance Difficulty",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Money": {
+   "gold": {
+    "conditionType": "number",
+    "display": "Gold",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Power": {
+   "powertype": {
+    "conditionType": "select",
+    "display": "Power Type",
+    "source": "Prototypes.lua"
+   },
+   "power": {
+    "conditionType": "number",
+    "display": "Power",
+    "source": "Prototypes.lua"
+   },
+   "percentpower": {
+    "conditionType": "number",
+    "display": "Power (%)",
+    "source": "Prototypes.lua"
+   },
+   "deficit": {
+    "conditionType": "number",
+    "display": "Power Deficit",
+    "source": "Prototypes.lua"
+   },
+   "maxpower": {
+    "conditionType": "number",
+    "display": "Max Power",
+    "source": "Prototypes.lua"
+   },
+   "namerealm": {
+    "conditionType": "string",
+    "display": "Unit Name/Realm",
+    "source": "Prototypes.lua"
+   },
+   "npcId": {
+    "conditionType": "string",
+    "display": "Npc ID",
+    "source": "Prototypes.lua"
+   },
+   "class": {
+    "conditionType": "select",
+    "display": "Class",
+    "source": "Prototypes.lua"
+   },
+   "specId": {
+    "conditionType": "select",
+    "display": "Specialization",
+    "source": "Prototypes.lua"
+   },
+   "role": {
+    "conditionType": "select",
+    "display": "Spec Role",
+    "source": "Prototypes.lua"
+   },
+   "raid_role": {
+    "conditionType": "select",
+    "display": "Raid Role",
+    "source": "Prototypes.lua"
+   },
+   "raidMarkIndex": {
+    "conditionType": "select",
+    "display": "Raid Mark",
+    "source": "Prototypes.lua"
+   },
+   "nameplateType": {
+    "conditionType": "select",
+    "display": "Hostility",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Range Check": {
+   "minRange": {
+    "conditionType": "number",
+    "display": "Minimum Estimate",
+    "source": "Prototypes.lua"
+   },
+   "maxRange": {
+    "conditionType": "number",
+    "display": "Maximum Estimate",
+    "source": "Prototypes.lua"
+   },
+   "range": {
+    "conditionType": "number",
+    "display": "Distance",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Spell Cast Succeeded": {
+   "unit": {
+    "conditionType": "select",
+    "display": "Caster Unit",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Spell Known": {
+   "name": {
+    "conditionType": "string",
+    "display": "Name",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Stance/Form/Aura": {
+   "form": {
+    "conditionType": "select",
+    "display": "Form",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Talent Known": {
+   "name": {
+    "conditionType": "string",
+    "display": null,
+    "source": "Prototypes.lua"
+   }
+  },
+  "Threat Situation": {
+   "status": {
+    "conditionType": "select",
+    "display": "Status",
+    "source": "Prototypes.lua"
+   },
+   "aggro": {
+    "conditionType": "bool",
+    "display": "Aggro",
+    "source": "Prototypes.lua"
+   },
+   "threatpct": {
+    "conditionType": "number",
+    "display": "Threat Percent",
+    "source": "Prototypes.lua"
+   },
+   "rawthreatpct": {
+    "conditionType": "number",
+    "display": "Raw Threat Percent",
+    "source": "Prototypes.lua"
+   },
+   "threatvalue": {
+    "conditionType": "number",
+    "display": "Threat Value",
+    "source": "Prototypes.lua"
+   },
+   "name": {
+    "conditionType": "string",
+    "display": "Unit Name",
+    "source": "Prototypes.lua"
+   },
+   "npcId": {
+    "conditionType": "string",
+    "display": "Npc ID",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Totem": {
+   "totemName": {
+    "conditionType": "string",
+    "display": "Totem Name",
+    "source": "Prototypes.lua"
+   },
+   "icon": {
+    "conditionType": "number",
+    "display": "Totem Icon",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Unit Characteristics": {
+   "namerealm": {
+    "conditionType": "string",
+    "display": "Unit Name/Realm",
+    "source": "Prototypes.lua"
+   },
+   "class": {
+    "conditionType": "select",
+    "display": "Class",
+    "source": "Prototypes.lua"
+   },
+   "specId": {
+    "conditionType": "select",
+    "display": "Specialization",
+    "source": "Prototypes.lua"
+   },
+   "classification": {
+    "conditionType": "select",
+    "display": "Classification",
+    "source": "Prototypes.lua"
+   },
+   "creatureTypeIndex": {
+    "conditionType": "select",
+    "display": "Creature Type",
+    "source": "Prototypes.lua"
+   },
+   "creatureFamilyIndex": {
+    "conditionType": "select",
+    "display": "Creature Family",
+    "source": "Prototypes.lua"
+   },
+   "role": {
+    "conditionType": "select",
+    "display": "Spec Role",
+    "source": "Prototypes.lua"
+   },
+   "raid_role": {
+    "conditionType": "select",
+    "display": "Raid Role",
+    "source": "Prototypes.lua"
+   },
+   "raidMarkIndex": {
+    "conditionType": "select",
+    "display": "Raid Mark",
+    "source": "Prototypes.lua"
+   },
+   "dead": {
+    "conditionType": "bool",
+    "display": "Dead",
+    "source": "Prototypes.lua"
+   },
+   "hostility": {
+    "conditionType": "select",
+    "display": "Hostility",
+    "source": "Prototypes.lua"
+   },
+   "character": {
+    "conditionType": "select",
+    "display": "Character Type",
+    "source": "Prototypes.lua"
+   },
+   "level": {
+    "conditionType": "number",
+    "display": "Level",
+    "source": "Prototypes.lua"
+   },
+   "npcId": {
+    "conditionType": "string",
+    "display": "Npc ID",
+    "source": "Prototypes.lua"
+   },
+   "attackable": {
+    "conditionType": "bool",
+    "display": "Attackable",
+    "source": "Prototypes.lua"
+   },
+   "inCombat": {
+    "conditionType": "bool",
+    "display": "In Combat",
+    "source": "Prototypes.lua"
+   },
+   "afk": {
+    "conditionType": "bool",
+    "display": "Afk",
+    "source": "Prototypes.lua"
+   },
+   "dnd": {
+    "conditionType": "bool",
+    "display": "Do Not Disturb",
+    "source": "Prototypes.lua"
+   }
+  },
+  "Weapon Enchant": {
+   "enchantID": {
+    "conditionType": "number",
+    "display": "Enchant ID",
+    "source": "Prototypes.lua"
+   },
+   "stacks": {
+    "conditionType": "number",
+    "display": "Stack Count",
+    "source": "Prototypes.lua"
+   },
+   "enchanted": {
+    "conditionType": "bool",
+    "display": "Enchanted",
+    "source": "Prototypes.lua"
+   }
+  },
+  "aura2/Aura": {
+   "name": {
+    "conditionType": "provides",
+    "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   },
+   "icon": {
+    "conditionType": "provides",
+    "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   },
+   "stacks": {
+    "conditionType": "provides",
+    "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   },
+   "debuffClass": {
+    "conditionType": "provides",
+    "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   },
+   "duration": {
+    "conditionType": "provides",
+    "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   },
+   "expirationTime": {
+    "conditionType": "provides",
+    "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   },
+   "unitCaster": {
+    "conditionType": "provides",
+    "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   },
+   "spellId": {
+    "conditionType": "provides",
+    "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   },
+   "isStealable": {
+    "conditionType": "provides",
+    "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   },
+   "isBossDebuff": {
+    "conditionType": "provides",
+    "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   },
+   "isCastByPlayer": {
+    "conditionType": "provides",
+    "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   },
+   "progressType": {
+    "conditionType": "provides",
+    "source": "BuffTrigger2 UpdateMatchData (sheet provides)"
+   }
+  }
+ }
+}

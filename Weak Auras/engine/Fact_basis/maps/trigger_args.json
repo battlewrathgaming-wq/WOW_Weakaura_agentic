@@ -1,0 +1,3931 @@
+{
+ "_meta": {
+  "what": "prototype-arg attributes per trigger (and load): required = participates without use_<name>; multiEntry = value/operator are ARRAYS; init='arg' = event payload; enable = gated by another field (functions carried verbatim). From the RAW event_prototypes dump - the attributes build_index's flattener dropped.",
+  "source": "F:/games/Ascension_wow/resources/ascension-live/Interface/AddOns/WeakAuras/Prototypes.lua",
+  "harvested": "2026-07-14"
+ },
+ "load": [
+  {
+   "name": "generalTitle",
+   "type": "description",
+   "display": "General"
+  },
+  {
+   "name": "combat",
+   "type": "tristate",
+   "init": "arg",
+   "optional": true,
+   "display": "In Combat"
+  },
+  {
+   "name": "never",
+   "type": "toggle",
+   "test": "false",
+   "display": "Never"
+  },
+  {
+   "name": "alive",
+   "type": "tristate",
+   "init": "arg",
+   "optional": true,
+   "display": "Alive"
+  },
+  {
+   "name": "encounter",
+   "type": "tristate",
+   "init": "arg",
+   "optional": true,
+   "display": "In Encounter"
+  },
+  {
+   "name": "pvpmode",
+   "type": "tristate",
+   "init": "arg",
+   "optional": true,
+   "display": "PvP Mode Active"
+  },
+  {
+   "name": "manastorm",
+   "type": "tristate",
+   "init": "arg",
+   "display": "In Manastorm"
+  },
+  {
+   "name": "vehicle",
+   "type": "tristate",
+   "init": "arg",
+   "optional": true,
+   "display": "In Vehicle"
+  },
+  {
+   "name": "vehicleUi",
+   "type": "tristate",
+   "init": "arg",
+   "optional": true,
+   "display": "Has Vehicle UI"
+  },
+  {
+   "name": "mounted",
+   "type": "tristate",
+   "init": "arg",
+   "optional": true,
+   "display": "Mounted"
+  },
+  {
+   "name": "playerTitle",
+   "type": "description",
+   "display": "Player"
+  },
+  {
+   "name": "class",
+   "type": "multiselect",
+   "init": "arg",
+   "display": "Player Class"
+  },
+  {
+   "name": "specialization",
+   "type": "multiselect",
+   "init": "arg",
+   "test": "WeakAuras.IsSpecActive(%s)",
+   "display": "Talent Specialization"
+  },
+  {
+   "name": "knowntalent",
+   "type": "talent",
+   "showExactOption": true,
+   "orConjunctionGroup": "knowntalent",
+   "test": "WeakAuras.IsTalentKnownForLoad(%s, %s)",
+   "display": "Talent"
+  },
+  {
+   "name": "mysticenchantactive",
+   "type": "mysticenchant",
+   "showExactOption": true,
+   "test": "WeakAuras.IsMysticEnchantApplied(%s)",
+   "display": "Mystic Enchant"
+  },
+  {
+   "name": "not_mysticenchantactive",
+   "type": "mysticenchant",
+   "showExactOption": true,
+   "test": "not WeakAuras.IsMysticEnchantApplied(%s)",
+   "display": "|cFFFF0000Not|r Mystic Enchant"
+  },
+  {
+   "name": "spellknown",
+   "type": "spell",
+   "showExactOption": true,
+   "test": "WeakAuras.IsSpellKnownForLoad(%s, %s)",
+   "display": "Spell Known"
+  },
+  {
+   "name": "not_spellknown",
+   "type": "spell",
+   "showExactOption": true,
+   "test": "not WeakAuras.IsSpellKnownForLoad(%s, %s)",
+   "display": "|cFFFF0000Not|r Spell Known"
+  },
+  {
+   "name": "player",
+   "init": "arg",
+   "enable": false,
+   "hidden": true
+  },
+  {
+   "name": "realm",
+   "init": "arg",
+   "enable": false,
+   "hidden": true
+  },
+  {
+   "name": "guild",
+   "init": "arg",
+   "enable": false,
+   "hidden": true
+  },
+  {
+   "name": "namerealm",
+   "type": "string",
+   "test": "nameRealmChecker:Check(player, realm)",
+   "display": "Player Name/Realm"
+  },
+  {
+   "name": "ignoreNameRealm",
+   "type": "string",
+   "test": "not nameRealmIgnoreChecker:Check(player, realm)",
+   "display": "|cFFFF0000Not|r Player Name/Realm"
+  },
+  {
+   "name": "guildcheck",
+   "type": "string",
+   "test": "guildChecker:Check(guild)",
+   "display": "Guild"
+  },
+  {
+   "name": "race",
+   "type": "multiselect",
+   "init": "arg",
+   "display": "Player Race"
+  },
+  {
+   "name": "faction",
+   "type": "multiselect",
+   "init": "arg",
+   "display": "Player Faction"
+  },
+  {
+   "name": "level",
+   "type": "number",
+   "multiEntry": {
+    "limit": 2,
+    "operator": "and"
+   },
+   "init": "arg",
+   "display": "Player Level"
+  },
+  {
+   "name": "role",
+   "type": "multiselect",
+   "init": "arg",
+   "display": "Spec Role"
+  },
+  {
+   "name": "spec_position",
+   "type": "multiselect",
+   "init": "arg",
+   "display": "Spec Position"
+  },
+  {
+   "name": "raid_role",
+   "type": "multiselect",
+   "init": "arg",
+   "display": "Raid Role"
+  },
+  {
+   "name": "ingroup",
+   "type": "multiselect",
+   "init": "arg",
+   "optional": true,
+   "display": "Group Type"
+  },
+  {
+   "name": "groupSize",
+   "type": "number",
+   "multiEntry": {
+    "limit": 2,
+    "operator": "and"
+   },
+   "init": "arg",
+   "optional": true,
+   "display": "Group Size"
+  },
+  {
+   "name": "group_leader",
+   "type": "multiselect",
+   "init": "arg",
+   "optional": true,
+   "test": "Private.ExecEnv.CheckGroupMemberType(%s, group_leader)",
+   "display": "Group Leader/Assist"
+  },
+  {
+   "name": "ruleset",
+   "type": "multiselect",
+   "init": "arg",
+   "display": "PvP Ruleset"
+  },
+  {
+   "name": "locationTitle",
+   "type": "description",
+   "display": "Location"
+  },
+  {
+   "name": "zone",
+   "type": "string",
+   "init": "arg",
+   "optional": true,
+   "test": "checker:Check(zone)",
+   "display": "Zone Name"
+  },
+  {
+   "name": "zoneId",
+   "type": "string",
+   "init": "arg",
+   "optional": true,
+   "test": "WeakAuras.CheckNumericIds(%q, zoneId)",
+   "display": "Player Location ID(s)"
+  },
+  {
+   "name": "subzone",
+   "type": "string",
+   "init": "arg",
+   "optional": true,
+   "test": "subzoneChecker:Check(subzone)",
+   "display": "Subzone Name"
+  },
+  {
+   "name": "encounterid",
+   "type": "string",
+   "init": "arg",
+   "optional": true,
+   "test": "WeakAuras.CheckNumericIds(%q, encounterid)",
+   "display": "Encounter ID(s)"
+  },
+  {
+   "name": "size",
+   "type": "multiselect",
+   "init": "arg",
+   "optional": true,
+   "display": "Instance Size Type"
+  },
+  {
+   "name": "difficulty",
+   "type": "multiselect",
+   "init": "arg",
+   "optional": true,
+   "display": "Instance Difficulty"
+  },
+  {
+   "name": "equipmentTitle",
+   "type": "description",
+   "display": "Equipment"
+  },
+  {
+   "name": "itemequiped",
+   "type": "item",
+   "multiEntry": {
+    "operator": "or"
+   },
+   "test": "IsEquippedItem(%s or '')",
+   "display": "Item Equipped"
+  },
+  {
+   "name": "not_itemequiped",
+   "type": "item",
+   "multiEntry": {
+    "operator": "or"
+   },
+   "test": "not IsEquippedItem(%s or '')",
+   "display": "|cFFFF0000Not|r Item Equipped"
+  },
+  {
+   "name": "itemtypeequipped",
+   "type": "multiselect",
+   "test": "Private.ExecEnv.IsEquippedItemType(%s or '')",
+   "display": "Item Type Equipped"
+  }
+ ],
+ "triggers": {
+  "Action Usable": [
+   {
+    "name": "spellName",
+    "type": "spell",
+    "required": true,
+    "showExactOption": true,
+    "test": "true",
+    "display": "Spell"
+   },
+   {
+    "name": "targetRequired",
+    "type": "toggle",
+    "test": "true",
+    "display": "Require Valid Target"
+   },
+   {
+    "name": "ignoreSpellCooldown",
+    "type": "toggle",
+    "test": "true",
+    "display": "Ignore Spell Cooldown/Charges"
+   },
+   {
+    "name": "charges",
+    "type": "number",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Charges"
+   },
+   {
+    "name": "spellCount",
+    "type": "number",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Spell Count"
+   },
+   {
+    "name": "readyTime",
+    "enable": "<function>",
+    "conditionType": "elapsedTimer",
+    "hidden": true,
+    "test": "true",
+    "display": "Since Ready"
+   },
+   {
+    "name": "chargeGainTime",
+    "enable": "<function>",
+    "conditionType": "elapsedTimer",
+    "hidden": true,
+    "test": "true",
+    "display": "Since Charge Gain"
+   },
+   {
+    "name": "chargeLostTime",
+    "enable": "<function>",
+    "conditionType": "elapsedTimer",
+    "hidden": true,
+    "test": "true",
+    "display": "Since Charge Lost"
+   },
+   {
+    "name": "inverse",
+    "type": "toggle",
+    "test": "true",
+    "display": "Inverse"
+   },
+   {
+    "name": "spellInRange",
+    "conditionType": "bool",
+    "hidden": true,
+    "test": "true",
+    "display": "Spell in Range"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "stacks",
+    "init": "stacks",
+    "enable": "<function>",
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "Stacks"
+   }
+  ],
+  "Cast": [
+   {
+    "name": "unit",
+    "type": "unit",
+    "required": true,
+    "init": "arg",
+    "test": "true",
+    "display": "Unit"
+   },
+   {
+    "name": "spellNames",
+    "type": "spell",
+    "multiEntry": {
+     "operator": "preamble",
+     "preambleAdd": "spellChecker:AddName(%q)"
+    },
+    "enable": "<function>",
+    "test": "spellChecker:CheckName(spell)",
+    "display": "Name(s)"
+   },
+   {
+    "name": "spellIds",
+    "type": "spell",
+    "multiEntry": {
+     "operator": "preamble",
+     "preambleAdd": "spellChecker:AddName(GetSpellInfo(%q))"
+    },
+    "enable": "<function>",
+    "test": "spellChecker:CheckName(spell)",
+    "display": "Exact Spell ID(s)"
+   },
+   {
+    "name": "spellId",
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "Spell ID"
+   },
+   {
+    "name": "spell",
+    "type": "string",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Spellname"
+   },
+   {
+    "name": "castType",
+    "type": "select",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Cast Type"
+   },
+   {
+    "name": "interruptible",
+    "type": "tristate",
+    "enable": "<function>",
+    "conditionType": "bool",
+    "display": "Interruptible"
+   },
+   {
+    "name": "remaining",
+    "type": "number",
+    "enable": "<function>",
+    "display": "Remaining Time"
+   },
+   {
+    "name": "name",
+    "init": "spell",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "duration",
+    "init": "endTime and startTime and (endTime - startTime)/1000 or 0",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "expirationTime",
+    "init": "expirationTime",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "progressType",
+    "init": "'timed'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "inverse",
+    "init": "castType == 'cast'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "autoHide",
+    "init": "true",
+    "enable": "<function>",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "unitCharacteristicsHeader",
+    "type": "header",
+    "display": "Unit Characteristics"
+   },
+   {
+    "name": "npcId",
+    "type": "string",
+    "init": "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')",
+    "enable": "<function>",
+    "conditionType": "string",
+    "test": "npcIdChecker:Check(npcId)",
+    "display": "Npc ID"
+   },
+   {
+    "name": "class",
+    "type": "select",
+    "init": "select(2, UnitClass(unit))",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Class"
+   },
+   {
+    "name": "role",
+    "type": "select",
+    "init": "WeakAuras.LGT:GetUnitRole(unit)",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Spec Role"
+   },
+   {
+    "name": "raid_role",
+    "type": "select",
+    "init": "WeakAuras.UnitRaidRole(unit)",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Raid Role"
+   },
+   {
+    "name": "raidMarkIndex",
+    "type": "multiselect",
+    "init": "GetRaidTargetIndex(unit) or 0",
+    "conditionType": "select",
+    "display": "Raid Mark"
+   },
+   {
+    "name": "raidMark",
+    "init": "raidMarkIndex > 0 and '{rt'..raidMarkIndex..'}' or ''",
+    "hidden": true,
+    "test": "true",
+    "display": "Raid Mark Icon"
+   },
+   {
+    "name": "nameplateType",
+    "type": "select",
+    "init": "WeakAuras.GetPlayerReaction(unit)",
+    "conditionType": "select",
+    "display": "Hostility"
+   },
+   {
+    "name": "sourceUnit",
+    "type": "unit",
+    "init": "unit",
+    "enable": "<function>",
+    "conditionType": "unit",
+    "hidden": true,
+    "test": "true",
+    "display": "Caster"
+   },
+   {
+    "name": "sourceName",
+    "type": "string",
+    "enable": "<function>",
+    "hidden": true,
+    "test": "true",
+    "display": "Caster Name"
+   },
+   {
+    "name": "sourceRealm",
+    "type": "string",
+    "enable": "<function>",
+    "hidden": true,
+    "test": "true",
+    "display": "Caster Realm"
+   },
+   {
+    "name": "sourceNameRealm",
+    "type": "string",
+    "enable": "<function>",
+    "conditionType": "string",
+    "test": "sourceNameRealmChecker:Check(sourceName, sourceRealm)",
+    "display": "Source Unit Name/Realm"
+   },
+   {
+    "name": "destUnit",
+    "type": "unit",
+    "enable": "<function>",
+    "conditionType": "unit",
+    "test": "UnitIsUnit(destUnit, [[%s]])",
+    "display": "Caster's Target"
+   },
+   {
+    "name": "destName",
+    "type": "string",
+    "enable": "<function>",
+    "hidden": true,
+    "test": "true",
+    "display": "Name of Caster's Target"
+   },
+   {
+    "name": "destRealm",
+    "type": "string",
+    "enable": "<function>",
+    "hidden": true,
+    "test": "true",
+    "display": "Realm of Caster's Target"
+   },
+   {
+    "name": "destNameRealm",
+    "type": "string",
+    "enable": "<function>",
+    "conditionType": "string",
+    "test": "destNameRealmChecker:Check(destName, destRealm)",
+    "display": "Name/Realm of Caster's Target"
+   },
+   {
+    "name": "miscellaneousHeader",
+    "type": "header",
+    "display": "Miscellaneous"
+   },
+   {
+    "name": "showLatency",
+    "type": "toggle",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Overlay Latency"
+   },
+   {
+    "name": "includePets",
+    "type": "select",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Include Pets"
+   },
+   {
+    "name": "ignoreSelf",
+    "type": "toggle",
+    "init": "not UnitIsUnit(\"player\", unit)",
+    "enable": "<function>",
+    "display": "Ignore Self"
+   },
+   {
+    "name": "onUpdateUnitTarget",
+    "type": "toggle",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Advanced Caster's Target Check"
+   },
+   {
+    "name": "inverse",
+    "type": "toggle",
+    "test": "true",
+    "display": "Inverse"
+   }
+  ],
+  "Character Stats": [
+   {
+    "name": "primaryStatsHeader",
+    "type": "header",
+    "display": "Primary Stats"
+   },
+   {
+    "name": "strength",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "UnitStat('player', 1)",
+    "conditionType": "number",
+    "display": "Strength"
+   },
+   {
+    "name": "agility",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "UnitStat('player', 2)",
+    "conditionType": "number",
+    "display": "Agility"
+   },
+   {
+    "name": "stamina",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "UnitStat('player', 3)",
+    "conditionType": "number",
+    "display": "Stamina"
+   },
+   {
+    "name": "intellect",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "UnitStat('player', 4)",
+    "conditionType": "number",
+    "display": "Intellect"
+   },
+   {
+    "name": "spirit",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "UnitStat('player', 5)",
+    "conditionType": "number",
+    "display": "Spirit"
+   },
+   {
+    "name": "secondaryStatsHeader",
+    "type": "header",
+    "display": "Secondary Stats"
+   },
+   {
+    "name": "criticalrating",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "max(GetCombatRating(CR_CRIT_MELEE), GetCombatRating(CR_CRIT_RANGED), GetCombatRating(CR_CRIT_SPELL))",
+    "conditionType": "number",
+    "display": "Critical Rating"
+   },
+   {
+    "name": "criticalpercent",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "WeakAuras.GetCritChance()",
+    "conditionType": "number",
+    "display": "Critical (%)"
+   },
+   {
+    "name": "hitrating",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "max(GetCombatRating(CR_HIT_MELEE), GetCombatRating(CR_HIT_RANGED), GetCombatRating(CR_HIT_SPELL))",
+    "conditionType": "number",
+    "display": "Hit Rating"
+   },
+   {
+    "name": "hitpercent",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "WeakAuras.GetHitChance()",
+    "conditionType": "number",
+    "display": "Hit (%)"
+   },
+   {
+    "name": "hasterating",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "max(GetCombatRating(CR_HASTE_SPELL), GetCombatRating(CR_HASTE_MELEE), GetCombatRating(CR_HASTE_RANGED))",
+    "conditionType": "number",
+    "display": "Haste Rating"
+   },
+   {
+    "name": "hastepercent",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "max(GetCombatRatingBonus(CR_HASTE_SPELL), GetCombatRatingBonus(CR_HASTE_MELEE), GetCombatRatingBonus(CR_HASTE_RANGED))",
+    "conditionType": "number",
+    "display": "Haste (%)"
+   },
+   {
+    "name": "expertiserating",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetCombatRating(CR_EXPERTISE)",
+    "conditionType": "number",
+    "display": "Expertise Rating"
+   },
+   {
+    "name": "expertisebonus",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetCombatRatingBonus(CR_EXPERTISE)",
+    "conditionType": "number",
+    "display": "Expertise Bonus"
+   },
+   {
+    "name": "armorpenrating",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetCombatRating(CR_ARMOR_PENETRATION)",
+    "conditionType": "number",
+    "display": "Armor Peneration Rating"
+   },
+   {
+    "name": "armorpenpercent",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetArmorPenetration()",
+    "conditionType": "number",
+    "display": "Armor Peneration (%)"
+   },
+   {
+    "name": "spellpenpercent",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetSpellPenetration()",
+    "conditionType": "number",
+    "display": "Spell Peneration (%)"
+   },
+   {
+    "name": "resiliencerating",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetCombatRating(CR_CRIT_TAKEN_MELEE)",
+    "conditionType": "number",
+    "display": "Resilience Rating"
+   },
+   {
+    "name": "resiliencepercent",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetCombatRatingBonus(CR_CRIT_TAKEN_MELEE)",
+    "conditionType": "number",
+    "display": "Resilience (%)"
+   },
+   {
+    "name": "attackpower",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "WeakAuras.GetEffectiveAttackPower()",
+    "conditionType": "number",
+    "display": "Attack Power"
+   },
+   {
+    "name": "spellpower",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "WeakAuras.GetEffectiveSpellPower()",
+    "conditionType": "number",
+    "display": "Spell Power"
+   },
+   {
+    "name": "rangedattackpower",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "WeakAuras.GetEffectiveRangedAttackPower()",
+    "conditionType": "number",
+    "display": "Ranged Attack Power"
+   },
+   {
+    "name": "resistanceHeader",
+    "type": "header",
+    "display": "Resistances"
+   },
+   {
+    "name": "resistancefire",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "select(2, UnitResistance('player', 2))",
+    "conditionType": "number",
+    "display": "Fire Resistance"
+   },
+   {
+    "name": "resistancenature",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "select(2, UnitResistance('player', 3))",
+    "conditionType": "number",
+    "display": "Nature Resistance"
+   },
+   {
+    "name": "resistancefrost",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "select(2, UnitResistance('player', 4))",
+    "conditionType": "number",
+    "display": "Frost Resistance"
+   },
+   {
+    "name": "resistanceshadow",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "select(2, UnitResistance('player', 5))",
+    "conditionType": "number",
+    "display": "Shadow Resistance"
+   },
+   {
+    "name": "resistancearcane",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "select(2, UnitResistance('player', 6))",
+    "conditionType": "number",
+    "display": "Arcane Resistance"
+   },
+   {
+    "name": "tertiaryStatsHeader",
+    "type": "header",
+    "display": "Tertiary Stats"
+   },
+   {
+    "name": "moveSpeed",
+    "type": "boolean",
+    "test": true,
+    "display": "Continuously update Movement Speed"
+   },
+   {
+    "name": "movespeedpercent",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetUnitSpeed('player') / 7 * 100",
+    "conditionType": "number",
+    "display": "Current Movement Speed (%)"
+   },
+   {
+    "name": "defensiveStatsHeader",
+    "type": "header",
+    "display": "Defensive Stats"
+   },
+   {
+    "name": "defense",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "UnitDefense('player') + select(2, UnitDefense('player'))",
+    "conditionType": "number",
+    "display": "Defense"
+   },
+   {
+    "name": "defensevalue",
+    "type": "number",
+    "init": "UnitDefense('player')",
+    "conditionType": "number",
+    "display": "Defense Value"
+   },
+   {
+    "name": "defensepercent",
+    "type": "number",
+    "init": "0.04 * ( UnitDefense('player') + select(2,UnitDefense('player') ) - UnitLevel('player')*5 )",
+    "conditionType": "number",
+    "display": "Defense (%)"
+   },
+   {
+    "name": "dodgerating",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetCombatRating(CR_DODGE)",
+    "conditionType": "number",
+    "display": "Dodge Rating"
+   },
+   {
+    "name": "dodgepercent",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetDodgeChance()",
+    "conditionType": "number",
+    "display": "Dodge (%)"
+   },
+   {
+    "name": "parryrating",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetCombatRating(CR_PARRY)",
+    "conditionType": "number",
+    "display": "Parry Rating"
+   },
+   {
+    "name": "parrypercent",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetParryChance()",
+    "conditionType": "number",
+    "display": "Parry (%)"
+   },
+   {
+    "name": "blockpercent",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetBlockChance()",
+    "conditionType": "number",
+    "display": "Block (%)"
+   },
+   {
+    "name": "blockvalue",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetShieldBlock()",
+    "conditionType": "number",
+    "display": "Block Value"
+   },
+   {
+    "name": "armorrating",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "select(2, UnitArmor('player'))",
+    "conditionType": "number",
+    "display": "Armor Rating"
+   },
+   {
+    "name": "armorpercent",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "PaperDollFrame_GetArmorReduction(select(2, UnitArmor('player')), UnitLevel('player'))",
+    "conditionType": "number",
+    "display": "Armor (%)"
+   },
+   {
+    "name": "avoidancetotalpercent",
+    "type": "number",
+    "init": "0.04 * ( UnitDefense('player') + select(2,UnitDefense('player') ) - UnitLevel('player')*5 ) + GetDodgeChance() + GetParryChance() + GetBlockChance()",
+    "conditionType": "number",
+    "display": "Total Avoidance (%)"
+   }
+  ],
+  "Charges Changed": [
+   {
+    "name": "spellName",
+    "type": "spell",
+    "required": true,
+    "init": "arg",
+    "showExactOption": true,
+    "test": "true",
+    "display": "Spell"
+   },
+   {
+    "name": "direction",
+    "type": "select",
+    "required": true,
+    "init": "arg",
+    "conditionType": "select",
+    "test": "Private.ExecEnv.CheckChargesDirection(direction, %q)",
+    "display": "Charge gained/lost"
+   },
+   {
+    "name": "charges",
+    "type": "number",
+    "init": "arg",
+    "conditionType": "number",
+    "display": "Charges"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Chat Message": [
+   {
+    "name": "messageType",
+    "type": "select",
+    "test": "event == %q",
+    "display": "Message Type"
+   },
+   {
+    "name": "message",
+    "type": "longstring",
+    "init": "arg",
+    "conditionType": "string",
+    "canBeCaseInsensitive": true,
+    "display": "Message"
+   },
+   {
+    "name": "sourceName",
+    "type": "string",
+    "init": "arg",
+    "conditionType": "string",
+    "display": "Source Name"
+   },
+   {
+    "name": "destName",
+    "type": "string",
+    "init": "arg",
+    "conditionType": "string",
+    "display": "Destination Name"
+   },
+   {
+    "name": "sourceGUID",
+    "init": "arg",
+    "hidden": true,
+    "test": "true",
+    "display": "Source GUID"
+   },
+   {
+    "name": "cloneId",
+    "type": "toggle",
+    "init": "use_cloneId and WeakAuras.GetUniqueCloneId() or ''",
+    "test": "true",
+    "display": "Clone per Event"
+   }
+  ],
+  "Class/Spec": [
+   {
+    "name": "specId",
+    "type": "multiselect",
+    "conditionType": "select",
+    "display": "Class and Specialization"
+   },
+   {
+    "name": "icon",
+    "init": "specIcon",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "name",
+    "init": "specName",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Combat Events": [
+   {
+    "name": "eventtype",
+    "type": "select",
+    "required": true,
+    "test": "event == %q",
+    "display": "Type"
+   }
+  ],
+  "Combat Log": [
+   {
+    "name": "sourceHeader",
+    "type": "header",
+    "display": "Source Info"
+   },
+   {
+    "name": "sourceGUID",
+    "init": "arg",
+    "hidden": "true",
+    "test": "true",
+    "display": "Source GUID"
+   },
+   {
+    "name": "sourceUnit",
+    "type": "unit",
+    "enable": "<function>",
+    "conditionType": "select",
+    "test": "(sourceGUID or '') == (UnitGUID(%q) or '') and sourceGUID",
+    "display": "Source Unit"
+   },
+   {
+    "name": "sourceName",
+    "type": "string",
+    "init": "arg",
+    "conditionType": "string",
+    "test": "sourceNameChecker:Check(sourceName)",
+    "display": "Source Name"
+   },
+   {
+    "name": "sourceNpcId",
+    "type": "string",
+    "init": "tostring(tonumber(string.sub(sourceGUID or '', 8, 12), 16) or '')",
+    "enable": "<function>",
+    "conditionType": "string",
+    "test": "sourceNpcIdChecker:Check(sourceNpcId)",
+    "display": "Source NPC Id"
+   },
+   {
+    "name": "sourceFlags",
+    "type": "select",
+    "init": "arg",
+    "conditionType": "select",
+    "test": "Private.ExecEnv.CheckCombatLogFlags(sourceFlags, %q)",
+    "display": "Source Affiliation"
+   },
+   {
+    "name": "sourceFlags2",
+    "type": "select",
+    "conditionType": "select",
+    "test": "Private.ExecEnv.CheckCombatLogFlagsReaction(sourceFlags, %q)",
+    "display": "Source Reaction"
+   },
+   {
+    "name": "sourceFlags3",
+    "type": "select",
+    "conditionType": "select",
+    "test": "Private.ExecEnv.CheckCombatLogFlagsObjectType(sourceFlags, %q)",
+    "display": "Source Object Type"
+   },
+   {
+    "name": "destHeader",
+    "type": "header",
+    "enable": "<function>",
+    "display": "Destination Info"
+   },
+   {
+    "name": "destGUID",
+    "init": "arg",
+    "hidden": "true",
+    "test": "true",
+    "display": "Destination GUID"
+   },
+   {
+    "name": "destUnit",
+    "type": "unit",
+    "enable": "<function>",
+    "conditionType": "select",
+    "test": "(destGUID or '') == (UnitGUID(%q) or '') and destGUID",
+    "display": "Destination Unit"
+   },
+   {
+    "name": "destName",
+    "type": "string",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "string",
+    "test": "destNameChecker:Check(destName)",
+    "display": "Destination Name"
+   },
+   {
+    "name": "destNpcId",
+    "type": "string",
+    "init": "tostring(tonumber(string.sub(destGUID or '', 8, 12), 16) or '')",
+    "enable": "<function>",
+    "conditionType": "string",
+    "test": "destNpcIdChecker:Check(destNpcId)",
+    "display": "Destination NPC Id"
+   },
+   {
+    "name": "destFlags",
+    "type": "select",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "select",
+    "test": "Private.ExecEnv.CheckCombatLogFlags(destFlags, %q)",
+    "display": "Destination Affiliation"
+   },
+   {
+    "name": "destFlags2",
+    "type": "select",
+    "enable": "<function>",
+    "conditionType": "select",
+    "test": "Private.ExecEnv.CheckCombatLogFlagsReaction(destFlags, %q)",
+    "display": "Destination Reaction"
+   },
+   {
+    "name": "destFlags3",
+    "type": "select",
+    "enable": "<function>",
+    "conditionType": "select",
+    "test": "Private.ExecEnv.CheckCombatLogFlagsObjectType(destFlags, %q)",
+    "display": "Destination Object Type"
+   },
+   {
+    "name": "subeventHeader",
+    "type": "header",
+    "enable": "<function>",
+    "display": "Subevent Info"
+   },
+   {
+    "name": "spellId",
+    "type": "spell",
+    "multiEntry": {
+     "operator": "preamble",
+     "preambleAdd": "spellChecker:AddExact(%q)"
+    },
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "number",
+    "showExactOption": false,
+    "test": "spellChecker:Check(spellId)",
+    "display": "Spell Id"
+   },
+   {
+    "name": "spellName",
+    "type": "spell",
+    "multiEntry": {
+     "operator": "preamble",
+     "preambleAdd": "spellChecker:AddName(%q)"
+    },
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "string",
+    "test": "spellChecker:Check(spellId)",
+    "display": "Spell Name"
+   },
+   {
+    "name": "spellSchool",
+    "type": "select",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "select",
+    "test": "spellSchool == %d",
+    "display": "Spell School"
+   },
+   {
+    "name": "environmentalType",
+    "type": "select",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Environment Type"
+   },
+   {
+    "name": "missType",
+    "type": "select",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Miss Type"
+   },
+   {
+    "name": "extraSpellId",
+    "type": "spell",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "number",
+    "showExactOption": false,
+    "test": "GetSpellInfo(%q or '') == extraSpellName",
+    "display": "Extra Spell Id"
+   },
+   {
+    "name": "extraSpellName",
+    "type": "spell",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "string",
+    "display": "Extra Spell Name"
+   },
+   {
+    "name": "auraType",
+    "type": "select",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Aura Type"
+   },
+   {
+    "name": "amount",
+    "type": "number",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Amount"
+   },
+   {
+    "name": "overkill",
+    "type": "number",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Overkill"
+   },
+   {
+    "name": "overhealing",
+    "type": "number",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Overhealing"
+   },
+   {
+    "name": "resisted",
+    "type": "number",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Resisted"
+   },
+   {
+    "name": "blocked",
+    "type": "number",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Blocked"
+   },
+   {
+    "name": "absorbed",
+    "type": "number",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Absorbed"
+   },
+   {
+    "name": "critical",
+    "type": "tristate",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "bool",
+    "display": "Critical"
+   },
+   {
+    "name": "glancing",
+    "type": "tristate",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "bool",
+    "display": "Glancing"
+   },
+   {
+    "name": "crushing",
+    "type": "tristate",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "bool",
+    "display": "Crushing"
+   },
+   {
+    "name": "number",
+    "type": "number",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Number"
+   },
+   {
+    "name": "overEnergize",
+    "type": "number",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Over Energize"
+   },
+   {
+    "name": "powerType",
+    "type": "select",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Power Type"
+   },
+   {
+    "name": "extraAmount",
+    "type": "number",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Extra Amount"
+   },
+   {
+    "name": "miscellaneousHeader",
+    "type": "header",
+    "display": "Miscellaneous"
+   },
+   {
+    "name": "cloneId",
+    "type": "toggle",
+    "init": "use_cloneId and WeakAuras.GetUniqueCloneId() or ''",
+    "test": "true",
+    "display": "Clone per Event"
+   },
+   {
+    "name": "icon",
+    "init": "(spellId and select(3, GetSpellInfo(spellId))) or 'Interface\\\\Icons\\\\INV_Misc_QuestionMark'",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Conditions": [
+   {
+    "name": "alwaystrue",
+    "type": "tristate",
+    "init": "true",
+    "display": "Always active trigger"
+   },
+   {
+    "name": "incombat",
+    "type": "tristate",
+    "init": "UnitAffectingCombat('player')",
+    "display": "In Combat"
+   },
+   {
+    "name": "pvpflagged",
+    "type": "tristate",
+    "init": "UnitIsPVP('player') or UnitIsPVPFreeForAll('player')",
+    "display": "PvP Flagged"
+   },
+   {
+    "name": "alive",
+    "type": "tristate",
+    "init": "not UnitIsDeadOrGhost('player')",
+    "display": "Alive"
+   },
+   {
+    "name": "vehicle",
+    "type": "tristate",
+    "init": "UnitInVehicle('player')",
+    "display": "In Vehicle"
+   },
+   {
+    "name": "resting",
+    "type": "tristate",
+    "init": "IsResting()",
+    "display": "Resting"
+   },
+   {
+    "name": "mounted",
+    "type": "tristate",
+    "init": "IsMounted()",
+    "display": "Mounted"
+   },
+   {
+    "name": "HasPet",
+    "type": "tristate",
+    "init": "UnitExists('pet') and not UnitIsDead('pet')",
+    "display": "HasPet"
+   },
+   {
+    "name": "ismoving",
+    "type": "tristate",
+    "init": "GetUnitSpeed('player') > 0",
+    "display": "Is Moving"
+   },
+   {
+    "name": "afk",
+    "type": "tristate",
+    "init": "UnitIsAFK('player')",
+    "display": "Is Away from Keyboard"
+   },
+   {
+    "name": "ingroup",
+    "type": "multiselect",
+    "init": "Private.ExecEnv.GroupType()",
+    "display": "Group Type"
+   },
+   {
+    "name": "ruleset",
+    "type": "multiselect",
+    "init": "WeakAuras.Ruleset()",
+    "display": "PvP Ruleset"
+   },
+   {
+    "name": "instance_size",
+    "type": "multiselect",
+    "init": "WeakAuras.InstanceType()",
+    "display": "Instance Type"
+   },
+   {
+    "name": "instance_difficulty",
+    "type": "multiselect",
+    "init": "WeakAuras.InstanceDifficulty()",
+    "display": "Instance Difficulty"
+   }
+  ],
+  "Cooldown Progress (Equipment Slot)": [
+   {
+    "name": "itemId",
+    "init": "item",
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "ItemId"
+   },
+   {
+    "name": "itemSlot",
+    "type": "select",
+    "required": true,
+    "test": "true",
+    "display": "Equipment Slot"
+   },
+   {
+    "name": "extra Cooldown Progress (Equipment Slot)",
+    "type": "collapse",
+    "display": "<function>"
+   },
+   {
+    "name": "showgcd",
+    "type": "toggle",
+    "test": "true",
+    "display": "Show Global Cooldown"
+   },
+   {
+    "name": "remaining",
+    "type": "number",
+    "init": "remaining",
+    "enable": "<function>",
+    "display": "Remaining Time"
+   },
+   {
+    "name": "testForCooldown",
+    "type": "toggle",
+    "test": "enable == 1",
+    "display": "is useable"
+   },
+   {
+    "name": "genericShowOn",
+    "type": "select",
+    "required": true,
+    "test": "true",
+    "display": "Show"
+   },
+   {
+    "name": "progressType",
+    "init": "'timed'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "duration",
+    "init": "duration",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "expirationTime",
+    "init": "expirationTime",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "stacks",
+    "init": "stacks",
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "Stacks"
+   },
+   {
+    "name": "onCooldown",
+    "conditionType": "bool",
+    "hidden": true,
+    "test": "true",
+    "display": "On Cooldown"
+   },
+   {
+    "name": "gcdCooldown",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Cooldown Progress (Item)": [
+   {
+    "name": "itemName",
+    "type": "item",
+    "required": true,
+    "test": "true",
+    "display": "Item"
+   },
+   {
+    "name": "remaining",
+    "type": "number",
+    "init": "remaining",
+    "enable": "<function>",
+    "display": "Remaining Time"
+   },
+   {
+    "name": "extra Cooldown Progress (Item)",
+    "type": "collapse",
+    "display": "<function>"
+   },
+   {
+    "name": "showgcd",
+    "type": "toggle",
+    "test": "true",
+    "display": "Show Global Cooldown"
+   },
+   {
+    "name": "genericShowOn",
+    "type": "select",
+    "required": true,
+    "test": "true",
+    "display": "Show"
+   },
+   {
+    "name": "enabled",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "onCooldown",
+    "conditionType": "bool",
+    "hidden": true,
+    "test": "true",
+    "display": "On Cooldown"
+   },
+   {
+    "name": "gcdCooldown",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "progressType",
+    "init": "'timed'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "duration",
+    "init": "duration",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "expirationTime",
+    "init": "expirationTime",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Cooldown Progress (Spell)": [
+   {
+    "name": "spellName",
+    "type": "spell",
+    "required": true,
+    "showExactOption": true,
+    "test": "true",
+    "display": "Spell"
+   },
+   {
+    "name": "extra Cooldown Progress (Spell)",
+    "type": "collapse",
+    "display": "<function>"
+   },
+   {
+    "name": "track",
+    "type": "select",
+    "required": true,
+    "test": "true",
+    "display": "Track Cooldowns"
+   },
+   {
+    "name": "showgcd",
+    "type": "toggle",
+    "test": "true",
+    "display": "Show Global Cooldown"
+   },
+   {
+    "name": "matchedRune",
+    "type": "toggle",
+    "test": "true",
+    "display": "Ignore Rune CD"
+   },
+   {
+    "name": "ignoreSpellKnown",
+    "type": "toggle",
+    "test": "true",
+    "display": "Disable Spell Known Check"
+   },
+   {
+    "name": "trackcharge",
+    "type": "number",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Show CD of Charge"
+   },
+   {
+    "name": "remaining",
+    "type": "number",
+    "enable": "<function>",
+    "display": "Remaining Time"
+   },
+   {
+    "name": "charges",
+    "type": "number",
+    "conditionType": "number",
+    "display": "Charges"
+   },
+   {
+    "name": "spellCount",
+    "type": "number",
+    "conditionType": "number",
+    "display": "Spell Count"
+   },
+   {
+    "name": "stacks",
+    "init": "stacks",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "maxCharges",
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "Max Charges"
+   },
+   {
+    "name": "readyTime",
+    "conditionType": "elapsedTimer",
+    "hidden": true,
+    "test": "true",
+    "display": "Since Ready"
+   },
+   {
+    "name": "chargeGainTime",
+    "conditionType": "elapsedTimer",
+    "hidden": true,
+    "test": "true",
+    "display": "Since Charge Gain"
+   },
+   {
+    "name": "chargeLostTime",
+    "conditionType": "elapsedTimer",
+    "hidden": true,
+    "test": "true",
+    "display": "Since Charge Lost"
+   },
+   {
+    "name": "effectiveSpellId",
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "Effective Spell Id"
+   },
+   {
+    "name": "genericShowOn",
+    "type": "select",
+    "required": true,
+    "test": "true",
+    "display": "Show"
+   },
+   {
+    "name": "onCooldown",
+    "conditionType": "bool",
+    "hidden": true,
+    "test": "true",
+    "display": "On Cooldown"
+   },
+   {
+    "name": "gcdCooldown",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "spellUsable",
+    "conditionType": "bool",
+    "hidden": true,
+    "test": "true",
+    "display": "Spell Usable"
+   },
+   {
+    "name": "insufficientResources",
+    "conditionType": "bool",
+    "hidden": true,
+    "test": "true",
+    "display": "Insufficient Resources"
+   },
+   {
+    "name": "spellInRange",
+    "conditionType": "bool",
+    "hidden": true,
+    "test": "true",
+    "display": "Spell in Range"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Cooldown Ready (Equipment Slot)": [
+   {
+    "name": "itemSlot",
+    "type": "select",
+    "required": true,
+    "init": "arg",
+    "display": "Equipment Slot"
+   },
+   {
+    "name": "itemId",
+    "init": "item",
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "ItemId"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Cooldown Ready (Item)": [
+   {
+    "name": "itemName",
+    "type": "item",
+    "required": true,
+    "init": "arg",
+    "display": "Item"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Cooldown Ready (Spell)": [
+   {
+    "name": "spellName",
+    "type": "spell",
+    "required": true,
+    "init": "arg",
+    "showExactOption": true,
+    "test": "true",
+    "display": "Spell"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Crowd Controlled": [
+   {
+    "name": "controlled",
+    "type": "tristate",
+    "init": "not HasFullControl()",
+    "display": "Crowd Controlled"
+   }
+  ],
+  "Currency": [
+   {
+    "name": "currencyId",
+    "type": "currency",
+    "required": true,
+    "test": "true",
+    "display": "Currency"
+   },
+   {
+    "name": "name",
+    "init": "currencyInfo.name",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "value",
+    "type": "number",
+    "init": "currencyInfo.quantity",
+    "conditionType": "number",
+    "display": "Quantity"
+   },
+   {
+    "name": "totalEarned",
+    "type": "number",
+    "init": "currencyInfo.totalEarned",
+    "conditionType": "number",
+    "display": "Total"
+   },
+   {
+    "name": "progressType",
+    "init": "'static'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "icon",
+    "init": "currencyInfo.icon",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "description",
+    "type": "string",
+    "init": "currencyInfo.description",
+    "hidden": true,
+    "test": "true",
+    "display": "Description"
+   },
+   {
+    "name": "discovered",
+    "type": "tristate",
+    "init": "currencyInfo.discovered",
+    "conditionType": "bool",
+    "display": "Discovered"
+   }
+  ],
+  "Death Knight Rune": [
+   {
+    "name": "rune",
+    "type": "select",
+    "test": "(genericShowOn == \"showOnReady\" and (startTime == 0)) or (genericShowOn == \"showOnCooldown\" and startTime > 0) or (genericShowOn == \"showAlways\")",
+    "display": "Rune"
+   },
+   {
+    "name": "isDeathRune",
+    "type": "tristate",
+    "init": "isDeathRune",
+    "enable": "<function>",
+    "conditionType": "bool",
+    "display": "Is Death Rune"
+   },
+   {
+    "name": "remaining",
+    "type": "number",
+    "enable": "<function>",
+    "display": "Remaining Time"
+   },
+   {
+    "name": "genericShowOn",
+    "type": "select",
+    "required": true,
+    "enable": "<function>",
+    "test": "true",
+    "display": "Show"
+   },
+   {
+    "name": "runesCount",
+    "type": "number",
+    "init": "numRunes",
+    "enable": "<function>",
+    "display": "Rune Count"
+   },
+   {
+    "name": "onCooldown",
+    "enable": "<function>",
+    "conditionType": "bool",
+    "hidden": true,
+    "test": "true",
+    "display": "On Cooldown"
+   },
+   {
+    "name": "bloodRunes",
+    "type": "number",
+    "init": "numBloodRunes",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Rune Count - Blood"
+   },
+   {
+    "name": "frostRunes",
+    "type": "number",
+    "init": "numFrostRunes",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Rune Count - Frost"
+   },
+   {
+    "name": "unholyRunes",
+    "type": "number",
+    "init": "numUnholyRunes",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Rune Count - Unholy"
+   },
+   {
+    "name": "includeDeathRunes",
+    "type": "toggle",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Include Death Runes"
+   }
+  ],
+  "Encounter Events": [
+   {
+    "name": "note",
+    "type": "description",
+    "display": ""
+   },
+   {
+    "name": "eventtype",
+    "type": "select",
+    "required": true,
+    "test": "event == %q",
+    "display": "Type"
+   },
+   {
+    "name": "encounterId",
+    "type": "string",
+    "init": "arg",
+    "conditionType": "number",
+    "display": "Id"
+   },
+   {
+    "name": "encounterName",
+    "type": "string",
+    "init": "arg",
+    "conditionType": "string",
+    "display": "Name"
+   },
+   {
+    "name": "difficulty",
+    "type": "select",
+    "init": "arg",
+    "conditionType": "select",
+    "test": "%q == WeakAuras.InstanceDifficulty()",
+    "display": "Difficulty"
+   },
+   {
+    "name": "success",
+    "type": "toggle",
+    "init": "arg",
+    "enable": "<function>",
+    "conditionType": "bool",
+    "test": "success == 1",
+    "display": "Success"
+   }
+  ],
+  "Equipment Set": [
+   {
+    "name": "itemSetName",
+    "type": "string",
+    "init": "itemSetName",
+    "conditionType": "string",
+    "test": "true",
+    "display": "Equipment Set"
+   },
+   {
+    "name": "partial",
+    "type": "toggle",
+    "test": "true",
+    "display": "Allow partial matches"
+   },
+   {
+    "name": "inverse",
+    "type": "toggle",
+    "test": "true",
+    "display": "Inverse"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "value",
+    "init": "numEquipped",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "total",
+    "init": "numItems",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "progressType",
+    "init": "'static'",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Experience": [
+   {
+    "name": "level",
+    "type": "number",
+    "required": false,
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "UnitLevel(\"player\")",
+    "conditionType": "number",
+    "display": "Level"
+   },
+   {
+    "name": "currentXP",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "UnitXP(\"player\")",
+    "conditionType": "number",
+    "display": "Current Experience"
+   },
+   {
+    "name": "totalXP",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "UnitXPMax(\"player\")",
+    "conditionType": "number",
+    "display": "Total Experience"
+   },
+   {
+    "name": "value",
+    "type": "number",
+    "init": "currentXP",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "total",
+    "type": "number",
+    "init": "totalXP",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "progressType",
+    "init": "'static'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "percentXP",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "total ~= 0 and (value / total) * 100 or nil",
+    "conditionType": "number",
+    "display": "Experience (%)"
+   },
+   {
+    "name": "restedExperienceHeader",
+    "type": "header",
+    "display": "Rested Experience"
+   },
+   {
+    "name": "showRested",
+    "type": "toggle",
+    "test": "true",
+    "display": "Show Rested Overlay"
+   },
+   {
+    "name": "restedXP",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "GetXPExhaustion() or 0",
+    "conditionType": "number",
+    "display": "Rested Experience"
+   },
+   {
+    "name": "percentrested",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "total ~= 0 and (restedXP / total) * 100 or nil",
+    "conditionType": "number",
+    "display": "Rested Experience (%)"
+   }
+  ],
+  "Faction Reputation": [
+   {
+    "name": "progressType",
+    "init": "'static'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "watched",
+    "type": "toggle",
+    "test": "true",
+    "display": "Use Watched Faction"
+   },
+   {
+    "name": "factionID",
+    "type": "select",
+    "required": true,
+    "enable": "<function>",
+    "conditionType": "select",
+    "test": "true",
+    "display": "Faction"
+   },
+   {
+    "name": "name",
+    "type": "string",
+    "init": "name",
+    "hidden": "true",
+    "test": "true",
+    "display": "Faction Name"
+   },
+   {
+    "name": "value",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "currentValue - minValue",
+    "conditionType": "number",
+    "display": "Reputation"
+   },
+   {
+    "name": "total",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "maxValue - minValue",
+    "conditionType": "number",
+    "display": "Total Reputation"
+   },
+   {
+    "name": "percentRep",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "total ~= 0 and (value / total) * 100 or nil",
+    "conditionType": "number",
+    "display": "Reputation (%)"
+   },
+   {
+    "name": "standing",
+    "type": "string",
+    "init": "standing",
+    "hidden": "true",
+    "test": "true",
+    "display": "Standing"
+   },
+   {
+    "name": "standingId",
+    "type": "select",
+    "init": "standingID",
+    "conditionType": "select",
+    "display": "Standing"
+   },
+   {
+    "name": "capped",
+    "type": "tristate",
+    "init": "isCapped",
+    "conditionType": "bool",
+    "display": "Capped"
+   },
+   {
+    "name": "atWar",
+    "type": "tristate",
+    "init": "atWarWith",
+    "conditionType": "bool",
+    "display": "At War"
+   }
+  ],
+  "GTFO": [
+   {
+    "name": "alertType",
+    "type": "select",
+    "init": "arg",
+    "conditionType": "select",
+    "display": "Alert Type"
+   }
+  ],
+  "Global Cooldown": [
+   {
+    "name": "inverse",
+    "type": "toggle",
+    "test": "true",
+    "display": "Inverse"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "duration",
+    "init": "duration",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "expirationTime",
+    "init": "expirationTime",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "progressType",
+    "init": "'timed'",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Health": [
+   {
+    "name": "unit",
+    "type": "unit",
+    "required": true,
+    "init": "arg",
+    "test": "true",
+    "display": "Unit"
+   },
+   {
+    "name": "health",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "UnitHealth(unit)",
+    "conditionType": "number",
+    "display": "Health"
+   },
+   {
+    "name": "value",
+    "init": "health",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "total",
+    "init": "UnitHealthMax(unit)",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "progressType",
+    "init": "'static'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "percenthealth",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "total ~= 0 and (value / total) * 100 or nil",
+    "conditionType": "number",
+    "display": "Health (%)"
+   },
+   {
+    "name": "deficit",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "total - value",
+    "conditionType": "number",
+    "display": "Health Deficit"
+   },
+   {
+    "name": "maxhealth",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "total",
+    "conditionType": "number",
+    "display": "Max Health"
+   },
+   {
+    "name": "showAbsorb",
+    "type": "toggle",
+    "test": "true",
+    "display": "Show Absorb"
+   },
+   {
+    "name": "absorbMode",
+    "type": "select",
+    "required": true,
+    "enable": "<function>",
+    "test": "true",
+    "display": "Absorb Display"
+   },
+   {
+    "name": "absorb",
+    "type": "number",
+    "init": "UnitGetTotalAbsorbs(unit)",
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Absorb"
+   },
+   {
+    "name": "unitCharacteristicsHeader",
+    "type": "header",
+    "display": "Unit Characteristics"
+   },
+   {
+    "name": "name",
+    "type": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Unit Name"
+   },
+   {
+    "name": "realm",
+    "type": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Realm"
+   },
+   {
+    "name": "namerealm",
+    "type": "string",
+    "conditionType": "string",
+    "test": "nameRealmChecker:Check(name, realm)",
+    "display": "Unit Name/Realm"
+   },
+   {
+    "name": "npcId",
+    "type": "string",
+    "init": "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')",
+    "conditionType": "string",
+    "test": "npcIdChecker:Check(npcId)",
+    "display": "Npc ID"
+   },
+   {
+    "name": "class",
+    "type": "select",
+    "init": "select(2, UnitClass(unit))",
+    "conditionType": "select",
+    "display": "Class"
+   },
+   {
+    "name": "specId",
+    "type": "multiselect",
+    "init": "WeakAuras.SpecForUnit(unit)",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Specialization"
+   },
+   {
+    "name": "role",
+    "type": "select",
+    "init": "WeakAuras.LGT:GetUnitRole(unit)",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Spec Role"
+   },
+   {
+    "name": "raid_role",
+    "type": "select",
+    "init": "WeakAuras.UnitRaidRole(unit)",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Raid Role"
+   },
+   {
+    "name": "raidMarkIndex",
+    "type": "multiselect",
+    "init": "GetRaidTargetIndex(unit) or 0",
+    "conditionType": "select",
+    "display": "Raid Mark"
+   },
+   {
+    "name": "raidMark",
+    "init": "raidMarkIndex > 0 and '{rt'..raidMarkIndex..'}' or ''",
+    "hidden": true,
+    "test": "true",
+    "display": "Raid Mark Icon"
+   },
+   {
+    "name": "miscellaneousHeader",
+    "type": "header",
+    "enable": "<function>",
+    "display": "Miscellaneous"
+   },
+   {
+    "name": "includePets",
+    "type": "select",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Include Pets"
+   },
+   {
+    "name": "ignoreSelf",
+    "type": "toggle",
+    "init": "not UnitIsUnit(\"player\", unit)",
+    "enable": "<function>",
+    "display": "Ignore Self"
+   },
+   {
+    "name": "ignoreDead",
+    "type": "toggle",
+    "init": "not UnitIsDeadOrGhost(unit)",
+    "enable": "<function>",
+    "display": "Ignore Dead"
+   },
+   {
+    "name": "ignoreDisconnected",
+    "type": "toggle",
+    "init": "UnitIsConnected(unit)",
+    "enable": "<function>",
+    "display": "Ignore Disconnected"
+   },
+   {
+    "name": "inRange",
+    "type": "toggle",
+    "init": "Private.ExecEnv.UnitInRangeFixed(unit)",
+    "enable": "<function>",
+    "display": "In Range"
+   },
+   {
+    "name": "nameplateType",
+    "type": "select",
+    "init": "WeakAuras.GetPlayerReaction(unit)",
+    "conditionType": "select",
+    "display": "Hostility"
+   },
+   {
+    "name": "name",
+    "init": "UnitName(unit)",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Item Count": [
+   {
+    "name": "itemName",
+    "type": "item",
+    "required": true,
+    "showExactOption": true,
+    "test": "true",
+    "display": "Item"
+   },
+   {
+    "name": "name",
+    "type": "string",
+    "init": "itemName",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "includeBank",
+    "type": "toggle",
+    "test": "true",
+    "display": "Include Bank"
+   },
+   {
+    "name": "includeCharges",
+    "type": "toggle",
+    "test": "true",
+    "display": "Include Charges"
+   },
+   {
+    "name": "count",
+    "type": "number",
+    "display": "Item Count"
+   },
+   {
+    "name": "stacks",
+    "init": "count",
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "Stacks"
+   },
+   {
+    "name": "value",
+    "init": "count",
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "Progress Value"
+   },
+   {
+    "name": "total",
+    "init": 0,
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "Progress Total"
+   },
+   {
+    "name": "progressType",
+    "init": "'static'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "icon",
+    "init": "GetItemIcon(itemName or '')",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "name",
+    "init": "itemName and itemName ~= '' and GetItemInfo(itemName) or itemName",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Item Equipped": [
+   {
+    "name": "itemName",
+    "type": "item",
+    "required": true,
+    "test": "true",
+    "display": "Item"
+   },
+   {
+    "name": "itemSlot",
+    "type": "select",
+    "test": "true",
+    "display": "Item Slot"
+   },
+   {
+    "name": "inverse",
+    "type": "toggle",
+    "test": "true",
+    "display": "Inverse"
+   },
+   {
+    "name": "name",
+    "init": "itemName",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Item Type Equipped": [
+   {
+    "name": "itemTypeName",
+    "type": "multiselect",
+    "required": true,
+    "test": "Private.ExecEnv.IsEquippedItemType(%s)",
+    "display": "Item Type"
+   }
+  ],
+  "Location": [
+   {
+    "name": "zoneIds",
+    "type": "string",
+    "conditionType": "string",
+    "test": "zoneChecker:Check(MapId)",
+    "display": "Player Location ID(s)"
+   },
+   {
+    "name": "zoneId",
+    "init": "uiMapId",
+    "hidden": true,
+    "test": "true",
+    "display": "Zone ID"
+   },
+   {
+    "name": "zone",
+    "type": "string",
+    "multiEntry": {
+     "operator": "or"
+    },
+    "init": "zoneText",
+    "conditionType": "string",
+    "display": "Zone Name"
+   },
+   {
+    "name": "subzone",
+    "type": "string",
+    "multiEntry": {
+     "operator": "or"
+    },
+    "init": "minimapZoneText",
+    "conditionType": "string",
+    "display": "Subzone Name"
+   },
+   {
+    "name": "instanceHeader",
+    "type": "header",
+    "display": "Instance Info"
+   },
+   {
+    "name": "instance",
+    "hidden": "true",
+    "test": "true",
+    "display": "Instance Name"
+   },
+   {
+    "name": "instanceSize",
+    "type": "multiselect",
+    "init": "WeakAuras.InstanceType()",
+    "conditionType": "select",
+    "display": "Instance Size Type"
+   },
+   {
+    "name": "instanceDifficulty",
+    "type": "multiselect",
+    "init": "WeakAuras.InstanceDifficulty()",
+    "conditionType": "select",
+    "display": "Instance Difficulty"
+   }
+  ],
+  "Money": [
+   {
+    "name": "money",
+    "type": "number",
+    "init": "money",
+    "hidden": true,
+    "test": "true",
+    "display": "Money"
+   },
+   {
+    "name": "gold",
+    "type": "number",
+    "init": "gold",
+    "conditionType": "number",
+    "display": "Gold"
+   },
+   {
+    "name": "silver",
+    "type": "number",
+    "init": "silver",
+    "hidden": true,
+    "test": "true",
+    "display": "Silver"
+   },
+   {
+    "name": "copper",
+    "type": "number",
+    "init": "copper",
+    "hidden": true,
+    "test": "true",
+    "display": "Copper"
+   },
+   {
+    "name": "icon",
+    "init": "GetCoinIcon(money)",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Pet Behavior": [
+   {
+    "name": "behavior",
+    "type": "select",
+    "test": "UnitExists('pet') and (not check_behavior or (inverse and check_behavior ~= behavior) or (not inverse and check_behavior == behavior))",
+    "display": "Pet Behavior"
+   },
+   {
+    "name": "inverse",
+    "type": "toggle",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Inverse Pet Behavior"
+   },
+   {
+    "name": "icon",
+    "init": "activeIcon",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Power": [
+   {
+    "name": "unit",
+    "type": "unit",
+    "required": true,
+    "init": "arg",
+    "test": "true",
+    "display": "Unit"
+   },
+   {
+    "name": "powertype",
+    "type": "select",
+    "init": "powerTypeToCheck",
+    "conditionType": "select",
+    "test": "true",
+    "display": "Power Type"
+   },
+   {
+    "name": "requirePowerType",
+    "type": "toggle",
+    "enable": "<function>",
+    "test": "unitPowerType == powerType",
+    "display": "Only if Primary"
+   },
+   {
+    "name": "showCost",
+    "type": "toggle",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Overlay Cost of Casts"
+   },
+   {
+    "name": "power",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "power",
+    "conditionType": "number",
+    "display": "Power"
+   },
+   {
+    "name": "value",
+    "init": "power",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "total",
+    "init": "total",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "stacks",
+    "init": "power",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "progressType",
+    "init": "'static'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "percentpower",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "total ~= 0 and (value / total) * 100 or nil",
+    "conditionType": "number",
+    "display": "Power (%)"
+   },
+   {
+    "name": "deficit",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "total - value",
+    "conditionType": "number",
+    "display": "Power Deficit"
+   },
+   {
+    "name": "maxpower",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "total",
+    "conditionType": "number",
+    "display": "Max Power"
+   },
+   {
+    "name": "name",
+    "type": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Unit Name"
+   },
+   {
+    "name": "realm",
+    "type": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Realm"
+   },
+   {
+    "name": "unitCharacteristicsHeader",
+    "type": "header",
+    "display": "Unit Characteristics"
+   },
+   {
+    "name": "namerealm",
+    "type": "string",
+    "conditionType": "string",
+    "test": "nameRealmChecker:Check(name, realm)",
+    "display": "Unit Name/Realm"
+   },
+   {
+    "name": "npcId",
+    "type": "string",
+    "init": "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')",
+    "enable": "<function>",
+    "conditionType": "string",
+    "test": "npcIdChecker:Check(npcId)",
+    "display": "Npc ID"
+   },
+   {
+    "name": "class",
+    "type": "select",
+    "init": "select(2, UnitClass(unit))",
+    "conditionType": "select",
+    "display": "Class"
+   },
+   {
+    "name": "specId",
+    "type": "multiselect",
+    "init": "WeakAuras.SpecForUnit(unit)",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Specialization"
+   },
+   {
+    "name": "role",
+    "type": "select",
+    "init": "WeakAuras.LGT:GetUnitRole(unit)",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Spec Role"
+   },
+   {
+    "name": "raid_role",
+    "type": "select",
+    "init": "WeakAuras.UnitRaidRole(unit)",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Raid Role"
+   },
+   {
+    "name": "raidMarkIndex",
+    "type": "multiselect",
+    "init": "GetRaidTargetIndex(unit) or 0",
+    "conditionType": "select",
+    "display": "Raid Mark"
+   },
+   {
+    "name": "raidMark",
+    "init": "raidMarkIndex > 0 and '{rt'..raidMarkIndex..'}' or ''",
+    "hidden": true,
+    "test": "true",
+    "display": "Raid Mark Icon"
+   },
+   {
+    "name": "miscellaneousHeader",
+    "type": "header",
+    "enable": "<function>",
+    "display": "Miscellaneous"
+   },
+   {
+    "name": "includePets",
+    "type": "select",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Include Pets"
+   },
+   {
+    "name": "ignoreSelf",
+    "type": "toggle",
+    "init": "not UnitIsUnit(\"player\", unit)",
+    "enable": "<function>",
+    "display": "Ignore Self"
+   },
+   {
+    "name": "ignoreDead",
+    "type": "toggle",
+    "init": "not UnitIsDeadOrGhost(unit)",
+    "enable": "<function>",
+    "display": "Ignore Dead"
+   },
+   {
+    "name": "ignoreDisconnected",
+    "type": "toggle",
+    "init": "UnitIsConnected(unit)",
+    "enable": "<function>",
+    "display": "Ignore Disconnected"
+   },
+   {
+    "name": "inRange",
+    "type": "toggle",
+    "init": "Private.ExecEnv.UnitInRangeFixed(unit)",
+    "enable": "<function>",
+    "display": "In Range"
+   },
+   {
+    "name": "nameplateType",
+    "type": "select",
+    "init": "WeakAuras.GetPlayerReaction(unit)",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Hostility"
+   }
+  ],
+  "Queued Action": [
+   {
+    "name": "spellName",
+    "type": "spell",
+    "required": true,
+    "showExactOption": true,
+    "test": "true",
+    "display": "Spell"
+   }
+  ],
+  "Range Check": [
+   {
+    "name": "note",
+    "type": "description",
+    "display": ""
+   },
+   {
+    "name": "unit",
+    "type": "unit",
+    "required": true,
+    "init": "unit",
+    "test": "true",
+    "display": "Unit"
+   },
+   {
+    "name": "minRange",
+    "type": "number",
+    "init": "min",
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "Minimum Estimate"
+   },
+   {
+    "name": "maxRange",
+    "type": "number",
+    "init": "max",
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "Maximum Estimate"
+   },
+   {
+    "name": "range",
+    "type": "number",
+    "conditionType": "number",
+    "test": "triggerResult",
+    "display": "Distance"
+   }
+  ],
+  "Ready Check": [],
+  "Spell Cast Succeeded": [
+   {
+    "name": "unit",
+    "type": "unit",
+    "init": "arg",
+    "conditionType": "select",
+    "test": "true",
+    "display": "Caster Unit"
+   },
+   {
+    "name": "spellNames",
+    "type": "spell",
+    "multiEntry": {
+     "operator": "preamble",
+     "preambleAdd": "spellChecker:AddName(%q)"
+    },
+    "init": "arg",
+    "test": "spellChecker:Check(spellNames)",
+    "display": "Name(s)"
+   },
+   {
+    "name": "spellId",
+    "type": "spell",
+    "multiEntry": {
+     "operator": "preamble",
+     "preambleAdd": "spellChecker:AddName(%q)"
+    },
+    "init": "spellNames",
+    "test": "spellChecker:CheckName(spellNames)",
+    "display": "Exact Spell ID(s)"
+   },
+   {
+    "name": "icon",
+    "init": "(spellId and select(3, GetSpellInfo(spellId))) or 'Interface\\\\Icons\\\\INV_Misc_QuestionMark'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "name",
+    "init": "GetSpellInfo(spellId or 0)",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Spell Known": [
+   {
+    "name": "spellName",
+    "type": "spell",
+    "required": true,
+    "test": "true",
+    "display": "Spell"
+   },
+   {
+    "name": "petspell",
+    "type": "toggle",
+    "test": "true",
+    "display": "Pet Spell"
+   },
+   {
+    "name": "inverse",
+    "type": "toggle",
+    "test": "true",
+    "display": "Inverse"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Stance/Form/Aura": [
+   {
+    "name": "note",
+    "type": "description",
+    "display": ""
+   },
+   {
+    "name": "form",
+    "type": "multiselect",
+    "conditionType": "select",
+    "test": "active",
+    "display": "Form"
+   },
+   {
+    "name": "inverse",
+    "type": "toggle",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Inverse"
+   }
+  ],
+  "Swing Timer": [
+   {
+    "name": "note",
+    "type": "description",
+    "display": ""
+   },
+   {
+    "name": "hand",
+    "type": "select",
+    "required": true,
+    "test": "true",
+    "display": "Weapon"
+   },
+   {
+    "name": "duration",
+    "init": "duration",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "expirationTime",
+    "init": "expirationTime",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "progressType",
+    "init": "'timed'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "remaining",
+    "type": "number",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Remaining Time"
+   },
+   {
+    "name": "inverse",
+    "type": "toggle",
+    "test": "true",
+    "display": "Inverse"
+   }
+  ],
+  "Talent Known": [
+   {
+    "name": "spellName",
+    "type": "talent",
+    "required": true,
+    "test": "true",
+    "display": "Talent"
+   },
+   {
+    "name": "inverse",
+    "type": "toggle",
+    "test": "true",
+    "display": "Inverse"
+   },
+   {
+    "name": "icon",
+    "init": "activeIcon",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "name",
+    "init": "activeName",
+    "conditionType": "string",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Threat Situation": [
+   {
+    "name": "unit",
+    "type": "unit",
+    "required": true,
+    "init": "arg",
+    "test": "true",
+    "display": "Unit"
+   },
+   {
+    "name": "status",
+    "type": "select",
+    "conditionType": "select",
+    "display": "Status"
+   },
+   {
+    "name": "aggro",
+    "type": "tristate",
+    "conditionType": "bool",
+    "display": "Aggro"
+   },
+   {
+    "name": "threatpct",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Threat Percent"
+   },
+   {
+    "name": "rawthreatpct",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Raw Threat Percent"
+   },
+   {
+    "name": "threatvalue",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "enable": "<function>",
+    "conditionType": "number",
+    "display": "Threat Value"
+   },
+   {
+    "name": "unitCharacteristicsHeader",
+    "type": "header",
+    "display": "Unit Characteristics"
+   },
+   {
+    "name": "name",
+    "type": "string",
+    "conditionType": "string",
+    "test": "nameChecker:Check(name)",
+    "display": "Unit Name"
+   },
+   {
+    "name": "npcId",
+    "type": "string",
+    "init": "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')",
+    "conditionType": "string",
+    "test": "npcIdChecker:Check(npcId)",
+    "display": "Npc ID"
+   },
+   {
+    "name": "value",
+    "init": "threatvalue",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "total",
+    "init": "threattotal",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "progressType",
+    "init": "'static'",
+    "hidden": true,
+    "test": "true"
+   }
+  ],
+  "Totem": [
+   {
+    "name": "totemType",
+    "type": "select",
+    "display": "Totem Number"
+   },
+   {
+    "name": "totemName",
+    "type": "string",
+    "conditionType": "string",
+    "display": "Totem Name"
+   },
+   {
+    "name": "totemNamePattern",
+    "type": "longstring",
+    "display": "Totem Name Pattern Match"
+   },
+   {
+    "name": "icon",
+    "type": "number",
+    "conditionType": "number",
+    "display": "Totem Icon"
+   },
+   {
+    "name": "inverse",
+    "type": "toggle",
+    "test": "true",
+    "display": "Inverse"
+   },
+   {
+    "name": "clones",
+    "type": "toggle",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Clone per Match"
+   },
+   {
+    "name": "remaining",
+    "type": "number",
+    "enable": "<function>",
+    "display": "Remaining Time"
+   }
+  ],
+  "Unit Characteristics": [
+   {
+    "name": "unit",
+    "type": "unit",
+    "required": true,
+    "init": "arg",
+    "test": "true",
+    "display": "Unit"
+   },
+   {
+    "name": "unitisunit",
+    "type": "unit",
+    "init": "UnitIsUnit(unit, extraUnit)",
+    "test": "unitisunit",
+    "display": "Unit is Unit"
+   },
+   {
+    "name": "name",
+    "type": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Name"
+   },
+   {
+    "name": "realm",
+    "type": "string",
+    "hidden": true,
+    "test": "true",
+    "display": "Realm"
+   },
+   {
+    "name": "namerealm",
+    "type": "string",
+    "conditionType": "string",
+    "test": "nameRealmChecker:Check(name, realm)",
+    "display": "Unit Name/Realm"
+   },
+   {
+    "name": "class",
+    "type": "select",
+    "init": "select(2, UnitClass(unit))",
+    "conditionType": "select",
+    "display": "Class"
+   },
+   {
+    "name": "specId",
+    "type": "multiselect",
+    "init": "WeakAuras.SpecForUnit(unit)",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Specialization"
+   },
+   {
+    "name": "classification",
+    "type": "multiselect",
+    "init": "UnitClassification(unit)",
+    "conditionType": "select",
+    "display": "Classification"
+   },
+   {
+    "name": "creatureTypeIndex",
+    "type": "multiselect",
+    "init": "Private.ExecEnv.creature_type_name_to_id[UnitCreatureType(unit or '') or 0]",
+    "conditionType": "select",
+    "display": "Creature Type"
+   },
+   {
+    "name": "creatureType",
+    "init": "UnitCreatureType(unit)",
+    "hidden": true,
+    "test": "true",
+    "display": "Creature Type Name"
+   },
+   {
+    "name": "creatureFamilyIndex",
+    "type": "multiselect",
+    "init": "Private.ExecEnv.creature_family_name_to_id[UnitCreatureFamily(unit or '') or 0]",
+    "conditionType": "select",
+    "display": "Creature Family"
+   },
+   {
+    "name": "creatureFamily",
+    "init": "UnitCreatureFamily(unit)",
+    "hidden": true,
+    "test": "true",
+    "display": "Creature Family Name"
+   },
+   {
+    "name": "role",
+    "type": "select",
+    "init": "WeakAuras.LGT:GetUnitRole(unit)",
+    "conditionType": "select",
+    "display": "Spec Role"
+   },
+   {
+    "name": "raid_role",
+    "type": "select",
+    "init": "WeakAuras.UnitRaidRole(unit)",
+    "enable": "<function>",
+    "conditionType": "select",
+    "display": "Raid Role"
+   },
+   {
+    "name": "raidMarkIndex",
+    "type": "multiselect",
+    "init": "GetRaidTargetIndex(unit) or 0",
+    "conditionType": "select",
+    "display": "Raid Mark"
+   },
+   {
+    "name": "raidMark",
+    "init": "raidMarkIndex > 0 and '{rt'..raidMarkIndex..'}' or ''",
+    "hidden": true,
+    "test": "true",
+    "display": "Raid Mark Icon"
+   },
+   {
+    "name": "dead",
+    "type": "tristate",
+    "init": "UnitIsDeadOrGhost(unit)",
+    "conditionType": "bool",
+    "display": "Dead"
+   },
+   {
+    "name": "ignoreSelf",
+    "type": "toggle",
+    "init": "not UnitIsUnit(\"player\", unit)",
+    "enable": "<function>",
+    "display": "Ignore Self"
+   },
+   {
+    "name": "ignoreDisconnected",
+    "type": "toggle",
+    "init": "UnitIsConnected(unit)",
+    "enable": "<function>",
+    "display": "Ignore Disconnected"
+   },
+   {
+    "name": "inRange",
+    "type": "toggle",
+    "init": "Private.ExecEnv.UnitInRangeFixed(unit)",
+    "enable": "<function>",
+    "display": "In Range"
+   },
+   {
+    "name": "hostility",
+    "type": "select",
+    "init": "WeakAuras.GetPlayerReaction(unit)",
+    "conditionType": "select",
+    "display": "Hostility"
+   },
+   {
+    "name": "character",
+    "type": "select",
+    "init": "UnitIsPlayer(unit) and 'player' or 'npc'",
+    "conditionType": "select",
+    "display": "Character Type"
+   },
+   {
+    "name": "level",
+    "type": "number",
+    "multiEntry": {
+     "limit": 2,
+     "operator": "and"
+    },
+    "init": "UnitLevel(unit)",
+    "conditionType": "number",
+    "display": "Level"
+   },
+   {
+    "name": "npcId",
+    "type": "string",
+    "init": "tostring(tonumber(string.sub(UnitGUID(unit) or '', 8, 12), 16) or '')",
+    "conditionType": "string",
+    "test": "npcIdChecker:Check(npcId)",
+    "display": "Npc ID"
+   },
+   {
+    "name": "attackable",
+    "type": "tristate",
+    "init": "UnitCanAttack('player', unit)",
+    "conditionType": "bool",
+    "display": "Attackable"
+   },
+   {
+    "name": "inCombat",
+    "type": "tristate",
+    "init": "UnitAffectingCombat(unit)",
+    "conditionType": "bool",
+    "display": "In Combat"
+   },
+   {
+    "name": "afk",
+    "type": "tristate",
+    "init": "UnitIsAFK(unit)",
+    "conditionType": "bool",
+    "display": "Afk"
+   },
+   {
+    "name": "dnd",
+    "type": "tristate",
+    "init": "UnitIsDND(unit)",
+    "conditionType": "bool",
+    "display": "Do Not Disturb"
+   }
+  ],
+  "Weapon Enchant": [
+   {
+    "name": "weapon",
+    "type": "select",
+    "required": true,
+    "test": "true",
+    "display": "Weapon"
+   },
+   {
+    "name": "enchant",
+    "type": "string",
+    "test": "true",
+    "display": "Weapon Enchant"
+   },
+   {
+    "name": "enchantID",
+    "conditionType": "number",
+    "hidden": true,
+    "test": "true",
+    "display": "Enchant ID"
+   },
+   {
+    "name": "stacks",
+    "type": "number",
+    "conditionType": "number",
+    "test": "true",
+    "display": "Stack Count"
+   },
+   {
+    "name": "duration",
+    "init": "duration",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "expirationTime",
+    "init": "expirationTime",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "progressType",
+    "init": "duration and 'timed'",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "name",
+    "init": "name",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "icon",
+    "init": "icon",
+    "hidden": true,
+    "test": "true"
+   },
+   {
+    "name": "enchanted",
+    "init": "found == true",
+    "conditionType": "bool",
+    "hidden": true,
+    "test": "true",
+    "display": "Enchanted"
+   },
+   {
+    "name": "remaining",
+    "type": "number",
+    "enable": "<function>",
+    "test": "true",
+    "display": "Remaining Time"
+   },
+   {
+    "name": "showOn",
+    "type": "select",
+    "required": true,
+    "test": "true",
+    "display": "Show On"
+   }
+  ]
+ }
+}

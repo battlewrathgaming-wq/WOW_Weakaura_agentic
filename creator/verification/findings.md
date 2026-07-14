@@ -22,6 +22,20 @@ _The instrument's purpose: find gaps, not celebrate the proven. Every entry: fou
 activeTriggerMode preserved, subtext canon-completed. Regions shipped: icon 18 · aurabar 8 · text 2 · texture 2 ·
 progresstexture 2 · stopmotion 1 · model 1 · empty 2.
 
+## 2026-07-14 — the sourcing debts, paid same evening
+
+- **Conditions-variable surface → `maps/condition_vars.json`** (`emit_condition_vars.py`): 37 surfaces, 238 variables —
+  surfaced from data ALREADY harvested (index rows carried `conditionType` all along; aura2 = the sheet's provides).
+  Validates the packet's condition guesses: `onCooldown`/`spellUsable`/`insufficientResources` are real Cooldown
+  Progress (Spell) vars.
+- **Prototype-arg attributes → `maps/trigger_args.json`** (`harvest_trigger_args.py`): 44 trigger prototypes, 473 args
+  (+45 load args) with `required`/`multiEntry`/`enable`/`init`/`conditionType` — the attributes build_index's flattener
+  dropped, kept from the raw `extract.lua prototypes` dump. Immediate yield: `spellName` is **required** (participates
+  without `use_`), `showExactOption` present.
+- **combatlog subevents, sharpened:** `subeventPrefix/Suffix` are neither optioned NOR prototype args — handler-special
+  (GenericTrigger builds the CLEU registration from them in code). Their harvest = a GenericTrigger code-scan
+  (live_keys' method), when combatlog earns its palette file.
+
 ## Awaiting the live half
 
 Import `Docket_complete/verification-coverage.txt`. The checklist IS the member ids. Watch especially:
