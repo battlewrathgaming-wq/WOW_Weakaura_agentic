@@ -22,8 +22,19 @@ import spell_enums as se                                         # the decode au
 COA = os.path.join(_ROOT, "dependencies", "coa_spells.json")
 OUT = os.path.join(_THIS, "resolved.json")
 
-# Ascension-custom effects (>164) we've IDENTIFIED - sourced/confirmed, not guessed. The rest stay NAMED gaps.
-KNOWN_CUSTOM = {165: "modify_cooldown"}      # confirmed 2026-07-14; target = a DIRECT spell id in effectMisc
+# Ascension-custom effects we've IDENTIFIED - sourced from the game's rendered description + slot structure, not guessed.
+# The rest stay NAMED gaps. (Target-edge wiring for the cooldown/duration ops - what they reset/extend, often a family -
+# is a deliberate follow-up, not wired here.)
+KNOWN_CUSTOM = {
+    165: "modify_cooldown",             # confirmed 2026-07-14; target = a DIRECT spell id in effectMisc
+    190: "apply_area_aura",             # 2026-07-14; radius-scoped apply-aura (carries effectAura + a radius, targetA=caster)
+    195: "reset_cooldown",              # 2026-07-14; "resetting the cooldown of ..." (self, no trigger/aura)
+    177: "extend_duration",             # 2026-07-14; "extend the duration of ..." (misc = the target aura's spell-id)
+    192: "reduce_remaining_cooldown",   # 2026-07-14; "reducing remaining cooldown ..." - a 165 sibling
+    112: "weapon_augment",              # 2026-07-14; "add an augmentation to your gun ... damage with each shot"
+}
+# codes that apply an aura (carry an effectAura subtype). 190 is Ascension's area-scoped APPLY_AREA_AURA.
+APPLY_AURA_CODES = {6, 190}
 
 
 def _slot(s, key, i):
@@ -79,7 +90,7 @@ def resolve(s, byset):
         name = KNOWN_CUSTOM.get(code) or se.effect_name(code)
         misc, trig, aura = _slot(s, "effectMisc", i), _slot(s, "effectTriggerSpell", i), _slot(s, "effectAura", i)
         e = {"slot": i, "effect": code, "name": name, "misc": misc}
-        if code == 6:                                           # APPLY_AURA carries the aura subtype
+        if code in APPLY_AURA_CODES:                            # apply-aura (6) or area-aura (190) - carries the aura subtype
             e["aura"], e["aura_name"] = aura, se.aura_name(aura)
         effects.append(e)                                       # EVERYTHING populated
         if name.startswith("CUSTOM") or name.startswith("unk"):
@@ -89,9 +100,9 @@ def resolve(s, byset):
             edges.append({"rel": "triggers", "dst": str(trig), "slot": i})
         if name == "modify_cooldown":
             edges.append({"rel": "modify_cooldown", "dst": str(misc), "slot": i})   # direct-id target (in effectMisc)
-        if code == 6:
+        if code in APPLY_AURA_CODES:
             edges.append({"rel": "applies_aura", "aura": aura, "aura_name": se.aura_name(aura),
-                          "durationMs": s.get("durationMs"), "slot": i})
+                          "area": code == 190, "durationMs": s.get("durationMs"), "slot": i})
         ecm = s.get("effectClassMask") or []                    # standard family-effects: target by mask overlap
         cmask = ecm[i] if i < len(ecm) else None
         if cmask and any(cmask):

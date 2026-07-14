@@ -32,3 +32,13 @@ fixed touchstones → `operations/WHAT.md` / `HOW.md` · moving present → `ope
 - **The signal view self-validates.** Derived cold from the axes, buff-window + cooldown = ~76% of the 3,729 first-class
   spells — the corpus's own "two readers carry 2/3 of authorship". The debuff→source pairing dissolved (walk the applier
   edge); per-spec now reads as a play profile (the generator's fingerprint).
+- **Custom-effect gaps: isolate from data in hand, don't scrape first.** The 19 `CUSTOM_effect_<n>` codes are opaque to
+  our TC enum (Ascension's server-side handlers). But the game's already-scraped descriptions + each code's slot-local
+  fields isolate most of them (`name_gaps.py`: slot target/trigger = fact, distinctive phrase, SOLO-effect spells). A
+  sweep for a carried `effectAura` **trisected** them: **190 = `apply_area_aura`** (100% carry an aura + a radius — the
+  biggest win: folded into the apply-aura path, **+113** recovered aura edges); six **trigger-variants** (175/183/178/…)
+  already captured by the `triggers` edge; and **structural ops** — named **195 `reset_cooldown` · 177 `extend_duration`
+  · 192 `reduce_remaining_cooldown` · 112 `weapon_augment`**. Sourced from the game's own render, same bar as 165. Gaps
+  502→270 spells, 19→14 codes. Residue: ~8 small structural codes (`168` biggest) = the real scrape/dev-ask target, half
+  the original. Target-edge wiring (what a reset/extend points at — often a *family*, cf. Rearmament "all Traps") held
+  for a follow-up. Battlewrath cracked 190 from the DB (radius the invariant); our carried `effectAura` completed it.

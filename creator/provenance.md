@@ -30,6 +30,7 @@ three slots, identical to raw. **The resolver can read the effect slots straight
 |---|---|---|
 | **`effectClassMask`** — ✅ **HEALED (2026-07-14)** | was the resolver-critical drop: the per-effect *family-target mask*. Family-based effects — "reduce the cooldown of all [family] spells" — resolve targets via `effectClassMask` × the targets' `spellClassMask`. **Now carried** in `coa_spells.json` (filter extended, regenerated, verified purely additive). Family-based cross-links are now derivable. | (fixed) |
 | `desc` | no (meaning, not mechanics) | scrapes (resolved `description`) / raw DBC |
+| **effect radius** (`EffectRadiusIndex` → `SpellRadius.dbc`) | only for area *size*, not *what* an effect does — the `apply_area_aura` (190) behaviour resolves from the carried `effectAura`; radius is just the geometry | raw DBC + `SpellRadius.dbc` |
 | `casterAuraState`, `targetAuraState`, `shapeshift`, `dispelType` | not yet | raw DBC |
 | `id` | redundant (it's the key) | — |
 
