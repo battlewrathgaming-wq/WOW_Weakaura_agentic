@@ -24,14 +24,16 @@ echo     [2]  Git status     read-only: show changes ^& last commits
 echo     [3]  Decode drop    settled view of the newest capture
 echo     [4]  Diff drops     per-option write delta (last two)
 echo     [5]  Service-runner start it in its OWN window (leave open)
+echo     [6]  Production     the pipeline console (stage / select / run / show)
 echo.
 echo   --------------------------------------------------
 echo     [A]  Advanced...    push (changes or uploads)
 echo     [Q]  Quit
 echo.
-choice /c 12345AQ /n /m "   Press a key: "
-if errorlevel 7 goto END
-if errorlevel 6 goto ADVANCED
+choice /c 123456AQ /n /m "   Press a key: "
+if errorlevel 8 goto END
+if errorlevel 7 goto ADVANCED
+if errorlevel 6 goto RUN_CONSOLE
 if errorlevel 5 goto RUN_RUNNER
 if errorlevel 4 goto RUN_DIFF
 if errorlevel 3 goto RUN_DECODE
@@ -70,6 +72,13 @@ cls
 echo Opening the service-runner in its own window...
 echo (Leave it open. Press Ctrl-C in that window to stop the runner.)
 start "service-runner" cmd /k py "%ROOT%runner.py"
+goto MAIN
+
+:RUN_CONSOLE
+cls
+echo Opening the Production console in its own window...
+echo (Drive it: status / stage / select / run / show / quit)
+start "COA Production console" cmd /k py "%ROOT%Weak Auras\engine\Production\console.py"
 goto MAIN
 
 :ADVANCED
