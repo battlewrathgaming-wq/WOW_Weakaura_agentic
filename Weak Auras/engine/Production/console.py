@@ -7,6 +7,7 @@ unlike run.py (the one-shot receipted runner, which this can invoke via `run`). 
 Commands:
   status              what's staged / completed / in the register
   stage               author -> gate -> Docket_stage
+  select              interactive picker: arrow through staged packs, SPACE to [x] them, run the selected
   pickup [PID]        drain Docket_stage -> Docket_complete   (all packs, or one PID)
   run                 stage then pickup, receipted  (= run.py)
   show <PID>          inspect a pack: staged dockets, or the DECODED group (proves a real aura, not just a file)
@@ -21,6 +22,10 @@ import os
 import shutil
 import subprocess
 import sys
+try:
+    import msvcrt                                                 # Windows key-by-key input for the `select` picker
+except ImportError:
+    msvcrt = None
 
 _THIS = os.path.dirname(os.path.abspath(__file__))
 STAGE = os.path.join(_THIS, "Docket_stage")
@@ -89,6 +94,53 @@ def cmd_clear():
     print("  cleared: Docket_stage, Docket_complete, receipts")
 
 
+def _getkey():
+    """one keypress -> 'up'/'down'/'space'/'quit' (or None). Arrows arrive as a 2-byte prefixed sequence."""
+    ch = msvcrt.getch()
+    if ch in (b"\x00", b"\xe0"):                                  # arrow / function-key prefix
+        return {b"H": "up", b"P": "down"}.get(msvcrt.getch())
+    return {b" ": "space", b"\r": "space", b"q": "quit", b"\x1b": "quit"}.get(ch)
+
+
+def cmd_select():
+    """interactive checkbox picker over the staged PID folders; the last row runs the selected packs."""
+    if msvcrt is None:
+        print("  select needs a Windows terminal"); return
+    pids = _pids(STAGE)
+    if not pids:
+        print("  no staged packs - run 'stage' first"); return
+    rows = pids + [None]                                          # None = the '[ Run selected ]' action row
+    checked, focus = set(), 0
+    while True:
+        os.system("cls")
+        print("Select packs to run   (up/down move  -  SPACE toggle / run  -  q cancel)\n")
+        for i, pid in enumerate(rows):
+            cur = ">" if i == focus else " "
+            if pid is None:
+                print("\n %s   [ Run selected (%d) ]" % (cur, len(checked)))
+            else:
+                n = len(glob.glob(os.path.join(STAGE, pid, "*.docket.json")))
+                print(" %s [%s] %-26s %d docket(s)" % (cur, "x" if pid in checked else " ", pid, n))
+        k = _getkey()
+        if k == "quit":
+            print(); return
+        if k == "up":
+            focus = (focus - 1) % len(rows)
+        elif k == "down":
+            focus = (focus + 1) % len(rows)
+        elif k == "space":
+            pid = rows[focus]
+            if pid is None:                                      # the Run action
+                sel = [p for p in pids if p in checked]
+                if not sel:
+                    continue                                     # nothing chosen - ignore
+                os.system("cls")
+                print("Running %d pack(s): %s\n" % (len(sel), ", ".join(sel)))
+                _sh(["pickup.py"] + sel)
+                return
+            checked.symmetric_difference_update({pid})           # toggle this pack's checkbox
+
+
 HELP = __doc__[__doc__.index("Commands:"):__doc__.index("\n\n  py")]
 
 
@@ -112,6 +164,8 @@ def main():
             cmd_status()
         elif c == "stage":
             _sh(["stage.py"])
+        elif c in ("select", "pick", "menu"):
+            cmd_select()
         elif c == "pickup":
             _sh(["pickup.py"] + args)
         elif c == "run":
