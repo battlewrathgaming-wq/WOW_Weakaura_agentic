@@ -1,0 +1,514 @@
+{
+ "_meta": "keyword taxonomy - the domain vocabulary, mounted for visibility. Codes are DBC enums (name-map = later pass).",
+ "classes": [
+  "BARBARIAN",
+  "CHRONOMANCER",
+  "CULTIST",
+  "DEMONHUNTER",
+  "FLESHWARDEN",
+  "GUARDIAN",
+  "MONK",
+  "NECROMANCER",
+  "PROPHET",
+  "PYROMANCER",
+  "RANGER",
+  "REAPER",
+  "SONOFARUGAL",
+  "SPIRITMAGE",
+  "STARCALLER",
+  "STORMBRINGER",
+  "SUNCLERIC",
+  "TINKER",
+  "WILDWALKER",
+  "WITCHDOCTOR",
+  "WITCHHUNTER"
+ ],
+ "specs": {
+  "BARBARIAN": [
+   "Ancestry",
+   "Brutality",
+   "Class",
+   "General",
+   "Headhunting"
+  ],
+  "CHRONOMANCER": [
+   "Artificer",
+   "Class",
+   "General",
+   "Infinite",
+   "Time"
+  ],
+  "CULTIST": [
+   "Class",
+   "Corruption",
+   "Dreadnought",
+   "General",
+   "Godblade",
+   "Heretic"
+  ],
+  "DEMONHUNTER": [
+   "Class",
+   "General",
+   "Infernal",
+   "Slayer",
+   "Tyrant"
+  ],
+  "FLESHWARDEN": [
+   "Class",
+   "Defiance",
+   "General",
+   "Hellfire",
+   "War"
+  ],
+  "GUARDIAN": [
+   "Class",
+   "General",
+   "Gladiator",
+   "Inspiration",
+   "Vanguard"
+  ],
+  "MONK": [
+   "Class",
+   "Crusader",
+   "General",
+   "Oathkeeper",
+   "Zealot"
+  ],
+  "NECROMANCER": [
+   "Animation",
+   "Class",
+   "Death",
+   "Rime"
+  ],
+  "PROPHET": [
+   "Class",
+   "Fortitude",
+   "General",
+   "Rot",
+   "Stalking",
+   "Venom",
+   "Vizier"
+  ],
+  "PYROMANCER": [
+   "Class",
+   "Draconic",
+   "Flameweaving",
+   "General",
+   "Incineration"
+  ],
+  "RANGER": [
+   "Archery",
+   "Brigand",
+   "Class",
+   "Farstrider",
+   "General"
+  ],
+  "REAPER": [
+   "Class",
+   "Domination",
+   "General",
+   "Harvest",
+   "Soul"
+  ],
+  "SONOFARUGAL": [
+   "Accursed",
+   "Class",
+   "Eternal",
+   "Fleshweaver",
+   "General",
+   "Sanguine"
+  ],
+  "SPIRITMAGE": [
+   "Arcane",
+   "Class",
+   "Engravement",
+   "General",
+   "Riftblade",
+   "Runic"
+  ],
+  "STARCALLER": [
+   "Class",
+   "General",
+   "Moon Guard",
+   "Moon Priest",
+   "Sentinel",
+   "Warden"
+  ],
+  "STORMBRINGER": [
+   "Class",
+   "General",
+   "Lightning",
+   "Maelstrom",
+   "Wind"
+  ],
+  "SUNCLERIC": [
+   "Blessings",
+   "Class",
+   "General",
+   "Piety",
+   "Seraphim",
+   "Valkyrie"
+  ],
+  "TINKER": [
+   "Class",
+   "Demolition",
+   "General",
+   "Invention",
+   "Mechanics"
+  ],
+  "WILDWALKER": [
+   "Class",
+   "General",
+   "Geomancy",
+   "Life",
+   "Mountain King",
+   "Primal",
+   "Wildwalker"
+  ],
+  "WITCHDOCTOR": [
+   "Brewing",
+   "Class",
+   "General",
+   "Shadowhunting",
+   "Voodoo"
+  ],
+  "WITCHHUNTER": [
+   "Black Knight",
+   "Boltslinger",
+   "Class",
+   "General",
+   "Houndmaster",
+   "Inquisition"
+  ]
+ },
+ "mechanic_hubs": {
+  "BARBARIAN:Ancestry": "Keg Smash",
+  "BARBARIAN:Brutality": "Crush",
+  "BARBARIAN:Class": "Born in Blood",
+  "BARBARIAN:General": "Smash",
+  "BARBARIAN:Headhunting": "Berserker Axe",
+  "CHRONOMANCER:Artificer": "Borrowed Time",
+  "CHRONOMANCER:Class": "Ahead of the Game",
+  "CHRONOMANCER:General": "Sands of Time",
+  "CHRONOMANCER:Infinite": "Chromatic Shard",
+  "CHRONOMANCER:Time": "Reverse Wound",
+  "CULTIST:Class": "Wracked Mind",
+  "CULTIST:Corruption": "Withered",
+  "CULTIST:Dreadnought": "Twilight Shieldtoss",
+  "CULTIST:General": "Gaze of C'Thun Damage Trigger",
+  "CULTIST:Godblade": "Blade of N'Zoth",
+  "CULTIST:Heretic": "Black Blood",
+  "DEMONHUNTER:Class": "Hateforged Barrier",
+  "DEMONHUNTER:General": "Felfury",
+  "DEMONHUNTER:Infernal": "Ragefire",
+  "DEMONHUNTER:Slayer": "Felfury",
+  "DEMONHUNTER:Tyrant": "Felrend",
+  "FLESHWARDEN:Class": "Demon's Blood",
+  "FLESHWARDEN:Defiance": "Hellfire Imp",
+  "FLESHWARDEN:General": "Flesh Hook",
+  "FLESHWARDEN:Hellfire": "Demonfire",
+  "FLESHWARDEN:War": "Generate Rage",
+  "GUARDIAN:Class": "Bloodletting",
+  "GUARDIAN:General": "Reclaim Standards",
+  "GUARDIAN:Gladiator": "Centurion Strike",
+  "GUARDIAN:Inspiration": "Frontliner",
+  "GUARDIAN:Vanguard": "Spiked Reinforcement",
+  "MONK:Class": "Divine Force",
+  "MONK:Crusader": "Righteous Tempest",
+  "MONK:General": "Benediction",
+  "MONK:Oathkeeper": "Reckoning",
+  "MONK:Zealot": "Zealotry",
+  "NECROMANCER:Animation": "Animate: Skeletal Archer",
+  "NECROMANCER:Class": "Grave March",
+  "NECROMANCER:Death": "Crypt Swarm",
+  "NECROMANCER:Rime": "Lichfrost",
+  "PROPHET:Class": "Green Salve",
+  "PROPHET:Fortitude": "Venomtip Poison",
+  "PROPHET:General": "Apply Fang Venom",
+  "PROPHET:Rot": "Blightcaps",
+  "PROPHET:Stalking": "Discombobulate!",
+  "PROPHET:Venom": "Mushroom",
+  "PROPHET:Vizier": "Cycle of Rebirth",
+  "PYROMANCER:Class": "Ember Consume",
+  "PYROMANCER:Draconic": "Echo of Nozdormu",
+  "PYROMANCER:Flameweaving": "Cleansing Flames",
+  "PYROMANCER:General": "Ember",
+  "PYROMANCER:Incineration": "Burned",
+  "RANGER:Archery": "Hunting Shot",
+  "RANGER:Brigand": "Wild Strike (Off Hand)",
+  "RANGER:Class": "Snapseed",
+  "RANGER:Farstrider": "Dream Flower",
+  "RANGER:General": "Toxishot",
+  "REAPER:Class": "Ghastly Screech",
+  "REAPER:Domination": "Spirit Realm",
+  "REAPER:General": "Deathstalker",
+  "REAPER:Harvest": "Murder Secondary Visual",
+  "REAPER:Soul": "Energize Runic Power +14-25",
+  "SONOFARUGAL:Accursed": "Ravenous Strike",
+  "SONOFARUGAL:Class": "Blood Bond",
+  "SONOFARUGAL:Eternal": "Call of the Darkwing",
+  "SONOFARUGAL:Fleshweaver": "Blood Rituals",
+  "SONOFARUGAL:General": "Hypovolemic Shock",
+  "SONOFARUGAL:Sanguine": "Bloodmoon Blast",
+  "SPIRITMAGE:Arcane": "Frigid Fusion",
+  "SPIRITMAGE:Class": "Blade Rift",
+  "SPIRITMAGE:Engravement": "Runic Explosion",
+  "SPIRITMAGE:General": "Palm Sigil: Fire",
+  "SPIRITMAGE:Riftblade": "Hoarfrost",
+  "SPIRITMAGE:Runic": "Runic Brand",
+  "STARCALLER:Class": "Shooting Star",
+  "STARCALLER:General": "Mana Regeneration",
+  "STARCALLER:Moon Guard": "Consume Scattered Stars AOE",
+  "STARCALLER:Moon Priest": "Moonflow Trigger",
+  "STARCALLER:Sentinel": "Consume Scattered Stars",
+  "STARCALLER:Warden": "Vengeance",
+  "STORMBRINGER:Class": "Eye of the Storm",
+  "STORMBRINGER:General": "Add 10 Static",
+  "STORMBRINGER:Lightning": "Arm of Thorim",
+  "STORMBRINGER:Maelstrom": "Static",
+  "STORMBRINGER:Wind": "Kiss of the Clouds",
+  "SUNCLERIC:Blessings": "Blessing of Absolution",
+  "SUNCLERIC:Class": "Blessed Armor",
+  "SUNCLERIC:General": "Gavel of Grace",
+  "SUNCLERIC:Piety": "Radiant Flame",
+  "SUNCLERIC:Seraphim": "Adjudicated",
+  "SUNCLERIC:Valkyrie": "Glorious Execution",
+  "TINKER:Class": "Nanobot Check",
+  "TINKER:Demolition": "Bomb Toss",
+  "TINKER:General": "Sticky Bomb",
+  "TINKER:Invention": "Nanobot Swarm",
+  "TINKER:Mechanics": "Combustion",
+  "WILDWALKER:Class": "Rapid Regeneration",
+  "WILDWALKER:General": "Earthquake",
+  "WILDWALKER:Geomancy": "Geode Barrage",
+  "WILDWALKER:Life": "Battleweaver",
+  "WILDWALKER:Mountain King": "Quake",
+  "WILDWALKER:Primal": "Totemic Smash",
+  "WILDWALKER:Wildwalker": "Wildclaw (Offhand)",
+  "WITCHDOCTOR:Brewing": "Splash Potion SLS",
+  "WITCHDOCTOR:Class": "Feign Death",
+  "WITCHDOCTOR:General": "Shadowflare",
+  "WITCHDOCTOR:Shadowhunting": "Spirit Eclipse",
+  "WITCHDOCTOR:Voodoo": "Mark of Malice",
+  "WITCHHUNTER:Black Knight": "March of the Black King",
+  "WITCHHUNTER:Boltslinger": "Darkslayer (Energize)",
+  "WITCHHUNTER:Class": "Alertness",
+  "WITCHHUNTER:General": "Brand of the Damned",
+  "WITCHHUNTER:Houndmaster": "Darkslayer (Energize)",
+  "WITCHHUNTER:Inquisition": "Dusk Blade"
+ },
+ "power_types": [
+  [
+   0,
+   6222
+  ],
+  [
+   1,
+   1214
+  ],
+  [
+   3,
+   1112
+  ],
+  [
+   2,
+   312
+  ],
+  [
+   -2,
+   155
+  ],
+  [
+   6,
+   137
+  ]
+ ],
+ "mechanic_types": [
+  [
+   15,
+   97
+  ],
+  [
+   19,
+   33
+  ],
+  [
+   11,
+   31
+  ],
+  [
+   26,
+   24
+  ],
+  [
+   12,
+   22
+  ],
+  [
+   31,
+   21
+  ],
+  [
+   9,
+   13
+  ],
+  [
+   5,
+   9
+  ],
+  [
+   6,
+   8
+  ],
+  [
+   18,
+   8
+  ],
+  [
+   25,
+   8
+  ],
+  [
+   7,
+   6
+  ],
+  [
+   8,
+   6
+  ],
+  [
+   3,
+   5
+  ],
+  [
+   2,
+   5
+  ],
+  [
+   13,
+   5
+  ],
+  [
+   14,
+   4
+  ],
+  [
+   17,
+   4
+  ],
+  [
+   24,
+   3
+  ],
+  [
+   10,
+   3
+  ],
+  [
+   1,
+   2
+  ],
+  [
+   21,
+   2
+  ],
+  [
+   29,
+   2
+  ],
+  [
+   4,
+   2
+  ],
+  [
+   30,
+   2
+  ],
+  [
+   27,
+   1
+  ]
+ ],
+ "effect_codes_top20": [
+  [
+   6,
+   8803
+  ],
+  [
+   2,
+   1346
+  ],
+  [
+   64,
+   958
+  ],
+  [
+   3,
+   540
+  ],
+  [
+   121,
+   518
+  ],
+  [
+   31,
+   497
+  ],
+  [
+   10,
+   380
+  ],
+  [
+   142,
+   361
+  ],
+  [
+   65,
+   178
+  ],
+  [
+   27,
+   168
+  ],
+  [
+   28,
+   160
+  ],
+  [
+   165,
+   160
+  ],
+  [
+   190,
+   113
+  ],
+  [
+   30,
+   101
+  ],
+  [
+   175,
+   90
+  ],
+  [
+   137,
+   82
+  ],
+  [
+   183,
+   76
+  ],
+  [
+   38,
+   76
+  ],
+  [
+   177,
+   74
+  ],
+  [
+   113,
+   70
+  ]
+ ]
+}
