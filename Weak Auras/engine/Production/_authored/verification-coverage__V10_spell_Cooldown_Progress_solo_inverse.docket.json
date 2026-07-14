@@ -1,0 +1,19 @@
+{
+ "pid": "verification-coverage",
+ "id": "V10 icon | spell Cooldown Progress solo inverse",
+ "uid": "coaVerif10",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "spell",
+   "event": "Cooldown Progress (Spell)",
+   "declare": {
+    "use_spellName": true,
+    "spellName": "802132"
+   }
+  }
+ ],
+ "display": {
+  "inverse": true
+ }
+}

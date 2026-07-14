@@ -1,0 +1,38 @@
+{
+ "pid": "verification-coverage",
+ "id": "V36 aurabar | activation activeTriggerMode trigger-2 of 2",
+ "uid": "coaVerif36",
+ "regionType": "aurabar",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ]
+   }
+  },
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "806324"
+    ]
+   }
+  }
+ ],
+ "activation": {
+  "disjunctive": "any",
+  "activeTriggerMode": 2
+ }
+}

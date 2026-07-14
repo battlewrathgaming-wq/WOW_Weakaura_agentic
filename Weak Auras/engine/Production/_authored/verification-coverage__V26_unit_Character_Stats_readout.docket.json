@@ -1,0 +1,16 @@
+{
+ "pid": "verification-coverage",
+ "id": "V26 text | unit Character Stats readout",
+ "uid": "coaVerif26",
+ "regionType": "text",
+ "triggers": [
+  {
+   "type": "unit",
+   "event": "Character Stats",
+   "declare": {}
+  }
+ ],
+ "display": {
+  "displayText": "haste %p"
+ }
+}

@@ -1,0 +1,15 @@
+{
+ "pid": "verification-coverage",
+ "id": "V12 icon | unit Conditions player",
+ "uid": "coaVerif12",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "unit",
+   "event": "Conditions",
+   "declare": {
+    "use_alwaystrue": true
+   }
+  }
+ ]
+}

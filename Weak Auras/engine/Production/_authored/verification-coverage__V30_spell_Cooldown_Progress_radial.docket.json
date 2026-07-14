@@ -1,0 +1,16 @@
+{
+ "pid": "verification-coverage",
+ "id": "V30 progresstexture | spell Cooldown Progress radial",
+ "uid": "coaVerif30",
+ "regionType": "progresstexture",
+ "triggers": [
+  {
+   "type": "spell",
+   "event": "Cooldown Progress (Spell)",
+   "declare": {
+    "use_spellName": true,
+    "spellName": "802132"
+   }
+  }
+ ]
+}

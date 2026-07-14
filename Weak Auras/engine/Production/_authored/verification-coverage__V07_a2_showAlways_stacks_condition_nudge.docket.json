@@ -1,0 +1,37 @@
+{
+ "pid": "verification-coverage",
+ "id": "V07 icon | a2 showAlways + stacks condition + nudge",
+ "uid": "coaVerif07",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ],
+    "use_matchesShowOn": true,
+    "matchesShowOn": "showAlways"
+   }
+  }
+ ],
+ "conditions": [
+  {
+   "check": {
+    "trigger": 1,
+    "variable": "stacks",
+    "op": ">=",
+    "value": "3"
+   },
+   "changes": {
+    "desaturate": false,
+    "xOffsetRelative": 6
+   }
+  }
+ ]
+}

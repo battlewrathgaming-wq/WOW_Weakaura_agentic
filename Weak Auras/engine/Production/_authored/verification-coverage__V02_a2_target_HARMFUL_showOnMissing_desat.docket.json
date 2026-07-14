@@ -1,0 +1,26 @@
+{
+ "pid": "verification-coverage",
+ "id": "V02 icon | a2 target HARMFUL showOnMissing desat",
+ "uid": "coaVerif02",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "806324"
+    ],
+    "use_matchesShowOn": true,
+    "matchesShowOn": "showOnMissing"
+   }
+  }
+ ],
+ "display": {
+  "desaturate": true
+ }
+}

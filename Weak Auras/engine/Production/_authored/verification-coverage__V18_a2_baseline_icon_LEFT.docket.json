@@ -1,0 +1,25 @@
+{
+ "pid": "verification-coverage",
+ "id": "V18 aurabar | a2 baseline + icon LEFT",
+ "uid": "coaVerif18",
+ "regionType": "aurabar",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ]
+   }
+  }
+ ],
+ "display": {
+  "icon": true,
+  "icon_side": "LEFT"
+ }
+}

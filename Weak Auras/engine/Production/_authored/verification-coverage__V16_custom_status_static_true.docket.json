@@ -1,0 +1,17 @@
+{
+ "pid": "verification-coverage",
+ "id": "V16 icon | custom status static-true",
+ "uid": "coaVerif16",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "custom",
+   "event": "Custom",
+   "declare": {
+    "custom_type": "status",
+    "check": "update",
+    "custom": "function() return true end"
+   }
+  }
+ ]
+}

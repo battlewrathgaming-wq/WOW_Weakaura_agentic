@@ -1,0 +1,74 @@
+{
+ "pid": "verification-coverage",
+ "id": "V09 icon | DEEP 3trig any: a2p+a2t+cooldown, per-trigger conditions",
+ "uid": "coaVerif09",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ]
+   }
+  },
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "806324"
+    ]
+   }
+  },
+  {
+   "type": "spell",
+   "event": "Cooldown Progress (Spell)",
+   "declare": {
+    "use_spellName": true,
+    "spellName": "802132"
+   }
+  }
+ ],
+ "conditions": [
+  {
+   "check": {
+    "trigger": 2,
+    "variable": "expirationTime",
+    "op": "<",
+    "value": "4"
+   },
+   "changes": {
+    "color": [
+     1,
+     0.5,
+     0,
+     1
+    ]
+   }
+  },
+  {
+   "check": {
+    "trigger": 3,
+    "variable": "onCooldown",
+    "op": "==",
+    "value": 1
+   },
+   "changes": {
+    "desaturate": true
+   }
+  }
+ ],
+ "activation": {
+  "disjunctive": "any"
+ }
+}

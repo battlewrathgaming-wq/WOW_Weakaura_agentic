@@ -1,0 +1,24 @@
+{
+ "pid": "verification-coverage",
+ "id": "V33 empty | a2 logic-holder + combat load",
+ "uid": "coaVerif33",
+ "regionType": "empty",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_combat": true
+ }
+}

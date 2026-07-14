@@ -1,0 +1,30 @@
+{
+ "pid": "verification-coverage",
+ "id": "V05 icon | a2 stacks-gate + stacks text",
+ "uid": "coaVerif05",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ],
+    "useStacks": true,
+    "stacksOperator": ">=",
+    "stacks": "2"
+   }
+  }
+ ],
+ "subregions": [
+  {
+   "type": "subtext",
+   "text_text": "%s"
+  }
+ ]
+}

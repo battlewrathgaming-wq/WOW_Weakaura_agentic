@@ -1,0 +1,25 @@
+{
+ "pid": "verification-coverage",
+ "id": "V03 icon | a2 exact-id catch zoom",
+ "uid": "coaVerif03",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "useExactSpellId": true,
+    "auraspellids": [
+     "802132"
+    ],
+    "ownOnly": true
+   }
+  }
+ ],
+ "display": {
+  "zoom": 0.3,
+  "keepAspectRatio": true
+ }
+}

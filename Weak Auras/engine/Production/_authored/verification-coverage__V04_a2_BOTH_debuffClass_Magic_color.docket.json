@@ -1,0 +1,33 @@
+{
+ "pid": "verification-coverage",
+ "id": "V04 icon | a2 BOTH debuffClass Magic color",
+ "uid": "coaVerif04",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "BOTH",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ],
+    "use_debuffClass": true,
+    "debuffClass": {
+     "magic": true
+    }
+   }
+  }
+ ],
+ "display": {
+  "color": [
+   0.5,
+   0.5,
+   1,
+   1
+  ]
+ }
+}

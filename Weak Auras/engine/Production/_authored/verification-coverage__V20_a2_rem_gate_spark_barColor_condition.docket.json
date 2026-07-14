@@ -1,0 +1,45 @@
+{
+ "pid": "verification-coverage",
+ "id": "V20 aurabar | a2 rem-gate spark + barColor condition",
+ "uid": "coaVerif20",
+ "regionType": "aurabar",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ],
+    "useRem": true,
+    "remOperator": "<",
+    "rem": "6"
+   }
+  }
+ ],
+ "display": {
+  "spark": true
+ },
+ "conditions": [
+  {
+   "check": {
+    "trigger": 1,
+    "variable": "expirationTime",
+    "op": "<",
+    "value": "3"
+   },
+   "changes": {
+    "barColor": [
+     1,
+     0,
+     0,
+     1
+    ]
+   }
+  }
+ ]
+}

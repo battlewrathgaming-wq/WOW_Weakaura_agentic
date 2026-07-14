@@ -1,0 +1,16 @@
+{
+ "pid": "verification-coverage",
+ "id": "V28 texture | spell Cooldown Ready flash-asset",
+ "uid": "coaVerif28",
+ "regionType": "texture",
+ "triggers": [
+  {
+   "type": "spell",
+   "event": "Cooldown Ready (Spell)",
+   "declare": {
+    "use_spellName": true,
+    "spellName": "802132"
+   }
+  }
+ ]
+}

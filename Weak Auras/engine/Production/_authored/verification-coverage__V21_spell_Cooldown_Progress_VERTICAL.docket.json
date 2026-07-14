@@ -1,0 +1,19 @@
+{
+ "pid": "verification-coverage",
+ "id": "V21 aurabar | spell Cooldown Progress VERTICAL",
+ "uid": "coaVerif21",
+ "regionType": "aurabar",
+ "triggers": [
+  {
+   "type": "spell",
+   "event": "Cooldown Progress (Spell)",
+   "declare": {
+    "use_spellName": true,
+    "spellName": "802132"
+   }
+  }
+ ],
+ "display": {
+  "orientation": "VERTICAL"
+ }
+}

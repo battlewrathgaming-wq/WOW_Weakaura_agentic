@@ -1,0 +1,13 @@
+{
+ "pid": "verification-coverage",
+ "id": "V14 icon | event Combat Events",
+ "uid": "coaVerif14",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "event",
+   "event": "Combat Events",
+   "declare": {}
+  }
+ ]
+}

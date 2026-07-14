@@ -1,0 +1,21 @@
+{
+ "pid": "verification-coverage",
+ "id": "V31 stopmotion | a2 animated while active",
+ "uid": "coaVerif31",
+ "regionType": "stopmotion",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ]
+   }
+  }
+ ]
+}

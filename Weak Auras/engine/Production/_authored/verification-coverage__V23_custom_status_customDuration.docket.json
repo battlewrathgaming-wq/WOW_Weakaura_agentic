@@ -1,0 +1,18 @@
+{
+ "pid": "verification-coverage",
+ "id": "V23 aurabar | custom status customDuration",
+ "uid": "coaVerif23",
+ "regionType": "aurabar",
+ "triggers": [
+  {
+   "type": "custom",
+   "event": "Custom",
+   "declare": {
+    "custom_type": "status",
+    "check": "update",
+    "custom": "function() return true end",
+    "customDuration": "function() return 10, GetTime()+10 end"
+   }
+  }
+ ]
+}

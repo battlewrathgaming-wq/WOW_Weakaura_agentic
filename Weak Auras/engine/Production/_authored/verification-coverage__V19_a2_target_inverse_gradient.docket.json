@@ -1,0 +1,31 @@
+{
+ "pid": "verification-coverage",
+ "id": "V19 aurabar | a2 target inverse gradient",
+ "uid": "coaVerif19",
+ "regionType": "aurabar",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "target",
+    "debuffType": "HARMFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "501940"
+    ]
+   }
+  }
+ ],
+ "display": {
+  "inverse": true,
+  "enableGradient": true,
+  "barColor2": [
+   0,
+   1,
+   0,
+   1
+  ]
+ }
+}

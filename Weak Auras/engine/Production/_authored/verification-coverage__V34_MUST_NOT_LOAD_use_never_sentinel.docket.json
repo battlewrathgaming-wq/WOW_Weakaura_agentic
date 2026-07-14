@@ -1,0 +1,24 @@
+{
+ "pid": "verification-coverage",
+ "id": "V34 empty | MUST-NOT-LOAD use_never sentinel",
+ "uid": "coaVerif34",
+ "regionType": "empty",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_never": true
+ }
+}

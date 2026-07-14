@@ -74,9 +74,24 @@ def gate(docket, contract=None, classdata=None, domains=None, livekeys=None):
             mark(tp + ".event", "malform", "%r not an event of %s" % (event, ttype)); continue
         mark(tp + ".event", "known-field")
         inputs = surface.get("inputs", {})
+
+        def _companion(k):
+            """prototype-driven surfaces list the arg (`spellName`) but not its stored-form companions - which
+            ConstructFunction REQUIRES (use_<name> participation @815; _operator/_caseInsensitive/use_exact_ generic
+            reads @842-849; see maps/arg_shapes.json _meta). Accept a companion when its base arg IS on the surface."""
+            for pre, suf in (("use_exact_", ""), ("use_", ""), ("", "_operator"), ("", "_caseInsensitive")):
+                if pre and k.startswith(pre) and k[len(pre):] in inputs:
+                    return k[len(pre):]
+                if suf and k.endswith(suf) and k[: -len(suf)] in inputs:
+                    return k[: -len(suf)]
+            return None
+
         for key, val in (t.get("declare") or {}).items():
             fp = "%s.declare.%s" % (tp, key)
             io = inputs.get(key)
+            if io is None and _companion(key):
+                mark(fp, "known-field")                       # a stored-form companion of a surfaced arg
+                continue
             if io is None:
                 mark(fp, "malform", "%r not a field of %s/%s" % (key, ttype, event)); continue
             lk = (livekeys.get(ttype) or {}).get("keys", {}).get(key)
@@ -87,7 +102,8 @@ def gate(docket, contract=None, classdata=None, domains=None, livekeys=None):
             if isinstance(dom, str):                          # a domain REFERENCE -> resolve via domains.json
                 dom = domains.get(dom)
             if isinstance(dom, dict):                         # a SELECT box: the value must be one of the domain's
-                bad = [x for x in _as_list(val) if str(x) not in dom and x not in dom]
+                vals = list(val.keys()) if isinstance(val, dict) else _as_list(val)   # multiselect stored form
+                bad = [x for x in vals if str(x) not in dom and x not in dom]         #  ({key: true}) checks its KEYS
                 mark(fp, "known-value" if not bad else "invalid",
                      "" if not bad else "value(s) %s not in domain %r - incorrect input" % (bad, io.get("domain")))
             elif key in ID_REF_FIELDS:                        # an OPEN BOX you type a spell id into - validate it's REAL

@@ -1,0 +1,16 @@
+{
+ "pid": "verification-coverage",
+ "id": "V17 icon | addons GTFO High Damage",
+ "uid": "coaVerif17",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "addons",
+   "event": "GTFO",
+   "declare": {
+    "use_alertType": true,
+    "alertType": "High Damage"
+   }
+  }
+ ]
+}

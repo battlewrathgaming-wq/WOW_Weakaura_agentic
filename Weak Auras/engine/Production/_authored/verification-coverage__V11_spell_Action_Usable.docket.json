@@ -1,0 +1,16 @@
+{
+ "pid": "verification-coverage",
+ "id": "V11 icon | spell Action Usable",
+ "uid": "coaVerif11",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "spell",
+   "event": "Action Usable",
+   "declare": {
+    "use_spellName": true,
+    "spellName": "802132"
+   }
+  }
+ ]
+}

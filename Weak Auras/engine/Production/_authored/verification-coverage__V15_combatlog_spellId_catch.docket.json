@@ -1,0 +1,18 @@
+{
+ "pid": "verification-coverage",
+ "id": "V15 icon | combatlog spellId catch",
+ "uid": "coaVerif15",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "combatlog",
+   "event": "Combat Log",
+   "declare": {
+    "use_spellId": true,
+    "spellId": [
+     "500217"
+    ]
+   }
+  }
+ ]
+}

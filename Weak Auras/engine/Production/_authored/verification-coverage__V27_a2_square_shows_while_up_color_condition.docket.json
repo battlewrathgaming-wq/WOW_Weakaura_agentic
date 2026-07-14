@@ -1,0 +1,39 @@
+{
+ "pid": "verification-coverage",
+ "id": "V27 texture | a2 square shows-while-up + color condition",
+ "uid": "coaVerif27",
+ "regionType": "texture",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ]
+   }
+  }
+ ],
+ "conditions": [
+  {
+   "check": {
+    "trigger": 1,
+    "variable": "stacks",
+    "op": ">=",
+    "value": "2"
+   },
+   "changes": {
+    "color": [
+     0,
+     1,
+     0,
+     1
+    ]
+   }
+  }
+ ]
+}

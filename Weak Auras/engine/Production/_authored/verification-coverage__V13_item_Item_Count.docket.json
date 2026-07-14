@@ -1,0 +1,16 @@
+{
+ "pid": "verification-coverage",
+ "id": "V13 icon | item Item Count",
+ "uid": "coaVerif13",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "item",
+   "event": "Item Count",
+   "declare": {
+    "use_itemName": true,
+    "itemName": "Hearthstone"
+   }
+  }
+ ]
+}

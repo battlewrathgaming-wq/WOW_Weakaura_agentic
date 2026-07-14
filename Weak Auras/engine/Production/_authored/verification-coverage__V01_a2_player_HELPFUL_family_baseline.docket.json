@@ -1,0 +1,21 @@
+{
+ "pid": "verification-coverage",
+ "id": "V01 icon | a2 player HELPFUL family baseline",
+ "uid": "coaVerif01",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ]
+   }
+  }
+ ]
+}

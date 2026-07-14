@@ -1,0 +1,32 @@
+{
+ "pid": "verification-coverage",
+ "id": "V35 icon | load: spellknown + all-COA-class multi",
+ "uid": "coaVerif35",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ]
+   }
+  }
+ ],
+ "load": {
+  "use_class": false,
+  "class": {
+   "multi": {
+    "NECROMANCER": true,
+    "REAPER": true
+   }
+  },
+  "use_spellknown": true,
+  "spellknown": 500217
+ }
+}

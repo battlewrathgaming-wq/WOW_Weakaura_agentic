@@ -1,0 +1,22 @@
+{
+ "pid": "verification-coverage",
+ "id": "V08 icon | a2 clones",
+ "uid": "coaVerif08",
+ "regionType": "icon",
+ "triggers": [
+  {
+   "type": "aura2",
+   "event": "Aura",
+   "declare": {
+    "unit": "player",
+    "debuffType": "HELPFUL",
+    "ownOnly": true,
+    "useName": true,
+    "auranames": [
+     "500217"
+    ],
+    "showClones": true
+   }
+  }
+ ]
+}
