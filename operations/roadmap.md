@@ -5,12 +5,13 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
 
 ## Near
 
-- **★ HEADING (restore point 2026-07-14): the derived-gears rewrite.** Kill hand-written stored-form shapes everywhere:
-  harvest `ConstructFunction` → `maps/arg_shapes.json` (per arg.type: stored form + `use_` gate, source-cited) · fill
-  drops its load translation (fully dumb: containers + verbatim) · populate shapes load via load-sheet type × template ·
-  expand's filter shaping goes type-aware · regression = re-press everything, diff byte-identical except load's live
-  form. Principle: **leverage what is known and proven true — derive handling, never hand-write it** (three instances
-  of the same disease found: fill's load, expand's type-blind `use_`, expand's hand multiEntry shape).
+- ✅ **The derived-gears rewrite (DONE 2026-07-14, same evening).** `maps/arg_shapes.json` harvested from
+  ConstructFunction (per arg.type: stored form + `use_` gate, source-cited) · fill fully dumb (load verbatim) · populate
+  shapes load via load-sheet type × template applier · expand map-cited + gear-to-map assert · tome/venomancer refit ·
+  regression: re-press diff = triggers byte-identical, load gained its live form (the predicted delta exactly) ·
+  class_table: all 18 unverified tokens flipped verified off the live capture (zero mismatches). Principle landed:
+  **derive handling from harvested maps; nothing hand-writes a stored form.** Restore tag `restore-pre-derived-gears`
+  stays as the fallback.
 - ✅ **Heal the merge (done 2026-07-14)** — `filter_coa_spells.py` now carries `effectClassMask`; `coa_spells.json`
   regenerated, verified purely additive (graph + gate unaffected). Family-based cross-links unblocked.
 - ✅ **The DBC resolver (done 2026-07-14)** — Pass 1 axes + typed edges (triggers · applies_aura incl. area-190 ·
