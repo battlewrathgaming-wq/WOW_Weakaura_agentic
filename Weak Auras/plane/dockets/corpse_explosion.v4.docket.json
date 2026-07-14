@@ -1,7 +1,7 @@
 {
   "id": "CoA Corpse Explosion T2",
   "uid": "coaCorpExpl0004",
-  "region": "icon",
+  "regionType": "icon",
   "triggers": [
     {
       "type": "spell",

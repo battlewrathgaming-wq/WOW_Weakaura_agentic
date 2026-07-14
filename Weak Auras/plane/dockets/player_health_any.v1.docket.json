@@ -1,7 +1,7 @@
 {
   "id": "CoA Health Any 80-70",
   "uid": "coaHealthAny00001",
-  "region": "aurabar",
+  "regionType": "aurabar",
   "triggers": [
     {
       "type": "unit",

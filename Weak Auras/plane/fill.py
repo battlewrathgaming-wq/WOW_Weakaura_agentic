@@ -33,7 +33,7 @@ def fill(docket):
         "id": docket["id"],
         "uid": docket["uid"],
         "internalVersion": _internal_version(),          # positive-declared, sourced
-        "regionType": docket["region"],
+        "regionType": docket["regionType"],              # WA-literal (was slim `region` - dialect drop, footprint unchanged)
     }
     triggers = {}
     for i, t in enumerate(docket.get("triggers", []), 1):

@@ -1,6 +1,7 @@
 {
  "pid": "venomancer-procs",
  "id": "Tome of Ahn'kahet",
+ "uid": "coaTomeAhnkaht1",
  "regionType": "icon",
  "triggers": [
   {
