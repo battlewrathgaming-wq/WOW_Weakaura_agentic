@@ -4,7 +4,7 @@ conditions (class / spec / talent / level / zone / equipment / ...), each gated 
 together - the "chain": every ENABLED condition must be true for the aura to load. Sourced from extract.lua
 prototypes (result.load) joined onto the grounded index (value-domains, input_kind).
 
-  py emit_load_sheet.py   -> statesheets/load/load.json
+  py emit_load_sheet.py   -> engine/Fact_basis/sheets/load/load.json
 """
 import json
 import os
@@ -17,7 +17,7 @@ LUA = os.path.join(_ROOT, ".tools", "lua51", "lua5.1.exe")
 EXTRACT = os.path.join(_THIS, "extract.lua")
 PROTOS = "F:/games/Ascension_wow/resources/ascension-live/Interface/AddOns/WeakAuras/Prototypes.lua"
 INDEX = os.path.join(_THIS, "index_grounded.json")
-OUTDIR = os.path.join(_THIS, "statesheets", "load")
+OUTDIR = os.path.join(_THIS, "..", "engine", "Fact_basis", "sheets", "load")
 
 
 def _load_prototype():

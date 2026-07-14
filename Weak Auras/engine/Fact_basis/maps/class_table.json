@@ -1,9 +1,9 @@
 {
  "_meta": {
   "what": "COA class fact basis: user-facing name <-> WA/game class API token <-> classId.",
-  "api_name": "FACT - the game class API token (GetClassInfo, from the trainer scrape). COA classes ride base-class shells so the token is an opaque codename (SONOFARUGAL=Bloodmage, MONK=Templar).",
-  "wa_load_verified": "whether this token was seen in a real aura load.class in the corpus (WA-usage proven live). false = token is fact but WA-load usage not yet corpus-confirmed (still the game class token, so expected).",
-  "source": "api_name/classId/display <- ability_inventory/out/<TOKEN>.json (trainer scrape); wa_load_verified <- Outputs/aura_corpus/battlewrath_displays.json load.class.",
+  "api_name": "FACT - the game class API token (GetClassInfo, trainer scrape). COA rides base-class shells so the token is an opaque codename (SONOFARUGAL=Bloodmage, MONK=Templar). Sourced, never guessed.",
+  "wa_load_verified": "token seen in a real aura's load.class in the corpus (WA-usage proven live). false = the token is fact but WA-load use not yet corpus-confirmed (it IS the game class token, so expected).",
+  "source": "api_name/classId/display <- ability_inventory/out/<TOKEN>.json; wa_load_verified <- Outputs/aura_corpus/battlewrath_displays.json load.class. Regenerate: py build_class_table.py.",
   "count": 21
  },
  "classes": [

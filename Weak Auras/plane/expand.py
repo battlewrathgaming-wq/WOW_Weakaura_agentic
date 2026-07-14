@@ -3,7 +3,7 @@ expand.py - the EXPANDER (plane_v2 THE_SPLIT layer 3). Reasoning-only docket -> 
 (fill's input), by DERIVING the content the contract IMPLIES but that was never CHOSEN. The output is exactly
 what fill takes today, so fill/bounce/codec are unchanged.
 
-Contract-DRIVEN, never a hand ruleset (the shaping rules are sourced into wa_index/contract.json). An
+Contract-DRIVEN, never a hand ruleset (the shaping rules are sourced into engine/Fact_basis/contract/contract.json). An
 ELABORATION/DEFAULTING pass (cf. compiler desugaring, schema defaulting, k8s mutating-admission):
 IDEMPOTENT - fills MISSING derivable fields, never clobbers one that's provided.
 
@@ -23,7 +23,7 @@ import sys
 import uuid
 
 _THIS = os.path.dirname(os.path.abspath(__file__))
-CONTRACT = os.path.join(_THIS, "..", "wa_index", "contract.json")
+CONTRACT = os.path.join(_THIS, "..", "engine", "Fact_basis", "contract", "contract.json")
 
 
 def _contract():

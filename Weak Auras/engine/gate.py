@@ -23,9 +23,9 @@ import os
 import sys
 
 _THIS = os.path.dirname(os.path.abspath(__file__))
-CONTRACT = os.path.join(_THIS, "..", "wa_index", "contract.json")
+CONTRACT = os.path.join(_THIS, "Fact_basis", "contract", "contract.json")
 CLASSDATA = os.path.join(_THIS, "..", "..", "Outputs", "spell_dbc", "coa_spells.json")
-DOMAINS = os.path.join(_THIS, "..", "wa_index", "statesheets", "domains.json")
+DOMAINS = os.path.join(_THIS, "Fact_basis", "sheets", "domains.json")
 
 ID_REF_FIELDS = {"spellIds", "spellid1"}                       # values are spell IDs -> checkable vs class-data
 NAME_REF_FIELDS = {"auranames", "name1", "spellName"}          # values are names -> user-input (no name index yet)

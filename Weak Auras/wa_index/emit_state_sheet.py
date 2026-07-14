@@ -11,7 +11,7 @@ Per option it records: surface (input vs provides), input_kind, arg type, value-
 is a required SEED (-> use_X=true), whether it is GATED by an enable (tier-1 mutual exclusivity), whether it
 STOREs a condition variable, and any companion-toggle POLICY (e.g. exact-spell-name -> match-family-not-rank).
 
-  py emit_state_sheet.py spell            -> statesheets/trigger/spell.json  (+ .md)
+  py emit_state_sheet.py spell            -> engine/Fact_basis/sheets/trigger/spell.json  (+ .md)
   py emit_state_sheet.py spell --no-md    -> json only
 
 statesheets/ holds one folder per WA DOMAIN (load, trigger, display, animations, ...); this emitter
@@ -39,7 +39,7 @@ SEEDS = os.path.join(_THIS, "trigger_seed_defaults.json")
 # statesheets/ is the home for every WA DOMAIN (load, trigger, display, animations, ...).
 # This emitter fills the TRIGGER domain; siblings emit the others in the same shape.
 DOMAIN = "trigger"
-OUTDIR = os.path.join(_THIS, "statesheets", DOMAIN)
+OUTDIR = os.path.join(_THIS, "..", "engine", "Fact_basis", "sheets", DOMAIN)   # fact basis (tools move here later)
 
 # UI type-category display names (the top dropdown Battlewrath sees)
 TYPE_DISPLAY = {"spell": "Spell", "unit": "Player/Unit Info", "aura2": "Aura",

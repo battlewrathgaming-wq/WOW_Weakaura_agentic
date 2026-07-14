@@ -7,7 +7,7 @@ appears in a real aura's load.class in the corpus (battlewrath_displays.json) = 
 base-class shells, so the api_name is an OPAQUE codename you can't guess (SONOFARUGAL=Bloodmage, MONK=Templar,
 DEMONHUNTER=Felsworn, WILDWALKER=Primalist) - which is why we source it, never guess it.
 
-  py build_class_table.py   -> class_table.json
+  py build_class_table.py   -> maps/class_table.json
 """
 import json
 import glob
@@ -17,7 +17,7 @@ _THIS = os.path.dirname(os.path.abspath(__file__))
 _ROOT = os.path.normpath(os.path.join(_THIS, "..", "..", ".."))
 OUT_INV = os.path.join(_ROOT, "Weak Auras", "ability_inventory", "out")
 CORPUS = os.path.join(_ROOT, "Outputs", "aura_corpus", "battlewrath_displays.json")
-OUT = os.path.join(_THIS, "class_table.json")
+OUT = os.path.join(_THIS, "maps", "class_table.json")
 
 
 def _pairing():

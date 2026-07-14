@@ -8,7 +8,7 @@ A lever's `value_domain` names a key here; the inventory/pre-flight resolves it 
 flat value->label maps land in `domains`, nested/structural tables in `complex` (kept, not dropped), and
 runtime-populated empties (e.g. form_types per class) are listed as a known coa_domains gap.
 
-  py emit_domains.py   -> statesheets/domains.json
+  py emit_domains.py   -> engine/Fact_basis/sheets/domains.json
 """
 import json
 import os
@@ -21,7 +21,7 @@ LUA = os.path.join(_ROOT, ".tools", "lua51", "lua5.1.exe")
 EXTRACT = os.path.join(_THIS, "extract.lua")
 WA = "F:/games/Ascension_wow/resources/ascension-live/Interface/AddOns/WeakAuras"
 TYPES = os.path.join(WA, "Types.lua")
-OUT = os.path.join(_THIS, "statesheets", "domains.json")
+OUT = os.path.join(_THIS, "..", "engine", "Fact_basis", "sheets", "domains.json")
 
 # the aura skeleton, not a value vocabulary
 SKIP = {"data_stub"}

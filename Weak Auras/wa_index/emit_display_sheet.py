@@ -7,7 +7,7 @@ The region `default` IS the observed-defaults resource for display (matches cano
 are the "changes" side of a condition-join. Position fields (xOffset/anchor...) are flagged mask-territory -
 they're reduced from the inventory's slot-ref, not authored per aura.
 
-  py emit_display_sheet.py            -> statesheets/display/<region>.json for every region type
+  py emit_display_sheet.py            -> engine/Fact_basis/sheets/display/<region>.json for every region type
   py emit_display_sheet.py icon
 """
 import glob
@@ -21,7 +21,7 @@ _ROOT = os.path.normpath(os.path.join(_THIS, "..", ".."))
 LUA = os.path.join(_ROOT, ".tools", "lua51", "lua5.1.exe")
 EXTRACT = os.path.join(_THIS, "extract.lua")
 REGIONS = "F:/games/Ascension_wow/resources/ascension-live/Interface/AddOns/WeakAuras/RegionTypes"
-OUTDIR = os.path.join(_THIS, "statesheets", "display")
+OUTDIR = os.path.join(_THIS, "..", "engine", "Fact_basis", "sheets", "display")
 
 POSITION = {"xOffset", "yOffset", "anchorPoint", "selfPoint", "anchorFrameType", "frameStrata"}
 SIZE = {"width", "height"}
@@ -107,7 +107,7 @@ def _coupling(region_name):
     if region_name != "dynamicgroup":
         return None
     # enums SOURCED from domains.json (not hardcoded in the Lua probe) so they can't drift from Types.lua.
-    doms = json.load(open(os.path.join(_THIS, "statesheets", "domains.json"), encoding="utf-8"))["domains"]
+    doms = json.load(open(os.path.join(_THIS, "..", "engine", "Fact_basis", "sheets", "domains.json"), encoding="utf-8"))["domains"]
     grows = ",".join(g for g in doms["grow_types"] if g != "GRID")     # GRID resolves via by_gridtype, not by_grow_align
     aligns = ",".join(doms["align_types"])
     gridtypes = ",".join(doms["grid_types"])

@@ -8,7 +8,7 @@ Disk is cheap, reasoning is scarce, so it emits generously: the whole surface **
 ## Two-tier menu + the shared catalog
 
 ```
-statesheets/
+sheets/                     (engine/Fact_basis/sheets — the fact basis)
   domains.json              SHARED value-domain catalog (135) — every select/multiselect resolves here by name
   trigger/                  one file per trigger TYPE
     spell.json  …           full DETAIL: levers + handling (the shaping grammar)
@@ -48,7 +48,7 @@ Each event fans to `options.{inputs, provides, internal}` plus a per-event `hand
 Correct-by-construction: the inventory reasons over select+handling, so shape rules (arrays, region-fit) are settled
 at authoring, not discovered by round-tripping. (memory: `source-is-authority-for-rule-sets`, `three-reactive-surfaces`.)
 
-## The contract (`../contract.json`) — the pre-flight resource
+## The contract (`../contract/contract.json`) — the pre-flight resource
 
 `compile_contract.py` JOINs sheets + domains into ONE resource the class-inventory pre-flight checks against:
 `must_assert`, `condition_vars` (the conditionType axis), each region's `change_targets` (region-specific ∪ the shared
@@ -57,11 +57,13 @@ also flags dangling domain references. Docket + fill stay dumb; the reasoning an
 
 ## Regenerate (deterministic)
 
+The emitters live in `wa_index/` for now (they move into the engine's "can we work it?" side in a later pass);
+they write across into this fact basis:
 ```
-py ../emit_state_sheet.py     # trigger sheets + routes (all types)
-py ../emit_display_sheet.py   # region sheets + routes + _shared.json
-py ../emit_domains.py         # the shared domain catalog
-py ../compile_contract.py     # join → contract.json
+py ../../../wa_index/emit_state_sheet.py <type>   # trigger sheet + routes (per type)
+py ../../../wa_index/emit_display_sheet.py         # region sheets + routes + _shared.json
+py ../../../wa_index/emit_domains.py               # the shared domain catalog
+py ../../../wa_index/compile_contract.py           # join → ../contract/contract.json
 ```
 
 Source: `extract.lua` (`prototypes` / `region` / `types` / `regionprototype` / `triggeroptions` modes) over the

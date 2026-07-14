@@ -13,15 +13,15 @@ extraction (GAP_BRIDGE: contract = a thin JOIN); it gathers what the sheets alre
 The pre-flight (in the class inventory, NOT the pipeline) reads this to check: required present · values in
 domain · condition check-var is a real provides · change-prop is a real change_target. Docket + fill stay dumb.
 
-  py compile_contract.py   -> contract.json
+  py compile_contract.py   -> engine/Fact_basis/contract/contract.json
 """
 import glob
 import json
 import os
 
 _THIS = os.path.dirname(os.path.abspath(__file__))
-SHEETS = os.path.join(_THIS, "statesheets")
-OUT = os.path.join(_THIS, "contract.json")
+SHEETS = os.path.join(_THIS, "..", "engine", "Fact_basis", "sheets")            # fact basis (tools move here later)
+OUT = os.path.join(_THIS, "..", "engine", "Fact_basis", "contract", "contract.json")
 
 
 def _load(domain):
