@@ -103,6 +103,9 @@ One HTML file. Text-only (law 8). No framework — vanilla JS + inline CSS; ever
   the law-6 sentence ("packs, not a HUD — arrange and restyle in-game").
 - **The library face:** browse classes → specs → chains ID→ID→ID · spec captions from _index · "not provided
   by CoA" on custom_N gaps · **"track this" renders ONLY on pressed lanes** and drops into the wizard at Q4.
+- **The mint's envelope (pinned 2026-07-15 off a decoded live-check pack):**
+  `{m:"d", d: group-table (controlledChildren=[member ids]), c: [member tables - NO parent key; WA rebuilds
+  child wiring from the c list on import], v: 1421, s: version-string}` — mirror bundle exactly.
 - **Build assembly:** `build_picker.py` injects library.json + templates.json + the JS into the shell template →
   `picker.html`, provenance-stamped (build date + source commit in the footer). The HTML is a BUILD PRODUCT —
   never hand-edited (pipeline law; fix the gear, re-emit).
