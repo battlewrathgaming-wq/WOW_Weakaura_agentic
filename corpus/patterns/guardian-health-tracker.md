@@ -7,6 +7,15 @@ Provenance: `export_20260715_202335_01.txt` (corpus intake) → decoded `Pet hea
 (plates on → tokens + real HP) / `20260715_195846_424__plates.json` (creature rendered, plates unpopulated →
 ZERO tokens). **The handoff itself is CLOSED (Snackz's project); the scaffold is ours to reuse.**_
 
+## Closure (the house stamp, 2026-07-15)
+
+**Both auras CLEAN** through the reverse gear (stub → press → registry-diff) — the scaffold's multiline TSU code
+round-trips the full chain verbatim. Getting there fixed two gears: (1) the stub's first custom trigger exposed a
+mis-strip (custom triggers aren't prototype-driven; the allowlist now comes from the contract's custom surface, and
+the ledger-blindness lesson is on record: closure trusts the ledger, the GATE is the backstop for a wrong ledger
+call); (2) findings #8 (the canon bridge's `%q`-as-JSON bug) was fixed to press this — regression clean across all
+115 packs.
+
 ## What it is
 
 **Tracks the health of units YOU summoned — and only yours — via nameplate tokens**, solving the ownership

@@ -140,12 +140,21 @@ local function isArray(t)
   for i = 1, n do if rawget(t, i) == nil then return false end end
   return n > 0
 end
+-- JSON string escaping. NOT Lua's %q: %q escapes a newline as backslash-LITERAL-newline (valid Lua,
+-- INVALID JSON) - any multiline custom-code string broke the bridge (findings #8). For strings without
+-- control characters this emits byte-identically to %q (same \\ and \" handling).
+local _jsonEsc = { ["\\"] = "\\\\", ["\""] = "\\\"", ["\n"] = "\\n", ["\r"] = "\\r", ["\t"] = "\\t" }
+local function jsonString(s)
+  s = s:gsub("[\\\"\n\r\t]", _jsonEsc)
+  s = s:gsub("[%z\1-\31]", function(c) return string.format("\\u%04x", c:byte()) end)
+  return "\"" .. s .. "\""
+end
 local function jsonEncode(v)
   local t = type(v)
   if t == "nil" then return "null"
   elseif t == "boolean" then return v and "true" or "false"
   elseif t == "number" then return tostring(v)
-  elseif t == "string" then return string.format("%q", v)
+  elseif t == "string" then return jsonString(v)
   elseif t == "table" then
     if isArray(v) then
       local parts = {}
@@ -157,7 +166,7 @@ local function jsonEncode(v)
       table.sort(keys, function(a, b) return tostring(a) < tostring(b) end)
       local parts = {}
       for _, k in ipairs(keys) do
-        parts[#parts + 1] = string.format("%q", tostring(k)) .. ":" .. jsonEncode(v[k])
+        parts[#parts + 1] = jsonString(tostring(k)) .. ":" .. jsonEncode(v[k])
       end
       return "{" .. table.concat(parts, ",") .. "}"
     end

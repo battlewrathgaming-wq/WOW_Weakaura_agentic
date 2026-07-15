@@ -74,9 +74,12 @@ whenever the next system change wants its pressure test: `py coverage.py` → st
 
 ## 2026-07-14 — the reverse gear's first ore (the Necromancer capture, 36 auras)
 
-8. **PRESS-PATH ESCAPE BUG (gear finding):** an aura whose custom-code string contains `\` escapes (LF Delta Test)
-   breaks the fill→canon JSON/Lua boundary (`Invalid \escape`). The one closure failure in 36. Home: the canon
-   bridge's string escaping (reconcile `_to_lua` / canon.lua's JSON emitter). OPEN — fix at the gear.
+8. **PRESS-PATH ESCAPE BUG — FIXED 2026-07-15 (root: canon.lua/harness.lua used Lua `%q` for JSON strings).**
+   `%q` escapes a newline as backslash-LITERAL-newline — valid Lua, invalid JSON — so any MULTILINE custom code broke
+   the bridge (LF Delta Test; then the guardian scaffold, which forced the fix). Replaced with a proper `jsonString`
+   escaper (byte-identical to `%q` for control-char-free strings). Regression: 115 packs re-pressed, every product
+   byte-identical (register-only diff); LF Delta Test closes → the Necro capture is 36/36; the guardian scaffold
+   closes CLEAN. The first scaffold adoption is what promoted this from "open, someday" to fixed.
 9. **Residue quantified in the wild:** hand-built auras carry heavy type-switch residue (the UI keeps old trigger
    fields — Blight 18, Lich frost 18, Glacial tap 14...). The stub's residue LEDGER measures pack hygiene per aura;
    the docket is cleaner than its source, and closure stays honest (CLEAN +n residue).

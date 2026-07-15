@@ -129,6 +129,14 @@ local function isArray(t)
   return n > 0
 end
 
+local _jsonEsc = { ["\\"] = "\\\\", ["\""] = "\\\"", ["
+"] = "\n", [""] = "\r", ["	"] = "\t" }
+local function jsonString(s)
+  s = s:gsub("[\\\"
+	]", _jsonEsc)
+  s = s:gsub("[%z-]", function(c) return string.format("\u%04x", c:byte()) end)
+  return "\"" .. s .. "\""
+end
 local function jsonEncode(v)
   local t = type(v)
   if t == "nil" then
@@ -138,7 +146,7 @@ local function jsonEncode(v)
   elseif t == "number" then
     return tostring(v)
   elseif t == "string" then
-    return string.format("%q", v)
+    return jsonString(v)
   elseif t == "table" then
     if isArray(v) then
       local parts = {}
@@ -152,7 +160,7 @@ local function jsonEncode(v)
       for k in pairs(v) do keys[#keys + 1] = k end
       table.sort(keys, function(a, b) return tostring(a) < tostring(b) end)
       for _, k in ipairs(keys) do
-        parts[#parts + 1] = string.format("%q", tostring(k)) .. ":" .. jsonEncode(v[k])
+        parts[#parts + 1] = jsonString(tostring(k)) .. ":" .. jsonEncode(v[k])
       end
       return "{" .. table.concat(parts, ",") .. "}"
     end

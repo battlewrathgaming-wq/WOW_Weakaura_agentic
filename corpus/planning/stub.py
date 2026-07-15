@@ -52,6 +52,8 @@ _DG_LEVERS = {n: v.get("default") for n, v in (_DG_SURFACE.get("option_surface",
 A2_LIVE = {k for k, v in LIVE.get("aura2", {}).get("keys", {}).items() if v.get("live")}
 A2_SEED = (A2SHEET["events"][0].get("default_state") or {})            # {type, debuffType HELPFUL, unit player}
 LOAD_TYPES = {c["name"]: c.get("type") for c in LOADSHEET.get("conditions", [])}
+_CONTRACT = json.load(open(os.path.join(_FB, "contract", "contract.json"), encoding="utf-8"))
+CUSTOM_INPUTS = set((_CONTRACT.get("trigger", {}).get("custom", {}).get("Custom", {}) or {}).get("inputs", {}))
 
 # aura-level keys that are pure canon/client scaffolding when default-shaped (dropped if equal to these)
 _CANON_BLOCKS = {
@@ -82,7 +84,23 @@ def strip_trigger(t, flags, ledger):
     t = dict(t)
     ttype, event = t.pop("type", None), t.pop("event", None)
     declare = {}
-    if ttype == "aura2":
+    if ttype == "custom":
+        # the custom trigger is NOT prototype-driven - its surface comes from the contract's custom/Custom
+        # inputs (the scaffold fields: custom_type/check/events/custom/customDuration/...). Keying by the STORED
+        # event name mis-strips the whole scaffold (first custom through the gear did exactly that - the events
+        # box stores "Combat Log"-ish residue while the real gate event is "Custom").
+        if event != "Custom":
+            ledger.add("event")
+            event = "Custom"
+        allow = set(CUSTOM_INPUTS)
+        for name in list(CUSTOM_INPUTS):
+            allow |= _companions(name)
+        for k, v in t.items():
+            if k in allow and v is not None:
+                declare[k] = v
+            elif v is not None:
+                ledger.add(k)
+    elif ttype == "aura2":
         if event != "Aura":
             ledger.add("event")                                 # stored event on aura2 is inert residue
             event = "Aura"                                      # the sheet's single real event (gate-correct)
