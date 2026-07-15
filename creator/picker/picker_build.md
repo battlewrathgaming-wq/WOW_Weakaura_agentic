@@ -49,6 +49,13 @@ The one riskiest-bounded piece — start it first (parallel with Phase 0; they d
   Test vectors: the codec's own edge cases (floats %.14g, embedded strings, empty tables, multiline custom code
   — findings #8's class).
 - **DONE =** harness green on the coverage packet's 36 members (every region/trigger type through the JS chain).
+- **STATUS: ✔ DONE (2026-07-15, first firing).** `codec/wa_encode.mjs` + `codec/harness.py` —
+  **126/126 decode-equivalent**: 11 synthetic edge classes (multiline custom code · string refs · unicode ·
+  12-bit boundaries · wide ints · both float paths · empty-table {}=[] class, normalized as the round-trip
+  verifier registers it · `__luaMap__` int-keyed maps) + **all 115 real Docket_complete packs including
+  verification-coverage** (the 36-member packet). The browser `CompressionStream('deflate-raw')` path separately
+  verified decode-equivalent. The one design seam found early: JSON can't carry Lua int keys — solved by the
+  `__luaMap__` convention (assemble.py:129's int-key normalization mirrored).
 
 ## Phase 2 — the template press
 

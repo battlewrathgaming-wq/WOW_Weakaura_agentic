@@ -46,3 +46,8 @@ picker/
 This ships first — the packaging of what exists. **After it's out the door, the bench's focus turns to bespoke
 UIs through the existing engine pipeline** (Battlewrath, 2026-07-15): the picker is the wide product for
 everyone; bespoke is the deep product the machine was always for.
+
+**Why now (Battlewrath, the go, 2026-07-15):** the burden of proof of the whole system is only visible once
+it's in players' hands · it removes the mental split of having to determine every use case ourselves — the
+wizard hands that determination to the player · and it opens the door to **users providing their own stories,
+which translate to docket forms for our own enrichment** — distribution feeding the corpus.
