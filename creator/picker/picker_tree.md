@@ -131,6 +131,8 @@ AND condition — the same desaturate lever carries OPPOSITE meanings per bucket
   swipe while it runs).
 - **Cooldown lane:** desat = *"you CAN'T press me"* (it's cooling; colour returns at ready).
 Fragments carry their polarity per lane — never share a condition body across buckets.
+**And only PERSIST carries a condition at all (Battlewrath, 2026-07-16): show-when-trigger-met IS the press-me
+signal** — the appear fragment's existence is its meaning; adding a condition to it would be decoration.
 
 ## Q4.5 — "Add the rest with the same treatment?" (the closer)
 

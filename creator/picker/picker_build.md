@@ -117,6 +117,12 @@ One HTML file. Text-only (law 8). No framework — vanilla JS + inline CSS; ever
   never hand-edited (pipeline law; fix the gear, re-emit).
 - **DONE =** picker.html walks all six questions for DoTs(both scopes)+pets and mints strings; library face
   browses all 21 classes.
+- **STATUS: ✔ BUILT + BROWSER-DRIVEN (2026-07-16).** `shell/` (mint.js pure-function mint · app.js wizard+library
+  · style.css text-only · the template) + `build_picker.py` → **out/picker.html, 6.0 MB, one file,
+  provenance-stamped in the footer.** Driven end-to-end in a real browser: class→spec→lane→scope→picks(9
+  trackable, exclusions listed)→behaviour→closer→mint. The browser's own string (CompressionStream path)
+  decoded by the trusted decoder: seat-named group, per-family rep-ids, the live-corrected persist form on
+  every member, fresh unique uids, the pinned envelope, load transform exact.
 
 ## Phase 4 — the stamp
 
@@ -127,6 +133,11 @@ One HTML file. Text-only (law 8). No framework — vanilla JS + inline CSS; ever
 - Grading pass, findings filed in `creator/verification/findings.md` — the picker joins the same loop as
   everything else.
 - **DONE =** three lanes live-stamped. V1 exists. Distribution = the Discord sentence + the file.
+- **STATUS: ◐ machine-side DONE (2026-07-16), live half = Battlewrath's.** `mint_harness.py`: the shell's mint
+  vs the machine on identical picks → **decode-diff CLEAN** (dot_target + pet; dot_multi's two transforms are
+  the same slot mechanics dot_target proved). The browser-minted string separately decode-verified. REMAINING:
+  import a picker-minted string in the live client (the templates behind it are already live-stamped, so this
+  checks the mint's fills, not the structure) + eyeball the library face.
 
 ## Phase 5 — doors light up (post-V1, not this runway)
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COA WeakAuras Picker</title>
+<style>
+/*__STYLE__*/
+</style>
+</head>
+<body>
+<main>
+  <h1>Conquest of Azeroth &mdash; WeakAuras Picker</h1>
+  <p class="sub">Answer a few questions, get one import string. No install, no account &mdash; this file is the whole tool.</p>
+  <div id="root"></div>
+  <footer>/*__BUILDSTAMP__*/ &mdash; data flattened from the live DB + the dev builder; auras pressed by the COA aura bench's machine.
+  Unresolved game effects show as "not provided by CoA".</footer>
+</main>
+<script>
+const LIBRARY = /*__LIBRARY_JSON__*/;
+const TEMPLATES = /*__TEMPLATES_JSON__*/;
+</script>
+<script>
+/*__WA_ENCODE_JS__*/
+/*__MINT_JS__*/
+/*__APP_JS__*/
+</script>
+</body>
+</html>
