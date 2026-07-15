@@ -38,6 +38,10 @@ Four questions after class/spec; some paths skip two of them. The wizard speeds 
    every shelf, every offer, every load is sliced by the seat. One pass of the wizard fills ONE lane (one group,
    one string — the machine's bundle shape). After the string: *"another lane?"* loops back to Q2 with class+spec
    retained. Lanes accumulate across passes; the UI accumulates in-game, never in one sitting.
+8. **Data flattening, not in-game emulation (Battlewrath).** The picker's style is TEXT — flat, honest data
+   surfaces. No icon art, no aura previews, no game-look mimicry: **WA owns the "oh, look at that come alive"
+   moment.** The HTML shows you the terrain; the game shows you the magic. (Also closes the icon-images gap:
+   text-only, first pass and by identity — iconPath names ride the data for any later enrichment.)
 
 ---
 
@@ -175,6 +179,20 @@ flattened the game, browsable ID→ID→ID. Two uses:
 
 Knowledge shows EVERYTHING (chains don't hide because a contract is unbuilt); the **"track this" action exists
 only on pressed lanes** — the door renders only where it opens.
+
+## The data pool — assessed READY (2026-07-15, checked on disk)
+
+Intent: **show what we have, not rework it.** The build's data step = ONE dumb emit gear (house style): read the
+sources below → `library.json` → embed in the HTML. Verbatim, provenance intact.
+
+| need | source, as it sits | state |
+|---|---|---|
+| the chains (library spine) | `creator/planning/resolved.json` — 9,152 spells × axes+edges+effects; ID→ID→ID = read forward | ✔ |
+| class/spec/spell cards | `Input/*_talents.json` — spellId·name·tree·**description (100% coverage)**·terms·passive·costs·grid x/y | ✔ |
+| spec display names | the Input TREE names (Q1 cards covered today; the addons capture still wanted for the load INDEX map) | ✔ |
+| spec landing captions | `tables/_index.json` — per-class:spec hub·shape·counts | ✔ bonus |
+| DoT shelves | the batch select (fed the 110-pack press) — regenerates ID-family lists on demand | ✔ |
+| icon images | not held (MPQ-resident); **closed by law 8: text-only** — `iconPath` names ride along for later | closed |
 
 ## The seams — closed (Battlewrath, 2026-07-15)
 
