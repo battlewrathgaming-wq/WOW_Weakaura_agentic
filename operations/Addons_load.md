@@ -6,6 +6,17 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## Open threads (each has a designed next step)
 
+- **Guardian-tracker POC LIVE-PROVEN + shipped to Discord (2026-07-15 evening)** — the custom TSU
+  scaffold (GUID registry from `CLEU:SPELL_SUMMON` sourceGUID=player → resolve to plate tokens →
+  static-progress states, clones): four 527-hp Greater Skeletal Warrior bars live, import string
+  handed to Snackz. Battlewrath hand-built from the design card; source anchors GenericTrigger.lua
+  :1807 (CLEU: filter) / :1331 (nameplate group expand) / BuffTrigger2.lua:3606 (3.3.5 CLEU layout).
+  NEXT LAYER (Snackz's framing: "more abstraction before a stable pet tracker"): login/reload
+  backfill (seed the registry via the `playerControlled ∧ not isPlayer` classifier from the plates
+  record) · off-plate gap policy (hide vs CLEU-delta estimator). CAPTURE: the export string is in
+  Discord — paste-drop it into the corpus intake as a patterns/ candidate (guardian-health-tracker,
+  the GUID-registry TSU scaffold) when convenient. The evidence pair: records 20260715_195725/195846.
+
 - **Clean-profile census re-run** — the runtime record was captured with user addons loaded, so
   `runtime/globals.json`'s 1526 "unattributed" functions = engine-custom ∪ user-addon mixture.
   One re-run with addons disabled at character select (same `/coadump r census`) splits it; the
