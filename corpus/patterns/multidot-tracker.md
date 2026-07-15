@@ -16,7 +16,12 @@ bar is always the next dot to fall* (the ambient tab-prompt, restored).
 
 - group (dynamicgroup): `sort: ascending` · `animate: true` · border styling taste
 - member (aurabar): `unit: "multi"` · `useName: true` + `auranames: [one id per DOT FAMILY]` · `ownOnly: true` ·
-  `debuffType: HARMFUL` · `showClones: true` (+ `useGroup_count/group_count <= 1` — in the live config; intent TBC)
+  `debuffType: HARMFUL` · `showClones: true` · `useGroup_count` + `group_count` — **REQUIRED for multi mode**
+  (Battlewrath: "you have to define a target count"; 1 = from one target up, user input)
+  - **GRADING FLAG:** intended operator `>=`, but the export stores `<=` — if live, `<= 1` hides bars the moment a
+    SECOND target is dotted. Verify by dotting two mobs; flip the Unit Count operator if they vanish.
+- taste layer (Battlewrath's seat, riding verbatim): colored bars per dot · the trailing SPARK · group border +
+  `borderBackdrop: Blizzard Marble` background
 - Note (source, `BuffTrigger2.lua:2592/2707`): `rem` checks don't apply in multi mode — expiry urgency comes from the
   ascending sort, not a rem gate.
 
