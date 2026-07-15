@@ -139,7 +139,15 @@ def main():
         # every real spec's shelves (Battlewrath, 2026-07-15). The select recipe's axes
         # filter keeps profession noise out on its own.
         PSEUDO = {"Class", "General"}
-        real_specs = [sp for sp in specs if sp not in PSEUDO]
+        # The DEV-AUTHORED tree list (the builder crawl, Input trees) is the authority for
+        # what a REAL spec is (adjudicated 2026-07-15): attribution-only spec names that no
+        # dev tree lists (Rot, Wildwalker, Engravement - 8-12 spells vs real trees' 41-97)
+        # are GHOSTS: marked, never Q1 choices, their spells stay in chains as knowledge.
+        dev_trees = set(input_hit[1].get("trees") or []) - PSEUDO if input_hit else None
+        real_specs = [sp for sp in specs if sp not in PSEUDO
+                      and (dev_trees is None or sp in dev_trees)]
+        ghost_specs = [sp for sp in specs if sp not in PSEUDO
+                       and dev_trees is not None and sp not in dev_trees]
         pseudo_present = [sp for sp in specs if sp in PSEUDO]
         pseudo_fams = {}
         for sp in pseudo_present:
@@ -153,8 +161,9 @@ def main():
                                           or (s.get("coa") or {}).get("triggeredBy") or []))}
             class_pool |= pool_sids
             is_pseudo = spec in PSEUDO
-            if is_pseudo:
-                fams = {}          # folded into the real specs' shelves below
+            is_ghost = spec in ghost_specs
+            if is_pseudo or is_ghost:
+                fams = {}          # pseudo folds into real shelves; ghosts are knowledge-only
             else:
                 fams = dict(families(d, res, cls, spec))
                 for name, f in pseudo_fams.items():
@@ -166,12 +175,16 @@ def main():
                 "cards": by_tree.get(spec, []),
                 "shelves": {"dot_target": shelf_rows(fams)},
                 **({"pseudo": True} if is_pseudo else {}),
+                **({"ghost": True} if is_ghost else {}),
             }
             totals["cards"] += len(by_tree.get(spec, []))
             totals["shelf_families"] += len(fams)
-            if (cls, spec) not in captions and not is_pseudo:
+            if (cls, spec) not in captions and not (is_pseudo or is_ghost):
                 warnings.append(f"{cls}/{spec}: no caption row in tables/_index.json")
         totals["real_specs"] += len(real_specs)
+        totals["ghost_specs"] += len(ghost_specs)
+        for g in ghost_specs:
+            warnings.append(f"{cls}/{g}: GHOST (attribution-only, no dev tree) - knowledge kept, never Q1")
 
         # trees in Input but not in the attribution's spec list still ship their cards
         for tree, cards in by_tree.items():
