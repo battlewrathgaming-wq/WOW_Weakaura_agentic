@@ -134,23 +134,44 @@ def main():
 
         entry = {"display": display, "specs": {}, "chains": {}}
         class_pool = set()
+        # "Class" (the common pool) and "General" (racials/professions - the one general
+        # spell tab) are PSEUDO-specs: never Q1 choices; their trackable content FOLDS into
+        # every real spec's shelves (Battlewrath, 2026-07-15). The select recipe's axes
+        # filter keeps profession noise out on its own.
+        PSEUDO = {"Class", "General"}
+        real_specs = [sp for sp in specs if sp not in PSEUDO]
+        pseudo_present = [sp for sp in specs if sp in PSEUDO]
+        pseudo_fams = {}
+        for sp in pseudo_present:
+            for name, f in families(d, res, cls, sp).items():
+                pseudo_fams[name] = f
+
         for spec in specs:
             pool_sids = {sid for sid, s in d.items()
                          if any(r.get("class") == cls and r.get("spec") == spec
                                 for r in ((s.get("coa") or {}).get("direct")
                                           or (s.get("coa") or {}).get("triggeredBy") or []))}
             class_pool |= pool_sids
-            fams = families(d, res, cls, spec)
+            is_pseudo = spec in PSEUDO
+            if is_pseudo:
+                fams = {}          # folded into the real specs' shelves below
+            else:
+                fams = dict(families(d, res, cls, spec))
+                for name, f in pseudo_fams.items():
+                    if name not in fams:
+                        fams[name] = f
             entry["specs"][spec] = {
                 "caption": {k: captions[(cls, spec)][k] for k in ("hub", "shape", "spells", "edges")}
                            if (cls, spec) in captions else None,
                 "cards": by_tree.get(spec, []),
                 "shelves": {"dot_target": shelf_rows(fams)},
+                **({"pseudo": True} if is_pseudo else {}),
             }
             totals["cards"] += len(by_tree.get(spec, []))
             totals["shelf_families"] += len(fams)
-            if (cls, spec) not in captions:
+            if (cls, spec) not in captions and not is_pseudo:
                 warnings.append(f"{cls}/{spec}: no caption row in tables/_index.json")
+        totals["real_specs"] += len(real_specs)
 
         # trees in Input but not in the attribution's spec list still ship their cards
         for tree, cards in by_tree.items():
@@ -183,6 +204,8 @@ def main():
         "input_extracts": {k: v[1].get("extracted") for k, v in sorted(inputs.items())},
         "counts": dict(totals, classes=len(classes)),
         "gap_rule": "chains[].gaps (CUSTOM_effect_N) render as 'not provided by CoA' - never papered over",
+        "pseudo_rule": "specs marked pseudo:true (Class=common pool, General=racials/professions) are never "
+                       "Q1 choices; their trackable families are pre-folded into every real spec's shelves",
     }
 
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
