@@ -180,6 +180,12 @@ flattened the game, browsable ID→ID→ID. Two uses:
 Knowledge shows EVERYTHING (chains don't hide because a contract is unbuilt); the **"track this" action exists
 only on pressed lanes** — the door renders only where it opens.
 
+**The gap-display rule (Battlewrath, 2026-07-15):** where a chain hits an unresolved custom effect code
+(`custom_N` — the codes the game's own data doesn't explain), the library prints **"not provided by CoA"** —
+verbatim, no guessing dressed as knowledge. Honest boundary labeling (trace the spine, name where the data
+stops), and the label itself is **subtle pressure toward dev resolution** — the public face of the gap does the
+asking we have no channel for. If a code later resolves (DB probe or dev docs), the label retires row-by-row.
+
 ## The data pool — assessed READY (2026-07-15, checked on disk)
 
 Intent: **show what we have, not rework it.** The build's data step = ONE dumb emit gear (house style): read the
