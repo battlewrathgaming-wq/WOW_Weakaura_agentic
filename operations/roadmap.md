@@ -59,7 +59,7 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
 
 - **Generation side** — type-configured tracker packs from the classified data: the flat bulk auto-generated through the
   engine, the custom scaffolds reasoned. Then bespoke aura products.
-- **WoW addons** beyond auras (the capability, applied wider).
+- **WoW addons** beyond auras — **the `addons/` bench ESTABLISHED (2026-07-15)**: root sibling, own charter/invariants/bench/backlog (the agent-handoff kit); three banked missions (spec-name capture · tooltip gap-fill · WA-env harvest) each unblock the aura bench. Same ecosystem, separate focus - no goal-flipping.
 - **Consolidation** — the engine folds into creator's neighbourhood over time; the weakauras corpus decomposes into the
   graph / feature-store / slice storage instead of scattered json.
 - **Live-client confirms** — headless-green is not live-proven; the game is the ground-truth authority.
