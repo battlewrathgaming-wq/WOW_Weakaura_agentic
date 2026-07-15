@@ -21,8 +21,15 @@ _Last updated 2026-07-15 (addons-bench session). The single "where are we" read.
 - **Anti-cheat constraint on record** (from the Materials fact-sheet, now baked into bench.md + the tooling):
   new/edited addon CODE needs a FULL client restart — /reload only flushes data. Tasks are installed once and
   steered by arguments, never edited between passes.
-- **NEXT here:** Battlewrath restarts client once → live-prove v2 (`/coadump r frames` → /reload → watcher lands
-  it) → then the census probe task (the FIRST GOAL) rides the proven loop.
+- **THE FIRST GOAL'S DECLARED PASS: EMITTED (`3e9653c`) — `addons/maps/census/`** (the sheets model on the whole
+  client): 88 C_* namespaces / 1028 attested members with file:line sightings · 736 events (213 custom REGISTERED =
+  the candidate aura-trigger vocabulary) · 3578 UI functions · baseline.json = stock 3.3.5 run out of the client's
+  own APIDocumentation addon (2081 fn / 592 ev). Anchored to patch-B.MPQ sha256. Grain: ATTESTED USAGE — the runtime
+  census task is the completeness check. Source: patch-B.MPQ = ALL client code (extract_interface.py; CompactUnitFrame
+  now readable; the Cowork mpyq wall doesn't hold locally).
+- **NEXT here:** Battlewrath restarts client once → live-prove v2 (`/coadump r frames` → /reload → watcher lands it;
+  rider: does a Lua error reach Logs\LUA.txt?) → the runtime census task (pass 3) rides the proven loop → contracts
+  drag their areas out of the census (spec capture reads ASCENSION_CA_SPECIALIZATION_ACTIVE_ID_CHANGED + C_ClassInfo).
 - **FIND (Battlewrath pointed at the client root): `Data\Content\*.json` — loose dev-authored custom game data,
   plain JSON, no MPQ extraction.** `CharacterAdvancementData.json` (7MB: class→ability entries, ALL 21 COA classes
   under dev tokens + Reborn* stock, 44 Class values, Realms bitmask) · `SpellRankData.json` (the rank-family table:
