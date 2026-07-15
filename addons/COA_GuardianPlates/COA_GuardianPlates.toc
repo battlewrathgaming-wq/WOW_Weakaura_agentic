@@ -11,4 +11,3 @@ Libs\LibCustomGlow-1.0\LibCustomGlow-1.0.lua
 Core.lua
 FriendlyPlates.lua
 EnemyPlates.lua
-</content>
