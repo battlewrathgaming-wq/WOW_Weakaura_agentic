@@ -1,0 +1,1045 @@
+{
+ "namespace": "C_CharacterAdvancement",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 120,
+ "members": {
+  "ActivateLoadout": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:1505",
+    "Interface/FrameXML/Util/TalentLoadoutUtil.lua:17",
+    "Interface/FrameXML/Util/TalentLoadoutUtil.lua:22"
+   ]
+  },
+  "AddByEntryID": {
+   "count": 9,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2283",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:504",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:576",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:797",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:860",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:865",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:872",
+    "Interface/FrameXML/CharacterAdvancement/CATalentBaseMixin.lua:305"
+   ]
+  },
+  "AddSuggestionContextOverride": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2437",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1364"
+   ]
+  },
+  "ApplyPendingBuild": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:866",
+    "Interface/FrameXML/StaticPopup.lua:544",
+    "Interface/FrameXML/StaticPopup.lua:558",
+    "Interface/FrameXML/StaticPopup.lua:572",
+    "Interface/FrameXML/StaticPopup.lua:586",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:428"
+   ]
+  },
+  "CanAddByEntryID": {
+   "count": 18,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2280",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CABranchTexture.lua:134",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:284",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:502",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:574",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:796",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:857",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:870"
+   ]
+  },
+  "CanApplyPendingBuild": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1310",
+    "Interface/AddOns/Ascension_CoATalents/CoATreeViewMixin.lua:216",
+    "Interface/FrameXML/StaticPopup.lua:119",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:324",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:387",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:411"
+   ]
+  },
+  "CanClearPendingBuild": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1453"
+   ]
+  },
+  "CanLearnID": {
+   "count": 13,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:186",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2286",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:286",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:507",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:578",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:874",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:146",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:302"
+   ]
+  },
+  "CanRemoveByEntryID": {
+   "count": 18,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2350",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2358",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:255",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:488",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:517",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1345",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1157",
+    "Interface/FrameXML/CharacterAdvancement/CATalentBaseMixin.lua:287"
+   ]
+  },
+  "CanSwapEntriesByID": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:217"
+   ]
+  },
+  "CanSwitchActiveChrSpec": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_CoATalents/Templates/CoASpecChoiceMixin.lua:224"
+   ]
+  },
+  "CanUnlearnAllSpells": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:820"
+   ]
+  },
+  "CanUnlearnAllTalents": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1445",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:811"
+   ]
+  },
+  "CanUnlearnID": {
+   "count": 10,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:208",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2365",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:257",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:412",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:419",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:522",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:124",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:309"
+   ]
+  },
+  "CancelPendingBuild": {
+   "count": 7,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1346",
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.lua:153",
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.xml:366",
+    "Interface/FrameXML/StaticPopup.lua:113",
+    "Interface/FrameXML/StaticPopup.lua:548",
+    "Interface/FrameXML/StaticPopup.lua:562",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:244"
+   ]
+  },
+  "ClearPendingBuild": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_CoATalents/CoATreeViewMixin.lua:129",
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:605",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:323"
+   ]
+  },
+  "ClearPendingBuildByTab": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_TalentUI/TalentTreeBase.lua:59",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:386"
+   ]
+  },
+  "ClearRecentlyLearnedEntries": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:306",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:173"
+   ]
+  },
+  "ClearSuggestionContextOverrides": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2449",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1376"
+   ]
+  },
+  "ExportBuild": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:482"
+   ]
+  },
+  "GetAbilityEssenceCost": {
+   "count": 9,
+   "sightings": [
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:296",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:494",
+    "Interface/FrameXML/GameTooltip.lua:398",
+    "Interface/FrameXML/SpellListItem.lua:286",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:71",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:79",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:95",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:102"
+   ]
+  },
+  "GetActiveChrSpec": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_CoATalents/CoASpecViewMixin.lua:26",
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.lua:187",
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.lua:199",
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.lua:290",
+    "Interface/FrameXML/Util/GlobalFunctions.lua:294"
+   ]
+  },
+  "GetActiveSpecID": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:129",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:101",
+    "Interface/FrameXML/Util/SpecializationUtil.lua:65",
+    "Interface/FrameXML/Util/SpecializationUtil.lua:171"
+   ]
+  },
+  "GetAllEntries": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Data/CharacterAdvancement.lua:66"
+   ]
+  },
+  "GetCategories": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:629",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:721",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Browser/CharacterAdvancementBrowser.lua:464",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Browser/CharacterAdvancementBrowser.lua:529"
+   ]
+  },
+  "GetCategoryDisplayInfo": {
+   "count": 7,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:510",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:575",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:636",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:729",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Browser/CharacterAdvancementBrowser.lua:362",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Browser/CharacterAdvancementBrowser.lua:425",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Browser/CharacterAdvancementBrowser.lua:471"
+   ]
+  },
+  "GetClassInfo": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:438",
+    "Interface/FrameXML/GameTooltip.lua:456",
+    "Interface/FrameXML/SpellListItem.lua:251",
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:199"
+   ]
+  },
+  "GetClassName": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/GameTooltip.lua:222"
+   ]
+  },
+  "GetClassPointInvestment": {
+   "count": 11,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:390",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1586",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CAClassButton.lua:52",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:131",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:432",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:609",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CATalentBrowser.lua:50",
+    "Interface/FrameXML/GameTooltip.lua:457"
+   ]
+  },
+  "GetEntriesAvailableForSwap": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2381"
+   ]
+  },
+  "GetEntriesAvailableForTrade": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2396"
+   ]
+  },
+  "GetEntriesByClass": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_TalentUI/Ascension_TalentUI.xml:30"
+   ]
+  },
+  "GetEntryByInternalID": {
+   "count": 36,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:55",
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:327",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1243",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1319",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1459",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2754",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2777",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2825"
+   ]
+  },
+  "GetEntryBySpellID": {
+   "count": 18,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:372",
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:170",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:139",
+    "Interface/AddOns/Ascension_SkillCards/SkillCard/SkillCard.lua:418",
+    "Interface/AddOns/Ascension_SkillCards/SkillCard/SkillCard.lua:713",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardScroll/SkillCardScrollItemMixin.lua:132",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingSpells.lua:13",
+    "Interface/FrameXML/GameTooltip.lua:371"
+   ]
+  },
+  "GetExpectedAE": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:134"
+   ]
+  },
+  "GetFilteredEntryAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/SpellListItem.lua:70"
+   ]
+  },
+  "GetFilteredEntryAtIndexByCategory": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:523",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:598",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Browser/CharacterAdvancementBrowser.lua:375"
+   ]
+  },
+  "GetGlobalAEInvestment": {
+   "count": 9,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:404",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:468",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:124",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:433",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:621",
+    "Interface/FrameXML/GameTooltip.lua:466",
+    "Interface/FrameXML/GameTooltip.lua:468",
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:343"
+   ]
+  },
+  "GetGlobalTEInvestment": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CAGate.lua:319",
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:328",
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:329"
+   ]
+  },
+  "GetImplicitByClass": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:848"
+   ]
+  },
+  "GetInspectInfo": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:12",
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:55",
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:171",
+    "Interface/LibraryXML/LibGroupTalents-1.0/LibGroupTalents-1.0.lua:786",
+    "Interface/LibraryXML/LibGroupTalents-1.0/LibGroupTalents-1.0.lua:1535",
+    "Interface/LibraryXML/LibGroupTalents-1.0/LibGroupTalents-1.0.lua:1547"
+   ]
+  },
+  "GetInspectedBuild": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:69"
+   ]
+  },
+  "GetInternalID": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:235",
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:280",
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:319",
+    "Interface/FrameXML/Util/C_Spell.lua:150"
+   ]
+  },
+  "GetKnownSpellEntries": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1062",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingSpells.lua:109",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:58",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:63"
+   ]
+  },
+  "GetKnownSpellEntriesForClass": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2065"
+   ]
+  },
+  "GetKnownSpells": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:367"
+   ]
+  },
+  "GetKnownTalentEntries": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1144",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingSpells.lua:103"
+   ]
+  },
+  "GetKnownTalentEntriesForClass": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2113"
+   ]
+  },
+  "GetLearnedAE": {
+   "count": 10,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:324",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpecTab.lua:11",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CAClassButton.lua:37",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpecTab.lua:11",
+    "Interface/AddOns/Ascension_Draft/DraftActionButtonMixin.lua:4",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:295",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardTab/SkillCardTab.lua:151",
+    "Interface/FrameXML/GameTooltip.lua:166"
+   ]
+  },
+  "GetLearnedTE": {
+   "count": 11,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpecTab.lua:10",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:919",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CAClassButton.lua:36",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpecTab.lua:10",
+    "Interface/AddOns/Ascension_NewPlayerExperience/Tutorials/Tutorial_SkillCards.lua:79",
+    "Interface/AddOns/Ascension_NewPlayerExperience/Tutorials/Tutorial_SkillCards.lua:143",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardTab/SkillCardTab.lua:151",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1269"
+   ]
+  },
+  "GetMasteriesByClass": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:844"
+   ]
+  },
+  "GetNumFilteredEntries": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:305",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1179",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:172",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:649"
+   ]
+  },
+  "GetNumFilteredEntriesByCategory": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:634",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Browser/CharacterAdvancementBrowser.lua:469"
+   ]
+  },
+  "GetPendingClassPointInvestment": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:340"
+   ]
+  },
+  "GetPendingGlobalAEInvestment": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:345"
+   ]
+  },
+  "GetPendingGlobalTEInvestment": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:330"
+   ]
+  },
+  "GetPendingRankByEntryID": {
+   "count": 8,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:96",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:98",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:770",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:772",
+    "Interface/FrameXML/CharacterAdvancement/CATalentBaseMixin.lua:71",
+    "Interface/FrameXML/CharacterAdvancement/CATalentChoiceBaseMixin.lua:48",
+    "Interface/FrameXML/SpellListItem.lua:77",
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:103"
+   ]
+  },
+  "GetPendingRemainingAE": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1255",
+    "Interface/AddOns/Ascension_CoATalents/CoATreeViewMixin.lua:192"
+   ]
+  },
+  "GetPendingRemainingTE": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1256",
+    "Interface/AddOns/Ascension_CoATalents/CoATreeViewMixin.lua:193"
+   ]
+  },
+  "GetPendingTabAEInvestment": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.xml:109",
+    "Interface/AddOns/Ascension_TalentUI/Ascension_TalentUI.xml:41"
+   ]
+  },
+  "GetPendingTabTEInvestment": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.xml:159",
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:335"
+   ]
+  },
+  "GetQualityCount": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CARarityBar.lua:47",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CARarityBar.lua:47",
+    "Interface/FrameXML/CurrencyBar.lua:252",
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:375",
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:376"
+   ]
+  },
+  "GetQualityInfo": {
+   "count": 15,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:25",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:385",
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:221",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1117",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardRouletteMixin.lua:26",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:62",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:63",
+    "Interface/FrameXML/GameTooltip.lua:432"
+   ]
+  },
+  "GetQualityLimit": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CARarityBar.lua:49",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CARarityBar.lua:49",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardsFrame.lua:287",
+    "Interface/FrameXML/CurrencyBar.lua:257",
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:380",
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:381"
+   ]
+  },
+  "GetRemainingAE": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:420"
+   ]
+  },
+  "GetRemainingTE": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:422"
+   ]
+  },
+  "GetRootSpellTagTypes": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:622"
+   ]
+  },
+  "GetSpellTagTypeDisplayInfo": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:119",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Browser/CharacterAdvancementBrowser.lua:79",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:627",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:638",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:650"
+   ]
+  },
+  "GetSpellTagTypes": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:633",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:646"
+   ]
+  },
+  "GetSpellsByClass": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1807",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1039"
+   ]
+  },
+  "GetSuggestedStats": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ForcedPrimaryStat/PrimaryStat.lua:108"
+   ]
+  },
+  "GetTabName": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/GameTooltip.lua:235"
+   ]
+  },
+  "GetTabTEInvestment": {
+   "count": 7,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1585",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CAClassButton.lua:70",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CAGate.lua:320",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CATalentBrowser.lua:49",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CATalentBrowser.lua:242",
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:333",
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:334"
+   ]
+  },
+  "GetTalentEssenceCost": {
+   "count": 8,
+   "sightings": [
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:495",
+    "Interface/FrameXML/GameTooltip.lua:399",
+    "Interface/FrameXML/SpellListItem.lua:287",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:72",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:80",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:96",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:103",
+    "Interface/FrameXML/Util/TalentLoadoutUtil.lua:90"
+   ]
+  },
+  "GetTalentRankByID": {
+   "count": 19,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:189",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:103",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:777",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:793",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:804",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:923",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:42",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:500"
+   ]
+  },
+  "GetTalentRankBySpellID": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:370",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:92",
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:363"
+   ]
+  },
+  "GetTalentsByClass": {
+   "count": 7,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1974",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CATalentBrowser.lua:138",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:922",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1099",
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:120",
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:144",
+    "Interface/LibraryXML/LibGroupTalents-1.0/LibGroupTalents-1.0.lua:685"
+   ]
+  },
+  "HasAnySuggestionContextOverrides": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2444",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1371"
+   ]
+  },
+  "ImportPendingBuild": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:78",
+    "Interface/FrameXML/StaticPopup.lua:82"
+   ]
+  },
+  "ImportPendingBuildID": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:606"
+   ]
+  },
+  "InspectUnit": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:44",
+    "Interface/LibraryXML/LibTalentQuery-1.0/LibTalentQuery-1.0.lua:239",
+    "Interface/LibraryXML/LibTalentQuery-1.0/LibTalentQuery-1.0.lua:262",
+    "Interface/LibraryXML/LibTalentQuery-1.0/LibTalentQuery-1.0.lua:264"
+   ]
+  },
+  "IsAbilityID": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:525",
+    "Interface/FrameXML/Util/CharacterAdvancementCostUtil.lua:149"
+   ]
+  },
+  "IsConnectionAllowed": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/CharacterAdvancement/CATalentBaseMixin.lua:215",
+    "Interface/FrameXML/CharacterAdvancement/CATalentChoiceBaseMixin.lua:241"
+   ]
+  },
+  "IsFiltered": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/CharacterAdvancement/CATalentBaseMixin.lua:247",
+    "Interface/FrameXML/CharacterAdvancement/CATalentChoiceBaseMixin.lua:190"
+   ]
+  },
+  "IsKnownID": {
+   "count": 60,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2293",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CABranchTexture.lua:132",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:244",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:714",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:764",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1302",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:116",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:448"
+   ]
+  },
+  "IsKnownSpellID": {
+   "count": 9,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:49",
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:87",
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:133",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2377",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2460",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2469",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1286",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1295"
+   ]
+  },
+  "IsLockedID": {
+   "count": 15,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2295",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:241",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1304",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:113",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:997",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:76",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:77",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:361"
+   ]
+  },
+  "IsMastery": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:782",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2337",
+    "Interface/FrameXML/Ascension_BuildDraft/BuildDraftCardMixin.lua:111",
+    "Interface/FrameXML/Util/DraftUtil.lua:243",
+    "Interface/FrameXML/Util/WildCardUtil.lua:27"
+   ]
+  },
+  "IsPending": {
+   "count": 13,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:386",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1255",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1256",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1309",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2413",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:95",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:112",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:769"
+   ]
+  },
+  "IsPendingBuildAvailable": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:101"
+   ]
+  },
+  "IsPendingEntryID": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CABranchTexture.lua:133",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:228",
+    "Interface/FrameXML/SpellListItem.lua:102"
+   ]
+  },
+  "IsSuggestionContextOverride": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:441",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2429",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Browser/CharacterAdvancementBrowser.lua:295",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1356"
+   ]
+  },
+  "IsTalentAbilityID": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:780",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:525",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1125",
+    "Interface/FrameXML/Util/CharacterAdvancementCostUtil.lua:149"
+   ]
+  },
+  "IsTalentAbilitySpellID": {
+   "count": 7,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2164",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:551",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardNameFrameMixin.lua:28",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardNameFrameMixin.lua:43",
+    "Interface/FrameXML/SpellListItem.lua:214",
+    "Interface/FrameXML/SpellListItem.lua:536",
+    "Interface/FrameXML/SpellListItem.lua:616"
+   ]
+  },
+  "IsTalentID": {
+   "count": 11,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:780",
+    "Interface/AddOns/Ascension_Draft/Draft.lua:311",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:519",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:802",
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:228",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1125",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollSpellListItemMixin.lua:59",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:336"
+   ]
+  },
+  "IsTalentSpellID": {
+   "count": 16,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:369",
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:359",
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:375",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2162",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:549",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1174",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:335",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardNameFrameMixin.lua:29"
+   ]
+  },
+  "IsTrait": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:522",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:522"
+   ]
+  },
+  "KnowsConnectedNodesFor": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:765"
+   ]
+  },
+  "LearnID": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/DFunc.lua:5",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/DFunc.lua:6",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/DFunc.lua:23",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/DFunc.lua:24",
+    "Interface/FrameXML/StaticPopup.lua:610",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:152"
+   ]
+  },
+  "LockID": {
+   "count": 8,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2312",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1321",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1002",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:525",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:221",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingSpells.lua:144",
+    "Interface/FrameXML/SpellListItem.lua:607",
+    "Interface/FrameXML/UIParent.lua:1771"
+   ]
+  },
+  "MeetsInvestmentForAddByEntryID": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/CharacterAdvancement/CATalentBaseMixin.lua:72"
+   ]
+  },
+  "PickupSpell": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:466",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:281",
+    "Interface/FrameXML/CharacterAdvancement/CATalentBaseMixin.lua:356",
+    "Interface/SharedXML/SharedTemplates.lua:485"
+   ]
+  },
+  "RemoveByEntryID": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2354",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:490",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:519",
+    "Interface/FrameXML/CharacterAdvancement/CATalentBaseMixin.lua:288",
+    "Interface/FrameXML/SpellListItem.lua:162",
+    "Interface/FrameXML/SpellListItem.lua:647"
+   ]
+  },
+  "RemoveSuggestionContextOverride": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2432",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1359"
+   ]
+  },
+  "SetFilteredEntries": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:733",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:739",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:365",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:371",
+    "Interface/AddOns/Ascension_CoATalents/CoATreeViewMixin.lua:250"
+   ]
+  },
+  "SetFilteredEntriesByCategory": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Browser/CharacterAdvancementBrowser.lua:733",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Browser/CharacterAdvancementBrowser.lua:533"
+   ]
+  },
+  "SetLoadoutName": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:1484",
+    "Interface/FrameXML/Util/TalentLoadoutUtil.lua:36",
+    "Interface/FrameXML/Util/TalentLoadoutUtil.lua:47"
+   ]
+  },
+  "SetLoadoutSortOrder": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/TalentLoadoutUtil.lua:51"
+   ]
+  },
+  "ShouldConfirmLearnID": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:147"
+   ]
+  },
+  "ShouldConfirmUnlearnAllSpells": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:364"
+   ]
+  },
+  "ShouldConfirmUnlearnAllTalents": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:346"
+   ]
+  },
+  "ShouldConfirmUnlearnID": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:286"
+   ]
+  },
+  "SwapEntriesByID": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:218"
+   ]
+  },
+  "SwitchActiveChrSpec": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.lua:231"
+   ]
+  },
+  "UnitKnownID": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:145",
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:298",
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:360"
+   ]
+  },
+  "UnitTalentRankByID": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:147",
+    "Interface/AddOns/Ascension_InspectUI/Panels/InspectBuildPanel.lua:350",
+    "Interface/LibraryXML/LibGroupTalents-1.0/LibGroupTalents-1.0.lua:760",
+    "Interface/LibraryXML/LibGroupTalents-1.0/LibGroupTalents-1.0.lua:1622"
+   ]
+  },
+  "UnlearnAllSpells": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:366",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:376"
+   ]
+  },
+  "UnlearnAllTalents": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:348",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:359"
+   ]
+  },
+  "UnlearnID": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/SkillTree/SkillTree.lua:71",
+    "Interface/FrameXML/StaticPopup.lua:639",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:291"
+   ]
+  },
+  "UnlockID": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2302",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1311",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingSpells.lua:146",
+    "Interface/FrameXML/StaticPopup.lua:680"
+   ]
+  }
+ }
+}

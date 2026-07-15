@@ -1,0 +1,15 @@
+{
+ "namespace": "C_RealmSelect",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 1,
+ "members": {
+  "GetRealmInfo": {
+   "count": 3,
+   "sightings": [
+    "Interface/GlueXML/RealmMerge.lua:52",
+    "Interface/GlueXML/RealmMerge.lua:123",
+    "Interface/SharedXML/Util/CustomFunctionChecks.lua:52"
+   ]
+  }
+ }
+}

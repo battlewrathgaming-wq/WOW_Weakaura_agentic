@@ -1,0 +1,390 @@
+{
+ "namespace": "C_BuildEditor",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 50,
+ "members": {
+  "AddArmorType": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:688",
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:676"
+   ]
+  },
+  "AddRandomEnchant": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:684",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:392",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionButtonMixin.lua:30"
+   ]
+  },
+  "AddSpell": {
+   "count": 17,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:680",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:375",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:379",
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:364",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2180",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2195",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2210",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2225"
+   ]
+  },
+  "AddWeaponType": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:692",
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:707"
+   ]
+  },
+  "CanAddArmorType": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:668"
+   ]
+  },
+  "CanAddSpell": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:179",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:91",
+    "Interface/FrameXML/SpellListItem.lua:223",
+    "Interface/FrameXML/SpellListItem.lua:450",
+    "Interface/FrameXML/SpellListItem.lua:545"
+   ]
+  },
+  "CanAddWeaponType": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:699"
+   ]
+  },
+  "CanPublishBuild": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:277"
+   ]
+  },
+  "CanRemoveSpell": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/SpellListItem.lua:235",
+    "Interface/FrameXML/SpellListItem.lua:422",
+    "Interface/FrameXML/SpellListItem.lua:563"
+   ]
+  },
+  "CanSetEnchantFlags": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:562"
+   ]
+  },
+  "CanSetIsCoreAbility": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:421"
+   ]
+  },
+  "CanSetIsEmpoweringAbility": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:447"
+   ]
+  },
+  "CanSetIsOptimalAbility": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:434"
+   ]
+  },
+  "CanSetIsSynergisticAbility": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:460"
+   ]
+  },
+  "CanSetSpellFlags": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:380"
+   ]
+  },
+  "CanSetSpellLevel": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:475",
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:499"
+   ]
+  },
+  "DiscardPendingBuild": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:225",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:247",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:670",
+    "Interface/FrameXML/StaticPopup.lua:715",
+    "Interface/FrameXML/StaticPopup.lua:799"
+   ]
+  },
+  "DoesBuildHaveEnchant": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionButtonMixin.lua:47",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionButtonMixin.lua:127"
+   ]
+  },
+  "DoesBuildHaveSpellID": {
+   "count": 16,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2171",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2248",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:86",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:171",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:530",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:753",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1181",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1258"
+   ]
+  },
+  "EditBuild": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:566"
+   ]
+  },
+  "GetEssenceForLevel": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:245",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1251",
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:304",
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:565"
+   ]
+  },
+  "GetFilteredEntryAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/SpellListItem.lua:62"
+   ]
+  },
+  "GetNumFilteredEntries": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:297",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:164"
+   ]
+  },
+  "GetPendingBuild": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:259",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:529",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:581",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:198",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameArchitectTab.lua:10",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameArchitectTab.lua:48"
+   ]
+  },
+  "GetQualityInfoForLevel": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CARarityBar.lua:45",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CARarityBar.lua:45",
+    "Interface/FrameXML/CurrencyBar.lua:250"
+   ]
+  },
+  "GetSpellByID": {
+   "count": 13,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:362",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2177",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2191",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2206",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2221",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2236",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:561",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1187"
+   ]
+  },
+  "ImportBuild": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:717"
+   ]
+  },
+  "PublishBuild": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:543"
+   ]
+  },
+  "RemoveArmorType": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:342"
+   ]
+  },
+  "RemoveRandomEnchant": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:467",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionButtonMixin.lua:48",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameArchitectTab.lua:95"
+   ]
+  },
+  "RemoveSpell": {
+   "count": 8,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:347",
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:376",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2254",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:531",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1264",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:317",
+    "Interface/FrameXML/CharacterAdvancement/CATalentBaseMixin.lua:280",
+    "Interface/FrameXML/SpellListItem.lua:637"
+   ]
+  },
+  "RemoveWeaponType": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:344"
+   ]
+  },
+  "SetCategory": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:673",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:350"
+   ]
+  },
+  "SetComment": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:825"
+   ]
+  },
+  "SetDescription": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:674",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:266"
+   ]
+  },
+  "SetDifficultyRating": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:677",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:47",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:57",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:67",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:77",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:87"
+   ]
+  },
+  "SetEnchantFlags": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:564"
+   ]
+  },
+  "SetEnchantLevel": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:844"
+   ]
+  },
+  "SetEnchantStacks": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:480",
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:491",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameArchitectTab.lua:100",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameArchitectTab.lua:105"
+   ]
+  },
+  "SetFilteredEntries": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:731",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:737",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:363",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:369"
+   ]
+  },
+  "SetIcon": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:672",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:268",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:316"
+   ]
+  },
+  "SetIsCoreAbility": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:423"
+   ]
+  },
+  "SetIsEmpoweringAbility": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:396",
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:449"
+   ]
+  },
+  "SetIsOptimalAbility": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:393",
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:436"
+   ]
+  },
+  "SetIsSynergisticAbility": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:399",
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:462"
+   ]
+  },
+  "SetName": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:671",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:267"
+   ]
+  },
+  "SetPrimaryStat": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:676",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:270",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:345"
+   ]
+  },
+  "SetRoles": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:675",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:269",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:324"
+   ]
+  },
+  "SetSpellFlags": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:382"
+   ]
+  },
+  "SetSpellLevel": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:262",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:266",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:271",
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:500"
+   ]
+  }
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "namespace": "C_TrinityCore",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 5,
+ "members": {
+  "ASCENSION_LUA": {
+   "count": 2,
+   "sightings": [
+    "Interface/SharedXML/Util/C_TrinityCore.lua:14",
+    "Interface/SharedXML/Util/C_TrinityCore.lua:48"
+   ]
+  },
+  "ConvertBagSlots": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_TrinityCore.lua:19"
+   ]
+  },
+  "MSG_VERSION": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_TrinityCore.lua:40"
+   ]
+  },
+  "MSG_VERSION_REPLY": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_TrinityCore.lua:44"
+   ]
+  },
+  "RequestPlayerVersion": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/ChatFrame.lua:1652",
+    "Interface/SharedXML/Util/C_TrinityCore.lua:36"
+   ]
+  }
+ }
+}

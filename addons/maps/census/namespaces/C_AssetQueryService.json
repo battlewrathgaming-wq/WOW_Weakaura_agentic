@@ -1,0 +1,25 @@
+{
+ "namespace": "C_AssetQueryService",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 3,
+ "members": {
+  "TryCacheCreature": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Objects/AsyncCallbackHandler.lua:46"
+   ]
+  },
+  "TryCacheItem": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Objects/AsyncCallbackHandler.lua:42"
+   ]
+  },
+  "TryCacheQuest": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Objects/AsyncCallbackHandler.lua:44"
+   ]
+  }
+ }
+}

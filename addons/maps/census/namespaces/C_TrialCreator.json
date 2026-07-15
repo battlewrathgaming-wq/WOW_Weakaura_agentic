@@ -1,0 +1,128 @@
+{
+ "namespace": "C_TrialCreator",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 19,
+ "members": {
+  "ActivateTrial": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:24"
+   ]
+  },
+  "CanActivateTrial": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:12",
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/CustomTrialsTab.lua:27"
+   ]
+  },
+  "CanDeactivateTrial": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:16"
+   ]
+  },
+  "CanEditTrial": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:94"
+   ]
+  },
+  "CanSaveTrial": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/EditableTrialMixin.lua:81"
+   ]
+  },
+  "DeactivateTrial": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:28"
+   ]
+  },
+  "DeleteTrial": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:62"
+   ]
+  },
+  "GetActiveTrial": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:20"
+   ]
+  },
+  "GetNumTrials": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/CustomTrialsTab.lua:9"
+   ]
+  },
+  "GetTrialAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/CustomTrialsTab.lua:40"
+   ]
+  },
+  "GetTrialCompletion": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:577"
+   ]
+  },
+  "GetTrialCompletions": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:201"
+   ]
+  },
+  "GetTrialIDByIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/CustomTrialsTab.lua:44"
+   ]
+  },
+  "GetTrialInfo": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:46",
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:70",
+    "Interface/FrameXML/Util/ChallengeUtil.lua:100",
+    "Interface/FrameXML/Util/ChallengeUtil.lua:107"
+   ]
+  },
+  "QueryTrialCompletions": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:578"
+   ]
+  },
+  "QueryTrials": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:63",
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/CustomTrialsTab.lua:23",
+    "Interface/FrameXML/Util/ChallengeUtil.lua:113"
+   ]
+  },
+  "RateTrial": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:131",
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:137"
+   ]
+  },
+  "SaveTrial": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/EditableTrialMixin.lua:62"
+   ]
+  },
+  "SetTrialFilter": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/CustomTrialsTab.lua:35"
+   ]
+  }
+ }
+}

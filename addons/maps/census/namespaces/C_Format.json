@@ -1,0 +1,16 @@
+{
+ "namespace": "C_Format",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 1,
+ "members": {
+  "Format": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Blizzard_TrainerUI/Blizzard_TrainerUI.lua:376",
+    "Interface/FrameXML/GameTooltipMods.lua:91",
+    "Interface/FrameXML/GameTooltipMods.lua:110",
+    "Interface/SharedXML/Util/HyperlinkUtil.lua:365"
+   ]
+  }
+ }
+}

@@ -1,0 +1,23 @@
+# C_AddonPanel - 21 attested members
+
+- `DeleteSaveState` x5 - Interface/FrameXML/StaticPopup.lua:1370
+- `EnableHiddenAddons` x3 - Interface/GlueXML/CharacterSelect.lua:1635
+- `EnumerateAddOns` x2 - Interface/AddOns/Ascension_HelpUI/BugReport/BugReportLayouts.lua:62
+- `GetAddonDisabledBy` x2 - Interface/AddOns/Ascension_AddonPanel/AddonPanelInfoMixin.lua:41
+- `GetAddonIndex` x3 - Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:70
+- `GetAddonIndexRaw` x2 - Interface/SharedXML/Util/C_AddonPanel.lua:189
+- `GetAddonObject` x1 - Interface/SharedXML/Util/C_AddonPanel.lua:108
+- `GetNumInsecureAddons` x2 - Interface/SharedXML/Util/C_AddonPanel.lua:162
+- `GetSaveState` x4 - Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:121
+- `GetSaveStateIDs` x2 - Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:151
+- `GetSearchedAddons` x2 - Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:67
+- `HasConfigurableAddons` x3 - Interface/GlueXML/CharacterSelect.lua:629
+- `InitializeAddonList` x1 - Interface/SharedXML/Util/C_AddonPanel.lua:72
+- `IsAddonSearched` x1 - Interface/SharedXML/Util/C_AddonPanel.lua:218
+- `IsSecureAddon` x2 - Interface/SharedXML/Util/C_AddonPanel.lua:157
+- `MakeSaveState` x6 - Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:44
+- `RefreshAddonData` x2 - Interface/SharedXML/Util/C_AddonPanel.lua:116
+- `RestoreSaveState` x3 - Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:53
+- `UpdateAddonList` x4 - Interface/SharedXML/Util/C_AddonPanel.lua:127
+- `WriteSaveState` x7 - Interface/FrameXML/StaticPopup.lua:1346
+- `saveFile` x1 - Interface/SharedXML/Util/C_AddonPanel.lua:18

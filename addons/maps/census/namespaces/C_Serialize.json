@@ -1,0 +1,138 @@
+{
+ "namespace": "C_Serialize",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 15,
+ "members": {
+  "CompressForURI": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Serialize.lua:1552"
+   ]
+  },
+  "DecompressFromURI": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Serialize.lua:1837"
+   ]
+  },
+  "Deserialize": {
+   "count": 7,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Serialize.lua:76",
+    "Interface/SharedXML/Util/C_Serialize.lua:145",
+    "Interface/SharedXML/Util/C_Serialize.lua:157",
+    "Interface/SharedXML/Util/C_Serialize.lua:169",
+    "Interface/SharedXML/Util/C_Serialize.lua:187",
+    "Interface/SharedXML/Util/C_Serialize.lua:1282",
+    "Interface/SharedXML/Util/C_Serialize.lua:1302"
+   ]
+  },
+  "DeserializeCompressForPrint": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/ActionBarUtil.lua:16"
+   ]
+  },
+  "DeserializeDecompressFromPrint": {
+   "count": 10,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:665",
+    "Interface/FrameXML/Util/ActionBarUtil.lua:271",
+    "Interface/FrameXML/Util/C_Keystones.lua:335",
+    "Interface/FrameXML/Util/MysticEnchantManagerUtil.lua:19",
+    "Interface/FrameXML/Util/RaidProfiles.lua:219",
+    "Interface/FrameXML/Util/SpecializationUtil.lua:24",
+    "Interface/SharedXML/ErrorHandler/ErrorHandler.lua:23",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:20"
+   ]
+  },
+  "DeserializeValue": {
+   "count": 2,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Serialize.lua:82",
+    "Interface/SharedXML/Util/C_Serialize.lua:1256"
+   ]
+  },
+  "FromJSON": {
+   "count": 7,
+   "sightings": [
+    "Interface/FrameXML/Data/MapPOI.lua:81",
+    "Interface/FrameXML/QuestInfo.lua:6",
+    "Interface/FrameXML/Util/C_NoviceNetwork.lua:11",
+    "Interface/FrameXML/Util/TalentLoadoutUtil.lua:63",
+    "Interface/FrameXML/Util/TalentLoadoutUtil.lua:72",
+    "Interface/SharedXML/SharedPanelTemplates.lua:671",
+    "Interface/SharedXML/Util/C_Serialize.lua:1487"
+   ]
+  },
+  "FromJSONCategory": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Serialize.lua:1506"
+   ]
+  },
+  "FromJSONData": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Serialize.lua:1492"
+   ]
+  },
+  "IsSerializableType": {
+   "count": 3,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Serialize.lua:87",
+    "Interface/SharedXML/Util/C_Serialize.lua:184",
+    "Interface/SharedXML/Util/C_Serialize.lua:1230"
+   ]
+  },
+  "Serialize": {
+   "count": 9,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Serialize.lua:52",
+    "Interface/SharedXML/Util/C_Serialize.lua:59",
+    "Interface/SharedXML/Util/C_Serialize.lua:70",
+    "Interface/SharedXML/Util/C_Serialize.lua:78",
+    "Interface/SharedXML/Util/C_Serialize.lua:84",
+    "Interface/SharedXML/Util/C_Serialize.lua:139",
+    "Interface/SharedXML/Util/C_Serialize.lua:144",
+    "Interface/SharedXML/Util/C_Serialize.lua:168"
+   ]
+  },
+  "SerializeCompressForPrint": {
+   "count": 10,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:584",
+    "Interface/FrameXML/Util/ActionBarUtil.lua:9",
+    "Interface/FrameXML/Util/C_Keystones.lua:218",
+    "Interface/FrameXML/Util/MysticEnchantManagerUtil.lua:145",
+    "Interface/FrameXML/Util/RaidProfiles.lua:203",
+    "Interface/FrameXML/Util/SpecializationUtil.lua:58",
+    "Interface/SharedXML/ErrorHandler/ErrorHandler.lua:272",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:300"
+   ]
+  },
+  "SerializeEx": {
+   "count": 4,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Serialize.lua:64",
+    "Interface/SharedXML/Util/C_Serialize.lua:154",
+    "Interface/SharedXML/Util/C_Serialize.lua:186",
+    "Interface/SharedXML/Util/C_Serialize.lua:1234"
+   ]
+  },
+  "ToJSON": {
+   "count": 3,
+   "sightings": [
+    "Interface/SharedXML/SharedPanelTemplates.lua:627",
+    "Interface/SharedXML/SharedPanelTemplates.lua:643",
+    "Interface/SharedXML/Util/C_Serialize.lua:1483"
+   ]
+  },
+  "jsonEncoder": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Serialize.lua:1480"
+   ]
+  }
+ }
+}

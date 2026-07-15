@@ -1,0 +1,22 @@
+{
+ "namespace": "C_Timer",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 2,
+ "members": {
+  "After": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:244",
+    "Interface/LibraryXML/AceTimer-3.0/AceTimer-3.0.lua:204",
+    "Interface/LibraryXML/AceTimer-3.0/AceTimer-3.0.lua:231",
+    "Interface/LibraryXML/NickTag-1.0/NickTag-1.0.lua:383"
+   ]
+  },
+  "NewTicker": {
+   "count": 1,
+   "sightings": [
+    "Interface/LibraryXML/NickTag-1.0/NickTag-1.0.lua:315"
+   ]
+  }
+ }
+}

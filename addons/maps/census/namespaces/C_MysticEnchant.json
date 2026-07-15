@@ -1,0 +1,192 @@
+{
+ "namespace": "C_MysticEnchant",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 25,
+ "members": {
+  "CanEquipSlot": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameSlotMixin.lua:368",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameSlotTab.lua:488"
+   ]
+  },
+  "CanInspect": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_InspectUI/InspectFrame.lua:196"
+   ]
+  },
+  "CanPurchaseMysticExtract": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameReforgeTab.lua:282"
+   ]
+  },
+  "GetAppliedEnchant": {
+   "count": 7,
+   "sightings": [
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:843",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:974",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:994",
+    "Interface/FrameXML/Util/MysticEnchantUtil.lua:21",
+    "Interface/FrameXML/Util/MysticEnchantUtil.lua:37",
+    "Interface/FrameXML/Util/MysticEnchantUtil.lua:61",
+    "Interface/FrameXML/Util/MysticEnchantUtil.lua:75"
+   ]
+  },
+  "GetApplyChanges": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:847"
+   ]
+  },
+  "GetCollectionReforgeChanges": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:850"
+   ]
+  },
+  "GetCollectionReforgeItemCost": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:724",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:1061"
+   ]
+  },
+  "GetCollectionReforgeSlotCost": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:718",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:1050",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:1079"
+   ]
+  },
+  "GetDisenchantCost": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:1128"
+   ]
+  },
+  "GetEnchantInfoByItem": {
+   "count": 9,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/ScrollListItemMixin.lua:109",
+    "Interface/AddOns/Ascension_EnchantCollection/EnchantCollection.lua:423",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameReforgeTab.lua:149",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameSlotTab.lua:12",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameSlotTab.lua:273",
+    "Interface/FrameXML/GameTooltip.lua:606",
+    "Interface/FrameXML/Notifications/ToastNotificationSystem.lua:184",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:1187"
+   ]
+  },
+  "GetEnchantInfoBySpell": {
+   "count": 31,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:388",
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:252",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:583",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionButtonMixin.lua:105",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameCollectionTab.lua:65",
+    "Interface/AddOns/Ascension_EnchantCollection/EnchantCollection.lua:223",
+    "Interface/AddOns/Ascension_EnchantCollection/EnchantCollection.lua:525",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameArchitectTab.lua:53"
+   ]
+  },
+  "GetFilteredMysticScrollAtIndex": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameScrollsTab.lua:53",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameScrollsTab.lua:58",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameScrollsTab.lua:70"
+   ]
+  },
+  "GetMysticScrollCost": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameReforgeTab.lua:10",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameReforgeTab.lua:74"
+   ]
+  },
+  "GetNumFilteredMysticScrolls": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameScrollsTab.lua:29",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameScrollsTab.lua:68"
+   ]
+  },
+  "GetProgress": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/EnchantCollection.lua:194"
+   ]
+  },
+  "GetReforgeCost": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:1148"
+   ]
+  },
+  "HasAnyCollected": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/MysticEnchantUtil.lua:82"
+   ]
+  },
+  "HasAnyScroll": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/MysticEnchantUtil.lua:82"
+   ]
+  },
+  "HasNearbyMysticAltar": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:758"
+   ]
+  },
+  "Inspect": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_InspectUI/InspectFrame.lua:197"
+   ]
+  },
+  "PurchaseMysticExtract": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameReforgeTab.lua:284"
+   ]
+  },
+  "QueryEnchants": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameCollectionTab.lua:114",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameCollectionTab.lua:117",
+    "Interface/AddOns/Ascension_EnchantCollection/EnchantCollection.lua:309"
+   ]
+  },
+  "SetMysticScrollFilter": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameScrollsTab.lua:28",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameScrollsTab.lua:67",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameScrollsTab.lua:72",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameScrollsTab.lua:77"
+   ]
+  },
+  "UndoApply": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:955",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:1012"
+   ]
+  },
+  "UndoCollectionReforge": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:956",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:1015"
+   ]
+  }
+ }
+}

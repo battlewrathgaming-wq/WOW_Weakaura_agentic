@@ -1,0 +1,27 @@
+{
+ "namespace": "C_NamePlate",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 2,
+ "members": {
+  "GetNamePlateForUnit": {
+   "count": 5,
+   "sightings": [
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:56",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:267",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:283",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:388",
+    "Interface/LibraryXML/LibGetFrame-1.0/LibGetFrame-1.0.lua:685"
+   ]
+  },
+  "SetNamePlateSize": {
+   "count": 5,
+   "sightings": [
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:86",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:119",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:271",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:292",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:301"
+   ]
+  }
+ }
+}

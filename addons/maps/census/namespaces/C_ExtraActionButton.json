@@ -1,0 +1,27 @@
+{
+ "namespace": "C_ExtraActionButton",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 3,
+ "members": {
+  "GetExtraActionButtonAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/ExtraActionBar.lua:541"
+   ]
+  },
+  "GetExtraActionButtonInfo": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/ExtraActionBar.lua:543",
+    "Interface/FrameXML/ExtraActionBar.lua:551",
+    "Interface/FrameXML/ExtraActionBar.lua:557"
+   ]
+  },
+  "GetNumExtraActionButtons": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/ExtraActionBar.lua:539"
+   ]
+  }
+ }
+}

@@ -1,0 +1,124 @@
+{
+ "namespace": "C_SkillCardCollection",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 17,
+ "members": {
+  "CanPurchaseSealedCard": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardUnlockFrame/SkillCardBoosterActionBar.lua:53",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardUnlockFrame/SkillCardBoosterActionBar.lua:70",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardUnlockFrame/SkillCardBoosterActionBar.lua:261"
+   ]
+  },
+  "CanPurchaseSealedCardBoosterPack": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/BoosterTabMixin.lua:49"
+   ]
+  },
+  "ClaimPendingSkillCard": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:219",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:220",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:222",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:223"
+   ]
+  },
+  "GetBonusSealedCardPacksProgress": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:236"
+   ]
+  },
+  "GetMaxNumPurchasableSealedCardBoosterPacks": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/BoosterTabMixin.lua:56",
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/BoosterTabMixin.lua:64"
+   ]
+  },
+  "GetNumPendingSkillCards": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:228"
+   ]
+  },
+  "GetNumSkillCards": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:164"
+   ]
+  },
+  "GetPendingSkillCardAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:232"
+   ]
+  },
+  "GetProgress": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:275"
+   ]
+  },
+  "GetSealedCardBoosterPackCost": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/BoosterTabMixin.lua:46"
+   ]
+  },
+  "GetSealedCardCost": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardUnlockFrame/SkillCardBoosterActionBar.lua:185",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardUnlockFrame/SkillCardBoosterActionBar.lua:264"
+   ]
+  },
+  "GetSkillCardAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:172"
+   ]
+  },
+  "HasAnySkillCardsCollected": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:188"
+   ]
+  },
+  "IsCollected": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardScroll/SkillCardScrollItemMixin.lua:38",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardScroll/SkillCardScrollItemMixin.lua:52",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardScroll/SkillCardScrollItemMixin.lua:166",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardUnlockFrame/MassReveal/SkillCardMessageQueue.lua:236",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardUnlockFrame/SkillCardUnlockFrame.lua:603"
+   ]
+  },
+  "PurchaseSealedCard": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardUnlockFrame/SkillCardBoosterActionBar.lua:76",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardUnlockFrame/SkillCardBoosterActionBar.lua:87",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardUnlockFrame/SkillCardBoosterActionBar.lua:88",
+    "Interface/FrameXML/StaticPopup.lua:4719",
+    "Interface/FrameXML/StaticPopup.lua:4720"
+   ]
+  },
+  "PurchaseSealedCardBoosterPack": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/BoosterTabMixin.lua:41"
+   ]
+  },
+  "SetSkillCardFilter": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:168"
+   ]
+  }
+ }
+}

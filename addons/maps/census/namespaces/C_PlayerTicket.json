@@ -1,0 +1,84 @@
+{
+ "namespace": "C_PlayerTicket",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 12,
+ "members": {
+  "CanCloseTicket": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_TicketUI/ViewTicketPanelMixin.lua:158"
+   ]
+  },
+  "CanCreateTicket": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_TicketUI/CreateTicketPanelMixin.lua:168"
+   ]
+  },
+  "CanReopenTicket": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_TicketUI/ViewTicketPanelMixin.lua:69",
+    "Interface/AddOns/Ascension_TicketUI/ViewTicketPanelMixin.lua:119"
+   ]
+  },
+  "CanSendTicketMessage": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_TicketUI/ViewTicketPanelMixin.lua:125"
+   ]
+  },
+  "CloseTicket": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:197"
+   ]
+  },
+  "CreateTicket": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_TicketUI/CreateTicketPanelMixin.lua:154"
+   ]
+  },
+  "GetCurrentTicket": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_TicketUI/TicketUI.lua:41",
+    "Interface/AddOns/Ascension_TicketUI/ViewTicketPanelMixin.lua:147",
+    "Interface/FrameXML/TicketStatusFrame.lua:19",
+    "Interface/FrameXML/TicketStatusFrame.lua:55"
+   ]
+  },
+  "GetTicketMessages": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_TicketUI/ViewTicketPanelMixin.lua:55"
+   ]
+  },
+  "IsResponseSeen": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/TicketMessageMixin.lua:150"
+   ]
+  },
+  "MarkResponseSeen": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/TicketMessageMixin.lua:151"
+   ]
+  },
+  "ReopenTicket": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_TicketUI/ViewTicketPanelMixin.lua:108",
+    "Interface/FrameXML/StaticPopup.lua:188"
+   ]
+  },
+  "SendTicketMessage": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_TicketUI/ViewTicketPanelMixin.lua:137"
+   ]
+  }
+ }
+}

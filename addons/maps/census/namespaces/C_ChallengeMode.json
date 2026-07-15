@@ -1,0 +1,13 @@
+{
+ "namespace": "C_ChallengeMode",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 1,
+ "members": {
+  "GetCompletionInfo": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/MythicPlusUtil.lua:3"
+   ]
+  }
+ }
+}

@@ -1,0 +1,60 @@
+{
+ "namespace": "C_Logger",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 5,
+ "members": {
+  "ClearLUA": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/FrameLogging.lua:2",
+    "Interface/GlueXML/GlueLogging.lua:2"
+   ]
+  },
+  "Error": {
+   "count": 68,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:324",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:507",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:647",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCategory.lua:107",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCategory.lua:112",
+    "Interface/AddOns/Ascension_BuildCreator/BuildSpell.lua:255",
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:153",
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:342"
+   ]
+  },
+  "Info": {
+   "count": 16,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:707",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:737",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:756",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:773",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:789",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:800",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:819",
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/HelpMenuItemRecoveryPanelMixin.lua:279"
+   ]
+  },
+  "LFG": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/LFGFrame.lua:10",
+    "Interface/FrameXML/LFGFrame.lua:11"
+   ]
+  },
+  "LUA": {
+   "count": 12,
+   "sightings": [
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Memory.lua:191",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Memory.lua:192",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Memory.lua:292",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Memory.lua:293",
+    "Interface/FrameXML/FrameLogging.lua:1",
+    "Interface/FrameXML/FrameLogging.lua:3",
+    "Interface/FrameXML/FrameXMLPost.lua:3",
+    "Interface/FrameXML/FrameXMLPost.lua:4"
+   ]
+  }
+ }
+}

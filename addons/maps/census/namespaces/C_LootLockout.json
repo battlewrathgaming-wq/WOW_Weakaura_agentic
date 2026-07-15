@@ -1,0 +1,28 @@
+{
+ "namespace": "C_LootLockout",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 3,
+ "members": {
+  "ListInstanceBinds": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Instance.lua:95"
+   ]
+  },
+  "QueryInstanceBinds": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:2182",
+    "Interface/FrameXML/UIParent.lua:1150",
+    "Interface/FrameXML/UIParent.lua:1748",
+    "Interface/FrameXML/UIParent.lua:1749"
+   ]
+  },
+  "ResetInstanceDifficulty": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:2181"
+   ]
+  }
+ }
+}

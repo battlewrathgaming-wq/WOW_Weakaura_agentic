@@ -1,0 +1,62 @@
+{
+ "namespace": "C_DraftRewards",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 9,
+ "members": {
+  "CanClaimScrollOfFortuneRewards": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeRewardTabMixin.lua:135"
+   ]
+  },
+  "ClaimScrollOfFortuneRewards": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeRewardTabMixin.lua:143"
+   ]
+  },
+  "GetLevelingInfo": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeRewardTabMixin.lua:167"
+   ]
+  },
+  "GetMarkOfAscensionCost": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeRewardTabMixin.lua:151"
+   ]
+  },
+  "GetNumClaimableHandOfFateRewards": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/RandomModeSpecItemMixin.lua:34",
+    "Interface/AddOns/Ascension_RandomModeShared/RandomModeSpecItemMixin.lua:42"
+   ]
+  },
+  "GetNumClaimableScrollOfFortuneRewards": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeRewardTabMixin.lua:119"
+   ]
+  },
+  "GetNumClaimedScrollOfFortuneRewards": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeRewardTabMixin.lua:127"
+   ]
+  },
+  "GetRewards": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeRewardTabMixin.lua:159"
+   ]
+  },
+  "GetScrollOfFortuneRewardsReleaseInfo": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeRewardTabMixin.lua:175"
+   ]
+  }
+ }
+}

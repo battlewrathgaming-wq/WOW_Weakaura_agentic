@@ -1,0 +1,45 @@
+{
+ "namespace": "C_Realm",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 4,
+ "members": {
+  "IsDevelopment": {
+   "count": 33,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:411",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:418",
+    "Interface/AddOns/Ascension_HelpUI/BugReport/BugReportFrameMixin.lua:324",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/DevConsole.lua:26",
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:1143",
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:2527",
+    "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpBuildDraft.lua:1",
+    "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpFreepick.lua:1"
+   ]
+  },
+  "IsLive": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpBuildDraft.lua:1",
+    "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpFreepick.lua:1",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:488"
+   ]
+  },
+  "IsPTR": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_PTRFeedback/PTRFeedbackMixin.lua:5",
+    "Interface/FrameXML/GameCVars.lua:111",
+    "Interface/GlueXML/CharacterSelect.lua:1764",
+    "Interface/GlueXML/CharacterSelect.lua:1766"
+   ]
+  },
+  "IsSeasonal": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_SeasonCollection/SeasonCollectionUI.xml:158",
+    "Interface/AddOns/Ascension_SeasonCollection/SeasonCollectionUI.xml:171",
+    "Interface/FrameXML/Util/C_LFG.lua:158"
+   ]
+  }
+ }
+}

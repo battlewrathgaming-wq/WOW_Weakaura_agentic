@@ -1,0 +1,24 @@
+# C_CVar - 22 attested members
+
+- `Exists` x4 - Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/CVar.lua:11
+- `Get` x48 - Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:247
+- `GetBitfield` x16 - Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:140
+- `GetBool` x129 - Interface/AddOns/Ascension_AddonPanel/AddonPanel.xml:189
+- `GetByteString` x1 - Interface/SharedXML/Util/C_CVar.lua:178
+- `GetDefault` x2 - Interface/SharedXML/Util/C_CVar.lua:61
+- `GetDefaultBitfield` x1 - Interface/SharedXML/Util/C_CVar.lua:73
+- `GetDefaultBool` x5 - Interface/FrameXML/InterfaceOptionsPanels.lua:2351
+- `GetDefaultNumber` x3 - Interface/AddOns/Ascension_NamePlates/NamePlateOptions.lua:43
+- `GetFlag` x1 - Interface/SharedXML/Util/C_CVar.lua:173
+- `GetMax` x4 - Interface/AddOns/Ascension_NamePlates/NamePlateOptions.lua:43
+- `GetMin` x4 - Interface/AddOns/Ascension_NamePlates/NamePlateOptions.lua:43
+- `GetNumber` x48 - Interface/AddOns/Ascension_NamePlates/Ascension_NamePlates.lua:69
+- `Maximums` x7 - Interface/SharedXML/Util/C_CVar.lua:11
+- `Minimums` x7 - Interface/SharedXML/Util/C_CVar.lua:3
+- `RegisterSavedCVar` x61 - Interface/FrameXML/GameCVars.lua:14
+- `RegisterSavedCharacterCVar` x19 - Interface/FrameXML/GameCVars.lua:39
+- `ResetToDefault` x1 - Interface/SharedXML/Util/C_CVar.lua:87
+- `Set` x76 - Interface/AddOns/Ascension_AddonPanel/AddonPanel.xml:193
+- `SetBitfield` x17 - Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:673
+- `SetCVarSave` x2 - Interface/GlueXML/CharacterCreateArchetypes.lua:525
+- `SetFlag` x1 - Interface/SharedXML/Util/C_CVar.lua:166

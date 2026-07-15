@@ -1,0 +1,397 @@
+{
+ "namespace": "C_Player",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 43,
+ "members": {
+  "GetAverageItemLevel": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_LFG.lua:186",
+    "Interface/FrameXML/Util/C_Player.lua:143"
+   ]
+  },
+  "GetClass": {
+   "count": 26,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:206",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:315",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:927",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:88",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:182",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:500",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameMixin.lua:95",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_BarbarianResource.lua:3"
+   ]
+  },
+  "GetCurrentCompanion": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Notifications/ToastNotificationSystem.lua:282",
+    "Interface/FrameXML/Util/C_Player.lua:147"
+   ]
+  },
+  "GetCurrentMapContinentZone": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:220"
+   ]
+  },
+  "GetCurrentMapExpansion": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:238"
+   ]
+  },
+  "GetCurrentMapInfo": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:229",
+    "Interface/FrameXML/Util/C_PVP.lua:104"
+   ]
+  },
+  "GetFaction": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_CallBoards.lua:29",
+    "Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_CallBoards.lua:37",
+    "Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_CallBoards.lua:41",
+    "Interface/FrameXML/Util/C_Player.lua:106",
+    "Interface/FrameXML/Util/C_PVP.lua:319",
+    "Interface/FrameXML/Util/C_PVP.lua:339"
+   ]
+  },
+  "GetLevel": {
+   "count": 59,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:60",
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:319",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:115",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:265",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:685",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:782",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:51",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:131"
+   ]
+  },
+  "GetName": {
+   "count": 6,
+   "sightings": [
+    "Interface/FrameXML/PetPaperDollFrame.lua:642",
+    "Interface/FrameXML/SocialToast.lua:71",
+    "Interface/FrameXML/SocialToast.xml:208",
+    "Interface/FrameXML/Util/C_CrowdControl.lua:105",
+    "Interface/FrameXML/Util/C_Player.lua:14",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:258"
+   ]
+  },
+  "GetPvEPower": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_LFG.lua:176",
+    "Interface/FrameXML/Util/C_Player.lua:208"
+   ]
+  },
+  "GetPvPPower": {
+   "count": 5,
+   "sightings": [
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:764",
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:1005",
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:1384",
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:1402",
+    "Interface/FrameXML/Util/C_Player.lua:212"
+   ]
+  },
+  "GetRace": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:31",
+    "Interface/SharedXML/UICamera.lua:13"
+   ]
+  },
+  "GetRuleset": {
+   "count": 7,
+   "sightings": [
+    "Interface/FrameXML/Ascension_LFG/Ascension_Ruleset.lua:93",
+    "Interface/FrameXML/UnitPopup.lua:406",
+    "Interface/FrameXML/UnitPopup.lua:411",
+    "Interface/FrameXML/UnitPopup.lua:416",
+    "Interface/FrameXML/Util/C_Player.lua:156",
+    "Interface/FrameXML/Util/C_WorldMap.lua:114",
+    "Interface/FrameXML/Util/C_WorldMap.lua:121"
+   ]
+  },
+  "GetRulesetCooldown": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Ascension_LFG/Ascension_Ruleset.lua:78",
+    "Interface/FrameXML/Util/C_Player.lua:176"
+   ]
+  },
+  "GetSex": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:37",
+    "Interface/SharedXML/UICamera.lua:12"
+   ]
+  },
+  "HasAura": {
+   "count": 7,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:60",
+    "Interface/FrameXML/Util/C_Player.lua:63",
+    "Interface/FrameXML/Util/C_Player.lua:378",
+    "Interface/FrameXML/Util/C_PVP.lua:332",
+    "Interface/FrameXML/Util/C_PVP.lua:334",
+    "Interface/FrameXML/WorldStateFrame.lua:191",
+    "Interface/FrameXML/WorldStateFrame.lua:195"
+   ]
+  },
+  "HasBuff": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:77"
+   ]
+  },
+  "HasDebuff": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:70"
+   ]
+  },
+  "HasRuleset": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:102"
+   ]
+  },
+  "InCombat": {
+   "count": 13,
+   "sightings": [
+    "Interface/AddOns/Ascension_Draft/Draft.lua:171",
+    "Interface/AddOns/Ascension_Draft/Draft.lua:284",
+    "Interface/AddOns/Ascension_Draft/Draft.lua:334",
+    "Interface/FrameXML/Ascension_LFG/Ascension_Ruleset.lua:13",
+    "Interface/FrameXML/GameTooltip.lua:723",
+    "Interface/FrameXML/StaticPopup.lua:1039",
+    "Interface/FrameXML/StaticPopup.lua:1135",
+    "Interface/FrameXML/Util/C_Player.lua:127"
+   ]
+  },
+  "IsCustomClass": {
+   "count": 11,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:410",
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:6",
+    "Interface/AddOns/Ascension_TalentUI/TalentTreeBase.lua:56",
+    "Interface/AddOns/AscensionUI/Gossips/PrestigeMode.lua:1323",
+    "Interface/FrameXML/GameTooltip.lua:397",
+    "Interface/FrameXML/GameTooltipMods.lua:125",
+    "Interface/FrameXML/SpecListItem.lua:249",
+    "Interface/FrameXML/SpecListItem.lua:483"
+   ]
+  },
+  "IsDead": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:334",
+    "Interface/FrameXML/Util/C_Instance.lua:65",
+    "Interface/FrameXML/Util/C_Player.lua:123",
+    "Interface/SharedXML/Util/Timer.lua:70",
+    "Interface/SharedXML/Util/Timer.lua:78",
+    "Interface/SharedXML/Util/Timer.lua:135"
+   ]
+  },
+  "IsDefaultClass": {
+   "count": 40,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:395",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:177",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:369",
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:39",
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:305",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:48",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:64",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:147"
+   ]
+  },
+  "IsEffectivelyTank": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/CompactUnitFrame.lua:794",
+    "Interface/FrameXML/Util/C_Player.lua:371"
+   ]
+  },
+  "IsGM": {
+   "count": 14,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:566",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:592",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:654",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:674",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:60",
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:163",
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:36",
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:468"
+   ]
+  },
+  "IsGroupLeader": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/ChatFrame.lua:1809",
+    "Interface/FrameXML/UnitPopup.lua:521",
+    "Interface/FrameXML/UnitPopup.lua:1316",
+    "Interface/FrameXML/Util/C_Player.lua:139"
+   ]
+  },
+  "IsHero": {
+   "count": 67,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:299",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:388",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:216",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:386",
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesStoreTab.lua:37",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:10",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:211",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:241"
+   ]
+  },
+  "IsHighRisk": {
+   "count": 8,
+   "sightings": [
+    "Interface/FrameXML/Ascension_CharacterFrame/Panels/PaperDollPanel.lua:38",
+    "Interface/FrameXML/FelCommGearWarning.lua:199",
+    "Interface/FrameXML/Util/C_Player.lua:85",
+    "Interface/FrameXML/Util/C_PVP.lua:60",
+    "Interface/FrameXML/Util/C_PVP.lua:103",
+    "Interface/FrameXML/Util/C_PVP.lua:110",
+    "Interface/FrameXML/Util/C_PVP.lua:316",
+    "Interface/FrameXML/WorldMapFrame.lua:650"
+   ]
+  },
+  "IsImmune": {
+   "count": 8,
+   "sightings": [
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:401",
+    "Interface/FrameXML/StaticPopup.lua:1039",
+    "Interface/FrameXML/StaticPopup.lua:1078",
+    "Interface/FrameXML/StaticPopup.lua:1093",
+    "Interface/FrameXML/StaticPopup.lua:1108",
+    "Interface/FrameXML/StaticPopup.lua:1135",
+    "Interface/FrameXML/Util/C_Player.lua:81",
+    "Interface/FrameXML/Util/CharacterAdvancementCostUtil.lua:295"
+   ]
+  },
+  "IsInGroup": {
+   "count": 5,
+   "sightings": [
+    "Interface/FrameXML/ChatFrame.lua:1809",
+    "Interface/FrameXML/UIParent.lua:1049",
+    "Interface/FrameXML/UnitPopup.lua:521",
+    "Interface/FrameXML/UnitPopup.lua:1316",
+    "Interface/FrameXML/Util/C_Player.lua:131"
+   ]
+  },
+  "IsInRaid": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:135"
+   ]
+  },
+  "IsMaxLevel": {
+   "count": 12,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:42",
+    "Interface/AddOns/Ascension_BuildCreator/CategoryListItem.lua:82",
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:28",
+    "Interface/AddOns/Ascension_Draft/Draft.lua:200",
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVE.lua:431",
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVE.lua:1056",
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:688",
+    "Interface/FrameXML/UIParent.lua:354"
+   ]
+  },
+  "IsNoRiskPvE": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:93"
+   ]
+  },
+  "IsNoRiskPvP": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Warmode/Warmode.lua:54",
+    "Interface/FrameXML/Util/C_Player.lua:89"
+   ]
+  },
+  "IsNoRiskPvPOrHigher": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:97",
+    "Interface/FrameXML/WorldMapFrame.lua:1014"
+   ]
+  },
+  "IsPrestiged": {
+   "count": 12,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:27",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:258",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1057",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:124",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardsFrame.lua:36",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardTab/SkillCardTab.lua:368",
+    "Interface/FrameXML/Ascension_LFG/Ascension_LFG.lua:11",
+    "Interface/FrameXML/Settings/InterfaceOptions.lua:350"
+   ]
+  },
+  "IsTitansGrip": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:216",
+    "Interface/LibraryXML/LibStatLogic-1.1/LibStatLogic-1.1.lua:13371"
+   ]
+  },
+  "IsWorldPVP": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:110",
+    "Interface/FrameXML/Util/C_PVP.lua:61",
+    "Interface/FrameXML/Util/C_PVP.lua:316"
+   ]
+  },
+  "PLAYER_ENTERING_WORLD": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:394"
+   ]
+  },
+  "PLAYER_LEVEL_UP": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:390"
+   ]
+  },
+  "SetRuleset": {
+   "count": 5,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:1611",
+    "Interface/FrameXML/UnitPopup.lua:1435",
+    "Interface/FrameXML/UnitPopup.lua:1437",
+    "Interface/FrameXML/UnitPopup.lua:1439",
+    "Interface/FrameXML/Util/C_Player.lua:171"
+   ]
+  },
+  "UNIT_PET": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:398"
+   ]
+  },
+  "UpdatePvEPower": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Player.lua:189"
+   ]
+  }
+ }
+}

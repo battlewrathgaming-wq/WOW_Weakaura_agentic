@@ -1,0 +1,224 @@
+{
+ "namespace": "C_CVar",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 22,
+ "members": {
+  "Exists": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/CVar.lua:11",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_CoAMultiCast.lua:374",
+    "Interface/FrameXML/ChatFrame.lua:1760",
+    "Interface/SharedXML/Util/C_CVar.lua:197"
+   ]
+  },
+  "Get": {
+   "count": 48,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:247",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:248",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:313",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:314",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:457",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:508",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:556",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:556"
+   ]
+  },
+  "GetBitfield": {
+   "count": 16,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:140",
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:1301",
+    "Interface/FrameXML/Ascension_LoseControl/Ascension_LoseControl.lua:39",
+    "Interface/FrameXML/Notifications/ToastNotificationSystem.lua:209",
+    "Interface/FrameXML/Notifications/ToastNotificationSystem.lua:213",
+    "Interface/FrameXML/Notifications/ToastNotificationSystem.lua:226",
+    "Interface/FrameXML/Notifications/ToastNotificationSystem.lua:267",
+    "Interface/FrameXML/Notifications/ToastNotificationSystem.lua:274"
+   ]
+  },
+  "GetBool": {
+   "count": 129,
+   "sightings": [
+    "Interface/AddOns/Ascension_AddonPanel/AddonPanel.xml:189",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCategory.lua:117",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCategory.lua:163",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreatorTemplates.xml:701",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2278",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2349",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2379",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2394"
+   ]
+  },
+  "GetByteString": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_CVar.lua:178"
+   ]
+  },
+  "GetDefault": {
+   "count": 2,
+   "sightings": [
+    "Interface/SharedXML/Util/C_CVar.lua:61",
+    "Interface/SharedXML/Util/C_CVar.lua:88"
+   ]
+  },
+  "GetDefaultBitfield": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_CVar.lua:73"
+   ]
+  },
+  "GetDefaultBool": {
+   "count": 5,
+   "sightings": [
+    "Interface/FrameXML/InterfaceOptionsPanels.lua:2351",
+    "Interface/FrameXML/InterfaceOptionsPanels.lua:2352",
+    "Interface/FrameXML/InterfaceOptionsPanels.lua:2353",
+    "Interface/FrameXML/InterfaceOptionsPanels.lua:2354",
+    "Interface/SharedXML/Util/C_CVar.lua:69"
+   ]
+  },
+  "GetDefaultNumber": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_NamePlates/NamePlateOptions.lua:43",
+    "Interface/AddOns/Ascension_NamePlates/NamePlateOptions.lua:44",
+    "Interface/SharedXML/Util/C_CVar.lua:65"
+   ]
+  },
+  "GetFlag": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_CVar.lua:173"
+   ]
+  },
+  "GetMax": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_NamePlates/NamePlateOptions.lua:43",
+    "Interface/AddOns/Ascension_NamePlates/NamePlateOptions.lua:44",
+    "Interface/SharedXML/Util/C_CVar.lua:95",
+    "Interface/SharedXML/Util/C_CVar.lua:104"
+   ]
+  },
+  "GetMin": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_NamePlates/NamePlateOptions.lua:43",
+    "Interface/AddOns/Ascension_NamePlates/NamePlateOptions.lua:44",
+    "Interface/SharedXML/Util/C_CVar.lua:91",
+    "Interface/SharedXML/Util/C_CVar.lua:100"
+   ]
+  },
+  "GetNumber": {
+   "count": 48,
+   "sightings": [
+    "Interface/AddOns/Ascension_NamePlates/Ascension_NamePlates.lua:69",
+    "Interface/AddOns/Ascension_NamePlates/Ascension_NamePlates.lua:69",
+    "Interface/AddOns/Ascension_NamePlates/NamePlateDriver.lua:36",
+    "Interface/AddOns/Ascension_NamePlates/NamePlateDriver.lua:36",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_CoAMultiCast.lua:24",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_CoAMultiCast.lua:72",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_CoAMultiCast.lua:463",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_CoAResources.lua:152"
+   ]
+  },
+  "Maximums": {
+   "count": 7,
+   "sightings": [
+    "Interface/SharedXML/Util/C_CVar.lua:11",
+    "Interface/SharedXML/Util/C_CVar.lua:33",
+    "Interface/SharedXML/Util/C_CVar.lua:48",
+    "Interface/SharedXML/Util/C_CVar.lua:96",
+    "Interface/SharedXML/Util/C_CVar.lua:124",
+    "Interface/SharedXML/Util/C_CVar.lua:124",
+    "Interface/SharedXML/Util/C_CVar.lua:125"
+   ]
+  },
+  "Minimums": {
+   "count": 7,
+   "sightings": [
+    "Interface/SharedXML/Util/C_CVar.lua:3",
+    "Interface/SharedXML/Util/C_CVar.lua:30",
+    "Interface/SharedXML/Util/C_CVar.lua:45",
+    "Interface/SharedXML/Util/C_CVar.lua:92",
+    "Interface/SharedXML/Util/C_CVar.lua:120",
+    "Interface/SharedXML/Util/C_CVar.lua:120",
+    "Interface/SharedXML/Util/C_CVar.lua:121"
+   ]
+  },
+  "RegisterSavedCVar": {
+   "count": 61,
+   "sightings": [
+    "Interface/FrameXML/GameCVars.lua:14",
+    "Interface/FrameXML/GameCVars.lua:15",
+    "Interface/FrameXML/GameCVars.lua:16",
+    "Interface/FrameXML/GameCVars.lua:17",
+    "Interface/FrameXML/GameCVars.lua:18",
+    "Interface/FrameXML/GameCVars.lua:19",
+    "Interface/FrameXML/GameCVars.lua:20",
+    "Interface/FrameXML/GameCVars.lua:21"
+   ]
+  },
+  "RegisterSavedCharacterCVar": {
+   "count": 19,
+   "sightings": [
+    "Interface/FrameXML/GameCVars.lua:39",
+    "Interface/FrameXML/GameCVars.lua:40",
+    "Interface/FrameXML/GameCVars.lua:41",
+    "Interface/FrameXML/GameCVars.lua:42",
+    "Interface/FrameXML/GameCVars.lua:43",
+    "Interface/FrameXML/GameCVars.lua:44",
+    "Interface/FrameXML/GameCVars.lua:56",
+    "Interface/FrameXML/GameCVars.lua:57"
+   ]
+  },
+  "ResetToDefault": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_CVar.lua:87"
+   ]
+  },
+  "Set": {
+   "count": 76,
+   "sightings": [
+    "Interface/AddOns/Ascension_AddonPanel/AddonPanel.xml:193",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreatorTemplates.xml:704",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:174",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:183",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:204",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:216",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:797",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:802"
+   ]
+  },
+  "SetBitfield": {
+   "count": 17,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:673",
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:675",
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:701",
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:703",
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:743",
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:745",
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:772",
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:774"
+   ]
+  },
+  "SetCVarSave": {
+   "count": 2,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:525",
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:563"
+   ]
+  },
+  "SetFlag": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_CVar.lua:166"
+   ]
+  }
+ }
+}

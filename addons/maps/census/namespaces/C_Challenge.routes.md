@@ -1,0 +1,28 @@
+# C_Challenge - 26 attested members
+
+- `CanActivateChallenge` x2 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:662
+- `CanDeactivateChallenge` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:666
+- `GetChallengeAtIndex` x1 - Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:150
+- `GetChallengeCompletion` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:581
+- `GetChallengeCompletions` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:199
+- `GetChallengeFailures` x1 - Interface/FrameXML/WorldMapFrame.lua:530
+- `GetChallengeIDByIndex` x1 - Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:154
+- `GetChallengeInfo` x10 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:293
+- `GetChallengeInfoByLevel` x3 - Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:105
+- `GetChallengeLevels` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:654
+- `GetChallengesWithGroupID` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:296
+- `GetConditionLocalization` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:322
+- `GetModifierLocalization` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:179
+- `GetNumChallenges` x1 - Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:8
+- `GetPendingChallenges` x2 - Interface/FrameXML/StaticPopup.lua:5261
+- `GetRequirementLocalization` x1 - Interface/FrameXML/Util/ChallengeUtil.lua:5
+- `GetRuleLocalization` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:341
+- `HasBrokenChallengeRule` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:346
+- `HasChallengeRule` x4 - Interface/FrameXML/Util/ChallengeUtil.lua:82
+- `IsChallengeActive` x2 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:670
+- `QueryChallengeCompletions` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:582
+- `QueryChallengeFailures` x1 - Interface/FrameXML/WorldMapFrame.lua:245
+- `SendChallengeSyncResponse` x4 - Interface/FrameXML/StaticPopup.lua:1177
+- `SetChallengeFilter` x2 - Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:85
+- `StartChallenge` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:674
+- `StopChallenge` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:678

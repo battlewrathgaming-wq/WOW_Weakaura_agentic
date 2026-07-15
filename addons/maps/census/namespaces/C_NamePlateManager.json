@@ -1,0 +1,79 @@
+{
+ "namespace": "C_NamePlateManager",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 9,
+ "members": {
+  "ApplyFPSIncrease": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_NamePlates/NamePlateDriver.lua:30",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:346"
+   ]
+  },
+  "CheckNamePlateMotion": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Settings/InterfaceOptions.lua:642",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:110",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:242"
+   ]
+  },
+  "DisableBlizzPlate": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_NamePlates/NamePlateDriver.lua:29",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:387"
+   ]
+  },
+  "EnumerateActiveNamePlates": {
+   "count": 7,
+   "sightings": [
+    "Interface/AddOns/Ascension_NamePlates/NamePlateDriver.lua:158",
+    "Interface/AddOns/Ascension_NamePlates/NamePlateDriver.lua:198",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:118",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:144",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:278",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:291",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:300"
+   ]
+  },
+  "GetNamePlateSize": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_NamePlates/NamePlateDriver.lua:217",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:135",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:416"
+   ]
+  },
+  "IsNamePlateMoving": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_NamePlates/NamePlateTemplates.xml:190",
+    "Interface/AddOns/Ascension_NamePlates/NamePlateTemplates.xml:209",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:339"
+   ]
+  },
+  "RefreshNamePlateSize": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_NamePlates/Ascension_NamePlates.lua:72",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:296"
+   ]
+  },
+  "SetEnableResizeNamePlates": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_NamePlates/NamePlateDriver.lua:17",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:412"
+   ]
+  },
+  "SetNamePlateSize": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_NamePlates/Ascension_NamePlates.lua:70",
+    "Interface/AddOns/Ascension_NamePlates/NamePlateDriver.lua:39",
+    "Interface/FrameXML/Util/C_NamePlateManager.lua:288"
+   ]
+  }
+ }
+}

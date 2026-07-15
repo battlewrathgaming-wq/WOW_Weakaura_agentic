@@ -1,0 +1,49 @@
+{
+ "namespace": "C_BugTracker",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 7,
+ "members": {
+  "ClearReport": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/BugReport/BugReportFrameMixin.lua:134"
+   ]
+  },
+  "SetReportCategory": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/BugReport/BugReportFrameMixin.lua:339"
+   ]
+  },
+  "SetReportDescription": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/BugReport/BugReportFrameMixin.lua:343"
+   ]
+  },
+  "SetReportPriority": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/BugReport/BugReportFrameMixin.lua:340"
+   ]
+  },
+  "SetReportPublic": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/BugReport/BugReportFrameMixin.lua:341"
+   ]
+  },
+  "SetReportTitle": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/BugReport/BugReportFrameMixin.lua:342"
+   ]
+  },
+  "SubmitReport": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/BugReport/BugReportFrameMixin.lua:345"
+   ]
+  }
+ }
+}

@@ -1,0 +1,40 @@
+{
+ "namespace": "C_HighRisk",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 5,
+ "members": {
+  "CanToggleFelCommutation": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/FelCommutationUtil.lua:6"
+   ]
+  },
+  "GetInsuranceCostPerSlot": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/FelCommGearWarning.lua:215"
+   ]
+  },
+  "GetInsuranceTotalCost": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Ascension_CharacterFrame/Panels/PaperDollPanel.lua:43"
+   ]
+  },
+  "IsFelCommutationActive": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Ascension_CharacterFrame/Panels/PaperDollPanel.lua:40",
+    "Interface/FrameXML/FelCommGearWarning.lua:216",
+    "Interface/FrameXML/Util/FelCommutationUtil.lua:5",
+    "Interface/FrameXML/Util/FelCommutationUtil.lua:18"
+   ]
+  },
+  "ToggleFelCommutation": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/FelCommutationUtil.lua:8"
+   ]
+  }
+ }
+}

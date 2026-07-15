@@ -1,0 +1,200 @@
+{
+ "namespace": "C_Gossip",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 28,
+ "members": {
+  "CheckHookItemHide": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:220"
+   ]
+  },
+  "CheckHookItemShow": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:212"
+   ]
+  },
+  "CheckHookNPCHide": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:119"
+   ]
+  },
+  "CheckHookNPCShow": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:111"
+   ]
+  },
+  "CheckItemHide": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:203"
+   ]
+  },
+  "CheckItemShow": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:194"
+   ]
+  },
+  "CheckNPCHide": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:102"
+   ]
+  },
+  "CheckNPCShow": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:93"
+   ]
+  },
+  "GOSSIP_CLOSED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:348"
+   ]
+  },
+  "GOSSIP_SHOW": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:254"
+   ]
+  },
+  "HookItem": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:143"
+   ]
+  },
+  "HookItems": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:159"
+   ]
+  },
+  "HookNPC": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:48"
+   ]
+  },
+  "HookNPCs": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:64"
+   ]
+  },
+  "MakeGroup": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:909",
+    "Interface/FrameXML/Ascension_LFG/Ascension_Ruleset.lua:34",
+    "Interface/FrameXML/UIParent.lua:4002",
+    "Interface/FrameXML/Util/C_Gossip.lua:22"
+   ]
+  },
+  "RedirectItem": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:127"
+   ]
+  },
+  "RedirectItems": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:188"
+   ]
+  },
+  "RedirectNPC": {
+   "count": 10,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeGossipMixin.lua:24",
+    "Interface/AddOns/Ascension_SkillCards/SkillCards.lua:182",
+    "Interface/AddOns/AscensionUI/Gossips/gossipShared.lua:1109",
+    "Interface/AddOns/AscensionUI/Gossips/gossipShared.lua:1112",
+    "Interface/AddOns/AscensionUI/Gossips/PrestigeMode.lua:1461",
+    "Interface/FrameXML/UIParent.lua:1191",
+    "Interface/FrameXML/UIParent.lua:1195",
+    "Interface/FrameXML/UIParent.lua:1196"
+   ]
+  },
+  "RedirectNPCs": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:916",
+    "Interface/FrameXML/Ascension_LFG/Ascension_Ruleset.lua:35",
+    "Interface/FrameXML/UIParent.lua:4003",
+    "Interface/FrameXML/Util/C_Gossip.lua:42"
+   ]
+  },
+  "RemoveHookItem": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:178"
+   ]
+  },
+  "RemoveHookNPC": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:83"
+   ]
+  },
+  "RemoveRedirectItem": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:132"
+   ]
+  },
+  "RemoveRedirectItems": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:137"
+   ]
+  },
+  "RemoveRedirectNPC": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/UIParent.lua:1189",
+    "Interface/FrameXML/Util/C_Gossip.lua:31"
+   ]
+  },
+  "RemoveRedirectNPCs": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Gossip.lua:36"
+   ]
+  },
+  "RestoreGossip": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeGossipMixin.lua:34",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardRender.lua:338",
+    "Interface/AddOns/AscensionUI/Gossips/gossipShared.lua:1100",
+    "Interface/AddOns/AscensionUI/Gossips/PrestigeMode.lua:1457",
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:358",
+    "Interface/FrameXML/Util/C_Gossip.lua:242"
+   ]
+  },
+  "SilentHideGossip": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeGossipMixin.lua:29",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardRender.lua:319",
+    "Interface/AddOns/AscensionUI/Gossips/gossipShared.lua:1094",
+    "Interface/AddOns/AscensionUI/Gossips/PrestigeMode.lua:1450",
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:364",
+    "Interface/FrameXML/Util/C_Gossip.lua:228"
+   ]
+  },
+  "currentNPC": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardRender.lua:169",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardRender.lua:169"
+   ]
+  }
+ }
+}

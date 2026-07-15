@@ -1,0 +1,159 @@
+{
+ "namespace": "C_Manastorm",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 21,
+ "members": {
+  "CanEnter": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:217",
+    "Interface/FrameXML/UIParent.lua:718"
+   ]
+  },
+  "CanLeave": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:202",
+    "Interface/FrameXML/Minimap.lua:356"
+   ]
+  },
+  "Enter": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:181",
+    "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:189"
+   ]
+  },
+  "GetActiveLevel": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:90",
+    "Interface/FrameXML/Util/ManastormUtil.lua:84"
+   ]
+  },
+  "GetActiveManastormID": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:98",
+    "Interface/FrameXML/Util/ManastormUtil.lua:11"
+   ]
+  },
+  "GetActiveManastormType": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:155",
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:334",
+    "Interface/FrameXML/Util/ManastormUtil.lua:49"
+   ]
+  },
+  "GetAvailableLoadoutSpells": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/ManastormLoadoutFlyout.lua:37",
+    "Interface/FrameXML/Util/ManastormUtil.lua:100"
+   ]
+  },
+  "GetBoss": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:11",
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:34",
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:227"
+   ]
+  },
+  "GetEnterableLevels": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:122",
+    "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:133"
+   ]
+  },
+  "GetExperienceModifier": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:258"
+   ]
+  },
+  "GetLoadoutSpellAtIndex": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/ManastormLoadout.lua:54",
+    "Interface/FrameXML/Util/ManastormUtil.lua:115"
+   ]
+  },
+  "GetManastormCacheInfo": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:43",
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:282"
+   ]
+  },
+  "GetMaxCompletedLevels": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:149",
+    "Interface/FrameXML/PaperDollFrame.lua:3269",
+    "Interface/FrameXML/PaperDollFrame.lua:3280",
+    "Interface/FrameXML/PaperDollFrame.lua:3291",
+    "Interface/FrameXML/PaperDollFrame.lua:3302"
+   ]
+  },
+  "GetNumLoadoutSlots": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/ManastormLoadout.lua:19",
+    "Interface/FrameXML/Util/ManastormUtil.lua:113"
+   ]
+  },
+  "GetRewardLimitProgress": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/ManastormUtil.lua:35"
+   ]
+  },
+  "GetRewardModifier": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:103"
+   ]
+  },
+  "GetRewardVisibility": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/ManastormUtil.lua:19"
+   ]
+  },
+  "GetStageBonusExperience": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:142"
+   ]
+  },
+  "IsInManastorm": {
+   "count": 10,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:82",
+    "Interface/AddOns/Ascension_Manastorm/Manastorm.lua:334",
+    "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:177",
+    "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:200",
+    "Interface/FrameXML/Minimap.lua:235",
+    "Interface/FrameXML/Minimap.lua:346",
+    "Interface/FrameXML/StaticPopup.lua:2892",
+    "Interface/FrameXML/UIParent.lua:1184"
+   ]
+  },
+  "Leave": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:453",
+    "Interface/FrameXML/StaticPopup.lua:464"
+   ]
+  },
+  "SetLoadoutSpellAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_Manastorm/ManastormLoadoutFlyout.lua:30"
+   ]
+  }
+ }
+}

@@ -1,0 +1,41 @@
+{
+ "namespace": "C_CharacterList",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 4,
+ "members": {
+  "GetCounts": {
+   "count": 5,
+   "sightings": [
+    "Interface/GlueXML/CharacterSelect.lua:349",
+    "Interface/GlueXML/CharacterSelect.lua:1118",
+    "Interface/GlueXML/CharacterSelect.lua:1119",
+    "Interface/GlueXML/CharacterSelect.lua:1212",
+    "Interface/GlueXML/CharacterSelect.lua:1213"
+   ]
+  },
+  "GetEntries": {
+   "count": 6,
+   "sightings": [
+    "Interface/GlueXML/CharacterSelect.lua:67",
+    "Interface/GlueXML/CharacterSelect.lua:71",
+    "Interface/GlueXML/CharacterSelect.lua:1136",
+    "Interface/GlueXML/CharacterSelect.lua:1144",
+    "Interface/GlueXML/CharacterSelect.lua:1191",
+    "Interface/GlueXML/CharacterSelect.lua:1195"
+   ]
+  },
+  "RequestActivate": {
+   "count": 2,
+   "sightings": [
+    "Interface/GlueXML/CharacterSelect.lua:1282",
+    "Interface/GlueXML/CharacterSelect.lua:1294"
+   ]
+  },
+  "RequestDeactivate": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterSelect.lua:1302"
+   ]
+  }
+ }
+}

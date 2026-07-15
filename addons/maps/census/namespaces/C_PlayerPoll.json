@@ -1,0 +1,94 @@
+{
+ "namespace": "C_PlayerPoll",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 9,
+ "members": {
+  "CanChangeQuestionChoice": {
+   "count": 8,
+   "sightings": [
+    "Interface/AddOns/Ascension_Poll/Poll.lua:43",
+    "Interface/AddOns/Ascension_Poll/Poll.lua:68",
+    "Interface/AddOns/Ascension_Poll/PollQuestionChoiceMixin.lua:72",
+    "Interface/AddOns/Ascension_Poll/PollQuestionChoiceMixin.lua:79",
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:373",
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:411",
+    "Interface/AddOns/Ascension_Poll/PollRatingScaleChoiceMixin.lua:51",
+    "Interface/AddOns/Ascension_Poll/PollRatingScaleChoiceMixin.lua:58"
+   ]
+  },
+  "CanSubmitAnswer": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:372",
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:478"
+   ]
+  },
+  "GetNumQuestionChoices": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_Poll/Poll.lua:48",
+    "Interface/AddOns/Ascension_Poll/Poll.lua:73",
+    "Interface/AddOns/Ascension_Poll/PollQuestionListItemMixin.lua:15",
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:105",
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:275"
+   ]
+  },
+  "GetNumQuestions": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/HelpMenuMixin.lua:98",
+    "Interface/AddOns/Ascension_Poll/Poll.lua:7",
+    "Interface/AddOns/Ascension_Poll/Poll.lua:42",
+    "Interface/AddOns/Ascension_Poll/Poll.lua:67",
+    "Interface/AddOns/Ascension_Poll/Poll.lua:90",
+    "Interface/AddOns/Ascension_Poll/Poll.lua:121"
+   ]
+  },
+  "GetQuestionChoiceInfo": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_Poll/Poll.lua:49",
+    "Interface/AddOns/Ascension_Poll/Poll.lua:74",
+    "Interface/AddOns/Ascension_Poll/PollQuestionListItemMixin.lua:16",
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:165",
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:198",
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:276"
+   ]
+  },
+  "GetQuestionInfo": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_Poll/Poll.lua:45",
+    "Interface/AddOns/Ascension_Poll/Poll.lua:70",
+    "Interface/AddOns/Ascension_Poll/PollQuestionListItemMixin.lua:9",
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:93"
+   ]
+  },
+  "GetQuestionType": {
+   "count": 8,
+   "sightings": [
+    "Interface/AddOns/Ascension_Poll/Poll.lua:44",
+    "Interface/AddOns/Ascension_Poll/Poll.lua:44",
+    "Interface/AddOns/Ascension_Poll/Poll.lua:69",
+    "Interface/AddOns/Ascension_Poll/Poll.lua:69",
+    "Interface/AddOns/Ascension_Poll/PollQuestionListItemMixin.lua:10",
+    "Interface/AddOns/Ascension_Poll/PollQuestionListItemMixin.lua:10",
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:106",
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:106"
+   ]
+  },
+  "HasUnansweredQuestions": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/HelpMenuMixin.lua:99",
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:55"
+   ]
+  },
+  "SubmitAnswer": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_Poll/PollQuestionMixin.lua:480"
+   ]
+  }
+ }
+}

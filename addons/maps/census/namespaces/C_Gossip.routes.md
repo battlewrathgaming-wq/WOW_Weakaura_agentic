@@ -1,0 +1,30 @@
+# C_Gossip - 28 attested members
+
+- `CheckHookItemHide` x1 - Interface/FrameXML/Util/C_Gossip.lua:220
+- `CheckHookItemShow` x1 - Interface/FrameXML/Util/C_Gossip.lua:212
+- `CheckHookNPCHide` x1 - Interface/FrameXML/Util/C_Gossip.lua:119
+- `CheckHookNPCShow` x1 - Interface/FrameXML/Util/C_Gossip.lua:111
+- `CheckItemHide` x1 - Interface/FrameXML/Util/C_Gossip.lua:203
+- `CheckItemShow` x1 - Interface/FrameXML/Util/C_Gossip.lua:194
+- `CheckNPCHide` x1 - Interface/FrameXML/Util/C_Gossip.lua:102
+- `CheckNPCShow` x1 - Interface/FrameXML/Util/C_Gossip.lua:93
+- `GOSSIP_CLOSED` x1 - Interface/FrameXML/Util/C_Gossip.lua:348
+- `GOSSIP_SHOW` x1 - Interface/FrameXML/Util/C_Gossip.lua:254
+- `HookItem` x1 - Interface/FrameXML/Util/C_Gossip.lua:143
+- `HookItems` x1 - Interface/FrameXML/Util/C_Gossip.lua:159
+- `HookNPC` x1 - Interface/FrameXML/Util/C_Gossip.lua:48
+- `HookNPCs` x1 - Interface/FrameXML/Util/C_Gossip.lua:64
+- `MakeGroup` x4 - Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:909
+- `RedirectItem` x1 - Interface/FrameXML/Util/C_Gossip.lua:127
+- `RedirectItems` x1 - Interface/FrameXML/Util/C_Gossip.lua:188
+- `RedirectNPC` x10 - Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeGossipMixin.lua:24
+- `RedirectNPCs` x4 - Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:916
+- `RemoveHookItem` x1 - Interface/FrameXML/Util/C_Gossip.lua:178
+- `RemoveHookNPC` x1 - Interface/FrameXML/Util/C_Gossip.lua:83
+- `RemoveRedirectItem` x1 - Interface/FrameXML/Util/C_Gossip.lua:132
+- `RemoveRedirectItems` x1 - Interface/FrameXML/Util/C_Gossip.lua:137
+- `RemoveRedirectNPC` x2 - Interface/FrameXML/UIParent.lua:1189
+- `RemoveRedirectNPCs` x1 - Interface/FrameXML/Util/C_Gossip.lua:36
+- `RestoreGossip` x6 - Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeGossipMixin.lua:34
+- `SilentHideGossip` x6 - Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeGossipMixin.lua:29
+- `currentNPC` x2 - Interface/AddOns/AscensionUI/Gossips/CallBoardRender.lua:169

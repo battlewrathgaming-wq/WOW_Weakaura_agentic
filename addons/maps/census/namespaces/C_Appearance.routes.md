@@ -1,0 +1,25 @@
+# C_Appearance - 23 attested members
+
+- `ApplyPendingAppearances` x2 - Interface/AddOns/Ascension_AppearanceUI/AppearanceUI.xml:69
+- `CanApplyPendingAppearances` x1 - Interface/AddOns/Ascension_AppearanceUI/AppearancePlayerModelMixin.lua:348
+- `CanSeeAppearances` x3 - Interface/AddOns/Ascension_AppearanceUI/AppearanceWardrobeMixin.lua:13
+- `CanSetAppearance` x3 - Interface/AddOns/Ascension_AppearanceUI/AppearanceCategorySlotButtonMixin.lua:107
+- `ClearInvalidPendingAppearances` x1 - Interface/AddOns/Ascension_AppearanceUI/AppearanceUI.xml:83
+- `ClearPendingAppearance` x1 - Interface/AddOns/Ascension_AppearanceUI/AppearanceCategorySlotButtonMixin.lua:180
+- `ClearPendingAppearances` x1 - Interface/AddOns/Ascension_AppearanceUI/AppearanceUI.xml:98
+- `GetActiveDiscount` x1 - Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:689
+- `GetAlternativeIDs` x2 - Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:639
+- `GetAppearanceDetails` x1 - Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:634
+- `GetAppearanceDisplayInfo` x13 - Interface/AddOns/Ascension_AppearanceUI/AppearanceCategorySlotButtonMixin.lua:197
+- `GetAppearanceForCategory` x9 - Interface/AddOns/Ascension_AppearanceUI/AppearanceCategorySlotButtonMixin.lua:110
+- `GetAppearanceItemSet` x1 - Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:698
+- `GetAppearanceWebURL` x4 - Interface/AddOns/Ascension_AppearanceUI/AppearanceCategorySlotButtonMixin.lua:132
+- `GetCreatureDisplayItems` x3 - Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:329
+- `GetEtherealBazaarWebURL` x1 - Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:294
+- `GetItemAppearanceID` x4 - Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:108
+- `GetPendingAppearance` x7 - Interface/AddOns/Ascension_AppearanceUI/AppearanceCategorySlotButtonMixin.lua:103
+- `HasPendingAppearances` x1 - Interface/AddOns/Ascension_AppearanceUI/AppearancePlayerModelMixin.lua:346
+- `IsEtherealBazaarAppearance` x4 - Interface/AddOns/Ascension_AppearanceUI/AppearanceCategorySlotButtonMixin.lua:149
+- `IsTransmogable` x1 - Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:583
+- `SetCanSeeAppearances` x3 - Interface/AddOns/Ascension_AppearanceUI/AppearanceWardrobeMixin.lua:28
+- `SetPendingAppearance` x3 - Interface/AddOns/Ascension_AppearanceUI/AppearanceCategorySlotButtonMixin.lua:183

@@ -1,0 +1,20 @@
+{
+ "namespace": "C_Aura",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 2,
+ "members": {
+  "UnitAura": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RotationStudio/RotationStudio.lua:322"
+   ]
+  },
+  "UnitHasAura": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_RotationStudio/RotationStudio.lua:311",
+    "Interface/FrameXML/Util/C_Player.lua:64"
+   ]
+  }
+ }
+}

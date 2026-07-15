@@ -1,0 +1,346 @@
+{
+ "namespace": "C_Wildcard",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 46,
+ "members": {
+  "AddAllDesiredFilter": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.xml:764"
+   ]
+  },
+  "AddDesiredID": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:102",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:148"
+   ]
+  },
+  "AddUndesiredID": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:988",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:103",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:156"
+   ]
+  },
+  "CanAddDesiredID": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollDesiredSpellListItemMixin.lua:22",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:86",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingSpells.lua:30",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingSpells.lua:65"
+   ]
+  },
+  "CanAddUndesiredID": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:236",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:91",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingSpells.lua:104",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingSpells.lua:110",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollUndesiredSpellListItemMixin.lua:26"
+   ]
+  },
+  "CanRepurchaseAnyRolls": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RandomModeGossipMixin.lua:87"
+   ]
+  },
+  "CanRepurchaseRolls": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:91"
+   ]
+  },
+  "CanRepurchaseTalentRolls": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:128"
+   ]
+  },
+  "CanRollAbilities": {
+   "count": 10,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1057",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1268",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1303",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:293",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:200",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:331",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:119",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:103"
+   ]
+  },
+  "CanShowStartingChoice": {
+   "count": 9,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:328",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:328",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:124",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:125",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:104",
+    "Interface/FrameXML/Util/WildCardUtil.lua:144",
+    "Interface/FrameXML/Util/WildCardUtil.lua:144",
+    "Interface/FrameXML/Util/WildCardUtil.lua:156"
+   ]
+  },
+  "CanStartRapidRolling": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:318"
+   ]
+  },
+  "CanUseRapidRolling": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:181",
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:676",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1393",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:767",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:199"
+   ]
+  },
+  "CancelRapidRolling": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:264",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:265"
+   ]
+  },
+  "ClearDesiredSpells": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.xml:747",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingSpells.lua:59"
+   ]
+  },
+  "ClearUndesiredSpells": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.xml:808",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingSpells.lua:79"
+   ]
+  },
+  "ContinueRapidRolling": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:297",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:302"
+   ]
+  },
+  "GetFilteredDesiredEntryAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollDesiredSpellListItemMixin.lua:14"
+   ]
+  },
+  "GetFilteredUndesiredEntryAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollUndesiredSpellListItemMixin.lua:18"
+   ]
+  },
+  "GetMaximumRapidRolls": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:61",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:416"
+   ]
+  },
+  "GetNextUnlearnedID": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollUndesiredSpellListItemMixin.lua:68"
+   ]
+  },
+  "GetNumFilteredDesiredEntries": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:19"
+   ]
+  },
+  "GetNumFilteredUndesiredEntries": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:27"
+   ]
+  },
+  "GetNumRepurchasableRolls": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:66",
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:98"
+   ]
+  },
+  "GetNumRepurchasableTalentRolls": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:72",
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:135"
+   ]
+  },
+  "GetRapidRollAbilityBreakpointInfo": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.xml:603",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:156",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:423"
+   ]
+  },
+  "GetRapidRollTalentBreakpointInfo": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.xml:657",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:175",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:435"
+   ]
+  },
+  "GetRapidRollingState": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1096",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1097",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:13",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:14",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:287",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:288"
+   ]
+  },
+  "GetRepurchaseRollCost": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:79"
+   ]
+  },
+  "GetRepurchaseTalentRollCost": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:117"
+   ]
+  },
+  "GetRollIcons": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardRouletteMixin.lua:81"
+   ]
+  },
+  "GetStartingChoiceEntries": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:332",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:332",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:390",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:390"
+   ]
+  },
+  "IsAwaitingRapidRollingTalentUpgradeRoll": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:51",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:52"
+   ]
+  },
+  "IsDesiredID": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollDesiredSpellListItemMixin.lua:18",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:86"
+   ]
+  },
+  "IsUndesiredID": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:91",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollUndesiredSpellListItemMixin.lua:22"
+   ]
+  },
+  "RemoveDesiredID": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:164"
+   ]
+  },
+  "RemoveUndesiredID": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:172"
+   ]
+  },
+  "RepurchaseRolls": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:155"
+   ]
+  },
+  "RepurchaseTalentRolls": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/Gossip/RepurchaseTabMixin.lua:162"
+   ]
+  },
+  "RerollUnlockedStartingAbilities": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1304",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1319",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardStartingChoice.lua:510"
+   ]
+  },
+  "RollAbilities": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1276",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:294",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:161",
+    "Interface/FrameXML/StaticPopup.lua:658"
+   ]
+  },
+  "SetFilteredDesiredEntries": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:116"
+   ]
+  },
+  "SetFilteredUndesiredEntries": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:125"
+   ]
+  },
+  "SetRapidRollingSelections": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:96",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDB.lua:97"
+   ]
+  },
+  "StartRapidRolling": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRolling.lua:308"
+   ]
+  },
+  "WillRollFirstNonStartingAbility": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:199",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:199",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:106"
+   ]
+  },
+  "WillRollStartingAbilities": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1291",
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1292",
+    "Interface/FrameXML/Util/CharacterAdvancementCostUtil.lua:127",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:269",
+    "Interface/FrameXML/Util/CharacterAdvancementUtil.lua:270",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:105"
+   ]
+  }
+ }
+}

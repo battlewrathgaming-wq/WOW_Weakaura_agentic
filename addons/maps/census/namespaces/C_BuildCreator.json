@@ -1,0 +1,157 @@
+{
+ "namespace": "C_BuildCreator",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 18,
+ "members": {
+  "ActivateBuild": {
+   "count": 12,
+   "sightings": [
+    "Interface/FrameXML/Ascension_BuildDraft/BuildDraftCardMixin.lua:45",
+    "Interface/FrameXML/StaticPopup.lua:474",
+    "Interface/FrameXML/StaticPopup.lua:488",
+    "Interface/FrameXML/StaticPopup.lua:502",
+    "Interface/FrameXML/StaticPopup.lua:574",
+    "Interface/FrameXML/StaticPopup.lua:588",
+    "Interface/FrameXML/StaticPopup.lua:1001",
+    "Interface/FrameXML/StaticPopup.lua:1021"
+   ]
+  },
+  "BookmarkBuild": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:208",
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:49",
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:663"
+   ]
+  },
+  "CanActivateBuild": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:189",
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:682"
+   ]
+  },
+  "DeactivateBuild": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:516",
+    "Interface/FrameXML/StaticPopup.lua:530"
+   ]
+  },
+  "DeleteBuild": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:572"
+   ]
+  },
+  "GetActiveBuild": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:178"
+   ]
+  },
+  "GetBookmarkedBuildAtIndex": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:38",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDropDown.lua:33"
+   ]
+  },
+  "GetBuild": {
+   "count": 8,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:506",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:515",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:739",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:805",
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:39",
+    "Interface/AddOns/Ascension_BuildCreator/CategoryListItem.lua:42",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDropDown.lua:34",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDropDown.lua:49"
+   ]
+  },
+  "GetBuildAtIndex": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:41",
+    "Interface/AddOns/Ascension_CoATalents/Templates/CoATalentTemplates.lua:348"
+   ]
+  },
+  "GetNumBookmarkedBuilds": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:178",
+    "Interface/AddOns/Ascension_BuildCreator/CategoryListItem.lua:74",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDropDown.lua:21"
+   ]
+  },
+  "GetNumBuilds": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:34",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:181",
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.lua:258",
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.lua:300"
+   ]
+  },
+  "GetSpell": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_WildCard/Dice/WildCardDice.lua:1143",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollDesiredSpellListItemMixin.lua:51",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingRender.lua:336",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollUndesiredSpellListItemMixin.lua:50",
+    "Interface/FrameXML/Util/BuildCreatorUtil.lua:204",
+    "Interface/FrameXML/Util/DraftUtil.lua:251"
+   ]
+  },
+  "IsOwnedBuild": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:685"
+   ]
+  },
+  "IsUpvotedBuild": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:120",
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:218",
+    "Interface/AddOns/Ascension_CoATalents/Templates/CoATalentTemplates.lua:386",
+    "Interface/AddOns/Ascension_CoATalents/Templates/CoATalentTemplates.lua:399"
+   ]
+  },
+  "QueryAllBuilds": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:204",
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.lua:277"
+   ]
+  },
+  "QueryBuild": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:511",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:524",
+    "Interface/AddOns/Ascension_WildCard/RapidRolling/RapidRollingDropDown.lua:44",
+    "Interface/FrameXML/Ascension_BuildDraft/Ascension_BuildDraft.lua:36"
+   ]
+  },
+  "RateBuild": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:220",
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:222",
+    "Interface/AddOns/Ascension_CoATalents/Templates/CoATalentTemplates.lua:401",
+    "Interface/AddOns/Ascension_CoATalents/Templates/CoATalentTemplates.lua:403"
+   ]
+  },
+  "UpdateFilter": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:326",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:730",
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.lua:297"
+   ]
+  }
+ }
+}

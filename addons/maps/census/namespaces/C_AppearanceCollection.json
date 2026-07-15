@@ -1,0 +1,94 @@
+{
+ "namespace": "C_AppearanceCollection",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 12,
+ "members": {
+  "ApplyCategoryFilter": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCollectionMixin.lua:276"
+   ]
+  },
+  "CollectItemAppearance": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:280"
+   ]
+  },
+  "GetAppearanceTypes": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCollectionMixin.lua:99"
+   ]
+  },
+  "GetAvailableChapters": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_SeasonCollection/SeasonRewardMixin.lua:19"
+   ]
+  },
+  "GetAvailableSeasons": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_SeasonCollection/SeasonRewardMixin.lua:17"
+   ]
+  },
+  "GetCategoriesForType": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCollectionMixin.lua:226",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCollectionMixin.lua:228",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearancePlayerModelMixin.lua:249",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearancePlayerModelMixin.lua:251",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceUI.lua:25",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceUI.lua:40"
+   ]
+  },
+  "GetCategoryAppearances": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCollectionMixin.lua:398"
+   ]
+  },
+  "GetCategoryInfo": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCategorySlotButtonMixin.lua:67",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCategorySlotButtonMixin.lua:170",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCategorySlotButtonMixin.lua:192",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCollectionMixin.lua:241",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCollectionMixin.lua:253"
+   ]
+  },
+  "GetCategoryMaxPages": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCollectionMixin.lua:284"
+   ]
+  },
+  "GetCollectedCount": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCollectionMixin.lua:277"
+   ]
+  },
+  "GetSeasonalItems": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_SeasonCollection/SeasonRewardMixin.lua:22"
+   ]
+  },
+  "IsAppearanceCollected": {
+   "count": 7,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:205",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:566",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:569",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:594",
+    "Interface/FrameXML/ContainerFrame.lua:789",
+    "Interface/FrameXML/ContainerFrame.lua:844",
+    "Interface/FrameXML/GameTooltip.lua:635"
+   ]
+  }
+ }
+}

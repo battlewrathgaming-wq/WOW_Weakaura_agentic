@@ -1,0 +1,26 @@
+# C_Quest - 24 attested members
+
+- `ASCENSION_CUSTOM_QUEST_REWARDED` x1 - Interface/FrameXML/Util/C_Quest.lua:21
+- `AddAutoQuestPopUp` x6 - Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_RankUpSpells.lua:33
+- `ExpandAllQuestHeaders` x1 - Interface/FrameXML/Util/C_Quest.lua:233
+- `GetCurrentQuests` x1 - Interface/FrameXML/Util/C_Quest.lua:185
+- `GetPortraitData` x4 - Interface/FrameXML/QuestFrame.lua:149
+- `GetQuestID` x3 - Interface/FrameXML/QuestLogFrame.lua:651
+- `GetQuestIndexByID` x2 - Interface/FrameXML/Objects/Quest.lua:45
+- `GetQuestNameByID` x11 - Interface/AddOns/Ascension_NewPlayerExperience/Ascension_NewPlayerExperience.lua:189
+- `GetTitleByID` x1 - Interface/FrameXML/Util/C_Quest.lua:306
+- `HasOrHasDoneQuest` x5 - Interface/FrameXML/Objects/Quest.lua:40
+- `IsFelforgedChallenge` x1 - Interface/FrameXML/Util/C_Quest.lua:249
+- `IsOnQuestID` x7 - Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_FirstLogin.lua:851
+- `IsQuerying` x1 - Interface/FrameXML/Util/C_Quest.lua:66
+- `IsQuestCachedByID` x2 - Interface/FrameXML/Objects/Quest.lua:30
+- `IsQuestComplete` x3 - Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_FirstLogin.lua:2044
+- `IsQuestTurnedIn` x5 - Interface/AddOns/Ascension_NewPlayerExperience/Tutorials/Tutorial_LoginSequence.lua:89
+- `PLAYER_LOGIN` x1 - Interface/FrameXML/Util/C_Quest.lua:46
+- `PortraitData` x1 - Interface/FrameXML/Util/C_Quest.lua:315
+- `QUEST_ACCEPTED` x1 - Interface/FrameXML/Util/C_Quest.lua:53
+- `QUEST_LOG_UPDATE` x1 - Interface/FrameXML/Util/C_Quest.lua:14
+- `QUEST_QUERY_COMPLETE` x1 - Interface/FrameXML/Util/C_Quest.lua:25
+- `SendPathToAscensionEvent` x12 - Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:280
+- `felforgedChallenges` x1 - Interface/FrameXML/Util/C_Quest.lua:522
+- `titles` x1 - Interface/FrameXML/Util/C_Quest.lua:415

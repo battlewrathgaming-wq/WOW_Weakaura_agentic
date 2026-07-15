@@ -1,0 +1,101 @@
+{
+ "namespace": "C_MythicPlus",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 12,
+ "members": {
+  "ActivateKeystone": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_MythicPlus/SocketKeystoneFrame.xml:110"
+   ]
+  },
+  "GetActiveKeystoneChampions": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:69"
+   ]
+  },
+  "GetActiveKeystoneEncounters": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:130"
+   ]
+  },
+  "GetActiveKeystoneInfo": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusCompleteBanner.lua:53",
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:50",
+    "Interface/FrameXML/Util/C_Keystones.lua:320",
+    "Interface/FrameXML/Util/MythicPlusUtil.lua:9",
+    "Interface/FrameXML/Util/MythicPlusUtil.lua:33"
+   ]
+  },
+  "GetActiveKeystoneTime": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusCompleteBanner.lua:70",
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTemplates.lua:20",
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTemplates.lua:39",
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:110",
+    "Interface/FrameXML/Util/C_Keystones.lua:321",
+    "Interface/FrameXML/Util/MythicPlusUtil.lua:10"
+   ]
+  },
+  "GetActiveKeystoneTrash": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:61",
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:258"
+   ]
+  },
+  "GetCurrentAffixes": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Ascension_LFG/Ascension_WeeklyKeystone.lua:54",
+    "Interface/FrameXML/Util/C_Keystones.lua:84",
+    "Interface/FrameXML/Util/C_Keystones.lua:172"
+   ]
+  },
+  "GetKeystoneInfo": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_MythicPlus/SocketKeystoneFrame.lua:10",
+    "Interface/FrameXML/GameTooltip.lua:649",
+    "Interface/FrameXML/Util/C_Keystones.lua:257"
+   ]
+  },
+  "GetMapEncounters": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:58"
+   ]
+  },
+  "GetMapFinalEncounter": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:57"
+   ]
+  },
+  "IsItemKeystone": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/GameTooltip.lua:648",
+    "Interface/FrameXML/Util/C_Keystones.lua:246"
+   ]
+  },
+  "IsKeystoneActive": {
+   "count": 8,
+   "sightings": [
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:16",
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:34",
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:49",
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:246",
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:264",
+    "Interface/FrameXML/UIParent.lua:1180",
+    "Interface/FrameXML/Util/MythicPlusUtil.lua:5",
+    "Interface/FrameXML/Util/MythicPlusUtil.lua:33"
+   ]
+  }
+ }
+}

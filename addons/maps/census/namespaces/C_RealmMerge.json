@@ -1,0 +1,38 @@
+{
+ "namespace": "C_RealmMerge",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 5,
+ "members": {
+  "GetAvailableOptions": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/RealmMerge.lua:11"
+   ]
+  },
+  "GetTargetRealm": {
+   "count": 2,
+   "sightings": [
+    "Interface/GlueXML/RealmMerge.lua:47",
+    "Interface/GlueXML/RealmMerge.lua:133"
+   ]
+  },
+  "IsMergeAvailable": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/RealmMerge.lua:81"
+   ]
+  },
+  "NeedsSetTargetRealm": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/RealmMerge.lua:86"
+   ]
+  },
+  "SetTargetRealm": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/RealmMerge.lua:193"
+   ]
+  }
+ }
+}

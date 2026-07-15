@@ -1,0 +1,276 @@
+{
+ "namespace": "C_Tutorial",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 39,
+ "members": {
+  "AddMentorSpecialization": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscensionTemplates.xml:35"
+   ]
+  },
+  "AnyUnclaimedRewards": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/UIParent.lua:1205"
+   ]
+  },
+  "CanCollectReward": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveDisplayMixin.lua:351",
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveDisplayMixin.lua:382",
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:211",
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:285"
+   ]
+  },
+  "CanToggleMentorStatus": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/TutorialUtil.lua:24"
+   ]
+  },
+  "CollectReward": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveDisplayMixin.lua:383",
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:286"
+   ]
+  },
+  "GetAvailableMentorAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathMentorItemMixin.lua:17"
+   ]
+  },
+  "GetCategories": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:39",
+    "Interface/SharedXML/Util/TutorialUtil.lua:61"
+   ]
+  },
+  "GetCategoryInfo": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:41",
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:193",
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:231"
+   ]
+  },
+  "GetCategoryProgress": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:94",
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:192",
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:232"
+   ]
+  },
+  "GetIndexByKeywordID": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathAppendixPanelMixin.lua:48",
+    "Interface/AddOns/Ascension_PathToAscension/PathAppendixPanelMixin.lua:48"
+   ]
+  },
+  "GetKeywordAtIndex": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathAppendixItemMixin.lua:19",
+    "Interface/AddOns/Ascension_PathToAscension/PathAppendixPanelMixin.lua:36",
+    "Interface/AddOns/Ascension_PathToAscension/PathAppendixPanelMixin.lua:56"
+   ]
+  },
+  "GetKeywordID": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/ChallengesUI.xml:281",
+    "Interface/SharedXML/KeywordTooltip.lua:20"
+   ]
+  },
+  "GetKeywordInfo": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/KeywordTooltip.lua:197"
+   ]
+  },
+  "GetMentorSpecializationActive": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathBecomeMentorPanelMixin.lua:32",
+    "Interface/AddOns/Ascension_PathToAscension/PathBecomeMentorPanelMixin.lua:46"
+   ]
+  },
+  "GetMentorSpecializationInfo": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathBecomeMentorPanelMixin.lua:34",
+    "Interface/AddOns/Ascension_PathToAscension/PathFindMentorPanelMixin.lua:16",
+    "Interface/AddOns/Ascension_PathToAscension/PathMentorItemMixin.lua:38"
+   ]
+  },
+  "GetMentorSpecializations": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathBecomeMentorPanelMixin.lua:18",
+    "Interface/AddOns/Ascension_PathToAscension/PathFindMentorPanelMixin.lua:15"
+   ]
+  },
+  "GetNumAvailableMentors": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathFindMentorPanelMixin.lua:6"
+   ]
+  },
+  "GetNumKeywords": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathAppendixPanelMixin.lua:5"
+   ]
+  },
+  "GetNumTutorials": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:7",
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:107"
+   ]
+  },
+  "GetObjectiveInfo": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveDisplayMixin.lua:301"
+   ]
+  },
+  "GetObjectives": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveDisplayMixin.lua:300",
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:267"
+   ]
+  },
+  "GetRewards": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveDisplayMixin.lua:323",
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:85"
+   ]
+  },
+  "GetTutorialAtIndex": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:43",
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:108"
+   ]
+  },
+  "GetTutorialByID": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveDisplayMixin.lua:417",
+    "Interface/FrameXML/UIParent.lua:1816",
+    "Interface/SharedXML/Util/TutorialUtil.lua:35"
+   ]
+  },
+  "GetTutorialDisplay": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveDisplayMixin.lua:39"
+   ]
+  },
+  "GetTutorialsRequiredForMentorStatus": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/TutorialUtil.lua:31"
+   ]
+  },
+  "IsCategoryEnabled": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:45",
+    "Interface/SharedXML/Util/TutorialUtil.lua:64"
+   ]
+  },
+  "IsMentorStatusActive": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathBecomeMentorPanelMixin.lua:72",
+    "Interface/AddOns/Ascension_PathToAscension/PathBecomeMentorPanelMixin.lua:77",
+    "Interface/SharedXML/Util/TutorialUtil.lua:23"
+   ]
+  },
+  "IsRewardCollected": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveDisplayMixin.lua:377",
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:129",
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:280",
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:109"
+   ]
+  },
+  "IsTutorialAvailable": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:44"
+   ]
+  },
+  "IsTutorialComplete": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveDisplayMixin.lua:350",
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveDisplayMixin.lua:381",
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:87",
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:213",
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:284",
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:115"
+   ]
+  },
+  "IsTutorialRequiredForMentorStatus": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveItemMixin.lua:45"
+   ]
+  },
+  "QueryActiveMentors": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathFindMentorPanelMixin.lua:60"
+   ]
+  },
+  "RemoveMentorSpecialization": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscensionTemplates.xml:37"
+   ]
+  },
+  "SetAvailableMentorFilter": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathFindMentorPanelMixin.lua:49"
+   ]
+  },
+  "SetKeywordFilter": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathAppendixPanelMixin.lua:31",
+    "Interface/AddOns/Ascension_PathToAscension/PathAppendixPanelMixin.lua:46"
+   ]
+  },
+  "SetTutorialFilter": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathToAscension.lua:189"
+   ]
+  },
+  "StartQuest": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathObjectiveDisplayMixin.lua:407"
+   ]
+  },
+  "ToggleMentorStatus": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_PathToAscension/PathBecomeMentorPanelMixin.lua:77"
+   ]
+  }
+ }
+}

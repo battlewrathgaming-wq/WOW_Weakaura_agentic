@@ -1,0 +1,40 @@
+{
+ "namespace": "C_Config",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 3,
+ "members": {
+  "GetBoolConfig": {
+   "count": 38,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceCollectionMixin.lua:44",
+    "Interface/AddOns/Ascension_BuildCreator/BuildCategory.lua:18",
+    "Interface/AddOns/Ascension_ChallengesUI/ChallengesUI.lua:7",
+    "Interface/AddOns/Ascension_ChallengesUI/ChallengesUI.lua:11",
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/GamemodesTab.lua:133",
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/GamemodesTab.lua:212",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:212",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:673"
+   ]
+  },
+  "GetIntConfig": {
+   "count": 11,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/GamemodesTab.lua:230",
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/GamemodesTab.lua:231",
+    "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpBuildDraft.lua:66",
+    "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpBuildDraft.lua:68",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:84",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:276",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:338",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:341"
+   ]
+  },
+  "GetRateConfig": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:190",
+    "Interface/FrameXML/Util/GlobalOverwrites.lua:196"
+   ]
+  }
+ }
+}

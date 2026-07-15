@@ -1,0 +1,182 @@
+{
+ "namespace": "C_Challenge",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 26,
+ "members": {
+  "CanActivateChallenge": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:662",
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:77"
+   ]
+  },
+  "CanDeactivateChallenge": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:666"
+   ]
+  },
+  "GetChallengeAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:150"
+   ]
+  },
+  "GetChallengeCompletion": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:581"
+   ]
+  },
+  "GetChallengeCompletions": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:199"
+   ]
+  },
+  "GetChallengeFailures": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/WorldMapFrame.lua:530"
+   ]
+  },
+  "GetChallengeIDByIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:154"
+   ]
+  },
+  "GetChallengeInfo": {
+   "count": 10,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:293",
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:380",
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialExtendedInfoMixin.lua:13",
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/EditableTrialMixin.lua:159",
+    "Interface/AddOns/Ascension_ChallengesUI/CustomTrials/EditableTrialMixin.lua:243",
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:66",
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:79",
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:92"
+   ]
+  },
+  "GetChallengeInfoByLevel": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:105",
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:112",
+    "Interface/SharedXML/Util/HyperlinkUtil.lua:506"
+   ]
+  },
+  "GetChallengeLevels": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:654"
+   ]
+  },
+  "GetChallengesWithGroupID": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:296"
+   ]
+  },
+  "GetConditionLocalization": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:322"
+   ]
+  },
+  "GetModifierLocalization": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:179"
+   ]
+  },
+  "GetNumChallenges": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:8"
+   ]
+  },
+  "GetPendingChallenges": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:5261",
+    "Interface/FrameXML/UIParent.lua:971"
+   ]
+  },
+  "GetRequirementLocalization": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/ChallengeUtil.lua:5"
+   ]
+  },
+  "GetRuleLocalization": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:341"
+   ]
+  },
+  "HasBrokenChallengeRule": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:346"
+   ]
+  },
+  "HasChallengeRule": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Util/ChallengeUtil.lua:82",
+    "Interface/FrameXML/Util/ChallengeUtil.lua:86",
+    "Interface/FrameXML/Util/ChallengeUtil.lua:90",
+    "Interface/FrameXML/Util/ChallengeUtil.lua:94"
+   ]
+  },
+  "IsChallengeActive": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:670",
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:44"
+   ]
+  },
+  "QueryChallengeCompletions": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:582"
+   ]
+  },
+  "QueryChallengeFailures": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/WorldMapFrame.lua:245"
+   ]
+  },
+  "SendChallengeSyncResponse": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:1177",
+    "Interface/FrameXML/StaticPopup.lua:1180",
+    "Interface/FrameXML/StaticPopup.lua:1209",
+    "Interface/FrameXML/StaticPopup.lua:1212"
+   ]
+  },
+  "SetChallengeFilter": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesTab.lua:85",
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/TrialsTab.lua:8"
+   ]
+  },
+  "StartChallenge": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:674"
+   ]
+  },
+  "StopChallenge": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:678"
+   ]
+  }
+ }
+}

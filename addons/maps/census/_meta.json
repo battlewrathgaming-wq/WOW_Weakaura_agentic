@@ -1,0 +1,17 @@
+{
+ "emitted_at": "2026-07-15T18:53:30",
+ "emitter": "addons/tools/emit_census.py",
+ "source_archive": "F:\\games\\Ascension_wow\\resources\\ascension-live\\Data\\patch-B.MPQ",
+ "source_sha256": "857a6680967114fcbd9f6f8d1907a367b4763e9970adb770242304174c247126",
+ "files_scanned": 1131,
+ "grain": "attested-usage from shipped UI code; the runtime census task is the completeness check (a C-side member no UI file calls is invisible here)",
+ "counts": {
+  "namespaces": 88,
+  "namespace_members": 1028,
+  "events": 736,
+  "events_custom": 321,
+  "global_functions": 3578,
+  "baseline_functions": 2081,
+  "baseline_events": 592
+ }
+}

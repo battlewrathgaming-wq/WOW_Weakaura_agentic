@@ -1,0 +1,51 @@
+{
+ "namespace": "C_TemporalContracts",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 6,
+ "members": {
+  "ActivateAllTemporalContractsByContentType": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardWidgets.lua:438",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardWidgets.lua:440"
+   ]
+  },
+  "ActivateTemporalContract": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardWidgets.lua:358",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardWidgets.lua:360"
+   ]
+  },
+  "GetCategoryName": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:376",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:376",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:403",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:403"
+   ]
+  },
+  "GetQuestCategory": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:365"
+   ]
+  },
+  "GetQuestSortIDs": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:367",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardLayout.lua:71"
+   ]
+  },
+  "GetQuestSortText": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:370",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:392",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardLayout.lua:73"
+   ]
+  }
+ }
+}

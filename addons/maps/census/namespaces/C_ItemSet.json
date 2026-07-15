@@ -1,0 +1,29 @@
+{
+ "namespace": "C_ItemSet",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 3,
+ "members": {
+  "GetAppearances": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:505",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:507",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:568",
+    "Interface/AddOns/Ascension_SeasonCollection/SeasonRewardMixin.lua:178"
+   ]
+  },
+  "GetItemSetName": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceUI.lua:32"
+   ]
+  },
+  "GetItemSetNumCollected": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:202",
+    "Interface/AddOns/Ascension_AppearanceUI/AppearanceModelMixin.lua:547"
+   ]
+  }
+ }
+}

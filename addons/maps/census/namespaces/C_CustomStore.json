@@ -1,0 +1,67 @@
+{
+ "namespace": "C_CustomStore",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 9,
+ "members": {
+  "ApplyCustomStoreFilter": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/CustomVendor.lua:161",
+    "Interface/FrameXML/CustomVendor.lua:244"
+   ]
+  },
+  "GetCustomStoreData": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/CustomVendor.lua:187",
+    "Interface/FrameXML/CustomVendor.lua:191"
+   ]
+  },
+  "GetCustomStoreItemInfo": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/CustomVendor.lua:324"
+   ]
+  },
+  "GetCustomStoreMaxPages": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/CustomVendor.lua:218"
+   ]
+  },
+  "GetCustomStoreTypeInfo": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesStoreTab.lua:32",
+    "Interface/AddOns/Ascension_ChallengesUI/Tabs/ChallengesStoreTab.lua:34",
+    "Interface/FrameXML/CoAClassBundleStore.lua:71",
+    "Interface/FrameXML/CustomVendor.lua:56",
+    "Interface/FrameXML/HeirloomStore.lua:67"
+   ]
+  },
+  "IsItemLockedDueToAchievement": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/CustomVendor.lua:315"
+   ]
+  },
+  "IsItemLockedDueToGameEvent": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/CustomVendor.lua:309"
+   ]
+  },
+  "PurchaseCustomStoreItem": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:292"
+   ]
+  },
+  "QueryCustomStore": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/CustomVendor.lua:68"
+   ]
+  }
+ }
+}

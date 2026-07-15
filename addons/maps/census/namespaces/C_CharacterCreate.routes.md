@@ -1,0 +1,30 @@
+# C_CharacterCreate - 28 attested members
+
+- `CanCreateArchetype` x3 - Interface/GlueXML/CharacterCreate.lua:12
+- `CanCreateClass` x7 - Interface/GlueXML/CharacterCreate.lua:351
+- `CanCreateCoA` x4 - Interface/GlueXML/CharacterCreate.lua:727
+- `CanCreateHero` x2 - Interface/GlueXML/CharacterCreate.lua:1464
+- `CanCreateWCR` x1 - Interface/GlueXML/CharacterCreate.lua:1463
+- `ClearClassPreview` x3 - Interface/GlueXML/CharacterCreate.lua:868
+- `CycleCustomizationSkipLocked` x1 - Interface/GlueXML/CharacterCreate.lua:2223
+- `Dress` x2 - Interface/GlueXML/CharacterCreate.lua:772
+- `GetArchetypeCategories` x1 - Interface/GlueXML/CharacterCreateArchetypes.lua:330
+- `GetArchetypeCategoryInfo` x4 - Interface/GlueXML/CharacterCreate.lua:1206
+- `GetArchetypeInfo` x7 - Interface/GlueXML/CharacterCreate.lua:1225
+- `GetArchetypeRoleInfo` x4 - Interface/GlueXML/CharacterCreate.lua:1184
+- `GetArchetypeRoles` x1 - Interface/GlueXML/CharacterCreateArchetypes.lua:281
+- `GetArchetypeSpellDescription` x1 - Interface/GlueXML/CharacterCreateArchetypes.lua:440
+- `GetArchetypes` x1 - Interface/GlueXML/CharacterCreateArchetypes.lua:379
+- `GetCameraPosition` x1 - Interface/GlueXML/CharacterCreate.lua:781
+- `GetClassGuideRoleInfo` x4 - Interface/GlueXML/CharacterCreate.lua:240
+- `GetClassGuideRoles` x3 - Interface/GlueXML/CharacterCreate.lua:239
+- `GetClassGuideSubroleClasses` x7 - Interface/GlueXML/CharacterCreate.lua:243
+- `GetClassGuideSubroleInfo` x8 - Interface/GlueXML/CharacterCreate.lua:242
+- `GetClassGuideSubroles` x5 - Interface/GlueXML/CharacterCreate.lua:241
+- `PreviewClassOutfit` x3 - Interface/GlueXML/CharacterCreate.lua:871
+- `ResetCameraPosition` x1 - Interface/GlueXML/CharacterCreate.lua:173
+- `SetCameraPosition` x1 - Interface/GlueXML/CharacterCreate.lua:793
+- `SetSelectedArchetype` x7 - Interface/GlueXML/CharacterCreate.lua:869
+- `Undress` x1 - Interface/GlueXML/CharacterCreate.lua:774
+- `ZoomIn` x1 - Interface/GlueXML/CharacterCreate.lua:151
+- `ZoomOut` x1 - Interface/GlueXML/CharacterCreate.lua:159

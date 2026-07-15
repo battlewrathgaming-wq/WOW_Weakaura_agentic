@@ -1,0 +1,41 @@
+{
+ "namespace": "C_RecoveryService",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 5,
+ "members": {
+  "GetCategoryItemAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/RecoveryItemMixin.lua:18"
+   ]
+  },
+  "GetNumItemsInCategory": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/HelpMenuItemRecoveryPanelMixin.lua:127"
+   ]
+  },
+  "QueryCategory": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/HelpMenuItemRecoveryPanelMixin.lua:174"
+   ]
+  },
+  "RecoverCategoryItemAtIndex": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/RecoveryItemMixin.lua:135",
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/RecoveryItemMixin.lua:151",
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/RecoveryItemMixin.lua:180",
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/RecoveryItemMixin.lua:201",
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/RecoveryItemMixin.lua:208"
+   ]
+  },
+  "UpdateFilter": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/HelpMenuItemRecoveryPanelMixin.lua:262"
+   ]
+  }
+ }
+}

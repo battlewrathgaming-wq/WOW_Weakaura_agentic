@@ -1,0 +1,21 @@
+{
+ "namespace": "C_Callboard",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 2,
+ "members": {
+  "GetView": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:317",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:317"
+   ]
+  },
+  "RequestView": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:319",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardCore.lua:320"
+   ]
+  }
+ }
+}

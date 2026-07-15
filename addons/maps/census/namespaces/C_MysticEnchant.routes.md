@@ -1,0 +1,27 @@
+# C_MysticEnchant - 25 attested members
+
+- `CanEquipSlot` x2 - Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameSlotMixin.lua:368
+- `CanInspect` x1 - Interface/AddOns/Ascension_InspectUI/InspectFrame.lua:196
+- `CanPurchaseMysticExtract` x1 - Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameReforgeTab.lua:282
+- `GetAppliedEnchant` x7 - Interface/FrameXML/Util/EnchantCollectionUtil.lua:843
+- `GetApplyChanges` x1 - Interface/FrameXML/Util/EnchantCollectionUtil.lua:847
+- `GetCollectionReforgeChanges` x1 - Interface/FrameXML/Util/EnchantCollectionUtil.lua:850
+- `GetCollectionReforgeItemCost` x2 - Interface/FrameXML/Util/EnchantCollectionUtil.lua:724
+- `GetCollectionReforgeSlotCost` x3 - Interface/FrameXML/Util/EnchantCollectionUtil.lua:718
+- `GetDisenchantCost` x1 - Interface/FrameXML/Util/EnchantCollectionUtil.lua:1128
+- `GetEnchantInfoByItem` x9 - Interface/AddOns/Ascension_EnchantCollection/Collection/ScrollListItemMixin.lua:109
+- `GetEnchantInfoBySpell` x31 - Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:388
+- `GetFilteredMysticScrollAtIndex` x3 - Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameScrollsTab.lua:53
+- `GetMysticScrollCost` x2 - Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameReforgeTab.lua:10
+- `GetNumFilteredMysticScrolls` x2 - Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameScrollsTab.lua:29
+- `GetProgress` x1 - Interface/AddOns/Ascension_EnchantCollection/EnchantCollection.lua:194
+- `GetReforgeCost` x1 - Interface/FrameXML/Util/EnchantCollectionUtil.lua:1148
+- `HasAnyCollected` x1 - Interface/FrameXML/Util/MysticEnchantUtil.lua:82
+- `HasAnyScroll` x1 - Interface/FrameXML/Util/MysticEnchantUtil.lua:82
+- `HasNearbyMysticAltar` x1 - Interface/FrameXML/Util/EnchantCollectionUtil.lua:758
+- `Inspect` x1 - Interface/AddOns/Ascension_InspectUI/InspectFrame.lua:197
+- `PurchaseMysticExtract` x1 - Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameReforgeTab.lua:284
+- `QueryEnchants` x3 - Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameCollectionTab.lua:114
+- `SetMysticScrollFilter` x4 - Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameScrollsTab.lua:28
+- `UndoApply` x2 - Interface/FrameXML/Util/EnchantCollectionUtil.lua:955
+- `UndoCollectionReforge` x2 - Interface/FrameXML/Util/EnchantCollectionUtil.lua:956

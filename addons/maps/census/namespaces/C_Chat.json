@@ -1,0 +1,19 @@
+{
+ "namespace": "C_Chat",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 2,
+ "members": {
+  "AcknowledgeChatInfraction": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/ChatFrame.xml:207"
+   ]
+  },
+  "HasChatInfraction": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/SocialToast.xml:235"
+   ]
+  }
+ }
+}

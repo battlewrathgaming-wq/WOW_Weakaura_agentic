@@ -1,0 +1,36 @@
+# C_Spell - 34 attested members
+
+- `AutoPlaceIgnored` x1 - Interface/FrameXML/Util/C_Spell.lua:3
+- `GetFirstRank` x1 - Interface/AddOns/AscensionUI/CharacterAdvancement/SimpleTalentsFrame.lua:30
+- `GetFreeActionButton` x2 - Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_Spellbook.lua:91
+- `GetFreeActionID` x2 - Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_Spellbook.lua:29
+- `GetMaxLearnableRank` x6 - Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:265
+- `GetNameAndID` x3 - Interface/AddOns/Ascension_HelpUI/BugReport/BugReportTemplates.lua:311
+- `GetPresetSpell` x1 - Interface/FrameXML/Util/C_Spell.lua:137
+- `GetSpecSpell` x1 - Interface/FrameXML/Util/C_Spell.lua:118
+- `GetSpellActionID` x2 - Interface/FrameXML/Util/C_Spell.lua:211
+- `GetSpellDescription` x3 - Interface/FrameXML/Ascension_MythicalBoons/Ascension_MythicalBoons.lua:235
+- `GetSpellID` x20 - Interface/AddOns/Ascension_RotationStudio/RotationStudio.lua:201
+- `HasMultipleSpellRanks` x4 - Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:489
+- `HasNotMaxedRanks` x2 - Interface/FrameXML/MainMenuBarMicroButtons.lua:168
+- `HasRuneUI` x2 - Interface/AddOns/AscensionResources/Core.lua:1031
+- `IsActionAlmostReady` x2 - Interface/FrameXML/SecureTemplates.lua:738
+- `IsActivePreset` x1 - Interface/FrameXML/Util/C_Spell.lua:141
+- `IsActiveSpec` x2 - Interface/FrameXML/GameTooltip.lua:543
+- `IsAnyRankKnown` x5 - Interface/AddOns/AscensionUI/CharacterAdvancement/SimpleTalentsFrame.lua:93
+- `IsCastAlmostDone` x2 - Interface/FrameXML/SecureTemplates.lua:738
+- `IsHarmfulSpell` x1 - Interface/FrameXML/SecureTemplates.lua:230
+- `IsHelpfulSpell` x3 - Interface/FrameXML/SecureTemplates.lua:230
+- `IsImmunitySpell` x1 - Interface/FrameXML/Util/AuraUtil.lua:113
+- `IsPresetSpell` x1 - Interface/FrameXML/Util/C_Spell.lua:133
+- `IsSpecSpell` x1 - Interface/FrameXML/Util/C_Spell.lua:122
+- `IsTrainerSpell` x7 - Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:267
+- `PLAYER_ENTERING_WORLD` x1 - Interface/FrameXML/Util/C_Spell.lua:311
+- `PLAYER_LEVEL_UP` x2 - Interface/FrameXML/UIParent.lua:1721
+- `PlaceSpellOnActionBar` x1 - Interface/FrameXML/Util/C_Spell.lua:396
+- `RemoveSpellFromActionBar` x1 - Interface/FrameXML/Util/C_Spell.lua:427
+- `SET_ACTION_BUTTON_SPELL_PAYLOAD` x1 - Interface/FrameXML/Util/C_Spell.lua:371
+- `SPELLS_CHANGED` x1 - Interface/FrameXML/Util/C_Spell.lua:334
+- `ShouldHoldToCast` x2 - Interface/FrameXML/SecureTemplates.lua:703
+- `TabHasNotMaxedRanks` x3 - Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:603
+- `knownSpellNames` x1 - Interface/FrameXML/Util/C_Spell.lua:2

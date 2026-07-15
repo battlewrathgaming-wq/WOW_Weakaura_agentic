@@ -1,0 +1,24 @@
+{
+ "namespace": "C_MysticEnchantPreset",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 2,
+ "members": {
+  "GetNumPresets": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/Manager/SpecManager.lua:26",
+    "Interface/AddOns/Ascension_EnchantCollection/Manager/SpecManagerButtonMixin.lua:22",
+    "Interface/FrameXML/ChatFrame.lua:1636",
+    "Interface/FrameXML/SpecListItem.lua:371",
+    "Interface/FrameXML/Util/MysticEnchantManagerUtil.lua:64",
+    "Interface/FrameXML/Util/MysticEnchantManagerUtil.lua:91"
+   ]
+  },
+  "GetPresetData": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/MysticEnchantManagerUtil.lua:76"
+   ]
+  }
+ }
+}

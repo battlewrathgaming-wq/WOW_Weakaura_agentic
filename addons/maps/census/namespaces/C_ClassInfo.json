@@ -1,0 +1,53 @@
+{
+ "namespace": "C_ClassInfo",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 4,
+ "members": {
+  "GetAllSpecs": {
+   "count": 21,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:363",
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:275",
+    "Interface/AddOns/Ascension_CoATalents/CoASpecViewMixin.lua:8",
+    "Interface/AddOns/Ascension_EnchantCollection/Collection/CollectionFrameMixin.lua:52",
+    "Interface/FrameXML/Util/GlobalFunctions.lua:399",
+    "Interface/FrameXML/Util/GlobalFunctions.lua:409",
+    "Interface/SharedXML/Util/ClassInfoUtil.lua:27",
+    "Interface/SharedXML/Util/ClassInfoUtil.lua:39"
+   ]
+  },
+  "GetClassBySpecName": {
+   "count": 2,
+   "sightings": [
+    "Interface/SharedXML/Util/ClassInfoUtil.lua:297",
+    "Interface/SharedXML/Util/ClassInfoUtil.lua:298"
+   ]
+  },
+  "GetSpecInfo": {
+   "count": 37,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:368",
+    "Interface/AddOns/Ascension_BuildCreator/BuildViewSection.lua:280",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:839",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CAGate.lua:166",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CAGate.lua:177",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CAGate.lua:192",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpecTab.lua:45",
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpecTab.lua:58"
+   ]
+  },
+  "GetSpecInfoByID": {
+   "count": 8,
+   "sightings": [
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.lua:202",
+    "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.lua:294",
+    "Interface/AddOns/Ascension_CoATalents/CoATreeViewMixin.lua:236",
+    "Interface/FrameXML/Util/GlobalFunctions.lua:428",
+    "Interface/FrameXML/Util/GlobalFunctions.lua:442",
+    "Interface/FrameXML/Util/GlobalFunctions.lua:458",
+    "Interface/SharedXML/Util/ClassInfoUtil.lua:282",
+    "Interface/SharedXML/Util/ClassInfoUtil.lua:283"
+   ]
+  }
+ }
+}

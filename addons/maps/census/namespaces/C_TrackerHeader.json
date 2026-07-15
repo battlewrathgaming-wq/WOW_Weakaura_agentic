@@ -1,0 +1,56 @@
+{
+ "namespace": "C_TrackerHeader",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 7,
+ "members": {
+  "CHALLENGE_COMPLETED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:104"
+   ]
+  },
+  "CHALLENGE_CRITERIA_COMPLETED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:78"
+   ]
+  },
+  "CHALLENGE_CRITERIA_FAILED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:91"
+   ]
+  },
+  "CHALLENGE_DEATH_UPDATE": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:65"
+   ]
+  },
+  "CHALLENGE_FAILURE_ADDED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:111"
+   ]
+  },
+  "Hide": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:54"
+   ]
+  },
+  "Show": {
+   "count": 9,
+   "sightings": [
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:12",
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:70",
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:72",
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:74",
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:88",
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:100",
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:108",
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:115"
+   ]
+  }
+ }
+}

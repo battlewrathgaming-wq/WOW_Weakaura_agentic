@@ -1,0 +1,51 @@
+{
+ "namespace": "C_CrowdControl",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 7,
+ "members": {
+  "COMBAT_LOG_EVENT_UNFILTERED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_CrowdControl.lua:102"
+   ]
+  },
+  "CROWD_CONTROL_ADDED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_CrowdControl.lua:149"
+   ]
+  },
+  "CROWD_CONTROL_REMOVED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_CrowdControl.lua:156"
+   ]
+  },
+  "GetActiveCrowdControl": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_CrowdControl.lua:185"
+   ]
+  },
+  "GetCrowdControlInfo": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Ascension_LoseControl/Ascension_LoseControl.lua:47",
+    "Interface/FrameXML/Ascension_LoseControl/Ascension_LoseControl.lua:64",
+    "Interface/FrameXML/Util/C_CrowdControl.lua:164"
+   ]
+  },
+  "PLAYER_ENTERING_WORLD": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_CrowdControl.lua:12"
+   ]
+  },
+  "UNIT_AURA": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_CrowdControl.lua:16"
+   ]
+  }
+ }
+}

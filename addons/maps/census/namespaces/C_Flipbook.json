@@ -1,0 +1,29 @@
+{
+ "namespace": "C_Flipbook",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 2,
+ "members": {
+  "CreateAtlasFlipbook": {
+   "count": 32,
+   "sightings": [
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_BarbarianResource.lua:87",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_ChronomancerResource.lua:84",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_CultistResource.lua:101",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_CultistResource.lua:108",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_NecromancerResource.lua:126",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_NecromancerResource.lua:132",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_PrimalistResource.lua:105",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_ReaperResource.lua:137"
+   ]
+  },
+  "Updater": {
+   "count": 4,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Flipbook.lua:3",
+    "Interface/SharedXML/Util/C_Flipbook.lua:4",
+    "Interface/SharedXML/Util/C_Flipbook.lua:6",
+    "Interface/SharedXML/Util/C_Flipbook.lua:121"
+   ]
+  }
+ }
+}

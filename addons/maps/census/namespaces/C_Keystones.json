@@ -1,0 +1,133 @@
+{
+ "namespace": "C_Keystones",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 17,
+ "members": {
+  "ASCENSION_MYTHIC_PLUS_KEYSTONE_ACTIVATION_WINDOW_VISIBILITY_CHANGED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:325"
+   ]
+  },
+  "GetCurrentSetBest": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Ascension_LFG/Ascension_WeeklyKeystone.lua:68",
+    "Interface/FrameXML/Util/C_Keystones.lua:114",
+    "Interface/FrameXML/Util/C_Keystones.lua:151"
+   ]
+  },
+  "GetCurrentSetString": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:83",
+    "Interface/FrameXML/Util/C_Keystones.lua:132",
+    "Interface/FrameXML/Util/C_Keystones.lua:210"
+   ]
+  },
+  "GetDungeonBest": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:137",
+    "Interface/FrameXML/Util/C_Keystones.lua:159",
+    "Interface/FrameXML/Util/C_Keystones.lua:160",
+    "Interface/FrameXML/Util/C_Keystones.lua:227"
+   ]
+  },
+  "GetDungeonBestLink": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:288"
+   ]
+  },
+  "GetKeystoneDungeonInfo": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Ascension_LFG/Ascension_WeeklyKeystone.lua:106",
+    "Interface/FrameXML/Util/C_Keystones.lua:223",
+    "Interface/FrameXML/Util/C_Keystones.lua:269",
+    "Interface/FrameXML/Util/C_Keystones.lua:289"
+   ]
+  },
+  "GetKeystoneInInventory": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:254"
+   ]
+  },
+  "GetKeystoneInInventoryItemID": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_MythicPlus/SocketKeystoneFrame.lua:4",
+    "Interface/FrameXML/Util/C_Keystones.lua:242",
+    "Interface/FrameXML/Util/C_Keystones.lua:255"
+   ]
+  },
+  "GetPlayerSaveKey": {
+   "count": 5,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:75",
+    "Interface/FrameXML/Util/C_Keystones.lua:108",
+    "Interface/FrameXML/Util/C_Keystones.lua:139",
+    "Interface/FrameXML/Util/C_Keystones.lua:206",
+    "Interface/FrameXML/Util/C_Keystones.lua:215"
+   ]
+  },
+  "GetProfileLink": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:262"
+   ]
+  },
+  "GetSetBest": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:100",
+    "Interface/FrameXML/Util/C_Keystones.lua:132"
+   ]
+  },
+  "GetTimedDungeonsForExpansion": {
+   "count": 5,
+   "sightings": [
+    "Interface/FrameXML/Ascension_LFG/Ascension_WeeklyKeystone.lua:10",
+    "Interface/FrameXML/Ascension_LFG/Ascension_WeeklyKeystone.lua:105",
+    "Interface/FrameXML/Util/C_Keystones.lua:233",
+    "Interface/FrameXML/Util/C_Keystones.lua:266",
+    "Interface/SharedXML/Util/HyperlinkUtil.lua:383"
+   ]
+  },
+  "MYTHIC_PLUS_COMPLETE": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:319"
+   ]
+  },
+  "MYTHIC_PLUS_COUNTDOWN_STARTED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:300"
+   ]
+  },
+  "MYTHIC_PLUS_STARTED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:309"
+   ]
+  },
+  "SaveKeystoneRun": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:144",
+    "Interface/FrameXML/Util/C_Keystones.lua:146"
+   ]
+  },
+  "playerSaveKey": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Keystones.lua:76",
+    "Interface/FrameXML/Util/C_Keystones.lua:77",
+    "Interface/FrameXML/Util/C_Keystones.lua:80"
+   ]
+  }
+ }
+}

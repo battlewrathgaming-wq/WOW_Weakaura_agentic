@@ -1,0 +1,47 @@
+{
+ "namespace": "C_PopupQueue",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 5,
+ "members": {
+  "Achievements": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Util/C_PopupQueue.lua:22",
+    "Interface/FrameXML/Util/C_PopupQueue.lua:24",
+    "Interface/FrameXML/Util/C_PopupQueue.lua:28"
+   ]
+  },
+  "Add": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_Collections/Collections.lua:213",
+    "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpBuildDraft.lua:280",
+    "Interface/AddOns/AscensionUI/BuildCreatorHelp/BuildCreatorHelpFreepick.lua:88",
+    "Interface/FrameXML/Ascension_TrackerHeader/Ascension_TrackerHeader.lua:32",
+    "Interface/FrameXML/Util/C_PopupQueue.lua:52"
+   ]
+  },
+  "AddAchievement": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/AlertFrames.lua:46",
+    "Interface/FrameXML/Util/C_PopupQueue.lua:58"
+   ]
+  },
+  "Frame": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Util/C_PopupQueue.lua:5",
+    "Interface/FrameXML/Util/C_PopupQueue.lua:6",
+    "Interface/FrameXML/Util/C_PopupQueue.lua:8"
+   ]
+  },
+  "Queue": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_PopupQueue.lua:9",
+    "Interface/FrameXML/Util/C_PopupQueue.lua:48"
+   ]
+  }
+ }
+}

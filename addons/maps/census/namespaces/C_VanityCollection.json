@@ -1,0 +1,99 @@
+{
+ "namespace": "C_VanityCollection",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 13,
+ "members": {
+  "GetDPPrice": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:125",
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:2344"
+   ]
+  },
+  "GetItem": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:102",
+    "Interface/FrameXML/AddonCompat/AddonCompat.lua:17",
+    "Interface/FrameXML/AddonCompat/AddonCompat.lua:22",
+    "Interface/FrameXML/GameTooltip.lua:626",
+    "Interface/FrameXML/Util/VanityCollectionUtil.lua:19"
+   ]
+  },
+  "GetItemByLearnedSpell": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/VanityCollectionUtil.lua:37"
+   ]
+  },
+  "GetOwnerByContentItem": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/VanityCollectionUtil.lua:53"
+   ]
+  },
+  "GetRandomItem": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:630",
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:630"
+   ]
+  },
+  "GetSeasonalShowcaseItems": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/VanityCollectionUtil.lua:63",
+    "Interface/FrameXML/Util/VanityCollectionUtil.lua:63"
+   ]
+  },
+  "IsCollectionItemOwned": {
+   "count": 10,
+   "sightings": [
+    "Interface/AddOns/Ascension_Draft/DraftActionButtonMixin.lua:8",
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:19",
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:308",
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:691",
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:1961",
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:2352",
+    "Interface/FrameXML/GameTooltip.lua:534",
+    "Interface/FrameXML/GameTooltip.lua:621"
+   ]
+  },
+  "IsConsolidatedVanityBuff": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/BuffFrame.lua:237"
+   ]
+  },
+  "IsPurchaseInProgress": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:773"
+   ]
+  },
+  "Purchase": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:754"
+   ]
+  },
+  "PurchaseWebShopItem": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:747"
+   ]
+  },
+  "QueryItems": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:371"
+   ]
+  },
+  "RequestDelivery": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_VanityCollection/VanityStore.lua:719"
+   ]
+  }
+ }
+}

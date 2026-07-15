@@ -1,0 +1,23 @@
+# C_Manastorm - 21 attested members
+
+- `CanEnter` x2 - Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:217
+- `CanLeave` x2 - Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:202
+- `Enter` x2 - Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:181
+- `GetActiveLevel` x2 - Interface/AddOns/Ascension_Manastorm/Manastorm.lua:90
+- `GetActiveManastormID` x2 - Interface/AddOns/Ascension_Manastorm/Manastorm.lua:98
+- `GetActiveManastormType` x3 - Interface/AddOns/Ascension_Manastorm/Manastorm.lua:155
+- `GetAvailableLoadoutSpells` x2 - Interface/AddOns/Ascension_Manastorm/ManastormLoadoutFlyout.lua:37
+- `GetBoss` x3 - Interface/AddOns/Ascension_Manastorm/Manastorm.lua:11
+- `GetEnterableLevels` x2 - Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:122
+- `GetExperienceModifier` x1 - Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:258
+- `GetLoadoutSpellAtIndex` x2 - Interface/AddOns/Ascension_Manastorm/ManastormLoadout.lua:54
+- `GetManastormCacheInfo` x2 - Interface/AddOns/Ascension_Manastorm/Manastorm.lua:43
+- `GetMaxCompletedLevels` x5 - Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:149
+- `GetNumLoadoutSlots` x2 - Interface/AddOns/Ascension_Manastorm/ManastormLoadout.lua:19
+- `GetRewardLimitProgress` x1 - Interface/FrameXML/Util/ManastormUtil.lua:35
+- `GetRewardModifier` x1 - Interface/AddOns/Ascension_Manastorm/Manastorm.lua:103
+- `GetRewardVisibility` x1 - Interface/FrameXML/Util/ManastormUtil.lua:19
+- `GetStageBonusExperience` x1 - Interface/AddOns/Ascension_Manastorm/Manastorm.lua:142
+- `IsInManastorm` x10 - Interface/AddOns/Ascension_Manastorm/Manastorm.lua:82
+- `Leave` x2 - Interface/FrameXML/StaticPopup.lua:453
+- `SetLoadoutSpellAtIndex` x1 - Interface/AddOns/Ascension_Manastorm/ManastormLoadoutFlyout.lua:30

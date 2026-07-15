@@ -1,0 +1,13 @@
+{
+ "namespace": "C_EquipmentSet",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 1,
+ "members": {
+  "PlaceInBank": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/EquipmentManager.lua:332"
+   ]
+  }
+ }
+}

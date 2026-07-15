@@ -1,0 +1,33 @@
+{
+ "namespace": "C_CallboardCache",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 4,
+ "members": {
+  "GetCallboardCacheInfo": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardRender.lua:103",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardWidgets.lua:910"
+   ]
+  },
+  "GetCurrentPoints": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardRender.lua:119"
+   ]
+  },
+  "GetItemLevelInfo": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardRender.lua:102",
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardWidgets.lua:3026"
+   ]
+  },
+  "GetPointsForQuest": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardWidgets.lua:2203"
+   ]
+  }
+ }
+}

@@ -1,0 +1,129 @@
+{
+ "namespace": "C_Deflate",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 18,
+ "members": {
+  "Adler32": {
+   "count": 3,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:280",
+    "Interface/SharedXML/Util/C_Deflate.lua:1736",
+    "Interface/SharedXML/Util/C_Deflate.lua:2381"
+   ]
+  },
+  "CompressDeflate": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Util/ActionBarUtil.lua:48",
+    "Interface/FrameXML/Util/ActionBarUtil.lua:127",
+    "Interface/SharedXML/Util/C_Deflate.lua:1769",
+    "Interface/SharedXML/Util/C_Serialize.lua:1289"
+   ]
+  },
+  "CompressDeflateWithDict": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:1791"
+   ]
+  },
+  "CompressZlib": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:1807"
+   ]
+  },
+  "CompressZlibWithDict": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:1826"
+   ]
+  },
+  "CreateCodec": {
+   "count": 3,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:2565",
+    "Interface/SharedXML/Util/C_Deflate.lua:2677",
+    "Interface/SharedXML/Util/C_Deflate.lua:2736"
+   ]
+  },
+  "CreateDictionary": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:361"
+   ]
+  },
+  "DecodeForPrint": {
+   "count": 3,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:2972",
+    "Interface/SharedXML/Util/C_Deflate.lua:2973",
+    "Interface/SharedXML/Util/C_Serialize.lua:1298"
+   ]
+  },
+  "DecodeForWoWAddonChannel": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:2699"
+   ]
+  },
+  "DecodeForWoWChatChannel": {
+   "count": 2,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:2761",
+    "Interface/SharedXML/Util/C_Deflate.lua:2762"
+   ]
+  },
+  "DecompressDeflate": {
+   "count": 2,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:2404",
+    "Interface/SharedXML/Util/C_Serialize.lua:1300"
+   ]
+  },
+  "DecompressDeflateWithDict": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:2428"
+   ]
+  },
+  "DecompressZlib": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:2447"
+   ]
+  },
+  "DecompressZlibWithDict": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:2471"
+   ]
+  },
+  "EncodeForPrint": {
+   "count": 3,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:2922",
+    "Interface/SharedXML/Util/C_Deflate.lua:2923",
+    "Interface/SharedXML/Util/C_Serialize.lua:1291"
+   ]
+  },
+  "EncodeForWoWAddonChannel": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:2685"
+   ]
+  },
+  "EncodeForWoWChatChannel": {
+   "count": 2,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:2747",
+    "Interface/SharedXML/Util/C_Deflate.lua:2748"
+   ]
+  },
+  "internals": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_Deflate.lua:3029"
+   ]
+  }
+ }
+}

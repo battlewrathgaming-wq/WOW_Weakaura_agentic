@@ -1,0 +1,44 @@
+{
+ "namespace": "C_AccountInfo",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 4,
+ "members": {
+  "GetCharacterAtIndex": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_TicketUI/CreateTicketPanelMixin.lua:82",
+    "Interface/AddOns/Ascension_TicketUI/CreateTicketPanelMixin.lua:94",
+    "Interface/AddOns/Ascension_TicketUI/TicketCharacterChoiceMixin.lua:15",
+    "Interface/AddOns/Postal/Modules/BlackBook.lua:132"
+   ]
+  },
+  "GetGMLevel": {
+   "count": 8,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:129",
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:686",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:2456",
+    "Interface/FrameXML/Ascension_DebugTools/CommandHyperlinks.lua:1",
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVE.lua:437",
+    "Interface/FrameXML/SpellListItem.lua:501",
+    "Interface/FrameXML/UIParent.lua:1205",
+    "Interface/FrameXML/Util/C_Player.lua:44"
+   ]
+  },
+  "GetNumCharacters": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_TicketUI/CreateTicketPanelMixin.lua:34",
+    "Interface/AddOns/Ascension_TicketUI/CreateTicketPanelMixin.lua:34",
+    "Interface/AddOns/Postal/Modules/BlackBook.lua:131"
+   ]
+  },
+  "IsGM": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:1282",
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVE.lua:1056"
+   ]
+  }
+ }
+}

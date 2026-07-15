@@ -1,0 +1,103 @@
+{
+ "namespace": "C_PrimaryStat",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 12,
+ "members": {
+  "AuraToID": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:37",
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:75"
+   ]
+  },
+  "Auras": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:28",
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:66"
+   ]
+  },
+  "GetActivePrimaryStat": {
+   "count": 18,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:360",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1229",
+    "Interface/AddOns/Ascension_Manastorm/ManastormQueue.lua:185",
+    "Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_FirstLogin.lua:626",
+    "Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_FirstLogin.lua:846",
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:1156",
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:1198",
+    "Interface/FrameXML/Ascension_LFG/Ascension_PVP.lua:1401"
+   ]
+  },
+  "GetInternalID": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1230",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:718",
+    "Interface/AddOns/Ascension_ForcedPrimaryStat/PrimaryStat.lua:26",
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:86"
+   ]
+  },
+  "GetPrimaryStatAura": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:117"
+   ]
+  },
+  "GetPrimaryStatID": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:144",
+    "Interface/FrameXML/Util/C_Spell.lua:348",
+    "Interface/FrameXML/Util/C_Spell.lua:349"
+   ]
+  },
+  "GetPrimaryStatInfo": {
+   "count": 15,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildIcons.lua:141",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildIcons.lua:189",
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:86",
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:81",
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:1237",
+    "Interface/AddOns/Ascension_ForcedPrimaryStat/PrimaryStat.lua:43",
+    "Interface/AddOns/Blizzard_ArenaUI/Blizzard_ArenaUI.lua:152",
+    "Interface/FrameXML/Ascension_BuildDraft/BuildDraftCardMixin.lua:59"
+   ]
+  },
+  "GetPrimaryStatSpell": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:148"
+   ]
+  },
+  "GetUnitPrimaryStat": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:127"
+   ]
+  },
+  "SetPrimaryStat": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:90"
+   ]
+  },
+  "SpellToID": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:19",
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:58"
+   ]
+  },
+  "internalIds": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_ForcedPrimaryStat/PrimaryStat.lua:248",
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:10",
+    "Interface/FrameXML/Util/C_PrimaryStat.lua:49"
+   ]
+  }
+ }
+}

@@ -1,0 +1,97 @@
+{
+ "namespace": "C_SkillCard",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 13,
+ "members": {
+  "GetCardAtIndex": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:302",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:308",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:317",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:322",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:180"
+   ]
+  },
+  "GetCardID": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/RandomModeStoreItemMixin.lua:17"
+   ]
+  },
+  "GetCardSpellID": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_RandomModeShared/RandomModeStoreItemMixin.lua:19"
+   ]
+  },
+  "GetMaxCardCount": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:300",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:316",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardsFrame.lua:265",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:176"
+   ]
+  },
+  "GetSkillCardInfo": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:256"
+   ]
+  },
+  "GetSkillCardInfoAtIndex": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardsFrame.lua:267",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:184"
+   ]
+  },
+  "GetSkillCardQuality": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_SkillCards/SkillCard/SkillCard.lua:421",
+    "Interface/AddOns/Ascension_SkillCards/SkillCard/SkillCard.lua:715",
+    "Interface/AddOns/Ascension_SkillCards/SkillCard/SkillCard.lua:814"
+   ]
+  },
+  "IsCardAtIndexActive": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:192"
+   ]
+  },
+  "IsCardAtIndexBlocked": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:302",
+    "Interface/AddOns/Ascension_Draft/DraftCardMixin.lua:308",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardTab/SkillCardTab.lua:316"
+   ]
+  },
+  "IsCardedID": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/DraftUtil.lua:130"
+   ]
+  },
+  "IsCardedSpellID": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/GameTooltip.lua:393"
+   ]
+  },
+  "RemoveCardAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:214"
+   ]
+  },
+  "SetCardAtIndex": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:203"
+   ]
+  }
+ }
+}

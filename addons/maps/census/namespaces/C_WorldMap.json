@@ -1,0 +1,129 @@
+{
+ "namespace": "C_WorldMap",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 16,
+ "members": {
+  "CanShowPOI": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Util/C_WorldMap.lua:63",
+    "Interface/FrameXML/Util/C_WorldMap.lua:64",
+    "Interface/FrameXML/WorldMapFrame.lua:549"
+   ]
+  },
+  "GetCurrentMapID": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Util/C_WorldMap.lua:44",
+    "Interface/FrameXML/Util/C_WorldMap.lua:54",
+    "Interface/FrameXML/Util/C_WorldMap.lua:55"
+   ]
+  },
+  "GetMapFileByAreaID": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/Gossips/CallBoardWidgets.lua:144"
+   ]
+  },
+  "GetMapFileByZoneID": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/WorldMapFrame.lua:295",
+    "Interface/FrameXML/WorldMapFrame.lua:306"
+   ]
+  },
+  "GetMapIDByAreaID": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_WorldMap.lua:57",
+    "Interface/LibraryXML/Astrolabe-0.4/Astrolabe.lua:184"
+   ]
+  },
+  "GetMapIDByZoneID": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Data/MapPOI.lua:85"
+   ]
+  },
+  "GetMapPosition": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/WorldMapFrame.lua:552",
+    "Interface/LibraryXML/Astrolabe-0.4/Astrolabe.lua:184"
+   ]
+  },
+  "GetPOIFilter": {
+   "count": 7,
+   "sightings": [
+    "Interface/FrameXML/Util/C_WorldMap.lua:182",
+    "Interface/FrameXML/Util/C_WorldMap.lua:183",
+    "Interface/FrameXML/WorldMapFrame.lua:527",
+    "Interface/FrameXML/WorldMapFrame.lua:2624",
+    "Interface/FrameXML/WorldMapFrame.lua:2631",
+    "Interface/FrameXML/WorldMapFrame.lua:2650",
+    "Interface/FrameXML/WorldMapFrame.lua:2653"
+   ]
+  },
+  "GetVisiblePOI": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Util/C_WorldMap.lua:42",
+    "Interface/FrameXML/Util/C_WorldMap.lua:43",
+    "Interface/FrameXML/WorldMapFrame.lua:548"
+   ]
+  },
+  "GetWorldPosition": {
+   "count": 3,
+   "sightings": [
+    "Interface/LibraryXML/Astrolabe-0.4/Astrolabe.lua:154",
+    "Interface/LibraryXML/Astrolabe-0.4/Astrolabe.lua:155",
+    "Interface/LibraryXML/Astrolabe-0.4/Astrolabe.lua:183"
+   ]
+  },
+  "GetZoneIDByAreaID": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/WorldMapFrame.lua:522"
+   ]
+  },
+  "IsOnCityMap": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Util/C_WorldMap.lua:96",
+    "Interface/FrameXML/Util/C_WorldMap.lua:161",
+    "Interface/FrameXML/Util/C_WorldMap.lua:162"
+   ]
+  },
+  "IsOnContinentMap": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Ascension_POI/MapPoiPin.lua:42",
+    "Interface/FrameXML/Util/C_WorldMap.lua:100",
+    "Interface/FrameXML/Util/C_WorldMap.lua:154",
+    "Interface/FrameXML/Util/C_WorldMap.lua:155"
+   ]
+  },
+  "SetPOIFilter": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Util/C_WorldMap.lua:175",
+    "Interface/FrameXML/Util/C_WorldMap.lua:176",
+    "Interface/FrameXML/WorldMapFrame.lua:2624",
+    "Interface/FrameXML/WorldMapFrame.lua:2653"
+   ]
+  },
+  "SetPOIFilters": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_WorldMap.lua:168",
+    "Interface/FrameXML/Util/C_WorldMap.lua:169"
+   ]
+  },
+  "xyz": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_WorldMap.lua:40"
+   ]
+  }
+ }
+}

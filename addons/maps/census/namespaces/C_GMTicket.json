@@ -1,0 +1,25 @@
+{
+ "namespace": "C_GMTicket",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 3,
+ "members": {
+  "ApproveAutomatedMessage": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:142"
+   ]
+  },
+  "AssignGMTicket": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:161"
+   ]
+  },
+  "DeclineAutomatedMessage": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:129"
+   ]
+  }
+ }
+}

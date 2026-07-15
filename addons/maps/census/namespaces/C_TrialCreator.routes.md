@@ -1,0 +1,21 @@
+# C_TrialCreator - 19 attested members
+
+- `ActivateTrial` x1 - Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:24
+- `CanActivateTrial` x2 - Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:12
+- `CanDeactivateTrial` x1 - Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:16
+- `CanEditTrial` x1 - Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:94
+- `CanSaveTrial` x1 - Interface/AddOns/Ascension_ChallengesUI/CustomTrials/EditableTrialMixin.lua:81
+- `DeactivateTrial` x1 - Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:28
+- `DeleteTrial` x1 - Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:62
+- `GetActiveTrial` x1 - Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:20
+- `GetNumTrials` x1 - Interface/AddOns/Ascension_ChallengesUI/Tabs/CustomTrialsTab.lua:9
+- `GetTrialAtIndex` x1 - Interface/AddOns/Ascension_ChallengesUI/Tabs/CustomTrialsTab.lua:40
+- `GetTrialCompletion` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:577
+- `GetTrialCompletions` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeExtendedInfoMixin.lua:201
+- `GetTrialIDByIndex` x1 - Interface/AddOns/Ascension_ChallengesUI/Tabs/CustomTrialsTab.lua:44
+- `GetTrialInfo` x4 - Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:46
+- `QueryTrialCompletions` x1 - Interface/AddOns/Ascension_ChallengesUI/Challenges/ChallengeItemMixin.lua:578
+- `QueryTrials` x3 - Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:63
+- `RateTrial` x2 - Interface/AddOns/Ascension_ChallengesUI/CustomTrials/CustomTrialItemMixin.lua:131
+- `SaveTrial` x1 - Interface/AddOns/Ascension_ChallengesUI/CustomTrials/EditableTrialMixin.lua:62
+- `SetTrialFilter` x1 - Interface/AddOns/Ascension_ChallengesUI/Tabs/CustomTrialsTab.lua:35

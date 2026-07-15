@@ -1,0 +1,133 @@
+{
+ "namespace": "C_Hook",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 15,
+ "members": {
+  "DumpProfiling": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/C_Hook.lua:386"
+   ]
+  },
+  "EVENT_TIMES": {
+   "count": 2,
+   "sightings": [
+    "Interface/SharedXML/C_Hook.lua:98",
+    "Interface/SharedXML/C_Hook.lua:100"
+   ]
+  },
+  "IsRegistered": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/C_Hook.lua:469"
+   ]
+  },
+  "Register": {
+   "count": 90,
+   "sightings": [
+    "Interface/AddOns/Ascension_MythicPlus/MythicPlusCompleteBanner.lua:49",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Events.lua:24",
+    "Interface/AddOns/AscensionUI/AscensionUI.lua:30",
+    "Interface/AddOns/AscensionUI/CharacterAdvancement/CASpecListMixin.lua:33",
+    "Interface/AddOns/AscensionUI/Gossips/gossipShared.lua:1086",
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:161",
+    "Interface/AddOns/Blizzard_GuildBankUI/Blizzard_GuildBankUI.lua:97",
+    "Interface/FrameXML/Ascension_BuildDraft/Ascension_BuildDraft.lua:198"
+   ]
+  },
+  "RegisterAllEvents": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Events.lua:22",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/DevConsole.lua:44",
+    "Interface/SharedXML/C_Hook.lua:77",
+    "Interface/SharedXML/C_Hook.lua:236"
+   ]
+  },
+  "RegisterBucket": {
+   "count": 20,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/EnchantCollection.lua:108",
+    "Interface/AddOns/Ascension_EnchantCollection/EnchantCollection.lua:109",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:19",
+    "Interface/FrameXML/Ascension_CharacterFrame/SidePanels/StatsPanel.lua:305",
+    "Interface/FrameXML/Ascension_CharacterFrame/SidePanels/StatsPanel.lua:316",
+    "Interface/FrameXML/Ascension_CharacterFrame/SidePanels/StatsPanel.lua:320",
+    "Interface/FrameXML/Ascension_CharacterFrame/SidePanels/StatsPanel.lua:324",
+    "Interface/FrameXML/Ascension_CoAResources/ClassResources.lua:462"
+   ]
+  },
+  "SendBlizzardEvent": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/ComboFrame.lua:96",
+    "Interface/SharedXML/C_Hook.lua:93",
+    "Interface/SharedXML/C_Hook.lua:455"
+   ]
+  },
+  "SendEvent": {
+   "count": 51,
+   "sightings": [
+    "Interface/AddOns/Ascension_EnchantCollection/EnchantCollection.lua:879",
+    "Interface/AddOns/Ascension_EnchantCollection/Slots/SlotFrameSlotTab.lua:539",
+    "Interface/AddOns/AscensionUI/AscensionUI.lua:27",
+    "Interface/FrameXML/Util/C_CrowdControl.lua:43",
+    "Interface/FrameXML/Util/C_CrowdControl.lua:48",
+    "Interface/FrameXML/Util/C_CrowdControl.lua:59",
+    "Interface/FrameXML/Util/C_CrowdControl.lua:132",
+    "Interface/FrameXML/Util/C_CrowdControl.lua:136"
+   ]
+  },
+  "StartProfiling": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/C_Hook.lua:378"
+   ]
+  },
+  "StopProfiling": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/C_Hook.lua:382"
+   ]
+  },
+  "Unregister": {
+   "count": 37,
+   "sightings": [
+    "Interface/AddOns/Ascension_SeasonCollection/SeasonProgressBarMixin.lua:89",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Events.lua:30",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Events.lua:34",
+    "Interface/AddOns/Ascension_WildCard/WildCard.lua:31",
+    "Interface/AddOns/AscensionUI/Gossips/gossipShared.lua:838",
+    "Interface/AddOns/AscensionUI/Gossips/SkillCard.lua:156",
+    "Interface/FrameXML/Ascension_CharacterFrame/SidePanels/StatsPanel.lua:332",
+    "Interface/FrameXML/Ascension_CoAResources/ClassResources.lua:445"
+   ]
+  },
+  "allListener": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Events.lua:10",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Events.lua:31"
+   ]
+  },
+  "buckets": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/C_Hook.lua:357"
+   ]
+  },
+  "events": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Events.lua:2"
+   ]
+  },
+  "refs": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Events.lua:12",
+    "Interface/AddOns/Ascension_UIDevelopmentTools/Console/Commands/Events.lua:13"
+   ]
+  }
+ }
+}

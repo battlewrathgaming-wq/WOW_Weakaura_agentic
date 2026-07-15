@@ -1,0 +1,254 @@
+{
+ "namespace": "C_Spell",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 34,
+ "members": {
+  "AutoPlaceIgnored": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:3"
+   ]
+  },
+  "GetFirstRank": {
+   "count": 1,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/CharacterAdvancement/SimpleTalentsFrame.lua:30"
+   ]
+  },
+  "GetFreeActionButton": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_Spellbook.lua:91",
+    "Interface/FrameXML/Util/C_Spell.lua:171"
+   ]
+  },
+  "GetFreeActionID": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_NewPlayerExperience/old/Tutorial_Spellbook.lua:29",
+    "Interface/FrameXML/Util/C_Spell.lua:196"
+   ]
+  },
+  "GetMaxLearnableRank": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:265",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:131",
+    "Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:300",
+    "Interface/FrameXML/SpellListItem.lua:431",
+    "Interface/FrameXML/Util/C_Spell.lua:243",
+    "Interface/FrameXML/Util/C_Spell.lua:292"
+   ]
+  },
+  "GetNameAndID": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/BugReport/BugReportTemplates.lua:311",
+    "Interface/AddOns/Ascension_HelpUI/BugReport/BugReportTemplates.lua:352",
+    "Interface/FrameXML/Util/C_Spell.lua:17"
+   ]
+  },
+  "GetPresetSpell": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:137"
+   ]
+  },
+  "GetSpecSpell": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:118"
+   ]
+  },
+  "GetSpellActionID": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:211",
+    "Interface/FrameXML/Util/C_Spell.lua:411"
+   ]
+  },
+  "GetSpellDescription": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Ascension_MythicalBoons/Ascension_MythicalBoons.lua:235",
+    "Interface/FrameXML/Objects/Spell.lua:35",
+    "Interface/FrameXML/Util/C_Spell.lua:62"
+   ]
+  },
+  "GetSpellID": {
+   "count": 20,
+   "sightings": [
+    "Interface/AddOns/Ascension_RotationStudio/RotationStudio.lua:201",
+    "Interface/AddOns/AscensionUI/CharacterAdvancement/SimpleTalentsFrame.lua:16",
+    "Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:251",
+    "Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:499",
+    "Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:766",
+    "Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:775",
+    "Interface/FrameXML/ExtraActionBar.lua:122",
+    "Interface/FrameXML/ExtraActionBar.lua:409"
+   ]
+  },
+  "HasMultipleSpellRanks": {
+   "count": 4,
+   "sightings": [
+    "Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:489",
+    "Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:632",
+    "Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.xml:694",
+    "Interface/FrameXML/Util/C_Spell.lua:446"
+   ]
+  },
+  "HasNotMaxedRanks": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/MainMenuBarMicroButtons.lua:168",
+    "Interface/FrameXML/Util/C_Spell.lua:256"
+   ]
+  },
+  "HasRuneUI": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/AscensionResources/Core.lua:1031",
+    "Interface/FrameXML/RuneFrame.lua:162"
+   ]
+  },
+  "IsActionAlmostReady": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/SecureTemplates.lua:738",
+    "Interface/FrameXML/Util/C_Spell.lua:85"
+   ]
+  },
+  "IsActivePreset": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:141"
+   ]
+  },
+  "IsActiveSpec": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/GameTooltip.lua:543",
+    "Interface/FrameXML/Util/C_Spell.lua:126"
+   ]
+  },
+  "IsAnyRankKnown": {
+   "count": 5,
+   "sightings": [
+    "Interface/AddOns/AscensionUI/CharacterAdvancement/SimpleTalentsFrame.lua:93",
+    "Interface/FrameXML/Ascension_CoAResources/Ascension_TemplarResource.lua:29",
+    "Interface/FrameXML/ExtraActionBar.lua:129",
+    "Interface/FrameXML/ExtraActionBar.lua:279",
+    "Interface/FrameXML/Util/C_Spell.lua:149"
+   ]
+  },
+  "IsCastAlmostDone": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/SecureTemplates.lua:738",
+    "Interface/FrameXML/Util/C_Spell.lua:71"
+   ]
+  },
+  "IsHarmfulSpell": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/SecureTemplates.lua:230"
+   ]
+  },
+  "IsHelpfulSpell": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/SecureTemplates.lua:230",
+    "Interface/FrameXML/Util/HealPredictionUtil.lua:599",
+    "Interface/FrameXML/Util/HealPredictionUtil.lua:683"
+   ]
+  },
+  "IsImmunitySpell": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/AuraUtil.lua:113"
+   ]
+  },
+  "IsPresetSpell": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:133"
+   ]
+  },
+  "IsSpecSpell": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:122"
+   ]
+  },
+  "IsTrainerSpell": {
+   "count": 7,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/Templates/CASpellButton.lua:267",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/Templates/CASpellButton.lua:133",
+    "Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:302",
+    "Interface/FrameXML/Notifications/ToastNotificationSystem.lua:278",
+    "Interface/FrameXML/SpellListItem.lua:433",
+    "Interface/FrameXML/Util/C_Spell.lua:470",
+    "Interface/FrameXML/Util/C_Spell.lua:471"
+   ]
+  },
+  "PLAYER_ENTERING_WORLD": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:311"
+   ]
+  },
+  "PLAYER_LEVEL_UP": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/UIParent.lua:1721",
+    "Interface/FrameXML/Util/C_Spell.lua:272"
+   ]
+  },
+  "PlaceSpellOnActionBar": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:396"
+   ]
+  },
+  "RemoveSpellFromActionBar": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:427"
+   ]
+  },
+  "SET_ACTION_BUTTON_SPELL_PAYLOAD": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:371"
+   ]
+  },
+  "SPELLS_CHANGED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:334"
+   ]
+  },
+  "ShouldHoldToCast": {
+   "count": 2,
+   "sightings": [
+    "Interface/FrameXML/SecureTemplates.lua:703",
+    "Interface/FrameXML/Util/C_Spell.lua:107"
+   ]
+  },
+  "TabHasNotMaxedRanks": {
+   "count": 3,
+   "sightings": [
+    "Interface/FrameXML/Ascension_Spellbook/Ascension_Spellbook.lua:603",
+    "Interface/FrameXML/Util/C_Spell.lua:227",
+    "Interface/FrameXML/Util/C_Spell.lua:264"
+   ]
+  },
+  "knownSpellNames": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_Spell.lua:2"
+   ]
+  }
+ }
+}

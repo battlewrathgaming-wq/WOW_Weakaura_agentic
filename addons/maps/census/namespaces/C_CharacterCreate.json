@@ -1,0 +1,232 @@
+{
+ "namespace": "C_CharacterCreate",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 28,
+ "members": {
+  "CanCreateArchetype": {
+   "count": 3,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:12",
+    "Interface/GlueXML/CharacterCreate.lua:1538",
+    "Interface/GlueXML/CharacterCreate.lua:1774"
+   ]
+  },
+  "CanCreateClass": {
+   "count": 7,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:351",
+    "Interface/GlueXML/CharacterCreate.lua:656",
+    "Interface/GlueXML/CharacterCreate.lua:1693",
+    "Interface/GlueXML/CharacterCreate.lua:1740",
+    "Interface/GlueXML/Util/CharacterCreateUtil.lua:4",
+    "Interface/GlueXML/Util/CharacterCreateUtil.lua:16",
+    "Interface/GlueXML/Util/CharacterCreateUtil.lua:24"
+   ]
+  },
+  "CanCreateCoA": {
+   "count": 4,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:727",
+    "Interface/GlueXML/CharacterCreate.lua:1462",
+    "Interface/GlueXML/CharacterCreate.lua:2126",
+    "Interface/GlueXML/CharacterCreate.lua:2661"
+   ]
+  },
+  "CanCreateHero": {
+   "count": 2,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:1464",
+    "Interface/GlueXML/CharacterCreate.lua:1533"
+   ]
+  },
+  "CanCreateWCR": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:1463"
+   ]
+  },
+  "ClearClassPreview": {
+   "count": 3,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:868",
+    "Interface/GlueXML/CharacterCreate.lua:1018",
+    "Interface/GlueXML/CharacterCreate.lua:1877"
+   ]
+  },
+  "CycleCustomizationSkipLocked": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:2223"
+   ]
+  },
+  "Dress": {
+   "count": 2,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:772",
+    "Interface/GlueXML/CharacterCreate.lua:839"
+   ]
+  },
+  "GetArchetypeCategories": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:330"
+   ]
+  },
+  "GetArchetypeCategoryInfo": {
+   "count": 4,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:1206",
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:337",
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:354",
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:627"
+   ]
+  },
+  "GetArchetypeInfo": {
+   "count": 7,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:1225",
+    "Interface/GlueXML/CharacterCreate.lua:1936",
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:386",
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:407",
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:408",
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:545",
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:642"
+   ]
+  },
+  "GetArchetypeRoleInfo": {
+   "count": 4,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:1184",
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:288",
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:306",
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:611"
+   ]
+  },
+  "GetArchetypeRoles": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:281"
+   ]
+  },
+  "GetArchetypeSpellDescription": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:440"
+   ]
+  },
+  "GetArchetypes": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreateArchetypes.lua:379"
+   ]
+  },
+  "GetCameraPosition": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:781"
+   ]
+  },
+  "GetClassGuideRoleInfo": {
+   "count": 4,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:240",
+    "Interface/GlueXML/CharacterCreate.lua:328",
+    "Interface/GlueXML/CharacterCreate.lua:333",
+    "Interface/GlueXML/CharacterCreate.lua:555"
+   ]
+  },
+  "GetClassGuideRoles": {
+   "count": 3,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:239",
+    "Interface/GlueXML/CharacterCreate.lua:258",
+    "Interface/GlueXML/CharacterCreate.lua:537"
+   ]
+  },
+  "GetClassGuideSubroleClasses": {
+   "count": 7,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:243",
+    "Interface/GlueXML/CharacterCreate.lua:281",
+    "Interface/GlueXML/CharacterCreate.lua:282",
+    "Interface/GlueXML/CharacterCreate.lua:295",
+    "Interface/GlueXML/CharacterCreate.lua:299",
+    "Interface/GlueXML/CharacterCreate.lua:630",
+    "Interface/GlueXML/CharacterCreate.lua:631"
+   ]
+  },
+  "GetClassGuideSubroleInfo": {
+   "count": 8,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:242",
+    "Interface/GlueXML/CharacterCreate.lua:272",
+    "Interface/GlueXML/CharacterCreate.lua:276",
+    "Interface/GlueXML/CharacterCreate.lua:329",
+    "Interface/GlueXML/CharacterCreate.lua:338",
+    "Interface/GlueXML/CharacterCreate.lua:374",
+    "Interface/GlueXML/CharacterCreate.lua:382",
+    "Interface/GlueXML/CharacterCreate.lua:583"
+   ]
+  },
+  "GetClassGuideSubroles": {
+   "count": 5,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:241",
+    "Interface/GlueXML/CharacterCreate.lua:374",
+    "Interface/GlueXML/CharacterCreate.lua:380",
+    "Interface/GlueXML/CharacterCreate.lua:580",
+    "Interface/GlueXML/CharacterCreate.lua:581"
+   ]
+  },
+  "PreviewClassOutfit": {
+   "count": 3,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:871",
+    "Interface/GlueXML/CharacterCreate.lua:1016",
+    "Interface/GlueXML/CharacterCreate.lua:1875"
+   ]
+  },
+  "ResetCameraPosition": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:173"
+   ]
+  },
+  "SetCameraPosition": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:793"
+   ]
+  },
+  "SetSelectedArchetype": {
+   "count": 7,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:869",
+    "Interface/GlueXML/CharacterCreate.lua:898",
+    "Interface/GlueXML/CharacterCreate.lua:922",
+    "Interface/GlueXML/CharacterCreate.lua:956",
+    "Interface/GlueXML/CharacterCreate.lua:1193",
+    "Interface/GlueXML/CharacterCreate.lua:1215",
+    "Interface/GlueXML/CharacterCreate.lua:1244"
+   ]
+  },
+  "Undress": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:774"
+   ]
+  },
+  "ZoomIn": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:151"
+   ]
+  },
+  "ZoomOut": {
+   "count": 1,
+   "sightings": [
+    "Interface/GlueXML/CharacterCreate.lua:159"
+   ]
+  }
+ }
+}

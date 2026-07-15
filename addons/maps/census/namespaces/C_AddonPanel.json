@@ -1,0 +1,170 @@
+{
+ "namespace": "C_AddonPanel",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 21,
+ "members": {
+  "DeleteSaveState": {
+   "count": 5,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:1370",
+    "Interface/FrameXML/StaticPopup.lua:1383",
+    "Interface/GlueXML/GlueDialog.lua:43",
+    "Interface/GlueXML/GlueDialog.lua:57",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:319"
+   ]
+  },
+  "EnableHiddenAddons": {
+   "count": 3,
+   "sightings": [
+    "Interface/GlueXML/CharacterSelect.lua:1635",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:142",
+    "Interface/SharedXML/Util/SharedOverwrites.lua:58"
+   ]
+  },
+  "EnumerateAddOns": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/BugReport/BugReportLayouts.lua:62",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:169"
+   ]
+  },
+  "GetAddonDisabledBy": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_AddonPanel/AddonPanelInfoMixin.lua:41",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:228"
+   ]
+  },
+  "GetAddonIndex": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:70",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:180",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:201"
+   ]
+  },
+  "GetAddonIndexRaw": {
+   "count": 2,
+   "sightings": [
+    "Interface/SharedXML/Util/C_AddonPanel.lua:189",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:279"
+   ]
+  },
+  "GetAddonObject": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_AddonPanel.lua:108"
+   ]
+  },
+  "GetNumInsecureAddons": {
+   "count": 2,
+   "sightings": [
+    "Interface/SharedXML/Util/C_AddonPanel.lua:162",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:177"
+   ]
+  },
+  "GetSaveState": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:121",
+    "Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:143",
+    "Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:152",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:306"
+   ]
+  },
+  "GetSaveStateIDs": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:151",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:310"
+   ]
+  },
+  "GetSearchedAddons": {
+   "count": 2,
+   "sightings": [
+    "Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:67",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:198"
+   ]
+  },
+  "HasConfigurableAddons": {
+   "count": 3,
+   "sightings": [
+    "Interface/GlueXML/CharacterSelect.lua:629",
+    "Interface/GlueXML/CharacterSelect.lua:872",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:176"
+   ]
+  },
+  "InitializeAddonList": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_AddonPanel.lua:72"
+   ]
+  },
+  "IsAddonSearched": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_AddonPanel.lua:218"
+   ]
+  },
+  "IsSecureAddon": {
+   "count": 2,
+   "sightings": [
+    "Interface/SharedXML/Util/C_AddonPanel.lua:157",
+    "Interface/SharedXML/Util/SharedOverwrites.lua:47"
+   ]
+  },
+  "MakeSaveState": {
+   "count": 6,
+   "sightings": [
+    "Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:44",
+    "Interface/FrameXML/StaticPopup.lua:1345",
+    "Interface/FrameXML/StaticPopup.lua:1393",
+    "Interface/GlueXML/GlueDialog.lua:19",
+    "Interface/GlueXML/GlueDialog.lua:67",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:262"
+   ]
+  },
+  "RefreshAddonData": {
+   "count": 2,
+   "sightings": [
+    "Interface/SharedXML/Util/C_AddonPanel.lua:116",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:120"
+   ]
+  },
+  "RestoreSaveState": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:53",
+    "Interface/AddOns/Ascension_AddonPanel/AddonPanel.lua:126",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:274"
+   ]
+  },
+  "UpdateAddonList": {
+   "count": 4,
+   "sightings": [
+    "Interface/SharedXML/Util/C_AddonPanel.lua:127",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:164",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:171",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:199"
+   ]
+  },
+  "WriteSaveState": {
+   "count": 7,
+   "sightings": [
+    "Interface/FrameXML/StaticPopup.lua:1346",
+    "Interface/FrameXML/StaticPopup.lua:1371",
+    "Interface/FrameXML/StaticPopup.lua:1393",
+    "Interface/GlueXML/GlueDialog.lua:20",
+    "Interface/GlueXML/GlueDialog.lua:44",
+    "Interface/GlueXML/GlueDialog.lua:67",
+    "Interface/SharedXML/Util/C_AddonPanel.lua:297"
+   ]
+  },
+  "saveFile": {
+   "count": 1,
+   "sightings": [
+    "Interface/SharedXML/Util/C_AddonPanel.lua:18"
+   ]
+  }
+ }
+}

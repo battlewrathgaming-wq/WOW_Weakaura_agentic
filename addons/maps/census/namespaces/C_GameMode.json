@@ -1,0 +1,67 @@
+{
+ "namespace": "C_GameMode",
+ "grain": "attested-usage (shipped UI code); not the engine export",
+ "member_count": 8,
+ "members": {
+  "ASCENSION_CUSTOM_GAME_MODE_CHANGED": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_GameMode.lua:45"
+   ]
+  },
+  "GenerateCallbackEvents": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_GameMode.lua:6"
+   ]
+  },
+  "GetActiveGameModes": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_GameMode.lua:27"
+   ]
+  },
+  "IsAnyGameModeActive": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_GameMode.lua:23"
+   ]
+  },
+  "IsGameModeActive": {
+   "count": 140,
+   "sightings": [
+    "Interface/AddOns/Ascension_BuildCreator/BuildCreator.lua:36",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/BuildEditorTemplates.xml:427",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:13",
+    "Interface/AddOns/Ascension_BuildCreator/BuildEditor/EditableBuildView.lua:102",
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:179",
+    "Interface/AddOns/Ascension_BuildCreator/BuildListItem.lua:207",
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:6",
+    "Interface/AddOns/Ascension_BuildCreator/BuildView.lua:662"
+   ]
+  },
+  "PLAYER_ENTERING_WORLD": {
+   "count": 1,
+   "sightings": [
+    "Interface/FrameXML/Util/C_GameMode.lua:50"
+   ]
+  },
+  "RegisterCallback": {
+   "count": 4,
+   "sightings": [
+    "Interface/AddOns/Ascension_CharacterAdvancement/CharacterAdvancement.lua:119",
+    "Interface/AddOns/Ascension_CharacterAdvancementSeason9/CharacterAdvancement.lua:56",
+    "Interface/AddOns/Ascension_SkillCards/SkillCardFrame/SkillCardsFrame.lua:176",
+    "Interface/FrameXML/Util/DraftUtil.lua:141"
+   ]
+  },
+  "RegisterCallbackWithHandle": {
+   "count": 3,
+   "sightings": [
+    "Interface/AddOns/Ascension_HelpUI/HelpMenu/HelpMenuItemRecoveryPanelMixin.lua:71",
+    "Interface/FrameXML/Util/EnchantCollectionUtil.lua:269",
+    "Interface/FrameXML/Util/SkillCardsUtil.lua:285"
+   ]
+  }
+ }
+}
