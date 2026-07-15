@@ -2,6 +2,21 @@
 
 _Last updated 2026-07-14 (SESSION CLOSE). The single "where are we" read. Detail lives in the code + READMEs this points at._
 
+## Morning 2026-07-15 (on top of the session close below)
+
+- **MULTIDOT DISCOVERED LIVE (Battlewrath, in-game):** aura2 `unit:"multi"` works built-in on the fork (CLEU-driven —
+  `BuffTrigger2.lua:3671`; no nameplate units needed). One aurabar + one id per DOT family in `auranames` + `showClones`,
+  in a `sort: ascending` dynamicgroup = the ambient multi-dot tracker (top bar = next dot to fall). Captured through the
+  corpus's own intake (export → stub → CLEAN closure) — **`corpus/patterns/multidot-tracker.md`** is the versioned
+  template (his live config verbatim; taste layer credited). `group_count` = REQUIRED multi kit, operator **`>= 1`**
+  (the export's `<=` was an authoring slip the stub→grading loop caught pre-live; his in-game copy owes the flip).
+  The buckets.md "least-verified" caveat SUPERSEDED. Destined: a per-class multidot contract (dot lists already
+  computed by the batch select) + a picker scaffold shelf item.
+- **PICKER V1 SETTLED** (roadmap): ONE portable .html carrying the runtime exporter — pre-bounced tables + JS codec
+  (conformance-gated vs the python codec), **part-pick → one group string**, shelves = singles (class:spec slicing) +
+  scaffolds (patterns as units), assembly stays in-game, dumb type-to-type. **The agreed next build** (easy pace).
+- **Two press-ready builds on the bench:** the picker · the per-class multidot contract.
+
 ## Session close (the day's final state — everything below it stands)
 
 - **THE PRODUCTION RUN:** `batch_press.py` pressed the Target tracker across the whole game — **110 packs · 427 member

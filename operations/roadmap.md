@@ -21,7 +21,9 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
 - **★ HEADING: contracts as repeatable mechanisms of code construct.** The creation pipeline's core primitive, proven
   in three species on 2026-07-14 (bucket contract pressed per class:spec · micro-contract for one-offs · the coverage
   matrix as a verification contract): **select + emit, written once, pressed forever** — populate the compiler, gate +
-  canon the type-checker and linker. The remaining creation-pipeline work rides this: the **Ready tracker** contract
+  canon the type-checker and linker. The remaining creation-pipeline work rides this: **the per-class MULTIDOT
+  contract (PRESS-READY 2026-07-15 — `corpus/patterns/multidot-tracker.md` is the live-discovered template; the dot
+  lists already computed; operator flip owed in Battlewrath's live copy)**, the **Ready tracker** contract
   (spell-trigger palette file + its liveness first — `trigger_args`/`condition_vars` already harvested), the **Self
   tracker** (boons · proc-on-consumer · payoff pairs), **resource bars**, `spellknown` per-member gates, and the batch
   press (all classes × specs unattended — the defined-I/O end-state).
