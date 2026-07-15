@@ -117,6 +117,14 @@ After behaviour is decided, offer the REMAINDER of that class:spec:bucket shelf 
 behaviour pre-bound. The one screen that deliberately WIDENS: an "anything else?" at the door.
 Cheap both ways: the user decides once; the shell re-renders Q3's shelf with Q4's answer attached.
 
+**What "the rest" means, precisely (Battlewrath): same-TYPE by effect chain, flattened by ID family.**
+- **Same type:** the effect chains (resolver axes / typed edges) decide membership — pick a cooldown and the
+  remainder offered is cooldown-shaped abilities only, never a mixed bag. The classification already in hand IS
+  the shelf filter; no new analysis.
+- **Flattened by ID family:** one row per family, ranks collapsed — which is exactly what the pressed aura wants,
+  since drive-from-ID matches the spell FAMILY not a rank (the match-family law). The row and the aura agree on
+  what a "spell" is.
+
 ## Q5 — the string
 
 One group, one Copy button, three lines of "open WoW → /wa → Import → paste."
