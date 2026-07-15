@@ -1,0 +1,64 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-07-15T19:04:45",
+    "pulled_at": "2026-07-15T19:04:46",
+    "sha256": "12b824a22b0d33876ba79dc99b48cdf0dc699c9ada24fd87eaa9123630308f8a",
+    "raw_clone": "addons\\landing\\raw\\20260715_190433_704__frames.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "frames: 5 frame(s) under the cursor",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "NECROMANCER",
+    "runId": "20260715_190433_704",
+    "startedAt": "2026-07-15 19:04:33",
+    "char": "Gravekeeper",
+    "completedAt": "2026-07-15 19:04:33",
+    "version": "2.0.0",
+    "args": "",
+    "status": "complete",
+    "task": "frames",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "cursorX": 553.4797237039379,
+    "cursorY": 355.7647302476845,
+    "hits": [
+      {
+        "strata": "UNKNOWN",
+        "name": "WorldFrame",
+        "objectType": "Frame",
+        "level": 0
+      },
+      {
+        "strata": "MEDIUM",
+        "name": "UIParent",
+        "objectType": "Frame",
+        "level": 0
+      },
+      {
+        "strata": "MEDIUM",
+        "name": "WeakAurasFrame",
+        "parent": "UIParent",
+        "objectType": "Frame",
+        "level": 0
+      },
+      {
+        "strata": "BACKGROUND",
+        "name": "table: 4CB39838",
+        "parent": "UIParent",
+        "objectType": "Frame",
+        "level": 1
+      },
+      {
+        "strata": "TOOLTIP",
+        "name": "table: 4CB39888",
+        "parent": "UIParent",
+        "objectType": "Frame",
+        "level": 1
+      }
+    ]
+  }
+}

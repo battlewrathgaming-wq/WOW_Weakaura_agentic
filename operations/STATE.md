@@ -4,6 +4,10 @@ _Last updated 2026-07-15 (addons-bench session). The single "where are we" read.
 
 ## Addons bench 2026-07-15 (the dedicated addons agent's first build session)
 
+- **✅ LIVE-PROVEN 2026-07-15 19:04 (Battlewrath, one pass, zero fixes):** deploy `all` → restart → `/coadump r
+  frames` → `/reload` → the watcher landed `20260715_190433_704__frames.json` in 1s (envelope complete, header
+  stamped NECROMANCER/Gravekeeper, real frame stack in the payload). Battlewrath: "Pipeline proven. And a clear
+  improvement over past pipeline." Rider settled: Lua errors do NOT reach `Logs\LUA.txt` (load milestones only).
 - **The bench loop MECHANIZED end to end** (headless-green; live proof costs one client restart):
   `addons/menu.bat` (the pinned keys-only bench terminal — hosts the watcher, steers deploys/pulls/git)
   · `addons/deploy.py` (repo→client dispatcher: manifest, byte-copy, stray cleanup, by-exception receipt)
