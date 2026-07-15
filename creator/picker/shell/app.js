@@ -181,28 +181,33 @@ function libraryFace() {
   if (S.cls) clsSel.value = S.cls;
   const specWrap = el("div", {});
   const detail = el("div", {});
-  let trail = [];  // the chain walk's history - back-stepping is first-class
+  let trail = [];   // the chain walk's history - back-stepping is first-class
+  let origin = null; // where the walk was ENTERED from (cards / search) - probing returns there
 
-  // the pseudo trees speak plainly - never "Necromancer - Class"
-  const specLabel = (sp) => sp === "Class" ? "Common pool (the Class tree)"
-    : sp === "General" ? "General (racials & professions)" : sp;
+  // the pseudo trees speak plainly - never "Necromancer - Class". General doesn't get a tile
+  // at all (Battlewrath: ~5 racials + misc reads far bigger than it is); its spells stay
+  // reachable through search, and its trackables are folded into every spec's shelf anyway.
+  const specLabel = (sp) => sp === "Class" ? "Common pool (the Class tree)" : sp;
 
   const showSpecs = () => {
     const c = LIBRARY.classes[clsSel.value];
-    trail = [];
+    trail = []; origin = null;
     specWrap.replaceChildren(el("div", { class: "grid" },
-      ...Object.entries(c.specs).sort().map(([sp, v]) => {
-        const tag = v.ghost ? " · ghost (not a dev tree)" : "";
-        return el("button", { class: "card", onclick: () => showCards(clsSel.value, sp) },
-          el("b", {}, specLabel(sp) + tag),
-          el("small", {}, v.caption ? `${v.caption.spells} spells · hub: ${v.caption.hub}` : `${v.cards.length} talents`));
-      })));
+      ...Object.entries(c.specs).sort()
+        .filter(([sp]) => sp !== "General")
+        .map(([sp, v]) => {
+          const tag = v.ghost ? " · ghost (not a dev tree)" : "";
+          return el("button", { class: "card", onclick: () => showCards(clsSel.value, sp) },
+            el("b", {}, specLabel(sp) + tag),
+            el("small", {}, v.caption ? `${v.caption.spells} spells · hub: ${v.caption.hub}` : `${v.cards.length} talents`));
+        })));
     detail.replaceChildren();
   };
 
   const showCards = (cls, sp) => {
     const v = LIBRARY.classes[cls].specs[sp];
     trail = [];
+    origin = () => showCards(cls, sp);   // a chain entered from here returns here
     const body = v.cards.length
       ? el("div", { class: "panel" }, ...v.cards.map((card) =>
           el("div", { class: "row" },
@@ -244,12 +249,15 @@ function libraryFace() {
       ? el("button", { class: "quiet", onclick: () => { trail.pop(); showChain(cls, trail[trail.length - 1], true); } },
           "← back along the chain")
       : "";
+    const returnBtn = origin
+      ? el("button", { class: "quiet", onclick: () => { trail = []; origin(); } }, "↩ return to selection")
+      : "";
     const trailLine = trail.length > 1
       ? el("div", { class: "kv" }, "walk: " + trail.map((s) => (chains[s] || {}).name || s).join(" → "))
       : "";
     detail.replaceChildren(
       el("h2", {}, `${row.name || sid}  `, el("span", { class: "kv" }, sid)),
-      el("div", { class: "actions" }, backBtn),
+      el("div", { class: "actions" }, backBtn, returnBtn),
       trailLine,
       el("div", { class: "detail chain" },
         el("div", { class: "kv" }, `axes: `,
@@ -259,16 +267,19 @@ function libraryFace() {
   };
 
   const search = el("input", { type: "search", placeholder: "find a spell by name or id (this class)" });
-  search.addEventListener("input", () => {
-    const q = search.value.trim().toLowerCase();
-    if (q.length < 2) return;
+  const renderSearch = (q) => {
     const chains = LIBRARY.classes[clsSel.value].chains;
     const hits = Object.entries(chains)
       .filter(([sid, r]) => sid.includes(q) || (r.name || "").toLowerCase().includes(q)).slice(0, 30);
+    origin = () => renderSearch(q);      // a chain entered from these results returns to them
     detail.replaceChildren(el("div", { class: "panel" }, ...hits.map(([sid, r]) =>
       el("div", { class: "row" }, el("label", {},
         el("a", { class: "chain", onclick: () => { trail = []; showChain(clsSel.value, sid); } },
           `${r.name || "(unnamed)"} (${sid})`))))));
+  };
+  search.addEventListener("input", () => {
+    const q = search.value.trim().toLowerCase();
+    if (q.length >= 2) renderSearch(q);
   });
 
   clsSel.addEventListener("change", showSpecs);
