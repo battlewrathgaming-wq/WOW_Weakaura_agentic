@@ -16,6 +16,12 @@ _Last updated 2026-07-14 (SESSION CLOSE). The single "where are we" read. Detail
   (conformance-gated vs the python codec), **part-pick → one group string**, shelves = singles (class:spec slicing) +
   scaffolds (patterns as units), assembly stays in-game, dumb type-to-type. **The agreed next build** (easy pace).
 - **Two press-ready builds on the bench:** the picker · the per-class multidot contract.
+- **The `addons/` BENCH established + populated (2026-07-15):** root sibling for the dedicated addons agent —
+  charter/invariants/bench/backlog (the handoff kit) + the residents moved in (COA_DevDump · COA_GuardianPlates with
+  `deploy_to_game.bat` = the deploy pattern: repo = source of truth, byte-copy to the game, agents never write the
+  client folder · Mob_Autogroup · refs_threat). **FIRST GOAL: the client-surface census** (probe _G + stock-3.3.5
+  baseline diff + source-grep → unique tables of every custom lever/API; the spec capture and WA-env harvest are rows
+  of it). The agent boots on `addons/invariants.md`.
 
 ## Session close (the day's final state — everything below it stands)
 
