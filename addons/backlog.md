@@ -2,20 +2,16 @@
 
 _Ordered by leverage. Each is designed and waiting on exactly this bench._
 
-## ★ THE FIRST GOAL (Battlewrath, 2026-07-15): the CLIENT-SURFACE CENSUS — probing / surface-finding
+## ✅ THE FIRST GOAL — DELIVERED 2026-07-15 (same day it was set): the CLIENT-SURFACE CENSUS
 
-**Unique tables of every lever / API the custom client offers.** The wa_index move applied to the whole client:
-read-the-authority once; every future question becomes a lookup. Two prongs:
-1. **Runtime enumeration** (definitive for C-side API): a probe addon walks `_G` (globals, tables one level, frames),
-   dumps via SavedVariables; the offline tool DIFFS against a stock 3.3.5 baseline (archived wowpedia API list = the
-   subtraction mask) → **the delta IS Ascension's custom surface**. COA_DevDump's walker pattern, aimed at everything.
-   Mind dump size: chunk the walk (globals A-M / N-Z etc.), flush per /reload.
-2. **Source-grep corroboration** (offline, startable NOW): the AddOns tree + the client FrameXML (inside the Data
-   MPQs — mpyq extraction proven by the Spell.dbc work) for `ASCENSION_*`, `RegisterEvent(`, custom namespaces →
-   the EVENTS census (not runtime-enumerable) + a usage sighting per API row.
-**Outputs** (`addons/maps/`, provenance-anchored to the client build): custom globals · custom events · custom
-tables/namespaces · custom frames. **Standing consumers:** the spec capture (mission 1 = one table of this census),
-the WA-env harvest (mission 3 = one slice), future aura triggers (the full custom-event list).
+**`addons/maps/census/` is the deliverable** — start at `census.routes.md`, then `runtime/runtime.routes.md`.
+Three witnesses joined: DECLARED (patch-B.MPQ extraction — ALL client code in one 6.8MB archive; 88 C_* namespaces
+/ 1028 attested members / 736 events, 213 custom-registered) × BASELINE (stock 3.3.5 run from the client's own
+APIDocumentation addon) × RUNTIME (the `census` task's cycled 51,855-global _G walk) → 91 runtime namespaces,
+1003 attested + **284 runtime-only members** (zero shipped call sites), function buckets. Tools:
+`extract_interface.py` · `baseline_extract.lua` · `emit_census.py` · `reduce_census.py` (all deterministic,
+sha256/runId-anchored). Refinements banked, not blocking: clean-profile re-run (splits the 1526 unattributed
+functions) · the 8 listfile-less art archives · 5 failed GlueXML extracts (named in the manifest).
 
 ## 1. The spec-name capture (unblocks `load.specialization` for EVERY pack)
 
@@ -24,6 +20,9 @@ built live per class via `SpecializationUtil`). We need **index → spec-name pe
 Two routes: read WA's own Load-tab dropdown (it renders `"i. Name"` — the exact stored keys), or a dump tool calling
 the SpecializationUtil API directly (mind: a naive one-liner returned `nil nil, true` — the return signature needs
 source-checking first). Capture per class character. Output → a map (`spec_index.json`-shaped, per class, anchored).
+**Now census-backed:** read the rows first — `maps/census/namespaces/C_CharacterAdvancement.routes.md` (spec
+members incl. GetActiveSpecializations-family) + the `ASCENSION_CA_SPECIALIZATION_ACTIVE_ID_CHANGED` event
+(events.json, registered) + `SpecializationUtil` sightings; build the task file (v2 spine) from those citations.
 
 ## 2. The tooltip gap-fill micro-scan (~13 spells; designed 2026-07-12, parked)
 

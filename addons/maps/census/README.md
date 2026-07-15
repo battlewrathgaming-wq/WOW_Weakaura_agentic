@@ -16,6 +16,11 @@ events.json             every event seen: kinds (registered / event-compare / cu
 globals.json            top-level `function Name(` declarations in the shipped UI code
 baseline.json           the stock 3.3.5 declared surface, run out of the client's own
                         APIDocumentation addon (101 systems, functions + events + tables)
+runtime/                pass 3 joined in (live-proven 2026-07-15): namespaces.json =
+                        every runtime C_* member typed + standing (attested/runtime-only/
+                        declared-only) · globals.json = runtime function buckets ·
+                        runtime.routes.md = the summary. Source: the `census` task's
+                        landed record (runId-anchored).
 ```
 
 ## The grain (read before citing)
@@ -36,7 +41,9 @@ baseline.json           the stock 3.3.5 declared surface, run out of the client'
 ```
 py addons\tools\extract_interface.py     # patch-B.MPQ -> Outputs/client_interface/patch-B/
 py addons\tools\emit_census.py           # extraction + APIDocumentation -> this folder
+py addons\tools\reduce_census.py         # newest landed census record -> runtime/
 ```
+(The runtime record itself comes from in-game: `/coadump r census` → `/reload` → the watcher lands it.)
 
 ## Standing consumers
 

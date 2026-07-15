@@ -50,6 +50,11 @@ One envelope at a time: a one-shot won't run while a session is open.
   probe shows structure only.
 - **`frames`** (one-shot) — frame-stack snapshot under the mouse cursor
   (the `fstack` idea, recorded instead of displayed).
+- **`census`** (one-shot, self-cycling) — the full `_G` walk: every global's
+  kind + one-level `C_*` namespace expansion, paced at 400 keys/frame so the
+  client never hitches. Live-proven 2026-07-15 (51,855 globals in one pass).
+  Reduction vs the declared pass + baseline happens offline
+  (`addons/tools/reduce_census.py` → `addons/maps/census/runtime/`).
 
 ## The loop (repo → client → repo)
 

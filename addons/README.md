@@ -48,3 +48,12 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
   leave-it-running half.
 - `COA_DevDump/` v2 — the in-game half rewritten as a task-registry spine (core + task files,
   one-envelope mailbox, by-exception chat, shorthand verbs `r/st/sp/list/clear`). See its README.
+
+## The census (THE FIRST GOAL — delivered 2026-07-15, live-proven same day)
+
+- `maps/census/` — **the client-surface census**: 88 declared C_* namespaces (1028 attested members w/
+  sightings) · 736 events (213 custom-registered) · the stock-3.3.5 baseline (from the client's own
+  APIDocumentation addon) · `runtime/` = the three-witness reduction off the live `census` task's
+  51,855-global _G walk (284 runtime-only members = uncalled API). Start: `census.routes.md`.
+- `tools/` — the deterministic emitters: `extract_interface.py` (patch-B.MPQ → study copy) ·
+  `baseline_extract.lua` (run APIDocumentation under lua51) · `emit_census.py` · `reduce_census.py`.
