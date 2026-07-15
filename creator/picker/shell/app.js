@@ -181,14 +181,20 @@ function libraryFace() {
   if (S.cls) clsSel.value = S.cls;
   const specWrap = el("div", {});
   const detail = el("div", {});
+  let trail = [];  // the chain walk's history - back-stepping is first-class
+
+  // the pseudo trees speak plainly - never "Necromancer - Class"
+  const specLabel = (sp) => sp === "Class" ? "Common pool (the Class tree)"
+    : sp === "General" ? "General (racials & professions)" : sp;
 
   const showSpecs = () => {
     const c = LIBRARY.classes[clsSel.value];
+    trail = [];
     specWrap.replaceChildren(el("div", { class: "grid" },
       ...Object.entries(c.specs).sort().map(([sp, v]) => {
-        const tag = v.pseudo ? " · common/general pool" : v.ghost ? " · ghost (not a dev tree)" : "";
+        const tag = v.ghost ? " · ghost (not a dev tree)" : "";
         return el("button", { class: "card", onclick: () => showCards(clsSel.value, sp) },
-          el("b", {}, sp + tag),
+          el("b", {}, specLabel(sp) + tag),
           el("small", {}, v.caption ? `${v.caption.spells} spells · hub: ${v.caption.hub}` : `${v.cards.length} talents`));
       })));
     detail.replaceChildren();
@@ -196,33 +202,55 @@ function libraryFace() {
 
   const showCards = (cls, sp) => {
     const v = LIBRARY.classes[cls].specs[sp];
-    detail.replaceChildren(
-      el("h2", {}, `${LIBRARY.classes[cls].display} - ${sp}`),
-      el("div", { class: "panel" }, ...v.cards.map((card) =>
-        el("div", { class: "row" },
-          el("label", {},
-            el("b", {}, card.name + (card.isPassive === "True" ? "  (passive)" : "")),
-            el("div", { class: "kv" }, card.description || ""),
-            el("div", { class: "chain" },
-              el("a", { onclick: () => showChain(cls, String(card.spellId)) }, `chain ${card.spellId} →`)))))));
+    trail = [];
+    const body = v.cards.length
+      ? el("div", { class: "panel" }, ...v.cards.map((card) =>
+          el("div", { class: "row" },
+            el("label", {},
+              el("b", {}, card.name + (card.isPassive === "True" ? "  (passive)" : "")),
+              el("div", { class: "kv" }, card.description || ""),
+              el("div", { class: "chain" },
+                el("a", { onclick: () => showChain(cls, String(card.spellId)) }, `chain ${card.spellId} →`))))))
+      : el("p", { class: "note" }, v.pseudo
+          ? "No dev-authored talent cards here - this is the one general spell tab (racials, professions, class commons). Anything trackable from it is already folded into every spec's shelf."
+          : v.ghost
+            ? "A ghost: these spells exist in the live DB but no dev tree claims them. Find them through the spell search."
+            : "No cards recorded for this tree.");
+    detail.replaceChildren(el("h2", {}, `${LIBRARY.classes[cls].display} - ${specLabel(sp)}`), body);
   };
 
-  const showChain = (cls, sid) => {
+  const showChain = (cls, sid, isBack = false) => {
     const chains = LIBRARY.classes[cls].chains;
     const row = chains[sid];
     if (!row) { detail.prepend(el("p", { class: "gap" }, `spell ${sid}: not in this class's chain slice`)); return; }
+    if (!isBack) trail.push(sid);
     const effects = (row.effects || []).map((e) =>
       e.name && e.name.startsWith("CUSTOM_effect_")
         ? el("div", { class: "gap" }, `slot ${e.slot}: effect ${e.effect} - not provided by CoA`)
         : el("div", {}, `slot ${e.slot}: ${e.name}`));
+    // an edge renders from what it CARRIES: aura_name-only (applies_aura), a walkable dst, or
+    // a dst outside this class's slice - never "undefined"
     const edges = (row.edges || []).map((e) => {
-      const dstName = (chains[e.dst] || {}).name || e.dst;
-      return el("div", {}, `${e.rel} → `,
-        el("a", { onclick: () => showChain(cls, e.dst) }, `${dstName} (${e.dst})`));
+      const rel = e.rel + (e.slot != null ? ` (slot ${e.slot})` : "");
+      if (!e.dst) return el("div", {}, `${rel} → ${e.aura_name || "(no destination recorded)"}`);
+      const hit = chains[e.dst];
+      const label = `${(hit && hit.name) || e.aura_name || "spell"} (${e.dst})`;
+      return hit
+        ? el("div", {}, `${rel} → `, el("a", { onclick: () => showChain(cls, e.dst) }, label))
+        : el("div", { class: "kv" }, `${rel} → ${label} - outside this class's slice`);
     });
     const ax = row.axes || {};
+    const backBtn = trail.length > 1
+      ? el("button", { class: "quiet", onclick: () => { trail.pop(); showChain(cls, trail[trail.length - 1], true); } },
+          "← back along the chain")
+      : "";
+    const trailLine = trail.length > 1
+      ? el("div", { class: "kv" }, "walk: " + trail.map((s) => (chains[s] || {}).name || s).join(" → "))
+      : "";
     detail.replaceChildren(
       el("h2", {}, `${row.name || sid}  `, el("span", { class: "kv" }, sid)),
+      el("div", { class: "actions" }, backBtn),
+      trailLine,
       el("div", { class: "detail chain" },
         el("div", { class: "kv" }, `axes: `,
           el("b", {}, `${ax.invocation || "?"} · ${ax.persistence || "?"} · target:${ax.target || "?"} · ${ax.verb || "?"}`)),
@@ -239,7 +267,7 @@ function libraryFace() {
       .filter(([sid, r]) => sid.includes(q) || (r.name || "").toLowerCase().includes(q)).slice(0, 30);
     detail.replaceChildren(el("div", { class: "panel" }, ...hits.map(([sid, r]) =>
       el("div", { class: "row" }, el("label", {},
-        el("a", { class: "chain", onclick: () => showChain(clsSel.value, sid) },
+        el("a", { class: "chain", onclick: () => { trail = []; showChain(clsSel.value, sid); } },
           `${r.name || "(unnamed)"} (${sid})`))))));
   });
 
