@@ -86,3 +86,18 @@ whenever the next system change wants its pressure test: `py coverage.py` → st
 10. **Trigger-side participation law = a named wall:** event-prototype triggers are consumed by GenericTrigger's
    test path, NOT ConstructFunction:815 (that's the LOAD law) — ungated selects still count. v1 keeps present args;
    the GenericTrigger harvest closes it properly.
+
+## 2026-07-16 — the picker templates' live grading (Battlewrath; 3 lanes imported, no malformation)
+
+11. **`condition_vars.json` is missing aura2's `buffed`** — a live-proven condition variable ("Aura(s) Found"
+   in the UI; Battlewrath's corrected persist stores `variable: "buffed"`, export_20260716_000029_01) that the
+   harvest's aura2/Aura surface lists as empty-adjacent (only the provides family). Root: emit_condition_vars'
+   source coverage misses BuffTrigger2's GetTriggerConditions block. **Harvest boundary, on record** — re-run
+   the harvest against that block when the map next matters; meanwhile the fragment cites the live capture.
+12. **`show==0` under matchesShowOn=showAlways is a DEAD condition** — showAlways pins the trigger's show state
+   to 1, so the corpus-proven show-variable form silently never fires ("it was always showing"). The aura-state
+   read under showAlways is `buffed`. **FIXED at the fragment** (press_templates.persist_variant); the corpus
+   show-form stays valid for its own class (reactive cross-trigger conditions, not within-trigger aura state).
+13. **The fork's import DOES uid-match** (live-confirmed incidentally): the multidot check-pack carried the
+   corpus uid (= Battlewrath's original aura) → WA offered known-copy/update-over. Validates the one-time-minting
+   design exactly (a re-import CAN clobber an edited aura — hence fresh uids per mint, no update flow ever).

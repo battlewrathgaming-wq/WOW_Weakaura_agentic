@@ -81,7 +81,13 @@ The machine presses V1's parts AT BUILD TIME; the shell ships completed tables a
 - **Verification:** every template through canon.lua headless-green; ONE of each lane hand-imported live before
   the shell work leans on them (invariant 6 — don't build three phases on an unproven template).
 - **DONE =** `templates.json` (pressed, slot-annotated), stamped into library.json or beside it.
-- **STATUS: ◐ PRESSED, AWAITING THE LIVE STAMP (2026-07-15).** `press_templates.py` → `out/templates.json`
+- **STATUS: ✔ DONE — LIVE-STAMPED (2026-07-16, Battlewrath's grading).** All 3 lanes imported, **no
+  malformation**: pet "works as created" · dot_multi clean (its corpus uid matched Battlewrath's original →
+  the known-copy prompt — live proof the fork uid-matches, validating one-time minting; findings #13) ·
+  dot_target appear clean · **persist logic corrected live** (findings #12: `show==0` is dead under showAlways;
+  the variable is `buffed` — fragment fixed at the true layer, re-pressed, matches the capture byte-for-byte).
+  The desat POLARITY law recorded in the tree (aura: desat=press-me · cooldown: desat=can't-press).
+- (pressed 2026-07-15:) `press_templates.py` → `out/templates.json`
   (3 lanes, 4 member templates, 12 KB): dot_target group+appear+persist (icon; persist = matchesShowOn
   showAlways + the corpus-proven show==0→desaturate condition, both fragments verified in the pressed forms) ·
   dot_multi group+member (aurabar, the closed corpus dockets) · pet group+member (guardian scaffold, custom Lua

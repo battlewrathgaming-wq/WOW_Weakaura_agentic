@@ -75,9 +75,12 @@ def reference_dockets():
     if p.returncode != 0:
         raise SystemExit(f"populate failed:\n{p.stderr[:400]}")
     created = sorted(set(os.listdir(_AUTHORED)) - before)
+    # Lift by NAME (populate just refreshed them; the press is proven deterministic) -
+    # _authored may hold these files permanently as tracked residents, so a created-diff
+    # can't be the lift. Cleanup still removes ONLY genuinely-new files.
     group = member = None
     try:
-        for f in created:
+        for f in sorted(os.listdir(_AUTHORED)):
             if not (f.startswith(REF_PID + "__") and f.endswith(".docket.json")):
                 continue
             d = json.load(open(os.path.join(_AUTHORED, f), encoding="utf-8"))
@@ -86,7 +89,7 @@ def reference_dockets():
             elif d.get("id") == REF_MEMBER:
                 member = d
     finally:
-        for f in created:  # only THIS run's files; pre-existing residue untouched
+        for f in created:  # only THIS run's files; pre-existing residents untouched
             os.remove(os.path.join(_AUTHORED, f))
     if not group or not member:
         raise SystemExit(f"reference press missing group/member ({REF_PID}; created {len(created)})")
@@ -95,11 +98,14 @@ def reference_dockets():
 
 def persist_variant(member_docket):
     """The PERSIST fragment: always in place, dims while the aura is missing.
-    matchesShowOn=showAlways (sheet: aura2, domain bufftrigger_2_progress_behavior_types)
-    + the corpus-proven condition form (show==0 -> desaturate; Blight's own docket)."""
+    matchesShowOn=showAlways + condition buffed==0 -> desaturate.
+    LIVE-CORRECTED (Battlewrath, 2026-07-16, export_20260716_000029_01): under showAlways the
+    trigger's `show` is ALWAYS 1, so a show==0 condition never fires ("it was always showing") -
+    the aura-state variable is `buffed` ("Aura(s) Found" in the UI). The lane's read: duration
+    swipe + full colour only while MY debuff is on them = the should-I-debuff check."""
     d = copy.deepcopy(member_docket)
     d["triggers"][0]["declare"]["matchesShowOn"] = "showAlways"
-    d["conditions"] = [{"check": {"trigger": 1, "variable": "show", "value": 0},
+    d["conditions"] = [{"check": {"trigger": 1, "variable": "buffed", "value": 0},
                         "changes": {"desaturate": True}}]
     return d
 

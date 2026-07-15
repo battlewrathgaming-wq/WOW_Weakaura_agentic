@@ -121,7 +121,16 @@ For picks where bar AND icon are both legal (current-target DoTs), the look choi
 **illustrated cards** — a picture of each look with its behaviour caption; users pick with their eyes.
 
 **Mechanical back:** two docket fragments — *appear* (trigger show-state only) and *persist-styled*
-(showAlways + ability-local condition flips). ✗ not yet written as fragments; small, high leverage.
+(showAlways + ability-local condition flips). ✔ PRESSED + LIVE-GRADED (2026-07-16): persist = matchesShowOn
+showAlways + `buffed==0 → desaturate` (live-corrected: under showAlways the trigger's `show` is always 1 — the
+aura-state variable is `buffed`, "Aura(s) Found").
+
+**The desat POLARITY law (Battlewrath, live grading 2026-07-16):** aura and cooldown lanes diverge on trigger
+AND condition — the same desaturate lever carries OPPOSITE meanings per bucket:
+- **Aura lane:** desat = *"press me"* (my debuff is MISSING — the should-I-debuff cue; full colour + duration
+  swipe while it runs).
+- **Cooldown lane:** desat = *"you CAN'T press me"* (it's cooling; colour returns at ready).
+Fragments carry their polarity per lane — never share a condition body across buckets.
 
 ## Q4.5 — "Add the rest with the same treatment?" (the closer)
 
