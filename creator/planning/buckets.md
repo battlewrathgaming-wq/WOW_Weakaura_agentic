@@ -66,8 +66,11 @@ multi-*DoT* (a 3-DoT spec shows up to 3 icons, growing/shrinking as they apply/d
 This deliberately flattens multi-dot tracking:
 what's lost is the *ambient prompt* ("a dot elsewhere is about to fall — tab now"); you tab on rhythm instead. Accepted:
 - the actionable half survives (show-on-missing: you land on a hostile target, it says "dot absent");
-- true multi-unit on a 3.3.5 client is the least-verified path (no nameplate unitIDs; WA "multi" mode = CLEU-based,
-  backport support unconfirmed) — wrong stone to build the default on;
+- ~~true multi-unit on a 3.3.5 client is the least-verified path~~ **SUPERSEDED (2026-07-15): Battlewrath discovered
+  the built-in multi-dot LIVE** — aura2 `unit: "multi"` (CLEU-driven, works on 3.3.5) + one id per dot family in
+  auranames + showClones, in a `sort: ascending` dynamicgroup (top bar = next dot to fall). The ambient prompt is
+  BACK as a per-class companion pack. Pattern: `corpus/patterns/multidot-tracker.md`. unit=target stays the default
+  member form;
 - if the ambient view ever earns a build, the data scopes it: duration≫CD DoTs cluster per spec → a **spec-targeted**
   enhancement later, not a global dependency.
 unit=target also deletes the printed target name — it's *your* target.
