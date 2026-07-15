@@ -81,6 +81,15 @@ The machine presses V1's parts AT BUILD TIME; the shell ships completed tables a
 - **Verification:** every template through canon.lua headless-green; ONE of each lane hand-imported live before
   the shell work leans on them (invariant 6 — don't build three phases on an unproven template).
 - **DONE =** `templates.json` (pressed, slot-annotated), stamped into library.json or beside it.
+- **STATUS: ◐ PRESSED, AWAITING THE LIVE STAMP (2026-07-15).** `press_templates.py` → `out/templates.json`
+  (3 lanes, 4 member templates, 12 KB): dot_target group+appear+persist (icon; persist = matchesShowOn
+  showAlways + the corpus-proven show==0→desaturate condition, both fragments verified in the pressed forms) ·
+  dot_multi group+member (aurabar, the closed corpus dockets) · pet group+member (guardian scaffold, custom Lua
+  verbatim — 1,254 chars intact through the press). Every docket GATED (only by-design soft "unchecked" flags),
+  every table through expand→fill→bounce (canon inside). dot_target's reference = the contract's own populate
+  press (Blight; _authored left as found via snapshot-diff). **`make_live_check.py` minted the three
+  hand-import strings → `out/live_check/*.txt`** — the runway's one planned pause: Battlewrath imports each
+  in the live client (import clean · display right · test events safe) before Phase 3 builds on them.
 
 ## Phase 3 — the shell
 
