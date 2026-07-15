@@ -3,7 +3,7 @@ build_live_reference.py
 
 Turns a class's raw COA_DevDump captures (trainer.json + talentnodes.json,
 already converted from the SavedVariables Lua via lupa - see
-Weak Auras/Tools/COA_DevDump/README.md for that step) into the final
+addons/COA_DevDump/README.md for that step) into the final
 name-keyed live reference JSON.
 
 Usage:
@@ -134,7 +134,7 @@ def build(class_name, talents_json_path, trainer_json_path, talentnodes_json_pat
             "live via the stock GetTrainerServiceInfo API) and 'talent' (talent-point "
             "investments, captured live by reading spellID/rank/maxRank fields directly off "
             "the custom CoATalentFrame's button widgets - see "
-            "Weak Auras/Tools/COA_DevDump/README.md for why the stock talent API doesn't work "
+            "addons/COA_DevDump/README.md for why the stock talent API doesn't work "
             "on this server). verifiedLive:true on every entry reflects a real live client "
             "capture, not a derived/guessed value."
         ),

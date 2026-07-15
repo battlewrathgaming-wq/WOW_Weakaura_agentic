@@ -21,9 +21,12 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
 
 - `operations/` — STATE · roadmap · HOW (the invariants; **invariant 7 applies here doubly** — client Lua IS the fork)
 - `creator/ingredients/custody.md` — how the aura side works (this bench's biggest consumer)
-- `Weak Auras/Tools/COA_DevDump/` — the seed tool (repo copy; live copy in the client's `Interface/AddOns/`)
-- Existing addon material at root, NOT yet adopted (earns a home here by being rebuilt/adopted deliberately, never
-  carried wholesale — the corpus law): `Mob_Autogroup/` · `Addon refs_threat/`
+- `addons/COA_DevDump/` — the seed tool (repo copy; live copy in the client's `Interface/AddOns/`)
+- **The residents (moved in 2026-07-15):** `COA_DevDump/` (the seed probe/dump tool) · `COA_GuardianPlates/`
+  ("COA State Plates" — the shipped nameplates addon, WITH `deploy_to_game.bat`: **the deploy pattern** — repo =
+  source of truth, byte-copy to the game folder, stale-file cleanup; agents never write into the client's AddOns
+  directly. Generalize it per-addon as bench work) · `Mob_Autogroup/` (a design doc) · `refs_threat/` (third-party
+  threat/nameplate addons as REFERENCE material — secondary standing, study not authority)
 
 ## The files here
 

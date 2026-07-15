@@ -23,7 +23,7 @@ rem name and SavedVariables key deliberately unchanged). ThreatPlates.lua
 rem was renamed to EnemyPlates.lua; this script now copies EnemyPlates.lua
 rem and removes the old ThreatPlates.lua from the game folder if present.
 
-set "SRC=F:\Projects_games\World of Warcraft - Conquest of Azeroth\Weak Auras\Tools\COA_GuardianPlates"
+set "SRC=F:\Projects_games\World of Warcraft - Conquest of Azeroth\addons\COA_GuardianPlates"
 set "DST=F:\games\Ascension_wow\resources\ascension-live\Interface\AddOns\COA_GuardianPlates"
 
 echo Copying COA_GuardianPlates:

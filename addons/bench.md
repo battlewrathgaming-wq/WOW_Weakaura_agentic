@@ -20,7 +20,7 @@ edit (repo copy) → deploy-copy → client Interface/AddOns/ → Battlewrath: /
 |---|---|
 | live client AddOns (THE authority) | `F:\games\Ascension_wow\resources\ascension-live\Interface\AddOns\` |
 | SavedVariables (the receipts) | `...\ascension-live\WTF\Account\<ACCOUNT>\SavedVariables\` |
-| repo copy of the seed tool | `Weak Auras/Tools/COA_DevDump/` (talents/trainer/spellbook/frames + generic probe; NO WA-schema dump — that was a sketch) |
+| repo copy of the seed tool | `addons/COA_DevDump/` (talents/trainer/spellbook/frames + generic probe; NO WA-schema dump — that was a sketch) |
 | offline Lua | `.tools/lua51/lua5.1.exe` (5.1.5) |
 | client version anchors | interface `30300` · WA fork toc `5.21.2` / `internalVersion 86` — establish per-addon anchors the same way |
 | Ascension custom API | NO docs anywhere — source-grep the AddOns tree (`SpecializationUtil`, `ASCENSION_*` events, mysticenchant…); confirmed workable repeatedly |
