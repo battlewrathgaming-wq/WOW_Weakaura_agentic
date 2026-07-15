@@ -72,6 +72,15 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 - **The Cowork-era "mpyq can't read these MPQs" claim is false locally** — only the 8
   listfile-less archives fail. Don't re-inherit that wall from old notes.
 
+## The lane (Battlewrath, 2026-07-15)
+
+**Addons = the mechanical game relation** (client surface, capture tooling, evidence, source facts).
+**Auras = the WA bridge** (patterns, corpus, dockets, adoption). Either can step into the other, but
+it's a lane: hand off ACROSS it, don't do the other bench's documentation. Caught live: the
+guardian-tracker pattern write-up was aura-lane work done from this bench — kept this once
+(`corpus/patterns/guardian-health-tracker.md`, flagged as addons-authored draft for the aura bench
+to tighten/own); future = hand off the snippet + facts, let auras document.
+
 ## The seat (how this bench runs — one line each)
 
 Repo = truth; deploy.py byte-copies (game closed; new code = full restart). SV = one-envelope
