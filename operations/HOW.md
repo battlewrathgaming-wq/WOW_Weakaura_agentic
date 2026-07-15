@@ -55,6 +55,19 @@ Docket_complete + register → import into WA`. A **PID is a pack id**; a pack i
 Same five-part spine as ever, every part now load-tested: **mask** = WHERE · **contracts** = WHAT · **palette + maps** =
 HOW expressed · **the machine** = join + wrap · **WA** = filter.
 
+## The two benches (locked 2026-07-15 — the inter-bench charter)
+
+Same grammar on both benches — **contracts that generate from source, cross-validation** — different lanes:
+
+| bench | lane | owns |
+|---|---|---|
+| **addons/** | **Lua → WoW** heavy tasks | client-side Lua, capture/harvest tooling, **CUSTOM CODE** (the scaffolds' Lua) |
+| **the aura bench** (creator/corpus/engine) | **Lua → WA → WoW** tasks | WA repeatability, design, taste, **dockets**, the pattern corpus, closure |
+
+**There is no court.** Both information bases enrich each other (handoffs: their captures/facts → our stamps/patterns;
+our gears' fixes → their inheritance), but the conversations stay BOUNDED — each bench keeps its own focused context.
+The guardian-health-tracker handoff (2026-07-15) is the proven flow.
+
 ## The architecture is the touchstone; the folders are transitional
 
 What's stable here is the two halves + the invariants. The specific **folders are in flux** — `plane/` deprecates, and a

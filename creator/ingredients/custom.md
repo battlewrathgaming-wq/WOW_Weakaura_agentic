@@ -1,5 +1,9 @@
 # custom — the scripting surface
 
+_**Lane note (the inter-bench charter, 2026-07-15): custom CODE belongs to the addons bench** — they author the Lua
+(scaffolds, TSUs, the client facts). THIS bench owns the WA side: the docket form around it, closure-stamping,
+the pattern corpus, and the structured display it lives in. The guardian-health-tracker handoff is the model flow._
+
 _Lua slots across the whole aura anatomy. Light on the menu by design: packs default STRUCTURED (custom locks users out
 of editing in WA's UI — the everyman law), but scripting is a legitimate LANE — the state-carrying scaffolds
 (builder→spender counters, cross-event logic, anything structure can't reach) live here. Fact sources:
