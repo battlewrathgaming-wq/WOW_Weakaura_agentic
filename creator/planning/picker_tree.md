@@ -137,6 +137,15 @@ One group, one Copy button, three lines of "open WoW → /wa → Import → past
 | bundling + encode (the machine, server-side: stage → gate → pickup) | ✔ |
 | the HTML shell's client-side JS encode (deflate+b64) | ✗ the picker build proper |
 
+**Naming — values, not questions (settled 2026-07-15):** no naming screens. Group `id` derived —
+`"COA — <Spec> <bucket> (<scope>)"` — shown at Q5 as an EDITABLE PREFILL (optional text box; invisible cost to
+whoever doesn't care). Member `id` = spell family name under the group. The **"COA —" namespace prefix** dodges
+collisions with the user's handmade auras AND makes the pack findable/deletable as a block (law 6 made practical).
+**Identity is DETERMINISTIC, not random**: uid + suffix derived from class:spec:bucket:scope, so re-running the
+wizard re-produces the same identity → WA's import offers "update existing" → the wizard is RE-RUNNABLE (change
+answers, re-import, the pack updates in place instead of breeding duplicates). A randomizer would solve collision
+but cost idempotence.
+
 **Output specifics (Battlewrath, 2026-07-15):**
 - **Placement:** a `dynamicgroup` needs NONE — grow/arrange is its job. A static `group` gets basic steps:
   each member one to the right of the last — offset = member width + a pixel gap (HxW+px). Dumb arithmetic,
