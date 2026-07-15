@@ -1,6 +1,21 @@
-# backlog — the missions (three banked; each unblocks the aura bench)
+# backlog — the missions
 
-_Ordered by leverage. Each is small, designed, and waiting on exactly this bench._
+_Ordered by leverage. Each is designed and waiting on exactly this bench._
+
+## ★ THE FIRST GOAL (Battlewrath, 2026-07-15): the CLIENT-SURFACE CENSUS — probing / surface-finding
+
+**Unique tables of every lever / API the custom client offers.** The wa_index move applied to the whole client:
+read-the-authority once; every future question becomes a lookup. Two prongs:
+1. **Runtime enumeration** (definitive for C-side API): a probe addon walks `_G` (globals, tables one level, frames),
+   dumps via SavedVariables; the offline tool DIFFS against a stock 3.3.5 baseline (archived wowpedia API list = the
+   subtraction mask) → **the delta IS Ascension's custom surface**. COA_DevDump's walker pattern, aimed at everything.
+   Mind dump size: chunk the walk (globals A-M / N-Z etc.), flush per /reload.
+2. **Source-grep corroboration** (offline, startable NOW): the AddOns tree + the client FrameXML (inside the Data
+   MPQs — mpyq extraction proven by the Spell.dbc work) for `ASCENSION_*`, `RegisterEvent(`, custom namespaces →
+   the EVENTS census (not runtime-enumerable) + a usage sighting per API row.
+**Outputs** (`addons/maps/`, provenance-anchored to the client build): custom globals · custom events · custom
+tables/namespaces · custom frames. **Standing consumers:** the spec capture (mission 1 = one table of this census),
+the WA-env harvest (mission 3 = one slice), future aura triggers (the full custom-event list).
 
 ## 1. The spec-name capture (unblocks `load.specialization` for EVERY pack)
 
