@@ -43,9 +43,12 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
   string**: tick spells, pick each one's show-logic style, one button → one paste (WA rebuilds child wiring from the
   `c` array — the round-trip finding). **Conformance harness:** at build, the JS encoder must byte-match the python
   codec on a test set or the build fails. V1 virtues BY DESIGN: **sidesteps the organization/mask piece** (flat group,
-  users arrange in-game) · **DUMB type-to-type** (no composition intelligence; each pick independent). Pinned in the
-  Discord as the file itself. LATER (needs a hosting partner, bisbeard precedent): the hosted variant + picks-as-votes
-  = the grammar's training data. **The 4 STYLES = SHOW-LOGIC presets (Battlewrath's correction — basic logic, not looks):**
+  users arrange in-game) · **DUMB type-to-type** (no composition intelligence; each pick independent). **The shelves (backing already exists):** SINGLES = the class:spec slicing (the batch press's own select, proven at
+  110 pairs) · **SCAFFOLDS = the proven pattern compositions as pickable UNITS** (the proc pair, the stack-band alarm,
+  the minion counters — corpus/patterns graduating to primitives by becoming shelf items). **Assembly stays IN-GAME**
+  (no layout intelligence — static groups + dragging; the mask/grammar work stays unblocked). Pinned in the Discord as
+  the file itself. LATER (needs a hosting partner, bisbeard precedent): the hosted variant + picks-as-votes = the
+  grammar's training data. **The 4 STYLES = SHOW-LOGIC presets (Battlewrath's correction — basic logic, not looks):**
   1) always-on dim-when-unavailable · 2) appear-when-ready · 3) appear-while-running · 4) appear-at-the-moment
   (proc/usable). Pure lever presets on proven surfaces (`genericShowOn` / `matchesShowOn` + a desat/alpha condition) —
   the bucket map's check-vs-react laws handed to the PLAYER as a choice. Four tiny emit templates shared by every
