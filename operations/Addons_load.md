@@ -26,6 +26,13 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## Small debts (cheap, non-blocking)
 
+- **`frames` task wants a field list** (exposed by the staged guardian-plate capture,
+  record `20260715_190433_704`): plate frames are ANONYMOUS (no GetName → `probe` can't root
+  on them), and `frames` records structure only. Fix: `frames [field1,field2,...]` reads the
+  walker's field list off every hit — mouse-over-and-fire becomes the anonymous-frame probe
+  (first use: `unit`/`displayedUnit` off a plate → the guardian's token+GUID directly).
+  One task-file edit + one restart, bundle with the next deploy.
+
 - ~~GuardianPlates client copy one deploy behind~~ — RESOLVED 2026-07-15: Battlewrath deployed
   to parity; check-mode confirms both residents zero-delta.
 - **5 files failed extraction from patch-B** (named in `Outputs/client_interface/patch-B/
