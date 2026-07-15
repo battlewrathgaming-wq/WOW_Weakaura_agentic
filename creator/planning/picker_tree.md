@@ -34,6 +34,10 @@ Four questions after class/spec; some paths skip two of them. The wizard speeds 
 6. **The wizard says what it is.** Instruct plainly: *this isn't build-your-full-UI-in-one-go* — you get packs,
    you arrange them in-game (the product is TRACKER PACKS, not a HUD). We print basic styling; the group's style
    is theirs to edit in WA's UI afterwards. Sets expectation AND hands over ownership in one line.
+7. **Pick a lane, populate it (Battlewrath's crisp).** Selection is **class + spec through the whole pipeline** —
+   every shelf, every offer, every load is sliced by the seat. One pass of the wizard fills ONE lane (one group,
+   one string — the machine's bundle shape). After the string: *"another lane?"* loops back to Q2 with class+spec
+   retained. Lanes accumulate across passes; the UI accumulates in-game, never in one sitting.
 
 ---
 
@@ -54,7 +58,8 @@ Four questions after class/spec; some paths skip two of them. The wizard speeds 
 
 ## Q2 — "What do you want on your screen?"
 
-The buckets in plain language; no WA words. Multi-pick — each choice becomes its own group.
+The buckets in plain language; no WA words. **Single-pick per pass** (law 7 — pick a lane, populate it); after
+Q5's string, "another lane?" returns here with class+spec retained. Each lane = its own group = its own string.
 
 | choice (user-facing) | product behind it | status |
 |---|---|---|
@@ -164,6 +169,19 @@ The walked path is the front door, but the ID inventory stays BROWSABLE alongsid
 names + icons, open shelves. For the user who doesn't know what they want until they see it — discovery feeds the
 wizard (spot something → "track this" drops them into the flow at Q4 with the pick made). The original
 shelves-first design survives here as a MODE, not the navigation.
+
+## Open seams (surfaced 2026-07-15 — proposed defaults, Battlewrath's call)
+
+1. **Behaviour is NOT in the identity key** (proposed). Re-run the wizard and answer Q4 differently → same seat,
+   same identity → update-in-place: "I changed my mind" is an update, not a sibling. Consequence: wanting BOTH
+   flavours of one seat (some DoTs always-shown, others appear-when-active) is out of V1's scope — that's an
+   in-game edit, which law 6 already hands them the keys for.
+2. **Explore mode shows only doors that open** (proposed). V1's side door lists only buckets whose contracts are
+   pressed — unsupported lanes ABSENT, not greyed out. A wizard should never show a door that doesn't open.
+3. **The file's physical cut — one HTML or one per class?** (genuinely open, build-time). Names + icons for a
+   whole game in ONE self-contained file is real weight (icons embed as data-URIs); per-class files stay light and
+   sharpen the distribution sentence ("download your class's file") but multiply the artifacts to version. Leaning
+   per-class; decide at the build with real sizes in hand.
 
 ---
 
