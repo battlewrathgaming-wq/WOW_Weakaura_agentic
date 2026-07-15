@@ -95,18 +95,21 @@ const SCREENS = {
         el("span", { class: "note" }, "excluded rows are listed so the near-miss is readable")));
   },
   behaviour() {
+    // decide the NEXT screen at click time - a screen must never redirect mid-render
+    // (the everything-ticked walk used to collapse to a blank page here)
+    const next = () => included().some((r) => !S.picks.has(r.family)) ? "closer" : "out";
     return frame("Show them only when it matters, or keep them always in place?", "",
       el("div", { class: "grid" },
-        el("button", { class: "card wide", onclick: () => { S.fragment = "appear"; go("closer"); } },
+        el("button", { class: "card wide", onclick: () => { S.fragment = "appear"; go(next()); } },
           el("b", {}, "Appear while it's on them"),
           el("small", {}, "the icon existing IS the signal - gone when the DoT is gone")),
-        el("button", { class: "card wide", onclick: () => { S.fragment = "persist"; go("closer"); } },
+        el("button", { class: "card wide", onclick: () => { S.fragment = "persist"; go(next()); } },
           el("b", {}, "Always there - full colour while it runs, dims when missing"),
           el("small", {}, "the should-I-debuff check: dim = press me"))));
   },
   closer() {
     const rest = included().filter((r) => !S.picks.has(r.family));
-    if (!rest.length) { go("out"); return el("div"); }
+    if (!rest.length) { S.screen = "out"; return SCREENS.out(); }  // render out DIRECTLY, no mid-render go
     const rows = rest.map((r) => {
       const id = "cl_" + r.family.replace(/\W/g, "");
       const cb = el("input", { type: "checkbox", id });
