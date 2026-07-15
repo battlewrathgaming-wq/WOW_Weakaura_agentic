@@ -46,9 +46,10 @@ coa_data_share.zip
 Launcher.lnk
 addons/Addons Bench.lnk
 
-# runtime/ - the service-runner's transient queue/receipts/processed (Claude queues calls,
-# the runner executes + receipts back). Ephemeral IPC, not source.
-runtime/
+# /runtime/ - the service-runner's transient queue/receipts/processed (Claude queues calls,
+# the runner executes + receipts back). Ephemeral IPC, not source. Anchored to the repo root:
+# the unanchored form silently swallowed addons/maps/census/runtime/ (caught 2026-07-15).
+/runtime/
 
 # Outputs/lane_index.json - the FIRST-CUT behavioural lane classification (grab-by-class,
 # traceable), regenerated on demand via `py Scripts/classify_lanes.py --emit` from

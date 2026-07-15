@@ -1,0 +1,5663 @@
+{
+ "grain": "runtime = the definitive existence witness; 'runtime-only' members have NO shipped-UI call site (invisible to the declared pass); 'declared_only' entries were attested in code but absent this runtime (conditional/glue-context). C_* tables are effectively user-addon-free.",
+ "record": "20260715_191602_521__census.json",
+ "runId": "20260715_191602_521",
+ "declared_only_namespaces": [
+  "C_ChallengeMode",
+  "C_CoA",
+  "C_RealmMerge"
+ ],
+ "totals": {
+  "attested": 1003,
+  "runtime_only": 284,
+  "declared_only": 18
+ },
+ "namespaces": {
+  "C_AccountInfo": {
+   "standing": "attested-ns",
+   "members": {
+    "GetCharacterAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetGMLevel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumCharacters": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsGM": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsGuide": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsNewcomer": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_AddonPanel": {
+   "standing": "attested-ns",
+   "members": {
+    "DeleteSaveState": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "EnableHiddenAddons": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "EnumerateAddOns": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAddonDisabledBy": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAddonIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAddonIndexRaw": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAddonObject": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumInsecureAddons": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSaveState": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSaveStateIDs": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSearchedAddons": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasConfigurableAddons": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "InitializeAddonList": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsAddonSearched": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsSecureAddon": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "MakeSaveState": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RefreshAddonData": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RestoreSaveState": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UpdateAddonList": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "WriteSaveState": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "addons": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "addonsByIndex": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "addonsByName": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "saveFile": {
+     "type": "string",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Appearance": {
+   "standing": "attested-ns",
+   "members": {
+    "ApplyPendingAppearances": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanApplyPendingAppearances": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSeeAppearances": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSetAppearance": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ClearInvalidPendingAppearances": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ClearPendingAppearance": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ClearPendingAppearances": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveDiscount": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAlternativeIDs": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAppearanceDetails": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAppearanceDisplayInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAppearanceForCategory": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAppearanceItemSet": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAppearanceWebURL": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCreatureDisplayItems": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetEtherealBazaarWebURL": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetItemAppearanceID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetItemSetAppearanceID": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetPendingAppearance": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasPendingAppearances": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsEtherealBazaarAppearance": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsTransmogable": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetCanSeeAppearances": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetPendingAppearance": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_AppearanceCollection": {
+   "standing": "attested-ns",
+   "members": {
+    "ApplyCategoryFilter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CollectItemAppearance": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAppearanceTypes": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAvailableChapters": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAvailableSeasons": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCategoriesForType": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCategoryAppearances": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCategoryInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCategoryMaxPages": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCollectedCount": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSeasonalItems": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsAppearanceCollected": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_AppearanceOutfit": {
+   "standing": "attested-ns",
+   "members": {
+    "DeleteOutfit": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAppearanceOutfits": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCurrentOutfitName": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetOutfitInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SaveOutfit": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetPendingOutfit": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_AssetQueryService": {
+   "standing": "attested-ns",
+   "members": {
+    "TryCacheCreature": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "TryCacheItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "TryCacheQuest": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Aura": {
+   "standing": "attested-ns",
+   "members": {
+    "UnitHasAura": {
+     "type": "function",
+     "standing": "attested"
+    }
+   },
+   "declared_only_members": [
+    "UnitAura"
+   ]
+  },
+  "C_BugTracker": {
+   "standing": "attested-ns",
+   "members": {
+    "ClearReport": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetReportCategory": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetReportDescription": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetReportPriority": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetReportTitle": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsReportPublic": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SetReportCategory": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetReportDescription": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetReportPriority": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetReportPublic": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetReportTitle": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SubmitReport": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_BuildCreator": {
+   "standing": "attested-ns",
+   "members": {
+    "ActivateBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "BookmarkBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanActivateBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanDeactivateBuild": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "DeactivateBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DeleteBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ExportBuild": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetActiveBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveSpecForBuild": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetBookmarkedBuildAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetBuildAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumBookmarkedBuilds": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumBuilds": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsOwnedBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsUpvotedBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QueryAllBuilds": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QueryBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RateBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UpdateFilter": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_BuildDraft": {
+   "standing": "attested-ns",
+   "members": {
+    "GetDraftableBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetDraftedBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumDraftableBuilds": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsAwaitingRolePrompt": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsCompletedBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsDraftableBuild": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsDraftedBuild": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SelectRole": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_BuildEditor": {
+   "standing": "attested-ns",
+   "members": {
+    "AddArmorType": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "AddRandomEnchant": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "AddSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "AddWeaponType": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanAddArmorType": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanAddRandomEnchant": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanAddSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanAddWeaponType": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanPublishBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanRemoveArmorType": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanRemoveRandomEnchant": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanRemoveSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanRemoveWeaponType": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSetArmorTypeComment": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSetEnchantFlags": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSetEnchantLevel": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSetIsCoreAbility": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSetIsEmpoweringAbility": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSetIsOptimalAbility": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSetIsSynergisticAbility": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSetRandomEnchantComment": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSetRandomEnchantStacks": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSetSpellComment": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSetSpellFlags": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSetSpellLevel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSetWeaponTypeComment": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "DiscardPendingBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DoesBuildHaveEnchant": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DoesBuildHaveSpellID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "EditBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ExportPendingBuild": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetEssenceForLevel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFilteredEntryAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumFilteredEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPendingBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetQualityInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetQualityInfoForLevel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSpellByID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ImportBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ImportCurrentBuild": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "PublishBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveArmorType": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveRandomEnchant": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveWeaponType": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetCategory": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetComment": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetDescription": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetDifficultyRating": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetEnchantFlags": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetEnchantLevel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetEnchantStacks": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetFilteredEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetIcon": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetIsCoreAbility": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetIsEmpoweringAbility": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetIsOptimalAbility": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetIsSynergisticAbility": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetName": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetPrimaryStat": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetRoles": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetSpellFlags": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetSpellLevel": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_CVar": {
+   "standing": "attested-ns",
+   "members": {
+    "Exists": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Get": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetBitfield": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetBool": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetByteString": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCVarBitfield": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetDefault": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetDefaultBitfield": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetDefaultBool": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetDefaultNumber": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFlag": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMax": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMin": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumber": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Maximums": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "Minimums": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "RegisterSavedCVar": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RegisterSavedCharacterCVar": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ResetToDefault": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Set": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetBitfield": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetCVarBitfield": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SetCVarSave": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetFlag": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Cache": {
+   "standing": "attested-ns",
+   "members": {
+    "LastStatQuery": {
+     "type": "number",
+     "standing": "runtime-only"
+    },
+    "Queried": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "QueryAllStats": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QueryStat": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Callboard": {
+   "standing": "attested-ns",
+   "members": {
+    "GetView": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RequestView": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_CallboardCache": {
+   "standing": "attested-ns",
+   "members": {
+    "GetCallboardCacheInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCurrentPoints": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetItemLevelInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPointsForQuest": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Challenge": {
+   "standing": "attested-ns",
+   "members": {
+    "CanActivateChallenge": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanDeactivateChallenge": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanResurrect": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetActiveChallenges": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetAllChallenges": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetAllTrials": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetBrokenChallengeRules": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetChallengeAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetChallengeCompletion": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetChallengeCompletions": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetChallengeCriteriaInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetChallengeCriterias": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetChallengeFailure": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetChallengeFailures": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetChallengeIDByIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetChallengeInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetChallengeInfoByLevel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetChallengeLevels": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetChallengesWithGroupID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCompletedChallenges": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetConditionLocalization": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetModifierLocalization": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumChallenges": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPendingChallenges": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRequirementLocalization": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRuleLocalization": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasBrokenChallengeRule": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasChallengeRule": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsChallengeActive": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QueryChallengeCompletions": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QueryChallengeFailures": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SendChallengeSyncResponse": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetChallengeFilter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "StartChallenge": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "StopChallenge": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_CharacterAdvancement": {
+   "standing": "attested-ns",
+   "members": {
+    "ActivateLoadout": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "AddByEntryID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "AddSuggestionContextOverride": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ApplyPendingBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanAddByEntryID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanApplyPendingBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanClearPendingBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanLearnID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanRemoveByEntryID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSwapEntriesByID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSwitchActiveChrSpec": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanUnlearnAllSpells": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanUnlearnAllTalents": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanUnlearnID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanUseBrowser": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CancelPendingBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ClearPendingBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ClearPendingBuildByTab": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ClearRecentlyLearnedEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ClearSuggestionContextOverrides": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ExportBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAbilityEssenceCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveChrSpec": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveSpecID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAllEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCategories": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCategoryDisplayInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetClassAEInvestment": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetClassInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetClassName": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetClassPointInvestment": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetClassTEInvestment": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetEntriesAvailableForSwap": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetEntriesAvailableForTrade": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetEntriesByClass": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetEntryByInternalID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetEntryBySpellID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetExpectedAE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetExpectedTE": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetFilteredEntryAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFilteredEntryAtIndexByCategory": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetGlobalAEInvestment": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetGlobalTEInvestment": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetImplicitByClass": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetInspectInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetInspectedBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetInternalID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetKnownSpellEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetKnownSpellEntriesForClass": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetKnownSpells": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetKnownTalentEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetKnownTalentEntriesForClass": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetLearnedAE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetLearnedTE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetLowestInvestmentRequired": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetMasteriesByClass": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumFilteredEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumFilteredEntriesByCategory": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPendingClassAEInvestment": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetPendingClassPointInvestment": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPendingClassTEInvestment": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetPendingExpectedAE": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetPendingExpectedTE": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetPendingGlobalAEInvestment": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPendingGlobalTEInvestment": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPendingRankByEntryID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPendingRemainingAE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPendingRemainingTE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPendingSummary": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetPendingTabAEInvestment": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPendingTabTEInvestment": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetQualityCount": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetQualityInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetQualityLimit": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRemainingAE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRemainingTE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRootSpellTagTypes": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSpellTagTypeDisplayInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSpellTagTypes": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSpellsByClass": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSuggestedStats": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTabAEInvestment": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTabName": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTabTEInvestment": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTalentEssenceCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTalentRankByID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTalentRankBySpellID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTalentsByClass": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasAnySuggestionContextOverrides": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ImportPendingBuild": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ImportPendingBuildID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "InspectUnit": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsAbilityID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsAbilitySpellID": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsActiveBuildAvailable": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsConnectionAllowed": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsFiltered": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsKnownID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsKnownSpellID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsLockedID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsMastery": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsPending": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsPendingBuildAvailable": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsPendingEntryID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsSuggestionContextOverride": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsTalentAbilityID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsTalentAbilitySpellID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsTalentID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsTalentSpellID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "KnowsConnectedNodesFor": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "LearnID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "LockID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "MeetsInvestmentForAddByEntryID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PickupSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveByEntryID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveSuggestionContextOverride": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetFilteredEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetFilteredEntriesByCategory": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetLoadoutName": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetLoadoutSortOrder": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ShouldConfirmLearnID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ShouldConfirmUnlearnAllSpells": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ShouldConfirmUnlearnAllTalents": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ShouldConfirmUnlearnID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SwapEntriesByID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SwitchActiveChrSpec": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UnitKnownID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UnitTalentRankByID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UnlearnAllSpells": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UnlearnAllTalents": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UnlearnID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UnlockID": {
+     "type": "function",
+     "standing": "attested"
+    }
+   },
+   "declared_only_members": [
+    "IsTrait"
+   ]
+  },
+  "C_CharacterCreate": {
+   "standing": "attested-ns",
+   "members": {
+    "AddPet": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanCreateClass": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanCreateCoA": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanCreateHero": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanCreateWCR": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ClearClassPreview": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CycleCustomizationSkipLocked": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Dress": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetArchetypeCategories": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetArchetypeCategoryInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetArchetypeInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetArchetypeRoleInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetArchetypeRoles": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetArchetypeSpellDescription": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetArchetypes": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCameraPosition": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetClassGuideRoleInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetClassGuideRoles": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetClassGuideSubroleClasses": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetClassGuideSubroleInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetClassGuideSubroles": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PlayCastAnimation": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "PlayPetCastAnimation": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "PreviewClassOutfit": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ResetCameraPosition": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetCameraPosition": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetSelectedArchetype": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "StopCastAnimation": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "StopPetCastAnimation": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "TryOnItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "Undress": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ZoomIn": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ZoomOut": {
+     "type": "function",
+     "standing": "attested"
+    }
+   },
+   "declared_only_members": [
+    "CanCreateArchetype"
+   ]
+  },
+  "C_CharacterCustomizationUnlocks": {
+   "standing": "attested-ns",
+   "members": {
+    "GetCurrentOptionInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFirstLockedRequirement": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "HasLockedSelections": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_CharacterList": {
+   "standing": "attested-ns",
+   "members": {
+    "GetCounts": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasInactiveCharacters": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "Refresh": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "RequestActivate": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RequestDeactivate": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Chat": {
+   "standing": "attested-ns",
+   "members": {
+    "AcknowledgeChatInfraction": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetChatInfraction": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "HasChatInfraction": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_ClassInfo": {
+   "standing": "attested-ns",
+   "members": {
+    "GetAllSpecs": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetClassBySpecName": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSpecInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSpecInfoByID": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_CollectorCache": {
+   "standing": "runtime-only-ns",
+   "members": {
+    "GetCollectorCacheItemInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCollectorCacheItems": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCollectorCacheRarityRatesInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCollectorCacheRarityTypeInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCollectorCacheTypeInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetNumCollectorCacheItems": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "OpenCollectorCache": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_Config": {
+   "standing": "attested-ns",
+   "members": {
+    "GetBoolConfig": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFloatConfig": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetFloatVectorConfig": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetIntConfig": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetIntVectorConfig": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetRateConfig": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_ContentLoader": {
+   "standing": "attested-ns",
+   "members": {
+    "AddToParseQueue": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Load": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ResumeRoutines": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Runner": {
+     "type": "table",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_CrowdControl": {
+   "standing": "attested-ns",
+   "members": {
+    "Active": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "COMBAT_LOG_EVENT_UNFILTERED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CROWD_CONTROL_ADDED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CROWD_CONTROL_REMOVED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveCrowdControl": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCrowdControlInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasControl": {
+     "type": "boolean",
+     "standing": "runtime-only"
+    },
+    "PLAYER_ENTERING_WORLD": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UNIT_AURA": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_CustomStore": {
+   "standing": "attested-ns",
+   "members": {
+    "ApplyCustomStoreFilter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanPurchaseCustomStoreItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanQueryCustomStore": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCustomStoreData": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCustomStoreItemInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCustomStoreMaxPages": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCustomStoreTypeInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsItemLockedDueToAchievement": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsItemLockedDueToGameEvent": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PurchaseCustomStoreItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QueryCustomStore": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Deflate": {
+   "standing": "attested-ns",
+   "members": {
+    "Adler32": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CompressDeflate": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CompressDeflateWithDict": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CompressZlib": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CompressZlibWithDict": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CreateCodec": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CreateDictionary": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DecodeForPrint": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DecodeForWoWAddonChannel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DecodeForWoWChatChannel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DecompressDeflate": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DecompressDeflateWithDict": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DecompressZlib": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DecompressZlibWithDict": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "EncodeForPrint": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "EncodeForWoWAddonChannel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "EncodeForWoWChatChannel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "internals": {
+     "type": "table",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_DraftRewards": {
+   "standing": "attested-ns",
+   "members": {
+    "CanClaimHandOfFateRewards": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "ClaimHandOfFateRewards": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetHandOfFateRewardsReleaseInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetLevelingInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMarkOfAscensionCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumClaimableHandOfFateRewards": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumClaimedHandOfFateRewards": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetRewards": {
+     "type": "function",
+     "standing": "attested"
+    }
+   },
+   "declared_only_members": [
+    "CanClaimScrollOfFortuneRewards",
+    "ClaimScrollOfFortuneRewards",
+    "GetNumClaimableScrollOfFortuneRewards",
+    "GetNumClaimedScrollOfFortuneRewards",
+    "GetScrollOfFortuneRewardsReleaseInfo"
+   ]
+  },
+  "C_EquipmentSet": {
+   "standing": "attested-ns",
+   "members": {
+    "PlaceInBank": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_ExtraActionButton": {
+   "standing": "attested-ns",
+   "members": {
+    "GetExtraActionButtonAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetExtraActionButtonInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumExtraActionButtons": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Flipbook": {
+   "standing": "attested-ns",
+   "members": {
+    "CreateAtlasFlipbook": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Updater": {
+     "type": "table",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Format": {
+   "standing": "attested-ns",
+   "members": {
+    "Format": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_GM": {
+   "standing": "runtime-only-ns",
+   "members": {
+    "GetPlayerInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "RequestPlayerInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_GMTicket": {
+   "standing": "attested-ns",
+   "members": {
+    "ApproveAutomatedMessage": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "AssignGMTicket": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanAssignGMTicket": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanCloseTicket": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanMarkResponseSeen": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSendTicketMessage": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSetTicketPriority": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSetTicketStatus": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSetTicketTitle": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CloseTicket": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "DeclineAutomatedMessage": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAutomatedMessage": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetNumSuggestions": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetNumTickets": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetSuggestionAtIndex": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTicketAtIndex": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTicketByID": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTicketMessage": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTicketMessages": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsResponseSeen": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsTicketAssignedToMe": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "MarkResponseSeen": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SendTicketMessage": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SetTicketFilter": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SetTicketPriority": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SetTicketStatus": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SetTicketTitle": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_GameMode": {
+   "standing": "attested-ns",
+   "members": {
+    "ASCENSION_CUSTOM_GAME_MODE_CHANGED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DoesFrameHaveEvent": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "Event": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "GenerateCallbackEvents": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveGameModes": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCallbackTable": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCallbackTables": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCallbacksByEvent": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "HasRegistrantsForEvent": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsAnyGameModeActive": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsGameModeActive": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "OnLoad": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "PLAYER_ENTERING_WORLD": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RegisterCallback": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RegisterCallbackWithHandle": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SecureInsertEvent": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SetUndefinedEventsAllowed": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "TriggerEvent": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "UnregisterCallback": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "UnregisterEvents": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "callbackTables": {
+     "type": "table",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_Gossip": {
+   "standing": "attested-ns",
+   "members": {
+    "CheckHookItemHide": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CheckHookItemShow": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CheckHookNPCHide": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CheckHookNPCShow": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CheckItemHide": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CheckItemShow": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CheckNPCHide": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CheckNPCShow": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GOSSIP_CLOSED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GOSSIP_SHOW": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HookItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HookItems": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HookNPC": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HookNPCs": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "MakeGroup": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RedirectItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RedirectItems": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RedirectNPC": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RedirectNPCs": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveHookItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveHookNPC": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveRedirectItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveRedirectItems": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveRedirectNPC": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveRedirectNPCs": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RestoreGossip": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SilentHideGossip": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "_hookItem": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "_hookNPC": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "_redirectItem": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "_redirectNPC": {
+     "type": "table",
+     "standing": "runtime-only"
+    }
+   },
+   "declared_only_members": [
+    "currentNPC"
+   ]
+  },
+  "C_GroupFinder": {
+   "standing": "attested-ns",
+   "members": {
+    "CreateListing": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetActivityInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetAvailableActivities": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetAvailableCategories": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetAvailableGroupTypes": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCategoryInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetGroupInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetGroupTypeInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetListedGroupID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetListedGroups": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "QueryListedActivities": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "RemoveListing": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "RequestInvite": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "UpdateListing": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_HighRisk": {
+   "standing": "attested-ns",
+   "members": {
+    "CanToggleFelCommutation": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetInsuranceCostPerSlot": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetInsuranceTotalCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsFelCommutationActive": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ToggleFelCommutation": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Hook": {
+   "standing": "attested-ns",
+   "members": {
+    "DumpProfiling": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsRegistered": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Register": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RegisterAllEvents": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RegisterBucket": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SendBlizzardEvent": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SendEvent": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "StartProfiling": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "StopProfiling": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Unregister": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "allListener": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "buckets": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "events": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "refs": {
+     "type": "table",
+     "standing": "attested"
+    }
+   },
+   "declared_only_members": [
+    "EVENT_TIMES"
+   ]
+  },
+  "C_Instance": {
+   "standing": "attested-ns",
+   "members": {
+    "CanUseCheckpoint": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetInstanceLocks": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSavedMapAndDifficulty": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasCheckpoint": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsInArena": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsInBattleground": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsInDungeon": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsInPVE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsInPVP": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsInRaid": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_InventoryState": {
+   "standing": "attested-ns",
+   "members": {
+    "ClearAllNewItems": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Equipped": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "ITEM_PUSH": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Inventory": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "IsNewItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ItemUpdate": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "NewItems": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "PLAYER_ENTERED_WORLD": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RecentPush": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "RemoveNewItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UpdateCurrentItems": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Item": {
+   "standing": "attested-ns",
+   "members": {
+    "CanBind": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCacheTooltip": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetColoredItemName": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetLastUsedItemID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMerchantItemRatingRequirement": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNameAndID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetScalingLevel": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetSlotItemPower": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ITEM_USED_PAYLOAD": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsBound": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "lastUsedItem": {
+     "type": "table",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_ItemSet": {
+   "standing": "attested-ns",
+   "members": {
+    "GetAppearances": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetItemSetNumCollected": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSetName": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   },
+   "declared_only_members": [
+    "GetItemSetName"
+   ]
+  },
+  "C_Keystones": {
+   "standing": "attested-ns",
+   "members": {
+    "ASCENSION_MYTHIC_PLUS_KEYSTONE_ACTIVATION_WINDOW_VISIBILITY_CHANGED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCurrentSetBest": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCurrentSetString": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetDungeonBest": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetDungeonBestLink": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetKeystoneDungeonInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetKeystoneInInventory": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetKeystoneInInventoryItemID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPlayerSaveKey": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetProfileLink": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSetBest": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTimedDungeonsForExpansion": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "MYTHIC_PLUS_COMPLETE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "MYTHIC_PLUS_COUNTDOWN_STARTED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "MYTHIC_PLUS_STARTED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SaveKeystoneRun": {
+     "type": "function",
+     "standing": "attested"
+    }
+   },
+   "declared_only_members": [
+    "playerSaveKey"
+   ]
+  },
+  "C_LFG": {
+   "standing": "attested-ns",
+   "members": {
+    "CanUseGroupFinder": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanUseLFD": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanUseManastorm": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanUseRandomLFD": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetLFGDungeonRewards": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsRandomDungeonDisplayable": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsScalingDungeon": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RequiredExpansion": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "RequiredRandomItemLevel": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "RequiredRandomPVEPower": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "RequiresGameEvent": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "ScalingDungeons": {
+     "type": "table",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_Logger": {
+   "standing": "attested-ns",
+   "members": {
+    "ClearLUA": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Debug": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "Error": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Fatal": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "Info": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "LFG": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "LUA": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Trace": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "Warning": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_LootLockout": {
+   "standing": "attested-ns",
+   "members": {
+    "GetEncounterData": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetEncounterDatasForMapAndDifficulty": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetLootLockoutTimeRemaining": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetLootLockouts": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetUnitEncounterID": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetUnitLootLockForEncounter": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "HasEncounterDatasForMapAndDifficulty": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "ListInstanceBinds": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QueryInstanceBinds": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ResetInstanceDifficulty": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_LoyaltyPass": {
+   "standing": "runtime-only-ns",
+   "members": {
+    "CanRedeemLoyaltyPassReward": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "ClaimRewards": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTimeUntilExpiration": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTimeUntilNextReward": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsLoyaltyPassActive": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsLoyaltyPassExpired": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_Manastorm": {
+   "standing": "attested-ns",
+   "members": {
+    "CanEnter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanLeave": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSetLoadoutSpellAtIndex": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "Enter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveLevel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveManastormID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveManastormType": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAvailableLoadoutSpells": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetBoss": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetEnterableLevels": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetExperienceModifier": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetLoadoutSpellAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetManastormCacheInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMaxCompletedLevels": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumLoadoutSlots": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRewardLimitProgress": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRewardModifier": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRewardVisibility": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetStageBonusExperience": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsInManastorm": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsRewardLocked": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "Leave": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetLoadoutSpellAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ShowObjectiveIcon": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_Map": {
+   "standing": "attested-ns",
+   "members": {
+    "GetBestMapForUnit": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_MysticEnchant": {
+   "standing": "attested-ns",
+   "members": {
+    "ApplyItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "ApplySlot": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanApplyAnySlot": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanApplyItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanApplySlot": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanCollectionReforgeAnySlot": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanCollectionReforgeItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanCollectionReforgeSlot": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanDestroy": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanDisenchantItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanDisenchantSlot": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanEquipEnchant": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanEquipItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanEquipSlot": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanInspect": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanPurchaseMysticExtract": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanPurchaseMysticScroll": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanReforgeItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanReforgeSlot": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSaveApply": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSaveCollectionReforge": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CollectionReforgeItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CollectionReforgeSlot": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "Destroy": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "DisenchantItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "DisenchantSlot": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetAppliedEnchant": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetApplyChanges": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetApplyItemCost": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCollectionReforgeChanges": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCollectionReforgeItemCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCollectionReforgeSlotCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetDisenchantCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetEnchantInfoByItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetEnchantInfoBySpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFilteredMysticScrollAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFilteredMysticScrolls": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetMysticScrollCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMysticScrolls": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetNumFilteredMysticScrolls": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetProgress": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetReforgeCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSaveCollectionReforgeSlotCost": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "HasAnyCollected": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasAnyScroll": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasAnySlotEnchanted": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "HasNearbyMysticAltar": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Inspect": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PurchaseMysticExtract": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PurchaseMysticScroll": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "QueryEnchants": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ReforgeItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "ReforgeSlot": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SaveApply": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SaveCollectionReforge": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SetMysticScrollFilter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UndoApply": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UndoCollectionReforge": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UndoLastApply": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "UndoLastCollectionReforge": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_MysticEnchantPreset": {
+   "standing": "attested-ns",
+   "members": {
+    "Activate": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanActivate": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanSave": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanUnlock": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetNumPresets": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPresetData": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Unlock": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_MythicPlus": {
+   "standing": "attested-ns",
+   "members": {
+    "ActivateKeystone": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveKeystoneChampions": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveKeystoneEncounters": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveKeystoneInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveKeystoneTime": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveKeystoneTrash": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCurrentAffixes": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetKeystoneInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMapEncounters": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMapFinalEncounter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsItemKeystone": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsKeystoneActive": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_NamePlate": {
+   "standing": "attested-ns",
+   "members": {
+    "GetNamePlateForUnit": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetNamePlateSize": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_NamePlateManager": {
+   "standing": "attested-ns",
+   "members": {
+    "ApplyFPSIncrease": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CheckNamePlateMotion": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DisableBlizzPlate": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "EnumerateActiveNamePlates": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNamePlateSize": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsNamePlateMoving": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RefreshNamePlateSize": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetEnableResizeNamePlates": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetNamePlateSize": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_NoviceNetwork": {
+   "standing": "attested-ns",
+   "members": {
+    "IsNewcomer": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_PVP": {
+   "standing": "attested-ns",
+   "members": {
+    "CanQueueCasual": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanQueueInHighRisk": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanQueueRated": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetBattlegroundFaction": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCurrentBestRating": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetEliteTierInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetHolidayBGInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetHonorRank": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetIsCurrentMapHighRisk": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMapIsHighRisk": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMaxGearDropAmount": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPVPTierInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRandomBGInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRandomBrawlBGInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRequiredItemLevelForEvents": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "InHighRisk": {
+     "type": "boolean",
+     "standing": "runtime-only"
+    },
+    "IsLegacyWarmode": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PLAYER_ENTERING_WORLD": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ZONE_CHANGED_NEW_AREA": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Player": {
+   "standing": "attested-ns",
+   "members": {
+    "GetAverageItemLevel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetClass": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCurrentCompanion": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCurrentMapContinentZone": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCurrentMapExpansion": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCurrentMapInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFaction": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetLevel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetName": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPvEPower": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPvPPower": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRace": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRuleset": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRulesetCooldown": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasAura": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasBuff": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasDebuff": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasRuleset": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "InCombat": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsCustomClass": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsDead": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsDefaultClass": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsEffectivelyTank": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsGM": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsGroupLeader": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsHero": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsHighRisk": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsImmune": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsInGroup": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsInRaid": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsMaxLevel": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsNoRiskPvE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsNoRiskPvP": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsNoRiskPvPOrHigher": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsPrestiged": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsTitansGrip": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsWorldPVP": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PLAYER_ENTERING_WORLD": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PLAYER_LEVEL_UP": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetRuleset": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UNIT_PET": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UpdatePvEPower": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "currentLevel": {
+     "type": "number",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_PlayerPoll": {
+   "standing": "attested-ns",
+   "members": {
+    "CanChangeQuestionChoice": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSubmitAnswer": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumQuestionChoices": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumQuestions": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetQuestionChoiceInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetQuestionInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetQuestionType": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasUnansweredQuestions": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RequestQuestionList": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SubmitAnswer": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_PlayerTicket": {
+   "standing": "attested-ns",
+   "members": {
+    "CanCloseTicket": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanCreateTicket": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanMarkResponseSeen": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanReopenTicket": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSendTicketMessage": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CloseTicket": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CreateTicket": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCurrentTicket": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTicketMessage": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTicketMessages": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsResponseSeen": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "MarkResponseSeen": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ReopenTicket": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SendTicketMessage": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_PopupQueue": {
+   "standing": "attested-ns",
+   "members": {
+    "Achievements": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "Add": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "AddAchievement": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Frame": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "Queue": {
+     "type": "table",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_PrimaryStat": {
+   "standing": "attested-ns",
+   "members": {
+    "AuraToID": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "Auras": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "GetActivePrimaryStat": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetInternalID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPrimaryStatAura": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPrimaryStatID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPrimaryStatInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPrimaryStatSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetUnitPrimaryStat": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetPrimaryStat": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SpellToID": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "internalIds": {
+     "type": "table",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Quest": {
+   "standing": "attested-ns",
+   "members": {
+    "ASCENSION_CUSTOM_QUEST_REWARDED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "AddAutoQuestPopUp": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ExpandAllQuestHeaders": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCurrentQuests": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPortraitData": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetQuestID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetQuestIndexByID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetQuestNameByID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTitleByID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasOrHasDoneQuest": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsFelforgedChallenge": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsOnQuestID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsQuerying": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsQuestCachedByID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsQuestComplete": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsQuestTurnedIn": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PLAYER_LOGIN": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PortraitData": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "QUEST_ACCEPTED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QUEST_LOG_UPDATE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QUEST_QUERY_COMPLETE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SendPathToAscensionEvent": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "activeQuests": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "completedQuests": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "felforgedChallenges": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "isQuerying": {
+     "type": "boolean",
+     "standing": "runtime-only"
+    },
+    "lastQuery": {
+     "type": "number",
+     "standing": "runtime-only"
+    },
+    "queryIds": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "titles": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "turnedInQuests": {
+     "type": "table",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_QuestLog": {
+   "standing": "attested-ns",
+   "members": {
+    "GetQuestType": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetUnitQuestInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetZoneStoryInfo": {
+     "type": "function",
+     "standing": "attested"
+    }
+   },
+   "declared_only_members": [
+    "IsLegendaryQuest"
+   ]
+  },
+  "C_Realm": {
+   "standing": "attested-ns",
+   "members": {
+    "IsDevelopment": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsLeague": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsLive": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsPTR": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsProduction": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsSeasonal": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_RealmSelect": {
+   "standing": "attested-ns",
+   "members": {
+    "GetRealmInfo": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_RecoveryService": {
+   "standing": "attested-ns",
+   "members": {
+    "GetCategoryItemAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumItemsInCategory": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QueryCategory": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RecoverCategoryItemAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SwapFactionChangePotion": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SwapRaceChangePotion": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "UpdateFilter": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Scenario": {
+   "standing": "attested-ns",
+   "members": {
+    "GetActiveStage": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetEncounterAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumEncounters": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetScenarioName": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsInScenario": {
+     "type": "function",
+     "standing": "attested"
+    }
+   },
+   "declared_only_members": [
+    "GetScenarioInfo"
+   ]
+  },
+  "C_Serialize": {
+   "standing": "attested-ns",
+   "members": {
+    "CompressForURI": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DecompressFromURI": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Deserialize": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DeserializeDecompressFromPrint": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DeserializeValue": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "FromJSON": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "FromJSONCategory": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "FromJSONData": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsSerializableType": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Serialize": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SerializeCompressForPrint": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SerializeEx": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ToJSON": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "jsonEncoder": {
+     "type": "function",
+     "standing": "attested"
+    }
+   },
+   "declared_only_members": [
+    "DeserializeCompressForPrint"
+   ]
+  },
+  "C_SkillCard": {
+   "standing": "attested-ns",
+   "members": {
+    "GetCardAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCardCount": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCardID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCardRankAtIndex": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCardSpellID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMaxCardCount": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSkillCardInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSkillCardInfoAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSkillCardQuality": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsCardAtIndexActive": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsCardAtIndexBlocked": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsCardedID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsCardedSpellID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveCardAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetCardAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_SkillCardCollection": {
+   "standing": "attested-ns",
+   "members": {
+    "CanClaimPendingSkillCardAtIndex": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanPurchaseSealedCard": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanPurchaseSealedCardBoosterPack": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ClaimAllPendingSkillCards": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "ClaimPendingSkillCard": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetBonusSealedCardPacksProgress": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMaxNumPurchasableSealedCardBoosterPacks": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMaxRank": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetNumPendingSkillCards": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumSkillCards": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPendingSkillCardAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetProgress": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSealedCardBoosterPackCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSealedCardCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSkillCardAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasAnySkillCardsCollected": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsCollected": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PurchaseAllSealedCards": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "PurchaseSealedCard": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PurchaseSealedCardBoosterPack": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetSkillCardFilter": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Social": {
+   "standing": "attested-ns",
+   "members": {
+    "FRIEND_METADATA_CHANGED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFriendAddedAs": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetFriendAddedAs": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Spell": {
+   "standing": "attested-ns",
+   "members": {
+    "AppliesBuff": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "AppliesDebuff": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "AutoPlaceIgnored": {
+     "type": "table",
+     "standing": "attested"
+    },
+    "GetFirstRank": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFreeActionButton": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFreeActionID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMaxLearnableRank": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNameAndID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPresetSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSpecSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSpellActionID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSpellDescription": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSpellID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasMultipleSpellRanks": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasNotMaxedRanks": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "HasRuneUI": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsActionAlmostReady": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsActivePreset": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsActiveSpec": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsAnyRankKnown": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsCastAlmostDone": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsHarmfulSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsHelpfulSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsImmunitySpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsPresetSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsSpecSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsTrainerSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PLAYER_ENTERING_WORLD": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PLAYER_LEVEL_UP": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PlaceSpellOnActionBar": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveSpellFromActionBar": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SET_ACTION_BUTTON_SPELL_PAYLOAD": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SPELLS_CHANGED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ShouldHoldToCast": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "TabHasNotMaxedRanks": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "knownSpellNames": {
+     "type": "table",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_SpellActivationOverlay": {
+   "standing": "attested-ns",
+   "members": {
+    "GetSpellActivationOverlayInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsSpellOverlayed": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Sun": {
+   "standing": "runtime-only-ns",
+   "members": {
+    "SetX": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SetY": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "SetZ": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_SuperTrack": {
+   "standing": "attested-ns",
+   "members": {
+    "ClearSuperTracker": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSuperTrackedPosition": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSuperTrackedWorldPosition": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTargetState": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsSuperTrackingAnything": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PositionFrame": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetSuperTrackedCorpse": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetSuperTrackedPosition": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetSuperTrackedQuestID": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Taxi": {
+   "standing": "runtime-only-ns",
+   "members": {
+    "GetCurrentTaxiNodeID": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTaxiNodeID": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTaxiPathDuration": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_TemporalContracts": {
+   "standing": "attested-ns",
+   "members": {
+    "ActivateAllTemporalContracts": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "ActivateAllTemporalContractsByContentType": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ActivateTemporalContract": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCategoryData": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCategoryName": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCompletableQuestsByCategory": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetCompletableTemporalContracts": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetQuestCategory": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetQuestSortIDs": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetQuestSortText": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTemporalContractInfo": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTemporalContractTypes": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTotalContentTypeCost": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTotalContentTypeRewards": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTotalContractTypeCost": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTotalContractTypeRewards": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_Timer": {
+   "standing": "attested-ns",
+   "members": {},
+   "declared_only_members": [
+    "After",
+    "NewTicker"
+   ]
+  },
+  "C_Token": {
+   "standing": "attested-ns",
+   "members": {
+    "GetTokenAmount": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTokenInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTokenTypes": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_TrackerHeader": {
+   "standing": "attested-ns",
+   "members": {
+    "Alliance": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "CHALLENGE_COMPLETED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CHALLENGE_CRITERIA_COMPLETED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CHALLENGE_CRITERIA_FAILED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CHALLENGE_DEATH_UPDATE": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CHALLENGE_FAILURE_ADDED": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ChallengeCompleted": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "ChallengeCriteriaFailed": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "ChallengeCriteriaSuccess": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "ChallengeDeath": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "ChallengeFailed": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "ChallengeRedemption": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "Hide": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Horde": {
+     "type": "table",
+     "standing": "runtime-only"
+    },
+    "Show": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_TradeSkill": {
+   "standing": "runtime-only-ns",
+   "members": {
+    "GetCraftedItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetReagentItems": {
+     "type": "function",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_TrialCreator": {
+   "standing": "attested-ns",
+   "members": {
+    "ActivateTrial": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanActivateTrial": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanDeactivateTrial": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanEditTrial": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanSaveTrial": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DeactivateTrial": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DeleteTrial": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetActiveTrial": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetAllTrials": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetNumTrials": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetOwnedTrials": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetTrialAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTrialCompletion": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTrialCompletions": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTrialIDByIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTrialInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QueryTrialCompletions": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QueryTrials": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RateTrial": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SaveTrial": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetTrialFilter": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_TrinityCore": {
+   "standing": "attested-ns",
+   "members": {
+    "ASCENSION_LUA": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ConvertBagSlots": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "MSG_VERSION": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "MSG_VERSION_REPLY": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RequestPlayerVersion": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "index": {
+     "type": "number",
+     "standing": "runtime-only"
+    },
+    "listeningFor": {
+     "type": "table",
+     "standing": "runtime-only"
+    }
+   }
+  },
+  "C_Tutorial": {
+   "standing": "attested-ns",
+   "members": {
+    "AddMentorSpecialization": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "AnyUnclaimedRewards": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanCollectReward": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanToggleMentorStatus": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CollectReward": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "DebugTutorialAppliccability": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetAvailableMentorAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCategories": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCategoryInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCategoryProgress": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetIndexByKeywordID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetKeywordAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetKeywordID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetKeywordInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMentorSpecializationActive": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMentorSpecializationInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMentorSpecializations": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumAvailableMentors": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumKeywords": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumTutorials": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetObjectiveInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetObjectives": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRewards": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTutorialAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTutorialByID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTutorialDisplay": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetTutorialsRequiredForMentorStatus": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsCategoryEnabled": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsMentorStatusActive": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsRewardCollected": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsTutorialAvailable": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsTutorialComplete": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsTutorialRequiredForMentorStatus": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QueryActiveMentors": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveMentorSpecialization": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetAvailableMentorFilter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetKeywordFilter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetTutorialFilter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "StartQuest": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ToggleMentorStatus": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_UICamera": {
+   "standing": "attested-ns",
+   "members": {
+    "GetCameraInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetItemCameraID": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_VanityCollection": {
+   "standing": "attested-ns",
+   "members": {
+    "GetAllItems": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetDPPrice": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetItemByLearnedSpell": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetOwnerByContentItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRandomItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetSeasonalShowcaseItems": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetVPPrice": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsCollectionItemOwned": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsConsolidatedVanityBuff": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsOwned": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsPurchaseInProgress": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "Purchase": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "PurchaseCollectionItem": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "PurchaseWebShopItem": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "QueryItems": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RequestDelivery": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_Wildcard": {
+   "standing": "attested-ns",
+   "members": {
+    "AddAllDesiredFilter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "AddAllUndesiredFilter": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "AddDesiredID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "AddUndesiredID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanAddDesiredID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanAddUndesiredID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanRepurchaseAbilityRolls": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanRepurchaseAnyRolls": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanRepurchaseRolls": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanRepurchaseTalentRolls": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanResetAbilities": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "CanRollAbilities": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanShowStartingChoice": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanStartRapidRolling": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CanUseRapidRolling": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "CancelRapidRolling": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ClearDesiredSpells": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ClearUndesiredSpells": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ContinueRapidRolling": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFilteredDesiredEntryAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetFilteredUndesiredEntryAtIndex": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMaxRepurchasableAbilityRolls": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetMaxRepurchasableRolls": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetMaxRepurchasableTalentRolls": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetMaximumRapidRolls": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNextUnlearnedID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumFilteredDesiredEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumFilteredUndesiredEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumRepurchasableAbilityRolls": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetNumRepurchasableRolls": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumRepurchasableTalentRolls": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRapidRollAbilityBreakpointInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRapidRollTalentBreakpointInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRapidRollingState": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRepurchaseAbilityRollCost": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "GetRepurchaseRollCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRepurchaseTalentRollCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRollIcons": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetStartingChoiceEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsAwaitingRapidRollingTalentUpgradeRoll": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsDesiredID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsRapidRollingEnabled": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "IsUndesiredID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveAllUndesiredAbilities": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "RemoveAllUndesiredTalents": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "RemoveDesiredID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RemoveUndesiredID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RepurchaseAbilityRolls": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "RepurchaseRolls": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RepurchaseTalentRolls": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "RerollUnlockedStartingAbilities": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ResetAbilities": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "RollAbilities": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetFilteredDesiredEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetFilteredUndesiredEntries": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetRapidRollingSelections": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "StartRapidRolling": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "UnlearnAbility": {
+     "type": "function",
+     "standing": "runtime-only"
+    },
+    "WillRollFirstNonStartingAbility": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "WillRollStartingAbilities": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_WildcardRewards": {
+   "standing": "attested-ns",
+   "members": {
+    "CanClaimScrollOfFortuneRewards": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "ClaimScrollOfFortuneRewards": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetLevelingInfo": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMarkOfAscensionCost": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumClaimableScrollOfFortuneRewards": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetNumClaimedScrollOfFortuneRewards": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetRewards": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetScrollOfFortuneLimits": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetScrollOfFortuneRewardsReleaseInfo": {
+     "type": "function",
+     "standing": "attested"
+    }
+   }
+  },
+  "C_WorldMap": {
+   "standing": "attested-ns",
+   "members": {
+    "CanShowPOI": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetCurrentMapID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMapFileByAreaID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMapFileByZoneID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMapIDByAreaID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMapIDByZoneID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetMapPosition": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetPOIFilter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetVisiblePOI": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetWorldPosition": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "GetZoneIDByAreaID": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsOnCityMap": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "IsOnContinentMap": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetPOIFilter": {
+     "type": "function",
+     "standing": "attested"
+    },
+    "SetPOIFilters": {
+     "type": "function",
+     "standing": "attested"
+    }
+   },
+   "declared_only_members": [
+    "xyz"
+   ]
+  }
+ }
+}
