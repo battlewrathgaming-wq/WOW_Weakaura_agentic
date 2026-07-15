@@ -48,7 +48,7 @@ machine → live. The **asset library** (proven compositions: the Target tracker
 
 ## Coverage — the aura's main levers (the UI's own top level)
 
-- **trigger** — `trigger.aura2.md` (the buff/debuff window reader; 66% of real-world authorship)
+- **trigger** — `triggers.md` (the overview: the four info channels + the behavioral taxonomy) · `trigger.aura2.md` (the buff/debuff window reader; 66% of real-world authorship)
 - **display** — `display.md` (the shared layer + subRegions + the choosing rule) · per region:
   `region.icon.md` · `region.aurabar.md` · `region.dynamicgroup.md` (boolean/timed · progress · container)
 - **load** — `load.md` (when the aura exists at all; 41 fields; the pack idiom + the spellknown gate)
