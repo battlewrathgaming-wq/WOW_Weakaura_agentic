@@ -144,7 +144,17 @@ One group, one Copy button, three lines of "open WoW → /wa → Import → past
 | backing | status |
 |---|---|
 | bundling + encode (the machine, server-side: stage → gate → pickup) | ✔ |
-| the HTML shell's client-side JS encode (deflate+b64) | ✗ the picker build proper |
+| the HTML shell's client-side JS encode | ◐ feasibility CONFIRMED (2026-07-15); the port is the picker build proper |
+
+**Feasibility (assessed against the codec):** the string = `"!WA:2!" + EncodeForPrint(CompressDeflate(
+LibSerialize.Serialize(table)))` (`weakaura_codec.py:13`). All three layers land in self-contained JS:
+LibSerialize = a PORT of our own live-proven Python reference (translation, not research); DEFLATE = native
+`CompressionStream('deflate-raw')` (inline pako as old-browser fallback — still no CDN); EncodeForPrint = a
+6-bit alphabet, ~20 lines. **Construction stays pipeline-lawful:** templates are pressed through the REAL
+machine (gate → fill → canon) at BUILD time and ship completed inside `library.json`; the JS only substitutes
+slots + places + encodes — it never authors structure. **Cross-validation:** same picks pressed both ways →
+decode both strings with the existing decoder → table-diff CLEAN (decode-equivalence, not string bytes — DEFLATE
+output legitimately varies per implementation). Live import = the final stamp (invariant 6).
 
 **Naming — values, not questions (settled 2026-07-15):** no naming screens. Group `id` derived —
 `"COA — <Spec> <bucket> (<scope>)"` — shown at Q5 as an EDITABLE PREFILL (optional text box; invisible cost to
