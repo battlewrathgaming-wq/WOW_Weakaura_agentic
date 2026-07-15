@@ -9,3 +9,4 @@ core.lua
 task_probe.lua
 task_frames.lua
 task_census.lua
+task_plates.lua

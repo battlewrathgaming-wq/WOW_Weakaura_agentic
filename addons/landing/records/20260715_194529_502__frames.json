@@ -1,0 +1,111 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-07-15T19:45:53",
+    "pulled_at": "2026-07-15T19:45:56",
+    "sha256": "2d627aebe1f738ab147607671376b9ec34a690ed5f16ae4ef4490387e2898620",
+    "raw_clone": "addons\\landing\\raw\\20260715_194529_502__frames.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "frames: 7 frame(s) under the cursor (fields: spellID,spellId,id,talentID,talentIndex,tabIndex,rank,currentRank,maxRank,abilityID,nodeID,tier,column,unit,displayedUnit,slot,index,duration,startTime)",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "NECROMANCER",
+    "runId": "20260715_194529_502",
+    "startedAt": "2026-07-15 19:45:29",
+    "char": "Gravekeeper",
+    "completedAt": "2026-07-15 19:45:29",
+    "version": "2.1.0",
+    "args": "",
+    "status": "complete",
+    "task": "frames",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "cursorX": 896.7375209241006,
+    "fields": [
+      "spellID",
+      "spellId",
+      "id",
+      "talentID",
+      "talentIndex",
+      "tabIndex",
+      "rank",
+      "currentRank",
+      "maxRank",
+      "abilityID",
+      "nodeID",
+      "tier",
+      "column",
+      "unit",
+      "displayedUnit",
+      "slot",
+      "index",
+      "duration",
+      "startTime"
+    ],
+    "cursorY": 513.2549143730115,
+    "hits": [
+      {
+        "addr": "table: 3970AEA0",
+        "name": "WorldFrame",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 0,
+        "strata": "UNKNOWN"
+      },
+      {
+        "addr": "table: 39707110",
+        "name": "UIParent",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 0,
+        "strata": "MEDIUM"
+      },
+      {
+        "addr": "table: 47929EA0",
+        "name": "SpellActivationOverlayFrame",
+        "parent": "UIParent",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 1,
+        "strata": "MEDIUM"
+      },
+      {
+        "addr": "table: 49CF5410",
+        "name": "CoASpellActivationOverlay",
+        "parent": "UIParent",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 1,
+        "strata": "MEDIUM"
+      },
+      {
+        "addr": "table: 4B0EB3A0",
+        "name": "WeakAurasFrame",
+        "parent": "UIParent",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 0,
+        "strata": "MEDIUM"
+      },
+      {
+        "strata": "BACKGROUND",
+        "parent": "UIParent",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 1,
+        "addr": "table: 4C091D60"
+      },
+      {
+        "strata": "TOOLTIP",
+        "parent": "UIParent",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 1,
+        "addr": "table: 4C091DB0"
+      }
+    ]
+  }
+}

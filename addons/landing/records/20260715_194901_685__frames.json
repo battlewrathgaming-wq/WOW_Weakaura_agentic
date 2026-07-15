@@ -1,0 +1,95 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-07-15T19:49:08",
+    "pulled_at": "2026-07-15T19:49:11",
+    "sha256": "66d25741c1fadf943e48ed4256ab9616ee9d1d871e5bd50644af89910d5aa783",
+    "raw_clone": "addons\\landing\\raw\\20260715_194901_685__frames.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "frames: 7 frame(s) under the cursor (fields: _unit,unit,displayedUnit)",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "NECROMANCER",
+    "runId": "20260715_194901_685",
+    "startedAt": "2026-07-15 19:49:01",
+    "char": "Gravekeeper",
+    "completedAt": "2026-07-15 19:49:01",
+    "version": "2.1.0",
+    "args": "_unit,unit,displayedUnit",
+    "status": "complete",
+    "task": "frames",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "cursorX": 891.0898451409096,
+    "fields": [
+      "_unit",
+      "unit",
+      "displayedUnit"
+    ],
+    "cursorY": 523.9215518387792,
+    "hits": [
+      {
+        "addr": "table: 4B25A1C0",
+        "name": "WorldFrame",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 0,
+        "strata": "UNKNOWN"
+      },
+      {
+        "addr": "table: 377EF5F0",
+        "name": "UIParent",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 0,
+        "strata": "MEDIUM"
+      },
+      {
+        "addr": "table: 4B9A39E8",
+        "name": "SpellActivationOverlayFrame",
+        "parent": "UIParent",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 1,
+        "strata": "MEDIUM"
+      },
+      {
+        "addr": "table: 397013A0",
+        "name": "CoASpellActivationOverlay",
+        "parent": "UIParent",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 1,
+        "strata": "MEDIUM"
+      },
+      {
+        "addr": "table: 4A21B2D8",
+        "name": "WeakAurasFrame",
+        "parent": "UIParent",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 0,
+        "strata": "MEDIUM"
+      },
+      {
+        "strata": "BACKGROUND",
+        "parent": "UIParent",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 1,
+        "addr": "table: 4805B358"
+      },
+      {
+        "strata": "TOOLTIP",
+        "parent": "UIParent",
+        "widgetID": 0,
+        "objectType": "Frame",
+        "level": 1,
+        "addr": "table: 62169120"
+      }
+    ]
+  }
+}
