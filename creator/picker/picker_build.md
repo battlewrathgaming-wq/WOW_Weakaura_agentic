@@ -145,6 +145,13 @@ Ready contract → cooldown lanes (queue + dim-grid costumes already specified) 
 select recipes (HoT mirror · behaviour-drivers · stacks) · resource bars. Each lands as: press the contract →
 add its templates → re-run the emit + build. **The shell does not change** — that's the test of Phase 3 done right.
 
+**"And what?" (Battlewrath, 2026-07-16 — parked until V1 is stable and shipped):** the chains feed the wizard.
+When a picked spell HAS a chain (a triggers/applies_aura edge), the wizard offers one more preformed question —
+*"Show me when it procs?"* — adding a trigger 2 + condition in the proven shape (pull, not push: the consumer
+reads the proc's native buff window; the corpus proc-pair pattern as a wizard step). The library's knowledge
+becoming the wizard's next question — the two faces of the file meeting. Needs the trigger-2/condition fragment
+pressed + the edge→offer select; no shell redesign (it's one more pruned screen).
+
 ## Order & runway
 
 1. **Phase 1 first** (the only piece with real unknown-unknowns; everything else is proven motion) — Phase 0
