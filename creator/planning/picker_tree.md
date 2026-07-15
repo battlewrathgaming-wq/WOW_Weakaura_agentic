@@ -31,6 +31,9 @@ Four questions after class/spec; some paths skip two of them. The wizard speeds 
 5. **No WA vocabulary forward of the curtain.** "Dims when it's not ready" — never "show on cooldown." The user
    answers questions; they never edit a field. Anything beyond the presets they do in WA's own UI afterwards
    (the everyman law working as intended).
+6. **The wizard says what it is.** Instruct plainly: *this isn't build-your-full-UI-in-one-go* — you get packs,
+   you arrange them in-game (the product is TRACKER PACKS, not a HUD). We print basic styling; the group's style
+   is theirs to edit in WA's UI afterwards. Sets expectation AND hands over ownership in one line.
 
 ---
 
@@ -133,6 +136,20 @@ One group, one Copy button, three lines of "open WoW → /wa → Import → past
 |---|---|
 | bundling + encode (the machine, server-side: stage → gate → pickup) | ✔ |
 | the HTML shell's client-side JS encode (deflate+b64) | ✗ the picker build proper |
+
+**Output specifics (Battlewrath, 2026-07-15):**
+- **Placement:** a `dynamicgroup` needs NONE — grow/arrange is its job. A static `group` gets basic steps:
+  each member one to the right of the last — offset = member width + a pixel gap (HxW+px). Dumb arithmetic,
+  never layout intelligence.
+- **Styling:** we print BASIC styling only; the group's style is the user's to edit in-game (law #6).
+- **Load:** every pressed aura carries **class + spec load** — the contract's existing shape, applied always.
+
+## The side door — the explorable inventory (opportunity shopping)
+
+The walked path is the front door, but the ID inventory stays BROWSABLE alongside it: class:spec spell families,
+names + icons, open shelves. For the user who doesn't know what they want until they see it — discovery feeds the
+wizard (spot something → "track this" drops them into the flow at Q4 with the pick made). The original
+shelves-first design survives here as a MODE, not the navigation.
 
 ---
 
