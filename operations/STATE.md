@@ -23,6 +23,13 @@ _Last updated 2026-07-15 (addons-bench session). The single "where are we" read.
   steered by arguments, never edited between passes.
 - **NEXT here:** Battlewrath restarts client once → live-prove v2 (`/coadump r frames` → /reload → watcher lands
   it) → then the census probe task (the FIRST GOAL) rides the proven loop.
+- **FIND (Battlewrath pointed at the client root): `Data\Content\*.json` — loose dev-authored custom game data,
+  plain JSON, no MPQ extraction.** `CharacterAdvancementData.json` (7MB: class→ability entries, ALL 21 COA classes
+  under dev tokens + Reborn* stock, 44 Class values, Realms bitmask) · `SpellRankData.json` (the rank-family table:
+  firstSpellId/level/rank/spellId) · `SpellToSpellSuggestionData.json` + siblings (11MB relationship graphs) ·
+  SkillCard/TradeSkill/etc. A potential NEW WITNESS for the ability inventory (vs Input talents + DBC∩scrape) and a
+  direct source for rank policy. Recorded in addons/bench.md fact basis; NOT yet cross-validated against
+  coa_spells.json — that reconciliation is a bench-mission candidate, discuss before building.
 
 ## Morning 2026-07-15 (on top of the session close below)
 

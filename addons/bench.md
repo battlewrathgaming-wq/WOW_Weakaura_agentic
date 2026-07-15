@@ -30,6 +30,8 @@ never by code edits between passes. /reload is still fine for flushing data.
 | offline Lua | `.tools/lua51/lua5.1.exe` (5.1.5) |
 | client version anchors | interface `30300` · WA fork toc `5.21.2` / `internalVersion 86` — establish per-addon anchors the same way |
 | Ascension custom API | NO docs anywhere — source-grep the AddOns tree (`SpecializationUtil`, `ASCENSION_*` events, mysticenchant…); confirmed workable repeatedly |
+| **`Data\Content\*.json`** (found 2026-07-15) | **LOOSE dev-authored custom game data, plain JSON, no MPQ needed**: `CharacterAdvancementData.json` (7MB, class→ability entries incl. ALL 21 COA classes under dev tokens + Reborn* stock, 44 Class values; Realms bitmask gates) · `SpellRankData.json` ({firstSpellId,level,rank,spellId} = THE rank-family table) · `SpellToSpellSuggestionData.json` (11MB relationship graph) · SkillCard/TradeSkill/Transmog/LFG…  Version anchor = the client build that ships them |
+| `Data\area-52\listarchive` | one line: `patch-D.MPQ` — the realm folder's archive manifest (patch-D = the proven Spell.dbc source, 22MB) |
 | 3.3.5 stock API docs | warcraft.wiki.gg (archived wowpedia) — SECONDARY: concepts freely, facts fork-confirmed |
 | known client quirks | `debug.*` is STRIPPED server-side (no reflection); fileID icons risky on 3.3.5 (prefer paths/auto) |
 
