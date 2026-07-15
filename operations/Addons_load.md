@@ -26,9 +26,8 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## Small debts (cheap, non-blocking)
 
-- **GuardianPlates client copy is one deploy behind the repo** (the artifact-strip + a 7-char
-  Notes polish, `e98aa0f`). Content-equivalent to what's running; syncs on the next
-  GuardianPlates deploy. No action needed until GuardianPlates work resumes.
+- ~~GuardianPlates client copy one deploy behind~~ — RESOLVED 2026-07-15: Battlewrath deployed
+  to parity; check-mode confirms both residents zero-delta.
 - **5 files failed extraction from patch-B** (named in `Outputs/client_interface/patch-B/
   manifest.json`: GlueXML RaceSelect/SoundOptionsFrame + SharedXML AnimationTemplates —
   read_file returned None, likely a compression variant). Glue screens, census-marginal.
