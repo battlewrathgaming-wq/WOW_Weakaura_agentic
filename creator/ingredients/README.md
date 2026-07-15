@@ -33,6 +33,14 @@ Cold-start page: [Aura Types](https://github.com/WeakAuras/WeakAuras2/wiki/Aura-
 orientation and meaning; the INSTALLED FORK stays the authority for every fact (that's what the maps harvest from).
 Invariant 7 applies: nothing is accepted from upstream without a fork-source confirm.
 
+## The maturation direction (Battlewrath, 2026-07-14)
+
+Future wiki passes + live runs flatten into **CHECKLISTS** — the operational form: per-task pre-flight cards
+(authoring a proc display · a stack alarm · a target tracker…) combining the authors' pedagogy × the fork facts ×
+**our own what-works-for-us** (exact-id on shared names · show-on-missing wants a displayIcon fallback · the
+attention budget · one glow per screen · …). The palette teaches; the checklist executes. Grown per task as the
+custom backlog reveals which tasks recur.
+
 ## The walk
 
 ask → pick the trigger type (what native signal tracks it) → compose CATCH / SHOW / READ from its ingredients → pick the
