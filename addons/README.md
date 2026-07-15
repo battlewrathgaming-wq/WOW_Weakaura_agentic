@@ -34,3 +34,17 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
 - `bench.md` — the validation loop + the fact basis (client paths, lua51, version anchors, doc standings)
 - `backlog.md` — the missions (three are banked and unblock the aura bench on day one)
 - `planning/` — the incubator: messy on purpose, DELETED when proven (the standing charter)
+
+## The bench tooling (built 2026-07-15 — the loop's two ends, mechanized)
+
+- `menu.bat` — **THE pinned terminal** (keys-only, root-launcher model): hosts the watcher,
+  steers deploys/pulls/git. One terminal access for the whole bench.
+- `deploy.py` — repo→client dispatcher: manifest of residents, byte-copy + stray cleanup +
+  by-exception receipt. Check mode (no args) is read-only. Game CLOSED for deploys (anti-cheat:
+  new addon code needs a full client restart; /reload can't load it).
+- `landing/pull.py` — client→repo: clones the flushed SavedVariables mailbox verbatim into
+  `landing/raw/` (local receipt, gitignored), parses via the codec-proven `lua_table.py` into
+  `landing/records/<runId>__<task>.json` (tracked), deduped on runId. `watch` mode = the
+  leave-it-running half.
+- `COA_DevDump/` v2 — the in-game half rewritten as a task-registry spine (core + task files,
+  one-envelope mailbox, by-exception chat, shorthand verbs `r/st/sp/list/clear`). See its README.

@@ -1,9 +1,10 @@
 ## Interface: 30300
 ## Title: COA Dev Dump
-## Notes: Dumps live talent-tree data and frame-stack snapshots to SavedVariables for the Conquest of Azeroth theorycrafting project.
+## Notes: v2.0.0 - the addons bench capture spine: a task runner (core + registered task files) writing one self-describing envelope per run into the SavedVariables mailbox, pulled into the repo landing zone by the bench watcher. Chat is by-exception (one summary line per run). Shorthand verbs: /coadump r|st|sp|list|clear. v1 (the talent/trainer/spellbook campaign tool that fed coa_spells.json) is retired to git history; its walker/pcall/tooltip patterns live on in core.lua.
 ## Author: Battlewrath
-## Version: 1.0
+## Version: 2.0.0
 ## SavedVariables: COA_DevDumpDB
 
-COA_DevDump_Spells.lua
-COA_DevDump.lua
+core.lua
+task_probe.lua
+task_frames.lua

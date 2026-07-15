@@ -55,6 +55,12 @@ runtime/
 # hardened -> would churn). Regenerate, don't track. Source is classify_lanes.py + spell_enums.py.
 Outputs/lane_index.json
 
+# addons/landing/raw/ - verbatim clones of the flushed SavedVariables file: the local audit
+# receipt behind each parsed record in landing/records/ (which IS tracked - captures aren't
+# reproducible from the repo). Same class as ingest/inbox: local receipts, multi-MB per
+# capture; the parsed record is the keep, the raw clone is the on-disk audit trail.
+addons/landing/raw/
+
 # Outputs/spell_dbc/ - the full Spell.dbc manifest dump (~163MB, 237k spells), regenerable
 # from the live client MPQ via Scripts/extract_spell_dbc.py. Pure "store all" scratch: the
 # whole dir is regenerable and ignored. The COA-relevant FILTERED subset is written to the

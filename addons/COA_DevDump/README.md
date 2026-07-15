@@ -1,143 +1,78 @@
-# COA_DevDump
+# COA_DevDump — the bench capture spine (v2)
 
-A small custom addon (`COA_DevDump.toc` / `COA_DevDump.lua`) built to pull
-real, live-client data into `SavedVariables` - since neither macros nor
-`/devconsole` expose file I/O, this is the only way to get client-side
-ground truth onto disk as text. Built 2026-07-04, first proven end-to-end
-on the Necromancer (see `Outputs/live_reference/necromancer_live_reference.json`).
+The addons bench's in-game half: a **task runner** that writes one
+self-describing envelope per run into the SavedVariables mailbox, which the
+bench watcher (`addons/landing/pull.py`) lands in the repo as a
+provenance-stamped record. Since neither macros nor `/devconsole` expose
+file I/O, SavedVariables is the only channel from live client to disk —
+COA_DevDump owns that channel for the whole bench.
 
-This doc exists so repeating the capture for another class/spec doesn't
-require rediscovering everything the hard way a second time.
+**v1** (built 2026-07-04: the talent/trainer/spellbook campaign tool whose
+captures fed `coa_spells.json`) is retired — deleted 2026-07-15, recoverable
+from git history (`addons/COA_DevDump/COA_DevDump.lua` before that date).
+Its proven patterns (recursive widget walker, pcall-everything discipline,
+tooltip `GetSpell()` id-recovery, the accumulate-by-key trick) live on as
+`core.lua`'s libraries. Its live-earned gotchas that still apply are kept at
+the bottom of this file.
 
-## Deploying it
+## The shape
 
-The addon has to live in the actual game install to run - copy both files
-into `<GameInstall>/Interface/AddOns/COA_DevDump/`, then enable it at
-character select. The copy in this project folder
-(`Weak Auras/Tools/COA_DevDump/`) is the source of truth; the game-install
-copy is just a deployment target, always overwrite it wholesale rather than
-hand-editing it in place.
+- **`core.lua`** — the spine: envelope writer, task registry, walker /
+  event-collector / cycler libraries, slash dispatcher. Stable; rarely edited.
+- **`task_*.lua`** — one file per registered task. This is the part that
+  changes per mission: the agent writes a task file, deploys, one client
+  restart, and from then on the task is steered by arguments.
+- **The mailbox rule:** `COA_DevDumpDB` holds ONE envelope — the latest run
+  only; every run replaces it. History and cross-run merging live in the repo
+  landing zone (`addons/landing/`), deduped on the header's `runId`.
+- **Chat is by-exception:** one summary line per run, errors only otherwise.
+  Session tasks collect silently while you play; the record is read offline.
 
-## Commands
+## Driving it (the shorthand spine)
 
-Type these in-game chat.
+```
+/coadump r  <task> [args]   run a one-shot task
+/coadump st <task> [args]   start a session task (listeners collect while you play)
+/coadump sp                 stop the open session task (prints the summary)
+/coadump list               installed tasks + help lines
+/coadump clear              wipe the mailbox
+```
 
-- **`/coadump trainer`** - open a class trainer NPC window first, then run
-  this. Tries the plain, stock Blizzard trainer API
-  (`GetNumTrainerServices`/`GetTrainerServiceInfo`/`GetTrainerServiceCost`/
-  `GetTrainerServiceDescription`) and **it just works** - confirmed on
-  Necromancer, 125/125 services captured cleanly with real names, gold
-  costs, level requirements, and fully server-resolved description text
-  (no `$s1`-style tokens - the server fills those in before sending).
-  Trainers are server-driven by design in stock WotLK, so there's no
-  client-side data for a custom class to need to bypass, unlike talents.
-  Also runs a generic widget-field probe of `ClassTrainerFrame` as a
-  fallback/cross-check in case some other class's trainer *does* override
-  the stock system - check `numServicesStockAPI` in the capture; if it's 0,
-  the fallback `widgetProbe` array is what to dig into instead. Results
-  **accumulate** across calls (keyed by capture timestamp, appended to a
-  list), so visiting multiple trainer NPCs across sessions is safe.
-- **`/coadump talentnodes`** - the real talent extractor. Open the talent
-  panel, have a spec tab visible, then run this. Walks
-  `CoATalentFrameTreeViewSpecTree` and `CoATalentFrameTreeViewClassTree`
-  and records every button carrying a real `spellID`/`rank`/`maxRank`
-  field - **this server's custom talent UI does not use the stock
-  Blizzard talent API at all**, confirmed via `GetNumTalentTabs()`
-  returning 0 through both the bare call and the documented
-  `(inspect, pet)` call shape. Results **accumulate by spellID**, so run
-  it once per spec tab (and the Class tab) you have unlocked - the node
-  pool only instantiates widgets for whatever tab is currently visible, so
-  a single call only ever sees one tab's worth of nodes.
-- **`/coadump talents`** - the stock-API attempt, kept only as a fast
-  sanity check. Confirmed dead (0/0) on this server; would only be useful
-  again if testing a different server/build where talents might actually
-  go through the normal API.
-- **`/coadump talentframe`** - generic, unfiltered recursive widget dump of
-  the whole talent UI. This is what originally found the `spellID`/`rank`/
-  `maxRank` field names in the first place. Only reach for this again if
-  `talentnodes` ever comes up empty and the field names need
-  rediscovering - it's slow, produces a much bigger file (~1.2MB for a
-  single capture), and had one recursive helper (`FindChildText`/
-  `FindChildTexture`) that was briefly suspected of causing a client crash
-  before the timing (crash was at quit, not during the call) cleared it.
-- **`/coadump frames`** - frame-stack snapshot at the current mouse
-  position, same idea as the built-in `fstack` console command. General
-  UI-debugging utility, not specific to this pipeline.
-- **`/coadump probe <FrameName> [field1,field2,...]`** - generalized version
-  of the `talentframe`/`trainer` widget-probe pattern: walks any frame that
-  currently exists in `_G` (e.g. `TotemFrame`) recursively, reading a given
-  comma-separated field list off every widget (or a sensible default list
-  if omitted). Built 2026-07-06, motivated by the Witch Doctor totem-bar
-  question - collapses what had been two copy-pasted one-off walkers
-  (`talentframe`'s and `trainer`'s) into one reusable command, so the next
-  time some other CoA-custom frame needs the same reconnaissance treatment
-  it doesn't need its own bespoke `Dump<Thing>` function. **Important scope
-  note confirmed while building this**: only useful for frames that stash
-  data as plain Lua table fields the way CoA's own custom talent buttons
-  do. Stock, API-backed frames (`TotemFrame` itself is the motivating
-  example - confirmed a real `Cooldown` widget fed by `GetTotemInfo`, not a
-  custom field) will only show structure through this command, same as
-  `/coadump frames` already does - the actual data for those lives behind
-  the API call, not on the widget. Results accumulate across calls, keyed
-  by capture time + root frame name.
-- **`/coadump clear`** - wipes all saved data.
+One envelope at a time: a one-shot won't run while a session is open.
 
-After any capture, **`/reload`** flushes `COA_DevDumpDB` to disk at
-`WTF/Account/<ACCOUNT>/SavedVariables/COA_DevDump.lua`.
+## Installed tasks
 
-## Known gotchas (all hit for real this session)
+- **`probe <FrameName> [field1,field2,...]`** (one-shot) — recursive walk of
+  any named frame in `_G`, reading plain Lua table fields off every widget
+  (how CoA's custom frames stash data — this is what found
+  `spellID`/`rank`/`maxRank` on the talent buttons). NOT for stock API-backed
+  frames (e.g. `TotemFrame`): their data lives behind a function call, so a
+  probe shows structure only.
+- **`frames`** (one-shot) — frame-stack snapshot under the mouse cursor
+  (the `fstack` idea, recorded instead of displayed).
 
-1. **The bash tool's view of this file can be stale, even right after a
-   fresh `/reload`.** This is a different flavor of the FUSE mount-lag bug
-   documented in `CLAUDE.md` - that one is about files *we've* edited
-   multiple times; this is about a file an *external process* (the game
-   client) rewrites. Confirmed directly: `wc -l`/`stat` via bash kept
-   reporting the exact same size/mtime across two different real captures.
-   **Fix: always use the `Read` or `Grep` tool to check this file, never
-   bash.** Those reliably saw the current version both times this came up.
-   If a capture "seems missing" after checking with bash, re-verify with
-   Read/Grep before concluding the in-game command failed.
-2. **The file gets big fast and exceeds `Read`'s single-shot size limit**
-   (256KB) once `talentframe` or a large `trainer` capture is in there.
-   Use `Grep` first to find the key's line number (e.g. `grep -n
-   '"trainer"'`), then `Read` with `offset`/`limit` targeting that range.
-3. **The talent-node pool only populates the currently-visible tab.**
-   `GetChildren()` on the tree view genuinely only returns nodes for
-   whatever spec/class tab is on screen at capture time - this isn't a bug
-   to fix, it's how the pooled-widget UI works. Plan on one
-   `/coadump talentnodes` call per tab.
-4. **Trainer header rows return garbage cost/levelReq.** Confirmed live:
-   a `serviceType == "header"` row (the tree-name divider, e.g.
-   `"Death"`/`"Rime"`) can report `cost = 1816288370` - an uninitialized
-   read, not a real value. Filter these rows out entirely rather than
-   trying to interpret the number.
-5. **A client crash on quit is not this addon's fault** (probably) - hit
-   once, but the crash happened at the moment of exiting the game, not
-   during any `/coadump` call, and a second identical `talentnodes`
-   capture afterward ran clean with no crash at all. Timing alone rules
-   out the addon as the direct cause. Still, always `/reload` *before*
-   closing the client so anything captured is flushed regardless of what
-   happens after.
+## The loop (repo → client → repo)
 
-## Turning a raw capture into a reference file
+1. Edit here (repo = source of truth; never hand-edit the game copy).
+2. `py addons\deploy.py COA_DevDump` — byte-copy to the client
+   (game **closed**: new/edited addon files need a full client restart on
+   this account — anti-cheat; `/reload` cannot load new code).
+3. In-game: run the task (`/coadump r probe CoATalentFrame`), then `/reload`
+   to flush the mailbox to
+   `WTF/Account/BATTLEWRATH/SavedVariables/COA_DevDump.lua`.
+4. The watcher (`addons/landing/pull.py watch`, hosted by `addons/menu.bat`)
+   sees the flush and lands the record in `addons/landing/`.
 
-1. Find the SavedVariables file:
-   `<GameInstall>/WTF/Account/<ACCOUNT>/SavedVariables/COA_DevDump.lua`.
-2. `Grep` for the top-level key you want (`"trainer"`, `"talentNodes"`) to
-   get its line number, then `Read` that range (chunk it if it's long).
-3. Reproduce the raw Lua table literal **verbatim** (copy-paste the text
-   you just read, don't retype/summarize it) into a small file wrapped as
-   `return { ... }`.
-4. Convert to JSON with a real Lua interpreter rather than hand-parsing -
-   `lupa` (`pip install lupa --break-system-packages`) can `load()` and
-   execute the chunk directly, returning real Lua tables you then walk
-   into Python dicts/lists and `json.dump`. This guarantees byte-accurate
-   fidelity instead of risking a transcription error on a 100+ entry dump.
-5. Run `Scripts/build_live_reference.py <ClassName> <Input/<class>_talents.json>
-   <trainer.json> <talentnodes.json> <output.json>` - merges both capture
-   types into the final name-keyed schema (see that script's own docstring
-   for the full design rationale on why it's name-keyed, not spellId-keyed).
-6. Drop the output under `Outputs/live_reference/<class>_live_reference.json`,
-   plus the two raw JSON files alongside it for traceability, and add
-   pointer links in `Weak Auras/README.md` and `Display/README.md` (see
-   either file's existing entry for the Necromancer file as the template).
+## Live-earned gotchas that still apply (from the v1 campaigns)
+
+1. **Pooled-widget UIs only instantiate the visible tab.** `GetChildren()`
+   on the talent tree view only returns nodes for the tab on screen — one
+   probe per tab, by design.
+2. **Header rows in list UIs can carry uninitialized reads** (a trainer
+   header row once reported `cost = 1816288370`). Filter by row type, don't
+   interpret the number.
+3. **Always `/reload` before closing the client** so a capture is flushed
+   regardless of what happens at quit (one crash-at-quit was observed; timing
+   cleared the addon, but the rule is cheap).
+4. **The SavedVariables file gets big fast.** Read it tooling-side with
+   targeted offsets (the puller does this), not as one gulp.

@@ -1,6 +1,28 @@
 # STATE — where the machine is
 
-_Last updated 2026-07-14 (SESSION CLOSE). The single "where are we" read. Detail lives in the code + READMEs this points at._
+_Last updated 2026-07-15 (addons-bench session). The single "where are we" read. Detail lives in the code + READMEs this points at._
+
+## Addons bench 2026-07-15 (the dedicated addons agent's first build session)
+
+- **The bench loop MECHANIZED end to end** (headless-green; live proof costs one client restart):
+  `addons/menu.bat` (the pinned keys-only bench terminal — hosts the watcher, steers deploys/pulls/git)
+  · `addons/deploy.py` (repo→client dispatcher: manifest, byte-copy, stray cleanup, by-exception receipt)
+  · `addons/landing/pull.py` (client→repo: verbatim raw clone gitignored + parsed record tracked, runId-deduped,
+  `watch` = leave-it-running) · **COA_DevDump v2** (task-registry spine: core.lua + task files, ONE-envelope
+  mailbox SV, by-exception chat, shorthand `r/st/sp/list/clear`; v1 campaign tool retired to git history;
+  offline smoke test green under lua51 stubs). First tasks: `probe` + `frames` (v1 patterns rebuilt).
+- **Design law recorded (Battlewrath):** bounded tasks against a self-descriptive-but-limited spine; shorthand
+  for session-driven verbs (`st`/`sp`); tasks self-cycle with their own event listeners (no watching a 300-line
+  chat window); SV = concise mailbox (latest run only — history lives in the repo landing zone).
+- **Real catch on the way through:** the Cowork doc pass had appended a literal `</content>` line to the repo's
+  GuardianPlates `Core.lua` + `.toc` (a paste artifact — a Lua syntax error had it ever deployed). Stripped,
+  verified byte-equal to live otherwise (repo carries one 7-char doc polish live doesn't have yet). deploy.py's
+  read-only check mode caught it on its first run.
+- **Anti-cheat constraint on record** (from the Materials fact-sheet, now baked into bench.md + the tooling):
+  new/edited addon CODE needs a FULL client restart — /reload only flushes data. Tasks are installed once and
+  steered by arguments, never edited between passes.
+- **NEXT here:** Battlewrath restarts client once → live-prove v2 (`/coadump r frames` → /reload → watcher lands
+  it) → then the census probe task (the FIRST GOAL) rides the proven loop.
 
 ## Morning 2026-07-15 (on top of the session close below)
 
