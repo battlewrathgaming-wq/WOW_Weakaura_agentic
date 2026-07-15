@@ -11,11 +11,12 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   static-progress states, clones): four 527-hp Greater Skeletal Warrior bars live, import string
   handed to Snackz. Battlewrath hand-built from the design card; source anchors GenericTrigger.lua
   :1807 (CLEU: filter) / :1331 (nameplate group expand) / BuffTrigger2.lua:3606 (3.3.5 CLEU layout).
-  NEXT LAYER (Snackz's framing: "more abstraction before a stable pet tracker"): login/reload
-  backfill (seed the registry via the `playerControlled ∧ not isPlayer` classifier from the plates
-  record) · off-plate gap policy (hide vs CLEU-delta estimator). CAPTURE: the export string is in
-  Discord — paste-drop it into the corpus intake as a patterns/ candidate (guardian-health-tracker,
-  the GUID-registry TSU scaffold) when convenient. The evidence pair: records 20260715_195725/195846.
+  **STATUS: HANDED OFF — closed on our side.** Battlewrath's call (2026-07-15): this is Snackz's
+  project; we gave them the key, we don't take it over. The "more abstraction" layer (login
+  backfill, off-plate policy) is THEIRS to build — do not re-open it as bench work unless asked.
+  What stays OURS: paste-drop the export string into the corpus intake as a patterns/ candidate
+  (guardian-health-tracker — the GUID-registry TSU scaffold is reusable for OUR minion classes)
+  when convenient. The evidence pair: records 20260715_195725/195846.
 
 - **Clean-profile census re-run** — the runtime record was captured with user addons loaded, so
   `runtime/globals.json`'s 1526 "unattributed" functions = engine-custom ∪ user-addon mixture.
