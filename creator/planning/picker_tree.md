@@ -146,15 +146,16 @@ One group, one Copy button, three lines of "open WoW → /wa → Import → past
 `"COA — <Spec> <bucket> (<scope>)"` — shown at Q5 as an EDITABLE PREFILL (optional text box; invisible cost to
 whoever doesn't care). Member `id` = spell family name under the group. The **"COA —" namespace prefix** dodges
 collisions with the user's handmade auras AND makes the pack findable/deletable as a block (law 6 made practical).
-**Identity is DETERMINISTIC, not random**: uid + suffix derived from class:spec:bucket:scope, so re-running the
-wizard re-produces the same identity → WA's import offers "update existing" → the wizard is RE-RUNNABLE (change
-answers, re-import, the pack updates in place instead of breeding duplicates). A randomizer would solve collision
-but cost idempotence.
+**ONE-TIME MINTING (Battlewrath, final):** every emission is a fresh object — identity is per-mint (seat label +
+a mint randomizer on the suffix/uid). **No reloading a string to edit it; no update-in-place; the picker EMITS and
+never ingests.** The game is the editor (law 6): re-run → spit out fresh → drag members into your existing groups.
+Why hard: (a) any regeneration path complicates everything it touches; (b) update-matching could clobber a group
+the user has since edited in-game; (c) an import surface would make us handle types we didn't make and can't
+natively press. (Supersedes an earlier deterministic-identity/update-in-place design — the randomizer was the
+right call; the double-import uid live-check is MOOT.)
 **The group name is a SEAT label, not a content claim (Battlewrath):** "Lich DoTs (target)" = *the DoT tracker
 that shows while you play Lich* (its class+spec load) — NOT "DoTs of the Lich tree." Contents = whatever families
 the user picked, cross-tree, growing by the end (Q4.5 widens). Only MEMBERS name content — one family per member.
-This is why identity keys on class:spec:bucket:scope and never on contents: membership grows across re-runs while
-the group stays the same group.
 
 **Output specifics (Battlewrath, 2026-07-15):**
 - **Placement:** a `dynamicgroup` needs NONE — grow/arrange is its job. A static `group` gets basic steps:
@@ -163,25 +164,25 @@ the group stays the same group.
 - **Styling:** we print BASIC styling only; the group's style is the user's to edit in-game (law #6).
 - **Load:** every pressed aura carries **class + spec load** — the contract's existing shape, applied always.
 
-## The side door — the explorable inventory (opportunity shopping)
+## The side door — the LIBRARY face (settled 2026-07-15)
 
-The walked path is the front door, but the ID inventory stays BROWSABLE alongside it: class:spec spell families,
-names + icons, open shelves. For the user who doesn't know what they want until they see it — discovery feeds the
-wizard (spot something → "track this" drops them into the flow at Q4 with the pick made). The original
-shelves-first design survives here as a MODE, not the navigation.
+Bigger than opportunity shopping: the explorable inventory is the flattened data offered **as a library rather
+than a guiding**. It shows what classes exist, their **effect chains**, the **procs they spawn** — the ways we
+flattened the game, browsable ID→ID→ID. Two uses:
+- **Forecast** — see the terrain, decide where you'd like to start, then step into the wizard.
+- **Reasoning** — enough basis to make YOUR OWN auras work in WA's UI (follow the chain: this talent → this proc
+  → this consumer). The library teaches; the wizard presses.
 
-## Open seams (surfaced 2026-07-15 — proposed defaults, Battlewrath's call)
+Knowledge shows EVERYTHING (chains don't hide because a contract is unbuilt); the **"track this" action exists
+only on pressed lanes** — the door renders only where it opens.
 
-1. **Behaviour is NOT in the identity key** (proposed). Re-run the wizard and answer Q4 differently → same seat,
-   same identity → update-in-place: "I changed my mind" is an update, not a sibling. Consequence: wanting BOTH
-   flavours of one seat (some DoTs always-shown, others appear-when-active) is out of V1's scope — that's an
-   in-game edit, which law 6 already hands them the keys for.
-2. **Explore mode shows only doors that open** (proposed). V1's side door lists only buckets whose contracts are
-   pressed — unsupported lanes ABSENT, not greyed out. A wizard should never show a door that doesn't open.
-3. **The file's physical cut — one HTML or one per class?** (genuinely open, build-time). Names + icons for a
-   whole game in ONE self-contained file is real weight (icons embed as data-URIs); per-class files stay light and
-   sharpen the distribution sentence ("download your class's file") but multiply the artifacts to version. Leaning
-   per-class; decide at the build with real sizes in hand.
+## The seams — closed (Battlewrath, 2026-07-15)
+
+1. **One-time minting** (see the naming block): emit-only, no regeneration, no import surface. Re-run = fresh
+   mint; merging = drag members in-game. Both-flavours-of-one-seat is thereby trivially fine — mint twice, drag.
+2. **The side door = the library face** (above): show all knowledge, act only on pressed lanes.
+3. **ONE HTML for the first pass** — 21 class files from the start is overload, not distribution. Split only if
+   interest proves it. Weight management (icon strategy) = the build's problem, with real byte counts in hand.
 
 ---
 
