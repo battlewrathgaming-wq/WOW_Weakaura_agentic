@@ -14,9 +14,10 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   **STATUS: HANDED OFF — closed on our side.** Battlewrath's call (2026-07-15): this is Snackz's
   project; we gave them the key, we don't take it over. The "more abstraction" layer (login
   backfill, off-plate policy) is THEIRS to build — do not re-open it as bench work unless asked.
-  What stays OURS: paste-drop the export string into the corpus intake as a patterns/ candidate
-  (guardian-health-tracker — the GUID-registry TSU scaffold is reusable for OUR minion classes)
-  when convenient. The evidence pair: records 20260715_195725/195846.
+  What stays OURS: DONE — captured (`export_20260715_202335_01`) + catalogued
+  (`corpus/patterns/guardian-health-tracker.md`: code verbatim, repeatable steps, source anchors,
+  the plate-population boundary, limits, generalization — the registry = the reusable OWNERSHIP
+  primitive for every summoning class). Evidence pair: records 20260715_195725/195846.
 
 - **Clean-profile census re-run** — the runtime record was captured with user addons loaded, so
   `runtime/globals.json`'s 1526 "unattributed" functions = engine-custom ∪ user-addon mixture.
