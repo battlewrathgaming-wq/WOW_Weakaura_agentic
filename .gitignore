@@ -62,6 +62,12 @@ Outputs/lane_index.json
 # capture; the parsed record is the keep, the raw clone is the on-disk audit trail.
 addons/landing/raw/
 
+# Outputs/client_interface/ - extracted study copy of the client's own Interface code
+# (Ascension_* addons / FrameXML / SharedXML / LibraryXML out of Data/patch-B.MPQ), regenerable
+# via addons/tools/extract_interface.py. Third-party client code, not ours to track; census
+# maps derived FROM it are tracked (addons/maps/) and cite the manifest's source sha256.
+Outputs/client_interface/
+
 # Outputs/spell_dbc/ - the full Spell.dbc manifest dump (~163MB, 237k spells), regenerable
 # from the live client MPQ via Scripts/extract_spell_dbc.py. Pure "store all" scratch: the
 # whole dir is regenerable and ignored. The COA-relevant FILTERED subset is written to the
