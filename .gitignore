@@ -41,9 +41,10 @@ Weak Auras/ability_inventory/reference.html
 export/
 coa_data_share.zip
 
-# Launcher.lnk - the pinnable taskbar shortcut to menu.bat; machine-specific (holds
-# absolute paths), regenerated per machine. Not source.
+# Launcher.lnk / Addons Bench.lnk - the pinnable taskbar shortcuts to the two menu.bats;
+# machine-specific (hold absolute paths), regenerated per machine. Not source.
 Launcher.lnk
+addons/Addons Bench.lnk
 
 # runtime/ - the service-runner's transient queue/receipts/processed (Claude queues calls,
 # the runner executes + receipts back). Ephemeral IPC, not source.
