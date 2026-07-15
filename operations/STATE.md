@@ -31,9 +31,17 @@ _Last updated 2026-07-15 (addons-bench session). The single "where are we" read.
   own APIDocumentation addon (2081 fn / 592 ev). Anchored to patch-B.MPQ sha256. Grain: ATTESTED USAGE — the runtime
   census task is the completeness check. Source: patch-B.MPQ = ALL client code (extract_interface.py; CompactUnitFrame
   now readable; the Cowork mpyq wall doesn't hold locally).
-- **NEXT here:** Battlewrath restarts client once → live-prove v2 (`/coadump r frames` → /reload → watcher lands it;
-  rider: does a Lua error reach Logs\LUA.txt?) → the runtime census task (pass 3) rides the proven loop → contracts
-  drag their areas out of the census (spec capture reads ASCENSION_CA_SPECIALIZATION_ACTIVE_ID_CHANGED + C_ClassInfo).
+- **★ THE FIRST GOAL DELIVERED same evening (`a5518bd`+`b66d1da`): the RUNTIME census landed + the three-witness
+  reduction emitted** — `/coadump r census` walked 51,855 globals (6282 fn / 29,777 widgets / **91 C_* namespaces**)
+  in one cycled pass; `reduce_census.py` joined RUNTIME × DECLARED × BASELINE → `maps/census/runtime/`: **1003
+  attested / 284 RUNTIME-ONLY members** (real API, zero shipped call sites — C_MysticEnchant 35, C_GMTicket 24, whole
+  namespaces C_CollectorCache · C_LoyaltyPass) / 18 declared-only + 3 declared-only namespaces (C_ChallengeMode ·
+  **C_CoA** · C_RealmMerge). Flat functions bucketed 2058 stock / 2698 shipped-ui / 1526 unattributed (user addons
+  were loaded — a CLEAN-PROFILE re-run splits engine-custom from user-addon; cheap, banked). Gitignore catch: the
+  unanchored `runtime/` rule swallowed the reduction dir — anchored to `/runtime/`.
+- **NEXT here:** contracts drag their areas from the census (spec capture first: ASCENSION_CA_SPECIALIZATION_ACTIVE_ID_CHANGED
+  + C_ClassInfo/C_CharacterAdvancement rows) · the clean-profile census re-run · the Content-JSON reconciliation
+  (discussed-first) · Battlewrath: git push (the day is local-only).
 - **FIND (Battlewrath pointed at the client root): `Data\Content\*.json` — loose dev-authored custom game data,
   plain JSON, no MPQ extraction.** `CharacterAdvancementData.json` (7MB: class→ability entries, ALL 21 COA classes
   under dev tokens + Reborn* stock, 44 Class values, Realms bitmask) · `SpellRankData.json` (the rank-family table:
