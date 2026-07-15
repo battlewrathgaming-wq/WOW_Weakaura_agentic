@@ -38,27 +38,20 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
 
 ## Further
 
-- **★ THE HTML WA PICKER (Battlewrath, 2026-07-14 close — the distribution layer, heading candidate).** Every class ×
-  spec × spell × **4 styles**. **V1 SETTLED (2026-07-15): ONE PORTABLE self-contained .html carrying the RUNTIME
-  EXPORTER** — pre-bounced member tables (canon runs at BUILD time on the real bench; never reimplemented) + a
-  pre-bounced group shell + a small JS codec (serialize→deflate→WA-b64, pako inlined). **Part-pick → ONE group
-  string**: tick spells, pick each one's show-logic style, one button → one paste (WA rebuilds child wiring from the
-  `c` array — the round-trip finding). **Conformance harness:** at build, the JS encoder must byte-match the python
-  codec on a test set or the build fails. V1 virtues BY DESIGN: **sidesteps the organization/mask piece** (flat group,
-  users arrange in-game) · **DUMB type-to-type** (no composition intelligence; each pick independent). **The shelves (backing already exists):** SINGLES = the class:spec slicing (the batch press's own select, proven at
-  110 pairs) · **SCAFFOLDS = the proven pattern compositions as pickable UNITS** (the proc pair, the stack-band alarm,
-  the minion counters — corpus/patterns graduating to primitives by becoming shelf items). **Assembly stays IN-GAME**
-  (no layout intelligence — static groups + dragging; the mask/grammar work stays unblocked). Pinned in the Discord as
-  the file itself. LATER (needs a hosting partner, bisbeard precedent): the hosted variant + picks-as-votes = the
-  grammar's training data. **The 4 STYLES = SHOW-LOGIC presets (Battlewrath's correction — basic logic, not looks):**
-  1) always-on dim-when-unavailable · 2) appear-when-ready · 3) appear-while-running · 4) appear-at-the-moment
-  (proc/usable). Pure lever presets on proven surfaces (`genericShowOn` / `matchesShowOn` + a desat/alpha condition) —
-  the bucket map's check-vs-react laws handed to the PLAYER as a choice. Four tiny emit templates shared by every
-  contract; the spell's signal still picks the trigger (fact), the style picks the visibility behavior (the player's).
-  This is the "users arrange their own UI" MVP vision's final face.
+- **★ THE HTML WA PICKER — DESIGN DONE, SILOED (2026-07-15).** The full decision-tree walk-through with
+  Battlewrath converged the design; authority now lives in **`creator/picker/`** (the public packaging silo):
+  `picker_tree.md` = THE SPEC (8 laws · the wizard script "what class→spec→lane→scope→which→behaviour→closer→string"
+  · one-time minting, emit-never-ingest · the library face with the "not provided by CoA" gap rule · text-only
+  data-flattening, WA owns the come-alive · pool assessed READY · JS-export feasibility confirmed against the
+  codec) and `picker_build.md` = THE RUNWAY (6 phases: library emit ∥ JS codec port → template press → shell →
+  live stamp → doors light up post-V1). V1 lanes = DoTs (target + catch-all) + pets; Ready/Self contracts light
+  their doors later by data regeneration, shell untouched. LATER still: the hosted variant + picks-as-votes
+  (needs a hosting partner, bisbeard precedent). This roadmap entry is a POINTER now — don't re-derive here.
 
 - **Generation side** — type-configured tracker packs from the classified data: the flat bulk auto-generated through the
-  engine, the custom scaffolds reasoned. Then bespoke aura products.
+  engine, the custom scaffolds reasoned. **Sequencing (Battlewrath, 2026-07-15): the picker ships FIRST (packaging
+  what exists for the public), THEN the bench turns to bespoke UIs through the existing engine pipeline** — the
+  picker is the wide product for everyone; bespoke is the deep product the machine was always for.
 - **WoW addons** beyond auras — **the `addons/` bench ESTABLISHED (2026-07-15)**: root sibling, own charter/invariants/bench/backlog (the agent-handoff kit); three banked missions (spec-name capture · tooltip gap-fill · WA-env harvest) each unblock the aura bench. Same ecosystem, separate focus - no goal-flipping.
 - **Consolidation** — the engine folds into creator's neighbourhood over time; the weakauras corpus decomposes into the
   graph / feature-store / slice storage instead of scattered json.
