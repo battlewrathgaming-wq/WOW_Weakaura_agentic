@@ -145,6 +145,11 @@ collisions with the user's handmade auras AND makes the pack findable/deletable 
 wizard re-produces the same identity → WA's import offers "update existing" → the wizard is RE-RUNNABLE (change
 answers, re-import, the pack updates in place instead of breeding duplicates). A randomizer would solve collision
 but cost idempotence.
+**The group name is a SEAT label, not a content claim (Battlewrath):** "Lich DoTs (target)" = *the DoT tracker
+that shows while you play Lich* (its class+spec load) — NOT "DoTs of the Lich tree." Contents = whatever families
+the user picked, cross-tree, growing by the end (Q4.5 widens). Only MEMBERS name content — one family per member.
+This is why identity keys on class:spec:bucket:scope and never on contents: membership grows across re-runs while
+the group stays the same group.
 
 **Output specifics (Battlewrath, 2026-07-15):**
 - **Placement:** a `dynamicgroup` needs NONE — grow/arrange is its job. A static `group` gets basic steps:
