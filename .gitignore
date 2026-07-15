@@ -74,3 +74,6 @@ Outputs/client_interface/
 # whole dir is regenerable and ignored. The COA-relevant FILTERED subset is written to the
 # tracked dependencies/ folder instead (see filter_coa_spells.py), so nothing here is kept.
 Outputs/spell_dbc/
+
+# picker build products - regenerable via creator/picker/emit_library.py + build_picker.py
+creator/picker/out/

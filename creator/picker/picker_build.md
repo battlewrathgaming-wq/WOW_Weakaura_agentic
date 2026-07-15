@@ -33,6 +33,15 @@ knowledge only (the library face) until its contract lands.
 - **Verification:** counts reconcile against sources (spells in = spells out, per class); spot-check 3 classes'
   chains against resolved.json by eye; the gate's spirit — word-match any enum the shell will trust.
 - **DONE =** `py emit_library.py` → library.json, idempotent, counts printed as a receipt.
+- **STATUS: ✔ DONE (2026-07-15, same evening as Phase 1).** `emit_library.py` → `out/library.json`,
+  **5.9 MB, byte-idempotent across runs** (no wall-clock in the output). Receipt: **21 classes · 115 specs ·
+  3,612 cards · 9,407 chain spells (270 gap rows, carried AS gaps) · 505 shelf families.** One discovery paid
+  mechanically: the builder renamed 7 classes vs the live DB (bloodmage→SONOFARUGAL, felsworn→DEMONHUNTER,
+  knight_of_xoroth→FLESHWARDEN, primalist→WILDWALKER, runemaster→SPIRITMAGE, templar→MONK, venomancer→PROPHET) —
+  matched by a **spellId majority join** (unanimous 7/7), which is now the emit's PRIMARY matching mechanism
+  (no alias table, no name normalization; self-heals future renames). The shelf select reuses
+  `pull_target_tracker.families()` — the press's own recipe exposed as data (one source of truth).
+  One honest warning standing: NECROMANCER/General has no caption row (caption=null).
 
 ## Phase 1 — the JS codec port (encode-only)
 

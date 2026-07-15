@@ -50,12 +50,11 @@ def spec_spells(d, cls, spec):
     return out
 
 
-def main():
-    cls, spec = (sys.argv[1] if len(sys.argv) > 1 else "NECROMANCER"), (sys.argv[2] if len(sys.argv) > 2 else "Death")
-    d = json.load(open(COA, encoding="utf-8"))
-    res = json.load(open(RESOLVED, encoding="utf-8"))
+def families(d, res, cls, spec):
+    """The select recipe AS DATA - one source of truth: main() prints from this, and the
+    picker's library emit (creator/picker/emit_library.py) reads it for the shelves.
+    Returns {family_name: {flav:set, sids:[], dur:set, cd:set, auras:set, src:set}}."""
     pool = spec_spells(d, cls, spec)
-
     fams = defaultdict(lambda: {"flav": set(), "sids": [], "dur": set(), "cd": set(), "auras": set(), "src": set()})
     for sid, s in pool.items():
         r = res.get(sid, {})
@@ -77,6 +76,15 @@ def main():
         f["auras"] |= auras
         tb = (s.get("coa") or {}).get("triggeredBy") or []
         f["src"].add(tb[0].get("ability") if tb else "(pressed)")
+    return fams
+
+
+def main():
+    cls, spec = (sys.argv[1] if len(sys.argv) > 1 else "NECROMANCER"), (sys.argv[2] if len(sys.argv) > 2 else "Death")
+    d = json.load(open(COA, encoding="utf-8"))
+    res = json.load(open(RESOLVED, encoding="utf-8"))
+    pool = spec_spells(d, cls, spec)
+    fams = families(d, res, cls, spec)
 
     order = {"DoT": 0, "bane": 1, "builder": 2, "control": 3}
     print("TARGET TRACKER pull - %s %s  (%d spells in spec pool -> %d families selected)\n"
