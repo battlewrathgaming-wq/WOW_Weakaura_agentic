@@ -39,6 +39,21 @@ are the docket's spine, not display taste.
 
 ## The choosing rule
 
-Ask what the information IS before picking the frame: a yes/no ("is my dot up?") wants an **icon**; a duration you
+**First split (the authors' own framing, [Aura Types](https://github.com/WeakAuras/WeakAuras2/wiki/Aura-Types)):
+normal types SHOW information; group types ORGANIZE and show nothing themselves.**
+
+Then ask what the information IS before picking the frame: a yes/no ("is my dot up?") wants an **icon**; a duration you
 watch drain wants a **bar**; several of either want a **dynamicgroup**; a number alone can be a **text** subregion on
 any of them. The region carries the meaning — styling only decorates it.
+
+**The information-density ladder** (the authors' reasoned ordering — each region carries this much):
+`texture` (pure graphic, zero data) → `progresstexture` (graphic + progress) → `icon` (compact; cooldown-native) →
+`aurabar` ("a maximal amount of information": texture + name + timer + icon) → `text` (pure message). Pick by the
+player's reading budget: the proc swirl needs zero words; the tank's stack alarm earns the bar's full row.
+
+**Capability constraints (wiki-claimed — fork-confirm before relying, invariant 7):** progresstexture scales but
+can't rotate · text can't scale or rotate · groups take no width/height. The per-region animation-capability harvest
+is a named wall (the Animations tab is unharvested).
+
+**The static `group`** (one anchor, children move together, no auto-arrangement) is the players' own nesting tool —
+how packs get hand-combined in-game (our bundle is flat-only by design; the static group is the user-side answer).
