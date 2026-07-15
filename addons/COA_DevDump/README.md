@@ -48,8 +48,11 @@ One envelope at a time: a one-shot won't run while a session is open.
   `spellID`/`rank`/`maxRank` on the talent buttons). NOT for stock API-backed
   frames (e.g. `TotemFrame`): their data lives behind a function call, so a
   probe shows structure only.
-- **`frames`** (one-shot) — frame-stack snapshot under the mouse cursor
-  (the `fstack` idea, recorded instead of displayed).
+- **`frames [field1,field2,...]`** (one-shot) — frame-stack snapshot under the
+  mouse cursor (the `fstack` idea, recorded instead of displayed), reading the
+  field list (default: core's DEFAULT_FIELDS) off every hit. Doubles as the
+  ANONYMOUS-frame probe: this fork's nameplates have no GetName, but a cursor
+  hit reads `unit`/`displayedUnit` straight off their UnitFrame children.
 - **`census`** (one-shot, self-cycling) — the full `_G` walk: every global's
   kind + one-level `C_*` namespace expansion, paced at 400 keys/frame so the
   client never hitches. Live-proven 2026-07-15 (51,855 globals in one pass).

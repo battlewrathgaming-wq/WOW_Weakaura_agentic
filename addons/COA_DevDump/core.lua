@@ -117,7 +117,7 @@ D.activeSession = nil -- name of the open session task, if any
 D.DEFAULT_FIELDS = {
     "spellID", "spellId", "id", "talentID", "talentIndex", "tabIndex",
     "rank", "currentRank", "maxRank", "abilityID", "nodeID", "tier", "column",
-    "unit", "slot", "index", "duration", "startTime",
+    "unit", "displayedUnit", "slot", "index", "duration", "startTime",
 }
 
 function D.DescribeWidget(widget, fields)
