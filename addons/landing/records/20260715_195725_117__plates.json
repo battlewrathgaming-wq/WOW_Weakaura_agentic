@@ -1,0 +1,71 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-07-15T19:57:29",
+    "pulled_at": "2026-07-15T19:57:31",
+    "sha256": "baa7487eed960e18f463d418c417799eeaa7951031a2cd535b81ee0784aad624",
+    "raw_clone": "addons\\landing\\raw\\20260715_195725_117__plates.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "plates: 4 active nameplate(s) recorded",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "NECROMANCER",
+    "runId": "20260715_195725_117",
+    "startedAt": "2026-07-15 19:57:25",
+    "char": "Gravekeeper",
+    "completedAt": "2026-07-15 19:57:25",
+    "version": "2.1.0",
+    "args": "",
+    "status": "complete",
+    "task": "plates",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "plates": [
+      {
+        "name": "Greater Skeletal Warrior",
+        "healthMax": 527,
+        "health": 527,
+        "guid": "0xF13000C779004A4D",
+        "creatureType": "Undead",
+        "playerControlled": 1,
+        "reaction": 5,
+        "unit": "nameplate1"
+      },
+      {
+        "isPlayer": 1,
+        "guid": "0x00000000000A10C8",
+        "playerControlled": 1,
+        "unit": "nameplate2",
+        "healthMax": 387,
+        "health": 387,
+        "creatureType": "Humanoid",
+        "name": "Troukifwett",
+        "reaction": 5
+      },
+      {
+        "isPlayer": 1,
+        "guid": "0x00000000000A6369",
+        "playerControlled": 1,
+        "unit": "nameplate4",
+        "healthMax": 524,
+        "health": 524,
+        "creatureType": "Humanoid",
+        "name": "Exeblood",
+        "reaction": 5
+      },
+      {
+        "name": "Abomination",
+        "healthMax": 1223,
+        "health": 1223,
+        "guid": "0xF13000C394004A35",
+        "creatureType": "Undead",
+        "playerControlled": 1,
+        "reaction": 5,
+        "unit": "nameplate3"
+      }
+    ]
+  }
+}

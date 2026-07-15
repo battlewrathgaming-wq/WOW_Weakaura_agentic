@@ -1,0 +1,28 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-07-15T19:59:41",
+    "pulled_at": "2026-07-15T19:59:44",
+    "sha256": "bc122c89d42d6c96af1163654c37067364abb033acfa61993b246cdf65edbba1",
+    "raw_clone": "addons\\landing\\raw\\20260715_195846_424__plates.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "plates: 0 active nameplate(s) recorded",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "NECROMANCER",
+    "runId": "20260715_195846_424",
+    "startedAt": "2026-07-15 19:58:46",
+    "char": "Gravekeeper",
+    "completedAt": "2026-07-15 19:58:46",
+    "version": "2.1.0",
+    "args": "",
+    "status": "complete",
+    "task": "plates",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "plates": {}
+  }
+}
