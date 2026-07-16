@@ -1,8 +1,8 @@
 # HELM — who has the trunk
 
-holder:  addons bench
-since:   2026-07-15 21:45
-heading: bench establishment session — closing out
+holder:  RELEASED
+since:   2026-07-15 21:52 (released — addons bench session closed clean)
+heading: —
 
 ---
 
