@@ -1,6 +1,26 @@
 # STATE — where the machine is
 
-_Last updated 2026-07-15 (addons-bench session). The single "where are we" read. Detail lives in the code + READMEs this points at._
+_Last updated 2026-07-16 (the picker V1 session). The single "where are we" read. Detail lives in the code + READMEs this points at._
+
+## Aura bench 2026-07-16 — THE PICKER V1: BUILT, LIVE-GRADED, IN THE DEVS' HANDS
+
+- **The whole runway ran in ~a day** (`creator/picker/` — spec `picker_tree.md`, runway `picker_build.md`, all
+  phases stamped in place): Phase 1 JS codec port (126/126 decode-equivalent incl. all 115 real packs) · Phase 0
+  library emit (5.9MB byte-idempotent; 21 classes / **70 real specs** dev-tree-adjudicated + triple-witnessed;
+  7 builder→live class renames solved by spellId majority join; 3 ghost trees marked; Class/General pseudo-trees
+  folded into spec shelves) · Phase 2 templates pressed + LIVE-stamped (3 lanes; persist fragment live-corrected:
+  `buffed` not `show` under showAlways — findings #11-13) · Phase 3 shell built + browser-driven · Phase 4
+  machine-side CLEAN (mint harness decode-diff; browser-minted string decoded by the trusted decoder).
+- **Live grading (Battlewrath):** paste landed perfectly; library face refined on his walk (edges render from
+  what they carry — the 8,916 no-dst applies_aura flood; chain back-stepping + return-to-selection; General tile
+  dropped); the everything-ticked wizard collapse fixed (no mid-render redirects). **Prototype handed to the
+  devs.** Method banked: user-story walks prove the JOINS where harnesses prove parts (memory).
+- **NEXT (after a mental degauss):** the **cooldown+usable lane — abilities and cooldown are ONE bucket**
+  (the Ready contract: spell-trigger palette + liveness harvest first; both Q4 costumes + desat polarity
+  pre-specified in the tree). Then **procs as their own bucket**; down the line procs refine into the
+  "And what?" stage as an injected TRIGGER 2 on the consumer (not their own aura). All refinement, no invention.
+- Charter note: the inter-bench division locked in HOW.md (addons = Lua→WoW + custom code; aura bench =
+  Lua→WA→WoW + repeatability/design/taste/dockets; no court, bounded conversations).
 
 ## Addons bench 2026-07-15 (the dedicated addons agent's first build session)
 

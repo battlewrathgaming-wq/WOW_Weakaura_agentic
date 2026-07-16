@@ -78,6 +78,13 @@ Q5's string, "another lane?" returns here with class+spec retained. Each lane = 
 _Open taste question (Battlewrath's seat): seven rows might be one too many for a first face — "procs" and "stacks"
 may read alike; a fold to "Moments" is on the table. Unresolved, deliberately._
 
+**Bucket merges settled at V1-ship (Battlewrath, 2026-07-16):**
+- **Abilities and cooldown are ONE bucket** — the next lane to press ("cooldown + usable" together: ready/usable
+  is one user meaning, not two rows).
+- **Procs are their own bucket.** And down the line, procs REFINE INTO the "And what?" stage — injected as a
+  TRIGGER 2 on the consuming ability instead of standing as their own aura (pull-not-push made structural).
+  All refinement now, no invention._
+
 ## Q2.5 — "Watched where?" (DoT/HoT only — a SCOPE fork, so it precedes the spell pick)
 
 > - **On my current target** — what's ticking on the thing I'm hitting right now
