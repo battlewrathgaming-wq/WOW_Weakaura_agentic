@@ -75,6 +75,8 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   benign (nothing lost; rev-list proved 0 missing), but the interleave was luck. Discipline: `git log
   --oneline -3` BEFORE each commit (see whose tip you're on), and diagnose-before-repair on any odd
   push range — the trunk moving under you looks exactly like history loss until you count.
+  Calibration (Battlewrath): parallel sessions are the EXCEPTION, not his practice (one focus,
+  chase it out, settle) — this is a rare-condition check, not a per-commit ritual.
 
 - **One envelope at a time is load-bearing:** the census task's Begin→(cycle)→Commit spans
   ~seconds; another `r`/`st` during the cycle would clobber the open envelope. The dispatcher
