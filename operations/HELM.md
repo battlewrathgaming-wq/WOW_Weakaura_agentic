@@ -10,6 +10,9 @@ heading: —
 helm at a time; the other agent stays out of the trunk until the topic is resolved and the helm
 is RELEASED at close-off.
 
+- **The heading line is half the point** (Battlewrath, 2026-07-15): taking the helm means STATING
+  the goal in one sentence — which means stopping to discuss what the goal IS before any work.
+  The lock guards the trunk; the heading guards the focus.
 - **Boot:** read this file BEFORE your first commit. `RELEASED` (or your own name) → take it:
   set holder/since/heading, commit. **Another bench's name → you are locked out** — do repo-read-only
   work or stop and surface to Battlewrath; do not commit to the trunk.
