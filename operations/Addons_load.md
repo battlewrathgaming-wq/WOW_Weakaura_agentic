@@ -37,6 +37,14 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   inventory + the dev's own rank-family table. DISCUSS-FIRST (grain questions: Realms bitmask
   semantics, CA-entry ≠ castable-ability). Flagged in STATE 2026-07-15.
 
+## For the aura bench (relay when their custom lane develops)
+
+- **Custom-code performance discipline** (Battlewrath, 2026-07-15, from the guardian-tracker
+  profiling: naive ~14× vs targeted in plate-dense areas): TSU handlers should dispatch off the
+  event's own args (unit events name their unit), set `changed` only on real deltas, early-exit
+  on empty state, and full-rescan only on STATUS. The as-captured pattern snippet = demonstrator,
+  not adoptable form. A palette/ingredients note when custom.md grows.
+
 ## Small debts (cheap, non-blocking)
 
 - ~~`frames` task wants a field list~~ — BUILT + deployed v2.1.0 (2026-07-15): `frames
