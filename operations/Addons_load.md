@@ -77,6 +77,8 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   push range — the trunk moving under you looks exactly like history loss until you count.
   Calibration (Battlewrath): parallel sessions are the EXCEPTION, not his practice (one focus,
   chase it out, settle) — this is a rare-condition check, not a per-commit ritual.
+  MECHANISM (2026-07-15): **`operations/HELM.md`** — the trunk LOCK. Read before first commit;
+  another bench's name = locked out; RELEASE at close-off. Supersedes tip-glancing as the guard.
 
 - **One envelope at a time is load-bearing:** the census task's Begin→(cycle)→Commit spans
   ~seconds; another `r`/`st` during the cycle would clobber the open envelope. The dispatcher
