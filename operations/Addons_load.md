@@ -67,6 +67,12 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## Standing cautions (so they don't get re-learned)
 
+- **Two agent sessions share ONE trunk** (addons + aura benches, same repo, same main). Diagnosed
+  2026-07-15 after a scare: the picker session's close replayed its chain on top of mine mid-evening —
+  benign (nothing lost; rev-list proved 0 missing), but the interleave was luck. Discipline: `git log
+  --oneline -3` BEFORE each commit (see whose tip you're on), and diagnose-before-repair on any odd
+  push range — the trunk moving under you looks exactly like history loss until you count.
+
 - **One envelope at a time is load-bearing:** the census task's Begin→(cycle)→Commit spans
   ~seconds; another `r`/`st` during the cycle would clobber the open envelope. The dispatcher
   guards sessions but NOT an in-flight cycler. Acceptable at current scale; a `D.busy` flag is
