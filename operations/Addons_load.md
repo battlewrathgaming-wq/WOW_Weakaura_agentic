@@ -44,6 +44,9 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   event's own args (unit events name their unit), set `changed` only on real deltas, early-exit
   on empty state, and full-rescan only on STATUS. The as-captured pattern snippet = demonstrator,
   not adoptable form. A palette/ingredients note when custom.md grows.
+  Rider (Battlewrath, Discord close): the gap policy for plate-bound trackers = **TTL +
+  update-on-refind** (state survives a plate drop with a decay clock, refreshes when the GUID
+  resolves again) — steadier UI than hide-on-gap, cheaper than a CLEU estimator.
 
 ## Small debts (cheap, non-blocking)
 
