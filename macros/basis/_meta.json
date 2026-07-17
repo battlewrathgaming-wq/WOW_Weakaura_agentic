@@ -1,8 +1,8 @@
 {
- "emitted_at": "2026-07-17T16:41:42",
+ "emitted_at": "2026-07-17T17:25:44",
  "emitter": "macros/tools/emit_macro_basis.py",
  "source_anchors": {
-  "patch-B.MPQ": "a8336170a7d97b137bda9838774665d711a02b27d2241f88aecf464ffca7ee06",
+  "patch-B.MPQ": "c48159c6d6dde97aca850a64b1ef423162f8969e0bb82f01e39bce7e17c24b2e",
   "locale_archives": [
    {
     "archive": "patch-enUS-3.MPQ",

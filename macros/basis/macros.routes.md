@@ -1,6 +1,6 @@
 # macros.routes - the CoA macro surface (browse menu)
 
-_Anchor: patch-B.MPQ sha256 `a8336170a7d97b13...` | emitted 2026-07-17 | grain: PER DOMAIN, they differ - each file states its own._
+_Anchor: patch-B.MPQ sha256 `c48159c6d6dde97a...` | emitted 2026-07-17 | grain: PER DOMAIN, they differ - each file states its own._
 
 **Start here, open one domain.** Emitted by `macros/tools/emit_macro_basis.py`; nothing here is written from an agent's WoW knowledge (this client is not a pure 3.3.5a). Foundation: `operations/Macros.md`.
 
