@@ -75,9 +75,28 @@ surface for a new module; register with Core instead
   `/coasp watchaggro` tool): the native "you have aggro" red highlight is
   driven by `CompactUnitFrame.lua:773 UpdateAggroHighlight`, called via
   `UpdateAll <- SetUnit <- Ascension_NamePlates\NamePlateDriver.lua:227`.
-  `CompactUnitFrame.lua` itself is packed inside this client's MPQ
-  archives (not a loose readable file) - this could only be confirmed by
-  catching it live, not by reading source.
+  **The live capture stands - it was and remains a real confirmation.**
+  - **CORRECTED 2026-07-17 (macros bench): the tail of this bullet -
+    "this could only be confirmed by catching it live, not by reading
+    source" - no longer holds.** Both files are readable on disk now:
+    `Outputs/client_interface/patch-B/Interface/FrameXML/CompactUnitFrame.lua`
+    (`CompactUnitMixin:UpdateAggroHighlight` at ~:770) and
+    `.../AddOns/Ascension_NamePlates/NamePlateDriver.lua`. See the MPQ
+    bullet below. Live capture is still the *completeness* check (a C-side
+    driver no Lua file calls stays invisible to source) - but source is no
+    longer a closed door, and it is much the cheaper first look.
+  - **LEAD for the still-open #266 (addons bench's to take, not mine).**
+    The real function gates on its own option table before it ever
+    touches the texture:
+    `if not self.optionTable.displayAggroHighlight then ... aggroHighlight:Hide() ... return end`
+    (with a second `playLoseAggroHighlight` branch). The saga's open
+    blocker is "the v3.5.42 suppress hook reaches the real driver but
+    showed no visible effect, cause not yet isolated" - an `optionTable`
+    gate upstream of the draw is a candidate explanation worth reading
+    before the next hypothesis→test round. **Per this file's own
+    principle 3, a source read is a LEAD, not settled** - it wants a live
+    confirm exactly like everything else here. Flagged across the lane by
+    the macros bench; not investigated from that seat.
 - **Instance-scoped `hooksecurefunc` is the reliable technique on this
   client** - hook the actual, already-located frame/texture OBJECT's own
   method (`hooksecurefunc(frame, "Show", ...)` /
@@ -117,16 +136,53 @@ surface for a new module; register with Core instead
   own OnUpdate). Always pass an explicit small positive `length` for any
   high-N PixelGlow style; see `GLOW_STYLE_PARAMS.threatDanger` in
   Core.lua for the fix and its own doc note.
-- **MPQ archives are not extractable from a sandboxed environment.**
-  `F:\games\Ascension_wow\resources\ascension-live\Data\*.MPQ` - `mpyq`
-  (pure Python) fails on even the smallest archives
-  (`AttributeError` reading the internal listfile, likely unsupported
-  compression); no StormLib/python-mpq bindings installable via pip; no
-  CLI tools (7z, unmpq) available. A Windows-native tool (Ladik's MPQ
-  Editor, CascView) run directly on the user's machine is the only
-  realistic path, with no guarantee custom archives even have a
-  `(listfile)`. Concluded not worth pursuing further given live-capture
-  tools already answer most "what's the real driver" questions.
+- **~~MPQ archives are not extractable.~~ CHALLENGED + CORRECTED
+  2026-07-17 (macros bench) - the archives ARE extractable locally, and
+  the client's entire UI source is readable on disk right now.**
+  `py addons\tools\extract_interface.py` uses **mpyq successfully**;
+  `patch-B.MPQ` carries ALL client-side code (823 lua / 1299 files) and
+  is extracted to `Outputs/client_interface/patch-B/` with a sha256
+  manifest. `addons/maps/census/` is built on it. **Read
+  `Outputs/client_interface/patch-B/Interface/` before concluding
+  anything about this client is unreadable.**
+  - **The original bullet was TRUE IN ITS ENVIRONMENT** (Battlewrath,
+    2026-07-17: "that is what was true during that env, pre-code
+    agents") - it was written from the Cowork sandbox, before local code
+    agents worked this repo directly. It is kept below as history, not
+    deleted: the wall was real *there*. What changed is the environment,
+    not the archives.
+  - **Why it over-generalized** (the lesson worth keeping): it reports
+    failure "on even the smallest archives" - and the smallest archives
+    are exactly the ~8 listfile-less art archives (patch-4/5/C/CZZ/P/W/
+    WB/WC) that genuinely have no `(listfile)` and still can't be
+    listed. Starting small is the right instinct and it landed on the
+    one broken subset, which then read as "all archives". The
+    code-bearing archive was never the problem. **A negative result from
+    a convenience sample is not a general negative** - the same shape as
+    this file's own "verify before assuming" lesson, pointed at itself.
+  - **Real cost, measured:** a fresh local agent (2026-07-17) read this
+    bullet, believed it, and nearly ruled out the client's own FrameXML -
+    which is the authoritative source for the macro/slash-command
+    surface and the whole basis of `operations/Macros.md`. Operations had
+    already carried the correction since 2026-07-15 (`Addons_load.md`
+    standing cautions: "the Cowork-era 'mpyq can't read these MPQs'
+    claim is false locally - don't re-inherit that wall from old notes";
+    `STATE.md`: "CompactUnitFrame now readable"). **This handoff sheet is
+    what a fresh agent reads FIRST, so a stale claim here outranks a
+    correct one in operations.** Boot on `addons/invariants.md` +
+    operations, then this.
+  - _Original (2026-07-15, Cowork sandbox - kept for context):_ "MPQ
+    archives are not extractable from a sandboxed environment. `mpyq`
+    (pure Python) fails on even the smallest archives (`AttributeError`
+    reading the internal listfile, likely unsupported compression); no
+    StormLib/python-mpq bindings installable via pip; no CLI tools (7z,
+    unmpq) available. A Windows-native tool (Ladik's MPQ Editor,
+    CascView) run directly on the user's machine is the only realistic
+    path... Concluded not worth pursuing further given live-capture tools
+    already answer most 'what's the real driver' questions." (Ladik's
+    remains the named fallback for the 8 listfile-less archives - see
+    `Addons_load.md` small debts. 5 individual patch-B files also failed
+    `read_file`; named in that extraction's `manifest.json`.)
 
 ## Critical testing constraint (anti-cheat)
 
