@@ -134,14 +134,53 @@ The vocabulary is C-side, so it must be PROVEN, not recalled. Two channels, both
   dev-gated; that is a live check worth ten minutes, not a claim. Cross-lane: raise with the addons bench, don't
   do their documentation.
 
+## ✅ BUILT + EMITTED (`1b059d1`, 2026-07-17) — the slice stands
+
+`macros/` at root: `tools/emit_macro_basis.py` (deterministic, one command) → `basis/` (routes menu · domains
+catalog · 5 domain files · `_meta.json` anchored to patch-B + 4 locale archives). Basis data files byte-idempotent
+across re-runs. Census conventions mirrored throughout.
+
+**Five domains, DISCOVERED from source not declared** — `commands` 70 (SOURCED-COMPLETE) · `actions` 17
+(SOURCED-COMPLETE) · `conditionals` 0 (PROOF-PENDING, rim fully open) · `api` 24 (limits CONFLICT) ·
+`statedrivers` 5 (provenance OPEN). **Grain differs per domain and each file states its own** — commands/actions
+cite freely, conditionals cite not at all.
+
+**What the domain approach found that the trace would have missed** (the reason Battlewrath's reframe mattered):
+
+- **`actions/` — the whole `/click` half of macros.** 17 `SECURE_ACTIONS` types, each self-reporting the attributes
+  it reads (`spell`→`"spell"`, `macro`→`"macro"`/`"macrotext"`, `click`→`"clickbutton"`). The sheets' paired
+  (lever, handling) rule, extracted rather than annotated. Chasing commands alone never reaches it.
+- **`[@cursor]` extends to `/castsequence` AND `/castrandom`**, not just `/cast` — rule 5 found what the hand-read
+  missed.
+- **The client CONTRADICTS ITSELF on macro limits.** `Blizzard_MacroUI` declares GLOBAL `MAX_CHARACTER_MACROS=36`;
+  `QuickKeybindActionPicker` declares a LOCAL `18` (the stock WotLK value) shadowing it in that file. **Hypothesis
+  only, not fact:** the Dragonflight-backported picker kept the stock local and cannot see character macros 19–36.
+  Live check = `GetNumMacros()`. Flagged in `api.json`; **do not state a macro limit as fact until probed.**
+- **The attested-conditional grep measured ZERO** — as pre-committed, the file ships empty and says so.
+
+**The emitter was wrong three times and was FIXED each time, never hand-worked around** (the tooling contract):
+scoped to one file → discovered 27 custom commands and dropped 26 (widened to the whole extraction; `SecureCmdList`
+is ChatFrame-only *verified*, `SlashCmdList` has 104 defs across `Ascension_*` + DebugTools) · knew one handler FORM
+→ now knows three (inline / alias / **named-ref**) and terminates bodies at the **definition's own indent** because
+`BDRAFT` nests in a block · a counts label lied (`non_secure_taking_conditionals: 21` when only 5 do) → split.
+
+**Two verifiers, because miscounting is this slice's failure mode:** the **cross-total** (handlers calling
+`SecureCmdOptionParse` == raw call sites; 49=49) which catches the owner-tracking misattribution that produced a
+wrong count twice by hand — *if it ever fails the conditional counts are wrong, don't trust them*; and the **holes
+report** (declared-without-handler / body-unresolved), where an unresolved body means `calls` is **blind** and
+absence of `custom_behaviour` proves nothing. An empty holes list is a healthy one.
+
 ## Open / next
 
-- **BUILD `/macros/`** — `tools/` (the emitter) + `basis/` (`_meta.json` sha256 anchors · `commands.json` ·
-  `commands.routes.md` · `conditionals.json` proof-pending). Conventions mirror `addons/maps/census/`: README grain
-  statement, `_meta.json` provenance anchor, `.routes.md` two-tier browse menu, deterministic regenerate.
-- **The attested-conditional grep** — cheap, sourced, do it with the build.
-- **The live probe** — Battlewrath at the client. Confirm `/luaconsole` isn't dev-gated first; that may collapse
-  the cost to minutes.
+- **★ THE LIVE PROBE — the only thing that can close `conditionals`.** Battlewrath at the client. **Confirm
+  `/luaconsole` / `/devconsole` isn't dev-gated first** — if live, the probe is interactive (no macro, no restart,
+  resident API only) and collapses to minutes. Design + matrix + standing limit are already in
+  `basis/conditionals.json`; the probe tool goes in `macros/tools/` when the channel is confirmed.
+- **The macro-limit conflict** — one `GetNumMacros()` call settles it. Cheap, and it's a candidate real bug in the
+  backported picker (would silently hide character macros 19–36).
+- **`statedrivers` provenance** — resolved for free by the **clean-profile census re-run already banked** in
+  `Addons_load.md` (splits `unattributed` = engine-custom ∪ user-addon). No new work; just consume it when it lands.
+- **The guide** — prose over the map, downstream, once the rim is closed enough to teach from. Not before.
 - **`GlobalStrings.lua` is NOT in patch-B** — it lives in the enUS locale archives (4 of them carry it). Any future
   census work wanting locale strings inherits the precedence-merge rule above, where it DOES bite (`/lfg`, `/lfm`).
 
