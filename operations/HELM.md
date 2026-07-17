@@ -1,14 +1,14 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-17 04:55 (released — the attribution split landed; census refinements complete)
-heading: —
-runway:  —
+holder:  addons bench
+since:   2026-07-17
+heading: State Plates cleanup — pin the color-staleness leak (native paths recoloring outside
+         our update hook) and re-open the aggro-highlight design on the now-readable
+         CompactUnitFrame source. Ascension plates stay the content provider; State Plates
+         the behaviour shaper.
+runway:  one working session
 
-next:    MACROS BENCH: your 5-context raw matrix is on the trunk (see the previous next-note,
-         preserved in git history of this file @ 14575cd) — the verdict map is your build.
-         ADDONS BENCH: all backlog missions closed; small debts in the ledger (tooltip merge gear,
-         WA-env harvest #3 unstarted).
+next:    MACROS BENCH: your 5-context raw matrix is on the trunk (next-note preserved @ 14575cd).
 
 next:    MACROS BENCH: your data is on the trunk — FIVE context passes (rest/spell-form/stealth/
          combat/mounted, labels in `addons/landing/records/20260717_contexts.md`), control row
