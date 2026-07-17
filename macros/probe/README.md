@@ -70,8 +70,6 @@ _Tiers 1 and 2 were one bucket of "13 backport tests" until Battlewrath asked wh
 
 ## ~~The chat channel has a BLIND SPOT~~ → **WRONG. Corrected 2026-07-17.**
 
-Found 2026-07-17, and it is structural, not a bug:
-
 **I claimed:** *to run a chat probe you must click the chat box and type — so the mouse has
 LEFT the unit, therefore `@mouseover` may be structurally unprobeable from chat.*
 
@@ -88,9 +86,9 @@ target.
 instrument's limits from an armchair instead of asking the person holding it. A channel limit
 is an empirical claim like any other — it needed a probe, not a paragraph.
 
-The unit-token wiki hedges exactly there: *"the unit which the mouse is **currently (or was
-most recently)** hovering over."* That parenthetical decides whether a chat probe can work —
-and it is a **retail claim, unverified here**.
+_(The unit-token wiki's hedge — *"currently **or was most recently** hovering over"* — is what
+made me think the channel might be blind. It never had to be adjudicated: the mouse was on the
+unit when Enter fired, so "currently" was satisfied outright.)_
 
 _(The `nil`-is-ambiguous worry was real in principle — it just never arose, because the probe
 returned a NAME. A keybound macro remains the in-situ instrument if a future question genuinely
