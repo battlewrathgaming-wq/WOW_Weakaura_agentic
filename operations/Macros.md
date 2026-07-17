@@ -211,12 +211,37 @@ anomaly. Then write `proof_mark` back to `reference/candidates.json` and **gradu
 One run resting/idle, one **in combat + mounted** (or in a form). The pair separates *"false here"* from *"always
 false"* for the context-bound flags. **Do not block step 1 on it.**
 
-### 4. The guide — last, and downstream
+### 4. The guide — **a ROLE, not an artifact. Not queued; already live.**
 
-Prose over the map: teaching, ordering, worked examples. **Not before the rim is closed enough to teach from**, and
-it may never assert what the map doesn't carry. The three-way `cursor` collision
-(`@cursor` location / `@mouseover` unit / `[cursor]` held-item) is the first thing it must get right — a guide that
-misses it is wrong three ways at once.
+Corrected 2026-07-17 — Battlewrath: *"Guide in this primary case is role. You're my guide, in the formation of macro
+creation."*
+
+This step used to read "prose over the map, last, downstream, not before the rim closes." **That mis-frames the
+whole slice.** The guide is the AGENT, guiding macro creation with Battlewrath. It is **not blocked on anything** —
+it is running now. A guide *document* may follow, or may never; it is a possible output of the role, not the point
+of it.
+
+**So what is the basis FOR?** Not a doc to generate from. **It is what makes the guidance TRUE** — the substrate
+that lets the role say *"sourced, cite it freely"* vs *"unproven, and here is exactly how unproven"*. Without it the
+role degrades into a confident voice reciting retail defaults at a client that backports Legion into WotLK. That is
+the failure the whole slice exists to prevent, and it was never a documentation failure.
+
+**The discipline carries over unchanged, only the medium differs:** the role **may not assert what the map doesn't
+carry**. The conversation is the contained space where taste lives (the ADR line holds); `basis/` still can't lie,
+and `reference/` is still never authority.
+
+**What the role must not get wrong today** (all sourced, all usable NOW — the rim does not gate them):
+- the three-way **`cursor` collision** — `@cursor` = a ground location (7.1.0, hand-rolled here) / `@mouseover` = a
+  unit / `[cursor]` = a flag for what the cursor HOLDS. Wrong three ways at once if conflated.
+- **`@unit` ≠ `[flag]`** — different mechanisms, different proof. `@` is pass-through (pending the control row).
+- **`/use` takes conditionals** (via the `USE`=`CAST` alias), and **5 non-secure commands do too**.
+- **`[@cursor]` works on `/cast`, `/castsequence` AND `/castrandom`** — Ascension's own hack.
+- **Never state a macro limit as fact** — the client contradicts itself (MacroUI 36 vs QuickKeybind local 18).
+- **Never state a conditional as supported** — `conditionals.json` is empty, and that emptiness is honest. Say
+  "unproven", not a retail default.
+
+**Curated intent feeds the role directly** (`reference/`): the worked examples are what players actually want a
+macro to DO. That is the role's design input, available now, independent of the probe.
 
 ## `reference/` — standing, settled
 
