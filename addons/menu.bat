@@ -77,13 +77,15 @@ echo ==================================================
 echo.
 echo     [1]  COA_DevDump
 echo     [2]  COA_GuardianPlates
-echo     [3]  ALL residents
+echo     [3]  COA_StatePlates_Aggro
+echo     [4]  ALL residents
 echo.
 echo     [B]  Back to main menu
 echo.
-choice /c 123B /n /m "   Press a key: "
-if errorlevel 4 goto MAIN
-if errorlevel 3 set "TARGET=all" & goto DEPLOY_GO
+choice /c 1234B /n /m "   Press a key: "
+if errorlevel 5 goto MAIN
+if errorlevel 4 set "TARGET=all" & goto DEPLOY_GO
+if errorlevel 3 set "TARGET=COA_StatePlates_Aggro" & goto DEPLOY_GO
 if errorlevel 2 set "TARGET=COA_GuardianPlates" & goto DEPLOY_GO
 if errorlevel 1 set "TARGET=COA_DevDump" & goto DEPLOY_GO
 goto MAIN

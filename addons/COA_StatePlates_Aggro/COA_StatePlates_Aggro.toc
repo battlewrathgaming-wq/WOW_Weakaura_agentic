@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: COA State Plates - Aggro
+## Notes: The "I care about aggro" surface for COA State Plates: loading this addon adds a minimal native options page (Interface > AddOns) that turns on the core's native threat-border steering and aggro-highlight control. All machinery lives in the core addon (baseline off); this addon is only the declaration of interest + its config page. Disable this addon and the core returns to baseline.
+## Author: Battlewrath
+## Version: 1.0.0
+## Dependencies: COA_GuardianPlates
+
+Options.lua

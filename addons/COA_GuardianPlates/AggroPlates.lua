@@ -139,6 +139,33 @@ function Aggro.OnReclassify(unit, plate)
 end
 
 -- ---------------------------------------------------------------------
+-- PUBLIC API (v3.6.1) - the curated cross-addon surface. Core owns ALL
+-- machinery and runs baseline-OFF; satellite "I care about this" addons
+-- (COA_StatePlates_Aggro's native options page) flip these switches.
+-- Separate addons cannot see the private ns, so this global is the door.
+-- ---------------------------------------------------------------------
+
+COAStatePlates = COAStatePlates or {}
+COAStatePlates.Aggro = {
+    GetConfig = function() return GetConfig() end,
+    SetEnabled = function(on)
+        local cfg = GetConfig()
+        cfg.enabled = not not on
+        if cfg.enabled then ApplyAll() else ClearAll() end
+        return cfg.enabled
+    end,
+    SetHideNativeHighlight = function(hide)
+        local cfg = GetConfig()
+        cfg.hideNativeHighlight = not not hide
+        if cfg.enabled then ApplyAll() end
+        return cfg.hideNativeHighlight
+    end,
+    Reapply = function()
+        if GetConfig().enabled then ApplyAll() end
+    end,
+}
+
+-- ---------------------------------------------------------------------
 -- Slash surface (Core routes `/coasp aggro ...` here; shorthand-first)
 -- ---------------------------------------------------------------------
 

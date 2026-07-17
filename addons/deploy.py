@@ -36,6 +36,10 @@ MANIFEST = {
         "client_name": "COA_GuardianPlates",
         "exclude_dirs": {"AggroHighlight_Saga"},
     },
+    "COA_StatePlates_Aggro": {
+        "client_name": "COA_StatePlates_Aggro",
+        "exclude_dirs": set(),
+    },
 }
 
 
