@@ -240,6 +240,55 @@ verdicts back to "rim FULLY OPEN", silently, while printing success. The next ag
 following the README would have destroyed the capture's result. `conditionals.json` now
 belongs to the **map**; the emitter reads it and refuses to write it.
 
+## ★ THE REAL GAP: I PROVED THE WORDS, NOT THE SENTENCE
+
+_Surfaced 2026-07-17 by Battlewrath asking the only question that matters: **"Does the
+information gathered serve you in macro forming?"** Answered by WALKING a macro, not by
+opinion — walks prove the JOINS where harnesses prove parts._
+
+**The walk.** The commonest macro shape there is:
+`/cast [@mouseover,help,nodead] X; [@target,help,nodead] X; [@player] X`
+
+Against the basis: `/cast` takes conditionals ✓ · `[help]` SUPPORTED ✓ · `[nodead]` SUPPORTED ✓
+· `@target`/`@player` RESOLVE ✓ — **and then `,` `;` `#showtooltip` are all `???`.**
+
+**Every term proven. Not one connective.** A macro is mostly *sentence*, and the sentence is
+where the logic lives.
+
+**The audit: 14 grammar claims, ALL `reference/UNPROVEN`. Not one asked of the client.** The
+basis proves exactly three grammar facts — `no` negates · unknown passes · `@` is pass-through
+— and all three fell out *incidentally* from probes aimed at the vocabulary. **No grammar
+question was ever asked on purpose.**
+
+**Why it is the correctness blocker, not a nicety:** the parser fails SILENTLY by design. If
+`,` is not AND, the macro misbehaves and says nothing — the identical trap, one layer up. The
+vocabulary work does not protect against it.
+
+**⇒ the basis makes the role SAFE, not yet CAPABLE.** It can say which conditionals lie. It
+cannot yet compose them.
+
+### The sequence — same pattern as the vocabulary, one layer up
+
+1. **Research run** (Battlewrath's proposal: *"macro guides and common gramma"*) — hits BOTH
+   gaps at different tiers. **common grammar** → the ask-list for a grammar probe (reference,
+   feeding a live question). **macro guides** → **curated intent**: which *shapes* solve which
+   problems — the corpus-equivalent for macros, and what makes the role *useful* rather than
+   merely not-wrong.
+2. **The grammar probe** — cheap, same chat channel, mostly settled by three rows:
+   `[nocombat,nocombat]` vs `[combat,nocombat]` (is `,` AND?) ·
+   `SecureCmdOptionParse("[combat]A;[nocombat]B")` (does `;` + first-true hold?) ·
+   `[mod:shift/ctrl]` (is `/` OR inside an arg?). **State the required context this time** —
+   probe A's control row died because it silently assumed rest.
+3. **Graduate** the proven grammar into `basis/`. Reference never becomes basis by itself.
+
+**Already covered — do not re-fetch:** the CoA wiki's mouseover section carries three worked
+forms + the priority explanation. Curated intent, ingested and stamped. *(I called it a gap
+while the answer sat in `reference/`. Cite internal data first — that is twice today.)*
+
+**Channel limit found:** `@mouseover` may be structurally UNPROBEABLE from chat — typing means
+the mouse left the unit, and a `nil` would be ambiguous. Needs a keybound macro. See
+`probe/README`.
+
 ## Open — small, and each one precisely askable now
 
 - **The AMBIGUOUS 4** (`known`, `overridebar`, `possessbar`, `pvpcombat`) — constant-TRUE

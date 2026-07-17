@@ -68,6 +68,31 @@ unitId"*; `/cast` does `target:lower() == "cursor"`). **It's still a hypothesis 
 
 _Tiers 1 and 2 were one bucket of "13 backport tests" until Battlewrath asked when `@cursor` actually shipped. It was 4 facts and 9 guesses wearing the same label — the ranking was inferred from **absence** in the archive, which is the very error this slice documents. Patch annotations are evidence; absence never was._
 
+## The chat channel has a BLIND SPOT: anything mouse-dependent
+
+Found 2026-07-17, and it is structural, not a bug:
+
+**To run a chat probe you must click the chat box and type — so the mouse has LEFT the unit.**
+`@mouseover` is therefore the one target the cheap channel may be unable to ask about at all.
+
+The unit-token wiki hedges exactly there: *"the unit which the mouse is **currently (or was
+most recently)** hovering over."* That parenthetical decides whether a chat probe can work —
+and it is a **retail claim, unverified here**.
+
+**The trap:** a chat probe returning `nil` would be **ambiguous** — it cannot distinguish
+*"mouseover does not persist"* from *"mouseover does not resolve."* Uninformative silence: the
+same shape the polarity matrix taught us to distrust. **Do not read a nil here as absence.**
+
+**The clean channel is a KEYBOUND MACRO** — hover, press the key, the mouse never leaves. That
+is also how mouseover macros are actually *used*, so it tests in situ rather than in a lab.
+Heavier than chat; the only honest instrument for this one.
+
+_Status: `@mouseover` is `DID-NOT-RESOLVE-HERE` in the capture — both witnesses
+(`hasMouseover` and `[@mouseover].unit_exists`) agree nil across all five contexts,
+consistently, because **nobody hovered**. That is not evidence of absence. The **intent** side
+is already covered: the CoA wiki documents mouseover with three worked forms
+(`reference/ascension-wiki-macros.wikitext`)._
+
 ## Two standing limits — put these in the result, not just here
 
 **A verdict is true of the moment it ran.** `PROVEN-FALSE` means *false right now*, not unsupported — the pair
