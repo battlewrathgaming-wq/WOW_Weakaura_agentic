@@ -12,7 +12,15 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   without restore (the SANITATION FIX lane — check whether v3.7.0's gates broke a restore path),
   (b) the dual-announce alias (target token) confusing classification, or (c) the v3.7.0 python
   block-replacement in FriendlyPlates.lua having clipped a non-panel line (diff v3.6.1→v3.7.0
-  FriendlyPlates carefully — FIRST CHECK). Diagnostics on board: /coasp log on + filter suppress ·
+  FriendlyPlates carefully).
+  **PRIME SUSPECT (Battlewrath's live evidence: recycle-correlated + one enemy showing the NATIVE
+  friendly-player BLUE 0.667/0.667/1.0):** the delta-guard CACHE DESYNC — our direct
+  SetStatusBarColor paints never update the native cache fields (healthBar.r/g/b,
+  UpdateHealthColor:576), so on pool recycle the guard believes its color is already painted and
+  SKIPS the repaint, stranding the previous occupant's visuals on the new unit. FIX SHAPE: stop
+  direct-painting entirely in SetHealthBarColor/ClearHealthBarColor — the override + RefreshPlateColor
+  paints THROUGH native (cache stays honest); keep direct only for no-UnitFrame fallback and sync
+  healthBar.r/g/b there. Suppression symptom likely same family (alpha state on recycled frame). Diagnostics on board: /coasp log on + filter suppress ·
   /coagp status (suppressed count) · /coagp diag (restore log). NEXT SESSION: read the v3.7.0
   FriendlyPlates diff BEFORE theorizing.
 
