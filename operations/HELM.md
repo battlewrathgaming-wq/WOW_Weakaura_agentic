@@ -5,14 +5,21 @@ since:   2026-07-17 (released — State Plates v3.7.0 LIVE-CONFIRMED clean by Ba
 heading: —
 runway:  —
 
-next:    MACROS: capture DERIVED, map BUILT — `basis/conditionals.json` is FACT (5 contexts,
-         triangulated). Headline: the parser IGNORES unknown conditionals (clause passes), so my
-         designed polarity matrix could not discriminate — the CONTEXT STAMP caught it. Era diff
-         CONFIRMED with zero crossover: every WotLK-era conditional works, not one post-3.3.5a
-         does ⇒ Ascension extends at the Lua/handler layer, not the C parser. Open + small:
-         4 AMBIGUOUS flags (a `[zzznotaconditional]` FLAG CONTROL settles the class — the ask
-         had none), and macro limits still unread (Blizzard_MacroUI is LOAD-ON-DEMAND; call
-         MacroFrame_LoadUI() first). Detail + expectations: `operations/Macros.md`.
+next:    MACROS — VOCABULARY + GRAMMAR BOTH PROVEN. `basis/conditionals.json` is FACT: 53 safe
+         flags, 10 never-use, ZERO ambiguous. Grammar proven: `,`=AND · `;`=first-true-wins ·
+         `/`=OR · `no`=negate · `@`=pass-through. Headline: the parser IGNORES unknown
+         conditionals (the clause PASSES), so an unsupported one reads exactly like a true one —
+         a retail macro pasted here fails SILENTLY, never loudly. Era diff: zero crossover, every
+         WotLK-era conditional works and not one post-3.3.5a does ⇒ Ascension extends at the
+         Lua/handler layer, not the C parser. `[form:1]` gates Sanguine essence on a Bloodmage
+         (CoA custom classes use the stock shapeshift registry). Limits RESOLVED: 36/36.
+         OPEN, all small: the `!` cast-prefix (Blizzard 2.3.2, archive-documented, UNPROVEN
+         here) · `/script`+`/run` missing from commands.json (entry-rule hole — it answers
+         "takes conditionals", not "usable in a macro") · the Reaper's INVISIBLE spell-form
+         (NF=0 would settle the stance-registry hypothesis) · THE RESEARCH RUN.
+         NEXT (Battlewrath's plan): he captures real macros from the CoA Discords = an
+         ATTESTED-USAGE channel that measured ZERO in the client's own code. Then non-CoA guides
+         for the general shapes. Detail + forecast: `operations/Macros.md`.
          ADDONS: State Plates heading closed live; friendly-NPC satellite banked; aggro borders
          await a grouped pull. Open bug: enemy plates suppressed (delta-guard cache desync).
 
