@@ -1,7 +1,7 @@
 {
  "what": "THE ASK - every question the live probe puts to the client, with the method for reading each answer. Verdicts are null until the probe runs.",
  "composed_by": "macros/tools/compose_probe.py",
- "composed_at": "2026-07-17T03:18:49",
+ "composed_at": "2026-07-17T03:22:21",
  "from_register": {
   "file": "macros/reference/candidates.json",
   "candidates": 74,
@@ -33,7 +33,24 @@
    "mechanism": "actually EVALUATED by the C parser (combat, mod:shift, group, ...).",
    "consequence": "THIS is the vocabulary question, and what the polarity matrix is for."
   },
-  "name_collision_worth_knowing": "[cursor] (a FLAG - 'what the cursor is holding', per wowwiki-archive) is NOT @cursor (a TARGET - Ascension's terrain-click). Same word, two mechanisms."
+  "the_cursor_collision": {
+   "why_this_matters": "THREE different mechanisms collide on the word 'cursor'. They are not variants of each other and none became another. Conflating any two writes a confidently wrong guide.",
+   "@cursor": {
+    "is": "a ground LOCATION - the terrain point under the pointer. NOT a unit: it appears in NO unit-token list on either wiki.",
+    "dated": "SOURCED 7.1.0 (Legion), Blizzard-cited",
+    "on_CoA": "hand-rolled by Ascension - /cast checks target=='cursor' and hands off to Custom_HandleTerrainClick. A CONFIRMED, DATED backport."
+   },
+   "@mouseover": {
+    "is": "a UNIT - 'the unit which the mouse is currently (or was most recently) hovering over'. A real unit token; resolves via UnitExists.",
+    "dated": "UNDATED in every source we hold. The macro SYSTEM itself dates to 2.0.1 (sourced), so mouseover-as-a-macro-target is >= 2.0.1 - but that is a floor, not a date. We do not know when it shipped."
+   },
+   "[cursor]": {
+    "is": "a FLAG - 'what the cursor is currently HOLDING' (drag-and-drop state; GetCursorInfo). Neither a location nor a unit.",
+    "dated": "documented in the ~2010 archive (WotLK/early-Cata)"
+   },
+   "the_history_read": "Battlewrath, 2026-07-17: 'the cursor is first a location selector, and then later became mouseover casting.' RIGHT about the mechanic, inverted about the token. The ground RETICLE is the older thing - the Ascension wiki frames @cursor as 'remove the reticle delay', so the reticle pre-existed and @cursor AUTOMATES it. But as macro TOKENS the order reverses: @mouseover is undated and old (>= the 2.0.1 macro system), @cursor is 7.1.0 - about nine years later. Sequence: reticle (location, pre-macro) -> 2.0 macro system brings mouseover casting -> @cursor (7.1.0) arrives late to automate the ORIGINAL location role. They are parallel, not a lineage.",
+   "status": "the DATES are sourced; the SEQUENCE above is a reading of them, not a fact claim. Nothing here changes what the probe asks."
+  }
  },
  "control_row": {
   "ask": "@banana",
