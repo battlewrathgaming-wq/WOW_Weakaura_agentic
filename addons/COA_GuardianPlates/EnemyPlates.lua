@@ -841,7 +841,17 @@ local function TryApply(unit, plate, allowAggroCueScan)
     end
 end
 
+-- v3.7.0 INERT-CORE GATE: action handlers no-op until the satellite addon
+-- (COA_StatePlates_Enemy) attaches - loading it is the declaration of
+-- interest that brings this concern's table writes online. OnUnitRemoved
+-- stays UNgated (restore-only, always safe).
+local function Attached()
+    return COAStatePlates and COAStatePlates.Enemy
+        and COAStatePlates.Enemy.attached
+end
+
 function ns.Enemy.OnUnitAdded(unit, plate)
+    if not Attached() then return end
     TryApply(unit, plate, true)
 end
 
@@ -855,11 +865,13 @@ end
 -- every single tick regardless, via ApplyThreatColorForUnit/
 -- GetThreatColorForUnit's own always-on branch logic.
 function ns.Enemy.OnReclassify(unit, plate)
+    if not Attached() then return end
     local allowAggroCueScan = not (ns.IsReclassifyOverloaded and ns.IsReclassifyOverloaded())
     TryApply(unit, plate, allowAggroCueScan)
 end
 
 function ns.Enemy.OnThreatEvent(unit, plate)
+    if not Attached() then return end
     TryApply(unit, plate, false)
 end
 
@@ -886,170 +898,31 @@ function ns.Enemy.OnUnitRemoved(unit, plate)
     return restoredColor
 end
 
+-- v3.7.0: the options page moved OUT to the satellite addon
+-- COA_StatePlates_Enemy (the satellite ownership model - load it = care
+-- about enemy/threat plates; its page = the config; core stays inert
+-- without it). Public API below is the satellite's door.
 -- ---------------------------------------------------------------------
--- Options sub-panel - nested under the main "COA State Plates" category
--- via the standard classic-era parent-name convention. Titled "Enemy
--- Plates" (the module), with threat coloring's controls presented as its
--- one current sub-mode - room left below for future sibling sub-modes.
--- ---------------------------------------------------------------------
 
-local optionsPanel = CreateFrame("Frame", "COA_GuardianPlatesThreatOptionsPanel", UIParent)
-optionsPanel.name = "Enemy Plates"
-optionsPanel.parent = "COA State Plates"
-
-local optionsTitle = optionsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
-optionsTitle:SetPoint("TOPLEFT", 16, -16)
-optionsTitle:SetText("COA State Plates - Enemy Plates")
-
-local optionsSubtitle = optionsPanel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-optionsSubtitle:SetPoint("TOPLEFT", optionsTitle, "BOTTOMLEFT", 0, -8)
-optionsSubtitle:SetWidth(500)
-optionsSubtitle:SetJustifyH("LEFT")
-optionsSubtitle:SetText("Signal/behaviour only against hostile plates. Threat coloring below is its current sub-mode.")
-
-local threatEnabledCheckbox = CreateFrame("CheckButton", "COA_GuardianPlatesThreatEnabledCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
-threatEnabledCheckbox:SetPoint("TOPLEFT", optionsSubtitle, "BOTTOMLEFT", 0, -16)
-local okThreatEnabledLabel, threatEnabledCheckboxLabel = pcall(function() return _G[threatEnabledCheckbox:GetName() .. "Text"] end)
-if okThreatEnabledLabel and threatEnabledCheckboxLabel then
-    threatEnabledCheckboxLabel:SetText("Enable threat coloring")
-end
-threatEnabledCheckbox:SetChecked((COA_GuardianPlatesDB.threatMode or 0) > 0)
-threatEnabledCheckbox:SetScript("OnClick", function(self)
-    SetThreatMode(self:GetChecked() and 1 or 0)
-end)
-
--- Manual role choice (v2.5) - replaces the old "Smart" auto-detection.
-local threatTankingCheckbox = CreateFrame("CheckButton", "COA_GuardianPlatesThreatTankingCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
-threatTankingCheckbox:SetPoint("TOPLEFT", threatEnabledCheckbox, "BOTTOMLEFT", 0, -4)
-local okThreatTankingLabel, threatTankingCheckboxLabel = pcall(function() return _G[threatTankingCheckbox:GetName() .. "Text"] end)
-if okThreatTankingLabel and threatTankingCheckboxLabel then
-    threatTankingCheckboxLabel:SetText("Tanking (unchecked = DPS view) - used only when the game has no LFG/LFR role")
-end
-threatTankingCheckbox:SetChecked(COA_GuardianPlatesDB.threatTanking and true or false)
-threatTankingCheckbox:SetScript("OnClick", function(self)
-    COA_GuardianPlatesDB.threatTanking = self:GetChecked() and true or false
-    pcall(ApplyThreatColorToAllActive)
-end)
-
--- 3 independently-configurable threat-color pickers (v2.3) - one per state
--- (secure/warning/danger), so a DPS and a Tank can each define what a given
--- state should look like to them. Deliberately a separate factory from
--- FriendlyPlates.lua's CreateColorRow, because the semantics
--- genuinely differ: a guardian/NPC swatch's un-set state is meaningful
--- (nil = "no override, use native color"), but a threat state has no
--- native fallback - it's either colored per the active threat scheme or
--- not shown at all. So here right-click resets to that state's DEFAULT
--- color, never clears to nil, and DB values are seeded non-nil at load.
-local function CreateThreatColorRow(anchorWidget, labelText, colorKey, defaultColor)
-    local rowLabel = optionsPanel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-    rowLabel:SetPoint("TOPLEFT", anchorWidget, "BOTTOMLEFT", 0, -20)
-    rowLabel:SetText(labelText .. " (right-click swatch to reset to default):")
-
-    local swatch = CreateFrame("Button", nil, optionsPanel)
-    swatch:SetPoint("TOPLEFT", rowLabel, "BOTTOMLEFT", 4, -6)
-    swatch:SetWidth(24)
-    swatch:SetHeight(24)
-    swatch:RegisterForClicks("LeftButtonUp", "RightButtonUp")
-
-    local border = swatch:CreateTexture(nil, "BACKGROUND")
-    border:SetAllPoints()
-    border:SetTexture(0, 0, 0, 1)
-
-    local fill = swatch:CreateTexture(nil, "ARTWORK")
-    fill:SetPoint("TOPLEFT", 2, -2)
-    fill:SetPoint("BOTTOMRIGHT", -2, 2)
-    fill:SetTexture(1, 1, 1, 1)
-
-    local function Refresh()
-        local c = COA_GuardianPlatesDB[colorKey] or defaultColor
-        fill:SetVertexColor(c.r, c.g, c.b)
-    end
-
-    local function SetColor(r, g, b)
-        COA_GuardianPlatesDB[colorKey] = { r = r, g = g, b = b }
-        Refresh()
-        ApplyThreatColorToAllActive()
-    end
-
-    local function ResetColor()
-        SetColor(defaultColor.r, defaultColor.g, defaultColor.b)
-    end
-
-    swatch:SetScript("OnClick", function(self, mouseButton)
-        if mouseButton == "RightButton" then
-            ResetColor()
-            return
-        end
-
-        if not ColorPickerFrame then
-            Print("Color picker not found on this client.")
-            return
-        end
-
-        local current = COA_GuardianPlatesDB[colorKey] or defaultColor
-
-        ColorPickerFrame.func = function()
-            local r, g, b = ColorPickerFrame:GetColorRGB()
-            SetColor(r, g, b)
-        end
-        ColorPickerFrame.cancelFunc = function(previousValues)
-            if previousValues then
-                SetColor(previousValues.r, previousValues.g, previousValues.b)
-            else
-                ResetColor()
-            end
-        end
-        ColorPickerFrame.hasOpacity = false
-
-        local okShow = pcall(function()
-            ColorPickerFrame:SetColorRGB(current.r, current.g, current.b)
-            ShowUIPanel(ColorPickerFrame)
-        end)
-        if not okShow then
-            Print("Could not open the color picker on this client.")
-        end
-    end)
-
-    return swatch, Refresh
-end
-
-local threatColorSecureSwatch, RefreshThreatColorSecureSwatch = CreateThreatColorRow(
-    threatTankingCheckbox, "Threat color - secure", "threatColorSecure", THREAT_COLOR_DEFAULT_SECURE)
-local threatColorWarningSwatch, RefreshThreatColorWarningSwatch = CreateThreatColorRow(
-    threatColorSecureSwatch, "Threat color - warning", "threatColorWarning", THREAT_COLOR_DEFAULT_WARNING)
-local threatColorDangerSwatch, RefreshThreatColorDangerSwatch = CreateThreatColorRow(
-    threatColorWarningSwatch, "Threat color - danger", "threatColorDanger", THREAT_COLOR_DEFAULT_DANGER)
-
--- Instance Fill (v2.4) - off by default. The glow above always shows
--- regardless of this checkbox; this only adds the bar-fill channel, and
--- only while actually inside eligible instance content.
-local instanceFillCheckbox = CreateFrame("CheckButton", "COA_GuardianPlatesInstanceFillCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
-instanceFillCheckbox:SetPoint("TOPLEFT", threatColorDangerSwatch, "BOTTOMLEFT", -4, -20)
-local okInstFillLabel, instanceFillCheckboxLabel = pcall(function() return _G[instanceFillCheckbox:GetName() .. "Text"] end)
-if okInstFillLabel and instanceFillCheckboxLabel then
-    instanceFillCheckboxLabel:SetText("Instance fill: also color the bar fill in dungeons/raids")
-end
-instanceFillCheckbox:SetChecked(COA_GuardianPlatesDB.threatInstanceFillEnabled and true or false)
-instanceFillCheckbox:SetScript("OnClick", function(self)
-    COA_GuardianPlatesDB.threatInstanceFillEnabled = self:GetChecked() and true or false
-    pcall(ApplyThreatColorToAllActive)
-end)
-
-optionsPanel.refresh = function()
-    threatEnabledCheckbox:SetChecked((COA_GuardianPlatesDB.threatMode or 0) > 0)
-    threatTankingCheckbox:SetChecked(COA_GuardianPlatesDB.threatTanking and true or false)
-    RefreshThreatColorSecureSwatch()
-    RefreshThreatColorWarningSwatch()
-    RefreshThreatColorDangerSwatch()
-    instanceFillCheckbox:SetChecked(COA_GuardianPlatesDB.threatInstanceFillEnabled and true or false)
-end
-RefreshThreatColorSecureSwatch()
-RefreshThreatColorWarningSwatch()
-RefreshThreatColorDangerSwatch()
-
-if InterfaceOptions_AddCategory then
-    pcall(InterfaceOptions_AddCategory, optionsPanel)
-end
+COAStatePlates = COAStatePlates or {}
+COAStatePlates.Enemy = {
+    attached = false, -- the satellite sets this; the module is INERT until then
+    SetThreatMode = function(mode) SetThreatMode(mode) end,
+    SetTanking = function(on)
+        COA_GuardianPlatesDB.threatTanking = not not on
+        pcall(ApplyThreatColorToAllActive)
+    end,
+    SetInstanceFill = function(on)
+        COA_GuardianPlatesDB.threatInstanceFillEnabled = not not on
+        pcall(ApplyThreatColorToAllActive)
+    end,
+    Reapply = function() pcall(ApplyThreatColorToAllActive) end,
+    defaults = {
+        threatColorSecure = THREAT_COLOR_DEFAULT_SECURE,
+        threatColorWarning = THREAT_COLOR_DEFAULT_WARNING,
+        threatColorDanger = THREAT_COLOR_DEFAULT_DANGER,
+    },
+}
 
 -- ---------------------------------------------------------------------
 -- Slash command
@@ -1412,11 +1285,13 @@ SlashCmdList["COAENEMYPLATES"] = function(msg)
             COA_GuardianPlatesDB.threatCautionPct or 80,
             ns.LCG and "animated (PixelGlow)" or "static border (fallback - LibCustomGlow not loaded)"))
     elseif cmd == "options" or cmd == "config" then
-        if InterfaceOptionsFrame_OpenToCategory then
-            pcall(InterfaceOptionsFrame_OpenToCategory, optionsPanel)
-            pcall(InterfaceOptionsFrame_OpenToCategory, optionsPanel)
+        -- v3.7.0: the page lives in the satellite addon now
+        local panel = _G["COAStatePlatesEnemyOptions"]
+        if panel and InterfaceOptionsFrame_OpenToCategory then
+            pcall(InterfaceOptionsFrame_OpenToCategory, panel)
+            pcall(InterfaceOptionsFrame_OpenToCategory, panel) -- Blizzard first-open quirk
         else
-            Print("Interface Options panel API not found on this client - open ESC > Interface > AddOns manually.")
+            Print("The Enemy options page lives in the COA_StatePlates_Enemy addon - enable it at the character select AddOns list.")
         end
     else
         Print("Usage: /coaep on|off | tanking on|off | instancefill on|off | caution <pct> | status | options - render testing moved to /coasp rendertest")

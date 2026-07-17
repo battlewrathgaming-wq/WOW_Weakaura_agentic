@@ -418,7 +418,18 @@ end
 -- doc note)
 -- ---------------------------------------------------------------------
 
+-- v3.7.0 INERT-CORE GATE: the action handlers no-op until the satellite
+-- addon (COA_StatePlates_Friendly) attaches. Core carries ALL machinery;
+-- loading the satellite is the declaration of interest that brings this
+-- concern's table writes online. OnUnitRemoved stays UNgated - it only
+-- restores, and restore must always be safe to run.
+local function Attached()
+    return COAStatePlates and COAStatePlates.Friendly
+        and COAStatePlates.Friendly.attached
+end
+
 function ns.Friendly.OnUnitAdded(unit, plate)
+    if not Attached() then return end
     UpdatePlateForUnit(unit, plate)
     -- Healer mode: catch a unit that's already below threshold the moment
     -- their plate first appears (e.g. joining a fight in progress), rather
@@ -427,14 +438,17 @@ function ns.Friendly.OnUnitAdded(unit, plate)
 end
 
 function ns.Friendly.OnReclassify(unit, plate)
+    if not Attached() then return end
     UpdatePlateForUnit(unit, plate)
 end
 
 function ns.Friendly.OnThrottledTick()
+    if not Attached() then return end
     pcall(SweepHealAlertExpirations)
 end
 
 function ns.Friendly.OnHealthEvent(unit)
+    if not Attached() then return end
     if COA_GuardianPlatesDB.healerModeEnabled then
         pcall(UpdateHealAlertForUnit, unit)
     end
@@ -524,41 +538,11 @@ end)
 -- sub-mode).
 -- ---------------------------------------------------------------------
 
-local optionsPanel = CreateFrame("Frame", "COA_GuardianPlatesOptionsPanel", UIParent)
-optionsPanel.name = "COA State Plates"
-ns.optionsPanel = optionsPanel -- exposed so EnemyPlates.lua can nest its own sub-panel under this one
-
-local optionsTitle = optionsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
-optionsTitle:SetPoint("TOPLEFT", 16, -16)
-optionsTitle:SetText("COA State Plates - Friendly Plates")
-
-local optionsSubtitle = optionsPanel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-optionsSubtitle:SetPoint("TOPLEFT", optionsTitle, "BOTTOMLEFT", 0, -8)
-optionsSubtitle:SetWidth(500)
-optionsSubtitle:SetJustifyH("LEFT")
-optionsSubtitle:SetText("Suppresses friendly PLAYER nameplates while leaving friendly guardian/pet/NPC nameplates visible. Healer mode below is its sub-mode.")
-
-local optionsCheckbox = CreateFrame("CheckButton", "COA_GuardianPlatesEnabledCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
-optionsCheckbox:SetPoint("TOPLEFT", optionsSubtitle, "BOTTOMLEFT", 0, -16)
-local okLabel, checkboxLabel = pcall(function() return _G[optionsCheckbox:GetName() .. "Text"] end)
-if okLabel and checkboxLabel then
-    checkboxLabel:SetText("Enable suppression")
-end
-optionsCheckbox:SetChecked(COA_GuardianPlatesDB.enabled and true or false)
-optionsCheckbox:SetScript("OnClick", function(self)
-    SetEnabled(self:GetChecked() and true or false)
-end)
-
-local healerModeCheckbox = CreateFrame("CheckButton", "COA_GuardianPlatesHealerModeCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
-healerModeCheckbox:SetPoint("TOPLEFT", optionsCheckbox, "BOTTOMLEFT", 0, -4)
-local okHealerLabel, healerModeCheckboxLabel = pcall(function() return _G[healerModeCheckbox:GetName() .. "Text"] end)
-if okHealerLabel and healerModeCheckboxLabel then
-    healerModeCheckboxLabel:SetText("Healer mode: reveal group/raid members on low HP")
-end
-healerModeCheckbox:SetChecked(COA_GuardianPlatesDB.healerModeEnabled and true or false)
-healerModeCheckbox:SetScript("OnClick", function(self)
-    SetHealerModeEnabled(self:GetChecked() and true or false)
-end)
+-- v3.7.0: the options page moved OUT to the satellite addon
+-- COA_StatePlates_Friendly (the satellite ownership model - load it = care
+-- about friendly plates; its page = the config; core stays inert without it).
+-- The public API below is the door the satellite drives through; separate
+-- addons cannot see the private ns.
 
 local function ApplyNPCColorToAllActive()
     for unit in pairs(ns.activeUnits) do
@@ -569,100 +553,13 @@ local function ApplyNPCColorToAllActive()
     end
 end
 
-local function CreateColorRow(anchorWidget, labelText, colorKey)
-    local rowLabel = optionsPanel:CreateFontString(nil, "ARTWORK", "GameFontHighlightSmall")
-    rowLabel:SetPoint("TOPLEFT", anchorWidget, "BOTTOMLEFT", 0, -20)
-    rowLabel:SetText(labelText .. " (right-click swatch to reset):")
-
-    local swatch = CreateFrame("Button", nil, optionsPanel)
-    swatch:SetPoint("TOPLEFT", rowLabel, "BOTTOMLEFT", 4, -6)
-    swatch:SetWidth(24)
-    swatch:SetHeight(24)
-    swatch:RegisterForClicks("LeftButtonUp", "RightButtonUp")
-
-    local border = swatch:CreateTexture(nil, "BACKGROUND")
-    border:SetAllPoints()
-    border:SetTexture(0, 0, 0, 1)
-
-    local fill = swatch:CreateTexture(nil, "ARTWORK")
-    fill:SetPoint("TOPLEFT", 2, -2)
-    fill:SetPoint("BOTTOMRIGHT", -2, 2)
-    fill:SetTexture(1, 1, 1, 1)
-
-    local function Refresh()
-        local c = COA_GuardianPlatesDB[colorKey]
-        if c then
-            fill:SetVertexColor(c.r, c.g, c.b)
-        else
-            fill:SetVertexColor(1, 1, 1) -- neutral placeholder = native color in use
-        end
-    end
-
-    local function SetColor(r, g, b)
-        COA_GuardianPlatesDB[colorKey] = { r = r, g = g, b = b }
-        Refresh()
-        ApplyNPCColorToAllActive()
-    end
-
-    local function ClearColor()
-        COA_GuardianPlatesDB[colorKey] = nil
-        Refresh()
-        ApplyNPCColorToAllActive()
-    end
-
-    swatch:SetScript("OnClick", function(self, mouseButton)
-        if mouseButton == "RightButton" then
-            ClearColor()
-            return
-        end
-
-        if not ColorPickerFrame then
-            Print("Color picker not found on this client.")
-            return
-        end
-
-        local current = COA_GuardianPlatesDB[colorKey] or { r = 0.2, g = 0.5, b = 1.0 }
-
-        ColorPickerFrame.func = function()
-            local r, g, b = ColorPickerFrame:GetColorRGB()
-            SetColor(r, g, b)
-        end
-        ColorPickerFrame.cancelFunc = function(previousValues)
-            if previousValues then
-                SetColor(previousValues.r, previousValues.g, previousValues.b)
-            else
-                ClearColor()
-            end
-        end
-        ColorPickerFrame.hasOpacity = false
-
-        local okShow = pcall(function()
-            ColorPickerFrame:SetColorRGB(current.r, current.g, current.b)
-            ShowUIPanel(ColorPickerFrame)
-        end)
-        if not okShow then
-            Print("Could not open the color picker on this client.")
-        end
-    end)
-
-    return swatch, Refresh
-end
-
-local npcColorSwatch, RefreshNPCColorSwatch = CreateColorRow(healerModeCheckbox, "NPC nameplate color", "npcColor")
-local petColorSwatch, RefreshPetColorSwatch = CreateColorRow(npcColorSwatch, "Pet / Guardian / Totem nameplate color", "petColor")
-
-optionsPanel.refresh = function()
-    optionsCheckbox:SetChecked(COA_GuardianPlatesDB.enabled and true or false)
-    healerModeCheckbox:SetChecked(COA_GuardianPlatesDB.healerModeEnabled and true or false)
-    RefreshNPCColorSwatch()
-    RefreshPetColorSwatch()
-end
-RefreshNPCColorSwatch()
-RefreshPetColorSwatch()
-
-if InterfaceOptions_AddCategory then
-    pcall(InterfaceOptions_AddCategory, optionsPanel)
-end
+COAStatePlates = COAStatePlates or {}
+COAStatePlates.Friendly = {
+    attached = false, -- the satellite sets this; the module is INERT until then
+    SetEnabled = function(on) SetEnabled(not not on) end,
+    SetHealerMode = function(on) SetHealerModeEnabled(not not on) end,
+    ReapplyColors = ApplyNPCColorToAllActive,
+}
 
 -- ---------------------------------------------------------------------
 -- Slash command
@@ -694,9 +591,6 @@ SlashCmdList["COAGUARDIANPLATES"] = function(msg)
     elseif cmd == "healermode on" or cmd == "healermode off" then
         local arg = cmd:match("^healermode%s+(%S+)$")
         SetHealerModeEnabled(arg == "on")
-        if healerModeCheckbox then
-            healerModeCheckbox:SetChecked(COA_GuardianPlatesDB.healerModeEnabled)
-        end
         Print("Healer mode: " .. (COA_GuardianPlatesDB.healerModeEnabled and "On" or "Off"))
     elseif cmd:match("^healermode threshold%s+%d+$") then
         local n = tonumber(cmd:match("^healermode threshold%s+(%d+)$"))
@@ -724,14 +618,13 @@ SlashCmdList["COAGUARDIANPLATES"] = function(msg)
             "removedLog has %d entr%s (%d needed the cached-plate fallback). /reload then check COA_GuardianPlatesDB.removedLog for details.",
             #log, (#log == 1) and "y" or "ies", viaCacheCount))
     elseif cmd == "options" or cmd == "config" then
-        if InterfaceOptionsFrame_OpenToCategory then
-            pcall(InterfaceOptionsFrame_OpenToCategory, optionsPanel)
-            -- called twice - a long-standing Blizzard quirk where the first
-            -- call can open to the wrong category on a fresh Interface
-            -- Options load; harmless to call again if already open.
-            pcall(InterfaceOptionsFrame_OpenToCategory, optionsPanel)
+        -- v3.7.0: the page lives in the satellite addon now
+        local panel = _G["COAStatePlatesFriendlyOptions"]
+        if panel and InterfaceOptionsFrame_OpenToCategory then
+            pcall(InterfaceOptionsFrame_OpenToCategory, panel)
+            pcall(InterfaceOptionsFrame_OpenToCategory, panel) -- Blizzard first-open quirk
         else
-            Print("Interface Options panel API not found on this client - open ESC > Interface > AddOns manually.")
+            Print("The Friendly options page lives in the COA_StatePlates_Friendly addon - enable it at the character select AddOns list.")
         end
     else
         Print("Usage: /coagp on | off | toggle | status | healermode on|off|threshold <n>|ttl <secs> | scan | probe | diag | options  (see /coaep for Enemy Plates / threat coloring)")

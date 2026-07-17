@@ -40,6 +40,14 @@ MANIFEST = {
         "client_name": "COA_StatePlates_Aggro",
         "exclude_dirs": set(),
     },
+    "COA_StatePlates_Friendly": {
+        "client_name": "COA_StatePlates_Friendly",
+        "exclude_dirs": set(),
+    },
+    "COA_StatePlates_Enemy": {
+        "client_name": "COA_StatePlates_Enemy",
+        "exclude_dirs": set(),
+    },
 }
 
 

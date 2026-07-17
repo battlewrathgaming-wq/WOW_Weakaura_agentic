@@ -76,8 +76,8 @@ echo     client restart on this account - /reload can't load it)
 echo ==================================================
 echo.
 echo     [1]  COA_DevDump
-echo     [2]  COA_GuardianPlates
-echo     [3]  COA_StatePlates_Aggro
+echo     [2]  COA_GuardianPlates (core)
+echo     [3]  StatePlates satellites (Aggro + Friendly + Enemy)
 echo     [4]  ALL residents
 echo.
 echo     [B]  Back to main menu
@@ -85,7 +85,7 @@ echo.
 choice /c 1234B /n /m "   Press a key: "
 if errorlevel 5 goto MAIN
 if errorlevel 4 set "TARGET=all" & goto DEPLOY_GO
-if errorlevel 3 set "TARGET=COA_StatePlates_Aggro" & goto DEPLOY_GO
+if errorlevel 3 goto DEPLOY_SATELLITES
 if errorlevel 2 set "TARGET=COA_GuardianPlates" & goto DEPLOY_GO
 if errorlevel 1 set "TARGET=COA_DevDump" & goto DEPLOY_GO
 goto MAIN
@@ -96,6 +96,18 @@ choice /c YN /n /m "   Deploy %TARGET% (game closed)?  [Y]es  [N]o: "
 if errorlevel 2 goto DEPLOY
 cls
 py "%BENCH%deploy.py" %TARGET%
+echo.
+pause
+goto MAIN
+
+:DEPLOY_SATELLITES
+echo.
+choice /c YN /n /m "   Deploy all three StatePlates satellites (game closed)?  [Y]es  [N]o: "
+if errorlevel 2 goto DEPLOY
+cls
+py "%BENCH%deploy.py" COA_StatePlates_Aggro
+py "%BENCH%deploy.py" COA_StatePlates_Friendly
+py "%BENCH%deploy.py" COA_StatePlates_Enemy
 echo.
 pause
 goto MAIN

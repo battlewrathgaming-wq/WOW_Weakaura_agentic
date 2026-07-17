@@ -1,0 +1,8 @@
+## Interface: 30300
+## Title: COA State Plates - Friendly
+## Notes: The "I care about friendly plates" surface for COA State Plates: loading this addon ATTACHES the core's friendly-plate machinery (player suppression, healer mode, NPC/pet coloring - all inert in the core without this) and adds its config page under Interface > AddOns. Disable this addon and the core returns to baseline for friendly plates.
+## Author: Battlewrath
+## Version: 1.0.0
+## Dependencies: COA_GuardianPlates
+
+Options.lua

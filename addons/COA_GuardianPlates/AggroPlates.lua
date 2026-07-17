@@ -77,6 +77,8 @@ end
 -- ---------------------------------------------------------------------
 
 local function Apply(unit, plate)
+    -- v3.7.0 inert-core gate: nothing writes until the satellite attaches
+    if not (COAStatePlates and COAStatePlates.Aggro and COAStatePlates.Aggro.attached) then return end
     local cfg = GetConfig()
     if not cfg.enabled then return end
     if not (ns.IsHostileUnit and ns.IsHostileUnit(unit)) then return end
@@ -147,6 +149,7 @@ end
 
 COAStatePlates = COAStatePlates or {}
 COAStatePlates.Aggro = {
+    attached = false, -- the satellite sets this (v3.7.0 inert-core gate)
     GetConfig = function() return GetConfig() end,
     SetEnabled = function(on)
         local cfg = GetConfig()

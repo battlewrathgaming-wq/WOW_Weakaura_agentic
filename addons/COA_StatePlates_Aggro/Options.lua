@@ -21,6 +21,9 @@ panel:SetScript("OnEvent", function(self, event, name)
     if name ~= ADDON then return end
     self:UnregisterEvent("ADDON_LOADED")
 
+    local api0 = API()
+    if api0 then api0.attached = true end -- v3.7.0: the declaration of interest
+
     local title = self:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
     title:SetPoint("TOPLEFT", 16, -16)
     title:SetText("COA State Plates \124cff33ff99Aggro\124r")
