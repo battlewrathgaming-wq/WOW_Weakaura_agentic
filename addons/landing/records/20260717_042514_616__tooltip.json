@@ -1,0 +1,2848 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-07-17T04:25:18",
+    "pulled_at": "2026-07-17T04:25:19",
+    "sha256": "ede07291f7f3e340d42ee2249ec4541e36bb66c47e4c1129288027e756420de4",
+    "raw_clone": "addons\\landing\\raw\\20260717_042514_616__tooltip.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "tooltip: 119/119 ids rendered",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "REAPER",
+    "runId": "20260717_042514_616",
+    "startedAt": "2026-07-17 04:25:14",
+    "char": "Gravereaper",
+    "completedAt": "2026-07-17 04:25:14",
+    "version": "2.2.0",
+    "args": "holes",
+    "status": "complete",
+    "task": "tooltip",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "tips": {
+      "814287": {
+        "lines": [
+          {
+            "left": "Arcane Torrent"
+          },
+          {
+            "left": "Instant",
+            "right": "2 min cooldown"
+          },
+          {
+            "left": "Silence all enemies within 8 yards for 2 sec and restores 6% of your Mana. Non-player victim spellcasting is also interrupted for 3 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00814287|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "704497": {
+        "lines": [
+          {
+            "left": "Soul Marionette"
+          },
+          {
+            "left": "115 Mana"
+          },
+          {
+            "left": "Instant cast",
+            "right": "1.5 min cooldown"
+          },
+          {
+            "left": "Root yourself for 8 sec and create 5 clones of yourself that channel on you, applying a stack of |cffffffffSoul Marionette|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\_D3bigbadvoodoo:20:20:0:0|t |cffFFFFFFSoul Marionette|r\nIncreases your haste by 1% per stack. At 20 stacks, you transform into a powerful spirit, increasing the damage of |cffffffffMalefic Wrath|r and |cffffffffBad Juju|r by 30% and guaranteeing it to critically strike for 15 sec.\r\n\r\nIn addition, each |cFFFFFFFFSoul Marionette|r will explode, dealing 583 Shadow Damage and stunning enemies within 5 yds for 4 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00704497|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a006055|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "801481": {
+        "lines": [
+          {
+            "left": "Glory"
+          },
+          {
+            "left": "Instant",
+            "right": "2 min cooldown"
+          },
+          {
+            "left": "Bring glory to the holy light, increasing your attack speed by 30% for 5 sec.\r\n\r\nAfter the duration, you gain |cFFFFFFFFDownfall|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\Spell_Holy_AvengersShield:20:20:0:0|t |cffFFFFFFDownfall|r\nYou heal for 50% of all damage dealt for 5 sec. After the duration, you gain |cffffffffRedemption|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\Spell_Holy_HolyGuidance:20:20:0:0|t |cffFFFFFFRedemption|r\nIncreases attack speed by 30% and you heal for 50% of all damage dealt for 5 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00801481|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0029259|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "561069": {
+        "lines": [
+          {
+            "left": "Mixologist"
+          },
+          {
+            "left": "You can now add an additional |cffffffffIngredient|r to your |cffffffffCauldron|r, enhancing your brew.\r\n\r\nTeaches you |cffffffffIngredient: Fish Oil|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\INV_Ascend_liquid_b_02:20:20:0:0|t |cffFFFFFFIngredient: Fish Oil|r\nBrew |cffffffffFish Oil|r into your |cffffffffCauldron|r.\r\n\r\n|cffffffffCauldron|r: Increases the movement speed and swim speed of allies within 40 yds by 10%.\r\n\r\n|cffffffffPotion|r: Increases the target ally's movement speed by 20% and dodge chance by 5% for 8 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00561069|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a006645|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "561082": {
+        "lines": [
+          {
+            "left": "Spirit Walker"
+          },
+          {
+            "left": "Movement speed increased by 100% while dead.\r\n\r\nDoes not stack with similar effects."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00561082|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 3
+      },
+      "681242": {
+        "lines": [
+          {
+            "left": "Umbral Glaive"
+          },
+          {
+            "left": "|cFF66DDFFLevel 30 Passive|r\r\nRanged attacks now have a 10% chance to transform |cffffffffHex of Malice|r into |cffffffffUmbral Glaive|r for 10 sec.\r\n\r\nChance increased by your ranged critical strike rating."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\_MaievBlade_Shadow:20:20:0:0|t |cffFFFFFFUmbral Glaive|r\nThrow a glaive that curses an enemy and up to 2 nearby enemies, leeching 8 health, repeating every 1 sec for 6 sec. Refreshes the duration of |cffffffffHex of Malice|r.\r\n\r\nScales with modifiers to |cffffffffHex of Malice|r."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a30|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00681242|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007103|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "561289": {
+        "lines": [
+          {
+            "left": "Soul Capture"
+          },
+          {
+            "left": "Instant",
+            "right": "15 sec cooldown"
+          },
+          {
+            "left": "Capture the soul from a nearby corpse, granting 1 |cff5ee2ffReaped Soul|r and restoring 10% maximum health.\r\n\r\nCan only be used once per corpse."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00561289|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "524865": {
+        "lines": [
+          {
+            "left": "Final Embrace"
+          },
+          {
+            "left": "25 Health"
+          },
+          {
+            "left": "Instant",
+            "right": "3 min cooldown"
+          },
+          {
+            "left": "|cffffffffRequires Mortal Form|r\r\nGorge on blood magic, entering a dramatically improved |cffa966f0Cursed Form|r for 20 sec, transforming your |cffffffffBloodfang Bite|r into |cffffffffCrimson Maw|r, but draining your health over time.\r\n\r\nWhile active, every 1 sec you curse enemies within 8 yds, applying |cffffffffHematoma|r for 6 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\5_devilmark_Border:20:20:0:0|t |cffFFFFFFHematoma|r\nDeals 70 Shadow Damage and increases the damage the target takes from subsequent applications of |cffffffffHematoma|r by 3%, stacking 10 times. Generates Rage based on damage dealt."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00524865|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0030418|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "705044": {
+        "lines": [
+          {
+            "left": "Dirty Fighter"
+          },
+          {
+            "left": "Increases the chance for |cFFFFFFFFFlank|r to critically strike by 50% and increases your chance to resist root effects by 25%."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00705044|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0030051|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "805804": {
+        "lines": [
+          {
+            "left": "Ramhorn Rage"
+          },
+          {
+            "left": "Instant",
+            "right": "2 min cooldown"
+          },
+          {
+            "left": "|cffec8201Enrage Effect|r\r\nEnrage allies within 8 yds for 3 sec, regenerating 2% of their maximum health every 1.50 sec. \r\n\r\nMelee auto attacks extend the duration of this effect by 2 sec, up to a maximum of 15 sec.\r\n\r\nThis ability empties your |cffffffffTankard|r, consuming |cffffffffFill Level|r stacks and triggering with a reduced cooldown based on stacks consumed."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_warrior_focusedrage:20:20:0:0|t |cffFFFFFFBarbaric Rage|r\nWhile enraged, the global cooldown of Barbarian abilities is reduced by 30%."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00805804|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0029366|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "520046": {
+        "lines": [
+          {
+            "left": "Spectral Hand"
+          },
+          {
+            "left": "Melee Range"
+          },
+          {
+            "left": "Instant"
+          },
+          {
+            "left": "Requires Underwalk"
+          },
+          {
+            "left": "Pick the target's pocket with an ephemeral touch, taking loot from them."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00520046|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "680975": {
+        "lines": [
+          {
+            "left": "Gear Grind"
+          },
+          {
+            "left": "|cFF66DDFFLevel 50 Passive|r\r\nDamage dealt by |cffffffffScrap Shot|r now has a 30% chance to transform your next |cffffffffMakeshift Dynamite|r into |cffffffffGear Grind|r for 8 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_misc_gear_05:20:20:0:0|t |cffFFFFFFGear Grind|r\nToss gears at an enemy 4 times over 1.50 sec, each dealing 82 Nature damage and generating 1 |cffc7c7c7Scrap|r. \r\n\r\nIncreases the damage dealt by your summons by 10% for 8 sec. \r\n\r\nUsable while moving. Scales with modifiers to |cffffffffMakeshift Dynamite|r."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a50|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00680975|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a009828|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "653022": {
+        "lines": [
+          {
+            "left": "Weapon Engraving: Fire"
+          },
+          {
+            "left": "Instant"
+          },
+          {
+            "left": "Engrave a fire rune onto your weapon for 1 hour.\r\n\r\nGrants your direct damage dealt a 30% chance to ignite the target, dealing 45 Fire Damage per stack after 3 sec.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00653022|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "680283": {
+        "lines": [
+          {
+            "left": "Scourge Apprentice Training"
+          },
+          {
+            "left": "Your |cffffffffLife Force|r is increased by 1."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00680283|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 3
+      },
+      "520047": {
+        "lines": [
+          {
+            "left": "Whisper of the Lost"
+          },
+          {
+            "left": "40 yd range"
+          },
+          {
+            "left": "Instant",
+            "right": "8 sec cooldown"
+          },
+          {
+            "left": "Distract enemies in target area with a faint whisper, attracting the attention of all nearby monsters for 10 seconds.  \r\n\r\nUsable while stealthed."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00520047|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "803417": {
+        "lines": [
+          {
+            "left": "Assault Formation"
+          },
+          {
+            "left": "20 Energy"
+          },
+          {
+            "left": "Instant",
+            "right": "1 sec cooldown"
+          },
+          {
+            "left": "Increases your critical strike chance by 10%, but increases your damage taken by 10%."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00803417|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "805591": {
+        "lines": [
+          {
+            "left": "Bloodsores"
+          },
+          {
+            "left": "Requires Level 30"
+          },
+          {
+            "left": "|cFF66DDFFLevel 30 Passive|r\r\nPeriodic damage dealt now has a 20% chance to apply a |cffffffffBloodsore|r to your target for 8 sec, stacking 5 times."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_artifact_corruptedbloodofzakajz:20:20:0:0|t |cffFFFFFFBloodsore|r\nIncreases the damage of your next |cffffffffSanguine Rupture|r and |cffffffffBloodmoon Blast|r against the target by 10% for 8 sec, stacking 5 times."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a30|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00805591|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0011528|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 8
+      },
+      "680378": {
+        "lines": [
+          {
+            "left": "Emberheart"
+          },
+          {
+            "left": "40 yd range"
+          },
+          {
+            "left": "Instant",
+            "right": "2 min cooldown"
+          },
+          {
+            "left": "Instantly gain 5 stacks of |cffffffffFlamecasting|r and then empower all nearby allies with magical fire, increasing their movement speed by 30% for 15 sec.\r\n\r\nWhile under the effects of |cffffffffEmberheart|R direct damage dealt by allies deals 24 additional Fire damage."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\spell_fire_playingwithfire:20:20:0:0|t |cffFFFFFFFlamecasting|r\nIncreases your spell haste by 5% for 15 sec. Stacks 5 times.\r\n\r\nAdditional applications do not refresh duration."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00680378|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007389|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "13977860": {
+        "lines": [
+          {
+            "left": "Woodcutting"
+          },
+          {
+            "left": "Allows the woodcutter to turn logs into planks.  This skill requires a sawmill."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a0013977860|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 3
+      },
+      "500970": {
+        "lines": [
+          {
+            "left": "Raise: Lesser Skeletal Warrior"
+          },
+          {
+            "left": "1.99 sec cast"
+          },
+          {
+            "left": "Raise a |cffffffffLesser Skeletal Warrior|r to aid you in combat, occupying 1 |cffffffffLife Force|r.\r\n\r\n|cff90ee90Command|r: Strikes an enemy in front of it and deals Weapon Damage plus 1."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00500970|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "505188": {
+        "lines": [
+          {
+            "left": "Sanguine Essence"
+          },
+          {
+            "left": "Transforms your |cffffffffBlood Curse|r into |cffffffffSanguine Essence|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\spell_animarevendreth_orb:20:20:0:0|t |cffFFFFFFSanguine Essence|r\nEnter a unique |cffa966f0Cursed Form|r that does not disable |cffffffffMortal Form|r abilties, coalescing a blood orb that will float beside you.\r\n\r\nWhile active, you replicate 20% of healing or damage done by |cFFFFFFFFSanguine Mend|r and |cffffffffBloodmoon Blast|r on the target every 1 sec for 3 sec.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00505188|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007750|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "561376": {
+        "lines": [
+          {
+            "left": "Soulstone Lure"
+          },
+          {
+            "left": "30 yd range"
+          },
+          {
+            "left": "Instant",
+            "right": "30 sec cooldown"
+          },
+          {
+            "left": "Requires Underwalk"
+          },
+          {
+            "left": "Place a deathly lure at the target location for 15 sec that taunts nearby enemies every 5 sec for 3 sec. \r\n\r\nEnemies who attack the lure are horrified for 3.50 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00561376|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "9930874": {
+        "lines": [
+          {
+            "left": "Mercenary for Hire!"
+          },
+          {
+            "left": "Unlimited range"
+          },
+          {
+            "left": "9.96 sec cast",
+            "right": "1 min cooldown"
+          },
+          {
+            "left": "Renounce your faction status while in War Mode or High-Risk, enabling FFA PvP, making you hostile to your own faction and other Mercenaries.\r\n\r\nYou can only be healed or buffed by other Mercenaries while active.\n\nMercenary can be removed by casting For the Horde or For the Alliance while in a rested area."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a009930874|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "681001": {
+        "lines": [
+          {
+            "left": "Blazewrought Titan"
+          },
+          {
+            "left": "While inside your |cffffffffMechsuit|r, all damage taken is reduced by 10% and dealing damage with |cffffffffLiving Flame|r now grants a stack of |cffffffffBlazewrought Titan|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\INV_Ammo_FireTar:20:20:0:0|t |cffFFFFFFBlazewrought Titan|r\nIncreases your magic penetration by 2 for 15 sec, stacking 15 times. \r\n\r\nAt 15 stacks, your damaging abilties become infused with fire dealing an additional 30% of the damage dealt instantly as Fire Damage and sundering your target and an additional nearby enemy.\r\n|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\INV_Ammo_FireTar:20:20:0:0|t |cffFFFFFFBlazewrought Sunder|r\nIncreases your Fire and Nature Damage dealt to this target by 2% for 4 sec, stacking 5 times."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00681001|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0031112|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "704652": {
+        "lines": [
+          {
+            "left": "Relentless"
+          },
+          {
+            "left": "Requires Level 40"
+          },
+          {
+            "left": "|cFF66DDFFLevel 40 Passive|r\r\nPhysical critical strikes now reduce the cooldown of |cFFFFFFFFAortic Assault|r by 1 sec and grant you |cffffffffRelentless|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_shoulder_mail_pvphunter_g_01:20:20:0:0|t |cffFFFFFFRelentless|r\nYour |cFFFFFFFFAortic Assault|r channels 10% faster for 10 sec, stacking 5 times, and each strike now extends the duration of |cffffffffTaldaram's Torment|R by 2 sec."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a40|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00704652|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a004129|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 8
+      },
+      "814291": {
+        "lines": [
+          {
+            "left": "Arcane Torrent"
+          },
+          {
+            "left": "Instant",
+            "right": "2 min cooldown"
+          },
+          {
+            "left": "Silence all enemies within 8 yards for 2 sec and restores $s1% of your Mana and $s2 of your Energy. Non-player victim spellcasting is also interrupted for 3 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00814291|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "553267": {
+        "lines": [
+          {
+            "left": "Bloodsurge"
+          },
+          {
+            "left": "51 Health"
+          },
+          {
+            "left": "Instant",
+            "right": "3 min cooldown"
+          },
+          {
+            "left": "|cffffffffRequires Mortal Form|r\r\nEnter a bloodsurge, enraging you and increasing your Shadow damage dealt and your spell critical strike chance by 20% for 20 sec.\r\n\r\nAt the end of the duration, or whenever you trigger |cffffffffAccursed Form|r, gain |cffffffffBloodchaser|r instead."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\_Diablo3_CursedMonster_Red:20:20:0:0|t |cffFFFFFFBloodchaser|r\nEnrage, increasing your Physical Damage dealt by 20% for 30 sec\r\n\r\nWhile active, |cffffffffBloodfang Bite|r now launches 1 |cffffffffBlood Shard|r, dealing 41 Shadow Damage to your target."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00553267|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a006848|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "562720": {
+        "lines": [
+          {
+            "left": "Blood Curse"
+          },
+          {
+            "left": "102 Health"
+          },
+          {
+            "left": "Instant",
+            "right": "30 sec cooldown"
+          },
+          {
+            "left": "Ascend into a |cffa966f0Cursed Form|r for 30 sec, enabling the use of unique abilities, causing you to generate health and Rage over time. This ability goes on cooldown upon returning to |cFFFFFFFFMortal Form|r.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00562720|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "814286": {
+        "lines": [
+          {
+            "left": "Arcane Torrent"
+          },
+          {
+            "left": "Instant",
+            "right": "2 min cooldown"
+          },
+          {
+            "left": "Silence all enemies within 8 yards for 2 sec and restores 15 of your Energy. Non-player victim spellcasting is also interrupted for 3 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00814286|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "704908": {
+        "lines": [
+          {
+            "left": "Burning Heat"
+          },
+          {
+            "left": "Casting |cffffffffSunflare|r now has a 30% chance to  transform your next |cffffffffSunflare|r into |cffffffffSun Ray|r.\r\n\r\nCasting |cffffffffHorusath Blast|r is now guaranteed to transform your next |CffffffffSunflare|r into |cffffffffSun Ray|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\paladin_icon_speedoflight:20:20:0:0|t |cffFFFFFFSun Ray|r\nShine the light of the sun on an enemy, dealing 775 Holy Damage and granting you |cffffffffScorch Marks|r.\r\n|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_shield_1h_artifactstormfist_d_03:20:20:0:0|t |cffFFFFFFScorch Marks|r\nYour next |cFFFFFFFFRadiant Flame|r has no mana cost, ticks 50% faster, and its duration is reduced by 50%."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00704908|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0034052|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "803865": {
+        "lines": [
+          {
+            "left": "Reagents: |n|cffff2020Crude Leather (4)|r"
+          },
+          {
+            "left": "Craft a |cffffffffKnotted Cord|r you can give to an ally, increasing their First Aid and Skinning speed by $%."
+          },
+          {
+            "left": "\nKnotted Cord"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00803865|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "806209": {
+        "lines": [
+          {
+            "left": "Threads of Eternity"
+          },
+          {
+            "left": "Damage dealt by |cffffffffDiscordance|r now applies |cffffffffThread of Eternity|r to enemies."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_tailoring_80_nylonthread:20:20:0:0|t |cffFFFFFFThread of Eternity|r\nMarked for 6 sec. Damage taken from |cffffffffWand of Time|r is increased by 30%.\r\n\r\nYou may consume this debuff with |cffffffffWand of Time|r to gain an additional effect based on your active |cFFC49A6CContinuum Spell|r.\r\n\r\n|cFFFFFFFFSingularity Core|r: Triggers 3 instances of |cFFFFFFFFSingularity Core|r damage.\r\n\r\n|cFFFFFFFFFlux Emitter|r: Explodes on the enemy, dealing 50% of the damage dealt to all enemies within 8 yds.\r\n\r\n|cFFFFFFFFParadox Cannon|r: Increases the damage of your next |cFFFFFFFFShatter Echo|r within 6 sec by 25%."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00806209|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0031333|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "667803": {
+        "lines": [
+          {
+            "left": "Will of the Forsaken"
+          },
+          {
+            "left": "Instant",
+            "right": "2 min cooldown"
+          },
+          {
+            "left": "Removes any charm, fear and sleep effect."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00667803|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "814285": {
+        "lines": [
+          {
+            "left": "Blood Fury"
+          },
+          {
+            "left": "Instant",
+            "right": "2 min cooldown"
+          },
+          {
+            "left": "Increases melee attack power by 6 and your spell power by 5. Lasts 15 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00814285|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "807146": {
+        "lines": [
+          {
+            "left": "Sulfuron Harbinger"
+          },
+          {
+            "left": "Increases the critical strike chance of |cFFFFFFFFBlaze|r and |cFFFFFFFFIgnite|r by 5% and increases their tick rate by 20% and reduces their durations by 25%.\r\n\r\nPeriodic critical strikes apply |cFFFFFFFFSulfur Fumes|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_monk_breathoffire:20:20:0:0|t |cffFFFFFFSulfur Fumes|r\n|CffffffffFlare Bolt|r, |cFFFFFFFFExplode|r, or |cFFFFFFFFFlames of Neltharion|r will detonate the |cFFFFFFFFSulfur Fumes|r to cause a |cFFFFFFFFSulfuron Blast|r, dealing 263 Fire Damage to the target and extending the duration of |cFFFFFFFFBlaze|r on them by 1 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00807146|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0029561|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "706159": {
+        "lines": [
+          {
+            "left": "Lithic Lance"
+          },
+          {
+            "left": "|cFF66DDFFLevel 20 Passive|r\r\nGenerating |cffc6a36aEarthshaping|r now has a 20% chance to transform your next |cffffffffGeode Barrage|r within 8 sec into |cffffffffLithic Lance|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_earthen_pillar:20:20:0:0|t |cffFFFFFFLithic Lance|r\nLaunch a beam of earthen energy at an enemy, dealing 265 Physical damage, generating 20 Rage and 2 stacks of |cffc6a36aEarthshaping|r.\r\n\r\nScales with modifiers to |cffffffffGeode Barrage|r."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cff1aff1a20|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00706159|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a009207|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "806978": {
+        "lines": [
+          {
+            "left": "Dirty Fighter"
+          },
+          {
+            "left": "Every 2nd critical strike with |cffffffffSkullpiercer|r or |cffffffffAssault|r within 30 sec now transforms your next |cffffffffAssault|r within 15 sec into |cffffffffSucker Punch|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_monk_quipunch:20:20:0:0|t |cffFFFFFFSucker Punch|r\nSucker punch an enemy, dealing 342 Physical damage and generating 5 stacks of |cff8fff7aAdvantage|r. Scales with modifiers to |cffffffffAssault|r.\r\n\r\nFor 8 sec, the critical strike chance of |cffffffffAssault|r is increased by 10%."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00806978|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a001388|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "806758": {
+        "lines": [
+          {
+            "left": "Clockwork Guardians"
+          },
+          {
+            "left": "Dealing ranged ability damage now gives you a 10% chance to instantly build 2 |cffffffffClockwork Guardians|r to accompany you for 12 sec that have a 50% chance to trigger |cffffffffHardwired Haymaker|r for 12 sec.\r\n\r\nCasting |CffffffffWell-Oiled Machine|r or |cffffffffUpgrade!|r instantly builds 2 |cffffffffClockwork Guardians|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\nhi_tech_mechaarmor_Border:20:20:0:0|t |cffFFFFFFHardwired Haymaker|r\nUnleash a devastating haymaker that deals 58 Fire Damage."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00806758|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007396|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "705054": {
+        "lines": [
+          {
+            "left": "Elven Enchantments"
+          },
+          {
+            "left": "Increases the damage dealt by your |cFFFFFFFFSearing|r and |cFFFFFFFFPoison Quivers|r by 25%.\r\n\r\nIn addition, dealing damage with |cFFFFFFFFSearing|r or |cffffffffPoison Quiver|r now grants a stack of |cFFFFFFFFElven Enchantments|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\achievement_character_nightelf_female:20:20:0:0|t |cffFFFFFFElven Enchantments|r\nCast time of the next |cFFFFFFFFIncendiary Shot|r within 10 sec is reduced by 10% and critical strike chance increased by 10%, stacking 10 times."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00705054|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0031280|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "800214": {
+        "lines": [
+          {
+            "left": "Malice of Gul'dan"
+          },
+          {
+            "left": "Direct critical strikes now have a 60% chance to trigger a |cffffffffFelstrike|r and generate a |cffffffffFragment of Malice|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\_SoulFire_Green:20:20:0:0|t |cffFFFFFFFelstrike|r\nBurn an enemy for 55 Shadowflame Damage over 6 sec, stacking 3 times."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_misc_skullofguldanshattered:20:20:0:0|t |cffFFFFFFFragment of Malice|r\nRestores 5 Energy and increases your critical strike chance by 10% for 5 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00800214|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0034232|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "504728": {
+        "lines": [
+          {
+            "left": "Transgression"
+          },
+          {
+            "left": "Transforms your |cffffffffBlood Curse|r into |cffffffffTransgression|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\epic_rpg_icon_pack_blood_0002s_0000_foreground_Border:20:20:0:0|t |cffFFFFFFTransgression|r\nEnter a unique |cffa966f0Cursed Form|r for 30 sec that does not disable the use of |cffffffffMortal Form|r abilities and casts a free |cffffffffVampiric Fang|r on your target.\r\n\r\nWhile active, direct spell damage triggers a |cffffffffVampiric Feast|r, dealing 20% additional Shadow damage to enemies, healing you equal to 50% of the damage dealt.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00504728|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0031175|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "707616": {
+        "lines": [
+          {
+            "left": "Mountain Avatar"
+          },
+          {
+            "left": "|cFF66DDFFLevel 50 Passive|r\r\nDamage dealt by |cffffffffGeode Barrage|r or |cffffffffGeodes|r now has a 5% chance to grant you |cffffffffEarthen Avatar|r for 5 sec.\r\n\r\nIf |cffffffffEarthen Avatar|r is already active triggering this effect will instead extend the duration by 5 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_racial_avatar:20:20:0:0|t |cffFFFFFFEarthen Avatar|r\nBecome an avatar of the earth, increasing your damage dealt and reducing your damage taken by 15%, and increasing your melee haste by 20% for 20 sec.\r\n\r\nImmune to stuns, roots, and snares for the duration.\r\n\r\nUsable while stunned."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a50|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00707616|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0013216|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "806301": {
+        "lines": [
+          {
+            "left": "Eternity Warper"
+          },
+          {
+            "left": "|cFF66DDFFLevel 50 Passive|r\r\nYour |cFFFFFFFFRipple|r channel performs a unique effect based on your active |cFFFFFFFFAeon|r:"
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\spell_holy_circleofrenewal:20:20:0:0|t |cffFFFFFFRippling Renewal|r\n|cFFFFFFFFRipple|r periodically heals allies within 0 yds for 43 every 0.50 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\custom_49_red_wave_Border:20:20:0:0|t |cffFFFFFFRippling Oblivion|r\n|cFFFFFFFFRipple|r deals periodic damage to enemies within 25 yds for 77 every 0.50 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_paladin_savedbythelight:20:20:0:0|t |cffFFFFFFRippling Protection|r\n|cFFFFFFFFRipple|r now places a damage absorb for 242 on allies within 15 yds for the duration of its channel."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\Spell_Holy_DivineSpirit:20:20:0:0|t |cffFFFFFFRippling Resilience|r\n|cFFFFFFFFRipple|r now delays 30% of incoming direct Physical Damage to allies within 15 yds for it's duration, instead taking it over 5 seconds."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a50|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00806301|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a009182|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 10
+      },
+      "801337": {
+        "lines": [
+          {
+            "left": "Writhe"
+          },
+          {
+            "left": "30 yd range"
+          },
+          {
+            "left": "Instant",
+            "right": "8 sec cooldown"
+          },
+          {
+            "left": "Inflict immense pain on an enemy, taunting them to attack you for 3 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00801337|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "560977": {
+        "lines": [
+          {
+            "left": "Dark Whispers"
+          },
+          {
+            "left": "Casting |cFFFFFFFFHorrorbolt|r now grants |cFFFFFFFFInspired Malice|r for 12 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\custom_T_Nhance_RPG_Icons_ShadowsRising_Border:20:20:0:0|t |cffFFFFFFInspired Malice|r\nYour next |cFFFFFFFFGaze of C'thun|r, |cFFFFFFFFDarkwither|r or |cFFFFFFFFWrath of the Black Empire|r will be empowered.\r\n\r\n|cFFFFFFFFGaze of C'thun:|r Critical strike chance increased by 20%.\r\n\r\n|cFFFFFFFFDarkwither:|r Shadow damage dealt increased by 5% and damage of |cFFFFFFFFDarkwither|r by an additional 15% for 10 sec.\r\n\r\n|cFFFFFFFFWrath of the Black Empire:|r Deals 25% increased damage."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00560977|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0033959|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "500982": {
+        "lines": [
+          {
+            "left": "Undead: Assault"
+          },
+          {
+            "left": "Instant"
+          },
+          {
+            "left": "Your undead minions assume an aggresive behaviour, increasing movement speed by 50%.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00500982|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "805308": {
+        "lines": [
+          {
+            "left": "Build: Battery Recharge Station"
+          },
+          {
+            "left": "1.49 sec cast",
+            "right": "2 min cooldown"
+          },
+          {
+            "left": "Build a |cFFFFFFFFBattery Recharge Station|r for 30 sec that allies can interact with once to replenish 15% maximum health and mana, and 50% maximum Rage, Energy, Focus, and Runic Power.\r\n\r\nApplies |cffffffffDepleting Battery|r to party and raid members within 40 yds."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_battery_02:20:20:0:0|t |cffFFFFFFDepleting Battery|r\nMovement speed increased by 10% for 30 sec. Run to the |cffffffffBattery Recharge Station|R and charge your battery!"
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\_Create_ManaGem:20:20:0:0|t |cffFFFFFFCharged Battery|r\nMovement speed increased by 30% for 12 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00805308|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0030575|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "706502": {
+        "lines": [
+          {
+            "left": "Dread"
+          },
+          {
+            "left": "Damage dealt now has a 15% chance to grant a stack of |cffffffffDread|r.\r\n\r\nAt 10 stacks, your next |cffffffffMeatsaw|r transforms into |cffffffffAnnihilation|r for 8 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\mace_2h_blacksmithing_d_04_icon:20:20:0:0|t |cffFFFFFFAnnihilation|r\nAnnihilate up to 10 enemies in a frontal cone, dealing 150% Weapon Damage plus 353 as Shadowflame Damage and generating 4 |cffff9933Demonfire|r.\r\n\r\nDeals 20% increased damage if you are above 75% health or below 35% health. Scales with modifiers to |cffffffffInfernal Strike|r."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00706502|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0030013|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "560020": {
+        "lines": [
+          {
+            "left": "Tempest Sovereign"
+          },
+          {
+            "left": "Enhances some of your spells with the power of the maelstrom, transforming your |cffffffffShock|r into |cffffffffBrine|r and |cffffffffCall Lightning|r into |cffffffffTorrential Wrath|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\nhi_waterstrick_Border:20:20:0:0|t |cffFFFFFFBrine|r\n|cffcc99ffGenerates 25 Static|r\r\nDouse an enemy, dealing 91 Frost damage, scaling with your critical strike rating.\r\n\r\nScales with modifiers to |cffffffffShock|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\torrentialwrath:20:20:0:0|t |cffFFFFFFTorrential Wrath|r\n|cffcc99ffDepletes 50 Static|r\r\nBlast an enemy, dealing 114 Frost damage, scaling with your haste rating."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cff1aff1a1|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00560020|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0031165|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 8
+      },
+      "520925": {
+        "lines": [
+          {
+            "left": "Petalkeeper"
+          },
+          {
+            "left": "|cffffffffWoodland Arrow|r now spawns a rare red |cffffffffDream Flower|r at a random location near you for 30 sec.\r\n\r\nCritical strikes will apply a stack of |cffffffffPetals|r to red |cffffffffDream Flowers|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\nhi_magicflower_Border:20:20:0:0|t |cffFFFFFFPetals|r\nAt 10 stacks, your next |cffffffffRanger Horn|r will cause the flower to burst, granting a buff to allies within 20 yards that causes damage dealt to heal them for 10% of the damage dealt and preventing their movement speed from being reduced below 100% of normal speed, for 8 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00520925|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a009454|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "500991": {
+        "lines": [
+          {
+            "left": "Grave March"
+          },
+          {
+            "left": "Instant",
+            "right": "2 sec cooldown"
+          },
+          {
+            "left": "Command your |cFFFFFFFFUndead|r to focus their attacks on the target enemy.\n\nUsable while casting or channeling."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00500991|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "504296": {
+        "lines": [
+          {
+            "left": "Blood Shield"
+          },
+          {
+            "left": "25 Health"
+          },
+          {
+            "left": "Instant"
+          },
+          {
+            "left": "Protects the caster with blood magic. Your health regeneration now continues in combat and is increased by 50%. Increases armor contribution from items by 20%. Lasts 30 min.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00504296|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "500960": {
+        "lines": [
+          {
+            "left": "Serpent Ward"
+          },
+          {
+            "left": "Instant"
+          },
+          {
+            "left": "Ward"
+          },
+          {
+            "left": "Drop a |cffffffffSerpent Ward|r near you for 1 min.\r\n\r\nThe ward spits fire at nearby enemies, attempting to focus on your primary target.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00500960|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "707615": {
+        "lines": [
+          {
+            "left": "Tempest Calling"
+          },
+          {
+            "left": "Enhances some of your spells with the power of the wind, tranforming your |cffffffffConjure Storm|r into |cffffffffUpdraft|r and |cffffffffCall Lightning|r into |cffffffffAeroblast|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\spell_frost_windwalkon:20:20:0:0|t |cffFFFFFFUpdraft|r\n|cffcc99ffDepletes 20 Static|r\r\n|cffffffff2 Charges, 10 sec recharge|r\r\nCreate an 8 yd |cffffffffUpdraft|r at the target location for 20 sec.\r\n\r\nDeals 161 Nature damage over the duration to enemies within the radius.\r\n\r\nIncreases movement speed by 25% for allies within the radius."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_skyreach_flash_bang:20:20:0:0|t |cffFFFFFFAeroblast|r\n|cffcc99ffDepletes 50 Static|r\r\nCrush an enemy with the weight of the winds, dealing 110 Nature damage to them and then an additional time for 40% of the damage dealt after 1 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00707615|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0031164|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "805422": {
+        "lines": [
+          {
+            "left": "Tome of Light"
+          },
+          {
+            "left": "Instant",
+            "right": "5 min cooldown"
+          },
+          {
+            "left": "Grants a shield equal to 100% of your maximum health for 30 sec, resets the cooldown of |cffffffffBarrier of Light|r and |cffffffffTranquil Circle|r, and grants an additional effect for each."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\misc_legionfall_paladin:20:20:0:0|t |cffFFFFFFTome of Light: Barrier of Light|r\nYour next |cffffffffBarrier of Light|r within 30 sec removes the |cffffffffOathkeeper|r stagger debuff."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\spell_priest_chakra:20:20:0:0|t |cffFFFFFFTome of Light: Tranquil Circle|r\nYour next |cffffffffTranquil Circle|r within 30 sec triggers instantly."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00805422|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0030615|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "805776": {
+        "lines": [
+          {
+            "left": "Blight Venom"
+          },
+          {
+            "left": "0.996 sec cast"
+          },
+          {
+            "left": "Activate |cffffffffBlight Venom|r for 2 hrs, giving your harmful spells and abilities a 30% chance to poison an enemy dealing 165 Shadow Damage over 6 sec.\r\n\r\nYou can have a maximum of 2 unique |cffffffffVenoms|r active at a time."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00805776|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "520099": {
+        "lines": [
+          {
+            "left": "Glyphic Overload"
+          },
+          {
+            "left": "Instant",
+            "right": "45 sec cooldown"
+          },
+          {
+            "left": "Instantly generate |cffffffffFrost Glyph|r, |cffffffffFlame Glyph|r, and |cffffffffArcane Glyph|r on yourself and overload, granting all active |cffffffffGlyphs|r an additional effect the next time you unleash them on an enemy. Lasts 15 sec.\r\n\r\nUsable while stealthed."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\nhi_runeofshadow_Border:20:20:0:0|t |cffFFFFFFOverloaded Arcane Glyph|r\nDeals 100% increased damage."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\custom_T_Nhance_RPG_Icons_ChaosRune_Border:20:20:0:0|t |cffFFFFFFOverloaded Flame Glyph|r\n|cffffffffFlame Glyph|r now affects 2 additional enemies, and deals an additional 98 Fire Damage over 5 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\nhi_frostrune_Border:20:20:0:0|t |cffFFFFFFOverloaded Frost Glyph|r\nFreeze an enemy in place for 3 sec. At the end of this duration, their movement speed is reduced by 50% for 5 sec. Does not break on damage taken."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00520099|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0034669|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 8
+      },
+      "704500": {
+        "lines": [
+          {
+            "left": "Hexfire Adept"
+          },
+          {
+            "left": "|cFF66DDFFLevel 50 Passive|r\r\nCasting |cffffffffHexfire|r transforms your next |cffffffffMalefic Wrath|r within 8 sec into |cffffffffHexfire Wrath|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\nhi_corruptionfire_Border:20:20:0:0|t |cffFFFFFFHexfire Wrath|r\nHurl hexfire energy at an enemy and up to 2 nearby enemies, dealing 308 Fire damage and cursing them for 9 sec. The curse deals 239 Fire damage every 3 sec.\r\n\r\nSpawns a |cffffffffSerpent Ward|r for 10 sec beneath your target. Scales with modifiers to |cffffffffMalefic Wrath|r.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a50|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00704500|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0011133|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "805104": {
+        "lines": [
+          {
+            "left": "Serpent Lord"
+          },
+          {
+            "left": "Requires Spider Form"
+          },
+          {
+            "left": "Augments |cffffffffSpider Form|r into a |cffffffffSerpent Lord|r, giving some of your Spider Form abilities a 1 second cast time and 10 yds of increased range.\r\n\r\nDamage is increased when attacking an enemy past 10 yds by 30% and spell pushback from enemy attacks is reduced by 50%.\r\n\r\nIncreases the damage of |cffffffffWithering Venom|r by 50% and causes it to create a |cffffffffMiasma|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\_Curse_Green:20:20:0:0|t |cffFFFFFFMiasma|r\nCreate an 8 yd cloud of poison at a location for 12 sec, causing 0 Nature Damage to 8 enemies within it every 2 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00805104|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007195|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "805029": {
+        "lines": [
+          {
+            "left": "Unholy Frenzy"
+          },
+          {
+            "left": "Instant",
+            "right": "3 min cooldown"
+          },
+          {
+            "left": "Enrage your Undead minions for 15 sec, increasing their haste by 30% and movement speed by 50%."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00805029|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "801096": {
+        "lines": [
+          {
+            "left": "Ley Power"
+          },
+          {
+            "left": "Instant",
+            "right": "1.5 min cooldown"
+          },
+          {
+            "left": "Divert ley energy into your weapons, drawing power from enemies within 20 yds of you. For each enemy in the radius, your damage dealt deals an additional 10% of the damage as Arcane damage, up to 100%, for 15 sec.\r\n\r\nWhile active, melee attacks and abilities grant you |cffffffffHarnessed Leylines|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\novart_magicspell_(25)_Border:20:20:0:0|t |cffFFFFFFHarnessed Leylines|r\nIncreases the damage of your |cFFFFFFFFRuneblade|r and |cffffffffElemental Burst|r by 3%, stacking up to 10 times.\r\n\r\nAdditional applications do not refresh the effect."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00801096|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0030678|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "500053": {
+        "lines": [
+          {
+            "left": "Tiki Splash"
+          },
+          {
+            "left": "While a |cffffffffBase|r is active, |cffffffffSpirit in a Bottle|r will now transform into |cffffffffTiki Splash|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\Inv_Helm_Mask_ZulGurub_D_01:20:20:0:0|t |cffFFFFFFTiki Splash|r\nSplash target location with healing waters, healing for 35 every 1.25 sec for 4.98 sec. Gains a new effect based on your currently active |cffffffffBase|r. Scales with modifiers to |cffffffffSpirit in a Bottle|r.\r\n\r\n|cffffffffBeast Blood:|r Grants you 5% increased critical strike chance for 15 sec, stacking 2 times.\r\n\r\n|cffffffffCrystal Water|r: Grants you a shield that absorbs 225 Magic damage for 15 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00500053|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007133|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "503630": {
+        "lines": [
+          {
+            "left": "Rock Barrier"
+          },
+          {
+            "left": "Instant"
+          },
+          {
+            "left": "|cffffffff2 Charges, 20 sec recharge|r\nRaise rocks from beneath you, increasing your Armor by 283, scaling with your Stamina. Lasts for 10 attacks or 10 sec.\r\n\r\nExpending a charge of |cffffffffRock Barrier|r launches a |cffffffffGeode|r at the enemy."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\uico_nature_spell_01_Border:20:20:0:0|t |cffFFFFFFGeode|r\nHurl an enchanted stone at the target, dealing 47 Physical Damage and generating 5 Rage."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00503630|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007321|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "562723": {
+        "lines": [
+          {
+            "left": "Moon Gaze"
+          },
+          {
+            "left": "Instant",
+            "right": "10 sec cooldown"
+          },
+          {
+            "left": "Allow your blood curse to take control and embrace your inner self for 5 min, allowing you to access your |cffa966f0Cursed Form|r ability bar.\r\n\r\nWhile active, you are unable to move, attack, or cast spells or abilities.\r\n\r\nCannot be used in combat."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00562723|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "524834": {
+        "lines": [
+          {
+            "left": "Beacon Charging"
+          },
+          {
+            "left": "|cFF66DDFFLevel 30 Passive|r\r\nTeaches |cffffffffOvercharge|r and |cffffffffBeacons|r now have |cffffffffOvercharge|r effects which can be activated by healing them with |cffffffffRepair Shot|r or using |cffffffffOvercharge|r.\r\n\r\nActive |cffffffffBeacons|r can only be |cffffffffOvercharged|r once."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\uico_mecha_spell_02_Border:20:20:0:0|t |cffFFFFFFOvercharge|r\nOvercharge all active |cffffffffBeacons|r, unleashing their unique effects.\r\n\r\nRefer to individual |cffffffffBeacons|r for their |cffffffffOvercharge|r effects."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a30|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00524834|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a002429|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "804360": {
+        "lines": [
+          {
+            "left": "Necromancy"
+          },
+          {
+            "left": "Allows you to summon Undead minions using |cffffffffLife Force|r.\r\n\r\nSummoned minions gain Attack Power and Spell Power from your Intellect and Spell Power based on their Life Force.\r\n\r\nThey also inherit a portion of your resistances, armor, hit chance, critical strike chance, haste and gain expertise from your hit chance."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00804360|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 3
+      },
+      "803989": {
+        "lines": [
+          {
+            "left": "Soul Shock"
+          },
+          {
+            "left": "15 yd range"
+          },
+          {
+            "left": "Instant"
+          },
+          {
+            "left": "Requires Underwalk"
+          },
+          {
+            "left": "Shock an enemy's soul, sapping them for 8 sec.\r\n\r\nCan only affect 1 target at a time. Damage dealt will interrupt this effect. Can only be used on Humanoids, Undead, Beasts, Dragonkin."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00803989|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "573060": {
+        "lines": [
+          {
+            "left": "Falconstrike"
+          },
+          {
+            "left": "Every 5th |cffffffffQuick Shot|r within 15 sec transforms into |cffffffffFalconstrike|r.\r\n\r\nUsing a |cffffffffHorn|r instantly transforms |cffffffffQuick Shot|r into |cffffffffFalconstrike|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_felarakkoa_focusedblast:20:20:0:0|t |cffFFFFFFFalconstrike|r\n|cff8fff7aGenerates 2 Advantage|r\r\nCall a cast of falcons to strike an enemy, dealing 121% Ranged Weapon Damage plus 10 Nature damage and calling 1 |cffffffffWar Falcon|r to your aid for 6 sec.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cff1aff1a10|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00573060|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0031133|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "520862": {
+        "lines": [
+          {
+            "left": "Soul Shear"
+          },
+          {
+            "left": "10 yd range"
+          },
+          {
+            "left": "Instant",
+            "right": "16 sec cooldown"
+          },
+          {
+            "left": "Requires Underwalk"
+          },
+          {
+            "left": "Purge an enemy's soul, removing 2 beneficial magic effects from them."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00520862|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "680692": {
+        "lines": [
+          {
+            "left": "Sanguine Essence"
+          },
+          {
+            "left": "Instant"
+          },
+          {
+            "left": "Enter a unique |cffa966f0Cursed Form|r that does not disable |cffffffffMortal Form|r abilties, coalescing a blood orb that will float beside you.\r\n\r\nWhile active, you replicate 20% of healing or damage done by |cFFFFFFFFSanguine Mend|r and |cffffffffBloodmoon Blast|r on the target every 1 sec for 3 sec.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00680692|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "802780": {
+        "lines": [
+          {
+            "left": "Aspect of Earth"
+          },
+          {
+            "left": "Every 3rd combined cast of |cffffffffFlames of Neltharion|r or |cffffffffEcho of Nozdormu|r now grants |cffffffffAspect of Earth|r for 15 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_rhyolith_volcano:20:20:0:0|t |cffFFFFFFAspect of Earth|r\nCreates a volcano beneath the primary target that erupts dealing 292 Fire Damage, repeating every 1.50 sec for 6 sec.\r\n\r\nDamage dealt by the volcano generates 1 |cffff7f7fHeat|r and 2% of your missing mana."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00802780|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007933|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "504868": {
+        "lines": [
+          {
+            "left": "Command: Undead"
+          },
+          {
+            "left": "30 Runic Power",
+            "right": "30 yd range"
+          },
+          {
+            "left": "Instant"
+          },
+          {
+            "left": "Command your Undead minions to perform a unique attack on your target.\r\n\r\nRefer to individual |cffffffffRaise|r spells for their |cff90ee90Command|r effect."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00504868|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "570023": {
+        "lines": [
+          {
+            "left": "Thirst for Blood"
+          },
+          {
+            "left": "Requires Level 50"
+          },
+          {
+            "left": "|cFF66DDFFLevel 50 Passive|r\r\nReceive a bonus based on your |cffffffffThirst|r level.\r\n\r\nBetween 1-5 stacks of |cffffffffThirst|r: You become |cFFFFFFFFSated|r.\r\n\r\nBetween 6-10 stacks of |cffffffffThirst|r: You become |cFFFFFFFFRavenous|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\_DeathCoilV2_Blood:20:20:0:0|t |cffFFFFFFSated|r\nSpell haste increased by 10%."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\nhi_blood_drain_Border:20:20:0:0|t |cffFFFFFFRavenous|r\nSpell critical damage increased by 100%."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a50|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00570023|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0012448|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 9
+      },
+      "800184": {
+        "lines": [
+          {
+            "left": "Legacy of Rexxar"
+          },
+          {
+            "left": "Critical strikes with |cffffffffPrimal Shred|r grant you and your pet |cffffffffMisha's Rage|r for 12 sec, causing auto attacks to deal an additional 103 Physical damage.\r\n\r\nCritical strikes with |cffffffffRylak's Bite|r grant you and your pet |cFFFFFFFFLeokk's Fury|r, increasing melee haste by 2% for 12 sec, stacking 3 times.\r\n\r\nCritical strikes with |cffffffffWildclaw|r grant you and your pet |cffffffffHuffer's Speed|r, increasing movement speed by 8% for 12 sec, stacking 3 times."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00800184|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0029385|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "560510": {
+        "lines": [
+          {
+            "left": "Journey To The Core"
+          },
+          {
+            "left": "Damage dealt by |cffffffffSeismic Tremor|r now has a 20% chance to form a crag beneath your target that explodes after 3 sec.\r\n\r\nCan only occur once every 3 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\nhi_earthwall_Border:20:20:0:0|t |cffFFFFFFCrag|r\nDeals 98 Physical Damage to up to 5 enemies within 5 yds and increases the damage they take from your |cffffffffEarthquake|r by 20% for 5 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00560510|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0030104|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "504901": {
+        "lines": [
+          {
+            "left": "Raise: Greater Skeletal Warrior"
+          },
+          {
+            "left": "1.99 sec cast"
+          },
+          {
+            "left": "Raise a |cffffffffGreater Skeletal Warrior|r to aid you in combat, occupying 1 |cffffffffLife Force|r.\r\n\r\n|cff90ee90Command|r: Strikes an enemy in front of it and deals Weapon Damage plus 1, reducing their Armor by 10% for 15 sec, stacking 2 times."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00504901|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "800267": {
+        "lines": [
+          {
+            "left": "Bushcraft"
+          },
+          {
+            "left": "Gain the ability to craft |cffffffffCrude Leather|r from the Leather obtained from Skinning, gives you a chance to find it when Skinning beasts, and increases your Skinning speed.\n\nAllows you to craft items that require |cffffffffCrude Leather|r."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00800267|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 3
+      },
+      "801957": {
+        "lines": [
+          {
+            "left": "Bare Fangs"
+          },
+          {
+            "left": "30 yd range"
+          },
+          {
+            "left": "Instant",
+            "right": "8 sec cooldown"
+          },
+          {
+            "left": "Requires Cursed Form"
+          },
+          {
+            "left": "Taunts an enemy to attack you for 3 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00801957|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "503712": {
+        "lines": [
+          {
+            "left": "Spirit Volley"
+          },
+          {
+            "left": "|cFF66DDFFLevel 50 Passive|r\r\nCasting |cffffffffReclamation|r and |cFFFFFFFFMalefic Arrow|r now has a 30% chance to transform your next |cffffffffReclamation|r into |cffffffffSpirit Volley|r for 6 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\nhi_spiritualblast_Border:20:20:0:0|t |cffFFFFFFSpirit Volley|r\nLaunch a spirit volley at your enemy, dealing 555 Shadow damage to them and up to 3 enemies within 8 yds and collects a |cFFFFFFFFSpirit|r.\r\n\r\nReduces the cooldown of |CFFFFFFFFSpirit Glaive|r by 3 sec.\r\n\r\nScales with modifiers to |cffffffffReclamation|r."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a50|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00503712|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0012145|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "524735": {
+        "lines": [
+          {
+            "left": "Redshade"
+          },
+          {
+            "left": "Using |cffffffffReap|r now transforms your |cffffffffReap|r into |cffffffffThresh|r for 10 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_sword_2h_artifactsoulrend_d_02:20:20:0:0|t |cffFFFFFFThresh|r\n|cff5ee2ffGenerates 1 Soul Fragment|r \r\nStrike enemies around you, dealing 110% Weapon Damage and generating Runic Power.\r\n\r\nUpon cast, this ability transforms into |cffffffffBloodshatter|r for 10 sec.\r\n|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_skeer_bloodletting:20:20:0:0|t |cffFFFFFFBloodshatter|r\n|cff5ee2ffGenerates 1 Soul Fragment|r \r\nStrike enemies in front of you, dealing 358 Shadow damage and generating Runic Power.\r\n\r\nYour next |cffffffffReliquary of the Lost|r within 10 sec now triggers a 25% reduced cooldown."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00524735|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0030546|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "572752": {
+        "lines": [
+          {
+            "left": "Sun Down"
+          },
+          {
+            "left": "30 yd range"
+          },
+          {
+            "left": "Channeled",
+            "right": "30 sec cooldown"
+          },
+          {
+            "left": "Bring the wrath of the sun down upon an enemy after 2 sec, dealing 1183 Holyflame Damage and scorching the earth beneath them for 9 sec. \r\n\r\nWhile inside, enemies are struck by a |cffffffffSolar Flare|r every 3 sec and take 15% increased damage from |cffffffffRapture|r and |cffffffffHorusath Blast|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\spell_druid_sunfall:20:20:0:0|t |cffFFFFFFSolar Flare|r\nDeals 61 Holyflame Damage and reduces the target's chance to hit by 3% for 10 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00572752|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0029505|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "801530": {
+        "lines": [
+          {
+            "left": "Transfer Life"
+          },
+          {
+            "left": "12 Health",
+            "right": "30 yd range"
+          },
+          {
+            "left": "Channeled"
+          },
+          {
+            "left": "Channel life into your |cFFFFFFFFRaised|r minions within 20 yds for 10 sec, healing them for 5% of their maximum health plus 15 every 1 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00801530|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "704739": {
+        "lines": [
+          {
+            "left": "Starfire Barrage"
+          },
+          {
+            "left": "Every 3rd |cFFFFFFFFStarfire Shot|r transforms |cFFFFFFFFStarfire Shot|r into |cFFFFFFFFStarfire Barrage|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\skill_icon_skill3_Border:20:20:0:0|t |cffFFFFFFStarfire Barrage|r\nFire an enchanted arrow, dealing 100% Ranged Weapon Damage plus 51 Arcane damage on impact, and an additional 50 Arcane damage that applies a |cff66ccffScattered Star|r every 0.50 sec for 3 sec. \r\n\r\nScales with modifiers to |cffffffffStarfire Shot|r.\r\n\r\nUsable while moving."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00704739|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007747|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "804591": {
+        "lines": [
+          {
+            "left": "Thunder King"
+          },
+          {
+            "left": "Instant",
+            "right": "3 min cooldown"
+          },
+          {
+            "left": "For 20 sec, your |cFFFFFFFFCall Lightning|r strikes 3 additional nearby enemies, your movement speed is increased by 25%, and you generate 5 |cffcc99ffStatic|r every 1 sec.\r\n\r\nWhile active, damaging critical strikes deal bonus Spellstorm Damage scaling with your spell power, and grant |cffffffffRaging Storm|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_thunderking_balllightning:20:20:0:0|t |cffFFFFFFRaging Storm|r\nIncreases spell haste by 3%, stacking 10 times."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00804591|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0030906|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "800797": {
+        "lines": [
+          {
+            "left": "Underwalk"
+          },
+          {
+            "left": "Instant",
+            "right": "15 sec cooldown"
+          },
+          {
+            "left": "Sneak around in the spirit world, becoming stealthed, but reducing your movement speed by 20%.\r\n\nCannot be used in combat."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00800797|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "500983": {
+        "lines": [
+          {
+            "left": "Undead: Pacify"
+          },
+          {
+            "left": "Instant"
+          },
+          {
+            "left": "Your undead minions assume a passive behavior and will not attack enemies or cast spells.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00500983|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "800706": {
+        "lines": [
+          {
+            "left": "Ghoulify"
+          },
+          {
+            "left": "40 yd range"
+          },
+          {
+            "left": "1.49 sec cast"
+          },
+          {
+            "left": "Transform an enemy into a ghoul, fearing them for 40 sec (8 sec vs. players). Only usable on Humanoids. Damage caused may interrupt the effect."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00800706|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "806603": {
+        "lines": [
+          {
+            "left": "Acidfang"
+          },
+          {
+            "left": "|cFF66DDFFLevel 30 Passive|r\r\nPeriodic damage dealt now has a 40% chance, and critical strikes a 100% chance, to grant a stack of |cffffffffAcidfang|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_misc_herb_fellotus:20:20:0:0|t |cffFFFFFFAcidfang|r\nThe next |cffffffffRotfang|r, |cffffffffWithering Venom|r, or |cFFFFFFFFFacemelter|r within 15 sec has 1% reduced duration and ticks 2% faster, stacking 10 times."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a30|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00806603|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007150|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "1005008": {
+        "lines": [
+          {
+            "left": "Apprentice Woodworking"
+          },
+          {
+            "left": "Allows a woodworker to make basic weapons and other wood crafts up to a maximum potential skill of 75. Requires wood gathered with Woodcutting skill."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a001005008|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 3
+      },
+      "704807": {
+        "lines": [
+          {
+            "left": "Magmatic"
+          },
+          {
+            "left": "After casting |cffffffffPillar of Flame|r, all periodic damage dealt now gives you a 10% chance to cast |cffffffffPillar of Flame|r on the target free of cost for 5 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\nhi_fireblow_Border:20:20:0:0|t |cffFFFFFFPillar of Flame|r\n|cffff7f7fGenerates 20 Heat Per Target|r\r\nCreate a pillar of lava beneath an enemy, dealing 37 Fire damage.\r\n\r\nDeals an additional 93 Fire damage to enemies near the primary target."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00704807|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007008|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "707233": {
+        "lines": [
+          {
+            "left": "Suffocating Coils"
+          },
+          {
+            "left": "Periodic damage now has a 5% chance to cause you to launch webs at your target, wrapping them in a |cffffffffSuffocating Coil|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\nhi_natureweb_Border:20:20:0:0|t |cffFFFFFFSuffocating Coil|r\nLaunch a beam of webbing at an enemy, inflicting 18 Nature damage every 1.00 sec for 3.98 sec.\r\n\r\nAfter 3.98 sec, if |cffffffffSpore|r is active on the target, drop a |cffffffffMushroom|R below them that will explode after 2 sec, dealing 303 Nature damage to all enemies within 5 yds."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00707233|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007731|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "814292": {
+        "lines": [
+          {
+            "left": "Arcane Torrent"
+          },
+          {
+            "left": "Instant",
+            "right": "2 min cooldown"
+          },
+          {
+            "left": "Silence all enemies within 8 yards for 2 sec and restores 15 of your Focus. Non-player victim spellcasting is also interrupted for 3 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00814292|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "706731": {
+        "lines": [
+          {
+            "left": "Soul Collector"
+          },
+          {
+            "left": "Your |cffffffffReap|r generates 1 |cffffffffSoul Fragment|r.\r\n\r\nGenerating 3 |cffffffffSoul Fragments|r generates a |cff5ee2ffReaped Soul|r.\r\n\r\nGenerating 3 |cff5ee2ffReaped Souls|r generates a |cff5ee2ffSoul Infusion|r, which allows the use of powerful abilties."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00706731|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 3
+      },
+      "706514": {
+        "lines": [
+          {
+            "left": "Paragon"
+          },
+          {
+            "left": "Blocking an attack grants you a stack of |cffffffffParagon|r for 10 sec. Can only occur once every 0.5 sec.\r\n\r\nAt 10 stacks, your |cffffffffHeavy Blow|r transforms into |cffffffffParagon Smash|r for 10 sec.\r\n\r\nCasting |cffffffffHeavy Blow|r instantly grants 3 stacks of this effect."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\5_warriorskill16_Border:20:20:0:0|t |cffFFFFFFParagon Smash|r\nDeals 198 Physical damage to all nearby enemies.\r\n\r\nIncreases your chance to block by 10% and each block reduces the cooldown of |cffffffffBrace|r by 2 sec. Lasts for 5 blocks or 10 sec.\r\n\r\nScales with modifiers to |cffffffffHeavy Blow|r."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00706514|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0029969|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "500126": {
+        "lines": [
+          {
+            "left": "Lunge"
+          },
+          {
+            "left": "20 Health",
+            "right": "5-30 yd range"
+          },
+          {
+            "left": "Instant",
+            "right": "25 sec cooldown"
+          },
+          {
+            "left": "Requires Cursed Form"
+          },
+          {
+            "left": "Leap behind an enemy, dealing 67 Physical Damage, dazing them for 3 sec, and generating 15 Rage."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00500126|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "706340": {
+        "lines": [
+          {
+            "left": "Empowered Boons"
+          },
+          {
+            "left": "|cFF66DDFFLevel 50 Passive|r\r\nYour |cffffffffTotemic Smash|r now applies an |cffffffffEmpowered Boon|r based on your currently active |cffffffffBoon|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_mount_vicioushordebearmount:20:20:0:0|t |cffFFFFFFEmpowered Boon of the Bear|r\nIncreases the damage of |cffffffffWildclaw|r and |cffffffffRylak's Bite|r by 10% for 8 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_turtlemount:20:20:0:0|t |cffFFFFFFEmpowered Boon of the Turtle|r\nReduces damage taken by 10% for 8 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_hunter_aspectoftheironhawk:20:20:0:0|t |cffFFFFFFEmpowered Boon of the Hawk|r\nRegenerates 15% missing health and mana."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_misc_trinket6oih_wolf2:20:20:0:0|t |cffFFFFFFEmpowered Boon of the Wolf|r\nRemoves 1 movement impairing effect."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_mount_allianceliong:20:20:0:0|t |cffFFFFFFEmpowered Boon of the Lion|r\nRegenerates 50 Focus for your pet."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a50|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00706340|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a009909|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 11
+      },
+      "500567": {
+        "lines": [
+          {
+            "left": "Sixfold Shot"
+          },
+          {
+            "left": "|cFF66DDFFLevel 50 Passive|r\r\nEvery 5th |cffffffffDarkslayer|r within 15 sec now transforms your |cffffffffQuickdraw|r into |cffffffffSixfold Shot|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\custom_32_gun_shot_Border:20:20:0:0|t |cffFFFFFFSixfold Shot|r\nUnleash 6 quick shots across 1.50 sec, each dealing 100% Ranged Weapon Damage plus 61 Physical damage and generating 3 Rage. and 2% maximum mana.\r\n\r\nUsable while moving."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a50|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00500567|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a009967|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "706160": {
+        "lines": [
+          {
+            "left": "Heavy Earth"
+          },
+          {
+            "left": "Your |cffffffffTerrasurge|r now consumes all stacks of |cffffffffEarthshaping|r to refresh the duration of |cffffffffGolem Form|r and grant you |cffffffffHeavy Earth|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_elementalearth2:20:20:0:0|t |cffFFFFFFHeavy Earth|r\nEach stack of |cffc6a36aEarthshaping|r consumed grants you 5% additional damage dealt with |cffffffffStoneshard|r and |cffffffffGeode Barrage|r as Nature Damage while this is active. Lasts 8 sec.\r\n\r\nWhile active you cannot generate |cffc6a36aEarthshaping|r."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00706160|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a006587|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "705618": {
+        "lines": [
+          {
+            "left": "Elemental Carvings"
+          },
+          {
+            "left": "|cFF66DDFFLevel 30 Passive|r\r\n|cffffffffFist of the Ancients|r now unleashes an elemental carving at random.\r\n\r\n|cffffffffFire Carving|r: Increases your Armor penetration by 15% for 6 sec.\r\n\r\n|cffffffffWater Carving|r: Restores 300 mana over 6 sec.\r\n\r\n|cffffffffEarth Carving|r: Restores 3% missing health every 1 sec for 6 sec.\r\n\r\n|cffffffffAir Carving|r: Increases your melee haste by 10% for 6 sec."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a30|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00705618|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a004202|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "705560": {
+        "lines": [
+          {
+            "left": "Runic Obliteration"
+          },
+          {
+            "left": "|cFF66DDFFLevel 50 Passive|r\r\nUsing |cffffffffElemental Burst|r now has a 20% chance to transform your next |cffffffffPrimordial Blast|r into |cffffffffRunic Obliteration|r for 10 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\novart_magicspell_(58)_Border:20:20:0:0|t |cffFFFFFFRunic Obliteration|r\nHurl powerful elemental missiles at an enemy, dealing 251 Elemental Damage every 0.30 sec for 1 sec. Each missile grants you a |cFFFFFFFFGlyph|r.\r\n\r\nScales with modifiers to |cffffffffPrimordial Blast|r."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a50|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00705560|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a009729|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "705320": {
+        "lines": [
+          {
+            "left": "Field Commander"
+          },
+          {
+            "left": "Placing a |cffffffffStandard|r causes your next |cffffffffSong of Steel|r to unleash an additional unique effect."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\Ability_Warrior_StrengthOfArms:20:20:0:0|t |cffFFFFFFSpellwarding|r\nIncreases the magic resistance of party and raid members within 100 yds by 20 for 10 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\Ability_Warrior_SecondWind:20:20:0:0|t |cffFFFFFFMight|r\nReduces the Armor of enemies within 100 yds by 15% for 10 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\epic_rpg_icon_pack_brutal_icon_0007s_0000_warrior_Border:20:20:0:0|t |cffFFFFFFRallying|r\nIncreases the movement speed of party and raid members within 100 yds by 15% for 10 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\Ability_Warrior_Intervene:20:20:0:0|t |cffFFFFFFRecovery|r\nReduces the melee and ranged attack speed of enemies within 100 yds by 10% for 10 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00705320|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0029433|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 8
+      },
+      "632621": {
+        "lines": [
+          {
+            "left": "Electric Ingenuity"
+          },
+          {
+            "left": "Enchanting skill increased by 15."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00632621|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 3
+      },
+      "680513": {
+        "lines": [
+          {
+            "left": "Secret of Raven Hill"
+          },
+          {
+            "left": "Drinking a |cffffffffTonic|r will transform your |cffffffffDawn Blade|r into powerful damaging spells with unique effects for 30 sec based on the last |cFFFFFFFFTonic|r consumed.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_sword_1h_artifactruneblade_d_06:20:20:0:0|t |cffFFFFFFSurging Blade|r\nSlash an enemy for 280% Weapon Damage and increase your haste by 15% for 10 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\nhi_shadowwhirl_Border:20:20:0:0|t |cffFFFFFFWitchblood Fever|r\nCurse all nearby enemies, dealing 122 Shadow damage every 1 sec for 8 sec and increasing their Magic damage taken from you by 3%.\r\n\r\nEnemies affected by |cFFFFFFFFWitchblood Fever|r can be seen while stealthed."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_ingot_titansteel_dark:20:20:0:0|t |cffFFFFFFDark Peril|r\nCrush nearby enemies, dealing 276 Shadow damage and stunning them for 3 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\uico_blood_spell_04_Border:20:20:0:0|t |cffFFFFFFVampiric Rage|r\nLeech the life from 10 enemies within 8 yds, dealing 320 Shadow damage and healing for 90% of the damage dealt."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00680513|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a007591|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 8
+      },
+      "704193": {
+        "lines": [
+          {
+            "left": "Decimation"
+          },
+          {
+            "left": "|cFF66DDFFLevel 50 Passive|r\r\nEvery 6th cast of |cffffffffReap|r transforms your next |cffffffffReap|r into |cffffffffDecimate|r for 15 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_mace_42:20:20:0:0|t |cffFFFFFFDecimate|r\nSmash the ground infront of you, dealing 117% Weapon Damage plus 22 Physical damage in an 8 yd frontal cone to 10 enemies.\r\n\r\nGenerates 1 |cFFFFFFFFSoul Fragment|r and 5 Runic Power per enemy hit."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a50|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00704193|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a009672|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "681529": {
+        "lines": [
+          {
+            "left": "Bone Ward"
+          },
+          {
+            "left": "Instant"
+          },
+          {
+            "left": "Activate a |cffffffffBone Ward|r on yourself and your Undead minions for 30 min.\r\n\r\nWhile active, Armor is increased by 50% and Stamina by 10% and melee and ranged damage taken reduces the target's attack power by 63.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00681529|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "537218": {
+        "lines": [
+          {
+            "left": "Primal Weapons"
+          },
+          {
+            "left": "|cFF66DDFFLevel 20 Passive|r\r\nTeaches you |cffffffffPrimal Weapons|r which when used will grant you a bonus based on whether you use one-handed weapons or two-handed weapons."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_hand_1h_bwdraid_d_01:20:20:0:0|t |cffFFFFFFPrimal Weapon: Bestial Might|r\nWhile wielding a one-handed weapon, your Physical critical strikes enrage you and any active pet for 8 sec, increasing the haste of your next 2 attacks by 10% and their next 2 attacks by 80%."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_axe_117:20:20:0:0|t |cffFFFFFFPrimal Weapon: Primal Might|r\nWhile wielding a two-handed weapon, your attack power is increased by 10%, you generate 3 Rage every 5 sec, and the damage you deal with |cffffffffWildclaw|r is increased by 25%."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cff1aff1a20|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00537218|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a009212|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 8
+      },
+      "806116": {
+        "lines": [
+          {
+            "left": "Duality of Light"
+          },
+          {
+            "left": "While in |cffffffffSunset|r, your Holy damage dealt grants |cffffffffTwin Flame|r.\r\n\r\nWhile in |cffffffffSunrise|r, your Fire damage dealt grants |cffffffffSun Power|r\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\ability_deathwing_fierygrip:20:20:0:0|t |cffFFFFFFTwin Flames|r\nYour next |cFFFFFFFFRapture|r within 15 sec strikes again for 8% of the damage dealt, stacking 10 times."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\Spell_Holy_SurgeOfLight:20:20:0:0|t |cffFFFFFFSun Power|r\nYour next |cffffffffHorusath Blast|r within 15 sec strikes again for 8% of the damage dealt, stacking 10 times."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00806116|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a006865|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 6
+      },
+      "706940": {
+        "lines": [
+          {
+            "left": "Weaver Form"
+          },
+          {
+            "left": "|cFF66DDFFLevel 30 Passive|r\r\nTeaches you |cffffffffWeaver Form|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\WeaverForm:20:20:0:0|t |cffFFFFFFWeaver Form|r\nShapeshift into |cffffffffWeaver Form|r, allowing your periodic effects to benefit from spell haste, reducing spell pushback suffered from damaging attacks by 70%, and giving periodic damage dealt a 5% chance to restore 5% of your missing mana.\r\n\r\nCannot use healing spells while in |cffffffffWeaver Form|r."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a30|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00706940|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a004295|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "706247": {
+        "lines": [
+          {
+            "left": "Darkcasting"
+          },
+          {
+            "left": "Critical strikes with abilities now spawn a |cffffffffBlood Orb|r near you for 15 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\nhi_bloodeye_Border:20:20:0:0|t |cffFFFFFFBlood Orb|r\nWhen you run over this, restore 3% of your missing health and 5 Rage and gain a stack of |cffffffffDarkcasting|r for 1 min, stacking 10 times.\r\n|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\_DevouringShadow_Red:20:20:0:0|t |cffFFFFFFDarkcasting|r\nGaining a stack reduces the cooldown of |cffffffffAnimated Blood|r by 1 sec and causes your next |cffffffffAnimated Blood|r to spawn 1 blood worm to attack your enemies."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00706247|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0030342|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "500239": {
+        "lines": [
+          {
+            "left": "Build: Sentry Turret"
+          },
+          {
+            "left": "Instant",
+            "right": "3 sec cooldown"
+          },
+          {
+            "left": "Build a |cffffffffSentry Turret|r for 5 min that shoots bullets at enemies, dealing 30 Physical damage. Activate again to deconstruct your |cffffffffSentry Turret|r.  \r\n\r\nCan only have 1 |cffffffffSentry Turret|r up at a time."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00500239|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "805198": {
+        "lines": [
+          {
+            "left": "Ruin"
+          },
+          {
+            "left": "Damage dealt by |cffffffffMurder|r now applies |cffffffffRuin|r to enemies for 10 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\Ability_Rogue_Rupture:20:20:0:0|t |cffFFFFFFRuin|r\nIncreases damage taken by |cffffffffDoomrend|r and |cFFFFFFFFSlaughter|r by 25% for 10 sec.\r\n\r\nUsing |cffffffffDoomrend|r on a target afflicted by |cffffffffRuin|r will increase your haste by 15% for 5 sec."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00805198|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0031368|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "707542": {
+        "lines": [
+          {
+            "left": "Binder of Storms"
+          },
+          {
+            "left": "Damage dealt by |cffffffffConduction|r now has a 60% chance to summon a |cffffffffThunder Orb|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\spell_animabastion_orb:20:20:0:0|t |cffFFFFFFSummon: Thunder Orb|r\nSummon a |cFFFFFFFFThunder Orb|r at the target location for 16 sec that triggers an |cffffffffOrb Shock|r and generates 10 |cffcc99ffStatic|r.\r\n|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\Spell_Nature_LightningOverload:20:20:0:0|t |cffFFFFFFOrb Shock|r\nDeals 16 Nature Damage to up to 3 enemies and increases damage taken from |cFFFFFFFFThunder Orbs|r and |cffffffffSpheres of Power|r for 8 sec, stacking 6 times."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00707542|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0030934|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 5
+      },
+      "500985": {
+        "lines": [
+          {
+            "left": "Undead: Protect"
+          },
+          {
+            "left": "Instant"
+          },
+          {
+            "left": "Your undead minions assume a defensive behavior, increasing threat and Armor.\n\n|cff00DDFFHold SHIFT for more information|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00500985|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "536213": {
+        "lines": [
+          {
+            "left": "Natural Alchemist"
+          },
+          {
+            "left": "Alchemy skill increased by 15."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00536213|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 3
+      },
+      "504859": {
+        "lines": [
+          {
+            "left": "Raise: Crypt Fiend"
+          },
+          {
+            "left": "1.99 sec cast"
+          },
+          {
+            "left": "Raise a |cffffffffCrypt Fiend|r to aid you in combat, occupying 2 |cffffffffLife Force|r.\r\n\r\n|cff90ee90Command|r: Shoots barbs at your target that deal 68 Frost damage and bounce to a nearby enemy."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00504859|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 4
+      },
+      "504107": {
+        "lines": [
+          {
+            "left": "Divine Fury"
+          },
+          {
+            "left": "|cFF66DDFFLevel 40 Passive|r\r\nTriggering |cffffffffZealotry|r 10 times now transforms your |cFFFFFFFFChastise|r into |cFFFFFFFFDivine Fury|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\nhi_hammeroflight_Border:20:20:0:0|t |cffFFFFFFDivine Fury|r\nUnleash divine fury, dealing 129 Holy damage to an enemy and up to 4 nearby enemies and reduces their armor by 5% for 20 sec, stacking 5 times."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a40|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00504107|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a009290|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "504798": {
+        "lines": [
+          {
+            "left": "Vizier Form"
+          },
+          {
+            "left": "|cFF66DDFFLevel 30 Passive|r\r\nTeaches you |cffffffffVizier Form|r."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\achievement_boss_eldernadox:20:20:0:0|t |cffFFFFFFVizier Form|r\nShapeshift into |cffffffffVizier Form|r, allowing you to cast |cffffffffShadra's Prayer|r while moving and causing your periodic healing to have a 20% chance to grant allies |cffffffffReplenishment|r. \r\n\r\nAllows your heal over time effects to critically strike.\r\n|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\icons\\novart_drinkable_(9)_Border:20:20:0:0|t |cffFFFFFFReplenishment|r\nRestores 1% maximum mana every 5 sec to allies within 100 yds for 15 sec."
+          },
+          {
+            "left": " "
+          },
+          {
+            "left": "Level: |cffff1a1a30|r"
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00504798|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0013783|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      },
+      "552011": {
+        "lines": [
+          {
+            "left": "Resilient Constitution"
+          },
+          {
+            "left": "Damage taken from other players is reduced. Critical damage taken from players is reduced by another 20%."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00552011|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 3
+      },
+      "524952": {
+        "lines": [
+          {
+            "left": "Manuscription"
+          },
+          {
+            "left": "30 yd range"
+          },
+          {
+            "left": "Instant",
+            "right": "45 sec cooldown"
+          },
+          {
+            "left": "Send manuscriptions to envelop an enemy and enemies around them, dealing 1624 Arcane damage over 5 sec.\r\n\r\nWhen you cast this ability, you are granted |cffffffffTranscribing|r for 5 sec."
+          },
+          {
+            "left": "|TInterface\\Common\\ui-tooltipdivider:12:180:0:0|t\n|TInterface\\Icons\\inv_misc_notefolded2b:20:20:0:0|t |cffFFFFFFTranscribing|r\nWhile active, your next |cffffffffThaumaturgy|r or |cFFFFFFFFGlyphic Ruin|r will now grant you a |cffffffffChapter|r of the same school as your active |cffffffffAttunement|r, causing your next 10 direct spell casts to deal additional school damage to nearby enemies, reduced by 20% for each target hit past the initial."
+          },
+          {
+            "left": "|cfff73600ID|r |cfffc8a00524952|r"
+          },
+          {
+            "left": "|cfff73600CharacterAdvancement ID|r |cfffc8a0029955|r"
+          }
+        ],
+        "method": "SetSpellByID",
+        "numLines": 7
+      }
+    },
+    "ids": [
+      500053,
+      500126,
+      500239,
+      500567,
+      500960,
+      500970,
+      500982,
+      500983,
+      500985,
+      500991,
+      503630,
+      503712,
+      504107,
+      504296,
+      504728,
+      504798,
+      504859,
+      504868,
+      504901,
+      505188,
+      520046,
+      520047,
+      520099,
+      520862,
+      520925,
+      524735,
+      524834,
+      524865,
+      524952,
+      536213,
+      537218,
+      552011,
+      553267,
+      560020,
+      560510,
+      560977,
+      561069,
+      561082,
+      561289,
+      561376,
+      562720,
+      562723,
+      570023,
+      572752,
+      573060,
+      632621,
+      653022,
+      667803,
+      680283,
+      680378,
+      680513,
+      680692,
+      680975,
+      681001,
+      681242,
+      681529,
+      704193,
+      704497,
+      704500,
+      704652,
+      704739,
+      704807,
+      704908,
+      705044,
+      705054,
+      705320,
+      705560,
+      705618,
+      706159,
+      706160,
+      706247,
+      706340,
+      706502,
+      706514,
+      706731,
+      706940,
+      707233,
+      707542,
+      707615,
+      707616,
+      800184,
+      800214,
+      800267,
+      800706,
+      800797,
+      801096,
+      801337,
+      801481,
+      801530,
+      801957,
+      802780,
+      803417,
+      803865,
+      803989,
+      804360,
+      804591,
+      805029,
+      805104,
+      805198,
+      805308,
+      805422,
+      805591,
+      805776,
+      805804,
+      806116,
+      806209,
+      806301,
+      806603,
+      806758,
+      806978,
+      807146,
+      814285,
+      814286,
+      814287,
+      814291,
+      814292,
+      1005008,
+      9930874,
+      13977860
+    ]
+  }
+}

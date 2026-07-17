@@ -1,0 +1,118 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-07-17T04:24:26",
+    "pulled_at": "2026-07-17T04:24:28",
+    "sha256": "8c49d4b9997d199df68448a94d8b82f9b07b6036a12105e8c05666665981e2ad",
+    "raw_clone": "addons\\landing\\raw\\20260717_042419_240__spec.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "spec: 20 slots (1 unlocked), active util=1 ca=1",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "REAPER",
+    "runId": "20260717_042419_240",
+    "startedAt": "2026-07-17 04:24:19",
+    "char": "Gravereaper",
+    "completedAt": "2026-07-17 04:24:19",
+    "version": "2.2.0",
+    "args": "",
+    "status": "complete",
+    "task": "spec",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "util": {
+      "numUnlocked": 1,
+      "numSpecs": 20,
+      "activeSpec": 1,
+      "slots": [
+        {
+          "unlocked": true,
+          "swapSpell": 979993
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 979994
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 979995
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 979996
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 979997
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 979986
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 979987
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 979988
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 84874
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 84876
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 84878
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 84880
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 84882
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 84884
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 84886
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 84888
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 84890
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 84892
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 84894
+        },
+        {
+          "unlocked": false,
+          "swapSpell": 84896
+        }
+      ]
+    },
+    "ca": {
+      "activeSpecID": 1,
+      "activeChrSpec": 57
+    }
+  }
+}

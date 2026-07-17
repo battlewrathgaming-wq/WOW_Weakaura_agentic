@@ -1,0 +1,413 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-07-17T04:19:45",
+    "pulled_at": "2026-07-17T04:19:47",
+    "sha256": "74fc55dd5797d11a6469d4729819c72fed9bc0e7a93cd73bf8ca2e5809f8b53e",
+    "raw_clone": "addons\\landing\\raw\\20260717_041925_853__macros.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "macros probe: macros.probe.raw/1 | 63 flag pairs, 32 targets, control target=banana | inCombat=nil",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "REAPER",
+    "runId": "20260717_041925_853",
+    "startedAt": "2026-07-17 04:19:25",
+    "char": "Gravereaper",
+    "completedAt": "2026-07-17 04:19:25",
+    "version": "2.2.0",
+    "args": "",
+    "status": "complete",
+    "task": "macros",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "record": {
+      "flags": {
+        "worn": {
+          "neg": "Y"
+        },
+        "flyable": {
+          "neg": "Y"
+        },
+        "vehicleui": {
+          "neg": "Y"
+        },
+        "canexitvehicle": {
+          "pos": "Y"
+        },
+        "mod": {
+          "neg": "Y"
+        },
+        "cursor": {
+          "neg": "Y"
+        },
+        "modifier:ctrl": {
+          "neg": "Y"
+        },
+        "swimming": {
+          "neg": "Y"
+        },
+        "extrabar": {
+          "pos": "Y"
+        },
+        "group:party": {
+          "neg": "Y"
+        },
+        "bonusbar": {
+          "neg": "Y"
+        },
+        "form:0": {
+          "pos": "Y"
+        },
+        "mod:shift": {
+          "neg": "Y"
+        },
+        "btn": {
+          "neg": "Y"
+        },
+        "stance:0": {
+          "pos": "Y"
+        },
+        "mod:alt": {
+          "neg": "Y"
+        },
+        "indoors": {
+          "neg": "Y"
+        },
+        "button": {
+          "neg": "Y"
+        },
+        "unithasvehicleui": {
+          "neg": "Y"
+        },
+        "shapeshift": {
+          "pos": "Y"
+        },
+        "spec": {
+          "neg": "Y"
+        },
+        "pet": {
+          "neg": "Y"
+        },
+        "bar:1": {
+          "pos": "Y"
+        },
+        "possessbar": {
+          "pos": "Y"
+        },
+        "actionbar:6": {
+          "neg": "Y"
+        },
+        "exists": {
+          "neg": "Y"
+        },
+        "stance:n": {
+          "pos": "Y"
+        },
+        "form:n": {
+          "pos": "Y"
+        },
+        "advflyable": {
+          "pos": "Y"
+        },
+        "spec:2": {
+          "neg": "Y"
+        },
+        "bar": {
+          "neg": "Y"
+        },
+        "mounted": {
+          "neg": "Y"
+        },
+        "spec:1": {
+          "pos": "Y"
+        },
+        "combat": {
+          "neg": "Y"
+        },
+        "stance:2": {
+          "neg": "Y"
+        },
+        "group": {
+          "neg": "Y"
+        },
+        "harm": {
+          "neg": "Y"
+        },
+        "resting": {
+          "pos": "Y"
+        },
+        "bar:6": {
+          "neg": "Y"
+        },
+        "petbattle": {
+          "pos": "Y"
+        },
+        "flying": {
+          "neg": "Y"
+        },
+        "help": {
+          "neg": "Y"
+        },
+        "pvpcombat": {
+          "pos": "Y"
+        },
+        "mod:ctrl": {
+          "neg": "Y"
+        },
+        "raid": {
+          "neg": "Y"
+        },
+        "equipped": {
+          "neg": "Y"
+        },
+        "dead": {
+          "neg": "Y"
+        },
+        "party": {
+          "neg": "Y"
+        },
+        "overridebar": {
+          "pos": "Y"
+        },
+        "outdoors": {
+          "pos": "Y"
+        },
+        "modifier:alt": {
+          "neg": "Y"
+        },
+        "actionbar:1": {
+          "pos": "Y"
+        },
+        "form": {
+          "neg": "Y"
+        },
+        "modifier:shift": {
+          "neg": "Y"
+        },
+        "modifier": {
+          "neg": "Y"
+        },
+        "stance:1": {
+          "neg": "Y"
+        },
+        "channeling": {
+          "neg": "Y"
+        },
+        "known": {
+          "pos": "Y"
+        },
+        "actionbar": {
+          "neg": "Y"
+        },
+        "bonusbar:5": {
+          "neg": "Y"
+        },
+        "stealth": {
+          "neg": "Y"
+        },
+        "group:raid": {
+          "neg": "Y"
+        },
+        "stance": {
+          "neg": "Y"
+        }
+      },
+      "control": {
+        "action": "Y",
+        "target": "banana",
+        "clause": "@banana",
+        "reads": "target=='banana' => @ is PASS-THROUGH; nil => @ is validated"
+      },
+      "targets": {
+        "@raid": {
+          "unit_probe": "raid1",
+          "action": "Y",
+          "target": "raid"
+        },
+        "@vehicle": {
+          "unit_probe": "vehicle",
+          "action": "Y",
+          "target": "vehicle"
+        },
+        "@boss": {
+          "unit_probe": "boss1",
+          "action": "Y",
+          "target": "boss"
+        },
+        "@cursor": {
+          "action": "Y",
+          "target": "cursor"
+        },
+        "@focus": {
+          "unit_probe": "focus",
+          "action": "Y",
+          "target": "focus"
+        },
+        "@softfriend": {
+          "unit_probe": "softfriend",
+          "action": "Y",
+          "target": "softfriend"
+        },
+        "@nameplate": {
+          "unit_probe": "nameplate1",
+          "unit_name": "Jalordd",
+          "action": "Y",
+          "target": "nameplate",
+          "unit_guid": "0x000000000008583C",
+          "unit_exists": 1
+        },
+        "@mouseover": {
+          "unit_probe": "mouseover",
+          "action": "Y",
+          "target": "mouseover"
+        },
+        "@party1": {
+          "unit_probe": "party1",
+          "action": "Y",
+          "target": "party1"
+        },
+        "@spectatedpet": {
+          "unit_probe": "spectatedpet1",
+          "action": "Y",
+          "target": "spectatedpet"
+        },
+        "@raidpet": {
+          "unit_probe": "raidpet1",
+          "action": "Y",
+          "target": "raidpet"
+        },
+        "@spectated": {
+          "unit_probe": "spectated1",
+          "action": "Y",
+          "target": "spectated"
+        },
+        "@raid1": {
+          "unit_probe": "raid1",
+          "action": "Y",
+          "target": "raid1"
+        },
+        "@pettarget": {
+          "unit_probe": "pettarget",
+          "action": "Y",
+          "target": "pettarget"
+        },
+        "@anyinteract": {
+          "unit_probe": "anyinteract",
+          "action": "Y",
+          "target": "anyinteract"
+        },
+        "@unitId": {
+          "action": "Y",
+          "target": "unitId"
+        },
+        "@questnpc": {
+          "unit_probe": "questnpc",
+          "action": "Y",
+          "target": "questnpc"
+        },
+        "@anyleftinteract": {
+          "unit_probe": "anyleftinteract",
+          "action": "Y",
+          "target": "anyleftinteract"
+        },
+        "@softenemy": {
+          "unit_probe": "softenemy",
+          "action": "Y",
+          "target": "softenemy"
+        },
+        "@party": {
+          "unit_probe": "party1",
+          "action": "Y",
+          "target": "party"
+        },
+        "@party4": {
+          "unit_probe": "party4",
+          "action": "Y",
+          "target": "party4"
+        },
+        "@raid40": {
+          "unit_probe": "raid40",
+          "action": "Y",
+          "target": "raid40"
+        },
+        "@player": {
+          "unit_probe": "player",
+          "unit_name": "Gravereaper",
+          "action": "Y",
+          "target": "player",
+          "unit_guid": "0x0000000000037E79",
+          "unit_exists": 1
+        },
+        "@anyfriend": {
+          "unit_probe": "anyfriend",
+          "action": "Y",
+          "target": "anyfriend"
+        },
+        "@none": {
+          "unit_probe": "none",
+          "unit_name": "Unknown",
+          "action": "Y",
+          "target": "none",
+          "unit_guid": "0xFFFFFFFFFFFFFFFF"
+        },
+        "@target": {
+          "unit_probe": "target",
+          "action": "Y",
+          "target": "target"
+        },
+        "@npc": {
+          "unit_probe": "npc",
+          "action": "Y",
+          "target": "npc"
+        },
+        "@partypet": {
+          "unit_probe": "partypet1",
+          "action": "Y",
+          "target": "partypet"
+        },
+        "@arena": {
+          "unit_probe": "arena1",
+          "action": "Y",
+          "target": "arena"
+        },
+        "@anyenemy": {
+          "unit_probe": "anyenemy",
+          "action": "Y",
+          "target": "anyenemy"
+        },
+        "@softinteract": {
+          "unit_probe": "softinteract",
+          "action": "Y",
+          "target": "softinteract"
+        },
+        "@pet": {
+          "unit_probe": "pet",
+          "action": "Y",
+          "target": "pet"
+        }
+      },
+      "schema": "macros.probe.raw/1",
+      "context": {
+        "numMacros_char": 0,
+        "shapeshiftForm": 0,
+        "class": "Reaper",
+        "numMacros_account": 4,
+        "numParty": 0,
+        "outdoors": 1,
+        "inParty": 1,
+        "classToken": "REAPER",
+        "actionBarPage": 1,
+        "bonusBarOffset": 0,
+        "taken_at": 174936.363,
+        "numRaid": 0
+      }
+    },
+    "harness": {
+      "sha256": "1352991717903c470bb7ba0d2913538fffd054b977b481653a49a1837122f9e6",
+      "src": "macros/probe/probe_core.lua"
+    }
+  }
+}
