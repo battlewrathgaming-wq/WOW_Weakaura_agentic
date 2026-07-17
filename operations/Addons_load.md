@@ -6,6 +6,16 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## Open threads (each has a designed next step)
 
+- **🐞 OPEN BUG (2026-07-17, post-v3.7.0 live): ENEMY plates being suppressed.** Suppression is
+  Friendly-module machinery (ns.SetSuppressed, friendly PLAYERS only) — an enemy plate showing it
+  means either (a) pooled-plate reuse: a previously-suppressed friendly plate handed to an enemy
+  without restore (the SANITATION FIX lane — check whether v3.7.0's gates broke a restore path),
+  (b) the dual-announce alias (target token) confusing classification, or (c) the v3.7.0 python
+  block-replacement in FriendlyPlates.lua having clipped a non-panel line (diff v3.6.1→v3.7.0
+  FriendlyPlates carefully — FIRST CHECK). Diagnostics on board: /coasp log on + filter suppress ·
+  /coagp status (suppressed count) · /coagp diag (restore log). NEXT SESSION: read the v3.7.0
+  FriendlyPlates diff BEFORE theorizing.
+
 - **★ THE NEXT TWO SLICES (Battlewrath, 2026-07-17, post-v3.7.0 live drive — "more stable"):**
   Guardian and friendly-player are still COUPLED in the Friendly module; decouple into:
   1. **Guardian slice** — ownership-resolved: CLEU SPELL_SUMMON registry (sourceGUID=player) →
