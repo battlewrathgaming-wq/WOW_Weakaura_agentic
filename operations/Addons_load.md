@@ -6,6 +6,17 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## Open threads (each has a designed next step)
 
+- **🐞 BUG HUNT ITEM (2026-07-17, live error, recorded per Battlewrath):** the NATIVE tank-border
+  branch we lit up has a LATENT FORK BUG — `CompactUnitFrame.lua:816` (inside UpdateHealthBorder,
+  the branch that only runs when BOTH tank border colors are armed + grouped) throws
+  `Usage: UnitDetailedThreatSituation("unit"[,"mob"])` with locals ("player","nameplate11").
+  We are the FIRST users of this dormant path — Ascension never play-tested it. Hypotheses:
+  (a) stale/mid-recycle nameplate token rejected by the C export, (b) the backported C fn doesn't
+  accept nameplate units. NEXT SESSION: check whether it's transient (rare error) or systematic
+  (every grouped pull); if systematic → keep the Aggro borders branch DISARMED (arm only ONE color
+  slot so line 815's AND-gate stays false) and route borders through the parked hand-rolled glow
+  instead; the highlight-hide steering is unaffected (different function).
+
 - **🐞 OPEN BUG (2026-07-17, post-v3.7.0 live): ENEMY plates being suppressed.** Suppression is
   Friendly-module machinery (ns.SetSuppressed, friendly PLAYERS only) — an enemy plate showing it
   means either (a) pooled-plate reuse: a previously-suppressed friendly plate handed to an enemy
