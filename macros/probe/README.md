@@ -68,30 +68,36 @@ unitId"*; `/cast` does `target:lower() == "cursor"`). **It's still a hypothesis 
 
 _Tiers 1 and 2 were one bucket of "13 backport tests" until Battlewrath asked when `@cursor` actually shipped. It was 4 facts and 9 guesses wearing the same label — the ranking was inferred from **absence** in the archive, which is the very error this slice documents. Patch annotations are evidence; absence never was._
 
-## The chat channel has a BLIND SPOT: anything mouse-dependent
+## ~~The chat channel has a BLIND SPOT~~ → **WRONG. Corrected 2026-07-17.**
 
 Found 2026-07-17, and it is structural, not a bug:
 
-**To run a chat probe you must click the chat box and type — so the mouse has LEFT the unit.**
-`@mouseover` is therefore the one target the cheap channel may be unable to ask about at all.
+**I claimed:** *to run a chat probe you must click the chat box and type — so the mouse has
+LEFT the unit, therefore `@mouseover` may be structurally unprobeable from chat.*
+
+**That is wrong**, and Battlewrath refuted it in one line: *"I can hit enter, ctrl v, and mouse
+over myself at the same time."* **I conflated TYPING time with EXECUTION time.** Paste with the
+keyboard, move the mouse onto the unit, *then* press Enter — the mouse only has to be on the
+unit when Enter **fires**, and Enter is a keypress, not a click. Hovering yourself guarantees a
+target.
+
+**Result: `@mouseover` is PROVEN** (`UnitName`='Scarletta', `UnitExists`=1, `[@mouseover]`=Y,
+`[@mouseover,help]`=Y, `[@mouseover,harm]`=FAIL). The channel has no such blind spot.
+
+**The lesson worth keeping** (why this is left in rather than deleted): I reasoned about an
+instrument's limits from an armchair instead of asking the person holding it. A channel limit
+is an empirical claim like any other — it needed a probe, not a paragraph.
 
 The unit-token wiki hedges exactly there: *"the unit which the mouse is **currently (or was
 most recently)** hovering over."* That parenthetical decides whether a chat probe can work —
 and it is a **retail claim, unverified here**.
 
-**The trap:** a chat probe returning `nil` would be **ambiguous** — it cannot distinguish
-*"mouseover does not persist"* from *"mouseover does not resolve."* Uninformative silence: the
-same shape the polarity matrix taught us to distrust. **Do not read a nil here as absence.**
+_(The `nil`-is-ambiguous worry was real in principle — it just never arose, because the probe
+returned a NAME. A keybound macro remains the in-situ instrument if a future question genuinely
+needs the mouse to stay put during a click.)_
 
-**The clean channel is a KEYBOUND MACRO** — hover, press the key, the mouse never leaves. That
-is also how mouseover macros are actually *used*, so it tests in situ rather than in a lab.
-Heavier than chat; the only honest instrument for this one.
-
-_Status: `@mouseover` is `DID-NOT-RESOLVE-HERE` in the capture — both witnesses
-(`hasMouseover` and `[@mouseover].unit_exists`) agree nil across all five contexts,
-consistently, because **nobody hovered**. That is not evidence of absence. The **intent** side
-is already covered: the CoA wiki documents mouseover with three worked forms
-(`reference/ascension-wiki-macros.wikitext`)._
+_The capture's `DID-NOT-RESOLVE-HERE` was exactly what it said: nobody hovered. Not absence.
+One hover settled it._
 
 ## Two standing limits — put these in the result, not just here
 

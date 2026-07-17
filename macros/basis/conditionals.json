@@ -68,6 +68,39 @@
   "who_this_hits": "anyone following a retail macro guide - which is nearly every macro guide, including the Ascension wiki's own, since it inherits its conditional list from the retail wikis (see reference/README).",
   "the_defence": "the 6 UNSUPPORTED-IGNORED + 4 AMBIGUOUS in `flags` below are the list to never put in a macro on this client. Everything archive-documented is safe (53/53 supported)."
  },
+ "GRAMMAR_PROVEN_2026_07_17": {
+  "tier": "CHAT PROBE (hand-transcribed) - but each finding has MULTIPLE independent confirmations, and each probe carried its own witness. Stronger than the vocabulary's weakest rows.",
+  "why_this_mattered": "the walk showed the basis proved every TERM of a real macro and not one CONNECTIVE. 14 grammar claims sat in reference/, all UNPROVEN, none ever asked. A macro is mostly SENTENCE. This is the sentence.",
+  "comma_is_AND": {
+   "verdict": "PROVEN. `,` conjoins within a clause.",
+   "evidence": [
+    "[combat,nocombat] = FAIL in BOTH runs. If `,` were OR it would have passed (nocombat was true, cb=nil). Context-free by construction: one term is always true and the other always false, whichever state you are in.",
+    "and independently in probe F: [@mouseover] = Y but [@mouseover,harm] = FAIL. The comma conjoins a TARGET with a FLAG, and harm being false killed the clause even though the target was fine."
+   ]
+  },
+  "semicolon_is_FIRST_TRUE_WINS": {
+   "verdict": "PROVEN. `;` separates alternative clauses; the first whose tests all pass wins.",
+   "evidence": "cb=nil (NOT in combat) -> [combat]A;[nocombat]B returned B. First clause false => skipped; second true => won. BOTH runs.",
+   "the_witness_is_the_point": "cb travelled IN the probe. Without it, B is unreadable - it could mean last-true, or right-to-left. Carrying the witness is the fix for what killed probe A's control row."
+  },
+  "slash_is_OR_within_an_arg": {
+   "verdict": "PROVEN. `/` is OR over an argument list.",
+   "evidence": "frm=1: [stance:0/1]=Y AND [stance:1/2]=Y - both true, NO discrimination. frm=0: [stance:0/1]=Y but [stance:1/2]=FAIL - 0 is in {0,1} and not in {1,2}. Exactly OR.",
+   "it_took_BOTH_runs": "run 1 alone was ambiguous (form 1 sits in both sets). Battlewrath toggling the form off produced the contrast. A single context could not have proven this - the same lesson as the 5-context capture, in miniature."
+  },
+  "at_mouseover_RESOLVES": {
+   "verdict": "PROVEN. Closes the last target hole.",
+   "evidence": "UnitName('mouseover')='Scarletta', UnitExists=1, [@mouseover]=Y, [@mouseover,help]=Y, [@mouseover,harm]=FAIL - friendly to yourself, not hostile. Triangulated against a known answer.",
+   "the_blind_spot_I_claimed_was_WRONG": "I wrote that mouseover may be structurally unprobeable from chat because typing means the mouse left the unit. Battlewrath: 'I can hit enter, ctrl v, and mouse over myself at the same time.' Correct - I conflated TYPING time with EXECUTION time. Paste with the keyboard, move the mouse onto the unit, THEN press Enter. The mouse only has to be there when Enter fires, and Enter is a keypress. The channel has no such blind spot."
+  },
+  "HYPOTHESIS_not_fact": {
+   "failed_parse_returns_NO_VALUES": "run 1 printed 'OR Y Y nil' (p2 returned action+target) while run 2 printed 'OR Y' (p2 appears to have returned NOTHING, not nil - a nil would have printed). Suggests SecureCmdOptionParse returns zero values on no-match. ONE datum, HAND-TRANSCRIBED - he may simply not have typed trailing nils (though he DID type one in run 1). Marked hypothesis. Functionally identical either way (`local a,b = f()` gives nil,nil)."
+  },
+  "NOTED_not_concluded": {
+   "two_kinds_of_form": "Battlewrath: 'Should be in a form, but maybe the weird spell-form thing again.' It was NOT: frm=1, so THIS form IS visible to GetShapeshiftForm - unlike the capture's spell-form, which read 0 while he was demonstrably in one (the label/stamp disagreement the addons bench flagged). So there are at least TWO kinds of form on this client: stance-visible and buff-invisible. Not chased here.",
+   "different_character": "F returned 'Scarletta'; the 5-context capture's @player was 'Gravereaper' (class REAPER). These probes ran on a DIFFERENT character. Grammar is character-independent (the parser is the parser), so the findings stand - but form/stance results are not automatically portable across characters."
+  }
+ },
  "CHAT_PROBE_FOLLOWUP": {
   "tier": "CHAT PROBE - live, but hand-transcribed. WEAKER than the landed capture.",
   "when": "2026-07-17, immediately after the 5-context capture",
