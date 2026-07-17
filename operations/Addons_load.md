@@ -6,6 +6,18 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## Open threads (each has a designed next step)
 
+- **★ THE NEXT TWO SLICES (Battlewrath, 2026-07-17, post-v3.7.0 live drive — "more stable"):**
+  Guardian and friendly-player are still COUPLED in the Friendly module; decouple into:
+  1. **Guardian slice** — ownership-resolved: CLEU SPELL_SUMMON registry (sourceGUID=player) →
+     match summon GUIDs to plate GUIDs → show /OUR/ pets only ("always the intent"). This is
+     `corpus/patterns/guardian-health-tracker.md`'s registry primitive coming home to the addon
+     side. Satellite: COA_StatePlates_Guardian.
+  2. **Friendly-NPC lane** — satellite COA_StatePlates_NPC: show health bars · bar/name color
+     edits · show-bar-when-carrying-Ascension-plate-TAGS (quest giver or not — the native driver's
+     own questIcon machinery = the per-plate tag read; CompactUnitFrame setup carries frame.questIcon)
+     → "health bar filters attention."
+  Model: same two-file satellites on the inert core; Friendly module sheds both concerns.
+
 - **Guardian-tracker POC LIVE-PROVEN + shipped to Discord (2026-07-15 evening)** — the custom TSU
   scaffold (GUID registry from `CLEU:SPELL_SUMMON` sourceGUID=player → resolve to plate tokens →
   static-progress states, clones): four 527-hp Greater Skeletal Warrior bars live, import string
