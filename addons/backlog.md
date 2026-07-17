@@ -13,7 +13,15 @@ APIDocumentation addon) × RUNTIME (the `census` task's cycled 51,855-global _G 
 sha256/runId-anchored). Refinements banked, not blocking: clean-profile re-run (splits the 1526 unattributed
 functions) · the 8 listfile-less art archives · 5 failed GlueXML extracts (named in the manifest).
 
-## 1. The spec-name capture — REFRAMED BY SOURCE 2026-07-17 (task `spec` deployed, capture pending)
+## ✅ 1. The spec capture — CLOSED 2026-07-17 (source reframe + live record)
+
+Record `20260717_042419_240__spec.json`: **numSpecs=20** (the observed 20-entry list = 20 swap-spell
+slots, contiguous dev block ~979986+), 1 unlocked, active=1, both systems captured (SpecializationUtil +
+C_CharacterAdvancement). Names confirmed absent by design — they're player labels (see the reframe below);
+`load.specialization` = per-USER config keyed by INDEX. The aura bench can wire it on that basis. The
+reframe note (kept):
+
+## (reframe) 1. The spec-name capture — REFRAMED BY SOURCE 2026-07-17 (task `spec` deployed, capture pending)
 
 **The source finding (SpecializationUtil.lua, patch-B):** spec NAMES are PLAYER-AUTHORED labels in a
 per-character custom WTF file (`SetSpecializationName` → `SpecializationSaved`; default "Specialization N")
@@ -35,7 +43,14 @@ source-checking first). Capture per class character. Output → a map (`spec_ind
 members incl. GetActiveSpecializations-family) + the `ASCENSION_CA_SPECIALIZATION_ACTIVE_ID_CHANGED` event
 (events.json, registered) + `SpecializationUtil` sightings; build the task file (v2 spine) from those citations.
 
-## 2. The tooltip gap-fill micro-scan (~13 spells; designed 2026-07-12, parked)
+## ✅ 2. The tooltip gap-fill — CAPTURED 2026-07-17 (119/119, all SetSpellByID)
+
+Record `20260717_042514_616__tooltip.json`: every custom-range description hole rendered by the game
+itself (`derive_tooltip_holes.py` → `maps/tooltip_holes.json` = the derivation; `tooltip holes` = the
+baked task arg). REMAINING (small offline gear, unbuilt): merge the rendered lines into the inventory
+text for those ids. Original design below:
+
+## (original) 2. The tooltip gap-fill micro-scan (~13 spells; designed 2026-07-12, parked)
 
 The description holes the scrape couldn't carry: ~13 custom-class spells with raw `$`-variables or NULL text (the
 Necromancer minion-command set etc.). `GameTooltip:SetSpellByID(id)` → read `GameTooltipTextLeftN:GetText()` → dump →
@@ -48,7 +63,15 @@ For `creator/ingredients/custom.md`: harvest the aura-script sandbox surface —
 `AuraEnvironment.lua`'s `blockedFunctions`/`blockedTables`) + the TSU state contract. Method: source-scan first
 (the live_keys pattern); a dump addon only for what's runtime-built. Output → a map the palette cites.
 
-## 4. The macro-conditional probe (cross-lane ask — STAGED, designed, one bounded pass)
+## ✅ 4. The macro-conditional probe — DELIVERED 2026-07-17 (5-context matrix, beyond the asked pair)
+
+Records `20260717_04*__macros.json` (+ `20260717_contexts.md` labels): rest / spell-form / stealth /
+combat / mounted. Control row settled in all five (`@` = pass-through); [combat] polarity flips with the
+independent stamp (triangulation proven); two free stamp findings (stealth = form 1; the spell-form is
+GetShapeshiftForm-invisible). **The verdict map is the MACROS bench's next build** — raw is on the trunk.
+Harness: `wrap_payload.py` + `task_macros` (payload verbatim, sha-anchored). Original ask below:
+
+## (original) 4. The macro-conditional probe (cross-lane ask — STAGED, designed, one bounded pass)
 
 **THE ASK: `macros/probe/ASK.md`** (payload `probe_core.lua` + `probe_rows.json`). Staged by the macros bench
 2026-07-17; **the harness is yours** — this is the payload and the read, not a task file.

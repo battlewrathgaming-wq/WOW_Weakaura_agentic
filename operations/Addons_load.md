@@ -50,6 +50,12 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## Small debts (cheap, non-blocking)
 
+- **The tooltip merge gear** (post-capture, 2026-07-17): fold the rendered lines from
+  `20260717_042514_616__tooltip.json` into the inventory text for the 119 hole ids
+  (`maps/tooltip_holes.json` = the join). Small offline tool; the render is the arbiter,
+  accept-empty on the game's verdict. Coordinate the landing spot with the aura bench
+  (inventory out/ is their data).
+
 - ~~`frames` task wants a field list~~ — BUILT + deployed v2.1.0 (2026-07-15): `frames
   [fields]` reads the walker's field list off every hit (`displayedUnit` added to defaults);
   anonymous hits keep a `table:` addr. Smoke-green; LIVE CONFIRM = the guardian-plate

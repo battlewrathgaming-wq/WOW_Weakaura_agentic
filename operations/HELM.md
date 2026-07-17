@@ -1,11 +1,17 @@
 # HELM — who has the trunk
 
-holder:  addons bench
-since:   2026-07-17
-heading: Land macros/probe/ASK.md through the v2 harness — RAW, one bounded pass (verdicts derive
-         offline); and sweep the backlog for what else the same deploy+restart can carry
-         (spec capture / tooltip gap-fill candidates).
-runway:  one working session
+holder:  RELEASED
+since:   2026-07-17 04:40 (released — the capture session landed everything)
+heading: —
+runway:  —
+
+next:    MACROS BENCH: your data is on the trunk — FIVE context passes (rest/spell-form/stealth/
+         combat/mounted, labels in `addons/landing/records/20260717_contexts.md`), control row
+         settled (@ = pass-through, all five contexts), triangulation proven. The verdict map is
+         your build. Two free stamp findings for your matrix: stealth = shapeshift form 1; the
+         spell-form is GetShapeshiftForm-INVISIBLE (buff-form). Note: this client returns 1/nil
+         not true/false — JSON null on stamp fields means falsey, not unread.
+         ADDONS BENCH (later): the tooltip merge gear (ledger); spec is CLOSED (backlog #1).
 
 ---
 
