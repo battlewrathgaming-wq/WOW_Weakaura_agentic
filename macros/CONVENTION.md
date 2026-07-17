@@ -113,6 +113,29 @@ identity compare — `execution-model.md` / `castsequence.md`). On swap-heavy fi
 restart-to-opener is a feature (re-dot / re-engage the new target); if a given macro should **not**
 restart on swap, **drop `target`** from its reset string and lean on the timeout instead.
 
+## ★ When to flatten into "keep pressing" — the economic-equivalence precondition
+
+The general pattern this whole convention serves (Battlewrath, 2026-07-17): **"pure tracking and
+applying, flattened into keep pressing."**
+
+- **Track = WeakAura** (the show-state side): "does the target lack the debuff?" — passive, watches.
+- **Apply = macro** (the acting side): "keep pressing" → more uptime than not. Deliberately dumb.
+
+**The precondition that makes the flatten SAFE: the sequence's elements are economically
+equivalent** — same cost, same resource output, differing *only in effect*. Then over-casting any
+element is the **same transaction** (e.g. Murder and Dreadwake: both 30 RP, both 1 soul, one
+debuffs / one AoE-shreds). Over-refreshing costs nothing extra, so the **dumb sequence is
+optimal, not a compromise** — high uptime falls out of "keep pressing" with no smart gating.
+
+**When it does NOT hold:** if the elements differ in cost or output (a costly debuff + a free
+filler), mashing wastes the expensive one → a failstate → you'd want precise gating the macro
+can't do. There, don't flatten; keep them separate or let the WA-tracked state drive the choice.
+
+**The intelligence is in the SPLIT, not in either half.** The macro stays dumb (keep pressing),
+the WA stays passive (just watches); the design decision — *what to track vs what to apply, and
+whether the elements are equivalent enough to flatten* — is where all the thought goes. Same
+shape as the rest of the project: smarts in the design, parts stay simple.
+
 ## Standing
 
 The composition is **Battlewrath's seat** — design, feel, subtlety. What it rests on is fact:
