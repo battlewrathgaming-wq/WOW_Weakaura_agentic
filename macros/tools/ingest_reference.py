@@ -796,6 +796,20 @@ def main():
         "NOT_A_FACT_SOURCE": "Nothing here is a fact about the CoA client. Every entry is a "
                              "QUESTION until a probe verdict replaces its proof_mark. Do not "
                              "cite reference/ as basis/.",
+        "standing_and_why_tracked": (
+            "Battlewrath, 2026-07-17: 'Track them. Their reference material, not authority. "
+            "Just as much as the corpus is reference. They help fill curated intent.' "
+            "SAME STANDING AS corpus/: reference feeds INTENT, never authority. corpus/ "
+            "harvests how people build auras; this harvests how people write macros. "
+            "Two uses, and the second is easy to miss: (1) the ask-list - the only "
+            "non-invented source for the probe's questions; (2) CURATED INTENT - the worked "
+            "examples (smart-heal fallback chains, mouseover healing, modifier swaps) are "
+            "what players actually WANT a macro to do, which is design input for the guide, "
+            "the same role a corpus/patterns entry plays for auras. "
+            "Raws are committed VERBATIM (the opposite call from the gitignored client "
+            "study copy, deliberately): an extractor can regenerate the client; a wiki "
+            "fetch CANNOT - the page moves and the revid with it. The raw IS the "
+            "reproducibility."),
         "why_allowed": "Recall and secondary sources are inadmissible as a FACT source but "
                        "admissible as a QUESTION source, because the probe adjudicates. A "
                        "wrong candidate costs one probe row reading 'unsupported'. A wrong "

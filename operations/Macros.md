@@ -218,6 +218,21 @@ it may never assert what the map doesn't carry. The three-way `cursor` collision
 (`@cursor` location / `@mouseover` unit / `[cursor]` held-item) is the first thing it must get right — a guide that
 misses it is wrong three ways at once.
 
+## `reference/` — standing, settled
+
+**Reference material, not authority — the same standing as `corpus/`** (Battlewrath, 2026-07-17: *"Track them.
+Their reference material, not authority. Just as much as the corpus is reference. They help fill curated intent."*).
+`corpus/` harvests how people build auras; `macros/reference/` harvests how people write macros. Neither is a fact
+about the client.
+
+**Two uses — the second is easy to miss.** (1) The **ask-list**: the only non-invented source for the probe's
+questions. (2) **Curated intent**: the worked examples are what players actually *want* a macro to do — design input
+for the eventual guide, the same role a `corpus/patterns/` entry plays for auras.
+
+**The raws are TRACKED on purpose** — don't prune them as third-party bloat. The client study copy is *gitignored*
+because its extractor regenerates it exactly; a wiki fetch **cannot** be regenerated (the page moves, the revid with
+it), so the saved raw **is** the reproducibility. Attribution + revid + sha256 travel in `*.provenance.json`.
+
 ## Banked — real, non-blocking, no new work
 
 - **`statedrivers` provenance** — resolved *for free* by the clean-profile census re-run already banked in

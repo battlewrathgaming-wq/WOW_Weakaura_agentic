@@ -11,6 +11,32 @@ This file carries **grain and rules**, which don't drift.
 
 **Never cite `reference/` as `basis/`.** If a claim only appears here, it is a **question**, not an answer.
 
+## Why the raws are TRACKED (don't prune them)
+
+Settled by Battlewrath, 2026-07-17: *"Track them. Their reference material, not authority. Just as much as the
+corpus is reference. They help fill curated intent."*
+
+**Standing = the same as `corpus/`.** Reference material feeds **intent**; it is never authority. `corpus/` harvests
+how people actually *build auras*; this harvests how people actually *write macros*. Neither is a fact about the
+client — both are signal about what's worth building and what to ask.
+
+**They earn their tracking on two counts, and the second is easy to miss:**
+
+1. **The ask-list.** They're the only non-invented source for the probe's questions — the alternative was an agent's
+   recall, which this slice rules inadmissible.
+2. **Curated intent.** The worked examples (smart-heal fallback chains, mouseover healing, modifier swaps,
+   cast-sequence openers) are *what players actually want a macro to do*. That's design input for the eventual
+   guide — the same role a `corpus/patterns/` entry plays for auras.
+
+**Why verbatim, and why committed** (the opposite call from the client extraction, deliberately): the client study
+copy is **gitignored** because `extract_interface.py` can regenerate it exactly. A wiki fetch **cannot** be
+regenerated — the page moves, and the revid moves with it. So the raw *is* the reproducibility: extraction
+re-derives offline from the saved bytes, and a changed revid on `--fetch` prints **loud** instead of silently
+re-writing history under us.
+
+**Attribution:** third-party wiki content (fandom / wiki.gg, CC BY-SA). Every raw carries its URL + revid +
+sha256 in `*.provenance.json`. Same redistribution caution `addons/refs_threat/` already raises.
+
 ## Why any of this is admissible
 
 > **Recall and secondary sources are INADMISSIBLE as a FACT source
