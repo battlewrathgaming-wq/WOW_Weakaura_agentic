@@ -1,5 +1,19 @@
 # STATE — where the machine is
 
+## 2026-07-17 (addons bench session close — both waiting benches have RESOLUTION)
+
+- **MACROS: unblocked.** The probe landed as a FIVE-context raw matrix (rest/form/stealth/combat/
+  mounted, labels in `addons/landing/records/20260717_contexts.md`) — `@` = pass-through settled,
+  triangulation proven. The verdict map is the macros bench's build; helm next-note points there.
+- **WA/aura bench: unblocked.** Spec question CLOSED (names = player labels; index = the key;
+  `load.specialization` = per-user config — backlog #1). Tooltip holes rendered 119/119 (merge
+  gear = small ledger debt). Guardian-tracker scaffold catalogued (`corpus/patterns/`).
+- **Addons backlog: all four numbered missions ✅** + census attribution complete (five buckets,
+  witnesses pinned).
+- **State Plates v3.7.0 LIVE-CONFIRMED**: at-source steering (staleness fixed at UpdateHealthColor:523),
+  native tank borders wired, satellite ownership model (inert core + Aggro/Friendly/Enemy pages).
+  Next two slices banked in the ledger (guardian GUID-ownership · friendly-NPC tag filter).
+
 _Last updated 2026-07-16 (the picker V1 session). The single "where are we" read. Detail lives in the code + READMEs this points at._
 
 ## Macros bench 2026-07-17 — `/macros/` STOOD UP; BLOCKED ON ONE LIVE CAPTURE
