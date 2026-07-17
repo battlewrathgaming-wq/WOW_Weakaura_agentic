@@ -1,9 +1,43 @@
 # HOW — how the project works
 
 _A touchstone: stable, slow to move. The architecture, so it's never re-derived. **Locked 2026-07-14** (agreed).
-Changing this is a deliberate act, not an edit._
+Changing this is a deliberate act, not an edit. **Amended 2026-07-17** (Battlewrath) — §0, the method the whole
+architecture is an instance of._
 
-## Two halves, one membrane
+## 0. The method: a FACT BASIS per domain — why any of this exists
+
+**The fork** (Battlewrath, 2026-07-17):
+
+> _"I can ask you something. You have two options (or more). Invent. And then spiral manual validation testing until
+> you invent the correct response. Or we can do the work now so your reasoning is based on factual data. We've done
+> those steps for Weak auras. We've done that work for spells and classes. We've done it for addons. And now we do
+> it for macro creation."_
+
+**The economics are the argument, not the diligence.** Invent-and-spiral looks cheap — one fast answer. Its cost is
+paid by **Battlewrath**, in **manual validation**, **every time, forever**, and it fails **silently**: a plausible
+wrong answer is indistinguishable from a right one until it's tested in-game. A fact basis is paid **once**,
+**mechanically**, and then every answer over that domain is grounded. **This is arithmetic, not thoroughness.**
+
+**Done, in order — the pattern, not a one-off:**
+
+| domain | its basis |
+|---|---|
+| WeakAuras | `wa_index/` → `engine/Fact_basis/` (sheets · contract · maps) |
+| spells + classes | `Input/*_talents` · `coa_spells` · `class_table` · the class inventories |
+| the client (addons) | `addons/maps/census/` (declared × baseline × runtime) |
+| macros | `macros/` (basis · reference · probe) — 2026-07-17 |
+
+**What makes something a basis** (not just notes): every fact **sourced or proven** · **grain stated, per domain**
+— they are not all the same standing, and each file says its own · **regenerable** by one command · **version-anchored**
+(sha256/revid; fork moved ≠ cited anchor → re-emit) · and **honest about its rim** — an empty file that says
+*"unproven, and here is exactly how"* beats a complete-looking one. **Reference ≠ authority**: `corpus/` and
+`macros/reference/` feed *intent*; they never become fact by sitting nearby.
+
+**§1's ENGINE half is this method applied to WA.** The census is it applied to the client; `/macros/` to macros. The
+architecture below is an *instance* of §0 — which is why invariant 7 (source backing, versioned) is a rule and not a
+preference.
+
+## 1. Two halves, one membrane
 
 The whole system is **two consolidated halves joined at the gate**. Invent on one side, validate at the seam, wrap on
 the other.
@@ -16,7 +50,7 @@ CREATOR  (invent — "what should exist?")     GATE (validate)      ENGINE  (mec
    knowledge lives here.
 ```
 
-## The invariants (these are the rules, not preferences)
+## 2. The invariants (these are the rules, not preferences)
 
 1. **The agent authors; the pipeline wraps.** Content is authored in the inventory / the relevant authoring space, with
    the domain knowledge already baked in (for a class ability, the watched spellId is *in* the docket). This is a **LAB** —
@@ -37,12 +71,12 @@ CREATOR  (invent — "what should exist?")     GATE (validate)      ENGINE  (mec
    inspection). Corpus/observation frequency is evidence of USE, never TRUTH; acceptance requires the source citation
    plus the fork's version anchor (WeakAuras toc Version + internalVersion). Current fork ≠ cited fork → re-verify.
 
-## The flow (one line)
+## 3. The flow (one line)
 
 `inventory authors docket → gate validates → Docket_stage/<PID> → pickup bundles a pack into one group string →
 Docket_complete + register → import into WA`. A **PID is a pack id**; a pack is one group of many auras.
 
-## The terminology bridge (2026-07-14 — the block era maps onto the proven machinery; concepts survive, terms matured)
+## 4. The terminology bridge (2026-07-14 — the block era maps onto the proven machinery; concepts survive, terms matured)
 
 | block era | now |
 |---|---|
@@ -55,7 +89,7 @@ Docket_complete + register → import into WA`. A **PID is a pack id**; a pack i
 Same five-part spine as ever, every part now load-tested: **mask** = WHERE · **contracts** = WHAT · **palette + maps** =
 HOW expressed · **the machine** = join + wrap · **WA** = filter.
 
-## The two benches (locked 2026-07-15 — the inter-bench charter)
+## 5. The two benches (locked 2026-07-15 — the inter-bench charter)
 
 Same grammar on both benches — **contracts that generate from source, cross-validation** — different lanes:
 
@@ -68,13 +102,14 @@ Same grammar on both benches — **contracts that generate from source, cross-va
 our gears' fixes → their inheritance), but the conversations stay BOUNDED — each bench keeps its own focused context.
 The guardian-health-tracker handoff (2026-07-15) is the proven flow.
 
-## The architecture is the touchstone; the folders are transitional
+## 6. The architecture is the touchstone; the folders are transitional
 
 What's stable here is the two halves + the invariants. The specific **folders are in flux** — `plane/` deprecates, and a
 lot of the current layout is sprawl we spun up so the main project could keep moving (lab-style). The discipline over
 time is the reverse: **reduce the bloat, name and home the keepers.** So trust the invariants; don't ossify the layout.
 
-## Where the detail lives (today)
+## 7. Where the detail lives (today)
 
-`engine/README.md` · `engine/Production/README.md` · `engine/Fact_basis/README.md` · `engine/Fact_basis/sheets/README.md`
-· the current build state in `operations/STATE.md`.
+**Per-basis (§0):** `engine/Fact_basis/README.md` + `sheets/README.md` (WA) · `addons/maps/census/README.md` (the client) · `macros/README.md` + `macros/reference/README.md` (macros, incl. the reference≠authority line).
+**The machine:** `engine/README.md` · `engine/Production/README.md`.
+**Now:** `operations/STATE.md` (where we are) · the per-bench lane files (`Addons_load.md`, `Macros.md` — forecasts + standing cautions).
