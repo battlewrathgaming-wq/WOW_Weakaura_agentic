@@ -59,6 +59,24 @@ Base press → the throughput sequence · ctrl → restart it · shift → *the 
 paging, not this macro) · alt → hardware row, never referenced. The situational abilities live as
 their own buttons on the shift-page bar.
 
+## ★ Bar-swap SHOWS the situational state — a macro cannot (the strongest reason)
+
+Confirmed in-game 2026-07-17. Beyond cleaner macros, the bar swap gives something a macro
+modifier **fundamentally cannot**: **persistent state visibility of the situational layer.**
+
+- `#showtooltip [mod:shift] A; B` only ever reflects the **active** branch. Not holding shift, it
+  shows A — and B's **cooldown, procs, usability are invisible** until you hold the modifier. A
+  macro is **stateless** (the slice's through-line: a macro *reads* state, it never *holds or
+  shows* it), so an in-macro shift ability is blind.
+- The **situational bar (page 10) is a persistent, state-carrying UI object.** It shows the
+  situational abilities' readiness **continuously** — held shift or not. **Input and display are
+  decoupled:** bar 1 (paged) is what you *press*; bar 10 is what you *watch*. You can see a
+  cooldown coming up and hold shift *because* you saw it. No macro can surface that.
+
+This is the project's bigger split in miniature: macros do the **acting**; when **state must be
+shown**, that's a visible object's job (a bar here, a WeakAura elsewhere). The "show the shift
+ability's state" problem is solved by not asking the macro to do it at all.
+
 ## Auto-fire drives the sequence — and it's SAFE by the pending flag
 
 **Hold-to-repeat** (bar-1 auto-fire) is how a castsequence *wants* to be driven. From source
