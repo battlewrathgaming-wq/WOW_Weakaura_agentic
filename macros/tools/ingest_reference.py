@@ -108,6 +108,14 @@ UNIT_TOKEN_SOURCES = {s["name"]: True for s in SOURCES
 PROOF_MARKS = {
     "UNPROVEN": "claimed by a secondary source; NO witness of any kind on this client. "
                 "A question, nothing more.",
+    "LOCAL-SOURCE-CORROBORATED": "the WA sheets (sourced from the INSTALLED fork's "
+                                 "Types.lua on THIS client) list this unit. Stronger than a "
+                                 "retail wiki. WA's OMISSION of a token proves nothing - "
+                                 "different use case.",
+    "LOCALLY-PROVEN (macro-targeting still open)": "this project already LIVE-PROVED the "
+                                                   "token resolves (see local_proven). "
+                                                   "Whether a MACRO can target it is a "
+                                                   "separate, still-open question.",
     "SOURCE-CORROBORATED": "the client's own Lua witnesses the token (a handler compares "
                            "the parser's returned target to it). Handler-side only, and "
                            "target tokens only - never flags. Still wants the probe.",
@@ -442,6 +450,65 @@ def source_recognized_targets():
     return found
 
 
+WA_DOMAINS = ROOT / "Weak Auras" / "engine" / "Fact_basis" / "sheets" / "domains.json"
+
+
+def local_unit_witnesses():
+    """The WA sheets ALREADY carry a sourced unit vocabulary - use it.
+
+    Battlewrath, 2026-07-17: "a lot of the state reading is already well proven in
+    weakaura/engine/sheets. It already has well defined documentation on target, unit
+    tokens and the like."
+
+    `domains.baseUnitId` / `domains.multiUnitId` are extracted from the INSTALLED fork's
+    Types.lua: a LOCAL, SOURCED witness on THIS client - strictly stronger than a retail
+    wiki, and it was sitting here while two retail wikis got ingested for the same question.
+
+    BUT IT ANSWERS A DIFFERENT QUESTION, and conflating them is exactly this slice's error:
+      - WA's list is what WA OFFERS AS A TRIGGER UNIT, not the client's token vocabulary.
+      - It ADDS abstractions that are NOT client tokens (group, grouppets, grouppetsonly,
+        partypets, partypetsonly).
+      - It OMITS client tokens WA has no use for - `mouseover` is absent because WA WATCHES
+        state rather than CASTING.
+    So WA listing a token CORROBORATES it; WA omitting one says NOTHING.
+    """
+    if not WA_DOMAINS.is_file():
+        return {}, {}
+    d = json.load(open(WA_DOMAINS, encoding="utf-8"))["domains"]
+    base, multi = d.get("baseUnitId", {}), d.get("multiUnitId", {})
+    out = {}
+    for u in base:
+        out["@" + re.sub(r"\d+$", "", u)] = {"domain": "baseUnitId", "as_listed": u}
+    for u in multi:
+        out.setdefault("@" + u, {"domain": "multiUnitId", "as_listed": u})
+    wa_only = {u: "WA aggregation abstraction, NOT a client unit token - never a macro target"
+               for u in ("group", "grouppets", "grouppetsonly", "partypets", "partypetsonly")
+               if u in multi}
+    return out, wa_only
+
+
+# Facts this project has ALREADY PROVEN. Cited, not re-asked.
+LOCAL_PROVEN = {
+    "@nameplate": {
+        "status": "LIVE-PROVEN on this client: nameplateN unit tokens EXIST and RESOLVE.",
+        "evidence": "corpus/patterns/guardian-health-tracker.md - the guardian-tracker POC "
+                    "resolves summoned GUIDs to nameplate1..N tokens and reads UnitHealth "
+                    "off them. LIVE-PROVEN 2026-07-15 (four bars). Evidence pair: "
+                    "addons/landing/records/20260715_195725_117__plates.json (plates on -> "
+                    "tokens + real HP) / ...195846_424__plates.json (rendered, plates "
+                    "unpopulated -> no tokens).",
+        "richer_than_a_probe": "it carries the BOUNDARY too - the token's lifetime = PLATE "
+                               "POPULATION, not model visibility. A one-shot UnitExists read "
+                               "learns far less.",
+        "what_remains_open": "reading STATE via a plate token (PROVEN) and TARGETING one "
+                             "FROM A MACRO are DIFFERENT questions. The wiki states "
+                             "'nameplateN cannot be targeted by spells or commands such as "
+                             "/cast [target=nameplate1]' - UNVERIFIED on CoA. The row "
+                             "survives with a sharper question behind it.",
+    },
+}
+
+
 TWO_MECHANISMS = {
     "why_this_matters": "`@unit` and `[flag]` are NOT the same mechanism and do NOT share "
                         "a proof method. Conflating them is the easiest way to write a "
@@ -574,6 +641,7 @@ def main():
 
     # ---- derived: era signal (the diagnostic split) + proof mark + probe method
     witnesses = source_recognized_targets()
+    wa_units, wa_only = local_unit_witnesses()
     by_tok = {}
     for p in patches:
         by_tok.setdefault(p["token"], []).append(p)
@@ -588,6 +656,16 @@ def main():
         if tok in witnesses:
             e["source_witness"] = witnesses[tok]
             e["proof_mark"] = "SOURCE-CORROBORATED"
+        # LOCAL witnesses beat retail wikis: the WA sheets are sourced from the INSTALLED
+        # fork's Types.lua on THIS client. Listing corroborates; OMISSION says nothing
+        # (WA has no use for `mouseover` - it watches state, it does not cast).
+        if tok in wa_units:
+            e["wa_sheet_witness"] = wa_units[tok]
+            if e["proof_mark"] == "UNPROVEN":
+                e["proof_mark"] = "LOCAL-SOURCE-CORROBORATED"
+        if tok in LOCAL_PROVEN:
+            e["local_proven"] = LOCAL_PROVEN[tok]
+            e["proof_mark"] = "LOCALLY-PROVEN (macro-targeting still open)"
         # SOURCED patch data first - it is EVIDENCE. Absence never is.
         # Patch notes name tokens BARE ("Added ''nameplateN''"); the register keys unit
         # tokens @-PREFIXED. Without stripping the @, every unit-token patch date silently
@@ -680,6 +758,26 @@ def main():
               f"derivation, do NOT trust the register: {incomplete[:8]}")
 
     payload = {
+        "local_witnesses_first": {
+            "why": "Battlewrath, 2026-07-17: 'a lot of the state reading is already well "
+                   "proven in weakaura/engine/sheets. It already has well defined "
+                   "documentation on target, unit tokens and the like.' The sheets model "
+                   "exists so reasoning READS instead of re-deriving - and two retail wikis "
+                   "got ingested for a question already sourced locally. Local witnesses are "
+                   "now joined FIRST.",
+            "wa_sheets": "Weak Auras/engine/Fact_basis/sheets/domains.json - baseUnitId / "
+                         "multiUnitId, extracted from the INSTALLED fork's Types.lua. A "
+                         "LOCAL SOURCED witness on THIS client; strictly stronger than a "
+                         "retail wiki.",
+            "but_a_DIFFERENT_question": "WA's list is what WA OFFERS AS A TRIGGER UNIT, not "
+                                        "the client's token vocabulary. It ADDS abstractions "
+                                        "that are not client tokens, and OMITS tokens WA has "
+                                        "no use for (mouseover - WA watches state, it does "
+                                        "not cast). LISTING corroborates; OMISSION proves "
+                                        "nothing.",
+            "wa_only_not_client_tokens": wa_only,
+            "already_proven_locally": sorted(LOCAL_PROVEN),
+        },
         "what": "THE QUESTION REGISTER - every candidate conditional + its PROOF MARK. "
                 "This is the probe's ask-list, not a fact table.",
         "NOT_A_FACT_SOURCE": "Nothing here is a fact about the CoA client. Every entry is a "

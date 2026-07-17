@@ -1,10 +1,27 @@
 {
+ "local_witnesses_first": {
+  "why": "Battlewrath, 2026-07-17: 'a lot of the state reading is already well proven in weakaura/engine/sheets. It already has well defined documentation on target, unit tokens and the like.' The sheets model exists so reasoning READS instead of re-deriving - and two retail wikis got ingested for a question already sourced locally. Local witnesses are now joined FIRST.",
+  "wa_sheets": "Weak Auras/engine/Fact_basis/sheets/domains.json - baseUnitId / multiUnitId, extracted from the INSTALLED fork's Types.lua. A LOCAL SOURCED witness on THIS client; strictly stronger than a retail wiki.",
+  "but_a_DIFFERENT_question": "WA's list is what WA OFFERS AS A TRIGGER UNIT, not the client's token vocabulary. It ADDS abstractions that are not client tokens, and OMITS tokens WA has no use for (mouseover - WA watches state, it does not cast). LISTING corroborates; OMISSION proves nothing.",
+  "wa_only_not_client_tokens": {
+   "group": "WA aggregation abstraction, NOT a client unit token - never a macro target",
+   "grouppets": "WA aggregation abstraction, NOT a client unit token - never a macro target",
+   "grouppetsonly": "WA aggregation abstraction, NOT a client unit token - never a macro target",
+   "partypets": "WA aggregation abstraction, NOT a client unit token - never a macro target",
+   "partypetsonly": "WA aggregation abstraction, NOT a client unit token - never a macro target"
+  },
+  "already_proven_locally": [
+   "@nameplate"
+  ]
+ },
  "what": "THE QUESTION REGISTER - every candidate conditional + its PROOF MARK. This is the probe's ask-list, not a fact table.",
  "NOT_A_FACT_SOURCE": "Nothing here is a fact about the CoA client. Every entry is a QUESTION until a probe verdict replaces its proof_mark. Do not cite reference/ as basis/.",
  "why_allowed": "Recall and secondary sources are inadmissible as a FACT source but admissible as a QUESTION source, because the probe adjudicates. A wrong candidate costs one probe row reading 'unsupported'. A wrong fact poisons the basis silently.",
  "absence_proves_nothing": "A conditional no wiki lists is UN-ASKED, not unsupported. Demonstrated mechanically: ['@pettarget'] witnessed in this client's own Lua and in NO wiki.",
  "proof_marks": {
   "UNPROVEN": "claimed by a secondary source; NO witness of any kind on this client. A question, nothing more.",
+  "LOCAL-SOURCE-CORROBORATED": "the WA sheets (sourced from the INSTALLED fork's Types.lua on THIS client) list this unit. Stronger than a retail wiki. WA's OMISSION of a token proves nothing - different use case.",
+  "LOCALLY-PROVEN (macro-targeting still open)": "this project already LIVE-PROVED the token resolves (see local_proven). Whether a MACRO can target it is a separate, still-open question.",
   "SOURCE-CORROBORATED": "the client's own Lua witnesses the token (a handler compares the parser's returned target to it). Handler-side only, and target tokens only - never flags. Still wants the probe.",
   "PROVEN-TRUE": "probe: known and currently true. [PROBE WRITES THIS]",
   "PROVEN-FALSE": "probe: known and currently false. [PROBE WRITES THIS]",
@@ -394,7 +411,7 @@
    "unit-target": 32
   },
   "by_proof_mark": {
-   "UNPROVEN": 69,
+   "UNPROVEN": 61,
    "SOURCE-CORROBORATED": 5
   }
  },
@@ -701,11 +718,15 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@arena]"
    ],
+   "wa_sheet_witness": {
+    "domain": "multiUnitId",
+    "as_listed": "arena"
+   },
    "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
   },
   "@boss": {
@@ -733,11 +754,15 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@boss]"
    ],
+   "wa_sheet_witness": {
+    "domain": "multiUnitId",
+    "as_listed": "boss"
+   },
    "patch_history": [
     {
      "patch": "3.3.0",
@@ -843,6 +868,10 @@
    "probe_rows": [
     "[@focus]"
    ],
+   "wa_sheet_witness": {
+    "domain": "baseUnitId",
+    "as_listed": "focus"
+   },
    "patch_history": [
     {
      "patch": "2.0.0",
@@ -927,11 +956,21 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LOCALLY-PROVEN (macro-targeting still open)",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@nameplate]"
    ],
+   "wa_sheet_witness": {
+    "domain": "multiUnitId",
+    "as_listed": "nameplate"
+   },
+   "local_proven": {
+    "status": "LIVE-PROVEN on this client: nameplateN unit tokens EXIST and RESOLVE.",
+    "evidence": "corpus/patterns/guardian-health-tracker.md - the guardian-tracker POC resolves summoned GUIDs to nameplate1..N tokens and reads UnitHealth off them. LIVE-PROVEN 2026-07-15 (four bars). Evidence pair: addons/landing/records/20260715_195725_117__plates.json (plates on -> tokens + real HP) / ...195846_424__plates.json (rendered, plates unpopulated -> no tokens).",
+    "richer_than_a_probe": "it carries the BOUNDARY too - the token's lifetime = PLATE POPULATION, not model visibility. A one-shot UnitExists read learns far less.",
+    "what_remains_open": "reading STATE via a plate token (PROVEN) and TARGETING one FROM A MACRO are DIFFERENT questions. The wiki states 'nameplateN cannot be targeted by spells or commands such as /cast [target=nameplate1]' - UNVERIFIED on CoA. The row survives with a sharper question behind it."
+   },
    "patch_history": [
     {
      "patch": "7.0.3",
@@ -1048,11 +1087,15 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@party]"
    ],
+   "wa_sheet_witness": {
+    "domain": "baseUnitId",
+    "as_listed": "party4"
+   },
    "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
   },
   "@party1": {
@@ -1130,11 +1173,15 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@partypet]"
    ],
+   "wa_sheet_witness": {
+    "domain": "baseUnitId",
+    "as_listed": "partypet4"
+   },
    "patch_history": [
     {
      "patch": "1.5.0",
@@ -1187,11 +1234,15 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@pet]"
    ],
+   "wa_sheet_witness": {
+    "domain": "baseUnitId",
+    "as_listed": "pet"
+   },
    "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
   },
   "@pettarget": {
@@ -1254,6 +1305,10 @@
    "probe_rows": [
     "[@player]"
    ],
+   "wa_sheet_witness": {
+    "domain": "baseUnitId",
+    "as_listed": "player"
+   },
    "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
   },
   "@questnpc": {
@@ -1313,11 +1368,15 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@raid]"
    ],
+   "wa_sheet_witness": {
+    "domain": "multiUnitId",
+    "as_listed": "raid"
+   },
    "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
   },
   "@raid1": {
@@ -1675,6 +1734,10 @@
    "probe_rows": [
     "[@target]"
    ],
+   "wa_sheet_witness": {
+    "domain": "baseUnitId",
+    "as_listed": "target"
+   },
    "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
   },
   "@unitId": {
@@ -1727,11 +1790,15 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@vehicle]"
    ],
+   "wa_sheet_witness": {
+    "domain": "baseUnitId",
+    "as_listed": "vehicle"
+   },
    "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
   },
   "actionbar": {
