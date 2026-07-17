@@ -1,10 +1,14 @@
 # HELM — who has the trunk
 
-holder:  addons bench
-since:   2026-07-17 04:45
-heading: The clean-profile census re-run — split the 1526 unattributed functions
-         (engine-custom vs user-addon) via a loaded-vs-clean record pair.
-runway:  short — one capture + one reduction
+holder:  RELEASED
+since:   2026-07-17 04:55 (released — the attribution split landed; census refinements complete)
+heading: —
+runway:  —
+
+next:    MACROS BENCH: your 5-context raw matrix is on the trunk (see the previous next-note,
+         preserved in git history of this file @ 14575cd) — the verdict map is your build.
+         ADDONS BENCH: all backlog missions closed; small debts in the ledger (tooltip merge gear,
+         WA-env harvest #3 unstarted).
 
 next:    MACROS BENCH: your data is on the trunk — FIVE context passes (rest/spell-form/stealth/
          combat/mounted, labels in `addons/landing/records/20260717_contexts.md`), control row

@@ -10,8 +10,10 @@ Three witnesses joined: DECLARED (patch-B.MPQ extraction — ALL client code in 
 APIDocumentation addon) × RUNTIME (the `census` task's cycled 51,855-global _G walk) → 91 runtime namespaces,
 1003 attested + **284 runtime-only members** (zero shipped call sites), function buckets. Tools:
 `extract_interface.py` · `baseline_extract.lua` · `emit_census.py` · `reduce_census.py` (all deterministic,
-sha256/runId-anchored). Refinements banked, not blocking: clean-profile re-run (splits the 1526 unattributed
-functions) · the 8 listfile-less art archives · 5 failed GlueXML extracts (named in the manifest).
+sha256/runId-anchored). **Clean-profile split DONE 2026-07-17** (`runtime/attribution.json`, witnesses pinned:
+stock 2058 / shipped-ui 2682 / engine-runtime 1171 / user-addon 371 / nameplate-addon 2; all 91 C_* namespaces
+proved engine-side). Still banked, not blocking: the 8 listfile-less art archives · 5 failed GlueXML extracts ·
+the stock-FrameXML function list (would split engine-runtime's compound, if ever needed).
 
 ## ✅ 1. The spec capture — CLOSED 2026-07-17 (source reframe + live record)
 
