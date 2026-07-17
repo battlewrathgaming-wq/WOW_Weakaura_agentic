@@ -3307,7 +3307,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "LIVE:AMBIGUOUS",
+   "proof_mark": "LIVE:UNSUPPORTED-IGNORED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[known]",
@@ -3325,9 +3325,9 @@
    ],
    "era_note": "SOURCED: added in patch 10.0.2 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
    "live_verdict": {
-    "verdict": "AMBIGUOUS",
-    "confidence": "none",
-    "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
+    "verdict": "UNSUPPORTED-IGNORED",
+    "confidence": "medium-CHAT-PROBE-TIER (hand-transcribed, not a landed record - weaker provenance than the 5-context capture)",
+    "why": "chat probe 2026-07-17: [known:1] returned Y for a spell the character does not have. (IsPlayerSpell is absent from the census; GetSpellInfo is resident, which is why the mirrored-API join could not rule it out.)",
     "by_context": {
      "rest": "T",
      "spell-form": "T",
@@ -3576,7 +3576,7 @@
    "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "LIVE:AMBIGUOUS",
+   "proof_mark": "LIVE:UNSUPPORTED-IGNORED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[overridebar]",
@@ -3584,9 +3584,9 @@
    ],
    "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot.",
    "live_verdict": {
-    "verdict": "AMBIGUOUS",
-    "confidence": "none",
-    "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
+    "verdict": "UNSUPPORTED-IGNORED",
+    "confidence": "medium-CHAT-PROBE-TIER (hand-transcribed, not a landed record - weaker provenance than the 5-context capture)",
+    "why": "chat probe 2026-07-17: HasOverrideActionBar() returned nil while [overridebar] returned Y - the same contradiction that convicted [resting]. The API is resident, so the capture alone could not rule it out; asking the API and the conditional side by side did.",
     "by_context": {
      "rest": "T",
      "spell-form": "T",
@@ -3750,7 +3750,7 @@
    "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "LIVE:AMBIGUOUS",
+   "proof_mark": "LIVE:UNSUPPORTED-IGNORED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[possessbar]",
@@ -3758,9 +3758,9 @@
    ],
    "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot.",
    "live_verdict": {
-    "verdict": "AMBIGUOUS",
-    "confidence": "none",
-    "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
+    "verdict": "UNSUPPORTED-IGNORED",
+    "confidence": "medium-CHAT-PROBE-TIER (hand-transcribed, not a landed record - weaker provenance than the 5-context capture)",
+    "why": "chat probe 2026-07-17: IsPossessBarVisible() returned false while [possessbar] returned Y - contradiction.",
     "by_context": {
      "rest": "T",
      "spell-form": "T",
@@ -3790,7 +3790,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "LIVE:AMBIGUOUS",
+   "proof_mark": "LIVE:UNSUPPORTED-IGNORED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[pvpcombat]",
@@ -3808,9 +3808,9 @@
    ],
    "era_note": "SOURCED: added in patch 7.3.0 (Legion). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
    "live_verdict": {
-    "verdict": "AMBIGUOUS",
-    "confidence": "none",
-    "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
+    "verdict": "UNSUPPORTED-IGNORED",
+    "confidence": "high-inferred",
+    "why": "reads TRUE in every context, and the SUBSYSTEM it names is absent from this client (census: no API matching /PvpTalent|PVPTalent|PvPTalent/). the wiki defines it as 'PvP talents are usable' and dates it 7.3.0 (Legion). PvP TALENTS are a Legion system - distinct from PVP itself, which this client has in full (instanced, duels, flagged combat: UnitIsPVP / GetBattlefieldStatus / StartDuel all resident). If no PvP-talent API exists, the conditional names a system that is not here. Under proven ignore-semantics, a conditional naming a system that is not here and reading constant-TRUE is being ignored.",
     "by_context": {
      "rest": "T",
      "spell-form": "T",

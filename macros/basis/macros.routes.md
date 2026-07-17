@@ -23,7 +23,7 @@ the `type` vocabulary (/click)
 the option vocabulary; C-side; the live probe is the SOLE channel and it has RUN
 
 - **LIVE-PROVEN 2026-07-17** — 5 contexts, triangulated against an independent witness stamp. **Owned by `macros/tools/derive_verdicts.py`, NOT this emitter.**
-- flags: 53 supported · 6 UNSUPPORTED-IGNORED · 4 AMBIGUOUS (honest — not guessed)
+- flags: 53 supported · 10 UNSUPPORTED-IGNORED · 0 AMBIGUOUS (honest — not guessed)
 - **the parser IGNORES unknown conditionals (the clause PASSES)** — it does not reject them. The designed polarity matrix could not have seen this; the context stamp is what caught it.
 - **era diff CONFIRMED, zero crossover:** every WotLK-era conditional supported; not one post-3.3.5a conditional is.
 

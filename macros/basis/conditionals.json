@@ -105,6 +105,13 @@
   },
   "what_I_got_wrong_in_the_ask": "probe A silently assumed a REST context for its reference row and never said so. A control row needs its required context stated, or the human cannot know they are invalidating it. He caught it; the probe should have."
  },
+ "PVP_IS_INVISIBLE_TO_MACROS_HERE": {
+  "finding": "PVP state is RICHLY available to the API and NOT ONE macro conditional exposes it. A macro on this client CANNOT behave differently in PVP.",
+  "the_states_are_real": "Battlewrath, 2026-07-17: 'there is instanced PVP, Duels, and then also engaging an enemy player.' Confirmed by the census: UnitIsPVP · UnitIsPVPFreeForAll · GetBattlefieldStatus · StartDuel · GetZonePVPInfo · IsInInstance · UnitIsPlayer are ALL resident.",
+  "but_the_vocabulary_has_no_pvp": "the WotLK-era archive's Complete list contains NO pvp conditional at all - its only PvP mention is prose about /targetenemyplayer. The one pvp-NAMED conditional, [pvpcombat], is 7.3.0 (Legion) and means 'PvP talents are usable' - a system this client does not have (census: ZERO PvpTalent APIs). It is IGNORED.",
+  "so_the_only_combat_awareness_is": "[combat] - and it does NOT know who you are fighting. No macro can distinguish PVP from PVE on this client.",
+  "the_LAYER_lesson": "Battlewrath, 2026-07-17: 'It might have engine flags for different damage profiles. And deminishing returns are a thing. But both of those are gameplay concerns. Not macro form semantics.' Exactly - and this is the proof. The engine can hold as much PVP state as it likes; the parser only sees what was FLATTENED INTO A KEYWORD. A gameplay concern that was never flattened is invisible to the macro layer, no matter how real it is in the game. **Do not reason from gameplay to macro capability.**"
+ },
  "at_targets": {
   "control_row_SETTLED": true,
   "finding": "[@banana] returned target='banana' in ALL FIVE contexts => `@` is a PASS-THROUGH STRING. The parser does not validate units; it hands the string on. Support lives DOWNSTREAM (the handler's special-casing + unit resolution).",
@@ -124,12 +131,10 @@
     "SUPPORTED": 53
    },
    "patch-dated": {
-    "UNSUPPORTED-IGNORED": 1,
-    "AMBIGUOUS": 2
+    "UNSUPPORTED-IGNORED": 3
    },
    "retail-documented-only": {
-    "UNSUPPORTED-IGNORED": 5,
-    "AMBIGUOUS": 2
+    "UNSUPPORTED-IGNORED": 7
    }
   },
   "forecast_said_archive_documented": "expected present on a 3.3.5a base; an UNSUPPORTED here would be a real finding",
@@ -138,8 +143,7 @@
   },
   "forecast_said_post_3_3_5a": "the live question - this client backports freely, so absence is NOT predictable either way",
   "result_post_3_3_5a": {
-   "UNSUPPORTED-IGNORED": 6,
-   "AMBIGUOUS": 4
+   "UNSUPPORTED-IGNORED": 10
   },
   "VERDICT": "TOTAL SEPARATION, ZERO CROSSOVER. Every archive-documented (WotLK-era) conditional is SUPPORTED (53/53). NOT ONE post-3.3.5a conditional is (0/10). The era diff predicted the live verdict exactly.",
   "what_this_validates": "the method, not the luck: patch annotations are EVIDENCE and they forecast the client. It also retires the reverse error - inferring era from a wiki's ABSENCE - which predicted the same 4 rows for the wrong reason."
@@ -158,9 +162,8 @@
   "flags": {
    "SUPPORTED": 37,
    "SUPPORTED-TRUE": 4,
-   "UNSUPPORTED-IGNORED": 6,
-   "SUPPORTED-PROVEN": 12,
-   "AMBIGUOUS": 4
+   "UNSUPPORTED-IGNORED": 10,
+   "SUPPORTED-PROVEN": 12
   },
   "targets": {
    "DID-NOT-RESOLVE-HERE": 27,
@@ -188,7 +191,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetActionBarPage": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "actionbar:1": {
    "flag": "actionbar:1",
@@ -209,7 +213,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetActionBarPage": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "actionbar:6": {
    "flag": "actionbar:6",
@@ -230,7 +235,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetActionBarPage": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "advflyable": {
    "flag": "advflyable",
@@ -251,7 +257,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "IsAdvancedFlyableArea": null
-   }
+   },
+   "subsystem_probe": null
   },
   "bar": {
    "flag": "bar",
@@ -272,7 +279,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetActionBarPage": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "bar:1": {
    "flag": "bar:1",
@@ -293,7 +301,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetActionBarPage": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "bar:6": {
    "flag": "bar:6",
@@ -314,7 +323,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetActionBarPage": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "bonusbar": {
    "flag": "bonusbar",
@@ -335,7 +345,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "HasBonusActionBar": null
-   }
+   },
+   "subsystem_probe": null
   },
   "bonusbar:5": {
    "flag": "bonusbar:5",
@@ -356,7 +367,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "HasBonusActionBar": null
-   }
+   },
+   "subsystem_probe": null
   },
   "btn": {
    "flag": "btn",
@@ -377,7 +389,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "t": null
-   }
+   },
+   "subsystem_probe": null
   },
   "button": {
    "flag": "button",
@@ -398,7 +411,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "t": null
-   }
+   },
+   "subsystem_probe": null
   },
   "canexitvehicle": {
    "flag": "canexitvehicle",
@@ -425,7 +439,8 @@
    },
    "mirrored_api_resident": {
     "CanExitVehicle": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "channeling": {
    "flag": "channeling",
@@ -447,7 +462,8 @@
    "mirrored_api_resident": {
     "UnitChannelInfo": "stock-capi",
     "ChannelInfo": null
-   }
+   },
+   "subsystem_probe": null
   },
   "combat": {
    "flag": "combat",
@@ -475,7 +491,8 @@
    "mirrored_api_resident": {
     "InCombatLockdown": "stock-capi",
     "UnitAffectingCombat": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "cursor": {
    "flag": "cursor",
@@ -502,7 +519,8 @@
    },
    "mirrored_api_resident": {
     "GetCursorInfo": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "dead": {
    "flag": "dead",
@@ -529,7 +547,8 @@
    },
    "mirrored_api_resident": {
     "UnitIsDeadOrGhost": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "equipped": {
    "flag": "equipped",
@@ -550,7 +569,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "IsEquippedItemType": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "exists": {
    "flag": "exists",
@@ -577,7 +597,8 @@
    },
    "mirrored_api_resident": {
     "UnitExists": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "extrabar": {
    "flag": "extrabar",
@@ -598,7 +619,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "HasExtraActionBar": null
-   }
+   },
+   "subsystem_probe": null
   },
   "flyable": {
    "flag": "flyable",
@@ -625,7 +647,8 @@
    },
    "mirrored_api_resident": {
     "IsFlyableArea": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "flying": {
    "flag": "flying",
@@ -652,7 +675,8 @@
    },
    "mirrored_api_resident": {
     "IsFlying": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "form": {
    "flag": "form",
@@ -673,7 +697,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetShapeshiftForm": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "form:0": {
    "flag": "form:0",
@@ -694,7 +719,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetShapeshiftForm": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "form:n": {
    "flag": "form:n",
@@ -715,7 +741,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetShapeshiftForm": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "group": {
    "flag": "group",
@@ -737,7 +764,8 @@
    "mirrored_api_resident": {
     "IsInGroup": "shipped-ui",
     "IsInRaid": "shipped-ui"
-   }
+   },
+   "subsystem_probe": null
   },
   "group:party": {
    "flag": "group:party",
@@ -759,7 +787,8 @@
    "mirrored_api_resident": {
     "IsInGroup": "shipped-ui",
     "IsInRaid": "shipped-ui"
-   }
+   },
+   "subsystem_probe": null
   },
   "group:raid": {
    "flag": "group:raid",
@@ -781,7 +810,8 @@
    "mirrored_api_resident": {
     "IsInGroup": "shipped-ui",
     "IsInRaid": "shipped-ui"
-   }
+   },
+   "subsystem_probe": null
   },
   "harm": {
    "flag": "harm",
@@ -809,7 +839,8 @@
    "mirrored_api_resident": {
     "UnitCanAssist": "stock-capi",
     "UnitCanAttack": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "help": {
    "flag": "help",
@@ -837,7 +868,8 @@
    "mirrored_api_resident": {
     "UnitCanAssist": "stock-capi",
     "UnitCanAttack": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "indoors": {
    "flag": "indoors",
@@ -865,15 +897,16 @@
    "mirrored_api_resident": {
     "IsIndoors": "stock-capi",
     "IsOutdoors": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "known": {
    "flag": "known",
    "base": "known",
    "arg": null,
-   "verdict": "AMBIGUOUS",
-   "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
-   "confidence": "none",
+   "verdict": "UNSUPPORTED-IGNORED",
+   "why": "chat probe 2026-07-17: [known:1] returned Y for a spell the character does not have. (IsPlayerSpell is absent from the census; GetSpellInfo is resident, which is why the mirrored-API join could not rule it out.)",
+   "confidence": "medium-CHAT-PROBE-TIER (hand-transcribed, not a landed record - weaker provenance than the 5-context capture)",
    "by_context": {
     "rest": "T",
     "spell-form": "T",
@@ -887,7 +920,8 @@
    "mirrored_api_resident": {
     "GetSpellInfo": "stock-capi",
     "IsPlayerSpell": null
-   }
+   },
+   "subsystem_probe": null
   },
   "mod": {
    "flag": "mod",
@@ -915,7 +949,8 @@
    "mirrored_api_resident": {
     "IsModifierKeyDown": "stock-capi",
     "IsModifiedClick": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "mod:alt": {
    "flag": "mod:alt",
@@ -943,7 +978,8 @@
    "mirrored_api_resident": {
     "IsModifierKeyDown": "stock-capi",
     "IsModifiedClick": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "mod:ctrl": {
    "flag": "mod:ctrl",
@@ -971,7 +1007,8 @@
    "mirrored_api_resident": {
     "IsModifierKeyDown": "stock-capi",
     "IsModifiedClick": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "mod:shift": {
    "flag": "mod:shift",
@@ -999,7 +1036,8 @@
    "mirrored_api_resident": {
     "IsModifierKeyDown": "stock-capi",
     "IsModifiedClick": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "modifier": {
    "flag": "modifier",
@@ -1027,7 +1065,8 @@
    "mirrored_api_resident": {
     "IsModifierKeyDown": "stock-capi",
     "IsModifiedClick": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "modifier:alt": {
    "flag": "modifier:alt",
@@ -1055,7 +1094,8 @@
    "mirrored_api_resident": {
     "IsModifierKeyDown": "stock-capi",
     "IsModifiedClick": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "modifier:ctrl": {
    "flag": "modifier:ctrl",
@@ -1083,7 +1123,8 @@
    "mirrored_api_resident": {
     "IsModifierKeyDown": "stock-capi",
     "IsModifiedClick": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "modifier:shift": {
    "flag": "modifier:shift",
@@ -1111,7 +1152,8 @@
    "mirrored_api_resident": {
     "IsModifierKeyDown": "stock-capi",
     "IsModifiedClick": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "mounted": {
    "flag": "mounted",
@@ -1138,7 +1180,8 @@
    },
    "mirrored_api_resident": {
     "IsMounted": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "outdoors": {
    "flag": "outdoors",
@@ -1166,15 +1209,16 @@
    "mirrored_api_resident": {
     "IsIndoors": "stock-capi",
     "IsOutdoors": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "overridebar": {
    "flag": "overridebar",
    "base": "overridebar",
    "arg": null,
-   "verdict": "AMBIGUOUS",
-   "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
-   "confidence": "none",
+   "verdict": "UNSUPPORTED-IGNORED",
+   "why": "chat probe 2026-07-17: HasOverrideActionBar() returned nil while [overridebar] returned Y - the same contradiction that convicted [resting]. The API is resident, so the capture alone could not rule it out; asking the API and the conditional side by side did.",
+   "confidence": "medium-CHAT-PROBE-TIER (hand-transcribed, not a landed record - weaker provenance than the 5-context capture)",
    "by_context": {
     "rest": "T",
     "spell-form": "T",
@@ -1187,7 +1231,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "HasOverrideActionBar": "shipped-ui"
-   }
+   },
+   "subsystem_probe": null
   },
   "party": {
    "flag": "party",
@@ -1215,7 +1260,8 @@
    "mirrored_api_resident": {
     "UnitInParty": "stock-capi",
     "UnitInRaid": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "pet": {
    "flag": "pet",
@@ -1243,7 +1289,8 @@
    "mirrored_api_resident": {
     "UnitName": "stock-capi",
     "UnitCreatureFamily": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "petbattle": {
    "flag": "petbattle",
@@ -1264,15 +1311,16 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "C_PetBattles": null
-   }
+   },
+   "subsystem_probe": null
   },
   "possessbar": {
    "flag": "possessbar",
    "base": "possessbar",
    "arg": null,
-   "verdict": "AMBIGUOUS",
-   "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
-   "confidence": "none",
+   "verdict": "UNSUPPORTED-IGNORED",
+   "why": "chat probe 2026-07-17: IsPossessBarVisible() returned false while [possessbar] returned Y - contradiction.",
+   "confidence": "medium-CHAT-PROBE-TIER (hand-transcribed, not a landed record - weaker provenance than the 5-context capture)",
    "by_context": {
     "rest": "T",
     "spell-form": "T",
@@ -1285,15 +1333,16 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "IsPossessBarVisible": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "pvpcombat": {
    "flag": "pvpcombat",
    "base": "pvpcombat",
    "arg": null,
-   "verdict": "AMBIGUOUS",
-   "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
-   "confidence": "none",
+   "verdict": "UNSUPPORTED-IGNORED",
+   "why": "reads TRUE in every context, and the SUBSYSTEM it names is absent from this client (census: no API matching /PvpTalent|PVPTalent|PvPTalent/). the wiki defines it as 'PvP talents are usable' and dates it 7.3.0 (Legion). PvP TALENTS are a Legion system - distinct from PVP itself, which this client has in full (instanced, duels, flagged combat: UnitIsPVP / GetBattlefieldStatus / StartDuel all resident). If no PvP-talent API exists, the conditional names a system that is not here. Under proven ignore-semantics, a conditional naming a system that is not here and reading constant-TRUE is being ignored.",
+   "confidence": "high-inferred",
    "by_context": {
     "rest": "T",
     "spell-form": "T",
@@ -1304,7 +1353,13 @@
    "witness_field": null,
    "witness_api": null,
    "witness_by_context": null,
-   "mirrored_api_resident": null
+   "mirrored_api_resident": null,
+   "subsystem_probe": {
+    "pattern": "PvpTalent|PVPTalent|PvPTalent",
+    "why": "the wiki defines it as 'PvP talents are usable' and dates it 7.3.0 (Legion). PvP TALENTS are a Legion system - distinct from PVP itself, which this client has in full (instanced, duels, flagged combat: UnitIsPVP / GetBattlefieldStatus / StartDuel all resident). If no PvP-talent API exists, the conditional names a system that is not here.",
+    "apis_found": [],
+    "absent": true
+   }
   },
   "raid": {
    "flag": "raid",
@@ -1332,7 +1387,8 @@
    "mirrored_api_resident": {
     "UnitInParty": "stock-capi",
     "UnitInRaid": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "resting": {
    "flag": "resting",
@@ -1359,7 +1415,8 @@
    },
    "mirrored_api_resident": {
     "IsResting": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "shapeshift": {
    "flag": "shapeshift",
@@ -1380,7 +1437,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "HasTempShapeshiftActionBar": null
-   }
+   },
+   "subsystem_probe": null
   },
   "spec": {
    "flag": "spec",
@@ -1401,7 +1459,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetSpecialization": "shipped-ui"
-   }
+   },
+   "subsystem_probe": null
   },
   "spec:1": {
    "flag": "spec:1",
@@ -1422,7 +1481,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetSpecialization": "shipped-ui"
-   }
+   },
+   "subsystem_probe": null
   },
   "spec:2": {
    "flag": "spec:2",
@@ -1443,7 +1503,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetSpecialization": "shipped-ui"
-   }
+   },
+   "subsystem_probe": null
   },
   "stance": {
    "flag": "stance",
@@ -1464,7 +1525,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetShapeshiftForm": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "stance:0": {
    "flag": "stance:0",
@@ -1485,7 +1547,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetShapeshiftForm": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "stance:1": {
    "flag": "stance:1",
@@ -1506,7 +1569,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetShapeshiftForm": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "stance:2": {
    "flag": "stance:2",
@@ -1527,7 +1591,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetShapeshiftForm": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "stance:n": {
    "flag": "stance:n",
@@ -1548,7 +1613,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "GetShapeshiftForm": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "stealth": {
    "flag": "stealth",
@@ -1575,7 +1641,8 @@
    },
    "mirrored_api_resident": {
     "IsStealthed": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "swimming": {
    "flag": "swimming",
@@ -1602,7 +1669,8 @@
    },
    "mirrored_api_resident": {
     "IsSubmerged": null
-   }
+   },
+   "subsystem_probe": null
   },
   "unithasvehicleui": {
    "flag": "unithasvehicleui",
@@ -1629,7 +1697,8 @@
    },
    "mirrored_api_resident": {
     "UnitInVehicle": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   },
   "vehicleui": {
    "flag": "vehicleui",
@@ -1656,7 +1725,8 @@
    },
    "mirrored_api_resident": {
     "HasVehicleActionBar": "shipped-ui"
-   }
+   },
+   "subsystem_probe": null
   },
   "worn": {
    "flag": "worn",
@@ -1677,7 +1747,8 @@
    "witness_by_context": null,
    "mirrored_api_resident": {
     "IsEquippedItemType": "stock-capi"
-   }
+   },
+   "subsystem_probe": null
   }
  },
  "targets": {

@@ -109,6 +109,58 @@ WITNESS = {
 
 CENSUS = ROOT / "addons" / "maps" / "census" / "runtime" / "globals.json"
 
+# A conditional whose SUBSYSTEM the wiki names, but whose API surface the census cannot find.
+# Same shape as the mirrored-API join, for the cases where the wiki gave a DESCRIPTION but no
+# "Similar API" column - so the mechanical join had nothing to bite on and the flag fell
+# through to AMBIGUOUS.
+#
+# EXPLICIT and JUSTIFIED, like WITNESS: each entry cites the wiki's own definition and the
+# API pattern that WOULD evidence the subsystem. The census answers; this table only asks.
+#
+# pvpcombat was the last AMBIGUOUS flag. Battlewrath, 2026-07-17, supplied the missing link:
+# "there is instanced PVP, Duels, and then also engaging an enemy player. But the game doesn't
+# have PVP talents. That was a later itteration of WoW." Taken as the QUESTION, not the fact -
+# the census then proves it: ZERO PvpTalent APIs resident, while UnitIsPVP /
+# UnitIsPVPFreeForAll / GetBattlefieldStatus / StartDuel / GetZonePVPInfo ARE. The PVP STATES
+# are real; the PVP TALENT system is not.
+SUBSYSTEM_PROBE = {
+    "pvpcombat": (r"PvpTalent|PVPTalent|PvPTalent",
+                  "the wiki defines it as 'PvP talents are usable' and dates it 7.3.0 "
+                  "(Legion). PvP TALENTS are a Legion system - distinct from PVP itself, "
+                  "which this client has in full (instanced, duels, flagged combat: "
+                  "UnitIsPVP / GetBattlefieldStatus / StartDuel all resident). If no "
+                  "PvP-talent API exists, the conditional names a system that is not here."),
+}
+
+
+# Convictions from the CHAT PROBE tier - weaker provenance (hand-transcribed), but real
+# evidence. The landed capture could not decide these; the chat probe asked the API and the
+# conditional SIDE BY SIDE and got a contradiction - the same conviction that got [resting].
+#
+# Applied AFTER the landed-capture rules, and the verdict SAYS WHICH TIER decided it. Leaving
+# a flag AMBIGUOUS when evidence exists would be under-reporting; merging it silently into the
+# capture's verdicts would launder hand-typed output into machine-grade provenance. Neither.
+CHAT_CONVICTIONS = {
+    "overridebar": "chat probe 2026-07-17: HasOverrideActionBar() returned nil while "
+                   "[overridebar] returned Y - the same contradiction that convicted "
+                   "[resting]. The API is resident, so the capture alone could not rule it "
+                   "out; asking the API and the conditional side by side did.",
+    "possessbar": "chat probe 2026-07-17: IsPossessBarVisible() returned false while "
+                  "[possessbar] returned Y - contradiction.",
+    "known": "chat probe 2026-07-17: [known:1] returned Y for a spell the character does not "
+             "have. (IsPlayerSpell is absent from the census; GetSpellInfo is resident, which "
+             "is why the mirrored-API join could not rule it out.)",
+}
+
+
+def subsystem_absent(base, live):
+    pat, why = SUBSYSTEM_PROBE.get(base, (None, None))
+    if not pat:
+        return None
+    found = sorted(n for n in live if re.search(pat, n))
+    return {"pattern": pat, "why": why, "apis_found": found, "absent": not found}
+
+
 # ---------------------------------------------------------------- the chat probe tier
 #
 # A SEPARATE, WEAKER EVIDENCE TIER than the landed capture. Kept separate on purpose:
@@ -255,7 +307,7 @@ def stamp_value(ctx, field):
     return truthy(c.get(field))
 
 
-def derive_flags(recs, apis):
+def derive_flags(recs, apis, live):
     order = [k for k in ("rest", "spell-form", "stealth", "combat", "mounted") if k in recs]
     flags = sorted(recs[order[0]]["record"]["flags"])
     # base -> its arg-siblings, so a false sibling can prove the BASE is evaluated
@@ -277,6 +329,7 @@ def derive_flags(recs, apis):
 
         wit, api = WITNESS.get(base, (None, None))
         mirrored = apis.get(f) or apis.get(base) or {}
+        subsys = subsystem_absent(base, live)
         wit_row = {c: stamp_value(recs[c], wit) for c in order} if wit else None
         contradiction = None
         if wit_row and not varies and vals == {"T"} and not any(wit_row.values()):
@@ -301,6 +354,14 @@ def derive_flags(recs, apis):
                 f"is absent, so there is nothing to evaluate - and unknown => ignored is "
                 f"PROVEN. Inference from two mechanical facts, not a direct observation.",
                 "high-inferred")
+        elif vals == {"T"} and subsys and subsys["absent"]:
+            verdict, why, conf = (
+                "UNSUPPORTED-IGNORED",
+                f"reads TRUE in every context, and the SUBSYSTEM it names is absent from this "
+                f"client (census: no API matching /{subsys['pattern']}/). {subsys['why']} "
+                f"Under proven ignore-semantics, a conditional naming a system that is not "
+                f"here and reading constant-TRUE is being ignored.",
+                "high-inferred")
         elif sibling_false:
             verdict, why, conf = ("SUPPORTED-TRUE",
                                   f"constant TRUE, but an arg-sibling of `{base}` reads FALSE "
@@ -310,6 +371,10 @@ def derive_flags(recs, apis):
             verdict, why, conf = ("SUPPORTED-TRUE",
                                   f"constant TRUE and its witness `{wit}` ({api}) is TRUE in "
                                   f"every context - corroborated", "medium")
+        elif vals == {"T"} and base in CHAT_CONVICTIONS:
+            verdict, why, conf = ("UNSUPPORTED-IGNORED", CHAT_CONVICTIONS[base],
+                                  "medium-CHAT-PROBE-TIER (hand-transcribed, not a landed "
+                                  "record - weaker provenance than the 5-context capture)")
         else:
             verdict, why, conf = ("AMBIGUOUS",
                                   "constant TRUE with no witness and no false sibling. On "
@@ -320,7 +385,8 @@ def derive_flags(recs, apis):
                   "confidence": conf, "by_context": row,
                   "witness_field": wit, "witness_api": api,
                   "witness_by_context": wit_row,
-                  "mirrored_api_resident": mirrored or None}
+                  "mirrored_api_resident": mirrored or None,
+                  "subsystem_probe": subsys}
     return out, order
 
 
@@ -402,8 +468,8 @@ def main():
     if len(recs) < 5:
         print(f"STOP: expected 5 context records, found {len(recs)}: {sorted(recs)}")
         sys.exit(2)
-    apis, _live = mirrored_apis()
-    flags, order = derive_flags(recs, apis)
+    apis, live = mirrored_apis()
+    flags, order = derive_flags(recs, apis, live)
     targets, passthrough, control = derive_targets(recs, order)
 
     from collections import Counter
@@ -506,6 +572,34 @@ def main():
                            "archive-documented is safe (53/53 supported).",
         },
         "CHAT_PROBE_FOLLOWUP": CHAT_PROBE,
+        "PVP_IS_INVISIBLE_TO_MACROS_HERE": {
+            "finding": "PVP state is RICHLY available to the API and NOT ONE macro conditional "
+                       "exposes it. A macro on this client CANNOT behave differently in PVP.",
+            "the_states_are_real": "Battlewrath, 2026-07-17: 'there is instanced PVP, Duels, "
+                                   "and then also engaging an enemy player.' Confirmed by the "
+                                   "census: UnitIsPVP · UnitIsPVPFreeForAll · "
+                                   "GetBattlefieldStatus · StartDuel · GetZonePVPInfo · "
+                                   "IsInInstance · UnitIsPlayer are ALL resident.",
+            "but_the_vocabulary_has_no_pvp": "the WotLK-era archive's Complete list contains NO "
+                                             "pvp conditional at all - its only PvP mention is "
+                                             "prose about /targetenemyplayer. The one "
+                                             "pvp-NAMED conditional, [pvpcombat], is 7.3.0 "
+                                             "(Legion) and means 'PvP talents are usable' - a "
+                                             "system this client does not have (census: ZERO "
+                                             "PvpTalent APIs). It is IGNORED.",
+            "so_the_only_combat_awareness_is": "[combat] - and it does NOT know who you are "
+                                               "fighting. No macro can distinguish PVP from "
+                                               "PVE on this client.",
+            "the_LAYER_lesson": "Battlewrath, 2026-07-17: 'It might have engine flags for "
+                                "different damage profiles. And deminishing returns are a "
+                                "thing. But both of those are gameplay concerns. Not macro "
+                                "form semantics.' Exactly - and this is the proof. The engine "
+                                "can hold as much PVP state as it likes; the parser only sees "
+                                "what was FLATTENED INTO A KEYWORD. A gameplay concern that "
+                                "was never flattened is invisible to the macro layer, no "
+                                "matter how real it is in the game. **Do not reason from "
+                                "gameplay to macro capability.**",
+        },
         "at_targets": {
             "control_row_SETTLED": passthrough,
             "finding": "[@banana] returned target='banana' in ALL FIVE contexts => `@` is a "
