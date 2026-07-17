@@ -20,9 +20,12 @@ _Last updated 2026-07-16 (the picker V1 session). The single "where are we" read
 
 - **A new root slice** (`macros/`, Battlewrath's call): the client's macro surface, sheets-model. **Lane file +
   forecast: `operations/Macros.md`** — read that, not this, for detail.
-- **`basis/` (5 domains, emitted, sha256-anchored):** commands + actions **SOURCED-COMPLETE**; `conditionals`
-  **EMPTY and honest** — `SecureCmdOptionParse` is C-side (called 49× in ChatFrame.lua, defined nowhere in Lua) and
-  the attested-usage seed measured **zero**. **Grain differs PER DOMAIN and each file says its own.**
+- **`basis/` (5 domains, emitted, sha256-anchored):** commands + actions **SOURCED-COMPLETE**; `conditionals` was
+  **EMPTY and honest** (C-side: `SecureCmdOptionParse` called 49× in ChatFrame.lua, defined nowhere in Lua;
+  attested-usage seed = zero) and is **now LIVE-PROVEN** — the emptiness was the correct state, and asking the client
+  was the only way out of it. **Grain differs PER DOMAIN and each file says its own.**
+  `conditionals.json` is now owned by `derive_verdicts.py`, NOT the emitter — the emitter used to clobber it back to
+  empty, silently, while printing success.
 - **`reference/` = the QUESTION register** (never basis): the citation chain + the 2 installed macro addons + the
   **local WA sheets** (`baseUnitId`/`multiUnitId` — stronger than any retail doc where they overlap). Rule: recall
   and secondary sources are **inadmissible as fact, admissible as a question** — the probe adjudicates.
