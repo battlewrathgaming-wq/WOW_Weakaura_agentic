@@ -1,0 +1,1213 @@
+{
+ "what": "THE ASK - every question the live probe puts to the client, with the method for reading each answer. Verdicts are null until the probe runs.",
+ "composed_by": "macros/tools/compose_probe.py",
+ "composed_at": "2026-07-17T02:44:53",
+ "from_register": {
+  "file": "macros/reference/candidates.json",
+  "candidates": 55,
+  "sources": [
+   "ascension-wiki-macros",
+   "wowwiki-archive-making-a-macro",
+   "wowpedia-making-a-macro",
+   "wowpedia-macro-conditionals"
+  ]
+ },
+ "verdict_matrix": {
+  "X=true,  noX=false": "PROVEN-TRUE     known, currently true",
+  "X=false, noX=true": "PROVEN-FALSE    known, currently false",
+  "X=false, noX=false": "UNSUPPORTED     parser rejects BOTH polarities",
+  "X=true,  noX=true": "IGNORED         both true => no-op / not evaluated"
+ },
+ "two_mechanisms": {
+  "why_this_matters": "`@unit` and `[flag]` are NOT the same mechanism and do NOT share a proof method. Conflating them is the easiest way to write a confident wrong guide.",
+  "@unit / target=": {
+   "mechanism": "HYPOTHESIS: a pass-through STRING. SecureCmdOptionParse appears to return whatever follows @; support lives DOWNSTREAM in the handler's own special-casing (/cast checks target=='cursor' -> Custom_HandleTerrainClick) and in unit resolution.",
+   "independent_support": "wowpedia/Macro_conditionals states '@unitId : Replace with any valid unitId' and '`target=` is also an alias for `@`' - a RETAIL doc describing the same pass-through shape the CoA handler code implies. Two directions, one hypothesis. Still a hypothesis.",
+   "consequence": "the polarity matrix does NOT apply; there is likely no [no@cursor].",
+   "probe_row_that_settles_it": "SecureCmdOptionParse(\"[@banana] X\") - if a nonsense unit returns target=\"banana\", @ is pass-through and the vocabulary question does not apply to it at all.",
+   "status": "HYPOTHESIS - not asserted. One probe row settles it."
+  },
+  "[flag]": {
+   "mechanism": "actually EVALUATED by the C parser (combat, mod:shift, group, ...).",
+   "consequence": "THIS is the vocabulary question, and what the polarity matrix is for."
+  },
+  "name_collision_worth_knowing": "[cursor] (a FLAG - 'what the cursor is holding', per wowwiki-archive) is NOT @cursor (a TARGET - Ascension's terrain-click). Same word, two mechanisms."
+ },
+ "control_row": {
+  "ask": "@banana",
+  "why": "decides how to read ALL 13 target rows. If a nonsense unit returns target='banana', @ is a PASS-THROUGH string and the vocabulary question does not apply to targets at all. Run and read this FIRST."
+ },
+ "standing_limits": {
+  "asked_only": "A probe proves only what it ASKS. This ask-list came from the wiki chain, so the rim stays OPEN - the output is a proven set with an honest rim, NEVER an enumeration.",
+  "true_of_the_moment": "A verdict is true of the CONTEXT it ran in. PROVEN-FALSE means 'false right now', not 'unsupported' - the pair separates those. But context-bound flags (flying, mounted, indoors, combat, stance:N) want a SECOND run in a different context to be meaningful.",
+  "absence_proves_nothing": "A conditional no wiki lists is UN-ASKED, not unsupported. Demonstrated mechanically: ['@pettarget'] witnessed in this client's own Lua and in NO wiki."
+ },
+ "counts": {
+  "rows": 76,
+  "flag_rows": 63,
+  "target_rows": 13,
+  "by_priority": {
+   "1-backport-test": 13,
+   "2-baseline": 59,
+   "3-corroborate": 4
+  }
+ },
+ "rows": [
+  {
+   "ask": "actionbar",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "actionbar",
+    "noactionbar"
+   ],
+   "base": "actionbar",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "actionbar:1",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "actionbar:1",
+    "noactionbar:1"
+   ],
+   "base": "actionbar",
+   "arg": "1",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "actionbar:6",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "actionbar:6",
+    "noactionbar:6"
+   ],
+   "base": "actionbar",
+   "arg": "6",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "advflyable",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "advflyable",
+    "noadvflyable"
+   ],
+   "base": "advflyable",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "verdict": null
+  },
+  {
+   "ask": "bar",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "bar",
+    "nobar"
+   ],
+   "base": "bar",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "bar:1",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "bar:1",
+    "nobar:1"
+   ],
+   "base": "bar",
+   "arg": "1",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "bar:6",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "bar:6",
+    "nobar:6"
+   ],
+   "base": "bar",
+   "arg": "6",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "bonusbar",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "bonusbar",
+    "nobonusbar"
+   ],
+   "base": "bonusbar",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "bonusbar:5",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "bonusbar:5",
+    "nobonusbar:5"
+   ],
+   "base": "bonusbar",
+   "arg": "5",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "btn",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "btn",
+    "nobtn"
+   ],
+   "base": "btn",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "button",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "button",
+    "nobutton"
+   ],
+   "base": "button",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "canexitvehicle",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "canexitvehicle",
+    "nocanexitvehicle"
+   ],
+   "base": "canexitvehicle",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "verdict": null
+  },
+  {
+   "ask": "channeling",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "channeling",
+    "nochanneling"
+   ],
+   "base": "channeling",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "combat",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "combat",
+    "nocombat"
+   ],
+   "base": "combat",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "cursor",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "cursor",
+    "nocursor"
+   ],
+   "base": "cursor",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "dead",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "dead",
+    "nodead"
+   ],
+   "base": "dead",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "equipped",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "equipped",
+    "noequipped"
+   ],
+   "base": "equipped",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "exists",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "exists",
+    "noexists"
+   ],
+   "base": "exists",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "extrabar",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "extrabar",
+    "noextrabar"
+   ],
+   "base": "extrabar",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "verdict": null
+  },
+  {
+   "ask": "flyable",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "flyable",
+    "noflyable"
+   ],
+   "base": "flyable",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "flying",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "flying",
+    "noflying"
+   ],
+   "base": "flying",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "form",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "form",
+    "noform"
+   ],
+   "base": "form",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "form:0",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "form:0",
+    "noform:0"
+   ],
+   "base": "form",
+   "arg": "0",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "form:n",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "form:n",
+    "noform:n"
+   ],
+   "base": "form",
+   "arg": "n",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "group",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "group",
+    "nogroup"
+   ],
+   "base": "group",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "group:party",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "group:party",
+    "nogroup:party"
+   ],
+   "base": "group",
+   "arg": "party",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "group:raid",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "group:raid",
+    "nogroup:raid"
+   ],
+   "base": "group",
+   "arg": "raid",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "harm",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "harm",
+    "noharm"
+   ],
+   "base": "harm",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "help",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "help",
+    "nohelp"
+   ],
+   "base": "help",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "indoors",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "indoors",
+    "noindoors"
+   ],
+   "base": "indoors",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "known",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "known",
+    "noknown"
+   ],
+   "base": "known",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "verdict": null
+  },
+  {
+   "ask": "mod",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "mod",
+    "nomod"
+   ],
+   "base": "mod",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "mod:shift",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "mod:shift",
+    "nomod:shift"
+   ],
+   "base": "mod",
+   "arg": "shift",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "mod:ctrl",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "mod:ctrl",
+    "nomod:ctrl"
+   ],
+   "base": "mod",
+   "arg": "ctrl",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "mod:alt",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "mod:alt",
+    "nomod:alt"
+   ],
+   "base": "mod",
+   "arg": "alt",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "modifier",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "modifier",
+    "nomodifier"
+   ],
+   "base": "modifier",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "modifier:shift",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "modifier:shift",
+    "nomodifier:shift"
+   ],
+   "base": "modifier",
+   "arg": "shift",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "modifier:ctrl",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "modifier:ctrl",
+    "nomodifier:ctrl"
+   ],
+   "base": "modifier",
+   "arg": "ctrl",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "modifier:alt",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "modifier:alt",
+    "nomodifier:alt"
+   ],
+   "base": "modifier",
+   "arg": "alt",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "mounted",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "mounted",
+    "nomounted"
+   ],
+   "base": "mounted",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "outdoors",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "outdoors",
+    "nooutdoors"
+   ],
+   "base": "outdoors",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "overridebar",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "overridebar",
+    "nooverridebar"
+   ],
+   "base": "overridebar",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "verdict": null
+  },
+  {
+   "ask": "party",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "party",
+    "noparty"
+   ],
+   "base": "party",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "pet",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "pet",
+    "nopet"
+   ],
+   "base": "pet",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "petbattle",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "petbattle",
+    "nopetbattle"
+   ],
+   "base": "petbattle",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "verdict": null
+  },
+  {
+   "ask": "possessbar",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "possessbar",
+    "nopossessbar"
+   ],
+   "base": "possessbar",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "verdict": null
+  },
+  {
+   "ask": "pvpcombat",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "pvpcombat",
+    "nopvpcombat"
+   ],
+   "base": "pvpcombat",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "verdict": null
+  },
+  {
+   "ask": "raid",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "raid",
+    "noraid"
+   ],
+   "base": "raid",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "resting",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "resting",
+    "noresting"
+   ],
+   "base": "resting",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "verdict": null
+  },
+  {
+   "ask": "shapeshift",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "shapeshift",
+    "noshapeshift"
+   ],
+   "base": "shapeshift",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "verdict": null
+  },
+  {
+   "ask": "spec",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "spec",
+    "nospec"
+   ],
+   "base": "spec",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "spec:1",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "spec:1",
+    "nospec:1"
+   ],
+   "base": "spec",
+   "arg": "1",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "spec:2",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "spec:2",
+    "nospec:2"
+   ],
+   "base": "spec",
+   "arg": "2",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "stance",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "stance",
+    "nostance"
+   ],
+   "base": "stance",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "stance:0",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "stance:0",
+    "nostance:0"
+   ],
+   "base": "stance",
+   "arg": "0",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "stance:1",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "stance:1",
+    "nostance:1"
+   ],
+   "base": "stance",
+   "arg": "1",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "stance:2",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "stance:2",
+    "nostance:2"
+   ],
+   "base": "stance",
+   "arg": "2",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "stance:n",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "stance:n",
+    "nostance:n"
+   ],
+   "base": "stance",
+   "arg": "n",
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "stealth",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "stealth",
+    "nostealth"
+   ],
+   "base": "stealth",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "swimming",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "swimming",
+    "noswimming"
+   ],
+   "base": "swimming",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "unithasvehicleui",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "unithasvehicleui",
+    "nounithasvehicleui"
+   ],
+   "base": "unithasvehicleui",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "vehicleui",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "vehicleui",
+    "novehicleui"
+   ],
+   "base": "vehicleui",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "worn",
+   "kind": "flag",
+   "method": "polarity-pair",
+   "clauses": [
+    "worn",
+    "noworn"
+   ],
+   "base": "worn",
+   "arg": null,
+   "era_signal": "wotlk-era-baseline",
+   "priority": "2-baseline",
+   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "verdict": null
+  },
+  {
+   "ask": "@cursor",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@cursor"
+   ],
+   "base": "@cursor",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1064",
+    "Interface/FrameXML/ChatFrame.lua:1110",
+    "Interface/FrameXML/ChatFrame.lua:1158"
+   ],
+   "verdict": null
+  },
+  {
+   "ask": "@focus",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@focus"
+   ],
+   "base": "@focus",
+   "arg": null,
+   "era_signal": "ascension-claimed",
+   "priority": "3-corroborate",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1382"
+   ],
+   "verdict": null
+  },
+  {
+   "ask": "@mouseover",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@mouseover"
+   ],
+   "base": "@mouseover",
+   "arg": null,
+   "era_signal": "ascension-claimed",
+   "priority": "2-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@none",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@none"
+   ],
+   "base": "@none",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@party1",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@party1"
+   ],
+   "base": "@party1",
+   "arg": null,
+   "era_signal": "ascension-claimed",
+   "priority": "2-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@party4",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@party4"
+   ],
+   "base": "@party4",
+   "arg": null,
+   "era_signal": "ascension-claimed",
+   "priority": "2-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@pet",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@pet"
+   ],
+   "base": "@pet",
+   "arg": null,
+   "era_signal": "ascension-claimed",
+   "priority": "2-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@pettarget",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@pettarget"
+   ],
+   "base": "@pettarget",
+   "arg": null,
+   "era_signal": "NOT-IN-ANY-WIKI",
+   "priority": "3-corroborate",
+   "expect_note": "found ONLY in this client's own Lua. No wiki mentions it - which is why a wiki's absence proves nothing.",
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1471"
+   ],
+   "verdict": null
+  },
+  {
+   "ask": "@player",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@player"
+   ],
+   "base": "@player",
+   "arg": null,
+   "era_signal": "ascension-claimed",
+   "priority": "3-corroborate",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1070",
+    "Interface/FrameXML/ChatFrame.lua:1116",
+    "Interface/FrameXML/ChatFrame.lua:1164"
+   ],
+   "verdict": null
+  },
+  {
+   "ask": "@raid1",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@raid1"
+   ],
+   "base": "@raid1",
+   "arg": null,
+   "era_signal": "ascension-claimed",
+   "priority": "2-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@raid40",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@raid40"
+   ],
+   "base": "@raid40",
+   "arg": null,
+   "era_signal": "ascension-claimed",
+   "priority": "2-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@target",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@target"
+   ],
+   "base": "@target",
+   "arg": null,
+   "era_signal": "ascension-claimed",
+   "priority": "3-corroborate",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1045",
+    "Interface/FrameXML/ChatFrame.lua:1277",
+    "Interface/FrameXML/ChatFrame.lua:1287"
+   ],
+   "verdict": null
+  },
+  {
+   "ask": "@unitId",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@unitId"
+   ],
+   "base": "@unitId",
+   "arg": null,
+   "era_signal": "post-wotlk",
+   "priority": "1-backport-test",
+   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "source_witness": null,
+   "verdict": null
+  }
+ ]
+}

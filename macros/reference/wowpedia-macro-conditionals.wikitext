@@ -1,0 +1,127 @@
+{{Macro API}}{{tocright}}
+This page lists '''macro conditionals''', keywords used with [[macro commands]], the [[RestrictedEnvironment]] and the [[SecureStateDriver]] API to allow limited logic for player convenience without trivializing the game.
+
+Refer to [[secure command options]] for syntax and [[making a macro]] for a tutorial.
+
+== Temporary targeting ==
+ /cast [@focus] Counterspell
+The following keywords ''temporarily'' assign a target that the macro command will act on.  This only applies to a single action; it does not change the player's selected target.
+; @unitId : Replace with any valid [[unitId]] (@player, @target, @focus, @mouseover, etc.)
+; @cursor : Immediately targets the ground under the cursor.
+; @none : Interupts auto self-cast and requires a targeting cursor.
+
+<code>target=</code> is also an alias for <code>@</code>. However, despite the name, this still only affects a single macro command without changing the player's target.
+
+== Boolean conditions ==
+ /cast [dead] Resurrection; Heal
+All other conditionals evaluate as either true to execute the macro command, or false to skip it.  The <code>no</code> prefix reverses this (ie, ''nodead'' means alive).
+
+The following tables categorize each boolean condition by whether it evaluates the state of any target, only the player, or the user interface.
+
+
+{| class="darktable zebra"
+|+ Evaluated against the temporary target (default: @target)
+! style="width:20em;" | Macro Conditional
+! Similar API
+! Description
+|-
+| '''exists''' || {{api|UnitExists()}} || The unit exists
+|-
+| '''help''', '''harm''' || {{api|UnitCanAssist()}} and {{api|UnitCanAttack()}} || The unit exists and can be targeted by helpful/harmful spells
+|-
+| '''dead''' || {{api|UnitIsDeadOrGhost()}} || The unit exists and is dead
+|-
+| '''party''', '''raid''' || {{api|UnitInParty()}} and {{api|UnitInRaid()}} || The unit exists and is in your party/raid (party excludes self)
+|-
+| '''unithasvehicleui''' || {{api|UnitInVehicle()}} || The unit exists and is in a vehicle
+|}
+
+
+{| class="darktable zebra"
+|+ Evaluated against the player only (always @player)
+! style="width:20em;" | Macro Conditional
+! Similar API
+! Description
+|-
+| '''advflyable''' || {{api|IsAdvancedFlyableArea()}} || Player is located in an area that supports advanced flying (ie, [[Dragonriding]])
+|-
+| '''canexitvehicle''' || {{api|CanExitVehicle()}} || In a vehicle and able to exit
+|-
+| '''channeling''', channeling:spellName || {{api|UnitChannelInfo("player")}} and {{wow-inline}}{{api|ChannelInfo()}} || Channeling any spell, or a certain spell
+|-
+| '''combat''' || {{api|InCombatLockdown}} or {{api|UnitAffectingCombat("player")}} || In combat
+|-
+| '''equipped''':type, '''worn''':type || {{api|IsEquippedItemType(type)}} || Refer to [[itemType]] for possible types (ie, weapon) and subtypes (ie, sword)
+|-
+| '''flyable''' || {{api|IsFlyableArea()}} || Unreliable in [[Wintergrasp]]
+|-
+| '''flying''' || {{api|IsFlying()}} || Mounted or flight form, and in the air
+|-
+| '''form''':n, '''stance''':n || {{api|GetShapeshiftForm()}} || Refer to {{api|GetShapeshiftForm}} for possible values
+|-
+| '''group''', group:party, group:raid || {{api|IsInGroup()}} and {{api|IsInRaid()}} || Self-explanatory
+|-
+| '''indoors''', '''outdoors''' || {{api|IsIndoors()}} and {{api|IsOutdoors()}} || Self-explanatory
+|-
+| '''known''':name, known:spellID || {{api|GetSpellInfo(name)}} or {{api|IsPlayerSpell(spellID)}} || Also works with #showtooltip
+|-
+| '''mounted''' || {{api|IsMounted()}} || Self-explanatory
+|-
+| '''pet''':name, pet:family || {{api|UnitCreatureFamily("pet")}} || Using a [[hunter pet]] by {{api|UnitName|name}} or {{api|UnitCreatureFamily|family}}
+|-
+| '''petbattle''' || {{api|C_PetBattles.IsInBattle()}} || In a pet battle
+|-
+| '''pvpcombat''' ||  || PvP talents are usable
+|-
+| '''resting''' || {{api|IsResting()}} || In a rested zone
+|-
+| '''spec''':n, spec:n1/n2 || {{api|GetSpecialization()}}||Activated the n'th (or any of n1, n2) spec
+|-
+|'''stealth'''||{{api|IsStealthed()}}||Self-explanatory
+|-
+|'''swimming'''||{{api|IsSubmerged()}}||Self-explanatory
+|}
+
+
+{| class="darktable zebra"
+|+Evaluated against the user interface (action bars, keyboard, mouse)
+! style="width:20em;" |Macro Conditional
+!Similar API
+! Description
+|-
+|'''actionbar''':n, '''bar''':n, or bar:n1/n2/...||{{api|GetActionBarPage()}}||The n'th (or any of n1, n2, ...) action bar page appears
+|-
+|'''bonusbar''', bonusbar:n||{{api|HasBonusActionBar()}}||The bonus action bar is visible; see
+|-
+| '''button''':n, '''btn''':n1/n2/..., btn:<virtual click>||{{api|t=wh|OnClick}}||The mouse button used as left (1), right (2), middle (3), extra (4, 5, ...) or {{api|t=w|Button:Click|virtual}}
+|-
+|'''cursor'''||{{api|GetCursorInfo()}}||Dragging an action button (item, spell, macro, etc.)
+|-
+|'''extrabar'''||{{api|HasExtraActionBar()}}||An extra action bar/button is visible
+|-
+|'''modifier''', '''mod''', mod:key, mod:action||{{api|IsModifierKeyDown()}} or {{api|IsModifiedClick(action)}}||Accepts shift, ctrl, alt, lshift, rshift, ..., and any action title
+|-
+|'''overridebar'''||{{api|HasOverrideActionBar()}}||The override bar is replacing the main action bar
+|-
+|'''possessbar'''||{{api|IsPossessBarVisible()}}||The possess bar is visible
+|-
+| '''shapeshift'''||{{api|HasTempShapeshiftActionBar()}}||The temporary shapeshift action bar is replacing the main action bar
+|-
+|'''vehicleui'''||{{api|HasVehicleActionBar()}}||The vehicle UI is active
+|}
+
+==Patch changes==
+*{{Patch 10.0.7|note="advflyable" conditional added.}}
+*{{Patch 10.0.2|note="known" conditional added.<ref>{{ref web|author=Blizzard Entertainment|title=Dragonflight Pre-Expansion Phase 2 Update Notes|url=https://worldofwarcraft.com/en-us/news/23874318/updated-nov-15-dragonflight-pre-expansion-phase-2-update-notes#item11|date=2022-11-15}}</ref>}}
+*{{Patch 10.0.0|note="talent" conditional removed.}}
+*{{Patch 7.3.0|note="pvpcombat" conditional added.}}
+*{{Patch 7.1.0|note=@cursor added.<ref>{{ref web|url=https://worldofwarcraft.com/en-us/news/20335228/patch-notes-world-of-warcraft-71-return-to-karazhan#ui|author=Blizzard Entertainment|title=Patch Notes: World of Warcraft 7.1: Return to Karazhan|date=2017-11-24}}</ref>}}
+*{{Patch 6.0.2|note="talent" conditional added.}}
+*{{Patch 2.3.0|note=Several conditions and shorthand alternatives added.<ref name="2.3.0">{{ref web|author=Iriel and {{Blizz}}[[slouken]]|url=http://blue.cardplace.com/newcache/us/879058320.htm|title=Re: Upcoming 2.3 Changes - Concise List|date=2007-08-08}}</ref>}}
+*{{Patch 2.0.1|note=Added.<ref>{{ref web|author={{Blizz}}[[slouken]]|url=http://forums.worldofwarcraft.com/thread.html?topicId=36975623&pageNo=8&sid=1#142|archiveurl=http://blue.cardplace.com/newcache/forums.worldofwarcraft.com/36975623.htm|title=Re: 2.0 Changes - Concise List (New)|date=2006-11-06}}</ref>}}
+
+==References==
+{{Reflist}}
+
+[[Category:Macros]] 
+[[Category:UI technical details]]

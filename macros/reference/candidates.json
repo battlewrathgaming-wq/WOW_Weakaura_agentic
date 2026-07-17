@@ -1,0 +1,2006 @@
+{
+ "what": "THE QUESTION REGISTER - every candidate conditional + its PROOF MARK. This is the probe's ask-list, not a fact table.",
+ "NOT_A_FACT_SOURCE": "Nothing here is a fact about the CoA client. Every entry is a QUESTION until a probe verdict replaces its proof_mark. Do not cite reference/ as basis/.",
+ "why_allowed": "Recall and secondary sources are inadmissible as a FACT source but admissible as a QUESTION source, because the probe adjudicates. A wrong candidate costs one probe row reading 'unsupported'. A wrong fact poisons the basis silently.",
+ "absence_proves_nothing": "A conditional no wiki lists is UN-ASKED, not unsupported. Demonstrated mechanically: ['@pettarget'] witnessed in this client's own Lua and in NO wiki.",
+ "proof_marks": {
+  "UNPROVEN": "claimed by a secondary source; NO witness of any kind on this client. A question, nothing more.",
+  "SOURCE-CORROBORATED": "the client's own Lua witnesses the token (a handler compares the parser's returned target to it). Handler-side only, and target tokens only - never flags. Still wants the probe.",
+  "PROVEN-TRUE": "probe: known and currently true. [PROBE WRITES THIS]",
+  "PROVEN-FALSE": "probe: known and currently false. [PROBE WRITES THIS]",
+  "UNSUPPORTED": "probe: parser rejects both polarities. [PROBE WRITES THIS]",
+  "IGNORED": "probe: both polarities true => no-op. [PROBE WRITES THIS]"
+ },
+ "two_mechanisms": {
+  "why_this_matters": "`@unit` and `[flag]` are NOT the same mechanism and do NOT share a proof method. Conflating them is the easiest way to write a confident wrong guide.",
+  "@unit / target=": {
+   "mechanism": "HYPOTHESIS: a pass-through STRING. SecureCmdOptionParse appears to return whatever follows @; support lives DOWNSTREAM in the handler's own special-casing (/cast checks target=='cursor' -> Custom_HandleTerrainClick) and in unit resolution.",
+   "independent_support": "wowpedia/Macro_conditionals states '@unitId : Replace with any valid unitId' and '`target=` is also an alias for `@`' - a RETAIL doc describing the same pass-through shape the CoA handler code implies. Two directions, one hypothesis. Still a hypothesis.",
+   "consequence": "the polarity matrix does NOT apply; there is likely no [no@cursor].",
+   "probe_row_that_settles_it": "SecureCmdOptionParse(\"[@banana] X\") - if a nonsense unit returns target=\"banana\", @ is pass-through and the vocabulary question does not apply to it at all.",
+   "status": "HYPOTHESIS - not asserted. One probe row settles it."
+  },
+  "[flag]": {
+   "mechanism": "actually EVALUATED by the C parser (combat, mod:shift, group, ...).",
+   "consequence": "THIS is the vocabulary question, and what the polarity matrix is for."
+  },
+  "name_collision_worth_knowing": "[cursor] (a FLAG - 'what the cursor is holding', per wowwiki-archive) is NOT @cursor (a TARGET - Ascension's terrain-click). Same word, two mechanisms."
+ },
+ "era_signal_legend": {
+  "wotlk-era-baseline": "in the 2018 wowwiki-archive => expected on a 3.3.5a base",
+  "post-wotlk": "retail-only => a BACKPORT TEST (this client backports freely)",
+  "ascension-claimed": "only the Ascension wiki says so",
+  "NOT-IN-ANY-WIKI": "only this client's own source says so"
+ },
+ "sources": {
+  "ascension-wiki-macros": {
+   "standing": "SECONDARY - the server's own guide; inherits its conditional list from the retail wikis below (see its Resources section)",
+   "era": "ascension",
+   "format": "fandom-table",
+   "provenance": {
+    "url": "https://project-ascension.fandom.com/wiki/Macros",
+    "pageid": 4463,
+    "revid": 15818,
+    "revision_timestamp": "2025-11-05T13:14:45Z",
+    "revision_user": "Tura0763",
+    "raw_file": "ascension-wiki-macros.wikitext",
+    "raw_sha256": "e1d2f0af765411c8c278866b5732ced8bc283240819743139dcef7b46e3b9000",
+    "raw_chars": 7342
+   },
+   "candidate_count": 68
+  },
+  "wowwiki-archive-making-a-macro": {
+   "standing": "SECONDARY (retail) - frozen 2018, documents spell RANKS => WotLK-era; closest external match to a 3.3.5a client. Carries a COMPLETENESS CLAIM for ITS era, which is not a claim about CoA.",
+   "era": "wotlk-era",
+   "format": "bold-bullets",
+   "provenance": {
+    "url": "https://wowwiki-archive.fandom.com/wiki/Making_a_macro",
+    "pageid": 17861,
+    "revid": 2846334,
+    "revision_timestamp": "2018-07-03T14:38:44Z",
+    "revision_user": "Cronje",
+    "raw_file": "wowwiki-archive-making-a-macro.wikitext",
+    "raw_sha256": "9f2a266807b55b28ecde48bab4cac577432e3e2d8a33d51b29f170a51442c373",
+    "raw_chars": 71740
+   },
+   "candidate_count": 32
+  },
+  "wowpedia-making-a-macro": {
+   "standing": "SECONDARY (retail) - cited by the Ascension wiki; delegates its conditional list to Macro_conditionals",
+   "era": "retail-2021",
+   "format": "delegates",
+   "provenance": {
+    "url": "https://wowpedia.fandom.com/wiki/Making_a_macro",
+    "pageid": 17861,
+    "revid": 6268592,
+    "revision_timestamp": "2021-11-16T14:29:26Z",
+    "revision_user": "Nearthel",
+    "raw_file": "wowpedia-making-a-macro.wikitext",
+    "raw_sha256": "5ed7dc2b2cd0c5ede6491e16569c7ad257c4f8bbcb1236c763507ef6f6e1120b",
+    "raw_chars": 49612
+   },
+   "candidate_count": 0
+  },
+  "wowpedia-macro-conditionals": {
+   "standing": "SECONDARY (retail) - the delegation target of the cited page",
+   "era": "retail-2021",
+   "format": "deflist",
+   "provenance": {
+    "url": "https://wowpedia.fandom.com/wiki/Macro_conditionals",
+    "pageid": 352192,
+    "revid": 6764422,
+    "revision_timestamp": "2023-06-29T01:23:36Z",
+    "revision_user": "Jiburley",
+    "raw_file": "wowpedia-macro-conditionals.wikitext",
+    "raw_sha256": "67e91192448e85bb3e7a0876872d6a1f342d934171b21946f35ba81fe2f6c5d6",
+    "raw_chars": 6915
+   },
+   "candidate_count": 45
+  }
+ },
+ "counts": {
+  "total": 55,
+  "by_era": {
+   "wotlk-era-baseline": 32,
+   "post-wotlk": 13,
+   "ascension-claimed": 9,
+   "NOT-IN-ANY-WIKI": 1
+  },
+  "by_kind": {
+   "flag": 42,
+   "unit-target": 13
+  },
+  "by_proof_mark": {
+   "UNPROVEN": 50,
+   "SOURCE-CORROBORATED": 5
+  }
+ },
+ "grammar_claims": [
+  {
+   "claim": "clauses evaluate in order; the FIRST true one wins",
+   "from": "ascension-wiki-macros"
+  },
+  {
+   "claim": "`;` separates alternative clauses",
+   "from": "ascension-wiki-macros"
+  },
+  {
+   "claim": "/castsequence takes a `reset=` parameter",
+   "from": "ascension-wiki-macros"
+  },
+  {
+   "claim": "#show/#showtooltip accept conditionals too",
+   "from": "ascension-wiki-macros"
+  },
+  {
+   "claim": "`,` = AND within one clause",
+   "from": "wowwiki-archive-making-a-macro"
+  },
+  {
+   "claim": "`no` prefix negates a flag",
+   "from": "wowwiki-archive-making-a-macro"
+  },
+  {
+   "claim": "/castsequence takes a `reset=` parameter",
+   "from": "wowwiki-archive-making-a-macro"
+  },
+  {
+   "claim": "#show/#showtooltip accept conditionals too",
+   "from": "wowwiki-archive-making-a-macro"
+  },
+  {
+   "claim": "`@unit`/`target=` is resolved FIRST, before the other conditionals",
+   "from": "wowwiki-archive-making-a-macro"
+  },
+  {
+   "claim": "`@unit` also sets the unit the OTHER conditionals are checked against",
+   "from": "wowwiki-archive-making-a-macro"
+  },
+  {
+   "claim": "`/` = OR inside an argument (e.g. mod:shift/ctrl)",
+   "from": "wowwiki-archive-making-a-macro"
+  },
+  {
+   "claim": "`,` = AND within one clause",
+   "from": "wowpedia-making-a-macro"
+  },
+  {
+   "claim": "/castsequence takes a `reset=` parameter",
+   "from": "wowpedia-making-a-macro"
+  },
+  {
+   "claim": "#show/#showtooltip accept conditionals too",
+   "from": "wowpedia-making-a-macro"
+  },
+  {
+   "claim": "`@unit`/`target=` is resolved FIRST, before the other conditionals",
+   "from": "wowpedia-making-a-macro"
+  },
+  {
+   "claim": "`/` = OR inside an argument (e.g. mod:shift/ctrl)",
+   "from": "wowpedia-making-a-macro"
+  },
+  {
+   "claim": "`no` prefix negates a flag",
+   "from": "wowpedia-macro-conditionals"
+  },
+  {
+   "claim": "#show/#showtooltip accept conditionals too",
+   "from": "wowpedia-macro-conditionals"
+  },
+  {
+   "claim": "`target=` is an alias for `@`",
+   "from": "wowpedia-macro-conditionals"
+  },
+  {
+   "claim": "`@unitId` takes ANY valid unitId => supports the PASS-THROUGH hypothesis",
+   "from": "wowpedia-macro-conditionals"
+  }
+ ],
+ "candidates": {
+  "@cursor": {
+   "token": "@cursor",
+   "kind": "unit-target",
+   "base": "@cursor",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "",
+     "revid": 15818,
+     "as_written": "@cursor"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Immediately targets the ground under the cursor.",
+     "revid": 6764422,
+     "as_written": "@cursor"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1064",
+    "Interface/FrameXML/ChatFrame.lua:1110",
+    "Interface/FrameXML/ChatFrame.lua:1158"
+   ],
+   "proof_mark": "SOURCE-CORROBORATED",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@cursor]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "@focus": {
+   "token": "@focus",
+   "kind": "unit-target",
+   "base": "@focus",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Casts on your focus target",
+     "revid": 15818,
+     "as_written": "@focus"
+    }
+   ],
+   "era_signal": "ascension-claimed",
+   "negation_documented": false,
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1382"
+   ],
+   "proof_mark": "SOURCE-CORROBORATED",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@focus]"
+   ],
+   "era_note": "claimed only by the Ascension wiki"
+  },
+  "@mouseover": {
+   "token": "@mouseover",
+   "kind": "unit-target",
+   "base": "@mouseover",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Casts on the unit your mouse is hovering over",
+     "revid": 15818,
+     "as_written": "@mouseover"
+    }
+   ],
+   "era_signal": "ascension-claimed",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@mouseover]"
+   ],
+   "era_note": "claimed only by the Ascension wiki"
+  },
+  "@none": {
+   "token": "@none",
+   "kind": "unit-target",
+   "base": "@none",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Interupts auto self-cast and requires a targeting cursor.",
+     "revid": 6764422,
+     "as_written": "@none"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@none]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "@party1": {
+   "token": "@party1",
+   "kind": "unit-target",
+   "base": "@party1",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Casts on specific party members (group order)",
+     "revid": 15818,
+     "as_written": "@party1"
+    }
+   ],
+   "era_signal": "ascension-claimed",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@party1]"
+   ],
+   "era_note": "claimed only by the Ascension wiki"
+  },
+  "@party4": {
+   "token": "@party4",
+   "kind": "unit-target",
+   "base": "@party4",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Casts on specific party members (group order)",
+     "revid": 15818,
+     "as_written": "@party4"
+    }
+   ],
+   "era_signal": "ascension-claimed",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@party4]"
+   ],
+   "era_note": "claimed only by the Ascension wiki"
+  },
+  "@pet": {
+   "token": "@pet",
+   "kind": "unit-target",
+   "base": "@pet",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Casts on your pet",
+     "revid": 15818,
+     "as_written": "@pet"
+    }
+   ],
+   "era_signal": "ascension-claimed",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@pet]"
+   ],
+   "era_note": "claimed only by the Ascension wiki"
+  },
+  "@pettarget": {
+   "token": "@pettarget",
+   "kind": "unit-target",
+   "base": "@pettarget",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [],
+   "era_signal": "NOT-IN-ANY-WIKI",
+   "era_note": "found ONLY in this client's own Lua - no wiki mentions it. Proof that a wiki's ABSENCE proves nothing.",
+   "negation_documented": false,
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1471"
+   ],
+   "proof_mark": "SOURCE-CORROBORATED",
+   "probe_method": "pass-through test",
+   "probe_rows": [
+    "[@pettarget]"
+   ]
+  },
+  "@player": {
+   "token": "@player",
+   "kind": "unit-target",
+   "base": "@player",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Casts on yourself",
+     "revid": 15818,
+     "as_written": "@player"
+    }
+   ],
+   "era_signal": "ascension-claimed",
+   "negation_documented": false,
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1070",
+    "Interface/FrameXML/ChatFrame.lua:1116",
+    "Interface/FrameXML/ChatFrame.lua:1164"
+   ],
+   "proof_mark": "SOURCE-CORROBORATED",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@player]"
+   ],
+   "era_note": "claimed only by the Ascension wiki"
+  },
+  "@raid1": {
+   "token": "@raid1",
+   "kind": "unit-target",
+   "base": "@raid1",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Casts on specific raid members",
+     "revid": 15818,
+     "as_written": "@raid1"
+    }
+   ],
+   "era_signal": "ascension-claimed",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@raid1]"
+   ],
+   "era_note": "claimed only by the Ascension wiki"
+  },
+  "@raid40": {
+   "token": "@raid40",
+   "kind": "unit-target",
+   "base": "@raid40",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Casts on specific raid members",
+     "revid": 15818,
+     "as_written": "@raid40"
+    }
+   ],
+   "era_signal": "ascension-claimed",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@raid40]"
+   ],
+   "era_note": "claimed only by the Ascension wiki"
+  },
+  "@target": {
+   "token": "@target",
+   "kind": "unit-target",
+   "base": "@target",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Casts on your current target",
+     "revid": 15818,
+     "as_written": "@target"
+    }
+   ],
+   "era_signal": "ascension-claimed",
+   "negation_documented": false,
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1045",
+    "Interface/FrameXML/ChatFrame.lua:1277",
+    "Interface/FrameXML/ChatFrame.lua:1287"
+   ],
+   "proof_mark": "SOURCE-CORROBORATED",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@target]"
+   ],
+   "era_note": "claimed only by the Ascension wiki"
+  },
+  "@unitId": {
+   "token": "@unitId",
+   "kind": "unit-target",
+   "base": "@unitId",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Replace with any valid [[unitId]] (@player, @target, @focus, @mouseover, etc.)",
+     "revid": 6764422,
+     "as_written": "@unitId"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@unitId]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "actionbar": {
+   "token": "actionbar",
+   "kind": "flag",
+   "base": "actionbar",
+   "arg_forms": [
+    "1",
+    "6"
+   ],
+   "aliases": [
+    "bar"
+   ],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Given action bar page is selected",
+     "revid": 2846334,
+     "as_written": "actionbar:1/.../6"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The n'th (or any of n1, n2, ...) action bar page appears (similar API: api|GetActionBarPage())",
+     "revid": 6764422,
+     "as_written": "actionbar"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[actionbar]",
+    "[noactionbar]",
+    "[actionbar:1]",
+    "[noactionbar:1]",
+    "[actionbar:6]",
+    "[noactionbar:6]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "advflyable": {
+   "token": "advflyable",
+   "kind": "flag",
+   "base": "advflyable",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Player is located in an area that supports advanced flying (ie, [[Dragonriding]]) (similar API: api|IsAdvancedFlyableArea())",
+     "revid": 6764422,
+     "as_written": "advflyable"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[advflyable]",
+    "[noadvflyable]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "bar": {
+   "token": "bar",
+   "kind": "flag",
+   "base": "bar",
+   "arg_forms": [
+    "1",
+    "6"
+   ],
+   "aliases": [
+    "actionbar"
+   ],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Given action bar page is selected",
+     "revid": 2846334,
+     "as_written": "bar:1/.../6"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The n'th (or any of n1, n2, ...) action bar page appears (similar API: api|GetActionBarPage())",
+     "revid": 6764422,
+     "as_written": "bar"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[bar]",
+    "[nobar]",
+    "[bar:1]",
+    "[nobar:1]",
+    "[bar:6]",
+    "[nobar:6]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "bonusbar": {
+   "token": "bonusbar",
+   "kind": "flag",
+   "base": "bonusbar",
+   "arg_forms": [
+    "5"
+   ],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "The possess bar is active (controlling a vehicle or another player)",
+     "revid": 2846334,
+     "as_written": "bonusbar:5"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The bonus action bar is visible; see (similar API: api|HasBonusActionBar())",
+     "revid": 6764422,
+     "as_written": "bonusbar"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[bonusbar]",
+    "[nobonusbar]",
+    "[bonusbar:5]",
+    "[nobonusbar:5]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "btn": {
+   "token": "btn",
+   "kind": "flag",
+   "base": "btn",
+   "arg_forms": [],
+   "aliases": [
+    "button"
+   ],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Macro activated with the given mouse button",
+     "revid": 2846334,
+     "as_written": "btn"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The mouse button used as left (1), right (2), middle (3), extra (4, 5, ...) or {{api|t=w|Button:Click|virtual}} (similar API: api|t=wh|OnClick)",
+     "revid": 6764422,
+     "as_written": "btn"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[btn]",
+    "[nobtn]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "button": {
+   "token": "button",
+   "kind": "flag",
+   "base": "button",
+   "arg_forms": [],
+   "aliases": [
+    "btn"
+   ],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Macro activated with the given mouse button",
+     "revid": 2846334,
+     "as_written": "button"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The mouse button used as left (1), right (2), middle (3), extra (4, 5, ...) or {{api|t=w|Button:Click|virtual}} (similar API: api|t=wh|OnClick)",
+     "revid": 6764422,
+     "as_written": "button"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[button]",
+    "[nobutton]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "canexitvehicle": {
+   "token": "canexitvehicle",
+   "kind": "flag",
+   "base": "canexitvehicle",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "In a vehicle and able to exit (similar API: api|CanExitVehicle())",
+     "revid": 6764422,
+     "as_written": "canexitvehicle"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[canexitvehicle]",
+    "[nocanexitvehicle]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "channeling": {
+   "token": "channeling",
+   "kind": "flag",
+   "base": "channeling",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Channeling the given spell",
+     "revid": 2846334,
+     "as_written": "channeling"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Channeling any spell, or a certain spell (similar API: api|UnitChannelInfo(\"player\") and wow-inlineapi|ChannelInfo())",
+     "revid": 6764422,
+     "as_written": "channeling"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[channeling]",
+    "[nochanneling]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "combat": {
+   "token": "combat",
+   "kind": "flag",
+   "base": "combat",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "You are in combat",
+     "revid": 15818,
+     "as_written": "combat"
+    },
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "In combat",
+     "revid": 2846334,
+     "as_written": "combat"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "In combat (similar API: api|InCombatLockdown or api|UnitAffectingCombat(\"player\"))",
+     "revid": 6764422,
+     "as_written": "combat"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": true,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[combat]",
+    "[nocombat]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "cursor": {
+   "token": "cursor",
+   "kind": "flag",
+   "base": "cursor",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "What the cursor is currently holding, see [[API_GetCursorInfo]] for types",
+     "revid": 2846334,
+     "as_written": "cursor"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Dragging an action button (item, spell, macro, etc.) (similar API: api|GetCursorInfo())",
+     "revid": 6764422,
+     "as_written": "cursor"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[cursor]",
+    "[nocursor]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "dead": {
+   "token": "dead",
+   "kind": "flag",
+   "base": "dead",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Target is dead",
+     "revid": 15818,
+     "as_written": "dead"
+    },
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Target is dead",
+     "revid": 2846334,
+     "as_written": "dead"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The unit exists and is dead (similar API: api|UnitIsDeadOrGhost())",
+     "revid": 6764422,
+     "as_written": "dead"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": true,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[dead]",
+    "[nodead]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "equipped": {
+   "token": "equipped",
+   "kind": "flag",
+   "base": "equipped",
+   "arg_forms": [],
+   "aliases": [
+    "worn"
+   ],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "item type is equipped (item type can be an inventory slot, [[ItemType|item type]], or item subtype)",
+     "revid": 2846334,
+     "as_written": "equipped"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Refer to [[itemType]] for possible types (ie, weapon) and subtypes (ie, sword) (similar API: api|IsEquippedItemType(type))",
+     "revid": 6764422,
+     "as_written": "equipped"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[equipped]",
+    "[noequipped]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "exists": {
+   "token": "exists",
+   "kind": "flag",
+   "base": "exists",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "The unit exists (i.e., target is valid)",
+     "revid": 15818,
+     "as_written": "exists"
+    },
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Target exists",
+     "revid": 2846334,
+     "as_written": "exists"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The unit exists (similar API: api|UnitExists())",
+     "revid": 6764422,
+     "as_written": "exists"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": true,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[exists]",
+    "[noexists]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "extrabar": {
+   "token": "extrabar",
+   "kind": "flag",
+   "base": "extrabar",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "An extra action bar/button is visible (similar API: api|HasExtraActionBar())",
+     "revid": 6764422,
+     "as_written": "extrabar"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[extrabar]",
+    "[noextrabar]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "flyable": {
+   "token": "flyable",
+   "kind": "flag",
+   "base": "flyable",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "In a zone where flying is allowed (this does not check if you have [[Cold Weather Flying]]; if you are in a flyable zone, but do not have this skill, the macro fails)",
+     "revid": 2846334,
+     "as_written": "flyable"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Unreliable in [[Wintergrasp]] (similar API: api|IsFlyableArea())",
+     "revid": 6764422,
+     "as_written": "flyable"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[flyable]",
+    "[noflyable]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "flying": {
+   "token": "flying",
+   "kind": "flag",
+   "base": "flying",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Mounted or in flight form AND in the air",
+     "revid": 2846334,
+     "as_written": "flying"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Mounted or flight form, and in the air (similar API: api|IsFlying())",
+     "revid": 6764422,
+     "as_written": "flying"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[flying]",
+    "[noflying]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "form": {
+   "token": "form",
+   "kind": "flag",
+   "base": "form",
+   "arg_forms": [
+    "0",
+    "n"
+   ],
+   "aliases": [
+    "stance"
+   ],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "In a stance",
+     "revid": 2846334,
+     "as_written": "form:0/.../n"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Refer to {{api|GetShapeshiftForm}} for possible values (similar API: api|GetShapeshiftForm())",
+     "revid": 6764422,
+     "as_written": "form"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[form]",
+    "[noform]",
+    "[form:0]",
+    "[noform:0]",
+    "[form:n]",
+    "[noform:n]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "group": {
+   "token": "group",
+   "kind": "flag",
+   "base": "group",
+   "arg_forms": [
+    "party",
+    "raid"
+   ],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "You are in a party or raid",
+     "revid": 15818,
+     "as_written": "group"
+    },
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "You are in the given type of group",
+     "revid": 2846334,
+     "as_written": "group:party/raid"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Self-explanatory (similar API: api|IsInGroup() and api|IsInRaid())",
+     "revid": 6764422,
+     "as_written": "group"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": true,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[group]",
+    "[nogroup]",
+    "[group:party]",
+    "[nogroup:party]",
+    "[group:raid]",
+    "[nogroup:raid]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "harm": {
+   "token": "harm",
+   "kind": "flag",
+   "base": "harm",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Target is hostile",
+     "revid": 15818,
+     "as_written": "harm"
+    },
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Can cast harmful spells on the target",
+     "revid": 2846334,
+     "as_written": "harm"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The unit exists and can be targeted by helpful/harmful spells (similar API: api|UnitCanAssist() and api|UnitCanAttack())",
+     "revid": 6764422,
+     "as_written": "harm"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[harm]",
+    "[noharm]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "help": {
+   "token": "help",
+   "kind": "flag",
+   "base": "help",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Target is friendly",
+     "revid": 15818,
+     "as_written": "help"
+    },
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Can cast helpful spells on the target",
+     "revid": 2846334,
+     "as_written": "help"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The unit exists and can be targeted by helpful/harmful spells (similar API: api|UnitCanAssist() and api|UnitCanAttack())",
+     "revid": 6764422,
+     "as_written": "help"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[help]",
+    "[nohelp]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "indoors": {
+   "token": "indoors",
+   "kind": "flag",
+   "base": "indoors",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Self explanatory",
+     "revid": 2846334,
+     "as_written": "indoors"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Self-explanatory (similar API: api|IsIndoors() and api|IsOutdoors())",
+     "revid": 6764422,
+     "as_written": "indoors"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[indoors]",
+    "[noindoors]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "known": {
+   "token": "known",
+   "kind": "flag",
+   "base": "known",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Also works with #showtooltip (similar API: api|GetSpellInfo(name) or api|IsPlayerSpell(spellID))",
+     "revid": 6764422,
+     "as_written": "known"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[known]",
+    "[noknown]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "mod": {
+   "token": "mod",
+   "kind": "flag",
+   "base": "mod",
+   "arg_forms": [
+    "shift",
+    "ctrl",
+    "alt"
+   ],
+   "aliases": [
+    "modifier"
+   ],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "Shift key is held down",
+     "revid": 15818,
+     "as_written": "mod:shift"
+    },
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Holding the given key",
+     "revid": 2846334,
+     "as_written": "mod:shift/ctrl/alt"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Accepts shift, ctrl, alt, lshift, rshift, ..., and any action title (similar API: api|IsModifierKeyDown() or api|IsModifiedClick(action))",
+     "revid": 6764422,
+     "as_written": "mod"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[mod]",
+    "[nomod]",
+    "[mod:shift]",
+    "[nomod:shift]",
+    "[mod:ctrl]",
+    "[nomod:ctrl]",
+    "[mod:alt]",
+    "[nomod:alt]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "modifier": {
+   "token": "modifier",
+   "kind": "flag",
+   "base": "modifier",
+   "arg_forms": [
+    "shift",
+    "ctrl",
+    "alt"
+   ],
+   "aliases": [
+    "mod"
+   ],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Holding the given key",
+     "revid": 2846334,
+     "as_written": "modifier:shift/ctrl/alt"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Accepts shift, ctrl, alt, lshift, rshift, ..., and any action title (similar API: api|IsModifierKeyDown() or api|IsModifiedClick(action))",
+     "revid": 6764422,
+     "as_written": "modifier"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[modifier]",
+    "[nomodifier]",
+    "[modifier:shift]",
+    "[nomodifier:shift]",
+    "[modifier:ctrl]",
+    "[nomodifier:ctrl]",
+    "[modifier:alt]",
+    "[nomodifier:alt]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "mounted": {
+   "token": "mounted",
+   "kind": "flag",
+   "base": "mounted",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Self explanatory",
+     "revid": 2846334,
+     "as_written": "mounted"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Self-explanatory (similar API: api|IsMounted())",
+     "revid": 6764422,
+     "as_written": "mounted"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[mounted]",
+    "[nomounted]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "outdoors": {
+   "token": "outdoors",
+   "kind": "flag",
+   "base": "outdoors",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Self explanatory",
+     "revid": 2846334,
+     "as_written": "outdoors"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Self-explanatory (similar API: api|IsIndoors() and api|IsOutdoors())",
+     "revid": 6764422,
+     "as_written": "outdoors"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[outdoors]",
+    "[nooutdoors]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "overridebar": {
+   "token": "overridebar",
+   "kind": "flag",
+   "base": "overridebar",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The override bar is replacing the main action bar (similar API: api|HasOverrideActionBar())",
+     "revid": 6764422,
+     "as_written": "overridebar"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[overridebar]",
+    "[nooverridebar]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "party": {
+   "token": "party",
+   "kind": "flag",
+   "base": "party",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Target is in your party",
+     "revid": 2846334,
+     "as_written": "party"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The unit exists and is in your party/raid (party excludes self) (similar API: api|UnitInParty() and api|UnitInRaid())",
+     "revid": 6764422,
+     "as_written": "party"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[party]",
+    "[noparty]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "pet": {
+   "token": "pet",
+   "kind": "flag",
+   "base": "pet",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "The given pet is out",
+     "revid": 2846334,
+     "as_written": "pet"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Using a [[hunter pet]] by {{api|UnitName|name}} or {{api|UnitCreatureFamily|family}} (similar API: api|UnitCreatureFamily(\"pet\"))",
+     "revid": 6764422,
+     "as_written": "pet"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[pet]",
+    "[nopet]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "petbattle": {
+   "token": "petbattle",
+   "kind": "flag",
+   "base": "petbattle",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "In a pet battle (similar API: api|C_PetBattles.IsInBattle())",
+     "revid": 6764422,
+     "as_written": "petbattle"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[petbattle]",
+    "[nopetbattle]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "possessbar": {
+   "token": "possessbar",
+   "kind": "flag",
+   "base": "possessbar",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The possess bar is visible (similar API: api|IsPossessBarVisible())",
+     "revid": 6764422,
+     "as_written": "possessbar"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[possessbar]",
+    "[nopossessbar]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "pvpcombat": {
+   "token": "pvpcombat",
+   "kind": "flag",
+   "base": "pvpcombat",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "PvP talents are usable",
+     "revid": 6764422,
+     "as_written": "pvpcombat"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[pvpcombat]",
+    "[nopvpcombat]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "raid": {
+   "token": "raid",
+   "kind": "flag",
+   "base": "raid",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Target is in your raid/party",
+     "revid": 2846334,
+     "as_written": "raid"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The unit exists and is in your party/raid (party excludes self) (similar API: api|UnitInParty() and api|UnitInRaid())",
+     "revid": 6764422,
+     "as_written": "raid"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[raid]",
+    "[noraid]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "resting": {
+   "token": "resting",
+   "kind": "flag",
+   "base": "resting",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "In a rested zone (similar API: api|IsResting())",
+     "revid": 6764422,
+     "as_written": "resting"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[resting]",
+    "[noresting]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "shapeshift": {
+   "token": "shapeshift",
+   "kind": "flag",
+   "base": "shapeshift",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The temporary shapeshift action bar is replacing the main action bar (similar API: api|HasTempShapeshiftActionBar())",
+     "revid": 6764422,
+     "as_written": "shapeshift"
+    }
+   ],
+   "era_signal": "post-wotlk",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[shapeshift]",
+    "[noshapeshift]"
+   ],
+   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+  },
+  "spec": {
+   "token": "spec",
+   "kind": "flag",
+   "base": "spec",
+   "arg_forms": [
+    "1",
+    "2"
+   ],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Currently active class specialization",
+     "revid": 2846334,
+     "as_written": "spec:1/2"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Activated the n'th (or any of n1, n2) spec (similar API: api|GetSpecialization())",
+     "revid": 6764422,
+     "as_written": "spec"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[spec]",
+    "[nospec]",
+    "[spec:1]",
+    "[nospec:1]",
+    "[spec:2]",
+    "[nospec:2]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "stance": {
+   "token": "stance",
+   "kind": "flag",
+   "base": "stance",
+   "arg_forms": [
+    "0",
+    "1",
+    "2",
+    "n"
+   ],
+   "aliases": [
+    "form"
+   ],
+   "claimed_by": [
+    {
+     "source": "ascension-wiki-macros",
+     "era": "ascension",
+     "says": "You are in a specific stance/form (e.g., Shadowform)",
+     "revid": 15818,
+     "as_written": "stance"
+    },
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "In a stance",
+     "revid": 2846334,
+     "as_written": "stance:0/1/2/.../n"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Refer to {{api|GetShapeshiftForm}} for possible values (similar API: api|GetShapeshiftForm())",
+     "revid": 6764422,
+     "as_written": "stance"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[stance]",
+    "[nostance]",
+    "[stance:0]",
+    "[nostance:0]",
+    "[stance:1]",
+    "[nostance:1]",
+    "[stance:2]",
+    "[nostance:2]",
+    "[stance:n]",
+    "[nostance:n]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "stealth": {
+   "token": "stealth",
+   "kind": "flag",
+   "base": "stealth",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Stealthed",
+     "revid": 2846334,
+     "as_written": "stealth"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Self-explanatory (similar API: api|IsStealthed())",
+     "revid": 6764422,
+     "as_written": "stealth"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[stealth]",
+    "[nostealth]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "swimming": {
+   "token": "swimming",
+   "kind": "flag",
+   "base": "swimming",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "Self explanatory",
+     "revid": 2846334,
+     "as_written": "swimming"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Self-explanatory (similar API: api|IsSubmerged())",
+     "revid": 6764422,
+     "as_written": "swimming"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[swimming]",
+    "[noswimming]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "unithasvehicleui": {
+   "token": "unithasvehicleui",
+   "kind": "flag",
+   "base": "unithasvehicleui",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "The target of the macro has vehicle UI",
+     "revid": 2846334,
+     "as_written": "unithasvehicleui"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The unit exists and is in a vehicle (similar API: api|UnitInVehicle())",
+     "revid": 6764422,
+     "as_written": "unithasvehicleui"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[unithasvehicleui]",
+    "[nounithasvehicleui]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "vehicleui": {
+   "token": "vehicleui",
+   "kind": "flag",
+   "base": "vehicleui",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "The player has vehicle UI",
+     "revid": 2846334,
+     "as_written": "vehicleui"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "The vehicle UI is active (similar API: api|HasVehicleActionBar())",
+     "revid": 6764422,
+     "as_written": "vehicleui"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[vehicleui]",
+    "[novehicleui]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  },
+  "worn": {
+   "token": "worn",
+   "kind": "flag",
+   "base": "worn",
+   "arg_forms": [],
+   "aliases": [
+    "equipped"
+   ],
+   "claimed_by": [
+    {
+     "source": "wowwiki-archive-making-a-macro",
+     "era": "wotlk-era",
+     "says": "item type is equipped (item type can be an inventory slot, [[ItemType|item type]], or item subtype)",
+     "revid": 2846334,
+     "as_written": "worn"
+    },
+    {
+     "source": "wowpedia-macro-conditionals",
+     "era": "retail-2021",
+     "says": "Refer to [[itemType]] for possible types (ie, weapon) and subtypes (ie, sword) (similar API: api|IsEquippedItemType(type))",
+     "revid": 6764422,
+     "as_written": "worn"
+    }
+   ],
+   "era_signal": "wotlk-era-baseline",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[worn]",
+    "[noworn]"
+   ],
+   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+  }
+ }
+}

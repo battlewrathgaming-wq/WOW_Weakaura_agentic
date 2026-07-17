@@ -14,7 +14,8 @@ folder's own map.
 macros/
   tools/
     emit_macro_basis.py       the emitter — deterministic, one command, reads client source
-    ingest_reference.py       external material -> reference/ (provenance-stamped)
+    ingest_reference.py       external material -> reference/ (the QUESTION register)
+    compose_probe.py          reference/ -> probe/ (the composed ask + Lua core)
   basis/                      FACT — sourced or proven. cite this.
     macros.routes.md          THE browse menu — start here, then open ONE domain
     domains.json              the top-domain catalog (counts + per-domain grain)
@@ -26,8 +27,17 @@ macros/
     _meta.json                provenance anchor (sha256 per source archive) + counts
   reference/                  SECONDARY — external, provenance-stamped. NEVER cite as fact.
     README.md                 the grain statement — read before using anything here
-    ascension-wiki-macros.*   the Ascension wiki page: raw wikitext + extracted CANDIDATES
+    candidates.json           THE QUESTION REGISTER — 55 candidates + proof marks
+    *.wikitext                raw sources, verbatim + sha256 (4 pages, the citation chain)
+  probe/                      THE ASK — composed for the live client. Addons bench owns the harness.
+    README.md                 the handoff
+    probe_rows.json           76 rows, each with method + priority
+    probe_core.lua            resident-API-only core (compiles under Lua 5.1)
 ```
+
+**The flow, and the only path to fact:**
+`reference/` (questions) → `probe/` (the ask) → **live client** → verdicts → `basis/` (fact).
+`reference/` never becomes `basis/` on its own.
 
 **`basis/` vs `reference/` is the load-bearing split.** `basis/` answers *what is true*. `reference/` answers *what
 should we ask*. A claim that lives only in `reference/` is a question, not an answer — see `reference/README.md`.
@@ -67,13 +77,22 @@ differential probe is not one of two channels, it is the **only** one.
 thought to ASK about — the output is a proven set with an honest rim, never an enumeration.* That line is the
 difference between a fact basis and a nicer-looking guess.
 
-**The ask-list now exists** (`reference/`, 2026-07-17): 24 candidates lifted from the Ascension wiki, on the rule
-that *recall and secondary sources are inadmissible as a FACT source but admissible as a QUESTION source, because
-the probe adjudicates.* The probe channel is **confirmed live** — the client has a built-in dev console
-(`/luaconsole`, `/devconsole`), so the probe is interactive: no macro, no restart, resident API only.
+**The ask-list now exists and the probe is composed** (2026-07-17). `reference/` holds **55 candidates** drawn from
+the citation chain (the Ascension wiki → the two retail wikis it cites → the page one of those delegates to), on the
+rule that *recall and secondary sources are inadmissible as a FACT source but admissible as a QUESTION source,
+because the probe adjudicates.* `probe/` holds the composed ask: **76 rows** + a resident-API-only Lua core.
 
-**Before probing, read `reference/README.md`'s `@unit` ≠ `[flag]` split** — they are different mechanisms with
-different proof methods, and the polarity matrix only applies to flags.
+**The channel is confirmed live** — the client has a built-in dev console (`/luaconsole`, `/devconsole`), so the
+probe is interactive: no macro, no restart. The **addons bench owns the harness** (they own configuring coadump);
+`probe/README.md` is the handoff.
+
+**The era diff is the diagnostic.** Candidates in the 2018 wowwiki-archive are WotLK-era baseline (expected
+present); candidates only in retail wowpedia are a **backport test** — and this client backports freely, with
+`@cursor` a *confirmed* backport already witnessed in its own source. 13 rows carry that highest-information split.
+
+**Before probing, read `reference/README.md`'s `@unit` ≠ `[flag]` split** — different mechanisms, different proof
+methods; the polarity matrix only applies to flags, and one control row (`[@banana]`) decides how to read all 13
+target rows.
 
 ## Regenerate (deterministic, one command)
 
