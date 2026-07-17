@@ -21,8 +21,9 @@ macros/
     domains.json              the top-domain catalog (counts + per-domain grain)
     commands.json             the typed verbs
     actions.json              the `type` vocabulary (/click + action buttons)
-    conditionals.json         the option vocabulary — PROOF-PENDING, rim fully open
-    api.json                  the macro C API + limits (limits CONFLICT)
+    conditionals.json         the option vocabulary — LIVE-PROVEN (5 contexts); owned by derive_verdicts.py
+    castsequence.md           the ONE stateful command — how external EVENTS mutate a macro (sourced read)
+    api.json                  the macro C API + limits (limits RESOLVED live: 36/36; 511 body)
     statedrivers.json         the 2nd consumer of the conditional vocabulary
     _meta.json                provenance anchor (sha256 per source archive) + counts
   reference/                  SECONDARY — external, provenance-stamped. NEVER cite as fact.

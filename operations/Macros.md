@@ -371,6 +371,31 @@ aura` / `read a class`) — one topic cannot tell you whether the shape holds or
 overhead. And the research run should come first: it fills the `!` hole *and* the shapes, so the
 map gets drawn against real coverage rather than around it.
 
+## ★ STATELESS vs STATEFUL — the macro surface has one exception, and it's sourced
+
+_2026-07-17, from Battlewrath's own live macros (data-driven: read `WTF/.../macros-cache.txt`
+rather than ask him to articulate his use case). His real instrument turned out to be
+`/castsequence`, not the conditional fallback chains I had walked._
+
+**Almost the entire macro surface is STATELESS** — conditionals (`[combat]`, `[form:1]`) and
+`@`-targets evaluate FRESH on every press. `/castsequence` is the **one known exception**: it
+holds a persistent state machine (`CastSequenceTable`) that **external game EVENTS mutate
+between presses**. That is why "how external state affects a macro" is a real, documentable
+axis — and `castsequence` is (so far) its only member.
+
+**Fully sourced, unlike the conditionals** — `ExecuteCastSequence`/`QueryCastSequence` and the
+manager are all Lua in `ChatFrame.lua`, read and line-cited in **`macros/basis/castsequence.md`**.
+Highlights: advance on cast **SUCCESS** not press (a fizzle retries the same step) · auto-wrap at
+the end · `reset=` tokens are **substring/number matches on the whole string** (the `/` is
+cosmetic) · the sequence-comma is a **separator**, not the conditional AND-comma.
+
+**★ The subtlety the discipline caught** (Battlewrath: *"enter it not assuming you know the
+mechanic"*): the target-reset is **EVENT-driven, not identity comparison.** `reset=target` fires
+on the *event* `PLAYER_TARGET_CHANGED` — there is no old-vs-new target compare. So a target
+**dying** mid-sequence resets it just like a swap does. **Boundary marked:** the source confirms
+the reset fires ON the event; WHICH changes fire that event (swap/clear/tab/death) is event
+semantics the file does not define — recall, not sourced.
+
 ## Open — small, and each one precisely askable now
 
 - **The AMBIGUOUS 4** (`known`, `overridebar`, `possessbar`, `pvpcombat`) — constant-TRUE
