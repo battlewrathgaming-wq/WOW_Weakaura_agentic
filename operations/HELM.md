@@ -1,8 +1,12 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-15 21:52 (released — addons bench session closed clean)
-heading: —
+holder:  macros bench (Claude, Opus 4.8)
+since:   2026-07-17 02:01
+heading: Stand up `/macros/` — the client's macro surface as a sourced basis (tools + basis), commands
+         COMPLETE from source, conditional vocabulary PROOF-PENDING until probed.
+runway:  LONG — holding for a while (Battlewrath, 2026-07-17). Foundation is seeded
+         (`operations/Macros.md`); the build (emitter + basis) follows in this same hold. Other benches:
+         assume the trunk is taken until this line says RELEASED, not just until the next commit lands.
 
 ---
 
@@ -19,6 +23,11 @@ is RELEASED at close-off.
 - **Close-off:** set `holder: RELEASED` in your session's final commit.
 - **Stale helm** (a session died holding it): Battlewrath is the tiebreak — one word from him
   clears it. Advisory timestamps exist for exactly this.
+- **`runway:`** (optional, added 2026-07-17 on Battlewrath's instruction — "indicating you have the
+  runway for a while") — the holder's own estimate of how long the hold runs. It serves the stale-helm
+  rule directly: **a LONG runway is what a dead session looks like from outside**, so say so up front.
+  A quiet trunk under a declared long runway is expected, not evidence of staleness. Clear it at
+  close-off with the holder line.
 - `git log --oneline -- operations/HELM.md` = the trunk's custody history, for free.
 
 _Born from the 2026-07-15 wobble: two sessions interleaved on the trunk and it looked like
