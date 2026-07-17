@@ -1,0 +1,35 @@
+{
+ "emitted_at": "2026-07-17T02:22:15",
+ "emitter": "macros/tools/emit_macro_basis.py",
+ "source_anchors": {
+  "patch-B.MPQ": "a8336170a7d97b137bda9838774665d711a02b27d2241f88aecf464ffca7ee06",
+  "locale_archives": [
+   {
+    "archive": "patch-enUS-3.MPQ",
+    "sha256": "d61a60297af9044d926754d997cd5aa630500cd003d41983a9ccb5b324d61299"
+   },
+   {
+    "archive": "patch-enUS-2.MPQ",
+    "sha256": "ab9af8457f0d7b99a562f26b7d1651bbf68ebc37ddb249d01ac860ccc8746ff4"
+   },
+   {
+    "archive": "patch-enUS.MPQ",
+    "sha256": "c1c06b0d0c34c331b21df7cdd25cc422a650efbd477e42b80849ba30b2e5fc99"
+   },
+   {
+    "archive": "locale-enUS.MPQ",
+    "sha256": "45f02a3bf3964b169f397cea58113cdce5fa7bdf58d4b63f68e46255bb3bd3ea"
+   }
+  ]
+ },
+ "extraction": "F:\\Projects_games\\World of Warcraft - Conquest of Azeroth\\Outputs\\client_interface\\patch-B\\Interface",
+ "grain": "PER DOMAIN - see domains.json. commands/actions SOURCED-COMPLETE; conditionals PROOF-PENDING with a fully open rim (no source witness exists); api limits CONFLICT unresolved; statedrivers provenance OPEN.",
+ "counts": {
+  "commands": 70,
+  "actions": 17,
+  "conditionals": 0,
+  "api": 24,
+  "statedrivers": 5
+ },
+ "inadmissible": "agent WoW recall - this client is not a pure 3.3.5a"
+}

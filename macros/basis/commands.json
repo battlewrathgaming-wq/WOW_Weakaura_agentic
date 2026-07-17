@@ -1,0 +1,1625 @@
+{
+ "grain": "SOURCED-COMPLETE. ChatFrame.lua x GlobalStrings.lua (precedence-merged) + inline SLASH_ declarations. Conditional support COMPUTED per handler.",
+ "counts": {
+  "total": 70,
+  "secure": 49,
+  "non_secure_kept": 21,
+  "non_secure_taking_conditionals": 5,
+  "take_conditionals": 51,
+  "coa_custom": 17
+ },
+ "cross_total": {
+  "direct_callers_found": 49,
+  "grep_call_sites": 49,
+  "reconciles": true,
+  "what": "handlers found to call SecureCmdOptionParse vs raw call sites in source. Must match. Guards the owner-tracking misattribution that produced a wrong count TWICE by hand."
+ },
+ "token_conflicts": [],
+ "holes": {
+  "declared_without_handler": [],
+  "declared_without_handler_note": "a SLASH_ token declared inline in UI code but no handler found - a parser gap or a dead token. NOT dropped silently: 3 commands (BDRAFT indented, COATALENTFOOTER/STATLOGICDEBUG named-ref) went missing exactly this way before the parser learned those forms.",
+  "handler_body_unresolved": [],
+  "handler_body_unresolved_note": "handler found but its body could not be read (named ref defined elsewhere, or built dynamically) - `calls`/`custom_behaviour` are BLIND for these, so absence of custom_behaviour proves nothing here."
+ },
+ "commands": {
+  "ASSIST": {
+   "key": "ASSIST",
+   "list": "SecureCmdList",
+   "typed": [
+    "/a",
+    "/assist"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1362",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "AssistUnit",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "ATLASBROWSER": {
+   "key": "ATLASBROWSER",
+   "list": "SlashCmdList",
+   "typed": [
+    "/atlasbrowser",
+    "/ab",
+    "/av"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:2511",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "IsAddOnLoaded",
+    "LoadAddOn",
+    "SendSystemMessage",
+    "ToggleFrame"
+   ],
+   "custom_behaviour": null
+  },
+  "BDRAFT": {
+   "key": "BDRAFT",
+   "list": "SlashCmdList",
+   "typed": [
+    "/bdraft"
+   ],
+   "token_source": "INLINE:BuildDraftArrowMixin.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/Ascension_BuildDraft/BuildDraftArrowMixin.lua:132",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [],
+   "custom_behaviour": null
+  },
+  "CANCELAURA": {
+   "key": "CANCELAURA",
+   "list": "SecureCmdList",
+   "typed": [
+    "/cancelaura"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1200",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "CancelUnitBuff",
+    "SecureCmdOptionParse",
+    "strmatch"
+   ],
+   "custom_behaviour": null
+  },
+  "CANCELFORM": {
+   "key": "CANCELFORM",
+   "list": "SecureCmdList",
+   "typed": [
+    "/cancelform"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1211",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "CancelShapeshiftForm",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "CAST": {
+   "key": "CAST",
+   "list": "SecureCmdList",
+   "typed": [
+    "/cast",
+    "/spell"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1058",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "CastSpellByName",
+    "ClearTarget",
+    "Custom_HandleTerrainClick",
+    "Custom_HandleTerrainClick_PlayerPos",
+    "GetItemInfo",
+    "SecureCmdItemParse",
+    "SecureCmdOptionParse",
+    "SecureCmdUseItem",
+    "SpellIsTargeting",
+    "TargetLastTarget",
+    "UnitGUID",
+    "UnitName",
+    "lower"
+   ],
+   "custom_behaviour": [
+    "Custom_HandleTerrainClick",
+    "Custom_HandleTerrainClick_PlayerPos"
+   ]
+  },
+  "CASTRANDOM": {
+   "key": "CASTRANDOM",
+   "list": "SecureCmdList",
+   "typed": [
+    "/castrandom"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1105",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "CastSpellByName",
+    "ClearTarget",
+    "Custom_HandleTerrainClick",
+    "Custom_HandleTerrainClick_PlayerPos",
+    "ExecuteCastRandom",
+    "GetItemInfo",
+    "SecureCmdItemParse",
+    "SecureCmdOptionParse",
+    "SecureCmdUseItem",
+    "SpellIsTargeting",
+    "TargetLastTarget",
+    "UnitGUID",
+    "UnitName",
+    "lower"
+   ],
+   "custom_behaviour": [
+    "Custom_HandleTerrainClick",
+    "Custom_HandleTerrainClick_PlayerPos"
+   ]
+  },
+  "CASTSEQUENCE": {
+   "key": "CASTSEQUENCE",
+   "list": "SecureCmdList",
+   "typed": [
+    "/castsequence"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1153",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ClearTarget",
+    "Custom_HandleTerrainClick",
+    "Custom_HandleTerrainClick_PlayerPos",
+    "ExecuteCastSequence",
+    "SecureCmdOptionParse",
+    "SpellIsTargeting",
+    "TargetLastTarget",
+    "UnitGUID",
+    "UnitName",
+    "lower"
+   ],
+   "custom_behaviour": [
+    "Custom_HandleTerrainClick",
+    "Custom_HandleTerrainClick_PlayerPos"
+   ]
+  },
+  "CHANGEACTIONBAR": {
+   "key": "CHANGEACTIONBAR",
+   "list": "SecureCmdList",
+   "typed": [
+    "/changeactionbar"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1242",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ChangeActionBarPage",
+    "ChatFrame_DisplayUsageError",
+    "SecureCmdOptionParse",
+    "format"
+   ],
+   "custom_behaviour": null
+  },
+  "CLEARFOCUS": {
+   "key": "CLEARFOCUS",
+   "list": "SecureCmdList",
+   "typed": [
+    "/clearfocus"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1390",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ClearFocus",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "CLEARMAINASSIST": {
+   "key": "CLEARMAINASSIST",
+   "list": "SecureCmdList",
+   "typed": [
+    "/clearma",
+    "/clearmainassist"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1428",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ClearPartyAssignment",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "CLEARMAINTANK": {
+   "key": "CLEARMAINTANK",
+   "list": "SecureCmdList",
+   "typed": [
+    "/clearmt",
+    "/clearmaintank"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1396",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ClearPartyAssignment",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "CLEARTARGET": {
+   "key": "CLEARTARGET",
+   "list": "SecureCmdList",
+   "typed": [
+    "/cleartarget"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1336",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ClearTarget",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "CLICK": {
+   "key": "CLICK",
+   "list": "SecureCmdList",
+   "typed": [
+    "/click"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1535",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "Click",
+    "GetClickFrame",
+    "IsObjectType",
+    "SecureCmdOptionParse",
+    "strmatch"
+   ],
+   "custom_behaviour": null
+  },
+  "COATALENTFOOTER": {
+   "key": "COATALENTFOOTER",
+   "list": "SlashCmdList",
+   "typed": [
+    "/coatalentfooter",
+    "/coatfooter"
+   ],
+   "token_source": "INLINE:CoATalentFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/AddOns/Ascension_CoATalents/CoATalentFrame.lua:151",
+   "handler_form": "named-ref -> HandleFooterLayoutCommand",
+   "body_resolved": true,
+   "calls": [
+    "ApplyFooterLayout",
+    "GetFooterLayoutDB",
+    "PrintFooterLayoutMessage",
+    "ReportFooterLayout",
+    "gsub",
+    "lower",
+    "match"
+   ],
+   "custom_behaviour": null
+  },
+  "CVAR": {
+   "key": "CVAR",
+   "list": "SlashCmdList",
+   "typed": [
+    "/cvar"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1757",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "Exists",
+    "Get",
+    "SendSystemMessage",
+    "Set",
+    "match",
+    "toboolean"
+   ],
+   "custom_behaviour": [
+    "toboolean"
+   ]
+  },
+  "DISMOUNT": {
+   "key": "DISMOUNT",
+   "list": "SlashCmdList",
+   "typed": [
+    "/dismount"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "conditional-taking",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:2463",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "Dismount",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "DUEL": {
+   "key": "DUEL",
+   "list": "SecureCmdList",
+   "typed": [
+    "/duel"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1460",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "StartDuel"
+   ],
+   "custom_behaviour": null
+  },
+  "DUEL_CANCEL": {
+   "key": "DUEL_CANCEL",
+   "list": "SecureCmdList",
+   "typed": [
+    "/yield",
+    "/concede",
+    "/forfeit"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1464",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "CancelDuel"
+   ],
+   "custom_behaviour": null
+  },
+  "EQUIP": {
+   "key": "EQUIP",
+   "list": "SecureCmdList",
+   "typed": [
+    "/equip",
+    "/eq"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1217",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "EquipItemByName",
+    "SecureCmdItemParse",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "EQUIP_SET": {
+   "key": "EQUIP_SET",
+   "list": "SlashCmdList",
+   "typed": [
+    "/equipset"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "conditional-taking",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:2590",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "EquipmentManager_EquipSet",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "EQUIP_TO_SLOT": {
+   "key": "EQUIP_TO_SLOT",
+   "list": "SecureCmdList",
+   "typed": [
+    "/equipslot"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1224",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ChatFrame_DisplayUsageError",
+    "EquipItemByName",
+    "PaperDoll_IsEquippedSlot",
+    "SecureCmdItemParse",
+    "SecureCmdOptionParse",
+    "format",
+    "number",
+    "strmatch"
+   ],
+   "custom_behaviour": null
+  },
+  "FOCUS": {
+   "key": "FOCUS",
+   "list": "SecureCmdList",
+   "typed": [
+    "/focus"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1376",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "FocusUnit",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "KBMODE": {
+   "key": "KBMODE",
+   "list": "SecureCmdList",
+   "typed": [
+    "/kb"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "secure",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1550",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ToggleQuickKeybindMode"
+   ],
+   "custom_behaviour": null
+  },
+  "LEAVEVEHICLE": {
+   "key": "LEAVEVEHICLE",
+   "list": "SlashCmdList",
+   "typed": [
+    "/leavevehicle"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "conditional-taking",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:2469",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "VehicleExit"
+   ],
+   "custom_behaviour": null
+  },
+  "LOGDEBUG": {
+   "key": "LOGDEBUG",
+   "list": "SlashCmdList",
+   "typed": [
+    "/logdebug"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1659",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "GetCVarBool",
+    "SetCVar"
+   ],
+   "custom_behaviour": null
+  },
+  "LOGINFO": {
+   "key": "LOGINFO",
+   "list": "SlashCmdList",
+   "typed": [
+    "/loginfo"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1671",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "GetCVarBool",
+    "SetCVar"
+   ],
+   "custom_behaviour": null
+  },
+  "LUACONSOLE": {
+   "key": "LUACONSOLE",
+   "list": "SlashCmdList",
+   "typed": [
+    "/luaconsole",
+    "/devconsole"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:2491",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "Close",
+    "IsAddOnLoaded",
+    "IsShown",
+    "LoadAddOn",
+    "SendSystemMessage",
+    "Show"
+   ],
+   "custom_behaviour": null
+  },
+  "MAINASSISTOFF": {
+   "key": "MAINASSISTOFF",
+   "list": "SecureCmdList",
+   "typed": [
+    "/maoff",
+    "/mainassistoff"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1447",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ClearPartyAssignment",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "MAINASSISTON": {
+   "key": "MAINASSISTON",
+   "list": "SecureCmdList",
+   "typed": [
+    "/ma",
+    "/mainassist"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1434",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "SetPartyAssignment"
+   ],
+   "custom_behaviour": null
+  },
+  "MAINTANKOFF": {
+   "key": "MAINTANKOFF",
+   "list": "SecureCmdList",
+   "typed": [
+    "/mtoff",
+    "/maintankoff"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1415",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ClearPartyAssignment",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "MAINTANKON": {
+   "key": "MAINTANKON",
+   "list": "SecureCmdList",
+   "typed": [
+    "/mt",
+    "/maintank"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1402",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "SetPartyAssignment"
+   ],
+   "custom_behaviour": null
+  },
+  "MEASURE": {
+   "key": "MEASURE",
+   "list": "SlashCmdList",
+   "typed": [
+    "/measure"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1745",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "GetCurrentPlayerPosition",
+    "format",
+    "sqrt"
+   ],
+   "custom_behaviour": [
+    "GetCurrentPlayerPosition"
+   ]
+  },
+  "OLDEVENTTRACE": {
+   "key": "OLDEVENTTRACE",
+   "list": "SlashCmdList",
+   "typed": [
+    "/oldeventtrace",
+    "/oldetrace"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:2690",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "EventTraceFrame_HandleSlashCmd",
+    "UIParentLoadAddOn"
+   ],
+   "custom_behaviour": null
+  },
+  "PET_AGGRESSIVE": {
+   "key": "PET_AGGRESSIVE",
+   "list": "SecureCmdList",
+   "typed": [
+    "/petaggressive"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1502",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "PetAggressiveMode",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "PET_ATTACK": {
+   "key": "PET_ATTACK",
+   "list": "SecureCmdList",
+   "typed": [
+    "/petattack"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1468",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "PetAttack",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "PET_AUTOCASTOFF": {
+   "key": "PET_AUTOCASTOFF",
+   "list": "SecureCmdList",
+   "typed": [
+    "/petautocastoff"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1515",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "DisableSpellAutocast",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "PET_AUTOCASTON": {
+   "key": "PET_AUTOCASTON",
+   "list": "SecureCmdList",
+   "typed": [
+    "/petautocaston"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1508",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "EnableSpellAutocast",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "PET_AUTOCASTTOGGLE": {
+   "key": "PET_AUTOCASTTOGGLE",
+   "list": "SecureCmdList",
+   "typed": [
+    "/petautocasttoggle"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1522",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "ToggleSpellAutocast"
+   ],
+   "custom_behaviour": null
+  },
+  "PET_DEFENSIVE": {
+   "key": "PET_DEFENSIVE",
+   "list": "SecureCmdList",
+   "typed": [
+    "/petdefensive"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1496",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "PetDefensiveMode",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "PET_FOLLOW": {
+   "key": "PET_FOLLOW",
+   "list": "SecureCmdList",
+   "typed": [
+    "/petfollow"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1478",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "PetFollow",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "PET_PASSIVE": {
+   "key": "PET_PASSIVE",
+   "list": "SecureCmdList",
+   "typed": [
+    "/petpassive"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1490",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "PetPassiveMode",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "PET_STAY": {
+   "key": "PET_STAY",
+   "list": "SecureCmdList",
+   "typed": [
+    "/petstay"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1484",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "PetWait",
+    "SecureCmdOptionParse"
+   ],
+   "custom_behaviour": null
+  },
+  "RESETNPE": {
+   "key": "RESETNPE",
+   "list": "SlashCmdList",
+   "typed": [
+    "/nper"
+   ],
+   "token_source": "INLINE:Ascension_NewPlayerExperience.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/AddOns/Ascension_NewPlayerExperience/Ascension_NewPlayerExperience.lua:205",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ResetAll"
+   ],
+   "custom_behaviour": null
+  },
+  "SET_TITLE": {
+   "key": "SET_TITLE",
+   "list": "SlashCmdList",
+   "typed": [
+    "/settitle"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "conditional-taking",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:2597",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "AddMessage",
+    "SecureCmdOptionParse",
+    "SetCurrentTitle",
+    "SetTitleByName"
+   ],
+   "custom_behaviour": null
+  },
+  "STARTATTACK": {
+   "key": "STARTATTACK",
+   "list": "SecureCmdList",
+   "typed": [
+    "/startattack"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1042",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "StartAttack"
+   ],
+   "custom_behaviour": null
+  },
+  "STATLOGICDEBUG": {
+   "key": "STATLOGICDEBUG",
+   "list": "SlashCmdList",
+   "typed": [
+    "/sldebug"
+   ],
+   "token_source": "INLINE:LibStatLogic-1.1.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/LibraryXML/LibStatLogic-1.1/LibStatLogic-1.1.lua:48",
+   "handler_form": "named-ref -> CmdHandler",
+   "body_resolved": true,
+   "calls": [],
+   "custom_behaviour": null
+  },
+  "STOPATTACK": {
+   "key": "STOPATTACK",
+   "list": "SecureCmdList",
+   "typed": [
+    "/stopattack"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1052",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "StopAttack"
+   ],
+   "custom_behaviour": null
+  },
+  "STOPCASTING": {
+   "key": "STOPCASTING",
+   "list": "SecureCmdList",
+   "typed": [
+    "/stopcasting"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1194",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "SpellStopCasting"
+   ],
+   "custom_behaviour": null
+  },
+  "STOPMACRO": {
+   "key": "STOPMACRO",
+   "list": "SecureCmdList",
+   "typed": [
+    "/stopmacro"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1529",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "StopMacro"
+   ],
+   "custom_behaviour": null
+  },
+  "SWAPACTIONBAR": {
+   "key": "SWAPACTIONBAR",
+   "list": "SecureCmdList",
+   "typed": [
+    "/swapactionbar"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1254",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ChangeActionBarPage",
+    "ChatFrame_DisplayUsageError",
+    "GetActionBarPage",
+    "SecureCmdOptionParse",
+    "format",
+    "strmatch"
+   ],
+   "custom_behaviour": null
+  },
+  "TABLEINSPECT": {
+   "key": "TABLEINSPECT",
+   "list": "SlashCmdList",
+   "typed": [
+    "/tinspect",
+    "/ti",
+    "/tdump"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:2668",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "IsAddOnLoaded",
+    "LoadAddOn",
+    "SearchObject",
+    "SendSystemMessage",
+    "SetText",
+    "Show",
+    "isNilOrEmpty",
+    "trim"
+   ],
+   "custom_behaviour": null
+  },
+  "TARGET": {
+   "key": "TARGET",
+   "list": "SecureCmdList",
+   "typed": [
+    "/target",
+    "/tar"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1274",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "TargetUnit"
+   ],
+   "custom_behaviour": null
+  },
+  "TARGET_EXACT": {
+   "key": "TARGET_EXACT",
+   "list": "SecureCmdList",
+   "typed": [
+    "/targetexact"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1284",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "TargetUnit"
+   ],
+   "custom_behaviour": null
+  },
+  "TARGET_LAST_ENEMY": {
+   "key": "TARGET_LAST_ENEMY",
+   "list": "SecureCmdList",
+   "typed": [
+    "/targetlastenemy"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1348",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "TargetLastEnemy"
+   ],
+   "custom_behaviour": null
+  },
+  "TARGET_LAST_FRIEND": {
+   "key": "TARGET_LAST_FRIEND",
+   "list": "SecureCmdList",
+   "typed": [
+    "/targetlastfriend"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1355",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "TargetLastFriend"
+   ],
+   "custom_behaviour": null
+  },
+  "TARGET_LAST_TARGET": {
+   "key": "TARGET_LAST_TARGET",
+   "list": "SecureCmdList",
+   "typed": [
+    "/targetlasttarget"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1342",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "TargetLastTarget"
+   ],
+   "custom_behaviour": null
+  },
+  "TARGET_NEAREST_ENEMY": {
+   "key": "TARGET_NEAREST_ENEMY",
+   "list": "SecureCmdList",
+   "typed": [
+    "/targetenemy"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1294",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "TargetNearestEnemy"
+   ],
+   "custom_behaviour": null
+  },
+  "TARGET_NEAREST_ENEMY_PLAYER": {
+   "key": "TARGET_NEAREST_ENEMY_PLAYER",
+   "list": "SecureCmdList",
+   "typed": [
+    "/targetenemyplayer"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1301",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "TargetNearestEnemyPlayer"
+   ],
+   "custom_behaviour": null
+  },
+  "TARGET_NEAREST_FRIEND": {
+   "key": "TARGET_NEAREST_FRIEND",
+   "list": "SecureCmdList",
+   "typed": [
+    "/targetfriend"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1308",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "TargetNearestFriend"
+   ],
+   "custom_behaviour": null
+  },
+  "TARGET_NEAREST_FRIEND_PLAYER": {
+   "key": "TARGET_NEAREST_FRIEND_PLAYER",
+   "list": "SecureCmdList",
+   "typed": [
+    "/targetfriendplayer"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1315",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "TargetNearestFriendPlayer"
+   ],
+   "custom_behaviour": null
+  },
+  "TARGET_NEAREST_PARTY": {
+   "key": "TARGET_NEAREST_PARTY",
+   "list": "SecureCmdList",
+   "typed": [
+    "/targetparty"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1322",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "TargetNearestPartyMember"
+   ],
+   "custom_behaviour": null
+  },
+  "TARGET_NEAREST_RAID": {
+   "key": "TARGET_NEAREST_RAID",
+   "list": "SecureCmdList",
+   "typed": [
+    "/targetraid"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "secure",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1329",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "TargetNearestRaidMember"
+   ],
+   "custom_behaviour": null
+  },
+  "TRACEFUNC": {
+   "key": "TRACEFUNC",
+   "list": "SlashCmdList",
+   "typed": [
+    "/tracefunc",
+    "/tfunc"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:2733",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "strlen",
+    "tfunc"
+   ],
+   "custom_behaviour": [
+    "tfunc"
+   ]
+  },
+  "USE_TALENT_SPEC": {
+   "key": "USE_TALENT_SPEC",
+   "list": "SlashCmdList",
+   "typed": [
+    "/usetalents"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "conditional-taking",
+   "takes_conditionals": true,
+   "conditional_support": "direct",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:2608",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "SecureCmdOptionParse",
+    "SetActiveTalentGroup"
+   ],
+   "custom_behaviour": null
+  },
+  "VERSION": {
+   "key": "VERSION",
+   "list": "SlashCmdList",
+   "typed": [
+    "/version"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1650",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "GetClientVersion",
+    "RequestPlayerVersion",
+    "SendSystemMessage",
+    "format"
+   ],
+   "custom_behaviour": null
+  },
+  "WATCHFUNC": {
+   "key": "WATCHFUNC",
+   "list": "SlashCmdList",
+   "typed": [
+    "/dfunc"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:2725",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "dfunc",
+    "strlen"
+   ],
+   "custom_behaviour": [
+    "dfunc"
+   ]
+  },
+  "WCROLL": {
+   "key": "WCROLL",
+   "list": "SlashCmdList",
+   "typed": [
+    "/wcroll"
+   ],
+   "token_source": "INLINE:ChatFrame.lua",
+   "coa_custom_command": true,
+   "entered_as": "coa-custom",
+   "takes_conditionals": false,
+   "conditional_support": "none",
+   "alias_of": null,
+   "source": "Interface/FrameXML/ChatFrame.lua:1629",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "ShowRollDiceFromSlashCommand"
+   ],
+   "custom_behaviour": null
+  },
+  "USE": {
+   "key": "USE",
+   "list": "SecureCmdList",
+   "typed": [
+    "/use"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "alias of CAST",
+   "takes_conditionals": true,
+   "conditional_support": "inherited via alias -> CAST",
+   "alias_of": "CAST",
+   "source": "Interface/FrameXML/ChatFrame.lua:1058",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "CastSpellByName",
+    "ClearTarget",
+    "Custom_HandleTerrainClick",
+    "Custom_HandleTerrainClick_PlayerPos",
+    "GetItemInfo",
+    "SecureCmdItemParse",
+    "SecureCmdOptionParse",
+    "SecureCmdUseItem",
+    "SpellIsTargeting",
+    "TargetLastTarget",
+    "UnitGUID",
+    "UnitName",
+    "lower"
+   ],
+   "custom_behaviour": [
+    "Custom_HandleTerrainClick",
+    "Custom_HandleTerrainClick_PlayerPos"
+   ]
+  },
+  "USERANDOM": {
+   "key": "USERANDOM",
+   "list": "SecureCmdList",
+   "typed": [
+    "/userandom"
+   ],
+   "token_source": "patch-enUS-3.MPQ",
+   "coa_custom_command": false,
+   "entered_as": "alias of CASTRANDOM",
+   "takes_conditionals": true,
+   "conditional_support": "inherited via alias -> CASTRANDOM",
+   "alias_of": "CASTRANDOM",
+   "source": "Interface/FrameXML/ChatFrame.lua:1105",
+   "handler_form": "inline",
+   "body_resolved": true,
+   "calls": [
+    "CastSpellByName",
+    "ClearTarget",
+    "Custom_HandleTerrainClick",
+    "Custom_HandleTerrainClick_PlayerPos",
+    "ExecuteCastRandom",
+    "GetItemInfo",
+    "SecureCmdItemParse",
+    "SecureCmdOptionParse",
+    "SecureCmdUseItem",
+    "SpellIsTargeting",
+    "TargetLastTarget",
+    "UnitGUID",
+    "UnitName",
+    "lower"
+   ],
+   "custom_behaviour": [
+    "Custom_HandleTerrainClick",
+    "Custom_HandleTerrainClick_PlayerPos"
+   ]
+  }
+ }
+}

@@ -1,0 +1,85 @@
+{
+ "grain": "runtime-attested (stock-capi bucket) x source-read constants",
+ "macro_api": [
+  "CreateMacro",
+  "CursorHasMacro",
+  "DeleteMacro",
+  "EditMacro",
+  "GetMacroBody",
+  "GetMacroIconInfo",
+  "GetMacroIndexByName",
+  "GetMacroInfo",
+  "GetMacroItem",
+  "GetMacroItemIconInfo",
+  "GetMacroSpell",
+  "GetNumMacroIcons",
+  "GetNumMacroItemIcons",
+  "GetNumMacros",
+  "GetRunningMacro",
+  "GetRunningMacroButton",
+  "PickupMacro",
+  "RunMacro",
+  "RunMacroText",
+  "SetBindingMacro",
+  "SetMacroItem",
+  "SetMacroSpell",
+  "SetOverrideBindingMacro",
+  "StopMacro"
+ ],
+ "macro_api_count": 24,
+ "related": [
+  "SecureCmdOptionParse",
+  "SpellIsTargeting",
+  "CastSpellByName",
+  "CastSpellByID",
+  "CastSpell",
+  "UseAction"
+ ],
+ "limits": {
+  "MAX_ACCOUNT_MACROS": [
+   {
+    "value": 36,
+    "scope": "global",
+    "declared_in": "Blizzard_MacroUI",
+    "source": "Interface/AddOns/Blizzard_MacroUI/Blizzard_MacroUI.lua"
+   },
+   {
+    "value": 36,
+    "scope": "local",
+    "declared_in": "QuickKeybindActionPicker",
+    "source": "Interface/FrameXML/QuickKeybindActionPicker.lua"
+   }
+  ],
+  "MAX_CHARACTER_MACROS": [
+   {
+    "value": 36,
+    "scope": "global",
+    "declared_in": "Blizzard_MacroUI",
+    "source": "Interface/AddOns/Blizzard_MacroUI/Blizzard_MacroUI.lua"
+   },
+   {
+    "value": 18,
+    "scope": "local",
+    "declared_in": "QuickKeybindActionPicker",
+    "source": "Interface/FrameXML/QuickKeybindActionPicker.lua"
+   }
+  ]
+ },
+ "limit_conflicts": {
+  "MAX_CHARACTER_MACROS": [
+   {
+    "value": 36,
+    "scope": "global",
+    "declared_in": "Blizzard_MacroUI",
+    "source": "Interface/AddOns/Blizzard_MacroUI/Blizzard_MacroUI.lua"
+   },
+   {
+    "value": 18,
+    "scope": "local",
+    "declared_in": "QuickKeybindActionPicker",
+    "source": "Interface/FrameXML/QuickKeybindActionPicker.lua"
+   }
+  ]
+ },
+ "limit_conflict_note": "UNRESOLVED FROM SOURCE - the client disagrees with itself. Blizzard_MacroUI declares GLOBAL MAX_CHARACTER_MACROS=36; QuickKeybindActionPicker declares a LOCAL MAX_CHARACTER_MACROS=18 (stock WotLK value) that shadows it within that file. Hypothesis (NOT fact): the MacroUI was raised to 36 and the Dragonflight-backported keybind picker kept the stock local - which would mean the picker cannot see character macros 19-36. Live check: GetNumMacros(). Do not state a limit as fact until probed."
+}

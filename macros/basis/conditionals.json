@@ -1,0 +1,22 @@
+{
+ "grain": "PROOF-PENDING - the rim is FULLY OPEN",
+ "why": "SecureCmdOptionParse is C-side: called 49x in ChatFrame.lua, defined NOWHERE in Lua; runtime census buckets it stock-capi. The vocabulary lives in the client binary and no source read reaches it.",
+ "attested_count": 0,
+ "attested": {},
+ "attested_note": "MEASURED ZERO (2026-07-17): the client's own shipped code uses no macro conditional literal - no RegisterStateDriver call sites, no conditional-bearing macrotext. Not thin: zero.",
+ "sole_channel": "LIVE DIFFERENTIAL PROBE via SecureCmdOptionParse (resident; callable from a plain /run, which slips under the anti-cheat restart constraint - resident Blizzard API only).",
+ "probe_design": {
+  "problem": "[combat] out of combat and [madeupword] are BOTH falsey - unsupported and currently-false are indistinguishable, so a naive probe silently reports half the vocabulary as missing.",
+  "method": "test BOTH polarities of each candidate and read the PAIR",
+  "matrix": {
+   "X=false, noX=true": "known, currently false",
+   "X=true,  noX=false": "known, currently true",
+   "X=false, noX=false": "UNSUPPORTED - parser rejects both ways",
+   "X=true,  noX=true": "ignored / no-op"
+  },
+  "unknown": "which row an unsupported conditional lands in is itself unknown; the design does not need to know in advance, it needs to DISTINGUISH.",
+  "cheaper_path": "/luaconsole + /devconsole are declared in shipped UI code - if not dev-gated, the probe is interactive, no macro, no restart. DECLARED != working: verify first."
+ },
+ "standing_limit": "A probe only ever proves conditionals someone thought to ASK about. The output is a PROVEN SET WITH AN HONEST RIM - never an enumeration. That line is the difference between a fact basis and a nicer-looking guess.",
+ "inadmissible": "Agent WoW recall. This client is not a pure 3.3.5a (Legion/BfA CompactUnitFrame; Dragonflight /kb; Ascension's own [@cursor] hack), so a conditional can be ruled neither out for being post-WotLK nor in for being WotLK-stock."
+}

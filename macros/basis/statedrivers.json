@@ -1,0 +1,27 @@
+{
+ "grain": "runtime-attested; PROVENANCE OPEN",
+ "why_it_matters": "State drivers are the SECOND consumer of the conditional vocabulary: the same [conditions] that route a macro also drive frame visibility/state. Any conditional fact serves both.",
+ "functions": {
+  "RegisterStateDriver": {
+   "bucket": "unattributed"
+  },
+  "RegisterUnitWatch": {
+   "bucket": "unattributed"
+  },
+  "UnitWatchRegistered": {
+   "bucket": "unattributed"
+  },
+  "UnregisterStateDriver": {
+   "bucket": "unattributed"
+  },
+  "UnregisterUnitWatch": {
+   "bucket": "unattributed"
+  }
+ },
+ "shipped_call_sites": [
+  "Interface/FrameXML/SecureTemplates.lua:869",
+  "Interface/FrameXML/SecureTemplates.lua:871"
+ ],
+ "open_question": "RegisterStateDriver et al. are LIVE (runtime census) but sit in the `unattributed` bucket, and there is NO SecureStateDriver.lua in the patch-B extraction. Stock WoW defines them in FrameXML/SecureStateDriver.lua. So on this client they are C-side, or supplied elsewhere, or (the census's own caveat) contributed by a loaded USER ADDON - the runtime census was captured with user addons loaded, so `unattributed` = engine-custom U user-addon. The CLEAN-PROFILE re-run banked in Addons_load.md splits this. Not asserted here.",
+ "shipped_usage_note": "RegisterStateDriver has ZERO shipped call sites; only RegisterUnitWatch is called (twice, SecureTemplates.lua). This is why the attested-conditional seed is empty."
+}

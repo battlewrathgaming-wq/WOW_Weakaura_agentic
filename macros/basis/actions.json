@@ -1,0 +1,347 @@
+{
+ "grain": "SOURCED-COMPLETE. SECURE_ACTIONS in SecureTemplates.lua. Each type self-reports the attributes it reads (the sheets paired rule).",
+ "what": "the `type` attribute vocabulary - what a /click-driven button or action button can BE. The half of the macro surface that is not a typed verb.",
+ "count": 17,
+ "actions": {
+  "actionbar": {
+   "type": "actionbar",
+   "attributes_read": [
+    "action"
+   ],
+   "calls": [
+    "ActionBar_PageDown",
+    "ActionBar_PageUp",
+    "ChangeActionBarPage",
+    "GetActionBarPage",
+    "strmatch"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:313"
+  },
+  "action": {
+   "type": "action",
+   "attributes_read": [],
+   "calls": [
+    "ActionButton_CalculateAction",
+    "UseAction",
+    "securecall"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:332"
+  },
+  "pet": {
+   "type": "pet",
+   "attributes_read": [
+    "action"
+   ],
+   "calls": [
+    "CastPetAction"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:343"
+  },
+  "multispell": {
+   "type": "multispell",
+   "attributes_read": [
+    "spell"
+   ],
+   "calls": [
+    "ActionButton_CalculateAction",
+    "SetMultiCastSpell"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:352"
+  },
+  "spell": {
+   "type": "spell",
+   "attributes_read": [
+    "spell"
+   ],
+   "calls": [
+    "CastSpellByID",
+    "CastSpellByName"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:361"
+  },
+  "spellbook": {
+   "type": "spellbook",
+   "attributes_read": [
+    "bookType",
+    "spell"
+   ],
+   "calls": [
+    "CastSpell",
+    "CastSpellByID",
+    "CastSpellByName",
+    "ToggleSpellAutocast"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:372"
+  },
+  "item": {
+   "type": "item",
+   "attributes_read": [
+    "bag",
+    "item",
+    "slot"
+   ],
+   "calls": [
+    "EquipItemByName",
+    "IsEquippableItem",
+    "IsEquippedItem",
+    "SecureCmdItemParse",
+    "SecureCmdUseItem"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:389"
+  },
+  "macro": {
+   "type": "macro",
+   "attributes_read": [
+    "macro",
+    "macrotext"
+   ],
+   "calls": [
+    "RunMacro",
+    "RunMacroText",
+    "securecall"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:412"
+  },
+  "cancelaura": {
+   "type": "cancelaura",
+   "attributes_read": [
+    "index",
+    "rank",
+    "spell"
+   ],
+   "calls": [
+    "CancelUnitBuff",
+    "UnitBuff"
+   ],
+   "custom_behaviour": [
+    "UnitBuff"
+   ],
+   "source": "Interface/FrameXML/SecureTemplates.lua:429"
+  },
+  "stop": {
+   "type": "stop",
+   "attributes_read": [],
+   "calls": [
+    "SpellIsTargeting",
+    "SpellStopTargeting"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:452"
+  },
+  "target": {
+   "type": "target",
+   "attributes_read": [],
+   "calls": [
+    "ClearTarget",
+    "CursorHasItem",
+    "DropItemOnUnit",
+    "SpellIsTargeting",
+    "SpellTargetUnit",
+    "TargetUnit"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:459"
+  },
+  "focus": {
+   "type": "focus",
+   "attributes_read": [],
+   "calls": [
+    "FocusUnit"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:474"
+  },
+  "assist": {
+   "type": "assist",
+   "attributes_read": [],
+   "calls": [
+    "AssistUnit",
+    "ClearPartyAssignment",
+    "GetPartyAssignment",
+    "SecureAction_ManageAssignment",
+    "SetPartyAssignment"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:479"
+  },
+  "maintank": {
+   "type": "maintank",
+   "attributes_read": [
+    "action"
+   ],
+   "calls": [
+    "SecureAction_ManageAssignment"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:498"
+  },
+  "mainassist": {
+   "type": "mainassist",
+   "attributes_read": [
+    "action"
+   ],
+   "calls": [
+    "SecureAction_ManageAssignment"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:504"
+  },
+  "click": {
+   "type": "click",
+   "attributes_read": [
+    "clickbutton"
+   ],
+   "calls": [
+    "Click"
+   ],
+   "custom_behaviour": null,
+   "source": "Interface/FrameXML/SecureTemplates.lua:510"
+  },
+  "attribute": {
+   "type": "attribute",
+   "attributes_read": [
+    "_",
+    "downbutton",
+    "harmbutton",
+    "helpbutton",
+    "spell",
+    "type"
+   ],
+   "calls": [
+    "ActionButton_CalculateAction",
+    "ActionButton_UpdateAction",
+    "AllowAttributeChanges",
+    "ApplyConfig",
+    "ApplyUnitButtonConfiguration",
+    "ClearAllPoints",
+    "CreateFrame",
+    "GenerateClosure",
+    "GetActionInfo",
+    "GetAttribute",
+    "GetBool",
+    "GetButtonState",
+    "GetChildren",
+    "GetCursorInfo",
+    "GetFrameHandle",
+    "GetGroupHeaderType",
+    "GetGroupRosterInfo",
+    "GetHeight",
+    "GetMacroSpell",
+    "GetName",
+    "GetNumPartyMembers",
+    "GetNumRaidMembers",
+    "GetParent",
+    "GetPartyAssignment",
+    "GetPetUnit",
+    "GetRaidRosterInfo",
+    "GetSpellID",
+    "GetWidth",
+    "Hide",
+    "HookScript",
+    "IsActionAlmostReady",
+    "IsCastAlmostDone",
+    "IsModifiedClick",
+    "IsVisible",
+    "QuickKeybindButtonOnClick",
+    "Register",
+    "RegisterEvent",
+    "RegisterForClicks",
+    "RegisterUnitWatch",
+    "RepeatAction",
+    "RunNextFrame",
+    "SecureActionButton_CheckHoldCastState",
+    "SecureActionButton_GetActionSpell",
+    "SecureActionButton_OnAttributeChanged",
+    "SecureActionButton_OnClick",
+    "SecureActionButton_OnLoad",
+    "SecureActionButton_OnUpdate",
+    "SecureGroupHeader_OnAttributeChanged",
+    "SecureGroupHeader_OnEvent",
+    "SecureGroupHeader_OnLoad",
+    "SecureGroupHeader_Update",
+    "SecureGroupPetHeader_OnAttributeChanged",
+    "SecureGroupPetHeader_OnEvent",
+    "SecureGroupPetHeader_OnLoad",
+    "SecureGroupPetHeader_Update",
+    "SecureHandler_OnClick",
+    "SecureUnitButton_OnClick",
+    "SecureUnitButton_OnLoad",
+    "SetAttribute",
+    "SetHeight",
+    "SetPoint",
+    "SetScale",
+    "SetScript",
+    "SetWidth",
+    "SetupUnitButtonConfiguration",
+    "ShouldHoldToCast",
+    "Show",
+    "SpellCanTargetItem",
+    "SpellIsTargeting",
+    "SpellStopTargeting",
+    "SpellTargetItem",
+    "UnitCanAssist",
+    "UnitCanAttack",
+    "UnitClass",
+    "UnitExists",
+    "UnitName",
+    "UseContainerItem",
+    "UseInventoryItem",
+    "_RegisterForClicks",
+    "_SetScript",
+    "abs",
+    "attribute",
+    "buttons",
+    "ceil",
+    "column",
+    "columns",
+    "configFunction",
+    "configureChildren",
+    "create",
+    "doubleFillTable",
+    "fillTable",
+    "find",
+    "forceinsecure",
+    "getRelativePointAnchor",
+    "group",
+    "groupings",
+    "gsub",
+    "handler",
+    "infinate",
+    "max",
+    "min",
+    "names",
+    "order",
+    "point",
+    "raid",
+    "raidpet",
+    "rawget",
+    "securecall",
+    "sort",
+    "sorted",
+    "sorting",
+    "strsplit",
+    "strupper",
+    "subframes",
+    "tinsert",
+    "tremove",
+    "unit",
+    "units"
+   ],
+   "custom_behaviour": [
+    "GetFrameHandle",
+    "RegisterUnitWatch",
+    "SecureHandler_OnClick",
+    "tremove"
+   ],
+   "source": "Interface/FrameXML/SecureTemplates.lua:519"
+  }
+ }
+}
