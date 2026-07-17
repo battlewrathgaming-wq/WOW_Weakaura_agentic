@@ -1,0 +1,202 @@
+{{#ev:youtube|UIB37qaNDJc|800x350|center|Macros guide, courtesy of Dungeon Coach Gaming}}
+{{HeadingA|Macros in Project Ascension}}
+Macros allow players to automate complex actions, streamline combat, and customize gameplay in powerful ways. While they may seem intimidating at first, filled with syntax, conditionals, and modifiers, learning how macros work unlocks a new level of gameplay control. 
+=== What is a Macro? ===
+A '''macro''' is a user-defined command or script that combines multiple game functions into a single button press. You can use macros to:
+
+* Cast spells on specific targets
+* Use items or trinkets
+* Create mouseover healing, ground-targeted AoEs, or mod-shift abilities
+* Automate condition-based behaviors
+
+== Useful Macros ==
+
+=== Transmog collection macro ===
+/run local c=C_AppearanceCollection for b=0,4 do for s=1,GetContainerNumSlots(b) do local i=GetContainerItemID(b,s) local a=i and C_Appearance.GetItemAppearanceID(i) if a and not c.IsAppearanceCollected(a) then c.CollectItemAppearance(i) end end end
+
+{{HeadingA|Macro Interface Basics}}
+[[File:MacroMenu.png|thumb|409x409px]]
+Open the macro window with '''<code>/m</code>''' or via the game menu. This UI will display several things; 
+
+* '''General Macros''' – Shared across all characters
+* '''Character-Specific Macros''' – Only visible on the current character
+
+To begin creating a macro:
+
+# Press New, name the macro, and choose an icon (press spacebar for default).
+# Use <code>#showtooltip</code> as your first line. This lets the macro dynamically display tooltips for whatever spell/item is active.
+
+Example:
+ <code>#showtooltip
+ /cast Smite</code>
+[[File:NewMacroUI.png|center|frameless|553x553px]]
+
+
+{{HeadingA|Targeting Conditions in Macros & Spellcasting}}
+Targeting conditions are used in macros to '''control who or what your spell or ability is cast on''', based on specific rules. They help automate logic like “cast on myself if no target,” “cast on friendly mouseover,” or “cast only if my target is alive.”
+
+These conditions are built into macros using '''<code>[condition]</code>''' brackets, and you can chain them for complex logic.
+=== Basic Targeting Conditions ===
+{| class="fandom-table"
+!Condition
+!What It Does
+|-
+|<code>@target</code>
+|Casts on your current target
+|-
+|<code>@focus</code>
+|Casts on your focus target
+|-
+|<code>@mouseover</code>
+|Casts on the unit your mouse is hovering over
+|-
+|<code>@player</code>
+|Casts on yourself
+|-
+|<code>@pet</code>
+|Casts on your pet
+|-
+|<code>@party1</code>–<code>@party4</code>
+|Casts on specific party members (group order)
+|-
+|<code>@raid1</code>–<code>@raid40</code>
+|Casts on specific raid members
+|}
+=== Common Conditional Flags ===
+{| class="fandom-table"
+!Condition
+!Meaning
+|-
+|<code>exists</code>
+|The unit exists (i.e., target is valid)
+|-
+|<code>help</code>
+|Target is friendly
+|-
+|<code>harm</code>
+|Target is hostile
+|-
+|<code>dead</code>
+|Target is dead
+|-
+|<code>nodead</code>
+|Target is alive
+|-
+|<code>combat</code>
+|You are in combat
+|-
+|<code>nocombat</code>
+|You are not in combat
+|-
+|<code>mod:shift</code>
+|Shift key is held down
+|-
+|<code>mod:ctrl</code>
+|Ctrl key is held down
+|-
+|<code>mod:alt</code>
+|Alt key is held down
+|-
+|<code>group</code>
+|You are in a party or raid
+|-
+|<code>nogroup</code>
+|You are solo
+|-
+|<code>stance:X</code>
+|You are in a specific stance/form (e.g., Shadowform)
+|}
+=== Example Macro Logic ===
+
+==== Smart Heal ====
+ <code>/cast [@mouseover,help,nodead] [@target,help,nodead] [@player] Flash Heal</code>
+🔹 Heals mouseover target > your selected friendly target > yourself
+
+==== Utility with Modifiers ====
+ <code>/cast [mod:alt,@player] Power Word: Shield; [@target,help,nodead] Power Word: Shield</code>
+🔹 Shields your target unless you hold '''Alt''', then it shields you
+
+==== Battle Rez Priority ====
+ <code>/cast [@mouseover,dead,help] [@target,dead,help] Rebirth</code>
+🔹 Casts Rebirth on a dead friendly target, prioritizing your mouseover
+=== Notes for Targeting Logic ===
+
+* Conditions are evaluated in order—the first valid one is used.
+* Use <code>,</code> (commas) to group fallback logic, and <code>;</code> to separate condition sets.
+* Combine multiple conditions like <code>[@target, exists, harm, nodead]</code> for safer macro logic.
+* <code>[noexists]</code> is shorthand for "target doesn't exist" and is great for self-casting defaults.
+
+{{HeadingA|Mouseover Macros}}
+Mouseover macros let you cast a spell on a unit you're hovering over '''without changing targets'''.
+ <code>#showtooltip
+ /cast [@mouseover,exists,nodead] Flash Heal; Flash Heal</code>
+If you're hovering over a unit, it heals them. If not, it heals your current target. Simple and powerful.
+{{HeadingA|Priority System: Order Matters}}
+Macro logic follows a '''top-down priority''':
+
+* The macro reads from '''left to right''', executing the first '''true''' condition it finds.
+* Example:
+
+ <code>/cast [@mouseover,exists,nodead] Smite; [@focus,exists,nodead] Smite; Smite</code>
+This says:
+
+# If I have a mouseover, cast Smite at that.
+# Else, if I have a focus target, cast at them.
+# Else, cast at my current target.
+
+This allows '''fall-through behavior''' that adapts to your situation.
+{{HeadingA|Modifier Macros}}
+You can use keyboard '''modifiers''' like Shift, Ctrl, or Alt to dynamically change the behavior of a macro.
+ <code>/cast [mod:shift] Greater Heal; Heal</code>
+
+* Pressing Shift casts Greater Heal.
+* Pressing nothing casts Heal.
+
+This is great for combining '''multiple spells into a single keybind'''.
+{{HeadingA|At-Cursor and At-Player Casting}}
+Targeted AoE spells like ''Death and Decay'' or ''Mass Dispel'' often use ground reticles. You can remove the reticle delay with <code>@cursor</code> or cast them at your feet with <code>@player</code>.
+
+=== At Cursor: ===
+ <code>/cast [@cursor] Death and Decay</code>
+
+=== At Player: ===
+ <code>/cast [mod:shift,@player] Death and Decay; [@cursor] Death and Decay</code>
+This version casts:
+
+* At your feet when holding Shift
+* At your cursor otherwise
+
+{{HeadingA|Cast Sequence Macros}}
+Cast sequences are advanced macros that execute '''spells in order'''.
+ <code>/castsequence reset=10 Spell1, Spell2, Spell3</code>
+
+* Spells are cast in sequence with each button press.
+* The sequence resets after 10 seconds of inactivity.
+
+Great for opening rotations or utility combos.
+{{HeadingA|Common Macro Templates}}
+
+=== Heal on Mouseover or Target ===
+ <code>#showtooltip
+ /cast [@mouseover,exists,nodead] Flash Heal; Flash Heal</code>
+
+=== One-Button AoE with Modifier ===
+ <code>#showtooltip
+ /cast [mod:shift,@player] Consecration; [@cursor] Consecration</code>
+
+=== Focus Interrupt ===
+ <code>#showtooltip
+ /cast [@focus,exists,nodead] Kick</code>
+== Tips and Troubleshooting ==
+
+* '''Capitalize''' spell names (e.g., <code>Smite</code>, not <code>smite</code>)
+* Use <code>exists</code> and <code>nodead</code> to prevent macro failure
+* Use <code>/use</code> instead of <code>/cast</code> for trinkets and items
+* Be mindful of '''global cooldowns''' when chaining multiple casts
+
+== Resources ==
+Need more help building your macros?
+
+* Ascension Discord: #macros-help
+* Wowpedia: <nowiki>https://wowpedia.fandom.com/wiki/Making_a_macro</nowiki>
+* Macro conditionals reference: <code><nowiki>https://wowwiki-archive.fandom.com/wiki/Making_a_macro</nowiki></code>

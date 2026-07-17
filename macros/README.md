@@ -12,8 +12,10 @@ folder's own map.
 
 ```
 macros/
-  tools/emit_macro_basis.py   the emitter — deterministic, one command, reads client source
-  basis/
+  tools/
+    emit_macro_basis.py       the emitter — deterministic, one command, reads client source
+    ingest_reference.py       external material -> reference/ (provenance-stamped)
+  basis/                      FACT — sourced or proven. cite this.
     macros.routes.md          THE browse menu — start here, then open ONE domain
     domains.json              the top-domain catalog (counts + per-domain grain)
     commands.json             the typed verbs
@@ -22,7 +24,13 @@ macros/
     api.json                  the macro C API + limits (limits CONFLICT)
     statedrivers.json         the 2nd consumer of the conditional vocabulary
     _meta.json                provenance anchor (sha256 per source archive) + counts
+  reference/                  SECONDARY — external, provenance-stamped. NEVER cite as fact.
+    README.md                 the grain statement — read before using anything here
+    ascension-wiki-macros.*   the Ascension wiki page: raw wikitext + extracted CANDIDATES
 ```
+
+**`basis/` vs `reference/` is the load-bearing split.** `basis/` answers *what is true*. `reference/` answers *what
+should we ask*. A claim that lives only in `reference/` is a question, not an answer — see `reference/README.md`.
 
 ## GRAIN IS PER DOMAIN — they are not the same, and each file says its own
 
@@ -58,6 +66,14 @@ differential probe is not one of two channels, it is the **only** one.
 `conditionals.json` carries the probe design and this standing limit: *a probe only ever proves conditionals someone
 thought to ASK about — the output is a proven set with an honest rim, never an enumeration.* That line is the
 difference between a fact basis and a nicer-looking guess.
+
+**The ask-list now exists** (`reference/`, 2026-07-17): 24 candidates lifted from the Ascension wiki, on the rule
+that *recall and secondary sources are inadmissible as a FACT source but admissible as a QUESTION source, because
+the probe adjudicates.* The probe channel is **confirmed live** — the client has a built-in dev console
+(`/luaconsole`, `/devconsole`), so the probe is interactive: no macro, no restart, resident API only.
+
+**Before probing, read `reference/README.md`'s `@unit` ≠ `[flag]` split** — they are different mechanisms with
+different proof methods, and the polarity matrix only applies to flags.
 
 ## Regenerate (deterministic, one command)
 

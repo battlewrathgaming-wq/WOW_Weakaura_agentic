@@ -1,0 +1,413 @@
+{
+ "standing": "SECONDARY - candidate generator only, never a fact witness",
+ "NOT_A_FACT_SOURCE": "Nothing in this file is a fact about the CoA client. These are CANDIDATES - questions for the live probe to adjudicate. Do not cite reference/ as basis/. The wiki's own Resources section points at Wowpedia and wowwiki-archive for its conditional reference, i.e. it inherits from RETAIL docs rather than verifying against this client - exactly as unverified as agent recall.",
+ "why_allowed": "Recall and secondary sources are inadmissible as a FACT source but admissible as a QUESTION source, because the probe adjudicates. A wrong candidate costs one probe row reading 'unsupported'. A wrong fact poisons the basis silently.",
+ "absence_proves_nothing": "This is a beginner guide, not a reference. A conditional it omits is UN-ASKED, not unsupported. The rim stays open after probing this list.",
+ "provenance": {
+  "url": "https://project-ascension.fandom.com/wiki/Macros",
+  "api": "https://project-ascension.fandom.com/api.php",
+  "pageid": 4463,
+  "revid": 15818,
+  "revision_timestamp": "2025-11-05T13:14:45Z",
+  "revision_user": "Tura0763",
+  "raw_file": "ascension-wiki-macros.wikitext",
+  "raw_sha256": "e1d2f0af765411c8c278866b5732ced8bc283240819743139dcef7b46e3b9000",
+  "raw_chars": 7342,
+  "ingested_at": "2026-07-17T02:31:12",
+  "ingested_by": "macros/tools/ingest_reference.py"
+ },
+ "candidate_count": 24,
+ "candidates": {
+  "@cursor": {
+   "token": "@cursor",
+   "kind": "unit-target",
+   "base": "@cursor",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": null,
+   "wiki_says": null,
+   "seen_in": [
+    "example-macro"
+   ]
+  },
+  "@focus": {
+   "token": "@focus",
+   "kind": "unit-target",
+   "base": "@focus",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": null,
+   "wiki_says": "Casts on your focus target",
+   "seen_in": [
+    "declaration-table",
+    "example-macro"
+   ]
+  },
+  "@mouseover": {
+   "token": "@mouseover",
+   "kind": "unit-target",
+   "base": "@mouseover",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": null,
+   "wiki_says": "Casts on the unit your mouse is hovering over",
+   "seen_in": [
+    "declaration-table",
+    "example-macro"
+   ]
+  },
+  "@party1": {
+   "token": "@party1",
+   "kind": "unit-target (indexed range)",
+   "base": "@party1",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": null,
+   "wiki_says": "Casts on specific party members (group order)",
+   "seen_in": [
+    "declaration-table"
+   ],
+   "range_to": "@party4"
+  },
+  "@party4": {
+   "token": "@party4",
+   "kind": "unit-target (indexed range)",
+   "base": "@party4",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": null,
+   "wiki_says": "Casts on specific party members (group order)",
+   "seen_in": [
+    "declaration-table"
+   ],
+   "range_from": "@party1"
+  },
+  "@pet": {
+   "token": "@pet",
+   "kind": "unit-target",
+   "base": "@pet",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": null,
+   "wiki_says": "Casts on your pet",
+   "seen_in": [
+    "declaration-table"
+   ]
+  },
+  "@player": {
+   "token": "@player",
+   "kind": "unit-target",
+   "base": "@player",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": null,
+   "wiki_says": "Casts on yourself",
+   "seen_in": [
+    "declaration-table",
+    "example-macro"
+   ]
+  },
+  "@raid1": {
+   "token": "@raid1",
+   "kind": "unit-target (indexed range)",
+   "base": "@raid1",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": null,
+   "wiki_says": "Casts on specific raid members",
+   "seen_in": [
+    "declaration-table"
+   ],
+   "range_to": "@raid40"
+  },
+  "@raid40": {
+   "token": "@raid40",
+   "kind": "unit-target (indexed range)",
+   "base": "@raid40",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": null,
+   "wiki_says": "Casts on specific raid members",
+   "seen_in": [
+    "declaration-table"
+   ],
+   "range_from": "@raid1"
+  },
+  "@target": {
+   "token": "@target",
+   "kind": "unit-target",
+   "base": "@target",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": null,
+   "wiki_says": "Casts on your current target",
+   "seen_in": [
+    "declaration-table",
+    "example-macro"
+   ]
+  },
+  "combat": {
+   "token": "combat",
+   "kind": "flag",
+   "base": "combat",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": "wiki declares `nocombat` too",
+   "wiki_says": "You are in combat",
+   "seen_in": [
+    "declaration-table"
+   ]
+  },
+  "dead": {
+   "token": "dead",
+   "kind": "flag",
+   "base": "dead",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": "wiki declares `nodead` too",
+   "wiki_says": "Target is dead",
+   "seen_in": [
+    "declaration-table",
+    "example-macro"
+   ]
+  },
+  "exists": {
+   "token": "exists",
+   "kind": "flag",
+   "base": "exists",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": "wiki declares `noexists` too",
+   "wiki_says": "The unit exists (i.e., target is valid)",
+   "seen_in": [
+    "declaration-table",
+    "example-macro"
+   ]
+  },
+  "group": {
+   "token": "group",
+   "kind": "flag",
+   "base": "group",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": "wiki declares `nogroup` too",
+   "wiki_says": "You are in a party or raid",
+   "seen_in": [
+    "declaration-table"
+   ]
+  },
+  "harm": {
+   "token": "harm",
+   "kind": "flag",
+   "base": "harm",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": null,
+   "wiki_says": "Target is hostile",
+   "seen_in": [
+    "declaration-table",
+    "example-macro"
+   ]
+  },
+  "help": {
+   "token": "help",
+   "kind": "flag",
+   "base": "help",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": null,
+   "wiki_says": "Target is friendly",
+   "seen_in": [
+    "declaration-table",
+    "example-macro"
+   ]
+  },
+  "mod:alt": {
+   "token": "mod:alt",
+   "kind": "flag",
+   "base": "mod",
+   "arg_form": "alt",
+   "arg_is_placeholder": false,
+   "negatable_guess": null,
+   "wiki_says": "Alt key is held down",
+   "seen_in": [
+    "declaration-table",
+    "example-macro"
+   ]
+  },
+  "mod:ctrl": {
+   "token": "mod:ctrl",
+   "kind": "flag",
+   "base": "mod",
+   "arg_form": "ctrl",
+   "arg_is_placeholder": false,
+   "negatable_guess": null,
+   "wiki_says": "Ctrl key is held down",
+   "seen_in": [
+    "declaration-table"
+   ]
+  },
+  "mod:shift": {
+   "token": "mod:shift",
+   "kind": "flag",
+   "base": "mod",
+   "arg_form": "shift",
+   "arg_is_placeholder": false,
+   "negatable_guess": null,
+   "wiki_says": "Shift key is held down",
+   "seen_in": [
+    "declaration-table",
+    "example-macro"
+   ]
+  },
+  "nocombat": {
+   "token": "nocombat",
+   "kind": "flag",
+   "base": "nocombat",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": "negation of `combat` (wiki declares BOTH)",
+   "wiki_says": "You are not in combat",
+   "seen_in": [
+    "declaration-table"
+   ]
+  },
+  "nodead": {
+   "token": "nodead",
+   "kind": "flag",
+   "base": "nodead",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": "negation of `dead` (wiki declares BOTH)",
+   "wiki_says": "Target is alive",
+   "seen_in": [
+    "declaration-table",
+    "example-macro"
+   ]
+  },
+  "noexists": {
+   "token": "noexists",
+   "kind": "flag",
+   "base": "noexists",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": "negation of `exists` (wiki declares BOTH)",
+   "wiki_says": null,
+   "seen_in": [
+    "example-macro"
+   ]
+  },
+  "nogroup": {
+   "token": "nogroup",
+   "kind": "flag",
+   "base": "nogroup",
+   "arg_form": null,
+   "arg_is_placeholder": null,
+   "negatable_guess": "negation of `group` (wiki declares BOTH)",
+   "wiki_says": "You are solo",
+   "seen_in": [
+    "declaration-table"
+   ]
+  },
+  "stance:X": {
+   "token": "stance:X",
+   "kind": "flag",
+   "base": "stance",
+   "arg_form": "X",
+   "arg_is_placeholder": true,
+   "negatable_guess": null,
+   "wiki_says": "You are in a specific stance/form (e.g., Shadowform)",
+   "seen_in": [
+    "declaration-table"
+   ]
+  }
+ },
+ "grammar_claims": [
+  "clauses evaluate in order; the FIRST true one wins",
+  "`,` = AND within one clause",
+  "`;` = separates alternative condition sets",
+  "`no` prefix negates a flag (wiki calls [noexists] 'shorthand')",
+  "/castsequence takes a `reset=N` parameter",
+  "#showtooltip as first line drives dynamic tooltip"
+ ],
+ "commands_mentioned": [
+  "/cast",
+  "/castsequence",
+  "/code",
+  "/form",
+  "/item",
+  "/nowiki",
+  "/run",
+  "/use",
+  "/wiki",
+  "/wowpedia",
+  "/wowwiki"
+ ],
+ "two_mechanisms": {
+  "why_this_matters": "`@unit` and `[flag]` are NOT the same mechanism and do NOT have the same proof method. Conflating them is the easiest way to write a confident wrong guide.",
+  "@unit / target=unit": {
+   "mechanism": "HYPOTHESIS: a pass-through STRING. SecureCmdOptionParse appears to return whatever follows @, and support lives DOWNSTREAM - in the handler's own special-casing (/cast checks target=='cursor' and hands off to Custom_HandleTerrainClick) and in unit resolution.",
+   "consequence": "the differential-polarity matrix does NOT apply - there is likely no [no@cursor]. Asking 'is @cursor supported' is really asking two questions: does the parser return it, and does anything downstream honour it.",
+   "probe_row_that_settles_it": "SecureCmdOptionParse(\"[@banana] X\") - if it returns target=\"banana\" for a nonsense unit, @ is pass-through and the vocabulary question does not apply to it at all.",
+   "status": "HYPOTHESIS - not asserted. The probe settles it in one row."
+  },
+  "[flag]": {
+   "mechanism": "actually EVALUATED by the C parser (combat, mod:shift, group, ...).",
+   "consequence": "this is what the differential-polarity matrix in basis/conditionals.json is for. THIS is the vocabulary question."
+  }
+ },
+ "corroborations": [
+  {
+   "candidate": "@cursor",
+   "wiki_claims": true,
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1064",
+    "Interface/FrameXML/ChatFrame.lua:1110",
+    "Interface/FrameXML/ChatFrame.lua:1158"
+   ],
+   "what_it_proves": "the client's own Lua compares the parser's returned target to \"cursor\", so a HANDLER anticipates @cursor and SecureCmdOptionParse can return it. This proves the HANDLER supports it - it does NOT prove the parser validates it (see two_mechanisms).",
+   "standing": "SOURCE-CORROBORATED (handler-side). Still wants the live probe."
+  },
+  {
+   "candidate": "@focus",
+   "wiki_claims": true,
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1382"
+   ],
+   "what_it_proves": "the client's own Lua compares the parser's returned target to \"focus\", so a HANDLER anticipates @focus and SecureCmdOptionParse can return it. This proves the HANDLER supports it - it does NOT prove the parser validates it (see two_mechanisms).",
+   "standing": "SOURCE-CORROBORATED (handler-side). Still wants the live probe."
+  },
+  {
+   "candidate": "@pettarget",
+   "wiki_claims": false,
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1471"
+   ],
+   "what_it_proves": "the client's own Lua compares the parser's returned target to \"pettarget\", so a HANDLER anticipates @pettarget and SecureCmdOptionParse can return it. This proves the HANDLER supports it - it does NOT prove the parser validates it (see two_mechanisms).",
+   "standing": "SOURCE-CORROBORATED (handler-side). Still wants the live probe."
+  },
+  {
+   "candidate": "@player",
+   "wiki_claims": true,
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1070",
+    "Interface/FrameXML/ChatFrame.lua:1116",
+    "Interface/FrameXML/ChatFrame.lua:1164"
+   ],
+   "what_it_proves": "the client's own Lua compares the parser's returned target to \"player\", so a HANDLER anticipates @player and SecureCmdOptionParse can return it. This proves the HANDLER supports it - it does NOT prove the parser validates it (see two_mechanisms).",
+   "standing": "SOURCE-CORROBORATED (handler-side). Still wants the live probe."
+  },
+  {
+   "candidate": "@target",
+   "wiki_claims": true,
+   "source_witness": [
+    "Interface/FrameXML/ChatFrame.lua:1045",
+    "Interface/FrameXML/ChatFrame.lua:1277",
+    "Interface/FrameXML/ChatFrame.lua:1287"
+   ],
+   "what_it_proves": "the client's own Lua compares the parser's returned target to \"target\", so a HANDLER anticipates @target and SecureCmdOptionParse can return it. This proves the HANDLER supports it - it does NOT prove the parser validates it (see two_mechanisms).",
+   "standing": "SOURCE-CORROBORATED (handler-side). Still wants the live probe."
+  }
+ ],
+ "corroboration_note": "The ONLY source witness the conditional vocabulary has on this client. It reaches TARGET TOKENS only (a handler comparing the parser's returned target to a literal), never flags like [combat]. Everything else in `candidates` has NO source witness of any kind and is purely a question for the probe."
+}
