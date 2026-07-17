@@ -1,0 +1,875 @@
+{
+ "derived_at": "2026-07-17T04:13:24",
+ "deriver": "addons/tools/derive_tooltip_holes.py",
+ "grain": "unique custom-range (>=500000) ability ids whose inventory text is NULL or carries an unresolved $-variable; the in-game render is the arbiter",
+ "count": 119,
+ "holes": {
+  "500053": {
+   "name": "Tiki Splash",
+   "kind": "VAR",
+   "classes": [
+    "WITCHDOCTOR"
+   ]
+  },
+  "500126": {
+   "name": "Lunge",
+   "kind": "NULL",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "500239": {
+   "name": "Build: Sentry Turret",
+   "kind": "NULL",
+   "classes": [
+    "TINKER"
+   ]
+  },
+  "500567": {
+   "name": "Sixfold Shot",
+   "kind": "VAR",
+   "classes": [
+    "WITCHHUNTER"
+   ]
+  },
+  "500960": {
+   "name": "Serpent Ward",
+   "kind": "NULL",
+   "classes": [
+    "WITCHDOCTOR"
+   ]
+  },
+  "500970": {
+   "name": "Raise: Lesser Skeletal Warrior",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "500982": {
+   "name": "Undead: Assault",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "500983": {
+   "name": "Undead: Pacify",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "500985": {
+   "name": "Undead: Protect",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "500991": {
+   "name": "Grave March",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "503630": {
+   "name": "Rock Barrier",
+   "kind": "VAR",
+   "classes": [
+    "WILDWALKER"
+   ]
+  },
+  "503712": {
+   "name": "Spirit Volley",
+   "kind": "VAR",
+   "classes": [
+    "WITCHDOCTOR"
+   ]
+  },
+  "504107": {
+   "name": "Divine Fury",
+   "kind": "VAR",
+   "classes": [
+    "MONK"
+   ]
+  },
+  "504296": {
+   "name": "Blood Shield",
+   "kind": "NULL",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "504728": {
+   "name": "Transgression",
+   "kind": "VAR",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "504798": {
+   "name": "Vizier Form",
+   "kind": "VAR",
+   "classes": [
+    "PROPHET"
+   ]
+  },
+  "504859": {
+   "name": "Raise: Crypt Fiend",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "504868": {
+   "name": "Command: Undead",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "504901": {
+   "name": "Raise: Greater Skeletal Warrior",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "505188": {
+   "name": "Sanguine Essence",
+   "kind": "VAR",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "520046": {
+   "name": "Spectral Hand",
+   "kind": "NULL",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "520047": {
+   "name": "Whisper of the Lost",
+   "kind": "NULL",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "520099": {
+   "name": "Glyphic Overload",
+   "kind": "VAR",
+   "classes": [
+    "SPIRITMAGE"
+   ]
+  },
+  "520862": {
+   "name": "Soul Shear",
+   "kind": "NULL",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "520925": {
+   "name": "Petalkeeper",
+   "kind": "VAR",
+   "classes": [
+    "RANGER"
+   ]
+  },
+  "524735": {
+   "name": "Redshade",
+   "kind": "VAR",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "524834": {
+   "name": "Beacon Charging",
+   "kind": "VAR",
+   "classes": [
+    "TINKER"
+   ]
+  },
+  "524865": {
+   "name": "Final Embrace",
+   "kind": "VAR",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "524952": {
+   "name": "Manuscription",
+   "kind": "VAR",
+   "classes": [
+    "SPIRITMAGE"
+   ]
+  },
+  "536213": {
+   "name": "Natural Alchemist",
+   "kind": "NULL",
+   "classes": [
+    "WITCHDOCTOR"
+   ]
+  },
+  "537218": {
+   "name": "Primal Weapons",
+   "kind": "VAR",
+   "classes": [
+    "WILDWALKER"
+   ]
+  },
+  "552011": {
+   "name": "Resilient Constitution",
+   "kind": "NULL",
+   "classes": [
+    "BARBARIAN",
+    "CHRONOMANCER",
+    "CULTIST",
+    "DEMONHUNTER",
+    "FLESHWARDEN",
+    "GUARDIAN",
+    "MONK",
+    "NECROMANCER",
+    "PROPHET",
+    "PYROMANCER",
+    "RANGER",
+    "REAPER",
+    "SONOFARUGAL",
+    "SPIRITMAGE",
+    "STARCALLER",
+    "STORMBRINGER",
+    "SUNCLERIC",
+    "TINKER",
+    "WILDWALKER",
+    "WITCHDOCTOR",
+    "WITCHHUNTER"
+   ]
+  },
+  "553267": {
+   "name": "Bloodsurge",
+   "kind": "VAR",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "560020": {
+   "name": "Tempest Sovereign",
+   "kind": "VAR",
+   "classes": [
+    "STORMBRINGER"
+   ]
+  },
+  "560510": {
+   "name": "Journey To The Core",
+   "kind": "VAR",
+   "classes": [
+    "WILDWALKER"
+   ]
+  },
+  "560977": {
+   "name": "Dark Whispers",
+   "kind": "VAR",
+   "classes": [
+    "CULTIST"
+   ]
+  },
+  "561069": {
+   "name": "Mixologist",
+   "kind": "VAR",
+   "classes": [
+    "WITCHDOCTOR"
+   ]
+  },
+  "561082": {
+   "name": "Spirit Walker",
+   "kind": "NULL",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "561289": {
+   "name": "Soul Capture",
+   "kind": "NULL",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "561376": {
+   "name": "Soulstone Lure",
+   "kind": "NULL",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "562720": {
+   "name": "Blood Curse",
+   "kind": "NULL",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "562723": {
+   "name": "Moon Gaze",
+   "kind": "NULL",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "570023": {
+   "name": "Thirst for Blood",
+   "kind": "VAR",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "572752": {
+   "name": "Sun Down",
+   "kind": "VAR",
+   "classes": [
+    "SUNCLERIC"
+   ]
+  },
+  "573060": {
+   "name": "Falconstrike",
+   "kind": "VAR",
+   "classes": [
+    "RANGER"
+   ]
+  },
+  "632621": {
+   "name": "Electric Ingenuity",
+   "kind": "NULL",
+   "classes": [
+    "STORMBRINGER"
+   ]
+  },
+  "653022": {
+   "name": "Weapon Engraving: Fire",
+   "kind": "NULL",
+   "classes": [
+    "SPIRITMAGE"
+   ]
+  },
+  "667803": {
+   "name": "Will of the Forsaken",
+   "kind": "NULL",
+   "classes": [
+    "MONK",
+    "NECROMANCER",
+    "REAPER",
+    "WITCHHUNTER"
+   ]
+  },
+  "680283": {
+   "name": "Scourge Apprentice Training",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "680378": {
+   "name": "Emberheart",
+   "kind": "VAR",
+   "classes": [
+    "PYROMANCER"
+   ]
+  },
+  "680513": {
+   "name": "Secret of Raven Hill",
+   "kind": "VAR",
+   "classes": [
+    "WITCHHUNTER"
+   ]
+  },
+  "680692": {
+   "name": "Sanguine Essence",
+   "kind": "VAR",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "680975": {
+   "name": "Gear Grind",
+   "kind": "VAR",
+   "classes": [
+    "TINKER"
+   ]
+  },
+  "681001": {
+   "name": "Blazewrought Titan",
+   "kind": "VAR",
+   "classes": [
+    "TINKER"
+   ]
+  },
+  "681242": {
+   "name": "Umbral Glaive",
+   "kind": "VAR",
+   "classes": [
+    "WITCHDOCTOR"
+   ]
+  },
+  "681529": {
+   "name": "Bone Ward",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "704193": {
+   "name": "Decimation",
+   "kind": "VAR",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "704497": {
+   "name": "Soul Marionette",
+   "kind": "VAR",
+   "classes": [
+    "WITCHDOCTOR"
+   ]
+  },
+  "704500": {
+   "name": "Hexfire Adept",
+   "kind": "VAR",
+   "classes": [
+    "WITCHDOCTOR"
+   ]
+  },
+  "704652": {
+   "name": "Relentless",
+   "kind": "VAR",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "704739": {
+   "name": "Starfire Barrage",
+   "kind": "VAR",
+   "classes": [
+    "STARCALLER"
+   ]
+  },
+  "704807": {
+   "name": "Magmatic",
+   "kind": "VAR",
+   "classes": [
+    "PYROMANCER"
+   ]
+  },
+  "704908": {
+   "name": "Burning Heat",
+   "kind": "VAR",
+   "classes": [
+    "SUNCLERIC"
+   ]
+  },
+  "705044": {
+   "name": "Dirty Fighter",
+   "kind": "VAR",
+   "classes": [
+    "RANGER"
+   ]
+  },
+  "705054": {
+   "name": "Elven Enchantments",
+   "kind": "VAR",
+   "classes": [
+    "RANGER"
+   ]
+  },
+  "705320": {
+   "name": "Field Commander",
+   "kind": "VAR",
+   "classes": [
+    "GUARDIAN"
+   ]
+  },
+  "705560": {
+   "name": "Runic Obliteration",
+   "kind": "VAR",
+   "classes": [
+    "SPIRITMAGE"
+   ]
+  },
+  "705618": {
+   "name": "Elemental Carvings",
+   "kind": "VAR",
+   "classes": [
+    "SPIRITMAGE"
+   ]
+  },
+  "706159": {
+   "name": "Lithic Lance",
+   "kind": "VAR",
+   "classes": [
+    "WILDWALKER"
+   ]
+  },
+  "706160": {
+   "name": "Heavy Earth",
+   "kind": "VAR",
+   "classes": [
+    "WILDWALKER"
+   ]
+  },
+  "706247": {
+   "name": "Darkcasting",
+   "kind": "VAR",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "706340": {
+   "name": "Empowered Boons",
+   "kind": "VAR",
+   "classes": [
+    "WILDWALKER"
+   ]
+  },
+  "706502": {
+   "name": "Dread",
+   "kind": "VAR",
+   "classes": [
+    "FLESHWARDEN"
+   ]
+  },
+  "706514": {
+   "name": "Paragon",
+   "kind": "VAR",
+   "classes": [
+    "GUARDIAN"
+   ]
+  },
+  "706731": {
+   "name": "Soul Collector",
+   "kind": "NULL",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "706940": {
+   "name": "Weaver Form",
+   "kind": "VAR",
+   "classes": [
+    "PROPHET"
+   ]
+  },
+  "707233": {
+   "name": "Suffocating Coils",
+   "kind": "VAR",
+   "classes": [
+    "PROPHET"
+   ]
+  },
+  "707542": {
+   "name": "Binder of Storms",
+   "kind": "VAR",
+   "classes": [
+    "STORMBRINGER"
+   ]
+  },
+  "707615": {
+   "name": "Tempest Calling",
+   "kind": "VAR",
+   "classes": [
+    "STORMBRINGER"
+   ]
+  },
+  "707616": {
+   "name": "Mountain Avatar",
+   "kind": "VAR",
+   "classes": [
+    "WILDWALKER"
+   ]
+  },
+  "800184": {
+   "name": "Legacy of Rexxar",
+   "kind": "VAR",
+   "classes": [
+    "WILDWALKER"
+   ]
+  },
+  "800214": {
+   "name": "Malice of Gul'dan",
+   "kind": "VAR",
+   "classes": [
+    "DEMONHUNTER"
+   ]
+  },
+  "800267": {
+   "name": "Bushcraft",
+   "kind": "NULL",
+   "classes": [
+    "RANGER"
+   ]
+  },
+  "800706": {
+   "name": "Ghoulify",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "800797": {
+   "name": "Underwalk",
+   "kind": "NULL",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "801096": {
+   "name": "Ley Power",
+   "kind": "VAR",
+   "classes": [
+    "SPIRITMAGE"
+   ]
+  },
+  "801337": {
+   "name": "Writhe",
+   "kind": "NULL",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "801481": {
+   "name": "Glory",
+   "kind": "VAR",
+   "classes": [
+    "MONK"
+   ]
+  },
+  "801530": {
+   "name": "Transfer Life",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "801957": {
+   "name": "Bare Fangs",
+   "kind": "NULL",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "802780": {
+   "name": "Aspect of Earth",
+   "kind": "VAR",
+   "classes": [
+    "PYROMANCER"
+   ]
+  },
+  "803417": {
+   "name": "Assault Formation",
+   "kind": "NULL",
+   "classes": [
+    "GUARDIAN"
+   ]
+  },
+  "803865": {
+   "name": "Knotted Cord",
+   "kind": "VAR",
+   "classes": [
+    "RANGER"
+   ]
+  },
+  "803989": {
+   "name": "Soul Shock",
+   "kind": "NULL",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "804360": {
+   "name": "Necromancy",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "804591": {
+   "name": "Thunder King",
+   "kind": "VAR",
+   "classes": [
+    "STORMBRINGER"
+   ]
+  },
+  "805029": {
+   "name": "Unholy Frenzy",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER"
+   ]
+  },
+  "805104": {
+   "name": "Serpent Lord",
+   "kind": "VAR",
+   "classes": [
+    "PROPHET"
+   ]
+  },
+  "805198": {
+   "name": "Ruin",
+   "kind": "VAR",
+   "classes": [
+    "REAPER"
+   ]
+  },
+  "805308": {
+   "name": "Build: Battery Recharge Station",
+   "kind": "VAR",
+   "classes": [
+    "TINKER"
+   ]
+  },
+  "805422": {
+   "name": "Tome of Light",
+   "kind": "VAR",
+   "classes": [
+    "MONK"
+   ]
+  },
+  "805591": {
+   "name": "Bloodsores",
+   "kind": "VAR",
+   "classes": [
+    "SONOFARUGAL"
+   ]
+  },
+  "805776": {
+   "name": "Blight Venom",
+   "kind": "NULL",
+   "classes": [
+    "PROPHET"
+   ]
+  },
+  "805804": {
+   "name": "Ramhorn Rage",
+   "kind": "VAR",
+   "classes": [
+    "BARBARIAN"
+   ]
+  },
+  "806116": {
+   "name": "Duality of Light",
+   "kind": "VAR",
+   "classes": [
+    "SUNCLERIC"
+   ]
+  },
+  "806209": {
+   "name": "Threads of Eternity",
+   "kind": "VAR",
+   "classes": [
+    "CHRONOMANCER"
+   ]
+  },
+  "806301": {
+   "name": "Eternity Warper",
+   "kind": "VAR",
+   "classes": [
+    "CHRONOMANCER"
+   ]
+  },
+  "806603": {
+   "name": "Acidfang",
+   "kind": "VAR",
+   "classes": [
+    "PROPHET"
+   ]
+  },
+  "806758": {
+   "name": "Clockwork Guardians",
+   "kind": "VAR",
+   "classes": [
+    "TINKER"
+   ]
+  },
+  "806978": {
+   "name": "Dirty Fighter",
+   "kind": "VAR",
+   "classes": [
+    "RANGER"
+   ]
+  },
+  "807146": {
+   "name": "Sulfuron Harbinger",
+   "kind": "VAR",
+   "classes": [
+    "PYROMANCER"
+   ]
+  },
+  "814285": {
+   "name": "Blood Fury",
+   "kind": "NULL",
+   "classes": [
+    "FLESHWARDEN"
+   ]
+  },
+  "814286": {
+   "name": "Arcane Torrent",
+   "kind": "NULL",
+   "classes": [
+    "DEMONHUNTER",
+    "GUARDIAN"
+   ]
+  },
+  "814287": {
+   "name": "Arcane Torrent",
+   "kind": "NULL",
+   "classes": [
+    "CHRONOMANCER",
+    "CULTIST",
+    "PYROMANCER",
+    "SPIRITMAGE",
+    "SUNCLERIC",
+    "TINKER"
+   ]
+  },
+  "814291": {
+   "name": "Arcane Torrent",
+   "kind": "NULL",
+   "classes": [
+    "STARCALLER"
+   ]
+  },
+  "814292": {
+   "name": "Arcane Torrent",
+   "kind": "NULL",
+   "classes": [
+    "RANGER"
+   ]
+  },
+  "1005008": {
+   "name": "Apprentice Woodworking",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER",
+    "SONOFARUGAL"
+   ]
+  },
+  "9930874": {
+   "name": "Mercenary for Hire!",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER",
+    "REAPER",
+    "SONOFARUGAL"
+   ]
+  },
+  "13977860": {
+   "name": "Woodcutting",
+   "kind": "NULL",
+   "classes": [
+    "NECROMANCER",
+    "REAPER",
+    "SONOFARUGAL"
+   ]
+  }
+ }
+}

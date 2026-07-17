@@ -13,7 +13,18 @@ APIDocumentation addon) × RUNTIME (the `census` task's cycled 51,855-global _G 
 sha256/runId-anchored). Refinements banked, not blocking: clean-profile re-run (splits the 1526 unattributed
 functions) · the 8 listfile-less art archives · 5 failed GlueXML extracts (named in the manifest).
 
-## 1. The spec-name capture (unblocks `load.specialization` for EVERY pack)
+## 1. The spec-name capture — REFRAMED BY SOURCE 2026-07-17 (task `spec` deployed, capture pending)
+
+**The source finding (SpecializationUtil.lua, patch-B):** spec NAMES are PLAYER-AUTHORED labels in a
+per-character custom WTF file (`SetSpecializationName` → `SpecializationSaved`; default "Specialization N")
+— **not class facts.** A per-class index→name map is not derivable; the mechanical key WA stores is the
+INDEX, and the per-slot game facts are `SPEC_SWAP_SPELLS[i]` + `IsSpecializationUnlocked(i)` (IsSpellKnown-
+derived) + `C_CharacterAdvancement.GetActiveSpecID`. **Implication for the aura bench:** `load.specialization`
+is per-USER config (their own labeled slots), not pack content. Trap found + avoided: `GetSpecializationInfo`
+runs a legacy migration that MUTATES saved data — the deployed `spec` task uses pure getters only. Original
+mission text below (kept for the trail):
+
+## (original) 1. The spec-name capture (unblocks `load.specialization` for EVERY pack)
 
 The load's `specialization` is an index-keyed multiselect (fork `Prototypes.lua:1075`, `IsSpecActive(i)`, domain
 built live per class via `SpecializationUtil`). We need **index → spec-name per class** (a 20-entry list was observed).
