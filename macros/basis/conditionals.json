@@ -68,6 +68,43 @@
   "who_this_hits": "anyone following a retail macro guide - which is nearly every macro guide, including the Ascension wiki's own, since it inherits its conditional list from the retail wikis (see reference/README).",
   "the_defence": "the 6 UNSUPPORTED-IGNORED + 4 AMBIGUOUS in `flags` below are the list to never put in a macro on this client. Everything archive-documented is safe (53/53 supported)."
  },
+ "CHAT_PROBE_FOLLOWUP": {
+  "tier": "CHAT PROBE - live, but hand-transcribed. WEAKER than the landed capture.",
+  "when": "2026-07-17, immediately after the 5-context capture",
+  "context_caveat": "Battlewrath was IN PVP (and therefore IN COMBAT) when these ran, and flagged it himself. That confound killed probe A's REFERENCE row and nothing else - see per-probe notes.",
+  "A_flag_control": {
+   "asked": "[zzz] / [nozzz] / [resting] / [noresting] / [combat] / [nocombat]",
+   "returned": "zzz Y/nil · resting Y/nil · combat Y/nil",
+   "the_reference_row_DIED": "[combat] was chosen as the 'supported but currently FALSE' reference. He was in combat, so it read TRUE - identical to zzz and resting. The comparison proves nothing. My probe design assumed a rest context and did not say so.",
+   "but_the_ACTUAL_FINDING_STANDS": "[zzz] is NONSENSE and returned Y; [nozzz] returned nil. That is DIRECT OBSERVATION that an unknown token evaluates TRUE and the no- prefix negates it. It no longer rests on petbattle/resting as de-facto controls. The probe delivered its real job despite the confound."
+  },
+  "D_ambiguity_resolver": {
+   "asked": "HasOverrideActionBar() vs [overridebar] · IsPossessBarVisible() vs [possessbar] · [known:1] (a spell he certainly does not have)",
+   "returned": "OB: API=nil, [overridebar]=Y · PB: API=false, [possessbar]=Y · [known:1]=Y",
+   "verdict": "THREE CONTRADICTIONS - the same conviction that got [resting]. All three are IGNORED. PVP does not touch vehicle/possess state, so the confound does not reach these.",
+   "resolves": [
+    "overridebar",
+    "possessbar",
+    "known"
+   ]
+  },
+  "B_macro_limits_RESOLVED": {
+   "asked": "MacroFrame_LoadUI() then MAX_ACCOUNT_MACROS / MAX_CHARACTER_MACROS / MAX_MACROS / GetNumMacros()",
+   "returned": "acct=36 · char=36 · legacy=nil · GetNumMacros()=4,0",
+   "verdict": "THE CONFLICT IS RESOLVED. MAX_CHARACTER_MACROS = 36, NOT 18. MacroFrame_LoadUI() was the missing step - exactly as the load-on-demand reading predicted (the globals do not exist until the macro window loads, which is why the capture's stamp read nil, and why Asc_MacroBank carries `or 18` as a LOAD-ORDER guard).",
+   "the_client_bug_this_evidences": "QuickKeybindActionPicker declares a LOCAL MAX_CHARACTER_MACROS=18 (the stock WotLK value) that shadows the global 36 inside that file. The global is 36 LIVE => the backported keybind picker very likely CANNOT SEE character macros 19-36. A real bug in THEIR client, now evidenced rather than hypothesised. Not ours to fix; worth telling.",
+   "unaffected_by_the_pvp_confound": true
+  },
+  "C_bonusbar": {
+   "asked": "GetBonusBarOffset() · [bonusbar:1] · [bonusbar:5] · [bar:1]",
+   "returned": "offset=1 · [bonusbar:1]=Y · [bonusbar:5]=nil · [bar:1]=Y",
+   "verdict": "bonusbar is SUPPORTED and TRACKING: offset=1 corroborates [bonusbar:1]=Y, and [bonusbar:5]=nil proves it is evaluated. The arg the ask never carried, now answered. Corroboration holds regardless of WHY the offset is 1, so the pvp confound does not reach it."
+  },
+  "STILL_AMBIGUOUS_and_honest": {
+   "pvpcombat": "survives D. The wiki says it means 'PvP talents are usable' (a Legion+ system), NOT 'in pvp combat' - so being in PVP does NOT witness it, and IsPVPTalentUsable is absent from the census. No witness => no verdict. Not guessing."
+  },
+  "what_I_got_wrong_in_the_ask": "probe A silently assumed a REST context for its reference row and never said so. A control row needs its required context stated, or the human cannot know they are invalidating it. He caught it; the probe should have."
+ },
  "at_targets": {
   "control_row_SETTLED": true,
   "finding": "[@banana] returned target='banana' in ALL FIVE contexts => `@` is a PASS-THROUGH STRING. The parser does not validate units; it hands the string on. Support lives DOWNSTREAM (the handler's special-casing + unit resolution).",

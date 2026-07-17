@@ -81,5 +81,6 @@
    }
   ]
  },
+ "limit_conflict_RESOLVED_2026_07_17": "RESOLVED by a live chat probe: MacroFrame_LoadUI() then read -> MAX_ACCOUNT_MACROS=36, MAX_CHARACTER_MACROS=36 (NOT 18), MAX_MACROS=nil. The globals read nil in the 5-context capture because Blizzard_MacroUI is LOAD-ON-DEMAND - they do not exist until the macro window loads. That also re-reads Asc_MacroBank's `MAX_CHARACTER_MACROS or 18` as a LOAD-ORDER guard, not a version guard (which is how it was first read). => THE CLIENT BUG STANDS AND IS NOW EVIDENCED: QuickKeybindActionPicker's LOCAL 18 shadows the live global 36 inside that file, so the backported keybind picker very likely cannot see character macros 19-36. Theirs to fix; worth telling. The ENGINE limit remains unproven (needs a write test - deliberately not asked).",
  "limit_conflict_note": "UNRESOLVED FROM SOURCE - the client disagrees with itself. Blizzard_MacroUI declares GLOBAL MAX_CHARACTER_MACROS=36; QuickKeybindActionPicker declares a LOCAL MAX_CHARACTER_MACROS=18 (stock WotLK value) that shadows it within that file. Hypothesis (NOT fact): the MacroUI was raised to 36 and the Dragonflight-backported keybind picker kept the stock local - which would mean the picker cannot see character macros 19-36. Live check: GetNumMacros(). Do not state a limit as fact until probed."
 }
