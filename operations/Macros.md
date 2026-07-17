@@ -170,34 +170,89 @@ wrong count twice by hand — *if it ever fails the conditional counts are wrong
 report** (declared-without-handler / body-unresolved), where an unresolved body means `calls` is **blind** and
 absence of `custom_behaviour` proves nothing. An empty holes list is a healthy one.
 
-## Open / next
+## FORECAST — what happens next, and what would surprise us
 
-- **★ THE LIVE PROBE — STAGED as a bounded ask (`macros/probe/ASK.md`), pointer in `addons/backlog.md` #4.**
-  The dev console is **CONFIRMED real** (Battlewrath, 2026-07-17), so the channel is live and interactive. The ask
-  is one bounded pass: ~90 reads, pure, resident-API-only (every call verified against the runtime census),
-  compiles under Lua 5.1, exercised headlessly. **The addons bench owns the harness** — they configure coadump.
-  **Lands RAW** (`schema=macros.probe.raw/1`): the parser's own returns + a context stamp, NO verdicts computed
-  in-game — emission over interpretation, so a wrong matrix costs a re-derivation not another client session.
-  Read the `[@banana]` control row first; it decides how all 13 target rows are read.
-- **THE MAP (this bench's next build, once data exists)** — derive verdicts from the raw record, triangulating each
-  flag against its independent context witness (`[combat]` false WITH `inCombat=true` = a real anomaly, not just
-  "false"), write `proof_mark` back to `reference/candidates.json`, graduate the proven set into
-  `basis/conditionals.json`. **Broad capture first, maps consolidate after** (Battlewrath, 2026-07-17).
-- **The macro-limit conflict** — one `GetNumMacros()` call settles it. Cheap, and it's a candidate real bug in the
-  backported picker (would silently hide character macros 19–36).
-- **`statedrivers` provenance** — resolved for free by the **clean-profile census re-run already banked** in
-  `Addons_load.md` (splits `unattributed` = engine-custom ∪ user-addon). No new work; just consume it when it lands.
-- **The guide** — prose over the map, downstream, once the rim is closed enough to teach from. Not before.
-- **`GlobalStrings.lua` is NOT in patch-B** — it lives in the enUS locale archives (4 of them carry it). Any future
-  census work wanting locale strings inherits the precedence-merge rule above, where it DOES bite (`/lfg`, `/lfm`).
+_Forward-looking. Each step states what it UNBLOCKS, what we EXPECT, and what would be a real SURPRISE — because a
+stated expectation is what lets a result contradict us instead of quietly confirming us._
+
+### 1. ★ The capture lands — the addons bench, one bounded pass
+
+**Ask:** `macros/probe/ASK.md` (payload `probe_core.lua` + `probe_rows.json`); pointer at `addons/backlog.md` #4.
+**They own the harness**; we composed the question. Channel confirmed live — the client's dev console
+(`/luaconsole`) makes it interactive, no restart, resident API only.
+
+**Unblocks: everything below.** Nothing else in this slice moves until it lands.
+
+**What we expect:**
+- `[@banana]` returns `target="banana"` ⇒ `@` is **pass-through**, and the polarity matrix never applied to targets.
+  Both retail docs and CoA's own handler point this way. *Surprise:* `nil` ⇒ `@` is validated, and every target row
+  means something else — re-read the whole target channel.
+- Archive-documented flags come back mostly supported ⇒ a 3.3.5a base behaving like one. *Surprise:* an
+  `UNSUPPORTED` here — something removed or never implemented on the fork. **That would be a real finding.**
+- The patch-dated rows are the live question. `@cursor` (7.1.0) is a **confirmed backport**, so the pattern has a
+  proof — but nothing predicts the others either way. *Surprise in both directions is informative here; that's why
+  they rank first.*
+- `MAX_CHARACTER_MACROS` reads **36** ⇒ `QuickKeybindActionPicker`'s local `18` is a stale shadow and the backported
+  picker likely can't see character macros 19–36 — **a candidate bug in their client**. *Surprise:* it reads 18 ⇒
+  Blizzard_MacroUI is the outlier instead. Either way the **engine** limit stays unproven (needs a write test,
+  deliberately not asked).
+
+### 2. The map — this bench's next build, once data exists
+
+Derive verdicts from the raw record (**never in-game**), **triangulating each flag against its independent context
+witness**: `[combat]` false WITH `inCombat=false` is consistent; `[combat]` false WITH `inCombat=true` is a real
+anomaly. Then write `proof_mark` back to `reference/candidates.json` and **graduate only the proven set** into
+`basis/conditionals.json`.
+
+**That remains the only path anything becomes fact in this slice.** `reference/` never becomes `basis/` by itself.
+
+### 3. A second context pass — sharpens, doesn't block
+
+One run resting/idle, one **in combat + mounted** (or in a form). The pair separates *"false here"* from *"always
+false"* for the context-bound flags. **Do not block step 1 on it.**
+
+### 4. The guide — last, and downstream
+
+Prose over the map: teaching, ordering, worked examples. **Not before the rim is closed enough to teach from**, and
+it may never assert what the map doesn't carry. The three-way `cursor` collision
+(`@cursor` location / `@mouseover` unit / `[cursor]` held-item) is the first thing it must get right — a guide that
+misses it is wrong three ways at once.
+
+## Banked — real, non-blocking, no new work
+
+- **`statedrivers` provenance** — resolved *for free* by the clean-profile census re-run already banked in
+  `Addons_load.md` (splits `unattributed` = engine-custom ∪ user-addon). Just consume it when it lands.
+- **The engine macro limit** — needs a write test (create macro 19+). Changes state; out of scope for a pure-read
+  pass. Only worth it if the limit ever matters to a product.
+- **`Custom_HandleTerrainClick_TargetPos`** — resident but nothing calls it. Built-and-unwired, same shape as the
+  native-aggroHighlight case. Noted, not chased.
+- **Ascension's dev tooling** (`/luaconsole` `/tinspect` `/tracefunc` `/dfunc` `/cvar`) — **addons lane**, handed
+  across. Declared in shipped UI code ≠ working; the console is confirmed, the rest isn't.
+
+## Standing — so they don't get re-learned
+
+- **Agent WoW recall is INADMISSIBLE as fact here, admissible as a QUESTION.** The probe adjudicates; a wrong
+  candidate costs one row, a wrong fact poisons the basis.
+- **Absence is never evidence.** It bit twice: the era classifier inferred "post-wotlk" from a wiki's silence, and a
+  wiki *typo* silently ate `@nameplate`. Patch annotations are evidence; silence is not.
+- **Cite internal data first — as leverage, not a substitute.** The WA sheets are a local sourced witness on this
+  client and beat any retail doc where they overlap. But they carry **zero conditionals**, omit `mouseover`, and
+  hold no patch dating: WA **listing** a token corroborates it, WA **omitting** one proves nothing. Complementary,
+  not redundant.
+- **Counts belong in the artifacts, not in prose.** Every hand-written number in this slice went stale within hours.
+  `candidates.json`→`counts`, `probe_rows.json`→`counts`, `basis/_meta.json`→`counts`, and
+  `completeness_check.incomplete` **must be empty**.
+- **A `continue` that skips downstream derivation is this codebase's recurring trap** — it silently stripped
+  `@cursor`'s witness, then silently nulled `probe_method` on 15 candidates, both while the run printed success.
+  Fix the trap, not the instance.
 
 ## Related
 
-- `addons/maps/census/` — the sibling map + every convention this slice copies. `Addons_load.md` — the lane, the
-  standing cautions (incl. "the Cowork mpyq wall doesn't hold locally"), the extraction debts.
-- `addons/Materials/Ascencion behaviour/AGENT_HANDOFF_FACT_SHEET.md` — **STALE on MPQ extraction** ("not extractable…
-  concluded not worth pursuing"). False locally: `extract_interface.py` uses mpyq successfully and `patch-B` is
-  extracted on disk. Likely cause: the Cowork session tested the SMALLEST archives first — exactly the ~8
-  listfile-less art archives that genuinely can't be listed — and generalized. Operations already carries the
-  correction (`Addons_load.md`, `STATE.md`); the fact sheet itself still misleads. A fresh agent this session read it
-  and nearly ruled out the client's own FrameXML — i.e. this whole slice's source channel. Correction is queued.
+- `addons/maps/census/` — the sibling map + every convention this slice copies. **`addons/backlog.md` #4** = the
+  staged ask. `Addons_load.md` — the lane, the standing cautions, the extraction debts.
+- `Weak Auras/engine/Fact_basis/sheets/domains.json` — the LOCAL unit-token witness (`baseUnitId`/`multiUnitId`).
+  `corpus/patterns/guardian-health-tracker.md` — `@nameplate` **live-proven**, with the plate-population boundary.
+- `addons/Materials/Ascencion behaviour/AGENT_HANDOFF_FACT_SHEET.md` — **the MPQ claim was CHALLENGED + CORRECTED
+  in place (`c7d1cbe`)**, framed as true-in-its-env (Cowork sandbox, pre-code-agents) with the original kept as
+  history. It also now carries a lead for the addons bench's open #266: the now-readable `CompactUnitFrame.lua`
+  gates on `optionTable.displayAggroHighlight` before touching the texture.

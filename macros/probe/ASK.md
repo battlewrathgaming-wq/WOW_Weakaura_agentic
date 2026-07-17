@@ -6,11 +6,11 @@ stall." This is that case, exactly._
 
 ## The bound
 
-**One task. One pass. ~90 reads. No iteration, no arguments, no follow-up needed to make it useful.**
+**One task. One pass. No iteration, no arguments, no follow-up needed to make it useful.**
 
 | | |
 |---|---|
-| **calls** | 63 flag pairs (126 `SecureCmdOptionParse`) + 13 target reads + 1 control + ~30 context reads |
+| **calls** | ~2 per flag (polarity pair) + ~4 per target (parser + UnitExists/Name/GUID) + 1 control + ~30 context reads. **Exact counts: `probe_rows.json` → `counts`.** Order ~200 reads; one synchronous pass. |
 | **writes** | none — pure reads, no state touched, no globals set |
 | **API** | resident only; **every call verified present** in `maps/census/runtime/globals.json` before composing |
 | **restart** | **not needed to try it** — plain `/run` or the dev console (`/luaconsole`) |
@@ -49,7 +49,7 @@ Broad now, consolidate after. **Get the data set broad; the maps come next.**
 
 ## Read the control row first
 
-`[@banana]` — a nonsense unit. **One row decides how all 13 target rows are read:**
+`[@banana]` — a nonsense unit. **One row decides how every target row is read:**
 
 - `target == "banana"` → `@` is a **pass-through string**; support lives downstream (the handler's own
   special-casing → `Custom_HandleTerrainClick`, unit resolution). The polarity matrix does **not** apply to
@@ -127,12 +127,12 @@ write test (create macro 19+), which changes state and is **deliberately not ask
 
 ## Highest-information rows (if anything gets cut, cut from the bottom)
 
-| tier | rows | why |
-|---|---|---|
-| **1-backport-test** | 4 | **SOURCED** post-3.3.5a patch dates: `@cursor` **7.1.0 Legion** (Blizzard-cited), `pvpcombat` 7.3.0, `known` 10.0.2, `advflyable` 10.0.7. Here only if **backported** — and `@cursor` is a *confirmed, dated* backport already witnessed in CoA's own source, so the pattern has a proof. |
-| **2-undated-test** | 9 | retail lists it, the ~2010 archive doesn't, **no patch annotation**. We genuinely don't know when it shipped. |
-| **3-baseline** | 59 | archive-documented ⇒ expected present. An `UNSUPPORTED` here is a real finding. |
-| **4-corroborate** | 4 | already source-corroborated; confirms behaviour. |
+| tier | why (counts: `probe_rows.json` → `counts.by_priority`) |
+|---|---|
+| **1-backport-test** | **SOURCED** post-3.3.5a patch dates: `@cursor` **7.1.0 Legion** (Blizzard-cited), `pvpcombat` 7.3.0, `known` 10.0.2, `advflyable` 10.0.7. Here only if **backported** — and `@cursor` is a *confirmed, dated* backport already witnessed in CoA's own source, so the pattern has a proof. |
+| **2-undated-test** | retail lists it, the ~2010 archive doesn't, **no patch annotation**. We genuinely don't know when it shipped. |
+| **3-baseline** | archive-documented ⇒ expected present. An `UNSUPPORTED` here is a real finding. |
+| **4-corroborate** | already source-corroborated; confirms behaviour. |
 
 Full detail per row (method, era, patch, expectation): `probe_rows.json`. Nothing needs cutting — the whole set is
 one pass.

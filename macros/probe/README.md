@@ -18,7 +18,7 @@ shipped code contains no conditional literal anywhere.
 | file | what it is |
 |---|---|
 | `probe_core.lua` | the evaluation core + the composed ask. **Resident Blizzard API only** — no addon namespace, no globals written, no state changed. Compiles clean under Lua 5.1 (`luac5.1 -p`, checked). Returns a flat result table. |
-| `probe_rows.json` | all **76 rows** (63 flag / 13 target), each with its method, era signal, priority and expectation. The machine-readable ask. |
+| `probe_rows.json` | every row, each with its method, era signal, patch date, priority and expectation. The machine-readable ask — **counts live in its `counts` block**, not in this prose. |
 
 `probe_core.lua` ends with `return run` — a function returning the result table. Wire that into a task however the
 v2 spine wants it; the harness shape is yours.
@@ -47,7 +47,7 @@ Testing **both polarities** and reading the **pair** turns that ambiguous silenc
 [@banana]
 ```
 
-**One row, and it decides how to read all 13 target rows.** `@unit` and `[flag]` are not the same mechanism:
+**One row, and it decides how to read every target row.** `@unit` and `[flag]` are not the same mechanism:
 
 - If `[@banana]` returns `target="banana"` → **`@` is a pass-through string.** Support lives *downstream* (the
   handler's own special-casing → `Custom_HandleTerrainClick`; unit resolution), the polarity matrix does **not**
@@ -61,10 +61,10 @@ unitId"*; `/cast` does `target:lower() == "cursor"`). **It's still a hypothesis 
 
 | priority | rows | why |
 |---|---|---|
-| **1-backport-test** | 4 | **SOURCED** — the wiki carries a `{{Patch}}` annotation dating it after 3.3.5a (`@cursor` 7.1.0 Legion *Blizzard-cited*, `pvpcombat` 7.3.0, `known` 10.0.2, `advflyable` 10.0.7). Present here only if **backported** — and this client backports freely (Legion/BfA `CompactUnitFrame`, Dragonflight `/kb`). **`@cursor` is a confirmed, dated backport already witnessed in CoA's own source**, so the pattern has a proof. Highest information per row. |
-| **2-undated-test** | 9 | retail lists it, the ~2010 archive doesn't, **no patch annotation exists**. We genuinely **do not know** when it shipped — it may predate 3.3.5a and simply be undocumented in the archive. Absence is not evidence. The probe answers; no wiki can. |
-| **3-baseline** | 59 | documented in the ~2010 archive ⇒ expected present on a 3.3.5a base. An `UNSUPPORTED` here is a real finding (removed, or never implemented on this fork). |
-| **4-corroborate** | 4 | already source-corroborated; the probe confirms behaviour. |
+| **1-backport-test** | **SOURCED** — the wiki carries a `{{Patch}}` annotation dating it after 3.3.5a (`@cursor` 7.1.0 Legion *Blizzard-cited*, `pvpcombat` 7.3.0, `known` 10.0.2, `advflyable` 10.0.7). Present here only if **backported** — and this client backports freely (Legion/BfA `CompactUnitFrame`, Dragonflight `/kb`). **`@cursor` is a confirmed, dated backport already witnessed in CoA's own source**, so the pattern has a proof. Highest information per row. |
+| **2-undated-test** | retail lists it, the ~2010 archive doesn't, **no patch annotation exists**. We genuinely **do not know** when it shipped — it may predate 3.3.5a and simply be undocumented in the archive. Absence is not evidence. The probe answers; no wiki can. |
+| **3-baseline** | documented in the ~2010 archive ⇒ expected present on a 3.3.5a base. An `UNSUPPORTED` here is a real finding (removed, or never implemented on this fork). |
+| **4-corroborate** | already source-corroborated; the probe confirms behaviour. |
 
 _Tiers 1 and 2 were one bucket of "13 backport tests" until Battlewrath asked when `@cursor` actually shipped. It was 4 facts and 9 guesses wearing the same label — the ranking was inferred from **absence** in the archive, which is the very error this slice documents. Patch annotations are evidence; absence never was._
 

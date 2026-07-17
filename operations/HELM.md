@@ -1,12 +1,15 @@
 # HELM — who has the trunk
 
-holder:  macros bench (Claude, Opus 4.8)
-since:   2026-07-17 02:01
-heading: Stand up `/macros/` — the client's macro surface as a sourced basis (tools + basis), commands
-         COMPLETE from source, conditional vocabulary PROOF-PENDING until probed.
-runway:  LONG — holding for a while (Battlewrath, 2026-07-17). Foundation is seeded
-         (`operations/Macros.md`); the build (emitter + basis) follows in this same hold. Other benches:
-         assume the trunk is taken until this line says RELEASED, not just until the next commit lands.
+holder:  RELEASED
+since:   2026-07-17 (released — `/macros/` stood up; the slice is staged and waiting on the client)
+heading: —
+runway:  —
+
+next:    `/macros/` is BLOCKED ON ONE THING — the live capture. Ask is staged at `macros/probe/ASK.md`
+         (addons bench owns the harness; pointer at `addons/backlog.md` #4). Nothing in the slice moves
+         until it lands. When it does, the map is this bench's build: derive verdicts from the RAW record,
+         graduate the proven set into `basis/conditionals.json`. Forecast + expectations:
+         `operations/Macros.md`. Anything else is free game.
 
 ---
 
@@ -28,6 +31,10 @@ is RELEASED at close-off.
   rule directly: **a LONG runway is what a dead session looks like from outside**, so say so up front.
   A quiet trunk under a declared long runway is expected, not evidence of staleness. Clear it at
   close-off with the holder line.
+- **`next:`** (optional) — a LIGHT direction stub left at close-off: what the released topic is waiting
+  on, in a sentence or two, so the next pickup steers without archaeology. **Steering, not audit
+  history** (Battlewrath, 2026-07-17) — the trail lives in `git log` and the lane files; this line only
+  points. Drop it when the topic closes or a new holder sets a heading.
 - `git log --oneline -- operations/HELM.md` = the trunk's custody history, for free.
 
 _Born from the 2026-07-15 wobble: two sessions interleaved on the trunk and it looked like

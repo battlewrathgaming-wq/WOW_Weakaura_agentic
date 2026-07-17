@@ -2,6 +2,25 @@
 
 _Last updated 2026-07-16 (the picker V1 session). The single "where are we" read. Detail lives in the code + READMEs this points at._
 
+## Macros bench 2026-07-17 — `/macros/` STOOD UP; BLOCKED ON ONE LIVE CAPTURE
+
+- **A new root slice** (`macros/`, Battlewrath's call): the client's macro surface, sheets-model. **Lane file +
+  forecast: `operations/Macros.md`** — read that, not this, for detail.
+- **`basis/` (5 domains, emitted, sha256-anchored):** commands + actions **SOURCED-COMPLETE**; `conditionals`
+  **EMPTY and honest** — `SecureCmdOptionParse` is C-side (called 49× in ChatFrame.lua, defined nowhere in Lua) and
+  the attested-usage seed measured **zero**. **Grain differs PER DOMAIN and each file says its own.**
+- **`reference/` = the QUESTION register** (never basis): the citation chain + the 2 installed macro addons + the
+  **local WA sheets** (`baseUnitId`/`multiUnitId` — stronger than any retail doc where they overlap). Rule: recall
+  and secondary sources are **inadmissible as fact, admissible as a question** — the probe adjudicates.
+- **★ BLOCKED ON: the live capture.** Ask staged at `macros/probe/ASK.md`; **addons bench owns the harness**
+  (`addons/backlog.md` #4). One bounded pass, pure reads, resident-API-only, no restart (dev console confirmed).
+  **Lands RAW** — no verdicts in-game. Nothing in the slice moves until it lands; the map is next after.
+- **Finds worth knowing elsewhere:** `[@cursor]` is a **confirmed, dated backport** (7.1.0 Legion, Blizzard-cited)
+  hand-rolled via `Custom_HandleTerrainClick` — on `/cast`, `/castsequence` AND `/castrandom` · the client
+  **contradicts itself on macro limits** (MacroUI global 36 vs QuickKeybind local 18 — candidate bug in the
+  backported picker) · the **Materials fact sheet's MPQ claim was corrected in place** (`c7d1cbe`) and now carries a
+  lead for the addons bench's open **#266** (`CompactUnitFrame.lua` gates on `optionTable.displayAggroHighlight`).
+
 ## Aura bench 2026-07-16 — THE PICKER V1: BUILT, LIVE-GRADED, IN THE DEVS' HANDS
 
 - **The whole runway ran in ~a day** (`creator/picker/` — spec `picker_tree.md`, runway `picker_build.md`, all

@@ -1,15 +1,17 @@
-# reference — external material. **NOT basis.**
+# reference — external + local material. **NOT basis.**
 
-_Provenance-stamped external sources, kept separate from `../basis/`. Follows the `ingest/reference/` pattern
-already in the repo: **trust STRUCTURE, not FIELDS.** Nothing in this folder is a fact about the CoA client._
+_Provenance-stamped sources, kept separate from `../basis/`. Follows the repo's `ingest/reference/` pattern:
+**trust STRUCTURE, not FIELDS.** Nothing in this folder is a fact about the CoA client._
+
+**Counts live in the artifacts, never here.** `candidates.json` → `counts` / `sources`; `addon-macro-tools.json` →
+per-addon. Prose that hardcodes a number goes stale silently — the exact failure the Materials fact sheet taught us.
+This file carries **grain and rules**, which don't drift.
 
 ## The one rule
 
 **Never cite `reference/` as `basis/`.** If a claim only appears here, it is a **question**, not an answer.
 
-## Why an external source is allowed at all
-
-The distinction that makes this safe, and the whole justification for the folder:
+## Why any of this is admissible
 
 > **Recall and secondary sources are INADMISSIBLE as a FACT source
 > but ADMISSIBLE as a QUESTION source — because the probe adjudicates.**
@@ -18,62 +20,69 @@ The distinction that makes this safe, and the whole justification for the folder
 > A wrong fact poisons the basis silently.
 
 `basis/conditionals.json` carries a standing limit: *a probe only ever proves conditionals someone thought to ASK
-about.* That limit needed an ask-list, and the only alternative source was an agent's own WoW recall — which this
-slice rules inadmissible. **This folder is where the ask-list comes from without anyone inventing it.**
+about.* That limit needs an ask-list, and the only alternative was an agent's own WoW recall — which this slice
+rules inadmissible. **This folder is where the ask-list comes from without anyone inventing it.**
 
-## What's here
+## What's here, and how much each is worth
 
-| file | what | standing |
-|---|---|---|
-| `ascension-wiki-macros.wikitext` | the page's **raw wikitext, verbatim** | the artifact |
-| `ascension-wiki-macros.json` | provenance + extracted candidates + grammar claims + the source join | **SECONDARY** |
+| source | standing |
+|---|---|
+| **the WA sheets** (joined, not copied) | **LOCAL + SOURCED** — `Fact_basis/sheets/domains.json` `baseUnitId`/`multiUnitId`, from the **installed fork's** `Types.lua`, on **this** client. The strongest witness here. |
+| `addon-macro-tools.json` | the two installed macro addons — **code aimed at a client**. One notch above a wiki; still an author's belief. |
+| `ascension-wiki-macros.*` | the server's own guide — but it **inherits** its conditional list from the retail wikis (see its Resources section). |
+| `wowwiki-archive-*` | the old wowwiki, content ~2010. Documents spell **ranks** ⇒ WotLK/early-Cata; closest external match to a 3.3.5a base. |
+| `wowpedia-*`, `warcraft-wiki-*` | retail — for **patch dating** and the **unit-token vocabulary**. |
 
-**Provenance anchor:** `project-ascension.fandom.com/wiki/Macros`, pageid 4463, **revid 15818**, last edited
-**2025-11-05** by `Tura0763`. Re-fetching with a changed revid prints a **loud** warning — the page moved, re-read
-the diff before trusting anything derived from it.
+Raws are saved **verbatim** with sha256 + revid; a changed revid on `--fetch` prints **loud**. The fetch is network
+(not reproducible), so extraction re-derives from the saved copies offline by default.
 
-## Why this wiki is a generator and not a witness
+## Local witnesses come first — and answer a different question
 
-**Its own Resources section points at Wowpedia and wowwiki-archive for its "macro conditionals reference."** It
-*inherits* its conditional list from retail documentation rather than verifying it against this client. That makes
-its claims **exactly as unverified as agent recall** — same provenance, nicer formatting.
+The sheets model exists so reasoning **reads** instead of re-derives, and a local sourced witness beats any external
+doc. **But local sources are complementary, not a substitute** — stated precisely because the reverse mistake is
+just as easy:
 
-**Its absences prove nothing.** It's a beginner guide, not a reference. A conditional it omits is **un-asked**, not
-unsupported. This is demonstrated mechanically rather than asserted: the source join found **`@pettarget`** — a
-target token the client's own Lua special-cases (`ChatFrame.lua:1471`, `PET_ATTACK`) that **the wiki never
-mentions**. One counter-example, found by the tool, on the first run.
+- The sheets carry **zero conditionals**. Most candidates are flags; WA has no macro-conditional surface at all.
+- The sheets **omit `mouseover`** — not because it's absent, but because WA *watches* state rather than *casting*.
+- The sheets carry **no patch dating** (`@cursor` → 7.1.0 is unreachable from them).
+- Where they overlap (unit tokens) they are the **stronger** witness, and mark those `LOCAL-SOURCE-CORROBORATED`.
 
-## What the source join actually establishes
+**WA *listing* a token corroborates it. WA *omitting* one proves nothing.** Its list is *what WA offers as a trigger
+unit* — it even **adds** abstractions that are not client tokens (`group`, `grouppets`, `partypets`…) and must never
+be read as macro targets.
 
-`corroborations` is the ONLY source witness the conditional vocabulary has anywhere on this client — and it is
-narrow in a way worth stating precisely:
+## Already proven locally — cite, don't re-ask
 
-- It reaches **target tokens only** (`@cursor`, `@player`, `@focus`, `@target`, `@pettarget`), never flags like
-  `[combat]`. **19 of the 24 candidates have no source witness of any kind.**
-- It proves a **handler anticipates** the token (it compares the parser's returned `target` to a literal). It does
-  **not** prove the parser validates it.
-- `@cursor` is witnessed at three sites — `CAST`, `CASTRANDOM`, `CASTSEQUENCE` — independently agreeing with the
-  `custom_behaviour` finding in `basis/commands.json`. Two separate derivations, same answer.
+`@nameplate` is **live-proven** (`corpus/patterns/guardian-health-tracker.md`, 2026-07-15): plate tokens resolve,
+with a landed evidence pair. It's also **richer than a probe** — it carries the boundary (*token lifetime = plate
+population, not model visibility*). The row survives only because **targeting** a plate from a macro is a different
+question from **reading** one (retail says it can't be done; unverified here). See `local_proven` in
+`candidates.json`.
 
-## The distinction this folder surfaced: `@unit` ≠ `[flag]`
+## `@unit` ≠ `[flag]` — different mechanisms, different proof
 
-Reading the witnesses closely splits the conditional domain in two, **with different proof methods** — conflating
-them is the easiest way to write a confident wrong guide:
+- **`@unit`** — *hypothesis:* a **pass-through string**. The parser returns whatever follows `@`; support lives
+  **downstream** (the handler's special-casing → `Custom_HandleTerrainClick`; unit resolution). Polarity does not
+  apply — there is likely no `[no@cursor]`. **One control row settles it:** `[@banana]`.
+- **`[flag]`** — actually **evaluated** by the C parser. This is the vocabulary question the polarity matrix is for.
 
-- **`@unit` / `target=unit`** — *hypothesis:* a **pass-through string**. The parser appears to return whatever
-  follows `@`, and support lives **downstream** (the handler's special-casing → `Custom_HandleTerrainClick`; unit
-  resolution). The polarity matrix likely doesn't apply — there is probably no `[no@cursor]`. **One probe row
-  settles it:** `SecureCmdOptionParse("[@banana] X")` — if a nonsense unit comes back as `target="banana"`, `@` is
-  pass-through and the vocabulary question doesn't apply to it at all.
-- **`[flag]`** — actually **evaluated** by the C parser. *This* is the vocabulary question, and what the
-  differential-polarity matrix in `basis/conditionals.json` is for.
+**Three things collide on "cursor"** (see `two_mechanisms.the_cursor_collision`): `@cursor` = a ground **location**
+(7.1.0, Blizzard-cited, hand-rolled on CoA); `@mouseover` = a **unit**; `[cursor]` = a **flag** for what the cursor
+is *holding*. Three mechanisms, three proof methods, one word.
+
+## The era signal runs on evidence, not absence
+
+A `{{Patch}}` annotation **dates** a candidate — that's evidence. Where none exists, the honest label is
+`retail-documented-only` = **UNDATED**; absence from a 2010 archive proves nothing. An earlier classifier called
+that bucket "post-wotlk" and inferred history from absence — right for the dated rows *by luck, not method*.
 
 ## Regenerate
 
 ```
-py macros\tools\ingest_reference.py            re-derive candidates from the saved raw (offline, deterministic)
+py macros\tools\ingest_reference.py            re-derive from saved raws (offline, deterministic)
 py macros\tools\ingest_reference.py --fetch    re-pull from the network (revid change = LOUD)
+py macros\tools\ingest_addon_reference.py      re-scan the installed macro addons
 ```
 
-The fetch is network, so it isn't reproducible — which is exactly why the raw is saved **verbatim** and stamped
-(revid + sha256), and why candidate extraction re-derives from the saved copy by default.
+`completeness_check.incomplete` in `candidates.json` **must be empty** — it's the positive check that catches a
+branch silently skipping a candidate's derivation (which happened, twice, while the run printed success).

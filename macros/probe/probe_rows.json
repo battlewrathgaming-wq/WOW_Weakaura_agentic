@@ -1,7 +1,7 @@
 {
  "what": "THE ASK - every question the live probe puts to the client, with the method for reading each answer. Verdicts are null until the probe runs.",
  "composed_by": "macros/tools/compose_probe.py",
- "composed_at": "2026-07-17T03:32:29",
+ "composed_at": "2026-07-17T03:40:42",
  "from_register": {
   "file": "macros/reference/candidates.json",
   "candidates": 74,

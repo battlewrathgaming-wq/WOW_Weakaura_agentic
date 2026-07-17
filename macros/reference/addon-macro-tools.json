@@ -5,7 +5,7 @@
  "corroborates_the_C_wall": "SuperDuperMacro's entire job is interpreting macros, and its MacroInterpreter.lua - explicitly 'adapted from ChatFrame.lua' - STILL calls SecureCmdOptionParse instead of reimplementing conditionals. An author who NEEDED the vocabulary in Lua could not get it either. INDEPENDENT support for the central finding: the vocabulary is C-side and no source read reaches it.",
  "not_a_command_mirror": "SuperDuperMacro's funcsToGetSpell mirrors only the 8 commands that YIELD a spell/item (it needs the icon), NOT the command surface. Diffing it against basis/commands.json produced a bogus 41-command 'delta' that was SCOPE, not a finding. Recorded so the mistake is not repeated.",
  "noise_note": "A regex over `[...]` cannot tell a macro clause from LUA TABLE INDEXING. First run 'found' [group], [button] and [target] - every one was sdm_exclusiveGroups[group] / AceConsole.weakcommands[target]. A clause now counts ONLY inside a string literal AND with a known conditional head.",
- "ingested_at": "2026-07-17T03:09:33",
+ "ingested_at": "2026-07-17T03:40:42",
  "ingested_by": "macros/tools/ingest_addon_reference.py",
  "source_root": "F:\\games\\Ascension_wow\\resources\\ascension-live\\Interface\\AddOns",
  "addons": {

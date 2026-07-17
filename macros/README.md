@@ -27,12 +27,12 @@ macros/
     _meta.json                provenance anchor (sha256 per source archive) + counts
   reference/                  SECONDARY — external, provenance-stamped. NEVER cite as fact.
     README.md                 the grain statement — read before using anything here
-    candidates.json           THE QUESTION REGISTER — 55 candidates + proof marks
-    *.wikitext                raw sources, verbatim + sha256 (4 pages, the citation chain)
+    candidates.json           THE QUESTION REGISTER — candidates + proof marks (counts inside)
+    *.wikitext                raw sources, verbatim + sha256 (the citation chain)
     addon-macro-tools.json    the 2 installed macro addons: attested clauses + limit exprs
   probe/                      THE ASK — composed for the live client. Addons bench owns the harness.
     README.md                 the handoff
-    probe_rows.json           76 rows, each with method + priority
+    probe_rows.json           the rows, each with method + priority (counts inside)
     probe_core.lua            resident-API-only core (compiles under Lua 5.1)
 ```
 
@@ -78,10 +78,12 @@ differential probe is not one of two channels, it is the **only** one.
 thought to ASK about — the output is a proven set with an honest rim, never an enumeration.* That line is the
 difference between a fact basis and a nicer-looking guess.
 
-**The ask-list now exists and the probe is composed** (2026-07-17). `reference/` holds **55 candidates** drawn from
-the citation chain (the Ascension wiki → the two retail wikis it cites → the page one of those delegates to), on the
-rule that *recall and secondary sources are inadmissible as a FACT source but admissible as a QUESTION source,
-because the probe adjudicates.* `probe/` holds the composed ask: **76 rows** + a resident-API-only Lua core.
+**The ask-list exists and the probe is composed** (2026-07-17). `reference/` holds the question register, drawn by
+following the citation chain (the Ascension wiki → the two retail wikis it cites → the page one delegates to → the
+unit-token references), plus the installed macro addons and the **local WA sheets**. The rule: *recall and secondary
+sources are inadmissible as a FACT source but admissible as a QUESTION source, because the probe adjudicates.*
+`probe/` holds the composed ask + a resident-API-only Lua core. **Counts live in `candidates.json` and
+`probe_rows.json`** — not in this prose, which would go stale.
 
 **The channel is confirmed live** — the client has a built-in dev console (`/luaconsole`, `/devconsole`), so the
 probe is interactive: no macro, no restart. The **addons bench owns the harness** (they own configuring coadump);
