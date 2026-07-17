@@ -136,6 +136,40 @@ the WA stays passive (just watches); the design decision — *what to track vs w
 whether the elements are equivalent enough to flatten* — is where all the thought goes. Same
 shape as the rest of the project: smarts in the design, parts stay simple.
 
+## ★ Sequence position as a survival filter — targeting-behaviour as an implicit AoE/ST switch
+
+The strongest pattern the session produced (Battlewrath, 2026-07-17). Put the **AoE/equivalent
+fillers first** and the **ST/situational payoff last**, with `reset=target`:
+
+```
+#showtooltip
+/castsequence reset=target Requiem, Requiem, Soulrend
+```
+
+**Your targeting is the mode switch, no modifier needed.** `reset=target` fires on the
+target-change *event* (`castsequence.md`): tab-cycling resets to the fillers (you stay AoE, never
+spend the payoff on someone you're not committed to); settling on one target lets the sequence
+advance to the payoff.
+
+**The filler count before the payoff is a SURVIVAL FILTER — it does trash-vs-tanky triage with no
+conditional.** To reach the payoff (step 3), a target must *survive the two fillers AND stay your
+target*. Trash dies to the AoE → its death fires `PLAYER_TARGET_CHANGED` → reset → it never gets
+the payoff. A tanky survivor you've committed to outlives the fillers → reaches the payoff → gets
+the ST effect it merits. The sequence position *is* the "does this target deserve the ST spend?"
+threshold. Airtight from the proven mechanics (reset-on-event · advance-on-success · wrap), not a
+hope — only the *feel* wants a live pack to confirm.
+
+**The count also kills the ritual.** *One* filler would force constant tab-targeting to dodge the
+payoff — you'd be *performing* the macro. *Two* give slack: **fire-and-forget converges on the
+right behaviour anyway.** So tune the filler count to two things at once: the survival threshold
+(how tough before it merits the payoff) and the fire-and-forget slack (how little you want to
+micromanage).
+
+**Generalises:** payoff-last behind N equivalent fillers → N is a survival threshold that
+auto-selects which targets earn the payoff, and buys ergonomic slack. The intelligence is the
+*number* — a count, not a conditional. Same thesis as the rest: the macro stays dumb, the design
+choice carries everything.
+
 ## Standing
 
 The composition is **Battlewrath's seat** — design, feel, subtlety. What it rests on is fact:
