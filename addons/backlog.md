@@ -37,6 +37,31 @@ For `creator/ingredients/custom.md`: harvest the aura-script sandbox surface —
 `AuraEnvironment.lua`'s `blockedFunctions`/`blockedTables`) + the TSU state contract. Method: source-scan first
 (the live_keys pattern); a dump addon only for what's runtime-built. Output → a map the palette cites.
 
+## 4. The macro-conditional probe (cross-lane ask — STAGED, designed, one bounded pass)
+
+**THE ASK: `macros/probe/ASK.md`** (payload `probe_core.lua` + `probe_rows.json`). Staged by the macros bench
+2026-07-17; **the harness is yours** — this is the payload and the read, not a task file.
+
+Your standing item says "addon-side captures may serve where source-scans stall." This is that case exactly:
+`macros/basis/conditionals.json` is **empty and unfillable from source** — `SecureCmdOptionParse` is called 49× in
+`ChatFrame.lua` and **defined nowhere in Lua** (your own census buckets it `stock-capi`), so the conditional
+vocabulary lives in the binary; the attested-usage seed measured **zero** (no conditional literal in any shipped
+file). The live client is the only channel.
+
+**Bounded:** one task, one pass, ~90 reads (63 flag pairs + 13 targets + 1 control + ~30 context), **pure reads, no
+state touched**, resident API only — **every call verified present in `maps/census/runtime/globals.json` before
+composing**. Compiles under Lua 5.1 (`luac5.1 -p`) and exercised headlessly against stubs. **No restart needed to
+try it** — plain `/run`, or the client's built-in dev console (`/luaconsole`), which is the cheap iterate-first path.
+
+**The one request: land it RAW.** `run()` returns `schema="macros.probe.raw/1"` — the parser's own returns
+(`flags[x].pos/.neg`) plus a context stamp. It deliberately computes **no** verdicts in-game: those are derived
+offline in a map, so a wrong matrix costs a re-derivation instead of another client session. Broad now, consolidate
+after.
+
+**Two riders:** read the `[@banana]` control row first (it decides how all 13 target rows are read); and a second
+pass in a *different* context (in combat / mounted / in a form) separates "false here" from "always false" — but
+**don't block on it, one pass is worth landing.**
+
 ## Standing / emergent
 
 - **COA_DevDump hygiene**: it's the seed tool — adopt it into this bench deliberately (repo copy is the dev copy;

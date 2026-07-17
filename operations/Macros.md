@@ -172,10 +172,17 @@ absence of `custom_behaviour` proves nothing. An empty holes list is a healthy o
 
 ## Open / next
 
-- **★ THE LIVE PROBE — the only thing that can close `conditionals`.** Battlewrath at the client. **Confirm
-  `/luaconsole` / `/devconsole` isn't dev-gated first** — if live, the probe is interactive (no macro, no restart,
-  resident API only) and collapses to minutes. Design + matrix + standing limit are already in
-  `basis/conditionals.json`; the probe tool goes in `macros/tools/` when the channel is confirmed.
+- **★ THE LIVE PROBE — STAGED as a bounded ask (`macros/probe/ASK.md`), pointer in `addons/backlog.md` #4.**
+  The dev console is **CONFIRMED real** (Battlewrath, 2026-07-17), so the channel is live and interactive. The ask
+  is one bounded pass: ~90 reads, pure, resident-API-only (every call verified against the runtime census),
+  compiles under Lua 5.1, exercised headlessly. **The addons bench owns the harness** — they configure coadump.
+  **Lands RAW** (`schema=macros.probe.raw/1`): the parser's own returns + a context stamp, NO verdicts computed
+  in-game — emission over interpretation, so a wrong matrix costs a re-derivation not another client session.
+  Read the `[@banana]` control row first; it decides how all 13 target rows are read.
+- **THE MAP (this bench's next build, once data exists)** — derive verdicts from the raw record, triangulating each
+  flag against its independent context witness (`[combat]` false WITH `inCombat=true` = a real anomaly, not just
+  "false"), write `proof_mark` back to `reference/candidates.json`, graduate the proven set into
+  `basis/conditionals.json`. **Broad capture first, maps consolidate after** (Battlewrath, 2026-07-17).
 - **The macro-limit conflict** — one `GetNumMacros()` call settles it. Cheap, and it's a candidate real bug in the
   backported picker (would silently hide character macros 19–36).
 - **`statedrivers` provenance** — resolved for free by the **clean-profile census re-run already banked** in
