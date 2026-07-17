@@ -1,22 +1,2321 @@
 {
- "grain": "PROOF-PENDING - the rim is FULLY OPEN",
- "why": "SecureCmdOptionParse is C-side: called 49x in ChatFrame.lua, defined NOWHERE in Lua; runtime census buckets it stock-capi. The vocabulary lives in the client binary and no source read reaches it.",
- "attested_count": 0,
- "attested": {},
- "attested_note": "MEASURED ZERO (2026-07-17): the client's own shipped code uses no macro conditional literal - no RegisterStateDriver call sites, no conditional-bearing macrotext. Not thin: zero.",
- "sole_channel": "LIVE DIFFERENTIAL PROBE via SecureCmdOptionParse (resident; callable from a plain /run, which slips under the anti-cheat restart constraint - resident Blizzard API only).",
- "probe_design": {
-  "problem": "[combat] out of combat and [madeupword] are BOTH falsey - unsupported and currently-false are indistinguishable, so a naive probe silently reports half the vocabulary as missing.",
-  "method": "test BOTH polarities of each candidate and read the PAIR",
-  "matrix": {
-   "X=false, noX=true": "known, currently false",
-   "X=true,  noX=false": "known, currently true",
-   "X=false, noX=false": "UNSUPPORTED - parser rejects both ways",
-   "X=true,  noX=true": "ignored / no-op"
+ "what": "THE VERDICT MAP - derived OFFLINE from the landed raw captures. Nothing here was decided in-game.",
+ "derived_by": "macros/tools/derive_verdicts.py",
+ "grain": "LIVE-PROVEN, five contexts, triangulated against an independent witness stamp. Per-verdict confidence is stated; AMBIGUOUS is a real answer.",
+ "evidence": {
+  "records": {
+   "rest": {
+    "runId": "20260717_041925_853",
+    "file": "20260717_041925_853__macros.json"
+   },
+   "spell-form": {
+    "runId": "20260717_042043_345",
+    "file": "20260717_042043_345__macros.json"
+   },
+   "stealth": {
+    "runId": "20260717_042127_531",
+    "file": "20260717_042127_531__macros.json"
+   },
+   "combat": {
+    "runId": "20260717_042242_389",
+    "file": "20260717_042242_389__macros.json"
+   },
+   "mounted": {
+    "runId": "20260717_042331_520",
+    "file": "20260717_042331_520__macros.json"
+   }
   },
-  "unknown": "which row an unsupported conditional lands in is itself unknown; the design does not need to know in advance, it needs to DISTINGUISH.",
-  "cheaper_path": "/luaconsole + /devconsole are declared in shipped UI code - if not dev-gated, the probe is interactive, no macro, no restart. DECLARED != working: verify first."
+  "labels_from": "addons/landing/records/20260717_contexts.md (Battlewrath, live)",
+  "character_class": "REAPER",
+  "harness_sha256": "1352991717903c470bb7ba0d2913538fffd054b977b481653a49a1837122f9e6",
+  "harness_note": "matches macros/probe/probe_core.lua at HEAD (LF-normalised; the working copy is CRLF, hence a different raw digest)"
  },
- "standing_limit": "A probe only ever proves conditionals someone thought to ASK about. The output is a PROVEN SET WITH AN HONEST RIM - never an enumeration. That line is the difference between a fact basis and a nicer-looking guess.",
- "inadmissible": "Agent WoW recall. This client is not a pure 3.3.5a (Legion/BfA CompactUnitFrame; Dragonflight /kb; Ascension's own [@cursor] hack), so a conditional can be ruled neither out for being post-WotLK nor in for being WotLK-stock."
+ "PARSER_SEMANTICS_THE_HEADLINE": {
+  "finding": "An UNKNOWN conditional is IGNORED and the clause PASSES. It is not rejected.",
+  "therefore": "[unknown] = 'Y' and [nounknown] = nil - IDENTICAL to a known-true conditional. The polarity pair CANNOT distinguish unsupported from currently-true.",
+  "the_designed_matrix_was_WRONG": "probe/README and the old conditionals.json shipped 'X=false, noX=false => UNSUPPORTED'. That row NEVER OCCURS: across 5 contexts x 63 flags there is not one both-nil.",
+  "proof": [
+   "[petbattle] reads TRUE in all five contexts - pet battles are MoP 5.0; a 3.3.5a client has no pet battle system and none was running.",
+   "[resting] reads TRUE in all five while the stamp's IsResting() is FALSEY in all five - a direct contradiction with an independent witness."
+  ],
+  "what_saved_the_pass": "the CONTEXT STAMP and FIVE contexts. Without them this capture would have reported ~10 retail-only conditionals as PROVEN-TRUE and graduated them into the basis as fact. The stamp is the only reason the map is not confidently wrong.",
+  "the_rule_that_replaces_it": "reads FALSE anywhere => EVALUATED => SUPPORTED. An ignored clause can never read false.",
+  "and_for_constant_TRUE": "the wiki names the API each conditional MIRRORS ('Similar API'); the census says whether that API is resident HERE. Subsystem absent + constant TRUE + ignore-semantics => ignored. Both ends sourced, joined mechanically. Where the API IS resident the verdict stays AMBIGUOUS rather than being talked into place."
+ },
+ "at_targets": {
+  "control_row_SETTLED": true,
+  "finding": "[@banana] returned target='banana' in ALL FIVE contexts => `@` is a PASS-THROUGH STRING. The parser does not validate units; it hands the string on. Support lives DOWNSTREAM (the handler's special-casing + unit resolution).",
+  "therefore": "the polarity matrix never applied to targets, and there is no [no@cursor]. The target question is UnitExists, not the parser.",
+  "control_by_context": {
+   "rest": "banana",
+   "spell-form": "banana",
+   "stealth": "banana",
+   "combat": "banana",
+   "mounted": "banana"
+  }
+ },
+ "THE_FORECAST_TEST": {
+  "what": "era signal (predicted from patch annotations BEFORE the capture) vs the live verdict",
+  "by_era": {
+   "archive-documented": {
+    "SUPPORTED": 53
+   },
+   "patch-dated": {
+    "UNSUPPORTED-IGNORED": 1,
+    "AMBIGUOUS": 2
+   },
+   "retail-documented-only": {
+    "UNSUPPORTED-IGNORED": 5,
+    "AMBIGUOUS": 2
+   }
+  },
+  "forecast_said_archive_documented": "expected present on a 3.3.5a base; an UNSUPPORTED here would be a real finding",
+  "result_archive_documented": {
+   "SUPPORTED": 53
+  },
+  "forecast_said_post_3_3_5a": "the live question - this client backports freely, so absence is NOT predictable either way",
+  "result_post_3_3_5a": {
+   "UNSUPPORTED-IGNORED": 6,
+   "AMBIGUOUS": 4
+  },
+  "VERDICT": "TOTAL SEPARATION, ZERO CROSSOVER. Every archive-documented (WotLK-era) conditional is SUPPORTED (53/53). NOT ONE post-3.3.5a conditional is (0/10). The era diff predicted the live verdict exactly.",
+  "what_this_validates": "the method, not the luck: patch annotations are EVIDENCE and they forecast the client. It also retires the reverse error - inferring era from a wiki's ABSENCE - which predicted the same 4 rows for the wrong reason."
+ },
+ "THE_LAYER_FINDING": {
+  "finding": "ASCENSION EXTENDS AT THE LUA/HANDLER LAYER, NOT THE C PARSER.",
+  "evidence": [
+   "ZERO post-3.3.5a CONDITIONALS are supported (0 of 10) - the C conditional parser is untouched stock 3.3.5a.",
+   "YET @cursor - a LEGION 7.1.0 feature, Blizzard-cited - IS present, hand-rolled in ChatFrame.lua's /cast handler via Custom_HandleTerrainClick (and on /castsequence and /castrandom too).",
+   "Every Ascension macro extension found in source is Lua: the 27 inline SLASH_ commands, /kb -> ToggleQuickKeybindMode (a Dragonflight backport), the terrain-click hack."
+  ],
+  "why_it_matters": "it predicts where a future CoA macro capability CAN come from (a handler) and where it CANNOT (the conditional vocabulary), and it explains the perfect era separation: the parser is stock, so it knows exactly the stock 3.3.5a vocabulary and ignores everything newer.",
+  "status": "STRONGLY SUPPORTED by the capture; it was a HYPOTHESIS before it (raised 2026-07-17 from the source reads, untestable without the client). Not a proof of the C binary's contents - a coherent account of every observation we have."
+ },
+ "counts": {
+  "flags": {
+   "SUPPORTED": 37,
+   "SUPPORTED-TRUE": 4,
+   "UNSUPPORTED-IGNORED": 6,
+   "SUPPORTED-PROVEN": 12,
+   "AMBIGUOUS": 4
+  },
+  "targets": {
+   "DID-NOT-RESOLVE-HERE": 27,
+   "NOT-A-UNIT": 2,
+   "RESOLVES": 3
+  }
+ },
+ "flags": {
+  "actionbar": {
+   "flag": "actionbar",
+   "base": "actionbar",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetActionBarPage": "stock-capi"
+   }
+  },
+  "actionbar:1": {
+   "flag": "actionbar:1",
+   "base": "actionbar",
+   "arg": "1",
+   "verdict": "SUPPORTED-TRUE",
+   "why": "constant TRUE, but an arg-sibling of `actionbar` reads FALSE - the base IS evaluated, so this arg is genuinely true",
+   "confidence": "high",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetActionBarPage": "stock-capi"
+   }
+  },
+  "actionbar:6": {
+   "flag": "actionbar:6",
+   "base": "actionbar",
+   "arg": "6",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetActionBarPage": "stock-capi"
+   }
+  },
+  "advflyable": {
+   "flag": "advflyable",
+   "base": "advflyable",
+   "arg": null,
+   "verdict": "UNSUPPORTED-IGNORED",
+   "why": "reads TRUE in every context, and the API it mirrors is NOT RESIDENT on this client (census): IsAdvancedFlyableArea. The whole subsystem is absent, so there is nothing to evaluate - and unknown => ignored is PROVEN. Inference from two mechanical facts, not a direct observation.",
+   "confidence": "high-inferred",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "IsAdvancedFlyableArea": null
+   }
+  },
+  "bar": {
+   "flag": "bar",
+   "base": "bar",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetActionBarPage": "stock-capi"
+   }
+  },
+  "bar:1": {
+   "flag": "bar:1",
+   "base": "bar",
+   "arg": "1",
+   "verdict": "SUPPORTED-TRUE",
+   "why": "constant TRUE, but an arg-sibling of `bar` reads FALSE - the base IS evaluated, so this arg is genuinely true",
+   "confidence": "high",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetActionBarPage": "stock-capi"
+   }
+  },
+  "bar:6": {
+   "flag": "bar:6",
+   "base": "bar",
+   "arg": "6",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetActionBarPage": "stock-capi"
+   }
+  },
+  "bonusbar": {
+   "flag": "bonusbar",
+   "base": "bonusbar",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "HasBonusActionBar": null
+   }
+  },
+  "bonusbar:5": {
+   "flag": "bonusbar:5",
+   "base": "bonusbar",
+   "arg": "5",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "HasBonusActionBar": null
+   }
+  },
+  "btn": {
+   "flag": "btn",
+   "base": "btn",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "t": null
+   }
+  },
+  "button": {
+   "flag": "button",
+   "base": "button",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "t": null
+   }
+  },
+  "canexitvehicle": {
+   "flag": "canexitvehicle",
+   "base": "canexitvehicle",
+   "arg": null,
+   "verdict": "UNSUPPORTED-IGNORED",
+   "why": "reads TRUE in every context while its independent witness `inVehicle` (CanExitVehicle() - cannot exit a vehicle you are not in) is FALSE in every context",
+   "confidence": "high",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": "inVehicle",
+   "witness_api": "CanExitVehicle() - cannot exit a vehicle you are not in",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "CanExitVehicle": "stock-capi"
+   }
+  },
+  "channeling": {
+   "flag": "channeling",
+   "base": "channeling",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "UnitChannelInfo": "stock-capi",
+    "ChannelInfo": null
+   }
+  },
+  "combat": {
+   "flag": "combat",
+   "base": "combat",
+   "arg": null,
+   "verdict": "SUPPORTED-PROVEN",
+   "why": "varies across contexts - it tracked real state",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "T",
+    "mounted": "F"
+   },
+   "witness_field": "inCombat",
+   "witness_api": "UnitAffectingCombat()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": true,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "InCombatLockdown": "stock-capi",
+    "UnitAffectingCombat": "stock-capi"
+   }
+  },
+  "cursor": {
+   "flag": "cursor",
+   "base": "cursor",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "cursorHolding",
+   "witness_api": "GetCursorInfo()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "GetCursorInfo": "stock-capi"
+   }
+  },
+  "dead": {
+   "flag": "dead",
+   "base": "dead",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "targetIsDead",
+   "witness_api": "UnitIsDeadOrGhost()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "UnitIsDeadOrGhost": "stock-capi"
+   }
+  },
+  "equipped": {
+   "flag": "equipped",
+   "base": "equipped",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "IsEquippedItemType": "stock-capi"
+   }
+  },
+  "exists": {
+   "flag": "exists",
+   "base": "exists",
+   "arg": null,
+   "verdict": "SUPPORTED-PROVEN",
+   "why": "varies across contexts - it tracked real state",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "T",
+    "mounted": "F"
+   },
+   "witness_field": "hasTarget",
+   "witness_api": "UnitExists()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": true,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "UnitExists": "stock-capi"
+   }
+  },
+  "extrabar": {
+   "flag": "extrabar",
+   "base": "extrabar",
+   "arg": null,
+   "verdict": "UNSUPPORTED-IGNORED",
+   "why": "reads TRUE in every context, and the API it mirrors is NOT RESIDENT on this client (census): HasExtraActionBar. The whole subsystem is absent, so there is nothing to evaluate - and unknown => ignored is PROVEN. Inference from two mechanical facts, not a direct observation.",
+   "confidence": "high-inferred",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "HasExtraActionBar": null
+   }
+  },
+  "flyable": {
+   "flag": "flyable",
+   "base": "flyable",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "flyableArea",
+   "witness_api": "IsFlyableArea()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsFlyableArea": "stock-capi"
+   }
+  },
+  "flying": {
+   "flag": "flying",
+   "base": "flying",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "flying",
+   "witness_api": "IsFlying()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsFlying": "stock-capi"
+   }
+  },
+  "form": {
+   "flag": "form",
+   "base": "form",
+   "arg": null,
+   "verdict": "SUPPORTED-PROVEN",
+   "why": "varies across contexts - it tracked real state",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "T",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetShapeshiftForm": "stock-capi"
+   }
+  },
+  "form:0": {
+   "flag": "form:0",
+   "base": "form",
+   "arg": "0",
+   "verdict": "SUPPORTED-PROVEN",
+   "why": "varies across contexts - it tracked real state",
+   "confidence": "high",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "F",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetShapeshiftForm": "stock-capi"
+   }
+  },
+  "form:n": {
+   "flag": "form:n",
+   "base": "form",
+   "arg": "n",
+   "verdict": "SUPPORTED-PROVEN",
+   "why": "varies across contexts - it tracked real state",
+   "confidence": "high",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "F",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetShapeshiftForm": "stock-capi"
+   }
+  },
+  "group": {
+   "flag": "group",
+   "base": "group",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "IsInGroup": "shipped-ui",
+    "IsInRaid": "shipped-ui"
+   }
+  },
+  "group:party": {
+   "flag": "group:party",
+   "base": "group",
+   "arg": "party",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "IsInGroup": "shipped-ui",
+    "IsInRaid": "shipped-ui"
+   }
+  },
+  "group:raid": {
+   "flag": "group:raid",
+   "base": "group",
+   "arg": "raid",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "IsInGroup": "shipped-ui",
+    "IsInRaid": "shipped-ui"
+   }
+  },
+  "harm": {
+   "flag": "harm",
+   "base": "harm",
+   "arg": null,
+   "verdict": "SUPPORTED-PROVEN",
+   "why": "varies across contexts - it tracked real state",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "T",
+    "mounted": "F"
+   },
+   "witness_field": "targetHarm",
+   "witness_api": "UnitCanAttack()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": true,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "UnitCanAssist": "stock-capi",
+    "UnitCanAttack": "stock-capi"
+   }
+  },
+  "help": {
+   "flag": "help",
+   "base": "help",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "targetHelp",
+   "witness_api": "UnitCanAssist()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "UnitCanAssist": "stock-capi",
+    "UnitCanAttack": "stock-capi"
+   }
+  },
+  "indoors": {
+   "flag": "indoors",
+   "base": "indoors",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "indoors",
+   "witness_api": "IsIndoors()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsIndoors": "stock-capi",
+    "IsOutdoors": "stock-capi"
+   }
+  },
+  "known": {
+   "flag": "known",
+   "base": "known",
+   "arg": null,
+   "verdict": "AMBIGUOUS",
+   "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
+   "confidence": "none",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetSpellInfo": "stock-capi",
+    "IsPlayerSpell": null
+   }
+  },
+  "mod": {
+   "flag": "mod",
+   "base": "mod",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "_anyModifier",
+   "witness_api": "IsShiftKeyDown()/IsControlKeyDown()/IsAltKeyDown()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsModifierKeyDown": "stock-capi",
+    "IsModifiedClick": "stock-capi"
+   }
+  },
+  "mod:alt": {
+   "flag": "mod:alt",
+   "base": "mod",
+   "arg": "alt",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "_anyModifier",
+   "witness_api": "IsShiftKeyDown()/IsControlKeyDown()/IsAltKeyDown()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsModifierKeyDown": "stock-capi",
+    "IsModifiedClick": "stock-capi"
+   }
+  },
+  "mod:ctrl": {
+   "flag": "mod:ctrl",
+   "base": "mod",
+   "arg": "ctrl",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "_anyModifier",
+   "witness_api": "IsShiftKeyDown()/IsControlKeyDown()/IsAltKeyDown()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsModifierKeyDown": "stock-capi",
+    "IsModifiedClick": "stock-capi"
+   }
+  },
+  "mod:shift": {
+   "flag": "mod:shift",
+   "base": "mod",
+   "arg": "shift",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "_anyModifier",
+   "witness_api": "IsShiftKeyDown()/IsControlKeyDown()/IsAltKeyDown()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsModifierKeyDown": "stock-capi",
+    "IsModifiedClick": "stock-capi"
+   }
+  },
+  "modifier": {
+   "flag": "modifier",
+   "base": "modifier",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "_anyModifier",
+   "witness_api": "IsShiftKeyDown()/IsControlKeyDown()/IsAltKeyDown()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsModifierKeyDown": "stock-capi",
+    "IsModifiedClick": "stock-capi"
+   }
+  },
+  "modifier:alt": {
+   "flag": "modifier:alt",
+   "base": "modifier",
+   "arg": "alt",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "_anyModifier",
+   "witness_api": "IsShiftKeyDown()/IsControlKeyDown()/IsAltKeyDown()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsModifierKeyDown": "stock-capi",
+    "IsModifiedClick": "stock-capi"
+   }
+  },
+  "modifier:ctrl": {
+   "flag": "modifier:ctrl",
+   "base": "modifier",
+   "arg": "ctrl",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "_anyModifier",
+   "witness_api": "IsShiftKeyDown()/IsControlKeyDown()/IsAltKeyDown()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsModifierKeyDown": "stock-capi",
+    "IsModifiedClick": "stock-capi"
+   }
+  },
+  "modifier:shift": {
+   "flag": "modifier:shift",
+   "base": "modifier",
+   "arg": "shift",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "_anyModifier",
+   "witness_api": "IsShiftKeyDown()/IsControlKeyDown()/IsAltKeyDown()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsModifierKeyDown": "stock-capi",
+    "IsModifiedClick": "stock-capi"
+   }
+  },
+  "mounted": {
+   "flag": "mounted",
+   "base": "mounted",
+   "arg": null,
+   "verdict": "SUPPORTED-PROVEN",
+   "why": "varies across contexts - it tracked real state",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "T"
+   },
+   "witness_field": "mounted",
+   "witness_api": "IsMounted()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": true
+   },
+   "mirrored_api_resident": {
+    "IsMounted": "stock-capi"
+   }
+  },
+  "outdoors": {
+   "flag": "outdoors",
+   "base": "outdoors",
+   "arg": null,
+   "verdict": "SUPPORTED-TRUE",
+   "why": "constant TRUE and its witness `outdoors` (IsOutdoors()) is TRUE in every context - corroborated",
+   "confidence": "medium",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": "outdoors",
+   "witness_api": "IsOutdoors()",
+   "witness_by_context": {
+    "rest": true,
+    "spell-form": true,
+    "stealth": true,
+    "combat": true,
+    "mounted": true
+   },
+   "mirrored_api_resident": {
+    "IsIndoors": "stock-capi",
+    "IsOutdoors": "stock-capi"
+   }
+  },
+  "overridebar": {
+   "flag": "overridebar",
+   "base": "overridebar",
+   "arg": null,
+   "verdict": "AMBIGUOUS",
+   "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
+   "confidence": "none",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "HasOverrideActionBar": "shipped-ui"
+   }
+  },
+  "party": {
+   "flag": "party",
+   "base": "party",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "inParty",
+   "witness_api": "UnitInParty()",
+   "witness_by_context": {
+    "rest": true,
+    "spell-form": true,
+    "stealth": true,
+    "combat": true,
+    "mounted": true
+   },
+   "mirrored_api_resident": {
+    "UnitInParty": "stock-capi",
+    "UnitInRaid": "stock-capi"
+   }
+  },
+  "pet": {
+   "flag": "pet",
+   "base": "pet",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "hasPet",
+   "witness_api": "UnitExists('pet')",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "UnitName": "stock-capi",
+    "UnitCreatureFamily": "stock-capi"
+   }
+  },
+  "petbattle": {
+   "flag": "petbattle",
+   "base": "petbattle",
+   "arg": null,
+   "verdict": "UNSUPPORTED-IGNORED",
+   "why": "reads TRUE in every context, and the API it mirrors is NOT RESIDENT on this client (census): C_PetBattles. The whole subsystem is absent, so there is nothing to evaluate - and unknown => ignored is PROVEN. Inference from two mechanical facts, not a direct observation.",
+   "confidence": "high-inferred",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "C_PetBattles": null
+   }
+  },
+  "possessbar": {
+   "flag": "possessbar",
+   "base": "possessbar",
+   "arg": null,
+   "verdict": "AMBIGUOUS",
+   "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
+   "confidence": "none",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "IsPossessBarVisible": "stock-capi"
+   }
+  },
+  "pvpcombat": {
+   "flag": "pvpcombat",
+   "base": "pvpcombat",
+   "arg": null,
+   "verdict": "AMBIGUOUS",
+   "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
+   "confidence": "none",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": null
+  },
+  "raid": {
+   "flag": "raid",
+   "base": "raid",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "inRaid",
+   "witness_api": "UnitInRaid()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "UnitInParty": "stock-capi",
+    "UnitInRaid": "stock-capi"
+   }
+  },
+  "resting": {
+   "flag": "resting",
+   "base": "resting",
+   "arg": null,
+   "verdict": "UNSUPPORTED-IGNORED",
+   "why": "reads TRUE in every context while its independent witness `resting` (IsResting()) is FALSE in every context",
+   "confidence": "high",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": "resting",
+   "witness_api": "IsResting()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsResting": "stock-capi"
+   }
+  },
+  "shapeshift": {
+   "flag": "shapeshift",
+   "base": "shapeshift",
+   "arg": null,
+   "verdict": "UNSUPPORTED-IGNORED",
+   "why": "reads TRUE in every context, and the API it mirrors is NOT RESIDENT on this client (census): HasTempShapeshiftActionBar. The whole subsystem is absent, so there is nothing to evaluate - and unknown => ignored is PROVEN. Inference from two mechanical facts, not a direct observation.",
+   "confidence": "high-inferred",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "HasTempShapeshiftActionBar": null
+   }
+  },
+  "spec": {
+   "flag": "spec",
+   "base": "spec",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetSpecialization": "shipped-ui"
+   }
+  },
+  "spec:1": {
+   "flag": "spec:1",
+   "base": "spec",
+   "arg": "1",
+   "verdict": "SUPPORTED-TRUE",
+   "why": "constant TRUE, but an arg-sibling of `spec` reads FALSE - the base IS evaluated, so this arg is genuinely true",
+   "confidence": "high",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "T",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetSpecialization": "shipped-ui"
+   }
+  },
+  "spec:2": {
+   "flag": "spec:2",
+   "base": "spec",
+   "arg": "2",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetSpecialization": "shipped-ui"
+   }
+  },
+  "stance": {
+   "flag": "stance",
+   "base": "stance",
+   "arg": null,
+   "verdict": "SUPPORTED-PROVEN",
+   "why": "varies across contexts - it tracked real state",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "T",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetShapeshiftForm": "stock-capi"
+   }
+  },
+  "stance:0": {
+   "flag": "stance:0",
+   "base": "stance",
+   "arg": "0",
+   "verdict": "SUPPORTED-PROVEN",
+   "why": "varies across contexts - it tracked real state",
+   "confidence": "high",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "F",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetShapeshiftForm": "stock-capi"
+   }
+  },
+  "stance:1": {
+   "flag": "stance:1",
+   "base": "stance",
+   "arg": "1",
+   "verdict": "SUPPORTED-PROVEN",
+   "why": "varies across contexts - it tracked real state",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "T",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetShapeshiftForm": "stock-capi"
+   }
+  },
+  "stance:2": {
+   "flag": "stance:2",
+   "base": "stance",
+   "arg": "2",
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetShapeshiftForm": "stock-capi"
+   }
+  },
+  "stance:n": {
+   "flag": "stance:n",
+   "base": "stance",
+   "arg": "n",
+   "verdict": "SUPPORTED-PROVEN",
+   "why": "varies across contexts - it tracked real state",
+   "confidence": "high",
+   "by_context": {
+    "rest": "T",
+    "spell-form": "T",
+    "stealth": "F",
+    "combat": "T",
+    "mounted": "T"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "GetShapeshiftForm": "stock-capi"
+   }
+  },
+  "stealth": {
+   "flag": "stealth",
+   "base": "stealth",
+   "arg": null,
+   "verdict": "SUPPORTED-PROVEN",
+   "why": "varies across contexts - it tracked real state",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "T",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "stealthed",
+   "witness_api": "IsStealthed()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": true,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsStealthed": "stock-capi"
+   }
+  },
+  "swimming": {
+   "flag": "swimming",
+   "base": "swimming",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "swimming",
+   "witness_api": "IsSwimming()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "IsSubmerged": null
+   }
+  },
+  "unithasvehicleui": {
+   "flag": "unithasvehicleui",
+   "base": "unithasvehicleui",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "inVehicle",
+   "witness_api": "UnitInVehicle()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "UnitInVehicle": "stock-capi"
+   }
+  },
+  "vehicleui": {
+   "flag": "vehicleui",
+   "base": "vehicleui",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": "hasVehicleBar",
+   "witness_api": "HasVehicleActionBar()",
+   "witness_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "mirrored_api_resident": {
+    "HasVehicleActionBar": "shipped-ui"
+   }
+  },
+  "worn": {
+   "flag": "worn",
+   "base": "worn",
+   "arg": null,
+   "verdict": "SUPPORTED",
+   "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+   "confidence": "high",
+   "by_context": {
+    "rest": "F",
+    "spell-form": "F",
+    "stealth": "F",
+    "combat": "F",
+    "mounted": "F"
+   },
+   "witness_field": null,
+   "witness_api": null,
+   "witness_by_context": null,
+   "mirrored_api_resident": {
+    "IsEquippedItemType": "stock-capi"
+   }
+  }
+ },
+ "targets": {
+  "@anyenemy": {
+   "token": "@anyenemy",
+   "unit_probe": "anyenemy",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('anyenemy') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "anyenemy",
+    "spell-form": "anyenemy",
+    "stealth": "anyenemy",
+    "combat": "anyenemy",
+    "mounted": "anyenemy"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@anyfriend": {
+   "token": "@anyfriend",
+   "unit_probe": "anyfriend",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('anyfriend') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "anyfriend",
+    "spell-form": "anyfriend",
+    "stealth": "anyfriend",
+    "combat": "anyfriend",
+    "mounted": "anyfriend"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@anyinteract": {
+   "token": "@anyinteract",
+   "unit_probe": "anyinteract",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('anyinteract') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "anyinteract",
+    "spell-form": "anyinteract",
+    "stealth": "anyinteract",
+    "combat": "anyinteract",
+    "mounted": "anyinteract"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@anyleftinteract": {
+   "token": "@anyleftinteract",
+   "unit_probe": "anyleftinteract",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('anyleftinteract') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "anyleftinteract",
+    "spell-form": "anyleftinteract",
+    "stealth": "anyleftinteract",
+    "combat": "anyleftinteract",
+    "mounted": "anyleftinteract"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@arena": {
+   "token": "@arena",
+   "unit_probe": "arena1",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('arena1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "arena",
+    "spell-form": "arena",
+    "stealth": "arena",
+    "combat": "arena",
+    "mounted": "arena"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@boss": {
+   "token": "@boss",
+   "unit_probe": "boss1",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('boss1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "boss",
+    "spell-form": "boss",
+    "stealth": "boss",
+    "combat": "boss",
+    "mounted": "boss"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@cursor": {
+   "token": "@cursor",
+   "unit_probe": null,
+   "verdict": "NOT-A-UNIT",
+   "why": "no unit probe - this token is not a unit token at all (cursor: absent from every unit-token list on both wikis; it is a macro-layer special case, hand-rolled here via Custom_HandleTerrainClick)",
+   "parser_returned": {
+    "rest": "cursor",
+    "spell-form": "cursor",
+    "stealth": "cursor",
+    "combat": "cursor",
+    "mounted": "cursor"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@focus": {
+   "token": "@focus",
+   "unit_probe": "focus",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('focus') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "focus",
+    "spell-form": "focus",
+    "stealth": "focus",
+    "combat": "focus",
+    "mounted": "focus"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@mouseover": {
+   "token": "@mouseover",
+   "unit_probe": "mouseover",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('mouseover') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "mouseover",
+    "spell-form": "mouseover",
+    "stealth": "mouseover",
+    "combat": "mouseover",
+    "mounted": "mouseover"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@nameplate": {
+   "token": "@nameplate",
+   "unit_probe": "nameplate1",
+   "verdict": "RESOLVES",
+   "why": "UnitExists('nameplate1') true in: ['rest', 'spell-form', 'stealth', 'combat', 'mounted']",
+   "parser_returned": {
+    "rest": "nameplate",
+    "spell-form": "nameplate",
+    "stealth": "nameplate",
+    "combat": "nameplate",
+    "mounted": "nameplate"
+   },
+   "unit_exists_by_context": {
+    "rest": true,
+    "spell-form": true,
+    "stealth": true,
+    "combat": true,
+    "mounted": true
+   },
+   "unit_name_by_context": {
+    "rest": "Jalordd",
+    "spell-form": "Harrowhark",
+    "stealth": "Mortameer",
+    "combat": "Moonrage Whitescalp",
+    "mounted": "Aemondstorm"
+   }
+  },
+  "@none": {
+   "token": "@none",
+   "unit_probe": "none",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('none') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "none",
+    "spell-form": "none",
+    "stealth": "none",
+    "combat": "none",
+    "mounted": "none"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {
+    "rest": "Unknown",
+    "spell-form": "?",
+    "stealth": "?",
+    "combat": "?",
+    "mounted": "?"
+   }
+  },
+  "@npc": {
+   "token": "@npc",
+   "unit_probe": "npc",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('npc') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "npc",
+    "spell-form": "npc",
+    "stealth": "npc",
+    "combat": "npc",
+    "mounted": "npc"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@party": {
+   "token": "@party",
+   "unit_probe": "party1",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('party1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "party",
+    "spell-form": "party",
+    "stealth": "party",
+    "combat": "party",
+    "mounted": "party"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@party1": {
+   "token": "@party1",
+   "unit_probe": "party1",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('party1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "party1",
+    "spell-form": "party1",
+    "stealth": "party1",
+    "combat": "party1",
+    "mounted": "party1"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@party4": {
+   "token": "@party4",
+   "unit_probe": "party4",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('party4') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "party4",
+    "spell-form": "party4",
+    "stealth": "party4",
+    "combat": "party4",
+    "mounted": "party4"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@partypet": {
+   "token": "@partypet",
+   "unit_probe": "partypet1",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('partypet1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "partypet",
+    "spell-form": "partypet",
+    "stealth": "partypet",
+    "combat": "partypet",
+    "mounted": "partypet"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@pet": {
+   "token": "@pet",
+   "unit_probe": "pet",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('pet') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "pet",
+    "spell-form": "pet",
+    "stealth": "pet",
+    "combat": "pet",
+    "mounted": "pet"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@pettarget": {
+   "token": "@pettarget",
+   "unit_probe": "pettarget",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('pettarget') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "pettarget",
+    "spell-form": "pettarget",
+    "stealth": "pettarget",
+    "combat": "pettarget",
+    "mounted": "pettarget"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@player": {
+   "token": "@player",
+   "unit_probe": "player",
+   "verdict": "RESOLVES",
+   "why": "UnitExists('player') true in: ['rest', 'spell-form', 'stealth', 'combat', 'mounted']",
+   "parser_returned": {
+    "rest": "player",
+    "spell-form": "player",
+    "stealth": "player",
+    "combat": "player",
+    "mounted": "player"
+   },
+   "unit_exists_by_context": {
+    "rest": true,
+    "spell-form": true,
+    "stealth": true,
+    "combat": true,
+    "mounted": true
+   },
+   "unit_name_by_context": {
+    "rest": "Gravereaper",
+    "spell-form": "Gravereaper",
+    "stealth": "Gravereaper",
+    "combat": "Gravereaper",
+    "mounted": "Gravereaper"
+   }
+  },
+  "@questnpc": {
+   "token": "@questnpc",
+   "unit_probe": "questnpc",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('questnpc') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "questnpc",
+    "spell-form": "questnpc",
+    "stealth": "questnpc",
+    "combat": "questnpc",
+    "mounted": "questnpc"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@raid": {
+   "token": "@raid",
+   "unit_probe": "raid1",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('raid1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "raid",
+    "spell-form": "raid",
+    "stealth": "raid",
+    "combat": "raid",
+    "mounted": "raid"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@raid1": {
+   "token": "@raid1",
+   "unit_probe": "raid1",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('raid1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "raid1",
+    "spell-form": "raid1",
+    "stealth": "raid1",
+    "combat": "raid1",
+    "mounted": "raid1"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@raid40": {
+   "token": "@raid40",
+   "unit_probe": "raid40",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('raid40') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "raid40",
+    "spell-form": "raid40",
+    "stealth": "raid40",
+    "combat": "raid40",
+    "mounted": "raid40"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@raidpet": {
+   "token": "@raidpet",
+   "unit_probe": "raidpet1",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('raidpet1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "raidpet",
+    "spell-form": "raidpet",
+    "stealth": "raidpet",
+    "combat": "raidpet",
+    "mounted": "raidpet"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@softenemy": {
+   "token": "@softenemy",
+   "unit_probe": "softenemy",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('softenemy') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "softenemy",
+    "spell-form": "softenemy",
+    "stealth": "softenemy",
+    "combat": "softenemy",
+    "mounted": "softenemy"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@softfriend": {
+   "token": "@softfriend",
+   "unit_probe": "softfriend",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('softfriend') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "softfriend",
+    "spell-form": "softfriend",
+    "stealth": "softfriend",
+    "combat": "softfriend",
+    "mounted": "softfriend"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@softinteract": {
+   "token": "@softinteract",
+   "unit_probe": "softinteract",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('softinteract') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "softinteract",
+    "spell-form": "softinteract",
+    "stealth": "softinteract",
+    "combat": "softinteract",
+    "mounted": "softinteract"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@spectated": {
+   "token": "@spectated",
+   "unit_probe": "spectated1",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('spectated1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "spectated",
+    "spell-form": "spectated",
+    "stealth": "spectated",
+    "combat": "spectated",
+    "mounted": "spectated"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@spectatedpet": {
+   "token": "@spectatedpet",
+   "unit_probe": "spectatedpet1",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('spectatedpet1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "spectatedpet",
+    "spell-form": "spectatedpet",
+    "stealth": "spectatedpet",
+    "combat": "spectatedpet",
+    "mounted": "spectatedpet"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@target": {
+   "token": "@target",
+   "unit_probe": "target",
+   "verdict": "RESOLVES",
+   "why": "UnitExists('target') true in: ['combat']",
+   "parser_returned": {
+    "rest": "target",
+    "spell-form": "target",
+    "stealth": "target",
+    "combat": "target",
+    "mounted": "target"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": true,
+    "mounted": false
+   },
+   "unit_name_by_context": {
+    "combat": "Moonrage Whitescalp"
+   }
+  },
+  "@unitId": {
+   "token": "@unitId",
+   "unit_probe": null,
+   "verdict": "NOT-A-UNIT",
+   "why": "no unit probe - this token is not a unit token at all (cursor: absent from every unit-token list on both wikis; it is a macro-layer special case, hand-rolled here via Custom_HandleTerrainClick)",
+   "parser_returned": {
+    "rest": "unitId",
+    "spell-form": "unitId",
+    "stealth": "unitId",
+    "combat": "unitId",
+    "mounted": "unitId"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  },
+  "@vehicle": {
+   "token": "@vehicle",
+   "unit_probe": "vehicle",
+   "verdict": "DID-NOT-RESOLVE-HERE",
+   "why": "UnitExists('vehicle') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+   "parser_returned": {
+    "rest": "vehicle",
+    "spell-form": "vehicle",
+    "stealth": "vehicle",
+    "combat": "vehicle",
+    "mounted": "vehicle"
+   },
+   "unit_exists_by_context": {
+    "rest": false,
+    "spell-form": false,
+    "stealth": false,
+    "combat": false,
+    "mounted": false
+   },
+   "unit_name_by_context": {}
+  }
+ },
+ "KNOWN_GAPS": {
+  "no_flag_control_row": "The ask has [@banana] as a TARGET control but NO flag control (e.g. [zzznotaconditional]). The unknown=>ignored semantics had to be inferred from petbattle/advflyable/resting acting as de-facto controls. A designed control row would have made it immediate. ADD ON ANY RE-RUN.",
+  "macro_limits_unread": "maxAccountMacros/maxCharacterMacros/maxMacros_legacy all came back nil - Blizzard_MacroUI is LOAD-ON-DEMAND (MacroFrame_LoadUI), so those globals do not exist until the macro window has been opened. The 36-vs-18 conflict is NOT resolved. It also re-reads Asc_MacroBank's `MAX_CHARACTER_MACROS or 18` as a LOAD-ORDER guard, not a version guard - which is how I first read it. GetNumMacros() works (C API, always resident): 4 account / 0 character.",
+  "bonusbar_arg_gap": "the stamp shows bonusBarOffset=1 in STEALTH, so [bonusbar:1] should be true - but the ask only carries [bonusbar:5] (the only value the wiki documented). The arg list is only as wide as the source's examples.",
+  "placeholder_arg_leaked": "[form:n] / [stance:n] were asked - `n` is a PLACEHOLDER from the wiki's 'form:0/.../n', not a real arg. It reads identically to form:0, which is itself informative about arg parsing, but it was not a deliberate question.",
+  "ambiguous_is_honest": "constant-TRUE flags with no witness and no false sibling stay AMBIGUOUS. On this parser that is the truthful answer, not a failure to try."
+ }
 }

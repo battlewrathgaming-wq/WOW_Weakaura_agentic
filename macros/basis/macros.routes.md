@@ -19,11 +19,13 @@ the `type` vocabulary (/click)
 
 - types: action, actionbar, assist, attribute, cancelaura, click, focus, item, macro, mainassist, maintank, multispell, pet, spell, spellbook, stop, target
 
-## conditionals (0) - `conditionals.json`  ·  _PROOF-PENDING - RIM FULLY OPEN_
-the option vocabulary; C-side; probe is the SOLE channel
+## conditionals (63) - `conditionals.json`  ·  _LIVE-PROVEN (5 contexts, triangulated) - owned by macros/tools/derive_verdicts.py_
+the option vocabulary; C-side; the live probe is the SOLE channel and it has RUN
 
-- **attested: 0** - the client's own code uses NO conditional literal. Not thin: zero.
-- the live differential probe is the SOLE channel; see `probe_design`.
+- **LIVE-PROVEN 2026-07-17** — 5 contexts, triangulated against an independent witness stamp. **Owned by `macros/tools/derive_verdicts.py`, NOT this emitter.**
+- flags: 53 supported · 6 UNSUPPORTED-IGNORED · 4 AMBIGUOUS (honest — not guessed)
+- **the parser IGNORES unknown conditionals (the clause PASSES)** — it does not reject them. The designed polarity matrix could not have seen this; the context stamp is what caught it.
+- **era diff CONFIRMED, zero crossover:** every WotLK-era conditional supported; not one post-3.3.5a conditional is.
 
 ## api (24) - `api.json`  ·  _runtime-attested x source constants_
 the macro C API + limits (limits CONFLICT - unresolved)

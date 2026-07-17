@@ -328,7 +328,33 @@ def emit_actions(buckets):
 # --------------------------------------------------- domain: conditionals
 
 def emit_conditionals():
-    """The option vocabulary. C-SIDE - SecureCmdOptionParse is called but never
+    """conditionals.json is NOT THIS EMITTER'S TO WRITE ANY MORE - the MAP owns it.
+
+    OWNERSHIP, and why it is enforced in code rather than by a note: once the live capture
+    landed (2026-07-17), `macros/tools/derive_verdicts.py` became the author of
+    basis/conditionals.json - it holds the client's actual verdicts. This emitter used to
+    write the empty proof-pending seed here, and re-running it CLOBBERED the derived
+    verdicts back to "rim FULLY OPEN" - silently, while printing success. The regenerate
+    command in the README would have destroyed the capture's result.
+
+    So: if the map has written it, READ it (for the domain catalog's count) and DO NOT
+    TOUCH it. Only write the seed when the file does not exist yet (bootstrap).
+    """
+    existing = OUT / "conditionals.json"
+    if existing.is_file():
+        d = json.load(open(existing, encoding="utf-8"))
+        if d.get("derived_by") == "macros/tools/derive_verdicts.py":
+            return {"_owned_by_the_map": True, "_file": "conditionals.json",
+                    "_note": "authored by macros/tools/derive_verdicts.py from the live "
+                             "capture; this emitter reads it and never writes it",
+                    "counts": d.get("counts", {})}
+    return _conditionals_seed()
+
+
+def _conditionals_seed():
+    """The bootstrap seed, only for a fresh tree with no capture yet.
+
+    The option vocabulary. C-SIDE - SecureCmdOptionParse is called but never
     defined in Lua; the runtime census buckets it stock-capi.
 
     ATTESTED SEED: conditionals the client's OWN code uses. Measured 2026-07-17:
@@ -533,7 +559,7 @@ def main():
             "count": len(actions),
             "actions": actions,
         },
-        "conditionals.json": conditionals,
+
         "api.json": api,
         "statedrivers.json": statedrivers,
     }
@@ -551,9 +577,15 @@ def main():
             "actions": {"file": "actions.json", "count": len(actions),
                         "grain": "SOURCED-COMPLETE", "what": "the `type` vocabulary (/click)"},
             "conditionals": {"file": "conditionals.json",
-                             "count": conditionals["attested_count"],
-                             "grain": "PROOF-PENDING - RIM FULLY OPEN",
-                             "what": "the option vocabulary; C-side; probe is the SOLE channel"},
+                             "count": (sum(conditionals["counts"].get("flags", {}).values())
+                                       if conditionals.get("_owned_by_the_map")
+                                       else conditionals.get("attested_count", 0)),
+                             "grain": ("LIVE-PROVEN (5 contexts, triangulated) - owned by "
+                                       "macros/tools/derive_verdicts.py"
+                                       if conditionals.get("_owned_by_the_map")
+                                       else "PROOF-PENDING - RIM FULLY OPEN"),
+                             "what": "the option vocabulary; C-side; the live probe is the "
+                                     "SOLE channel and it has RUN"},
             "api": {"file": "api.json", "count": api["macro_api_count"],
                     "grain": "runtime-attested x source constants",
                     "what": "the macro C API + limits (limits CONFLICT - unresolved)"},
@@ -617,9 +649,24 @@ def main():
         elif d == "actions":
             r.append(f"- types: {', '.join(sorted(actions))}")
         elif d == "conditionals":
-            r.append(f"- **attested: {conditionals['attested_count']}** - the client's own code "
-                     f"uses NO conditional literal. Not thin: zero.")
-            r.append("- the live differential probe is the SOLE channel; see `probe_design`.")
+            if conditionals.get("_owned_by_the_map"):
+                fc = conditionals["counts"].get("flags", {})
+                sup = sum(v for k, v in fc.items() if k.startswith("SUPPORTED"))
+                r.append(f"- **LIVE-PROVEN 2026-07-17** — 5 contexts, triangulated against an "
+                         f"independent witness stamp. **Owned by "
+                         f"`macros/tools/derive_verdicts.py`, NOT this emitter.**")
+                r.append(f"- flags: {sup} supported · "
+                         f"{fc.get('UNSUPPORTED-IGNORED', 0)} UNSUPPORTED-IGNORED · "
+                         f"{fc.get('AMBIGUOUS', 0)} AMBIGUOUS (honest — not guessed)")
+                r.append("- **the parser IGNORES unknown conditionals (the clause PASSES)** — "
+                         "it does not reject them. The designed polarity matrix could not have "
+                         "seen this; the context stamp is what caught it.")
+                r.append("- **era diff CONFIRMED, zero crossover:** every WotLK-era conditional "
+                         "supported; not one post-3.3.5a conditional is.")
+            else:
+                r.append(f"- **attested: {conditionals.get('attested_count', 0)}** - the "
+                         f"client's own code uses NO conditional literal. Not thin: zero.")
+                r.append("- the live differential probe is the SOLE channel; see `probe_design`.")
         elif d == "api":
             if api["limit_conflicts"]:
                 r.append(f"- **LIMITS CONFLICT** (client disagrees with itself): "

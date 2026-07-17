@@ -15,9 +15,9 @@
   },
   "conditionals": {
    "file": "conditionals.json",
-   "count": 0,
-   "grain": "PROOF-PENDING - RIM FULLY OPEN",
-   "what": "the option vocabulary; C-side; probe is the SOLE channel"
+   "count": 63,
+   "grain": "LIVE-PROVEN (5 contexts, triangulated) - owned by macros/tools/derive_verdicts.py",
+   "what": "the option vocabulary; C-side; the live probe is the SOLE channel and it has RUN"
   },
   "api": {
    "file": "api.json",

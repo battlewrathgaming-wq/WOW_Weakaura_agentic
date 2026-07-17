@@ -28,7 +28,15 @@
   "PROVEN-TRUE": "probe: known and currently true. [PROBE WRITES THIS]",
   "PROVEN-FALSE": "probe: known and currently false. [PROBE WRITES THIS]",
   "UNSUPPORTED": "probe: parser rejects both polarities. [PROBE WRITES THIS]",
-  "IGNORED": "probe: both polarities true => no-op. [PROBE WRITES THIS]"
+  "IGNORED": "probe: both polarities true => no-op. [PROBE WRITES THIS]",
+  "LIVE:SUPPORTED-PROVEN": "the capture: varies across contexts - it tracked real state",
+  "LIVE:SUPPORTED": "the capture: reads FALSE somewhere, so the parser evaluated it",
+  "LIVE:SUPPORTED-TRUE": "the capture: constant true, corroborated by a witness or a false arg-sibling",
+  "LIVE:UNSUPPORTED-IGNORED": "the capture: the parser IGNORES it (clause passes). Proven by a witness contradiction or an absent subsystem.",
+  "LIVE:AMBIGUOUS": "the capture could not decide, and the map does NOT guess. On this parser an ignored clause is indistinguishable from a true one.",
+  "LIVE:RESOLVES": "the capture: UnitExists() true for this token",
+  "LIVE:DID-NOT-RESOLVE-HERE": "the capture: no unit in these 5 contexts. NOT absence - context-bound. Unproven, not unsupported.",
+  "LIVE:NOT-A-UNIT": "not a unit token at all (cursor: a macro-layer special case)"
  },
  "two_mechanisms": {
   "why_this_matters": "`@unit` and `[flag]` are NOT the same mechanism and do NOT share a proof method. Conflating them is the easiest way to write a confident wrong guide.",
@@ -545,7 +553,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@anyenemy]"
@@ -568,7 +576,20 @@
      "from": "wowpedia-unitid"
     }
    ],
-   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('anyenemy') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "anyenemy",
+     "spell-form": "anyenemy",
+     "stealth": "anyenemy",
+     "combat": "anyenemy",
+     "mounted": "anyenemy"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@anyfriend": {
    "token": "@anyfriend",
@@ -595,7 +616,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@anyfriend]"
@@ -618,7 +639,20 @@
      "from": "wowpedia-unitid"
     }
    ],
-   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('anyfriend') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "anyfriend",
+     "spell-form": "anyfriend",
+     "stealth": "anyfriend",
+     "combat": "anyfriend",
+     "mounted": "anyfriend"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@anyinteract": {
    "token": "@anyinteract",
@@ -645,7 +679,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@anyinteract]"
@@ -668,7 +702,20 @@
      "from": "wowpedia-unitid"
     }
    ],
-   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('anyinteract') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "anyinteract",
+     "spell-form": "anyinteract",
+     "stealth": "anyinteract",
+     "combat": "anyinteract",
+     "mounted": "anyinteract"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@anyleftinteract": {
    "token": "@anyleftinteract",
@@ -688,12 +735,25 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@anyleftinteract]"
    ],
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('anyleftinteract') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "anyleftinteract",
+     "spell-form": "anyleftinteract",
+     "stealth": "anyleftinteract",
+     "combat": "anyleftinteract",
+     "mounted": "anyleftinteract"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@arena": {
    "token": "@arena",
@@ -720,7 +780,7 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@arena]"
@@ -729,7 +789,20 @@
     "domain": "multiUnitId",
     "as_listed": "arena"
    },
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('arena1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "arena",
+     "spell-form": "arena",
+     "stealth": "arena",
+     "combat": "arena",
+     "mounted": "arena"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@boss": {
    "token": "@boss",
@@ -756,7 +829,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@boss]"
@@ -783,7 +856,20 @@
      "from": "wowpedia-unitid"
     }
    ],
-   "era_note": "SOURCED: added in patch 3.3.0 (WotLK) => predates/matches the 3.3.5a base; expected present."
+   "era_note": "SOURCED: added in patch 3.3.0 (WotLK) => predates/matches the 3.3.5a base; expected present.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('boss1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "boss",
+     "spell-form": "boss",
+     "stealth": "boss",
+     "combat": "boss",
+     "mounted": "boss"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@cursor": {
    "token": "@cursor",
@@ -814,7 +900,7 @@
     "Interface/FrameXML/ChatFrame.lua:1110",
     "Interface/FrameXML/ChatFrame.lua:1158"
    ],
-   "proof_mark": "SOURCE-CORROBORATED",
+   "proof_mark": "LIVE:NOT-A-UNIT",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@cursor]"
@@ -829,7 +915,20 @@
      "from": "wowpedia-macro-conditionals"
     }
    ],
-   "era_note": "SOURCED: added in patch 7.1.0 (Legion). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+   "era_note": "SOURCED: added in patch 7.1.0 (Legion). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
+   "live_verdict": {
+    "verdict": "NOT-A-UNIT",
+    "why": "no unit probe - this token is not a unit token at all (cursor: absent from every unit-token list on both wikis; it is a macro-layer special case, hand-rolled here via Custom_HandleTerrainClick)",
+    "parser_returned": {
+     "rest": "cursor",
+     "spell-form": "cursor",
+     "stealth": "cursor",
+     "combat": "cursor",
+     "mounted": "cursor"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@focus": {
    "token": "@focus",
@@ -865,7 +964,7 @@
    "source_witness": [
     "Interface/FrameXML/ChatFrame.lua:1382"
    ],
-   "proof_mark": "SOURCE-CORROBORATED",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@focus]"
@@ -892,7 +991,20 @@
      "from": "wowpedia-unitid"
     }
    ],
-   "era_note": "SOURCED: added in patch 2.0.0 (TBC) => predates/matches the 3.3.5a base; expected present."
+   "era_note": "SOURCED: added in patch 2.0.0 (TBC) => predates/matches the 3.3.5a base; expected present.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('focus') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "focus",
+     "spell-form": "focus",
+     "stealth": "focus",
+     "combat": "focus",
+     "mounted": "focus"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@mouseover": {
    "token": "@mouseover",
@@ -926,12 +1038,25 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@mouseover]"
    ],
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('mouseover') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "mouseover",
+     "spell-form": "mouseover",
+     "stealth": "mouseover",
+     "combat": "mouseover",
+     "mounted": "mouseover"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@nameplate": {
    "token": "@nameplate",
@@ -958,7 +1083,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "LOCALLY-PROVEN (macro-targeting still open)",
+   "proof_mark": "LIVE:RESOLVES",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@nameplate]"
@@ -991,7 +1116,20 @@
      "from": "wowpedia-unitid"
     }
    ],
-   "era_note": "SOURCED: added in patch 7.0.3 (Legion). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+   "era_note": "SOURCED: added in patch 7.0.3 (Legion). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
+   "live_verdict": {
+    "verdict": "RESOLVES",
+    "why": "UnitExists('nameplate1') true in: ['rest', 'spell-form', 'stealth', 'combat', 'mounted']",
+    "parser_returned": {
+     "rest": "nameplate",
+     "spell-form": "nameplate",
+     "stealth": "nameplate",
+     "combat": "nameplate",
+     "mounted": "nameplate"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@none": {
    "token": "@none",
@@ -1025,12 +1163,25 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@none]"
    ],
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('none') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "none",
+     "spell-form": "none",
+     "stealth": "none",
+     "combat": "none",
+     "mounted": "none"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@npc": {
    "token": "@npc",
@@ -1057,12 +1208,25 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@npc]"
    ],
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('npc') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "npc",
+     "spell-form": "npc",
+     "stealth": "npc",
+     "combat": "npc",
+     "mounted": "npc"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@party": {
    "token": "@party",
@@ -1089,7 +1253,7 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@party]"
@@ -1098,7 +1262,20 @@
     "domain": "baseUnitId",
     "as_listed": "party4"
    },
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('party1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "party",
+     "spell-form": "party",
+     "stealth": "party",
+     "combat": "party",
+     "mounted": "party"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@party1": {
    "token": "@party1",
@@ -1118,12 +1295,25 @@
    "era_signal": "ascension-claimed",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@party1]"
    ],
-   "era_note": "claimed only by the Ascension wiki"
+   "era_note": "claimed only by the Ascension wiki",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('party1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "party1",
+     "spell-form": "party1",
+     "stealth": "party1",
+     "combat": "party1",
+     "mounted": "party1"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@party4": {
    "token": "@party4",
@@ -1143,12 +1333,25 @@
    "era_signal": "ascension-claimed",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@party4]"
    ],
-   "era_note": "claimed only by the Ascension wiki"
+   "era_note": "claimed only by the Ascension wiki",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('party4') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "party4",
+     "spell-form": "party4",
+     "stealth": "party4",
+     "combat": "party4",
+     "mounted": "party4"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@partypet": {
    "token": "@partypet",
@@ -1175,7 +1378,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@partypet]"
@@ -1202,7 +1405,20 @@
      "from": "wowpedia-unitid"
     }
    ],
-   "era_note": "SOURCED: added in patch 1.5.0 (vanilla) => predates/matches the 3.3.5a base; expected present."
+   "era_note": "SOURCED: added in patch 1.5.0 (vanilla) => predates/matches the 3.3.5a base; expected present.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('partypet1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "partypet",
+     "spell-form": "partypet",
+     "stealth": "partypet",
+     "combat": "partypet",
+     "mounted": "partypet"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@pet": {
    "token": "@pet",
@@ -1236,7 +1452,7 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@pet]"
@@ -1245,7 +1461,20 @@
     "domain": "baseUnitId",
     "as_listed": "pet"
    },
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('pet') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "pet",
+     "spell-form": "pet",
+     "stealth": "pet",
+     "combat": "pet",
+     "mounted": "pet"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@pettarget": {
    "token": "@pettarget",
@@ -1260,11 +1489,24 @@
    "source_witness": [
     "Interface/FrameXML/ChatFrame.lua:1471"
    ],
-   "proof_mark": "SOURCE-CORROBORATED",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test",
    "probe_rows": [
     "[@pettarget]"
-   ]
+   ],
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('pettarget') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "pettarget",
+     "spell-form": "pettarget",
+     "stealth": "pettarget",
+     "combat": "pettarget",
+     "mounted": "pettarget"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@player": {
    "token": "@player",
@@ -1302,7 +1544,7 @@
     "Interface/FrameXML/ChatFrame.lua:1116",
     "Interface/FrameXML/ChatFrame.lua:1164"
    ],
-   "proof_mark": "SOURCE-CORROBORATED",
+   "proof_mark": "LIVE:RESOLVES",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@player]"
@@ -1311,7 +1553,20 @@
     "domain": "baseUnitId",
     "as_listed": "player"
    },
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "RESOLVES",
+    "why": "UnitExists('player') true in: ['rest', 'spell-form', 'stealth', 'combat', 'mounted']",
+    "parser_returned": {
+     "rest": "player",
+     "spell-form": "player",
+     "stealth": "player",
+     "combat": "player",
+     "mounted": "player"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@questnpc": {
    "token": "@questnpc",
@@ -1338,12 +1593,25 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@questnpc]"
    ],
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('questnpc') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "questnpc",
+     "spell-form": "questnpc",
+     "stealth": "questnpc",
+     "combat": "questnpc",
+     "mounted": "questnpc"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@raid": {
    "token": "@raid",
@@ -1370,7 +1638,7 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@raid]"
@@ -1379,7 +1647,20 @@
     "domain": "multiUnitId",
     "as_listed": "raid"
    },
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('raid1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "raid",
+     "spell-form": "raid",
+     "stealth": "raid",
+     "combat": "raid",
+     "mounted": "raid"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@raid1": {
    "token": "@raid1",
@@ -1399,12 +1680,25 @@
    "era_signal": "ascension-claimed",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@raid1]"
    ],
-   "era_note": "claimed only by the Ascension wiki"
+   "era_note": "claimed only by the Ascension wiki",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('raid1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "raid1",
+     "spell-form": "raid1",
+     "stealth": "raid1",
+     "combat": "raid1",
+     "mounted": "raid1"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@raid40": {
    "token": "@raid40",
@@ -1424,12 +1718,25 @@
    "era_signal": "ascension-claimed",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@raid40]"
    ],
-   "era_note": "claimed only by the Ascension wiki"
+   "era_note": "claimed only by the Ascension wiki",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('raid40') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "raid40",
+     "spell-form": "raid40",
+     "stealth": "raid40",
+     "combat": "raid40",
+     "mounted": "raid40"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@raidpet": {
    "token": "@raidpet",
@@ -1456,7 +1763,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@raidpet]"
@@ -1479,7 +1786,20 @@
      "from": "wowpedia-unitid"
     }
    ],
-   "era_note": "SOURCED: added in patch 1.5.0 (vanilla) => predates/matches the 3.3.5a base; expected present."
+   "era_note": "SOURCED: added in patch 1.5.0 (vanilla) => predates/matches the 3.3.5a base; expected present.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('raidpet1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "raidpet",
+     "spell-form": "raidpet",
+     "stealth": "raidpet",
+     "combat": "raidpet",
+     "mounted": "raidpet"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@softenemy": {
    "token": "@softenemy",
@@ -1506,7 +1826,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@softenemy]"
@@ -1529,7 +1849,20 @@
      "from": "wowpedia-unitid"
     }
    ],
-   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('softenemy') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "softenemy",
+     "spell-form": "softenemy",
+     "stealth": "softenemy",
+     "combat": "softenemy",
+     "mounted": "softenemy"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@softfriend": {
    "token": "@softfriend",
@@ -1556,7 +1889,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@softfriend]"
@@ -1579,7 +1912,20 @@
      "from": "wowpedia-unitid"
     }
    ],
-   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('softfriend') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "softfriend",
+     "spell-form": "softfriend",
+     "stealth": "softfriend",
+     "combat": "softfriend",
+     "mounted": "softfriend"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@softinteract": {
    "token": "@softinteract",
@@ -1606,7 +1952,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@softinteract]"
@@ -1629,7 +1975,20 @@
      "from": "wowpedia-unitid"
     }
    ],
-   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('softinteract') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "softinteract",
+     "spell-form": "softinteract",
+     "stealth": "softinteract",
+     "combat": "softinteract",
+     "mounted": "softinteract"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@spectated": {
    "token": "@spectated",
@@ -1656,12 +2015,25 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@spectated]"
    ],
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('spectated1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "spectated",
+     "spell-form": "spectated",
+     "stealth": "spectated",
+     "combat": "spectated",
+     "mounted": "spectated"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@spectatedpet": {
    "token": "@spectatedpet",
@@ -1688,12 +2060,25 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@spectatedpet]"
    ],
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('spectatedpet1') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "spectatedpet",
+     "spell-form": "spectatedpet",
+     "stealth": "spectatedpet",
+     "combat": "spectatedpet",
+     "mounted": "spectatedpet"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@target": {
    "token": "@target",
@@ -1731,7 +2116,7 @@
     "Interface/FrameXML/ChatFrame.lua:1277",
     "Interface/FrameXML/ChatFrame.lua:1287"
    ],
-   "proof_mark": "SOURCE-CORROBORATED",
+   "proof_mark": "LIVE:RESOLVES",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@target]"
@@ -1740,7 +2125,20 @@
     "domain": "baseUnitId",
     "as_listed": "target"
    },
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "RESOLVES",
+    "why": "UnitExists('target') true in: ['combat']",
+    "parser_returned": {
+     "rest": "target",
+     "spell-form": "target",
+     "stealth": "target",
+     "combat": "target",
+     "mounted": "target"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@unitId": {
    "token": "@unitId",
@@ -1760,12 +2158,25 @@
    "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:NOT-A-UNIT",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@unitId]"
    ],
-   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot.",
+   "live_verdict": {
+    "verdict": "NOT-A-UNIT",
+    "why": "no unit probe - this token is not a unit token at all (cursor: absent from every unit-token list on both wikis; it is a macro-layer special case, hand-rolled here via Custom_HandleTerrainClick)",
+    "parser_returned": {
+     "rest": "unitId",
+     "spell-form": "unitId",
+     "stealth": "unitId",
+     "combat": "unitId",
+     "mounted": "unitId"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "@vehicle": {
    "token": "@vehicle",
@@ -1792,7 +2203,7 @@
    "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "LOCAL-SOURCE-CORROBORATED",
+   "proof_mark": "LIVE:DID-NOT-RESOLVE-HERE",
    "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
    "probe_rows": [
     "[@vehicle]"
@@ -1801,7 +2212,20 @@
     "domain": "baseUnitId",
     "as_listed": "vehicle"
    },
-   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp.",
+   "live_verdict": {
+    "verdict": "DID-NOT-RESOLVE-HERE",
+    "why": "UnitExists('vehicle') false in all five contexts. NOT proof of absence - context-bound (no party/raid/arena/boss present). Unproven, not unsupported",
+    "parser_returned": {
+     "rest": "vehicle",
+     "spell-form": "vehicle",
+     "stealth": "vehicle",
+     "combat": "vehicle",
+     "mounted": "vehicle"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "actionbar": {
    "token": "actionbar",
@@ -1833,7 +2257,7 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[actionbar]",
@@ -1843,7 +2267,21 @@
     "[actionbar:6]",
     "[noactionbar:6]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "advflyable": {
    "token": "advflyable",
@@ -1863,7 +2301,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:UNSUPPORTED-IGNORED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[advflyable]",
@@ -1879,7 +2317,21 @@
      "from": "wowpedia-macro-conditionals"
     }
    ],
-   "era_note": "SOURCED: added in patch 10.0.7 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+   "era_note": "SOURCED: added in patch 10.0.7 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
+   "live_verdict": {
+    "verdict": "UNSUPPORTED-IGNORED",
+    "confidence": "high-inferred",
+    "why": "reads TRUE in every context, and the API it mirrors is NOT RESIDENT on this client (census): IsAdvancedFlyableArea. The whole subsystem is absent, so there is nothing to evaluate - and unknown => ignored is PROVEN. Inference from two mechanical facts, not a direct observation.",
+    "by_context": {
+     "rest": "T",
+     "spell-form": "T",
+     "stealth": "T",
+     "combat": "T",
+     "mounted": "T"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "bar": {
    "token": "bar",
@@ -1911,7 +2363,7 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[bar]",
@@ -1921,7 +2373,21 @@
     "[bar:6]",
     "[nobar:6]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "bonusbar": {
    "token": "bonusbar",
@@ -1950,7 +2416,7 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[bonusbar]",
@@ -1958,7 +2424,21 @@
     "[bonusbar:5]",
     "[nobonusbar:5]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "btn": {
    "token": "btn",
@@ -1987,13 +2467,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[btn]",
     "[nobtn]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "button": {
    "token": "button",
@@ -2022,13 +2516,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[button]",
     "[nobutton]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "canexitvehicle": {
    "token": "canexitvehicle",
@@ -2048,13 +2556,27 @@
    "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:UNSUPPORTED-IGNORED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[canexitvehicle]",
     "[nocanexitvehicle]"
    ],
-   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot.",
+   "live_verdict": {
+    "verdict": "UNSUPPORTED-IGNORED",
+    "confidence": "high",
+    "why": "reads TRUE in every context while its independent witness `inVehicle` (CanExitVehicle() - cannot exit a vehicle you are not in) is FALSE in every context",
+    "by_context": {
+     "rest": "T",
+     "spell-form": "T",
+     "stealth": "T",
+     "combat": "T",
+     "mounted": "T"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "channeling": {
    "token": "channeling",
@@ -2081,13 +2603,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[channeling]",
     "[nochanneling]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "combat": {
    "token": "combat",
@@ -2121,13 +2657,27 @@
    "era_signal": "archive-documented",
    "negation_documented": true,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED-PROVEN",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[combat]",
     "[nocombat]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED-PROVEN",
+    "confidence": "high",
+    "why": "varies across contexts - it tracked real state",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "T",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "cursor": {
    "token": "cursor",
@@ -2154,13 +2704,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[cursor]",
     "[nocursor]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "dead": {
    "token": "dead",
@@ -2194,13 +2758,27 @@
    "era_signal": "archive-documented",
    "negation_documented": true,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[dead]",
     "[nodead]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "equipped": {
    "token": "equipped",
@@ -2229,13 +2807,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[equipped]",
     "[noequipped]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "exists": {
    "token": "exists",
@@ -2269,13 +2861,27 @@
    "era_signal": "archive-documented",
    "negation_documented": true,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED-PROVEN",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[exists]",
     "[noexists]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED-PROVEN",
+    "confidence": "high",
+    "why": "varies across contexts - it tracked real state",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "T",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "extrabar": {
    "token": "extrabar",
@@ -2295,13 +2901,27 @@
    "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:UNSUPPORTED-IGNORED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[extrabar]",
     "[noextrabar]"
    ],
-   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot.",
+   "live_verdict": {
+    "verdict": "UNSUPPORTED-IGNORED",
+    "confidence": "high-inferred",
+    "why": "reads TRUE in every context, and the API it mirrors is NOT RESIDENT on this client (census): HasExtraActionBar. The whole subsystem is absent, so there is nothing to evaluate - and unknown => ignored is PROVEN. Inference from two mechanical facts, not a direct observation.",
+    "by_context": {
+     "rest": "T",
+     "spell-form": "T",
+     "stealth": "T",
+     "combat": "T",
+     "mounted": "T"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "flyable": {
    "token": "flyable",
@@ -2328,13 +2948,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[flyable]",
     "[noflyable]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "flying": {
    "token": "flying",
@@ -2361,13 +2995,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[flying]",
     "[noflying]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "form": {
    "token": "form",
@@ -2399,7 +3047,7 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED-PROVEN",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[form]",
@@ -2409,7 +3057,21 @@
     "[form:n]",
     "[noform:n]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED-PROVEN",
+    "confidence": "high",
+    "why": "varies across contexts - it tracked real state",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "T",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "group": {
    "token": "group",
@@ -2446,7 +3108,7 @@
    "era_signal": "archive-documented",
    "negation_documented": true,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[group]",
@@ -2456,7 +3118,21 @@
     "[group:raid]",
     "[nogroup:raid]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "harm": {
    "token": "harm",
@@ -2490,13 +3166,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED-PROVEN",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[harm]",
     "[noharm]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED-PROVEN",
+    "confidence": "high",
+    "why": "varies across contexts - it tracked real state",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "T",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "help": {
    "token": "help",
@@ -2530,13 +3220,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[help]",
     "[nohelp]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "indoors": {
    "token": "indoors",
@@ -2563,13 +3267,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[indoors]",
     "[noindoors]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "known": {
    "token": "known",
@@ -2589,7 +3307,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:AMBIGUOUS",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[known]",
@@ -2605,7 +3323,21 @@
      "from": "wowpedia-macro-conditionals"
     }
    ],
-   "era_note": "SOURCED: added in patch 10.0.2 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+   "era_note": "SOURCED: added in patch 10.0.2 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
+   "live_verdict": {
+    "verdict": "AMBIGUOUS",
+    "confidence": "none",
+    "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
+    "by_context": {
+     "rest": "T",
+     "spell-form": "T",
+     "stealth": "T",
+     "combat": "T",
+     "mounted": "T"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "mod": {
    "token": "mod",
@@ -2645,7 +3377,7 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[mod]",
@@ -2657,7 +3389,21 @@
     "[mod:alt]",
     "[nomod:alt]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "modifier": {
    "token": "modifier",
@@ -2690,7 +3436,7 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[modifier]",
@@ -2702,7 +3448,21 @@
     "[modifier:alt]",
     "[nomodifier:alt]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "mounted": {
    "token": "mounted",
@@ -2729,13 +3489,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED-PROVEN",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[mounted]",
     "[nomounted]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED-PROVEN",
+    "confidence": "high",
+    "why": "varies across contexts - it tracked real state",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "T"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "outdoors": {
    "token": "outdoors",
@@ -2762,13 +3536,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED-TRUE",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[outdoors]",
     "[nooutdoors]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED-TRUE",
+    "confidence": "medium",
+    "why": "constant TRUE and its witness `outdoors` (IsOutdoors()) is TRUE in every context - corroborated",
+    "by_context": {
+     "rest": "T",
+     "spell-form": "T",
+     "stealth": "T",
+     "combat": "T",
+     "mounted": "T"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "overridebar": {
    "token": "overridebar",
@@ -2788,13 +3576,27 @@
    "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:AMBIGUOUS",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[overridebar]",
     "[nooverridebar]"
    ],
-   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot.",
+   "live_verdict": {
+    "verdict": "AMBIGUOUS",
+    "confidence": "none",
+    "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
+    "by_context": {
+     "rest": "T",
+     "spell-form": "T",
+     "stealth": "T",
+     "combat": "T",
+     "mounted": "T"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "party": {
    "token": "party",
@@ -2821,13 +3623,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[party]",
     "[noparty]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "pet": {
    "token": "pet",
@@ -2854,13 +3670,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[pet]",
     "[nopet]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "petbattle": {
    "token": "petbattle",
@@ -2880,13 +3710,27 @@
    "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:UNSUPPORTED-IGNORED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[petbattle]",
     "[nopetbattle]"
    ],
-   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot.",
+   "live_verdict": {
+    "verdict": "UNSUPPORTED-IGNORED",
+    "confidence": "high-inferred",
+    "why": "reads TRUE in every context, and the API it mirrors is NOT RESIDENT on this client (census): C_PetBattles. The whole subsystem is absent, so there is nothing to evaluate - and unknown => ignored is PROVEN. Inference from two mechanical facts, not a direct observation.",
+    "by_context": {
+     "rest": "T",
+     "spell-form": "T",
+     "stealth": "T",
+     "combat": "T",
+     "mounted": "T"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "possessbar": {
    "token": "possessbar",
@@ -2906,13 +3750,27 @@
    "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:AMBIGUOUS",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[possessbar]",
     "[nopossessbar]"
    ],
-   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot.",
+   "live_verdict": {
+    "verdict": "AMBIGUOUS",
+    "confidence": "none",
+    "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
+    "by_context": {
+     "rest": "T",
+     "spell-form": "T",
+     "stealth": "T",
+     "combat": "T",
+     "mounted": "T"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "pvpcombat": {
    "token": "pvpcombat",
@@ -2932,7 +3790,7 @@
    "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:AMBIGUOUS",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[pvpcombat]",
@@ -2948,7 +3806,21 @@
      "from": "wowpedia-macro-conditionals"
     }
    ],
-   "era_note": "SOURCED: added in patch 7.3.0 (Legion). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+   "era_note": "SOURCED: added in patch 7.3.0 (Legion). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality.",
+   "live_verdict": {
+    "verdict": "AMBIGUOUS",
+    "confidence": "none",
+    "why": "constant TRUE with no witness and no false sibling. On this parser an ignored clause is indistinguishable from a true one - NOT guessing",
+    "by_context": {
+     "rest": "T",
+     "spell-form": "T",
+     "stealth": "T",
+     "combat": "T",
+     "mounted": "T"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "raid": {
    "token": "raid",
@@ -2975,13 +3847,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[raid]",
     "[noraid]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "resting": {
    "token": "resting",
@@ -3001,13 +3887,27 @@
    "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:UNSUPPORTED-IGNORED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[resting]",
     "[noresting]"
    ],
-   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot.",
+   "live_verdict": {
+    "verdict": "UNSUPPORTED-IGNORED",
+    "confidence": "high",
+    "why": "reads TRUE in every context while its independent witness `resting` (IsResting()) is FALSE in every context",
+    "by_context": {
+     "rest": "T",
+     "spell-form": "T",
+     "stealth": "T",
+     "combat": "T",
+     "mounted": "T"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "shapeshift": {
    "token": "shapeshift",
@@ -3027,13 +3927,27 @@
    "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:UNSUPPORTED-IGNORED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[shapeshift]",
     "[noshapeshift]"
    ],
-   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot.",
+   "live_verdict": {
+    "verdict": "UNSUPPORTED-IGNORED",
+    "confidence": "high-inferred",
+    "why": "reads TRUE in every context, and the API it mirrors is NOT RESIDENT on this client (census): HasTempShapeshiftActionBar. The whole subsystem is absent, so there is nothing to evaluate - and unknown => ignored is PROVEN. Inference from two mechanical facts, not a direct observation.",
+    "by_context": {
+     "rest": "T",
+     "spell-form": "T",
+     "stealth": "T",
+     "combat": "T",
+     "mounted": "T"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "spec": {
    "token": "spec",
@@ -3063,7 +3977,7 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[spec]",
@@ -3073,7 +3987,21 @@
     "[spec:2]",
     "[nospec:2]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "stance": {
    "token": "stance",
@@ -3114,7 +4042,7 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED-PROVEN",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[stance]",
@@ -3128,7 +4056,21 @@
     "[stance:n]",
     "[nostance:n]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED-PROVEN",
+    "confidence": "high",
+    "why": "varies across contexts - it tracked real state",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "T",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "stealth": {
    "token": "stealth",
@@ -3155,13 +4097,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED-PROVEN",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[stealth]",
     "[nostealth]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED-PROVEN",
+    "confidence": "high",
+    "why": "varies across contexts - it tracked real state",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "T",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "swimming": {
    "token": "swimming",
@@ -3188,13 +4144,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[swimming]",
     "[noswimming]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "unithasvehicleui": {
    "token": "unithasvehicleui",
@@ -3221,13 +4191,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[unithasvehicleui]",
     "[nounithasvehicleui]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "vehicleui": {
    "token": "vehicleui",
@@ -3254,13 +4238,27 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[vehicleui]",
     "[novehicleui]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   },
   "worn": {
    "token": "worn",
@@ -3289,13 +4287,39 @@
    "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
-   "proof_mark": "UNPROVEN",
+   "proof_mark": "LIVE:SUPPORTED",
    "probe_method": "polarity-pair",
    "probe_rows": [
     "[worn]",
     "[noworn]"
    ],
-   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding.",
+   "live_verdict": {
+    "verdict": "SUPPORTED",
+    "confidence": "high",
+    "why": "reads FALSE somewhere - an ignored clause can never read false, so the parser evaluated it",
+    "by_context": {
+     "rest": "F",
+     "spell-form": "F",
+     "stealth": "F",
+     "combat": "F",
+     "mounted": "F"
+    },
+    "derived_by": "macros/tools/derive_verdicts.py",
+    "from": "the 5-context capture, 2026-07-17"
+   }
   }
+ },
+ "live_capture": {
+  "landed": "2026-07-17, 5 contexts (addons bench harness, Battlewrath live)",
+  "records": [
+   "20260717_041925_853__macros.json",
+   "20260717_042043_345__macros.json",
+   "20260717_042127_531__macros.json",
+   "20260717_042242_389__macros.json",
+   "20260717_042331_520__macros.json"
+  ],
+  "map": "macros/tools/derive_verdicts.py -> macros/basis/conditionals.json",
+  "note": "proof_marks prefixed LIVE: are the client's answer. Everything else is still a question."
  }
 }

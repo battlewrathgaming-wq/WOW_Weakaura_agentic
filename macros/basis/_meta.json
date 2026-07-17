@@ -1,5 +1,5 @@
 {
- "emitted_at": "2026-07-17T03:40:41",
+ "emitted_at": "2026-07-17T06:23:31",
  "emitter": "macros/tools/emit_macro_basis.py",
  "source_anchors": {
   "patch-B.MPQ": "a8336170a7d97b137bda9838774665d711a02b27d2241f88aecf464ffca7ee06",
@@ -27,7 +27,7 @@
  "counts": {
   "commands": 70,
   "actions": 17,
-  "conditionals": 0,
+  "conditionals": 63,
   "api": 24,
   "statedrivers": 5
  },
