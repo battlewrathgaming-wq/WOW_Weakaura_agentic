@@ -50,6 +50,33 @@ Consequences (for a dot-first / multi-dot rotation like Scarletta's `reset=targe
 - Target **dies** mid-blast → the event fires → reset to the dot. Next press re-dots rather than continuing the blast.
 - Click off and back onto the **same** unit → two events → two resets, though "nothing changed" by identity.
 
+## Ground-target (`[@cursor]` / `[@player]`) inside a sequence — one target for all steps, and the asymmetry
+
+**[SOURCE]** A castsequence carries **one target for the whole sequence**, not per-step:
+`ExecuteCastSequence(sequence, target)` (`:817`) passes the same `target` to every step's
+`CastSpellByName(spell, target)` (`:885`). A `[@X]` conditional therefore applies to *every* spell
+in the list — you cannot give step 1 one target and step 2 another.
+
+**The ground-target hack in the CASTSEQUENCE handler (`:1153`) treats `@cursor` and `@player`
+differently, and the difference decides whether you can MIX a ground spell with targeted steps:**
+
+- **`[@cursor]` NILS the target** — `if castAtCursor then target = nil` (`:1159–1160`), *before*
+  `ExecuteCastSequence`. So the non-ground steps fall back to your **current target** and work.
+  `[@cursor] Ground, Attack, Attack` drops the ground spell at the cursor and lands the attacks on
+  your target. **Mixes cleanly.**
+- **`[@player]` KEEPS `target = "player"`** — no nil (`:1164`, `:1166`). So *every* non-ground step
+  gets `target = "player"`: a harm attack told to target yourself self-casts / fails / misfires and
+  will **not** hit your enemy. `[@player] Ground, Attack, Attack` **breaks the attack steps.**
+
+**Consequence:** you cannot mix `[@player]` ground-at-feet with enemy-targeted steps in one
+castsequence. `[@cursor]` mixes fine but places at the cursor, not the feet. **The fix: isolate the
+ground-target on its own key** (`/cast [@player] Ground`) and chain the targeted steps separately —
+which is also what the governing rule (isolate distinct-targeting) says (`../CONVENTION.md`).
+
+**[CORROBORATION]** External research (retail-WoW community knowledge of the same behaviour)
+validates the asymmetry — Battlewrath, 2026-07-17. The **source read is the primary evidence** (it
+is this client's own handler); the external match is corroboration, not the basis.
+
 ## The boundary — where source stops (marked, not guessed)
 
 The source confirms **the reset fires when `PLAYER_TARGET_CHANGED` fires.** **Which** target changes actually fire that event — swap, clear, tab-target, target-death — is **event semantics this file does not define.** That part is recall, **not sourced here**. If a design depends on the target-death edge, confirm the event's firing conditions separately (a live observation or an event-behaviour source), do not trust the summary.
