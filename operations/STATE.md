@@ -16,7 +16,7 @@
 
 _Last updated 2026-07-16 (the picker V1 session). The single "where are we" read. Detail lives in the code + READMEs this points at._
 
-## Macros bench 2026-07-17 — `/macros/` STOOD UP; BLOCKED ON ONE LIVE CAPTURE
+## Macros bench 2026-07-17 — `/macros/` STOOD UP **+ THE CAPTURE LANDED; conditionals.json is FACT**
 
 - **A new root slice** (`macros/`, Battlewrath's call): the client's macro surface, sheets-model. **Lane file +
   forecast: `operations/Macros.md`** — read that, not this, for detail.
@@ -26,9 +26,18 @@ _Last updated 2026-07-16 (the picker V1 session). The single "where are we" read
 - **`reference/` = the QUESTION register** (never basis): the citation chain + the 2 installed macro addons + the
   **local WA sheets** (`baseUnitId`/`multiUnitId` — stronger than any retail doc where they overlap). Rule: recall
   and secondary sources are **inadmissible as fact, admissible as a question** — the probe adjudicates.
-- **★ BLOCKED ON: the live capture.** Ask staged at `macros/probe/ASK.md`; **addons bench owns the harness**
-  (`addons/backlog.md` #4). One bounded pass, pure reads, resident-API-only, no restart (dev console confirmed).
-  **Lands RAW** — no verdicts in-game. Nothing in the slice moves until it lands; the map is next after.
+- **★ THE CAPTURE LANDED (5 contexts, addons-bench harness, Battlewrath live) AND THE MAP IS BUILT.**
+  `derive_verdicts.py` → `basis/conditionals.json`, derived OFFLINE from the landed raw. **The designed polarity
+  matrix was DISPROVEN**: the parser **IGNORES** unknown conditionals (the clause PASSES), so unsupported reads
+  identically to true. **The CONTEXT STAMP is the only reason the map isn't confidently wrong** — without it ~10
+  retail-only conditionals would have graduated into the basis as fact. Landing RAW meant a wrong matrix cost a
+  re-derivation, not another client session.
+- **★ THE FORECAST TEST — TOTAL SEPARATION:** archive-documented (WotLK-era) = **53 supported / 0 unsupported**;
+  post-3.3.5a = **0 supported / 6 unsupported / 4 ambiguous**. The era signal, computed from `{{Patch}}` annotations
+  BEFORE the capture, predicted the live verdict exactly. ⇒ **Ascension extends at the Lua/handler layer, not the C
+  parser** (`@cursor` is Legion and present *because* it's a handler hack; zero post-WotLK conditionals work).
+- **Cross-lane confirmations:** `@nameplate` **RESOLVES** live — independently corroborating the guardian-tracker's
+  plate-token finding from a different instrument. `@` is a **pass-through string** (control row, all 5 contexts).
 - **Finds worth knowing elsewhere:** `[@cursor]` is a **confirmed, dated backport** (7.1.0 Legion, Blizzard-cited)
   hand-rolled via `Custom_HandleTerrainClick` — on `/cast`, `/castsequence` AND `/castrandom` · the client
   **contradicts itself on macro limits** (MacroUI global 36 vs QuickKeybind local 18 — candidate bug in the

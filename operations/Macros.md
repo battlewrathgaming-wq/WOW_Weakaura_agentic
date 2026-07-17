@@ -34,8 +34,11 @@ Everything else follows from this.
   `SecureCmdOptionParse` is called **49× in ChatFrame.lua and defined NOWHERE in the Lua**; the runtime census
   buckets it `stock-capi`. The vocabulary lives in the binary. No source read reaches it.
 
-**Consequence:** the map ships COMPLETE on the command channel and PROOF-PENDING on the conditional channel. That
-asymmetry is the honest shape, not a gap to paper over.
+**Consequence (as of the founding read):** the map shipped COMPLETE on the command channel and PROOF-PENDING on the
+conditional channel. That asymmetry was the honest shape, not a gap to paper over — and it held exactly as stated:
+the conditional channel could ONLY be closed by asking the client, which is what happened on 2026-07-17. **Both
+channels are now closed** (commands: sourced-complete · conditionals: LIVE-PROVEN, 5 contexts, with 4 honest
+AMBIGUOUS). The founding split was right about the shape AND about the only way out of it.
 
 ## Why an agent's own WoW knowledge is INADMISSIBLE here
 
@@ -91,32 +94,33 @@ secure key came last (`KBMODE`), which then falsely read as conditional-supporti
 reconciliation (49 = 49) is the check that catches it. **Any count the emitter reports wants an independent
 cross-total like that**, or it's a plausible number, not a measured one.
 
-## The RIM — `conditionals.json`, proof-pending
+## ~~The RIM — proof-pending~~ → **CLOSED by the capture. The matrix in it was DISPROVEN.**
 
-The vocabulary is C-side, so it must be PROVEN, not recalled. Two channels, both open:
+_Superseded 2026-07-17 by the 5-context capture (see the LANDED section below). Kept only as
+the record of a wrong design, because the wrongness is the lesson._
 
-- **Attested-usage seed (sourced, free).** Conditionals the client's OWN Lua/XML uses are proven to exist. Same grain
-  as the census's declared pass. **If that grep comes back thin the file ships nearly empty and SAYS so** — an empty
-  proof-pending rim is a true statement; a fabricated vocabulary is not.
-- **Live differential probe (the completeness check).** `SecureCmdOptionParse` is resident and callable from a plain
-  `/run` — which slips UNDER the anti-cheat restart constraint (resident Blizzard API only; same shape as the
-  spec-index one-liner). **The design problem:** `[combat]` out of combat and `[fakeconditional]` both return falsey —
-  unsupported and currently-false are INDISTINGUISHABLE, so a naive probe silently reports half the vocabulary as
-  missing. Test BOTH polarities and read the pair:
+**What this section used to say**, and shipped into `probe/README` and `conditionals.json`:
 
-  | `[X]` | `[noX]` | verdict |
-  |---|---|---|
-  | false | true | known, currently false |
-  | true | false | known, currently true |
-  | false | false | **unsupported** — parser rejects both ways |
-  | true | true | ignored / no-op |
+| `[X]` | `[noX]` | verdict *(as designed — WRONG)* |
+|---|---|---|
+| false | false | **unsupported** — parser rejects both ways |
 
-  Which row an unknown lands in is itself unknown — the design doesn't need to know in advance, it needs to
-  DISTINGUISH. (`anchors-verifiers-over-logging`: make the hole loud.)
-- **Standing limit, state it in the basis:** a probe only proves conditionals someone thought to ASK about. The output
-  is a proven set with an honest unknown rim — **never an enumeration.** That line is the difference between fact basis
-  and a nicer-looking guess.
-- **`/luaconsole` may make this near-free** — interactive, no macro, no restart. Unverified: see FINDS.
+**The client says otherwise.** That row **never occurs** — 5 contexts × 63 flags, not one
+both-nil. **The parser IGNORES an unknown conditional; the clause PASSES.** So an unsupported
+conditional reads *exactly* like a true one, and the polarity pair — the probe's whole
+designed discriminator — **cannot discriminate**.
+
+**Why the design failed:** it assumed unknown ⇒ reject. That assumption was never sourced;
+it was the one piece of the probe I reasoned out rather than derived, and it's the piece that
+broke. The rest of the ask (raw capture, context stamp, five contexts) is what survived and
+carried the answer.
+
+**Why it didn't cost anything:** the ask landed **RAW**. A wrong matrix cost a re-derivation
+offline, not another client session. That was the entire reason for refusing to compute
+verdicts in-game — and it paid, exactly as argued, on the first pass.
+
+**The attested-usage seed** (the other half of this section) stands as recorded: it measured
+**zero**, and that zero was honest. The live probe genuinely was the sole channel.
 
 ## FINDS (2026-07-17) — real, and cross-lane
 
@@ -170,46 +174,89 @@ wrong count twice by hand — *if it ever fails the conditional counts are wrong
 report** (declared-without-handler / body-unresolved), where an unresolved body means `calls` is **blind** and
 absence of `custom_behaviour` proves nothing. An empty holes list is a healthy one.
 
-## FORECAST — what happens next, and what would surprise us
+## ✅ THE CAPTURE LANDED + THE MAP IS BUILT (2026-07-17) — conditionals.json is FACT
 
-_Forward-looking. Each step states what it UNBLOCKS, what we EXPECT, and what would be a real SURPRISE — because a
-stated expectation is what lets a result contradict us instead of quietly confirming us._
+Five contexts (rest · spell-form · stealth · combat · mounted), addons-bench harness,
+Battlewrath live. Labels: `addons/landing/records/20260717_contexts.md`. Map:
+`macros/tools/derive_verdicts.py` → `basis/conditionals.json`. Derived **offline** from the
+landed raw, so a wrong rule costs a re-derivation, never another client session — which is
+exactly why the ask landed RAW.
 
-### 1. ★ The capture lands — the addons bench, one bounded pass
+### ★★ The designed matrix was WRONG, and the data said so
 
-**Ask:** `macros/probe/ASK.md` (payload `probe_core.lua` + `probe_rows.json`); pointer at `addons/backlog.md` #4.
-**They own the harness**; we composed the question. Channel confirmed live — the client's dev console
-(`/luaconsole`) makes it interactive, no restart, resident API only.
+I shipped *"[X] false, [noX] false ⇒ UNSUPPORTED — parser rejects both polarities."*
+**That row never occurs.** Across 5 contexts × 63 flags there is not one both-nil. **The
+parser IGNORES an unknown conditional — the clause PASSES.** So `[unknown]="Y"`,
+`[nounknown]=nil` — *identical* to a known-true conditional. The polarity pair, the probe's
+entire designed discriminator, **cannot discriminate.**
 
-**Unblocks: everything below.** Nothing else in this slice moves until it lands.
+Proven, not inferred: `[petbattle]` reads TRUE in all five (no pet battle system exists on
+3.3.5a). `[resting]` reads TRUE in all five while `IsResting()` is falsey in all five.
 
-**What we expect:**
-- `[@banana]` returns `target="banana"` ⇒ `@` is **pass-through**, and the polarity matrix never applied to targets.
-  Both retail docs and CoA's own handler point this way. *Surprise:* `nil` ⇒ `@` is validated, and every target row
-  means something else — re-read the whole target channel.
-- Archive-documented flags come back mostly supported ⇒ a 3.3.5a base behaving like one. *Surprise:* an
-  `UNSUPPORTED` here — something removed or never implemented on the fork. **That would be a real finding.**
-- The patch-dated rows are the live question. `@cursor` (7.1.0) is a **confirmed backport**, so the pattern has a
-  proof — but nothing predicts the others either way. *Surprise in both directions is informative here; that's why
-  they rank first.*
-- `MAX_CHARACTER_MACROS` reads **36** ⇒ `QuickKeybindActionPicker`'s local `18` is a stale shadow and the backported
-  picker likely can't see character macros 19–36 — **a candidate bug in their client**. *Surprise:* it reads 18 ⇒
-  Blizzard_MacroUI is the outlier instead. Either way the **engine** limit stays unproven (needs a write test,
-  deliberately not asked).
+**What saved the pass: the CONTEXT STAMP and FIVE contexts** — both added late, on
+Battlewrath's *"get the data set broad"* and *"triangulate"* steers. Without them this
+capture would have graduated ~10 retail-only conditionals into the basis **as fact**.
+Broad-first wasn't thoroughness; it was the thing that made the answer true.
 
-### 2. The map — this bench's next build, once data exists
+**The rule that replaces it:** reads FALSE anywhere ⇒ **evaluated** ⇒ supported (an ignored
+clause can never read false). For constant-TRUE: the wiki names the API each conditional
+**mirrors**, the census says whether it's **resident here** — subsystem absent + constant
+true + ignore-semantics ⇒ ignored. Both ends sourced, joined mechanically. Where the API
+*is* resident (`overridebar`, `possessbar`) the verdict stays **AMBIGUOUS** rather than
+being talked into place.
 
-Derive verdicts from the raw record (**never in-game**), **triangulating each flag against its independent context
-witness**: `[combat]` false WITH `inCombat=false` is consistent; `[combat]` false WITH `inCombat=true` is a real
-anomaly. Then write `proof_mark` back to `reference/candidates.json` and **graduate only the proven set** into
-`basis/conditionals.json`.
+### ★★ The forecast test — TOTAL SEPARATION, ZERO CROSSOVER
 
-**That remains the only path anything becomes fact in this slice.** `reference/` never becomes `basis/` by itself.
+| era signal (predicted **before** the capture) | SUPPORTED | UNSUPPORTED | AMBIGUOUS |
+|---|---|---|---|
+| archive-documented (WotLK-era) | **53** | **0** | **0** |
+| post-3.3.5a (patch-dated + retail-only) | **0** | 6 | 4 |
 
-### 3. A second context pass — sharpens, doesn't block
+The era signal — from `{{Patch}}` annotations, before anyone touched the client — predicted
+the live verdict **exactly**. Stating the expectation is what made it a test instead of a
+story. It also retires the reverse error for good: inferring era from a wiki's *absence*
+predicted the same rows **for the wrong reason**.
 
-One run resting/idle, one **in combat + mounted** (or in a form). The pair separates *"false here"* from *"always
-false"* for the context-bound flags. **Do not block step 1 on it.**
+### ★ The layer finding — hypothesis raised this session, now strongly supported
+
+**Ascension extends at the LUA/HANDLER layer, not the C parser.** Zero post-3.3.5a
+conditionals work ⇒ the parser is untouched stock 3.3.5a. Yet `@cursor` — Legion 7.1.0 — **is**
+present, because it's hand-rolled in `ChatFrame.lua` via `Custom_HandleTerrainClick`. That
+explains the perfect era separation *and* predicts where future CoA macro capability can come
+from (a handler) and where it cannot (the vocabulary).
+
+### Targets — the control row settled it
+
+`[@banana]` returned `target='banana'` in **all five** contexts ⇒ **`@` is a pass-through
+string**; the parser never validates units. The matrix never applied to targets.
+`@nameplate` **RESOLVES** (real unit) — independently confirming the guardian-tracker's
+plate-token finding from a different instrument. `@cursor` = **NOT-A-UNIT**, as both
+unit-token wikis said.
+
+### Landmine found and defused
+
+`emit_macro_basis.py` — **the documented regenerate command** — clobbered the derived
+verdicts back to "rim FULLY OPEN", silently, while printing success. The next agent
+following the README would have destroyed the capture's result. `conditionals.json` now
+belongs to the **map**; the emitter reads it and refuses to write it.
+
+## Open — small, and each one precisely askable now
+
+- **The AMBIGUOUS 4** (`known`, `overridebar`, `possessbar`, `pvpcombat`) — constant-TRUE
+  with no witness and no false sibling. `overridebar`/`possessbar` mirror APIs that ARE
+  resident, so they may be real. **A flag control row settles the whole class:** the ask has
+  `[@banana]` for targets but **no flag control** — add `[zzznotaconditional]` and the
+  ignore-signature becomes a direct read instead of an inference.
+- **Macro limits: STILL UNRESOLVED, and now precisely askable.** The stamp read
+  `MAX_ACCOUNT_MACROS`/`MAX_CHARACTER_MACROS` as **nil** — `Blizzard_MacroUI` is
+  **load-on-demand**, so those globals don't exist until the macro window opens. That also
+  re-reads `Asc_MacroBank`'s `MAX_CHARACTER_MACROS or 18` as a **load-order guard, not a
+  version guard** — which is how I first read it. Fix: `MacroFrame_LoadUI()` (or open the
+  window) *then* read. `GetNumMacros()` works regardless (C API): 4 account / 0 character.
+- **`[bonusbar:1]` was never asked** — the stamp shows `bonusBarOffset=1` in stealth, so it
+  should be true, but the ask only carries `[bonusbar:5]` (the only value the wiki
+  documented). **The arg list is only as wide as the source's examples.**
+- **`statedrivers` provenance** — still free from the banked clean-profile census re-run.
 
 ### 4. The guide — **a ROLE, not an artifact. Not queued; already live.**
 

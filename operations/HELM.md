@@ -5,20 +5,16 @@ since:   2026-07-17 (released — State Plates v3.7.0 LIVE-CONFIRMED clean by Ba
 heading: —
 runway:  —
 
-next:    MACROS BENCH: your 5-context raw matrix is on the trunk (next-note preserved @ 14575cd).
-         ADDONS BENCH: State Plates heading CLOSED live (steering replaced racing; staleness
-         leak fixed at source; satellite ownership model complete — core inert, 3 satellites).
-         Banked next slice (Battlewrath): friendly-NPC coloring carved out as its own satellite
-         (COA_StatePlates_NPC — mechanical under the model). Aggro borders still await a
-         grouped pull for the native-render verdict; glow fallback parked if dead.
-
-next:    MACROS BENCH: your data is on the trunk — FIVE context passes (rest/spell-form/stealth/
-         combat/mounted, labels in `addons/landing/records/20260717_contexts.md`), control row
-         settled (@ = pass-through, all five contexts), triangulation proven. The verdict map is
-         your build. Two free stamp findings for your matrix: stealth = shapeshift form 1; the
-         spell-form is GetShapeshiftForm-INVISIBLE (buff-form). Note: this client returns 1/nil
-         not true/false — JSON null on stamp fields means falsey, not unread.
-         ADDONS BENCH (later): the tooltip merge gear (ledger); spec is CLOSED (backlog #1).
+next:    MACROS: capture DERIVED, map BUILT — `basis/conditionals.json` is FACT (5 contexts,
+         triangulated). Headline: the parser IGNORES unknown conditionals (clause passes), so my
+         designed polarity matrix could not discriminate — the CONTEXT STAMP caught it. Era diff
+         CONFIRMED with zero crossover: every WotLK-era conditional works, not one post-3.3.5a
+         does ⇒ Ascension extends at the Lua/handler layer, not the C parser. Open + small:
+         4 AMBIGUOUS flags (a `[zzznotaconditional]` FLAG CONTROL settles the class — the ask
+         had none), and macro limits still unread (Blizzard_MacroUI is LOAD-ON-DEMAND; call
+         MacroFrame_LoadUI() first). Detail + expectations: `operations/Macros.md`.
+         ADDONS: State Plates heading closed live; friendly-NPC satellite banked; aggro borders
+         await a grouped pull. Open bug: enemy plates suppressed (delta-guard cache desync).
 
 ---
 
