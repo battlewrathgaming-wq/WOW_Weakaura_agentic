@@ -1,9 +1,10 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-17 04:40 (released — the capture session landed everything)
-heading: —
-runway:  —
+holder:  addons bench
+since:   2026-07-17 04:45
+heading: The clean-profile census re-run — split the 1526 unattributed functions
+         (engine-custom vs user-addon) via a loaded-vs-clean record pair.
+runway:  short — one capture + one reduction
 
 next:    MACROS BENCH: your data is on the trunk — FIVE context passes (rest/spell-form/stealth/
          combat/mounted, labels in `addons/landing/records/20260717_contexts.md`), control row
