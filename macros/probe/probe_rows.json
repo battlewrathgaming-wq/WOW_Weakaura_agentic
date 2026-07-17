@@ -1,7 +1,7 @@
 {
  "what": "THE ASK - every question the live probe puts to the client, with the method for reading each answer. Verdicts are null until the probe runs.",
  "composed_by": "macros/tools/compose_probe.py",
- "composed_at": "2026-07-17T02:44:53",
+ "composed_at": "2026-07-17T02:52:55",
  "from_register": {
   "file": "macros/reference/candidates.json",
   "candidates": 55,
@@ -47,9 +47,10 @@
   "flag_rows": 63,
   "target_rows": 13,
   "by_priority": {
-   "1-backport-test": 13,
-   "2-baseline": 59,
-   "3-corroborate": 4
+   "1-backport-test": 4,
+   "2-undated-test": 9,
+   "3-baseline": 59,
+   "4-corroborate": 4
   }
  },
  "rows": [
@@ -63,9 +64,10 @@
    ],
    "base": "actionbar",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -78,9 +80,10 @@
    ],
    "base": "actionbar",
    "arg": "1",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -93,9 +96,10 @@
    ],
    "base": "actionbar",
    "arg": "6",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -108,9 +112,17 @@
    ],
    "base": "advflyable",
    "arg": null,
-   "era_signal": "post-wotlk",
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "10.0.7",
+    "expansion": "Dragonflight",
+    "action": "added",
+    "cited": false,
+    "note": "\"advflyable\" conditional added.",
+    "from": "wowpedia-macro-conditionals"
+   },
    "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "expect_note": "SOURCED: added in patch 10.0.7 (Dragonflight) => POSTDATES the 3.3.5a base, so it is here only if BACKPORTED. This client backports freely, and @cursor - itself 7.1.0 Legion - is a CONFIRMED backport witnessed in CoA's own source. Highest information per row.",
    "verdict": null
   },
   {
@@ -123,9 +135,10 @@
    ],
    "base": "bar",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -138,9 +151,10 @@
    ],
    "base": "bar",
    "arg": "1",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -153,9 +167,10 @@
    ],
    "base": "bar",
    "arg": "6",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -168,9 +183,10 @@
    ],
    "base": "bonusbar",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -183,9 +199,10 @@
    ],
    "base": "bonusbar",
    "arg": "5",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -198,9 +215,10 @@
    ],
    "base": "btn",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -213,9 +231,10 @@
    ],
    "base": "button",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -228,9 +247,10 @@
    ],
    "base": "canexitvehicle",
    "arg": null,
-   "era_signal": "post-wotlk",
-   "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "era_signal": "retail-documented-only",
+   "patch_added": null,
+   "priority": "2-undated-test",
+   "expect_note": "UNDATED. A retail wiki lists it, the ~2010 archive does not, and NO patch annotation exists. We do NOT know when it shipped - absence is not evidence. It may predate 3.3.5a and simply be undocumented there. The probe answers; no wiki can.",
    "verdict": null
   },
   {
@@ -243,9 +263,10 @@
    ],
    "base": "channeling",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -258,9 +279,10 @@
    ],
    "base": "combat",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -273,9 +295,10 @@
    ],
    "base": "cursor",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -288,9 +311,10 @@
    ],
    "base": "dead",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -303,9 +327,10 @@
    ],
    "base": "equipped",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -318,9 +343,10 @@
    ],
    "base": "exists",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -333,9 +359,10 @@
    ],
    "base": "extrabar",
    "arg": null,
-   "era_signal": "post-wotlk",
-   "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "era_signal": "retail-documented-only",
+   "patch_added": null,
+   "priority": "2-undated-test",
+   "expect_note": "UNDATED. A retail wiki lists it, the ~2010 archive does not, and NO patch annotation exists. We do NOT know when it shipped - absence is not evidence. It may predate 3.3.5a and simply be undocumented there. The probe answers; no wiki can.",
    "verdict": null
   },
   {
@@ -348,9 +375,10 @@
    ],
    "base": "flyable",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -363,9 +391,10 @@
    ],
    "base": "flying",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -378,9 +407,10 @@
    ],
    "base": "form",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -393,9 +423,10 @@
    ],
    "base": "form",
    "arg": "0",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -408,9 +439,10 @@
    ],
    "base": "form",
    "arg": "n",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -423,9 +455,10 @@
    ],
    "base": "group",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -438,9 +471,10 @@
    ],
    "base": "group",
    "arg": "party",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -453,9 +487,10 @@
    ],
    "base": "group",
    "arg": "raid",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -468,9 +503,10 @@
    ],
    "base": "harm",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -483,9 +519,10 @@
    ],
    "base": "help",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -498,9 +535,10 @@
    ],
    "base": "indoors",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -513,9 +551,17 @@
    ],
    "base": "known",
    "arg": null,
-   "era_signal": "post-wotlk",
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "10.0.2",
+    "expansion": "Dragonflight",
+    "action": "added",
+    "cited": true,
+    "note": "\"known\" conditional added.",
+    "from": "wowpedia-macro-conditionals"
+   },
    "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "expect_note": "SOURCED: added in patch 10.0.2 (Dragonflight) (Blizzard-cited) => POSTDATES the 3.3.5a base, so it is here only if BACKPORTED. This client backports freely, and @cursor - itself 7.1.0 Legion - is a CONFIRMED backport witnessed in CoA's own source. Highest information per row.",
    "verdict": null
   },
   {
@@ -528,9 +574,10 @@
    ],
    "base": "mod",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -543,9 +590,10 @@
    ],
    "base": "mod",
    "arg": "shift",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -558,9 +606,10 @@
    ],
    "base": "mod",
    "arg": "ctrl",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -573,9 +622,10 @@
    ],
    "base": "mod",
    "arg": "alt",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -588,9 +638,10 @@
    ],
    "base": "modifier",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -603,9 +654,10 @@
    ],
    "base": "modifier",
    "arg": "shift",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -618,9 +670,10 @@
    ],
    "base": "modifier",
    "arg": "ctrl",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -633,9 +686,10 @@
    ],
    "base": "modifier",
    "arg": "alt",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -648,9 +702,10 @@
    ],
    "base": "mounted",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -663,9 +718,10 @@
    ],
    "base": "outdoors",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -678,9 +734,10 @@
    ],
    "base": "overridebar",
    "arg": null,
-   "era_signal": "post-wotlk",
-   "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "era_signal": "retail-documented-only",
+   "patch_added": null,
+   "priority": "2-undated-test",
+   "expect_note": "UNDATED. A retail wiki lists it, the ~2010 archive does not, and NO patch annotation exists. We do NOT know when it shipped - absence is not evidence. It may predate 3.3.5a and simply be undocumented there. The probe answers; no wiki can.",
    "verdict": null
   },
   {
@@ -693,9 +750,10 @@
    ],
    "base": "party",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -708,9 +766,10 @@
    ],
    "base": "pet",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -723,9 +782,10 @@
    ],
    "base": "petbattle",
    "arg": null,
-   "era_signal": "post-wotlk",
-   "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "era_signal": "retail-documented-only",
+   "patch_added": null,
+   "priority": "2-undated-test",
+   "expect_note": "UNDATED. A retail wiki lists it, the ~2010 archive does not, and NO patch annotation exists. We do NOT know when it shipped - absence is not evidence. It may predate 3.3.5a and simply be undocumented there. The probe answers; no wiki can.",
    "verdict": null
   },
   {
@@ -738,9 +798,10 @@
    ],
    "base": "possessbar",
    "arg": null,
-   "era_signal": "post-wotlk",
-   "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "era_signal": "retail-documented-only",
+   "patch_added": null,
+   "priority": "2-undated-test",
+   "expect_note": "UNDATED. A retail wiki lists it, the ~2010 archive does not, and NO patch annotation exists. We do NOT know when it shipped - absence is not evidence. It may predate 3.3.5a and simply be undocumented there. The probe answers; no wiki can.",
    "verdict": null
   },
   {
@@ -753,9 +814,17 @@
    ],
    "base": "pvpcombat",
    "arg": null,
-   "era_signal": "post-wotlk",
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "7.3.0",
+    "expansion": "Legion",
+    "action": "added",
+    "cited": false,
+    "note": "\"pvpcombat\" conditional added.",
+    "from": "wowpedia-macro-conditionals"
+   },
    "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "expect_note": "SOURCED: added in patch 7.3.0 (Legion) => POSTDATES the 3.3.5a base, so it is here only if BACKPORTED. This client backports freely, and @cursor - itself 7.1.0 Legion - is a CONFIRMED backport witnessed in CoA's own source. Highest information per row.",
    "verdict": null
   },
   {
@@ -768,9 +837,10 @@
    ],
    "base": "raid",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -783,9 +853,10 @@
    ],
    "base": "resting",
    "arg": null,
-   "era_signal": "post-wotlk",
-   "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "era_signal": "retail-documented-only",
+   "patch_added": null,
+   "priority": "2-undated-test",
+   "expect_note": "UNDATED. A retail wiki lists it, the ~2010 archive does not, and NO patch annotation exists. We do NOT know when it shipped - absence is not evidence. It may predate 3.3.5a and simply be undocumented there. The probe answers; no wiki can.",
    "verdict": null
   },
   {
@@ -798,9 +869,10 @@
    ],
    "base": "shapeshift",
    "arg": null,
-   "era_signal": "post-wotlk",
-   "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "era_signal": "retail-documented-only",
+   "patch_added": null,
+   "priority": "2-undated-test",
+   "expect_note": "UNDATED. A retail wiki lists it, the ~2010 archive does not, and NO patch annotation exists. We do NOT know when it shipped - absence is not evidence. It may predate 3.3.5a and simply be undocumented there. The probe answers; no wiki can.",
    "verdict": null
   },
   {
@@ -813,9 +885,10 @@
    ],
    "base": "spec",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -828,9 +901,10 @@
    ],
    "base": "spec",
    "arg": "1",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -843,9 +917,10 @@
    ],
    "base": "spec",
    "arg": "2",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -858,9 +933,10 @@
    ],
    "base": "stance",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -873,9 +949,10 @@
    ],
    "base": "stance",
    "arg": "0",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -888,9 +965,10 @@
    ],
    "base": "stance",
    "arg": "1",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -903,9 +981,10 @@
    ],
    "base": "stance",
    "arg": "2",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -918,9 +997,10 @@
    ],
    "base": "stance",
    "arg": "n",
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -933,9 +1013,10 @@
    ],
    "base": "stealth",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -948,9 +1029,10 @@
    ],
    "base": "swimming",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -963,9 +1045,10 @@
    ],
    "base": "unithasvehicleui",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -978,9 +1061,10 @@
    ],
    "base": "vehicleui",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -993,9 +1077,10 @@
    ],
    "base": "worn",
    "arg": null,
-   "era_signal": "wotlk-era-baseline",
-   "priority": "2-baseline",
-   "expect_note": "documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (something removed).",
+   "era_signal": "archive-documented",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "documented in the ~2010 archive (WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding (removed or never implemented on this fork).",
    "verdict": null
   },
   {
@@ -1007,9 +1092,17 @@
    ],
    "base": "@cursor",
    "arg": null,
-   "era_signal": "post-wotlk",
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "7.1.0",
+    "expansion": "Legion",
+    "action": "added",
+    "cited": true,
+    "note": "@cursor added.",
+    "from": "wowpedia-macro-conditionals"
+   },
    "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "expect_note": "SOURCED: added in patch 7.1.0 (Legion) (Blizzard-cited) => POSTDATES the 3.3.5a base, so it is here only if BACKPORTED. This client backports freely, and @cursor - itself 7.1.0 Legion - is a CONFIRMED backport witnessed in CoA's own source. Highest information per row.",
    "source_witness": [
     "Interface/FrameXML/ChatFrame.lua:1064",
     "Interface/FrameXML/ChatFrame.lua:1110",
@@ -1027,7 +1120,8 @@
    "base": "@focus",
    "arg": null,
    "era_signal": "ascension-claimed",
-   "priority": "3-corroborate",
+   "patch_added": null,
+   "priority": "4-corroborate",
    "expect_note": "claimed only by the Ascension wiki",
    "source_witness": [
     "Interface/FrameXML/ChatFrame.lua:1382"
@@ -1044,7 +1138,8 @@
    "base": "@mouseover",
    "arg": null,
    "era_signal": "ascension-claimed",
-   "priority": "2-baseline",
+   "patch_added": null,
+   "priority": "3-baseline",
    "expect_note": "claimed only by the Ascension wiki",
    "source_witness": null,
    "verdict": null
@@ -1058,9 +1153,10 @@
    ],
    "base": "@none",
    "arg": null,
-   "era_signal": "post-wotlk",
-   "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "era_signal": "retail-documented-only",
+   "patch_added": null,
+   "priority": "2-undated-test",
+   "expect_note": "UNDATED. A retail wiki lists it, the ~2010 archive does not, and NO patch annotation exists. We do NOT know when it shipped - absence is not evidence. It may predate 3.3.5a and simply be undocumented there. The probe answers; no wiki can.",
    "source_witness": null,
    "verdict": null
   },
@@ -1074,7 +1170,8 @@
    "base": "@party1",
    "arg": null,
    "era_signal": "ascension-claimed",
-   "priority": "2-baseline",
+   "patch_added": null,
+   "priority": "3-baseline",
    "expect_note": "claimed only by the Ascension wiki",
    "source_witness": null,
    "verdict": null
@@ -1089,7 +1186,8 @@
    "base": "@party4",
    "arg": null,
    "era_signal": "ascension-claimed",
-   "priority": "2-baseline",
+   "patch_added": null,
+   "priority": "3-baseline",
    "expect_note": "claimed only by the Ascension wiki",
    "source_witness": null,
    "verdict": null
@@ -1104,7 +1202,8 @@
    "base": "@pet",
    "arg": null,
    "era_signal": "ascension-claimed",
-   "priority": "2-baseline",
+   "patch_added": null,
+   "priority": "3-baseline",
    "expect_note": "claimed only by the Ascension wiki",
    "source_witness": null,
    "verdict": null
@@ -1119,8 +1218,9 @@
    "base": "@pettarget",
    "arg": null,
    "era_signal": "NOT-IN-ANY-WIKI",
-   "priority": "3-corroborate",
-   "expect_note": "found ONLY in this client's own Lua. No wiki mentions it - which is why a wiki's absence proves nothing.",
+   "patch_added": null,
+   "priority": "4-corroborate",
+   "expect_note": "found ONLY in this client's own Lua. No wiki mentions it - which is exactly why a wiki's absence proves nothing.",
    "source_witness": [
     "Interface/FrameXML/ChatFrame.lua:1471"
    ],
@@ -1136,7 +1236,8 @@
    "base": "@player",
    "arg": null,
    "era_signal": "ascension-claimed",
-   "priority": "3-corroborate",
+   "patch_added": null,
+   "priority": "4-corroborate",
    "expect_note": "claimed only by the Ascension wiki",
    "source_witness": [
     "Interface/FrameXML/ChatFrame.lua:1070",
@@ -1155,7 +1256,8 @@
    "base": "@raid1",
    "arg": null,
    "era_signal": "ascension-claimed",
-   "priority": "2-baseline",
+   "patch_added": null,
+   "priority": "3-baseline",
    "expect_note": "claimed only by the Ascension wiki",
    "source_witness": null,
    "verdict": null
@@ -1170,7 +1272,8 @@
    "base": "@raid40",
    "arg": null,
    "era_signal": "ascension-claimed",
-   "priority": "2-baseline",
+   "patch_added": null,
+   "priority": "3-baseline",
    "expect_note": "claimed only by the Ascension wiki",
    "source_witness": null,
    "verdict": null
@@ -1185,7 +1288,8 @@
    "base": "@target",
    "arg": null,
    "era_signal": "ascension-claimed",
-   "priority": "3-corroborate",
+   "patch_added": null,
+   "priority": "4-corroborate",
    "expect_note": "claimed only by the Ascension wiki",
    "source_witness": [
     "Interface/FrameXML/ChatFrame.lua:1045",
@@ -1203,9 +1307,10 @@
    ],
    "base": "@unitId",
    "arg": null,
-   "era_signal": "post-wotlk",
-   "priority": "1-backport-test",
-   "expect_note": "RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, and @cursor is a CONFIRMED backport witnessed in its own source), so absence is NOT predictable either way. Highest information per row.",
+   "era_signal": "retail-documented-only",
+   "patch_added": null,
+   "priority": "2-undated-test",
+   "expect_note": "UNDATED. A retail wiki lists it, the ~2010 archive does not, and NO patch annotation exists. We do NOT know when it shipped - absence is not evidence. It may predate 3.3.5a and simply be undocumented there. The probe answers; no wiki can.",
    "source_witness": null,
    "verdict": null
   }

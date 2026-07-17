@@ -28,13 +28,21 @@ THE SOURCE CHAIN (each cited by the one above it - we followed the citations):
   wowpedia/Macro_conditionals      the delegation target. Following it is following the
                                    citation, not scope creep.
 
-WHY BOTH RETAIL WIKIS, NOT JUST ONE - the DIFFERENCE is the payload:
-  in wowwiki-archive  => wotlk-era-baseline   (expected present on a 3.3.5a base)
-  in wowpedia ONLY    => post-wotlk           (a BACKPORT TEST - this client backports
-                                               freely: Legion/BfA CompactUnitFrame,
-                                               Dragonflight /kb)
-  ascension only      => ascension-claimed
-That split is what makes the ask-list diagnostic instead of just long.
+WHY BOTH RETAIL WIKIS, NOT JUST ONE - and the METHOD CORRECTION that came out of it:
+  patch-dated             a {{Patch}} annotation (often Blizzard-cited) => EVIDENCE. If
+                          the patch is > 3.x it POSTDATES the 3.3.5a base => present only
+                          if BACKPORTED. @cursor = 7.1.0 (Legion), Blizzard-cited, AND
+                          witnessed in CoA's own source = a CONFIRMED, DATED backport.
+  archive-documented      in the wowwiki archive (content ~2010, WotLK/early-Cata) =>
+                          expected present on a 3.3.5a base.
+  retail-documented-only  retail lists it, the archive does not, NO patch annotation =>
+                          UNDATED. We do NOT know when it shipped.
+
+  This bucket was called "post-wotlk" and inferred from ABSENCE in the archive - the exact
+  "absence proves nothing" error this slice writes into three files, committed by the tool
+  built to prevent it, in the field the probe steers by. It was RIGHT for the 4 rows that
+  carry patch annotations - by LUCK, not method. Absence is not evidence. Ever.
+  (Surfaced by Battlewrath asking when @cursor actually shipped, 2026-07-17.)
 
 PROOF MARK: every candidate carries its validation state. UNPROVEN until the probe
 says otherwise. The probe writes verdicts back; nothing here is ever a fact on its own.
@@ -266,6 +274,41 @@ EXTRACTORS = {"fandom-table": x_fandom_table, "bold-bullets": x_bold_bullets,
               "deflist": x_deflist, "delegates": x_delegates}
 
 
+def extract_patch_history(w, name):
+    """SOURCED era data - the wikis' own ==Patch changes== annotations.
+
+    This exists because of a real error. era_signal originally inferred "post-wotlk"
+    from ABSENCE in the 2018 archive - the exact "absence proves nothing" mistake this
+    slice writes into three files, committed by me, in the field the probe steers by.
+    It happened to be RIGHT for the four conditionals that carry patch annotations, but
+    right by LUCK, not by method.
+
+    A patch annotation is EVIDENCE. Absence is not. Where a patch is sourced we date the
+    conditional; where it is not, we say only "retail-documented-only" - which is all we
+    actually know.
+
+    Blizzard-cited examples: @cursor added 7.1.0 (Legion, Return to Karazhan);
+    known 10.0.2; advflyable 10.0.7; pvpcombat 7.3.0; talent added 6.0.2 REMOVED 10.0.0.
+    """
+    out = []
+    for m in re.finditer(r"\{\{Patch\s+([0-9][0-9.]*)\|note=(.*?)(?:<ref|\}\})", w, re.S):
+        patch, note = m.group(1), re.sub(r"\s+", " ", m.group(2)).strip()
+        toks = re.findall(r'"([a-z]+)"|(@[a-z]+)', note)
+        for a, b in toks:
+            tok = a or b
+            out.append({"token": tok, "patch": patch, "note": note[:120],
+                        "action": "removed" if "removed" in note.lower() else "added",
+                        "from": name, "cited": "<ref" in m.group(0)})
+    return out
+
+
+def wow_era(patch):
+    """Map a patch number to its expansion. 3.3.5a is the CoA client's base."""
+    major = int(patch.split(".")[0])
+    return {1: "vanilla", 2: "TBC", 3: "WotLK", 4: "Cataclysm", 5: "MoP", 6: "WoD",
+            7: "Legion", 8: "BfA", 9: "Shadowlands", 10: "Dragonflight"}.get(major, f"?{major}")
+
+
 def extract_grammar(w, name):
     claims = []
     for pat, claim in [
@@ -353,7 +396,7 @@ TWO_MECHANISMS = {
 def main():
     REF.mkdir(parents=True, exist_ok=True)
     do_fetch = "--fetch" in sys.argv
-    per_source, grammar, all_c, raw_per_source = {}, [], {}, {}
+    per_source, grammar, all_c, raw_per_source, patches = {}, [], {}, {}, []
 
     for src in SOURCES:
         raw_path = REF / f"{src['name']}.wikitext"
@@ -373,6 +416,7 @@ def main():
 
         cands = EXTRACTORS[src["format"]](w)
         grammar += extract_grammar(w, src["name"])
+        patches += extract_patch_history(w, src["name"])
         per_source[src["name"]] = {
             "standing": src["standing"], "era": src["era"], "format": src["format"],
             "provenance": {**rev, "raw_file": raw_path.name,
@@ -416,22 +460,58 @@ def main():
 
     # ---- derived: era signal (the diagnostic split) + proof mark + probe method
     witnesses = source_recognized_targets()
+    by_tok = {}
+    for p in patches:
+        by_tok.setdefault(p["token"], []).append(p)
+
     for tok, e in all_c.items():
         eras = {c["era"] for c in e["claimed_by"]}
-        if "wotlk-era" in eras:
-            e["era_signal"] = "wotlk-era-baseline"
-            e["era_note"] = "documented WotLK-era => EXPECTED present on a 3.3.5a base"
-        elif "retail-2021" in eras:
-            e["era_signal"] = "post-wotlk"
-            e["era_note"] = ("retail-only, absent from the WotLK-era source => a BACKPORT "
-                             "TEST. This client backports freely, so absence is NOT "
-                             "predictable either way.")
-        else:
-            e["era_signal"] = "ascension-claimed"
-            e["era_note"] = "claimed only by the Ascension wiki"
+        # The client-source witness is INDEPENDENT of era and must be assigned for EVERY
+        # candidate, before any era branch can `continue` past it. It was assigned after
+        # the branching once, and the patch-dated `continue` silently stripped @cursor of
+        # its witness - deleting the register's single most important datum (the one
+        # CONFIRMED backport) while the run still printed success.
         if tok in witnesses:
             e["source_witness"] = witnesses[tok]
             e["proof_mark"] = "SOURCE-CORROBORATED"
+        # SOURCED patch data first - it is EVIDENCE. Absence never is.
+        pd = by_tok.get(tok) or by_tok.get(e["base"])
+        if pd:
+            e["patch_history"] = [{"patch": x["patch"], "expansion": wow_era(x["patch"]),
+                                   "action": x["action"], "cited": x["cited"],
+                                   "note": x["note"], "from": x["from"]} for x in pd]
+            added = [x for x in pd if x["action"] == "added"]
+            if added:
+                pv = added[0]["patch"]
+                e["era_signal"] = "patch-dated"
+                e["era_note"] = (
+                    f"SOURCED: added in patch {pv} ({wow_era(pv)}). The CoA client is "
+                    f"3.3.5a (WotLK), so this POSTDATES its base => present here only if "
+                    f"BACKPORTED. This client backports freely, and @cursor (7.1.0) is a "
+                    f"CONFIRMED backport witnessed in its own source - so presence is a "
+                    f"real question, not a formality."
+                    if int(pv.split(".")[0]) > 3 else
+                    f"SOURCED: added in patch {pv} ({wow_era(pv)}) => predates/matches the "
+                    f"3.3.5a base; expected present.")
+                continue
+        if "wotlk-era" in eras:
+            e["era_signal"] = "archive-documented"
+            e["era_note"] = ("documented in the wowwiki archive (content frozen ~2010, "
+                             "WotLK/early-Cata) => expected present on a 3.3.5a base. An "
+                             "UNSUPPORTED here would be a real finding.")
+        elif "retail-2021" in eras:
+            # NOT "post-wotlk" - that asserts a history we have NO evidence for. All we
+            # know is that a retail wiki lists it and an older one does not. Absence is
+            # not evidence; saying otherwise is the mistake this whole slice guards against.
+            e["era_signal"] = "retail-documented-only"
+            e["era_note"] = ("listed by the retail wiki, ABSENT from the ~2010 archive, and "
+                             "NO patch annotation found. We do NOT know when it shipped - "
+                             "absence is not evidence. Treat as UNDATED: it may predate "
+                             "3.3.5a and simply be undocumented there, or postdate it. "
+                             "The probe answers; the wiki cannot.")
+        else:
+            e["era_signal"] = "ascension-claimed"
+            e["era_note"] = "claimed only by the Ascension wiki"
         # probe method follows the MECHANISM, not the token
         if e["kind"] == "unit-target":
             e["probe_method"] = "pass-through test (NOT polarity - see two_mechanisms)"
@@ -472,16 +552,31 @@ def main():
         "proof_marks": PROOF_MARKS,
         "two_mechanisms": TWO_MECHANISMS,
         "era_signal_legend": {
-            "wotlk-era-baseline": "in the 2018 wowwiki-archive => expected on a 3.3.5a base",
-            "post-wotlk": "retail-only => a BACKPORT TEST (this client backports freely)",
+            "patch-dated": "SOURCED - the wiki carries a {{Patch}} annotation (often with a "
+                           "Blizzard citation). EVIDENCE. If the patch is > 3.x it postdates "
+                           "the 3.3.5a base => present only if BACKPORTED.",
+            "archive-documented": "in the wowwiki archive (content ~2010, WotLK/early-Cata) "
+                                  "=> expected present on a 3.3.5a base",
+            "retail-documented-only": "retail wiki lists it, the ~2010 archive does not, and "
+                                      "NO patch annotation exists => UNDATED. We do NOT know "
+                                      "when it shipped. Absence is not evidence.",
             "ascension-claimed": "only the Ascension wiki says so",
             "NOT-IN-ANY-WIKI": "only this client's own source says so",
         },
+        "era_method_correction": (
+            "era_signal originally called this bucket 'post-wotlk', inferring the history "
+            "from ABSENCE in the ~2010 archive - the exact 'absence proves nothing' error "
+            "this slice writes into three files, committed by the tool built to prevent it, "
+            "in the field the probe steers by. It was RIGHT for the 4 conditionals carrying "
+            "patch annotations - by LUCK, not method. Now: a patch annotation is evidence "
+            "and dates the row; absence yields only 'retail-documented-only' = UNDATED."),
+        "patch_history": sorted(patches, key=lambda x: x["patch"]),
         "sources": per_source,
         "counts": {
             "total": len(all_c),
             "by_era": {k: sum(1 for e in all_c.values() if e["era_signal"] == k)
-                       for k in ("wotlk-era-baseline", "post-wotlk", "ascension-claimed",
+                       for k in ("patch-dated", "archive-documented",
+                                 "retail-documented-only", "ascension-claimed",
                                  "NOT-IN-ANY-WIKI")},
             "by_kind": {k: sum(1 for e in all_c.values() if e["kind"] == k)
                         for k in ("flag", "unit-target")},

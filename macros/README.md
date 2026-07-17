@@ -86,9 +86,12 @@ because the probe adjudicates.* `probe/` holds the composed ask: **76 rows** + a
 probe is interactive: no macro, no restart. The **addons bench owns the harness** (they own configuring coadump);
 `probe/README.md` is the handoff.
 
-**The era diff is the diagnostic.** Candidates in the 2018 wowwiki-archive are WotLK-era baseline (expected
-present); candidates only in retail wowpedia are a **backport test** — and this client backports freely, with
-`@cursor` a *confirmed* backport already witnessed in its own source. 13 rows carry that highest-information split.
+**The era signal is the diagnostic — and it runs on evidence, not absence.** A wiki `{{Patch}}` annotation *dates*
+a conditional (`@cursor` → **7.1.0, Legion, Blizzard-cited**; `known` → 10.0.2; `advflyable` → 10.0.7). Anything
+dated after 3.3.5a is here only if **backported** — and `@cursor` is a *confirmed, dated* backport, witnessed in
+CoA's own source. Where no patch annotation exists, the honest label is **`retail-documented-only` = UNDATED**;
+absence from the ~2010 archive proves nothing, and an earlier version of this classifier wrongly treated it as
+proof.
 
 **Before probing, read `reference/README.md`'s `@unit` ≠ `[flag]` split** — different mechanisms, different proof
 methods; the polarity matrix only applies to flags, and one control row (`[@banana]`) decides how to read all 13

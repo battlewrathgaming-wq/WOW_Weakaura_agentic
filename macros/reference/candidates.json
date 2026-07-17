@@ -27,11 +27,63 @@
   "name_collision_worth_knowing": "[cursor] (a FLAG - 'what the cursor is holding', per wowwiki-archive) is NOT @cursor (a TARGET - Ascension's terrain-click). Same word, two mechanisms."
  },
  "era_signal_legend": {
-  "wotlk-era-baseline": "in the 2018 wowwiki-archive => expected on a 3.3.5a base",
-  "post-wotlk": "retail-only => a BACKPORT TEST (this client backports freely)",
+  "patch-dated": "SOURCED - the wiki carries a {{Patch}} annotation (often with a Blizzard citation). EVIDENCE. If the patch is > 3.x it postdates the 3.3.5a base => present only if BACKPORTED.",
+  "archive-documented": "in the wowwiki archive (content ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base",
+  "retail-documented-only": "retail wiki lists it, the ~2010 archive does not, and NO patch annotation exists => UNDATED. We do NOT know when it shipped. Absence is not evidence.",
   "ascension-claimed": "only the Ascension wiki says so",
   "NOT-IN-ANY-WIKI": "only this client's own source says so"
  },
+ "era_method_correction": "era_signal originally called this bucket 'post-wotlk', inferring the history from ABSENCE in the ~2010 archive - the exact 'absence proves nothing' error this slice writes into three files, committed by the tool built to prevent it, in the field the probe steers by. It was RIGHT for the 4 conditionals carrying patch annotations - by LUCK, not method. Now: a patch annotation is evidence and dates the row; absence yields only 'retail-documented-only' = UNDATED.",
+ "patch_history": [
+  {
+   "token": "talent",
+   "patch": "10.0.0",
+   "note": "\"talent\" conditional removed.",
+   "action": "removed",
+   "from": "wowpedia-macro-conditionals",
+   "cited": false
+  },
+  {
+   "token": "known",
+   "patch": "10.0.2",
+   "note": "\"known\" conditional added.",
+   "action": "added",
+   "from": "wowpedia-macro-conditionals",
+   "cited": true
+  },
+  {
+   "token": "advflyable",
+   "patch": "10.0.7",
+   "note": "\"advflyable\" conditional added.",
+   "action": "added",
+   "from": "wowpedia-macro-conditionals",
+   "cited": false
+  },
+  {
+   "token": "talent",
+   "patch": "6.0.2",
+   "note": "\"talent\" conditional added.",
+   "action": "added",
+   "from": "wowpedia-macro-conditionals",
+   "cited": false
+  },
+  {
+   "token": "@cursor",
+   "patch": "7.1.0",
+   "note": "@cursor added.",
+   "action": "added",
+   "from": "wowpedia-macro-conditionals",
+   "cited": true
+  },
+  {
+   "token": "pvpcombat",
+   "patch": "7.3.0",
+   "note": "\"pvpcombat\" conditional added.",
+   "action": "added",
+   "from": "wowpedia-macro-conditionals",
+   "cited": false
+  }
+ ],
  "sources": {
   "ascension-wiki-macros": {
    "standing": "SECONDARY - the server's own guide; inherits its conditional list from the retail wikis below (see its Resources section)",
@@ -101,8 +153,9 @@
  "counts": {
   "total": 55,
   "by_era": {
-   "wotlk-era-baseline": 32,
-   "post-wotlk": 13,
+   "patch-dated": 4,
+   "archive-documented": 32,
+   "retail-documented-only": 9,
    "ascension-claimed": 9,
    "NOT-IN-ANY-WIKI": 1
   },
@@ -220,7 +273,7 @@
      "as_written": "@cursor"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": [
     "Interface/FrameXML/ChatFrame.lua:1064",
@@ -228,11 +281,19 @@
     "Interface/FrameXML/ChatFrame.lua:1158"
    ],
    "proof_mark": "SOURCE-CORROBORATED",
-   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
-   "probe_rows": [
-    "[@cursor]"
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "7.1.0",
+     "expansion": "Legion",
+     "action": "added",
+     "cited": true,
+     "note": "@cursor added.",
+     "from": "wowpedia-macro-conditionals"
+    }
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "SOURCED: added in patch 7.1.0 (Legion). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
   },
   "@focus": {
    "token": "@focus",
@@ -301,7 +362,7 @@
      "as_written": "@none"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -309,7 +370,7 @@
    "probe_rows": [
     "[@none]"
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
   },
   "@party1": {
    "token": "@party1",
@@ -528,7 +589,7 @@
      "as_written": "@unitId"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -536,7 +597,7 @@
    "probe_rows": [
     "[@unitId]"
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
   },
   "actionbar": {
    "token": "actionbar",
@@ -565,7 +626,7 @@
      "as_written": "actionbar"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -578,7 +639,7 @@
     "[actionbar:6]",
     "[noactionbar:6]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "advflyable": {
    "token": "advflyable",
@@ -595,16 +656,23 @@
      "as_written": "advflyable"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": "polarity-pair",
-   "probe_rows": [
-    "[advflyable]",
-    "[noadvflyable]"
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "10.0.7",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "\"advflyable\" conditional added.",
+     "from": "wowpedia-macro-conditionals"
+    }
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "SOURCED: added in patch 10.0.7 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
   },
   "bar": {
    "token": "bar",
@@ -633,7 +701,7 @@
      "as_written": "bar"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -646,7 +714,7 @@
     "[bar:6]",
     "[nobar:6]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "bonusbar": {
    "token": "bonusbar",
@@ -672,7 +740,7 @@
      "as_written": "bonusbar"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -683,7 +751,7 @@
     "[bonusbar:5]",
     "[nobonusbar:5]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "btn": {
    "token": "btn",
@@ -709,7 +777,7 @@
      "as_written": "btn"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -718,7 +786,7 @@
     "[btn]",
     "[nobtn]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "button": {
    "token": "button",
@@ -744,7 +812,7 @@
      "as_written": "button"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -753,7 +821,7 @@
     "[button]",
     "[nobutton]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "canexitvehicle": {
    "token": "canexitvehicle",
@@ -770,7 +838,7 @@
      "as_written": "canexitvehicle"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -779,7 +847,7 @@
     "[canexitvehicle]",
     "[nocanexitvehicle]"
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
   },
   "channeling": {
    "token": "channeling",
@@ -803,7 +871,7 @@
      "as_written": "channeling"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -812,7 +880,7 @@
     "[channeling]",
     "[nochanneling]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "combat": {
    "token": "combat",
@@ -843,7 +911,7 @@
      "as_written": "combat"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": true,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -852,7 +920,7 @@
     "[combat]",
     "[nocombat]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "cursor": {
    "token": "cursor",
@@ -876,7 +944,7 @@
      "as_written": "cursor"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -885,7 +953,7 @@
     "[cursor]",
     "[nocursor]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "dead": {
    "token": "dead",
@@ -916,7 +984,7 @@
      "as_written": "dead"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": true,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -925,7 +993,7 @@
     "[dead]",
     "[nodead]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "equipped": {
    "token": "equipped",
@@ -951,7 +1019,7 @@
      "as_written": "equipped"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -960,7 +1028,7 @@
     "[equipped]",
     "[noequipped]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "exists": {
    "token": "exists",
@@ -991,7 +1059,7 @@
      "as_written": "exists"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": true,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1000,7 +1068,7 @@
     "[exists]",
     "[noexists]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "extrabar": {
    "token": "extrabar",
@@ -1017,7 +1085,7 @@
      "as_written": "extrabar"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1026,7 +1094,7 @@
     "[extrabar]",
     "[noextrabar]"
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
   },
   "flyable": {
    "token": "flyable",
@@ -1050,7 +1118,7 @@
      "as_written": "flyable"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1059,7 +1127,7 @@
     "[flyable]",
     "[noflyable]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "flying": {
    "token": "flying",
@@ -1083,7 +1151,7 @@
      "as_written": "flying"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1092,7 +1160,7 @@
     "[flying]",
     "[noflying]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "form": {
    "token": "form",
@@ -1121,7 +1189,7 @@
      "as_written": "form"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1134,7 +1202,7 @@
     "[form:n]",
     "[noform:n]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "group": {
    "token": "group",
@@ -1168,7 +1236,7 @@
      "as_written": "group"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": true,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1181,7 +1249,7 @@
     "[group:raid]",
     "[nogroup:raid]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "harm": {
    "token": "harm",
@@ -1212,7 +1280,7 @@
      "as_written": "harm"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1221,7 +1289,7 @@
     "[harm]",
     "[noharm]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "help": {
    "token": "help",
@@ -1252,7 +1320,7 @@
      "as_written": "help"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1261,7 +1329,7 @@
     "[help]",
     "[nohelp]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "indoors": {
    "token": "indoors",
@@ -1285,7 +1353,7 @@
      "as_written": "indoors"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1294,7 +1362,7 @@
     "[indoors]",
     "[noindoors]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "known": {
    "token": "known",
@@ -1311,16 +1379,23 @@
      "as_written": "known"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": "polarity-pair",
-   "probe_rows": [
-    "[known]",
-    "[noknown]"
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "10.0.2",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": true,
+     "note": "\"known\" conditional added.",
+     "from": "wowpedia-macro-conditionals"
+    }
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "SOURCED: added in patch 10.0.2 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
   },
   "mod": {
    "token": "mod",
@@ -1357,7 +1432,7 @@
      "as_written": "mod"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1372,7 +1447,7 @@
     "[mod:alt]",
     "[nomod:alt]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "modifier": {
    "token": "modifier",
@@ -1402,7 +1477,7 @@
      "as_written": "modifier"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1417,7 +1492,7 @@
     "[modifier:alt]",
     "[nomodifier:alt]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "mounted": {
    "token": "mounted",
@@ -1441,7 +1516,7 @@
      "as_written": "mounted"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1450,7 +1525,7 @@
     "[mounted]",
     "[nomounted]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "outdoors": {
    "token": "outdoors",
@@ -1474,7 +1549,7 @@
      "as_written": "outdoors"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1483,7 +1558,7 @@
     "[outdoors]",
     "[nooutdoors]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "overridebar": {
    "token": "overridebar",
@@ -1500,7 +1575,7 @@
      "as_written": "overridebar"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1509,7 +1584,7 @@
     "[overridebar]",
     "[nooverridebar]"
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
   },
   "party": {
    "token": "party",
@@ -1533,7 +1608,7 @@
      "as_written": "party"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1542,7 +1617,7 @@
     "[party]",
     "[noparty]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "pet": {
    "token": "pet",
@@ -1566,7 +1641,7 @@
      "as_written": "pet"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1575,7 +1650,7 @@
     "[pet]",
     "[nopet]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "petbattle": {
    "token": "petbattle",
@@ -1592,7 +1667,7 @@
      "as_written": "petbattle"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1601,7 +1676,7 @@
     "[petbattle]",
     "[nopetbattle]"
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
   },
   "possessbar": {
    "token": "possessbar",
@@ -1618,7 +1693,7 @@
      "as_written": "possessbar"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1627,7 +1702,7 @@
     "[possessbar]",
     "[nopossessbar]"
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
   },
   "pvpcombat": {
    "token": "pvpcombat",
@@ -1644,16 +1719,23 @@
      "as_written": "pvpcombat"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": "polarity-pair",
-   "probe_rows": [
-    "[pvpcombat]",
-    "[nopvpcombat]"
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "7.3.0",
+     "expansion": "Legion",
+     "action": "added",
+     "cited": false,
+     "note": "\"pvpcombat\" conditional added.",
+     "from": "wowpedia-macro-conditionals"
+    }
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "SOURCED: added in patch 7.3.0 (Legion). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
   },
   "raid": {
    "token": "raid",
@@ -1677,7 +1759,7 @@
      "as_written": "raid"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1686,7 +1768,7 @@
     "[raid]",
     "[noraid]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "resting": {
    "token": "resting",
@@ -1703,7 +1785,7 @@
      "as_written": "resting"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1712,7 +1794,7 @@
     "[resting]",
     "[noresting]"
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
   },
   "shapeshift": {
    "token": "shapeshift",
@@ -1729,7 +1811,7 @@
      "as_written": "shapeshift"
     }
    ],
-   "era_signal": "post-wotlk",
+   "era_signal": "retail-documented-only",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1738,7 +1820,7 @@
     "[shapeshift]",
     "[noshapeshift]"
    ],
-   "era_note": "retail-only, absent from the WotLK-era source => a BACKPORT TEST. This client backports freely, so absence is NOT predictable either way."
+   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
   },
   "spec": {
    "token": "spec",
@@ -1765,7 +1847,7 @@
      "as_written": "spec"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1778,7 +1860,7 @@
     "[spec:2]",
     "[nospec:2]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "stance": {
    "token": "stance",
@@ -1816,7 +1898,7 @@
      "as_written": "stance"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1833,7 +1915,7 @@
     "[stance:n]",
     "[nostance:n]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "stealth": {
    "token": "stealth",
@@ -1857,7 +1939,7 @@
      "as_written": "stealth"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1866,7 +1948,7 @@
     "[stealth]",
     "[nostealth]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "swimming": {
    "token": "swimming",
@@ -1890,7 +1972,7 @@
      "as_written": "swimming"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1899,7 +1981,7 @@
     "[swimming]",
     "[noswimming]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "unithasvehicleui": {
    "token": "unithasvehicleui",
@@ -1923,7 +2005,7 @@
      "as_written": "unithasvehicleui"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1932,7 +2014,7 @@
     "[unithasvehicleui]",
     "[nounithasvehicleui]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "vehicleui": {
    "token": "vehicleui",
@@ -1956,7 +2038,7 @@
      "as_written": "vehicleui"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -1965,7 +2047,7 @@
     "[vehicleui]",
     "[novehicleui]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   },
   "worn": {
    "token": "worn",
@@ -1991,7 +2073,7 @@
      "as_written": "worn"
     }
    ],
-   "era_signal": "wotlk-era-baseline",
+   "era_signal": "archive-documented",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -2000,7 +2082,7 @@
     "[worn]",
     "[noworn]"
    ],
-   "era_note": "documented WotLK-era => EXPECTED present on a 3.3.5a base"
+   "era_note": "documented in the wowwiki archive (content frozen ~2010, WotLK/early-Cata) => expected present on a 3.3.5a base. An UNSUPPORTED here would be a real finding."
   }
  }
 }

@@ -123,6 +123,7 @@ def main():
                 "clauses": [f, f"no{f}"],
                 "base": t, "arg": f.split(":", 1)[1] if ":" in f else None,
                 "era_signal": e["era_signal"],
+                "patch_added": _added_patch(e),
                 "priority": priority(e),
                 "expect_note": expectation(e),
                 "verdict": None,
@@ -132,6 +133,7 @@ def main():
             "ask": t, "kind": "unit-target", "method": "pass-through test",
             "clauses": [t], "base": t, "arg": None,
             "era_signal": e["era_signal"],
+            "patch_added": _added_patch(e),
             "priority": priority(e),
             "expect_note": expectation(e),
             "source_witness": e.get("source_witness"),
@@ -172,7 +174,8 @@ def main():
             "flag_rows": sum(1 for r in rows if r["kind"] == "flag"),
             "target_rows": sum(1 for r in rows if r["kind"] == "unit-target"),
             "by_priority": {p: sum(1 for r in rows if r["priority"] == p)
-                            for p in ("1-backport-test", "2-baseline", "3-corroborate")},
+                            for p in ("1-backport-test", "2-undated-test", "3-baseline",
+                                      "4-corroborate")},
         },
         "rows": rows,
     }
@@ -214,26 +217,51 @@ return run
     print(f"  probe_core.lua   {len(clauses)} flag clauses, {len(tgts)} target clauses")
 
 
+def _added_patch(e):
+    for h in e.get("patch_history") or []:
+        if h["action"] == "added":
+            return h
+    return None
+
+
 def priority(e):
-    if e["era_signal"] == "post-wotlk":
-        return "1-backport-test"
+    """Rank by INFORMATION, and only off evidence.
+
+    An earlier version ranked off era_signal == "post-wotlk" - a label inferred from
+    ABSENCE in the ~2010 archive. That label is gone: absence was never evidence. Rank
+    now off SOURCED patch dates, and treat the undated bucket as its own honest tier
+    rather than smuggling it in as a backport claim.
+    """
+    p = _added_patch(e)
+    if p and int(p["patch"].split(".")[0]) > 3:
+        return "1-backport-test"            # SOURCED as postdating the 3.3.5a base
+    if e["era_signal"] == "retail-documented-only":
+        return "2-undated-test"             # we genuinely do not know when it shipped
     if e.get("source_witness"):
-        return "3-corroborate"
-    return "2-baseline"
+        return "4-corroborate"
+    return "3-baseline"
 
 
 def expectation(e):
-    if e["era_signal"] == "post-wotlk":
-        return ("RETAIL-ONLY, absent from the WotLK-era source => the BACKPORT TEST. This "
-                "client backports freely (Legion/BfA CompactUnitFrame, Dragonflight /kb, "
-                "and @cursor is a CONFIRMED backport witnessed in its own source), so "
-                "absence is NOT predictable either way. Highest information per row.")
-    if e["era_signal"] == "wotlk-era-baseline":
-        return ("documented WotLK-era => expected present on a 3.3.5a base. An UNSUPPORTED "
-                "here would be a real finding (something removed).")
+    p = _added_patch(e)
+    if p and int(p["patch"].split(".")[0]) > 3:
+        cite = " (Blizzard-cited)" if p.get("cited") else ""
+        return (f"SOURCED: added in patch {p['patch']} ({p['expansion']}){cite} => POSTDATES "
+                f"the 3.3.5a base, so it is here only if BACKPORTED. This client backports "
+                f"freely, and @cursor - itself 7.1.0 Legion - is a CONFIRMED backport "
+                f"witnessed in CoA's own source. Highest information per row.")
+    if e["era_signal"] == "retail-documented-only":
+        return ("UNDATED. A retail wiki lists it, the ~2010 archive does not, and NO patch "
+                "annotation exists. We do NOT know when it shipped - absence is not "
+                "evidence. It may predate 3.3.5a and simply be undocumented there. The "
+                "probe answers; no wiki can.")
+    if e["era_signal"] == "archive-documented":
+        return ("documented in the ~2010 archive (WotLK/early-Cata) => expected present on a "
+                "3.3.5a base. An UNSUPPORTED here would be a real finding (removed or "
+                "never implemented on this fork).")
     if e["era_signal"] == "NOT-IN-ANY-WIKI":
-        return ("found ONLY in this client's own Lua. No wiki mentions it - which is why "
-                "a wiki's absence proves nothing.")
+        return ("found ONLY in this client's own Lua. No wiki mentions it - which is exactly "
+                "why a wiki's absence proves nothing.")
     return "claimed only by the Ascension wiki"
 
 
