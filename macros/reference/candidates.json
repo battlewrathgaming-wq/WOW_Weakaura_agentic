@@ -375,6 +375,10 @@
    "candidate_count": 24
   }
  },
+ "completeness_check": {
+  "incomplete": [],
+  "what": "candidates missing era_signal / probe_method / probe_rows. MUST be empty. A branch-skip left probe_method NULL on 15 candidates while the run reported success - twice, in the same function. An empty list here is the positive check that a difference-diff cannot give you."
+ },
  "counts": {
   "total": 74,
   "by_era": {
@@ -523,8 +527,10 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@anyenemy]"
+   ],
    "patch_history": [
     {
      "patch": "10.0.0",
@@ -571,8 +577,10 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@anyfriend]"
+   ],
    "patch_history": [
     {
      "patch": "10.0.0",
@@ -619,8 +627,10 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@anyinteract]"
+   ],
    "patch_history": [
     {
      "patch": "10.0.0",
@@ -724,8 +734,10 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@boss]"
+   ],
    "patch_history": [
     {
      "patch": "3.3.0",
@@ -776,8 +788,10 @@
     "Interface/FrameXML/ChatFrame.lua:1158"
    ],
    "proof_mark": "SOURCE-CORROBORATED",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@cursor]"
+   ],
    "patch_history": [
     {
      "patch": "7.1.0",
@@ -825,8 +839,10 @@
     "Interface/FrameXML/ChatFrame.lua:1382"
    ],
    "proof_mark": "SOURCE-CORROBORATED",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@focus]"
+   ],
    "patch_history": [
     {
      "patch": "2.0.0",
@@ -912,8 +928,10 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@nameplate]"
+   ],
    "patch_history": [
     {
      "patch": "7.0.3",
@@ -1113,8 +1131,10 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@partypet]"
+   ],
    "patch_history": [
     {
      "patch": "1.5.0",
@@ -1376,8 +1396,10 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@raidpet]"
+   ],
    "patch_history": [
     {
      "patch": "1.5.0",
@@ -1424,8 +1446,10 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@softenemy]"
+   ],
    "patch_history": [
     {
      "patch": "10.0.0",
@@ -1472,8 +1496,10 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@softfriend]"
+   ],
    "patch_history": [
     {
      "patch": "10.0.0",
@@ -1520,8 +1546,10 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@softinteract]"
+   ],
    "patch_history": [
     {
      "patch": "10.0.0",
@@ -1767,8 +1795,11 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[advflyable]",
+    "[noadvflyable]"
+   ],
    "patch_history": [
     {
      "patch": "10.0.7",
@@ -2490,8 +2521,11 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[known]",
+    "[noknown]"
+   ],
    "patch_history": [
     {
      "patch": "10.0.2",
@@ -2830,8 +2864,11 @@
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
-   "probe_method": null,
-   "probe_rows": [],
+   "probe_method": "polarity-pair",
+   "probe_rows": [
+    "[pvpcombat]",
+    "[nopvpcombat]"
+   ],
    "patch_history": [
     {
      "patch": "7.3.0",

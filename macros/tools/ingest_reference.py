@@ -612,8 +612,13 @@ def main():
                     if int(pv.split(".")[0]) > 3 else
                     f"SOURCED: added in patch {pv} ({wow_era(pv)}) => predates/matches the "
                     f"3.3.5a base; expected present.")
-                continue
-        if "wotlk-era" in eras:
+        # NO `continue` past this point, and none above it. There WAS one here, and it
+        # skipped every assignment below - first stripping @cursor of its source witness,
+        # then (after that was moved above) silently leaving probe_method/probe_rows NULL
+        # on all 15 patch-dated candidates while the run printed success. Same trap, same
+        # function, twice. Era classification is now pure `elif` and CANNOT skip the
+        # per-candidate work that follows.
+        elif "wotlk-era" in eras:
             e["era_signal"] = "archive-documented"
             e["era_note"] = ("documented in the wowwiki archive (content frozen ~2010, "
                              "WotLK/early-Cata) => expected present on a 3.3.5a base. An "
@@ -663,6 +668,17 @@ def main():
                     "source_witness": witnesses[t], "proof_mark": "SOURCE-CORROBORATED",
                     "probe_method": "pass-through test", "probe_rows": [f"[{t}]"]}
 
+    # COMPLETENESS CHECK - make the hole loud. A branch-skip left probe_method NULL on all
+    # 15 patch-dated candidates while the run printed success; the SAME trap, in the SAME
+    # function, had already stripped @cursor's witness once. A difference-diff is blind to
+    # that (the field just isn't there); a positive completeness check is not.
+    incomplete = sorted(t for t, e in all_c.items()
+                        if not e.get("era_signal") or not e.get("probe_method")
+                        or not e.get("probe_rows"))
+    if incomplete:
+        print(f"  !! INCOMPLETE CANDIDATES ({len(incomplete)}) - a branch skipped their "
+              f"derivation, do NOT trust the register: {incomplete[:8]}")
+
     payload = {
         "what": "THE QUESTION REGISTER - every candidate conditional + its PROOF MARK. "
                 "This is the probe's ask-list, not a fact table.",
@@ -699,6 +715,13 @@ def main():
             "and dates the row; absence yields only 'retail-documented-only' = UNDATED."),
         "patch_history": sorted(patches, key=lambda x: x["patch"]),
         "sources": per_source,
+        "completeness_check": {
+            "incomplete": incomplete,
+            "what": "candidates missing era_signal / probe_method / probe_rows. MUST be "
+                    "empty. A branch-skip left probe_method NULL on 15 candidates while the "
+                    "run reported success - twice, in the same function. An empty list here "
+                    "is the positive check that a difference-diff cannot give you.",
+        },
         "counts": {
             "total": len(all_c),
             "by_era": {k: sum(1 for e in all_c.values() if e["era_signal"] == k)
