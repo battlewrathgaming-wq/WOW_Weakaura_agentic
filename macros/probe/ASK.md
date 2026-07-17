@@ -89,6 +89,18 @@ Raw record → a map derives verdicts → `proof_mark` updates on `reference/can
 graduates into `basis/conditionals.json`. That's the only path anything becomes fact in this slice. The map is the
 macros bench's next build, once data exists.
 
+## Bonus: the macro-limit conflict rides along free
+
+The context stamp now also reads `MAX_ACCOUNT_MACROS`, `MAX_CHARACTER_MACROS`, `MAX_MACROS` (legacy) and
+`GetNumMacros()`. **The client contradicts itself in its own code:** `Blizzard_MacroUI` declares GLOBAL
+`MAX_CHARACTER_MACROS = 36`; `QuickKeybindActionPicker` declares a **local** `18` (the stock WotLK value) shadowing
+it inside that one file. Addons read the *global* (`Asc_MacroBank`: `MAX_CHARACTER_MACROS or 18`), so if the global
+reads 36 live, the backported keybind picker is the odd one out and likely **cannot see character macros 19–36** —
+a candidate real bug in their client, not ours.
+
+These reads settle what the **Lua layer** says. They do **not** settle what the **engine** enforces — that needs a
+write test (create macro 19+), which changes state and is **deliberately not asked here**.
+
 ## Standing limits — worth carrying into the record
 
 - **A probe proves only what it ASKS.** The ask-list came from the wiki citation chain, so **the rim stays open** —

@@ -1,0 +1,234 @@
+{
+ "what": "The installed MACRO ADDONS as a reference source - a SECOND attested-usage channel. The client's OWN code yields ZERO conditional literals; addon code yields a few.",
+ "NOT_A_FACT_SOURCE": "Nothing here is a fact about the CoA client. Downloaded != working. An addon shipping a macro string proves its AUTHOR BELIEVED it works on their target client - one notch stronger than a wiki (it is code aimed at a client), still not proof. Do not cite reference/ as basis/.",
+ "standing_note": "Battlewrath, 2026-07-17: 'Whilst they aren't verified as true, they might frame the validation better.'",
+ "corroborates_the_C_wall": "SuperDuperMacro's entire job is interpreting macros, and its MacroInterpreter.lua - explicitly 'adapted from ChatFrame.lua' - STILL calls SecureCmdOptionParse instead of reimplementing conditionals. An author who NEEDED the vocabulary in Lua could not get it either. INDEPENDENT support for the central finding: the vocabulary is C-side and no source read reaches it.",
+ "not_a_command_mirror": "SuperDuperMacro's funcsToGetSpell mirrors only the 8 commands that YIELD a spell/item (it needs the icon), NOT the command surface. Diffing it against basis/commands.json produced a bogus 41-command 'delta' that was SCOPE, not a finding. Recorded so the mistake is not repeated.",
+ "noise_note": "A regex over `[...]` cannot tell a macro clause from LUA TABLE INDEXING. First run 'found' [group], [button] and [target] - every one was sdm_exclusiveGroups[group] / AceConsole.weakcommands[target]. A clause now counts ONLY inside a string literal AND with a known conditional head.",
+ "ingested_at": "2026-07-17T03:09:33",
+ "ingested_by": "macros/tools/ingest_addon_reference.py",
+ "source_root": "F:\\games\\Ascension_wow\\resources\\ascension-live\\Interface\\AddOns",
+ "addons": {
+  "Asc_MacroBank": {
+   "standing": "SECONDARY - MAINTAINED FOR ASCENSION ('Xan(Ascension Updates)'), so its assumptions aim at THIS client. Still an author's belief, not proof.",
+   "toc": {
+    "title": "Asc_MacroBank",
+    "author": "Odlaw, Xan(Ascension Updates)",
+    "version": "1.6",
+    "interface": "30300",
+    "notes": "Save and load macros.",
+    "x-compatibile-with": "30300"
+   },
+   "installed_path": "F:\\games\\Ascension_wow\\resources\\ascension-live\\Interface\\AddOns\\Asc_MacroBank",
+   "file_count": 18,
+   "files": [
+    {
+     "file": "Asc_MacroBank/Asc_MacroBank.lua",
+     "sha256": "5ae97b436f774481a6a35ea14065221a747e9c391e21d5d9cb2f8e9c2c48badc",
+     "bytes": 88824
+    },
+    {
+     "file": "Asc_MacroBank/Changelog-MacroBank-r54.txt",
+     "sha256": "e59afdb8f55439446f95610eab994cee84defc8584ade1234c30de6e4beeba30",
+     "bytes": 965
+    },
+    {
+     "file": "Asc_MacroBank/Libs/AceConsole-3.0/AceConsole-3.0.lua",
+     "sha256": "4c5c99dfae1fa11077b5c5354bc1e13ebc912f9ae300f5d0b2741d824aa6be0e",
+     "bytes": 8499
+    },
+    {
+     "file": "Asc_MacroBank/Libs/AceConsole-3.0/AceConsole-3.0.xml",
+     "sha256": "00f05946fcbb73fb31ad17effb9aa2fb2b42e0d4b1eebcb546c8104f0e2bb68f",
+     "bytes": 216
+    },
+    {
+     "file": "Asc_MacroBank/Libs/AceEvent-3.0/AceEvent-3.0.lua",
+     "sha256": "a7ac0189fbf8cc73eabb53f4257b28d161960d6cbdb0cce5a1856f11416115ab",
+     "bytes": 4827
+    },
+    {
+     "file": "Asc_MacroBank/Libs/AceEvent-3.0/AceEvent-3.0.xml",
+     "sha256": "be26f49ff449ef5cf5071c8b278c0627662daef3e73cb278bdd07f1236026e9c",
+     "bytes": 214
+    },
+    {
+     "file": "Asc_MacroBank/Libs/Libs.xml",
+     "sha256": "12db4d11d2e6dea8d930843193a6860dc2141e2357d507f8603c87fcdd3e805b",
+     "bytes": 687
+    },
+    {
+     "file": "Asc_MacroBank/Libs/LibStub/LibStub.lua",
+     "sha256": "2d978b1936d2a4bfd63cbdf66986616906ddbd73554dfd57f033be927ec7b55e",
+     "bytes": 2241
+    },
+    {
+     "file": "Asc_MacroBank/Locales/Locale-deDE.lua",
+     "sha256": "8450855e0c25169f91d1b1c381cbf558732aa5576302c34da57ec22ef8086256",
+     "bytes": 7489
+    },
+    {
+     "file": "Asc_MacroBank/Locales/Locale-enUS.lua",
+     "sha256": "51fd2a27e52f49699f2da13214a7c2ce79b5589d748ed0bff47db9c253d7127f",
+     "bytes": 5541
+    },
+    {
+     "file": "Asc_MacroBank/Locales/Locale-esES.lua",
+     "sha256": "99d759685545eec61b2dcee15fe1cfed6d205d324467c8c3fe34be36bcf1125d",
+     "bytes": 7489
+    },
+    {
+     "file": "Asc_MacroBank/Locales/Locale-frFR.lua",
+     "sha256": "c143b8027ef07a420e6b58c651749c56075f19ff3de23a6ebfb05c6aef7005cb",
+     "bytes": 7489
+    },
+    {
+     "file": "Asc_MacroBank/Locales/Locale-koKR.lua",
+     "sha256": "47c46590a864af66689d72f8ac934b875c1610b5ef72745ca0b15c97a86c6bdb",
+     "bytes": 8165
+    },
+    {
+     "file": "Asc_MacroBank/Locales/Locale-ruRU.lua",
+     "sha256": "6f9a0549074fd70204392ea516a592eca821be55b9eff0002b9e68ba073d4908",
+     "bytes": 8155
+    },
+    {
+     "file": "Asc_MacroBank/Locales/Locale-zhCN.lua",
+     "sha256": "70a9d15069d204fa79105ddaa723b775e003dca8411750c8e7e4c1b4f88a9673",
+     "bytes": 6539
+    },
+    {
+     "file": "Asc_MacroBank/Locales/Locale-zhTW.lua",
+     "sha256": "ece065cd64af56b734683e31d0c8422d05335da4b2b02bd7b405711e33c5672d",
+     "bytes": 6853
+    },
+    {
+     "file": "Asc_MacroBank/Locales/Locales.xml",
+     "sha256": "01223f816448704c574d8a7015ff8de927fd28b5849752c51be4de07b2e6d28c",
+     "bytes": 458
+    },
+    {
+     "file": "Asc_MacroBank/PreMadeMacros.lua",
+     "sha256": "f4504f31226bce48af7e85e495ea25d7710cab41d15d35bd3dba4c2ad0c0dafe",
+     "bytes": 763
+    }
+   ],
+   "attested_clauses": {
+    "target=focus": {
+     "clause": "target=focus",
+     "seen_in": [
+      "Asc_MacroBank/PreMadeMacros.lua:21"
+     ],
+     "in_string": true
+    }
+   },
+   "attested_count": 1,
+   "limit_expressions": [
+    {
+     "expr": "MAX_MACROS or 18",
+     "file": "Asc_MacroBank/Asc_MacroBank.lua:634"
+    },
+    {
+     "expr": "MAX_MACROS or 18",
+     "file": "Asc_MacroBank/Asc_MacroBank.lua:635"
+    },
+    {
+     "expr": "MAX_MACROS or 18",
+     "file": "Asc_MacroBank/Asc_MacroBank.lua:636"
+    },
+    {
+     "expr": "MAX_ACCOUNT_MACROS or 36",
+     "file": "Asc_MacroBank/Asc_MacroBank.lua:638"
+    },
+    {
+     "expr": "MAX_ACCOUNT_MACROS or 36",
+     "file": "Asc_MacroBank/Asc_MacroBank.lua:639"
+    },
+    {
+     "expr": "MAX_CHARACTER_MACROS or 18",
+     "file": "Asc_MacroBank/Asc_MacroBank.lua:640"
+    },
+    {
+     "expr": "string.sub((Value.name or self.db.profile.Options.NewName), 1, 16)",
+     "file": "Asc_MacroBank/Asc_MacroBank.lua:992"
+    },
+    {
+     "expr": "string.sub(Value.body, 1, 255)",
+     "file": "Asc_MacroBank/Asc_MacroBank.lua:994"
+    }
+   ]
+  },
+  "SuperDuperMacro": {
+   "standing": "SECONDARY - retail-WotLK-derived (Interface 30300). Its interpreter is 'adapted from ChatFrame.lua' but covers only spell-yielding commands.",
+   "toc": {
+    "title": "Super Duper Macro",
+    "author": "hypehuman",
+    "version": "1.8.3",
+    "interface": "30300",
+    "notes": "Enables creation of incredibly long macros.",
+    "x-compatibile-with": null
+   },
+   "installed_path": "F:\\games\\Ascension_wow\\resources\\ascension-live\\Interface\\AddOns\\SuperDuperMacro",
+   "file_count": 4,
+   "files": [
+    {
+     "file": "SuperDuperMacro/MacroInterpreter.lua",
+     "sha256": "fb513742bb87a953756acc42851ce415fdc091863ba5c85845f02bed2a51fdf3",
+     "bytes": 8645
+    },
+    {
+     "file": "SuperDuperMacro/sdm Readme.txt",
+     "sha256": "c6e6622a950dfae2b896973f36e6e6efa3c5bb291a12956ff903afbd68d8c3b1",
+     "bytes": 6629
+    },
+    {
+     "file": "SuperDuperMacro/SuperDuperMacro.lua",
+     "sha256": "3024c38f4e657cfef0a1c2cb9dbc9a63aa17985350703026846fc1815e14fd1b",
+     "bytes": 59486
+    },
+    {
+     "file": "SuperDuperMacro/SuperDuperMacro.xml",
+     "sha256": "eae36249f48d89a6820258820ece6b2c78c7481caef60f7730b356b08d89aefa",
+     "bytes": 42076
+    }
+   ],
+   "attested_clauses": {
+    "btn:2": {
+     "clause": "btn:2",
+     "seen_in": [
+      "SuperDuperMacro/SuperDuperMacro.lua:49"
+     ],
+     "in_string": true
+    },
+    "btn:3": {
+     "clause": "btn:3",
+     "seen_in": [
+      "SuperDuperMacro/SuperDuperMacro.lua:49"
+     ],
+     "in_string": true
+    },
+    "btn:4": {
+     "clause": "btn:4",
+     "seen_in": [
+      "SuperDuperMacro/SuperDuperMacro.lua:49"
+     ],
+     "in_string": true
+    },
+    "btn:5": {
+     "clause": "btn:5",
+     "seen_in": [
+      "SuperDuperMacro/SuperDuperMacro.lua:49"
+     ],
+     "in_string": true
+    }
+   },
+   "attested_count": 4,
+   "limit_expressions": [
+    {
+     "expr": "charLimit = 255",
+     "file": "SuperDuperMacro/SuperDuperMacro.lua:60"
+    }
+   ]
+  }
+ }
+}

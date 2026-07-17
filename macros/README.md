@@ -29,6 +29,7 @@ macros/
     README.md                 the grain statement — read before using anything here
     candidates.json           THE QUESTION REGISTER — 55 candidates + proof marks
     *.wikitext                raw sources, verbatim + sha256 (4 pages, the citation chain)
+    addon-macro-tools.json    the 2 installed macro addons: attested clauses + limit exprs
   probe/                      THE ASK — composed for the live client. Addons bench owns the harness.
     README.md                 the handoff
     probe_rows.json           76 rows, each with method + priority

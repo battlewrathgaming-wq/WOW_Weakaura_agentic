@@ -60,6 +60,8 @@ local function contextStamp()
   -- (SONOFARUGAL=Bloodmage etc. - unguessable, and the reason the join exists).
   local okc, className, classToken = pcall(UnitClass, "player")
   if not okc then className, classToken = nil, nil end
+  local okm, numAcct, numChar = pcall(GetNumMacros)
+  if not okm then numAcct, numChar = nil, nil end
   return {
     taken_at        = try(GetTime),
     class           = className,
@@ -93,6 +95,24 @@ local function contextStamp()
     ctrlDown        = try(IsControlKeyDown),
     altDown         = try(IsAltKeyDown),
     cursorHolding   = try(GetCursorInfo),
+
+    -- MACRO LIMITS - settles the Lua layer of a real conflict in the client's OWN code:
+    -- Blizzard_MacroUI declares GLOBAL MAX_CHARACTER_MACROS=36, while
+    -- QuickKeybindActionPicker declares a LOCAL 18 (the stock WotLK value) shadowing it in
+    -- that one file. Addons read the GLOBAL (Asc_MacroBank: `MAX_CHARACTER_MACROS or 18`),
+    -- so if the global is 36 the picker is the odd one out and likely cannot see character
+    -- macros 19-36 - a candidate real bug in the backported picker.
+    -- These reads settle what the LUA layer says. They do NOT settle what the ENGINE
+    -- enforces; that needs a write test (create macro 19+), which is out of scope for a
+    -- pure-read pass and is NOT asked here.
+    maxAccountMacros   = MAX_ACCOUNT_MACROS,
+    maxCharacterMacros = MAX_CHARACTER_MACROS,
+    maxMacros_legacy   = MAX_MACROS,     -- the pre-WotLK global; nil expected on 3.3.5a
+    -- GetNumMacros returns (accountCount, charCount). pcall prepends `ok`, so the values
+    -- are the 2nd and 3rd - select(1,...) would hand back the BOOLEAN. Same trap as
+    -- UnitClass's token, hit twice in one session; write it out rather than be clever.
+    numMacros_account  = numAcct,
+    numMacros_char     = numChar,
   }
 end
 
