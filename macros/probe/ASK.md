@@ -58,6 +58,23 @@ Broad now, consolidate after. **Get the data set broad; the maps come next.**
 
 Both retail docs and CoA's handler code point at pass-through. **Still a hypothesis until this row runs.**
 
+## Targets are asked on TWO channels (this is new — and it's the answer to the `@` question)
+
+`@unit` and `[flag]` were never the same mechanism, and the unit-token references settle why:
+
+- **`SecureCmdOptionParse`** answers *"does the parser pass `@X` through?"*
+- **`UnitExists` / `UnitName` / `UnitGUID`** answer *"does the unit system resolve X?"*
+
+If `@` is pass-through (the control row decides), **the parser never decides whether `@X` works — the unit system
+does, downstream.** So targets carry a `unit_probe` alongside the parser read. Indexed bases probe index 1
+(`party1`, `nameplate1`); `@cursor` carries `nil` — **because `cursor` appears in no unit-token list on any wiki.
+It was never a unit.** It's a macro-layer special case (Legion 7.1.0) that Ascension hand-rolls via
+`Custom_HandleTerrainClick`. Third independent confirmation.
+
+**`@nameplate` is the sharpest row in the set:** Legion 7.0.3, and this client backports the Legion nameplate
+system (`CompactUnitFrame`). Whether nameplate *units* came with it is a genuine open question — and one the aura
+bench already brushed against (multidot works CLEU-driven, "no nameplate units needed").
+
 ## Why the context stamp is not padding
 
 A conditional *claims* to reflect a game state. The stamp is an **independent witness of that same state**, so the

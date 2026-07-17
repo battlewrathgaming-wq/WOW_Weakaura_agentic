@@ -89,10 +89,27 @@ local function askPair(tok)
   return { pos = pa, neg = na, pos_err = pe, neg_err = ne }
 end
 
--- RAW target read. `target` is what the parser handed back for [@x].
-local function askTarget(tok)
+-- RAW target read. TWO channels, because a target has two independent questions:
+--   1. does the PARSER pass @X through?      -> SecureCmdOptionParse
+--   2. does the unit system RESOLVE X?       -> UnitExists / UnitName
+-- If @ is pass-through (the control row decides), the parser NEVER decides whether @X
+-- works - the UNIT SYSTEM does, downstream. So the vocabulary question for targets is
+-- answered by UnitExists, NOT by the polarity matrix. `cursor` is the proof: it is in NO
+-- unit-token list on any wiki, because it was never a unit - it is a macro-layer special
+-- case (Legion 7.1.0) that Ascension hand-rolls via Custom_HandleTerrainClick.
+-- Indexed bases are probed at index 1 (party1, raid1, nameplate1...); a bare base like
+-- "party" is not itself a unit.
+local function askTarget(tok, unitProbe)
   local a, t, e = ask(tok)
-  return { action = a, target = t, err = e }
+  local exists, name, guid
+  if unitProbe then
+    local ok1, v1 = pcall(UnitExists, unitProbe); exists = ok1 and v1 or nil
+    local ok2, v2 = pcall(UnitName, unitProbe);   name   = ok2 and v2 or nil
+    local ok3, v3 = pcall(UnitGUID, unitProbe);   guid   = ok3 and v3 or nil
+  end
+  return { action = a, target = t, err = e,
+           unit_probe = unitProbe, unit_exists = exists, unit_name = name,
+           unit_guid = guid }
 end
 
 -- Independent witnesses of the states the conditionals claim to reflect.
@@ -263,9 +280,20 @@ def main():
     lua += "local FLAGS = {\n"
     for c in clauses:
         lua += f'  "{c}",\n'
-    lua += "}\n\nlocal TARGETS = {\n"
+    # {clause, unitProbe}: unitProbe is the BARE token handed to UnitExists. Indexed bases
+    # are probed at index 1 (a bare "party" is not itself a unit). nil = not a unit token
+    # at all - which is exactly what `cursor` is: no wiki lists it as a unit, because it
+    # never was one.
+    INDEXED = ("party", "raid", "arena", "boss", "partypet", "raidpet", "nameplate",
+               "spectated", "spectatedpet")
+    lua += "}\n\n-- { clause, unitProbe } - unitProbe is the bare token for UnitExists;\n"
+    lua += "-- indexed bases probe index 1; nil = not a unit token (e.g. cursor).\n"
+    lua += "local TARGETS = {\n"
     for c in tgts:
-        lua += f'  "{c}",\n'
+        bare = c.lstrip("@")
+        probe = ("nil" if bare in ("cursor", "unitId")
+                 else (f'"{bare}1"' if bare in INDEXED else f'"{bare}"'))
+        lua += f'  {{ "{c}", {probe} }},\n'
     lua += "}\n"
     lua += r'''
 -- Returns the RAW record for the harness to land. Pure reads; no state touched.
@@ -280,7 +308,7 @@ local function run()
     targets = {},
   }
   for _, tok in ipairs(FLAGS) do out.flags[tok] = askPair(tok) end
-  for _, tok in ipairs(TARGETS) do out.targets[tok] = askTarget(tok) end
+  for _, row in ipairs(TARGETS) do out.targets[row[1]] = askTarget(row[1], row[2]) end
   return out
 end
 

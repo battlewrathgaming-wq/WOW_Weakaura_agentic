@@ -39,10 +39,27 @@ local function askPair(tok)
   return { pos = pa, neg = na, pos_err = pe, neg_err = ne }
 end
 
--- RAW target read. `target` is what the parser handed back for [@x].
-local function askTarget(tok)
+-- RAW target read. TWO channels, because a target has two independent questions:
+--   1. does the PARSER pass @X through?      -> SecureCmdOptionParse
+--   2. does the unit system RESOLVE X?       -> UnitExists / UnitName
+-- If @ is pass-through (the control row decides), the parser NEVER decides whether @X
+-- works - the UNIT SYSTEM does, downstream. So the vocabulary question for targets is
+-- answered by UnitExists, NOT by the polarity matrix. `cursor` is the proof: it is in NO
+-- unit-token list on any wiki, because it was never a unit - it is a macro-layer special
+-- case (Legion 7.1.0) that Ascension hand-rolls via Custom_HandleTerrainClick.
+-- Indexed bases are probed at index 1 (party1, raid1, nameplate1...); a bare base like
+-- "party" is not itself a unit.
+local function askTarget(tok, unitProbe)
   local a, t, e = ask(tok)
-  return { action = a, target = t, err = e }
+  local exists, name, guid
+  if unitProbe then
+    local ok1, v1 = pcall(UnitExists, unitProbe); exists = ok1 and v1 or nil
+    local ok2, v2 = pcall(UnitName, unitProbe);   name   = ok2 and v2 or nil
+    local ok3, v3 = pcall(UnitGUID, unitProbe);   guid   = ok3 and v3 or nil
+  end
+  return { action = a, target = t, err = e,
+           unit_probe = unitProbe, unit_exists = exists, unit_name = name,
+           unit_guid = guid }
 end
 
 -- Independent witnesses of the states the conditionals claim to reflect.
@@ -195,20 +212,41 @@ local FLAGS = {
   "worn",
 }
 
+-- { clause, unitProbe } - unitProbe is the bare token for UnitExists;
+-- indexed bases probe index 1; nil = not a unit token (e.g. cursor).
 local TARGETS = {
-  "@cursor",
-  "@focus",
-  "@mouseover",
-  "@none",
-  "@party1",
-  "@party4",
-  "@pet",
-  "@pettarget",
-  "@player",
-  "@raid1",
-  "@raid40",
-  "@target",
-  "@unitId",
+  { "@anyenemy", "anyenemy" },
+  { "@anyfriend", "anyfriend" },
+  { "@anyinteract", "anyinteract" },
+  { "@anyleftinteract", "anyleftinteract" },
+  { "@arena", "arena1" },
+  { "@boss", "boss1" },
+  { "@cursor", nil },
+  { "@focus", "focus" },
+  { "@mouseover", "mouseover" },
+  { "@nameplate", "nameplate1" },
+  { "@none", "none" },
+  { "@npc", "npc" },
+  { "@party", "party1" },
+  { "@party1", "party1" },
+  { "@party4", "party4" },
+  { "@partypet", "partypet1" },
+  { "@pet", "pet" },
+  { "@pettarget", "pettarget" },
+  { "@player", "player" },
+  { "@questnpc", "questnpc" },
+  { "@raid", "raid1" },
+  { "@raid1", "raid1" },
+  { "@raid40", "raid40" },
+  { "@raidpet", "raidpet1" },
+  { "@softenemy", "softenemy" },
+  { "@softfriend", "softfriend" },
+  { "@softinteract", "softinteract" },
+  { "@spectated", "spectated1" },
+  { "@spectatedpet", "spectatedpet1" },
+  { "@target", "target" },
+  { "@unitId", nil },
+  { "@vehicle", "vehicle" },
 }
 
 -- Returns the RAW record for the harness to land. Pure reads; no state touched.
@@ -223,7 +261,7 @@ local function run()
     targets = {},
   }
   for _, tok in ipairs(FLAGS) do out.flags[tok] = askPair(tok) end
-  for _, tok in ipairs(TARGETS) do out.targets[tok] = askTarget(tok) end
+  for _, row in ipairs(TARGETS) do out.targets[row[1]] = askTarget(row[1], row[2]) end
   return out
 end
 

@@ -1,15 +1,17 @@
 {
  "what": "THE ASK - every question the live probe puts to the client, with the method for reading each answer. Verdicts are null until the probe runs.",
  "composed_by": "macros/tools/compose_probe.py",
- "composed_at": "2026-07-17T03:10:21",
+ "composed_at": "2026-07-17T03:18:49",
  "from_register": {
   "file": "macros/reference/candidates.json",
-  "candidates": 55,
+  "candidates": 74,
   "sources": [
    "ascension-wiki-macros",
    "wowwiki-archive-making-a-macro",
    "wowpedia-making-a-macro",
-   "wowpedia-macro-conditionals"
+   "wowpedia-macro-conditionals",
+   "warcraft-wiki-unittoken",
+   "wowpedia-unitid"
   ]
  },
  "verdict_matrix": {
@@ -43,13 +45,13 @@
   "absence_proves_nothing": "A conditional no wiki lists is UN-ASKED, not unsupported. Demonstrated mechanically: ['@pettarget'] witnessed in this client's own Lua and in NO wiki."
  },
  "counts": {
-  "rows": 76,
+  "rows": 95,
   "flag_rows": 63,
-  "target_rows": 13,
+  "target_rows": 32,
   "by_priority": {
-   "1-backport-test": 4,
-   "2-undated-test": 9,
-   "3-baseline": 59,
+   "1-backport-test": 11,
+   "2-undated-test": 8,
+   "3-baseline": 72,
    "4-corroborate": 4
   }
  },
@@ -1084,6 +1086,130 @@
    "verdict": null
   },
   {
+   "ask": "@anyenemy",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@anyenemy"
+   ],
+   "base": "@anyenemy",
+   "arg": null,
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "10.0.0",
+    "expansion": "Dragonflight",
+    "action": "added",
+    "cited": false,
+    "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+    "from": "warcraft-wiki-unittoken"
+   },
+   "priority": "1-backport-test",
+   "expect_note": "SOURCED: added in patch 10.0.0 (Dragonflight) => POSTDATES the 3.3.5a base, so it is here only if BACKPORTED. This client backports freely, and @cursor - itself 7.1.0 Legion - is a CONFIRMED backport witnessed in CoA's own source. Highest information per row.",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@anyfriend",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@anyfriend"
+   ],
+   "base": "@anyfriend",
+   "arg": null,
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "10.0.0",
+    "expansion": "Dragonflight",
+    "action": "added",
+    "cited": false,
+    "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+    "from": "warcraft-wiki-unittoken"
+   },
+   "priority": "1-backport-test",
+   "expect_note": "SOURCED: added in patch 10.0.0 (Dragonflight) => POSTDATES the 3.3.5a base, so it is here only if BACKPORTED. This client backports freely, and @cursor - itself 7.1.0 Legion - is a CONFIRMED backport witnessed in CoA's own source. Highest information per row.",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@anyinteract",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@anyinteract"
+   ],
+   "base": "@anyinteract",
+   "arg": null,
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "10.0.0",
+    "expansion": "Dragonflight",
+    "action": "added",
+    "cited": false,
+    "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+    "from": "warcraft-wiki-unittoken"
+   },
+   "priority": "1-backport-test",
+   "expect_note": "SOURCED: added in patch 10.0.0 (Dragonflight) => POSTDATES the 3.3.5a base, so it is here only if BACKPORTED. This client backports freely, and @cursor - itself 7.1.0 Legion - is a CONFIRMED backport witnessed in CoA's own source. Highest information per row.",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@anyleftinteract",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@anyleftinteract"
+   ],
+   "base": "@anyleftinteract",
+   "arg": null,
+   "era_signal": "unit-token-vocabulary",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@arena",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@arena"
+   ],
+   "base": "@arena",
+   "arg": null,
+   "era_signal": "unit-token-vocabulary",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@boss",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@boss"
+   ],
+   "base": "@boss",
+   "arg": null,
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "3.3.0",
+    "expansion": "WotLK",
+    "action": "added",
+    "cited": false,
+    "note": "Added ''bossN''.",
+    "from": "warcraft-wiki-unittoken"
+   },
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
    "ask": "@cursor",
    "kind": "unit-target",
    "method": "pass-through test",
@@ -1119,8 +1245,15 @@
    ],
    "base": "@focus",
    "arg": null,
-   "era_signal": "ascension-claimed",
-   "patch_added": null,
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "2.0.0",
+    "expansion": "TBC",
+    "action": "added",
+    "cited": false,
+    "note": "Added ''focus''.",
+    "from": "warcraft-wiki-unittoken"
+   },
    "priority": "4-corroborate",
    "expect_note": "claimed only by the Ascension wiki",
    "source_witness": [
@@ -1137,10 +1270,33 @@
    ],
    "base": "@mouseover",
    "arg": null,
-   "era_signal": "ascension-claimed",
+   "era_signal": "unit-token-vocabulary",
    "patch_added": null,
    "priority": "3-baseline",
    "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@nameplate",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@nameplate"
+   ],
+   "base": "@nameplate",
+   "arg": null,
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "7.0.3",
+    "expansion": "Legion",
+    "action": "added",
+    "cited": false,
+    "note": "Added ''nameplateN''.",
+    "from": "warcraft-wiki-unittoken"
+   },
+   "priority": "1-backport-test",
+   "expect_note": "SOURCED: added in patch 7.0.3 (Legion) => POSTDATES the 3.3.5a base, so it is here only if BACKPORTED. This client backports freely, and @cursor - itself 7.1.0 Legion - is a CONFIRMED backport witnessed in CoA's own source. Highest information per row.",
    "source_witness": null,
    "verdict": null
   },
@@ -1153,10 +1309,42 @@
    ],
    "base": "@none",
    "arg": null,
-   "era_signal": "retail-documented-only",
+   "era_signal": "unit-token-vocabulary",
    "patch_added": null,
-   "priority": "2-undated-test",
-   "expect_note": "UNDATED. A retail wiki lists it, the ~2010 archive does not, and NO patch annotation exists. We do NOT know when it shipped - absence is not evidence. It may predate 3.3.5a and simply be undocumented there. The probe answers; no wiki can.",
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@npc",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@npc"
+   ],
+   "base": "@npc",
+   "arg": null,
+   "era_signal": "unit-token-vocabulary",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@party",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@party"
+   ],
+   "base": "@party",
+   "arg": null,
+   "era_signal": "unit-token-vocabulary",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
    "source_witness": null,
    "verdict": null
   },
@@ -1193,6 +1381,29 @@
    "verdict": null
   },
   {
+   "ask": "@partypet",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@partypet"
+   ],
+   "base": "@partypet",
+   "arg": null,
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "1.5.0",
+    "expansion": "vanilla",
+    "action": "added",
+    "cited": false,
+    "note": "Added ''partypetN'' and ''raidpetN''.",
+    "from": "warcraft-wiki-unittoken"
+   },
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
    "ask": "@pet",
    "kind": "unit-target",
    "method": "pass-through test",
@@ -1201,7 +1412,7 @@
    ],
    "base": "@pet",
    "arg": null,
-   "era_signal": "ascension-claimed",
+   "era_signal": "unit-token-vocabulary",
    "patch_added": null,
    "priority": "3-baseline",
    "expect_note": "claimed only by the Ascension wiki",
@@ -1235,7 +1446,7 @@
    ],
    "base": "@player",
    "arg": null,
-   "era_signal": "ascension-claimed",
+   "era_signal": "unit-token-vocabulary",
    "patch_added": null,
    "priority": "4-corroborate",
    "expect_note": "claimed only by the Ascension wiki",
@@ -1244,6 +1455,38 @@
     "Interface/FrameXML/ChatFrame.lua:1116",
     "Interface/FrameXML/ChatFrame.lua:1164"
    ],
+   "verdict": null
+  },
+  {
+   "ask": "@questnpc",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@questnpc"
+   ],
+   "base": "@questnpc",
+   "arg": null,
+   "era_signal": "unit-token-vocabulary",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@raid",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@raid"
+   ],
+   "base": "@raid",
+   "arg": null,
+   "era_signal": "unit-token-vocabulary",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
    "verdict": null
   },
   {
@@ -1279,6 +1522,130 @@
    "verdict": null
   },
   {
+   "ask": "@raidpet",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@raidpet"
+   ],
+   "base": "@raidpet",
+   "arg": null,
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "1.5.0",
+    "expansion": "vanilla",
+    "action": "added",
+    "cited": false,
+    "note": "Added ''partypetN'' and ''raidpetN''.",
+    "from": "warcraft-wiki-unittoken"
+   },
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@softenemy",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@softenemy"
+   ],
+   "base": "@softenemy",
+   "arg": null,
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "10.0.0",
+    "expansion": "Dragonflight",
+    "action": "added",
+    "cited": false,
+    "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+    "from": "warcraft-wiki-unittoken"
+   },
+   "priority": "1-backport-test",
+   "expect_note": "SOURCED: added in patch 10.0.0 (Dragonflight) => POSTDATES the 3.3.5a base, so it is here only if BACKPORTED. This client backports freely, and @cursor - itself 7.1.0 Legion - is a CONFIRMED backport witnessed in CoA's own source. Highest information per row.",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@softfriend",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@softfriend"
+   ],
+   "base": "@softfriend",
+   "arg": null,
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "10.0.0",
+    "expansion": "Dragonflight",
+    "action": "added",
+    "cited": false,
+    "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+    "from": "warcraft-wiki-unittoken"
+   },
+   "priority": "1-backport-test",
+   "expect_note": "SOURCED: added in patch 10.0.0 (Dragonflight) => POSTDATES the 3.3.5a base, so it is here only if BACKPORTED. This client backports freely, and @cursor - itself 7.1.0 Legion - is a CONFIRMED backport witnessed in CoA's own source. Highest information per row.",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@softinteract",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@softinteract"
+   ],
+   "base": "@softinteract",
+   "arg": null,
+   "era_signal": "patch-dated",
+   "patch_added": {
+    "patch": "10.0.0",
+    "expansion": "Dragonflight",
+    "action": "added",
+    "cited": false,
+    "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+    "from": "warcraft-wiki-unittoken"
+   },
+   "priority": "1-backport-test",
+   "expect_note": "SOURCED: added in patch 10.0.0 (Dragonflight) => POSTDATES the 3.3.5a base, so it is here only if BACKPORTED. This client backports freely, and @cursor - itself 7.1.0 Legion - is a CONFIRMED backport witnessed in CoA's own source. Highest information per row.",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@spectated",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@spectated"
+   ],
+   "base": "@spectated",
+   "arg": null,
+   "era_signal": "unit-token-vocabulary",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@spectatedpet",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@spectatedpet"
+   ],
+   "base": "@spectatedpet",
+   "arg": null,
+   "era_signal": "unit-token-vocabulary",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
    "ask": "@target",
    "kind": "unit-target",
    "method": "pass-through test",
@@ -1287,7 +1654,7 @@
    ],
    "base": "@target",
    "arg": null,
-   "era_signal": "ascension-claimed",
+   "era_signal": "unit-token-vocabulary",
    "patch_added": null,
    "priority": "4-corroborate",
    "expect_note": "claimed only by the Ascension wiki",
@@ -1311,6 +1678,22 @@
    "patch_added": null,
    "priority": "2-undated-test",
    "expect_note": "UNDATED. A retail wiki lists it, the ~2010 archive does not, and NO patch annotation exists. We do NOT know when it shipped - absence is not evidence. It may predate 3.3.5a and simply be undocumented there. The probe answers; no wiki can.",
+   "source_witness": null,
+   "verdict": null
+  },
+  {
+   "ask": "@vehicle",
+   "kind": "unit-target",
+   "method": "pass-through test",
+   "clauses": [
+    "@vehicle"
+   ],
+   "base": "@vehicle",
+   "arg": null,
+   "era_signal": "unit-token-vocabulary",
+   "patch_added": null,
+   "priority": "3-baseline",
+   "expect_note": "claimed only by the Ascension wiki",
    "source_witness": null,
    "verdict": null
   }

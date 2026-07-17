@@ -36,11 +36,139 @@
  "era_method_correction": "era_signal originally called this bucket 'post-wotlk', inferring the history from ABSENCE in the ~2010 archive - the exact 'absence proves nothing' error this slice writes into three files, committed by the tool built to prevent it, in the field the probe steers by. It was RIGHT for the 4 conditionals carrying patch annotations - by LUCK, not method. Now: a patch annotation is evidence and dates the row; absence yields only 'retail-documented-only' = UNDATED.",
  "patch_history": [
   {
+   "token": "partypet",
+   "patch": "1.5.0",
+   "note": "Added ''partypetN'' and ''raidpetN''.",
+   "action": "added",
+   "from": "warcraft-wiki-unittoken",
+   "cited": false
+  },
+  {
+   "token": "raidpet",
+   "patch": "1.5.0",
+   "note": "Added ''partypetN'' and ''raidpetN''.",
+   "action": "added",
+   "from": "warcraft-wiki-unittoken",
+   "cited": false
+  },
+  {
+   "token": "partypet",
+   "patch": "1.5.0",
+   "note": "Added ''partypetN'' and ''raidpetN''.",
+   "action": "added",
+   "from": "wowpedia-unitid",
+   "cited": false
+  },
+  {
+   "token": "raidpet",
+   "patch": "1.5.0",
+   "note": "Added ''partypetN'' and ''raidpetN''.",
+   "action": "added",
+   "from": "wowpedia-unitid",
+   "cited": false
+  },
+  {
    "token": "talent",
    "patch": "10.0.0",
    "note": "\"talent\" conditional removed.",
    "action": "removed",
    "from": "wowpedia-macro-conditionals",
+   "cited": false
+  },
+  {
+   "token": "anyenemy",
+   "patch": "10.0.0",
+   "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+   "action": "added",
+   "from": "warcraft-wiki-unittoken",
+   "cited": false
+  },
+  {
+   "token": "anyfriend",
+   "patch": "10.0.0",
+   "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+   "action": "added",
+   "from": "warcraft-wiki-unittoken",
+   "cited": false
+  },
+  {
+   "token": "anyinteract",
+   "patch": "10.0.0",
+   "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+   "action": "added",
+   "from": "warcraft-wiki-unittoken",
+   "cited": false
+  },
+  {
+   "token": "softenemy",
+   "patch": "10.0.0",
+   "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+   "action": "added",
+   "from": "warcraft-wiki-unittoken",
+   "cited": false
+  },
+  {
+   "token": "softfriend",
+   "patch": "10.0.0",
+   "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+   "action": "added",
+   "from": "warcraft-wiki-unittoken",
+   "cited": false
+  },
+  {
+   "token": "softinteract",
+   "patch": "10.0.0",
+   "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+   "action": "added",
+   "from": "warcraft-wiki-unittoken",
+   "cited": false
+  },
+  {
+   "token": "anyenemy",
+   "patch": "10.0.0",
+   "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+   "action": "added",
+   "from": "wowpedia-unitid",
+   "cited": false
+  },
+  {
+   "token": "anyfriend",
+   "patch": "10.0.0",
+   "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+   "action": "added",
+   "from": "wowpedia-unitid",
+   "cited": false
+  },
+  {
+   "token": "anyinteract",
+   "patch": "10.0.0",
+   "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+   "action": "added",
+   "from": "wowpedia-unitid",
+   "cited": false
+  },
+  {
+   "token": "softenemy",
+   "patch": "10.0.0",
+   "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+   "action": "added",
+   "from": "wowpedia-unitid",
+   "cited": false
+  },
+  {
+   "token": "softfriend",
+   "patch": "10.0.0",
+   "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+   "action": "added",
+   "from": "wowpedia-unitid",
+   "cited": false
+  },
+  {
+   "token": "softinteract",
+   "patch": "10.0.0",
+   "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+   "action": "added",
+   "from": "wowpedia-unitid",
    "cited": false
   },
   {
@@ -60,11 +188,59 @@
    "cited": false
   },
   {
+   "token": "focus",
+   "patch": "2.0.0",
+   "note": "Added ''focus''.",
+   "action": "added",
+   "from": "warcraft-wiki-unittoken",
+   "cited": false
+  },
+  {
+   "token": "focus",
+   "patch": "2.0.0",
+   "note": "Added ''focus''.",
+   "action": "added",
+   "from": "wowpedia-unitid",
+   "cited": false
+  },
+  {
+   "token": "boss",
+   "patch": "3.3.0",
+   "note": "Added ''bossN''.",
+   "action": "added",
+   "from": "warcraft-wiki-unittoken",
+   "cited": false
+  },
+  {
+   "token": "boss",
+   "patch": "3.3.0",
+   "note": "Added ''bossN''.",
+   "action": "added",
+   "from": "wowpedia-unitid",
+   "cited": false
+  },
+  {
    "token": "talent",
    "patch": "6.0.2",
    "note": "\"talent\" conditional added.",
    "action": "added",
    "from": "wowpedia-macro-conditionals",
+   "cited": false
+  },
+  {
+   "token": "nameplate",
+   "patch": "7.0.3",
+   "note": "Added ''nameplateN''.",
+   "action": "added",
+   "from": "warcraft-wiki-unittoken",
+   "cited": false
+  },
+  {
+   "token": "nameplate",
+   "patch": "7.0.3",
+   "note": "Added ''nameplateN''.",
+   "action": "added",
+   "from": "wowpedia-unitid",
    "cited": false
   },
   {
@@ -148,23 +324,56 @@
     "raw_chars": 6915
    },
    "candidate_count": 45
+  },
+  "warcraft-wiki-unittoken": {
+   "standing": "SECONDARY (retail, CURRENT) - Wowpedia's live successor (moved off fandom 2023). The maintained unit-token reference.",
+   "era": "retail-current",
+   "format": "unit-token-deflist",
+   "provenance": {
+    "url": "https://warcraft.wiki.gg/wiki/UnitToken",
+    "pageid": 463410,
+    "revid": 6658662,
+    "revision_timestamp": "2026-02-24T16:19:39Z",
+    "revision_user": "Ketho",
+    "raw_file": "warcraft-wiki-unittoken.wikitext",
+    "raw_sha256": "fb6c073bb2e5f594954508058d9824950d42a64234d35406d312ab0c7d8cf5e6",
+    "raw_chars": 6881
+   },
+   "candidate_count": 25
+  },
+  "wowpedia-unitid": {
+   "standing": "SECONDARY (retail) - the frozen fandom copy of the same reference; the pair brackets the era the way the macro wikis do.",
+   "era": "retail-2021",
+   "format": "unit-token-deflist",
+   "provenance": {
+    "url": "https://wowpedia.fandom.com/wiki/UnitId",
+    "pageid": 13544,
+    "revid": 6512501,
+    "revision_timestamp": "2022-08-31T20:22:44Z",
+    "revision_user": "Meorawr31439",
+    "raw_file": "wowpedia-unitid.wikitext",
+    "raw_sha256": "6b8e9c20ed196f972ed254fdc322ed3c8ad37f292aa95618ac5c31757bee830e",
+    "raw_chars": 6741
+   },
+   "candidate_count": 24
   }
  },
  "counts": {
-  "total": 55,
+  "total": 74,
   "by_era": {
-   "patch-dated": 4,
+   "patch-dated": 15,
    "archive-documented": 32,
-   "retail-documented-only": 9,
-   "ascension-claimed": 9,
+   "retail-documented-only": 8,
+   "unit-token-vocabulary": 14,
+   "ascension-claimed": 4,
    "NOT-IN-ANY-WIKI": 1
   },
   "by_kind": {
    "flag": 42,
-   "unit-target": 13
+   "unit-target": 32
   },
   "by_proof_mark": {
-   "UNPROVEN": 50,
+   "UNPROVEN": 69,
    "SOURCE-CORROBORATED": 5
   }
  },
@@ -248,9 +457,278 @@
   {
    "claim": "`@unitId` takes ANY valid unitId => supports the PASS-THROUGH hypothesis",
    "from": "wowpedia-macro-conditionals"
+  },
+  {
+   "claim": "SUFFIX GRAMMAR: append `target` to ANY unit token, repeatable (pettarget, playertargettarget). This DERIVES tokens rather than listing them - which is exactly why no wiki lists @pettarget as a base token, and why its absence from every list proves nothing.",
+   "from": "warcraft-wiki-unittoken"
+  },
+  {
+   "claim": "unit tokens are CASE INSENSITIVE (consistent with CoA's handler doing target:lower() == 'cursor')",
+   "from": "warcraft-wiki-unittoken"
+  },
+  {
+   "claim": "a party/raid member's NAME works as a unit, with hyphens for the chain (Cogwheel-target-target)",
+   "from": "warcraft-wiki-unittoken"
+  },
+  {
+   "claim": "unit tokens are CASE INSENSITIVE (consistent with CoA's handler doing target:lower() == 'cursor')",
+   "from": "wowpedia-unitid"
+  },
+  {
+   "claim": "a party/raid member's NAME works as a unit, with hyphens for the chain (Cogwheel-target-target)",
+   "from": "wowpedia-unitid"
   }
  ],
  "candidates": {
+  "@anyenemy": {
+   "token": "@anyenemy",
+   "kind": "unit-target",
+   "base": "@anyenemy",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Soft Targeting] Resolves to either the \"target\" unit or \"softenemy\" target, with \"target\" being higher priority.",
+     "revid": 6658662,
+     "as_written": "@anyenemy"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Soft Targeting] Resolves to either the \"target\" unit or \"softenemy\" target, with \"target\" being higher priority.",
+     "revid": 6512501,
+     "as_written": "@anyenemy"
+    }
+   ],
+   "era_signal": "patch-dated",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "10.0.0",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+     "from": "warcraft-wiki-unittoken"
+    },
+    {
+     "patch": "10.0.0",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+     "from": "wowpedia-unitid"
+    }
+   ],
+   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+  },
+  "@anyfriend": {
+   "token": "@anyfriend",
+   "kind": "unit-target",
+   "base": "@anyfriend",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Soft Targeting] Resolves to either the \"target\" unit or \"softfriend\" target, with \"target\" being higher priority.",
+     "revid": 6658662,
+     "as_written": "@anyfriend"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Soft Targeting] Resolves to either the \"target\" unit or \"softfriend\" target, with \"target\" being higher priority.",
+     "revid": 6512501,
+     "as_written": "@anyfriend"
+    }
+   ],
+   "era_signal": "patch-dated",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "10.0.0",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+     "from": "warcraft-wiki-unittoken"
+    },
+    {
+     "patch": "10.0.0",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+     "from": "wowpedia-unitid"
+    }
+   ],
+   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+  },
+  "@anyinteract": {
+   "token": "@anyinteract",
+   "kind": "unit-target",
+   "base": "@anyinteract",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Soft Targeting] Resolves to either the \"target\" unit or \"softinteract\" target, with \"target\" being higher priority.",
+     "revid": 6658662,
+     "as_written": "@anyinteract"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Soft Targeting] Resolves to either the \"target\" unit or \"softinteract\" target, with \"target\" being higher priority.",
+     "revid": 6512501,
+     "as_written": "@anyinteract"
+    }
+   ],
+   "era_signal": "patch-dated",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "10.0.0",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+     "from": "warcraft-wiki-unittoken"
+    },
+    {
+     "patch": "10.0.0",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+     "from": "wowpedia-unitid"
+    }
+   ],
+   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+  },
+  "@anyleftinteract": {
+   "token": "@anyleftinteract",
+   "kind": "unit-target",
+   "base": "@anyleftinteract",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Soft Targeting] Behaves the same as \"anyinteract\".",
+     "revid": 6658662,
+     "as_written": "@anyleftinteract"
+    }
+   ],
+   "era_signal": "unit-token-vocabulary",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@anyleftinteract]"
+   ],
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+  },
+  "@arena": {
+   "token": "@arena",
+   "kind": "unit-target",
+   "base": "@arena",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] Opposing arena member with index ''N'' (1,2,3,4 or 5).",
+     "revid": 6658662,
+     "as_written": "@arena"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] Opposing arena member with index ''N'' (1,2,3,4 or 5).",
+     "revid": 6512501,
+     "as_written": "@arena"
+    }
+   ],
+   "era_signal": "unit-token-vocabulary",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@arena]"
+   ],
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+  },
+  "@boss": {
+   "token": "@boss",
+   "kind": "unit-target",
+   "base": "@boss",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The active bosses of the current encounter if available ''N'' (1,2,3...,8).",
+     "revid": 6658662,
+     "as_written": "@boss"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The active bosses of the current encounter if available ''N'' (1,2,3...,8).",
+     "revid": 6512501,
+     "as_written": "@boss"
+    }
+   ],
+   "era_signal": "patch-dated",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "3.3.0",
+     "expansion": "WotLK",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''bossN''.",
+     "from": "warcraft-wiki-unittoken"
+    },
+    {
+     "patch": "3.3.0",
+     "expansion": "WotLK",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''bossN''.",
+     "from": "wowpedia-unitid"
+    }
+   ],
+   "era_note": "SOURCED: added in patch 3.3.0 (WotLK) => predates/matches the 3.3.5a base; expected present."
+  },
   "@cursor": {
    "token": "@cursor",
    "kind": "unit-target",
@@ -308,19 +786,49 @@
      "says": "Casts on your focus target",
      "revid": 15818,
      "as_written": "@focus"
+    },
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The current player's focus target as selected by the /focus command.",
+     "revid": 6658662,
+     "as_written": "@focus"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The current player's focus target as selected by the /focus command.",
+     "revid": 6512501,
+     "as_written": "@focus"
     }
    ],
-   "era_signal": "ascension-claimed",
+   "era_signal": "patch-dated",
    "negation_documented": false,
    "source_witness": [
     "Interface/FrameXML/ChatFrame.lua:1382"
    ],
    "proof_mark": "SOURCE-CORROBORATED",
-   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
-   "probe_rows": [
-    "[@focus]"
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "2.0.0",
+     "expansion": "TBC",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''focus''.",
+     "from": "warcraft-wiki-unittoken"
+    },
+    {
+     "patch": "2.0.0",
+     "expansion": "TBC",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''focus''.",
+     "from": "wowpedia-unitid"
+    }
    ],
-   "era_note": "claimed only by the Ascension wiki"
+   "era_note": "SOURCED: added in patch 2.0.0 (TBC) => predates/matches the 3.3.5a base; expected present."
   },
   "@mouseover": {
    "token": "@mouseover",
@@ -335,9 +843,23 @@
      "says": "Casts on the unit your mouse is hovering over",
      "revid": 15818,
      "as_written": "@mouseover"
+    },
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The unit which the mouse is currently (or was most recently) hovering over.",
+     "revid": 6658662,
+     "as_written": "@mouseover"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The unit which the mouse is currently (or was most recently) hovering over.",
+     "revid": 6512501,
+     "as_written": "@mouseover"
     }
    ],
-   "era_signal": "ascension-claimed",
+   "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -345,7 +867,55 @@
    "probe_rows": [
     "[@mouseover]"
    ],
-   "era_note": "claimed only by the Ascension wiki"
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+  },
+  "@nameplate": {
+   "token": "@nameplate",
+   "kind": "unit-target",
+   "base": "@nameplate",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The ''N''th nameplate (1,2,3,...,40). Cannot be targeted by spells or commands such as /target nameplate1 or /cast [target=nameplate1] Healing Wave.",
+     "revid": 6658662,
+     "as_written": "@nameplate"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The ''N''th nameplate (1,2,3,...,40). Cannot be targeted by spells or commands such as /target nameplate1 or /cast [target=nameplate1] Healing Wave.",
+     "revid": 6512501,
+     "as_written": "@nameplate"
+    }
+   ],
+   "era_signal": "patch-dated",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "7.0.3",
+     "expansion": "Legion",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''nameplateN''.",
+     "from": "warcraft-wiki-unittoken"
+    },
+    {
+     "patch": "7.0.3",
+     "expansion": "Legion",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''nameplateN''.",
+     "from": "wowpedia-unitid"
+    }
+   ],
+   "era_note": "SOURCED: added in patch 7.0.3 (Legion). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
   },
   "@none": {
    "token": "@none",
@@ -360,9 +930,23 @@
      "says": "Interupts auto self-cast and requires a targeting cursor.",
      "revid": 6764422,
      "as_written": "@none"
+    },
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] A valid unit token that always refers to no unit. [[API_UnitName|UnitName]] will return \"Unknown, nil\" for this UnitToken. Use to force a macro to not auto self-cast ([[Making_a_macro#.5",
+     "revid": 6658662,
+     "as_written": "@none"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] A valid unit token that always refers to no unit. [[API_UnitName|UnitName]] will return \"Unknown, nil\" for this UnitID. Use to force a macro to not auto self-cast ([[Making_a_macro#.5Bta",
+     "revid": 6512501,
+     "as_written": "@none"
     }
    ],
-   "era_signal": "retail-documented-only",
+   "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -370,7 +954,71 @@
    "probe_rows": [
     "[@none]"
    ],
-   "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+  },
+  "@npc": {
+   "token": "@npc",
+   "kind": "unit-target",
+   "base": "@npc",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Others] The NPC with which the player is currently interacting. You '''must''' be interacting with the NPC for this to work (e.g. the quest, flight path, merchant, gossip, or bank frame is open).",
+     "revid": 6658662,
+     "as_written": "@npc"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Others] The NPC with which the player is currently interacting. You '''must''' be interacting with the NPC for this to work (e.g. the quest, flight path, merchant, gossip, or bank frame is open).",
+     "revid": 6512501,
+     "as_written": "@npc"
+    }
+   ],
+   "era_signal": "unit-token-vocabulary",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@npc]"
+   ],
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+  },
+  "@party": {
+   "token": "@party",
+   "kind": "unit-target",
+   "base": "@party",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The ''N''th party member excluding the player (1,2,3 or 4).",
+     "revid": 6658662,
+     "as_written": "@party"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The ''N''th party member excluding the player (1,2,3 or 4).",
+     "revid": 6512501,
+     "as_written": "@party"
+    }
+   ],
+   "era_signal": "unit-token-vocabulary",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@party]"
+   ],
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
   },
   "@party1": {
    "token": "@party1",
@@ -422,6 +1070,54 @@
    ],
    "era_note": "claimed only by the Ascension wiki"
   },
+  "@partypet": {
+   "token": "@partypet",
+   "kind": "unit-target",
+   "base": "@partypet",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The pet of the ''N''th party member (N is 1,2,3, or 4).",
+     "revid": 6658662,
+     "as_written": "@partypet"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The pet of the ''N''th party member (N is 1,2,3, or 4).",
+     "revid": 6512501,
+     "as_written": "@partypet"
+    }
+   ],
+   "era_signal": "patch-dated",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "1.5.0",
+     "expansion": "vanilla",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''partypetN'' and ''raidpetN''.",
+     "from": "warcraft-wiki-unittoken"
+    },
+    {
+     "patch": "1.5.0",
+     "expansion": "vanilla",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''partypetN'' and ''raidpetN''.",
+     "from": "wowpedia-unitid"
+    }
+   ],
+   "era_note": "SOURCED: added in patch 1.5.0 (vanilla) => predates/matches the 3.3.5a base; expected present."
+  },
   "@pet": {
    "token": "@pet",
    "kind": "unit-target",
@@ -435,9 +1131,23 @@
      "says": "Casts on your pet",
      "revid": 15818,
      "as_written": "@pet"
+    },
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The current player's pet.",
+     "revid": 6658662,
+     "as_written": "@pet"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The current player's pet.",
+     "revid": 6512501,
+     "as_written": "@pet"
     }
    ],
-   "era_signal": "ascension-claimed",
+   "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": null,
    "proof_mark": "UNPROVEN",
@@ -445,7 +1155,7 @@
    "probe_rows": [
     "[@pet]"
    ],
-   "era_note": "claimed only by the Ascension wiki"
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
   },
   "@pettarget": {
    "token": "@pettarget",
@@ -479,9 +1189,23 @@
      "says": "Casts on yourself",
      "revid": 15818,
      "as_written": "@player"
+    },
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The current player.",
+     "revid": 6658662,
+     "as_written": "@player"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The current player.",
+     "revid": 6512501,
+     "as_written": "@player"
     }
    ],
-   "era_signal": "ascension-claimed",
+   "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": [
     "Interface/FrameXML/ChatFrame.lua:1070",
@@ -493,7 +1217,71 @@
    "probe_rows": [
     "[@player]"
    ],
-   "era_note": "claimed only by the Ascension wiki"
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+  },
+  "@questnpc": {
+   "token": "@questnpc",
+   "kind": "unit-target",
+   "base": "@questnpc",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Others] The quest giver NPC with which the player is currently interacting. In most cases this will be identical to the \"npc\" unit.",
+     "revid": 6658662,
+     "as_written": "@questnpc"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Others] The quest giver NPC with which the player is currently interacting. In most cases this will be identical to the \"npc\" unit.",
+     "revid": 6512501,
+     "as_written": "@questnpc"
+    }
+   ],
+   "era_signal": "unit-token-vocabulary",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@questnpc]"
+   ],
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+  },
+  "@raid": {
+   "token": "@raid",
+   "kind": "unit-target",
+   "base": "@raid",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The raid member with [[raidIndex]] ''N'' (1,2,3,...,40).",
+     "revid": 6658662,
+     "as_written": "@raid"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The raid member with [[raidIndex]] ''N'' (1,2,3,...,40).",
+     "revid": 6512501,
+     "as_written": "@raid"
+    }
+   ],
+   "era_signal": "unit-token-vocabulary",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@raid]"
+   ],
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
   },
   "@raid1": {
    "token": "@raid1",
@@ -545,6 +1333,262 @@
    ],
    "era_note": "claimed only by the Ascension wiki"
   },
+  "@raidpet": {
+   "token": "@raidpet",
+   "kind": "unit-target",
+   "base": "@raidpet",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The pet of the raid member with [[raidIndex]] ''N'' (1,2,3,...,40)",
+     "revid": 6658662,
+     "as_written": "@raidpet"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The pet of the raid member with [[raidIndex]] ''N'' (1,2,3,...,40)",
+     "revid": 6512501,
+     "as_written": "@raidpet"
+    }
+   ],
+   "era_signal": "patch-dated",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "1.5.0",
+     "expansion": "vanilla",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''partypetN'' and ''raidpetN''.",
+     "from": "warcraft-wiki-unittoken"
+    },
+    {
+     "patch": "1.5.0",
+     "expansion": "vanilla",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''partypetN'' and ''raidpetN''.",
+     "from": "wowpedia-unitid"
+    }
+   ],
+   "era_note": "SOURCED: added in patch 1.5.0 (vanilla) => predates/matches the 3.3.5a base; expected present."
+  },
+  "@softenemy": {
+   "token": "@softenemy",
+   "kind": "unit-target",
+   "base": "@softenemy",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Soft Targeting] The current soft target that is hostile towards the player.",
+     "revid": 6658662,
+     "as_written": "@softenemy"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Soft Targeting] The current soft target that is hostile towards the player.",
+     "revid": 6512501,
+     "as_written": "@softenemy"
+    }
+   ],
+   "era_signal": "patch-dated",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "10.0.0",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+     "from": "warcraft-wiki-unittoken"
+    },
+    {
+     "patch": "10.0.0",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+     "from": "wowpedia-unitid"
+    }
+   ],
+   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+  },
+  "@softfriend": {
+   "token": "@softfriend",
+   "kind": "unit-target",
+   "base": "@softfriend",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Soft Targeting] The current soft target that is friendly towards the player.",
+     "revid": 6658662,
+     "as_written": "@softfriend"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Soft Targeting] The current soft target that is friendly towards the player.",
+     "revid": 6512501,
+     "as_written": "@softfriend"
+    }
+   ],
+   "era_signal": "patch-dated",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "10.0.0",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+     "from": "warcraft-wiki-unittoken"
+    },
+    {
+     "patch": "10.0.0",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+     "from": "wowpedia-unitid"
+    }
+   ],
+   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+  },
+  "@softinteract": {
+   "token": "@softinteract",
+   "kind": "unit-target",
+   "base": "@softinteract",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Soft Targeting] The current soft target that can be interacted with. This may be an NPC such as a questgiver or merchant, or a game object like a mailbox or a gathering node.",
+     "revid": 6658662,
+     "as_written": "@softinteract"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Soft Targeting] The current soft target that can be interacted with. This may be an NPC such as a questgiver or merchant, or a game object like a mailbox or a gathering node.",
+     "revid": 6512501,
+     "as_written": "@softinteract"
+    }
+   ],
+   "era_signal": "patch-dated",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": null,
+   "probe_rows": [],
+   "patch_history": [
+    {
+     "patch": "10.0.0",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+     "from": "warcraft-wiki-unittoken"
+    },
+    {
+     "patch": "10.0.0",
+     "expansion": "Dragonflight",
+     "action": "added",
+     "cited": false,
+     "note": "Added ''anyenemy'', ''anyfriend'', ''anyinteract'', ''softenemy'', ''softfriend'', and ''softinteract''.",
+     "from": "wowpedia-unitid"
+    }
+   ],
+   "era_note": "SOURCED: added in patch 10.0.0 (Dragonflight). The CoA client is 3.3.5a (WotLK), so this POSTDATES its base => present here only if BACKPORTED. This client backports freely, and @cursor (7.1.0) is a CONFIRMED backport witnessed in its own source - so presence is a real question, not a formality."
+  },
+  "@spectated": {
+   "token": "@spectated",
+   "kind": "unit-target",
+   "base": "@spectated",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The ''N''th spectated unit (1,2,3,...,15) for either ''T''eam \"a\" or \"b\", such as \"spectatedb2\" for the second unit on team B. Only present in commentator mode.",
+     "revid": 6658662,
+     "as_written": "@spectated"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The ''N''th spectated unit (1,2,3,...,15) for either ''T''eam \"a\" or \"b\", such as \"spectatedb2\" for the second unit on team B. Only present in commentator mode.",
+     "revid": 6512501,
+     "as_written": "@spectated"
+    }
+   ],
+   "era_signal": "unit-token-vocabulary",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@spectated]"
+   ],
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+  },
+  "@spectatedpet": {
+   "token": "@spectatedpet",
+   "kind": "unit-target",
+   "base": "@spectatedpet",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The pet of the ''N''th spectated unit (1,2,3,...,15) for either ''T''eam \"a\" or \"b\", such as \"spectatedpetb2\" for the second units' pet on team B. Only present in commentator mode.",
+     "revid": 6658662,
+     "as_written": "@spectatedpet"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The pet of the ''N''th spectated unit (1,2,3,...,15) for either ''T''eam \"a\" or \"b\", such as \"spectatedpetb2\" for the second units' pet on team B. Only present in commentator mode.",
+     "revid": 6512501,
+     "as_written": "@spectatedpet"
+    }
+   ],
+   "era_signal": "unit-token-vocabulary",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@spectatedpet]"
+   ],
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
+  },
   "@target": {
    "token": "@target",
    "kind": "unit-target",
@@ -558,9 +1602,23 @@
      "says": "Casts on your current target",
      "revid": 15818,
      "as_written": "@target"
+    },
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The currently targeted unit. May be overridden in macros by unit specified as a value of respective Secure Button attribute.",
+     "revid": 6658662,
+     "as_written": "@target"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The currently targeted unit. May be overridden in macros by unit specified as a value of respective Secure Button attribute.",
+     "revid": 6512501,
+     "as_written": "@target"
     }
    ],
-   "era_signal": "ascension-claimed",
+   "era_signal": "unit-token-vocabulary",
    "negation_documented": false,
    "source_witness": [
     "Interface/FrameXML/ChatFrame.lua:1045",
@@ -572,7 +1630,7 @@
    "probe_rows": [
     "[@target]"
    ],
-   "era_note": "claimed only by the Ascension wiki"
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
   },
   "@unitId": {
    "token": "@unitId",
@@ -598,6 +1656,38 @@
     "[@unitId]"
    ],
    "era_note": "listed by the retail wiki, ABSENT from the ~2010 archive, and NO patch annotation found. We do NOT know when it shipped - absence is not evidence. Treat as UNDATED: it may predate 3.3.5a and simply be undocumented there, or postdate it. The probe answers; the wiki cannot."
+  },
+  "@vehicle": {
+   "token": "@vehicle",
+   "kind": "unit-target",
+   "base": "@vehicle",
+   "arg_forms": [],
+   "aliases": [],
+   "claimed_by": [
+    {
+     "source": "warcraft-wiki-unittoken",
+     "era": "retail-current",
+     "says": "[Base Values] The current player's vehicle.",
+     "revid": 6658662,
+     "as_written": "@vehicle"
+    },
+    {
+     "source": "wowpedia-unitid",
+     "era": "retail-2021",
+     "says": "[Base Values] The current player's vehicle.",
+     "revid": 6512501,
+     "as_written": "@vehicle"
+    }
+   ],
+   "era_signal": "unit-token-vocabulary",
+   "negation_documented": false,
+   "source_witness": null,
+   "proof_mark": "UNPROVEN",
+   "probe_method": "pass-through test (NOT polarity - see two_mechanisms)",
+   "probe_rows": [
+    "[@vehicle]"
+   ],
+   "era_note": "a UNIT TOKEN, not a conditional. The parser does not decide whether @X works - the UNIT SYSTEM does, downstream. Proof method is UnitExists/UnitName, NOT the polarity matrix. Context-bound (@party1 needs a party), so read it against the context stamp."
   },
   "actionbar": {
    "token": "actionbar",

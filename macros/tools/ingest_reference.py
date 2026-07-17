@@ -65,7 +65,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 REF = ROOT / "macros" / "reference"
 EXTRACT = ROOT / "Outputs" / "client_interface" / "patch-B" / "Interface"
-UA = "Mozilla/5.0 (CoA macros bench; source-trace tooling)"
+# wiki.gg returns a "Blocked" HTML page to a short UA; a real browser UA gets 200.
+UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
+      "Chrome/126.0.0.0 Safari/537.36")
 
 SOURCES = [
     {"name": "ascension-wiki-macros", "host": "project-ascension.fandom.com",
@@ -84,7 +86,24 @@ SOURCES = [
     {"name": "wowpedia-macro-conditionals", "host": "wowpedia.fandom.com",
      "page": "Macro_conditionals", "era": "retail-2021", "format": "deflist",
      "standing": "SECONDARY (retail) - the delegation target of the cited page"},
+    # The UNIT TOKEN vocabulary - the OTHER half of the @ question (Battlewrath, 2026-07-17).
+    # If @X is pass-through, the parser never decides whether @X works: the UNIT SYSTEM does,
+    # downstream. So these pages supply the real @ candidate list, and their proof method is
+    # UnitExists/UnitName - NOT SecureCmdOptionParse.
+    {"name": "warcraft-wiki-unittoken", "host": "warcraft.wiki.gg",
+     "page": "UnitToken", "era": "retail-current", "format": "unit-token-deflist",
+     "standing": "SECONDARY (retail, CURRENT) - Wowpedia's live successor (moved off fandom "
+                 "2023). The maintained unit-token reference."},
+    {"name": "wowpedia-unitid", "host": "wowpedia.fandom.com",
+     "page": "UnitId", "era": "retail-2021", "format": "unit-token-deflist",
+     "standing": "SECONDARY (retail) - the frozen fandom copy of the same reference; the "
+                 "pair brackets the era the way the macro wikis do."},
 ]
+
+# Which sources are the UNIT TOKEN vocabulary (by format, not by era - a token claimed by
+# BOTH the ascension macro wiki and a unit-token page is still a unit token).
+UNIT_TOKEN_SOURCES = {s["name"]: True for s in SOURCES
+                      if s["format"] == "unit-token-deflist"}
 
 PROOF_MARKS = {
     "UNPROVEN": "claimed by a secondary source; NO witness of any kind on this client. "
@@ -270,8 +289,52 @@ def x_delegates(w):
     return []
 
 
+def x_unit_token_deflist(w):
+    """UnitToken / UnitId: `; <code>"player"</code> : description`
+
+    Emits @-PREFIXED, because these are the `@X` target vocabulary. `N` placeholders
+    (party''N'') are normalised to the bare base - `@party` with the index left as the
+    known range, since @party1 and @party4 are not different vocabulary entries.
+
+    NOTE what is NOT here: `cursor`. Neither page lists it, because it was never a unit -
+    it is a macro-layer special case (Legion 7.1.0) that Ascension hand-rolls via
+    Custom_HandleTerrainClick. Third independent confirmation of the two-mechanism split.
+    """
+    out = []
+    # ONLY the vocabulary sections. "Target of unit" is the suffix GRAMMAR and "Examples"
+    # is worked examples - harvesting those took a wiki editor's USERNAME (@Cogwheel) and
+    # chained illustrations (@party1targettarget, @targettargetpettarget) as vocabulary.
+    VOCAB = ("Base Values", "Soft Targeting", "Others")
+    SKIP = ("Target of unit", "Examples", "Details", "Patch changes", "Used by",
+            "References")
+    section, keep = None, False
+    for line in w.split("\n"):
+        h = re.match(r"^==\s*([^=]+?)\s*==\s*$", line)
+        if h:
+            section = h.group(1).strip()
+            keep = section in VOCAB
+            continue
+        if not keep:
+            continue
+        # `"+` not `"` before </code>: BOTH wikis carry a typo - `"nameplate''N''""` has a
+        # stray extra quote (wiki.gg inherited it from fandom). A strict regex silently
+        # dropped the token - and of all tokens, nameplateN is the sharpest question here
+        # (Legion 7.0.3, and this client backports the Legion nameplate system). Source
+        # markup is DIRTY; a strict pattern doesn't fail loudly, it just loses rows.
+        m = re.match(r'^;\s*<code>"([^"]+)"+\s*</code>\s*:?\s*(.*)$', line)
+        if not m:
+            continue
+        tok, desc = clean(m.group(1)), re.sub(r"\s+", " ", m.group(2)).strip()
+        tok = re.sub(r"(N|<T><N>)$", "", tok).strip()
+        if not tok or tok == "unitId":            # a placeholder, not a token
+            continue
+        _emit(out, "@" + tok, f"[{section}] {desc}")
+    return out
+
+
 EXTRACTORS = {"fandom-table": x_fandom_table, "bold-bullets": x_bold_bullets,
-              "deflist": x_deflist, "delegates": x_delegates}
+              "deflist": x_deflist, "delegates": x_delegates,
+              "unit-token-deflist": x_unit_token_deflist}
 
 
 def extract_patch_history(w, name):
@@ -293,9 +356,16 @@ def extract_patch_history(w, name):
     out = []
     for m in re.finditer(r"\{\{Patch\s+([0-9][0-9.]*)\|note=(.*?)(?:<ref|\}\})", w, re.S):
         patch, note = m.group(1), re.sub(r"\s+", " ", m.group(2)).strip()
-        toks = re.findall(r'"([a-z]+)"|(@[a-z]+)', note)
-        for a, b in toks:
-            tok = a or b
+        # Two markup dialects for the SAME thing: the macro page writes "combat",
+        # the unit-token page writes ''nameplateN''. Matching only the quoted form
+        # silently yielded ZERO unit-token patch data - including nameplateN (7.0.3,
+        # the backport test) and bossN (3.3.0, inside 3.3.5a's own era).
+        toks = re.findall(r'"([a-z]+)"|\'\'([A-Za-z]+)\'\'|(@[a-z]+)', note)
+        for a, b, c in toks:
+            tok = a or b or c
+            if not tok:
+                continue
+            tok = re.sub(r"N$", "", tok)          # nameplateN -> nameplate
             out.append({"token": tok, "patch": patch, "note": note[:120],
                         "action": "removed" if "removed" in note.lower() else "added",
                         "from": name, "cited": "<ref" in m.group(0)})
@@ -330,6 +400,17 @@ def extract_grammar(w, name):
          "`/` = OR inside an argument (e.g. mod:shift/ctrl)"),
         (r"Replace with any valid \[\[unitId\]\]|any valid unitId",
          "`@unitId` takes ANY valid unitId => supports the PASS-THROUGH hypothesis"),
+        (r"Append the suffix <code>target</code> to any UnitToken",
+         "SUFFIX GRAMMAR: append `target` to ANY unit token, repeatable "
+         "(pettarget, playertargettarget). This DERIVES tokens rather than listing them - "
+         "which is exactly why no wiki lists @pettarget as a base token, and why its "
+         "absence from every list proves nothing."),
+        (r"UnitIds are case insensitive|[Uu]nit tokens are case insensitive",
+         "unit tokens are CASE INSENSITIVE (consistent with CoA's handler doing "
+         "target:lower() == 'cursor')"),
+        (r"hyphens to separate the target chain",
+         "a party/raid member's NAME works as a unit, with hyphens for the chain "
+         "(Cogwheel-target-target)"),
     ]:
         if re.search(pat, w):
             claims.append({"claim": claim, "from": name})
@@ -475,7 +556,12 @@ def main():
             e["source_witness"] = witnesses[tok]
             e["proof_mark"] = "SOURCE-CORROBORATED"
         # SOURCED patch data first - it is EVIDENCE. Absence never is.
-        pd = by_tok.get(tok) or by_tok.get(e["base"])
+        # Patch notes name tokens BARE ("Added ''nameplateN''"); the register keys unit
+        # tokens @-PREFIXED. Without stripping the @, every unit-token patch date silently
+        # failed to join - losing boss (3.3.0, inside 3.3.5a's era), focus (2.0.0),
+        # nameplate (7.0.3) and the six 10.0.0 soft/any tokens.
+        pd = (by_tok.get(tok) or by_tok.get(e["base"])
+              or (by_tok.get(tok.lstrip("@")) if tok.startswith("@") else None))
         if pd:
             e["patch_history"] = [{"patch": x["patch"], "expansion": wow_era(x["patch"]),
                                    "action": x["action"], "cited": x["cited"],
@@ -499,6 +585,14 @@ def main():
             e["era_note"] = ("documented in the wowwiki archive (content frozen ~2010, "
                              "WotLK/early-Cata) => expected present on a 3.3.5a base. An "
                              "UNSUPPORTED here would be a real finding.")
+        elif tok.startswith("@") and any(
+                UNIT_TOKEN_SOURCES.get(c["source"]) for c in e["claimed_by"]):
+            e["era_signal"] = "unit-token-vocabulary"
+            e["era_note"] = ("a UNIT TOKEN, not a conditional. The parser does not decide "
+                             "whether @X works - the UNIT SYSTEM does, downstream. Proof "
+                             "method is UnitExists/UnitName, NOT the polarity matrix. "
+                             "Context-bound (@party1 needs a party), so read it against the "
+                             "context stamp.")
         elif "retail-2021" in eras:
             # NOT "post-wotlk" - that asserts a history we have NO evidence for. All we
             # know is that a retail wiki lists it and an older one does not. Absence is
@@ -576,8 +670,8 @@ def main():
             "total": len(all_c),
             "by_era": {k: sum(1 for e in all_c.values() if e["era_signal"] == k)
                        for k in ("patch-dated", "archive-documented",
-                                 "retail-documented-only", "ascension-claimed",
-                                 "NOT-IN-ANY-WIKI")},
+                                 "retail-documented-only", "unit-token-vocabulary",
+                                 "ascension-claimed", "NOT-IN-ANY-WIKI")},
             "by_kind": {k: sum(1 for e in all_c.values() if e["kind"] == k)
                         for k in ("flag", "unit-target")},
             "by_proof_mark": {k: sum(1 for e in all_c.values() if e["proof_mark"] == k)
