@@ -101,6 +101,26 @@
    "different_character": "F returned 'Scarletta'; the 5-context capture's @player was 'Gravereaper' (class REAPER). These probes ran on a DIFFERENT character. Grammar is character-independent (the parser is the parser), so the findings stand - but form/stance results are not automatically portable across characters."
   }
  },
+ "COA_CLASS_FORMS_ARE_MACRO_ADDRESSABLE": {
+  "tier": "CHAT PROBE (hand-transcribed). One class, one form - a positive case, not a survey.",
+  "THE_FIND": "CoA's CUSTOM CLASSES USE THE STOCK SHAPESHIFT REGISTRY. So [form:N] / [stance:N] is a REAL, WORKING macro lever for a CoA class form - and form/stance are already SUPPORTED-PROVEN in `flags`. Usable in a macro today.",
+  "evidence": "Battlewrath on his BLOODMAGE, 2026-07-17: GetNumShapeshiftForms()=1 · GetShapeshiftForm()=1 · GetShapeshiftFormInfo(1) = ('interface/icons/Spell_Nature_WispSplode', 'Sanguine essence', isActive=1, isCastable=1).",
+  "the_join": "Bloodmage = api token SONOFARUGAL, classId 20 (Weak Auras/engine/Fact_basis/maps/class_table.json, wa_load_verified). The custom-class token is an opaque codename you cannot guess - which is exactly why that join exists.",
+  "so_concretely": "on a Bloodmage, [form:1] / [stance:1] gates on Sanguine essence.",
+  "battlewrath_hypothesis": {
+   "his_words": "'I think the determining factor for form, is if it has a stance bar attached.'",
+   "status": "POSITIVE CONFIRMATION; the negative half is still open.",
+   "confirmed": "Sanguine essence IS in the shapeshift registry (NF=1, name returned, isActive=1) AND is visible to GetShapeshiftForm (cur=1). Registry membership and visibility travel together.",
+   "the_mechanism_the_source_supports": "the STANCE BAR (ShapeshiftBarFrame, ShapeshiftButton1..12) is driven by GetNumShapeshiftForms / GetShapeshiftFormInfo - the SAME registry GetShapeshiftForm reports on. The stance bar is the VISIBLE FACE of that registry: one mechanism, both symptoms. A buff-form is not in the registry at all, so there is no bar and nothing for GetShapeshiftForm to see.",
+   "still_open": "the NEGATIVE case - run it on the REAPER in the spell-form the capture read as INVISIBLE (shapeshiftForm=0 while he was demonstrably in a form). If NF=0 there, it is settled."
+  },
+  "MY_ERROR_KEPT_ON_PURPOSE": {
+   "what_I_did": "I was about to assert 'bonusBarOffset IS the stance bar' and test the hypothesis with it. Battlewrath stopped me: 'Is that what bonusbar is?'",
+   "what_the_source_says": "NO. ShapeshiftBarFrame (the stance bar - a row of form buttons) and BonusActionBarFrame (the MAIN action bar replacement) are DIFFERENT FRAMES. They merely live in the same file, which is what made them look like one thing. The archive agrees: bonusbar:5 = 'the possess bar is active' - a main-bar takeover, not a stance row.",
+   "why_the_correlation_fooled_me": "shapeshiftForm and bonusBarOffset move together in 4/4 observations - but these forms simply BRING their own bar. Two effects of one state. CO-OCCURRENCE, NOT MECHANISM.",
+   "the_rule": "THE STAMP IS EVIDENCE OF STATE; IT IS NOT A THEORY OF MECHANISM. I collapsed those under pressure to have an answer, and the correct instrument (GetNumShapeshiftForms) was there the whole time."
+  }
+ },
  "CHAT_PROBE_FOLLOWUP": {
   "tier": "CHAT PROBE - live, but hand-transcribed. WEAKER than the landed capture.",
   "when": "2026-07-17, immediately after the 5-context capture",
