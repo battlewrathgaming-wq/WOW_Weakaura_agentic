@@ -27,6 +27,7 @@ macros/
     api.json                  the macro C API + limits (limits RESOLVED live: 36/36; 511 body)
     statedrivers.json         the 2nd consumer of the conditional vocabulary
     _meta.json                provenance anchor (sha256 per source archive) + counts
+  CONVENTION.md                Battlewrath's macro HOUSE STYLE — the modifier grammar (design, rests on basis)
   reference/                  SECONDARY — external, provenance-stamped. NEVER cite as fact.
     README.md                 the grain statement — read before using anything here
     candidates.json           THE QUESTION REGISTER — candidates + proof marks (counts inside)
