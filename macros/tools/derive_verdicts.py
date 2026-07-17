@@ -375,6 +375,57 @@ def main():
                                      "mechanically. Where the API IS resident the verdict "
                                      "stays AMBIGUOUS rather than being talked into place.",
         },
+        "WHAT_THE_PARSER_ACTUALLY_IS": {
+            "framing": "Battlewrath, 2026-07-17: 'So it sounds more like an adaptor than true "
+                       "conditional logic?' — the data says yes.",
+            "it_is": [
+                "a KEYWORD MATCHER over a FIXED vocabulary of flattened state reads "
+                "(UnitAffectingCombat, IsMounted, IsStealthed, GetShapeshiftForm...)",
+                "a CLAUSE SELECTOR - first clause whose tests all pass wins",
+                "an ARGUMENT ADAPTOR - macro text in, (action, target) out, handed to a "
+                "handler which does the actual work",
+            ],
+            "it_is_NOT": [
+                "conditional LOGIC - logic validates its terms; this does not",
+                "a validator - unknown tokens do not error, do not reject, do not skip",
+                "extensible - the vocabulary is fixed in C, which is exactly WHY Ascension "
+                "added [@cursor] in the HANDLER (Custom_HandleTerrainClick) rather than the "
+                "parser. The framing explains the layer finding rather than coexisting with it.",
+            ],
+            "the_decisive_evidence": {
+                "[outdoors]": "pos=Y, neg=nil - REAL, and genuinely true (stamp outdoors=1)",
+                "[petbattle]": "pos=Y, neg=nil - a system that DOES NOT EXIST on this client",
+                "reading": "byte-identical. And the no- prefix IS processed: it negates "
+                           "whatever the lookup yielded, so unknown evaluates TRUE and its "
+                           "negation returns false.",
+            },
+            "same_shape_as_WA": "neither holds state - the game does. WA flattens native "
+                                "signals into trigger fields; the macro parser flattens the "
+                                "same signals into keywords. Both are read-and-flatten "
+                                "surfaces. Neither reasons. (memory: "
+                                "wa-reads-and-flattens-native-state)",
+        },
+        "THE_FOOTGUN_THE_GUIDE_MUST_LEAD_WITH": {
+            "rule": "AN UNSUPPORTED CONDITIONAL SILENTLY SUCCEEDS. It does not error.",
+            "worked_example": "/cast [resting] Drink; Frostbolt  ->  ALWAYS Drink, never "
+                              "Frostbolt. [resting] is PROVEN unsupported here (witness "
+                              "contradiction, all 5 contexts), so it evaluates TRUE, the "
+                              "first clause always wins, and the fallback chain COLLAPSES to "
+                              "its first element.",
+            "why_it_is_worse_than_an_error": "the macro appears to work. No error, no "
+                                             "warning, no indication. A player copying a "
+                                             "retail fallback chain into CoA gets something "
+                                             "that fires confidently and wrongly - "
+                                             "plausible, silent, and indistinguishable from "
+                                             "correct.",
+            "who_this_hits": "anyone following a retail macro guide - which is nearly every "
+                             "macro guide, including the Ascension wiki's own, since it "
+                             "inherits its conditional list from the retail wikis (see "
+                             "reference/README).",
+            "the_defence": "the 6 UNSUPPORTED-IGNORED + 4 AMBIGUOUS in `flags` below are the "
+                           "list to never put in a macro on this client. Everything "
+                           "archive-documented is safe (53/53 supported).",
+        },
         "at_targets": {
             "control_row_SETTLED": passthrough,
             "finding": "[@banana] returned target='banana' in ALL FIVE contexts => `@` is a "
