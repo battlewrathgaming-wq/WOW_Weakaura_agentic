@@ -1,15 +1,11 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-17 (released — `/macros/` stood up; the slice is staged and waiting on the client)
-heading: —
-runway:  —
-
-next:    `/macros/` is BLOCKED ON ONE THING — the live capture. Ask is staged at `macros/probe/ASK.md`
-         (addons bench owns the harness; pointer at `addons/backlog.md` #4). Nothing in the slice moves
-         until it lands. When it does, the map is this bench's build: derive verdicts from the RAW record,
-         graduate the proven set into `basis/conditionals.json`. Forecast + expectations:
-         `operations/Macros.md`. Anything else is free game.
+holder:  addons bench
+since:   2026-07-17
+heading: Land macros/probe/ASK.md through the v2 harness — RAW, one bounded pass (verdicts derive
+         offline); and sweep the backlog for what else the same deploy+restart can carry
+         (spec capture / tooltip gap-fill candidates).
+runway:  one working session
 
 ---
 
