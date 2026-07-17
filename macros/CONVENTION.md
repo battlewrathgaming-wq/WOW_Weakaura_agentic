@@ -5,6 +5,31 @@ we build follows ONE modifier language (the "engrain what I already do" goal mad
 facts each choice rests on are cited; the composition is his seat (taste/feel). Est. 2026-07-17,
 during the Reaper macro-design session, after his keybind reorg._
 
+## ★ THE GOVERNING RULE — chain the pre-cognition, isolate the reactive
+
+Battlewrath's playstyle, and the criterion above every technique below (2026-07-17, after the
+Reaper set was built and **live-confirmed** in play): **play proactively — anticipate the expected
+use case — not reactively.**
+
+- **Chain what you can pre-cognition.** A pattern you already know you'll press — the rotation, the
+  generator cycle, the AoE/ST filler — is a decision made *in advance*, so a macro can carry it.
+  Fire-and-forget *is* pre-cognition made mechanical: the choice is front-loaded, now you just press.
+- **Isolate what stays reactive.** An ability on unpredictable timing, a reactive window, a read you
+  make in the moment — chaining it would **pre-commit a decision that has to stay live.** It keeps
+  its own key, or the shift bar.
+
+**And chain only what is ALREADY a repeatable pattern — observe first, consolidate second.** You do
+not chain speculatively; you play it isolated, and *once it reveals itself as repeatable*, you fold
+it into a chain. The guard against chaining something that only looked repeatable.
+
+The test for any ability: *is this a repeatable pattern I can anticipate, or a reactive decision I
+make in the moment?* Repeatable → chain. Reactive → isolate. Everything below (flatten,
+survival-filter, ctrl-reset) governs only the **chainable** half.
+
+This is the project's own method applied to the hands: **extract the pattern observed to be true,
+consolidate it into a gear — never invent the gear up front.** Pre-compute what's predictable; keep
+judgment free for what isn't.
+
 ## Why a convention at all
 
 CoA classes carry **a lot of buttons** — throughput, situational, cooldowns. The convention exists
@@ -156,8 +181,9 @@ conditional.** To reach the payoff (step 3), a target must *survive the two fill
 target*. Trash dies to the AoE → its death fires `PLAYER_TARGET_CHANGED` → reset → it never gets
 the payoff. A tanky survivor you've committed to outlives the fillers → reaches the payoff → gets
 the ST effect it merits. The sequence position *is* the "does this target deserve the ST spend?"
-threshold. Airtight from the proven mechanics (reset-on-event · advance-on-success · wrap), not a
-hope — only the *feel* wants a live pack to confirm.
+threshold. Airtight from the proven mechanics (reset-on-event · advance-on-success · wrap), and
+**LIVE-CONFIRMED in play 2026-07-17** ("it performs well") — the fire-and-forget converges on the
+right behaviour exactly as the mechanics predicted.
 
 **The count also kills the ritual.** *One* filler would force constant tab-targeting to dodge the
 payoff — you'd be *performing* the macro. *Two* give slack: **fire-and-forget converges on the
