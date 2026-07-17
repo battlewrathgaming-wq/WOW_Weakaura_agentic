@@ -16,7 +16,7 @@ same modifier always means the same kind of thing, whatever the class or ability
 | input | means | rests on |
 |---|---|---|
 | **base press** | the **sequence** — throughput / rotation compression | `castsequence.md` |
-| **shift** | the **situational** alternate — `[mod:shift]` branch | `[mod:shift]` proven (`conditionals.json`) |
+| **shift** | **swaps to the situational BAR** (Bartender paging) — **NOT a macro layer** | `[mod:shift]` proven in the **state-driver path** (live, 2026-07-17) |
 | **ctrl** | **reset** — restart the sequence from step 1 | **native `reset=ctrl`**, source-proven |
 | **alt** | **row modifier** (mouse-thumb → Alt, hardware). **OUT OF BOUNDS in macros.** | see below |
 
@@ -30,24 +30,52 @@ keypress to reach the alt row, so on that row **alt is always held** — which m
 permanently true (dead weight) and `reset=alt` reset constantly. Shift and ctrl read *independently*
 of alt, so alt-row macros can still branch on those; only alt itself is unusable in-macro.
 
-## The template
+## Shift is a BAR SWAP, not a macro layer (the last flattening)
+
+**Confirmed live 2026-07-17.** The situational layer is offloaded to **Bartender paging** — a
+`RegisterStateDriver` (the `statedrivers` domain — "the 2nd consumer of the conditional
+vocabulary"), driven by the *same* `[condition]state;…;default` grammar as macros. Holding shift
+pages the whole bar to a **situational bar** (Battlewrath's page 10), so the button under your
+finger becomes a different button. Consequence: **base-page macros are only ever pressed *without*
+shift** → `[mod:shift]` inside them can never fire → **macros collapse to sequence-only.**
+
+The paging string (stealth wins; possess also overrides the voluntary shift; first-match is
+left-to-right):
+```
+[stealth]7;[bonusbar:5]11;[mod:shift]10;[bar:2]2;[bar:3]3;[bar:4]4;[bar:5]5;[bar:6]6;0
+```
+Every conditional in it is in the proven-supported set (`stealth` proven; `bonusbar`/`bar`/`mod`
+supported) **and** proven-by-use. Layout changes are now **native bar edits** (drop an ability
+onto page 10), not macro rewrites — the real win Battlewrath was after.
+
+## The template — sequence-only
 
 ```
 #showtooltip
-/cast [mod:shift] <situational>
 /castsequence reset=ctrl/target <throughput spells>
 ```
 
-Base press → the throughput sequence · shift → the situational override · ctrl → restart the
-sequence · (alt → hardware row, never referenced in the macro).
+Base press → the throughput sequence · ctrl → restart it · shift → *the bar swaps* (handled by
+paging, not this macro) · alt → hardware row, never referenced. The situational abilities live as
+their own buttons on the shift-page bar.
 
-## Why MANUAL layering, not automatic branching
+## Auto-fire drives the sequence — and it's SAFE by the pending flag
+
+**Hold-to-repeat** (bar-1 auto-fire) is how a castsequence *wants* to be driven. From source
+(`castsequence.md`): the sequence sets `pending` on cast-sent and **refuses to re-fire while
+pending** (`if entry.pending then return`), and it **advances only on cast SUCCESS**. So holding
+the key walks the sequence **one successful cast at a time** — the repeated presses during a cast
+are harmlessly swallowed by `pending` (no double-advance, no wasted casts). Hold to walk; release
++ pause past `reset=N` to return to the opener. (The auto-fire mechanism itself is the Bartender /
+key-repeat setup — not asserted here; the *castsequence side* is what makes holding it safe.)
+
+## Why we never auto-branch WITHIN a macro
 
 The proven **out-of-range no-fallthrough** (`execution-model.md`) means an automatic *"cast A, or B
-if A is out of range"* macro **cannot be built** on this client. Manual layering sidesteps it
-entirely: the out-of-range whiff only ever hits the **deliberate shift-branch you chose to press**
-— the default (no modifier) always reaches the sequence. So the manual convention isn't a
-consolation for the missing range-fallthrough; it's the shape that makes that limit irrelevant.
+if A is out of range"* line **cannot be built** — the out-of-range attempt eats the press. This is
+*why* the situational layer is a **bar swap** and not an in-macro `/cast A; B`: the swap sidesteps
+the limit entirely (different button, no fallthrough needed), where an in-macro auto-branch would
+have whiffed.
 
 ## Tuning `reset=N` to the rotation's rhythm
 
