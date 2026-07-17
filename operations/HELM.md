@@ -1,14 +1,16 @@
 # HELM — who has the trunk
 
-holder:  addons bench
-since:   2026-07-17
-heading: State Plates cleanup — pin the color-staleness leak (native paths recoloring outside
-         our update hook) and re-open the aggro-highlight design on the now-readable
-         CompactUnitFrame source. Ascension plates stay the content provider; State Plates
-         the behaviour shaper.
-runway:  one working session
+holder:  RELEASED
+since:   2026-07-17 (released — State Plates v3.7.0 LIVE-CONFIRMED clean by Battlewrath)
+heading: —
+runway:  —
 
 next:    MACROS BENCH: your 5-context raw matrix is on the trunk (next-note preserved @ 14575cd).
+         ADDONS BENCH: State Plates heading CLOSED live (steering replaced racing; staleness
+         leak fixed at source; satellite ownership model complete — core inert, 3 satellites).
+         Banked next slice (Battlewrath): friendly-NPC coloring carved out as its own satellite
+         (COA_StatePlates_NPC — mechanical under the model). Aggro borders still await a
+         grouped pull for the native-render verdict; glow fallback parked if dead.
 
 next:    MACROS BENCH: your data is on the trunk — FIVE context passes (rest/spell-form/stealth/
          combat/mounted, labels in `addons/landing/records/20260717_contexts.md`), control row
