@@ -102,6 +102,7 @@ local addonName, ns = ...
 
 ns.Friendly = ns.Friendly or {}
 ns.Enemy = ns.Enemy or {}
+ns.Aggro = ns.Aggro or {} -- v3.6.0: the native threat-steering module (AggroPlates.lua)
 
 local function Print(msg)
     DEFAULT_CHAT_FRAME:AddMessage("|cff33ff99[COA_GuardianPlates]|r " .. tostring(msg))
@@ -654,8 +655,17 @@ function ns.SetHealthBarColor(unit, plate, color)
         end
     end
     pcall(healthBar.SetStatusBarColor, healthBar, color.r, color.g, color.b)
+    -- v3.6.0 STALENESS FIX: also arm the NATIVE override slot
+    -- (optionTable.healthBarColorOverride, UpdateHealthColor:523) - the
+    -- native event-driven repaints that used to sneak native colors back in
+    -- between our ticks now re-assert OUR tint instead. The direct paint
+    -- above stays for structures without a UnitFrame (fallback layout).
+    local armed = ns.SetPlateOption(unit, plate, "healthBarColorOverride",
+        { r = color.r, g = color.g, b = color.b })
     if ns.IsLogging() then
-        ns.Log("Core", "SetHealthBarColor(%s) -> applied (r=%.2f g=%.2f b=%.2f)", tostring(unit), color.r, color.g, color.b)
+        ns.Log("Core", "SetHealthBarColor(%s) -> applied (r=%.2f g=%.2f b=%.2f)%s",
+            tostring(unit), color.r, color.g, color.b,
+            armed and " + native override armed" or " (no UnitFrame - direct paint only)")
     end
 end
 
@@ -663,6 +673,13 @@ end
 -- there's nothing left to visually restore, but the capture is still
 -- forgotten so a future override starts from a fresh baseline.
 function ns.ClearHealthBarColor(unit, plate)
+    -- v3.6.0: disarm the native override first, then let the native logic
+    -- repaint the CORRECT current color itself (better than restoring a
+    -- possibly-stale captured color; the captured restore below stays as
+    -- the fallback for structures without a UnitFrame).
+    if plate and ns.SetPlateOption(unit, plate, "healthBarColorOverride", nil) then
+        ns.RefreshPlateColor(plate)
+    end
     local c = originalHealthBarColors[unit]
     if not c then return end
     if plate then
@@ -1139,6 +1156,99 @@ end
 -- capture has shown), falling back to the same GetChildren() scan the probe
 -- tool itself has always used and proven reliable if the name guess ever
 -- doesn't resolve (e.g. a differently-numbered template).
+-- ---------------------------------------------------------------------
+-- STEERING PRIMITIVES (v3.6.0) - the at-source lane.
+--
+-- Source basis (patch-B extraction, readable since 2026-07-15):
+-- CompactUnitFrame.lua drives every native plate visual off
+-- `self.optionTable`, assigned BY REFERENCE to the shared global
+-- DefaultCompactNamePlate*FrameOptions in SetUpFrame (:2188). Two facts
+-- make steering strictly better than repainting/hooking:
+--   1. optionTable.healthBarColorOverride is the FIRST-priority branch of
+--      UpdateHealthColor (:523) - set it and every native repaint paints
+--      OUR color. The event-driven re-asserts that caused the staleness
+--      leak become the enforcement mechanism.
+--   2. The aggro highlight, threat borders and aggro flash are all
+--      option-gated - the native code hides/shows/colors its own visuals
+--      when the options say so. No Show()/SetVertexColor races ever again.
+--
+-- Per-unit steering without touching other plates: wrap the frame's
+-- optionTable in a per-frame table that __index-falls-through to the
+-- shared one. The driver re-runs SetUpFrame on every plate (re)assignment,
+-- which resets optionTable to the shared default - so recycling cleans up
+-- after us, and modules re-apply in OnUnitAdded (which runs after the
+-- driver's own handler by addon load order: Ascension_* < COA_*).
+--
+-- The driver's own config refresh (NamePlateDriver.lua:48-72) never writes
+-- the fields we steer (verified by source grep 2026-07-17), so nothing
+-- fights these overrides.
+-- ---------------------------------------------------------------------
+
+-- Resolves the plate's CompactUnitFrame (the thing that owns optionTable
+-- and the Update* methods). Same container GetNameRegion resolves.
+function ns.GetUnitFrame(plate)
+    return plate and plate.UnitFrame or nil
+end
+
+-- Ensures the frame has its own steerable optionTable wrapper; returns it.
+-- Reads fall through to the shared table (driver config stays live), our
+-- rawset overrides sit on top. Idempotent per assignment cycle.
+function ns.EnsureSteerableOptions(plate)
+    local uf = ns.GetUnitFrame(plate)
+    if not uf or not uf.optionTable then return nil end
+    local opts = uf.optionTable
+    if rawget(opts, "coaspSteered") then return opts end
+    local wrapped = setmetatable({ coaspSteered = true }, { __index = opts })
+    local ok = pcall(uf.SetOptionTable, uf, wrapped)
+    if not ok then return nil end
+    return wrapped
+end
+
+-- The generic steering write: set (or clear, value=nil) one option override
+-- on one plate. Returns true if the write landed.
+function ns.SetPlateOption(unit, plate, key, value)
+    plate = plate or ns.GetIndexedPlate(unit)
+    local opts = ns.EnsureSteerableOptions(plate)
+    if not opts then return false end
+    rawset(opts, key, value)
+    return true
+end
+
+-- Immediate-apply helpers: the native code repaints on its own events, but
+-- a fresh override deserves a same-tick refresh rather than waiting.
+function ns.RefreshPlateColor(plate)
+    local uf = ns.GetUnitFrame(plate)
+    if uf and uf.UpdateHealthColor then pcall(uf.UpdateHealthColor, uf) end
+end
+
+function ns.RefreshPlateBorder(plate)
+    local uf = ns.GetUnitFrame(plate)
+    if uf and uf.UpdateHealthBorder then pcall(uf.UpdateHealthBorder, uf) end
+end
+
+-- Health-bar color via the native override slot (UpdateHealthColor:523).
+-- color = {r=,g=,b=} or nil to clear back to native logic.
+function ns.SetPlateColorOverride(unit, plate, color)
+    plate = plate or ns.GetIndexedPlate(unit)
+    if not ns.SetPlateOption(unit, plate, "healthBarColorOverride", color) then
+        return false
+    end
+    ns.RefreshPlateColor(plate)
+    return true
+end
+
+-- Native aggro highlight steering (UpdateAggroHighlight:770-776):
+-- enabled=false hides it natively; nil falls back to the shared default.
+function ns.SetNativeAggro(unit, plate, enabled)
+    plate = plate or ns.GetIndexedPlate(unit)
+    if not ns.SetPlateOption(unit, plate, "displayAggroHighlight", enabled) then
+        return false
+    end
+    local uf = ns.GetUnitFrame(plate)
+    if uf and uf.UpdateAggroHighlight then pcall(uf.UpdateAggroHighlight, uf) end
+    return true
+end
+
 function ns.GetNativeAggroHighlightFrame(plate)
     local healthBar = ns.GetHealthBar(plate)
     if not healthBar then return nil end
@@ -1793,6 +1903,7 @@ eventFrame:SetScript("OnEvent", function(self, event, unit)
         end
         if ns.Friendly.OnUnitAdded then pcall(ns.Friendly.OnUnitAdded, unit, plate) end
         if ns.Enemy.OnUnitAdded then pcall(ns.Enemy.OnUnitAdded, unit, plate) end
+        if ns.Aggro.OnUnitAdded then pcall(ns.Aggro.OnUnitAdded, unit, plate) end
 
     elseif event == "NAME_PLATE_UNIT_REMOVED" then
         if not ns.activeUnits[unit] then
@@ -1927,6 +2038,7 @@ reclassifier:SetScript("OnUpdate", function(self, elapsed)
                 pcall(ns.RefreshPlateSiblings, plate)
                 if ns.Friendly.OnReclassify then pcall(ns.Friendly.OnReclassify, unit, plate) end
                 if ns.Enemy.OnReclassify then pcall(ns.Enemy.OnReclassify, unit, plate) end
+                if ns.Aggro.OnReclassify then pcall(ns.Aggro.OnReclassify, unit, plate) end
             end
         end
     end
@@ -2559,7 +2671,14 @@ SlashCmdList["COASTATEPLATES"] = function(msg)
     local cmd, rest = msg:match("^(%S*)%s*(.-)$")
     cmd = (cmd or ""):lower()
 
-    if cmd == "log" then
+    if cmd == "aggro" then
+        -- v3.6.0: the native threat-steering module's own surface
+        if ns.Aggro.HandleCommand then
+            pcall(ns.Aggro.HandleCommand, rest)
+        else
+            Print("AggroPlates module not loaded.")
+        end
+    elseif cmd == "log" then
         local subcmd, subrest = rest:match("^(%S*)%s*(.-)$")
         subcmd = (subcmd or ""):lower()
         if subcmd == "on" then
