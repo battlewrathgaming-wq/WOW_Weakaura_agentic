@@ -1,5 +1,14 @@
 {
  "grain": "SOURCED-COMPLETE. ChatFrame.lua x GlobalStrings.lua (precedence-merged) + inline SLASH_ declarations. Conditional support COMPUTED per handler.",
+ "KNOWN_COVERAGE_HOLE_2026_07_17": {
+  "what": "This file answers 'WHICH COMMANDS TAKE CONDITIONALS'. It does NOT answer 'WHAT CAN I PUT IN A MACRO'. Different questions; the entry rule only serves the first.",
+  "the_entry_rule": "a command enters if (a) SecureCmdList, (b) takes conditionals, or (c) CoA-custom (inline-declared).",
+  "what_it_excludes_that_a_MACRO_NEEDS": "/script and /run - REAL (SlashCmdList['SCRIPT'] at ChatFrame.lua:2343; SLASH_SCRIPT1..4 = /script,/run in GlobalStrings), essential for a macro that prints or runs Lua, and they fail all three entry tests. The CoA wiki's own PreMadeMacros use `/script print(...)`.",
+  "how_it_was_found": "the role's FIRST real request (Battlewrath, 2026-07-17: a macro that toggles Sanguine essence and prints to chat). A hundred greps would not have surfaced it; one live use did.",
+  "also_missing_and_not_this_file's_fault": "the `!` CAST-PREFIX (/cast !Spell = do not toggle off - Blizzard's 2.3.2 patch note, quoted in the WotLK-era archive). It is a cast-command prefix, not a conditional, so it fell BETWEEN this file and conditionals.json. Archive-documented, UNPROVEN here: one row settles it (/cast !Sanguine essence while already in form should NOT drop the form).",
+  "THE_GENERAL_LESSON": "A BASIS ANSWERS THE QUESTION IT WAS BUILT FOR, NOT THE QUESTION THE ROLE ASKS. Exactly what was said of the WA sheets (they answer WA's question, not the macro question) - then the identical shape was built here and went unnoticed until a real request hit it.",
+  "the_fix_when_someone_takes_it": "a SECOND entry rule for macro-forming verbs, emitted ALONGSIDE the conditional one - not a replacement. The conditional rule is correct for its own question."
+ },
  "counts": {
   "total": 70,
   "secure": 49,

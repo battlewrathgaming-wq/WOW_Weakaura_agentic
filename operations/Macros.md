@@ -289,6 +289,88 @@ while the answer sat in `reference/`. Cite internal data first — that is twice
 the mouse left the unit, and a `nil` would be ambiguous. Needs a keybound macro. See
 `probe/README`.
 
+## ★ THE FIRST REAL REQUEST FOUND TWO HOLES — the basis answers the question it was BUILT for
+
+_2026-07-17. Battlewrath asked for a working macro: toggle Sanguine essence, print to chat. The
+role's first live use of the basis. It worked — and it exposed the coverage rule._
+
+**The macro** (delivered, with caveats stated):
+```
+#showtooltip
+/cast Sanguine essence
+/run print("I changed form")
+```
+
+**The `!` finding — his recall, confirmed from source.** He said *"I think !ability protects the
+form you're in."* Correct, and the WotLK-era archive quotes **Blizzard's own 2.3.2 patch note**:
+*"`/cast` will toggle spells again unless the name is prefixed with an exclamation mark."* So
+`/cast` **toggles by default** and `!` is what **stops** it toggling off — meaning the toggle
+macro is one line and wants **no** `!`. **Status: archive-documented, UNPROVEN here.** One row
+settles it: `/cast !Sanguine essence` while already in form (it should NOT drop the form).
+
+### The two holes, and their single cause
+
+| hole | why it was missing |
+|---|---|
+| **`/script` · `/run`** | real (`SlashCmdList["SCRIPT"]`, `ChatFrame.lua:2343`; `SLASH_SCRIPT1..4` = `/script`,`/run`) — but **excluded by `commands.json`'s entry rule** |
+| **the `!` prefix** | a **cast-command prefix**, not a conditional. I built a *conditional* vocabulary; it fell between the domains. |
+
+**The cause is one rule.** `commands.json` enters a command if *(a) secure · (b) takes
+conditionals · (c) CoA-custom*. That is **exactly right** for *"which commands take
+conditionals"* — the question it was built to answer. It is **wrong** for *"what can I put in a
+macro"*: `/script` fails all three and is essential.
+
+**⇒ THE BASIS ANSWERS THE QUESTION IT WAS BUILT FOR, NOT THE QUESTION THE ROLE ASKS.** Which is
+precisely what was said about the WA sheets (*they answer WA's question, not the macro
+question*) — and then the identical shape got built here and went unnoticed until a real
+request hit it. **One live request found two holes that a hundred greps would not have.**
+
+### The `ask` tool: PROPOSED, TESTED, REFUTED
+
+Battlewrath: *"Is there a clean way to find the information you need in flight that is better
+tooled than grep?"* → then, after the macro: *"was that information that an ask tool would have
+helped flatten... or pivot?"*
+
+**Answer: it would have flattened 3 of 6 lookups and done nothing for what actually cost.**
+The macro turn: 3 LOOKUPS (an `ask` flattens these) · **2 HOLES** (an `ask` returns nothing,
+faster) · 1 source read (outside the basis by design).
+
+**And the measurement that justified it was wrong.** I measured **16,900 lines for six facts** —
+that is what `Read` costs. **I do not use `Read` for the bases.** Every lookup was `py -c` +
+`json.load` + a selective print — *already ask-shaped*. I measured a hypothetical cost I do not
+pay, to support a tool I had already proposed. Same shape as the `bonusbar` error: the account
+first, the evidence recruited after.
+
+**`py -c` IS the ask tool. It just needs something to ask.** Verdict: **not built. Coverage
+first.**
+
+_Also: `Weak Auras/Tools/project_index/` (index.json + search_index.json + watch_index.py) is a
+**Cowork-era artifact** — its own docstring says it exists because the MCP filesystem server
+could only match file NAMES, not contents. Ripgrep solves that. **Stale since 2026-07-07**
+(predates `macros/` entirely) and grep-equivalent. Same family as the FUSE workarounds; do not
+reach for it._
+
+### Banked: the shape Battlewrath actually meant
+
+*"It might be the tool ask from me, is more data structuring. Routing and map-flattening the
+topics."* — and that is better than a query tool, for a structural reason: **a query tool needs
+you to know what to ask; a TOPIC MAP tells you what the topic REQUIRES.** The holes become
+**slots**, visible at a glance, instead of being discovered by stumbling into them.
+
+The bases are organised **by source** (`macros/`, `census/`, `Fact_basis/`); topics cut
+**across** them. `routes.md` does this *within* a slice; nothing does it *across*. It is the
+`slice` concept already in the project — *a cross-lane cut pointed by index*.
+
+Sketch, "form a macro" — 10 slots, **3 empty**: the verb (`commands.json`) · **print to chat
+[HOLE]** · safe conditionals · the grammar · **the `!` prefix [HOLE]** · targets · the class
+token (`class_table.json`) · **the spell name [not joined to this slice]** · the form (the
+shapeshift registry) · the limits (`api.json`).
+
+**Not built.** Worth revisiting when there are two or three topics (`form a macro` / `form an
+aura` / `read a class`) — one topic cannot tell you whether the shape holds or collapses into
+overhead. And the research run should come first: it fills the `!` hole *and* the shapes, so the
+map gets drawn against real coverage rather than around it.
+
 ## Open — small, and each one precisely askable now
 
 - **The AMBIGUOUS 4** (`known`, `overridebar`, `possessbar`, `pvpcombat`) — constant-TRUE
