@@ -681,9 +681,15 @@ def main():
                 r.append("- the live differential probe is the SOLE channel; see `probe_design`.")
         elif d == "api":
             if api["limit_conflicts"]:
-                r.append(f"- **LIMITS CONFLICT** (client disagrees with itself): "
-                         f"{', '.join(api['limit_conflicts'])} - unresolved from source, "
-                         f"do not state a limit as fact")
+                r.append(f"- **LIMITS: the SOURCE still disagrees with itself** "
+                         f"({', '.join(api['limit_conflicts'])}) — but the LIVE answer is "
+                         f"settled: **MAX_CHARACTER_MACROS = 36**, not 18 (chat probe, "
+                         f"2026-07-17, after `MacroFrame_LoadUI()` — the globals are "
+                         f"LOAD-ON-DEMAND, which is why they read nil in the capture).")
+                r.append("- ⇒ **QuickKeybindActionPicker's local `18` is a stale shadow**, so "
+                         "the backported picker likely cannot see character macros 19–36. A "
+                         "real bug in THEIR client — evidenced, not hypothesised. The ENGINE "
+                         "limit is still unproven (needs a write test; not asked).")
         elif d == "statedrivers":
             r.append("- PROVENANCE OPEN: live, but no SecureStateDriver.lua in the extraction "
                      "and `unattributed` mixes engine-custom with user-addon")

@@ -30,7 +30,8 @@ the option vocabulary; C-side; the live probe is the SOLE channel and it has RUN
 ## api (24) - `api.json`  ·  _runtime-attested x source constants_
 the macro C API + limits (limits CONFLICT - unresolved)
 
-- **LIMITS CONFLICT** (client disagrees with itself): MAX_CHARACTER_MACROS - unresolved from source, do not state a limit as fact
+- **LIMITS: the SOURCE still disagrees with itself** (MAX_CHARACTER_MACROS) — but the LIVE answer is settled: **MAX_CHARACTER_MACROS = 36**, not 18 (chat probe, 2026-07-17, after `MacroFrame_LoadUI()` — the globals are LOAD-ON-DEMAND, which is why they read nil in the capture).
+- ⇒ **QuickKeybindActionPicker's local `18` is a stale shadow**, so the backported picker likely cannot see character macros 19–36. A real bug in THEIR client — evidenced, not hypothesised. The ENGINE limit is still unproven (needs a write test; not asked).
 
 ## statedrivers (5) - `statedrivers.json`  ·  _runtime-attested; PROVENANCE OPEN_
 the 2nd consumer of the conditional vocabulary
