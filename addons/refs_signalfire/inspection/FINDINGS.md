@@ -53,3 +53,11 @@ missing-symbol fallback paths. The author-vs-users environment difference theref
 TOPOLOGY (chat frame/tab multiplication x traffic — see PAIN_TRACE), not missing API. Honest rim:
 this covers CALL NAMES; string-based frame-name lookups and media/font assumptions were stripped
 with the strings and remain uninspected.
+
+## Thread state (2026-07-19 close)
+
+Handoffs delivered to the author: the chat-link trace artifact + the ElvUI-cleanup validation
+(his claim CHECKS OUT against stock client code) + the repro advice (feed every channel into the
+two tabs, watch for superlinear render cost). Posture per Battlewrath: we hold at the silo
+boundary, not intrusive. Pass 2 (wire format, parser rules, cadences, profile switches — and the
+ElvUI-layer diff) waits on his next release or his ask.
