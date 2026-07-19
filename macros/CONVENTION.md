@@ -30,6 +30,28 @@ This is the project's own method applied to the hands: **extract the pattern obs
 consolidate it into a gear — never invent the gear up front.** Pre-compute what's predictable; keep
 judgment free for what isn't.
 
+## ★ Where a chained unit lands — the pressure queue (and the mechanical reason to isolate the reactive)
+
+Consolidation (the flatten below · the cooldowns-as-gates chain in `basis/castsequence.md`) has a
+payoff past *fewer keys*: **N abilities collapse into ONE press occupying ONE slot in the pressure
+queue** — the ranked "what do I press now" order (`[[pressure-queue-press-priority-frame]]`). The
+consolidated press is ranked *once*, as a unit, by the behavioural urgency of the whole class it
+carries.
+
+**The Necro summons ride at the END** — live, 2026-07-17: *"they ride together in the pressure queue
+at the end."* End-of-queue = lowest urgency: you press it when nothing more pressing wants the GCD,
+and the fail-stick deploys whatever's ready. **Cooldown-gated maintenance is exactly what earns the
+tail** — an end-of-queue press must be safe to fire *whenever free*, and cooldown-gating guarantees
+that (press it → it casts what's ready, or nothing; no wasted resource, no wrong deploy).
+
+**This is the mechanical reason behind "isolate the reactive."** A reactive ability *cannot* be
+parked at a fixed queue position — its urgency moves with the moment, so it needs a live seat (its
+own key / the shift bar), read in the moment. Only an ability with a **stable** queue position can
+be consolidated at all. So: chainable → one rankable unit at a fixed rank; reactive → no fixed rank
+→ stays isolated. **The governing rule and the pressure queue are the same claim from two sides** —
+the rule says *what* to chain, the queue says *why* (a chained thing must hold still long enough to
+be ranked).
+
 ## Why a convention at all
 
 CoA classes carry **a lot of buttons** — throughput, situational, cooldowns. The convention exists
