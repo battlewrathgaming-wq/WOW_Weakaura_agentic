@@ -97,8 +97,15 @@ Cooldowns 30s / 60s / 120s. Behaviour, all from the cooldowns + `reset=10` + fai
 - **Archer is home** — recast every 30s; `reset=10` pulls the sequence back to step 1 between windows.
 - **Tomb King / Plaguefather are *caught*** when they come off cooldown — you press *through* Archer
   to the ready step, it fires, and the reset returns you home.
-- **All three deploy** when all are off cooldown — three presses inside the 10s window before the reset.
-- `reset=N` must exceed the deploy-burst (~a few GCDs) so a full deploy isn't interrupted; its size
+- **All three deploy** when all are off cooldown — **hold the key.** It lives on the primary bar, so
+  auto-fire walks the sequence and the `pending` flag lands exactly one successful cast per GCD (no
+  spam, no double-advance — the auto-fire safety in `../CONVENTION.md`). A single held key empties
+  every ready summon, then `reset=10` returns home. Battlewrath, live 2026-07-17: *"I can literally
+  hold down the key to get them all out, as they live on the primary bar."*
+- **Three abilities, one key.** The same full effect that would cost three keybinds now costs one and
+  frees two slots — *"it doesn't have to live on 3 keys for the same effect."* The key-count win and
+  the pressure-queue win (`../CONVENTION.md`) are the same consolidation from two angles.
+- `reset=N` must exceed the held-deploy walk (a few GCDs) so a full deploy isn't cut short; its size
   sets how eagerly the chain falls back to home. `10` fits this kit.
 
 **The edge — a TRACKING issue, not a macro-logic one** (Battlewrath): you can lock the chain out by
