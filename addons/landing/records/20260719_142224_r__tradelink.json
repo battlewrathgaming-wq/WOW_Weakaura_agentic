@@ -1,0 +1,21 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-07-19T14:22:28",
+    "pulled_at": "2026-07-19T14:22:30",
+    "sha256": "edd5e7739de71f030840249b2638b402efcc4f9325f9e225b8169bd156016440",
+    "raw_clone": "addons\\landing\\raw\\20260719_142224_r__tradelink.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "version": "run",
+    "status": "complete",
+    "tool": "COA_DevDump",
+    "task": "tradelink",
+    "runId": "20260719_142224_r"
+  },
+  "payload": {
+    "len": 86,
+    "link": "|cffffd000|Htrade:1005008:1:75:37E79:AiDAAAAAAAAAAAAAAAA|h[Apprentice Woodworking]|h|r"
+  }
+}
