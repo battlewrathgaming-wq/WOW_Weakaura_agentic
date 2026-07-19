@@ -12,6 +12,7 @@ task_probe.lua
 task_frames.lua
 task_census.lua
 task_plates.lua
+task_perf.lua
 task_spec.lua
 payload_tooltipids.lua
 task_tooltip.lua
