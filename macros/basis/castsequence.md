@@ -77,6 +77,41 @@ which is also what the governing rule (isolate distinct-targeting) says (`../CON
 validates the asymmetry — Battlewrath, 2026-07-17. The **source read is the primary evidence** (it
 is this client's own handler); the external match is corroboration, not the basis.
 
+## ★ Cooldowns AS the logic gates — reset-home for cooldown-tiered abilities (Battlewrath's technique, live-proven)
+
+**The macro carries ZERO conditional logic — the cooldowns do the branching.** A step on cooldown
+fails, and advance-on-success means the sequence doesn't move past it (the "fail-stick"). So a
+cooldown *is* an `if-ready` check, enforced by the game, not written in the macro. There is no
+cooldown conditional in the macro grammar and you don't need one — the fail-stick supplies it.
+
+**Structure:** put the **shortest-cooldown ability first (step 1 = "home")** and use `reset=N` to
+return there. The fail-stick then catches the longer-cooldown steps opportunistically when they come
+up.
+
+**Battlewrath's Necro summon manager (live-proven 2026-07-17):**
+```
+#showtooltip
+/castsequence reset=10 Animate: Skeletal Archer, Animate: Tomb King, Animate: Plaguefather
+```
+Cooldowns 30s / 60s / 120s. Behaviour, all from the cooldowns + `reset=10` + fail-stick:
+- **Archer is home** — recast every 30s; `reset=10` pulls the sequence back to step 1 between windows.
+- **Tomb King / Plaguefather are *caught*** when they come off cooldown — you press *through* Archer
+  to the ready step, it fires, and the reset returns you home.
+- **All three deploy** when all are off cooldown — three presses inside the 10s window before the reset.
+- `reset=N` must exceed the deploy-burst (~a few GCDs) so a full deploy isn't interrupted; its size
+  sets how eagerly the chain falls back to home. `10` fits this kit.
+
+**The edge — a TRACKING issue, not a macro-logic one** (Battlewrath): you can lock the chain out by
+mismanaging the home summon (getting the Archer cadence wrong). The macro is still correct — the
+failure is *knowing where you are*, which is show-state: a WeakAura's job, not the macro's. Track =
+WA, apply = macro, once more.
+
+**Correcting an earlier claim in this file's history:** a prior turn I asserted castsequence "can't
+handle long independent cooldowns / gates behind the longest." **Wrong** — reset-home + fail-stick is
+exactly how it handles them, and the cooldowns become the gate for free. The *concern* underneath
+(long cooldowns carry a lock-out risk) was real and survives as the tracking edge above; the
+*conclusion* (can't be done) did not. Kept as a note because the correction is the lesson.
+
 ## The boundary — where source stops (marked, not guessed)
 
 The source confirms **the reset fires when `PLAYER_TARGET_CHANGED` fires.** **Which** target changes actually fire that event — swap, clear, tab-target, target-death — is **event semantics this file does not define.** That part is recall, **not sourced here**. If a design depends on the target-death edge, confirm the event's firing conditions separately (a live observation or an event-behaviour source), do not trust the summary.
