@@ -1,0 +1,19 @@
+## Interface: 30300
+## Title: SignalFire
+## Notes: SignalFire Network for Ascension/CoA and Triumvirate group, guild, and event coordination.
+## Author: hs0j
+## Version: 1.5.1
+## SavedVariables: BronzeLFG_DB
+
+SignalFireCore.lua
+BronzeLFG.lua
+SignalFireDiscovery.lua
+SignalFireNetwork.lua
+SignalFireRoster.lua
+SignalFireCommunity.lua
+SignalFireRuntime.lua
+SignalFireIntegration.lua
+SignalFireControls.lua
+SignalFireChat.lua
+SignalFireListing.lua
+SignalFireUI.lua
