@@ -1,9 +1,9 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-17 (released — State Plates v3.7.0 LIVE-CONFIRMED clean by Battlewrath)
-heading: —
-runway:  —
+holder:  addons bench
+since:   2026-07-19
+heading: Ingest SignalFire (author-approved) into a SILO (addons/refs_signalfire, POISONED standing) and map it against the census — understand its baseline mechanics; never our basis.
+runway:  short
 
 next:    MACROS — VOCABULARY + GRAMMAR BOTH PROVEN. `basis/conditionals.json` is FACT: 53 safe
          flags, 10 never-use, ZERO ambiguous. Grammar proven: `,`=AND · `;`=first-true-wins ·
