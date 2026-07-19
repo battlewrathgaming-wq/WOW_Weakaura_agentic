@@ -1,0 +1,337 @@
+{
+ "transport": [
+  {
+   "file": "BronzeLFG.lua",
+   "line": 209,
+   "kind": "Chat",
+   "args": "payload, \"CHANNEL\", nil, id)"
+  },
+  {
+   "file": "BronzeLFG.lua",
+   "line": 1424,
+   "kind": "Chat",
+   "args": "whisper, \"WHISPER\", nil, g.player)"
+  },
+  {
+   "file": "BronzeLFG.lua",
+   "line": 1916,
+   "kind": "Chat",
+   "args": "\"Hi! I saw your SignalFire listing for \" .. l.activity .. \".\", \"WHISPER\", nil, l.leader) end"
+  },
+  {
+   "file": "BronzeLFG.lua",
+   "line": 2257,
+   "kind": "Chat",
+   "args": "\"Hi! Following up on your SignalFire application.\", \"WHISPER\", nil, a.name) end"
+  },
+  {
+   "file": "BronzeLFG.lua",
+   "line": 5105,
+   "kind": "Chat",
+   "args": "\"[SignalFire] I applied to your group: \" .. l.activity, \"WHISPER\", nil, l.leader)"
+  },
+  {
+   "file": "BronzeLFG.lua",
+   "line": 5700,
+   "kind": "Chat",
+   "args": "msg, \"CHANNEL\", nil, id)"
+  },
+  {
+   "file": "BronzeLFG.lua",
+   "line": 8412,
+   "kind": "Chat",
+   "args": "payload, \"CHANNEL\", nil, id) end"
+  },
+  {
+   "file": "BronzeLFG.lua",
+   "line": 8676,
+   "kind": "Chat",
+   "args": "self:BuildProfileWhisper(l.activity),\"WHISPER\",nil,l.leader) end"
+  },
+  {
+   "file": "BronzeLFG.lua",
+   "line": 8979,
+   "kind": "Chat",
+   "args": "payload, \"CHANNEL\", nil, id) end"
+  },
+  {
+   "file": "BronzeLFG.lua",
+   "line": 9541,
+   "kind": "Chat",
+   "args": "payload, \"CHANNEL\", nil, id) end"
+  },
+  {
+   "file": "BronzeLFG.lua",
+   "line": 14738,
+   "kind": "Chat",
+   "args": "text, \"CHANNEL\", nil, channelId)"
+  },
+  {
+   "file": "BronzeLFG.lua",
+   "line": 15890,
+   "kind": "Chat",
+   "args": "text, \"CHANNEL\", nil, channelId)"
+  },
+  {
+   "file": "SignalFireCommunity.lua",
+   "line": 206,
+   "kind": "Chat",
+   "args": "payload, \"CHANNEL\", nil, id)"
+  },
+  {
+   "file": "SignalFireCommunity.lua",
+   "line": 647,
+   "kind": "Chat",
+   "args": "payload, \"CHANNEL\", nil, id)"
+  },
+  {
+   "file": "SignalFireControls.lua",
+   "line": 46,
+   "kind": "Chat",
+   "args": "payload, \"CHANNEL\", nil, id)"
+  },
+  {
+   "file": "SignalFireControls.lua",
+   "line": 291,
+   "kind": "Chat",
+   "args": "payload, \"CHANNEL\", nil, id)"
+  },
+  {
+   "file": "SignalFireIntegration.lua",
+   "line": 955,
+   "kind": "Chat",
+   "args": "payload, \"CHANNEL\", nil, id)"
+  },
+  {
+   "file": "SignalFireNetwork.lua",
+   "line": 105,
+   "kind": "Chat",
+   "args": "payload, \"CHANNEL\", nil, id)"
+  }
+ ],
+ "events": {
+  "PLAYER_LOGIN": [
+   "BronzeLFG.lua",
+   "SignalFireChat.lua",
+   "SignalFireCommunity.lua",
+   "SignalFireControls.lua",
+   "SignalFireIntegration.lua",
+   "SignalFireListing.lua",
+   "SignalFireNetwork.lua",
+   "SignalFireRuntime.lua",
+   "SignalFireUI.lua"
+  ],
+  "CHAT_MSG_CHANNEL": [
+   "BronzeLFG.lua",
+   "SignalFireCommunity.lua",
+   "SignalFireIntegration.lua",
+   "SignalFireNetwork.lua"
+  ],
+  "CHAT_MSG_SAY": [
+   "BronzeLFG.lua"
+  ],
+  "CHAT_MSG_YELL": [
+   "BronzeLFG.lua"
+  ],
+  "CHANNEL_UI_UPDATE": [
+   "BronzeLFG.lua"
+  ],
+  "WHO_LIST_UPDATE": [
+   "BronzeLFG.lua",
+   "SignalFireUI.lua"
+  ],
+  "CHAT_MSG_SYSTEM": [
+   "BronzeLFG.lua"
+  ],
+  "PLAYER_TARGET_CHANGED": [
+   "BronzeLFG.lua",
+   "SignalFireUI.lua"
+  ],
+  "COMBAT_LOG_EVENT_UNFILTERED": [
+   "BronzeLFG.lua",
+   "SignalFireUI.lua"
+  ],
+  "PLAYER_ENTERING_WORLD": [
+   "BronzeLFG.lua",
+   "SignalFireChat.lua",
+   "SignalFireControls.lua",
+   "SignalFireIntegration.lua",
+   "SignalFireListing.lua",
+   "SignalFireRuntime.lua",
+   "SignalFireUI.lua"
+  ],
+  "ADDON_LOADED": [
+   "SignalFireChat.lua",
+   "SignalFireControls.lua",
+   "SignalFireIntegration.lua",
+   "SignalFireNetwork.lua"
+  ]
+ },
+ "persistence": {
+  "minimap": [
+   "BronzeLFG.lua",
+   "SignalFireUI.lua"
+  ],
+  "minimapAngle": [
+   "BronzeLFG.lua",
+   "SignalFireUI.lua"
+  ],
+  "minimapHidden": [
+   "BronzeLFG.lua"
+  ],
+  "options": [
+   "BronzeLFG.lua",
+   "SignalFireChat.lua",
+   "SignalFireCommunity.lua",
+   "SignalFireCore.lua",
+   "SignalFireIntegration.lua",
+   "SignalFireListing.lua",
+   "SignalFireNetwork.lua",
+   "SignalFireRoster.lua",
+   "SignalFireRuntime.lua",
+   "SignalFireUI.lua"
+  ],
+  "profile": [
+   "BronzeLFG.lua"
+  ],
+  "favorites": [
+   "BronzeLFG.lua",
+   "SignalFireCommunity.lua",
+   "SignalFireRoster.lua"
+  ],
+  "favoriteGuilds": [
+   "BronzeLFG.lua",
+   "SignalFireNetwork.lua"
+  ],
+  "parserStats": [
+   "BronzeLFG.lua"
+  ],
+  "guildBrowser": [
+   "BronzeLFG.lua"
+  ],
+  "publicHiddenTypes": [
+   "BronzeLFG.lua"
+  ],
+  "recruitmentCreator": [
+   "BronzeLFG.lua",
+   "SignalFireCommunity.lua",
+   "SignalFireNetwork.lua"
+  ],
+  "launcherPosition": [
+   "BronzeLFG.lua"
+  ],
+  "create": [
+   "BronzeLFG.lua",
+   "SignalFireListing.lua"
+  ],
+  "position": [
+   "BronzeLFG.lua"
+  ],
+  "myListing": [
+   "BronzeLFG.lua"
+  ],
+  "chatGuildListings": [
+   "BronzeLFG.lua"
+  ],
+  "suppressedGuilds": [
+   "BronzeLFG.lua"
+  ],
+  "guildSuppressed": [
+   "BronzeLFG.lua"
+  ],
+  "publicGroups": [
+   "BronzeLFG.lua"
+  ],
+  "guildBrowserGuilds": [
+   "BronzeLFG.lua"
+  ],
+  "guildRowsData": [
+   "BronzeLFG.lua"
+  ],
+  "guilds": [
+   "BronzeLFG.lua"
+  ],
+  "whoGuilds": [
+   "BronzeLFG.lua"
+  ],
+  "whoPlayers": [
+   "BronzeLFG.lua"
+  ],
+  "signalFireNetwork": [
+   "SignalFireCommunity.lua",
+   "SignalFireControls.lua",
+   "SignalFireIntegration.lua",
+   "SignalFireNetwork.lua",
+   "SignalFireRoster.lua",
+   "SignalFireRuntime.lua",
+   "SignalFireUI.lua"
+  ],
+  "network": [
+   "SignalFireCommunity.lua",
+   "SignalFireNetwork.lua",
+   "SignalFireRoster.lua",
+   "SignalFireUI.lua"
+  ],
+  "createByProfile": [
+   "SignalFireListing.lua"
+  ]
+ },
+ "time": {
+  "BronzeLFG.lua": {
+   "C_Timer": 0,
+   "OnUpdate": 20
+  },
+  "SignalFireChat.lua": {
+   "C_Timer": 0,
+   "OnUpdate": 3
+  },
+  "SignalFireCommunity.lua": {
+   "C_Timer": 0,
+   "OnUpdate": 0
+  },
+  "SignalFireControls.lua": {
+   "C_Timer": 0,
+   "OnUpdate": 6
+  },
+  "SignalFireCore.lua": {
+   "C_Timer": 0,
+   "OnUpdate": 0
+  },
+  "SignalFireDiscovery.lua": {
+   "C_Timer": 0,
+   "OnUpdate": 0
+  },
+  "SignalFireIntegration.lua": {
+   "C_Timer": 0,
+   "OnUpdate": 3
+  },
+  "SignalFireListing.lua": {
+   "C_Timer": 0,
+   "OnUpdate": 0
+  },
+  "SignalFireNetwork.lua": {
+   "C_Timer": 0,
+   "OnUpdate": 12
+  },
+  "SignalFireRoster.lua": {
+   "C_Timer": 0,
+   "OnUpdate": 0
+  },
+  "SignalFireRuntime.lua": {
+   "C_Timer": 0,
+   "OnUpdate": 1
+  },
+  "SignalFireUI.lua": {
+   "C_Timer": 0,
+   "OnUpdate": 10
+  }
+ },
+ "prefixes": {},
+ "channels": {
+  "CHANNEL)": 2,
+  "SF139_DEFAULT_CHANNEL)": 1,
+  "SFE_CHANNEL) end": 1,
+  "CHANNEL) end": 3,
+  "SFN_CHANNEL) end": 1
+ }
+}
