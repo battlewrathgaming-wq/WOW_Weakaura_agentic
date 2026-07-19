@@ -1,9 +1,9 @@
 # HELM — who has the trunk
 
-holder:  addons bench
-since:   2026-07-19
-heading: Ingest SignalFire (author-approved) into a SILO (addons/refs_signalfire, POISONED standing) and map it against the census — understand its baseline mechanics; never our basis.
-runway:  short
+holder:  RELEASED
+since:   2026-07-19 (released - SignalFire silo ingested + census-mapped)
+heading: —
+runway:  —
 
 next:    MACROS — VOCABULARY + GRAMMAR BOTH PROVEN. `basis/conditionals.json` is FACT: 53 safe
          flags, 10 never-use, ZERO ambiguous. Grammar proven: `,`=AND · `;`=first-true-wins ·
