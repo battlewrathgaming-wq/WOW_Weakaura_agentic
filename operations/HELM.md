@@ -1,9 +1,9 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-19 (released - SignalFire silo ingested + census-mapped)
-heading: —
-runway:  —
+holder:  addons bench
+since:   2026-07-19
+heading: Execute the SignalFire inspection plan - toc spine, per-file self-report, five domain tables, the hacks ledger. Describe, do not anchor.
+runway:  one working session
 
 next:    MACROS — VOCABULARY + GRAMMAR BOTH PROVEN. `basis/conditionals.json` is FACT: 53 safe
          flags, 10 never-use, ZERO ambiguous. Grammar proven: `,`=AND · `;`=first-true-wins ·
