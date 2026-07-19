@@ -44,3 +44,12 @@ PLAYER_TARGET_CHANGED · login pair. Time: C_Timer + OnUpdate throughout (cadenc
 - Parser rules for the scrape feed (what makes a human ad parseable)
 - Timer cadences (heartbeat? re-broadcast? poll loops)
 - The profile system's per-server behavior switches
+
+## ElvUI-habit leakage check (2026-07-19, Battlewrath's hypothesis) — FALSIFIED at the call level
+
+Refined join (comments/strings stripped, own defs subtracted): SignalFire calls ZERO functions
+absent from the clean stock census — no ElvUI-supplied names, no third-party library calls, no
+missing-symbol fallback paths. The author-vs-users environment difference therefore acts through
+TOPOLOGY (chat frame/tab multiplication x traffic — see PAIN_TRACE), not missing API. Honest rim:
+this covers CALL NAMES; string-based frame-name lookups and media/font assumptions were stripped
+with the strings and remain uninspected.
