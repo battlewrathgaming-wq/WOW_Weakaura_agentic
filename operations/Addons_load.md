@@ -6,6 +6,21 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## Open threads (each has a designed next step)
 
+- **OPPORTUNITY (Battlewrath, 2026-07-20, pick up as a FRESH run): the Necro/Reaper custom UI.**
+  His mains, they feel the same - one UI serves both. TASTE: gothic ironwork; little gothic-styled
+  headers; RE-USE the Necromancer class widget elements (the client's own art). THE BASIS EXISTS
+  (see 'interfaces basis' - patch-B code extraction + census + live-proven panel patterns + render
+  economics). FIRST BOUNDED STEP (designed, not started): the ASSET SURVEY -
+  (1) extract patch-A.MPQ art trees via extract_interface.py --all-types (CoAResource 33 files =
+  the class-resource widget art, HUD, SpellShadow, TALENTFRAME, borders/flourishes; gitignored
+  study copy like patch-B); (2) locate the CoAResource/class-widget CODE in patch-B FrameXML and
+  map which art each class widget uses (the Necro elements named file-by-file); (3) emit the
+  reusable-elements SHELF (browsable inventory: frames/borders/headers/fills/glows, keyed by what
+  they are + where the client uses them; BLP eyeballing in-game or via converter). Then design
+  over a real shelf: taste picks, facts assemble. Related standing work: the pressure-queue demo,
+  guardian scaffold, class-systems-as-skill-lines - all Necro/Reaper-centered display candidates.
+
+
 - **🐞 BUG HUNT ITEM (2026-07-17, live error, recorded per Battlewrath):** the NATIVE tank-border
   branch we lit up has a LATENT FORK BUG — `CompactUnitFrame.lua:816` (inside UpdateHealthBorder,
   the branch that only runs when BOTH tank border colors are armed + grouped) throws
