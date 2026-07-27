@@ -74,10 +74,12 @@ minion's Life Force (Abom's stam gain was ~3.9× a Ghoul's —
 
 ## Open items
 
-1. **Harvest Plague × Haste** — does haste add DoT ticks (→ more Lesser-Zombie
-   summon rolls via Unrelenting Army `705747`)? Harvest Plague = `spell 500968`,
-   18s DoT. Custom-coded, so the DBC can't settle it → resolve by `/combatlog`
-   tick-count A/B (`tests/harvest-plague-haste-test.md`). If yes, Haste climbs.
+1. **Harvest Plague × Haste — RESOLVED (no).** Haste does NOT affect Harvest
+   Plague's tick rate, so it adds no summon rolls; Haste stays modest. Three
+   witnesses agree: combat-log A/B (interval unchanged), DBC flag unset, and the
+   tooltip didn't move under archer/potion spell-haste. Live spell = `583255`, a
+   **24s / 8-tick @ ~3s** DoT (the DBC `500968`/18s was a lower rank). Full
+   write-up: `tests/harvest-plague-haste-test.md`.
 2. **Exact Life-Force slope** — multiplicative confirmed; a third data point
    (Banshee LF2 / Gargoyle) would pin linear-×LF vs slightly steeper.
 3. **Hit-cap value under pet-heavy play** — pets inherit hit, but a "can't miss"
