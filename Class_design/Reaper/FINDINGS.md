@@ -132,8 +132,10 @@ Battlewrath's level-33 control surface, every bind grounded. Three reads:
   by player (1 Reaped Soul + 10% HP, corpse-gated).
 - **Two in-game verifies** (from the bar-map player-read, `bar_map.md`): (1)
   Bolstered Form's real cooldown — 15s *duration* vs 60s *CD* — which sets its
-  RP-income weight; (2) do the F reaped-soul spenders consume Soul Infusion —
-  validates the F@2 / T@3 spend split (or frees F to spend at 3).
+  RP-income weight; (2) do the F reaped-soul spenders consume Soul Infusion — the crux of the OPEN
+  **F@2-vs-F@3** question (F is CD-limited @20s and scales with Reaped Souls, so
+  there's a real "build to 3 and maximize" argument; if F doesn't eat Soul
+  Infusion, F@3 is strictly better and the F@2 habit is a cost).
 - **Plan-drift:** Dreadknight is **r2 in-game vs r1** in the saved export (per
   `../tools/CAPTURE.md`) — reconcile (reclaim the point or update the plan).
 

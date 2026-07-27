@@ -53,14 +53,20 @@ Empty (level-33 unlocks pending): Alt-E · Alt-F · Shift-V · Alt-V · Alt-T ·
 
 ## Player-read (Battlewrath, 2026-07-27) — spend model + divergences
 
-- **The soul-spend has two tiers, mapped to keys:** **F = reaped-soul spenders**
-  (Reliquary / Tormented Souls), spent **at 2 souls** — deliberately *below* the
-  3-stack; **T = Soul-Infusion spenders** (the Requiem→Requiem→Soulrend
-  castsequence), which want the **3-stack**. Spending F at 2 keeps it from eating
-  the Soul Infusion that T needs (reaped-soul spenders *may also* consume Soul
-  Infusion). F-before-T is a positional spend-order reminder. → **Verify: do
-  F-spenders consume Soul Infusion?** If yes, the F@2 / T@3 split is validated; if
-  no, F could push to 3 for more effect.
+- **The soul ladder is strict + consecutive** (Battlewrath, clarified): 3 fragments
+  → 1 Reaped Soul; 3 Reaped Souls → 1 Soul Infusion; resources spent whole — no
+  partial/rolling "spend-2-keep-1" formation. **F = reaped-soul spenders**
+  (Reliquary / Tormented Souls); **T = Soul-Infusion spenders** (Requiem→Requiem→
+  Soulrend). F-before-T is a positional spend-order reminder.
+- **OPEN optimization — F@2 vs F@3.** Current habit spends F at 2 (leaving the
+  3-stack/Soul Infusion for T). But F has its OWN 20s CD and scales with Reaped
+  Souls active (grounded: TS "generate RP for each Reaped Soul active" + stack
+  creation), so a CD-limited spender argues to **build to 3 and maximize each
+  cast** — spending at 2 may be leaving value on the table. So the 3-stack is
+  genuinely contested: F (max-effect, CD-gated) vs T (dedicated Soul-Infusion
+  payoff). **Resolves on the verify below** — if F consumes Soul Infusion, F@3 and
+  T are rivalrous (a priority call); if not, F@3 is strictly better *and* leaves
+  Soul Infusion for T, so the F@2 habit is just a cost. Not a settled rule.
 - **Deathwind is the sustain BASIS** (player): a rolling 10s AOE self-heal
   (maintain it, don't spot-cast) — the always-on floor, with Tormented Souls the
   situational spike above it. (Corrects an earlier read that put TS as the core.)
