@@ -49,7 +49,7 @@ army. And Stamina is a genuine **damage** stat, not just survival.
 
 ## Stat priority — Animation (measured + reasoned)
 
-**Spell Power ≥ Intellect ≈ Stamina > Spell Hit (to cap) > Crit ≈ Haste > Spell Pen**
+**Spell Power ≥ Intellect ≈ Stamina > Spell Hit (to cap) > Crit ≥ Haste > Spell Pen**
 
 - **Spell Power** — anchor (1.0). Scales every pet + your own casts.
 - **Intellect** — pet AP/SP at ~½ SP; plus your mana / own SP / crit.
@@ -61,8 +61,12 @@ army. And Stamina is a genuine **damage** stat, not just survival.
 - **Hit → cap** — feeds pets (hit chance + expertise); a missed cast/disease is
   a dead GCD. (Hit-cap behaviour is standard for this client generation — worth
   a one-time CoA confirm.)
-- **Crit ≈ Haste** — inherited by the army (crit = army crit, haste = army acts
-  faster). Real, not filler.
+- **Crit** — inherited by the army (your crit → army crit). Real, not filler.
+- **Haste** — inherited too (army attacks/casts faster), but the **weakest
+  secondary**: combat-log tested to add NO output to Necromancer's periodic/
+  channel damage — no extra Harvest Plague ticks, no extra Crypt Swarm ticks/RP
+  (and a marginally *longer* Crypt Swarm channel). Value is pet-inheritance only.
+  See `tests/harvest-plague-haste-test.md`, `tests/crypt-swarm-haste-test.md`.
 - **Spell Pen** — mostly endgame / resistant-target / PvP.
 
 **Build implication:** Battlewrath's **Boneward (`681528`, +10% stam)** and

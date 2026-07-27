@@ -1,5 +1,23 @@
 # STATE — where the machine is
 
+## 2026-07-27 (Class_design lane stood up — Necromancer stat basis + haste tests)
+
+- **New root lane `Class_design/`** (sibling to operations/, separate from Weak
+  Auras tooling): per-class mechanics/theorycraft, evidence-first. Lane file:
+  `operations/Class_design.md`.
+- **Necromancer (Animation) seeded** — `Class_design/Necromancer/FINDINGS.md`:
+  pet-scaling loop (Necromancy 804360 + Sepulchral Might 706472 → Stamina a
+  confirmed damage stat, ~0.5 SP/pt, multiplicative on Life Force) + stat
+  priority `SP ≥ Int ≈ Stam > Hit→cap > Crit ≥ Haste > Spell Pen`.
+- **Two haste questions RESOLVED by combat-log measurement** (`tests/`): Harvest
+  Plague ticks don't hasten (3 witnesses); Crypt Swarm channel lengthens ~2%
+  with haste but no extra ticks/RP. → Haste is the weakest secondary.
+- **Combat-log tooling** in `Class_design/Necromancer/tests/`
+  (`parse_combatlog.py` DoT, `crypt_analyze.py` channel, `README.md` method:
+  capture → parse → reason; match by spell NAME not id).
+- Helm held (Class_design). Open: Crypt Swarm haste discriminator (hard-cast
+  under archers); exact Life-Force slope; Hit-cap weight.
+
 ## 2026-07-17 (addons bench session close — both waiting benches have RESOLUTION)
 
 - **MACROS: unblocked.** The probe landed as a FIVE-context raw matrix (rest/form/stealth/combat/
