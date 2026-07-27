@@ -98,7 +98,18 @@ after.
 pass in a *different* context (in combat / mounted / in a form) separates "false here" from "always false" — but
 **don't block on it, one pass is worth landing.**
 
-## 5. The talent-tree walk (cross-lane ask from the Class_design lane — decode-validated)
+## ✅ 5. The talent-tree walk — DELIVERED + ACCEPTED 2026-07-27 (rank-aware reconciliation clean)
+
+	ask_talents (pure CA getters - GetKnownTalentEntries/GetKnownSpellEntries/GetTalentRankByID, the
+client's own CA-UI call shapes; no widget walk, no mutation trap) + 	ools/diff_talents.py
+(rank-aware, imports Class_design's decoder; TARGETS output). Acceptance on the Reaper record
+20260727_043239_714: talents 14=14 · abilities 11/11 · 561337 = Soul Warden rank 2 (Battlewrath
+ID'd; builder strings list EACH RANK as its own spellId) · ONE outlier exposed = Dreadknight known
+r2 vs planned r1. Entry schema = 37 fields incl ConnectedNodes/RequiredIDs = Class_design's
+topology intake. Spec-grants (Dreadwake 803992/adv 30720) outside the build contract by nature.
+v2 task deployed (Spells array + ability ranks -> self-contained joins). Original ask below:
+
+## (original) 5. The talent-tree walk (cross-lane ask from the Class_design lane — decode-validated)
 
 **THE ASK:** a `talents` task (v2 spine) capturing the player's *selected* build —
 talent node-ids (+ ranks) and ability spellIds — as **pure reads**, in a form the

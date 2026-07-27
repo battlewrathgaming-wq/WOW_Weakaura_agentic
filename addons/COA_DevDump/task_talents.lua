@@ -21,16 +21,32 @@
 local ADDON, D = ...
 
 local function shallow(entry)
-    local scalars, keys = {}, {}
+    local scalars, keys, arrays = {}, {}, {}
     for k, v in pairs(entry) do
         keys[#keys + 1] = tostring(k)
         local t = type(v)
         if t == "string" or t == "number" or t == "boolean" then
             scalars[tostring(k)] = v
+        elseif t == "table" then
+            -- v2: capture flat scalar ARRAYS too (e.g. Spells = the per-rank
+            -- spellId list - the entry->spell bridge the rank join needs)
+            local arr, ok = {}, true
+            for i, av in ipairs(v) do
+                local at = type(av)
+                if at == "string" or at == "number" or at == "boolean" then
+                    arr[i] = av
+                else
+                    ok = false
+                    break
+                end
+            end
+            if ok and #arr > 0 then arrays[tostring(k)] = arr end
         end
     end
     table.sort(keys)
-    return { keys = keys, scalars = scalars }
+    local out = { keys = keys, scalars = scalars }
+    if next(arrays) then out.arrays = arrays end
+    return out
 end
 
 D.RegisterTask{
@@ -66,7 +82,15 @@ D.RegisterTask{
         local okS, se = pcall(CA.GetKnownSpellEntries)
         if okS and type(se) == "table" then
             for _, entry in ipairs(se) do
-                payload.spells[#payload.spells + 1] = shallow(entry)
+                local row = shallow(entry)
+                -- v2: ranks for ability entries too (the UI calls this on any entry)
+                if entry.ID and CA.GetTalentRankByID then
+                    local okR, rank, maxRank = pcall(CA.GetTalentRankByID, entry.ID)
+                    if okR then
+                        row.rank, row.maxRank = rank, maxRank
+                    end
+                end
+                payload.spells[#payload.spells + 1] = row
             end
         else
             payload.spells_error = okS and "non-table return" or tostring(se)
