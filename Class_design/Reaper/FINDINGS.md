@@ -43,7 +43,7 @@ Spectral Scythe · + Class: Soulfused Constitution · Dominion.
    (Harvester's Scythe + Lifestealer); **Jailer's Bargain** is the panic CD. The
    build is realizing sustain-as-mitigation, not fighting it. *(Play nuance —
    see Play anchors: Tormented Souls is mechanically central but in practice
-   situational; the 20s survival slot usually goes to Reliquary of the Lost.)*
+   situational; the reaped-soul spend usually goes to Reliquary of the Lost, not Tormented Souls.)*
 2. **Stat lean — Stamina is the premier stat (the "helps most" stub).** Double
    duty, echoing the Necro finding but for a tank: Stamina is raw EHP **and** it
    scales the main self-heal — **Tormented Souls heals 24% of Stamina per stack.**
@@ -67,23 +67,31 @@ makes Tormented Souls look like the always-on core; the player's read corrects i
   and stretching the window with cooldown-speed starts to *restrict actions per
   minute*. Its ST cluster-mates — **Murder** and **Soulrend** — are single-target
   too.
-- **The ~20s survival slot is CONTESTED.** In Battlewrath's logic axis, Tormented
-  Souls and **Reliquary of the Lost** share the same ~20s cadence — **and
-  Reliquary usually wins**, except single-target when a big hit is expected (then
-  Tormented Souls). ⇒ a survival aura must **rank the slot per situation**, never
-  assume Tormented Souls is up as-of-course. (This is the pressure-queue shape:
-  one survival slot, ranked reasons.)
-- **Macros flatten button-bloat into survival-threshold castsequences** (build →
-  ST-spend in one press):
-  ```
-  #showtooltip
-  /castsequence reset=target/8  Dreadwake, Dreadwake, Murder
-  #showtooltip
-  /castsequence reset=target    Requiem, Requiem, Soulrend
-  ```
-  So Dreadwake / Requiem are *builders* funnelling into Murder / Soulrend
-  *spenders*. An aura should surface the THRESHOLD state these key on — not fight
-  the macro.
+- **The contention is RESOURCE, not cooldown** (corrected 2026-07-27 — they do
+  NOT share a cooldown). Tormented Souls and **Reliquary of the Lost** both spend
+  **Reaped Souls (optionally Soul Infusion)** — so the axis is *where the souls
+  go*: **Reliquary usually wins**, Tormented Souls for single-target big-hits. ⇒
+  a survival aura must **rank the spend per situation** (pressure-queue shape:
+  one resource, ranked spenders), not track a CD.
+- **Battlewrath flattens choices into systematic thresholds** — a reaction-speed
+  / mental-load constraint, his words: *"I get overwhelmed mentally, so part of my
+  play is flattening the choices into systematic solutions."* (Durable design fact
+  — memory `plays-by-flattening-decisions`.) In practice:
+  - **spenders grouped by resource tier onto one key** — all 30-Runic-Power
+    spenders share a key; Soul-Infusion spenders are the castsequence below;
+  - **ST tools gated by a durability THRESHOLD, applied automatically:** *"a mob
+    that survives 2 AOE hits has earned the single-target debuff"* — hard targets
+    self-select for Murder / Soulrend / Tormented Souls, no per-mob call;
+  - the macros carry it (builder → ST-spend in one press):
+    ```
+    #showtooltip
+    /castsequence reset=target/8  Dreadwake, Dreadwake, Murder
+    #showtooltip
+    /castsequence reset=target    Requiem, Requiem, Soulrend
+    ```
+  ⇒ **the #1 aura rule for him: REDUCE decision load — encode the rule/threshold
+  and make the systematic answer loud; an aura that adds a choice is a regression,
+  however information-rich.**
 - **Kit ≠ build string.** The decoded EXPRESSION is talent *choices*; several
   abilities the rotation leans on — **Reliquary of the Lost, Murder, Soulrend,
   Reap, Soul Strike, Deathwind** — are baseline / spec-granted, *outside* the
