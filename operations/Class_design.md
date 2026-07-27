@@ -34,3 +34,8 @@ triggered ids).
 - Necromancer small: exact Life-Force slope (Banshee LF2 / Gargoyle); Hit-cap
   weight under pet-heavy play.
 - **20 more classes** — same spine (talents JSON + coa_spells + live tests).
+- **Build extraction** — the CoA builder export/share string decodes cleanly
+  offline (`Class_design/tools/decode_build.py`; presence = selected, no
+  is-selected ambiguity). Second witness = a live addon talent-tree walk, scoped
+  for the addon bench at `addons/backlog.md #5`; acceptance = a decode-vs-walk
+  diff on the Reaper build (also backfills unnamed gaps like id `561337`).

@@ -98,6 +98,46 @@ after.
 pass in a *different* context (in combat / mounted / in a form) separates "false here" from "always false" — but
 **don't block on it, one pass is worth landing.**
 
+## 5. The talent-tree walk (cross-lane ask from the Class_design lane — decode-validated)
+
+**THE ASK:** a `talents` task (v2 spine) capturing the player's *selected* build —
+talent node-ids (+ ranks) and ability spellIds — as **pure reads**, in a form the
+Class_design lane can diff against a decoded build string.
+
+**Why (Class_design context):** builds decode cleanly OFFLINE from the ascension.gg
+export string (`Class_design/tools/decode_build.py` — base64 → raw-deflate → `:id:`
+list; abilities by spellId, talents by node-id; **presence = selected**, so the
+string has NO is-selected ambiguity). The addon walk is the *second witness*: it
+(a) cross-validates the decode and (b) backfills nodes the repo snapshot can't name
+(e.g. Reaper id `561337`, unresolved). Two witnesses = the house pattern.
+
+**The core question, made precise — "is this node selected?" cleanly.** Two traps,
+both already on record, make the naive path dirty:
+- **Widget-walk is tab-limited + noisy** (README gotchas #1/#2: pooled talent
+  buttons only instantiate the *visible* tab; header/uninit rows carry garbage).
+  Probing `CoATalentFrame` widgets is incomplete + one pass per tab → **prefer a
+  stock/CoA API getter that returns node selection directly.**
+- **Some spec/talent APIs MUTATE** — task #1 caught `GetSpecializationInfo` running
+  `ConvertOldSavedSpec` (clears legacy saved fields). → **pure getters only**, each
+  source-checked before calling.
+
+**Census-backed method (house rule — read the rows before composing):** start at
+`maps/census/namespaces/C_CharacterAdvancement.routes.md` (+ `SpecializationUtil`
+sightings) for a getter returning selected nodes / points; the closed `spec` task
+(`task_spec.lua`) is the template and carries the mutation caveat. Every call
+**verified present in `maps/census/runtime/globals.json`** and confirmed
+side-effect-free before it enters the task. If no clean API getter exists, fall
+back to the per-tab widget-walk but **label it incomplete** (tab-scoped).
+
+**Output:** payload = selected talent node-ids (+ rank) + ability spellIds, plus
+any node metadata the API exposes (tier/tree). Land via `pull.py`, anchored.
+
+**Acceptance test (settles "is it clean"):** capture the walk on a KNOWN build
+(Battlewrath's Reaper — decoded to 27 nodes via `Class_design/tools/decode_build.py`),
+then **diff the walk's selected set against the decode.** Match → is-selected proven
+clean. Diverge → the diff names exactly which nodes read dirty and why (tab-limit /
+uninit reads / API quirk). Either outcome is a result.
+
 ## Standing / emergent
 
 - **COA_DevDump hygiene**: it's the seed tool — adopt it into this bench deliberately (repo copy is the dev copy;

@@ -1,11 +1,11 @@
 # HELM — who has the trunk
 
-holder:  Class_design (aura-side session)
-since:   2026-07-27
-heading: build extraction — bank the CoA builder-string decoder (Class_design/tools/decode_build.py, validated on a real Reaper build) and scope the addon talent-tree-walk request (validate its "is-selected" signal via a decode-vs-walk diff) for handoff to the addon bench.
-runway:  short — land the decoder + the scoped addon request this session; addon-side implementation goes to the addon bench.
+holder:  RELEASED
+since:   2026-07-27 (released — CoA build-string decoder banked in Class_design/tools/; addon talent-tree-walk request scoped for handoff)
+heading: —
+runway:  —
 
-next:    —  (Class_design status/steering preserved in operations/Class_design.md; the community Scourge-Disciple negative-haste bug note lives there + in Necromancer/FINDINGS.md)
+next:    ADDON BENCH pickup → **addons/backlog.md #5** (the talent-tree walk): capture the player's selected build as PURE READS; prefer a C_CharacterAdvancement / SpecializationUtil getter over the tab-limited widget-walk; watch the GetSpecializationInfo-style mutation trap (task_spec.lua is the template). ACCEPTANCE = diff the walk against `Class_design/tools/decode_build.py` on Battlewrath's Reaper (27 nodes; id 561337 is the known gap the walk should backfill). Class_design lane state: operations/Class_design.md.
 
 ---
 
