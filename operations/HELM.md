@@ -1,27 +1,11 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-19 (released - SignalFire inspection pass 1 landed)
-heading: —
-runway:  —
+holder:  Class_design (aura-side session)
+since:   2026-07-27
+heading: stand up root-level Class_design/ (per-class mechanics basis, sibling to operations/) and seed Necromancer / Animation — the pet-scaling loop (Necromancy 804360 + Sepulchral Might 706472; Stamina a confirmed ~0.5 SP/point damage stat), the Animation stat priority, and the test records (stamina-loop DONE; Harvest Plague × haste PENDING).
+runway:  short — seed the Necromancer findings this session; the open follow-up is the Harvest Plague /combatlog tick-count test.
 
-next:    MACROS — VOCABULARY + GRAMMAR BOTH PROVEN. `basis/conditionals.json` is FACT: 53 safe
-         flags, 10 never-use, ZERO ambiguous. Grammar proven: `,`=AND · `;`=first-true-wins ·
-         `/`=OR · `no`=negate · `@`=pass-through. Headline: the parser IGNORES unknown
-         conditionals (the clause PASSES), so an unsupported one reads exactly like a true one —
-         a retail macro pasted here fails SILENTLY, never loudly. Era diff: zero crossover, every
-         WotLK-era conditional works and not one post-3.3.5a does ⇒ Ascension extends at the
-         Lua/handler layer, not the C parser. `[form:1]` gates Sanguine essence on a Bloodmage
-         (CoA custom classes use the stock shapeshift registry). Limits RESOLVED: 36/36.
-         OPEN, all small: the `!` cast-prefix (Blizzard 2.3.2, archive-documented, UNPROVEN
-         here) · `/script`+`/run` missing from commands.json (entry-rule hole — it answers
-         "takes conditionals", not "usable in a macro") · the Reaper's INVISIBLE spell-form
-         (NF=0 would settle the stance-registry hypothesis) · THE RESEARCH RUN.
-         NEXT (Battlewrath's plan): he captures real macros from the CoA Discords = an
-         ATTESTED-USAGE channel that measured ZERO in the client's own code. Then non-CoA guides
-         for the general shapes. Detail + forecast: `operations/Macros.md`.
-         ADDONS: State Plates heading closed live; friendly-NPC satellite banked; aggro borders
-         await a grouped pull. Open bug: enemy plates suppressed (delta-guard cache desync).
+next:    —  (prior MACROS + ADDONS release steering moved to operations/Macros.md · operations/Addons_load.md · git; superseded by the heading above per HELM protocol)
 
 ---
 
