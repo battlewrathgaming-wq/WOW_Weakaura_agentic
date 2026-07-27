@@ -106,6 +106,15 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## Small debts (cheap, non-blocking)
 
+- **task_perf instrument notes (from the 4-arm SignalFire run, 2026-07-19/20):** mem column reads
+  0 (GetAddOnMemoryUsage name resolves for CPU but not mem - investigate); the envelope should
+  STAMP the watched addon's own option states (arms must self-describe - arm D's parser state had
+  to be asked); watch MULTIPLE addons (st perf SignalFire,Chatter) so interaction arms show who
+  pays. Arm D pending: Battlewrath to confirm parser was off (decides the Chatter-doubles-residual
+  read). The furniture probe (live filter roster / OnUpdate / AddMessage audit) is banked at
+  refs_signalfire/inspection/furniture_probe.lua - console paste, not yet run.
+
+
 - **The tooltip merge gear** (post-capture, 2026-07-17): fold the rendered lines from
   `20260717_042514_616__tooltip.json` into the inventory text for the 119 hole ids
   (`maps/tooltip_holes.json` = the join). Small offline tool; the render is the arbiter,
