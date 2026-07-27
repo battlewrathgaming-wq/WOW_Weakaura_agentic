@@ -25,6 +25,13 @@ triggered ids).
   community-confirmed bug** (Scourge Disciple applies NEGATIVE haste — a trap
   talent), so Crypt Swarm × *positive* haste is **reopened**.
 
+- **Reaper (Domination — tank): seeded** (`Class_design/Reaper/FINDINGS.md`).
+  Thesis = a soul-economy tank (RP/Reap → fragments → Reaped Souls → Soul
+  Infusion, feeding active mitigation). First grounded find: **Stamina scales
+  the self-heal** (Tormented Souls heals 24% Stamina/stack) → Stam premier, AP
+  co-scaler (same "Stamina is throughput" shape as Necro). Talents-not-yet-read
+  + Deathwind-in-build + the Dreadknight r2/r1 drift are the open next pass.
+
 ## Open / forecast
 
 - **Crypt Swarm × positive haste (reopened)** — the archer test used bugged

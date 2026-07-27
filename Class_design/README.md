@@ -40,3 +40,4 @@ Class_design/            # the FLOOR = what translates across every class
 ## Classes
 
 - [Necromancer](Necromancer/FINDINGS.md) — Battlewrath's main (Animation spec).
+- [Reaper](Reaper/FINDINGS.md) — Domination (soul-economy tank).
