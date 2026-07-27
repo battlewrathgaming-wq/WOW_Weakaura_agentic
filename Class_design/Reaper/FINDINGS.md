@@ -130,12 +130,12 @@ Battlewrath's level-33 control surface, every bind grounded. Three reads:
   leech), Wraithblade (40→3 souls), Requiem/Soulrend/Soulslam/Spectral Scythe,
   Bolstered Form, Jailer's Bargain, Veilwalk, Ghost Claw. **Soul Capture filled**
   by player (1 Reaped Soul + 10% HP, corpse-gated).
-- **Two in-game verifies** (from the bar-map player-read, `bar_map.md`): (1)
-  Bolstered Form's real cooldown — 15s *duration* vs 60s *CD* — which sets its
-  RP-income weight; (2) do the F reaped-soul spenders consume Soul Infusion — the crux of the OPEN
-  **F@2-vs-F@3** question (F is CD-limited @20s and scales with Reaped Souls, so
-  there's a real "build to 3 and maximize" argument; if F doesn't eat Soul
-  Infusion, F@3 is strictly better and the F@2 habit is a cost).
+- **F@2-vs-F@3 RESOLVED** (player): F (Reliquary/TS) at 3 stacks consumes BOTH the
+  reaped souls and Soul Infusion → settled spend priority — build to 3 → **F if off
+  CD** (Reliquary usually / TS for ST-big-hit), **else T** (Requiem→Soulrend, fills
+  F's 20s window). This priority IS the aura's core decision-flatten (`bar_map.md`).
+- **One verify left:** Bolstered Form's real cooldown — 15s *duration* vs 60s *CD*
+  — which sets its RP-income weight.
 - **Plan-drift:** Dreadknight is **r2 in-game vs r1** in the saved export (per
   `../tools/CAPTURE.md`) — reconcile (reclaim the point or update the plan).
 

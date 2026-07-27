@@ -58,15 +58,19 @@ Empty (level-33 unlocks pending): Alt-E · Alt-F · Shift-V · Alt-V · Alt-T ·
   partial/rolling "spend-2-keep-1" formation. **F = reaped-soul spenders**
   (Reliquary / Tormented Souls); **T = Soul-Infusion spenders** (Requiem→Requiem→
   Soulrend). F-before-T is a positional spend-order reminder.
-- **OPEN optimization — F@2 vs F@3.** Current habit spends F at 2 (leaving the
-  3-stack/Soul Infusion for T). But F has its OWN 20s CD and scales with Reaped
-  Souls active (grounded: TS "generate RP for each Reaped Soul active" + stack
-  creation), so a CD-limited spender argues to **build to 3 and maximize each
-  cast** — spending at 2 may be leaving value on the table. So the 3-stack is
-  genuinely contested: F (max-effect, CD-gated) vs T (dedicated Soul-Infusion
-  payoff). **Resolves on the verify below** — if F consumes Soul Infusion, F@3 and
-  T are rivalrous (a priority call); if not, F@3 is strictly better *and* leaves
-  Soul Infusion for T, so the F@2 habit is just a cost. Not a settled rule.
+- **RESOLVED — the Soul-Infusion spend priority** (Battlewrath, player-confirmed
+  mechanic). Soul Infusion exists ONLY at the 3-stack, and **F (Reliquary / TS)
+  spent at 3 consumes BOTH the reaped souls AND the Soul Infusion.** T
+  (Requiem→Soulrend) *requires* Soul Infusion (in practice, 3 stacks). F *can*
+  fire at 1–2 stacks but is CD-limited (20s). ⇒ **the rule: build to 3, then —**
+  1. **F if off CD** — Reliquary usually · Tormented Souls for ST + an expected big hit;
+  2. **else T** (Requiem→Soulrend) — the macro gates it to the 3-stack, filling F's
+     20s cooldown window.
+  F and T are rivalrous per 3-stack (F eats the Infusion T needs) → F is the
+  priority spender, T covers F's downtime. **Settles F@2-vs-F@3 → F@3** (the old
+  spend-at-2 habit was leaving F's value on the table). **This priority IS the
+  aura's core decision-flatten:** one input (at 3?), one branch (F up?), one loud
+  answer.
 - **Deathwind is the sustain BASIS** (player): a rolling 10s AOE self-heal
   (maintain it, don't spot-cast) — the always-on floor, with Tormented Souls the
   situational spike above it. (Corrects an earlier read that put TS as the core.)
