@@ -28,8 +28,11 @@ gather" (a test we can run) or "accept as bounded-opaque."
 ## Layout
 
 ```
-Class_design/
-  <Class>/
+Class_design/            # the FLOOR = what translates across every class
+  METHOD.md          # the reasoning method — the EXPRESSION × INTENT × MECHANICS triangle
+  README.md          # this file — purpose + evidence-first discipline
+  tools/             # class-agnostic extraction tooling (decode_build.py + CAPTURE.md)
+  <Class>/           # per-class application of the method
     FINDINGS.md      # living, sourced summary — the shareable artifact
     tests/           # test protocols + captured data + verdicts
 ```

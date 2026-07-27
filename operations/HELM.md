@@ -1,11 +1,11 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-27 (released - backlog #5 delivered, accepted, re-verified panel-closed, handed over)
-heading: —
-runway:  —
+holder:  Class_design (aura-side session)
+since:   2026-07-27
+heading: the class-design METHOD + first application — document the reasoning triangle (EXPRESSION × INTENT × MECHANICS) as the Class_design root core file (METHOD.md, the translating floor), then stand up Reaper/ and land durable talking points.
+runway:  short — METHOD doc this pass; Reaper folder next; held across both.
 
-next:    CLASS_DESIGN pickup -> Class_design/tools/CAPTURE.md (the build-capture loop, handed over: capture -> land -> diff w/ TARGETS; entry topology incl ConnectedNodes/Spells rank families = your graph substrate). Live finding for you: Dreadknight r2 in-game vs r1 in the saved plan. ADDONS: pipeline-validator conversation banked (Battlewrath) - on his ask.
+next:    —  (CAPTURE.md handover + the Dreadknight r2/r1 finding live in Class_design/tools/CAPTURE.md + git; the pipeline-validator conversation stays banked on Battlewrath's ask)
 
 ---
 
