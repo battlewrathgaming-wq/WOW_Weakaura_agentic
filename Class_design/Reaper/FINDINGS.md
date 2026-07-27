@@ -98,6 +98,26 @@ makes Tormented Souls look like the always-on core; the player's read corrects i
   build contract (the CAPTURE.md caveat). Realization reasoning needs the full
   kit = choices + granted.
 
+## Bar map & kit — grounded (full grid: `bar_map.md`)
+
+Battlewrath's level-33 control surface, every bind grounded. Three reads:
+
+- **Ergonomic fit is coherent** — position matches cadence throughout (builders +
+  primary leech hot; the *default* reaped-soul spend Reliquary hot on F, the
+  *situational* Tormented Souls on Shift-F; 30-RP spenders on the E column;
+  long-CD on cold/alt keys). "Reliquary usually wins" is literally encoded in F vs
+  Shift-F. No glaring mismatch — the layout is well-tuned.
+- **Runic Power is the throttle** — one pool feeds the leech-heal (Soul Strike
+  40 RP), the soul-converters (Wraithblade 40→3 souls, Dreadwake 30→1) AND the
+  30-RP strikes/debuffs (Murder/Deathwind). So RP generation (Reap + Backswing,
+  Scythe Rush +15, Bolstered Form +30) throttles heal, souls, and damage
+  *together* — a bigger throughput lever than any single stat. Bolstered Form &
+  Scythe Rush refuel RP *as* a defensive / mobility, so pressing them isn't
+  off-rotation.
+- **Latent synergy: Spectral Scythe × Soul Strike** — cash reaped souls into
+  Spectral Scythe, then Soul Strike spreads the scythes to +5 nearby → a
+  reaped-soul → AoE combo across V + R.
+
 ## Open / next (honest gaps — not yet read)
 
 - Domination + Class **talents not yet grounded**: Behemoth · Dreadknight ·
@@ -105,11 +125,11 @@ makes Tormented Souls look like the always-on core; the player's read corrects i
   Scythe · Soulsight · Essence Binder · Soul Slip · Dark Soldier · Dreadwake ·
   Dominion. Next pass reads each + traces synergy/topology (the capture record's
   `ConnectedNodes` / `Spells` graph).
-- **Ground the granted kit** — rotation-critical abilities that sit *outside* the
-  build string (baseline/spec-granted): **Reliquary of the Lost, Murder, Soulrend,
-  Reap, Soul Strike, Deathwind**. Read their text next (esp. Reliquary — it wins
-  the survival slot, and I have zero data on it yet). Plus the Dreadwake / Requiem
-  talent text (now known as castsequence builders).
+- **Granted kit GROUNDED** (2026-07-27, `bar_map.md`) — Reliquary (20s CD
+  reaped-soul spend), Murder/Deathwind/Dreadwake (30 RP), Soul Strike (40 RP
+  leech), Wraithblade (40→3 souls), Requiem/Soulrend/Soulslam/Spectral Scythe,
+  Bolstered Form, Jailer's Bargain, Veilwalk, Ghost Claw. **Residual gap:** Soul
+  Capture (Alt-Q, 15s CD) has no repo description — effect unknown (tooltip/addon).
 - **Plan-drift:** Dreadknight is **r2 in-game vs r1** in the saved export (per
   `../tools/CAPTURE.md`) — reconcile (reclaim the point or update the plan).
 
