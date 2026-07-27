@@ -12,7 +12,7 @@ unlocks pending._
 |---|---|---|---|
 | **Q** | Reap | core RP builder (+5 via Backswing) | ✓ hot = spam builder |
 | Shift-Q | Scythe Rush | rush + **15 RP**, 1/target/20s | ✓ builder+mobility |
-| Alt-Q | Soul Capture | 15s CD — **no repo description (GAP)** | ? |
+| Alt-Q | Soul Capture | 15s CD; **1 Reaped Soul + 10% HP, corpse-gated** (player-filled) — situational | ✓ situational → alt |
 | **E** | `castseq Dreadwake, Dreadwake, Murder` | Dreadwake 30 RP → 1 Reaped Soul + cone; Murder 30 RP strike | ✓ 30-RP column |
 | Shift-E | Deathwind (`@player`) | 30 RP, AOE self-heal, 10s | ✓ |
 | **R** | Soul Strike | **40 RP** leech self-heal (missing-hp scaled; +Lifestealer/Harvester's Scythe) | ✓ hot = primary heal |
@@ -51,6 +51,22 @@ Empty (level-33 unlocks pending): Alt-E · Alt-F · Shift-V · Alt-V · Alt-T ·
   (separate, not shared) AND both spend reaped souls → contend on both cadence and
   resource. (Battlewrath's 20s-cadence instinct was grounded.)
 
-## Gaps
-- **Soul Capture** (Alt-Q, 15s CD) — no description in the repo snapshot; effect
-  unknown. Tooltip / addon fill.
+## Player-read (Battlewrath, 2026-07-27) — spend model + divergences
+
+- **The soul-spend has two tiers, mapped to keys:** **F = reaped-soul spenders**
+  (Reliquary / Tormented Souls), spent **at 2 souls** — deliberately *below* the
+  3-stack; **T = Soul-Infusion spenders** (the Requiem→Requiem→Soulrend
+  castsequence), which want the **3-stack**. Spending F at 2 keeps it from eating
+  the Soul Infusion that T needs (reaped-soul spenders *may also* consume Soul
+  Infusion). F-before-T is a positional spend-order reminder. → **Verify: do
+  F-spenders consume Soul Infusion?** If yes, the F@2 / T@3 split is validated; if
+  no, F could push to 3 for more effect.
+- **Deathwind is the sustain BASIS** (player): a rolling 10s AOE self-heal
+  (maintain it, don't spot-cast) — the always-on floor, with Tormented Souls the
+  situational spike above it. (Corrects an earlier read that put TS as the core.)
+- **⚠ Bolstered Form cooldown — DIVERGENCE:** played as "15s CD, highly repeatable"
+  (slot 1); grounded data = **15s DURATION / 60s cooldown** (likely a duration↔CD
+  conflation). Matters because its **+30 RP** is a major income at 15s but only
+  occasional at 60s. **Verify in-game** (DBC CD may be stale, cf. Harvest Plague).
+
+_No unresolved bar gaps remain (Soul Capture filled by player knowledge above)._

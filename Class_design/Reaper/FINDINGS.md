@@ -128,8 +128,12 @@ Battlewrath's level-33 control surface, every bind grounded. Three reads:
 - **Granted kit GROUNDED** (2026-07-27, `bar_map.md`) — Reliquary (20s CD
   reaped-soul spend), Murder/Deathwind/Dreadwake (30 RP), Soul Strike (40 RP
   leech), Wraithblade (40→3 souls), Requiem/Soulrend/Soulslam/Spectral Scythe,
-  Bolstered Form, Jailer's Bargain, Veilwalk, Ghost Claw. **Residual gap:** Soul
-  Capture (Alt-Q, 15s CD) has no repo description — effect unknown (tooltip/addon).
+  Bolstered Form, Jailer's Bargain, Veilwalk, Ghost Claw. **Soul Capture filled**
+  by player (1 Reaped Soul + 10% HP, corpse-gated).
+- **Two in-game verifies** (from the bar-map player-read, `bar_map.md`): (1)
+  Bolstered Form's real cooldown — 15s *duration* vs 60s *CD* — which sets its
+  RP-income weight; (2) do the F reaped-soul spenders consume Soul Infusion —
+  validates the F@2 / T@3 spend split (or frees F to spend at 3).
 - **Plan-drift:** Dreadknight is **r2 in-game vs r1** in the saved export (per
   `../tools/CAPTURE.md`) — reconcile (reclaim the point or update the plan).
 
