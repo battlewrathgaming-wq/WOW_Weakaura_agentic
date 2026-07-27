@@ -41,7 +41,9 @@ Spectral Scythe · + Class: Soulfused Constitution · Dominion.
    feed the ladder; **Tormented Souls** cashes it into −10% damage-taken +
    self-heal; **Soul Strike** leeches and the build *double-invests* in it
    (Harvester's Scythe + Lifestealer); **Jailer's Bargain** is the panic CD. The
-   build is realizing sustain-as-mitigation, not fighting it.
+   build is realizing sustain-as-mitigation, not fighting it. *(Play nuance —
+   see Play anchors: Tormented Souls is mechanically central but in practice
+   situational; the 20s survival slot usually goes to Reliquary of the Lost.)*
 2. **Stat lean — Stamina is the premier stat (the "helps most" stub).** Double
    duty, echoing the Necro finding but for a tank: Stamina is raw EHP **and** it
    scales the main self-heal — **Tormented Souls heals 24% of Stamina per stack.**
@@ -55,6 +57,39 @@ Spectral Scythe · + Class: Soulfused Constitution · Dominion.
    earns its place — surface soul-ladder state + Tormented Souls stacks/uptime.
    (The downstream product.)
 
+## Play anchors (Battlewrath — the feel/rotation layer the triangle can't see)
+
+Recorded from play, 2026-07-27. The METHOD's honest boundary in action: the data
+makes Tormented Souls look like the always-on core; the player's read corrects it.
+
+- **Tormented Souls is situational, not always-on.** Best single-target / big-hit
+  (bosses, hard mobs): the **6-stack / 20s** ramp doesn't pay off on AOE trash,
+  and stretching the window with cooldown-speed starts to *restrict actions per
+  minute*. Its ST cluster-mates — **Murder** and **Soulrend** — are single-target
+  too.
+- **The ~20s survival slot is CONTESTED.** In Battlewrath's logic axis, Tormented
+  Souls and **Reliquary of the Lost** share the same ~20s cadence — **and
+  Reliquary usually wins**, except single-target when a big hit is expected (then
+  Tormented Souls). ⇒ a survival aura must **rank the slot per situation**, never
+  assume Tormented Souls is up as-of-course. (This is the pressure-queue shape:
+  one survival slot, ranked reasons.)
+- **Macros flatten button-bloat into survival-threshold castsequences** (build →
+  ST-spend in one press):
+  ```
+  #showtooltip
+  /castsequence reset=target/8  Dreadwake, Dreadwake, Murder
+  #showtooltip
+  /castsequence reset=target    Requiem, Requiem, Soulrend
+  ```
+  So Dreadwake / Requiem are *builders* funnelling into Murder / Soulrend
+  *spenders*. An aura should surface the THRESHOLD state these key on — not fight
+  the macro.
+- **Kit ≠ build string.** The decoded EXPRESSION is talent *choices*; several
+  abilities the rotation leans on — **Reliquary of the Lost, Murder, Soulrend,
+  Reap, Soul Strike, Deathwind** — are baseline / spec-granted, *outside* the
+  build contract (the CAPTURE.md caveat). Realization reasoning needs the full
+  kit = choices + granted.
+
 ## Open / next (honest gaps — not yet read)
 
 - Domination + Class **talents not yet grounded**: Behemoth · Dreadknight ·
@@ -62,8 +97,11 @@ Spectral Scythe · + Class: Soulfused Constitution · Dominion.
   Scythe · Soulsight · Essence Binder · Soul Slip · Dark Soldier · Dreadwake ·
   Dominion. Next pass reads each + traces synergy/topology (the capture record's
   `ConnectedNodes` / `Spells` graph).
-- **Deathwind** (the AOE self-heal named in the thesis) — not yet located among
-  the picks; confirm whether it's taken.
+- **Ground the granted kit** — rotation-critical abilities that sit *outside* the
+  build string (baseline/spec-granted): **Reliquary of the Lost, Murder, Soulrend,
+  Reap, Soul Strike, Deathwind**. Read their text next (esp. Reliquary — it wins
+  the survival slot, and I have zero data on it yet). Plus the Dreadwake / Requiem
+  talent text (now known as castsequence builders).
 - **Plan-drift:** Dreadknight is **r2 in-game vs r1** in the saved export (per
   `../tools/CAPTURE.md`) — reconcile (reclaim the point or update the plan).
 
