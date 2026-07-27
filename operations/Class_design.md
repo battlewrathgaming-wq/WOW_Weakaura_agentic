@@ -18,18 +18,19 @@ triggered ids).
 
 ## Status
 
-- **Necromancer (Animation — Battlewrath's main): seeded, two haste questions
-  closed.** Stat priority + the pet-scaling loop (Stamina a confirmed damage
-  stat, ~0.5 SP/pt, multiplicative on Life Force) → `Class_design/Necromancer/
-  FINDINGS.md`. Haste adds no output to Harvest Plague or Crypt Swarm (both
-  combat-log tested) → the weakest secondary (pet-inheritance value only).
+- **Necromancer (Animation — Battlewrath's main): seeded.** Stat priority + the
+  pet-scaling loop (Stamina a confirmed damage stat, ~0.5 SP/pt, multiplicative
+  on Life Force) → `Class_design/Necromancer/FINDINGS.md`. Harvest Plague ticks
+  are haste-immune (tested). Crypt Swarm "haste" test was **invalidated by a
+  community-confirmed bug** (Scourge Disciple applies NEGATIVE haste — a trap
+  talent), so Crypt Swarm × *positive* haste is **reopened**.
 
 ## Open / forecast
 
-- **Crypt Swarm haste discriminator** (posted to the class Discord as a possible
-  bug): Crypt-Swarm-specific vs archer-haste-global? Test = a hard-cast under
-  0 vs 5 archers (`SPELL_CAST_START→SUCCESS` gap). Or benign tick-rounding. The
-  robust claim regardless: total output unchanged.
+- **Crypt Swarm × positive haste (reopened)** — the archer test used bugged
+  −haste (Scourge Disciple; community-confirmed known bug = the archer-haste-
+  global answer to the old discriminator). Clean re-test = **potion, NO archers**,
+  baseline vs potion → does positive haste shorten the channel / add ticks/RP?
 - Necromancer small: exact Life-Force slope (Banshee LF2 / Gargoyle); Hit-cap
   weight under pet-heavy play.
 - **20 more classes** — same spine (talents JSON + coa_spells + live tests).

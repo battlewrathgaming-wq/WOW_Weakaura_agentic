@@ -49,11 +49,13 @@ Per-tick intervals while the potion was active (ticks 1–6): 3.020, 3.005,
 1. **Combat-log measurement** — interval identical with the potion active.
 2. **DBC** — the "haste-affects-periodic" attribute (AttributesEx5 `0x80000`) is
    UNSET on Harvest Plague (base-WotLK DoT behaviour: haste doesn't tick it).
-3. **Tooltip oracle (Battlewrath)** — pumped haste via **Skeletal Archers**
-   (Scourge Disciple, a class *spell*-haste source) and watched whether the
-   tooltip's tick timing updated (it does on this server when a stat applies).
-   It did NOT move. This also closes the "potion spell vs melee haste?" caveat —
-   the archer source is unambiguously spell haste.
+3. **Tooltip oracle (Battlewrath)** — pumped "haste" via **Skeletal Archers** and
+   watched the tooltip's tick timing; it did NOT move. *Caveat added 2026-07-27:*
+   the archer-haste talent (Scourge Disciple) is a known bug that applies
+   **negative** haste, so this was really a −haste test — still consistent with
+   immunity (haste in *either* direction left the ticks alone), but it does NOT
+   independently confirm positive spell-haste. The conclusion rests on witnesses
+   1 (real potion) + 2 (DBC flag).
 
 ## Summon-timing note (not the verdict, but honest)
 

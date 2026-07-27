@@ -1,12 +1,19 @@
-# Test: Crypt Swarm x Haste  — RESOLVED 2026-07-27
+# Test: Crypt Swarm x Haste  — REOPENED 2026-07-27 (input was bugged)
+
+> **UPDATE 2026-07-27 (community — Johp, class Discord):** the archer-haste
+> talent **Scourge Disciple is a KNOWN BUG — it applies NEGATIVE haste.** So
+> this test's "+5 archers" condition was actually **−haste**, not +haste. That
+> *explains* the longer channel (less haste → longer channel) and means Crypt
+> Swarm **is** haste-responsive. The original "no benefit" conclusion is
+> **invalid** (wrong direction tested); Crypt Swarm × *positive* haste is
+> **reopened**. Clean re-test = potion, NO archers/Scourge Disciple. The raw
+> measurements below still stand — only the interpretation flips.
 
 **Question:** Does haste help Crypt Swarm (a channeled Runic-Power generator)?
-The tooltip showed the channel getting *longer* with haste (2.74 → 2.85s), which
-is counterintuitive — is that more ticks/RP (a gain) or just a stretched channel
-(neutral/loss)?
+The tooltip showed the channel getting *longer* with "haste" (2.74 → 2.85s).
 
-**Answer: no gain — a mild loss.** Haste adds no ticks and no output; it slightly
-lengthens the channel for the same result.
+**Original (invalidated) answer:** "no gain" — but the "+archers" input was
+bugged −haste (see UPDATE). Corrected reading in the Verdict.
 
 ## The spell (`501886`)
 
@@ -37,25 +44,26 @@ Parsed with `crypt_analyze.py` (this folder): aggregate ticks + total RP per cas
   Per-second RP ~unchanged (~10.7 vs ~10.9 RP/s).
 - **Channel ~2% longer** with haste (measured 2.730→2.792s; tooltip 2.74→2.85).
 
-## Verdict
+## Verdict (corrected)
 
-Haste buys Crypt Swarm **nothing** — same ticks, same output, marginally longer
-channel (a slight cast-time inefficiency, not a gain). With the Harvest Plague
-result, haste adds no output to Necromancer's periodic/channel damage; its only
-value is pet-inheritance (804360). Haste is the weakest Animation secondary.
+The measured result — channel ~2% longer, same 19 ticks, flat output — was under
+**bugged −haste** (Scourge Disciple), so it actually reads: *less* haste
+lengthens the channel → **Crypt Swarm IS haste-responsive.** By symmetry a real
+positive haste source would *shorten* the channel (faster RP cadence); whether it
+also adds ticks/RP is **untested and open.** The earlier "haste buys nothing"
+claim is **withdrawn.** (Harvest Plague's haste-immunity is separate and still
+holds — tested with the real potion + the DBC flag.)
 
-## Two open hypotheses for the odd lengthening (posted to the class Discord)
+## The two hypotheses — RESOLVED to Hyp 2 (community)
 
 1. Crypt Swarm mishandles haste (spell-specific), OR
-2. the archer haste computes wrong "to the global".
+2. **the archer haste computes wrong "to the global" ← CONFIRMED.**
 
-**Discriminator (not yet run):** cast a normal HARD-CAST spell with 0 vs 5
-archers and read the cast time (`SPELL_CAST_START → SPELL_CAST_SUCCESS` gap): if
-it shortens correctly, archer haste is globally fine → Hyp 1; if it lengthens,
-Hyp 2. Bonus: run Crypt Swarm under the **potion** — if it also stretches, Hyp 1
-(source-independent). Third possibility: benign channel-duration rounding to
-whole ticks (not a bug). The robust claim regardless: **total output is
-unchanged.**
+Johp (class Discord): **Scourge Disciple is a known bug that applies negative
+haste.** So the lengthening wasn't Crypt Swarm misbehaving — it was the *input*
+being inverted, affecting everything haste-sensitive (GCD, casts, channels). No
+discriminator run needed; the community pinned it. **Build note:** while bugged,
+Scourge Disciple is a haste *penalty* — a trap talent for an Animation build.
 
 ## Run it
 

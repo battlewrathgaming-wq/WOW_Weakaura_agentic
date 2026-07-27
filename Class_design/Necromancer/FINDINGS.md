@@ -49,7 +49,7 @@ army. And Stamina is a genuine **damage** stat, not just survival.
 
 ## Stat priority — Animation (measured + reasoned)
 
-**Spell Power ≥ Intellect ≈ Stamina > Spell Hit (to cap) > Crit ≥ Haste > Spell Pen**
+**Spell Power ≥ Intellect ≈ Stamina > Spell Hit (to cap) > Crit ≈ Haste > Spell Pen**
 
 - **Spell Power** — anchor (1.0). Scales every pet + your own casts.
 - **Intellect** — pet AP/SP at ~½ SP; plus your mana / own SP / crit.
@@ -62,11 +62,16 @@ army. And Stamina is a genuine **damage** stat, not just survival.
   a dead GCD. (Hit-cap behaviour is standard for this client generation — worth
   a one-time CoA confirm.)
 - **Crit** — inherited by the army (your crit → army crit). Real, not filler.
-- **Haste** — inherited too (army attacks/casts faster), but the **weakest
-  secondary**: combat-log tested to add NO output to Necromancer's periodic/
-  channel damage — no extra Harvest Plague ticks, no extra Crypt Swarm ticks/RP
-  (and a marginally *longer* Crypt Swarm channel). Value is pet-inheritance only.
-  See `tests/harvest-plague-haste-test.md`, `tests/crypt-swarm-haste-test.md`.
+- **Haste** — inherited by the army (attacks/casts faster). Harvest Plague ticks
+  are haste-immune (real potion + DBC flag). Crypt Swarm × *positive* haste is
+  **open** — our archer test was invalidated by the bug below (it was −haste),
+  and a real haste source would likely *shorten* the channel. So haste's value is
+  uncertain, not dismissed. See `tests/harvest-plague-haste-test.md`,
+  `tests/crypt-swarm-haste-test.md`.
+- **⚠ KNOWN BUG — Scourge Disciple:** the archer-haste talent applies **negative**
+  haste (community-confirmed, class Discord 2026-07-27). While bugged it is a
+  haste **penalty**, not a bonus — a trap for an Animation build, and it poisoned
+  our Crypt Swarm "haste" test (that condition was really −haste).
 - **Spell Pen** — mostly endgame / resistant-target / PvP.
 
 **Build implication:** Battlewrath's **Boneward (`681528`, +10% stam)** and

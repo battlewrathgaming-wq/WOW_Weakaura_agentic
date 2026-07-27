@@ -6,6 +6,10 @@ heading: —
 runway:  —
 
 next:    CLASS_DESIGN lane seeded (new root `Class_design/`, tracked in operations/Class_design.md). Necromancer (Animation) stat basis DONE — pet-scaling loop, Stamina a confirmed damage stat, priority `SP ≥ Int ≈ Stam > Hit→cap > Crit ≥ Haste > Spell Pen`. Both haste questions closed by combat-log measurement (Harvest Plague ticks & Crypt Swarm don't gain from haste ⇒ haste = weakest secondary). Combat-log method + tools banked (Class_design/Necromancer/tests/README.md). OPEN, all small: the Crypt Swarm haste discriminator (hard-cast under 0 vs 5 archers — Crypt-Swarm-specific or archer-haste-global? posted to the class Discord); exact Life-Force slope; Hit-cap weight under pet-heavy play; then the other 20 classes on the same spine. Detail: operations/Class_design.md.
+         AMEND 2026-07-27 (community, Johp — light, helm stays RELEASED): the archer-haste talent
+         **Scourge Disciple is a KNOWN BUG applying NEGATIVE haste** (⇒ the old discriminator resolves to
+         archer-haste-global). So the Crypt Swarm "no-gain" result used −haste; Crypt Swarm IS
+         haste-responsive and its × *positive* haste is REOPENED (clean re-test = potion, no archers).
 
 ---
 
