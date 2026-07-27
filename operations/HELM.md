@@ -1,11 +1,11 @@
 # HELM — who has the trunk
 
-holder:  Class_design (aura-side session)
-since:   2026-07-27
-heading: stand up root-level Class_design/ (per-class mechanics basis, sibling to operations/) and seed Necromancer / Animation — the pet-scaling loop (Necromancy 804360 + Sepulchral Might 706472; Stamina a confirmed ~0.5 SP/point damage stat), the Animation stat priority, and the test records (stamina-loop DONE; Harvest Plague × haste PENDING).
-runway:  short — seed the Necromancer findings this session; the open follow-up is the Harvest Plague /combatlog tick-count test.
+holder:  RELEASED
+since:   2026-07-27 (released — Class_design lane seeded: Necromancer stat basis + Harvest Plague & Crypt Swarm haste tests + combat-log tooling, all on the trunk)
+heading: —
+runway:  —
 
-next:    —  (prior MACROS + ADDONS release steering moved to operations/Macros.md · operations/Addons_load.md · git; superseded by the heading above per HELM protocol)
+next:    CLASS_DESIGN lane seeded (new root `Class_design/`, tracked in operations/Class_design.md). Necromancer (Animation) stat basis DONE — pet-scaling loop, Stamina a confirmed damage stat, priority `SP ≥ Int ≈ Stam > Hit→cap > Crit ≥ Haste > Spell Pen`. Both haste questions closed by combat-log measurement (Harvest Plague ticks & Crypt Swarm don't gain from haste ⇒ haste = weakest secondary). Combat-log method + tools banked (Class_design/Necromancer/tests/README.md). OPEN, all small: the Crypt Swarm haste discriminator (hard-cast under 0 vs 5 archers — Crypt-Swarm-specific or archer-haste-global? posted to the class Discord); exact Life-Force slope; Hit-cap weight under pet-heavy play; then the other 20 classes on the same spine. Detail: operations/Class_design.md.
 
 ---
 
