@@ -1,15 +1,11 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-27 (released — Class_design lane seeded: Necromancer stat basis + Harvest Plague & Crypt Swarm haste tests + combat-log tooling, all on the trunk)
-heading: —
-runway:  —
+holder:  Class_design (aura-side session)
+since:   2026-07-27
+heading: build extraction — bank the CoA builder-string decoder (Class_design/tools/decode_build.py, validated on a real Reaper build) and scope the addon talent-tree-walk request (validate its "is-selected" signal via a decode-vs-walk diff) for handoff to the addon bench.
+runway:  short — land the decoder + the scoped addon request this session; addon-side implementation goes to the addon bench.
 
-next:    CLASS_DESIGN lane seeded (new root `Class_design/`, tracked in operations/Class_design.md). Necromancer (Animation) stat basis DONE — pet-scaling loop, Stamina a confirmed damage stat, priority `SP ≥ Int ≈ Stam > Hit→cap > Crit ≥ Haste > Spell Pen`. Both haste questions closed by combat-log measurement (Harvest Plague ticks & Crypt Swarm don't gain from haste ⇒ haste = weakest secondary). Combat-log method + tools banked (Class_design/Necromancer/tests/README.md). OPEN, all small: the Crypt Swarm haste discriminator (hard-cast under 0 vs 5 archers — Crypt-Swarm-specific or archer-haste-global? posted to the class Discord); exact Life-Force slope; Hit-cap weight under pet-heavy play; then the other 20 classes on the same spine. Detail: operations/Class_design.md.
-         AMEND 2026-07-27 (community, Johp — light, helm stays RELEASED): the archer-haste talent
-         **Scourge Disciple is a KNOWN BUG applying NEGATIVE haste** (⇒ the old discriminator resolves to
-         archer-haste-global). So the Crypt Swarm "no-gain" result used −haste; Crypt Swarm IS
-         haste-responsive and its × *positive* haste is REOPENED (clean re-test = potion, no archers).
+next:    —  (Class_design status/steering preserved in operations/Class_design.md; the community Scourge-Disciple negative-haste bug note lives there + in Necromancer/FINDINGS.md)
 
 ---
 
