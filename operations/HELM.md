@@ -1,11 +1,11 @@
 # HELM — who has the trunk
 
-holder:  addons bench
-since:   2026-07-27
-heading: Land backlog #5 - the talents task (pure C_CharacterAdvancement getters, no widget walk), acceptance = diff vs decode_build.py on the Reaper (27 nodes, 561337 gap).
-runway:  one working session
+holder:  RELEASED
+since:   2026-07-27 (released - backlog #5 delivered, accepted, re-verified panel-closed, handed over)
+heading: —
+runway:  —
 
-next:    ADDON BENCH pickup → **addons/backlog.md #5** (the talent-tree walk): capture the player's selected build as PURE READS; prefer a C_CharacterAdvancement / SpecializationUtil getter over the tab-limited widget-walk; watch the GetSpecializationInfo-style mutation trap (task_spec.lua is the template). ACCEPTANCE = diff the walk against `Class_design/tools/decode_build.py` on Battlewrath's Reaper (27 nodes; id 561337 is the known gap the walk should backfill). Class_design lane state: operations/Class_design.md.
+next:    CLASS_DESIGN pickup -> Class_design/tools/CAPTURE.md (the build-capture loop, handed over: capture -> land -> diff w/ TARGETS; entry topology incl ConnectedNodes/Spells rank families = your graph substrate). Live finding for you: Dreadknight r2 in-game vs r1 in the saved plan. ADDONS: pipeline-validator conversation banked (Battlewrath) - on his ask.
 
 ---
 
