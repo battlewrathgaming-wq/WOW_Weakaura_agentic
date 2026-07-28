@@ -76,12 +76,18 @@ reproduction**; don't lean on it. Their leading **−75** is an uncontrolled
 artifact — Battlewrath's *guess*, from his own similar run, is a big-pet→ghoul
 transition (losing a large pet's SP); consistent with the pet-dependence above but
 it does not *quantify* it. **Protocol:** start ladders from a *truly empty* base
-(clear all, settle, confirm) — a lingering pet poisons the baseline. **OPEN —
-stale values (Battlewrath):** does SP always settle to the TRUE value for the
-*current* pets, or hold a *history-dependent* stale value after a transition?
-Gameplay-relevant (persistent staleness = damage that depends on pet history).
-**Test:** reach one pet state two ways — clean-summon vs transition — and compare
-*settled* SP; match = transient-only (fine), differ = a real bug.
+(clear all, settle, confirm) — a lingering pet poisons the baseline. **Stale values — CHARACTERIZED** (transient, not persistent; relayed to the class
+Discord 2026-07-29). The bonus-damage (SP) value recomputes **lazily / throttled,
+not continuously**: after removing pets the old value **lingers ~3–5s** (idle /
+ambient recompute) before dropping to the floor; an **event** (summoning a minion)
+triggers a tighter **~1s** recompute. *Caveat (Battlewrath):* could be a **single**
+internal clock, the 1s-vs-3–5s split just being read-timing on either side of the
+tick — not necessarily two mechanisms. Crucially it **corrects** → no
+history-dependent residue, **no permanent bug**. **Gameplay:** SP lags a pet change
+by up to ~3–5s when **idle** (stale-high after pet loss, stale-low after gain);
+likely shorter in active combat where events keep poking the recalc (unconfirmed).
+**Measurement:** read *at settle* (wait for the value to jump/drop) — the API reads
+the same throttled internal value.
 
 ## Stat priority — Animation (measured + reasoned)
 

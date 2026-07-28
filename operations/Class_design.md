@@ -50,10 +50,10 @@ triggered ids).
   colossus "flat 2nd" = tracker noise). A community re-run (LtGen) *looked*
   consistent with +15/ghoul but under UNKNOWN conditions — suggestive, not a
   controlled reproduction; don't lean on it. Residual/open: (a) WHY the first-pet
-  doubling (1→0→1 verify); (b) **STALE VALUES** — does SP settle to the true value
-  after a pet transition or hold a history-dependent stale value? (gameplay-
-  relevant; test = same pet-state via clean-summon vs transition, compare *settled*
-  SP — differ = a real bug).
+  doubling (1→0→1 verify); (b) **STALE VALUES — CHARACTERIZED:** SP recomputes lazily
+  (idle ~3–5s, event/summon ~1s; maybe one clock + read-timing). It **corrects** —
+  transient, not persistent (no history residue, no permanent bug). Gameplay ~3–5s
+  idle lag (shorter in combat, unconfirmed). Relayed to the class Discord.
 
 ## Open / forecast
 
