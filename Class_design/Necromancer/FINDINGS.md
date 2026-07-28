@@ -47,6 +47,19 @@ Stamina) and `300748` (needs Fetid Ward: +5/10% max health of you & summons).
 **Consequence:** crit / haste / hit are **not filler** — inherited by the whole
 army. And Stamina is a genuine **damage** stat, not just survival.
 
+**Pet-count → SP scaling — LINEAR** (measured 2026-07-29, `GetSpellBonusDamage`
+API read *at settle*, ghouls, buffs off). Each minion adds a flat **+15 GENERAL
+spell power** (all schools move together — raises every school's floor), dead
+steady through 5 pets: **no cap, no diminishing.** The **first pet is +30** — a
+one-time "≥1 minion" bonus of +15 on top of the +15/pet. Model fits exactly:
+`SP = 220 + 15×pets (+15 once any pet is up)` → 220 / 250 / 265 / 280 / 295 / 310.
+So fielding more minions adds SP with zero falloff (reinforces "go wide"); the
+first minion is double-value; and it **composes with the Stamina loop** (more
+player Stam → more per-pet Stam → the +15 grows). Resolves the necro-Discord
+confusion — the "colossus flat 2nd" was live-tracker noise (read the API at
+settle, not the bouncing sheet). WHY the first-pet doubling: likely a flat
+active-minion SP grant, unverified (a 1→0→1 or a different first pet would confirm).
+
 ## Stat priority — Animation (measured + reasoned)
 
 **Spell Power ≥ Intellect ≈ Stamina > Spell Hit (to cap) > Crit ≈ Haste > Spell Pen**

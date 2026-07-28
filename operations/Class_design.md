@@ -41,16 +41,13 @@ triggered ids).
   the aura's core decision-flatten. RP is the shared throttle; Stamina+AP scale
   sustain (TS heals 24% Stam); ergonomics coherent. **Open:** Bolstered Form CD
   verify (15s dur vs 60s CD); the ~13-talent synergy sweep; the aura build itself.
-- **Necromancer pet-scaling SP-ladder test: LIVE, mid-measurement.** Confirmed
-  pet-stamina → **GENERAL** spell power (all 6 schools move together, raises the
-  floor uniformly — fold into `Necromancer/FINDINGS.md`). **OPEN = the scaling
-  SHAPE:** linear / diminishing / capped. **Instrument (no addon):** read
-  `GetSpellBonusDamage(6)` (the API, NOT the bouncing character sheet) **at
-  settle**, one ghoul at a time, buffs stripped → ladder base/+1/+2/+3. Awaiting
-  Battlewrath's ladder → interpret shape → bank. (Origin: necro Discord — LtGen's
-  colossus spike-then-settle is tracker noise, NOT a despawn; the settled API
-  value is truth, the shape is the real question. Sampler could become a
-  COA_DevDump `OnUpdate` task if the settling curve is wanted.)
+- **Necromancer pet-scaling SP-ladder test: RESOLVED (2026-07-29).** Shape =
+  **LINEAR** — **+15 GENERAL spell power per ghoul** (steady through 5, no cap /
+  no diminishing), **first pet +30** (a one-time ≥1-minion bonus). Model:
+  `SP = 220 + 15×pets (+15 once any pet up)`. Folded into `Necromancer/FINDINGS.md`.
+  Answered the necro-Discord Q: **linear, not capped** — the colossus "flat 2nd"
+  was live-tracker noise (read the API at settle). Residual: WHY the first-pet
+  doubling (a flat active-minion grant? — a 1→0→1 verify would confirm).
 
 ## Open / forecast
 
