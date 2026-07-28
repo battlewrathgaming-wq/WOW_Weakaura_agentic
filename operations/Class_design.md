@@ -41,13 +41,13 @@ triggered ids).
   the aura's core decision-flatten. RP is the shared throttle; Stamina+AP scale
   sustain (TS heals 24% Stam); ergonomics coherent. **Open:** Bolstered Form CD
   verify (15s dur vs 60s CD); the ~13-talent synergy sweep; the aura build itself.
-- **Necromancer pet-scaling SP-ladder test: RESOLVED (2026-07-29).** Shape =
-  **LINEAR** — **+15 GENERAL spell power per ghoul** (steady through 5, no cap /
-  no diminishing), **first pet +30** (a one-time ≥1-minion bonus). Model:
-  `SP = 220 + 15×pets (+15 once any pet up)`. Folded into `Necromancer/FINDINGS.md`.
-  Answered the necro-Discord Q: **linear, not capped** — the colossus "flat 2nd"
-  was live-tracker noise (read the API at settle). Residual: WHY the first-pet
-  doubling (a flat active-minion grant? — a 1→0→1 verify would confirm).
+- **Necromancer pet-scaling SP-ladder test: RESOLVED (2026-07-29).** SHAPE (general)
+  = **LINEAR** — no cap, no diminishing through 5 — + a one-time first-minion bonus
+  (first pet double). MAGNITUDE is **ghoul-and-unbuffed specific**: +15 general SP
+  per ghoul (+30 first); **pet-dependent** (bigger pets add more) + **buff-dependent**
+  (Stamina/the loop raise it) — do NOT overclaim +15 as a per-minion constant.
+  Folded into `Necromancer/FINDINGS.md`. Answered the Discord Q (linear, not capped;
+  colossus "flat 2nd" = tracker noise). Residual: WHY the first-pet doubling.
 
 ## Open / forecast
 
