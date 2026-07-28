@@ -53,7 +53,9 @@ triggered ids).
   doubling (1→0→1 verify); (b) **STALE VALUES — CHARACTERIZED:** SP recomputes lazily
   (idle ~3–5s, event/summon ~1s; maybe one clock + read-timing). It **corrects** —
   transient, not persistent (no history residue, no permanent bug). Gameplay ~3–5s
-  idle lag (shorter in combat, unconfirmed). Relayed to the class Discord.
+  idle lag (shorter in combat, unconfirmed; ~7–8s idle seen in Test 2). **Test 2 = NO residue** — dismissing an
+  Abom returned SP to *exactly* base 220; Abom first-pet = +102 vs ghoul +30
+  (controlled pet-dependence, character-specific). Relayed to the class Discord.
 
 ## Open / forecast
 

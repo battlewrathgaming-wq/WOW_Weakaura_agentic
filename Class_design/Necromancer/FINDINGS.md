@@ -89,6 +89,15 @@ likely shorter in active combat where events keep poking the recalc (unconfirmed
 **Measurement:** read *at settle* (wait for the value to jump/drop) — the API reads
 the same throttled internal value.
 
+**Test 2 confirms NO residue (2026-07-29).** From clean base 220: summoning an
+Abomination read a stale 220 at 1s → **322 (+102)** at 2s; dismissing it, the value
+lingered at 322 for ~7–8s (idle) → then dropped back to **exactly 220** (−102).
+Returning to the *exact* clean base = **no history-dependent residue** — the
+staleness is purely a lazy-recompute lag and always converges to the truth (so the
+idle window is variable, up to ~8s here). Bonus *controlled* pet-dependence point:
+an **Abom as first pet added +102 SP** (vs a ghoul's +30) — bigger pets ≫ ghouls,
+as expected; still character/gear-specific (it's this Abom's stamina), not a constant.
+
 ## Stat priority — Animation (measured + reasoned)
 
 **Spell Power ≥ Intellect ≈ Stamina > Spell Hit (to cap) > Crit ≈ Haste > Spell Pen**

@@ -3,7 +3,7 @@
 holder:  Class_design (aura-side session)
 since:   2026-07-27
 heading: Class_design build-out — METHOD (the triangle) laid + Reaper (Domination tank) analyzed to a decision-flatten spec (soul-spend priority RESOLVED). NOW: the Necromancer pet-scaling SP-ladder test — general SP confirmed, scaling shape (linear/diminishing/capped) OPEN via the GetSpellBonusDamage API.
-runway:  held; Reaper analyzed, Necro pet-scaling ladder in flight (awaiting Battlewrath's ghoul-summon ladder). Active detail: operations/Class_design.md "Now" section.
+runway:  held; Reaper analyzed, Necro pet-scaling RESOLVED (linear scaling + staleness CHARACTERIZED, Test 2 = no residue). Active detail: operations/Class_design.md "Now" section.
 
 next:    —  (CAPTURE.md handover + the Dreadknight r2/r1 finding live in Class_design/tools/CAPTURE.md + git; the pipeline-validator conversation stays banked on Battlewrath's ask)
 
