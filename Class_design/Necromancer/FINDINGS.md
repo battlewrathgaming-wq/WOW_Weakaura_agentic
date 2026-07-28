@@ -69,6 +69,20 @@ necro-Discord confusion — the "colossus flat 2nd" was live-tracker noise (read
 API at settle). WHY the first-pet doubling: likely a flat active-minion SP grant,
 unverified (a 1→0→1 or a different first pet would confirm).
 
+**A community re-run + a new open question (2026-07-29).** LtGenZombie posted a
+ladder whose steps *look* consistent with **+15/ghoul**, but under **unknown
+conditions** (buffs, base, pet type not stated) — suggestive, **not a controlled
+reproduction**; don't lean on it. Their leading **−75** is an uncontrolled
+artifact — Battlewrath's *guess*, from his own similar run, is a big-pet→ghoul
+transition (losing a large pet's SP); consistent with the pet-dependence above but
+it does not *quantify* it. **Protocol:** start ladders from a *truly empty* base
+(clear all, settle, confirm) — a lingering pet poisons the baseline. **OPEN —
+stale values (Battlewrath):** does SP always settle to the TRUE value for the
+*current* pets, or hold a *history-dependent* stale value after a transition?
+Gameplay-relevant (persistent staleness = damage that depends on pet history).
+**Test:** reach one pet state two ways — clean-summon vs transition — and compare
+*settled* SP; match = transient-only (fine), differ = a real bug.
+
 ## Stat priority — Animation (measured + reasoned)
 
 **Spell Power ≥ Intellect ≈ Stamina > Spell Hit (to cap) > Crit ≈ Haste > Spell Pen**

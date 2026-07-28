@@ -47,7 +47,13 @@ triggered ids).
   per ghoul (+30 first); **pet-dependent** (bigger pets add more) + **buff-dependent**
   (Stamina/the loop raise it) — do NOT overclaim +15 as a per-minion constant.
   Folded into `Necromancer/FINDINGS.md`. Answered the Discord Q (linear, not capped;
-  colossus "flat 2nd" = tracker noise). Residual: WHY the first-pet doubling.
+  colossus "flat 2nd" = tracker noise). A community re-run (LtGen) *looked*
+  consistent with +15/ghoul but under UNKNOWN conditions — suggestive, not a
+  controlled reproduction; don't lean on it. Residual/open: (a) WHY the first-pet
+  doubling (1→0→1 verify); (b) **STALE VALUES** — does SP settle to the true value
+  after a pet transition or hold a history-dependent stale value? (gameplay-
+  relevant; test = same pet-state via clean-summon vs transition, compare *settled*
+  SP — differ = a real bug).
 
 ## Open / forecast
 
