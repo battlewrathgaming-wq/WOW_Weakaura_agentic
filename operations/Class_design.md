@@ -32,6 +32,26 @@ triggered ids).
   co-scaler (same "Stamina is throughput" shape as Necro). Talents-not-yet-read
   + Deathwind-in-build + the Dreadknight r2/r1 drift are the open next pass.
 
+## Now — active thread (2026-07-29)
+
+- **Reaper (Domination tank): FULLY ANALYZED** — `Reaper/FINDINGS.md` +
+  `Reaper/bar_map.md`. Thesis (soul-economy tank) × bars × grounded kit all run;
+  the **soul-infusion spend priority is RESOLVED** (build to 3 → **F if off CD**:
+  Reliquary usually / Tormented Souls for ST-big-hit; **else T**) — that rule IS
+  the aura's core decision-flatten. RP is the shared throttle; Stamina+AP scale
+  sustain (TS heals 24% Stam); ergonomics coherent. **Open:** Bolstered Form CD
+  verify (15s dur vs 60s CD); the ~13-talent synergy sweep; the aura build itself.
+- **Necromancer pet-scaling SP-ladder test: LIVE, mid-measurement.** Confirmed
+  pet-stamina → **GENERAL** spell power (all 6 schools move together, raises the
+  floor uniformly — fold into `Necromancer/FINDINGS.md`). **OPEN = the scaling
+  SHAPE:** linear / diminishing / capped. **Instrument (no addon):** read
+  `GetSpellBonusDamage(6)` (the API, NOT the bouncing character sheet) **at
+  settle**, one ghoul at a time, buffs stripped → ladder base/+1/+2/+3. Awaiting
+  Battlewrath's ladder → interpret shape → bank. (Origin: necro Discord — LtGen's
+  colossus spike-then-settle is tracker noise, NOT a despawn; the settled API
+  value is truth, the shape is the real question. Sampler could become a
+  COA_DevDump `OnUpdate` task if the settling curve is wanted.)
+
 ## Open / forecast
 
 - **Crypt Swarm × positive haste (reopened)** — the archer test used bugged
