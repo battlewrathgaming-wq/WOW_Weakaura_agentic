@@ -74,9 +74,10 @@ Empty (level-33 unlocks pending): Alt-E · Alt-F · Shift-V · Alt-V · Alt-T ·
 - **Deathwind is the sustain BASIS** (player): a rolling 10s AOE self-heal
   (maintain it, don't spot-cast) — the always-on floor, with Tormented Souls the
   situational spike above it. (Corrects an earlier read that put TS as the core.)
-- **⚠ Bolstered Form cooldown — DIVERGENCE:** played as "15s CD, highly repeatable"
-  (slot 1); grounded data = **15s DURATION / 60s cooldown** (likely a duration↔CD
-  conflation). Matters because its **+30 RP** is a major income at 15s but only
-  occasional at 60s. **Verify in-game** (DBC CD may be stale, cf. Harvest Plague).
+- **✓ Bolstered Form cooldown — RESOLVED (60s):** grounded data was right —
+  **15s duration / 60s cooldown**. Battlewrath (2026-07-29): *"Reaper is 1min, I
+  was confused with the uptime."* So its **+30 RP** is an *occasional* income spike
+  tied to a 60s defensive, **not** a rotational refuel — the steady RP fuel is
+  Reap+Backswing and Scythe Rush (20s/target).
 
 _No unresolved bar gaps remain (Soul Capture filled by player knowledge above)._

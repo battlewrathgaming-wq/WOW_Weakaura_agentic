@@ -39,8 +39,10 @@ triggered ids).
   the **soul-infusion spend priority is RESOLVED** (build to 3 → **F if off CD**:
   Reliquary usually / Tormented Souls for ST-big-hit; **else T**) — that rule IS
   the aura's core decision-flatten. RP is the shared throttle; Stamina+AP scale
-  sustain (TS heals 24% Stam); ergonomics coherent. **Open:** Bolstered Form CD
-  verify (15s dur vs 60s CD); the ~13-talent synergy sweep; the aura build itself.
+  sustain (TS heals 24% Stam); ergonomics coherent. **Bolstered Form CD RESOLVED** (60s /
+  15s dur — player confirmed 2026-07-29 the "15s" was uptime; +30 RP = occasional
+  spike, not rotational fuel). **Open:** the ~13-talent Domination synergy sweep;
+  the aura build itself (the resolved soul-spend rule is its core).
 - **Necromancer pet-scaling SP-ladder test: RESOLVED (2026-07-29).** SHAPE (general)
   = **LINEAR** — no cap, no diminishing through 5 — + a one-time first-minion bonus
   (first pet double). MAGNITUDE is **ghoul-and-unbuffed specific**: +15 general SP

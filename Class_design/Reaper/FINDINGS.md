@@ -134,8 +134,10 @@ Battlewrath's level-33 control surface, every bind grounded. Three reads:
   reaped souls and Soul Infusion → settled spend priority — build to 3 → **F if off
   CD** (Reliquary usually / TS for ST-big-hit), **else T** (Requiem→Soulrend, fills
   F's 20s window). This priority IS the aura's core decision-flatten (`bar_map.md`).
-- **One verify left:** Bolstered Form's real cooldown — 15s *duration* vs 60s *CD*
-  — which sets its RP-income weight.
+- **Bolstered Form CD — RESOLVED (2026-07-29):** **60s cooldown / 15s duration**
+  (Battlewrath confirmed the "15s" was uptime, not CD; grounded DBC was right). Its
+  **+30 RP** is an occasional spike tied to a defensive, **not** rotational fuel —
+  steady RP comes from Reap+Backswing and Scythe Rush.
 - **Plan-drift:** Dreadknight is **r2 in-game vs r1** in the saved export (per
   `../tools/CAPTURE.md`) — reconcile (reclaim the point or update the plan).
 
