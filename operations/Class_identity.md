@@ -123,8 +123,11 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
   - **Second track drafted — form 01 × necromancer** (`prompts/necromancer_01_gothic-operatic.md`):
     content vibe (Battlewrath) = **in service of the Dark Lady, Sylvanas** — a driving, grand, cold
     Forsaken war-march. Driver B, applying the full method (line-structure phrasing, forecast tags,
-    banshee placed at the peaks — doubly on-theme, she's the Banshee Queen). First draft, unrun. Starts
-    the playlist's spread beyond form 02.
+    banshee placed at the peaks — doubly on-theme, she's the Banshee Queen). **RUN — strong success on
+    all four dims** (drive punchy/aggressive with break-outs into fun timings; line delivery natural;
+    lovely wailing + voice control; lands as praise/devotion, rallying around her). **★ The method
+    TRANSFERS** — the 02 learnings carried to a different form + content and worked first try; banshee
+    reconfirmed (2-for-2 on placement → trending reliable). Playlist now spans two forms.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 

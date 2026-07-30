@@ -41,7 +41,9 @@ it sits in, not on the exact line. Place it in the region you want it, and treat
   the belted `[Crescendo]` and `(keening)` at the `[Chorus]`, and *"it went well"* — the wail landed in the
   intended **regions**. **Caveat:** the generation isn't 1:1, so a cue summons the wail in its
   *section/forecast*, not on the exact line. **Callable at region granularity** — place it in the region
-  you want it.
+  you want it. **Reconfirmed on a 2nd track** (form 01, *In Service of the Dark Lady*, 2026-07-30):
+  placed wails at the peaks gave *"lovely wailing features and voice control."* **Two-for-two on
+  placement → trending _reliable_.**
 
 ## How this feeds the work
 

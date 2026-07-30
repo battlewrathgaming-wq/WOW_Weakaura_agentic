@@ -95,8 +95,17 @@ We serve.
   theme, without smearing?
 - **The vibe** — does "in service of the Dark Lady" land the way you meant it? Content corner's yours.
 
-## Provenance
+## Provenance & grade
 
 Composed 2026-07-30 by the Suno manager — form 01 × the necromancer space (service to Sylvanas), Driver B,
 applying line-structure + forecast-tags + placed banshee. Original lyrics; "Dark Lady" / "Banshee Queen"
-are Warcraft titles, evoked for a personal fan track. **Unrun.**
+are Warcraft titles, evoked for a personal fan track.
+
+**RUN 2026-07-30 — strong success across the board (Battlewrath):**
+- **Drive:** *"much more punchy and aggressive, with break-outs into fun timings"* — 01 drives, clearly
+  distinct from 02's funeral pace; the fractional-subdivision floor came through (his very first taste note).
+- **Line structure:** *"the line delivery is much more natural"* — the lever holds on a second track.
+- **Banshee:** *"some lovely wailing features, and voice control"* — placement landed at the peaks.
+- **Vibe:** *"praise and devotion — that they rally around her"* — the Dark Lady content hit exactly.
+
+⇒ **The method transfers** — the 02 learnings carried to a different form + content and worked first try.
