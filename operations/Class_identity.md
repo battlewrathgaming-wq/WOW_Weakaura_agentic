@@ -52,11 +52,21 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     shared palette, focus rotates per song. **03 Dark Vaudeville (Gallows Whimsy)** — the
     whimsy corner (01 drives / 02 grieves / 03 laughs); steampunk cabaret, shanty + waltz,
     wry macabre persona, guitar-free; whimsy edge rotates per song. Open rims in-file.
-  - **Form 04 queued: the "going full" guitar form** — guitar quarantined to its own form
-    (keeps 01–03's no-guitar line clean). Refs: Ghostfire (*Vaudevillain*), Rammstein,
-    Nightwish, My Chemical Romance, Rob Zombie. Sourcing next.
-  - Still owned by the Suno manager: form 04, the content-attachment layer, the prompt
-    library, its own charter.
+  - **The guitar / "going full" form split in two** (guitar quarantined from 01–03, keeping
+    their no-guitar line clean): **04 Grand Theatrical Heavy (The Full Peak)** — 01's operatic
+    drama gone full-electric; theatrical bombast, grand/anthemic/melodic (Nightwish, MCR,
+    Ghostfire *Vaudevillain*); melodic (not guttural) voice. **05 Industrial Heavy (Cold
+    Machine)** — cold, hard, martial, machine-groove, horror-tinged (Rammstein, Rob Zombie);
+    harsh/guttural vocals (the one new vocal color); drive-not-chaos at its most mechanical.
+    Both **first-pass from the reference clusters** — opens flagged in-file (vocal confirm;
+    synth-relax for 05; drive-not-chaos carry).
+  - **Five form specs now** — one tonal spread across the same dark world: 01 driven-operatic ·
+    02 funereal-desperate · 03 gallows-whimsy · 04 grand-theatrical-heavy · 05 industrial-heavy.
+    A **design pattern surfaced:** each form is allowed to bend a *different* general hard-line
+    to fit its character (03 its tinkle/piano; 05 its industrial synth) — the rules are
+    per-form, not universal.
+  - Still owned by the Suno manager: the content-attachment layer, the prompt library, its own
+    charter (and per-form correction as Battlewrath grades the drafts).
 
 ## Open / forecast
 

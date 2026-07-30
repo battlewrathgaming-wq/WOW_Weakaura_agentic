@@ -75,7 +75,16 @@ job** is to hold him in the character's space while he plays. Taste is the form;
   The whimsy corner — **01 drives the dark, 02 grieves it, 03 laughs at it.** Steampunk cabaret / dark
   vaudeville: a wry macabre *persona* griping (zombie's-eye-view, alchemist's complaints) over
   **shanty roll + waltz lilt**; guitar-free, theatrical, tongue-in-cheek. Whimsy edge (gallows / absurd /
-  sinister-playful) **rotates per song**. _(Open rim: tinny-relax, piano, in-file.)_
+  sinister-playful) **rotates per song**. Playful space → clockwork/music-box tinkle + cabaret piano
+  welcome (it bends the not-tinny rule the grand forms keep).
+- [`forms/04_grand-theatrical.md`](forms/04_grand-theatrical.md) — **Grand Theatrical Heavy (The Full
+  Peak).** The guitar arrives — **01's operatic drama gone full-electric**: the metal wall 01 left out,
+  in service of **theatrical bombast** (Nightwish grandeur, MCR pageantry, Ghostfire). Grand, anthemic,
+  melodic, cathartic; powerful *melodic* voice, not guttural. _(First-pass from refs — opens in-file.)_
+- [`forms/05_industrial-heavy.md`](forms/05_industrial-heavy.md) — **Industrial Heavy (Cold Machine).**
+  The cold half of the split — **hard, machine-driven, martial, horror-tinged** (Rammstein, Rob Zombie).
+  Catharsis through *force*, not grandeur; **harsh/guttural vocals** (the one new vocal color in the set);
+  drive-not-chaos at its most mechanical. _(First-pass from refs — opens in-file.)_
 
 ## Coming (this folder — owned by the Suno manager)
 

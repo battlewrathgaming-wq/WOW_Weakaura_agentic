@@ -63,14 +63,14 @@ layer law borrowed from 02.)_
 
 ## Instrumentation & tone — OUT / boundaries
 
-- **No guitar — it has its own form (04).** The "no-guitar" line holds clean here; guitar energy is
-  quarantined to the "going full" form, not blended in.
-- **No heavy-metal wall** (that's 04 too).
-- **⚠ "Never tinny" — relaxed here?** Steampunk clockwork / music-box / calliope are *characteristically
-  bright and tinkly*. This form probably **allows bright mechanical tinkle** where 01/02 forbade it —
-  but confirm: how bright vs. how bass-anchored should the whimsy stay?
-- **⚠ Piano** — 01/02 kept piano minimal (it "loses richness"); cabaret *wants* a music-hall/honky-tonk
-  piano. Does piano earn a real seat in this form? Likely yes — confirm.
+- **No guitar — it has its own forms (04 & 05).** The "no-guitar" line holds clean here; guitar energy is
+  quarantined to the "going full" forms, not blended into the whimsy.
+- **No heavy-metal wall** (that's 04/05 too).
+- **"Never tinny" is _relaxed_ here (confirmed 2026-07-30).** Music-box, clockwork, and calliope tinkle
+  are welcome — this is the **playful space**, and the brightness serves it. (The bass-anchored /
+  not-tinny rule is 01/02's, not universal.)
+- **Piano is welcome here (confirmed 2026-07-30)** — a music-hall / honky-tonk piano earns a real seat;
+  the "piano loses richness" caution was about the *grand* forms, not the cabaret.
 
 ## Dynamic / arc
 
@@ -79,9 +79,9 @@ Theatrical **story-song**: verse → rousing communal chorus, comic timing, a si
 
 ## Sonic character
 
-Characterful, theatrical, mechanical — brighter and more *mid-forward* than 01/02 by nature of the
-palette (accordion, fiddle, clockwork). ⚠ How far the brightness goes vs. staying bass-anchored is the
-open tension above.
+Characterful, theatrical, mechanical — **brighter and more mid-forward** than 01/02 by nature of the
+palette (accordion, fiddle, clockwork, music-box). The brightness is *welcome* here; the whimsy isn't
+bound to the bass-anchored rule.
 
 ## The bridge to a prompt (light)
 
@@ -97,7 +97,8 @@ to. Content supplies the persona and their complaint. Form × content = a prompt
 ## Open / provisional (the honest rim)
 
 - **⚠ Name** — "Dark Vaudeville (Gallows Whimsy)" is provisional; rename freely.
-- **⚠ "Never tinny" relaxation** + **⚠ piano's seat** — the two boundary questions above.
+- _Resolved 2026-07-30: clockwork / music-box tinkle **and** cabaret piano both welcome — the playful
+  space isn't bound to 01/02's bass-anchored / not-tinny rule._
 - **⚠ Shanty vs waltz balance** — is the form centered on one, or genuinely spanning both (+ oom-pah)?
 - **⚠ Length** — tighter songs vs. room for longer.
 
