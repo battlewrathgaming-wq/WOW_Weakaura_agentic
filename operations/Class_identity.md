@@ -32,13 +32,21 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
 
 ## Now — active thread (2026-07-30)
 
-- **Suno manager standing up** — a resident puller inside Class_identity
-  (`Class_identity/Suno/`, scaffolded with an index pointing at the identities +
-  the ecosystem). **First-class within the lane, secondary in the wider
-  ecosystem** (personal creative byproduct). **First job: define Battlewrath's
-  music taste as a basis** (the fork — the music is personal) before any prompt.
-  Battlewrath spins up the agent; it owns the taste basis + prompt library + its
-  own charter (this lane only scaffolded the landing).
+- **Suno manager LIVE** (holds the helm, tag `suno`) — a resident puller inside
+  Class_identity (`Class_identity/Suno/`). **First-class within the lane, secondary
+  in the wider ecosystem** (personal creative byproduct).
+  - **First taste-sourcing conversation held** (the fork — his taste sourced from
+    his own references, not invented). Refs: Nightwish (*Ghost Love Score* /
+    *Phantom*), Emilie Autumn (*Opheliac*), Mishkin Fitzgerald (*Incitatus*).
+  - **Architecture set by Battlewrath: form = spec, content = attached.** The song
+    *form* is his taste as pure structure (necro-agnostic, reusable); *content*
+    (the gothic-necromancer mood, lyrical direction) attaches onto it, pulled loosely
+    from an `IDENTITY.md`. Prompt = form × content. Goal = a **varied playlist for
+    gameplay** that holds the character's space.
+  - **First form spec landed:** `Suno/forms/01_gothic-operatic.md` (Gothic Operatic /
+    Driving Swell). Open rim in-file: keys (piano/harpsichord), tempo band.
+  - Still owned by the Suno manager: more forms, the content-attachment layer, the
+    prompt library, its own charter.
 
 ## Open / forecast
 

@@ -21,7 +21,28 @@ The music is **for Battlewrath** — so his musical taste is grounded as a **bas
 same fork the whole project runs on: don't invent-and-spiral on what he'd like; **source his
 taste from his own references** (tracks, scores, artists, the game-music that lands), distill
 the dimensions, reason from that. His taste is the one corner no source holds — the intent
-corner, the same seat the class register sat in. _(Not built yet — the Suno manager's opening task.)_
+corner, the same seat the class register sat in.
+
+**Underway (opened 2026-07-30).** First taste-sourcing conversation held; taste is being captured as
+**song-form specs** (see below). First form landed: [`forms/01_gothic-operatic.md`](forms/01_gothic-operatic.md).
+
+## How this lane is organized: form vs content (Battlewrath, 2026-07-30)
+
+> "Document that song form first. It's spec. The content is something we attach from that."
+
+Two layers, kept clean:
+
+- **Form = spec** (`forms/`) — Battlewrath's taste as pure *structure*: the pulse, the register, the
+  instrumentation (in and out), the vocal architecture, the arc. **Necro-agnostic, reusable.** Sourced
+  from him (the fork). One file per form; the playlist goal is a *mix*, so more forms land as siblings.
+- **Content = attached** — the theme / mood / lyrical direction, layered onto a form. This is where the
+  **loose pull from a class `IDENTITY.md`** happens (the gothic-necromancer *space*). Content-attachment
+  is a separate layer, not yet built.
+- **Prompt = form × content** — a form supplies a Suno prompt's *style/production/structure* half;
+  content supplies the *theme/lyrics* half. The prompt library composes the two.
+
+_His **taste** is not a necro thing — it's operatic-gothic-darkwave on its own terms. The **playlist's
+job** is to hold him in the character's space while he plays. Taste is the form; the mood is attached._
 
 ## Index — materials to pull from
 
@@ -37,9 +58,17 @@ corner, the same seat the class register sat in. _(Not built yet — the Suno ma
 - [operations/WHAT.md](../../operations/WHAT.md) · [operations/HOW.md](../../operations/HOW.md)
   — the project's telos + the fact-basis method (§0, the fork).
 
+## Song forms (spec — the taste basis, as it fills in)
+
+- [`forms/01_gothic-operatic.md`](forms/01_gothic-operatic.md) — **Gothic Operatic (Driving Swell).**
+  Fixed driving floor (fractional subdivision, heavy percussion, bass-rich) under an operatic swell;
+  organ + low strings + choir/chant, **no guitar, no synth-focus, not classical/atmospheric**;
+  voice-as-instrument (cadence over meaning). The first form. _(Open rim: keys, tempo band — flagged
+  in-file.)_
+
 ## Coming (this folder — owned by the Suno manager)
 
-- **Taste basis** — Battlewrath's musical taste, sourced from his references + distilled.
-- **Prompt library** — Suno prompts per class / mood, pulling from the identities.
-- **Charter** — the Suno manager's founding directive (Battlewrath's to author, as he did this
-  lane's).
+- **More song forms** — other modes, as siblings in `forms/`, toward the varied playlist.
+- **Content-attachment layer** — how a class identity's mood attaches onto a form (form × content).
+- **Prompt library** — Suno prompts composed from form × content, pulling from the identities.
+- **Charter** — the Suno manager's founding directive.
