@@ -19,17 +19,18 @@ the rules from)._
 **Inputs / attachments** (top row): **+ Audio** · **+ Voice** (New) · **+ Inspo** — reference/voice
 inputs. _(Exact behaviour → § To verify.)_
 
-**Lyrics — three modes:**
+**Lyrics** (field cap **3000 chars**) **— three modes:**
 - **Write** — you supply explicit lyrics.
 - **Prompt** — you describe what the lyrics are *about*; Suno writes them fresh each generation (blank =
   random topic). Lyrics model shown: **ReMi** (dropdown → selectable).
 - **Instrumental** — no lyrics, no vocals.
 
 **Styles** — a **comma-separated string** (`string, string, string`): genre / mood / instrument /
-production tags. App example: *"dj scratches, passionate, intense, hi-nrg, sentimental."* Helpers beside
-it: enhance (wand) + shuffle.
+production tags. App example: *"dj scratches, passionate, intense, hi-nrg, sentimental."* **Field cap:
+1000 chars.** Row controls: enhance (wand), shuffle, undo, save-preset (bookmark), clear.
 
-**Exclude styles** — a negative field: styles to keep **out**.
+**Exclude styles** — a negative field: styles to keep **out**. **No visible cap** (tested past 110 chars —
+no warning, no counter shown).
 
 **Vocal Gender** — **Male / Female.**
 
@@ -40,7 +41,7 @@ it: enhance (wand) + shuffle.
 description."* → **how tightly the result adheres to the Styles string** (Battlewrath: how constrained to
 the styles it is).
 
-**Duration** — **0–6 min** (Pro tier sets length; shown at 5:00).
+**Duration** — **Custom** (a **0–6 min** slider) or **Auto** (Suno chooses the length). Pro tier.
 
 **Song title** · **Save to workspace.**
 
@@ -80,8 +81,8 @@ confirmed in-app._
 - **A concrete scene beats a vague emotion word** — v5.5 reportedly maps a scene to timbre/BPM/harmony,
   ~5× more effective than a lone mood word. (So "a dead sorceress conducting a frozen crypt-choir" beats
   "epic.")
-- **Character limit — disputed:** one guide says ~200 chars, another ~1,000 at v5.5. **⚠ Confirm in-app.**
-  Either way, front-load — leading tokens weigh most.
+- **Character limit — CONFIRMED in-app (2026-07-30):** **Styles = 1000 chars.** (The community's ~200-char
+  figure was wrong; ~1000 was right.) Front-load regardless — leading tokens weigh most.
 
 **Negatives go in Exclude Styles, never the Styles string.** Direct negation inside Styles isn't reliably
 parsed; the dedicated **Exclude Styles** field (your app has it) is the confirmed home for **every form's
@@ -99,7 +100,7 @@ simplify a tag if skipped. Reliability tiers (community consensus across version
   `[Build]`/`[Break]`.
 - **Inline vocal cues use _parentheses_** in the lyric line: `(whispered)`, `(belted)`, `(spoken)`.
   → for our forms: `(whispered)` = 01's whisper-layers · `(belted)` = 04's operatic belt · `(guttural)` = 05.
-- **Lyrics field ~5,000 chars.**
+- **Lyrics field = 3000 chars** (confirmed in-app; the community ~5000 figure was wrong).
 
 **Sliders (official help + community):**
 - **Weirdness** — *Safe → Chaos*, **50 = normal**. Low = simpler, predictable, steady; high = complex,
@@ -114,11 +115,13 @@ rove (a whimsy edge, a wilder take). Starting recipe; refine per form by ear.
 
 ## Still to confirm in-app (his Suno is the authority)
 
-- **Styles character limit at v5.5** — ~200 vs ~1,000 (sources disagree). One check settles it.
-- **Which meta-tags actually fire at v5.5** — the tiers are cross-version community consensus; confirm the
-  Tier-1/2 set behaves on v5.5 (they stay *hints* regardless).
+- **Which meta-tags actually fire at v5.5** — the tiers are cross-version community consensus; confirming
+  them is a *song-level* read, so lower priority given the noisy-feedback caveat (they stay *hints*
+  regardless).
 - **+Voice / +Inspo behaviour + limits** — the new attachment inputs; a possible route to playlist
   voice-consistency, still unmapped.
+- _Resolved 2026-07-30 (in-app, primary): field caps — **Styles 1000 · Lyrics 3000 · Exclude & Title
+  uncapped** (tested). The app superseded the community numbers where they conflicted._
 
 ## Sources
 
