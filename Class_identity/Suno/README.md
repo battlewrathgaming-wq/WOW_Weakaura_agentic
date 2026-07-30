@@ -55,7 +55,10 @@ Two layers, kept clean:
     v3 drove out the method (banshee callable, forecast-tags, line-structure command).
   - [`necromancer_01_gothic-operatic.md`](prompts/necromancer_01_gothic-operatic.md) — form 01 ×
     necromancer, **in service of the Dark Lady (Sylvanas)**; driving war-march, banshee at the peaks.
-    _First draft, to run._
+    **Ran strong on all four dims — the method transfers.**
+  - [`necromancer_03_dark-vaudeville.md`](prompts/necromancer_03_dark-vaudeville.md) — form 03
+    (organ-forward bend) × necromancer, **"The Maestro of the Dead"**; sinister-playful gallows-whimsy
+    waltz on a grand gothic pipe organ. _First draft, to run._
 - **Summonable features = the callable catalog** — qualities discovered in real runs and made reproducible
   (summon by design, not luck), in [`summonable-features.md`](summonable-features.md). Battlewrath's
   principle. First entry: the **banshee wail**.

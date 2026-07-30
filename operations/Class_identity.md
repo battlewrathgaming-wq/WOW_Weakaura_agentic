@@ -128,6 +128,12 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     lovely wailing + voice control; lands as praise/devotion, rallying around her). **★ The method
     TRANSFERS** — the 02 learnings carried to a different form + content and worked first try; banshee
     reconfirmed (2-for-2 on placement → trending reliable). Playlist now spans two forms.
+  - **Third track drafted — form 03 (organ-forward bend) × necromancer** (`prompts/necromancer_03_dark-
+    vaudeville.md`): Battlewrath's ask = **focus on the grand gothic organ** ("such a fun sound"), so 03's
+    whimsy is centred on the grand pipe organ (a haunted-carnival bend, not the default accordion/fiddle).
+    Content (my proposal) = **"The Maestro of the Dead"** — the necromancer as a gleeful showman
+    conducting her army; sinister-playful gallows-whimsy waltz. No banshee (doesn't fit the grin). First
+    draft, unrun — proves the range flips to whimsy.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 
