@@ -50,6 +50,10 @@ is specific to *this* class in *this* game. Source consumed (never asserted from
 - **`dependencies/coa_spells.json`** — names, schools, families — texture.
 - **In-game** — the client, models, tone, the way it *reads* in play.
 - **`Class_design/<Class>/`** — read for texture; its mechanics stay theirs.
+- **External lore foundations** — the broad tradition the class descends from
+  (e.g. Warcraft/WoW lore, D&D / Forgotten Realms roots). Named inspiration,
+  **feel only** — they widen the well; never a claim about COA. Per-class
+  citations live in that class's `IDENTITY.md`.
 
 ## Layout
 

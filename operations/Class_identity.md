@@ -24,17 +24,20 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
 ## Status
 
 - **Department established (2026-07-30).** Home planted (`README.md` charter +
-  `METHOD.md` floor), lane file up, helm taken. No class populated yet.
+  `METHOD.md` floor), lane file up, helm taken.
+- **Necromancer `IDENTITY.md` landed (2026-07-30)** — the first class populated.
+  Forsaken + Animation lens; register live-graded by Battlewrath (victim→master;
+  cold, not-a-hero; fallout, not rising; the character is a she). METHOD expanded
+  to **two source kinds** (COA-grounding × archetype foundations — WoW + D&D lore).
 
 ## Now — active thread (2026-07-30)
 
-- **First class: Necromancer** (Animation — Battlewrath's main) — the first
-  `IDENTITY.md`, and the first thing the Suno music-prompt exploration pulls
-  from. Not yet started; the next move.
+- **Suno music prompts** — the downstream this lane was stood up to feed, now
+  unblocked: the Necromancer identity exists to pull from. The next move.
 
 ## Open / forecast
 
-- **Suno music prompts** — the downstream exploration this lane was stood up to
-  feed. Class identity comes first (grounding to reason from), then the prompts
-  pull from it.
+- **Necromancer — other lenses** (the `IDENTITY.md` honest rim): the **Death** &
+  **Rime** spec registers, and non-Forsaken origins — each shades the same class
+  differently.
 - **20 more classes** — same method, one `IDENTITY.md` each, as they're reached.

@@ -18,6 +18,24 @@ One direction, disciplined at both ends:
 The output is an **imagined feeling, offered outward** — never a rule, never a
 claim about how the game works.
 
+## The sources — two kinds
+
+Both feed the imagining; they do different jobs:
+
+- **COA-grounding** (`Input/<class>_talents.json`, `coa_spells`, the client,
+  `Class_design/`) — pins *which* feeling is **this** class's, in **this** game.
+  Ability names and flavor are the spine; without them the identity drifts to
+  generic fantasy.
+- **Archetype foundations** (the broad lore a class descends from — e.g.
+  Warcraft/WoW lore and the D&D / Forgotten Realms roots) — widen the well: the
+  register, the psychology, the material palette a whole tradition carries. Named
+  inspiration, **feel only** — never a claim about COA.
+
+The wikis give the *palette of possible feelings*; the COA source + the player's
+intent choose *which one is real here*. (Necromancer, proven: WoW's Scourge lore +
+D&D's Undead-Master archetype, pinned by COA's own *Scourge Disciple* talents and
+the player's Forsaken frame.)
+
 ## The four facets (what we distill per class)
 
 - **Archetype** — the power fantasy; who you *are* when you play this. (The
@@ -51,8 +69,9 @@ of work. Invention lives here; determinism lives there.)
 
 ## Running it (per class)
 
-1. Consume the source until the register is felt (`Input/<class>_talents.json`
-   first — the flavor text).
+1. Consume the source until the register is felt — both kinds: the COA flavor
+   (`Input/<class>_talents.json` first) and the archetype foundations (the lore
+   the class descends from).
 2. Distill across the four facets — lean where the class leans.
 3. Emit `<Class>/IDENTITY.md` — evocative, outward-facing, sourced where a detail
    came from a real read. **Feel, not fact.**
