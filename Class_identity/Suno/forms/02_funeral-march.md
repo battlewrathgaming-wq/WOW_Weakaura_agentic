@@ -57,6 +57,20 @@ A funeral cortège: a **slow drum tread**, each strike **prolonged by a tolling 
 - Voice-as-instrument taken all the way: chant is *pure* cadence, sound over story (01's hard line, at
   its purest here).
 
+## Lead × chant — two bodies in dialogue
+
+02 carries **both a lead voice and the chant** — and their **interplay is a compositional engine**, a
+second source of the direction this form demands. Four modes, moved between:
+
+- **In concert** — the two together, unison or harmony, one body.
+- **In the other's absence** — each worked against the *space the other leaves*: the lead sings into the
+  chant's silence, or the chant fills where the lead has gone. Absence used as a voice.
+- **★ Lead dispels the chant** — the single voice rises and *scatters* the mass, banishing it.
+- **★ Chant overwhelms the lead** — the mass swells and *drowns* the individual voice beneath it.
+
+The one and the many, contending — and that contention **carries the piece forward** (part of how an
+atmospheric form stays directional).
+
 ## Register
 
 Funereal, solemn, grave, **spent, desperate.** Sacred-corrupted. The atmosphere of the last breath.
@@ -76,9 +90,10 @@ Gregorian chant · distant wind & breath. _(Focus rotates among these per song, 
 
 ## Dynamic / arc
 
-⚠ **Open.** Does the piece **build by accreting layers** toward a peak (the cortège swelling as it
-proceeds), or **hold a solemn processional plateau**? The march implies a steady tread; direction may
-come from layers *accumulating* over it. To settle with Battlewrath.
+Direction has **two engines** now: the **funeral-march tread** (pace) and the **lead × chant contention**
+(the vocal drama above). ⚠ Still open: whether a track *also* **builds by accreting layers** toward a
+peak (the cortège swelling as it proceeds) or **holds a solemn plateau** while the voices carry the
+motion. Likely a per-song choice — to settle with Battlewrath.
 
 ## Sonic character
 
@@ -101,10 +116,11 @@ the theme / any text, attached from an identity. Form × content = a prompt. _(C
 ## Open / provisional (the honest rim)
 
 - **⚠ Name** — "Funeral March (The Last Breath)" is provisional; rename freely.
-- **⚠ Arc** — build-by-accretion vs solemn plateau (above).
-- **⚠ A rising lead?** — whether a soaring/desperate lead voice ever lifts *above* the chant, or 02 stays
-  purely choral (per the focus-rotation, likely a per-song choice).
+- **⚠ Arc** — layer-accretion vs solemn plateau *on top of* the two direction-engines now named (above).
 - **⚠ Inherited hard-lines** — confirm no-guitar / no-synth / not-tinny / bass-rich all carry here.
+
+_Resolved 2026-07-30: the lead — yes, a lead **and** the chant, in the four-mode dialogue (concert /
+absence / lead-dispels / chant-overwhelms)._
 
 ## Sourced from
 

@@ -69,7 +69,8 @@ job** is to hold him in the character's space while he plays. Taste is the form;
   deliberate complement — **all atmosphere, but never directionless**: a funeral-drum tread (bells
   prolonging each strike) carries the atmosphere *forward* instead of drifting. Voice core = **pure
   Gregorian chant corrupted by desperation** — not angelic, the *last breath of the lungs*, sung spent.
-  Layers = a shared palette whose **focus rotates per song**. _(Open rim: arc, a rising lead — in-file.)_
+  Lead **and** chant contend (concert / absence / lead-dispels / chant-overwhelms). Layers = a shared
+  palette whose **focus rotates per song**. _(Open rim: arc — in-file.)_
 
 ## Coming (this folder — owned by the Suno manager)
 
