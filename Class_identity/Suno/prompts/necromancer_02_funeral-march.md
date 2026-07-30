@@ -107,3 +107,6 @@ actually fired — still to gather.)_
 
 **Kept & named (Battlewrath): _"Forsaken in requiem aeternam."_** The **first named product of the Suno
 lane** — the Forsaken identity fused into the requiem form.
+
+**→ [v2](necromancer_02_funeral-march_v2.md)** tests placing the banshee wail on-cue (inline
+`(wailing)`/`(keening)` at the peaks) to graduate it from emergent to callable.

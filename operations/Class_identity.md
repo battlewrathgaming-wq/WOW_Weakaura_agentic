@@ -106,7 +106,9 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     summon route: **placed inline cues** (`(wailing)`/`(keening)` on chosen lines), **not** a Styles tag —
     Battlewrath's refinement, generalised into a **scope rule**: pervasive texture → Styles (global),
     punctuating moment → inline placement (else a style insertion over-uses it). Confidence =
-    discovered-once; reconfirm by placing the cue at the peaks in a re-run.
+    discovered-once; **v2 prompt cut** (`prompts/necromancer_02_funeral-march_v2.md`) placing
+    `(wailing)`/`(keening)` at the two peaks — awaiting Battlewrath's run to confirm the wail lands
+    on-cue (→ graduates emergent → callable).
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 
