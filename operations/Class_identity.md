@@ -111,6 +111,12 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     used as FORECAST** (shaping the section / region / arc), **not per-line alterations.** A cue lands its
     effect in the neighbourhood, not on the exact line. Folded into the recipe + vocab; summonable-feature
     placement is region-level.
+  - **Hypothesis under test (Battlewrath): line STRUCTURE _commands the word_** where meta-tags only
+    forecast — deliberate line-breaks shape phrasing/delivery directly (observed: "one light" folded/
+    collapsed in delivery). **v3 prompt cut** (`prompts/necromancer_02_funeral-march_v3.md`) breaking the
+    opening onto three lines + two terminology refinements (going→**fading**; "I do not stop"→"**I am
+    eternal**" — grace over bluntness, and closer to the evil-enduring identity). Awaiting run; if the
+    line-break commands the phrasing → promote line-breaking to the recipe as a real lever.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 
