@@ -43,10 +43,16 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     (the gothic-necromancer mood, lyrical direction) attaches onto it, pulled loosely
     from an `IDENTITY.md`. Prompt = form × content. Goal = a **varied playlist for
     gameplay** that holds the character's space.
-  - **First form spec landed:** `Suno/forms/01_gothic-operatic.md` (Gothic Operatic /
-    Driving Swell). Open rim in-file: keys (piano/harpsichord), tempo band.
-  - Still owned by the Suno manager: more forms, the content-attachment layer, the
-    prompt library, its own charter.
+  - **Two form specs landed** (`Suno/forms/`): **01 Gothic Operatic (Driving Swell)** —
+    driven, avoids atmosphere; grand organ + low strings + choir/chant + church-bells-as-
+    hi-hat, no guitar/synth, voice-as-instrument, drive-not-chaos. **02 Funeral March (The
+    Last Breath)** — the complement, all atmosphere but never directionless (funeral-drum
+    tread, bells prolonging strikes), voice core = pure Gregorian chant corrupted by
+    *desperation* (the last breath, sung spent), layers = shared palette with focus rotating
+    per song. Open rims in-file.
+  - A **third form** is queued (Battlewrath has it in mind).
+  - Still owned by the Suno manager: form 03, the content-attachment layer, the prompt
+    library, its own charter.
 
 ## Open / forecast
 

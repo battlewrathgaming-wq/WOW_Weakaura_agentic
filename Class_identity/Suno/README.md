@@ -64,7 +64,12 @@ job** is to hold him in the character's space while he plays. Taste is the form;
   Fixed driving floor (fractional subdivision, heavy percussion, bass-rich) under an operatic swell;
   grand organ + low strings + choir/chant + church-bells-as-hi-hat, harpsichord welcome, piano minimal;
   **no guitar, no synth-focus, not classical/atmospheric**; voice-as-instrument (cadence over meaning);
-  **drive, never chaos** (frantic only as a builder). The first form.
+  **drive, never chaos** (frantic only as a builder). Avoids atmosphere on purpose.
+- [`forms/02_funeral-march.md`](forms/02_funeral-march.md) — **Funeral March (The Last Breath).** The
+  deliberate complement — **all atmosphere, but never directionless**: a funeral-drum tread (bells
+  prolonging each strike) carries the atmosphere *forward* instead of drifting. Voice core = **pure
+  Gregorian chant corrupted by desperation** — not angelic, the *last breath of the lungs*, sung spent.
+  Layers = a shared palette whose **focus rotates per song**. _(Open rim: arc, a rising lead — in-file.)_
 
 ## Coming (this folder — owned by the Suno manager)
 
