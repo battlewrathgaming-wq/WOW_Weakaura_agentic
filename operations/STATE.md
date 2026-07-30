@@ -1,5 +1,29 @@
 # STATE — where the machine is
 
+## 2026-07-30 (Class_identity lane founded — the creative department + Suno sub-lane)
+
+- **New root lane `Class_identity/`** (sibling to `Class_design/`, separate from
+  `Weak Auras/`): the **creative department** — owns each class's lore/story/feel/
+  taste, **invented from source consumption**, holds **NO mechanical claims**
+  (those stay Class_design's + the engine's). The exact **complement of
+  Class_design** (they read structure and name feel out-of-scope; this lane IS the
+  feel and names mechanics out-of-scope). Charter + METHOD (consume→imagine; 4
+  facets — Archetype · Register · Narrative · Sensory palette; two source kinds —
+  COA-grounding × archetype lore foundations). Lane file: `operations/Class_identity.md`.
+- **Necromancer `IDENTITY.md` landed** — first class. Forsaken, Animation
+  (Battlewrath's main); a she; register = **victim-who-became-master**, cold /
+  not-a-hero / persisting-in-the-fallout. Sourced from WoW (Scourge · Necromancer)
+  + D&D (Undead-Master archetype) + COA talent flavor (*Scourge Disciple*) +
+  Battlewrath's intent. Live-graded true.
+- **Suno music sub-lane scaffolded** (`Class_identity/Suno/`, indexed) — a
+  **resident puller**: turns identities into music, personal (for Battlewrath),
+  **taste defined FIRST** (the fork). First-class within Class_identity, secondary
+  in the wider ecosystem. Battlewrath spins up its agent (the "Suno manager"); it
+  owns the taste basis + prompt library + own charter — this lane only built the
+  landing.
+- Helm **RELEASED** at close-off. Next: the Suno manager spin-up (taste-first;
+  tags its helm activity "suno").
+
 ## 2026-07-27 (Class_design lane stood up — Necromancer stat basis + haste tests)
 
 - **New root lane `Class_design/`** (sibling to operations/, separate from Weak
