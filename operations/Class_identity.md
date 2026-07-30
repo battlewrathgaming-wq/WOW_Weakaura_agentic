@@ -88,8 +88,15 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     dynamics/arrangement tags** — `[Call and Response]` (lead↔chant / shanty), `[Crescendo]/[Decrescendo]`
     (swells), `[Unison]`/`[Counterpoint]`/`[Layering]` (the vocal bodies), `[Build-Up]/[Breakdown]` —
     tier-flagged, confirmed by the Driver-B test.
-  - Still owned by the Suno manager: **the prompt recipe** (Driver A + B, + first Driver-B worked example
-    = form 02 × necromancer), the content-attachment layer, the prompt library, its own charter.
+  - **Prompt recipe BUILT** (`Suno/prompt-recipe.md`) — the form × content → lever-set method, both
+    drivers, shared fill + pre-flight checklist + the emit→run→grade loop. **First composed prompt cut**
+    (`Suno/prompts/necromancer_02_funeral-march.md`) — form 02 × necromancer, Driver B: front-loaded
+    Styles, the Exclude OUT-list, sliders (W25/SI80), and Write-lyrics with the meta-tag arc
+    ([Call and Response] lead↔chant, [Crescendo]/[Breakdown], (whispered)/(belted), public-domain Latin).
+    **A first draft — UNRUN;** awaits Battlewrath running it in Suno + grading (which also teaches which
+    Tier-2/3 tags fire at v5.5).
+  - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
+    its own charter.
 
 ## Open / forecast
 
