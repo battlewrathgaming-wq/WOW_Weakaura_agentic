@@ -104,3 +104,6 @@ a powerful _banshee tone_** running through the lead. A happy accident worth mak
 candidate to elevate into form 02's vocal identity + a summonable **"banshee wail / keening"** style tag
 (also dead-on theme: a banshee is a wailing undead spirit). _(Full mechanical grade — which Tier-2/3 tags
 actually fired — still to gather.)_
+
+**Kept & named (Battlewrath): _"Forsaken in requiem aeternam."_** The **first named product of the Suno
+lane** — the Forsaken identity fused into the requiem form.

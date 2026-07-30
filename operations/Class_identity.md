@@ -98,7 +98,8 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     _banshee tone_** in the lead — a happy accident to make reproducible (candidate: elevate to form 02's
     vocal identity + a summonable "banshee wail" style tag; also on-theme — a banshee is a wailing undead
     spirit). Full mechanical grade (which Tier-2/3 tags fired) still to gather. **The method proved out
-    end-to-end: sourced taste → form → levers → grammar → recipe → a loved generation.**
+    end-to-end: sourced taste → form → levers → grammar → recipe → a loved generation.** **Kept & named:
+    _"Forsaken in requiem aeternam"_ — the lane's first named product.**
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     its own charter.
 
