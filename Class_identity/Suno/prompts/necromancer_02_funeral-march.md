@@ -93,7 +93,14 @@ Requiem. Requiem aeternam.
   a craft target.
 - **The content line** — does the *space* land without going on-the-nose? This corner is yours to redraw.
 
-## Provenance
+## Provenance & grade
 
-Composed 2026-07-30 by the Suno manager from form 02 × the necromancer space, via the recipe. **First
-draft — unrun.** Original lyrics; Latin = public-domain liturgy.
+Composed 2026-07-30 by the Suno manager from form 02 × the necromancer space, via the recipe. Original
+lyrics; Latin = public-domain liturgy.
+
+**RUN 2026-07-30 — strong success (Battlewrath):** *"REALLY good… almost got chills,"* headphones-on
+immediately; a richness his own attempts never reached — the **enforced palette held**. **Emergent find:
+a powerful _banshee tone_** running through the lead. A happy accident worth making *reproducible* —
+candidate to elevate into form 02's vocal identity + a summonable **"banshee wail / keening"** style tag
+(also dead-on theme: a banshee is a wailing undead spirit). _(Full mechanical grade — which Tier-2/3 tags
+actually fired — still to gather.)_

@@ -93,8 +93,12 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     (`Suno/prompts/necromancer_02_funeral-march.md`) — form 02 × necromancer, Driver B: front-loaded
     Styles, the Exclude OUT-list, sliders (W25/SI80), and Write-lyrics with the meta-tag arc
     ([Call and Response] lead↔chant, [Crescendo]/[Breakdown], (whispered)/(belted), public-domain Latin).
-    **A first draft — UNRUN;** awaits Battlewrath running it in Suno + grading (which also teaches which
-    Tier-2/3 tags fire at v5.5).
+    **RUN 2026-07-30 — strong success** (Battlewrath: *"REALLY good,"* near-chills, headphones-on; a
+    richness his own attempts never reached; **the enforced palette held**). **Emergent find: a powerful
+    _banshee tone_** in the lead — a happy accident to make reproducible (candidate: elevate to form 02's
+    vocal identity + a summonable "banshee wail" style tag; also on-theme — a banshee is a wailing undead
+    spirit). Full mechanical grade (which Tier-2/3 tags fired) still to gather. **The method proved out
+    end-to-end: sourced taste → form → levers → grammar → recipe → a loved generation.**
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     its own charter.
 
