@@ -66,6 +66,13 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     A **design pattern surfaced:** each form is allowed to bend a *different* general hard-line
     to fit its character (03 its tinkle/piano; 05 its industrial synth) — the rules are
     per-form, not universal.
+  - **Suno levers documented** (`Suno/suno-levers.md`) — the controllable surface, sourced as
+    **fact from Battlewrath's own app** (Pro · v5.5 Advanced panel, screenshots): Lyrics
+    (Write/Prompt/Instrumental + ReMi), Styles (comma string), Exclude-styles, Vocal Gender,
+    Weirdness 0–100, Style Influence 0–100, Duration 0–6min, +Audio/+Voice/+Inspo. **Key
+    insight: a form's OUT-list → the Exclude-styles field; tight palette = low Weirdness +
+    high Style Influence.** Meta-tags / attachment behaviour parked in the file's "to verify"
+    (his app is authority, not my memory).
   - Still owned by the Suno manager: the content-attachment layer, the prompt library, its own
     charter (and per-form correction as Battlewrath grades the drafts).
 

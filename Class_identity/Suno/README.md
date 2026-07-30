@@ -40,6 +40,9 @@ Two layers, kept clean:
   is a separate layer, not yet built.
 - **Prompt = form × content** — a form supplies a Suno prompt's *style/production/structure* half;
   content supplies the *theme/lyrics* half. The prompt library composes the two.
+- **Levers = the Suno control surface** a prompt is expressed *through* — Styles, Exclude-styles, Lyrics
+  mode, Weirdness, Style Influence, Duration… Documented as fact from the app in
+  [`suno-levers.md`](suno-levers.md) (Pro · v5.5). A form's OUT-list becomes the **Exclude-styles** field.
 
 _His **taste** is not a necro thing — it's operatic-gothic-darkwave on its own terms. The **playlist's
 job** is to hold him in the character's space while he plays. Taste is the form; the mood is attached._
