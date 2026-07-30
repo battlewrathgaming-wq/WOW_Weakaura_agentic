@@ -49,9 +49,13 @@ Two layers, kept clean:
 - **Two drivers** (the recipe's spine) — **A: Prompt-driven** (theme + styles → Suno writes lyrics; fast,
   loose, for voice-as-instrument / volume) · **B: Write-driven** (custom lyrics + meta-tags; full arc &
   vocal-architecture control; the showcase cuts). Method in [`prompt-recipe.md`](prompt-recipe.md).
-- **Composed prompts** live in [`prompts/`](prompts/) — copy-paste-ready lever sets. First:
-  [`necromancer_02_funeral-march.md`](prompts/necromancer_02_funeral-march.md) (form 02 × necromancer,
-  Driver B) — **run + kept as _"Forsaken in requiem aeternam,"_ the lane's first named track.**
+- **Composed prompts** live in [`prompts/`](prompts/) — copy-paste-ready lever sets.
+  - [`necromancer_02_funeral-march.md`](prompts/necromancer_02_funeral-march.md) (+v2/v3) — form 02 ×
+    necromancer, Driver B. **Run + kept as _"Forsaken in requiem aeternam,"_ the lane's first named track;**
+    v3 drove out the method (banshee callable, forecast-tags, line-structure command).
+  - [`necromancer_01_gothic-operatic.md`](prompts/necromancer_01_gothic-operatic.md) — form 01 ×
+    necromancer, **in service of the Dark Lady (Sylvanas)**; driving war-march, banshee at the peaks.
+    _First draft, to run._
 - **Summonable features = the callable catalog** — qualities discovered in real runs and made reproducible
   (summon by design, not luck), in [`summonable-features.md`](summonable-features.md). Battlewrath's
   principle. First entry: the **banshee wail**.

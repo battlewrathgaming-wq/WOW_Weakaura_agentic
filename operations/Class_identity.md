@@ -120,6 +120,11 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     confirmed Driver-B lever (the most precise control), promoted to the recipe with the **control
     hierarchy**: line structure *commands* → meta-tags *forecast* → Styles *pervades* → Exclude *enforces*
     → sliders *tune*. v3 = the strongest version of the track.
+  - **Second track drafted — form 01 × necromancer** (`prompts/necromancer_01_gothic-operatic.md`):
+    content vibe (Battlewrath) = **in service of the Dark Lady, Sylvanas** — a driving, grand, cold
+    Forsaken war-march. Driver B, applying the full method (line-structure phrasing, forecast tags,
+    banshee placed at the peaks — doubly on-theme, she's the Banshee Queen). First draft, unrun. Starts
+    the playlist's spread beyond form 02.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 
