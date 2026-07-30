@@ -1,11 +1,11 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-30 (released; held 2026-07-30 — the Class_identity founding session)
-heading: — (released) · last session: Class_identity department FOUNDED (creative lane — feel/story/taste, no mechanical claims, complement of Class_design); Necromancer IDENTITY.md landed (Forsaken, a she, victim-who-became-master); METHOD expanded to two source-kinds; Suno/ sub-lane scaffolded + indexed.
-runway:  — (released)
+holder:  suno (Suno manager — Class_identity/Suno/)
+since:   2026-07-30 (Suno manager spin-up)
+heading: Stand up the Suno manager. FIRST JOB before any prompt: source Battlewrath's music taste from his own references and distill it into a taste basis (the fork — the music is personal, sourced-not-invented). Then its charter + prompt library.
+runway:  short-to-medium — the taste-sourcing is a conversation with Battlewrath; then authoring the basis / charter / library in Class_identity/Suno/. Quiet trunk between sessions is expected.
 
-next:    Suno manager spin-up (Battlewrath) — a resident agent in Class_identity/Suno/ (already scaffolded + indexed). FIRST JOB: define Battlewrath's music taste as a basis (the fork — the music is personal) before any prompt; it owns its taste basis + prompt library + its own charter. Convention: it tags its helm activity "suno" (Battlewrath's ask). Detail: Class_identity/Suno/README.md + operations/Class_identity.md.
+next:    — (active; Suno topic held)
 
 ---
 
