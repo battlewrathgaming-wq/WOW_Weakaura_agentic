@@ -71,6 +71,11 @@ job** is to hold him in the character's space while he plays. Taste is the form;
   Gregorian chant corrupted by desperation** — not angelic, the *last breath of the lungs*, sung spent.
   Lead **and** chant contend (concert / absence / lead-dispels / chant-overwhelms). Layers = a shared
   palette whose **focus rotates per song**. _(Open rim: arc — in-file.)_
+- [`forms/03_dark-vaudeville.md`](forms/03_dark-vaudeville.md) — **Dark Vaudeville (Gallows Whimsy).**
+  The whimsy corner — **01 drives the dark, 02 grieves it, 03 laughs at it.** Steampunk cabaret / dark
+  vaudeville: a wry macabre *persona* griping (zombie's-eye-view, alchemist's complaints) over
+  **shanty roll + waltz lilt**; guitar-free, theatrical, tongue-in-cheek. Whimsy edge (gallows / absurd /
+  sinister-playful) **rotates per song**. _(Open rim: tinny-relax, piano, in-file.)_
 
 ## Coming (this folder — owned by the Suno manager)
 

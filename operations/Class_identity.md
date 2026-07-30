@@ -43,15 +43,19 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     (the gothic-necromancer mood, lyrical direction) attaches onto it, pulled loosely
     from an `IDENTITY.md`. Prompt = form × content. Goal = a **varied playlist for
     gameplay** that holds the character's space.
-  - **Two form specs landed** (`Suno/forms/`): **01 Gothic Operatic (Driving Swell)** —
-    driven, avoids atmosphere; grand organ + low strings + choir/chant + church-bells-as-
-    hi-hat, no guitar/synth, voice-as-instrument, drive-not-chaos. **02 Funeral March (The
-    Last Breath)** — the complement, all atmosphere but never directionless (funeral-drum
-    tread, bells prolonging strikes), voice core = pure Gregorian chant corrupted by
-    *desperation* (the last breath, sung spent), layers = shared palette with focus rotating
-    per song. Open rims in-file.
-  - A **third form** is queued (Battlewrath has it in mind).
-  - Still owned by the Suno manager: form 03, the content-attachment layer, the prompt
+  - **Three form specs landed** (`Suno/forms/`) — a tonal triad on the same dark world:
+    **01 Gothic Operatic (Driving Swell)** — driven, avoids atmosphere; grand organ + low
+    strings + choir/chant + church-bells-as-hi-hat, no guitar/synth, voice-as-instrument,
+    drive-not-chaos. **02 Funeral March (The Last Breath)** — the complement, all atmosphere
+    but never directionless (funeral-drum tread, bells prolonging strikes); voice core = pure
+    Gregorian chant corrupted by *desperation* (sung spent); lead × chant contend; layers =
+    shared palette, focus rotates per song. **03 Dark Vaudeville (Gallows Whimsy)** — the
+    whimsy corner (01 drives / 02 grieves / 03 laughs); steampunk cabaret, shanty + waltz,
+    wry macabre persona, guitar-free; whimsy edge rotates per song. Open rims in-file.
+  - **Form 04 queued: the "going full" guitar form** — guitar quarantined to its own form
+    (keeps 01–03's no-guitar line clean). Refs: Ghostfire (*Vaudevillain*), Rammstein,
+    Nightwish, My Chemical Romance, Rob Zombie. Sourcing next.
+  - Still owned by the Suno manager: form 04, the content-attachment layer, the prompt
     library, its own charter.
 
 ## Open / forecast
