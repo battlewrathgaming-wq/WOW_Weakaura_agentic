@@ -34,8 +34,8 @@ electric guitar, distorted guitar, metal, EDM, synth-pop, bright synths, synthwa
 [Verse]
 (low, cold, marching)
 We do not kneel.
-We do not warm.
-We rose from the ash of a kingdom that burned.
+We do not fall.
+We rose from the ash of a kingdom burned.
 (building)
 And we answer one voice in the dark.
 
