@@ -71,6 +71,11 @@ second source of the direction this form demands. Four modes, moved between:
 The one and the many, contending — and that contention **carries the piece forward** (part of how an
 atmospheric form stays directional).
 
+> **Discovered timbre (2026-07-30):** the lead can carry a **banshee wail / keening** — a piercing
+> spectral cry, loved on the first generation (*"Forsaken in requiem aeternam"*). Now a **summonable
+> feature** ([`../summonable-features.md`](../summonable-features.md) #001): invoke with `banshee wail,
+> keening` in Styles / `(wailing)` inline. On-theme — a banshee is a wailing undead spirit.
+
 ## Register
 
 Funereal, solemn, grave, **spent, desperate.** Sacred-corrupted. The atmosphere of the last breath.

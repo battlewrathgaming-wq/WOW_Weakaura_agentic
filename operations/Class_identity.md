@@ -100,8 +100,13 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     spirit). Full mechanical grade (which Tier-2/3 tags fired) still to gather. **The method proved out
     end-to-end: sourced taste → form → levers → grammar → recipe → a loved generation.** **Kept & named:
     _"Forsaken in requiem aeternam"_ — the lane's first named product.**
+  - **Summonable-features catalog started** (`Suno/summonable-features.md`) — Battlewrath's principle:
+    turn a loved happy-accident into a *named, callable* feature (summon by design, not luck). Entry 001 =
+    **banshee wail / keening** (from the first keeper), folded into form 02's vocal identity + given a
+    summon route (Styles `banshee wail, keening` / inline `(wailing)`); confidence = discovered-once,
+    reconfirm on a next run.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
-    its own charter.
+    the summonable-features catalog, its own charter.
 
 ## Open / forecast
 

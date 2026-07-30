@@ -51,7 +51,10 @@ Two layers, kept clean:
   vocal-architecture control; the showcase cuts). Method in [`prompt-recipe.md`](prompt-recipe.md).
 - **Composed prompts** live in [`prompts/`](prompts/) — copy-paste-ready lever sets. First:
   [`necromancer_02_funeral-march.md`](prompts/necromancer_02_funeral-march.md) (form 02 × necromancer,
-  Driver B) — **a first draft to run and grade.**
+  Driver B) — **run + kept as _"Forsaken in requiem aeternam,"_ the lane's first named track.**
+- **Summonable features = the callable catalog** — qualities discovered in real runs and made reproducible
+  (summon by design, not luck), in [`summonable-features.md`](summonable-features.md). Battlewrath's
+  principle. First entry: the **banshee wail**.
 
 _His **taste** is not a necro thing — it's operatic-gothic-darkwave on its own terms. The **playlist's
 job** is to hold him in the character's space while he plays. Taste is the form; the mood is attached._
