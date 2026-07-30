@@ -71,8 +71,12 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     (Write/Prompt/Instrumental + ReMi), Styles (comma string), Exclude-styles, Vocal Gender,
     Weirdness 0–100, Style Influence 0–100, Duration 0–6min, +Audio/+Voice/+Inspo. **Key
     insight: a form's OUT-list → the Exclude-styles field; tight palette = low Weirdness +
-    high Style Influence.** Meta-tags / attachment behaviour parked in the file's "to verify"
-    (his app is authority, not my memory).
+    high Style Influence.** Input grammar researched (OSINT — corroborated community + official
+    help): Styles is **front-loaded / priority-ordered**, negatives → **Exclude-Styles**, arc
+    tags = **[Build-Up]/[Breakdown]** (not [Build]/[Break]), inline **(whispered)/(belted)**;
+    version-specific numbers (Styles char limit, which tags fire at v5.5) flagged confirm-in-app.
+    Rationale (Battlewrath): a generated song is too noisy to reverse-engineer the rules from —
+    get the grammar from authority.
   - Still owned by the Suno manager: the content-attachment layer, the prompt library, its own
     charter (and per-form correction as Battlewrath grades the drafts).
 

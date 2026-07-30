@@ -3,8 +3,10 @@
 _The **controllable surface** of Suno: every knob we can actually turn. This is the bridge from a **form
 spec** (× content) to an actual generation — a form is *expressed in these levers*. Documented as **fact
 from Battlewrath's own Suno** (Pro tier, model **v5.5**, Advanced panel — screenshots + field list,
-2026-07-30, PRIMARY source). Anything inferred from general Suno knowledge is quarantined to
-[§ To verify](#to-verify) and marked — **his app is the authority, not my memory.**_
+2026-07-30, PRIMARY source). The **input grammar** (formatting / priority / meta-tags) that isn't visible
+in the panel is gathered separately as **OSINT leads** — sourced, corroborated, and marked *confirm-in-app*
+— because **his app is the authority, not my memory** (and a generated song is too noisy to reverse-engineer
+the rules from)._
 
 ## Tier & version (the frame)
 
@@ -59,19 +61,73 @@ the styles it is).
 boundaries — the "no guitar" line, the "not-tinny" rule — instead of *hoping* the model honours them.
 Every form spec's OUT list finally has a home: it becomes the Exclude-styles field.
 
-## To verify
+## Formatting & priority — the input grammar (OSINT, 2026-07-30)
 
-_(My knowledge / inference — **not** read off the app. Confirm in-app; his Suno is the authority.)_
+_Gathered from public Suno guides + the official help centre (sources below). **Corroborated across
+independent sources = a strong lead, not gospel** — Suno lore is half-stale, and version-specific numbers
+belong to **his v5.5 app as final authority.** This is the "question register": admissible as a lead,
+confirmed in-app._
 
-- **Structure / meta-tags in _Write_ lyrics** — Suno has historically supported inline section tags
-  (`[Intro]` `[Verse]` `[Chorus]` `[Build]` `[Break]` `[Bridge]` `[Outro]` `[Instrumental]`
-  `[Guitar Solo]`, and vocal cues like `[Choir]` `[Whispers]` `[Spoken]`). **The set supported at v5.5 is
-  unconfirmed.** If they work, they're how a form's *arc* (build → break → peak) gets placed in a track.
-- **+Audio / +Voice / +Inspo** — a possible route to **playlist consistency** (one voice/persona across
-  tracks). Behaviour + limits unknown.
-- **Character limits** on the Styles / Lyrics fields — unknown.
-- **Weirdness × Style Influence defaults** for our forms — to find by testing. Starting guess for the
-  tightly-specified forms: **Weirdness ~20–40 / Style Influence ~60–80** (hold the palette, stay driven).
+**The Styles field is priority-ordered — front-loaded.**
+- **The first tag carries the most weight** (the tokenizer weights earlier terms more heavily). Order the
+  string by importance. _(Multi-source community consensus; not official.)_
+- **Recommended element order:** **Genre → sub-style → Mood/energy → Vocal direction → Instrumentation →
+  Production/Tempo.** Genre first, production/tempo last (the middle order varies by source; genre-first /
+  tempo-last is unanimous).
+- **~8–15 tags** is the workable band; <5 reads vague (the model fills with an average), >20 starts
+  contradicting itself.
+- **Comma-separated** (`a, b, c`).
+- **A concrete scene beats a vague emotion word** — v5.5 reportedly maps a scene to timbre/BPM/harmony,
+  ~5× more effective than a lone mood word. (So "a dead sorceress conducting a frozen crypt-choir" beats
+  "epic.")
+- **Character limit — disputed:** one guide says ~200 chars, another ~1,000 at v5.5. **⚠ Confirm in-app.**
+  Either way, front-load — leading tokens weigh most.
+
+**Negatives go in Exclude Styles, never the Styles string.** Direct negation inside Styles isn't reliably
+parsed; the dedicated **Exclude Styles** field (your app has it) is the confirmed home for **every form's
+OUT-list**. _(Multi-source + matches the app.)_
+
+**Lyrics meta-tags — bracketed section labels, each on its own line, right before the lines they affect.**
+They are probabilistic **hints, not commands** — honoured most of the time, ignorable; regenerate or
+simplify a tag if skipped. Reliability tiers (community consensus across versions):
+- **Tier 1 (most reliable):** `[Intro]` `[Verse]` `[Pre-Chorus]` `[Chorus]` `[Bridge]` `[Outro]` `[End]`
+- **Tier 2 (common events):** `[Build-Up]` `[Drop]` `[Breakdown]` `[Instrumental]` /
+  `[Instrumental Break]` `[Guitar Solo]` `[Spoken]` `[Final Chorus]`
+- **Tier 3 (experimental — shorthand, not switches):** `[Energy: High]`, `[Vocal: Warm]`,
+  `[Drums: Stronger]`.
+- **Correction to my earlier guess:** the arc tags are **`[Build-Up]` / `[Breakdown]`**, *not*
+  `[Build]`/`[Break]`.
+- **Inline vocal cues use _parentheses_** in the lyric line: `(whispered)`, `(belted)`, `(spoken)`.
+  → for our forms: `(whispered)` = 01's whisper-layers · `(belted)` = 04's operatic belt · `(guttural)` = 05.
+- **Lyrics field ~5,000 chars.**
+
+**Sliders (official help + community):**
+- **Weirdness** — *Safe → Chaos*, **50 = normal**. Low = simpler, predictable, steady; high = complex,
+  unpredictable, experimental. _(Official confirms Safe→Chaos / 50 normal.)_
+- **Style Influence** — *Loose → Strong*, how tightly it obeys the Styles string: ~0–30 loose hints ·
+  40–70 balanced · **70–100 strict / hard constraint**. _(Official confirms Loose→Strong.)_
+- **Audio Influence** — appears only with an Audio Upload; how much the uploaded audio drives the result.
+
+**→ Slider recipe for our tight forms (drive-not-chaos):** **Weirdness low (~20–40)** + **Style Influence
+high (~70–90)** — hold the exact palette, stay driven. Only push Weirdness up when a song is *meant* to
+rove (a whimsy edge, a wilder take). Starting recipe; refine per form by ear.
+
+## Still to confirm in-app (his Suno is the authority)
+
+- **Styles character limit at v5.5** — ~200 vs ~1,000 (sources disagree). One check settles it.
+- **Which meta-tags actually fire at v5.5** — the tiers are cross-version community consensus; confirm the
+  Tier-1/2 set behaves on v5.5 (they stay *hints* regardless).
+- **+Voice / +Inspo behaviour + limits** — the new attachment inputs; a possible route to playlist
+  voice-consistency, still unmapped.
+
+## Sources
+
+Primary: **Battlewrath's Suno Pro v5.5 Advanced panel** (screenshots, 2026-07-30) + **official Suno help —
+[Creative Sliders](https://help.suno.com/en/articles/6141377)**. OSINT leads (community, corroborated):
+[hookgenius Suno Prompt Guide 2026](https://hookgenius.app/learn/suno-prompt-guide-2026/) ·
+[Jack Righteous Meta Tags Guide](https://jackrighteous.com/en-us/pages/suno-ai-meta-tags-guide) ·
+[Suno slider guides (genxnotes / Jack Righteous)](https://blog.genxnotes.com/en/what-does-the-weirdness-style-influence-and-audio-influence-sliders-in-advanced-options-do-in-suno/).
+Community claims marked as leads; confirm the numbers in-app.
 
 ## Sourced from
 
