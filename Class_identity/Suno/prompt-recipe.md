@@ -36,6 +36,12 @@ composed, copy-paste-ready prompts live in [`prompts/`](prompts/)._
 
 ## Driver B — the one extra step
 
+- **★★ Line structure _commands_ the word (Battlewrath, confirmed in-run 2026-07-30):** how you break the
+  lyric lines directly shapes phrasing and delivery — the **strongest, most precise lever in Driver B.**
+  Put a phrase on its own short (even lowercase) line to make it land hushed / isolated / collapsed; run
+  phrases together to keep them flowing. Proven: breaking "Cold in the long dark / one light / And it is
+  fading" made a **large** difference in delivery. **Reach for line structure first; layer meta-tags as
+  forecast on top.**
 - **★ Author meta-tags as _forecast_, not per-line surgery (Battlewrath, confirmed in-run 2026-07-30):**
   the generation **isn't 1:1** with the instruction. A tag/cue shapes the **region and arc** it sits in,
   not the exact line. Lay out the *trajectory*; place an effect in the *region* you want it; expect loose
@@ -46,6 +52,13 @@ composed, copy-paste-ready prompts live in [`prompts/`](prompts/)._
     `[Call and Response]` `[Unison]` `[Counterpoint]` `[Layering]`.
   - **Inline vocal cues** (parentheses, in-line): `(whispered)` `(belted)` `(guttural)` `(chanted)`.
   - **Cadence over meaning** (Battlewrath's rule) — the words serve the *delivery*, not a plot to follow.
+
+## Control hierarchy — most precise → most diffuse
+
+**Line structure** *commands* the word (delivery/phrasing) → **meta-tags / cues** *forecast* the section &
+arc (loose, not 1:1) → **Styles** sets *pervasive* texture → **Exclude** enforces the OUT-list →
+**sliders** tune adherence (Style Influence) & variance (Weirdness). **Match the lever to how precise the
+control needs to be** — for a specific phrase's delivery, break the line; for a whole-song colour, use Styles.
 
 ## Pre-flight checklist
 

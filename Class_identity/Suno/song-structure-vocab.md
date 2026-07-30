@@ -78,7 +78,9 @@ experimental/shorthand (less reliable)._
   generation **isn't 1:1** with the instruction. A tag/cue shapes the **section / region / arc** it sits
   in, not the exact line. Author the *forecast* (the overall trajectory + regional intent), place a cue in
   the region you want the effect, and let the model render it loosely. Lean on T1 sections for shape; T2–T3
-  are directional nudges — don't write surgical line-level stage directions.
+  are directional nudges — don't write surgical line-level stage directions. **For precise phrasing, use
+_line structure_ instead** — how you break the lyric lines *commands* delivery directly (confirmed in-run;
+see the recipe's control hierarchy). Structure commands; tags forecast.
 
 ## Sources
 

@@ -91,7 +91,10 @@ Requiem. Requiem aeternam.
   keep its weight where "stop" had it?
 - **Regressions** — banshee still lands at the two peaks; the rest of the track unchanged?
 
-## Provenance
+## Provenance & grade
 
-Composed 2026-07-30 by the Suno manager — v3 of the first keeper, testing **line structure as a phrasing
-lever** + two terminology refinements. **Unrun.**
+Composed 2026-07-30 by the Suno manager — v3 of the first keeper, testing line structure as a phrasing
+lever + two terminology refinements. **RUN 2026-07-30 — confirmed (Battlewrath): the line-break made a
+_large_ difference in delivery.** → **Line structure _commands_ the word** — promoted to a confirmed
+Driver-B lever (the most precise control; meta-tags forecast on top). The strongest version of the track
+so far.

@@ -115,8 +115,11 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     forecast — deliberate line-breaks shape phrasing/delivery directly (observed: "one light" folded/
     collapsed in delivery). **v3 prompt cut** (`prompts/necromancer_02_funeral-march_v3.md`) breaking the
     opening onto three lines + two terminology refinements (going→**fading**; "I do not stop"→"**I am
-    eternal**" — grace over bluntness, and closer to the evil-enduring identity). Awaiting run; if the
-    line-break commands the phrasing → promote line-breaking to the recipe as a real lever.
+    eternal**" — grace over bluntness, and closer to the evil-enduring identity). **RUN — CONFIRMED: the
+    line-break made a _large_ difference in delivery.** → **Line structure _commands_ the word** — now a
+    confirmed Driver-B lever (the most precise control), promoted to the recipe with the **control
+    hierarchy**: line structure *commands* → meta-tags *forecast* → Styles *pervades* → Exclude *enforces*
+    → sliders *tune*. v3 = the strongest version of the track.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 
