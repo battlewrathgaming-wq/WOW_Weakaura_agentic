@@ -62,9 +62,9 @@ job** is to hold him in the character's space while he plays. Taste is the form;
 
 - [`forms/01_gothic-operatic.md`](forms/01_gothic-operatic.md) — **Gothic Operatic (Driving Swell).**
   Fixed driving floor (fractional subdivision, heavy percussion, bass-rich) under an operatic swell;
-  organ + low strings + choir/chant, **no guitar, no synth-focus, not classical/atmospheric**;
-  voice-as-instrument (cadence over meaning). The first form. _(Open rim: keys, tempo band — flagged
-  in-file.)_
+  grand organ + low strings + choir/chant + church-bells-as-hi-hat, harpsichord welcome, piano minimal;
+  **no guitar, no synth-focus, not classical/atmospheric**; voice-as-instrument (cadence over meaning);
+  **drive, never chaos** (frantic only as a builder). The first form.
 
 ## Coming (this folder — owned by the Suno manager)
 

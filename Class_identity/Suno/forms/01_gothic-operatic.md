@@ -31,7 +31,10 @@ and deep — with a **dramatic operatic swell riding over the top**. The rhythm 
   stays locked. "Fractional degrades. Double beats." Intensity comes from the beat *fracturing*, not
   from speeding up.
 - **Heavy percussion is the build engine.** Percussion carries the climb. Deep, driving.
-- **Not frantic.** Driven, not hectic.
+- **★ Drive, never chaos.** The locked floor is what makes intensity *cohere*: even when a build runs
+  fast or frantic, the fixed pulse holds it as **drive** — directional, controlled — not chaos.
+  (Battlewrath: "there is a difference between chaos and drive.") **This is the governing line for the
+  whole form** — franticness is licensed only while the floor keeps it driven.
 
 ## Register — earned drama
 
@@ -47,10 +50,16 @@ The emotional arc is the payload. Swells that **rise and recede**: pause, bellow
 and a **tighter driving pocket** (a locked groove that holds you) are in-bounds — a mix to experiment
 with, not one fixed length.
 
+**Tempo is both** — slow and fast both belong. **Frantic is permitted as a _builder_** — the fast climb
+into a peak — but never as the resting state, and never as chaos: the fixed floor keeps a frantic build
+*driven* (see Rhythm's governing line). Baseline sits slow-to-mid; franticness is a tool deployed for the
+build, then released.
+
 ## Instrumentation — IN
 
-- **Organ** — takes the "wall" space where a guitar would sit. Gothic, filling; its weight comes from
-  the low end and the swell, not from distortion.
+- **Grand organ** — takes the "wall" space where a guitar would sit, and is the **primary keyed
+  weight** (preferred over piano for exactly that heft). Gothic, filling; its weight comes from the low
+  end and the swell, not from distortion.
 - **Low strings** — cello, and the *low register* of the violin family. The dramatic melodic voice, but
   **weighted low** — dark and bodied, never shrill up top. (Violin: yes — low, not classical, not
   atmospheric.)
@@ -59,8 +68,12 @@ with, not one fixed length.
 - **Choir** — massed voices for the "swirling depth."
 - **Gothic chant** — used as **breaks**: the drop/interlude that resets before the swell climbs back.
   Often wordless or Latin.
-- **⚠ Keys (piano / harpsichord)** — prominent in the references (Mishkin, Emilie Autumn). Not yet
-  confirmed whether the organ *replaces* keys or they share the table. **Provisional.**
+- **Church bells** (resonant, deep-toned — **not tinny bells**) — in the **hi-hat space**: the
+  high-frequency rhythmic element up top, striking where a hi-hat normally marks the subdivisions.
+  Gothic weight instead of a thin tick. _(Generation caveat below — wanted, hard to get.)_
+- **Harpsichord** — welcome; its bright baroque attack suits the victoriandustrial texture.
+- **Piano — minimal, background only.** Liked *less* than the organ; it has a place low in the mix, never
+  up front. _(Generation caveat below.)_
 
 ## Instrumentation — OUT (hard lines)
 
@@ -102,10 +115,17 @@ prompt (the instrumentation, the pulse, the vocal architecture, the arc). **Cont
 half** — the theme and any lyrics — attached separately from an identity's mood. Form × content = a
 prompt. _(The content-attachment layer isn't built yet; this is only the pointer.)_
 
+## Generation caveats (targets for the prompt library)
+
+Wanted, but Suno tends to fumble these — flagged so the prompt library goes at them deliberately, not by
+accident:
+
+- **Church bells in the hi-hat space** — hard to get generating cleanly; wanted badly. A craft target.
+- **Piano** — "loses some richness or direction" when generated; part of why it stays background, not a
+  lead. Lean on the grand organ for keyed weight instead.
+
 ## Open / provisional (the honest rim)
 
-- **⚠ Keys** — piano/harpsichord in alongside the organ, or replaced by it? Unconfirmed.
-- **⚠ Tempo band** — "not frantic," "slow" swells over a "driving" floor, but no BPM pocket pinned yet.
 - **Length** — long-form *and* tight pocket both in play (a decision to experiment, not a gap).
 - **This is one form of several.** The playlist goal is a *mix*; other forms will land as sibling specs
   in this folder. The axes above are drawn wide on purpose, so the next forms slot in beside this one.
