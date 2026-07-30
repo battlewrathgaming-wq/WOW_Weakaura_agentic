@@ -43,6 +43,12 @@ Two layers, kept clean:
 - **Levers = the Suno control surface** a prompt is expressed *through* — Styles, Exclude-styles, Lyrics
   mode, Weirdness, Style Influence, Duration… Documented as fact from the app in
   [`suno-levers.md`](suno-levers.md) (Pro · v5.5). A form's OUT-list becomes the **Exclude-styles** field.
+- **Vocabulary = the words to author in** — song-structure & arrangement terminology (ostinato, antiphony,
+  crescendo, pedal point…) mapped to the Suno meta-tags that express them, in
+  [`song-structure-vocab.md`](song-structure-vocab.md). Feeds Driver-B lyric authoring + the Styles field.
+- **Two drivers** (the recipe's spine) — **A: Prompt-driven** (theme + styles → Suno writes lyrics; fast,
+  loose, for voice-as-instrument / volume) · **B: Write-driven** (custom lyrics + meta-tags; full arc &
+  vocal-architecture control; the showcase cuts). _(Recipe doc: to be built.)_
 
 _His **taste** is not a necro thing — it's operatic-gothic-darkwave on its own terms. The **playlist's
 job** is to hold him in the character's space while he plays. Taste is the form; the mood is attached._

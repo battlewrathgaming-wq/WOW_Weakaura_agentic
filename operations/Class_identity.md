@@ -78,8 +78,18 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     Prompt-box 3000 · Exclude & Title uncapped**; Duration also has an **Auto** option.
     Meta-tag firing left as a song-level check. Rationale (Battlewrath): a generated song is too
     noisy to reverse-engineer the rules from — get the grammar from authority.
-  - Still owned by the Suno manager: the content-attachment layer, the prompt library, its own
-    charter (and per-form correction as Battlewrath grades the drafts).
+  - **Recipe spine decided (Battlewrath): two drivers** — **A Prompt-driven** (theme + styles →
+    Suno writes lyrics; fast/loose, for voice-as-instrument & volume) · **B Write-driven** (custom
+    lyrics + meta-tags; full arc & vocal-architecture control). First test = **Driver B** ("test
+    what we care about").
+  - **Supporting research done — song-structure/arrangement vocabulary** (`Suno/song-structure-vocab.md`):
+    established music terms (ostinato = the driving floor; pedal point = 02's drone; antiphony =
+    lead↔chant; crescendo = the swell) mapped to Suno meta-tags. **Key find: Suno's meta-tags include
+    dynamics/arrangement tags** — `[Call and Response]` (lead↔chant / shanty), `[Crescendo]/[Decrescendo]`
+    (swells), `[Unison]`/`[Counterpoint]`/`[Layering]` (the vocal bodies), `[Build-Up]/[Breakdown]` —
+    tier-flagged, confirmed by the Driver-B test.
+  - Still owned by the Suno manager: **the prompt recipe** (Driver A + B, + first Driver-B worked example
+    = form 02 × necromancer), the content-attachment layer, the prompt library, its own charter.
 
 ## Open / forecast
 
