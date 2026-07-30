@@ -74,8 +74,8 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     high Style Influence.** Input grammar researched (OSINT — corroborated community + official
     help): Styles is **front-loaded / priority-ordered**, negatives → **Exclude-Styles**, arc
     tags = **[Build-Up]/[Breakdown]** (not [Build]/[Break]), inline **(whispered)/(belted)**;
-    Field caps **confirmed in-app** (Battlewrath tested): **Styles 1000 · Lyrics 3000 · Exclude &
-    Title uncapped** (community 200/5000 figures corrected); Duration also has an **Auto** option.
+    Field caps **confirmed in-app** (Battlewrath tested): **Styles 1000 · Lyrics(Write) 5000 ·
+    Prompt-box 3000 · Exclude & Title uncapped**; Duration also has an **Auto** option.
     Meta-tag firing left as a song-level check. Rationale (Battlewrath): a generated song is too
     noisy to reverse-engineer the rules from — get the grammar from authority.
   - Still owned by the Suno manager: the content-attachment layer, the prompt library, its own

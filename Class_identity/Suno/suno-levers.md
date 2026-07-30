@@ -19,10 +19,10 @@ the rules from)._
 **Inputs / attachments** (top row): **+ Audio** · **+ Voice** (New) · **+ Inspo** — reference/voice
 inputs. _(Exact behaviour → § To verify.)_
 
-**Lyrics** (field cap **3000 chars**) **— three modes:**
-- **Write** — you supply explicit lyrics.
-- **Prompt** — you describe what the lyrics are *about*; Suno writes them fresh each generation (blank =
-  random topic). Lyrics model shown: **ReMi** (dropdown → selectable).
+**Lyrics — three modes** (the box's cap depends on the mode):
+- **Write** — you supply explicit lyrics. **Box cap: 5000 chars.**
+- **Prompt** — you describe what the lyrics are *about* (Suno writes them fresh each generation; blank =
+  random topic). **Box cap: 3000 chars.** Lyrics model shown: **ReMi** (dropdown → selectable).
 - **Instrumental** — no lyrics, no vocals.
 
 **Styles** — a **comma-separated string** (`string, string, string`): genre / mood / instrument /
@@ -100,7 +100,8 @@ simplify a tag if skipped. Reliability tiers (community consensus across version
   `[Build]`/`[Break]`.
 - **Inline vocal cues use _parentheses_** in the lyric line: `(whispered)`, `(belted)`, `(spoken)`.
   → for our forms: `(whispered)` = 01's whisper-layers · `(belted)` = 04's operatic belt · `(guttural)` = 05.
-- **Lyrics field = 3000 chars** (confirmed in-app; the community ~5000 figure was wrong).
+- **Lyrics box caps by mode (confirmed in-app):** **Write = 5000 chars** · **Prompt-description = 3000
+  chars.** (The community ~5000 was right for *Write*; the 3000 I first logged was the Prompt-mode box.)
 
 **Sliders (official help + community):**
 - **Weirdness** — *Safe → Chaos*, **50 = normal**. Low = simpler, predictable, steady; high = complex,
@@ -120,8 +121,9 @@ rove (a whimsy edge, a wilder take). Starting recipe; refine per form by ear.
   regardless).
 - **+Voice / +Inspo behaviour + limits** — the new attachment inputs; a possible route to playlist
   voice-consistency, still unmapped.
-- _Resolved 2026-07-30 (in-app, primary): field caps — **Styles 1000 · Lyrics 3000 · Exclude & Title
-  uncapped** (tested). The app superseded the community numbers where they conflicted._
+- _Resolved 2026-07-30 (in-app, primary): field caps — **Styles 1000 · Lyrics (Write) 5000 · Prompt-box
+  3000 · Exclude & Title uncapped** (tested). App is authority — it corrected the community's ~200 Styles
+  figure and pinned the mode-dependent lyric cap._
 
 ## Sources
 
