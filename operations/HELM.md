@@ -1,11 +1,11 @@
 # HELM — who has the trunk
 
-holder:  Class_design (aura-side session)
-since:   2026-07-27
-heading: Class_design build-out — METHOD (the triangle) laid + Reaper (Domination tank) analyzed to a decision-flatten spec (soul-spend priority RESOLVED). NOW: the Necromancer pet-scaling SP-ladder test — general SP confirmed, scaling shape (linear/diminishing/capped) OPEN via the GetSpellBonusDamage API.
-runway:  held; Reaper analyzed, Necro pet-scaling RESOLVED (linear scaling + staleness CHARACTERIZED, Test 2 = no residue). Active detail: operations/Class_design.md "Now" section.
+holder:  RELEASED
+since:   2026-07-29 (released; held 2026-07-27 → 07-29)
+heading: — (released) · last session: Class_design build-out — METHOD/triangle laid as the core file; Reaper (Domination tank) fully grounded to a decision-flatten aura spec (soul-spend priority + all cooldown divergences RESOLVED); Necromancer pet-scaling RESOLVED (linear + staleness characterized, no residue).
+runway:  — (released)
 
-next:    —  (CAPTURE.md handover + the Dreadknight r2/r1 finding live in Class_design/tools/CAPTURE.md + git; the pipeline-validator conversation stays banked on Battlewrath's ask)
+next:    Class_design lane at a REST POINT — both classes mechanically grounded. Ripest lever = the **Reaper aura build** (the spend-priority rule is done + banked, ready to build). Smaller open threads live in operations/Class_design.md "Open / forecast" (Necro: first-pet-double WHY, Life-Force slope, Crypt Swarm × +haste; Reaper: ~13-talent Domination sweep, Dreadknight r2/r1 drift). CAPTURE.md handover + the addon build-capture loop live in Class_design/tools/CAPTURE.md; the pipeline-validator conversation stays banked on Battlewrath's ask.
 
 ---
 

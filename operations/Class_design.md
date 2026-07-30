@@ -34,6 +34,11 @@ triggered ids).
 
 ## Now — active thread (2026-07-29)
 
+_Lane at a **REST POINT** (helm released 2026-07-29): both classes mechanically
+grounded — Reaper's cooldown divergences all closed, Necro pet-scaling resolved.
+Ripest next lever = the **Reaper aura build** (spend-priority rule done + banked).
+Smaller threads in "Open / forecast" below._
+
 - **Reaper (Domination tank): FULLY ANALYZED** — `Reaper/FINDINGS.md` +
   `Reaper/bar_map.md`. Thesis (soul-economy tank) × bars × grounded kit all run;
   the **soul-infusion spend priority is RESOLVED** (build to 3 → **F if off CD**:
