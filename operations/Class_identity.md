@@ -103,8 +103,10 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
   - **Summonable-features catalog started** (`Suno/summonable-features.md`) — Battlewrath's principle:
     turn a loved happy-accident into a *named, callable* feature (summon by design, not luck). Entry 001 =
     **banshee wail / keening** (from the first keeper), folded into form 02's vocal identity + given a
-    summon route (Styles `banshee wail, keening` / inline `(wailing)`); confidence = discovered-once,
-    reconfirm on a next run.
+    summon route: **placed inline cues** (`(wailing)`/`(keening)` on chosen lines), **not** a Styles tag —
+    Battlewrath's refinement, generalised into a **scope rule**: pervasive texture → Styles (global),
+    punctuating moment → inline placement (else a style insertion over-uses it). Confidence =
+    discovered-once; reconfirm by placing the cue at the peaks in a re-run.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 

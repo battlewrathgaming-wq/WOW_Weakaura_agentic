@@ -10,19 +10,34 @@ serendipity-to-capability move: hear it once → name it → summon it → confi
 _Each entry: **what it is** · **how to summon** · **where found** · **confidence** (discovered-once →
 reconfirmed → reliable)._
 
+## Scope — how to pick the summon route (Battlewrath, 2026-07-30)
+
+A feature's route depends on whether it should **pervade** or **punctuate**:
+
+- **Pervasive texture** — a quality the whole track should carry (cavernous reverb, bass weight, a genre
+  colour) → the **Styles field** (global).
+- **Punctuating moment** — a peak / cry / drop, powerful *because* it's occasional → **inline placement in
+  the lyrics** (`(cue)` on the chosen line). A Styles insertion would **over-use** it and smear a peak into
+  wallpaper.
+
+Pick the route by the feature's *nature*, not by convenience.
+
 ## 001 · Banshee wail (keening)
 
 - **What it is:** a powerful, keening, wailing spectral female cry through the lead — mournful, piercing,
   ghostly. Reads as an undead lament.
-- **How to summon:**
-  - **Styles** (place in the vocal cluster): `banshee wail, keening female cry, wailing spectral voice`.
-  - **Inline cues** (Driver-B lyrics): `(wailing)`, `(keening)` on the lead lines.
-  - **Supporting stack it emerged from** (keep these present): desperate operatic female lead + low
-    gregorian chant + cavernous reverb.
+- **How to summon — _placed, not pervasive_ (Battlewrath, 2026-07-30):**
+  - **Inline cues in the lyrics** (the route): `(wailing)` / `(keening)` on the **specific lead lines**
+    where the cry should land — a punctuation, a peak. Placement is what keeps it powerful.
+  - **NOT a Styles descriptor** — a style insertion pervades the whole song and would **over-use** it,
+    smearing the peak into wallpaper. Avoid.
+  - **Supporting stack** (this *sets up* the wail; keep present via Styles/form): desperate operatic
+    female lead + low gregorian chant + cavernous reverb. The stack enables it; the inline cue *places* it.
 - **Where found:** *"Forsaken in requiem aeternam"* — form 02 × necromancer, 2026-07-30 (emergent, unbidden).
 - **On-theme:** a banshee is a wailing undead spirit — native to the necromancer / Forsaken space.
-- **Confidence:** **discovered-once (emergent).** → Next: add the explicit descriptor to a re-run and
-  confirm it summons *reliably* — that graduates it from *emergent* to *callable*.
+- **Confidence:** **discovered-once (emergent).** → Next: **place `(wailing)`/`(keening)` at the chosen
+  moments** (the belted `[Crescendo]`, the `[Chorus]` where chant overwhelms) in a re-run and confirm it
+  lands *there, on cue* — that graduates it from *emergent* to *callable*.
 
 ## How this feeds the work
 

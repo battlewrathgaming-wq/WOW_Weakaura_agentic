@@ -73,8 +73,9 @@ atmospheric form stays directional).
 
 > **Discovered timbre (2026-07-30):** the lead can carry a **banshee wail / keening** — a piercing
 > spectral cry, loved on the first generation (*"Forsaken in requiem aeternam"*). Now a **summonable
-> feature** ([`../summonable-features.md`](../summonable-features.md) #001): invoke with `banshee wail,
-> keening` in Styles / `(wailing)` inline. On-theme — a banshee is a wailing undead spirit.
+> feature** ([`../summonable-features.md`](../summonable-features.md) #001) — invoked by **placed inline
+> cues** (`(wailing)` / `(keening)` on chosen lead lines), *not* a Styles tag (that would over-use it). A
+> punctuation, not wallpaper. On-theme — a banshee is a wailing undead spirit.
 
 ## Register
 
