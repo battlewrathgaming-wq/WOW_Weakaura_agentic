@@ -27,11 +27,18 @@ its brightness and tinkle, so those are NOT excluded here):_
 electric guitar, distorted guitar, heavy metal, EDM, dubstep, synth-pop, autotune, modern pop, hip hop, lo-fi
 ```
 
-## Lyrics (Write box) — a macabre waltz, line structure carrying the comic timing
+## Lyrics (Write box) — a macabre waltz, with instrumental sections to let the whimsy instruments speak
+
+_Battlewrath's note: **more instrumental sections.** Added `[Organ Solo]` (before the voice enters),
+`[Instrumental Break]` (brass + bells trading over the organ), the `[Breakdown]` organ centrepiece, and an
+`[Instrumental Outro]` — so the fun instruments carry passages, not just back the vocals._
 
 ```
 [Intro]
-(a grand gothic organ flourish, a music-hall stomp, a waltzing oom-pah)
+(a grand gothic organ flourish, building — let it ring; a music-hall stomp and waltzing oom-pah join)
+
+[Organ Solo]
+(the grand pipe organ takes a full turn — theatrical, cascading, gleeful — before any voice enters)
 
 [Verse]
 (theatrical, wry, a showman's grin)
@@ -50,6 +57,9 @@ A one, a two, a rattling bone!
 The Maestro of the dead has come —
 and the crypt has never been so much fun.
 
+[Instrumental Break]
+(the whimsy instruments speak: oom-pah brass and tolling bells trade the melody over the grand organ, stomps keeping the waltz)
+
 [Verse]
 (wry, confiding)
 They never tire. they never complain.
@@ -66,13 +76,13 @@ The Maestro of the dead has come —
 and the crypt has never been so much fun.
 
 [Breakdown]
-(a wild grand-organ solo — theatrical, mad, cascading)
+(a wild grand-organ solo — theatrical, mad, cascading, the centrepiece)
 (spoken, delighted)
 Ahh... listen to them go.
 
-[Outro]
-(the waltz winding down, organ trailing, a final flourish)
-(sly, quiet)
+[Instrumental Outro]
+(the waltz winding down — grand organ, then bells, then a final flourish and a stomp)
+(sly, quiet, over the last notes)
 Take a bow, my darlings.
 ...and back to the ground you go.
 ```
@@ -83,6 +93,8 @@ Take a bow, my darlings.
 
 - **The organ** — is the grand gothic pipe organ **front and center** and *fun*, the way you wanted it —
   and does putting it in the playful form work (haunted-carnival vs 01/02's grand-solemn use)?
+- **Instrumental sections** — do the added `[Organ Solo]` / `[Instrumental Break]` / `[Instrumental Outro]`
+  let the whimsy instruments *speak* (organ, oom-pah brass, bells getting their own turns)?
 - **Register** — does it land **sinister-playful / gallows-humor** (grinning, not grim), a clear tonal
   flip from 01 and 02?
 - **Line structure** — does the short-line comic timing carry the wry delivery?

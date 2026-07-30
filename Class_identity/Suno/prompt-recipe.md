@@ -52,6 +52,9 @@ composed, copy-paste-ready prompts live in [`prompts/`](prompts/)._
     `[Call and Response]` `[Unison]` `[Counterpoint]` `[Layering]`.
   - **Inline vocal cues** (parentheses, in-line): `(whispered)` `(belted)` `(guttural)` `(chanted)`.
   - **Cadence over meaning** (Battlewrath's rule) — the words serve the *delivery*, not a plot to follow.
+  - **Let the instruments speak** (Battlewrath, 2026-07-30) — for an instrument-focused track, give them
+    dedicated **instrumental sections** (`[Instrumental]` / `[<Instrument> Solo]` / `[Instrumental Break]`),
+    described with what to feature. Not every section needs vocals.
 
 ## Control hierarchy — most precise → most diffuse
 
