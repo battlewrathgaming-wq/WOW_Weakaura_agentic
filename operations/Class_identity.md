@@ -32,8 +32,13 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
 
 ## Now — active thread (2026-07-30)
 
-- **Suno music prompts** — the downstream this lane was stood up to feed, now
-  unblocked: the Necromancer identity exists to pull from. The next move.
+- **Suno manager standing up** — a resident puller inside Class_identity
+  (`Class_identity/Suno/`, scaffolded with an index pointing at the identities +
+  the ecosystem). **First-class within the lane, secondary in the wider
+  ecosystem** (personal creative byproduct). **First job: define Battlewrath's
+  music taste as a basis** (the fork — the music is personal) before any prompt.
+  Battlewrath spins up the agent; it owns the taste basis + prompt library + its
+  own charter (this lane only scaffolded the landing).
 
 ## Open / forecast
 

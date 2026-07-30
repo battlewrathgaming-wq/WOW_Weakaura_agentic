@@ -3,7 +3,7 @@
 holder:  Class_identity
 since:   2026-07-30
 heading: Class_identity department FOUNDED — owns each class's lore/story/feel/taste, invented from source consumption, holds NO mechanical claims (those stay Class_design's + the engine's). Home + method (4 facets) + lane planted this commit. First target: Necromancer's IDENTITY.md, feeding the coming Suno music-prompt exploration.
-runway:  active; department founded + Necromancer IDENTITY.md landed. Next: the Suno music-prompt exploration (pulls from the Necromancer identity). Active detail: operations/Class_identity.md.
+runway:  active; department founded, Necromancer IDENTITY.md landed, Suno/ scaffolded (a resident puller — taste-first). Next: Battlewrath spins up the Suno manager; it defines his music taste as a basis. Active detail: operations/Class_identity.md.
 
 next:    — (Class_design lane rests at a grounded point; its steering lives in operations/Class_design.md "Open / forecast" + git — not carried here now that a new holder set a heading.)
 

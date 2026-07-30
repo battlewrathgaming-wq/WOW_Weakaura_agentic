@@ -63,6 +63,8 @@ Class_identity/
   METHOD.md          # how identity is invented from source — the four facets
   <Class>/
     IDENTITY.md      # the imagined feel/story/taste, sourced — the outward artifact
+  Suno/              # a resident puller — turns identities into music (Battlewrath's; taste-first)
+    README.md        # index → the materials the Suno manager reasons from
 ```
 
 ## Classes
