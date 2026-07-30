@@ -84,7 +84,11 @@ Requiem. Requiem aeternam.
   (confidence: reconfirmed). If it doesn't → try a plainer cue word, or note it needs the emergent stack alone.
 - Compare to v1: same track, but is the wail now **where you want it**, and is the rest unchanged?
 
-## Provenance
+## Provenance & grade
 
 Composed 2026-07-30 by the Suno manager — v2 of the first keeper, testing placed-cue summoning of the
-banshee wail. **Unrun.**
+banshee wail. **RUN 2026-07-30 — went well (Battlewrath):** the placed cues summoned the wail in the
+intended **regions** → **banshee graduated to _callable_** (region-level; see
+[`../summonable-features.md`](../summonable-features.md) #001). **★ Finding: the generation isn't 1:1** —
+meta-tags/cues are best used as **forecast** (shaping the section/arc), not per-line alterations. Folded
+into [the recipe](../prompt-recipe.md) + [the vocab](../song-structure-vocab.md).

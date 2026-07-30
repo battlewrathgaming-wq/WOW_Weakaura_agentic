@@ -36,6 +36,10 @@ composed, copy-paste-ready prompts live in [`prompts/`](prompts/)._
 
 ## Driver B — the one extra step
 
+- **★ Author meta-tags as _forecast_, not per-line surgery (Battlewrath, confirmed in-run 2026-07-30):**
+  the generation **isn't 1:1** with the instruction. A tag/cue shapes the **region and arc** it sits in,
+  not the exact line. Lay out the *trajectory*; place an effect in the *region* you want it; expect loose
+  interpretation. Don't over-engineer line-level stage directions — they won't fire surgically.
 - **Lyrics = Write** mode (**≤5000 chars**). Author the lyrics with:
   - **Section spine** (Tier-1, reliable): `[Intro]` `[Verse]` `[Chorus]` `[Bridge]` `[Outro]`.
   - **Arc & arrangement** (Tier 2–3, *hints*): `[Build-Up]` `[Breakdown]` `[Crescendo]` `[Decrescendo]`

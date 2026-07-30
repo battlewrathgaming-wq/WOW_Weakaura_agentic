@@ -17,10 +17,12 @@ A feature's route depends on whether it should **pervade** or **punctuate**:
 - **Pervasive texture** — a quality the whole track should carry (cavernous reverb, bass weight, a genre
   colour) → the **Styles field** (global).
 - **Punctuating moment** — a peak / cry / drop, powerful *because* it's occasional → **inline placement in
-  the lyrics** (`(cue)` on the chosen line). A Styles insertion would **over-use** it and smear a peak into
-  wallpaper.
+  the lyrics** (`(cue)` in the chosen region). A Styles insertion would **over-use** it and smear a peak
+  into wallpaper.
 
-Pick the route by the feature's *nature*, not by convenience.
+Pick the route by the feature's *nature*, not by convenience. **And note the grain:** placement is
+**region-level, not per-line** — the generation isn't 1:1, so a cue summons its effect in the *section*
+it sits in, not on the exact line. Place it in the region you want it, and treat it as a forecast.
 
 ## 001 · Banshee wail (keening)
 
@@ -35,9 +37,11 @@ Pick the route by the feature's *nature*, not by convenience.
     female lead + low gregorian chant + cavernous reverb. The stack enables it; the inline cue *places* it.
 - **Where found:** *"Forsaken in requiem aeternam"* — form 02 × necromancer, 2026-07-30 (emergent, unbidden).
 - **On-theme:** a banshee is a wailing undead spirit — native to the necromancer / Forsaken space.
-- **Confidence:** **discovered-once (emergent).** → Next: **place `(wailing)`/`(keening)` at the chosen
-  moments** (the belted `[Crescendo]`, the `[Chorus]` where chant overwhelms) in a re-run and confirm it
-  lands *there, on cue* — that graduates it from *emergent* to *callable*.
+- **Confidence: _callable (region-level)_ — reconfirmed by placement 2026-07-30.** v2 placed `(wailing)` at
+  the belted `[Crescendo]` and `(keening)` at the `[Chorus]`, and *"it went well"* — the wail landed in the
+  intended **regions**. **Caveat:** the generation isn't 1:1, so a cue summons the wail in its
+  *section/forecast*, not on the exact line. **Callable at region granularity** — place it in the region
+  you want it.
 
 ## How this feeds the work
 

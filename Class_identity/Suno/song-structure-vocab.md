@@ -74,8 +74,11 @@ experimental/shorthand (less reliable)._
   they describe the arrangement in language the model knows.
 - **Driver-B lyrics** get the *placed* tags — sections (T1, reliable) as the spine, then dynamics /
   arrangement tags (T2–T3, hints) to shape the arc and the vocal bodies.
-- **Reliability discipline:** lean on T1 sections to guarantee shape; treat T2–T3 as *nudges*; the first
-  Driver-B test tells us which fire on v5.5 (a song-level read — the only place that noise is worth it).
+- **Reliability discipline — meta-tags are FORECAST, not per-line (confirmed in-run 2026-07-30):** the
+  generation **isn't 1:1** with the instruction. A tag/cue shapes the **section / region / arc** it sits
+  in, not the exact line. Author the *forecast* (the overall trajectory + regional intent), place a cue in
+  the region you want the effect, and let the model render it loosely. Lean on T1 sections for shape; T2–T3
+  are directional nudges — don't write surgical line-level stage directions.
 
 ## Sources
 
