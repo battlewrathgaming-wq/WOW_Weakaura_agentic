@@ -1,11 +1,11 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-29 (released; held 2026-07-27 → 07-29)
-heading: — (released) · last session: Class_design build-out — METHOD/triangle laid as the core file; Reaper (Domination tank) fully grounded to a decision-flatten aura spec (soul-spend priority + all cooldown divergences RESOLVED); Necromancer pet-scaling RESOLVED (linear + staleness characterized, no residue).
-runway:  — (released)
+holder:  Class_identity
+since:   2026-07-30
+heading: Class_identity department FOUNDED — owns each class's lore/story/feel/taste, invented from source consumption, holds NO mechanical claims (those stay Class_design's + the engine's). Home + method (4 facets) + lane planted this commit. First target: Necromancer's IDENTITY.md, feeding the coming Suno music-prompt exploration.
+runway:  active; the department was just stood up (this commit). Next: Necromancer IDENTITY.md, then the Suno prompts. Active detail: operations/Class_identity.md.
 
-next:    Class_design lane at a REST POINT — both classes mechanically grounded. Ripest lever = the **Reaper aura build** (the spend-priority rule is done + banked, ready to build). Smaller open threads live in operations/Class_design.md "Open / forecast" (Necro: first-pet-double WHY, Life-Force slope, Crypt Swarm × +haste; Reaper: ~13-talent Domination sweep, Dreadknight r2/r1 drift). CAPTURE.md handover + the addon build-capture loop live in Class_design/tools/CAPTURE.md; the pipeline-validator conversation stays banked on Battlewrath's ask.
+next:    — (Class_design lane rests at a grounded point; its steering lives in operations/Class_design.md "Open / forecast" + git — not carried here now that a new holder set a heading.)
 
 ---
 
