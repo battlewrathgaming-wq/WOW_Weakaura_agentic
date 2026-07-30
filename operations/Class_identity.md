@@ -58,8 +58,9 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     Ghostfire *Vaudevillain*); melodic (not guttural) voice. **05 Industrial Heavy (Cold
     Machine)** — cold, hard, martial, machine-groove, horror-tinged (Rammstein, Rob Zombie);
     harsh/guttural vocals (the one new vocal color); drive-not-chaos at its most mechanical.
-    Both **first-pass from the reference clusters** — opens flagged in-file (vocal confirm;
-    synth-relax for 05; drive-not-chaos carry).
+    Both **graded by Battlewrath 2026-07-30 — a clear pass** (04 melodic voice / 05
+    harsh-guttural; 05's industrial synth welcome under the guitars; drive-not-chaos holds
+    even at full power; 04 = the over-the-top-but-earned form).
   - **Five form specs now** — one tonal spread across the same dark world: 01 driven-operatic ·
     02 funereal-desperate · 03 gallows-whimsy · 04 grand-theatrical-heavy · 05 industrial-heavy.
     A **design pattern surfaced:** each form is allowed to bend a *different* general hard-line

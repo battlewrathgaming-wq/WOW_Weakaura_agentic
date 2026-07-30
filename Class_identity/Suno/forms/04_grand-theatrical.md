@@ -1,8 +1,8 @@
 # Song Form 04 — Grand Theatrical Heavy (The Full Peak)
 
 _A **song-form spec**: form, not content (see [`01_gothic-operatic.md`](01_gothic-operatic.md) for the
-law). **First-pass, drawn from Battlewrath's reference cluster** (2026-07-30) — it characterizes the
-shared DNA of the refs; **correct where I've mischaracterized.** **⚠** = inferred / unconfirmed._
+law). Drawn from Battlewrath's reference cluster and **graded by him 2026-07-30** — the opens below
+resolved, a clear pass. His taste, as form._
 
 **The guitar arrives — the _grand_ half of "going full."** Split from 05 (the cold/machine half). This
 is **01's operatic drama gone full-electric**: the metal wall 01 deliberately left out, now let all the
@@ -17,8 +17,9 @@ huge, cathartic, theatrical peak. Pageantry.
 
 **Grand · theatrical · anthemic · cathartic — and _melodic / warm_.** Where 01 held the swell back
 (restraint, no guitar), 04 lets the same drama out at full power. Emotional bigness, soaring, the huge
-chorus. Bombastic but *earned* — the "earned drama, not intense for its own sake" rule (01) at maximum
-scale. **Pageantry of the dark, played BIG** (MCR's death-parade; Nightwish's grandeur).
+chorus. **This is the over-the-top form** — where going *big* is the point (01's restraint finally spent). But
+big **earned by the build**, not empty bombast: the drama still has a spine. **Pageantry of the dark,
+played BIG** (MCR's death-parade; Nightwish's grandeur).
 
 ## Voice
 
@@ -30,8 +31,8 @@ scale. **Pageantry of the dark, played BIG** (MCR's death-parade; Nightwish's gr
 ## Rhythm & drive
 
 Driving, anthemic, **big**; fixed signatures. Marching-pageant feel available (MCR *Black Parade*).
-⚠ **Drive-not-chaos** almost certainly still governs even at full power — confirm the heaviness stays
-*driven*, never a chaotic wall.
+**Drive-not-chaos still governs even at full power** (confirmed) — the heaviness stays *driven* and
+structured, never a chaotic wall.
 
 ## Instrumentation — IN
 
@@ -54,12 +55,9 @@ Bombastic and grand.
 ## Open / provisional (the honest rim — first-pass, needs your grade)
 
 - **⚠ Name** — provisional; rename freely.
-- **⚠ Voice** — confirmed *melodic not guttural*? (My read of the split.)
-- **⚠ Drive-not-chaos** at full power — carries?
-- **⚠ How symphonic** — orchestra-forward (Nightwish) vs straight theatrical-rock (MCR)? Likely rotates
-  per song, but tell me the centre.
-- **⚠ The "earned" line** — does 04 keep 01's "not intense for its own sake," or is *this* the form where
-  going-over-the-top is the point?
+- _Resolved 2026-07-30 (a clear pass): voice **melodic**, not guttural · **drive-not-chaos holds** at full
+  power · symphonic ↔ rock **roves per song** (centre = theatrical bigness) · **this is the over-the-top
+  form** — big on purpose, but earned by the build._
 
 ## Sourced from
 
