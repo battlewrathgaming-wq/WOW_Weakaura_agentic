@@ -1,9 +1,9 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-30 (released - pet parser SCOPED; petlog v0 checklist is the build gate)
-heading: —
-runway:  —
+holder:  addons bench
+since:   2026-07-30
+heading: BUILD pass 1 of the pet parser: task petlog (registry + raw CLEU + plate-window stat/owner pairs + buff-stack witness) -> one fight lands checklist facts 1-4.
+runway:  one working session
 
 next:    ADDONS: pet parser fully scoped - addons/planning/pet_parser_scope.md (column audit: most PROVEN; ★ CombatLogGetCurrentEventInfo IS backported = canonical CLEU, no layout gambling; Recount era-fossil = guardians-without-unitids is a constraint THIS fork removed). Build gate = the petlog v0 checklist (5 items, one fight answers 1-4). On Battlewrath go: build task petlog.
 
