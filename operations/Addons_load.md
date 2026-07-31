@@ -32,7 +32,10 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   DISPLAY SPEC (Battlewrath, 2026-07-30): Recount-like in-game micro grid where THE ROWS ARE
   PETS, each anchored on the ACTIVE GUID (individuals, not Libellus-style type buckets; row born
   at SPELL_SUMMON, closed at UNIT_DIED -> closed rows = the history exporter's archive feed).
-  ROW SORT = LIFE FORCE COST (investment order - expensive minions top, stable, no dancing rows;
+  ROW SORT = a DYNAMIC WEIGHT function (Battlewrath: keep the row weight pluggable so different
+  weight types feed in later - v1 weight = LIFE FORCE COST; future providers: souls economy,
+  damage share, taste-defined). V1 semantics: investment order - expensive minions top, stable,
+  no dancing rows;
   generalizes as summon-resource cost, but SCOPE (Battlewrath): V1 = NECROMANCER ONLY — the LF
   row-weight is Necro-specific; Reaper guardians = a later generalization with its own economy
   anchor; LF table from OUR basis, not Libellus's).
