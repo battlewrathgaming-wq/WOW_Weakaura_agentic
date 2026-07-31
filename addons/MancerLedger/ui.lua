@@ -16,7 +16,7 @@ local ADDON, NS = ...
 local WIDTH = 560
 local ROW_H = 14
 local COLS = {  -- label, width (right-aligned data columns)
-    { "Fights", 40 }, { "Summons", 50 }, { "Time", 46 }, { "Hits", 44 },
+    { "Fights", 40 }, { "Sum", 50 }, { "Time", 46 }, { "Hits", 44 },
     { "Cad/m", 46 }, { "Miss%", 44 }, { "Dmg (raw)", 62 },
 }
 local LABEL_W = 120
@@ -163,6 +163,7 @@ local function acquireContentRow()
         r.label:SetPoint("LEFT", r, "LEFT", 0, 0)
         r.label:SetJustifyH("LEFT")
         r.label:SetWidth(LABEL_W)
+        r.label:SetHeight(ROW_H)  -- clip, never wrap into the row below
         r.cols = {}
         local x = LABEL_W
         for i, col in ipairs(COLS) do
@@ -178,6 +179,7 @@ local function acquireContentRow()
         r.wide:SetPoint("LEFT", r, "LEFT", 0, 0)
         r.wide:SetJustifyH("LEFT")
         r.wide:SetWidth(WIDTH - 28)
+        r.wide:SetHeight(ROW_H)  -- clip, never wrap
         r.wide:Hide()
     end
     r:Show()
@@ -287,7 +289,7 @@ local function renderStats(db, y)
     end
     local cap = acquireContentRow()
     cap:SetPoint("TOPLEFT", win, "TOPLEFT", 10, y)
-    writeRow(cap, p.name .. "  -  " .. NS.stateLine(p.snapshot), nil, GOLD)
+    writeWideRow(cap, p.name .. "  -  " .. NS.stateLine(p.snapshot), GOLD)
     y = y - ROW_H - 2
 
     local head = acquireContentRow()
@@ -324,11 +326,11 @@ local function renderCompare(db, y)
 
     local capA = acquireContentRow()
     capA:SetPoint("TOPLEFT", win, "TOPLEFT", 10, y)
-    writeRow(capA, "A: " .. pa.name .. "  -  " .. NS.stateLine(pa.snapshot), nil, WHITE)
+    writeWideRow(capA, "A: " .. pa.name .. "  -  " .. NS.stateLine(pa.snapshot), WHITE)
     y = y - ROW_H
     local capB = acquireContentRow()
     capB:SetPoint("TOPLEFT", win, "TOPLEFT", 10, y)
-    writeRow(capB, "B: " .. pb.name .. "  -  " .. NS.stateLine(pb.snapshot), nil, WHITE)
+    writeWideRow(capB, "B: " .. pb.name .. "  -  " .. NS.stateLine(pb.snapshot), WHITE)
     y = y - ROW_H - 2
 
     local head = acquireContentRow()
@@ -347,7 +349,7 @@ local function renderCompare(db, y)
     for _, id in ipairs(ids) do
         local typeHead = acquireContentRow()
         typeHead:SetPoint("TOPLEFT", win, "TOPLEFT", 10, y)
-        writeRow(typeHead, NS.prettyId(id), nil, PURPLE)
+        writeWideRow(typeHead, NS.prettyId(id), PURPLE)  -- wide: long names must not wrap
         y = y - ROW_H
 
         local la, lb = pa.log[id], pb.log[id]
