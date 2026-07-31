@@ -6,8 +6,10 @@
 --     8 dstFlags, 9+ suffix. SWING crit=15, SPELL amount=12/crit=18,
 --     SWING_MISSED missType=9, SPELL_MISSED missType=12.
 --   * Necro minions carry TYPE_PET 0x1000 (not GUARDIAN) + MINE 0x1.
---   * UNIT_DIED is SILENT for pets (0 of 71 in the record) - liveness comes
---     from the buff-instance witness + TTLs, never from death events.
+--   * UNIT_DIED is SILENT for OVERWRITE-despawn (proven; 0 of 71 in the record,
+--     which contained overwrites but NO enemy-kills - death-by-enemy untested,
+--     sample bias). Liveness therefore comes from the buff-instance witness +
+--     TTLs; UNIT_DIED stays a bonus path either way.
 --   * Minion buffs are ONE INSTANCE PER INDIVIDUAL (3 ghouls = 3 auras) -
 --     the per-type instance count is the liveness AUTHORITY for Raise types;
 --     CLEU attributes which GUID. Animates have no buff: TTL-governed.

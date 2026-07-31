@@ -103,10 +103,12 @@ plate-scan + preferred-token stat reads · CVar engineering (REJECTED for us) ·
 
 ## THE LIVENESS FINDING (the record's biggest design fact)
 
-**UNIT_DIED never fired for a single one of 71 registered pets.** All 6 UNIT_DIED events were
-enemies (captives). Re-summon OVERWRITE (Abomination ×2, Tomb King ×2, Greater Zombie ×2) is
-CLEU-SILENT — the replaced pet just despawns. Battlewrath's field hypothesis "(Might report the
-same.)" for NPC-killed pets is untested in this sample, but the design no longer depends on it:
+**UNIT_DIED never fired for a single one of 71 registered pets — but SCOPE THE CLAIM
+(corrected 2026-07-31, Battlewrath): no pet died to an enemy in this sample.** What the
+record PROVES silent is re-summon OVERWRITE (Abomination ×2, Tomb King ×2, Greater Zombie ×2 —
+the replaced pet just despawns, no event). Death-by-enemy is UNTESTED, not disproven — a
+capture where enemies kill pets would settle it. The design conclusion survives on the
+overwrite fact alone:
 **the grid cannot key row-collapse on UNIT_DIED.** Liveness derives from the composite:
 the per-type buff-instance count as AUTHORITY (see checklist 6 — an instance drop IS the
 death event for Raise types) + activity-TTL and plate presence to attribute which GUID;
