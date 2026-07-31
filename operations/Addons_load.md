@@ -54,6 +54,14 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   LEDGER'S UTILITY first through ordinary play (profiles accumulating, a real regear compare)
   - engage carrying working software that embodies the principles (opt-in - the consumer/game
   source drives updates - dedupe). We advocate nothing we don't ship.
+  SEQUENCE AGREED (2026-07-31): (1) Battlewrath captures the A/B - profile 'naked' 5min dummy
+  (2-3 pulls, combat drops between) -> gear up -> profile 'geared' same fight same army ->
+  compare = the show-piece + the scaling lab's first controlled observation (does pet miss%
+  respond to owner gear?). (2) THEN I build the WINDOW against his real SV data (design
+  settled: profiles list w/ name-box+New/Use/Delete, stats table, compare view w/ per-type
+  ROW TRIPLETS A / signed-delta-middle / B, capture lines as frame; rates delta in
+  percentage POINTS, dmg deltas keep the raw label; native Interface Options page; slash
+  demoted to alias). Build gated on his data landing.
   ★★ DIRECTION PIVOT UNDER DISCUSSION (Battlewrath, 2026-07-31, leaning, not yet Build!-gated):
   COMPLETE REBUILD around Mancer (LtGenZombie's addon, the evolved Libellus) as the PRIMARY
   DRIVER, us as CONSUMER. Verified mechanism: fights auto-commit on PLAYER_REGEN_ENABLED into
