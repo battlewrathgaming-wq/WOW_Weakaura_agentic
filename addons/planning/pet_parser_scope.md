@@ -17,10 +17,16 @@ Libellus + Recount understood, not copied._
 | row weight v1 (LF cost) | OUR basis (talent data AECost/costs; Class_design can confirm) | derivation pass, offline |
 | (lab) owner-stat pairs | UnitDamage/UnitAttackPower/UnitAttackSpeed/UnitArmor on plate tokens | **API EXISTS (census)**; behavior on pet tokens = v0 check |
 
-**★ THE SCOPING FINDING: `CombatLogGetCurrentEventInfo` IS BACKPORTED (clean census, engine-side).**
-The canonical retail CLEU read exists on this fork → petlog uses the zero-arg call and the
-STANDARD tuple; every arg-position question (crit flag, school shifts, SWING vs SPELL shapes)
-dissolves. Libellus's defensive varargs normalizer solves a problem this fork doesn't have.
+**★ OVERTURNED LIVE (petlog record 20260731_104452): `CombatLogGetCurrentEventInfo` EXISTS but
+is FURNITURE at the handler level.** canonApi=true, yet all 4000 rows fell through to varargs —
+the global returns nothing useful inside a live CLEU handler. A stored global isn't live; check
+consumption (the census proved existence, only the capture proved behavior). The real layout is
+the CLASSIC 3.3.5 varargs tuple, now VERIFIED positionally from the data:
+`1 ts · 2 subevent · 3 srcGUID · 4 srcName · 5 srcFlags · 6 dstGUID · 7 dstName · 8 dstFlags ·
+9+ suffix` (no hideCaster). Suffix positions confirmed: SWING_MISSED missType=9;
+SWING_DAMAGE amount=9, critical=15; SPELL_DAMAGE spellId=9, amount=12, critical=18.
+Libellus's varargs normalizer solves a problem this fork DOES have; petlog's fallback-first
+design meant zero data loss.
 
 ## Q2 — how the references compute (understanding only)
 
@@ -42,25 +48,56 @@ dissolves. Libellus's defensive varargs normalizer solves a problem this fork do
 **Libellus (refs_libellus/inspection/READING_METHODS.md):** stateless flags attribution ·
 plate-scan + preferred-token stat reads · CVar engineering (REJECTED for us) · per-TYPE buckets.
 
-## The petlog v0 checklist (the ONLY remaining unknowns — all live facts)
+## The petlog v0 checklist — VERDICTS (record 20260731_104452_749, 4000 events / 126 snapshots / 71 summons)
 
-1. `CombatLogGetCurrentEventInfo()` works inside a live CLEU handler (one capture proves).
-2. Pet/guardian-sourced damage appears in CLEU with the expected flag bits (0x1000/0x2000 + MINE)
-   on THIS fork (Necro minions are the test payload).
-3. Stat reads (`UnitDamage`/`UnitAttackPower`/`UnitAttackSpeed`) return REAL values on
-   plate-bound pet tokens (pair with owner stats same-tick = the scaling-lab row).
-4. Miss-type strings on the fork (DODGE/PARRY/MISS vocabulary as expected).
-5. LF-cost table derived from our basis (offline; no client needed).
+1. `CombatLogGetCurrentEventInfo()` in a live handler → **NO** (exists, answers nothing;
+   varargs is the real path — see the overturned finding above). Handled by design; no data lost.
+2. Pet-sourced CLEU flag bits → **GREEN, with a correction**: Necro minions carry
+   **TYPE_PET (0x1000), NOT TYPE_GUARDIAN (0x2000)**. srcFlags = 0x1111
+   (MINE + REACTION_FRIENDLY + CONTROL_PLAYER + TYPE_PET) on 2677 of 2678 registry-sourced rows
+   (1 stray 0xa28 row — likely server GUID reuse; noted, ignorable at 0.04%).
+3. Plate-bound stat reads → **GREEN**: real values (sample: pet AP 985, dmg 286.8–305.6,
+   atkSpeed 2.42s) paired same-tick with owner (AP 149, stamina 234, shadow SP 326).
+   124/126 snapshots carried pets. The scaling-lab row shape works.
+4. Miss vocabulary → **GREEN**: DODGE ×19, MISS ×17 at pos 9 (no PARRY in sample — target mix,
+   not an absence claim). Crit flags: SWING 112/728 crit, SPELL 78/896 crit at the era positions.
+5. LF-cost table derived from our basis (offline; no client needed) — still open.
 
-6. **THE LIVE VALIDATION PASS (Battlewrath, 2026-07-30): registry count == guardian-buff STACK
-   count.** The Necro's minion-count buff (the corpus minion-count-tracker pattern's read) is an
-   independent live witness of "how many are up" — the grid continuously checks
-   #activeRows == buffStacks. Match = registry proven in-flight; mismatch = drift detected
-   (missed summon/death) → flag it, and it's the natural trigger for a resync/backfill. The
-   two-witness house pattern, running CONTINUOUSLY inside the addon.
+6. **The validation witness — RESHAPED by the record.** There is NO single minion-count stack
+   buff. The live witness is **per-TYPE presence buffs**: Ghoul 805019, Abomination 805017,
+   Bone King 707176, Decaying Colossus 805022, Lesser/Greater Skeletal Warrior 805016/807927 —
+   all count 1/0 (presence-flavored, never population-stacked). The invariant becomes:
+   type-buff present ⇔ registry has ≥1 alive of that type. Weaker than a count equality but
+   still an independent drift detector per family. (Diabolical 707133 stacks to 7 — a proc
+   buff, not a census.)
 
-One `petlog` session task + one fight with the army out answers 1-4 in a single landed record.
+## THE LIVENESS FINDING (the record's biggest design fact)
+
+**UNIT_DIED never fired for a single one of 71 registered pets.** All 6 UNIT_DIED events were
+enemies (captives). Re-summon OVERWRITE (Abomination ×2, Tomb King ×2, Greater Zombie ×2) is
+CLEU-SILENT — the replaced pet just despawns. Battlewrath's field hypothesis "(Might report the
+same.)" for NPC-killed pets is untested in this sample, but the design no longer depends on it:
+**the grid cannot key row-collapse on UNIT_DIED.** Liveness derives from the composite:
+activity-TTL (last CLEU touch) + plate presence + the per-type buff witness; UNIT_DIED is a
+bonus fast-path when it happens to fire.
+
+**Two summon lanes, structurally different:**
+- **Raise:** (Abomination/Ghoul/Skeletal Warriors…) — the persistent army, one-per-slot,
+  overwrite-on-resummon. These are the grid's natural rows and the scaling-lab subjects.
+- **Animate:** (Zombie ×36 over 148s, Tomb King, Plaguefather, Greater Zombie) — the
+  corpse-consumption lane; zombies are an ephemeral SWARM.
+
+**Plate-coverage rim:** only 7 of 71 GUIDs were ever plate-bound (max 7/tick, avg 4.2) — the
+persistent army gets HP/stats; the swarm largely never does. HP column honest for Raise pets,
+mostly STALE/absent for Animate zombies.
+
+**OPEN DESIGN QUESTION (his call): swarm rows.** 36 zombie GUIDs in one fight would flood a
+micro grid. Candidate: Raise pets get individual GUID rows; the Animate swarm collapses into
+ONE family row (count + aggregate rates) — the family-normals tier surfacing live. Not decided.
+
 Fight windows + accumulators come AFTER these facts are green (capture before display, standing).
+Facts 1–4 + 6 are now settled; 5 is offline derivation; the swarm-row question is the one
+design gate left before the grid mounts.
 
 ## PIVOT (Battlewrath, 2026-07-30): FAMILY LIFETIME NORMALS replace the history exporter
 

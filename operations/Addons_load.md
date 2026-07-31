@@ -45,6 +45,16 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   BUILD PATH (house two-step): capture BEFORE display - a petlog session task on the v2 spine
   proves the metric set via landed envelopes + offline parse; the grid addon then displays a
   PROVEN column set (satellite model if it joins the State Plates family).
+  ★ PASS 1 LANDED + VERDICTS IN (2026-07-31, record 20260731_104452): checklist facts settled -
+  see pet_parser_scope.md for the full verdict block. Headlines: canonical CLEU API is FURNITURE
+  (all 4000 rows varargs; classic 3.3.5 layout verified positionally); minions are TYPE_PET not
+  GUARDIAN (0x1111); lab pairs real; DODGE/MISS + crit flags confirmed at era positions;
+  witness = per-TYPE presence buffs (no count buff exists); ★ UNIT_DIED NEVER FIRED for any of
+  71 pets (overwrite despawn is CLEU-silent) -> row-collapse must composite activity-TTL + plate
+  presence + type-buff witness. Two summon lanes: Raise (persistent army) vs Animate (zombie
+  swarm, 36 in 148s, mostly never plate-bound). REMAINING BEFORE THE GRID: (a) his call on
+  SWARM ROWS (36 zombie GUIDs would flood a micro grid; candidate = one collapsed family row);
+  (b) LF-cost table offline; (c) the UI chassis stub.
 
 
 - **OPPORTUNITY (Battlewrath, 2026-07-20, pick up as a FRESH run): the Necro/Reaper custom UI.**
