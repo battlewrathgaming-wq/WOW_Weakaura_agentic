@@ -54,3 +54,24 @@ plate-scan + preferred-token stat reads · CVar engineering (REJECTED for us) ·
 
 One `petlog` session task + one fight with the army out answers 1-4 in a single landed record.
 Fight windows + accumulators come AFTER these facts are green (capture before display, standing).
+
+## Q3 - presentation method (2026-07-30; the one unproven lane, honestly named)
+
+We have built stable STATIC frames (the satellite options panels) but never a live updating
+display element. METHOD CHOICE: native hand-rolled micro-frame - CreateFrame container +
+POOLED row frames (fontstrings + one statusbar per row). Rejected: Ace/LibGraph libraries
+(Recount's route - big-pane DNA, dependencies) and WA-as-display (accumulator state lives
+addon-side anyway; splitting across the bridge buys complexity). The fact basis carries the
+idioms: patch-B's CompactUnitFrame IS this fork's row element, readable end to end.
+
+THE FIVE STABILITY CONCERNS: (1) create-once + row POOLING (rows attach/detach to GUIDs, never
+recreated); (2) position persistence (anchor in SV, drag + lock); (3) update discipline -
+event-driven writes to existing regions, no per-frame re-layout (our render-economics findings
+applied from birth); (4) scale + visibility modes (cheap on a sound container); (5) lockdown:
+none - display-only frames are unprotected (click-to-target rows would need secure templates;
+deferred).
+
+BUILD SHAPE (prototype before polish, the house two-step applied): a throwaway STUB pass first -
+one movable/lockable/persisting container, three fake rows, dummy-data ticker - proves the
+element primitives in isolation (the UI equivalent of the smoke harness). The real grid then
+mounts the proven chassis with petlog data. Two small passes, not one entangled one.
