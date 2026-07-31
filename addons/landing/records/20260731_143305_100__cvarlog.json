@@ -1,0 +1,259 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-07-31T14:34:04",
+    "pulled_at": "2026-07-31T14:34:05",
+    "sha256": "37ef5485170346da2ee48ceb6e91cd4f57898a870e4206c6920a0c1a7e454fa3",
+    "raw_clone": "addons\\landing\\raw\\20260731_143305_100__cvarlog.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "cvarlog: 16 change(s) recorded, errors=0",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "NECROMANCER",
+    "runId": "20260731_143305_100",
+    "startedAt": "2026-07-31 14:33:05",
+    "char": "Gravekeeper",
+    "completedAt": "2026-07-31 14:34:00",
+    "version": "2.2.0",
+    "args": "",
+    "status": "complete",
+    "task": "cvarlog",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "baseline": {
+      "t": 39258.594,
+      "values": {
+        "nameplateShowFriends": "1",
+        "nameplateShowFriendlyTotems": "1",
+        "nameplateShowEnemyTotems": "1",
+        "nameplateShowFriendlyGuardians": "1",
+        "nameplateShowEnemyGuardians": "1",
+        "nameplateShowEnemyPets": "1",
+        "nameplateShowEnemies": "1",
+        "nameplateShowFriendlyPets": "1",
+        "nameplateShowPersonal": "0"
+      },
+      "backups": {}
+    },
+    "changes": [
+      {
+        "key": "nameplateShowFriends",
+        "from": "1",
+        "t": 39268.669,
+        "backups": {
+          "MancerDB.capitalNameplateCvarBackup": {
+            "nameplateShowFriendlyTotems": "1",
+            "nameplateShowFriends": "1",
+            "nameplateShowFriendlyGuardians": "1",
+            "nameplateShowEnemyGuardians": "1",
+            "nameplateShowFriendlyPets": "1",
+            "nameplateShowEnemies": "1",
+            "nameplateShowEnemyPets": "1",
+            "nameplateShowEnemyTotems": "1"
+          }
+        },
+        "to": "0"
+      },
+      {
+        "key": "nameplateShowFriendlyTotems",
+        "from": "1",
+        "t": 39268.669,
+        "backups": {
+          "MancerDB.capitalNameplateCvarBackup": {
+            "nameplateShowFriendlyTotems": "1",
+            "nameplateShowFriends": "1",
+            "nameplateShowFriendlyGuardians": "1",
+            "nameplateShowEnemyGuardians": "1",
+            "nameplateShowFriendlyPets": "1",
+            "nameplateShowEnemies": "1",
+            "nameplateShowEnemyPets": "1",
+            "nameplateShowEnemyTotems": "1"
+          }
+        },
+        "to": "0"
+      },
+      {
+        "key": "nameplateShowEnemyTotems",
+        "from": "1",
+        "t": 39268.669,
+        "backups": {
+          "MancerDB.capitalNameplateCvarBackup": {
+            "nameplateShowFriendlyTotems": "1",
+            "nameplateShowFriends": "1",
+            "nameplateShowFriendlyGuardians": "1",
+            "nameplateShowEnemyGuardians": "1",
+            "nameplateShowFriendlyPets": "1",
+            "nameplateShowEnemies": "1",
+            "nameplateShowEnemyPets": "1",
+            "nameplateShowEnemyTotems": "1"
+          }
+        },
+        "to": "0"
+      },
+      {
+        "key": "nameplateShowFriendlyPets",
+        "from": "1",
+        "t": 39268.669,
+        "backups": {
+          "MancerDB.capitalNameplateCvarBackup": {
+            "nameplateShowFriendlyTotems": "1",
+            "nameplateShowFriends": "1",
+            "nameplateShowFriendlyGuardians": "1",
+            "nameplateShowEnemyGuardians": "1",
+            "nameplateShowFriendlyPets": "1",
+            "nameplateShowEnemies": "1",
+            "nameplateShowEnemyPets": "1",
+            "nameplateShowEnemyTotems": "1"
+          }
+        },
+        "to": "0"
+      },
+      {
+        "key": "nameplateShowEnemyGuardians",
+        "from": "1",
+        "t": 39268.669,
+        "backups": {
+          "MancerDB.capitalNameplateCvarBackup": {
+            "nameplateShowFriendlyTotems": "1",
+            "nameplateShowFriends": "1",
+            "nameplateShowFriendlyGuardians": "1",
+            "nameplateShowEnemyGuardians": "1",
+            "nameplateShowFriendlyPets": "1",
+            "nameplateShowEnemies": "1",
+            "nameplateShowEnemyPets": "1",
+            "nameplateShowEnemyTotems": "1"
+          }
+        },
+        "to": "0"
+      },
+      {
+        "key": "nameplateShowFriendlyGuardians",
+        "from": "1",
+        "t": 39268.669,
+        "backups": {
+          "MancerDB.capitalNameplateCvarBackup": {
+            "nameplateShowFriendlyTotems": "1",
+            "nameplateShowFriends": "1",
+            "nameplateShowFriendlyGuardians": "1",
+            "nameplateShowEnemyGuardians": "1",
+            "nameplateShowFriendlyPets": "1",
+            "nameplateShowEnemies": "1",
+            "nameplateShowEnemyPets": "1",
+            "nameplateShowEnemyTotems": "1"
+          }
+        },
+        "to": "0"
+      },
+      {
+        "key": "nameplateShowEnemies",
+        "from": "1",
+        "t": 39268.669,
+        "backups": {
+          "MancerDB.capitalNameplateCvarBackup": {
+            "nameplateShowFriendlyTotems": "1",
+            "nameplateShowFriends": "1",
+            "nameplateShowFriendlyGuardians": "1",
+            "nameplateShowEnemyGuardians": "1",
+            "nameplateShowFriendlyPets": "1",
+            "nameplateShowEnemies": "1",
+            "nameplateShowEnemyPets": "1",
+            "nameplateShowEnemyTotems": "1"
+          }
+        },
+        "to": "0"
+      },
+      {
+        "key": "nameplateShowEnemyPets",
+        "from": "1",
+        "t": 39268.669,
+        "backups": {
+          "MancerDB.capitalNameplateCvarBackup": {
+            "nameplateShowFriendlyTotems": "1",
+            "nameplateShowFriends": "1",
+            "nameplateShowFriendlyGuardians": "1",
+            "nameplateShowEnemyGuardians": "1",
+            "nameplateShowFriendlyPets": "1",
+            "nameplateShowEnemies": "1",
+            "nameplateShowEnemyPets": "1",
+            "nameplateShowEnemyTotems": "1"
+          }
+        },
+        "to": "0"
+      },
+      {
+        "key": "nameplateShowFriends",
+        "from": "0",
+        "t": 39270.677,
+        "backups": {},
+        "to": "1"
+      },
+      {
+        "key": "nameplateShowFriendlyTotems",
+        "from": "0",
+        "t": 39270.677,
+        "backups": {},
+        "to": "1"
+      },
+      {
+        "key": "nameplateShowEnemyTotems",
+        "from": "0",
+        "t": 39270.677,
+        "backups": {},
+        "to": "1"
+      },
+      {
+        "key": "nameplateShowFriendlyPets",
+        "from": "0",
+        "t": 39270.677,
+        "backups": {},
+        "to": "1"
+      },
+      {
+        "key": "nameplateShowEnemyGuardians",
+        "from": "0",
+        "t": 39270.677,
+        "backups": {},
+        "to": "1"
+      },
+      {
+        "key": "nameplateShowFriendlyGuardians",
+        "from": "0",
+        "t": 39270.678,
+        "backups": {},
+        "to": "1"
+      },
+      {
+        "key": "nameplateShowEnemies",
+        "from": "0",
+        "t": 39270.678,
+        "backups": {},
+        "to": "1"
+      },
+      {
+        "key": "nameplateShowEnemyPets",
+        "from": "0",
+        "t": 39270.678,
+        "backups": {},
+        "to": "1"
+      }
+    ],
+    "final": {
+      "t": 39313.406,
+      "values": {
+        "nameplateShowFriends": "1",
+        "nameplateShowFriendlyTotems": "1",
+        "nameplateShowEnemyTotems": "1",
+        "nameplateShowFriendlyPets": "1",
+        "nameplateShowEnemyGuardians": "1",
+        "nameplateShowFriendlyGuardians": "1",
+        "nameplateShowEnemies": "1",
+        "nameplateShowEnemyPets": "1",
+        "nameplateShowPersonal": "0"
+      },
+      "backups": {}
+    }
+  }
+}
