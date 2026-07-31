@@ -23,11 +23,8 @@ local ADDON, NS = ...
 
 local WIDTH = 560
 local ROW_H = 14
-local COLS = {
-    { "Fights", 40 }, { "Sum", 50 }, { "Time", 46 }, { "Hits", 44 },
-    { "Cad/m", 46 }, { "Miss%", 44 }, { "Dmg (raw)", 62 },
-}
 local LABEL_W = 120
+local MAX_COLS = 7
 
 local GOLD = { 1, 0.82, 0.15 }
 local WHITE = { 1, 1, 1 }
@@ -42,39 +39,75 @@ local function cells(log)
     c.summons = (log.summonCount or 0) > 0 and log.summonCount or nil
     c.time = (log.activeSeconds or 0) > 0 and log.activeSeconds or nil
     c.hits = log.hits or 0
+    c.attempts = (log.hits or 0) + (log.misses or 0)
     c.cad = NS.cadence(log)
-    local attempts = (log.hits or 0) + (log.misses or 0)
-    c.miss = attempts >= NS.SAMPLE_FLOOR and ((log.misses or 0) / attempts * 100) or nil
+    c.miss = c.attempts >= NS.SAMPLE_FLOOR and ((log.misses or 0) / c.attempts * 100) or nil
     c.dmg = log.damage or 0
     return c
 end
 
+-- column definitions: each knows its label, width, value text, delta text.
+-- Pages are just column SETS over the same cells (the same data set, split by
+-- comparability class - Battlewrath).
+local function dInt(x, y)
+    if x == nil or y == nil then return "-" end
+    return string.format("%+d", y - x)
+end
+local COL = {
+    fights = { "Fights", 40,
+        function(c) return tostring(c.fights) end,
+        function(a, b) return dInt(a.fights, b.fights) end },
+    summons = { "Sum", 50,
+        function(c) return c.summons and tostring(c.summons) or "-" end,
+        function(a, b) return dInt(a.summons, b.summons) end },
+    time = { "Time", 46,
+        function(c) return c.time and (math.floor(c.time) .. "s") or "-" end,
+        function(a, b)
+            if a.time == nil or b.time == nil then return "-" end
+            return string.format("%+ds", b.time - a.time)
+        end },
+    hits = { "Hits", 44,
+        function(c) return tostring(c.hits) end,
+        function(a, b) return dInt(a.hits, b.hits) end },
+    attempts = { "Attempts", 54,
+        function(c) return tostring(c.attempts) end,
+        function(a, b) return dInt(a.attempts, b.attempts) end },
+    cad = { "Cad/m", 46,
+        function(c) return c.cad and string.format("%.1f", c.cad) or "-" end,
+        function(a, b)
+            if a.cad == nil or b.cad == nil then return "-" end
+            return string.format("%+.1f", b.cad - a.cad)
+        end },
+    miss = { "Miss%", 44,
+        function(c) return c.miss and string.format("%.0f%%", c.miss) or "-" end,
+        function(a, b)
+            if a.miss == nil or b.miss == nil then return "-" end
+            return string.format("%+.0fpp", b.miss - a.miss)
+        end },
+    dmg = { "Dmg (raw)", 62,
+        function(c) return NS.fmtN(c.dmg) end,
+        function(a, b)
+            if a.dmg == nil or b.dmg == nil then return "-" end
+            return (b.dmg >= a.dmg and "+" or "-") .. NS.fmtN(math.abs(b.dmg - a.dmg))
+        end },
+}
+
+local COLS_FULL = { COL.fights, COL.summons, COL.time, COL.hits, COL.cad, COL.miss, COL.dmg }
+local COLS_RATES = { COL.attempts, COL.cad, COL.miss }
+local COLS_VOLUME = { COL.fights, COL.summons, COL.time, COL.hits, COL.dmg }
+
+local currentCols = COLS_FULL
+
 local function fmtCells(c)
-    return {
-        tostring(c.fights),
-        c.summons and tostring(c.summons) or "-",
-        c.time and (math.floor(c.time) .. "s") or "-",
-        tostring(c.hits),
-        c.cad and string.format("%.1f", c.cad) or "-",
-        c.miss and string.format("%.0f%%", c.miss) or "-",
-        NS.fmtN(c.dmg),
-    }
+    local out = {}
+    for i, col in ipairs(currentCols) do out[i] = col[3](c) end
+    return out
 end
 
 local function fmtDelta(a, b)
-    local function d(x, y, fmt, suffix)
-        if x == nil or y == nil then return "-" end
-        return string.format(fmt, y - x) .. (suffix or "")
-    end
-    return {
-        d(a.fights, b.fights, "%+d"),
-        d(a.summons, b.summons, "%+d"),
-        d(a.time, b.time, "%+ds"),
-        d(a.hits, b.hits, "%+d"),
-        d(a.cad, b.cad, "%+.1f"),
-        d(a.miss, b.miss, "%+.0f", "pp"),
-        (a.dmg and b.dmg) and ((b.dmg >= a.dmg and "+" or "-") .. NS.fmtN(math.abs(b.dmg - a.dmg))) or "-",
-    }
+    local out = {}
+    for i, col in ipairs(currentCols) do out[i] = col[4](a, b) end
+    return out
 end
 
 -- ---------------------------------------------------------------- window
@@ -231,6 +264,19 @@ bLabel:SetText("B")
 local ddB = makeDropdown("MancerLedgerCompareB", 120, function(n) compB = n refresh() end)
 ddB:SetPoint("LEFT", bLabel, "RIGHT", -8, -2)
 
+-- page 1 / page 2 of the same data set, split by comparability class
+local comparePage = "rates"
+local ratesBtn = CreateFrame("Button", nil, win, "UIPanelButtonTemplate")
+ratesBtn:SetWidth(52)
+ratesBtn:SetHeight(18)
+ratesBtn:SetText("Rates")
+ratesBtn:SetPoint("TOPRIGHT", win, "TOPRIGHT", -70, -122)
+local volumeBtn = CreateFrame("Button", nil, win, "UIPanelButtonTemplate")
+volumeBtn:SetWidth(58)
+volumeBtn:SetHeight(18)
+volumeBtn:SetText("Volume")
+volumeBtn:SetPoint("LEFT", ratesBtn, "RIGHT", 2, 0)
+
 -- ---------------------------------------------------------------- content inset
 local inset = CreateFrame("Frame", nil, win)
 inset:SetBackdrop({
@@ -246,6 +292,24 @@ inset:SetPoint("TOPRIGHT", win, "TOPRIGHT", -8, -118)
 inset:SetHeight(60)
 
 local rows, rowPool = {}, {}
+local function applyColLayout(r)
+    -- reposition only when the active column SET changed (page/view switch),
+    -- never per refresh - the calm rule holds
+    if r.appliedCols == currentCols then return end
+    r.appliedCols = currentCols
+    local x = LABEL_W
+    for i = 1, MAX_COLS do
+        local fs = r.cols[i]
+        local col = currentCols[i]
+        if col then
+            fs:ClearAllPoints()
+            fs:SetPoint("LEFT", r, "LEFT", x, 0)
+            fs:SetWidth(col[2])
+            x = x + col[2] + 4
+        end
+    end
+end
+
 local function acquireContentRow()
     local r = table.remove(rowPool)
     if not r then
@@ -258,15 +322,11 @@ local function acquireContentRow()
         r.label:SetWidth(LABEL_W)
         r.label:SetHeight(ROW_H)  -- clip, never wrap
         r.cols = {}
-        local x = LABEL_W
-        for i, col in ipairs(COLS) do
+        for i = 1, MAX_COLS do
             local fs = r:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-            fs:SetPoint("LEFT", r, "LEFT", x, 0)
             fs:SetJustifyH("RIGHT")
-            fs:SetWidth(col[2])
             fs:SetHeight(ROW_H)
             r.cols[i] = fs
-            x = x + col[2] + 4
         end
         r.wide = r:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
         r.wide:SetPoint("LEFT", r, "LEFT", 0, 0)
@@ -275,6 +335,7 @@ local function acquireContentRow()
         r.wide:SetHeight(ROW_H)
         r.wide:Hide()
     end
+    applyColLayout(r)
     r:Show()
     rows[#rows + 1] = r
     return r
@@ -295,9 +356,13 @@ local function writeRow(r, label, texts, color)
     r.label:SetText(label)
     r.label:SetTextColor(color[1], color[2], color[3])
     for i, fs in ipairs(r.cols) do
-        fs:Show()
-        fs:SetText(texts and texts[i] or "")
-        fs:SetTextColor(color[1], color[2], color[3])
+        if currentCols[i] then
+            fs:Show()
+            fs:SetText(texts and texts[i] or "")
+            fs:SetTextColor(color[1], color[2], color[3])
+        else
+            fs:Hide()
+        end
     end
 end
 
@@ -318,7 +383,7 @@ end
 
 local function headerTexts()
     local t = {}
-    for i, col in ipairs(COLS) do t[i] = col[1] end
+    for i, col in ipairs(currentCols) do t[i] = col[1] end
     return t
 end
 
@@ -411,6 +476,17 @@ local function renderCompare(db, y)
         writeRow(rB, "  " .. pb.name, cb and fmtCells(cb) or nil, WHITE)
         y = y - ROW_H - 2
     end
+
+    -- the best-use note, quiet, at the foot of the page
+    y = y - 2
+    local note = acquireContentRow()
+    placeRow(note, y)
+    if comparePage == "rates" then
+        writeWideRow(note, "Rates hold up across ordinary play - fight length doesn't skew them.", GREY)
+    else
+        writeWideRow(note, "Volumes read best from controlled tests: same target, same army, similar fight lengths.", GREY)
+    end
+    y = y - ROW_H
     return y
 end
 
@@ -475,13 +551,20 @@ refresh = function()
     elseif view == "compare" then compareBtn:Disable()
     else historyBtn:Disable() end
 
-    -- compare pickers only exist in compare view; inset slides accordingly
+    -- compare pickers + page buttons only exist in compare view; the active
+    -- column SET follows the view/page
     local contentTop = -118
     if view == "compare" then
         aLabel:Show() ddA:Show() bLabel:Show() ddB:Show()
+        ratesBtn:Show() volumeBtn:Show()
+        ratesBtn:Enable() volumeBtn:Enable()
+        if comparePage == "rates" then ratesBtn:Disable() else volumeBtn:Disable() end
+        currentCols = (comparePage == "rates") and COLS_RATES or COLS_VOLUME
         contentTop = -146
     else
         aLabel:Hide() ddA:Hide() bLabel:Hide() ddB:Hide()
+        ratesBtn:Hide() volumeBtn:Hide()
+        currentCols = COLS_FULL
     end
     inset:ClearAllPoints()
     inset:SetPoint("TOPLEFT", win, "TOPLEFT", 8, contentTop)
@@ -576,6 +659,8 @@ end)
 statsBtn:SetScript("OnClick", function() view = "stats" refresh() end)
 compareBtn:SetScript("OnClick", function() view = "compare" refresh() end)
 historyBtn:SetScript("OnClick", function() view = "history" refresh() end)
+ratesBtn:SetScript("OnClick", function() comparePage = "rates" refresh() end)
+volumeBtn:SetScript("OnClick", function() comparePage = "volume" refresh() end)
 nameBox:SetScript("OnEnterPressed", function() newBtn:GetScript("OnClick")() end)
 nameBox:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
 
