@@ -196,11 +196,11 @@ local function layout(raiseRows, familyRows)
         end
     end
     if #familyRows > 0 then
-        local h = acquireHeader("Animate", "", "#", "Crit", "Miss")
+        local h = acquireHeader("Animate", "TTL", "#", "Crit", "Miss")
         place(h); y = y - 13
         for _, data in ipairs(familyRows) do
             local r = acquireRow()
-            r.hp:Hide()
+            r.hp:Show()  -- same element, family semantics: the TTL window
             place(r); y = y - ROW_H
             r.data = data
         end
@@ -229,9 +229,14 @@ local function writeRows()
             r.stats[1]:SetText(d.dmg)
             r.stats[2]:SetText(d.crit)
             r.stats[3]:SetText(d.miss)
-        else -- family
+        else -- family: the bar slot is the TTL window - time until the count
+             -- next drops (oldest living member's remaining TTL)
             r.name:SetText(d.name)
             r.name:SetTextColor(0.85, 0.75, 1)
+            r.hp:SetStatusBarColor(0.75, 0.55, 0.15)
+            r.hp:SetValue((d.ttl or 0) / (d.ttlMax or 1))
+            r.hpText:SetTextColor(1, 1, 1)
+            r.hpText:SetText(d.ttl and (math.ceil(d.ttl) .. "s") or "")
             r.stats[1]:SetText("x" .. d.count)
             r.stats[2]:SetText(d.crit)
             r.stats[3]:SetText(d.miss)
@@ -249,8 +254,8 @@ local demoRaise = {
     { kind = "raise", name = "Ghoul",       lf = 1, hpFrac = 0.6, hpMax = 4900,  dmg = "410",  crit = "16%", miss = "6%", state = "live" },
 }
 local demoFamily = {
-    { kind = "family", name = "Zombies", count = 6, crit = "11%", miss = "4%" },
-    { kind = "family", name = "Archers", count = 3, crit = "13%", miss = "2%" },
+    { kind = "family", name = "Zombies", count = 6, ttl = 15, ttlMax = 15, crit = "11%", miss = "4%" },
+    { kind = "family", name = "Archers", count = 3, ttl = 9,  ttlMax = 18, crit = "13%", miss = "2%" },
 }
 
 local demoClock, demoPhase, lastRaiseN = 0, 0, -1
@@ -268,6 +273,11 @@ local function demoTick(dt)
         end
     end
     demoFamily[1].count = 4 + math.fmod(demoPhase, 5)
+    -- TTL windows drain and wrap (the count drop would land at the wrap)
+    for _, d in ipairs(demoFamily) do
+        d.ttl = d.ttl - 0.5
+        if d.ttl <= 0 then d.ttl = d.ttlMax end
+    end
 
     -- the Ghoul cycles the 3-state machine every ~12s: live -> stale -> gone -> live
     local ghoul = demoRaise[3]
