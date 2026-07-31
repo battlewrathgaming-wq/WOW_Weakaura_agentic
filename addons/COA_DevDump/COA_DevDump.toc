@@ -14,6 +14,7 @@ task_census.lua
 task_plates.lua
 task_perf.lua
 task_talents.lua
+task_petlog.lua
 task_spec.lua
 payload_tooltipids.lua
 task_tooltip.lua
