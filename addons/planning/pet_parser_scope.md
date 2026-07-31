@@ -63,13 +63,20 @@ plate-scan + preferred-token stat reads · CVar engineering (REJECTED for us) ·
    not an absence claim). Crit flags: SWING 112/728 crit, SPELL 78/896 crit at the era positions.
 5. LF-cost table derived from our basis (offline; no client needed) — still open.
 
-6. **The validation witness — RESHAPED by the record.** There is NO single minion-count stack
-   buff. The live witness is **per-TYPE presence buffs**: Ghoul 805019, Abomination 805017,
-   Bone King 707176, Decaying Colossus 805022, Lesser/Greater Skeletal Warrior 805016/807927 —
-   all count 1/0 (presence-flavored, never population-stacked). The invariant becomes:
-   type-buff present ⇔ registry has ≥1 alive of that type. Weaker than a count equality but
-   still an independent drift detector per family. (Diabolical 707133 stacks to 7 — a proc
-   buff, not a census.)
+6. **The validation witness — INSTANCE-counted, not stack-counted (Battlewrath, 2026-07-31).**
+   The minion buffs (Ghoul 805019, Abomination 805017, Bone King 707176, Decaying Colossus
+   805022, Lesser/Greater Skeletal Warrior 805016/807927) manifest as ONE SEPARATE BUFF
+   INSTANCE PER INDIVIDUAL — 3 ghouls = 3 "Ghoul" auras each at count 1, not one buff at
+   stack 3. Record-confirmed: Decaying Colossus ×2 simultaneous instances in one sweep (the
+   only moment the fight had type-siblings up). The invariant is the FULL count equality:
+   per-type aura-instance count == per-type registry alive count. Reading it = the UnitAura
+   index walk counting instances per spellId (sweep depth is safe: max 16 of 40 slots used).
+   ★ AND IT'S THE DEATH SIGNAL: since UNIT_DIED is silent, an instance count dropping (3→2)
+   IS the per-type death/despawn event — the registry then attributes WHICH GUID via plate
+   absence + activity recency. The buff sweep is the liveness AUTHORITY for count-per-type;
+   CLEU attributes individuals. Coverage rim: the Animate swarm has NO buff witness (no
+   Zombie aura in the record) — swarm liveness stays TTL-governed.
+   (Diabolical 707133 stacks to 7 — a proc buff, not a census.)
 
 ## THE LIVENESS FINDING (the record's biggest design fact)
 
@@ -78,8 +85,10 @@ enemies (captives). Re-summon OVERWRITE (Abomination ×2, Tomb King ×2, Greater
 CLEU-SILENT — the replaced pet just despawns. Battlewrath's field hypothesis "(Might report the
 same.)" for NPC-killed pets is untested in this sample, but the design no longer depends on it:
 **the grid cannot key row-collapse on UNIT_DIED.** Liveness derives from the composite:
-activity-TTL (last CLEU touch) + plate presence + the per-type buff witness; UNIT_DIED is a
-bonus fast-path when it happens to fire.
+the per-type buff-instance count as AUTHORITY (see checklist 6 — an instance drop IS the
+death event for Raise types) + activity-TTL and plate presence to attribute which GUID;
+UNIT_DIED is a bonus fast-path when it happens to fire. The Animate swarm (no buff) is
+TTL-only.
 
 **Two summon lanes, structurally different:**
 - **Raise:** (Abomination/Ghoul/Skeletal Warriors…) — the persistent army, one-per-slot,
