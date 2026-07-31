@@ -76,6 +76,11 @@ deltas sort into three classes by EXPOSURE-SENSITIVITY:
 - **Class 1, wild-honest today**: per-attempt ratios (miss%, ability mix, crit% when the
   driver grows it). Fight length cancels. Caveat on another axis: miss% is target-defense
   dependent — comparable across similar content, self-normalizing over the long mixed haul.
+  THIRD AXIS (Battlewrath, class knowledge, live-caught in the A/B): some rates are
+  POPULATION-DEPENDENT — Lesser Zombie per-unit rate scales with pack size, so its cadence
+  compares only at matched counts (a 3-summon vs 18-summon pair measured population, not
+  gear). No mechanical detector for this class; it's class-knowledge-curated, like the
+  PetGrid witness list.
 - **Class 2, normalizable — WE DISCARD THE DENOMINATOR**: fight `startedAt`/`endedAt` pass
   through the fold and are thrown away. Accumulating `combatSeconds` per type + profile
   would license hits/min, summons/min (and dmg/min, still raw-labeled) as wild-honest rates.

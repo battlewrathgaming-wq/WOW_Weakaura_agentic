@@ -20,8 +20,11 @@ Pet MISS% responds to owner gear - consistent across types with sample: Greater 
 Warrior 10%->4% (-6pp), Decaying Colossus 9%->4% (-5pp), Lesser Zombie 0%->2% (noise-level).
 Anchors: naked stam 102/int 108/shadowSP 68 vs geared 222/192/362. Evidence toward pet
 hit-inheritance; Class_design's lane to pursue (lab pairs would pin WHICH stat). Lesser
-Zombie cadence 33.3->64.9 (+95% from ~5% haste) = sample-thin anomaly, controlled re-run
-before belief. Data: his MancerLedger SV (naked/geaed profiles) + screenshots this session.
+Zombie cadence 33.3->64.9 EXPLAINED (Battlewrath, class knowledge): zombie per-unit rate
+SCALES WITH PACK SIZE - the runs had 3 vs 18 summons; the cadence measured population, not
+gear. Comparability caveat class discovered: POPULATION-DEPENDENT rates (zombie cadence
+comparable only at matched counts) - a third axis beside fight-length and target-defense.
+Data: his MancerLedger SV (naked/geaed profiles) + screenshots this session.
 
 ## Open threads (each has a designed next step)
 
