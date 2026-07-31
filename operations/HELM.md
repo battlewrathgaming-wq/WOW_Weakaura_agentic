@@ -1,9 +1,17 @@
 # HELM — who has the trunk
 
 holder:  RELEASED
-since:   2026-07-31
+since:   2026-07-31 (aura bench: memory-review bookkeeping, taken+released in one commit)
 
-next:    ADDONS: the pet-parser arc RESOLVED and pivoted - Mancer (LtGenZombie) is the capture
+next:    AURA: memory review pass DONE 2026-07-31 (shelf pruned to pointers, two durable
+         mechanics banked: event-clock+presence-leash · version-skew/envelope-diagnosis;
+         NO repo content changed - the store lives outside the tree). Bench state unchanged
+         since the V1 close: picker in the devs' hands; next build = the Ready contract
+         (abilities+cooldown = ONE bucket; spell-trigger palette + liveness harvest first;
+         costumes + polarity pre-specified in creator/picker/picker_tree.md). A corpus-pattern
+         write-up of event-clock+presence-leash is queued for the next aura helm hold.
+
+         ADDONS: the pet-parser arc RESOLVED and pivoted - Mancer (LtGenZombie) is the capture
          driver, OUR product is MancerLedger (consumer: user-controlled profiles folding his
          10-fight ring into lifetime logs; calm window, flight-recorder minimap token, lockout
          drift posture, Rates/Volume paged compare). Serviceable for dummy testing AS IS -
