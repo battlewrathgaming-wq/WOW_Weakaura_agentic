@@ -29,6 +29,14 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   addon (TurboPlates is now his baseline - feature-rich; State Plates coexists on the same
   driver). Plate-window snapshots are OPPORTUNISTIC: read plates as they come, never engineer
   the gate. 'Let lanes that work well carry load.' 
+  DISPLAY SPEC (Battlewrath, 2026-07-30): Recount-like in-game micro grid where THE ROWS ARE
+  PETS, each anchored on the ACTIVE GUID (individuals, not Libellus-style type buckets; row born
+  at SPELL_SUMMON, closed at UNIT_DIED -> closed rows = the history exporter's archive feed).
+  ROW SORT = LIFE FORCE COST (investment order - expensive minions top, stable, no dancing rows;
+  generalizes as summon-resource cost -> Reaper souls; LF table from OUR basis, not Libellus's).
+  COLUMNS: [Name (numbered twins)][HP bar (plate-window, dims stale)][Dmg][crit% (sample floor
+  ~20 else '-')][miss% (the live hit-cap evidence)][Age (doubles as temp-minion TTL)][Taken].
+  DPS = exporter-side analysis, not glance.
   BUILD PATH (house two-step): capture BEFORE display - a petlog session task on the v2 spine
   proves the metric set via landed envelopes + offline parse; the grid addon then displays a
   PROVEN column set (satellite model if it joins the State Plates family).
