@@ -446,6 +446,35 @@ and `reference/` is still never authority.
 **Curated intent feeds the role directly** (`reference/`): the worked examples are what players actually want a
 macro to DO. That is the role's design input, available now, independent of the probe.
 
+## ✅ THE COMPOSITION ARC — the guide-role in action (2026-07-17 → 31)
+
+The basis closed both channels; the bench then USED it to compose Battlewrath's real macros — the
+guide-as-role executing, not a document waiting to be written. Durable output: **`macros/CONVENTION.md`**,
+his macro HOUSE STYLE (design that rests on the basis; it never asserts a new fact — the ADR line holds).
+
+**The modifier language (CONVENTION.md):** base press = the sequence · shift = **BAR SWAP** (Bartender
+paging — shows situational state a macro fundamentally can't) · ctrl = reset · alt = hardware row (out of
+bounds in-macro). One meaning per modifier, universal across every macro, so muscle memory is portable.
+
+**Durable techniques, each PROVEN IN PLAY** (authority: `macros/CONVENTION.md` + `macros/basis/castsequence.md`):
+- **THE GOVERNING RULE** — chain the pre-cognition, isolate the reactive; observe first, consolidate second.
+- **Flatten by ECONOMIC EQUIVALENCE** — over-casting equivalent elements is the same transaction, so keep-pressing is optimal, not a compromise.
+- **SEQUENCE POSITION AS A SURVIVAL FILTER** — payoff-last behind N equivalent fillers auto-selects which targets earn it; the number IS the logic. Live-confirmed.
+- **COOLDOWNS AS THE LOGIC GATES** — fail-stick (advance-on-success) + reset-home; the cooldowns do the branching with zero conditionals. Live-proven.
+- **CONSOLIDATION BUYS A PRESSURE-QUEUE SLOT** — N abilities → one rankable press; and **press pressure** is where the flatten boundary falls (same pressure → group; pressure changes → split).
+- **The `@cursor`-nils vs `@player`-keeps asymmetry** inside a castsequence (sourced, `basis/castsequence.md`).
+
+**Real macros designed (his characters):**
+- **Reaper (Gravereaper)** — the survival-filter set (`reset=target Requiem, Requiem, Soulrend`), Deathwind AoE + Soul Strike ST, the Shift E / E heal-vs-AoE split. **LIVE-CONFIRMED** in play.
+- **Necromancer (Gravekeeper) summon manager** — `/castsequence reset=10 Animate: Skeletal Archer, Tomb King, Plaguefather` (30/60/120 s, Life-Force-free). Cooldowns-as-gates; deploy = HOLD; rides one end-of-queue slot. **LIVE-PROVEN.**
+- **Necromancer DoT-block opener** — `reset=target/10 Blight, Harvest Plague, Lichfrost ×N` (dots front-loaded, ST filler after; deselect/reselect = a manual re-open via the event-driven reset). **DESIGNED, tuning in play**; the latest refinement is the **press-pressure split** (the two DoTs grouped, Lichfrost isolated to its own key). **Not yet codified into CONVENTION.md — held until Battlewrath calls the shape proven.**
+
+**Cross-lane discipline (this bench READS, does not own):** ability facts are class-department REFERENCE
+— verified from `Input/*_talents.json` (talent tree) + the trainer/DBC (`Outputs/live_reference/`,
+`Outputs/spell_dbc/`) for BASELINE abilities (which are not in the tree), never recalled. Recall errors on
+Necro abilities recurred across this arc (Blight vs Command: Blight, Bone King, cooldowns, Life Force); the
+trainer settled each. Same discipline as the macro side, one department over.
+
 ## `reference/` — standing, settled
 
 **Reference material, not authority — the same standing as `corpus/`** (Battlewrath, 2026-07-17: *"Track them.
