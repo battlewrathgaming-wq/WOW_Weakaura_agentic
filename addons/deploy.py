@@ -48,6 +48,10 @@ MANIFEST = {
         "client_name": "COA_StatePlates_Enemy",
         "exclude_dirs": set(),
     },
+    "COA_PetGrid": {
+        "client_name": "COA_PetGrid",
+        "exclude_dirs": set(),
+    },
 }
 
 

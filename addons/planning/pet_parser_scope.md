@@ -72,16 +72,16 @@ plate-scan + preferred-token stat reads · CVar engineering (REJECTED for us) ·
    | Raise: Abomination 500335 | 3 | | Animate: Bone Wraith 805032 | 15s |
    | Raise: Decaying Colossus 500989 | 3 | | Animate: Plaguefather 805048 | 15s |
    | Raise: Gargoyle 500329 | 3 | | Animate: Bone Construct 531130 | 20s |
-   | Raise: Lesser Skeletal Warrior (r1) | **GAP** | | Animate: Frost Wyrm 805428 | 30s |
-   | Raise: Greater Skeletal Warrior (r2) | **GAP** | | Animate: Greater Zombie | **GAP** (lane certain, TTL unknown) |
+   | Raise: Lesser Skeletal Warrior (r1) | 1 | | Animate: Frost Wyrm 805428 | 30s |
+   | Raise: Greater Skeletal Warrior (r2) | 1 | | Animate: Greater Zombie | 15s (both summoning talents) |
 
    (CORRECTED, Battlewrath 2026-07-31: Bone King is NOT a summon at all — a Command: Undead
    proc buff granting a free instant Blight/Lich Frost. Excluded from the parser entirely;
    the coa_spells proc entry described the buff, and I mis-slotted it as a minion.)
-   **GAPS (gather, not accept):** Skeletal Warrior LF costs are in neither basis (talent JSON
-   lacks them — baseline trainer spells; coa_spells is a stat dump, no tooltip text) → one
-   in-game tooltip glance settles both. Greater Zombie TTL likewise. Cheap gathers; weight
-   fallback until then = LF 1 (floor, honest).
+   **GAPS CLOSED (Battlewrath, 2026-07-31, class knowledge):** Skeletal Warrior = 1 LF both
+   ranks (the starter guardian type — you begin with it). Greater Zombie = 15s across both
+   talents that summon them. Bone Construct 20s CONFIRMED live (matches the derived value —
+   two-witness green). The table is complete; no fallbacks needed.
 
 6. **The validation witness — INSTANCE-counted, not stack-counted (Battlewrath, 2026-07-31).**
    The minion buffs (Ghoul 805019, Abomination 805017, Decaying Colossus
