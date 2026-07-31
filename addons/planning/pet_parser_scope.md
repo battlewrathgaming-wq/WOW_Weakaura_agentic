@@ -69,7 +69,13 @@ On row expiry (death/TTL) the individual FOLDS into its pet-family's running agg
 self-normalizing through play). RESETTABLE, bounded in SV - kills variable bloat. Two tiers:
 LIVE = per-GUID individuals (the grid) · ARCHIVE = per-TYPE normals (converges on Libellus's
 buckets but as the archive tier only). Family normals also solve the crit/miss sample-floor at
-population scale. CARVE-OUT: the scaling-lab pairs (owner x pet stat snapshots) stay RAW and
+population scale.
+**NORMALS DISCIPLINE (Battlewrath, 2026-07-30): rates first, damage carefully.** The addon
+CLAIMS NOTHING about scaling. Family normals lead with the RATE stats (crit% / miss% /
+dodge-parry breakdown - per-attempt ratios, self-normalizing regardless of target count);
+DAMAGE is context-soaked (40-target AoE vs single-target = massive sample bias) and is NEVER
+presented as a normalized family value - live-fight column + clearly-labeled raw totals only.
+Avg-hit-per-swing MAY appear as a secondary with an explicit context caveat. CARVE-OUT: the scaling-lab pairs (owner x pet stat snapshots) stay RAW and
 land via the existing mailbox lane on deliberate lab sessions only (Class_design parses
 offline) - no standing exporter machinery at all.
 
