@@ -45,6 +45,20 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   BUILD PATH (house two-step): capture BEFORE display - a petlog session task on the v2 spine
   proves the metric set via landed envelopes + offline parse; the grid addon then displays a
   PROVEN column set (satellite model if it joins the State Plates family).
+  ★★ DIRECTION PIVOT UNDER DISCUSSION (Battlewrath, 2026-07-31, leaning, not yet Build!-gated):
+  COMPLETE REBUILD around Mancer (LtGenZombie's addon, the evolved Libellus) as the PRIMARY
+  DRIVER, us as CONSUMER. Verified mechanism: fights auto-commit on PLAYER_REGEN_ENABLED into
+  MancerDB.minionDps.fights, a 10-fight ring with dedup fingerprints (startedAt:endedAt:dmg) =
+  a ready-made fold cursor; lazy lossless harvest. Architecture becomes: (1) Mancer = capture +
+  per-fight review (theirs); (2) CONSUMER plugin (ours) = lifetime normals + STAT-EPOCH BUCKETS
+  (buckets emerge from stat-stability periods, ±tolerance on stam/int/SP anchor, fold-time
+  paper-doll read; 'how do pets look anchored stam vs int' = inspectable surface); (3) the
+  MINIMAL IN-COMBAT READOUT as a separate plugin OFFERED TO THEM - framing: 'Your UI carries
+  too much real estate' + a solution they can BRAND/FURNITURE (their Media/ skin hooks; lands
+  as a gift not a competitor). What survives from v0.2: the chassis (pooled rows, grow-down
+  pin) for the readout; the STATE lane (buff-instance witness, TTL windows, plate HP 3-state) -
+  the piece Mancer lacks; our capture lane retires AFTER a two-witness window (run both, diff
+  counters, then hand over). Consumer fails LOUD on 0.9.x shape drift, never guesses.
   ★ PASS 1 LANDED + VERDICTS IN (2026-07-31, record 20260731_104452): checklist facts settled -
   see pet_parser_scope.md for the full verdict block. Headlines: canonical CLEU API is FURNITURE
   (all 4000 rows varargs; classic 3.3.5 layout verified positionally); minions are TYPE_PET not
