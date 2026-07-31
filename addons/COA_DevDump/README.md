@@ -40,24 +40,40 @@ the bottom of this file.
 
 One envelope at a time: a one-shot won't run while a session is open.
 
-## Installed tasks
+## Installed tasks (refreshed 2026-07-31)
 
-- **`probe <FrameName> [field1,field2,...]`** (one-shot) — recursive walk of
-  any named frame in `_G`, reading plain Lua table fields off every widget
-  (how CoA's custom frames stash data — this is what found
-  `spellID`/`rank`/`maxRank` on the talent buttons). NOT for stock API-backed
-  frames (e.g. `TotemFrame`): their data lives behind a function call, so a
-  probe shows structure only.
-- **`frames [field1,field2,...]`** (one-shot) — frame-stack snapshot under the
-  mouse cursor (the `fstack` idea, recorded instead of displayed), reading the
-  field list (default: core's DEFAULT_FIELDS) off every hit. Doubles as the
-  ANONYMOUS-frame probe: this fork's nameplates have no GetName, but a cursor
-  hit reads `unit`/`displayedUnit` straight off their UnitFrame children.
-- **`census`** (one-shot, self-cycling) — the full `_G` walk: every global's
-  kind + one-level `C_*` namespace expansion, paced at 400 keys/frame so the
-  client never hitches. Live-proven 2026-07-15 (51,855 globals in one pass).
-  Reduction vs the declared pass + baseline happens offline
-  (`addons/tools/reduce_census.py` → `addons/maps/census/runtime/`).
+One-shots (`/coadump r <task>`):
+- **`probe <FrameName> [fields]`** — recursive walk of any named frame in `_G`,
+  reading plain Lua table fields off every widget (found `spellID`/`rank`/
+  `maxRank` on the talent buttons). NOT for stock API-backed frames: their data
+  lives behind function calls, so a probe shows structure only.
+- **`frames [fields]`** — frame-stack snapshot under the mouse cursor (recorded
+  fstack). Doubles as the ANONYMOUS-frame probe: this fork's nameplates have no
+  GetName, but a cursor hit reads `unit`/`displayedUnit` off their children.
+- **`census`** — the full `_G` walk (51,855 globals, paced 400 keys/frame).
+  Offline reduction: `addons/tools/reduce_census.py`.
+- **`macros`** — the macro-conditional probe (backlog #4 payload).
+- **`talents`** — talent/spellbook capture v2 w/ rank arrays (fed the
+  Class_design walk-vs-decode diff; capture loop handover:
+  `Class_design/tools/CAPTURE.md`).
+- **`spec`** — the spec-index capture (load.specialization support).
+- **`tooltip`** — tooltip-id harvest (payload_tooltipids).
+
+Session tasks (`/coadump st <task>` ... `sp`):
+- **`plates`** — nameplate window capture (the SignalFire arc's evidence tool).
+- **`perf [Addon1,Addon2] [secs]`** — fps/cpu/mem/chat-rate sampler; per-addon
+  CPU needs `/console scriptProfile 1` + reload (stamped in the envelope; turn
+  it off after). Attributed the Mancer hitching 2026-07-31 (24ms/s steady,
+  48-108ms spikes, 8-for-8 trough alignment).
+- **`petlog`** — the pet-parser capture gate: SPELL_SUMMON registry + raw CLEU
+  (first-20-args, canon/varargs mode-stamped) + plate-window pet/owner stat
+  pairs + player-aura sweep. Its one record (20260731_104452) settled the
+  petlog v0 checklist AND disproved the canonical-CLEU assumption.
+- **`cvarlog`** — the nameplate-CVar flight recorder: baseline + change rows
+  (t/key/from/to) + Mancer backup-table snapshots per flip. Diagnosed the
+  capital-city plate mute in one session.
+
+The task shelf is the point: each investigation leaves its instrument behind.
 
 ## The loop (repo → client → repo)
 

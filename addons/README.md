@@ -20,13 +20,24 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
 ## The ecosystem seat (what to read from the wider tree)
 
 - `operations/` — STATE · roadmap · HOW (the invariants; **invariant 7 applies here doubly** — client Lua IS the fork)
+- `operations/Addons_load.md` — **this bench's mental-load ledger** (open threads, banked refinements, arcs)
 - `creator/ingredients/custody.md` — how the aura side works (this bench's biggest consumer)
-- `addons/COA_DevDump/` — the seed tool (repo copy; live copy in the client's `Interface/AddOns/`)
-- **The residents (moved in 2026-07-15):** `COA_DevDump/` (the seed probe/dump tool) · `COA_GuardianPlates/`
-  ("COA State Plates" — the shipped nameplates addon, WITH `deploy_to_game.bat`: **the deploy pattern** — repo =
-  source of truth, byte-copy to the game folder, stale-file cleanup; agents never write into the client's AddOns
-  directly. Generalize it per-addon as bench work) · `Mob_Autogroup/` (a design doc) · `refs_threat/` (third-party
-  threat/nameplate addons as REFERENCE material — secondary standing, study not authority)
+
+## The residents (refreshed 2026-07-31)
+
+**Products (deployed via `deploy.py`; each has its own README):**
+- `COA_DevDump/` — the capture spine (task registry + SV mailbox; the task SHELF is the point)
+- `MancerLedger/` — long-term minion averages over Mancer's per-fight data (profiles, calm
+  window, flight-recorder token; READ `DRIVER_CONTRACT.md` before touching the fold)
+- `COA_PetGrid/` — the Necromancer pet micro-grid (personal tooling; capture lane pending the
+  two-witness retirement decision)
+- `COA_GuardianPlates/` + `COA_StatePlates_Aggro/Friendly/Enemy` — the State Plates family
+  (core + per-concern satellites; two banked bugs live in the ledger)
+- `Mob_Autogroup/` — a design doc
+
+**Reference silos (poisoned references — understanding + interop contracts only, never copied):**
+- `refs_libellus/` — Mancer/LibellusLeti (THE driver MancerLedger consumes; incl. the 0.9.553
+  dev drop w/ provenance) · `refs_recount/` · `refs_signalfire/` · `refs_threat/`
 
 ## The files here
 
@@ -46,6 +57,12 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
   `landing/raw/` (local receipt, gitignored), parses via the codec-proven `lua_table.py` into
   `landing/records/<runId>__<task>.json` (tracked), deduped on runId. `watch` mode = the
   leave-it-running half.
+- `tools/smoke/` — the offline smoke harnesses (lua51-driven, stubbed frame API): one per
+  product; run the relevant one after ANY addon change, before deploy.
+- **The third witness lane (2026-07-31): `/combatlog`** — the client's own CLEU-to-disk
+  stream (`Logs/<datetime> WoWCombatLog.txt`), parseable by
+  `Class_design/Necromancer/tests/parse_combatlog.py`. The cheapest
+  does-this-fork-emit-X instrument: no capture task, no deploy, no reload.
 - `COA_DevDump/` v2 — the in-game half rewritten as a task-registry spine (core + task files,
   one-envelope mailbox, by-exception chat, shorthand verbs `r/st/sp/list/clear`). See its README.
 
