@@ -14,6 +14,15 @@ reusable piece - proven by importing it against the bench's own questions). For 
 task, no deploy, no reload. First bench use: hunting the pet-UNIT_DIED answer (Battlewrath
 deliberately exposing the capability - all prior testing was dummies).
 
+## First scaling observation (2026-07-31, MancerLedger naked/geared A/B, Rates page)
+
+Pet MISS% responds to owner gear - consistent across types with sample: Greater Skeletal
+Warrior 10%->4% (-6pp), Decaying Colossus 9%->4% (-5pp), Lesser Zombie 0%->2% (noise-level).
+Anchors: naked stam 102/int 108/shadowSP 68 vs geared 222/192/362. Evidence toward pet
+hit-inheritance; Class_design's lane to pursue (lab pairs would pin WHICH stat). Lesser
+Zombie cadence 33.3->64.9 (+95% from ~5% haste) = sample-thin anomaly, controlled re-run
+before belief. Data: his MancerLedger SV (naked/geaed profiles) + screenshots this session.
+
 ## Open threads (each has a designed next step)
 
 - **OPPORTUNITY (Battlewrath, 2026-07-30): the PET COMBAT PARSER — inspect Libellus-Leti FIRST.**
