@@ -6,6 +6,29 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## Open threads (each has a designed next step)
 
+- **OPPORTUNITY (Battlewrath, 2026-07-30): the PET COMBAT PARSER — inspect Libellus-Leti FIRST.**
+  Target addon: https://github.com/ltgenzombie/Libellus-Leti/releases (full big-pane combat
+  parser; silo-ingest per the SignalFire pattern — describe-don't-anchor; STARRED read = their
+  CLEU pet/guardian ATTRIBUTION logic (the solved hard problem) + their accumulator data model +
+  a perf read against our render-economics knowledge). OURS DIFFERS: micro pane (row per living
+  pet, budgeted-worker discipline from birth) + THE HISTORY EXPORTER — 'what have ALL your aboms
+  ever looked like': longitudinal per-entry-id database, repo-side via the landing lane (records,
+  offline aggregation - no SV bloat; no addon on this client can match it because none has a
+  landing zone).
+  THE METRIC INVENTORY (designed, 4 capture classes): (A) registry = the guardian-tracker
+  ownership primitive (SPELL_SUMMON GUID + entry-id + lifetime); (B) CLEU streams, GUID-keyed,
+  plate-independent = damage done per-ability w/ crit flags, miss table, damage taken, healing
+  received, casts, time-in-combat -> DPS/crit%/shares; (C) ★ PLATE-WINDOW STAT SNAPSHOTS -
+  UnitAttackPower/UnitDamage/UnitAttackSpeed WORK on plate-bound pets: snapshot on
+  NAME_PLATE_UNIT_ADDED for registered GUIDs PAIRED WITH OWNER STATS same-instant -> (owner
+  stamina, pet AP) correlation rows = THE PET-SCALING LAB (feeds Class_design's Life-Force-slope
+  question; scaling derived from data, not known); (D) boundary class - HP plate-window only,
+  last-known + staleness off-plate.
+  BUILD PATH (house two-step): capture BEFORE display - a petlog session task on the v2 spine
+  proves the metric set via landed envelopes + offline parse; the grid addon then displays a
+  PROVEN column set (satellite model if it joins the State Plates family).
+
+
 - **OPPORTUNITY (Battlewrath, 2026-07-20, pick up as a FRESH run): the Necro/Reaper custom UI.**
   His mains, they feel the same - one UI serves both. TASTE: gothic ironwork; little gothic-styled
   headers; RE-USE the Necromancer class widget elements (the client's own art). THE BASIS EXISTS
