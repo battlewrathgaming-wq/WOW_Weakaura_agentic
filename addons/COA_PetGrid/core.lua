@@ -1,32 +1,30 @@
--- COA_PetGrid core.lua - v0.1.0 CHASSIS STUB (pass 2 of the pet parser build).
+-- COA_PetGrid core.lua - v0.2.0 the CHASSIS + feed manager.
 --
--- This pass proves the five stability concerns from the scope doc in isolation:
---   1. create-once + row POOLING (rows acquire/release, never recreated)
---   2. position persistence (anchor in SV, drag + lock)
---   3. update discipline (ticker writes to existing regions only, no re-layout)
---   4. scale + visibility
---   5. no lockdown needed (display-only frames)
--- The DATA IS FAKE (a demo ticker). The real grid replaces the feed, keeps the
--- chassis. Also proves the HP 3-state display visually: one demo row cycles
--- LIVE -> STALE (grey at last-known) -> GONE (row collapses) -> back.
+-- Pass 2 proved this chassis live (pooling/no-flicker, drag+lock+scale SV,
+-- top-left grow-down pin, the 3-state HP cycle). Pass 3 splits data from
+-- display: core owns the frames and the writer tick; a FEED owns the data.
+-- Feeds register in NS.feeds and implement { start(), stop(), update(dt),
+-- slash(cmd, arg) -> handled }. db.mode picks the feed ("live" | "demo").
 --
 --   /petgrid            controls list
 --   /petgrid lock|unlock  drag handle off/on (locked = click-through)
 --   /petgrid scale <x>  0.5 - 2.0
 --   /petgrid reset      re-center + defaults
---   /petgrid demo       toggle the fake feed
+--   /petgrid demo       toggle demo feed <-> live feed
+--   (feed commands: /petgrid stats | resetstats - handled by the live feed)
 
-local ADDON = ...
+local ADDON, NS = ...
 
--- layout constants (v0.1.1: rebalanced after live clipping report - the right
--- stat block starts at WIDTH-8-3*STAT_W_SP; name+bar must end short of it)
+-- layout constants (rebalanced after the live clipping report - the right
+-- stat block starts at WIDTH-8-3*STAT_SP; name+bar must end short of it)
 local ROW_H, WIDTH = 14, 240
 local NAME_W, BAR_W, STAT_W, STAT_SP = 70, 50, 32, 34
+
 -- topX/topY = the TOP-LEFT corner in UIParent space (scale-corrected). The
 -- container is pinned by its top edge so row growth only ever extends DOWN
 -- (Battlewrath: growing up feels chaotic / not anchored). nil = first run,
 -- centered once then converted.
-local defaults = { topX = nil, topY = nil, scale = 1.0, locked = false, demo = true }
+local defaults = { topX = nil, topY = nil, scale = 1.0, locked = false, mode = "live" }
 
 local db  -- COA_PetGridDB after ADDON_LOADED
 
@@ -46,6 +44,7 @@ root:SetBackdrop({
 root:SetBackdropColor(0, 0, 0, 0.55)
 root:SetBackdropBorderColor(0.4, 0.4, 0.4, 0.9)
 root:Hide()
+NS.root = root
 
 local grip = CreateFrame("Frame", nil, root)  -- drag handle, visible when unlocked
 grip:SetPoint("TOPLEFT", root, "TOPLEFT", 0, 0)
@@ -53,21 +52,6 @@ grip:SetPoint("TOPRIGHT", root, "TOPRIGHT", 0, 0)
 grip:SetHeight(12)
 grip:EnableMouse(true)
 grip:RegisterForDrag("LeftButton")
-local function saveTopAnchor()
-    -- GetLeft/GetTop are in the frame's scale space; multiply out to UIParent
-    -- space so the stored corner survives scale changes
-    db.topX = root:GetLeft() * db.scale
-    db.topY = root:GetTop() * db.scale
-end
-
-grip:SetScript("OnDragStart", function() root:StartMoving() end)
-grip:SetScript("OnDragStop", function()
-    root:StopMovingOrSizing()
-    saveTopAnchor()
-    -- re-pin immediately by the top-left so later growth stays downward
-    root:ClearAllPoints()
-    root:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", db.topX / db.scale, db.topY / db.scale)
-end)
 local gripTex = grip:CreateTexture(nil, "BACKGROUND")
 gripTex:SetAllPoints(grip)
 gripTex:SetTexture(0.3, 0.5, 0.3, 0.5)
@@ -75,16 +59,28 @@ local title = grip:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
 title:SetPoint("CENTER", grip, "CENTER", 0, 0)
 title:SetText("PetGrid (drag - /petgrid lock)")
 
+local function saveTopAnchor()
+    -- GetLeft/GetTop are in the frame's scale space; multiply out to UIParent
+    -- space so the stored corner survives scale changes
+    db.topX = root:GetLeft() * db.scale
+    db.topY = root:GetTop() * db.scale
+end
+
 local function pinTopLeft()
     root:ClearAllPoints()
     root:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", db.topX / db.scale, db.topY / db.scale)
 end
 
+grip:SetScript("OnDragStart", function() root:StartMoving() end)
+grip:SetScript("OnDragStop", function()
+    root:StopMovingOrSizing()
+    saveTopAnchor()
+    pinTopLeft()  -- re-pin immediately by the top-left so growth stays downward
+end)
+
 -- One-shot converter: at ADDON_LOADED the frame has NO rect yet (GetLeft()
 -- = nil), so a legacy/center anchor can't be converted there - it must wait
 -- for the first laid-out frame. Un-hooks itself the moment it succeeds.
--- (Live-caught: the un-converted legacy anchor was BOTTOM-flavored, so the
--- grid grew UP - top surface wandering, bottom stationary.)
 local pinner = CreateFrame("Frame")
 pinner:Hide()
 pinner:SetScript("OnUpdate", function(self)
@@ -110,8 +106,8 @@ local function applyChrome()
 end
 
 -- ---------------------------------------------------------------- row pool
--- One row frame kind; sections compose it (Raise shows the HP bar, Animate
--- hides it and leads with count). Created once, acquired/released forever.
+-- One row frame kind; sections compose it (Raise: the bar is HP; Animate:
+-- the same bar is the TTL window). Created once, acquired/released forever.
 local pool, live = {}, {}
 
 local function newRow()
@@ -133,7 +129,7 @@ local function newRow()
     r.hpBg = r.hp:CreateTexture(nil, "BACKGROUND")
     r.hpBg:SetAllPoints(r.hp)
     r.hpBg:SetTexture(0.15, 0.15, 0.15, 0.8)
-    -- absolute last-known HP rides ON the bar (fraction = bar, total = text;
+    -- absolute state rides ON the bar (fraction = fill, % or seconds = text;
     -- both grey together on stale)
     r.hpText = r.hp:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     r.hpText:SetPoint("CENTER", r.hp, "CENTER", 0, 0)
@@ -167,7 +163,7 @@ local function releaseRows()
 end
 
 -- section header pool (same discipline): a header ROW - section title at the
--- name column, an HP label over the bar slot, column labels over the stat slots
+-- name column, a label over the bar slot, column labels over the stat slots
 local hpool, hlive = {}, {}
 local function newHeader()
     local h = CreateFrame("Frame", nil, root)
@@ -215,14 +211,14 @@ end
 -- ---------------------------------------------------------------- layout
 -- Called only when the ROW SET changes (add/remove/reorder), never per tick.
 -- Ticker writes touch region contents only.
-local function layout(raiseRows, familyRows)
+function NS.layout(raiseRows, familyRows)
     releaseRows()
     releaseHeaders()
     local y = -14  -- below the grip line
 
-    local function place(el, indent)
+    local function place(el)
         el:ClearAllPoints()
-        el:SetPoint("TOPLEFT", root, "TOPLEFT", 4 + (indent or 0), y)
+        el:SetPoint("TOPLEFT", root, "TOPLEFT", 4, y)
     end
 
     if #raiseRows > 0 then
@@ -248,8 +244,8 @@ local function layout(raiseRows, familyRows)
     root:SetHeight(-y + 6)
 end
 
--- write pass: contents only, no anchors touched (concern 3 made visible)
-local function writeRows()
+-- write pass: contents only, no anchors touched
+function NS.writeRows()
     for _, r in ipairs(live) do
         local d = r.data
         if d.kind == "raise" then
@@ -284,77 +280,32 @@ local function writeRows()
     end
 end
 
--- ---------------------------------------------------------------- demo feed
--- Fake data shaped like the real thing: Raise rows LF-desc, one row cycling
--- LIVE->STALE->GONE->back; a family count that breathes. Every visual state
--- the real grid needs, exercised on a timer.
-local demoRaise = {
-    { kind = "raise", name = "Abomination", lf = 3, hpFrac = 1.0, hpMax = 12400, dmg = "1.2k", crit = "14%", miss = "5%", state = "live" },
-    { kind = "raise", name = "Banshee",     lf = 2, hpFrac = 0.8, hpMax = 6100,  dmg = "640",  crit = "9%",  miss = "3%", state = "live" },
-    { kind = "raise", name = "Ghoul",       lf = 1, hpFrac = 0.6, hpMax = 4900,  dmg = "410",  crit = "16%", miss = "6%", state = "live" },
-}
-local demoFamily = {
-    { kind = "family", name = "Zombies", count = 6, ttl = 15, ttlMax = 15, crit = "11%", miss = "4%" },
-    { kind = "family", name = "Archers", count = 3, ttl = 9,  ttlMax = 18, crit = "13%", miss = "2%" },
-}
+-- ---------------------------------------------------------------- feed slot
+NS.feeds = {}
+NS.active = nil
 
-local demoClock, demoPhase, lastRaiseN = 0, 0, -1
-local function demoTick(dt)
-    demoClock = demoClock + dt
-    if demoClock < 0.5 then return end
-    demoClock = 0
-    demoPhase = demoPhase + 1
-
-    -- HP jiggle (write-only churn: flicker test)
-    for _, d in ipairs(demoRaise) do
-        if d.state == "live" then
-            d.hpFrac = d.hpFrac - 0.07
-            if d.hpFrac < 0.15 then d.hpFrac = 1.0 end
-        end
-    end
-    demoFamily[1].count = 4 + math.fmod(demoPhase, 5)
-    -- TTL windows drain and wrap (the count drop would land at the wrap)
-    for _, d in ipairs(demoFamily) do
-        d.ttl = d.ttl - 0.5
-        if d.ttl <= 0 then d.ttl = d.ttlMax end
-    end
-
-    -- the Ghoul cycles the 3-state machine every ~12s: live -> stale -> gone -> live
-    local ghoul = demoRaise[3]
-    local step = math.fmod(demoPhase, 24)
-    local wantGone = (step >= 16 and step < 20)
-    ghoul.state = (step >= 8 and step < 16) and "stale" or "live"
-
-    local raiseSet = {}
-    for _, d in ipairs(demoRaise) do
-        if not (d == ghoul and wantGone) then raiseSet[#raiseSet + 1] = d end
-    end
-    -- re-layout ONLY on set change (gone-edge), same-set ticks are pure writes
-    if #raiseSet ~= lastRaiseN then
-        lastRaiseN = #raiseSet
-        layout(raiseSet, demoFamily)
-    end
-    writeRows()
+function NS.SetMode(mode)
+    if not NS.feeds[mode] then mode = "live" end
+    if NS.active and NS.active.stop then NS.active.stop() end
+    db.mode = mode
+    NS.active = NS.feeds[mode]
+    if NS.active.start then NS.active.start() end
 end
 
+-- the writer tick: relaxed cadence by design - the value is in where the
+-- averages settle over time, not per-frame fidelity (Battlewrath)
 local ticker = CreateFrame("Frame")
-ticker:Hide()
-ticker:SetScript("OnUpdate", function(_, dt) demoTick(dt) end)
-
-local function setDemo(on)
-    db.demo = on
-    if on then
-        layout(demoRaise, demoFamily)
-        writeRows()
-        root:Show()
-        ticker:Show()
-    else
-        ticker:Hide()
-        releaseRows()
-        releaseHeaders()
-        root:Hide()
+local acc = 0
+ticker:SetScript("OnUpdate", function(_, dt)
+    acc = acc + dt
+    if acc < 0.5 then return end
+    local step = acc
+    acc = 0
+    if NS.active and NS.active.update then
+        local ok = pcall(NS.active.update, step)
+        if not ok then NS.tickErrors = (NS.tickErrors or 0) + 1 end
     end
-end
+end)
 
 -- ---------------------------------------------------------------- boot + slash
 local boot = CreateFrame("Frame")
@@ -364,11 +315,14 @@ boot:SetScript("OnEvent", function(_, _, name)
     boot:UnregisterAllEvents()
     COA_PetGridDB = COA_PetGridDB or {}
     db = COA_PetGridDB
+    NS.db = db
     for k, v in pairs(defaults) do
         if db[k] == nil then db[k] = v end
     end
+    db.normals = db.normals or {}
+    if db.demo ~= nil then db.demo = nil end  -- legacy boolean, replaced by mode
     applyChrome()
-    if db.demo then setDemo(true) end
+    NS.SetMode(db.mode)
 end)
 
 SLASH_COAPETGRID1 = "/petgrid"
@@ -386,10 +340,13 @@ SlashCmdList["COAPETGRID"] = function(msg)
         for k, v in pairs(defaults) do db[k] = v end
         db.topX, db.topY = nil, nil  -- nil defaults are invisible to pairs()
         applyChrome()
-        setDemo(db.demo)
+        NS.SetMode(db.mode)
     elseif cmd == "demo" then
-        setDemo(not db.demo)
+        NS.SetMode(db.mode == "demo" and "live" or "demo")
+    elseif NS.active and NS.active.slash and NS.active.slash(cmd, arg) then
+        -- feed handled it
     else
-        DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88PetGrid|r stub: /petgrid lock | unlock | scale <0.5-2> | reset | demo")
+        DEFAULT_CHAT_FRAME:AddMessage(
+            "|cff88ff88PetGrid|r: /petgrid lock | unlock | scale <0.5-2> | reset | demo | stats | resetstats")
     end
 end

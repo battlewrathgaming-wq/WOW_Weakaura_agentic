@@ -1,8 +1,10 @@
 ## Interface: 30300
 ## Title: COA Pet Grid
-## Notes: v0.1.0 STUB - the pet parser's display chassis: movable/lockable/persisting container, pooled rows in two sections (Raise individuals / Animate families), dummy-data ticker. Proves the element primitives before real data mounts (addons/planning/pet_parser_scope.md Q3). /petgrid for controls.
+## Notes: v0.2.0 - the Necromancer pet combat parser: a micro grid where the rows are your pets. Raise section = per-GUID rows (LF-weighted, HP %, fight dmg, crit/miss); Animate section = family rows (count, TTL window, rates). Liveness = buff-instance witness + TTLs (UNIT_DIED is silent for pets on this fork). All individuals fold into SV lifetime normals on close. Facts: addons/planning/pet_parser_scope.md. /petgrid for controls.
 ## Author: Battlewrath
-## Version: 0.1.1
+## Version: 0.2.0
 ## SavedVariables: COA_PetGridDB
 
 core.lua
+feed_demo.lua
+feed_live.lua
