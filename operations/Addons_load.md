@@ -54,6 +54,14 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   specimen: his guardians-only residue; evidence: cvarlog record 20260731_143305. Fix shapes
   (cheapest first): never-cleared lastKnownUserPrefs; snapshot-once-at-login-before-any-write;
   single plate-CVar owner lane; first-run consent prompt. Relay when standing is warmer.
+  + FINDING 2 (2026-07-31, live-observed w/ TurboPlates off): guardian plate suppression is a
+  POLLING RACE - cloak driver discovers ~2/sec + re-hides ~3/sec, client plate-frame recycling
+  beats the poll -> a trailing flash per cycle (his read: 95% suppressed, flash each cycle).
+  Fix shape: hook each discovered plate's OnShow ONCE (hide fires inside the show; kills flash
+  AND the reassert loop's per-frame cost). + HITCH thread open: perf record 20260731_151539
+  (avg 83 fps, troughs 28, GC-flavored) with Mancer-only; suspects = the always-running HUD
+  ticker (MinionHpHud:1664, unconditional by design) + suppression loops; scriptProfile arm
+  pending for mechanical attribution.
   ★★ DIRECTION PIVOT UNDER DISCUSSION (Battlewrath, 2026-07-31, leaning, not yet Build!-gated):
   COMPLETE REBUILD around Mancer (LtGenZombie's addon, the evolved Libellus) as the PRIMARY
   DRIVER, us as CONSUMER. Verified mechanism: fights auto-commit on PLAYER_REGEN_ENABLED into
