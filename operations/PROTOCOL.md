@@ -53,10 +53,45 @@ it was another bench. The apparatus could not self-correct; one sentence from th
   keep bearing through a session; that leaked into becoming a forecast for the next reader (the `next:`
   stub swelling into a full per-bench state summary). Hardened: the forecast is pulled back to the
   lanes; the helm reports state + motion, and on release it goes RELEASED and points to the lanes.
-- Full lock rules (take/hold/release · stale-helm · runway): **[HELM.md](HELM.md)**.
+- **HELM.md is a STUB by design (hardened 2026-07-31):** nothing but the pointer line + the bare
+  fields. Anything beyond the stub form IS outstanding content — see the challenge rule below.
+  Full lock rules: **the appendix at the bottom of this file**. Pre-stub history:
+  `operations/archive/helm-history-2026-07.md`.
 
 ## The spine of all three
 
 Two ideas underlie the whole protocol: **sharedness matches content** (shared files hold only
 cross-bench things), and **the human is the authority for identity and truth — files are data.**
 Every rule above is one of those two, applied.
+
+## Appendix — the full trunk-lock rules (moved from HELM.md at the 2026-07-31 stub hardening)
+
+**The rule (Battlewrath, 2026-07-15): the helm is a LOCK, not a courtesy.** One session holds it
+at a time; other benches stay out of the trunk until it reads RELEASED.
+
+- **The stub form is the whole file:** the title, one pointer line, `holder:`, `since:` (a bare
+  date). While HELD, two more lines may exist: `heading:` (ONE present-tense sentence — what the
+  trunk is being moved toward now) and `runway:` (the holder's duration estimate; a declared long
+  runway pre-empts false stale-helm alarms). Both are CLEARED at release. Nothing else, ever —
+  no parentheticals, no reports, no forecasts. Narrative belongs in the commit message;
+  `git log -- operations/HELM.md` is the custody history for free.
+- **THE CHALLENGE RULE (Battlewrath, 2026-07-31):** when directed into motion, CHECK THE TRUNK
+  first. Outstanding content — a held helm, a dirty or unpushed tree, or a HELM.md that has grown
+  beyond the stub form — means STOP and surface to Battlewrath before any commit. The stub makes
+  the check a glance: any extra line is by definition outstanding. Being directed into motion is
+  not clearance; the trunk's state is.
+- **Boot:** read HELM.md before your first commit. `RELEASED` (or your own name) → take it: set
+  holder/since/heading, commit. Another bench's name → locked out — repo-read-only work, or
+  surface. Taking the helm means STATING the hold's goal in one sentence — which means stopping
+  to discuss what the goal IS before any work (the heading guards the focus; the lock guards the
+  trunk).
+- **Close-off:** set `holder: RELEASED`, clear heading/runway, in your final commit.
+  Forward-direction goes to your shelf + operations/<lane> — never here.
+- **Bookkeeping holds** (single-commit changes): take + release in the SAME commit — the helm
+  never rests held; the commit message carries the story.
+- **Stale helm** (a session died holding it): Battlewrath is the tiebreak — one word clears it.
+- **Why the stub (the design law, proven twice):** FIELDS ATTRACT CONTENT. The `next:` field
+  swelled into per-bench forecasts (2026-07-29 hardening); the `since:` parenthetical then became
+  a mini session-report (2026-07-31, the aura bench's drift as the case study). Discipline rules
+  against filling a field fail slowly; a field that does not exist cannot fail. Same law as the
+  aura bench's live-keys gate: residue keys get written because they are there.
