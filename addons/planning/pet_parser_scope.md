@@ -9,7 +9,7 @@ Libellus + Recount understood, not copied._
 | column | source | status |
 |---|---|---|
 | Name (individual) | registry: SPELL_SUMMON GUID + entry-id decode | **PROVEN** (guardian-tracker + plates records) |
-| HP bar | plate-window UnitHealth | **PROVEN LIVE** (evidence pair; opportunistic per the no-CVar boundary). DISPLAY RULE (Battlewrath 2026-07-30): displayable but NOT rendered when absent — per-row the bar hides (no dimmed-stale bar), and the COLUMN COLLAPSES when no row has HP (adaptive width; honest absence over decorated staleness) |
+| HP bar | plate-window UnitHealth | **PROVEN LIVE** (evidence pair; opportunistic per the no-CVar boundary). DISPLAY RULE (Battlewrath 2026-07-30, refined — THE ANTI-FLICKER STATE MACHINE): per-row HP has 3 states: LIVE (plate-bound, colored, updating) · STALE (alive but plate dropped: GREY the field at last-known value, refresh on next plate window — TTL+update-on-refind, HIS earlier gap policy applied; rationale = the WA guardian-tracker's pain was plates flapping in/out making bars flicker; state-holding + grey kills the flicker) · GONE (died or TTL expired: the GUID ROW collapses out of the grid → archived to the exporter). COLUMN collapse only for the never-detected case (HP not observable at all this session) |
 | Dmg / Taken | CLEU damage subevents by source/dest GUID | API proven; **pet-sourced events + flag bits = petlog v0 check** |
 | crit% | CLEU critical flag | position CANONICAL (see the API finding); **live sample = v0 check** |
 | miss% | SPELL_MISSED/SWING_MISSED miss types | same |
