@@ -1,11 +1,11 @@
 # HELM — who has the trunk
 
-holder:  addons bench
-since:   2026-07-30
-heading: Scope the pet parser: observability audit per column (census + fork facts) + Recount computation-model read (silo from the client, no-copy guardrail) -> the petlog v0 checklist.
-runway:  one scoping session
+holder:  RELEASED
+since:   2026-07-30 (released - pet parser SCOPED; petlog v0 checklist is the build gate)
+heading: —
+runway:  —
 
-next:    ADDONS: the pet parser design (Addons_load top entry) now has its inspection input - refs_libellus/inspection/READING_METHODS.md (4 methods classified: CLEU normalizer, stateless flags attribution vs our registry = complementary axes, plate-scan + CVAR-engineering stat route, per-TYPE accumulator). 3 cross-checks banked (CombatLogGetCurrentEventInfo backport? guardian flag bits? the CVar lever list). Next step when called: the petlog session task.
+next:    ADDONS: pet parser fully scoped - addons/planning/pet_parser_scope.md (column audit: most PROVEN; ★ CombatLogGetCurrentEventInfo IS backported = canonical CLEU, no layout gambling; Recount era-fossil = guardians-without-unitids is a constraint THIS fork removed). Build gate = the petlog v0 checklist (5 items, one fight answers 1-4). On Battlewrath go: build task petlog.
 
 ---
 
