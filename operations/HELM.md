@@ -1,51 +1,39 @@
 # HELM — who has the trunk
 
+_A report of TRUNK STATE + MOTION only — who owns `main` right now, since when, and the current
+hold's heading. NOT a warm-start, NOT a forecast for the next reader, NOT a progress log:
+forward-direction ("what's next") lives in each bench's shelf + operations/<lane>. This file may
+POINT there; it never carries it. Full operating protocol: [PROTOCOL.md](PROTOCOL.md)._
+
 holder:  RELEASED
-since:   2026-07-31 (aura bench: memory-review bookkeeping, taken+released in one commit)
-
-next:    AURA: memory review pass DONE 2026-07-31 (shelf pruned to pointers, two durable
-         mechanics banked: event-clock+presence-leash · version-skew/envelope-diagnosis;
-         NO repo content changed - the store lives outside the tree). Bench state unchanged
-         since the V1 close: picker in the devs' hands; next build = the Ready contract
-         (abilities+cooldown = ONE bucket; spell-trigger palette + liveness harvest first;
-         costumes + polarity pre-specified in creator/picker/picker_tree.md). A corpus-pattern
-         write-up of event-clock+presence-leash is queued for the next aura helm hold.
-
-         ADDONS: the pet-parser arc RESOLVED and pivoted - Mancer (LtGenZombie) is the capture
-         driver, OUR product is MancerLedger (consumer: user-controlled profiles folding his
-         10-fight ring into lifetime logs; calm window, flight-recorder minimap token, lockout
-         drift posture, Rates/Volume paged compare). Serviceable for dummy testing AS IS -
-         thesis proven (infer the game through observable recordable events; first finding:
-         gear moves pet miss%). Read operations/Addons_load.md top + addons/MancerLedger/
-         DRIVER_CONTRACT.md. Held for their moments: the offer to LtGenZombie (findings bank
-         addons/planning/mancer_findings.md), combatSeconds fold promotion, PetGrid two-witness.
-         COA_PetGrid stays personal tooling (v0.2 live feed proven).
+since:   2026-07-29 (class-design: operating-protocol hardening — PROTOCOL.md written + helm trimmed to state+motion; taken+released in one commit)
 
 ---
 
 **The rule (Battlewrath, 2026-07-15): this is a LOCK, not a courtesy.** One session holds the
-helm at a time; the other agent stays out of the trunk until the topic is resolved and the helm
-is RELEASED at close-off.
+helm at a time; the other agents stay out of the trunk until the topic is resolved and the helm is
+RELEASED at close-off.
 
-- **The heading line is half the point** (Battlewrath, 2026-07-15): taking the helm means STATING
-  the goal in one sentence — which means stopping to discuss what the goal IS before any work.
-  The lock guards the trunk; the heading guards the focus.
-- **Boot:** read this file BEFORE your first commit. `RELEASED` (or your own name) → take it:
-  set holder/since/heading, commit. **Another bench's name → you are locked out** — do repo-read-only
-  work or stop and surface to Battlewrath; do not commit to the trunk.
-- **Close-off:** set `holder: RELEASED` in your session's final commit.
-- **Stale helm** (a session died holding it): Battlewrath is the tiebreak — one word from him
-  clears it. Advisory timestamps exist for exactly this.
-- **`runway:`** (optional, added 2026-07-17 on Battlewrath's instruction — "indicating you have the
-  runway for a while") — the holder's own estimate of how long the hold runs. It serves the stale-helm
-  rule directly: **a LONG runway is what a dead session looks like from outside**, so say so up front.
-  A quiet trunk under a declared long runway is expected, not evidence of staleness. Clear it at
-  close-off with the holder line.
-- **`next:`** (optional) — a LIGHT direction stub left at close-off: what the released topic is waiting
-  on, in a sentence or two, so the next pickup steers without archaeology. **Steering, not audit
-  history** (Battlewrath, 2026-07-17) — the trail lives in `git log` and the lane files; this line only
-  points. Drop it when the topic closes or a new holder sets a heading.
+- **The heading is trunk MOTION, not forecast** (Battlewrath, 2026-07-15 / hardened 2026-07-29):
+  taking the helm means STATING the current hold's goal in one sentence — stopping to discuss what
+  the goal IS before any work. It says what the trunk is being moved toward NOW; it is not direction
+  for the next reader.
+- **Boot:** read this file BEFORE your first commit. `RELEASED` (or your own name) → take it: set
+  holder/since/heading, commit. **Another bench's name → you are locked out** — do repo-read-only
+  work or surface to Battlewrath; do not commit to the trunk.
+- **Close-off:** set `holder: RELEASED` in your final commit. Put forward-direction in your shelf +
+  operations/<lane> — NOT here.
+- **`runway:`** (optional) — the holder's estimate of how long the hold runs; a LONG runway is what a
+  dead session looks like from outside, so declaring it pre-empts false stale-helm alarms. Clear it
+  at close-off.
+- **Stale helm** (a session died holding it): Battlewrath is the tiebreak — one word clears it;
+  advisory timestamps exist for exactly this.
 - `git log --oneline -- operations/HELM.md` = the trunk's custody history, for free.
 
-_Born from the 2026-07-15 wobble: two sessions interleaved on the trunk and it looked like
-history loss until counted. The helm makes the exception loud instead of silent._
+**Why hardened (Battlewrath, 2026-07-29):** the helm first carried in-session direction to help the
+holder keep bearing through a session; that leaked into becoming a forecast for the next reader — the
+old `next:` stub swelled into a full per-bench state summary. That forecast belongs in the lanes, not
+the trunk report. The helm now reports state + motion; forecast lives in the shelves + operations/<lane>.
+
+_Born from the 2026-07-15 wobble: two sessions interleaved on the trunk and it looked like history
+loss until counted. The helm makes the exception loud instead of silent._

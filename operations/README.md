@@ -37,3 +37,12 @@ Operations keeps the slower cadence (STATE now, roadmap ahead); the work keeps i
 
 The rule of thumb: touchstones answer "what/how/why is this" and rarely change; tracking answers "where are we right
 now" and changes every session. Don't let tracking churn leak into a touchstone.
+
+## Operating the system (how the threads run)
+
+Stable rules for the multi-thread / multi-bench system — distinct from the product touchstones above:
+
+- **PROTOCOL.md** — how this system runs: in-thread identity (the role title, inferred not stored),
+  boot/orientation (your bench's shelf, not a shared warm-start), and the trunk (helm = state+motion).
+- **HELM.md** — the trunk lock: who owns `main` right now. A report of trunk STATE + MOTION, **not** a
+  forecast for the next reader (forward-direction lives in the shelves + the lane files, not the helm).
