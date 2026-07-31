@@ -22,7 +22,11 @@ local ADDON = ...
 -- stat block starts at WIDTH-8-3*STAT_W_SP; name+bar must end short of it)
 local ROW_H, WIDTH = 14, 240
 local NAME_W, BAR_W, STAT_W, STAT_SP = 70, 50, 32, 34
-local defaults = { point = "CENTER", x = 0, y = 0, scale = 1.0, locked = false, demo = true }
+-- topX/topY = the TOP-LEFT corner in UIParent space (scale-corrected). The
+-- container is pinned by its top edge so row growth only ever extends DOWN
+-- (Battlewrath: growing up feels chaotic / not anchored). nil = first run,
+-- centered once then converted.
+local defaults = { topX = nil, topY = nil, scale = 1.0, locked = false, demo = true }
 
 local db  -- COA_PetGridDB after ADDON_LOADED
 
@@ -49,11 +53,20 @@ grip:SetPoint("TOPRIGHT", root, "TOPRIGHT", 0, 0)
 grip:SetHeight(12)
 grip:EnableMouse(true)
 grip:RegisterForDrag("LeftButton")
+local function saveTopAnchor()
+    -- GetLeft/GetTop are in the frame's scale space; multiply out to UIParent
+    -- space so the stored corner survives scale changes
+    db.topX = root:GetLeft() * db.scale
+    db.topY = root:GetTop() * db.scale
+end
+
 grip:SetScript("OnDragStart", function() root:StartMoving() end)
 grip:SetScript("OnDragStop", function()
     root:StopMovingOrSizing()
-    local point, _, _, x, y = root:GetPoint(1)
-    db.point, db.x, db.y = point, x, y
+    saveTopAnchor()
+    -- re-pin immediately by the top-left so later growth stays downward
+    root:ClearAllPoints()
+    root:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", db.topX / db.scale, db.topY / db.scale)
 end)
 local gripTex = grip:CreateTexture(nil, "BACKGROUND")
 gripTex:SetAllPoints(grip)
@@ -65,7 +78,19 @@ title:SetText("PetGrid (drag - /petgrid lock)")
 local function applyChrome()
     root:SetScale(db.scale)
     root:ClearAllPoints()
-    root:SetPoint(db.point, UIParent, db.point, db.x, db.y)
+    if db.topX then
+        root:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", db.topX / db.scale, db.topY / db.scale)
+    else
+        -- first run (or legacy center-anchored SV): place once, convert to
+        -- the top-left pin so growth is downward from the start
+        root:SetPoint(db.point or "CENTER", UIParent, db.point or "CENTER", db.x or 0, db.y or 0)
+        if root:GetLeft() then
+            saveTopAnchor()
+            db.point, db.x, db.y = nil, nil, nil
+            root:ClearAllPoints()
+            root:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", db.topX / db.scale, db.topY / db.scale)
+        end
+    end
     if db.locked then grip:Hide() else grip:Show() end
 end
 
@@ -344,6 +369,7 @@ SlashCmdList["COAPETGRID"] = function(msg)
         if s and s >= 0.5 and s <= 2.0 then db.scale = s; applyChrome() end
     elseif cmd == "reset" then
         for k, v in pairs(defaults) do db[k] = v end
+        db.topX, db.topY = nil, nil  -- nil defaults are invisible to pairs()
         applyChrome()
         setDemo(db.demo)
     elseif cmd == "demo" then
