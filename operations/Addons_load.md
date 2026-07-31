@@ -45,23 +45,15 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   BUILD PATH (house two-step): capture BEFORE display - a petlog session task on the v2 spine
   proves the metric set via landed envelopes + offline parse; the grid addon then displays a
   PROVEN column set (satellite model if it joins the State Plates family).
-  ★ HELD FEEDBACK (Battlewrath, 2026-07-31, deliberately not relayed - new to their community,
-  avoiding razor-edge-UX first impression): the Mancer NEW-USER-FLOW hazard, fully analyzed.
-  Class: THREE CVar backup/restore lanes (capital mute 8-key / Sheet boost 3-key / HUD boost
-  3-key) each snapshot "user prefs" at their own moment; replay-then-CLEAR bakes any mid-dance
-  mis-snapshot in permanently + unattributably. First-load-in-a-capital (the MODAL new-user
-  case - cities are where people log out) + settings-poking multiplies the windows. Live
-  specimen: his guardians-only residue; evidence: cvarlog record 20260731_143305. Fix shapes
-  (cheapest first): never-cleared lastKnownUserPrefs; snapshot-once-at-login-before-any-write;
-  single plate-CVar owner lane; first-run consent prompt. Relay when standing is warmer.
-  + FINDING 2 (2026-07-31, live-observed w/ TurboPlates off): guardian plate suppression is a
-  POLLING RACE - cloak driver discovers ~2/sec + re-hides ~3/sec, client plate-frame recycling
-  beats the poll -> a trailing flash per cycle (his read: 95% suppressed, flash each cycle).
-  Fix shape: hook each discovered plate's OnShow ONCE (hide fires inside the show; kills flash
-  AND the reassert loop's per-frame cost). + HITCH thread open: perf record 20260731_151539
-  (avg 83 fps, troughs 28, GC-flavored) with Mancer-only; suspects = the always-running HUD
-  ticker (MinionHpHud:1664, unconditional by design) + suppression loops; scriptProfile arm
-  pending for mechanical attribution.
+  ★ MANCER FINDINGS BANK -> addons/planning/mancer_findings.md (Battlewrath, 2026-07-31:
+  'bank all the findings and the suggested fixes so we have them loaded'). Three findings
+  HELD w/ evidence + fix shapes: (1) CVar three-lane corruption class [design]; (2) guardian
+  suppression polling race [mechanical, the icebreaker; fix = OnShow hook]; (3) the hitching
+  ATTRIBUTED [profiler-proven: Mancer 24ms/s steady + 48-108ms spikes, 8-for-8 trough
+  alignment; MancerLedger 0.0ms = his 1.5s hunch acquitted]. ACTIVE HEADING: prove the
+  LEDGER'S UTILITY first through ordinary play (profiles accumulating, a real regear compare)
+  - engage carrying working software that embodies the principles (opt-in - the consumer/game
+  source drives updates - dedupe). We advocate nothing we don't ship.
   ★★ DIRECTION PIVOT UNDER DISCUSSION (Battlewrath, 2026-07-31, leaning, not yet Build!-gated):
   COMPLETE REBUILD around Mancer (LtGenZombie's addon, the evolved Libellus) as the PRIMARY
   DRIVER, us as CONSUMER. Verified mechanism: fights auto-commit on PLAYER_REGEN_ENABLED into
