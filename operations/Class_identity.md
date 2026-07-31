@@ -30,11 +30,16 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
   cold, not-a-hero; fallout, not rising; the character is a she). METHOD expanded
   to **two source kinds** (COA-grounding × archetype foundations — WoW + D&D lore).
 
-## Now — active thread (2026-07-30)
+## Now — Suno arc (2026-07-30); helm RELEASED at a rest point (2026-07-31)
 
-- **Suno manager LIVE** (holds the helm, tag `suno`) — a resident puller inside
-  Class_identity (`Class_identity/Suno/`). **First-class within the lane, secondary
-  in the wider ecosystem** (personal creative byproduct).
+- **State as of 2026-07-31 (Class_identity-owner catch-up):** the Suno thread ran a full
+  arc — 5 form-specs, 3 drafted tracks (incl. the first named keeper _"Forsaken in requiem
+  aeternam"_) + the levers / vocab / recipe / summonable-features infrastructure — then
+  **RELEASED the helm; the trunk rests.** Necromancer `IDENTITY.md` stands. The detailed log
+  below is the Suno thread's own trail; substance + ownership live in `Class_identity/Suno/`.
+- **Suno thread** (a resident puller, tag `suno`) — inside Class_identity
+  (`Class_identity/Suno/`). **First-class within the lane, secondary in the wider
+  ecosystem** (personal creative byproduct).
   - **First taste-sourcing conversation held** (the fork — his taste sourced from
     his own references, not invented). Refs: Nightwish (*Ghost Love Score* /
     *Phantom*), Emilie Autumn (*Opheliac*), Mishkin Fitzgerald (*Incitatus*).
