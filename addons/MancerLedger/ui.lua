@@ -442,6 +442,21 @@ refresh = function()
     deleteBtn:SetText(deleteArmed and "Sure?" or "Delete")
     y = y - 26
 
+    -- the lockout banner: pinned in clear view across EVERY view while latched
+    local lock = NS.locked and NS.locked()
+    if lock then
+        local r = acquireContentRow()
+        r:SetPoint("TOPLEFT", win, "TOPLEFT", 10, y)
+        writeWideRow(r, "FOLDS LOCKED (" .. (lock.at or "?") .. "): " .. (lock.reason or "?"),
+            { 1.0, 0.72, 0.2 })
+        y = y - ROW_H
+        local r2 = acquireContentRow()
+        r2:SetPoint("TOPLEFT", win, "TOPLEFT", 10, y)
+        writeWideRow(r2, "driver " .. (lock.driver or "?") .. " shape not understood - "
+            .. "waiting for an update. Harvest = retry.", GREY)
+        y = y - ROW_H - 3
+    end
+
     if view == "stats" then
         y = renderStats(NS.GetDb(), y)
     elseif view == "compare" then
@@ -508,8 +523,9 @@ deleteBtn:SetScript("OnClick", function()
     refresh()
 end)
 harvestBtn:SetScript("OnClick", function()
-    local n = NS.harvest()
+    local n = NS.harvest(true)  -- the button is the manual retry when locked
     if n == 0 then NS.say("nothing new to fold.") end
+    repaintToken()
     refresh()
 end)
 statsBtn:SetScript("OnClick", function() view = "stats" refresh() end)

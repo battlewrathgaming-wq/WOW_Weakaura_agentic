@@ -71,7 +71,18 @@ local function sayOnce(key, msg)
     if saidOnce[key] then return end
     saidOnce[key] = true
     pushHistory(msg)
-    chat(msg)  -- warnings stay loud
+    -- unsolicited warnings never interrupt combat; history + token carry them
+    if not (UnitAffectingCombat and UnitAffectingCombat("player")) then
+        chat(msg)
+    end
+end
+
+local function consumerVersion()
+    if GetAddOnMetadata then
+        local ok, v = pcall(GetAddOnMetadata, ADDON, "Version")
+        if ok and v then return v end
+    end
+    return "?"
 end
 
 -- ---------------------------------------------------------------- driver
@@ -235,15 +246,28 @@ local function markSeen(fp)
     end
 end
 
-local skippedFp = {}  -- session-only: invalid fights we refuse (no SV mark - a
-                      -- fixed consumer build should get another chance at them)
-
-local function harvest()
+-- LOCKOUT (Battlewrath's design): shape breakage LATCHES a fail state - all
+-- folding stops (no partial trust), the token goes amber, the window banners
+-- the error. NOT user-fixable, so no chat noise. Unlocks: the driver version
+-- changes (a Mancer update may fix the shape), OUR version changes (our
+-- update does), or an explicit Harvest click (manual retry).
+local function harvest(force)
     local mdb = driverDb()
     if not mdb then
         sayOnce("nodriver", "Mancer not detected (no MancerDB) - nothing to fold.")
         return 0
     end
+
+    if db.lockout then
+        local dv, cv = driverVersion(), consumerVersion()
+        if db.lockout.driver == dv and db.lockout.consumer == cv and not force then
+            return 0  -- latched; nothing changed, don't thrash
+        end
+        db.lockout = nil
+        say("retrying folds (driver " .. dv .. ", ledger " .. cv .. ")")
+        if NS.onLock then pcall(NS.onLock) end
+    end
+
     local fights = mdb.fights
     if type(fights) ~= "table" or #fights == 0 then return 0 end
 
@@ -267,13 +291,12 @@ local function harvest()
                 folded = folded + 1
             end
         else
-            local id = tostring(fight and fight.startedAt or i)
-            if not skippedFp[id] then
-                skippedFp[id] = true
-                sayOnce("shape:" .. tostring(why),
-                    "SHAPE DRIFT - fight skipped (" .. tostring(why) .. "); driver "
-                    .. driverVersion() .. ". The fold code needs updating; refusing to guess.")
-            end
+            db.lockout = { reason = tostring(why), driver = driverVersion(),
+                           consumer = consumerVersion(), at = date("%Y-%m-%d %H:%M") }
+            say("FOLDS LOCKED - " .. tostring(why) .. " - driver " .. driverVersion()
+                .. " shape not understood; refusing to guess. Waiting for an update (Harvest = retry).")
+            if NS.onLock then pcall(NS.onLock) end
+            break
         end
     end
     if folded > 0 then
@@ -506,6 +529,7 @@ NS.profileDelete = profileDelete
 NS.profileResetLog = profileResetLog
 NS.profileRename = profileRename
 NS.profileOff = profileOff
+NS.locked = function() return db and db.lockout or nil end
 NS.driverDb = driverDb
 NS.driverVersion = driverVersion
 NS.stateLine = stateLine
@@ -568,7 +592,7 @@ function HandleSlash(msg)
         local ok, err = profileDelete(arg)
         if not ok then say(err) end
     elseif cmd == "harvest" then
-        local n = harvest()
+        local n = harvest(true)  -- typed harvest = explicit retry when locked
         if n == 0 then say("nothing new to fold.") end
     elseif cmd == "status" then
         local mdb = driverDb()

@@ -15,6 +15,7 @@ local FLASH_SECS = 2.0
 local COLOR_OFF = { 0.95, 0.35, 0.35 }
 local COLOR_ON = { 0.4, 0.95, 0.45 }
 local COLOR_FOLD = { 0.35, 0.6, 1.0 }
+local COLOR_LOCK = { 1.0, 0.72, 0.2 }  -- amber: wants to record, shape not understood
 
 local btn = CreateFrame("Button", "MancerLedgerMinimapButton", Minimap)
 btn:SetWidth(31)
@@ -41,6 +42,7 @@ local flashing = nil  -- seconds remaining
 
 local function stateColor()
     local db = NS.GetDb()
+    if NS.locked and NS.locked() then return COLOR_LOCK end  -- lock outranks all
     if flashing then return COLOR_FOLD end
     if db and db.active then return COLOR_ON end
     return COLOR_OFF
@@ -69,6 +71,7 @@ NS.onFold = function()
     paint()
 end
 NS.OnDbReady = paint
+NS.onLock = paint  -- lock/unlock repaints the token immediately
 
 -- ---------------------------------------------------------------- position
 local function place()
@@ -230,6 +233,11 @@ btn:SetScript("OnEnter", function(self)
     local db = NS.GetDb()
     GameTooltip:SetOwner(self, "ANCHOR_LEFT")
     GameTooltip:AddLine("Mancer Ledger")
+    local lock = NS.locked and NS.locked()
+    if lock then
+        GameTooltip:AddLine("|cffffb833FOLDS LOCKED|r - driver shape not understood", 1, 1, 1)
+        GameTooltip:AddLine(tostring(lock.reason), 0.8, 0.8, 0.8)
+    end
     if db and db.active then
         local p = db.profiles[db.active]
         GameTooltip:AddLine("|cff66ff66Recording|r -> " .. db.active

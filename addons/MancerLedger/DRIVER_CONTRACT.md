@@ -68,10 +68,18 @@ per-type; folding individuals would double-count against the type bucket).
 | summons / unit-time columns | display observed accounting; `-` when unobserved |
 | crit% | IMPOSSIBLE — the driver does not track crits (verified 0.9.553; the one gap worth suggesting upstream) |
 
-## Drift posture
+## Drift posture (v0.5: the LOCKOUT model — Battlewrath's design)
 
-Shape validated per fight before fold; violations skip the fight and say so once, loudly,
-with the driver version. Unknown bucket fields of ANY type (numbers AND tables — 0.9.553's
-missTypes taught us tables) are flagged as drift, noted per profile, never folded, never
-guessed. On every driver version bump: re-verify the fingerprint recipe, the bucket shape,
-and THIS document.
+Two severities, two behaviours:
+- **Additive drift** (unknown bucket fields, any type): fold the known fields, NOTE the
+  unknown ones per profile with the introducing driver version. History only — no
+  interruption; the fold code wants an additive update.
+- **Structural breakage** (shape validation fails): **LATCH**. All folding stops — no
+  partial trust; the minimap token goes AMBER, the window banners the error (pinned across
+  every view), history holds the detail. NO chat: this is not user-fixable, and unsolicited
+  chat never fires in combat regardless. Unlocks: driver version changes (auto-retry — a
+  Mancer update may fix the shape), OUR version changes (our update does), or an explicit
+  Harvest click (manual retry). A failed retry re-latches with the new versions stamped.
+
+On every driver version bump: re-verify the fingerprint recipe, the bucket shape, and THIS
+document.
