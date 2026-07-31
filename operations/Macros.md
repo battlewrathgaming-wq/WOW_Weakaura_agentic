@@ -467,7 +467,7 @@ bounds in-macro). One meaning per modifier, universal across every macro, so mus
 **Real macros designed (his characters):**
 - **Reaper (Gravereaper)** — the survival-filter set (`reset=target Requiem, Requiem, Soulrend`), Deathwind AoE + Soul Strike ST, the Shift E / E heal-vs-AoE split. **LIVE-CONFIRMED** in play.
 - **Necromancer (Gravekeeper) summon manager** — `/castsequence reset=10 Animate: Skeletal Archer, Tomb King, Plaguefather` (30/60/120 s, Life-Force-free). Cooldowns-as-gates; deploy = HOLD; rides one end-of-queue slot. **LIVE-PROVEN.**
-- **Necromancer DoT-block opener** — `reset=target/10 Blight, Harvest Plague, Lichfrost ×N` (dots front-loaded, ST filler after; deselect/reselect = a manual re-open via the event-driven reset). **DESIGNED, tuning in play**; the latest refinement is the **press-pressure split** (the two DoTs grouped, Lichfrost isolated to its own key). **Not yet codified into CONVENTION.md — held until Battlewrath calls the shape proven.**
+- **Necromancer DoT-block opener** — `/castsequence reset=target/10 Blight, Harvest Plague` with **Lichfrost on its own key** (DoTs front-loaded, ST filler split out; deselect/reselect = a manual re-open via the event-driven reset). The **press-pressure split** (same-pressure DoTs grouped, spam-pressure Lichfrost isolated) is the boundary criterion, the concrete form of "consolidatable ⟺ stable queue position." **PROVEN in game time (2026-07-31); codified in `macros/CONVENTION.md`.**
 
 **Cross-lane discipline (this bench READS, does not own):** ability facts are class-department REFERENCE
 — verified from `Input/*_talents.json` (talent tree) + the trainer/DBC (`Outputs/live_reference/`,

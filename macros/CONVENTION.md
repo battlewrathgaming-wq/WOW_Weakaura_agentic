@@ -218,6 +218,43 @@ auto-selects which targets earn the payoff, and buys ergonomic slack. The intell
 *number* — a count, not a conditional. Same thesis as the rest: the macro stays dumb, the design
 choice carries everything.
 
+## ★ The DoT-block opener — payoff-FIRST (the survival-filter inverted), and the press-pressure boundary
+
+The survival-filter puts the payoff LAST; the opener puts it FIRST — because the payoff *type* is
+opposite. A finisher you gate behind survival; a **maintenance debuff you want up immediately.**
+Battlewrath's Necro opener, **designed and proven in game time (2026-07-31):**
+
+```
+#showtooltip
+/castsequence reset=target/10 Blight, Harvest Plague
+```
+— with **Lichfrost on its own key.** Front-load both DoTs; fill with the ST after.
+
+`reset=target` re-applies *both* DoTs on a new target — the tab-and-re-dot every DoT class wants, as
+one key. Deselect/reselect the SAME target also fires it (the reset is event-driven, not identity —
+`basis/castsequence.md`), so it doubles as a **manual re-open**: refresh the DoT block on command
+without a real swap. Payoff-first vs the survival-filter's payoff-last — same family, opposite
+position, because the payoff type is opposite.
+
+### Why Lichfrost is a separate key — the press-pressure boundary
+
+The opener began as one chain (DoTs + Lichfrost together) and **split in play.** The reason names the
+criterion that decides where a flatten ends: **press pressure.** The DoTs and Lichfrost want
+*different cadences* — the DoTs are periodic (apply, wait ~18–20 s, refresh); Lichfrost is spam
+(press constantly, proc-accelerated). One castsequence walks at one cadence, so cramming both forces
+the spam through the DoT steps and the refresh past the Lichfrosts — they fight. So:
+
+- **Group what shares a press pressure** — the two DoTs refresh on the same beat, so one press covers
+  both and you never track them as two decisions. Grouping eases *maintenance* — the flatten's real
+  win, scoped to the same-pressure pair.
+- **Isolate where press pressure changes** — Lichfrost rides its own key at its own rate.
+
+This is the concrete form of the pressure-queue rule above (*"consolidatable ⟺ stable queue
+position"*): **the queue position IS press pressure.** It makes a flatten's two tests explicit —
+**press pressure** decides *where the group's boundary falls*; **economic equivalence** decides
+*whether over-casting inside the group is free.* Both must hold. Same "observe first, consolidate
+second" as the governing rule — run here by over-consolidating and feeling the chafe.
+
 ## Standing
 
 The composition is **Battlewrath's seat** — design, feel, subtlety. What it rests on is fact:
