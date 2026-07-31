@@ -186,7 +186,7 @@ local function foldFight(profile, fight)
         -- numbers-only check; never again.
         for f, v in pairs(bucket) do
             if not KNOWN_BUCKET[f] and (type(v) == "number" or type(v) == "table") then
-                profile.drift[f] = true
+                profile.drift[f] = driverVersion()  -- WHICH driver introduced it
                 sayOnce("extra:" .. f,
                     "driver bucket carries a field I don't fold yet: '" .. f
                     .. "' - additive update wanted (" .. driverVersion() .. ")")
@@ -195,6 +195,7 @@ local function foldFight(profile, fight)
     end
     profile.folds = profile.folds + 1
     profile.lastFold = date("%Y-%m-%d %H:%M")
+    profile.lastDriver = driverVersion()  -- version history: created-with + last-fed-by
 end
 
 local seenSet  -- session mirror of db.seen for O(1) checks
@@ -411,6 +412,7 @@ end)
 -- typed commands are the power-user alias).
 local function profileNew(name)
     if not name or name == "" then return false, "name required" end
+    if name:find("%s") then return false, "no spaces in profile names (slash addressing)" end
     if getProfile(name) then return false, "profile '" .. name .. "' already exists" end
     harvest()  -- pending fights belong to the OLD profile
     db.profiles[name] = {
@@ -443,7 +445,21 @@ local function profileResetLog(name)
     local p = getProfile(name)
     if not p then return false, "no such profile: " .. tostring(name) end
     p.log, p.folds, p.drift = {}, 0, {}
-    say("log reset for '" .. name .. "' (capture kept).")
+    say("log reset for '" .. name .. "' (capture kept; already-folded ring fights stay folded - fresh start from now).")
+    return true
+end
+
+local function profileRename(old, new)
+    local p = getProfile(old)
+    if not p then return false, "no such profile: " .. tostring(old) end
+    if not new or new == "" then return false, "new name required" end
+    if new:find("%s") then return false, "no spaces in profile names (slash addressing)" end
+    if getProfile(new) then return false, "profile '" .. new .. "' already exists" end
+    db.profiles[new] = p
+    db.profiles[old] = nil
+    p.name = new
+    if db.active == old then db.active = new end
+    say("profile '" .. old .. "' renamed to '" .. new .. "'.")
     return true
 end
 
@@ -455,6 +471,7 @@ NS.profileNew = profileNew
 NS.profileUse = profileUse
 NS.profileDelete = profileDelete
 NS.profileResetLog = profileResetLog
+NS.profileRename = profileRename
 NS.driverDb = driverDb
 NS.driverVersion = driverVersion
 NS.stateLine = stateLine
@@ -492,6 +509,9 @@ SlashCmdList["MANCERLEDGER"] = function(msg)
         statsFor(arg ~= "" and arg or nil)
     elseif cmd == "compare" and arg ~= "" and arg2 ~= "" then
         compare(arg, arg2)
+    elseif cmd == "rename" and arg ~= "" and arg2 ~= "" then
+        local ok, err = profileRename(arg, arg2)
+        if not ok then say(err) end
     elseif cmd == "resetlog" and arg ~= "" then
         local ok, err = profileResetLog(arg)
         if not ok then say(err) end
@@ -512,6 +532,6 @@ SlashCmdList["MANCERLEDGER"] = function(msg)
             .. " fight(s) - cursor: " .. #db.seen .. " folded fingerprints - live profile: "
             .. tostring(db.active or "NONE"))
     else
-        say("/mledger (window) | new <name> | use <name> | list | stats [name] | compare <a> <b> | resetlog <name> | delete <name> sure | harvest | status")
+        say("/mledger (window) | new <name> | use <name> | rename <old> <new> | list | stats [name] | compare <a> <b> | resetlog <name> | delete <name> sure | harvest | status")
     end
 end
