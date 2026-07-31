@@ -1,9 +1,9 @@
 # HELM — who has the trunk
 
-holder:  RELEASED
-since:   2026-07-30 (released - Libellus-Leti ingested + reading-methods classified under the no-copy guardrail)
-heading: —
-runway:  —
+holder:  addons bench
+since:   2026-07-30
+heading: Scope the pet parser: observability audit per column (census + fork facts) + Recount computation-model read (silo from the client, no-copy guardrail) -> the petlog v0 checklist.
+runway:  one scoping session
 
 next:    ADDONS: the pet parser design (Addons_load top entry) now has its inspection input - refs_libellus/inspection/READING_METHODS.md (4 methods classified: CLEU normalizer, stateless flags attribution vs our registry = complementary axes, plate-scan + CVAR-engineering stat route, per-TYPE accumulator). 3 cross-checks banked (CombatLogGetCurrentEventInfo backport? guardian flag bits? the CVar lever list). Next step when called: the petlog session task.
 
