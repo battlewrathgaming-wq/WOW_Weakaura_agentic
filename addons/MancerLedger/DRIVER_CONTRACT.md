@@ -68,6 +68,27 @@ per-type; folding individuals would double-count against the type bucket).
 | summons / unit-time columns | display observed accounting; `-` when unobserved |
 | crit% | IMPOSSIBLE — the driver does not track crits (verified 0.9.553; the one gap worth suggesting upstream) |
 
+## Comparability characterization (2026-07-31, from the fight-length seam —
+## Battlewrath x LtGenZombie; "honest inspection of what exists vs what is more useful")
+
+Fights vary wildly in length (3min vs 10min; chain-pulls never drop combat), so compare
+deltas sort into three classes by EXPOSURE-SENSITIVITY:
+- **Class 1, wild-honest today**: per-attempt ratios (miss%, ability mix, crit% when the
+  driver grows it). Fight length cancels. Caveat on another axis: miss% is target-defense
+  dependent — comparable across similar content, self-normalizing over the long mixed haul.
+- **Class 2, normalizable — WE DISCARD THE DENOMINATOR**: fight `startedAt`/`endedAt` pass
+  through the fold and are thrown away. Accumulating `combatSeconds` per type + profile
+  would license hits/min, summons/min (and dmg/min, still raw-labeled) as wild-honest rates.
+  Cadence already sits here properly (per unit-time, gated). THE candidate structural
+  addition — additive SV change, data already in hand at fold time.
+- **Class 3, volume — controlled-only forever**: fights, summons, unit-time, raw hits, raw
+  damage. Measures of play volume, not pet performance; no normalization rescues them.
+
+VERDICT: as built, the compare is a CONTROLLED-CONDITIONS TESTER (a legitimate identity)
+with two wild-honest columns. Promotion path: fold combatSeconds + show each side's
+fight-duration spread as a comparability hint ("5 fights, 38-71s"). HELD — not building yet
+(Battlewrath: "not to change what is there right now").
+
 ## Drift posture (v0.5: the LOCKOUT model — Battlewrath's design)
 
 Two severities, two behaviours:
