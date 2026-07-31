@@ -128,23 +128,26 @@ local profileBtns = {}       -- pooled selectable profile buttons
 local selectedProfile = nil  -- UI selection (not the LIVE marker)
 
 local nameBox = CreateFrame("EditBox", "MancerLedgerNameBox", win, "InputBoxTemplate")
-nameBox:SetWidth(110)
+nameBox:SetWidth(100)
 nameBox:SetHeight(18)
 nameBox:SetAutoFocus(false)
 nameBox:SetMaxLetters(24)
 
-local newBtn = makeButton(win, "New (capture)", 92)
+local newBtn = makeButton(win, "New", 50)
+local renameBtn = makeButton(win, "Rename", 62)
 local useBtn = makeButton(win, "Set Live", 64)
-local resetBtn = makeButton(win, "Reset Log", 72)
-local deleteBtn = makeButton(win, "Delete", 60)
+local offBtn = makeButton(win, "Rec Off", 60)
+local resetBtn = makeButton(win, "Reset", 52)
+local deleteBtn = makeButton(win, "Delete", 56)
+
+local statsBtn = makeButton(win, "Stats", 52)
+local compareBtn = makeButton(win, "Compare", 70)
+local historyBtn = makeButton(win, "History", 60)
 local harvestBtn = makeButton(win, "Harvest", 62)
+local pickA = makeButton(win, "A: -", 116)
+local pickB = makeButton(win, "B: -", 116)
 
-local statsBtn = makeButton(win, "Stats", 56)
-local compareBtn = makeButton(win, "Compare", 72)
-local pickA = makeButton(win, "A: -", 120)
-local pickB = makeButton(win, "B: -", 120)
-
-local view = "stats"        -- "stats" | "compare"
+local view = "stats"        -- "stats" | "compare" | "history"
 local compA, compB = nil, nil
 local deleteArmed = nil     -- two-click delete
 
@@ -170,6 +173,12 @@ local function acquireContentRow()
             r.cols[i] = fs
             x = x + col[2] + 4
         end
+        -- full-width text line (the history view); hidden in table views
+        r.wide = r:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+        r.wide:SetPoint("LEFT", r, "LEFT", 0, 0)
+        r.wide:SetJustifyH("LEFT")
+        r.wide:SetWidth(WIDTH - 28)
+        r.wide:Hide()
     end
     r:Show()
     rows[#rows + 1] = r
@@ -186,12 +195,24 @@ end
 
 local function writeRow(r, label, texts, color)
     color = color or WHITE
+    r.wide:Hide()
+    r.label:Show()
     r.label:SetText(label)
     r.label:SetTextColor(color[1], color[2], color[3])
     for i, fs in ipairs(r.cols) do
+        fs:Show()
         fs:SetText(texts and texts[i] or "")
         fs:SetTextColor(color[1], color[2], color[3])
     end
+end
+
+local function writeWideRow(r, text, color)
+    color = color or WHITE
+    r.label:Hide()
+    for _, fs in ipairs(r.cols) do fs:Hide() end
+    r.wide:Show()
+    r.wide:SetText(text)
+    r.wide:SetTextColor(color[1], color[2], color[3])
 end
 
 -- ---------------------------------------------------------------- render
@@ -352,6 +373,31 @@ local function renderCompare(db, y)
     return y
 end
 
+local function renderHistory(db, y)
+    local hist = db.history or {}
+    if #hist == 0 then
+        local r = acquireContentRow()
+        r:SetPoint("TOPLEFT", win, "TOPLEFT", 10, y)
+        writeWideRow(r, "(no events yet - folds, profile changes and warnings land here)", GREY)
+        return y - ROW_H
+    end
+    for i = 1, math.min(#hist, 22) do
+        local h = hist[i]
+        local r = acquireContentRow()
+        r:SetPoint("TOPLEFT", win, "TOPLEFT", 10, y)
+        writeWideRow(r, "|cff888888" .. (h.t or "?") .. "|r  " .. (h.msg or ""),
+            i == 1 and GOLD or WHITE)
+        y = y - ROW_H
+    end
+    if #hist > 22 then
+        local r = acquireContentRow()
+        r:SetPoint("TOPLEFT", win, "TOPLEFT", 10, y)
+        writeWideRow(r, "(" .. (#hist - 22) .. " older kept, cap " .. 50 .. ")", GREY)
+        y = y - ROW_H
+    end
+    return y
+end
+
 refresh = function()
     local db = NS.GetDb()
     if not db then return end
@@ -365,27 +411,29 @@ refresh = function()
 
     local y = renderProfilesStrip(db, -26)
 
-    -- controls strip anchors under the profile buttons
+    -- manage strip: the name box feeds New (create) and Rename (selected)
     nameBox:ClearAllPoints()
     nameBox:SetPoint("TOPLEFT", win, "TOPLEFT", 18, y)
-    newBtn:ClearAllPoints()
-    newBtn:SetPoint("LEFT", nameBox, "RIGHT", 6, 0)
-    useBtn:ClearAllPoints()
-    useBtn:SetPoint("LEFT", newBtn, "RIGHT", 4, 0)
-    resetBtn:ClearAllPoints()
-    resetBtn:SetPoint("LEFT", useBtn, "RIGHT", 4, 0)
-    deleteBtn:ClearAllPoints()
-    deleteBtn:SetPoint("LEFT", resetBtn, "RIGHT", 4, 0)
-    harvestBtn:ClearAllPoints()
-    harvestBtn:SetPoint("LEFT", deleteBtn, "RIGHT", 4, 0)
+    local order = { newBtn, renameBtn, useBtn, offBtn, resetBtn, deleteBtn }
+    local prev = nameBox
+    for _, b in ipairs(order) do
+        b:ClearAllPoints()
+        b:SetPoint("LEFT", prev, "RIGHT", 4, 0)
+        prev = b
+    end
     y = y - 24
 
+    -- view strip
     statsBtn:ClearAllPoints()
     statsBtn:SetPoint("TOPLEFT", win, "TOPLEFT", 10, y)
     compareBtn:ClearAllPoints()
     compareBtn:SetPoint("LEFT", statsBtn, "RIGHT", 4, 0)
+    historyBtn:ClearAllPoints()
+    historyBtn:SetPoint("LEFT", compareBtn, "RIGHT", 4, 0)
+    harvestBtn:ClearAllPoints()
+    harvestBtn:SetPoint("LEFT", historyBtn, "RIGHT", 10, 0)
     pickA:ClearAllPoints()
-    pickA:SetPoint("LEFT", compareBtn, "RIGHT", 14, 0)
+    pickA:SetPoint("LEFT", harvestBtn, "RIGHT", 10, 0)
     pickB:ClearAllPoints()
     pickB:SetPoint("LEFT", pickA, "RIGHT", 4, 0)
     pickA:SetText("A: " .. (compA or "-"))
@@ -396,26 +444,51 @@ refresh = function()
 
     if view == "stats" then
         y = renderStats(NS.GetDb(), y)
-    else
+    elseif view == "compare" then
         y = renderCompare(NS.GetDb(), y)
+    else
+        y = renderHistory(NS.GetDb(), y)
     end
 
     win:SetHeight(-y + 14)
 end
 
 -- ---------------------------------------------------------------- wiring
+local function repaintToken()
+    if NS.minimapPaint then NS.minimapPaint() end
+end
+
 newBtn:SetScript("OnClick", function()
     local name = nameBox:GetText()
     local ok, err = NS.profileNew(name)
-    if not ok then NS.say(err) return end
+    if not ok then NS.say(err) refresh() return end
     nameBox:SetText("")
     nameBox:ClearFocus()
     selectedProfile = name
+    repaintToken()
+    refresh()
+end)
+renameBtn:SetScript("OnClick", function()
+    if not selectedProfile then NS.say("select a profile first") refresh() return end
+    local oldName, newName = selectedProfile, nameBox:GetText()
+    local ok, err = NS.profileRename(oldName, newName)
+    if not ok then NS.say(err) refresh() return end
+    nameBox:SetText("")
+    nameBox:ClearFocus()
+    selectedProfile = newName
+    if compA == oldName then compA = newName end
+    if compB == oldName then compB = newName end
     refresh()
 end)
 useBtn:SetScript("OnClick", function()
-    if not selectedProfile then NS.say("select a profile first") return end
+    if not selectedProfile then NS.say("select a profile first") refresh() return end
     NS.profileUse(selectedProfile)
+    repaintToken()
+    refresh()
+end)
+offBtn:SetScript("OnClick", function()
+    NS.profileOff()
+    repaintToken()
     refresh()
 end)
 resetBtn:SetScript("OnClick", function()
@@ -441,6 +514,7 @@ harvestBtn:SetScript("OnClick", function()
 end)
 statsBtn:SetScript("OnClick", function() view = "stats" refresh() end)
 compareBtn:SetScript("OnClick", function() view = "compare" refresh() end)
+historyBtn:SetScript("OnClick", function() view = "history" refresh() end)
 pickA:SetScript("OnClick", function()
     compA = cycle(sortedProfileNames(NS.GetDb()), compA)
     refresh()

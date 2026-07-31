@@ -42,15 +42,36 @@ local HARVEST_DELAY = 1.5    -- s after regen, so the driver commits first
 
 local db                     -- MancerLedgerDB
 local saidOnce = {}          -- session: one loud line per reason
+local chatEcho = false       -- true only inside a slash invocation (you asked
+                             -- in chat, you get answered in chat)
 
-local function say(msg)
+local HISTORY_CAP = 50
+
+local function pushHistory(msg)
+    if not db then return end
+    db.history = db.history or {}
+    local clean = tostring(msg):gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", "")
+    table.insert(db.history, 1, { t = date("%H:%M:%S"), d = date("%m/%d"), msg = clean })
+    while #db.history > HISTORY_CAP do table.remove(db.history) end
+end
+
+local function chat(msg)
     DEFAULT_CHAT_FRAME:AddMessage("|cffb08ef0MancerLedger|r: " .. msg)
+end
+
+-- the log history IS the record (Battlewrath: history, not chat dumping).
+-- Chat additionally only when: you're answering a typed command, or it's a
+-- loud one-time warning.
+local function say(msg)
+    pushHistory(msg)
+    if chatEcho then chat(msg) end
 end
 
 local function sayOnce(key, msg)
     if saidOnce[key] then return end
     saidOnce[key] = true
-    say(msg)
+    pushHistory(msg)
+    chat(msg)  -- warnings stay loud
 end
 
 -- ---------------------------------------------------------------- driver
@@ -258,6 +279,7 @@ local function harvest()
     if folded > 0 then
         say(folded .. " fight(s) folded into '" .. profile.name .. "' (" .. profile.folds .. " total).")
         if NS.ui and NS.ui.RefreshIfShown then NS.ui.RefreshIfShown() end
+        if NS.onFold then pcall(NS.onFold, folded) end  -- minimap blue blink
     end
     return folded
 end
@@ -391,7 +413,10 @@ ev:SetScript("OnEvent", function(_, event, name)
         db = MancerLedgerDB
         db.profiles = db.profiles or {}
         db.seen = db.seen or {}
+        db.history = db.history or {}
+        db.minimap = db.minimap or { angle = 210 }
         rebuildSeen()
+        if NS.OnDbReady then pcall(NS.OnDbReady) end  -- minimap paints its state
     elseif event == "PLAYER_REGEN_ENABLED" then
         pendingHarvest = HARVEST_DELAY  -- let the driver's commit land first
     elseif event == "PLAYER_ENTERING_WORLD" then
@@ -449,6 +474,14 @@ local function profileResetLog(name)
     return true
 end
 
+local function profileOff()
+    -- recording off: pending ring fights flush to the outgoing profile first
+    if db.active then harvest() end
+    db.active = nil
+    say("recording OFF - fights will wait in the driver ring until a profile is live.")
+    return true
+end
+
 local function profileRename(old, new)
     local p = getProfile(old)
     if not p then return false, "no such profile: " .. tostring(old) end
@@ -472,6 +505,7 @@ NS.profileUse = profileUse
 NS.profileDelete = profileDelete
 NS.profileResetLog = profileResetLog
 NS.profileRename = profileRename
+NS.profileOff = profileOff
 NS.driverDb = driverDb
 NS.driverVersion = driverVersion
 NS.stateLine = stateLine
@@ -484,8 +518,17 @@ NS.SAMPLE_FLOOR = SAMPLE_FLOOR
 NS.say = say
 
 -- ---------------------------------------------------------------- slash
+local HandleSlash
+
 SLASH_MANCERLEDGER1 = "/mledger"
 SlashCmdList["MANCERLEDGER"] = function(msg)
+    chatEcho = true  -- typed commands get chat answers; UI clicks go to history
+    local ok, err = pcall(HandleSlash, msg)
+    chatEcho = false
+    if not ok then chat("error: " .. tostring(err)) end
+end
+
+function HandleSlash(msg)
     local cmd, arg, arg2 = msg:match("^(%S*)%s*(%S*)%s*(%S*)")
     cmd = cmd:lower()
     if cmd == "new" and arg ~= "" then
@@ -509,6 +552,8 @@ SlashCmdList["MANCERLEDGER"] = function(msg)
         statsFor(arg ~= "" and arg or nil)
     elseif cmd == "compare" and arg ~= "" and arg2 ~= "" then
         compare(arg, arg2)
+    elseif cmd == "off" then
+        profileOff()
     elseif cmd == "rename" and arg ~= "" and arg2 ~= "" then
         local ok, err = profileRename(arg, arg2)
         if not ok then say(err) end
@@ -532,6 +577,6 @@ SlashCmdList["MANCERLEDGER"] = function(msg)
             .. " fight(s) - cursor: " .. #db.seen .. " folded fingerprints - live profile: "
             .. tostring(db.active or "NONE"))
     else
-        say("/mledger (window) | new <name> | use <name> | rename <old> <new> | list | stats [name] | compare <a> <b> | resetlog <name> | delete <name> sure | harvest | status")
+        say("/mledger (window) | new <name> | use <name> | off | rename <old> <new> | list | stats [name] | compare <a> <b> | resetlog <name> | delete <name> sure | harvest | status")
     end
 end

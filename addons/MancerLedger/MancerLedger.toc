@@ -2,9 +2,10 @@
 ## Title: Mancer Ledger
 ## Notes: v0.1.0 - the long-term averaging Mancer doesn't do: folds Mancer's per-fight minion data (the 10-fight ring in MancerDB) into named PROFILES the player controls. A profile = name + character-state capture + accumulating log. Make a new one after a regear, compare, select which is live. Read-only consumer of MancerDB; fails loud on shape drift, never guesses. /mledger
 ## Author: Battlewrath
-## Version: 0.3.0
+## Version: 0.4.0
 ## SavedVariables: MancerLedgerDB
 ## OptionalDeps: LibellusLeti, Mancer
 
 core.lua
 ui.lua
+minimap.lua
