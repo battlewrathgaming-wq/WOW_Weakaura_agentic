@@ -75,21 +75,36 @@ local title = grip:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
 title:SetPoint("CENTER", grip, "CENTER", 0, 0)
 title:SetText("PetGrid (drag - /petgrid lock)")
 
+local function pinTopLeft()
+    root:ClearAllPoints()
+    root:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", db.topX / db.scale, db.topY / db.scale)
+end
+
+-- One-shot converter: at ADDON_LOADED the frame has NO rect yet (GetLeft()
+-- = nil), so a legacy/center anchor can't be converted there - it must wait
+-- for the first laid-out frame. Un-hooks itself the moment it succeeds.
+-- (Live-caught: the un-converted legacy anchor was BOTTOM-flavored, so the
+-- grid grew UP - top surface wandering, bottom stationary.)
+local pinner = CreateFrame("Frame")
+pinner:Hide()
+pinner:SetScript("OnUpdate", function(self)
+    if not root:GetLeft() then return end
+    saveTopAnchor()
+    db.point, db.x, db.y = nil, nil, nil
+    pinTopLeft()
+    self:Hide()
+end)
+
 local function applyChrome()
     root:SetScale(db.scale)
-    root:ClearAllPoints()
     if db.topX then
-        root:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", db.topX / db.scale, db.topY / db.scale)
+        pinTopLeft()
     else
-        -- first run (or legacy center-anchored SV): place once, convert to
-        -- the top-left pin so growth is downward from the start
+        -- first run (or legacy SV): place once wherever it was, then let the
+        -- pinner convert to the top-left pin on the first real layout pass
+        root:ClearAllPoints()
         root:SetPoint(db.point or "CENTER", UIParent, db.point or "CENTER", db.x or 0, db.y or 0)
-        if root:GetLeft() then
-            saveTopAnchor()
-            db.point, db.x, db.y = nil, nil, nil
-            root:ClearAllPoints()
-            root:SetPoint("TOPLEFT", UIParent, "BOTTOMLEFT", db.topX / db.scale, db.topY / db.scale)
-        end
+        pinner:Show()
     end
     if db.locked then grip:Hide() else grip:Show() end
 end
