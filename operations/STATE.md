@@ -1,5 +1,35 @@
 # STATE — where the machine is
 
+## 2026-07-30 (Suno manager session — taste basis → forms → levers → first tracks)
+
+The **Suno manager** (resident agent in `Class_identity/Suno/`, tags helm activity
+"suno") spun up and ran end-to-end. Detail lives in `Class_identity/Suno/` (README
+indexes it) and `operations/Class_identity.md`; the headline:
+
+- **Taste sourced from Battlewrath's own references** (the fork) → **5 song-form specs,
+  all graded** (`Suno/forms/`): **01** Gothic Operatic (driving), **02** Funeral March
+  (funereal-desperate), **03** Dark Vaudeville (gallows-whimsy), **04** Grand Theatrical
+  Heavy, **05** Industrial Heavy. Pattern: each form bends a *different* general hard-line
+  to fit its character.
+- **Tooling documented as fact:** `Suno/suno-levers.md` (app-true, Pro v5.5 — Styles 1000
+  / Write-lyrics 5000 / Prompt-box 3000 / Exclude & Title uncapped; sliders; Exclude =
+  where a form's OUT-list is enforced) · input grammar via OSINT · `song-structure-vocab.md`
+  (music terms → Suno meta-tags).
+- **The prompt recipe** (`Suno/prompt-recipe.md`): **two drivers** — A prompt-driven
+  (Suno writes lyrics; fast/volume), B write-driven (custom lyrics + meta-tags; full
+  control). **Control hierarchy:** line structure *commands* → meta-tags *forecast* →
+  Styles *pervades* → Exclude *enforces* → sliders *tune*.
+- **★ Method findings (tuned by real runs):** meta-tags are **forecast, not 1:1**; **line
+  structure commands the word** (the most precise lever); **let the instruments speak**
+  (dedicated instrumental sections). **Summonable-features catalog** started — the
+  **banshee wail** is callable (region-level, placed inline; trending reliable).
+- **3 tracks composed (Driver B):** **02 "Forsaken in requiem aeternam"** — first named
+  keeper, near-chills; **01 "In Service of the Dark Lady"** (Sylvanas) — ran strong on all
+  four dims, proving **the method transfers**; **03 "The Maestro of the Dead"** — organ-
+  forward whimsy, drafted + UNRUN (grade next).
+- Helm **RELEASED** at close-off. Next: grade 03, keep building the playlist (04/05
+  untested; Driver-A fills); the Suno manager's charter still open.
+
 ## 2026-07-30 (Class_identity lane founded — the creative department + Suno sub-lane)
 
 - **New root lane `Class_identity/`** (sibling to `Class_design/`, separate from

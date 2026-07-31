@@ -1,11 +1,11 @@
 # HELM — who has the trunk
 
-holder:  suno (Suno manager — Class_identity/Suno/)
-since:   2026-07-30 (Suno manager spin-up)
-heading: Stand up the Suno manager. FIRST JOB before any prompt: source Battlewrath's music taste from his own references and distill it into a taste basis (the fork — the music is personal, sourced-not-invented). Then its charter + prompt library.
-runway:  short-to-medium — the taste-sourcing is a conversation with Battlewrath; then authoring the basis / charter / library in Class_identity/Suno/. Quiet trunk between sessions is expected.
+holder:  RELEASED
+since:   2026-07-30 (released at Suno manager session close-off)
+heading: — (released) · last session: Suno manager spun up + fully operational. Taste sourced from Battlewrath's references → 5 song-form specs (01–05, all graded); Suno levers doc (app-true, Pro v5.5) + input-grammar OSINT + song-structure vocab; prompt recipe (Driver A/B) + control hierarchy; method findings (meta-tags = forecast not 1:1 · line structure commands the word · let the instruments speak); summonable-features catalog (banshee → callable). 3 tracks composed: 02 "Forsaken in requiem aeternam" (first named keeper), 01 "In Service of the Dark Lady" (ran strong — the method transfers), 03 "The Maestro of the Dead" (drafted).
+runway:  — (released)
 
-next:    — (active; Suno topic held)
+next:    Suno manager — keep building the playlist. **03 "The Maestro of the Dead" is drafted + UNRUN — grade it next.** Then more forms × vibes (04 Grand Theatrical & 05 Industrial still untested) + some Driver-A fast fills for volume. Still open: the Suno manager's own **charter**; generalising the content-attachment layer. Everything lives in `Class_identity/Suno/` (its README indexes forms/levers/vocab/recipe/prompts/summonable-features); tag helm activity "suno".
 
 ---
 
