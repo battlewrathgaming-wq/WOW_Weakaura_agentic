@@ -35,7 +35,7 @@
 --   /mledger harvest        manual fold now
 --   /mledger status         driver version, ring, cursor, drift notes
 
-local ADDON = ...
+local ADDON, NS = ...
 
 local SEEN_CAP = 60          -- folded-fingerprint FIFO (ring is only 10 deep)
 local HARVEST_DELAY = 1.5    -- s after regen, so the driver commits first
@@ -256,6 +256,7 @@ local function harvest()
     end
     if folded > 0 then
         say(folded .. " fight(s) folded into '" .. profile.name .. "' (" .. profile.folds .. " total).")
+        if NS.ui and NS.ui.RefreshIfShown then NS.ui.RefreshIfShown() end
     end
     return folded
 end
@@ -269,7 +270,8 @@ local function fmtN(v)
 end
 
 local function prettyId(id)
-    return (tostring(id):gsub("_", " "):gsub("^%l", string.upper))
+    -- lesser_zombie -> Lesser Zombie (every word, not just the first)
+    return (tostring(id):gsub("_", " "):gsub("%f[%a]%l", string.upper))
 end
 
 local SAMPLE_FLOOR = 20
@@ -383,29 +385,78 @@ ev:SetScript("OnUpdate", function(_, dt)
     end
 end)
 
+-- ---------------------------------------------------------------- profile ops
+-- Shared by the slash alias AND the window (the window is the interface;
+-- typed commands are the power-user alias).
+local function profileNew(name)
+    if not name or name == "" then return false, "name required" end
+    if getProfile(name) then return false, "profile '" .. name .. "' already exists" end
+    harvest()  -- pending fights belong to the OLD profile
+    db.profiles[name] = {
+        name = name, snapshot = captureState(),
+        folds = 0, log = {}, drift = {},
+        driver = driverVersion(),
+    }
+    db.active = name
+    say("profile '" .. name .. "' created and LIVE - " .. stateLine(db.profiles[name].snapshot))
+    return true
+end
+
+local function profileUse(name)
+    if not getProfile(name) then return false, "no such profile: " .. tostring(name) end
+    harvest()  -- flush to the old profile before switching
+    db.active = name
+    say("profile '" .. name .. "' is LIVE.")
+    return true
+end
+
+local function profileDelete(name)
+    if not getProfile(name) then return false, "no such profile: " .. tostring(name) end
+    db.profiles[name] = nil
+    if db.active == name then db.active = nil end
+    say("profile '" .. name .. "' deleted.")
+    return true
+end
+
+local function profileResetLog(name)
+    local p = getProfile(name)
+    if not p then return false, "no such profile: " .. tostring(name) end
+    p.log, p.folds, p.drift = {}, 0, {}
+    say("log reset for '" .. name .. "' (capture kept).")
+    return true
+end
+
+-- the UI's data door (db is nil until ADDON_LOADED)
+NS.GetDb = function() return db end
+NS.getProfile = getProfile
+NS.harvest = harvest
+NS.profileNew = profileNew
+NS.profileUse = profileUse
+NS.profileDelete = profileDelete
+NS.profileResetLog = profileResetLog
+NS.driverDb = driverDb
+NS.driverVersion = driverVersion
+NS.stateLine = stateLine
+NS.fmtN = fmtN
+NS.prettyId = prettyId
+NS.missPct = missPct
+NS.missBreakdown = missBreakdown
+NS.SAMPLE_FLOOR = SAMPLE_FLOOR
+NS.say = say
+
 -- ---------------------------------------------------------------- slash
 SLASH_MANCERLEDGER1 = "/mledger"
 SlashCmdList["MANCERLEDGER"] = function(msg)
     local cmd, arg, arg2 = msg:match("^(%S*)%s*(%S*)%s*(%S*)")
     cmd = cmd:lower()
     if cmd == "new" and arg ~= "" then
-        if getProfile(arg) then
-            say("profile '" .. arg .. "' already exists - /mledger use " .. arg .. " to activate it.")
-            return
-        end
-        harvest()  -- pending fights belong to the OLD profile
-        db.profiles[arg] = {
-            name = arg, snapshot = captureState(),
-            folds = 0, log = {}, drift = {},
-            driver = driverVersion(),
-        }
-        db.active = arg
-        say("profile '" .. arg .. "' created and LIVE - " .. stateLine(db.profiles[arg].snapshot))
+        local ok, err = profileNew(arg)
+        if not ok then say(err .. (err:find("exists") and " - /mledger use " .. arg or "")) end
     elseif cmd == "use" and arg ~= "" then
-        if not getProfile(arg) then say("no such profile: " .. arg) return end
-        harvest()  -- flush to the old profile before switching
-        db.active = arg
-        say("profile '" .. arg .. "' is LIVE.")
+        local ok, err = profileUse(arg)
+        if not ok then say(err) end
+    elseif (cmd == "show" or cmd == "ui" or cmd == "") and NS.ui then
+        NS.ui.Toggle()
     elseif cmd == "list" then
         local any = false
         for name, p in pairs(db.profiles) do
@@ -420,19 +471,15 @@ SlashCmdList["MANCERLEDGER"] = function(msg)
     elseif cmd == "compare" and arg ~= "" and arg2 ~= "" then
         compare(arg, arg2)
     elseif cmd == "resetlog" and arg ~= "" then
-        local p = getProfile(arg)
-        if not p then say("no such profile: " .. arg) return end
-        p.log, p.folds, p.drift = {}, 0, {}
-        say("log reset for '" .. arg .. "' (capture kept).")
+        local ok, err = profileResetLog(arg)
+        if not ok then say(err) end
     elseif cmd == "delete" and arg ~= "" then
         if arg2 ~= "sure" then
             say("this deletes profile '" .. arg .. "' and its log - /mledger delete " .. arg .. " sure")
             return
         end
-        if not getProfile(arg) then say("no such profile: " .. arg) return end
-        db.profiles[arg] = nil
-        if db.active == arg then db.active = nil end
-        say("profile '" .. arg .. "' deleted.")
+        local ok, err = profileDelete(arg)
+        if not ok then say(err) end
     elseif cmd == "harvest" then
         local n = harvest()
         if n == 0 then say("nothing new to fold.") end
@@ -443,6 +490,6 @@ SlashCmdList["MANCERLEDGER"] = function(msg)
             .. " fight(s) - cursor: " .. #db.seen .. " folded fingerprints - live profile: "
             .. tostring(db.active or "NONE"))
     else
-        say("/mledger new <name> | use <name> | list | stats [name] | compare <a> <b> | resetlog <name> | delete <name> sure | harvest | status")
+        say("/mledger (window) | new <name> | use <name> | list | stats [name] | compare <a> <b> | resetlog <name> | delete <name> sure | harvest | status")
     end
 end
