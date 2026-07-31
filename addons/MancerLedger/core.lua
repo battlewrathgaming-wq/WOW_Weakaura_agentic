@@ -290,6 +290,19 @@ local function missBreakdown(log)
     return #parts > 0 and table.concat(parts, ", ") or nil
 end
 
+-- Cadence (hits/unit-min) is only honest when the summon windows plausibly
+-- COVER the hits. The driver accrues unit-time from in-fight summon windows
+-- only ("Animate CD uptime/DPS") - a PERMANENT raised before the pull buckets
+-- hits with no window, and one observed re-raise would divide all-fight hits
+-- by a sliver of time (live-caught: 174.9 hits/min on a lone warrior). Temp
+-- minions summon at least once per fight they act in, hence the gate.
+local function cadence(log)
+    local t = log.activeSeconds or 0
+    if t <= 0 then return nil end
+    if (log.summonCount or 0) < (log.fights or 1) then return nil end
+    return (log.hits or 0) / (t / 60)
+end
+
 local function statsFor(name)
     local profile = name and getProfile(name) or activeProfile()
     if not profile then
@@ -301,11 +314,14 @@ local function statsFor(name)
     local any = false
     for id, log in pairs(profile.log) do
         any = true
-        local cadence = log.activeSeconds > 0
-            and string.format("%.1f", log.hits / (log.activeSeconds / 60)) or "-"
-        say(string.format("  %s: %d summons, %ds unit-time, %d hits (%s hits/unit-min), miss %s, dmg %s (raw)",
-            prettyId(id), log.summonCount, math.floor(log.activeSeconds), log.hits,
-            cadence, missPct(log), fmtN(log.damage)))
+        local cad = cadence(log)
+        -- summons/unit-time are OBSERVED-IN-FIGHT accounting: a permanent
+        -- raised before the pull shows "-", not a false zero
+        local sumS = (log.summonCount or 0) > 0 and tostring(log.summonCount) or "-"
+        local timeS = (log.activeSeconds or 0) > 0 and (math.floor(log.activeSeconds) .. "s") or "-"
+        say(string.format("  %s: %s summons, %s unit-time, %d hits (%s hits/unit-min), miss %s, dmg %s (raw)",
+            prettyId(id), sumS, timeS, log.hits,
+            cad and string.format("%.1f", cad) or "-", missPct(log), fmtN(log.damage)))
         local bd = missBreakdown(log)
         if bd then say("     avoided as: " .. bd) end
         -- ability mix by hit share (composition self-normalizes; magnitudes don't)
@@ -342,17 +358,22 @@ local function compare(a, b)
     for id in pairs(pb.log) do ids[id] = true end
     for id in pairs(ids) do
         local la, lb = pa.log[id], pb.log[id]
-        local function cad(l)
-            return (l and l.activeSeconds and l.activeSeconds > 0)
-                and string.format("%.1f", l.hits / (l.activeSeconds / 60)) or "-"
+        local function cadS(l)
+            local c = l and cadence(l)
+            return c and string.format("%.1f", c) or "-"
         end
-        say(string.format("  %s: summons %s vs %s | unit-time %ss vs %ss | hits/unit-min %s vs %s | miss %s vs %s | dmg(raw) %s vs %s",
+        local function sumS(l)
+            return (l and (l.summonCount or 0) > 0) and tostring(l.summonCount) or "-"
+        end
+        local function timeS(l)
+            return (l and (l.activeSeconds or 0) > 0) and (math.floor(l.activeSeconds) .. "s") or "-"
+        end
+        say(string.format("  %s: summons %s vs %s | unit-time %s vs %s | hits/unit-min %s vs %s | miss %s vs %s | dmg(raw) %s vs %s",
             prettyId(id),
-            la and la.summonCount or 0, lb and lb.summonCount or 0,
-            la and math.floor(la.activeSeconds) or 0, lb and math.floor(lb.activeSeconds) or 0,
-            cad(la), cad(lb),
+            sumS(la), sumS(lb), timeS(la), timeS(lb),
+            cadS(la), cadS(lb),
             la and missPct(la) or "-", lb and missPct(lb) or "-",
-            la and fmtN(la.damage) or 0, lb and fmtN(lb.damage) or 0))
+            la and fmtN(la.damage) or "-", lb and fmtN(lb.damage) or "-"))
     end
 end
 
@@ -441,6 +462,7 @@ NS.fmtN = fmtN
 NS.prettyId = prettyId
 NS.missPct = missPct
 NS.missBreakdown = missBreakdown
+NS.cadence = cadence
 NS.SAMPLE_FLOOR = SAMPLE_FLOOR
 NS.say = say
 

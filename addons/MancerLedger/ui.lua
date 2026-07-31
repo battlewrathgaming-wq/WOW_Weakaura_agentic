@@ -36,7 +36,7 @@ local function cells(log)
     c.summons = (log.summonCount or 0) > 0 and log.summonCount or nil
     c.time = (log.activeSeconds or 0) > 0 and log.activeSeconds or nil
     c.hits = log.hits or 0
-    c.cad = c.time and (c.hits / (c.time / 60)) or nil
+    c.cad = NS.cadence(log)  -- gated: summons must cover fights (scope-mix guard)
     local attempts = (log.hits or 0) + (log.misses or 0)
     c.miss = attempts >= NS.SAMPLE_FLOOR and ((log.misses or 0) / attempts * 100) or nil
     c.dmg = log.damage or 0
