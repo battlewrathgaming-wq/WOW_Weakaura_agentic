@@ -4,6 +4,16 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
+## Bench capability (2026-07-31): the /combatlog disk witness
+
+`/combatlog` toggles the client's own CLEU-to-disk stream -> `Logs\<datetime> WoWCombatLog.txt`
+(addon-free, zero cost, ms timestamps, standard 3.3.5 CSV after a two-space split).
+`Class_design/Necromancer/tests/parse_combatlog.py` parses it as-is (`parse_line` is the
+reusable piece - proven by importing it against the bench's own questions). For any future
+"does this fork emit X" question this is the CHEAPEST instrument on the bench: no capture
+task, no deploy, no reload. First bench use: hunting the pet-UNIT_DIED answer (Battlewrath
+deliberately exposing the capability - all prior testing was dummies).
+
 ## Open threads (each has a designed next step)
 
 - **OPPORTUNITY (Battlewrath, 2026-07-30): the PET COMBAT PARSER — inspect Libellus-Leti FIRST.**
