@@ -10,12 +10,15 @@
 -- character-state capture at creation (level/stam/int/spirit/shadowSP/AP/crit)
 -- + the log. Regear -> /mledger new <name> -> compare -> pick which is live.
 --
--- Verified driver contract (LibellusLeti 0.9.434 source, refs_libellus):
+-- Verified driver contract (LibellusLeti 0.9.553 dev drop, silo-archived;
+-- fingerprint recipe + ring cap unchanged since 0.9.434):
 --   fight = { startedAt, endedAt, minions = { [minionId] = bucket }, ... }
---   bucket = { damage, hits, activeSeconds, summonCount,
---              spells = { [key] = { label, spellId, damage, hits } } }
---   minionId = lowercase slug ("ghoul"); no crit/miss fields YET (his dev
---   line adds the miss vocabulary - the fold extends additively when it ships).
+--   bucket = { damage, hits, misses, missTypes = { DODGE/PARRY/BLOCK/RESIST/
+--              ABSORB/IMMUNE = n }, activeSeconds, summonCount,
+--              spells = { [key] = { label, spellId, damage, hits, misses,
+--              missTypes } }, units = {...} (per-GUID, deliberately unfolded -
+--              our grain is per-type) }
+--   minionId = lowercase slug ("ghoul"). NO crit tracking in the driver yet.
 --
 -- DISCIPLINE: read-only on MancerDB. Fold only KNOWN fields; unknown numeric
 -- bucket fields are NOTED (drift visibility), never folded. Shape violations
@@ -112,9 +115,12 @@ local function activeProfile()
 end
 
 -- ---------------------------------------------------------------- folding
-local VALID_BUCKET_NUM = { damage = true, hits = true, activeSeconds = true, summonCount = true }
-local KNOWN_BUCKET = { damage = true, hits = true, activeSeconds = true, summonCount = true,
-                       spells = true, firstSeen = true, lastSeen = true }
+local VALID_BUCKET_NUM = { damage = true, hits = true, misses = true,
+                           activeSeconds = true, summonCount = true }
+local KNOWN_BUCKET = { damage = true, hits = true, misses = true, missTypes = true,
+                       activeSeconds = true, summonCount = true,
+                       spells = true, firstSeen = true, lastSeen = true,
+                       units = true }  -- per-GUID grain: deliberately unfolded
 
 local function validFight(fight)
     if type(fight) ~= "table" then return false, "fight not a table" end
@@ -134,12 +140,22 @@ local function foldFight(profile, fight)
     for id, bucket in pairs(fight.minions) do
         local log = profile.log[id]
         if not log then
-            log = { damage = 0, hits = 0, activeSeconds = 0, summonCount = 0,
-                    fights = 0, spells = {} }
+            log = { damage = 0, hits = 0, misses = 0, missTypes = {},
+                    activeSeconds = 0, summonCount = 0, fights = 0, spells = {} }
             profile.log[id] = log
         end
+        log.misses = log.misses or 0          -- pre-0.2 profile logs lack these
+        log.missTypes = log.missTypes or {}
         log.damage = log.damage + (bucket.damage or 0)
         log.hits = log.hits + (bucket.hits or 0)
+        log.misses = log.misses + (bucket.misses or 0)
+        if type(bucket.missTypes) == "table" then
+            for mt, n in pairs(bucket.missTypes) do
+                if type(n) == "number" then
+                    log.missTypes[mt] = (log.missTypes[mt] or 0) + n
+                end
+            end
+        end
         log.activeSeconds = log.activeSeconds + (bucket.activeSeconds or 0)
         log.summonCount = log.summonCount + (bucket.summonCount or 0)
         log.fights = log.fights + 1
@@ -147,16 +163,29 @@ local function foldFight(profile, fight)
             if type(sp) == "table" then
                 local dst = log.spells[key]
                 if not dst then
-                    dst = { label = sp.label, spellId = sp.spellId, damage = 0, hits = 0 }
+                    dst = { label = sp.label, spellId = sp.spellId,
+                            damage = 0, hits = 0, misses = 0, missTypes = {} }
                     log.spells[key] = dst
                 end
+                dst.misses = dst.misses or 0
+                dst.missTypes = dst.missTypes or {}
                 dst.damage = dst.damage + (tonumber(sp.damage) or 0)
                 dst.hits = dst.hits + (tonumber(sp.hits) or 0)
+                dst.misses = dst.misses + (tonumber(sp.misses) or 0)
+                if type(sp.missTypes) == "table" then
+                    for mt, n in pairs(sp.missTypes) do
+                        if type(n) == "number" then
+                            dst.missTypes[mt] = (dst.missTypes[mt] or 0) + n
+                        end
+                    end
+                end
             end
         end
-        -- drift visibility: fields the driver added that we do NOT fold
+        -- drift visibility: fields the driver added that we do NOT fold.
+        -- Tables count too - 0.9.553's missTypes was invisible to a
+        -- numbers-only check; never again.
         for f, v in pairs(bucket) do
-            if not KNOWN_BUCKET[f] and type(v) == "number" then
+            if not KNOWN_BUCKET[f] and (type(v) == "number" or type(v) == "table") then
                 profile.drift[f] = true
                 sayOnce("extra:" .. f,
                     "driver bucket carries a field I don't fold yet: '" .. f
@@ -243,6 +272,22 @@ local function prettyId(id)
     return (tostring(id):gsub("_", " "):gsub("^%l", string.upper))
 end
 
+local SAMPLE_FLOOR = 20
+local function missPct(log)
+    local attempts = (log.hits or 0) + (log.misses or 0)
+    if attempts < SAMPLE_FLOOR then return "-" end
+    return math.floor((log.misses or 0) / attempts * 100 + 0.5) .. "%"
+end
+
+local function missBreakdown(log)
+    local parts = {}
+    for mt, n in pairs(log.missTypes or {}) do
+        parts[#parts + 1] = string.lower(mt) .. " " .. n
+    end
+    table.sort(parts)
+    return #parts > 0 and table.concat(parts, ", ") or nil
+end
+
 local function statsFor(name)
     local profile = name and getProfile(name) or activeProfile()
     if not profile then
@@ -256,9 +301,11 @@ local function statsFor(name)
         any = true
         local cadence = log.activeSeconds > 0
             and string.format("%.1f", log.hits / (log.activeSeconds / 60)) or "-"
-        say(string.format("  %s: %d summons, %ds unit-time, %d hits (%s hits/unit-min), dmg %s (raw)",
+        say(string.format("  %s: %d summons, %ds unit-time, %d hits (%s hits/unit-min), miss %s, dmg %s (raw)",
             prettyId(id), log.summonCount, math.floor(log.activeSeconds), log.hits,
-            cadence, fmtN(log.damage)))
+            cadence, missPct(log), fmtN(log.damage)))
+        local bd = missBreakdown(log)
+        if bd then say("     avoided as: " .. bd) end
         -- ability mix by hit share (composition self-normalizes; magnitudes don't)
         local spells = {}
         for _, sp in pairs(log.spells) do spells[#spells + 1] = sp end
@@ -276,7 +323,7 @@ local function statsFor(name)
     if #drifts > 0 then
         say("  unfolded driver fields seen: " .. table.concat(drifts, ", ") .. " (awaiting fold support)")
     end
-    say("  (rates await driver support - crit/miss counters are in Mancer's dev line, not yet shipped)")
+    say("  (crit awaits driver support - Mancer does not track crits yet; miss rates live as of 0.9.553)")
 end
 
 local function compare(a, b)
@@ -297,11 +344,12 @@ local function compare(a, b)
             return (l and l.activeSeconds and l.activeSeconds > 0)
                 and string.format("%.1f", l.hits / (l.activeSeconds / 60)) or "-"
         end
-        say(string.format("  %s: summons %s vs %s | unit-time %ss vs %ss | hits/unit-min %s vs %s | dmg(raw) %s vs %s",
+        say(string.format("  %s: summons %s vs %s | unit-time %ss vs %ss | hits/unit-min %s vs %s | miss %s vs %s | dmg(raw) %s vs %s",
             prettyId(id),
             la and la.summonCount or 0, lb and lb.summonCount or 0,
             la and math.floor(la.activeSeconds) or 0, lb and math.floor(lb.activeSeconds) or 0,
             cad(la), cad(lb),
+            la and missPct(la) or "-", lb and missPct(lb) or "-",
             la and fmtN(la.damage) or 0, lb and fmtN(lb.damage) or 0))
     end
 end
