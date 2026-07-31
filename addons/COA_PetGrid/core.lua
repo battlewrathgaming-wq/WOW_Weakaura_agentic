@@ -208,12 +208,6 @@ local function layout(raiseRows, familyRows)
     root:SetHeight(-y + 6)
 end
 
-local function fmtHp(v)
-    if not v then return "" end
-    if v >= 1000 then return string.format("%.1fk", v / 1000) end
-    return tostring(math.floor(v))
-end
-
 -- write pass: contents only, no anchors touched (concern 3 made visible)
 local function writeRows()
     for _, r in ipairs(live) do
@@ -230,7 +224,8 @@ local function writeRows()
                 r.hpText:SetTextColor(1, 1, 1)
             end
             r.hp:SetValue(d.hpFrac or 0)
-            r.hpText:SetText(fmtHp(d.hpMax and d.hpFrac and d.hpFrac * d.hpMax))
+            -- % on the read: the information is "healthy or not", not a value
+            r.hpText:SetText(d.hpFrac and (math.floor(d.hpFrac * 100 + 0.5) .. "%") or "")
             r.stats[1]:SetText(d.dmg)
             r.stats[2]:SetText(d.crit)
             r.stats[3]:SetText(d.miss)
