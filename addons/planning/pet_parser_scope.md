@@ -103,12 +103,18 @@ plate-scan + preferred-token stat reads · CVar engineering (REJECTED for us) ·
 
 ## THE LIVENESS FINDING (the record's biggest design fact)
 
-**UNIT_DIED never fired for a single one of 71 registered pets — but SCOPE THE CLAIM
-(corrected 2026-07-31, Battlewrath): no pet died to an enemy in this sample.** What the
-record PROVES silent is re-summon OVERWRITE (Abomination ×2, Tomb King ×2, Greater Zombie ×2 —
-the replaced pet just despawns, no event). Death-by-enemy is UNTESTED, not disproven — a
-capture where enemies kill pets would settle it. The design conclusion survives on the
-overwrite fact alone:
+**SETTLED in two passes (final 2026-07-31, /combatlog disk witness 16.22.56 — Battlewrath
+deliberately got pets killed):**
+- **Death-by-enemy: UNIT_DIED FIRES.** Two Lesser Skeletal Warrior deaths, flags 0x1111
+  (MINE+PET) — including one raised BEFORE logging started (death events don't depend on an
+  observed summon). The "(Might report the same.)" hypothesis is disproven.
+- **Overwrite-despawn: SILENT** (the petlog record's 71-summon proof stands). The ONLY
+  silent case.
+- **★ The witness LEADS the death:** SPELL_AURA_REMOVED of the type buff (805016) lands
+  122ms / 17ms BEFORE the paired UNIT_DIED. So the buff-removal is a CLEU PUSH SIGNAL —
+  the grid can react to combat deaths instantly off either event, no sweep-tick latency;
+  the UnitAura sweep remains the COUNT authority (and the only detector for overwrites).
+The design conclusion survives, refined:
 **the grid cannot key row-collapse on UNIT_DIED.** Liveness derives from the composite:
 the per-type buff-instance count as AUTHORITY (see checklist 6 — an instance drop IS the
 death event for Raise types) + activity-TTL and plate presence to attribute which GUID;
