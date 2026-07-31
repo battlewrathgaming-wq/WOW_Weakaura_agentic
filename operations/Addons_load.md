@@ -23,7 +23,12 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   NAME_PLATE_UNIT_ADDED for registered GUIDs PAIRED WITH OWNER STATS same-instant -> (owner
   stamina, pet AP) correlation rows = THE PET-SCALING LAB (feeds Class_design's Life-Force-slope
   question; scaling derived from data, not known); (D) boundary class - HP plate-window only,
-  last-known + staleness off-plate.
+  last-known + staleness off-plate. BOUNDARY (Battlewrath, 2026-07-30): the parser does NOT
+  manage nameplate CVars (Libellus does; we explicitly do not adopt it - method 3 cross-check
+  closed as REJECTED for us). Plate visibility belongs to the client + the user's nameplate
+  addon (TurboPlates is now his baseline - feature-rich; State Plates coexists on the same
+  driver). Plate-window snapshots are OPPORTUNISTIC: read plates as they come, never engineer
+  the gate. 'Let lanes that work well carry load.' 
   BUILD PATH (house two-step): capture BEFORE display - a petlog session task on the v2 spine
   proves the metric set via landed envelopes + offline parse; the grid addon then displays a
   PROVEN column set (satellite model if it joins the State Plates family).
