@@ -45,6 +45,15 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
   BUILD PATH (house two-step): capture BEFORE display - a petlog session task on the v2 spine
   proves the metric set via landed envelopes + offline parse; the grid addon then displays a
   PROVEN column set (satellite model if it joins the State Plates family).
+  ★ HELD FEEDBACK (Battlewrath, 2026-07-31, deliberately not relayed - new to their community,
+  avoiding razor-edge-UX first impression): the Mancer NEW-USER-FLOW hazard, fully analyzed.
+  Class: THREE CVar backup/restore lanes (capital mute 8-key / Sheet boost 3-key / HUD boost
+  3-key) each snapshot "user prefs" at their own moment; replay-then-CLEAR bakes any mid-dance
+  mis-snapshot in permanently + unattributably. First-load-in-a-capital (the MODAL new-user
+  case - cities are where people log out) + settings-poking multiplies the windows. Live
+  specimen: his guardians-only residue; evidence: cvarlog record 20260731_143305. Fix shapes
+  (cheapest first): never-cleared lastKnownUserPrefs; snapshot-once-at-login-before-any-write;
+  single plate-CVar owner lane; first-run consent prompt. Relay when standing is warmer.
   ★★ DIRECTION PIVOT UNDER DISCUSSION (Battlewrath, 2026-07-31, leaning, not yet Build!-gated):
   COMPLETE REBUILD around Mancer (LtGenZombie's addon, the evolved Libellus) as the PRIMARY
   DRIVER, us as CONSUMER. Verified mechanism: fights auto-commit on PLAYER_REGEN_ENABLED into
