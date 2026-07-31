@@ -2,7 +2,7 @@
 ## Title: COA Pet Grid
 ## Notes: v0.1.0 STUB - the pet parser's display chassis: movable/lockable/persisting container, pooled rows in two sections (Raise individuals / Animate families), dummy-data ticker. Proves the element primitives before real data mounts (addons/planning/pet_parser_scope.md Q3). /petgrid for controls.
 ## Author: Battlewrath
-## Version: 0.1.0
+## Version: 0.1.1
 ## SavedVariables: COA_PetGridDB
 
 core.lua

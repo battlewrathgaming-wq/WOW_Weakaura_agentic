@@ -18,7 +18,10 @@
 
 local ADDON = ...
 
-local ROW_H, WIDTH = 14, 220
+-- layout constants (v0.1.1: rebalanced after live clipping report - the right
+-- stat block starts at WIDTH-8-3*STAT_W_SP; name+bar must end short of it)
+local ROW_H, WIDTH = 14, 240
+local NAME_W, BAR_W, STAT_W, STAT_SP = 70, 50, 32, 34
 local defaults = { point = "CENTER", x = 0, y = 0, scale = 1.0, locked = false, demo = true }
 
 local db  -- COA_PetGridDB after ADDON_LOADED
@@ -79,24 +82,28 @@ local function newRow()
     r.name = r:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
     r.name:SetPoint("LEFT", r, "LEFT", 2, 0)
     r.name:SetJustifyH("LEFT")
-    r.name:SetWidth(78)
+    r.name:SetWidth(NAME_W)
 
     r.hp = CreateFrame("StatusBar", nil, r)
     r.hp:SetStatusBarTexture("Interface\\TargetingFrame\\UI-StatusBar")
     r.hp:SetPoint("LEFT", r.name, "RIGHT", 2, 0)
-    r.hp:SetWidth(52)
+    r.hp:SetWidth(BAR_W)
     r.hp:SetHeight(ROW_H - 5)
     r.hp:SetMinMaxValues(0, 1)
     r.hpBg = r.hp:CreateTexture(nil, "BACKGROUND")
     r.hpBg:SetAllPoints(r.hp)
     r.hpBg:SetTexture(0.15, 0.15, 0.15, 0.8)
+    -- absolute last-known HP rides ON the bar (fraction = bar, total = text;
+    -- both grey together on stale)
+    r.hpText = r.hp:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
+    r.hpText:SetPoint("CENTER", r.hp, "CENTER", 0, 0)
 
     r.stats = {}
     for i = 1, 3 do
         local fs = r:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-        fs:SetPoint("RIGHT", r, "RIGHT", -2 - (3 - i) * 34, 0)
+        fs:SetPoint("RIGHT", r, "RIGHT", -2 - (3 - i) * STAT_SP, 0)
         fs:SetJustifyH("RIGHT")
-        fs:SetWidth(32)
+        fs:SetWidth(STAT_W)
         r.stats[i] = fs
     end
     return r
@@ -119,23 +126,48 @@ local function releaseRows()
     end
 end
 
--- section header pool (same discipline)
+-- section header pool (same discipline): a header ROW - section title at the
+-- name column, an HP label over the bar slot, column labels over the stat slots
 local hpool, hlive = {}, {}
-local function acquireHeader(text)
-    local h = table.remove(hpool)
-    if not h then
-        h = root:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
-        h:SetJustifyH("LEFT")
+local function newHeader()
+    local h = CreateFrame("Frame", nil, root)
+    h:SetWidth(WIDTH - 8)
+    h:SetHeight(12)
+    h.title = h:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    h.title:SetPoint("LEFT", h, "LEFT", 2, 0)
+    h.title:SetJustifyH("LEFT")
+    h.title:SetWidth(NAME_W)
+    h.hpLbl = h:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    h.hpLbl:SetPoint("LEFT", h, "LEFT", 2 + NAME_W + 2, 0)
+    h.hpLbl:SetJustifyH("CENTER")
+    h.hpLbl:SetWidth(BAR_W)
+    h.cols = {}
+    for i = 1, 3 do
+        local fs = h:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+        fs:SetPoint("RIGHT", h, "RIGHT", -2 - (3 - i) * STAT_SP, 0)
+        fs:SetJustifyH("RIGHT")
+        fs:SetWidth(STAT_W)
+        h.cols[i] = fs
     end
-    h:SetText(text)
+    return h
+end
+local function acquireHeader(text, hpLbl, c1, c2, c3)
+    local h = table.remove(hpool) or newHeader()
+    h.title:SetText(text)
+    h.hpLbl:SetText(hpLbl or "")
+    h.cols[1]:SetText(c1 or "")
+    h.cols[2]:SetText(c2 or "")
+    h.cols[3]:SetText(c3 or "")
     h:Show()
     hlive[#hlive + 1] = h
     return h
 end
 local function releaseHeaders()
     for i = #hlive, 1, -1 do
-        hlive[i]:Hide()
-        hpool[#hpool + 1] = hlive[i]
+        local h = hlive[i]
+        h:Hide()
+        h:ClearAllPoints()
+        hpool[#hpool + 1] = h
         hlive[i] = nil
     end
 end
@@ -154,8 +186,8 @@ local function layout(raiseRows, familyRows)
     end
 
     if #raiseRows > 0 then
-        local h = acquireHeader("Raise")
-        place(h); y = y - 12
+        local h = acquireHeader("Raise", "HP", "Dmg", "Crit", "Miss")
+        place(h); y = y - 13
         for _, data in ipairs(raiseRows) do
             local r = acquireRow()
             r.hp:Show()
@@ -164,8 +196,8 @@ local function layout(raiseRows, familyRows)
         end
     end
     if #familyRows > 0 then
-        local h = acquireHeader("Animate")
-        place(h); y = y - 12
+        local h = acquireHeader("Animate", "", "#", "Crit", "Miss")
+        place(h); y = y - 13
         for _, data in ipairs(familyRows) do
             local r = acquireRow()
             r.hp:Hide()
@@ -174,6 +206,12 @@ local function layout(raiseRows, familyRows)
         end
     end
     root:SetHeight(-y + 6)
+end
+
+local function fmtHp(v)
+    if not v then return "" end
+    if v >= 1000 then return string.format("%.1fk", v / 1000) end
+    return tostring(math.floor(v))
 end
 
 -- write pass: contents only, no anchors touched (concern 3 made visible)
@@ -185,11 +223,14 @@ local function writeRows()
             if d.state == "stale" then
                 r.name:SetTextColor(0.6, 0.6, 0.6)
                 r.hp:SetStatusBarColor(0.45, 0.45, 0.45)
+                r.hpText:SetTextColor(0.6, 0.6, 0.6)
             else
                 r.name:SetTextColor(1, 1, 1)
                 r.hp:SetStatusBarColor(0.1, 0.75, 0.2)
+                r.hpText:SetTextColor(1, 1, 1)
             end
             r.hp:SetValue(d.hpFrac or 0)
+            r.hpText:SetText(fmtHp(d.hpMax and d.hpFrac and d.hpFrac * d.hpMax))
             r.stats[1]:SetText(d.dmg)
             r.stats[2]:SetText(d.crit)
             r.stats[3]:SetText(d.miss)
@@ -208,9 +249,9 @@ end
 -- LIVE->STALE->GONE->back; a family count that breathes. Every visual state
 -- the real grid needs, exercised on a timer.
 local demoRaise = {
-    { kind = "raise", name = "Abomination", lf = 3, hpFrac = 1.0, dmg = "1.2k", crit = "14%", miss = "5%", state = "live" },
-    { kind = "raise", name = "Banshee",     lf = 2, hpFrac = 0.8, dmg = "640",  crit = "9%",  miss = "3%", state = "live" },
-    { kind = "raise", name = "Ghoul",       lf = 1, hpFrac = 0.6, dmg = "410",  crit = "16%", miss = "6%", state = "live" },
+    { kind = "raise", name = "Abomination", lf = 3, hpFrac = 1.0, hpMax = 12400, dmg = "1.2k", crit = "14%", miss = "5%", state = "live" },
+    { kind = "raise", name = "Banshee",     lf = 2, hpFrac = 0.8, hpMax = 6100,  dmg = "640",  crit = "9%",  miss = "3%", state = "live" },
+    { kind = "raise", name = "Ghoul",       lf = 1, hpFrac = 0.6, hpMax = 4900,  dmg = "410",  crit = "16%", miss = "6%", state = "live" },
 }
 local demoFamily = {
     { kind = "family", name = "Zombies", count = 6, crit = "11%", miss = "4%" },
