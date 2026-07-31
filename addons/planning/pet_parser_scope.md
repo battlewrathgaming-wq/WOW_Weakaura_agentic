@@ -61,7 +61,26 @@ plate-scan + preferred-token stat reads · CVar engineering (REJECTED for us) ·
    124/126 snapshots carried pets. The scaling-lab row shape works.
 4. Miss vocabulary → **GREEN**: DODGE ×19, MISS ×17 at pos 9 (no PARRY in sample — target mix,
    not an absence claim). Crit flags: SWING 112/728 crit, SPELL 78/896 crit at the era positions.
-5. LF-cost table derived from our basis (offline; no client needed) — still open.
+5. **LF-cost table — DERIVED (2026-07-31, from Input talents "occupying N Life Force" +
+   coa_spells.json).** The v1 row-weight data:
+
+   | Raise (LF-weighted rows) | LF | | Animate (family rows) | TTL |
+   |---|---|---|---|---|
+   | Raise: Ghoul 500971 | 1 | | Animate: Zombie (powerType 6) | 15s |
+   | Raise: Banshee 504861 | 2 | | Animate: Skeletal Archer 805040 (×3) | 15s (+3 talent) |
+   | Raise: Skeletal Mage 500331 | 2 | | Animate: Tomb King 805044 | 15s |
+   | Raise: Abomination 500335 | 3 | | Animate: Bone Wraith 805032 | 15s |
+   | Raise: Decaying Colossus 500989 | 3 | | Animate: Plaguefather 805048 | 15s |
+   | Raise: Gargoyle 500329 | 3 | | Animate: Bone Construct 531130 | 20s |
+   | Raise: Lesser Skeletal Warrior (r1) | **GAP** | | Animate: Frost Wyrm 805428 | 30s |
+   | Raise: Greater Skeletal Warrior (r2) | **GAP** | | Animate: Greater Zombie | **GAP** (lane certain, TTL unknown) |
+
+   Extra finding: **Bone King is a PROC, not a cast** (coa_spells: passive, procChance 15%,
+   5s aura) — arrives uncast, exclusive; slots into the Animate/family section.
+   **GAPS (gather, not accept):** Skeletal Warrior LF costs are in neither basis (talent JSON
+   lacks them — baseline trainer spells; coa_spells is a stat dump, no tooltip text) → one
+   in-game tooltip glance settles both. Greater Zombie TTL likewise. Cheap gathers; weight
+   fallback until then = LF 1 (floor, honest).
 
 6. **The validation witness — INSTANCE-counted, not stack-counted (Battlewrath, 2026-07-31).**
    The minion buffs (Ghoul 805019, Abomination 805017, Bone King 707176, Decaying Colossus
@@ -100,9 +119,18 @@ TTL-only.
 persistent army gets HP/stats; the swarm largely never does. HP column honest for Raise pets,
 mostly STALE/absent for Animate zombies.
 
-**OPEN DESIGN QUESTION (his call): swarm rows.** 36 zombie GUIDs in one fight would flood a
-micro grid. Candidate: Raise pets get individual GUID rows; the Animate swarm collapses into
-ONE family row (count + aggregate rates) — the family-normals tier surfacing live. Not decided.
+**SWARM ROWS — RATIFIED (Battlewrath, 2026-07-31).** Animates are TEMP summons: no per-GUID
+UI rows, expected to die by TTL, and **no nameplate expected by design** (the record agrees —
+zombies essentially never plate-bound). The grid SUB-DIVIDES:
+- **Raise section** — per-GUID individual rows (the spec'd columns, LF-cost weight, buff-instance
+  liveness authority).
+- **Animate section** — per-FAMILY normalized rows: `[name][count][stat][stat][stat]`. No HP
+  column (unobservable by design, not a choice). Families: Zombies, Archers, Tomb King,
+  Plaguefather — the exclusives are just families of max-1, same shape, same normalization.
+  Count = live count (TTL-decayed). The stat slots draw from the rate-first set per NORMALS
+  DISCIPLINE (crit%/miss% lead; damage as labeled raw totals only); exact picks at build.
+CLEU still tracks Animate GUIDs internally (attribution needs them); the family collapse is a
+UI/aggregation fact, not a capture fact.
 
 Fight windows + accumulators come AFTER these facts are green (capture before display, standing).
 Facts 1–4 + 6 are now settled; 5 is offline derivation; the swarm-row question is the one
