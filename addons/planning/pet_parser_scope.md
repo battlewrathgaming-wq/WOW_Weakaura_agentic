@@ -177,3 +177,13 @@ BUILD SHAPE (prototype before polish, the house two-step applied): a throwaway S
 one movable/lockable/persisting container, three fake rows, dummy-data ticker - proves the
 element primitives in isolation (the UI equivalent of the smoke harness). The real grid then
 mounts the proven chassis with petlog data. Two small passes, not one entangled one.
+
+**CHASSIS PROVEN LIVE (2026-07-31, COA_PetGrid v0.1.x through one full review round with
+Battlewrath).** Survived: pooling/no-flicker, drag+lock+scale SV persistence, demo 3-state
+cycle, addon off/on. Live-caught + fixed in the round: stat/bar clipping (layout rebalance);
+HP overlay added then refined to % (healthy-or-not read); column-label headers; the family-row
+hole became the TTL WINDOW (same pooled bar, section semantics - reads "time until count next
+drops"); ★ GROW-DOWN: container pinned by TOP-LEFT (UIParent-space, scale-corrected), with a
+one-shot pinner deferring anchor conversion past ADDON_LOADED because frames have NO rect there
+(the legacy bottom anchor survived the naive load-time conversion - a lesson with State Plates'
+delta-guard flavor: apply-time vs load-time validity). Pass 3 = mount the real feed.
