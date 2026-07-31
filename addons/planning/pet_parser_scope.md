@@ -75,15 +75,16 @@ plate-scan + preferred-token stat reads · CVar engineering (REJECTED for us) ·
    | Raise: Lesser Skeletal Warrior (r1) | **GAP** | | Animate: Frost Wyrm 805428 | 30s |
    | Raise: Greater Skeletal Warrior (r2) | **GAP** | | Animate: Greater Zombie | **GAP** (lane certain, TTL unknown) |
 
-   Extra finding: **Bone King is a PROC, not a cast** (coa_spells: passive, procChance 15%,
-   5s aura) — arrives uncast, exclusive; slots into the Animate/family section.
+   (CORRECTED, Battlewrath 2026-07-31: Bone King is NOT a summon at all — a Command: Undead
+   proc buff granting a free instant Blight/Lich Frost. Excluded from the parser entirely;
+   the coa_spells proc entry described the buff, and I mis-slotted it as a minion.)
    **GAPS (gather, not accept):** Skeletal Warrior LF costs are in neither basis (talent JSON
    lacks them — baseline trainer spells; coa_spells is a stat dump, no tooltip text) → one
    in-game tooltip glance settles both. Greater Zombie TTL likewise. Cheap gathers; weight
    fallback until then = LF 1 (floor, honest).
 
 6. **The validation witness — INSTANCE-counted, not stack-counted (Battlewrath, 2026-07-31).**
-   The minion buffs (Ghoul 805019, Abomination 805017, Bone King 707176, Decaying Colossus
+   The minion buffs (Ghoul 805019, Abomination 805017, Decaying Colossus
    805022, Lesser/Greater Skeletal Warrior 805016/807927) manifest as ONE SEPARATE BUFF
    INSTANCE PER INDIVIDUAL — 3 ghouls = 3 "Ghoul" auras each at count 1, not one buff at
    stack 3. Record-confirmed: Decaying Colossus ×2 simultaneous instances in one sweep (the
@@ -95,7 +96,10 @@ plate-scan + preferred-token stat reads · CVar engineering (REJECTED for us) ·
    absence + activity recency. The buff sweep is the liveness AUTHORITY for count-per-type;
    CLEU attributes individuals. Coverage rim: the Animate swarm has NO buff witness (no
    Zombie aura in the record) — swarm liveness stays TTL-governed.
-   (Diabolical 707133 stacks to 7 — a proc buff, not a census.)
+   (NOT census entries, just procs riding the same sweep: Diabolical 707133 [stacks to 7] and
+   Bone King 707176 — Battlewrath: a Command: Undead proc granting a free instant
+   Blight/Lich Frost, NOT a summon. Adjacency in the aura list ≠ membership; the witness
+   list is curated by class knowledge, not inferred from sweep proximity.)
 
 ## THE LIVENESS FINDING (the record's biggest design fact)
 
