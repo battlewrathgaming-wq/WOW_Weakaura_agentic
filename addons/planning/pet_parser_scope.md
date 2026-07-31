@@ -62,6 +62,17 @@ plate-scan + preferred-token stat reads · CVar engineering (REJECTED for us) ·
 One `petlog` session task + one fight with the army out answers 1-4 in a single landed record.
 Fight windows + accumulators come AFTER these facts are green (capture before display, standing).
 
+## PIVOT (Battlewrath, 2026-07-30): FAMILY LIFETIME NORMALS replace the history exporter
+
+On row expiry (death/TTL) the individual FOLDS into its pet-family's running aggregates
+(count, damage, hit/crit/miss samples, activeSeconds -> "what a ghoul generally does",
+self-normalizing through play). RESETTABLE, bounded in SV - kills variable bloat. Two tiers:
+LIVE = per-GUID individuals (the grid) · ARCHIVE = per-TYPE normals (converges on Libellus's
+buckets but as the archive tier only). Family normals also solve the crit/miss sample-floor at
+population scale. CARVE-OUT: the scaling-lab pairs (owner x pet stat snapshots) stay RAW and
+land via the existing mailbox lane on deliberate lab sessions only (Class_design parses
+offline) - no standing exporter machinery at all.
+
 ## Q3 - presentation method (2026-07-30; the one unproven lane, honestly named)
 
 We have built stable STATIC frames (the satellite options panels) but never a live updating
