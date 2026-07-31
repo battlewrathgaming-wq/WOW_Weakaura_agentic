@@ -1,11 +1,17 @@
 # HELM — who has the trunk
 
-holder:  addons bench
-since:   2026-07-30
-heading: BUILD pass 1 of the pet parser: task petlog (registry + raw CLEU + plate-window stat/owner pairs + buff-stack witness) -> one fight lands checklist facts 1-4.
-runway:  one working session
+holder:  RELEASED
+since:   2026-07-31
 
-next:    ADDONS: pet parser fully scoped - addons/planning/pet_parser_scope.md (column audit: most PROVEN; ★ CombatLogGetCurrentEventInfo IS backported = canonical CLEU, no layout gambling; Recount era-fossil = guardians-without-unitids is a constraint THIS fork removed). Build gate = the petlog v0 checklist (5 items, one fight answers 1-4). On Battlewrath go: build task petlog.
+next:    ADDONS: the pet-parser arc RESOLVED and pivoted - Mancer (LtGenZombie) is the capture
+         driver, OUR product is MancerLedger (consumer: user-controlled profiles folding his
+         10-fight ring into lifetime logs; calm window, flight-recorder minimap token, lockout
+         drift posture, Rates/Volume paged compare). Serviceable for dummy testing AS IS -
+         thesis proven (infer the game through observable recordable events; first finding:
+         gear moves pet miss%). Read operations/Addons_load.md top + addons/MancerLedger/
+         DRIVER_CONTRACT.md. Held for their moments: the offer to LtGenZombie (findings bank
+         addons/planning/mancer_findings.md), combatSeconds fold promotion, PetGrid two-witness.
+         COA_PetGrid stays personal tooling (v0.2 live feed proven).
 
 ---
 
