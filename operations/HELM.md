@@ -1,11 +1,11 @@
 # HELM — who has the trunk
 
-holder:  addons bench
-since:   2026-07-30
-heading: Silo-ingest Libellus-Leti + classify its GAME-READING methods (pet computing). GUARDRAIL: understanding only - we do not copy their execution/design; findings inform OUR capture design, never replace it.
-runway:  one working session
+holder:  RELEASED
+since:   2026-07-30 (released - Libellus-Leti ingested + reading-methods classified under the no-copy guardrail)
+heading: —
+runway:  —
 
-next:    Suno manager — keep building the playlist. **03 "The Maestro of the Dead" is drafted + UNRUN — grade it next.** Then more forms × vibes (04 Grand Theatrical & 05 Industrial still untested) + some Driver-A fast fills for volume. Still open: the Suno manager's own **charter**; generalising the content-attachment layer. Everything lives in `Class_identity/Suno/` (its README indexes forms/levers/vocab/recipe/prompts/summonable-features); tag helm activity "suno".
+next:    ADDONS: the pet parser design (Addons_load top entry) now has its inspection input - refs_libellus/inspection/READING_METHODS.md (4 methods classified: CLEU normalizer, stateless flags attribution vs our registry = complementary axes, plate-scan + CVAR-engineering stat route, per-TYPE accumulator). 3 cross-checks banked (CombatLogGetCurrentEventInfo backport? guardian flag bits? the CVar lever list). Next step when called: the petlog session task.
 
 ---
 
