@@ -52,6 +52,13 @@ plate-scan + preferred-token stat reads · CVar engineering (REJECTED for us) ·
 4. Miss-type strings on the fork (DODGE/PARRY/MISS vocabulary as expected).
 5. LF-cost table derived from our basis (offline; no client needed).
 
+6. **THE LIVE VALIDATION PASS (Battlewrath, 2026-07-30): registry count == guardian-buff STACK
+   count.** The Necro's minion-count buff (the corpus minion-count-tracker pattern's read) is an
+   independent live witness of "how many are up" — the grid continuously checks
+   #activeRows == buffStacks. Match = registry proven in-flight; mismatch = drift detected
+   (missed summon/death) → flag it, and it's the natural trigger for a resync/backfill. The
+   two-witness house pattern, running CONTINUOUSLY inside the addon.
+
 One `petlog` session task + one fight with the army out answers 1-4 in a single landed record.
 Fight windows + accumulators come AFTER these facts are green (capture before display, standing).
 
