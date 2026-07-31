@@ -52,6 +52,10 @@ MANIFEST = {
         "client_name": "COA_PetGrid",
         "exclude_dirs": set(),
     },
+    "MancerLedger": {
+        "client_name": "MancerLedger",
+        "exclude_dirs": set(),
+    },
 }
 
 
