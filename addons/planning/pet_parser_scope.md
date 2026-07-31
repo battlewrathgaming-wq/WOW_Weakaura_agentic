@@ -9,7 +9,7 @@ Libellus + Recount understood, not copied._
 | column | source | status |
 |---|---|---|
 | Name (individual) | registry: SPELL_SUMMON GUID + entry-id decode | **PROVEN** (guardian-tracker + plates records) |
-| HP bar | plate-window UnitHealth | **PROVEN LIVE** (evidence pair; opportunistic per the no-CVar boundary) |
+| HP bar | plate-window UnitHealth | **PROVEN LIVE** (evidence pair; opportunistic per the no-CVar boundary). DISPLAY RULE (Battlewrath 2026-07-30): displayable but NOT rendered when absent — per-row the bar hides (no dimmed-stale bar), and the COLUMN COLLAPSES when no row has HP (adaptive width; honest absence over decorated staleness) |
 | Dmg / Taken | CLEU damage subevents by source/dest GUID | API proven; **pet-sourced events + flag bits = petlog v0 check** |
 | crit% | CLEU critical flag | position CANONICAL (see the API finding); **live sample = v0 check** |
 | miss% | SPELL_MISSED/SWING_MISSED miss types | same |
