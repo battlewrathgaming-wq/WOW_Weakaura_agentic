@@ -122,3 +122,6 @@ IDENTITY echoes (she who was commanded now commands; strength = the weight of th
 the same lyrics rendered as form 01 (organ-grand, no guitar) —
 [`necromancer_rise-of-the-grave_01.md`](necromancer_rise-of-the-grave_01.md) — to isolate what the form
 alone contributes.
+
+**A/B result (2026-08-01):** both great. Battlewrath's taste **leans 01** for this song; **04 stands on
+its own and has a place** — part of the weighting *01/02/03 = core, 04/05 = for a change.*

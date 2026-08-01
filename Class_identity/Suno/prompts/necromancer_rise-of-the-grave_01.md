@@ -110,4 +110,7 @@ And follow me.
 
 Composed 2026-08-01 by the Suno manager — A/B of *Rise of the Grave*: form 01 rendering of the form-04
 track, same lyrics, palette + descriptors swapped to 01. Tests form = spec / content = attached directly.
-**Unrun.**
+
+**RUN 2026-08-01 — both great; Battlewrath's taste leans THIS (01) for the song.** Confirms form = spec /
+content = attached (same words, both forms valid, a different feel each). Established the taste weighting:
+**01/02/03 = his core leaning, 04/05 = for a change** (good, with a place, but occasional not default).

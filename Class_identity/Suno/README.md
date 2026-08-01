@@ -65,7 +65,8 @@ Two layers, kept clean:
     **Ran — "lands really well"; form 04's first live test passed.**
   - [`necromancer_rise-of-the-grave_01.md`](prompts/necromancer_rise-of-the-grave_01.md) — **A/B test:**
     *Rise of the Grave*, **same lyrics** rendered as form 01 (organ-grand, no guitar) to isolate the
-    form's contribution against the 04 version. _To run + compare._
+    form's contribution against the 04 version. **Result: both great; taste leans 01** — established the
+    weighting *01/02/03 = core, 04/05 = for a change.*
 - **Summonable features = the callable catalog** — qualities discovered in real runs and made reproducible
   (summon by design, not luck), in [`summonable-features.md`](summonable-features.md). Battlewrath's
   principle. First entry: the **banshee wail**.
@@ -88,6 +89,11 @@ job** is to hold him in the character's space while he plays. Taste is the form;
   — the project's telos + the fact-basis method (§0, the fork).
 
 ## Song forms (spec — the taste basis, as it fills in)
+
+**Taste weighting (Battlewrath, 2026-08-01, from the _Rise of the Grave_ A/B):** his core leaning is the
+**guitar-free grand-gothic register — 01 / 02 / 03** (organ, choir, cello, bells; the necromancer's native
+sound). **04 / 05** (the heavy guitar forms) are good and *have a place* — but as **a change of pace**, not
+the default. Weight the playlist mostly 01/02/03, with 04/05 sprinkled for variety.
 
 - [`forms/01_gothic-operatic.md`](forms/01_gothic-operatic.md) — **Gothic Operatic (Driving Swell).**
   Fixed driving floor (fractional subdivision, heavy percussion, bass-rich) under an operatic swell;

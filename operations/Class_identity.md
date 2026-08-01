@@ -148,7 +148,12 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     the crescendo, cold-dominion (grand not triumphant). **RAN — "lands really well" (04's first live test
     passed; guitar fits her).** → **A/B experiment:** the *same lyrics* rendered as form 01 (organ-grand,
     no guitar) — `prompts/necromancer_rise-of-the-grave_01.md` — to isolate what the form alone
-    contributes (form = spec, content = attached, put on trial). Both unrun-as-a-pair / 04 graded.
+    contributes (form = spec, content = attached, put on trial). **A/B RESULT: both great** — taste
+    **leans 01** for this song; 04 stands on its own and has a place.
+  - **★ Taste weighting established (Battlewrath, 2026-08-01):** core leaning = **01/02/03** (guitar-free
+    grand-gothic — the necromancer's native register); **04/05 = for a change** (heavy guitar forms —
+    good, have a place, but occasional, not the default). Weight the playlist mostly 01/02/03, 04/05 for
+    variety. A durable taste-basis fact (banked in `Suno/README.md` forms section).
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 
