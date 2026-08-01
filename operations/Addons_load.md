@@ -4,6 +4,18 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
+## Bench capability (2026-08-01): MPQ + DBC reading (client data manifests)
+
+mpyq (already in the toolchain via extract_interface.py) reads ANY client MPQ + its DBC
+files directly - proven by the Undead-Venomancer diagnosis: CharBaseInfo.dbc (the client's
+LOCAL race x class manifest, single copy in patch-M) decoded in-place -> Venomancer(29,
+'PROPHET') granted to races 4/8 only, Undead row MISSING -> create UI blocks client-side
+(IsRaceClassValid) before the server allow can surface. Dev-side miss, relayed precisely.
+Pattern: the client gates on SHIPPED manifests (DBC in the patch chain), not runtime checks
+against the server - "is there a local manifest?" is now a mechanical yes-and-here-it-is.
+Glue chain for create-gating: CharacterCreateUtil.IsRaceClassEnabledAndValid =
+IsRaceClassValid(DBC) AND C_CharacterCreate.CanCreateClass (realm/account side).
+
 ## Bench capability (2026-07-31): the /combatlog disk witness
 
 `/combatlog` toggles the client's own CLEU-to-disk stream -> `Logs\<datetime> WoWCombatLog.txt`
