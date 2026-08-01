@@ -30,7 +30,8 @@ cannot listen."* Tender, longing, aching. Comfort offered into absence.
 ## The voice — a personal message
 
 Close, direct, confiding; first-person-intimate, as if to *one* person beside her. **The focal point** —
-everything else defers to it. It leans in, quiet; it does not soar or belt (contrast 01/04's lead).
+everything else defers to it. It leans in, quiet; it does not soar or belt (contrast 01/04's lead). **And
+the timbre is a _creature's_, not a young singer's** — see Vocal features.
 
 ## Instrumentation — IN (spare)
 
@@ -59,9 +60,13 @@ close voice in a large empty space.
 
 ## Vocal features
 
-The **personal-message register** (close, confiding) is the whole voice here. **Not the banshee wail**
-(summonable #001 — a grand/desperate cry, wrong for this intimacy). If a summonable quality belongs here
-it's *closeness* — a voice mic'd intimate, almost in the room with the listener.
+The **personal-message register** (close, confiding) is the whole voice here — but the **timbre is a
+creature's, not a singer's** (Battlewrath, 2026-08-01): a **banshee speaking in her softest register** —
+spectral, aged, weathered, cold, otherworldly — *not* young, clean, or perky. **Not the banshee _wail_**
+(summonable #001's loud cry — wrong for this intimacy); this is the *same undead voice held soft*. The
+softness is a monster's softness. (Pairs with *closeness* — a voice mic'd intimate, almost in the room.)
+_Corrects the earlier draft, which wrongly waved the banshee off entirely — it's the wail that's out, not
+the voice._
 
 ## Content resonance (a note — content attaches later, loosely)
 
