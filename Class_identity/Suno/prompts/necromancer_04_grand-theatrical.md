@@ -55,7 +55,7 @@ answer the hand that will not be denied.
 (gang-choir)
 We are the risen. we are the tide.
 (lead, soaring)
-And I am the will they cannot outlive.
+And I am the will they cannot survive.
 
 [Verse]
 (cold, certain)
@@ -70,7 +70,7 @@ Rise.
 Rise of the grave —
 answer the hand that will not be denied.
 We are the risen. we are the tide.
-And I am the will they cannot outlive.
+And I am the will they cannot survive.
 
 [Breakdown]
 (strip to organ and a single voice — the moment of command)
@@ -89,7 +89,7 @@ Rise — and do not stop.
 Rise of the grave —
 answer the hand that will not be denied.
 We are the risen. we are the tide.
-And I am the will they cannot outlive.
+And I am the will they cannot survive.
 
 [Outro]
 (the march of the risen receding — organ, drum, a last low chord)
