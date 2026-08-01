@@ -109,4 +109,8 @@ voice. Lore imagined from the known core (feel, not asserted fact); original lyr
 **Tone confirmed by Battlewrath (aching, almost-forgiving)** and deepened with his theme: **shared
 burden** — the Forsaken did vile things under the Scourge too, so the forgiveness is *earned*, not
 pitying ("my hands are not clean either") — and **the burden takes what you became, not who you were**
-(she forgives the boy; grieves what he became). **Unrun.**
+(she forgives the boy; grieves what he became).
+
+**KEEPER (2026-08-01):** the voice landed (v5.0 + Weirdness ~70 + front-loaded `Singer voice:` directive),
+and Battlewrath **slept with it on loop** — the strongest grade a personal track gets. Form 06's first
+track is a keeper; the form is proven.

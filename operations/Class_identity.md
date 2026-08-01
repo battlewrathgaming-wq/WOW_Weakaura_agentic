@@ -165,7 +165,11 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     content (Battlewrath) = **the Culling of Stratholme, a one-sided intimate address to Arthas** — the
     beloved prince who culled the living so they couldn't rise (or watch the Scourge grow), and they rose
     anyway / he fell anyway. Sparse piano, present close voice, no banshee. Register dial flagged for his
-    grade (aching-almost-forgiving vs colder/unforgiving). First draft, unrun — 06's first live test.
+    grade (aching-almost-forgiving vs colder/unforgiving). **KEEPER (2026-08-01)** — tone right, found
+    piano, and the creature voice **solved** (v5.0 + Weirdness ~70 + front-loaded `Singer voice:`
+    directive); Battlewrath **slept with it on loop**. Form 06 proven. A durable **voice-summoning recipe**
+    fell out (front-load directive + version + weirdness + exclude — banked in `Suno/prompt-recipe.md`),
+    plus the **model-version-as-voice-lever** finding (v5.0 authentic / v5.5 clean — `Suno/suno-levers.md`).
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 
