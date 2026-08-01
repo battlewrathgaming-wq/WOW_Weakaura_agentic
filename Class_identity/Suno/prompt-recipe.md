@@ -55,6 +55,12 @@ composed, copy-paste-ready prompts live in [`prompts/`](prompts/)._
   - **Let the instruments speak** (Battlewrath, 2026-07-30) — for an instrument-focused track, give them
     dedicated **instrumental sections** (`[Instrumental]` / `[<Instrument> Solo]` / `[Instrumental Break]`),
     described with what to feature. Not every section needs vocals.
+  - **★ Nailing a specific voice** (from the form-06 creature-voice, 2026-08-01) — descriptors buried in
+    the Styles list are often **not enough**. To *summon* a voice, four levers **together**: **(1)
+    front-load an explicit `Singer voice: [description]` directive** (first-token priority) · **(2) pick
+    the model version** for its vocal character (**v5.0** rawer/authentic · **v5.5** cleaner/youthful) ·
+    **(3) raise Weirdness (~70)** for a distinctive / aged / rounded timbre · **(4) Exclude the default**
+    you don't want (young, clean, pretty, autotune). One lever alone won't hold; the stack does.
 
 ## Control hierarchy — most precise → most diffuse
 

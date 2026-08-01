@@ -14,9 +14,11 @@ Imagined from the known emotional core; original lyrics._
 
 ## The lever set
 
-**Lyrics mode:** `Write` · **Vocal Gender:** `Female` (present, close — a personal message) ·
-**Weirdness:** `~20` (restraint — intimate, controlled) · **Style Influence:** `~80` · **Duration:**
-`Custom ~4:00` (or Auto) · **Title:** `The Prince Who Chose`
+**Model:** `v5.0` (more authentic voices — v5.5 gave a too-youthful/clean voice, per Battlewrath) ·
+**Lyrics mode:** `Write` · **Vocal Gender:** `Female` · **Weirdness:** `~70` (pushes the voice off the
+youthful default into the aged/rounded creature timbre — this **overrides** the low-restraint setting; the
+voice need won, and the sparse arrangement held) · **Style Influence:** `~80` · **Duration:** `Custom ~4:00`
+(or Auto) · **Title:** `The Prince Who Chose`
 
 **Styles** _(front-loaded; sparse/intimate — the arrangement must never crowd the voice):_
 ```
@@ -31,6 +33,8 @@ young voice, perky vocals, bright pop vocals, clean polished vocals, pretty voca
 ## Lyrics (Write box) — sparse, close, one-sided; line structure for the tender delivery
 
 ```
+Singer voice: a whispy, haunted banshee — spectral, aged, hushed (not young, not clean)
+
 [Intro]
 (a single worn, slightly-detuned upright piano in a large empty room — felt-muted, faint hammer noise, long reverb, silence between the notes)
 
@@ -84,8 +88,10 @@ I am still here.
 - **The form (06's first live test)** — does the arrangement **create absence for the voice** (sparse
   piano, room, silence; nothing competing), and does the voice land as a **present personal message** —
   not a limp whisper?
-- **★ The voice (the fix this pass)** — does it now read as **the creature** — a spectral, aged banshee
-  held *soft* — rather than a young, clean, perky singer? This is the key thing to grade on the re-run.
+- **✅ The voice — SOLVED (Battlewrath, 2026-08-01)** by three levers together: a **front-loaded
+  `Singer voice: a whispy, haunted banshee` directive** + **model v5.0** (more authentic voices) +
+  **Weirdness ~70**. Descriptors buried in Styles alone weren't enough on v5.5; the front-loaded directive
+  + the version + the weirdness summon the aged, rounded creature timbre.
 - **The register dial (your corner)** — I wrote her *aching and almost-forgiving* (she forgives *the boy
   he was*, not the Lich King). Is that the right note for the Forsaken here — or should it be more
   unforgiving, colder, more purely grieving? Easy to redraw.
