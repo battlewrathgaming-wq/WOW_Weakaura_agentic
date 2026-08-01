@@ -121,6 +121,12 @@ the default. Weight the playlist mostly 01/02/03, with 04/05 sprinkled for varie
   The cold half of the split — **hard, machine-driven, martial, horror-tinged** (Rammstein, Rob Zombie).
   Catharsis through *force*, not grandeur; **harsh/guttural vocals** (the one new vocal color in the set);
   industrial synth welcome under the guitars; drive-not-chaos at its most mechanical. Graded — a clear pass.
+- [`forms/06_intimate-hollow.md`](forms/06_intimate-hollow.md) — **Intimate Hollow (Song for the Absent).**
+  The intimate/small pole, opposite the grand forms — **still, sparse, close.** Governing law: **the
+  instruments create absence so the voice is heard** (they never compete). Register: tender, longing —
+  *playing for someone absent, for their comfort even if they can't listen.* A **present** personal-message
+  voice (threads the no-whole-whispery-tracks rule). Sourced from Sóley (*The Sun Is Going Down II*).
+  _(⚠ weighting open — likely core-adjacent; untested. Rim in-file.)_
 
 ## Coming (this folder — owned by the Suno manager)
 

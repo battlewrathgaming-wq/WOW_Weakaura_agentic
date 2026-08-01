@@ -154,6 +154,13 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     grand-gothic — the necromancer's native register); **04/05 = for a change** (heavy guitar forms —
     good, have a place, but occasional, not the default). Weight the playlist mostly 01/02/03, 04/05 for
     variety. A durable taste-basis fact (banked in `Suno/README.md` forms section).
+  - **Sixth form sourced — 06 Intimate Hollow (Song for the Absent)** (`Suno/forms/06_intimate-hollow.md`),
+    from a "best fit" consideration on **Sóley — _The Sun Is Going Down II_ (KEXP)**. The intimate/small
+    pole, opposite the grand forms: still, sparse, close. **Governing law: the instruments create absence
+    so the voice is heard (never compete).** Register: tender/longing — *playing for someone absent, for
+    their comfort even if they can't listen*; a **present** personal-message voice (threads the
+    no-whole-whispery-tracks rule). ⚠ weighting open (likely core-adjacent); untested — spec awaits
+    Battlewrath's grade, then a first track.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 
