@@ -58,6 +58,7 @@ and you laid us down like grain.
 (barely there — forgiving and broken at once)
 I do not hate you.
 I have tried. I cannot.
+My hands are not clean either.
 I only wish that someone had told you —
 
 [Bridge]
@@ -71,7 +72,9 @@ And so, my prince... did you.
 (whispered, close, to one who cannot hear)
 Sleep now.
 if you can.
-I am still here. and I forgive the boy you were.
+I forgive the boy you were —
+the burden only took what you became.
+I am still here.
 ```
 
 ---
@@ -91,4 +94,9 @@ I am still here. and I forgive the boy you were.
 
 Composed 2026-08-01 by the Suno manager — form 06 (first track) × necromancer, content = the Culling of
 Stratholme, a one-sided address to Arthas (Battlewrath's steer). Driver B; sparse piano, present close
-voice. Lore imagined from the known core (feel, not asserted fact); original lyrics. **Unrun.**
+voice. Lore imagined from the known core (feel, not asserted fact); original lyrics.
+
+**Tone confirmed by Battlewrath (aching, almost-forgiving)** and deepened with his theme: **shared
+burden** — the Forsaken did vile things under the Scourge too, so the forgiveness is *earned*, not
+pitying ("my hands are not clean either") — and **the burden takes what you became, not who you were**
+(she forgives the boy; grieves what he became). **Unrun.**
