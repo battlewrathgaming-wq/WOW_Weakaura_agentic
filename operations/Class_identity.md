@@ -137,8 +137,10 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     vaudeville.md`): Battlewrath's ask = **focus on the grand gothic organ** ("such a fun sound"), so 03's
     whimsy is centred on the grand pipe organ (a haunted-carnival bend, not the default accordion/fiddle).
     Content (my proposal) = **"The Maestro of the Dead"** — the necromancer as a gleeful showman
-    conducting her army; sinister-playful gallows-whimsy waltz. No banshee (doesn't fit the grin). First
-    draft, unrun — proves the range flips to whimsy.
+    conducting her army; sinister-playful gallows-whimsy waltz. No banshee (doesn't fit the grin).
+    **RAN 2026-08-01 — went well:** the musical/instrumental sections landed (the "let the instruments
+    speak" additions) and the voice lines delivered snappy/witty, reflecting the theme. ⇒ **the method now
+    spans all three tonal registers** (01 grim-driving · 02 funereal-desperate · 03 gallows-whimsy).
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 

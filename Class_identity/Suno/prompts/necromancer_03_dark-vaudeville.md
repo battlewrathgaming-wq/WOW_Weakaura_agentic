@@ -100,8 +100,13 @@ Take a bow, my darlings.
 - **Line structure** — does the short-line comic timing carry the wry delivery?
 - **The vibe** — the "Maestro" showman conceit: fun, or too much? Your corner — redraw the persona freely.
 
-## Provenance
+## Provenance & grade
 
 Composed 2026-07-30 by the Suno manager — form 03 (organ-forward bend) × necromancer, Driver B. Content
-(the Maestro conceit) is the Suno manager's proposal, awaiting Battlewrath's grade. Original lyrics.
-**Unrun.**
+(the Maestro conceit) is the Suno manager's proposal. Original lyrics.
+
+**RUN 2026-08-01 — went well (Battlewrath):** the **musical / instrumental sections landed** (the "let the
+instruments speak" additions — organ solo, instrumental break, breakdown, outro), and the **voice lines
+delivered snappy / witty, reflecting the theme** — the whimsy register + line-structure comic timing
+worked. ⇒ the method now spans **all three tonal registers**: grim-driving (01), funereal-desperate (02),
+gallows-whimsy (03).
