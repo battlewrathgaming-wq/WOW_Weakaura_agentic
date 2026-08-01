@@ -161,6 +161,11 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     their comfort even if they can't listen*; a **present** personal-message voice (threads the
     no-whole-whispery-tracks rule). ⚠ weighting open (likely core-adjacent); untested — spec awaits
     Battlewrath's grade, then a first track.
+  - **Form 06's first track drafted — "The Prince Who Chose"** (`prompts/necromancer_06_intimate-hollow.md`):
+    content (Battlewrath) = **the Culling of Stratholme, a one-sided intimate address to Arthas** — the
+    beloved prince who culled the living so they couldn't rise (or watch the Scourge grow), and they rose
+    anyway / he fell anyway. Sparse piano, present close voice, no banshee. Register dial flagged for his
+    grade (aching-almost-forgiving vs colder/unforgiving). First draft, unrun — 06's first live test.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 

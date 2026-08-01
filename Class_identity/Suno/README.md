@@ -67,6 +67,10 @@ Two layers, kept clean:
     *Rise of the Grave*, **same lyrics** rendered as form 01 (organ-grand, no guitar) to isolate the
     form's contribution against the 04 version. **Result: both great; taste leans 01** — established the
     weighting *01/02/03 = core, 04/05 = for a change.*
+  - [`necromancer_06_intimate-hollow.md`](prompts/necromancer_06_intimate-hollow.md) — form 06 (first
+    track) × necromancer, **"The Prince Who Chose"**: the Culling of Stratholme as an intimate, one-sided
+    address to Arthas (the beloved prince who culled them, and fell anyway). Sparse piano, present close
+    voice. _First draft, to run._
 - **Summonable features = the callable catalog** — qualities discovered in real runs and made reproducible
   (summon by design, not luck), in [`summonable-features.md`](summonable-features.md). Battlewrath's
   principle. First entry: the **banshee wail**.
