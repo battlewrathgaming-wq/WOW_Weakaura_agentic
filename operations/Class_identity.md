@@ -141,6 +141,12 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     **RAN 2026-08-01 — went well:** the musical/instrumental sections landed (the "let the instruments
     speak" additions) and the voice lines delivered snappy/witty, reflecting the theme. ⇒ **the method now
     spans all three tonal registers** (01 grim-driving · 02 funereal-desperate · 03 gallows-whimsy).
+  - **Fourth track drafted — form 04 (first live test) × necromancer** (`prompts/necromancer_04_grand-
+    theatrical.md`): content (Battlewrath) = **her command of power, "Rise of the Grave"**; form 04 Grand
+    Theatrical Heavy. Battlewrath's steer: **power chords + sharp tones** — the **guitar wall enters the
+    necromancer sound for the first time** ("sharp tones will fit well with power"). Driver B, banshee at
+    the crescendo, cold-dominion (grand not triumphant). First draft, unrun — tests the heavy end of the
+    range (04) + guitar-on-the-necromancer.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 

@@ -58,7 +58,11 @@ Two layers, kept clean:
     **Ran strong on all four dims — the method transfers.**
   - [`necromancer_03_dark-vaudeville.md`](prompts/necromancer_03_dark-vaudeville.md) — form 03
     (organ-forward bend) × necromancer, **"The Maestro of the Dead"**; sinister-playful gallows-whimsy
-    waltz on a grand gothic pipe organ. _First draft, to run._
+    waltz on a grand gothic pipe organ. **Ran well — musical sections + snappy/witty delivery.**
+  - [`necromancer_04_grand-theatrical.md`](prompts/necromancer_04_grand-theatrical.md) — form 04
+    (first track) × necromancer, **"Rise of the Grave"** (her command of power); grand symphonic-metal —
+    power chords + sharp tone enter the necromancer sound; operatic lead, banshee at the peak.
+    _First draft, to run._
 - **Summonable features = the callable catalog** — qualities discovered in real runs and made reproducible
   (summon by design, not luck), in [`summonable-features.md`](summonable-features.md). Battlewrath's
   principle. First entry: the **banshee wail**.
