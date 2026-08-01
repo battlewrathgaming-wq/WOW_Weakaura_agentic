@@ -111,9 +111,14 @@ And follow me.
 - **Banshee at the crescendo** — lands the wail at the peak (on-theme: the command that raises)?
 - **The vibe** — "command of power / Rise of the Grave": dominion the way you meant it? Your corner.
 
-## Provenance
+## Provenance & grade
 
 Composed 2026-08-01 by the Suno manager — form 04 (first track) × necromancer, content = command of
 power ("Rise of the Grave"), Driver B. Battlewrath's steer: power chords + sharp tones. Original lyrics;
 IDENTITY echoes (she who was commanded now commands; strength = the weight of the graves she keeps).
-**Unrun.**
+
+**RUN 2026-08-01 — "lands really well" (Battlewrath).** Form 04's first live test passed: the guitar wall
++ operatic lead + command register worked on the necromancer, grand not triumphant. → **A/B experiment:**
+the same lyrics rendered as form 01 (organ-grand, no guitar) —
+[`necromancer_rise-of-the-grave_01.md`](necromancer_rise-of-the-grave_01.md) — to isolate what the form
+alone contributes.

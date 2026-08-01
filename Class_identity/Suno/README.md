@@ -62,7 +62,10 @@ Two layers, kept clean:
   - [`necromancer_04_grand-theatrical.md`](prompts/necromancer_04_grand-theatrical.md) — form 04
     (first track) × necromancer, **"Rise of the Grave"** (her command of power); grand symphonic-metal —
     power chords + sharp tone enter the necromancer sound; operatic lead, banshee at the peak.
-    _First draft, to run._
+    **Ran — "lands really well"; form 04's first live test passed.**
+  - [`necromancer_rise-of-the-grave_01.md`](prompts/necromancer_rise-of-the-grave_01.md) — **A/B test:**
+    *Rise of the Grave*, **same lyrics** rendered as form 01 (organ-grand, no guitar) to isolate the
+    form's contribution against the 04 version. _To run + compare._
 - **Summonable features = the callable catalog** — qualities discovered in real runs and made reproducible
   (summon by design, not luck), in [`summonable-features.md`](summonable-features.md). Battlewrath's
   principle. First entry: the **banshee wail**.

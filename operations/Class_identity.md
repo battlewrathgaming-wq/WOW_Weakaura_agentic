@@ -145,8 +145,10 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     theatrical.md`): content (Battlewrath) = **her command of power, "Rise of the Grave"**; form 04 Grand
     Theatrical Heavy. Battlewrath's steer: **power chords + sharp tones** — the **guitar wall enters the
     necromancer sound for the first time** ("sharp tones will fit well with power"). Driver B, banshee at
-    the crescendo, cold-dominion (grand not triumphant). First draft, unrun — tests the heavy end of the
-    range (04) + guitar-on-the-necromancer.
+    the crescendo, cold-dominion (grand not triumphant). **RAN — "lands really well" (04's first live test
+    passed; guitar fits her).** → **A/B experiment:** the *same lyrics* rendered as form 01 (organ-grand,
+    no guitar) — `prompts/necromancer_rise-of-the-grave_01.md` — to isolate what the form alone
+    contributes (form = spec, content = attached, put on trial). Both unrun-as-a-pair / 04 graded.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog, its own charter.
 
