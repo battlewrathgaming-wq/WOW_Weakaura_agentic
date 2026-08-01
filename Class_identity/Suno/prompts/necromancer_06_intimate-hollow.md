@@ -20,7 +20,7 @@ Imagined from the known emotional core; original lyrics._
 
 **Styles** _(front-loaded; sparse/intimate — the arrangement must never crowd the voice):_
 ```
-intimate hollow ballad, sparse and haunting, cold and tender, mournful and longing, present close female voice, solo piano, spacious echo and reverb, long silences and room to breathe, slow and still, minimal arrangement that never crowds the voice, a one-sided personal address
+intimate hollow ballad, sparse and haunting, cold and tender, mournful and longing, present close female voice, worn detuned upright piano, felt-muted and slightly out of tune, aged and weathered, faint mechanical hammer noise, spacious echo and reverb, long silences and room to breathe, slow and still, minimal arrangement that never crowds the voice, a one-sided personal address
 ```
 
 **Exclude styles** _(nothing that competes with the voice — the governing law):_
@@ -32,7 +32,7 @@ wall of sound, dense arrangement, busy instrumentation, loud drums, electric gui
 
 ```
 [Intro]
-(a single piano in a large empty room, long reverb, silence between the notes)
+(a single worn, slightly-detuned upright piano in a large empty room — felt-muted, faint hammer noise, long reverb, silence between the notes)
 
 [Verse]
 (close, tender, almost spoken — a personal message)
@@ -87,7 +87,9 @@ I am still here.
 - **The register dial (your corner)** — I wrote her *aching and almost-forgiving* (she forgives *the boy
   he was*, not the Lich King). Is that the right note for the Forsaken here — or should it be more
   unforgiving, colder, more purely grieving? Easy to redraw.
-- **Lead instrument** — piano (Sóley's), or a soft cello / low organ to sit closer to her?
+- **The found piano** — does *worn / detuned / felt-muted / mechanical-hammer-noise* summon a **found**
+  piano (looser strings, not maintained) rather than a pristine one? A craft target — if it lands, it
+  becomes summonable-feature **#002 ("the found piano")**. (Suno can fumble specific piano characters.)
 - **The one-sidedness** — does it feel like she's singing to someone who cannot hear (the form's soul)?
 
 ## Provenance

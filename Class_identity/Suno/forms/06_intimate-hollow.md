@@ -34,9 +34,11 @@ everything else defers to it. It leans in, quiet; it does not soar or belt (cont
 
 ## Instrumentation — IN (spare)
 
-A single lead instrument carrying it (piano — as in Sóley — or a soft cello / low organ) · room reverb and
-echo (the hollowed tones) · **silence and space as material** · perhaps one distant, sparse texture.
-Whatever is present stays *under* the voice.
+A single lead instrument carrying it — ideally a **found / worn piano** (detuned, felt-muted, slightly out
+of tune, faint mechanical hammer noise — *a forgotten upright in an empty room, not a pristine maintained
+grand*; Battlewrath, 2026-08-01), or a soft cello / low organ · room reverb and echo (the hollowed tones)
+· **silence and space as material** · perhaps one distant, sparse texture. Whatever is present stays
+*under* the voice.
 
 ## Instrumentation & tone — OUT
 
@@ -75,7 +77,8 @@ playlist, or a special, occasional intimate piece?
 ## Open / provisional (the honest rim)
 
 - **⚠ Name** — "Intimate Hollow (Song for the Absent)" is provisional; rename freely.
-- **⚠ Lead instrument** — piano (Sóley), or does a soft cello / low organ fit her better?
+- **Lead instrument** — a **found/worn piano** (detuned/felt/aged — Battlewrath, 2026-08-01), or a soft
+  cello / low organ; confirm which sits closest to her on a run.
 - **⚠ Weighting** — core-adjacent vs occasional/special.
 - **Untested** — no track yet.
 
