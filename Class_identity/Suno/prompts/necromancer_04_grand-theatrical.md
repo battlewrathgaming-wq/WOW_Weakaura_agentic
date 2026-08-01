@@ -43,7 +43,7 @@ Now the voice is mine.
 [Build-Up]
 (power chords and orchestra swelling, double-kick entering, the choir gathering)
 (rising)
-Every stone, I keep.
+Every soul, I hold.
 Every bone, I own.
 The dead are the weight that makes me strong.
 
