@@ -20,6 +20,12 @@ banked a false 'forms don't wake drivers' finding off it; the two stacked unknow
 His working pattern: forms share page 8 (populated per spec); probe kit for future form
 oddities: /dump GetShapeshiftForm(),GetBonusBarOffset() · SecureCmdOptionParse(specifics
 FIRST - first match wins) · the 5-event listener one-liner.
+FINAL STRING (validated): `[bonusbar:5]11;[mod:shift]10;[stealth]7;[form:1/2/3/4]8;1` -
+priority stack modal > modifier > stealth > OWN forms (whitelist) > home floor. Two late
+lessons: (a) the trailing unconditional value IS the else-branch - without it, no-match
+emits nothing and the bar goes stale; (b) EXTERNAL morphs set real form-state (Stratholme
+fear -> Ghoul form id 7, DBC-flagged OWN-BAR) - bare [form] greedily captures them, the
+1-4 whitelist + floor ignores them. Possession rides bonusbar:5 (same page as vehicles).
 
 ## Bench capability (2026-08-01): MPQ + DBC reading (client data manifests)
 
