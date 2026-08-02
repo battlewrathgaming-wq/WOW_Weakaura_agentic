@@ -181,7 +181,7 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     — extract a pure-instrumental form later if reused). **Track 1 "The Approach" drafted** as the far
     anchor (calibrates the gradient); 2–6 graduate/recede from it. Craft note banked: Suno's Instrumental
     toggle strips voice, so the banshee-texture tracks (2, 6) use voice-as-texture in Styles, not pure
-    Instrumental mode. Helm held (suno).
+    Instrumental mode.
     - **Track 1 "The Approach" CALIBRATED** (far anchor): Write-box directives drive it (pure Instrumental
       mode drifted new-age); organ made grand/present/space-filling ("far ≠ weak — she sounds the space,
       like the sun on the horizon"); **cymbal crash → deep bell-strike** at the swell crest. Craft findings

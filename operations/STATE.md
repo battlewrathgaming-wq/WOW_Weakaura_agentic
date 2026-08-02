@@ -22,9 +22,18 @@ Second Suno session. The lane went from specs to **a real playlist + tuned metho
   directive + pick the **model version** [v5.0 authentic / v5.5 clean] + **Weirdness ~70** + Exclude the
   default); **model-version-as-voice-lever** (`suno-levers.md`); banshee = a timbre (loud wail + soft
   register); "found piano" (craft target).
-- Helm **RELEASED** at close-off. **Charter settled** (2026-08-01 — a light founding directive at the top
-  of `Suno/README.md`). Next: more core tracks (01/02/03) + the intimate end (more 06); **05 (Industrial)
-  still the one untested form.**
+- **Charter settled** (2026-08-01 — a light founding directive at the top of `Suno/README.md`).
+- **Then: the "Distance and Time" bespoke instrumental suite** (`Suno/suites/distance-and-time/`) — a
+  6-track gapless/loopable **gradient-journey** (distance & time *enacted by production*; **organ + cello
+  the core ~80%**, atmosphere sparse). Tracks **1 "The Approach" + 2 "Closer" landed**; **3 "The Doorway"
+  drafted** (4–6 to come). **Bespoke, not a form** — extract a pure-instrumental form later if reused.
+- **New craft findings banked** (levers / recipe / suite): **Weirdness = a two-phase workflow** (filter
+  low ~25 → open ~60); **drive instrumental via Write-box directives** (not pure Instrumental mode);
+  **provide an intruder's function on-palette, don't only exclude** (crash → bell-strike); bar Suno's
+  **new-age reflex** (glassy/crystal + handpan) and **cymbal crashes**; **version rule** — v5.5 default,
+  v5.0 only for voice-control focus.
+- **Helm RELEASED** at close-off. Next: suite tracks **4–6**; more **core 01/02/03** tracks + the intimate
+  end (more 06); **05 (Industrial)** still the one untested form.
 
 ## 2026-07-30 (Suno manager session — taste basis → forms → levers → first tracks)
 
