@@ -62,4 +62,11 @@ Instrumental mode._
 ## Provenance
 
 Composed 2026-08-01 by the Suno manager — track 1 of the bespoke *Distance and Time* suite, the far anchor.
-Instrumental (Instrumental mode). **Unrun.**
+Write-mode, driven by instrumental directives.
+
+**CALIBRATED 2026-08-01 (Battlewrath).** Iterated live to a clean far anchor: Write-box directives (not
+pure Instrumental mode) took the wheel back · new-age reflex (glassy/crystal + handpan) excluded · the
+organ made **grand, present, space-filling** ("she sounds the space," like the sun on the horizon —
+far ≠ weak) · and the **cymbal crash replaced by a deep bell-strike** at the swell's crest (the
+*provide-the-function* fix) — which "mostly satisfied its programmatic structure need." **Locked as the
+gradient's far end.**

@@ -182,6 +182,14 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     anchor (calibrates the gradient); 2–6 graduate/recede from it. Craft note banked: Suno's Instrumental
     toggle strips voice, so the banshee-texture tracks (2, 6) use voice-as-texture in Styles, not pure
     Instrumental mode. Helm held (suno).
+    - **Track 1 "The Approach" CALIBRATED** (far anchor): Write-box directives drive it (pure Instrumental
+      mode drifted new-age); organ made grand/present/space-filling ("far ≠ weak — she sounds the space,
+      like the sun on the horizon"); **cymbal crash → deep bell-strike** at the swell crest. Craft findings
+      banked: bar the **new-age reflex** (glassy/crystal + handpan) and **cymbal crashes** suite-wide;
+      **drive instrumental via Write-box directives**; **provide an intruder's function on-palette, don't
+      only exclude** (→ `prompt-recipe.md`).
+    - **Track 2 "Closer" drafted** — first graduation inward (reverb pulls back; wordless banshee tones +
+      crows graduate through; still no percussion). Unrun.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog.
 
