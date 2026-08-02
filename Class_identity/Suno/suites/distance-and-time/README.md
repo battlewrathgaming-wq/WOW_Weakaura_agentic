@@ -20,6 +20,10 @@ Acoustic truth: over distance, highs die first and low, sustained, resonant tone
 
 The six tracks traverse that gradient (far → near → far). **Time = the traversal.**
 
+**What graduates through isn't only more instruments — it's more _detail and intent of the playing_**
+(Battlewrath, 2026-08-01): as you near, you hear the heavy touch, the mechanical key-clunks, the action,
+the expressive phrasing — her **intent**, not just her presence. *Closer = you hear the meaning.*
+
 ## The six stages
 
 1. **The Approach** — far: cathedral organ drone + deep tolling bells, drowned in reverb, muffled. What survives distance.

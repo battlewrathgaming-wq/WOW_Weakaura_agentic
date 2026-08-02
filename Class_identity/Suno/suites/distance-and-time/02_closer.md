@@ -16,7 +16,7 @@ texture, no lyrics** · **Weirdness:** `~35` · **Style Influence:** `~80` · **
 
 **Styles** _(one step nearer than track 1 — more spectrum reaches through):_
 ```
-gothic instrumental drawing closer, a grand cathedral organ and deep tolling bells now nearer and clearer, wordless low banshee tones drifting through, distant crows cawing, the large reverb pulling back a little, midrange beginning to emerge, still spacious cold and gothic, more of the sound graduating through as the distance closes, a great bell-strike accenting the swells (no crash), sustained and slow
+gothic instrumental drawing closer, a grand cathedral organ played heavily and with deep emotional investment — her intent spoken through the pipes, the mechanical clunk of keys and the action heard from within (close and human), long expressive swells that rise and open into sustained held notes, deep tolling bells, wordless low banshee tones drifting through, distant crows, the large reverb pulling back so the detail of the playing reaches you, still spacious cold and gothic, a great bell-strike accenting the swells (no crash), sustained and slow
 ```
 
 **Exclude styles** _(bar SUNG words — but keep the wordless banshee; plus the suite-wide new-age + crash
@@ -28,28 +28,32 @@ lyrics, sung words, verse, chorus, spoken word, clear singing, intelligible voca
 ## Write box — instrumental directives (drive the arrangement; wordless textures, no sung words)
 
 ```
-[Instrumental. Closer now, gothic. Wordless textures only — NO sung words, no lyrics. Directions only.]
+[Instrumental. Closer now — near enough to hear her INTENT in the playing. Gothic. Wordless textures only, NO sung words. Directions only.]
 
 [Intro]
-(the grand organ and deep bells from the distance, but nearer and clearer now — the immense reverb pulling back a little, more of the sound reaching through)
+(the grand organ, nearer now — played heavily, with deep emotional investment; you hear the mechanical clunk of the keys and the action from within, close and human; reverb pulling back so the detail reaches you)
 
 [Build]
-(a wordless low banshee tone drifts through the space — a distant, keening, spectral hum, no words; far-off crows begin to caw)
+(her playing carries meaning — long expressive swells rise and open into sustained held notes, like a voice declaring through the pipes: da — da — daaaaah, held open; a wordless low banshee tone drifts through; far-off crows caw)
 
 [Peak]
-(a deep bell strikes at the crest of the organ swell — the accent, its long tail washing out; the banshee tone rises with it, wordless and cold)
+(the swell crests and a deep bell strikes — the accent, its long tail washing out; the organ holds the open note, heavy and resonant, her intent laid bare)
 
 [Settle]
-(organ radiates, bells toll, the banshee tone and crows drift in the midrange — more has graduated through than the approach; still spacious, no percussion, no crash)
+(the heavy organ eases but keeps speaking — key-clunks, bells, the banshee tone and crows in the midrange; more of her intent has graduated through than the approach; no percussion, no crash)
 
 [Outro]
-(the elements settle back a touch, holding — closer than the approach, not yet at the door)
+(the organ holds one last open swell and settles back — closer than the approach, her meaning now heard, not yet at the door)
 ```
 
 ## What to confirm
 
 - **Closer than track 1** — is it audibly *one step nearer*: reverb reduced, midrange emerged, more
   elements present — without going *dry/inside* yet (that's tracks 4–5)? It's a graduation, not a jump.
+- **Her intent, through the organ** — does the playing read as **heavy, emotionally invested** (not
+  ambient drift), with **mechanical key-clunks / the action heard** (close, human) and **long swells that
+  rise and open into held notes** (the *da-da-daaaah* phrasing)? This is "closer = you hear the *intent*,"
+  the enrichment.
 - **The banshee stays _wordless_** — a keening spectral tone, **no sung words / lyrics leaking**. (The key
   craft risk this track.)
 - **Crows reach through** — distant cawing, an arrival marker; present but not foreground.
