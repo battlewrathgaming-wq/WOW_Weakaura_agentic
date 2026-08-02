@@ -16,7 +16,7 @@ run it written, use the box to drive the prompt — pure Instrumental mode drift
 
 **Styles** _(the far end of the gradient — muffled, drowned, only the survivors):_
 ```
-distant instrumental, a lone cathedral pipe-organ drone and deep tolling bells heard from far away, vast cavernous reverb, muffled and low-pass filtered, sustained and slow, almost no transients, cold and hollow, gothic, the sound that survives distance, a slow approach
+distant but grand instrumental, an intense present space-filling cathedral pipe-organ sounding the whole vast space with her playing, deep tolling bells beneath, immense cavernous reverb, resonant and radiant across the distance like the sun casting light on the horizon, powerful and commanding yet far-off, sustained and slow, cold and gothic, the grand sound that fills distance, a slow approach
 ```
 
 **Exclude styles** _(no voice, no detail, nothing close or bright):_
@@ -32,25 +32,26 @@ _All bracketed / parenthetical — instructions, not lyrics. This is what takes 
 Instrumental mode._
 
 ```
-[Instrumental. Distant, gothic. No vocals, no lyrics — directions only.]
+[Instrumental. Distant but GRAND, gothic. No vocals, no lyrics — directions only.]
 
 [Intro]
-(a lone cathedral pipe-organ drone rises from far away — drowned in vast reverb, muffled, low-pass filtered)
+(a grand cathedral pipe-organ swells up and fills the whole vast space — distant but present and radiant, like the sun casting light across the horizon; immense reverb around it)
 
 [Build]
-(deep bells begin to toll slowly in the distance — sustained, few transients; the drone holds, cold and hollow)
+(deep bells toll slowly beneath; the organ grows more intense — sounding the entire space with her playing — powerful, resonant, commanding, yet far-off)
 
 [Middle]
-(organ and far bells swell almost imperceptibly — the sound that survives distance — then settle; no percussion, no melody lead)
+(the grand organ holds and radiates throughout, filling the distance; deep bells beneath; no percussion, no melody lead — the organ sounds the space)
 
 [Outro]
-(the drone and one last far bell fade into the reverb)
+(the organ and one last deep bell ring out across the space, then slowly fade into the vast reverb)
 ```
 
 ## What to confirm
 
-- **Far-ness** — does it read as *distant*: muffled, drowned in vast reverb, only the low survivors
-  (organ + bells), almost no transients or detail? This *is* the far end of the gradient.
+- **Grand yet distant** — does the organ feel **grand, present, radiant — filling the vast space** (she
+  *sounds the space* with it, like the sun on the horizon), while still *far-off* (immense reverb, the
+  space around it)? Distant, **not** weak or muffled. This is the refined far end of the gradient.
 - **A bed to approach from** — is there room for track 2 to "graduate more through" (it should feel like
   the least-arrived track)?
 - **Pure instrumental** — no voice at all (voice enters as *texture* only from track 2).

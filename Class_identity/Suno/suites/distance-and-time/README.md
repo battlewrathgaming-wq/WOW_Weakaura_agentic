@@ -13,8 +13,9 @@ approach: you cross distance over time toward a place, step inside, and recede. 
 ## The spine — the distance-survival gradient
 
 Acoustic truth: over distance, highs die first and low, sustained, resonant tones carry. So —
-- **Far** = only the distance-survivors (organ drone, deep bells) · **heavy reverb** · **low-pass /
-  muffled** · sustained · **few or no transients.**
+- **Far** = the distance-survivors (a **grand, space-filling organ** + deep bells — *distant but present
+  and radiant, like the sun on the horizon*, not muffled-weak) · **immense reverb / vast space** ·
+  sustained · **few transients.** (Battlewrath, 2026-08-01: far ≠ weak — the sound *fills* the distance.)
 - **Near** = **dry** · **full-spectrum** · **transient / detailed** · **close, intimate.**
 
 The six tracks traverse that gradient (far → near → far). **Time = the traversal.**
