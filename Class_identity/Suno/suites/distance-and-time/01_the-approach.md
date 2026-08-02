@@ -16,7 +16,7 @@ run it written, use the box to drive the prompt — pure Instrumental mode drift
 
 **Styles** _(the far end of the gradient — muffled, drowned, only the survivors):_
 ```
-distant but grand instrumental, an intense present space-filling cathedral pipe-organ sounding the whole vast space with her playing, deep tolling bells beneath, immense cavernous reverb, resonant and radiant across the distance like the sun casting light on the horizon, powerful and commanding yet far-off, sustained and slow, cold and gothic, the grand sound that fills distance, a slow approach
+distant but grand instrumental, an intense present space-filling cathedral pipe-organ sounding the whole vast space with her playing, deep tolling bells beneath, a great bell-strike accenting each swell instead of a crash, immense cavernous reverb, resonant and radiant across the distance like the sun casting light on the horizon, powerful and commanding yet far-off, sustained and slow, cold and gothic, the grand sound that fills distance, a slow approach
 ```
 
 **Exclude styles** _(no voice, no detail, nothing close or bright):_
@@ -40,8 +40,11 @@ Instrumental mode._
 [Build]
 (deep bells toll slowly beneath; the organ grows more intense — sounding the entire space with her playing — powerful, resonant, commanding, yet far-off)
 
-[Middle]
-(the grand organ holds and radiates throughout, filling the distance; deep bells beneath; no percussion, no melody lead — the organ sounds the space)
+[Peak]
+(at the crest of the swell, a single great cathedral bell STRIKES — one deep resonant toll marks the height, its long tail washing out across the vast space. The bell-strike is the accent — in place of any crash.)
+
+[Settle]
+(the grand organ eases back and keeps radiating, still filling the distance; deep bells toll beneath; no percussion, no crash — the organ sounds the space)
 
 [Outro]
 (the organ and one last deep bell ring out across the space, then slowly fade into the vast reverb)

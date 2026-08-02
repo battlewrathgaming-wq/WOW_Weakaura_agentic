@@ -61,6 +61,11 @@ composed, copy-paste-ready prompts live in [`prompts/`](prompts/)._
     the model version** for its vocal character (**v5.0** rawer/authentic · **v5.5** cleaner/youthful) ·
     **(3) raise Weirdness (~70)** for a distinctive / aged / rounded timbre · **(4) Exclude the default**
     you don't want (young, clean, pretty, autotune). One lever alone won't hold; the stack does.
+  - **★ Provide the function, don't only exclude (Battlewrath, 2026-08-01).** When an unwanted element
+    sneaks in, ask *what it's doing compositionally* and fulfil that need with an **on-palette** element —
+    otherwise the model keeps hunting for a substitute. (A cymbal crash was marking a swell's climax →
+    replaced by a deep **bell strike**: same accent + resonant wash, gothic not cinematic. Exclude the
+    intruder *and* supply its job.)
 
 ## Control hierarchy — most precise → most diffuse
 
