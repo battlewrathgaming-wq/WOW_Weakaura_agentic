@@ -65,4 +65,8 @@ lyrics, sung words, verse, chorus, spoken word, clear singing, intelligible voca
 ## Provenance
 
 Composed 2026-08-01 by the Suno manager — track 2 of the bespoke *Distance and Time* suite, the first
-graduation inward. Write-mode, directive-driven; wordless banshee texture + crows. **Unrun.**
+graduation inward. Write-mode, directive-driven; wordless banshee texture + crows.
+
+**LANDED 2026-08-01 (Battlewrath: "lands much better").** Re-centred on **80% grand organ + cello** (the
+core carrying her intent; atmosphere pared to a faint fifth) with the *intent-through-the-playing*
+enrichment (heavy touch, key-clunks, the da-da-daaaah open swells). Cello is now a **core voice from here.**

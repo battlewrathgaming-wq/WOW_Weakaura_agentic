@@ -188,8 +188,14 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
       banked: bar the **new-age reflex** (glassy/crystal + handpan) and **cymbal crashes** suite-wide;
       **drive instrumental via Write-box directives**; **provide an intruder's function on-palette, don't
       only exclude** (→ `prompt-recipe.md`).
-    - **Track 2 "Closer" drafted** — first graduation inward (reverb pulls back; wordless banshee tones +
-      crows graduate through; still no percussion). Unrun.
+    - **Track 2 "Closer" LANDED** — first graduation inward. Re-centred on **80% grand organ + cello**
+      (Battlewrath: atmosphere was too much) with the *intent-through-the-playing* enrichment (heavy touch,
+      key-clunks, da-da-daaaah open swells). **Cello is now a core voice from track 2** (mix principle:
+      organ+cello ~80% / atmosphere ~20%; banked in the spec). Gradient deepened: *closer = you hear the
+      intent*, not just more instruments.
+    - **Track 3 "The Doorway" drafted** — the threshold: organ+cello close & dry, and the suite's **one
+      transient** (deep shuddering door-knocks; "percussion" dropped from its Exclude so they survive).
+      Distance-atmosphere gone. Unrun.
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog.
 
