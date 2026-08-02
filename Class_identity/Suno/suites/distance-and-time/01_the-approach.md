@@ -19,8 +19,10 @@ distant instrumental, a lone cathedral pipe-organ drone and deep tolling bells h
 
 **Exclude styles** _(no voice, no detail, nothing close or bright):_
 ```
-vocals, lyrics, choir, spoken word, drums, percussion, guitar, bass guitar, bright, close-mic'd, dry, sharp transients, detailed, busy, upbeat, cheerful, pop, EDM
+glassy tones, crystal tones, crystalline, glass bells, handpan, hang drum, chimes, wind chimes, glockenspiel, celesta, singing bowls, kalimba, new age, meditation music, ambient chill, shimmer, twinkling, vocals, lyrics, choir, spoken word, drums, percussion, guitar, bass guitar, bright, close-mic'd, dry, sharp transients, detailed, busy, upbeat, cheerful, pop, EDM
 ```
+_(The leading cluster bars Suno's **new-age reflex** — glassy/crystal + handpan — that crept in on the
+first run. Keeps `deep tolling bells` in Styles; bars only the bright/glassy bell-family.)_
 
 ## What to confirm
 

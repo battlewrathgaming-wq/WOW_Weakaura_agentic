@@ -38,6 +38,11 @@ The six tracks traverse that gradient (far → near → far). **Time = the trave
   the tracks with banshee textures (2, 6) **can't** use pure Instrumental mode — describe the wordless
   textures in Styles instead (voice-as-texture, no lyrics). Track 1 (organ + bells, no voice) *can* be pure
   Instrumental.
+- **⚠ Suite-wide exclude — Suno's NEW-AGE reflex (found on track 1's first run):** "distant / atmospheric
+  instrumental" makes Suno reach for **glassy / crystal tones and handpan (hang drum)** — plus chimes,
+  glockenspiel, singing bowls, kalimba: meditation-music timbres, the *enemy* of gothic-distant. **Bar that
+  whole cluster on every track** — but keep `deep tolling bells` (bar only the bright/glassy bell-family,
+  never bells themselves).
 
 ## Build order
 
