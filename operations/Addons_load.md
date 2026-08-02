@@ -4,18 +4,22 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## Client-surface finding (2026-08-01): custom forms don't wake secure state drivers
+## Client-surface finding (2026-08-01, CORRECTED same day - Battlewrath's catch):
+## Bartender form paging works natively; the trap is TARGET PAGE NUMBERS
 
-Diagnosed live w/ Battlewrath (Bartender paging): the fork's CUSTOM shapeshift forms are
-fully registered client-side - SpellShapeshiftForm.dbc carries the OWN-BAR flag (0x1) on
-most CoA forms (Rotweaver/Vizier/Lich CoA/Cursed/Draconic/Mechsuit/Elude/Formations...),
-GetShapeshiftForm()/GetBonusBarOffset() report correctly, and SecureCmdOptionParse
-evaluates [form:N] TRUE in-form - **but the form CHANGE never wakes secure state drivers**
-(BT4 paging strings don't re-evaluate; stealth + vehicle changes DO wake them). Standing
-workaround: page by [bonusbar:N] (bonus-bar updates reach the driver; proven via the
-vehicle clause). Banked micro-fix if two forms ever share an offset: a companion addon
-kicking the driver on UPDATE_SHAPESHIFT_FORM. Probe instrument:
-`/dump SecureCmdOptionParse("[form:1]F1;...")` = on-demand evaluator truth vs driver truth.
+Custom CoA forms work END-TO-END in the paging stack: SpellShapeshiftForm.dbc carries the
+OWN-BAR flag (0x1) on most CoA forms (Rotweaver/Vizier/Lich CoA/Cursed/Draconic/Mechsuit/
+Elude/Formations...), GetShapeshiftForm()/GetBonusBarOffset() report correctly, entering a
+form fires UPDATE_SHAPESHIFT_FORM + UPDATE_BONUS_ACTIONBAR, secure state drivers WAKE, and
+[form:N]/[bonusbar:N] conditionals evaluate. **THE TRAP: the right-hand values in a paging
+string are ACTION PAGES, valid 1-11 only (11 = the vehicle/possess page, pairing with
+[bonusbar:5]). Page 12+ = a SILENT no-op that perfectly imitates driver deafness** - I
+banked a false 'forms don't wake drivers' finding off it; the two stacked unknowns
+(wake? target?) resolved when Battlewrath questioned the target number. Lesson instance of
+[[pipeline-emits-class-knowledge-curates]] + one-variable-at-a-time.
+His working pattern: forms share page 8 (populated per spec); probe kit for future form
+oddities: /dump GetShapeshiftForm(),GetBonusBarOffset() · SecureCmdOptionParse(specifics
+FIRST - first match wins) · the 5-event listener one-liner.
 
 ## Bench capability (2026-08-01): MPQ + DBC reading (client data manifests)
 
