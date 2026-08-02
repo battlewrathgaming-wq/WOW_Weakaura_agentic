@@ -68,6 +68,10 @@ softness is a monster's softness. (Pairs with *closeness* — a voice mic'd inti
 _Corrects the earlier draft, which wrongly waved the banshee off entirely — it's the wail that's out, not
 the voice._
 
+**Generation (confirmed 2026-08-01):** the creature voice **lands on model v5.0** (more authentic voices)
+with **Weirdness ~70** — v5.5 gave a too-youthful/clean voice regardless of the descriptors. The *version
++ weirdness* are the levers that summon the timbre; the descriptors shape it. (See `suno-levers.md`.)
+
 ## Content resonance (a note — content attaches later, loosely)
 
 *"Even if they cannot listen"* is achingly on-theme for the necromancer — singing tenderly to the dead, or

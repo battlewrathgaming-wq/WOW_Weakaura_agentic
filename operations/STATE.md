@@ -1,5 +1,30 @@
 # STATE — where the machine is
 
+## 2026-08-01 (Suno — the playlist build: forms 04 & 06, first tracks, the voice-summoning recipe)
+
+Second Suno session. The lane went from specs to **a real playlist + tuned method**. Detail in
+`operations/Class_identity.md` (the Suno "Now" thread) + `Class_identity/Suno/`; headline:
+
+- **Suno is now its own bench** — `suno-shelf.md` created in the 2026-07-31 memory-review pass;
+  warm-start retired to pure orientation/tone (migration complete).
+- **Six forms now** — added **04 Grand Theatrical Heavy** (first-tracked + graded) and **06 Intimate
+  Hollow (Song for the Absent)** (sourced from Sóley — the intimate/small pole, opposite the grand forms).
+- **Tracks composed (Driver B), several graded keepers:** 01 *In Service of the Dark Lady* (Sylvanas —
+  ran strong, method transfers) · 04 *Rise of the Grave* (command of power — guitar fits her) · the
+  *Rise of the Grave* **01↔04 A/B** (both great; **taste leans 01**) · 03 *The Maestro of the Dead*
+  (organ-forward whimsy) · **06 *The Prince Who Chose*** (the Culling of Stratholme, a one-sided address
+  to Arthas — **KEEPER, Battlewrath slept to it on loop**).
+- **★ Taste weighting:** core leaning **01/02/03** (guitar-free grand-gothic, her native register);
+  **04/05 = for a change**; **06 = the intimate pole**.
+- **★ Method findings banked:** the **control hierarchy** (line structure *commands* → meta-tags
+  *forecast*, not 1:1 → Styles *pervades* → Exclude *enforces* → sliders *tune*); the A/B proved
+  **form = spec / content = attached**; a **voice-summoning recipe** (front-load a `Singer voice:`
+  directive + pick the **model version** [v5.0 authentic / v5.5 clean] + **Weirdness ~70** + Exclude the
+  default); **model-version-as-voice-lever** (`suno-levers.md`); banshee = a timbre (loud wail + soft
+  register); "found piano" (craft target).
+- Helm **RELEASED** at close-off. Next: more core tracks (01/02/03) + the intimate end (more 06);
+  05 (Industrial) still the one untested form; the Suno manager's own charter still open.
+
 ## 2026-07-30 (Suno manager session — taste basis → forms → levers → first tracks)
 
 The **Suno manager** (resident agent in `Class_identity/Suno/`, tags helm activity

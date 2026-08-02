@@ -12,6 +12,10 @@ the rules from)._
 
 - **Suno Pro**, model **v5.5**. Version is selectable (top-right dropdown); levers can differ by version,
   so this doc is **pinned to v5.5** — re-confirm if he changes it.
+- **★ Version is a _voice_ lever (confirmed in-app 2026-08-01):** **v5.0 produces more _authentic_ voices**
+  (rawer, less youthful/polished) than v5.5. Battlewrath dropped to v5.0 to land an aged, rounded, creature
+  voice that v5.5 refused from descriptors alone. **v5.5 = cleaner / more youthful; v5.0 = rawer / more
+  authentic.** Pick the version by the track's *vocal* needs, not just "latest."
 - Panel modes: **Simple · Advanced · Sounds.** Everything below is the **Advanced** panel (full levers).
 
 ## The levers (as shown — fact)
@@ -35,7 +39,11 @@ no warning, no counter shown).
 **Vocal Gender** — **Male / Female.**
 
 **Weirdness** — slider **0–100%** (default 50). App tooltip: *"Turn it up for wild, unexpected results."*
-→ experimentation / unpredictability.
+→ experimentation / unpredictability. **Also a _voice-character_ lever (confirmed 2026-08-01):** turning
+it up (~70) pushes the vocal off the clean/youthful default toward a more distinctive, rounded, aged
+timbre — the creature voice for form 06 needed **v5.0 + Weirdness ~70** together. (So a tight palette
+doesn't always mean low Weirdness — if the *voice* needs character, raise it and let Style Influence hold
+the rest.)
 
 **Style Influence** — slider **0–100%** (default 50). App tooltip: *"Turn it up to match your style
 description."* → **how tightly the result adheres to the Styles string** (Battlewrath: how constrained to
