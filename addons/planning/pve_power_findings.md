@@ -61,6 +61,12 @@ short dummy pull compared against a stored healthy per-hit baseline (~20%+ low =
 do the ritual). Mancer already buckets player spell damage per fight (`playerSpells`);
 a small comparison layer over it (the MancerLedger profile method aimed at the player)
 is the candidate build if the pain persists.
+**UNVERIFIED PREMISE (Battlewrath's catch — do not build past it):** this assumes the
+server applies the power multiplier at a pipeline stage REFLECTED IN CLEU damage amounts.
+We have not walked where the increase is added. Supporting testimony only: the community
+observed the ~30% deficit on dps meters (which read CLEU). Verification before any build:
+one controlled A/B — same spell, same dummy, bugged login vs post-ritual — confirming the
+per-hit CLEU amounts actually move.
 
 ## For the devs (the report package)
 
