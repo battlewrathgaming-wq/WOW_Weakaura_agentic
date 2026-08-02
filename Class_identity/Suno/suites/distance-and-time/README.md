@@ -38,6 +38,9 @@ the expressive phrasing — her **intent**, not just her presence. *Closer = you
 - **Gapless, loopable:** matched reverb tails, a key that drifts rather than cuts; track 6 ends on track 1's
   opening (far organ + bell) so it circles — an endless coming-and-going.
 - **Palette:** organ · deep bells · cello · wordless banshee tones · crows — the gothic world, **guitar-free.**
+- **★ Mix — organ + cello are the CORE (~80%) (Battlewrath, 2026-08-01):** the grand organ and cello carry
+  it; the atmosphere (banshee tones, crows, bells) stays **sparse (~20%), never competing.** Cello enters as
+  a core voice **from track 2** (earlier than first sketched), deepening to *in-concert* (4) and *focus* (5).
 - **Instrumental = no sung words** (Battlewrath) — but **wordless creature / atmos textures (banshee tones,
   crows) count as instruments.** ⚠ **Craft note:** Suno's *Instrumental* toggle strips voice entirely, so
   the tracks with banshee textures (2, 6) **can't** use pure Instrumental mode — describe the wordless

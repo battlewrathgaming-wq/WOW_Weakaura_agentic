@@ -16,7 +16,7 @@ texture, no lyrics** · **Weirdness:** `~35` · **Style Influence:** `~80` · **
 
 **Styles** _(one step nearer than track 1 — more spectrum reaches through):_
 ```
-gothic instrumental drawing closer, a grand cathedral organ played heavily and with deep emotional investment — her intent spoken through the pipes, the mechanical clunk of keys and the action heard from within (close and human), long expressive swells that rise and open into sustained held notes, deep tolling bells, wordless low banshee tones drifting through, distant crows, the large reverb pulling back so the detail of the playing reaches you, still spacious cold and gothic, a great bell-strike accenting the swells (no crash), sustained and slow
+gothic instrumental drawing closer, 80% grand cathedral organ and deep cello in concert — the two carrying her intent, the organ played heavily with deep emotional investment (mechanical key-clunks and action heard from within, close and human), the cello mournful and expressive alongside it, long swells that rise and open into sustained held notes, and only sparse around them (a faint wordless banshee tone far back, an occasional distant crow, a deep bell-strike accenting the swells, no crash), the large reverb pulling back so the playing's detail reaches you, spacious cold and gothic, sustained and slow
 ```
 
 **Exclude styles** _(bar SUNG words — but keep the wordless banshee; plus the suite-wide new-age + crash
@@ -28,29 +28,31 @@ lyrics, sung words, verse, chorus, spoken word, clear singing, intelligible voca
 ## Write box — instrumental directives (drive the arrangement; wordless textures, no sung words)
 
 ```
-[Instrumental. Closer now — near enough to hear her INTENT in the playing. Gothic. Wordless textures only, NO sung words. Directions only.]
+[Instrumental. Closer now — near enough to hear her INTENT. 80% grand organ and cello; everything else sparse, no more than a fifth. Gothic. Wordless textures only, NO sung words. Directions only.]
 
 [Intro]
-(the grand organ, nearer now — played heavily, with deep emotional investment; you hear the mechanical clunk of the keys and the action from within, close and human; reverb pulling back so the detail reaches you)
+(the grand organ and a deep cello, close now, in concert — played heavily, with deep emotional investment; the mechanical clunk of the keys and the action heard from within, close and human; reverb pulling back so the detail reaches you)
 
 [Build]
-(her playing carries meaning — long expressive swells rise and open into sustained held notes, like a voice declaring through the pipes: da — da — daaaaah, held open; a wordless low banshee tone drifts through; far-off crows caw)
+(organ and cello carry the meaning together — long expressive swells rise and open into sustained held notes: da — da — daaaaah, held open; only sparse around them: a faint wordless banshee tone far back, an occasional distant crow)
 
 [Peak]
-(the swell crests and a deep bell strikes — the accent, its long tail washing out; the organ holds the open note, heavy and resonant, her intent laid bare)
+(the swell crests; a single deep bell strikes as the accent, its tail washing out; organ and cello hold the open note, heavy and resonant, her intent laid bare)
 
 [Settle]
-(the heavy organ eases but keeps speaking — key-clunks, bells, the banshee tone and crows in the midrange; more of her intent has graduated through than the approach; no percussion, no crash)
+(organ and cello keep speaking, heavy and close — key-clunks, the bow; the banshee tone and a far crow drift faint beneath, no more than a fifth of the sound; no percussion, no crash)
 
 [Outro]
-(the organ holds one last open swell and settles back — closer than the approach, her meaning now heard, not yet at the door)
+(organ and cello hold one last open swell and settle back — closer than the approach, her meaning heard, not yet at the door)
 ```
 
 ## What to confirm
 
 - **Closer than track 1** — is it audibly *one step nearer*: reverb reduced, midrange emerged, more
   elements present — without going *dry/inside* yet (that's tracks 4–5)? It's a graduation, not a jump.
-- **Her intent, through the organ** — does the playing read as **heavy, emotionally invested** (not
+- **★ The mix — 80% organ + cello** — do the grand organ and cello clearly *dominate* (~80%), with the
+  banshee / crows / bell only a **faint fifth beneath**, never competing? (The prior run over-garnished it.)
+- **Her intent, through the organ + cello** — does the playing read as **heavy, emotionally invested** (not
   ambient drift), with **mechanical key-clunks / the action heard** (close, human) and **long swells that
   rise and open into held notes** (the *da-da-daaaah* phrasing)? This is "closer = you hear the *intent*,"
   the enrichment.
