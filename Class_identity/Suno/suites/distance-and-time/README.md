@@ -63,6 +63,12 @@ the expressive phrasing — her **intent**, not just her presence. *Closer = you
 against; 2–5 graduate toward near, 6 recedes back to it. Build 1, grade its *far-ness*, then compose the
 rest against it.
 
+**★ Weirdness — calibrate low, then open (Battlewrath, 2026-08-01).** Each track's listed Weirdness is the
+**calibration** value (~25) — low, so the prompt shows itself plainly and we can filter out the parts we
+don't want. Once a track's prompt is clean, **re-run it at ~60** to open the door to richer, more-promising
+results. (So each track has *two* runs: filter at 25, then enrich at ~60. Tracks 1–2 calibrated → ready to
+open to 60.)
+
 **★ Drive with Write-box _directives_, not pure Instrumental mode (Battlewrath, 2026-08-01).** Pure
 Instrumental mode hands Suno the wheel — it drifted to the new-age default on the first run. Instead, run
 each track in **Write mode** with the box filled with **bracketed instrumental directives** (structure +

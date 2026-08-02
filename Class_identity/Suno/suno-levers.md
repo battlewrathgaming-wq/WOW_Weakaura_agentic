@@ -43,7 +43,10 @@ no warning, no counter shown).
 it up (~70) pushes the vocal off the clean/youthful default toward a more distinctive, rounded, aged
 timbre — the creature voice for form 06 needed **v5.0 + Weirdness ~70** together. (So a tight palette
 doesn't always mean low Weirdness — if the *voice* needs character, raise it and let Style Influence hold
-the rest.)
+the rest.) **★ Weirdness as a two-phase _workflow_ (Battlewrath, 2026-08-01):** don't just pick a value —
+**start LOW (~25) to FILTER** (constrained/predictable, so the prompt shows itself plainly and you can
+hear and exclude the parts you don't want), **then OPEN UP (~60) to ENRICH** once the prompt's clean
+(richer, more-promising variation, no longer fighting the junk). Calibrate low, then let it breathe.
 
 **Style Influence** — slider **0–100%** (default 50). App tooltip: *"Turn it up to match your style
 description."* → **how tightly the result adheres to the Styles string** (Battlewrath: how constrained to
