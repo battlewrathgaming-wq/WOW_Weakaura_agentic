@@ -81,6 +81,16 @@ gear. Comparability caveat class discovered: POPULATION-DEPENDENT rates (zombie 
 comparable only at matched counts) - a third axis beside fight-length and target-defense.
 Data: his MancerLedger SV (naked/geaed profiles) + screenshots this session.
 
+## Reference (2026-08-01): the training dummy testing surface
+
+Capital dummy read live: entry 666938, LEVEL 63 ELITE (= the +3 boss defense table: ~8%
+base melee miss, spell miss + crit suppression apply), creature type "Not specified"
+(TYPELESS - no type-conditional talent fires; a flat surface, corrects the
+'dummies are Mechanical' assumption). Consequence for ALL baseline work: boss-table
+numbers; never mix baselines across targets (petlog's captives = a different table).
+If other dummy tiers exist, read them the same way before use:
+/dump UnitLevel/Classification/CreatureType/GUID("target").
+
 ## Observed gap (2026-08-01, Battlewrath - observation not judgment; UNGATED)
 
 No protocol/checklist exists for EMISSION-ARTIFACT discipline - the five catches of the
