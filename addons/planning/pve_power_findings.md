@@ -32,6 +32,11 @@ _Walked via: `addons/tools/read_spell_dbc.py` + substring scan; corrected via de
   silence from a working probe, not a broken test.
 - Post-correction reading: the silence isn't suppression of active machinery — the power
   spells simply never run (consistent with finding 1's correction: tooltip artifacts).
+- **The loophole closed by direct engine query (2026-08-01):** `C_Aura.UnitHasAura`
+  (by-spellID, engine-side — sees list-hidden-but-replicated auras) swept across
+  101600–101799 + the 993xxxx family on a live geared character: **zero power auras**
+  (single hit = 9931032 PvE Mode, the known-visible mode aura). The tooltip-artifact
+  statement is now WALKED, not testimony — no power aura exists on a character, full stop.
 _Walked via: three live probes run by Battlewrath (the UnitAura loop; the CLEU
 varargs-position listener; the equip cycle) + the 707194 validation catch._
 
