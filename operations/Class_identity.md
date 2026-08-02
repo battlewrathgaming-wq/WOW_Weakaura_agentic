@@ -174,6 +174,14 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     (taste-first fork · form=spec/content=attached · no mechanical claims / identities-as-reference · a
     contained creative space; the measure = "does Battlewrath keep the track on?"). Deliberately short,
     room to expand ("not a legal case").
+  - **Bespoke instrumental suite stood up — "Distance and Time"** (`Suno/suites/distance-and-time/`): a
+    6-track gapless/loopable **instrumental** journey — distance & time *enacted by production* via the
+    **distance-survival gradient** (far = organ/bell survivors + reverb → near = dry cello+organ, close),
+    traversed far→near→far (track 6 recedes to track 1, so it loops). **Bespoke, not a form** (Battlewrath
+    — extract a pure-instrumental form later if reused). **Track 1 "The Approach" drafted** as the far
+    anchor (calibrates the gradient); 2–6 graduate/recede from it. Craft note banked: Suno's Instrumental
+    toggle strips voice, so the banshee-texture tracks (2, 6) use voice-as-texture in Styles, not pure
+    Instrumental mode. Helm held (suno).
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
     the summonable-features catalog.
 

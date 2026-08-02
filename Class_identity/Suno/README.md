@@ -153,6 +153,15 @@ the default. Weight the playlist mostly 01/02/03, with 04/05 sprinkled for varie
   voice (threads the no-whole-whispery-tracks rule). Sourced from Sóley (*The Sun Is Going Down II*).
   _(⚠ weighting open — likely core-adjacent; untested. Rim in-file.)_
 
+## Suites (bespoke multi-track works)
+
+- [`suites/distance-and-time/`](suites/distance-and-time/) — **"Distance and Time"**, a bespoke
+  **instrumental** 6-track gradient-suite (gapless, loopable): distance & time *enacted by production* via
+  the **distance-survival gradient** (far = survivors + reverb → near = dry, full, close), traversed
+  far→near→far so it loops. Palette: organ · bells · cello · wordless banshee tones · crows; guitar-free.
+  **Bespoke, not a form** — a pure-instrumental form may be extracted later. Track 1 (*The Approach*, the
+  far anchor) drafted.
+
 ## Coming (this folder — owned by the Suno manager)
 
 - **More song forms** — other modes, as siblings in `forms/`, toward the varied playlist.
