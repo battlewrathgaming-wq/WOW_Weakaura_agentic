@@ -70,3 +70,17 @@ organ made **grand, present, space-filling** ("she sounds the space," like the s
 far ≠ weak) · and the **cymbal crash replaced by a deep bell-strike** at the swell's crest (the
 *provide-the-function* fix) — which "mostly satisfied its programmatic structure need." **Locked as the
 gradient's far end.**
+
+## Narrative seed — for a later lyrical companion (Battlewrath, 2026-08-01)
+
+The Approach grew from a background drone into **presence from a distance** — and that evoked a story
+worth a future *worded* piece:
+
+> Her sound carries across the distance and **turns the heads of the living, the dead, and the free.** To
+> the **free Forsaken** it is **comfort** — a calling-home. To the **still-dominated dead** (enslaved under
+> the Scourge) it is an **attraction** — they are drawn toward her, and toward her waiting forces: either
+> **cut down and released** from bondage, or **freed and claimed as Forsaken.**
+
+A seed only — a companion *lyrical* piece could grow from it later. Touches the Necromancer's identity
+(the freed thrall who now frees — or releases — others; a beacon that reaps and liberates). Kept here as a
+Suno content-seed; identity itself stays the class-identity lane's to author.
