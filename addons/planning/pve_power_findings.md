@@ -54,19 +54,17 @@ may be a sibling mix-up — PvE/PvP power state tangled in the server's apply/re
 machinery. Consistent with the fix ritual's shape (mode switch + naked + dead + hard quit =
 forcing a full state reset) and with finding 5's precedent.
 
-## What players CAN do (until a server fix)
+## The detection boundary (finding, not solution)
 
-Direct readout is impossible. The only honest client-side detector is **behavioral**: a
-short dummy pull compared against a stored healthy per-hit baseline (~20%+ low = nerfed →
-do the ritual). Mancer already buckets player spell damage per fight (`playerSpells`);
-a small comparison layer over it (the MancerLedger profile method aimed at the player)
-is the candidate build if the pain persists.
-**UNVERIFIED PREMISE (Battlewrath's catch — do not build past it):** this assumes the
-server applies the power multiplier at a pipeline stage REFLECTED IN CLEU damage amounts.
-We have not walked where the increase is added. Supporting testimony only: the community
-observed the ~30% deficit on dps meters (which read CLEU). Verification before any build:
-one controlled A/B — same spell, same dummy, bugged login vs post-ritual — confirming the
-per-hit CLEU amounts actually move.
+Direct readout is impossible (findings 2–3). The only detection CLASS remaining
+client-side is **behavioral** — comparing observed combat output against a known-healthy
+baseline. This document makes no tooling proposal; any build in that class is a separate,
+ungated consideration, and it rests on an **unverified premise (Battlewrath's catch)**:
+that the server applies the multiplier at a pipeline stage reflected in CLEU damage
+amounts. We have not walked where the increase is added. Supporting testimony only: the
+community observed the ~30% deficit on dps meters (which read CLEU). The premise is
+settled by one controlled A/B — same spell, same dummy, bugged login vs post-ritual —
+confirming the per-hit CLEU amounts actually move.
 
 ## For the devs (the report package)
 

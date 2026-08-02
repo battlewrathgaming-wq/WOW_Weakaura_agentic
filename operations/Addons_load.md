@@ -15,8 +15,11 @@ ritual). Traced the full client surface w/ Battlewrath:
 - The character sheet FABRICATES its display: PaperDollFrame_SetPvEPower shows
   UnitPvEPower = client gear-sum; tooltip %s derived from the same sum x local constants.
   Nothing queries applied state -> the desync is invisible BY CONSTRUCTION.
-- VIABLE detector = behavioral only: dummy-pull per-hit baseline comparison (the
-  MancerLedger method on Mancer's playerSpells buckets) - candidate small build.
+- Detection BOUNDARY: behavioral class only (output vs known-healthy baseline). Any
+  tooling there = UNGATED and rests on an unverified premise (multiplier CLEU-visibility -
+  one bugged-vs-fixed A/B settles it). Expanding the Mancer/Ledger line to player damage =
+  a product-scope decision NOT yet worked (Battlewrath flagged the inventive creep of
+  proposing it inside findings).
 - DEV REPORT PACKAGE (sharp): fix the apply path; EXPOSE applied power (unhide aura or API)
   = the structural fix players can verify; + found in passing: UnitPvEPower caps PvE by
   PVP_POWER_CAP (UnitUtil.lua copy-paste bug).
