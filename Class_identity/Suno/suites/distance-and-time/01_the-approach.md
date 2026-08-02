@@ -8,9 +8,11 @@ are measured against it. A first draft to run and grade._
 
 ## The lever set
 
-**Model:** `v5.0` (organic/aged tones — either version's fine for instrumental; grade it) · **Lyrics mode:**
-`Instrumental` (no voice — organ + bells only) · **Weirdness:** `~30` · **Style Influence:** `~80` ·
-**Duration:** `Custom ~4:30` (or Auto — a slow approach) · **Title:** `I. The Approach`
+**Model:** `v5.0` (organic/aged tones — grade it) · **Lyrics mode:** `Write` — **the box holds instrumental
+_directives_ that drive the arrangement (structure + instruments + production); no sung words** (Battlewrath:
+run it written, use the box to drive the prompt — pure Instrumental mode drifted to the new-age default) ·
+**Weirdness:** `~30` · **Style Influence:** `~80` · **Duration:** `Custom ~4:30` (or Auto) · **Title:**
+`I. The Approach`
 
 **Styles** _(the far end of the gradient — muffled, drowned, only the survivors):_
 ```
@@ -23,6 +25,27 @@ glassy tones, crystal tones, crystalline, glass bells, handpan, hang drum, chime
 ```
 _(The leading cluster bars Suno's **new-age reflex** — glassy/crystal + handpan — that crept in on the
 first run. Keeps `deep tolling bells` in Styles; bars only the bright/glassy bell-family.)_
+
+## Write box — instrumental directives (drive the arrangement; no sung words)
+
+_All bracketed / parenthetical — instructions, not lyrics. This is what takes the wheel back from
+Instrumental mode._
+
+```
+[Instrumental. Distant, gothic. No vocals, no lyrics — directions only.]
+
+[Intro]
+(a lone cathedral pipe-organ drone rises from far away — drowned in vast reverb, muffled, low-pass filtered)
+
+[Build]
+(deep bells begin to toll slowly in the distance — sustained, few transients; the drone holds, cold and hollow)
+
+[Middle]
+(organ and far bells swell almost imperceptibly — the sound that survives distance — then settle; no percussion, no melody lead)
+
+[Outro]
+(the drone and one last far bell fade into the reverb)
+```
 
 ## What to confirm
 

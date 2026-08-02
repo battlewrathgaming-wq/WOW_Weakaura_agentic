@@ -50,6 +50,12 @@ The six tracks traverse that gradient (far → near → far). **Time = the trave
 against; 2–5 graduate toward near, 6 recedes back to it. Build 1, grade its *far-ness*, then compose the
 rest against it.
 
+**★ Drive with Write-box _directives_, not pure Instrumental mode (Battlewrath, 2026-08-01).** Pure
+Instrumental mode hands Suno the wheel — it drifted to the new-age default on the first run. Instead, run
+each track in **Write mode** with the box filled with **bracketed instrumental directives** (structure +
+instrument + production cues, *no sung words*) to *drive* the arrangement — the box steers what plays and
+when. (Even the banshee-texture tracks describe the wordless texture as a directive, never a lyric.)
+
 ## The reusable kernel (for the later form-extraction)
 
 The **distance-survival gradient** (far = survivors + reverb + low-pass → near = dry + full + close) is the
