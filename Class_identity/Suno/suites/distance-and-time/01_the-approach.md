@@ -8,7 +8,7 @@ are measured against it. A first draft to run and grade._
 
 ## The lever set
 
-**Model:** `v5.0` (organic/aged tones — grade it) · **Lyrics mode:** `Write` — **the box holds instrumental
+**Model:** `v5.5` (Battlewrath's default — the suite is instrumental; v5.0 is the *voice-control* lever, not needed here) · **Lyrics mode:** `Write` — **the box holds instrumental
 _directives_ that drive the arrangement (structure + instruments + production); no sung words** (Battlewrath:
 run it written, use the box to drive the prompt — pure Instrumental mode drifted to the new-age default) ·
 **Weirdness:** `~30` · **Style Influence:** `~80` · **Duration:** `Custom ~4:30` (or Auto) · **Title:**

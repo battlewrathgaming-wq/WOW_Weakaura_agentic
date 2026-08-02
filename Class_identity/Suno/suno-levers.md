@@ -15,7 +15,9 @@ the rules from)._
 - **★ Version is a _voice_ lever (confirmed in-app 2026-08-01):** **v5.0 produces more _authentic_ voices**
   (rawer, less youthful/polished) than v5.5. Battlewrath dropped to v5.0 to land an aged, rounded, creature
   voice that v5.5 refused from descriptors alone. **v5.5 = cleaner / more youthful; v5.0 = rawer / more
-  authentic.** Pick the version by the track's *vocal* needs, not just "latest."
+  authentic.** **Battlewrath's general default is v5.5; v5.0 is the lever *specifically when voice control is
+the focus*** (its authentic voices — e.g. form 06's creature). For **instrumental or non-voice-focused
+work, stay on v5.5.** Pick the version by the track's *vocal* needs, not just "latest."
 - Panel modes: **Simple · Advanced · Sounds.** Everything below is the **Advanced** panel (full levers).
 
 ## The levers (as shown — fact)

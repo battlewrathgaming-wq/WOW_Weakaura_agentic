@@ -9,7 +9,7 @@ directive-driven, instrumental. A first draft to run and grade._
 
 ## The lever set
 
-**Model:** `v5.0` · **Lyrics mode:** `Write` — directives only, no sung words · **Weirdness:** `~30` ·
+**Model:** `v5.5` (default — instrumental) · **Lyrics mode:** `Write` — directives only, no sung words · **Weirdness:** `~30` ·
 **Style Influence:** `~80` · **Duration:** `Custom ~3:15` (a threshold moment — shorter) · **Title:**
 `III. The Doorway`
 

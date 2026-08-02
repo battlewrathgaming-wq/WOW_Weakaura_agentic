@@ -10,7 +10,8 @@ percussion. Write-mode, driven by directives; the banshee is **wordless texture,
 
 ## The lever set
 
-**Model:** `v5.0` · **Lyrics mode:** `Write` — **directives only; the banshee is a _wordless_ voice
+**Model:** `v5.5` (default — instrumental; the banshee's a faint texture, not a voice-control focus) ·
+**Lyrics mode:** `Write` — **directives only; the banshee is a _wordless_ voice
 texture, no lyrics** · **Weirdness:** `~35` · **Style Influence:** `~80` · **Duration:** `Custom ~4:00`
 · **Title:** `II. Closer`
 
