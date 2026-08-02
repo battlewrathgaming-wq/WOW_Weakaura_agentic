@@ -81,6 +81,15 @@ gear. Comparability caveat class discovered: POPULATION-DEPENDENT rates (zombie 
 comparable only at matched counts) - a third axis beside fight-length and target-defense.
 Data: his MancerLedger SV (naked/geaed profiles) + screenshots this session.
 
+## Observed gap (2026-08-01, Battlewrath - observation not judgment; UNGATED)
+
+No protocol/checklist exists for EMISSION-ARTIFACT discipline - the five catches of the
+PvE-power arc (sample bias, premise promotion, inventive creep, etc.) were all his live
+review, none systematic. Candidate shape if ever worked: a small handoff checklist for
+findings/records/contracts (claims walked or labeled testimony · premises named · zero
+solutions in findings · scope changes gated, never footnoted). Home + ceremony-vs-review
+cost = its own gated working. Related ADR case: adr-inventiveness memory, 2026-08-01.
+
 ## Open threads (each has a designed next step)
 
 - **OPPORTUNITY (Battlewrath, 2026-07-30): the PET COMBAT PARSER — inspect Libellus-Leti FIRST.**
