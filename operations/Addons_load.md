@@ -4,6 +4,23 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
+## Investigation (2026-08-01): the PvE/PvP Power login bug - client-side readout IMPOSSIBLE
+
+Community bug (~30% damage loss on login for many specs; fix = a mode-switch/naked/die/quit
+ritual). Traced the full client surface w/ Battlewrath:
+- Server applies power as AURA MACHINERY: 'PvE Power (+0..+99)' ids 101600-101699, PvP
+  101700-101799 (+993xxxx variants), 'PvE Mode' 9931032 / 'War Mode (PvP)' 84420 as mode
+  auras. Mode aura VISIBLE in UnitAura; power auras FULLY SUPPRESSED - not in UnitAura, not
+  in CLEU even on a forced mid-session equip re-apply (tested live, silent).
+- The character sheet FABRICATES its display: PaperDollFrame_SetPvEPower shows
+  UnitPvEPower = client gear-sum; tooltip %s derived from the same sum x local constants.
+  Nothing queries applied state -> the desync is invisible BY CONSTRUCTION.
+- VIABLE detector = behavioral only: dummy-pull per-hit baseline comparison (the
+  MancerLedger method on Mancer's playerSpells buckets) - candidate small build.
+- DEV REPORT PACKAGE (sharp): fix the apply path; EXPOSE applied power (unhide aura or API)
+  = the structural fix players can verify; + found in passing: UnitPvEPower caps PvE by
+  PVP_POWER_CAP (UnitUtil.lua copy-paste bug).
+
 ## Client-surface finding (2026-08-01, CORRECTED same day - Battlewrath's catch):
 ## Bartender form paging works natively; the trap is TARGET PAGE NUMBERS
 
