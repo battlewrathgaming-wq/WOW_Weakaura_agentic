@@ -21,7 +21,7 @@ distant but grand instrumental, an intense present space-filling cathedral pipe-
 
 **Exclude styles** _(no voice, no detail, nothing close or bright):_
 ```
-glassy tones, crystal tones, crystalline, glass bells, handpan, hang drum, chimes, wind chimes, glockenspiel, celesta, singing bowls, kalimba, new age, meditation music, ambient chill, shimmer, twinkling, vocals, lyrics, choir, spoken word, drums, percussion, guitar, bass guitar, bright, close-mic'd, dry, sharp transients, detailed, busy, upbeat, cheerful, pop, EDM
+glassy tones, crystal tones, crystalline, glass bells, handpan, hang drum, chimes, wind chimes, glockenspiel, celesta, singing bowls, kalimba, new age, meditation music, ambient chill, shimmer, twinkling, vocals, lyrics, choir, spoken word, drums, percussion, cymbals, cymbal crash, crash cymbal, cymbal swell, crashes, cinematic impacts, orchestra hits, risers, guitar, bass guitar, bright, close-mic'd, dry, sharp transients, detailed, busy, upbeat, cheerful, pop, EDM
 ```
 _(The leading cluster bars Suno's **new-age reflex** — glassy/crystal + handpan — that crept in on the
 first run. Keeps `deep tolling bells` in Styles; bars only the bright/glassy bell-family.)_

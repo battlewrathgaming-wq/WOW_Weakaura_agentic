@@ -44,6 +44,11 @@ The six tracks traverse that gradient (far → near → far). **Time = the trave
   glockenspiel, singing bowls, kalimba: meditation-music timbres, the *enemy* of gothic-distant. **Bar that
   whole cluster on every track** — but keep `deep tolling bells` (bar only the bright/glassy bell-family,
   never bells themselves).
+- **⚠ Suite-wide exclude — cymbal CRASHES (found on track 1's grand run):** a big organ swell tempts
+  Suno's cinematic reflex — a cymbal crash to punctuate the climax. "drums / percussion" doesn't catch
+  cymbals; **bar `cymbals, crash cymbal, cymbal swell, crashes, cinematic impacts, orchestra hits, risers`
+  on every track.** The *only* transient this suite wants is **track 3's dry, shuddering knocks** — nothing
+  else strikes.
 
 ## Build order
 
