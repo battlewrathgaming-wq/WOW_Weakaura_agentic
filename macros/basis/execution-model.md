@@ -22,6 +22,16 @@ _Mixed provenance, marked per claim: **[TEST]** = live-proven by Battlewrath 202
 - **⇒ A macro CANNOT set or "project" a modifier.** `[mod:alt]` only ever reflects whether Alt is *physically* held.
 - **Practical consequence:** to use a **mouse button as a macro modifier**, the button must **emit a real shift/ctrl/alt keypress** (mouse software remap). A button WoW sees as its own bindable key (e.g. "Button 4") can be a keybind, but **not** a `[mod:]`. So "mouse thumb = alt" (hardware/software) is the correct and only path to make `[mod:alt]` fire from the thumb — not a workaround, the mechanism.
 
+## `/click` — how it fires, and stance-driving by position
+
+- **[SOURCE]** The `/click` handler (`ChatFrame.lua:1535`) gates on **exactly two things**: `GetClickFrame(name)` returns a frame, AND `button:IsObjectType("Button")`. Then it calls `button:Click(mouseButton, down)`. **There is NO visibility check** — a *hidden* button clicks fine (proven live 2026-08-02: `/click ShapeshiftButton1` fired with the button not visible under Bartender, and the source confirms why). If the frame doesn't exist by that name, the `if` fails and **nothing happens, silently** (no red error) — which is exactly how a wrong or absent frame name reads as "did nothing."
+- **[SOURCE]** **Stance/form by POSITION** = `/click ShapeshiftButtonN`. The stance-bar buttons are `ShapeshiftButton1..N` on this fork (`BonusActionBarFrame.xml`; the classic WotLK name, **not** the later `StanceButton`). Clicking runs `ShapeshiftButton_OnClick` → `ShapeshiftBar_ChangeForm(self:GetID())`, switching form by the button's ID — the most name-agnostic stance trigger (no spell-name resolution to go stale).
+  - **Per-player index** — the slot depends on how many forms the character has, so it is NOT portable across characters (Resilience was slot 2 for one player, slot 1 for another; see the form/stance findings in `conditionals.json`). Each player sets their own N.
+  - **Works even when the bar is addon-hidden** (per the no-visibility-gate above); fails only if the frame is genuinely **absent** — an addon *replaced* the button rather than reskinning the Blizzard one. Probe which case:
+    `/run for i=1,GetNumShapeshiftForms() do local b=_G["ShapeshiftButton"..i] print(i, b and b:GetName() or "MISSING", b and b:IsVisible()) end`
+    A name printed → the frame exists and `/click` reaches it (visible or not); `MISSING` → replaced, so `/click ShapeshiftButtonN` has nothing to hit and quietly no-ops.
+- **See also `ui-errors.md`** for suppressing the red "not ready" spam a hold-to-spam macro throws.
+
 ## Why this is here
 
 These are the load-bearing "does it actually work?" facts for macro *forming* — the layer that fails **silently** (an out-of-range macro that just whiffs, a `[mod:]` that never fires because the button isn't a real modifier). Each was either read from source or proven in a real fight, and the **[OPEN]** items are marked so nobody reasons past them. Provenance: `Outputs/client_interface/patch-B/Interface/FrameXML/SecureTemplates.lua`, the runtime census, and Battlewrath's live tests 2026-07-17.
