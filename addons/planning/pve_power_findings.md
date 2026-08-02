@@ -8,23 +8,32 @@ construction.** Every claim below is walked, not assumed; references inline._
 
 ## Findings
 
-**1. The server applies power as aura machinery.**
+**1. Power-NAMED spell entries exist — but are NOT the application mechanism
+(CORRECTED 2026-08-01 by dev statement + our own probe data).**
 Spell.dbc (patch-T.MPQ) carries `PvE Power (+0)`…`(+99)` = spell ids **101600–101699**,
-`PvP Power (+0..+99)` = **101700–101799**, plus 993xxxx-series variants, a QA spell
-(`QA PvE Power (70)` 530150), and mode auras: `PvE Mode` **9931032**, `War Mode (PvP)`
-**84420**, `War Mode` 300033.
-_Walked via: `addons/tools/read_spell_dbc.py` (calibrated fork field map, self-verifying
-anchors) + a substring scan over the decoded string block._
+`PvP Power (+0..+99)` = **101700–101799**, plus 993xxxx variants and mode auras (`PvE Mode`
+**9931032**, `War Mode (PvP)` **84420**). We initially framed these as the server's
+application machinery — an inference from DBC presence. **Dev (Grey/ASC): "PvE power isn't
+an aura. That's just a tooltip display."** Our own probes already pointed there (the auras
+never fire, even on a forced re-apply — finding 2); DBC presence ≠ mechanism. The actual
+application is a server-internal stat with NO client-side representation at all. Grey
+further notes the damage deficit's attribution to PvE power itself is NOT confirmed —
+"there's a problem for sure, but in terms of it being PvE power, it's not actually clear."
+_Walked via: `addons/tools/read_spell_dbc.py` + substring scan; corrected via dev statement._
 
 **2. The mode aura is visible; the power auras are fully suppressed.**
 - `UnitAura` scan on a live character: only `PvE Mode 9931032` returns (also independently
   present in the petlog record `20260731_104452`'s aura sweep). No power aura listed.
 - CLEU listener at login: **silent** — no power-aura APPLIED events.
 - CLEU listener during a forced mid-session re-apply (unequip → re-equip a PvE-power item,
-  listener provably alive): **silent**. This kills the timing explanation — the auras are
-  suppressed from the combat log, not merely early.
+  listener provably alive): **silent**.
+- **Listener instrument VALIDATED** (2026-08-01): the same listener caught
+  `SPELL_AURA_REMOVED 707194 Life For Power` live — the power-aura silence was real
+  silence from a working probe, not a broken test.
+- Post-correction reading: the silence isn't suppression of active machinery — the power
+  spells simply never run (consistent with finding 1's correction: tooltip artifacts).
 _Walked via: three live probes run by Battlewrath (the UnitAura loop; the CLEU
-varargs-position listener; the equip cycle)._
+varargs-position listener; the equip cycle) + the 707194 validation catch._
 
 **3. The character sheet FABRICATES its display — the UI cannot show the bug.**
 The display chain never consults the server:
@@ -76,14 +85,18 @@ community observed the ~30% deficit on dps meters (which read CLEU). The premise
 settled by one controlled A/B — same spell, same dummy, bugged login vs post-ritual —
 confirming the per-hit CLEU amounts actually move.
 
-## For the devs (the report package)
+## For the devs (the report package — updated after Grey's statement)
 
-1. Fix the apply path (the actual bug).
-2. **Expose applied power** — unhide the power aura or add an API returning the
-   server-applied value. This is the structural fix: today players cannot distinguish
-   applied from expected, which is why a 30% bug survived on vibes for 5+ days.
+1. Fix the damage deficit (root cause per Grey NOT yet confirmed to be PvE power — the
+   deficit is real, the attribution is open).
+2. **Expose the applied value via API** — there is no aura to unhide (per Grey); an API
+   returning the server-applied stat is the ONLY possible verification surface. Today
+   players cannot distinguish applied from expected, which is why a ~30% deficit survived
+   on vibes for 5+ days.
 3. Fix the `PVP_POWER_CAP` clamp in `UnitPvEPower` before the caps ever diverge.
-4. Audit the server apply path for the same PvE/PvP mix-up class as (3) — see finding 6.
+4. (Weakened by Grey's attribution caveat, kept as labeled hypothesis:) audit the apply/
+   init path for state that survives login incorrectly — see findings 6 and the ritual
+   inference.
 
 ## The walk, in order (method trail)
 
