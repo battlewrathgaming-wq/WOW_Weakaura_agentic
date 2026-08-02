@@ -170,8 +170,12 @@ out-of-scope; this lane *is* that feel, and names mechanics as out-of-scope.
     directive); Battlewrath **slept with it on loop**. Form 06 proven. A durable **voice-summoning recipe**
     fell out (front-load directive + version + weirdness + exclude — banked in `Suno/prompt-recipe.md`),
     plus the **model-version-as-voice-lever** finding (v5.0 authentic / v5.5 clean — `Suno/suno-levers.md`).
+  - **Charter SETTLED (2026-08-01)** — a light founding directive at the top of `Suno/README.md`
+    (taste-first fork · form=spec/content=attached · no mechanical claims / identities-as-reference · a
+    contained creative space; the measure = "does Battlewrath keep the track on?"). Deliberately short,
+    room to expand ("not a legal case").
   - Still owned by the Suno manager: the content-attachment layer generalised, the growing prompt library,
-    the summonable-features catalog, its own charter.
+    the summonable-features catalog.
 
 ## Open / forecast
 

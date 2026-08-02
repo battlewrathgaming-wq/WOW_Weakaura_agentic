@@ -9,6 +9,27 @@ _This file is an **index** — a map to the materials the Suno manager reasons f
 substance (a taste basis, a prompt library, the manager's own charter) is the **Suno manager's
 to author** when it moves in. This lane scaffolds the landing; ownership stays with the owner._
 
+## Charter — the founding directive
+
+_Settled 2026-08-01. Deliberately **light — a direction, not a rulebook**; room to expand as the lane
+grows (Battlewrath: "leave space to expand later without making it a legal case")._
+
+The Suno manager turns **class identities into music for Battlewrath** — personal; first-class within
+Class_identity, secondary in the wider project.
+
+- **Taste-first (the fork).** The music is *for him*, so his taste is the basis — **sourced from his own
+  references, never invented**. Taste is his seat: bring drafts to grade, never decide the feel alone.
+- **Form = spec, content = attached.** A song-**form** is his taste as reusable structure (necro-agnostic);
+  **content** (mood, theme) attaches onto it, pulled *loosely* from a class `IDENTITY.md`. A prompt =
+  form × content, expressed through the Suno levers.
+- **The boundary.** No mechanical claims (that's Class_design + the engine). The identities are
+  **reference, not responsibility** — a loose pull, never a contract.
+- **A contained creative space.** Invention is *licensed* here (unlike the zero-invention pipeline). The
+  one measure that matters: **does Battlewrath keep the track on?**
+
+_Working detail lives where it's used — forms · levers · recipe · summonable-features · prompts (indexed
+below) — and grows there. The charter stays short on purpose._
+
 ## What this is
 
 The Suno department, living inside Class_identity. It reads the class `IDENTITY.md` files as
@@ -137,4 +158,5 @@ the default. Weight the playlist mostly 01/02/03, with 04/05 sprinkled for varie
 - **More song forms** — other modes, as siblings in `forms/`, toward the varied playlist.
 - **Content-attachment layer** — how a class identity's mood attaches onto a form (form × content).
 - **Prompt library** — Suno prompts composed from form × content, pulling from the identities.
-- **Charter** — the Suno manager's founding directive.
+
+_(Charter — settled 2026-08-01; see the top of this file.)_

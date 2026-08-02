@@ -22,8 +22,9 @@ Second Suno session. The lane went from specs to **a real playlist + tuned metho
   directive + pick the **model version** [v5.0 authentic / v5.5 clean] + **Weirdness ~70** + Exclude the
   default); **model-version-as-voice-lever** (`suno-levers.md`); banshee = a timbre (loud wail + soft
   register); "found piano" (craft target).
-- Helm **RELEASED** at close-off. Next: more core tracks (01/02/03) + the intimate end (more 06);
-  05 (Industrial) still the one untested form; the Suno manager's own charter still open.
+- Helm **RELEASED** at close-off. **Charter settled** (2026-08-01 — a light founding directive at the top
+  of `Suno/README.md`). Next: more core tracks (01/02/03) + the intimate end (more 06); **05 (Industrial)
+  still the one untested form.**
 
 ## 2026-07-30 (Suno manager session — taste basis → forms → levers → first tracks)
 
