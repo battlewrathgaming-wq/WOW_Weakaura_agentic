@@ -43,6 +43,16 @@ chain over FrameXML._
 damage at cap. Losing it ≈ dealing ~20% less; recovering ≈ "~25–30% more" — matches the
 community's reported magnitude.
 
+**4b. The gating table (dev-authored intent — GlobalStrings.dbc, patch-M):**
+PvE Power damage = "against creatures" (TARGET-gated, no mode/zone condition) · PvE
+healing/absorb = INSTANCES only · PvP Power damage = "against players" · PvP Power gains a
+creature-damage clause ONLY in High-Risk open world. Consequences: training dummies
+(creatures; entry 666938 = L63 elite, boss defense table) ARE valid PvE-power reflectors by
+design — the community's dummy testing measures the right surface; and a High-Risk tester
+hits TWO stacked lanes on a dummy, so baselines belong in plain PvE mode. (Client intent
+text; the server implements the actual gate — corroborated behaviorally by the community's
+observed before/after dummy deltas.)
+
 **5. Latent client bug found in passing (currently a no-op).**
 `UnitUtil.lua` (~:49): `UnitPvEPower` clamps with **PVP**_POWER_CAP — wrong constant.
 Both caps are 495 today (`Constants.lua:841/846`), so no visible effect — but it bites the
