@@ -21,6 +21,17 @@ Match-family-not-rank is the house law — but here the **type-distinction IS th
 distinct id, and a family/name catch would merge them. Exact-id per type is correct. Record: exact-id is right when
 the pattern's meaning is "count THIS type among siblings."
 
+## Why this is the AUTHORITY for permanent minions (cross-bench, 2026-08-08)
+
+Not merely a convenient read — the addons bench's raw CLEU record establishes it as the correct one:
+**"Minion buffs are ONE INSTANCE PER INDIVIDUAL (3 ghouls = 3 auras) — the per-type instance count is the
+liveness AUTHORITY for Raise types"** (`addons/COA_PetGrid/feed_live.lua` header). The alternatives fail:
+`UNIT_DIED` is **silent for overwrite-despawn (0 of 71 proven)**, so a GUID registry holds ghosts; and the
+permanent `Raise:` family has no TTL to decay. The buff instance is the only honest witness.
+
+Complement: timed `Animate:` summons carry NO buff and are TTL-governed — those go to
+[summon-count-tracker](summon-count-tracker.md). Two patterns, one problem, split by what the game exposes.
+
 ## The primitive it wants to become
 
 A member-list contract: `select` = the class's summon-buff ids (derivable — the resolver's summon/apply edges),

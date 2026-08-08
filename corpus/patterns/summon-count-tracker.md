@@ -79,18 +79,36 @@ almost a clean tell:
 - **`Animate:` / traps / champions — FINITE, works:** Animate: Zombie 15s · Bone Construct 20s · Bone Wraith 15s ·
   Tomb King 15s · Plaguefather 15s · Rotling 20s · Frost Wyrm 30s · the Champions 20s · Witch Hunter's Daredevil
   and Kennel Master 15s · Death/Scourge Trap 60s · Shadow Trap 30s · Clockwork Guardian 12s.
-- **`Raise:` — PERMANENT (`durationMs: -1`), does NOT work:** Ghoul · Lesser/Greater Skeletal Warrior · Gargoyle ·
-  Abomination · Crypt Fiend · Banshee · Skeletal Mage/Rogue · Decaying Colossus. These never expire, so a
-  TTL-decay count only ever climbs. They need the death-accurate registry, or the
-  [minion-count-tracker](minion-count-tracker.md) route if they land a per-minion buff on the caster.
+- **`Raise:` — PERMANENT (`durationMs: -1`), does NOT work here — use the OTHER pattern:** Ghoul ·
+  Lesser/Greater Skeletal Warrior · Gargoyle · Abomination · Crypt Fiend · Banshee · Skeletal Mage/Rogue ·
+  Decaying Colossus. These never expire, so a TTL-decay count only ever climbs.
+  **Their authority is the buff-instance witness → [minion-count-tracker](minion-count-tracker.md).**
+  Proven on the addons bench's raw CLEU record (`addons/COA_PetGrid/feed_live.lua` header, cross-bench
+  reference 2026-08-08): *"Minion buffs are ONE INSTANCE PER INDIVIDUAL (3 ghouls = 3 auras) — the per-type
+  instance count is the liveness AUTHORITY for Raise types"*, while *"Animates have no buff: TTL-governed."*
+  So the two patterns are complementary halves of one problem, and each is correct for its half **because of
+  what the game exposes**, not by preference.
 
 ## The honest limit
 
 **It counts by TTL, not by life.** A summon killed early stays counted until its timer runs out. For short-lived
 proc summons (12–20s) the drift is usually below notice — measured against the cost, this is the right first
-build. Death-accurate counting means the GUID registry: raw `CLEU:SPELL_SUMMON` + `CLEU:UNIT_DIED` keyed on
-destGUID — the [guardian-health-tracker](guardian-health-tracker.md) skeleton, ~20 lines, and the one place the
-CLEU arg layout has to be right.
+build.
+
+**And the obvious "fix" is a trap — CORRECTED 2026-08-08 by the addons bench's evidence.** The instinct is a GUID
+registry (register on `SPELL_SUMMON`, drop on `UNIT_DIED`). On this fork that LEAKS: their raw record proves
+**`UNIT_DIED` is SILENT for overwrite-despawn — 0 of 71** (`addons/COA_PetGrid/feed_live.lua` header; note their
+own caveat that death-by-enemy was untested in that sample — a known sample bias, not a clean bill). A registry
+keyed on UNIT_DIED would therefore hold ghosts for every replaced minion. Their conclusion, adopted here:
+**liveness comes from the buff-instance witness + TTLs; `UNIT_DIED` is a BONUS path, never the authority.**
+So: TTL for Animates (this pattern), buff instances for Raises (minion-count-tracker), and no registry-only build.
+
+**The CLEU layout, if a raw-parsing variant is ever written** (independently confirmed twice — their parser
+header and their captured landing record, `20260731_104452_749__petlog.lua`): classic 3.3.5 varargs, **no
+`hideCaster`, no raid flags** — `1 ts · 2 subevent · 3 srcGUID · 4 srcName · 5 srcFlags · 6 dstGUID · 7 dstName ·
+8 dstFlags · 9+ suffix (spellId, spellName, spellSchool)`. `UNIT_DIED` puts the dead unit at **dstGUID [6]** with
+an all-zero source. The canonical `CombatLogGetCurrentEventInfo` is furniture on this fork — varargs is the real
+channel ([[stored-field-isnt-live-check-consumption]]).
 
 ## The primitive it wants to become
 

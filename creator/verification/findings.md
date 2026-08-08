@@ -120,3 +120,22 @@ whenever the next system change wants its pressure test: `py coverage.py` → st
    composition primitive the bench had not used: it lets a custom trigger consume a STRUCTURED trigger's
    output, so hand-written CLEU parsing (and its arg-position risk) can be avoided entirely. Proven live in
    `corpus/patterns/summon-count-tracker.md`.
+
+## 2026-08-08 — cross-bench: the addons bench's raw CLEU record (reference, not our harvest)
+
+17. **CLEU arg layout CONFIRMED empirically** (their `COA_PetGrid/feed_live.lua` header + the captured
+   landing record `20260731_104452_749__petlog.lua`): classic 3.3.5 varargs — `1 ts · 2 subevent ·
+   3 srcGUID · 4 srcName · 5 srcFlags · 6 dstGUID · 7 dstName · 8 dstFlags · 9+ suffix`. **No `hideCaster`,
+   no raid flags.** `UNIT_DIED` = dead unit at dstGUID[6], all-zero source. Their parser hedged at
+   "3 hideCaster?" and scanned positionally rather than indexing; the capture shows the hedge unnecessary.
+   Any future raw-CLEU custom trigger on this bench can index with confidence.
+18. **`UNIT_DIED` is SILENT for overwrite-despawn — 0 of 71 (their proof).** This KILLS the obvious
+   "death-accurate GUID registry" design for summon counting: it would hold a ghost for every replaced
+   minion. Their standing conclusion, adopted: **liveness = the buff-instance witness + TTLs; UNIT_DIED is
+   a bonus path, never the authority.** (Their caveat rides too: that sample contained no enemy-kills, so
+   death-by-enemy is untested — a named sample bias, not a clean bill.) Corrected
+   `corpus/patterns/summon-count-tracker.md`, which had proposed exactly the registry design.
+19. **The two summon patterns are complementary by MECHANISM, not taste:** minion buffs are one instance
+   per individual (the liveness authority for permanent `Raise:` types → minion-count-tracker), while
+   `Animate:` summons carry no buff at all (TTL-governed → summon-count-tracker). Both patterns updated to
+   cross-point. A future Self-tracker contract must select on this split, not on display preference.
