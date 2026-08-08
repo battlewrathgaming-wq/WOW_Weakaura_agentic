@@ -53,6 +53,14 @@ decisions are `creator/decisions.md`; the fixed touchstones are `WHAT.md` / `HOW
   what exists for the public), THEN the bench turns to bespoke UIs through the existing engine pipeline** — the
   picker is the wide product for everyone; bespoke is the deep product the machine was always for.
 - **WoW addons** beyond auras — **the `addons/` bench ESTABLISHED (2026-07-15)**: root sibling, own charter/invariants/bench/backlog (the agent-handoff kit); three banked missions (spec-name capture · tooltip gap-fill · WA-env harvest) each unblock the aura bench. Same ecosystem, separate focus - no goal-flipping.
+- **DBC RECONCILE — a project of its own (seeded 2026-08-08, not started).** The one input still hand-frozen:
+  game data. A *waterfall with a pump* — start the engine and everything downstream is replaced from upstream as
+  mechanical emits, so nothing downstream needs trusting, only sources and transforms. Three witnesses answering
+  three different questions (DBC = exists · trees = reachable · live pull = resolves/behaves); the JOIN is what
+  separates live content from the devs' project history. Acceptance test: *when Lesser Zombie changes or leaves,
+  we get a clean readout of it.* Full design + the facts checked: **`operations/DBC_Reconcile_plan.md`** — don't
+  re-derive here. Affects the aura bench directly (it supersedes `resolved.json` + `coa_spells.json`).
+
 - **Consolidation** — the engine folds into creator's neighbourhood over time; the weakauras corpus decomposes into the
   graph / feature-store / slice storage instead of scattered json.
 - **Live-client confirms** — headless-green is not live-proven; the game is the ground-truth authority.
