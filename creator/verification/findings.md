@@ -148,3 +148,13 @@ whenever the next system change wants its pressure test: `py coverage.py` → st
    per individual (the liveness authority for permanent `Raise:` types → minion-count-tracker), while
    `Animate:` summons carry no buff at all (TTL-governed → summon-count-tracker). Both patterns updated to
    cross-point. A future Self-tracker contract must select on this split, not on display preference.
+
+20. **`UNIT_DIED` coverage — the third exit measured; the table is now COMPLETE (2026-08-08).**
+   **TTL expiry is SILENT.** Anchor: `addons/landing/raw/20260731_104452_749__petlog.lua` — 36
+   `Animate: Zombie` summons (525379, flags 0x1111 MINE|PET) over 147.6s at a 15s TTL (~10 generations),
+   with **0 MINE|PET `UNIT_DIED`** in the full 254s / 4,197-event record. Corroborated by construction:
+   `COA_PetGrid/feed_live.lua:239` retires animates on `now >= rec.expiresAt` with no death path.
+   Full picture, all three exits now evidenced: **enemy-kill → FIRES** (2 events, hound log) ·
+   **overwrite-despawn → SILENT** (0/71, their record) · **TTL expiry → SILENT** (0/36, this record).
+   **Design consequence:** the TTL is the SPINE for timed summons (the only witness to their normal exit),
+   so a UNIT_DIED registry is strictly ADDITIVE — it can refine early-kill accuracy, never replace the timer.

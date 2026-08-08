@@ -140,8 +140,15 @@ them in play.
   sheet carries `provides: null`, so probably not). If they don't, the upgrade must catch `CLEU:SPELL_SUMMON`
   in raw Lua too — which puts the spell ID *into the code* and costs the two-boxes-no-code blank. **Check that
   first**; the answer decides whether the upgrade is cheap or whether it forks the pattern into two products.
-- **Open unknown worth one test:** does TTL expiry itself emit `UNIT_DIED`? Presumed silent, untested. If it
-  DOES, a registry alone suffices and the TTL becomes a fallback rather than the spine.
+- **CLOSED 2026-08-08 — TTL expiry is SILENT (was the seed's one open question).** Anchor:
+  `addons/landing/raw/20260731_104452_749__petlog.lua` — **36 `Animate: Zombie` summons** (spellId 525379,
+  flags `0x1111` = MINE|PET) across **147.6s at a 15s TTL** (≈10 generations, so they demonstrably expired),
+  and **0 `UNIT_DIED` with MINE|PET flags** in the whole 254s / 4,197-event record. Corroborated by
+  construction in `addons/COA_PetGrid/feed_live.lua:239` — they retire animates purely on
+  `now >= rec.expiresAt`, with no death path for that lane.
+  **Consequence: the TTL is the SPINE, not a workaround.** It is the only witness for a timed summon's
+  NORMAL exit, so a death-drop can only ever be additive — an edge-case refinement for early kills, never a
+  replacement. That strengthens the case for shipping this pattern as-is.
 - **What it will never fix:** the permanent `Raise:` family. Overwrite-despawn is their main exit and it is
   silent — they stay with [minion-count-tracker](minion-count-tracker.md).
 
