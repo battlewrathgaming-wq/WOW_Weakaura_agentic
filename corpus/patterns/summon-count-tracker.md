@@ -117,6 +117,34 @@ header and their captured landing record, `20260731_104452_749__petlog.lua`): cl
 an all-zero source. The canonical `CombatLogGetCurrentEventInfo` is furniture on this fork — varargs is the real
 channel ([[stored-field-isnt-live-check-consumption]]).
 
+## Backlog seed — the death-accurate upgrade (DEFERRED, deliberately)
+
+**Decision (Battlewrath, 2026-08-08): the TTL version is sufficient — ship it.** The error is bounded and
+named: an over-count that **self-corrects within one TTL** (≤12s clockwork, ≤15–20s most Animates, 60s worst
+case on traps). A "best guess" at that resolution suits the display's actual job — you read the count to decide
+whether to re-summon, not to audit. This is an **ACCEPTED gap, not an open one**
+([[trace-what-we-know-gaps-are-opportunity-or-accepted]]): revisit only if someone reports the drift bothering
+them in play.
+
+**A future session can start cold from here — the facts are already proven and cited:**
+
+- **The design:** keep trigger 1 + its TTL as the *expiry* path, and add a `CLEU:UNIT_DIED` drop for *early
+  deaths*. The two together cover both exits, because UNIT_DIED's coverage is split by removal mode
+  (fires on enemy-kill, silent on overwrite — findings #18).
+- **Already banked, no re-derivation needed:** the CLEU arg layout, confirmed empirically (findings #17) ·
+  the UNIT_DIED split (#18) · `TRIGGER:<n>` observers as a composition primitive (#16) · bare
+  `COMBAT_LOG_EVENT_UNFILTERED` is disabled, use the filtered form (above).
+- **The real cost to weigh — it is NOT line count:** this pattern's shareable property is that *the Lua is
+  universal and never edited*. A death-drop needs to match the dying GUID against the summons it registered,
+  and **it is UNKNOWN whether trigger 1's clone states expose `destGUID`** for that matching (the combat-log
+  sheet carries `provides: null`, so probably not). If they don't, the upgrade must catch `CLEU:SPELL_SUMMON`
+  in raw Lua too — which puts the spell ID *into the code* and costs the two-boxes-no-code blank. **Check that
+  first**; the answer decides whether the upgrade is cheap or whether it forks the pattern into two products.
+- **Open unknown worth one test:** does TTL expiry itself emit `UNIT_DIED`? Presumed silent, untested. If it
+  DOES, a registry alone suffices and the TTL becomes a fallback rather than the spine.
+- **What it will never fix:** the permanent `Raise:` family. Overwrite-despawn is their main exit and it is
+  silent — they stay with [minion-count-tracker](minion-count-tracker.md).
+
 ## The primitive it wants to become
 
 A contract row set: `select` = the class's **finite-duration** summon spells (directly derivable — the resolver's
