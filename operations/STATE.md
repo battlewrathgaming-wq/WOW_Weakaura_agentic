@@ -1,5 +1,38 @@
 # STATE — where the machine is
 
+## 2026-08-08 (Aura bench — a Discord ask became two corpus primitives + the DBC seed)
+
+**Consult session** (Battlewrath built in-game; the bench supplied mechanism + verification). Started from a
+player request — "track how many clockwork guardians are up" — and closed with two patterns, four findings and
+a homeless project given a home.
+
+- **`corpus/patterns/summon-count-tracker.md` — NEW, live-proven twice** (Animate: Zombie 525379/15s POC ·
+  Clockwork Guardian 806760/12s), closure CLEAN +5 residue. One icon, one number; **WA's clone machinery does
+  the add/expire bookkeeping — nothing counts or subtracts.** Structured combat-log trigger catches (Clone per
+  Event + timed duration), a ~10-line TSU observing `TRIGGER:1` counts its states. **Two parameters (spell ID,
+  TTL) and the Lua is never edited** — which is what makes it shippable as a BLANK.
+- **`corpus/patterns/minion-count-tracker.md` — PROMOTED to authority** for permanent `Raise:` minions. The two
+  patterns are complementary **by mechanism, not taste**: minion buffs are one instance per individual (the
+  liveness authority for Raises); `Animate:` summons carry no buff and are TTL-governed.
+- **findings #14–20.** `displayIcon` missing from the display sheet · the combat-log trigger stores spell IDs
+  under `spellName` as an ARRAY (not `spellId`, which sits dead beside it) · **`TRIGGER:<n>` observers = a
+  composition primitive** (a custom trigger can consume a STRUCTURED trigger's full state table — lets us skip
+  hand-parsing CLEU entirely) · **the `UNIT_DIED` table completed across all three exits**: enemy-kill FIRES
+  (2 MINE|PET events, hound log) · overwrite-despawn SILENT (0/71) · **TTL expiry SILENT** (0 of 36 zombies over
+  147.6s at 15s TTL). Consequence: the TTL is the SPINE for timed summons; a death registry is strictly additive.
+- **Cross-bench dividend, twice:** the addons bench's raw CLEU record *corrected* a wrong recommendation this
+  bench had just published (a UNIT_DIED registry would leak), and their captures then *closed* the caveat that
+  correction introduced. No coordination beyond Battlewrath pointing at the folder — the charter working.
+- **`operations/DBC_Reconcile_plan.md` — SEEDED** (see roadmap): the waterfall-with-a-pump design for rebuilding
+  game data from source. Three witnesses, witness-record markers, curation stays consumer-side, git as the
+  lookback with a sorted/line-per-record output contract. Not started, no bench assigned.
+- Earlier in the window (2026-07-19, support): the Phalangel case — a player's aura invisible on their client,
+  root-caused **entirely by decoding their own export** (WA 4.0.0/iv52 vs the fork's 5.21.2/iv86; import is
+  asymmetric — old→new migrates, new→old shows nothing). Standing asset: `export/WA_Ascension_5.21.2.zip` +
+  split zips + VERSION.txt + a Discord update guide, for the next launcher-less (Mac) player.
+
+**Aura bench next heading unchanged:** the Ready contract (abilities + cooldown = ONE bucket).
+
 ## 2026-08-01 (Suno — the playlist build: forms 04 & 06, first tracks, the voice-summoning recipe)
 
 Second Suno session. The lane went from specs to **a real playlist + tuned method**. Detail in
