@@ -129,7 +129,16 @@ whenever the next system change wants its pressure test: `py coverage.py` → st
    no raid flags.** `UNIT_DIED` = dead unit at dstGUID[6], all-zero source. Their parser hedged at
    "3 hideCaster?" and scanned positionally rather than indexing; the capture shows the hedge unnecessary.
    Any future raw-CLEU custom trigger on this bench can index with confidence.
-18. **`UNIT_DIED` is SILENT for overwrite-despawn — 0 of 71 (their proof).** This KILLS the obvious
+18. **`UNIT_DIED` coverage is SPLIT by removal mode — gap CLOSED 2026-08-08** (was: "death-by-enemy untested").
+   **Killed by an enemy → YES, it fires:** the hound session (`addons/landing/.../20260731_162256__combatlog.txt`,
+   the /combatlog disk witness) shows 2 `Lesser Skeletal Warrior` deaths at **flags 0x1111 = MINE|PET**, killed by
+   Cursed Darkhounds (5 summoned, 2 died). **Overwrite-despawn → NO, silent — 0 of 71 (their proof).**
+   TTL expiry: still untested, presumed silent. **Consequence:** a registry keyed on UNIT_DIED is viable for the
+   TIMED population (TTL handles expiry, UNIT_DIED handles early death = genuinely death-accurate), and still
+   LEAKS for the permanent `Raise:` family, whose main removal mode is the silent one. Buff instances remain the
+   authority there. _Method note: the first scan for this missed the file by pattern-matching the Lua capture
+   format (`-- [7]`) — the .txt disk log in the same folder was invisible to it. Scan by CONTENT, not by format._
+   (superseded text:) **`UNIT_DIED` is SILENT for overwrite-despawn — 0 of 71 (their proof).** This KILLS the obvious
    "death-accurate GUID registry" design for summon counting: it would hold a ghost for every replaced
    minion. Their standing conclusion, adopted: **liveness = the buff-instance witness + TTLs; UNIT_DIED is
    a bonus path, never the authority.** (Their caveat rides too: that sample contained no enemy-kills, so

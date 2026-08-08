@@ -101,7 +101,14 @@ registry (register on `SPELL_SUMMON`, drop on `UNIT_DIED`). On this fork that LE
 own caveat that death-by-enemy was untested in that sample — a known sample bias, not a clean bill). A registry
 keyed on UNIT_DIED would therefore hold ghosts for every replaced minion. Their conclusion, adopted here:
 **liveness comes from the buff-instance witness + TTLs; `UNIT_DIED` is a BONUS path, never the authority.**
-So: TTL for Animates (this pattern), buff instances for Raises (minion-count-tracker), and no registry-only build.
+**REFINED 2026-08-08 (the hound log closes the caveat):** `UNIT_DIED` coverage is split by removal mode —
+it **DOES fire for enemy-kills** (2 `Lesser Skeletal Warrior` deaths at flags 0x1111 = MINE|PET, killed by
+Cursed Darkhounds) and is **silent for overwrite-despawn**. So for the TIMED population this pattern serves,
+an optional upgrade is genuinely death-accurate: keep the TTL as the expiry path and add a `CLEU:UNIT_DIED`
+drop for early deaths — the two together cover both exits. It is the PERMANENT `Raise:` family that a
+registry still fails, because overwrite is their main exit and that is the silent one.
+
+So: TTL (+ optional UNIT_DIED drop) for Animates — this pattern; buff instances for Raises — minion-count-tracker.
 
 **The CLEU layout, if a raw-parsing variant is ever written** (independently confirmed twice — their parser
 header and their captured landing record, `20260731_104452_749__petlog.lua`): classic 3.3.5 varargs, **no
