@@ -101,3 +101,22 @@ whenever the next system change wants its pressure test: `py coverage.py` → st
 13. **The fork's import DOES uid-match** (live-confirmed incidentally): the multidot check-pack carried the
    corpus uid (= Battlewrath's original aura) → WA offered known-copy/update-over. Validates the one-time-minting
    design exactly (a re-import CAN clobber an edited aura — hence fresh uids per mint, no update flow ever).
+
+## 2026-08-08 — the summon-count tracker (corpus intake, `export_20260808_223428_01`)
+
+14. **`displayIcon` is not on the display sheet** — the stub flagged it `unknown field - kept` on a live
+   hand-build. It is a real icon-region field (the manual icon path) the display harvest missed. It bites
+   exactly where auto-resolution fails: an aura whose dynamic info comes from a TSU has no icon source
+   (the combat-log trigger's sheet carries `provides: null`), so a manual `displayIcon` is the ONLY way to
+   give it a face. **Harvest boundary, on record** — fold into the display sheet when it next matters; a
+   machine-pressed summon-count tracker would need it.
+15. **The combat-log trigger stores a spell ID under `spellName`, as a multiEntry ARRAY** (`spellName:
+   ["525379"]` + `use_spellName: true`) — NOT `spellId` (which exists as dead residue alongside, with
+   `spellIds: []`). Same residue family as the aura2 `spellIds` catch (finding #—/the live-keys tier):
+   the stored form is not the one the field name predicts. Recorded for the combat-log surface's eventual
+   liveness harvest.
+16. **A trigger can observe another trigger** (`TRIGGER:<n>`, `Private.ScanEventsWatchedTrigger`,
+   GenericTrigger.lua:1049) — the observer receives the watched trigger's FULL state table. This is a
+   composition primitive the bench had not used: it lets a custom trigger consume a STRUCTURED trigger's
+   output, so hand-written CLEU parsing (and its arg-position risk) can be avoided entirely. Proven live in
+   `corpus/patterns/summon-count-tracker.md`.
