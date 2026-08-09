@@ -26,8 +26,12 @@ spot is cleaner. Two files = two conditions (e.g. no-haste vs +haste).
   timeline (offset + interval), summons, self-heal, aura duration. (Harvest Plague.)
 - **`crypt_analyze.py`** — channeled ability. Aggregates across casts: damage
   ticks + total, Runic Power energizes + total, channel durations. (Crypt Swarm.)
+- **`graveyard_observe.py`** — a summon-zone ability. The Graveyard (805197)
+  lifecycle: tombstones, pulses, corpses (rise-and-die), Corpse Explosion
+  consume/expiry (with the alive/gone-after-last-pulse bracket). Auto-detects the
+  caster: `py graveyard_observe.py "<log path>"`. (Graveyard.)
 
-Both: `py <tool>.py "<log path>" --player <YourCharName> [--spell "<Name>"]`
+DoT/channel tools: `py <tool>.py "<log path>" --player <YourCharName> [--spell "<Name>"]`
 
 ## Format facts / gotchas (learned live)
 
@@ -49,3 +53,4 @@ Both: `py <tool>.py "<log path>" --player <YourCharName> [--spell "<Name>"]`
 - `stamina-loop-test.md` — Stamina is a damage stat (pet-HP→SP loop), multiplicative on Life Force.
 - `harvest-plague-haste-test.md` — haste does NOT speed Harvest Plague's ticks (3 witnesses).
 - `crypt-swarm-haste-test.md` — haste adds no output to Crypt Swarm; channel ~2% longer.
+- `graveyard-observe.md` — Graveyard = a corpse-factory zone (5 tombstones, 5 pulses/~5s, 25 corpses, 20s, ~4–5s grace); **DBC-absent, log-observed** (`graveyard_observe.py`).

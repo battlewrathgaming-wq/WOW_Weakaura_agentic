@@ -98,6 +98,23 @@ idle window is variable, up to ~8s here). Bonus *controlled* pet-dependence poin
 an **Abom as first pet added +102 SP** (vs a ghoul's +30) — bigger pets ≫ ghouls,
 as expected; still character/gear-specific (it's this Abom's stamina), not a constant.
 
+## Graveyard (805197) — a corpse-factory zone (DBC-absent; observed 2026-08-09)
+
+Not in the DBC (`805197`/"Graveyard" absent from `coa_spells.json` + talents) — characterized
+purely from `/combatlog` (3 captures, `tests/graveyard_observe.py`; full write-up +
+spell-id map: `tests/graveyard-observe.md`). The cast summons **5 Tombstones** + a **20s enemy
+debuff**; each Tombstone **pulses every ~5s** (5 pulses) dealing damage + summoning a **Risen
+Ghoul** that **rises and dies in ~0.4s = a corpse**. → **25 corpses/cast**, 5 every ~5s,
+persisting the whole zone + a **~4–5s grace** (≈ one pulse-cycle) then batch-fading. **Corpse
+Explosion** (533239 → 533240 AoE) detonates *all* corpses at once. Zone measured **19.95–19.98s
+≈ 20s** three times (tooltip 20 confirmed; the eyeballed "15" was low).
+
+**WA feasibility:** corpse creation is **`UNIT_DIED`-trackable** (loud — not the silent-TTL trap
+from the summon work), so a corpse/duration aura works off: Graveyard cast = 20s timer · Risen-Ghoul
+`UNIT_DIED` = +1 corpse · a successful Corpse Explosion (533240) or ~5s-past-zone = clear. (Don't
+use CE *failure* as the expiry signal — its `SPELL_CAST_FAILED "You can't do that right now."` is a
+generic string, not corpse-specific.)
+
 ## Stat priority — Animation (measured + reasoned)
 
 **Spell Power ≥ Intellect ≈ Stamina > Spell Hit (to cap) > Crit ≈ Haste > Spell Pen**

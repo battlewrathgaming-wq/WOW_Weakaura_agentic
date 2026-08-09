@@ -39,6 +39,13 @@ grounded — Reaper's cooldown divergences all closed, Necro pet-scaling resolve
 Ripest next lever = the **Reaper aura build** (spend-priority rule done + banked).
 Smaller threads in "Open / forecast" below._
 
+- **Graveyard (805197) — CHARACTERIZED (2026-08-09).** DBC-absent Necromancer ability, observed
+  via 3 `/combatlog` captures + `Necromancer/tests/graveyard_observe.py`: a **corpse-factory zone**
+  — 5 Tombstones, 5 pulses/~5s, **25 corpses/cast**, **20s** zone, **~4–5s grace** then batch-fade;
+  Corpse Explosion (533239→533240) detonates all at once. Corpse creation is **UNIT_DIED-trackable**
+  → a corpse/duration WA is feasible. Write-up: `Necromancer/tests/graveyard-observe.md`; FINDINGS +
+  tests/README updated. (Downstream: the aura bench can build the tracker off this.)
+
 - **Reaper (Domination tank): FULLY ANALYZED** — `Reaper/FINDINGS.md` +
   `Reaper/bar_map.md`. Thesis (soul-economy tank) × bars × grounded kit all run;
   the **soul-infusion spend priority is RESOLVED** (build to 3 → **F if off CD**:
