@@ -160,6 +160,26 @@ them in play.
 - **What it will never fix:** the permanent `Raise:` family. Overwrite-despawn is their main exit and it is
   silent — they stay with [minion-count-tracker](minion-count-tracker.md).
 
+## Companion technique: CLEAR BY HORIZON (live-proven 2026-08-09)
+
+**You cannot delete another trigger's clone states, so move the boundary instead.** When something should
+"consume" the counted events (Corpse Explosion eating the corpses you banked), the observer TSU records the
+moment and counts only states created after it:
+
+```lua
+aura_env.clearedAt = GetTime()                       -- on the consuming event
+...
+local started = s.expirationTime and s.duration and (s.expirationTime - s.duration)
+if started and started > (aura_env.clearedAt or 0) then n = n + 1 end
+```
+
+Setting `stacks = 0` alone is NOT enough: the next event would re-count every stale clone. The horizon
+excludes them permanently while new events count normally, with no bookkeeping that can drift.
+
+**Hygiene rider:** a `Load: In Combat` gate does double duty — it is the semantic boundary (the engagement
+ended, the count is meaningless) AND the state cleanup, because unloading drops the clone states outright.
+Live-caught: residual counts left from earlier testing sessions cleared themselves on the next combat entry.
+
 ## The primitive it wants to become
 
 A contract row set: `select` = the class's **finite-duration** summon spells (directly derivable — the resolver's
