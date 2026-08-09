@@ -27,6 +27,14 @@ its own state with its own TTL, and expiry retires it. A ten-line observer just 
 
 ## The signature (decoded verbatim from the closed docket)
 
+- **⚠ USE THE `Spell ID` FIELD, NOT `Spell Name` (rider added 2026-08-09 — a silent-failure trap).**
+  The Spell-*Name* field runs a typed ID through `GetSpellInfo` before storing it
+  (`WeakAuras.lua:6098` — `if spellId then name = GetSpellInfo(spellId); if name then ... end`), and `Check`
+  resolves the incoming ID the same way. **For a DBC-absent spell both ends return nil and the trigger NEVER
+  FIRES** — no error, no warning. The combat-log trigger's separate **`spellId`** arg uses `AddExact`
+  (Prototypes.lua:1841/1852), storing the raw number with no lookup: DBC-proof. The build below works because
+  525379 happens to be DBC-present, which is exactly what kept the trap invisible; Necromancer's Graveyard
+  (805197, DBC-absent) is where it surfaced.
 - **trigger 1 — the catcher (never displays):** `type: combatlog` · `subeventPrefix: SPELL` +
   `subeventSuffix: _SUMMON` · `use_sourceUnit: true` + `sourceUnit: "player"` · `use_spellName: true` +
   **`spellName: ["<summon spell id>"]`** (stored-form note: the combat-log trigger's *Spell* field holds the ID

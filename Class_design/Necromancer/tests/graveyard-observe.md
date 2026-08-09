@@ -40,6 +40,25 @@ Logs (verbatim, in [`logs/graveyard/`](logs/graveyard/)):
 
 The grace is stated at human-operable precision — pinning it tighter buys nothing below reaction time.
 
+## Corpse Explosion detonates PER CORPSE, each with its own range check (2026-08-09)
+
+Measured from `2026-08-09-08.41.41`: **25 corpses · 2 targets · 34 `533240` events** in a 0.020s burst
+(by destGUID: `…01B9` x19, `…01BA` x15). Floor if each corpse hit one target = 25; ceiling if each hit both
+= 50. Observed 34 ⇒ **9 corpses reached BOTH dummies, 16 reached only one.** Nothing else died in the log
+(all 25 `UNIT_DIED` are Risen Ghouls) and Battlewrath confirms no pre-existing corpses.
+
+**So CE is not one blast centred on the caster — it is N independent blasts, each range-checked from its own
+corpse's position.** This is why the Tombstone layout being *fixed* (2 + 3) matters: spawn geometry sets corpse
+spread, and corpse spread sets how much target overlap the detonation gets.
+
+Consequence for any readout: **`533240` event count is HITS, not corpses** (hits = Σ per-corpse targets-in-range;
+corpses ≤ hits ≤ corpses × targets). A corpse count is not recoverable from CLEU — the events carry the caster
+as source, not the corpse.
+
+_Design note (Battlewrath, 2026-08-09): the hits÷corpses ratio IS a dispersal signal, but it is deliberately
+NOT surfaced in the aura — dispersal has no control knob, so it would add mental load without a lever. Per-HIT
+average damage is kept instead: that one benchmarks SP/crit, which gear can actually move._
+
 ## For a corpse/duration WeakAura
 
 - **Trigger / duration:** Graveyard cast (`SPELL_CAST_SUCCESS 805197`) → a **20s** zone timer.
