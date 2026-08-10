@@ -109,3 +109,12 @@ Two severities, two behaviours:
 
 On every driver version bump: re-verify the fingerprint recipe, the bucket shape, and THIS
 document.
+
+**Re-verification 2026-08-08 (against the release asset on tag 0.9.554, toc `0.9.563`,
+silo `refs_libellus/LibellusLeti-0.9.554-release/`): CONTRACT INTACT, no changes needed.**
+`NewMinionBucket` still carries `misses`; `MAX_SAVED_FIGHTS = 10`; the `FightFingerprint`
+recipe is unchanged so our fold cursor still matches; `MinionDps.lua` has no `OnUpdate`
+handlers and every aggregation caller remains an invoked path.
+★ **Identify driver builds by CONTENT, not by label** — on this project the toc version, the
+git tag and the release label all disagree (see that silo's PROVENANCE.md). "Version bump"
+means *file hashes changed*, not *the version string changed*.

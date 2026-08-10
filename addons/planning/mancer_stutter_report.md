@@ -110,6 +110,30 @@ Two things to weigh against your own knowledge of the code:
 I'm offering the measurement and where it points, not prescribing a fix — it's your
 codebase and you'll know which of those loops is doing real work.
 
+## Version check — does this still apply to the current build?
+
+Yes. I compared the build I measured against the `LibellusLeti.zip` currently attached to the
+0.9.554 release (sha256 `cf8bcab6…`), file by file:
+
+- **`MinionHpHud.lua` is byte-identical** between the two.
+- **No timer or interval constant changed anywhere in the addon** — `REFRESH_INTERVAL` is
+  still 0.5, `NAMEPLATE_SYNC_INTERVAL` 1.25, `CLOAK_SCAN_INTERVAL` 0.50,
+  `CLOAK_REASSERT_INTERVAL` 0.30.
+- The only files **added** are `WelcomeWizard.lua`, `Locale.lua` and four locale files; nothing
+  was removed. The remaining differences are consistent with strings being extracted into the
+  locale files.
+
+So the measurement above describes the current code, not a superseded version.
+
+One thing worth flagging while I was doing that, because it makes version conversations hard:
+the version surfaces disagree. The **git tag** `0.9.554` holds a tree whose toc reads
+`## Version: 0.9.434` and which is missing `InspectTree.lua` — a feature the 0.9.554 notes
+announce. The **release asset** hanging under that same tag has a toc reading
+`## Version: 0.9.563`. And the build I was given directly on 31 July reports `0.9.553` while
+already containing 554's headline features. Not a complaint — just that "which version are you
+on" can't currently be answered from the toc or the tags, which is worth knowing when you're
+triaging reports.
+
 ## Raw data
 
 The full per-second table (framerate + per-addon CPU for all four watched addons, 130 rows)
