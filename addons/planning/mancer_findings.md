@@ -66,6 +66,30 @@ periodic full plate-discovery sweeps. Finding 2's fix removes a slice of both.
 **Supporting:** earlier unattributed runs `20260731_151539` (min 28 / avg 83) and
 `20260731_152232` (min 30 / avg 94) — same trough shape, three independent captures.
 
+**★ INDEPENDENT REPRODUCTION (2026-08-08, Discord):** user TruxXx reports "when this add-on
+is activated, the game stutters continuously, like every second or two seconds you feel a
+flicker on the screen." No TurboPlates mentioned → the hitch is NOT a
+Battlewrath-specific interaction. LtGenZombie is ACTIVELY SOLICITING diagnostics (version /
+other addons / settings) — our isolation arms already answered that question mechanically
+(PetGrid off, MancerLedger off, TurboPlates off → still hitching with Mancer alone).
+
+**Spike periodicity (re-analysis of `20260731_152651_494`):** 17 of 130 seconds carry a
+>40ms Mancer burst, on a **~8s cadence** (median gap 8.0s, mean 7.7s); fps at spike seconds
+averages 55 vs 97 quiet. NOTE THE METHOD LIMIT: 1-second sampling CANNOT resolve per-frame
+hitches — a 24ms/sec steady state is invisible if spread over 60 frames and a dropped frame
+every second if concentrated. The reporter's "every second or two" is consistent with the
+concentrated case but **our data cannot prove the flicker cadence**; a frame-time sampler
+would be required to measure it.
+
+**Timer inventory (source read, 0.9.553 — HYPOTHESES for the reported cadence, not proven):**
+unconditional 20/sec pollers exist (`RegenTracker.POLL_INTERVAL = 0.05`, two
+`ICON_PULSE_INTERVAL = 0.05` in FloatingText + NecromancerAdvisor); and the reporter's
+stated 1–2s cadence matches `RegenTracker.DISPLAY_INTERVAL = 1.95` / `REGEN_TICK_SECONDS = 2`
+/ `ADVISOR_POLL_INTERVAL = 2.0`. RegenTracker's `OnUpdate` is installed unconditionally at
+init (no shown-state gate) — same pattern as the HUD ticker. Other cadences: CLOAK_REASSERT
+0.30 · CLOAK_SCAN/HUD REFRESH 0.50 · SPELL_CD_SYNC 0.25 · ALERT_REFRESH 0.35 ·
+NAMEPLATE_SYNC 1.25 · UNIT_SCAN 3.0 · MinionSheet REFRESH 5.0 · GUARDIAN_SEED 5.0.
+
 ## Relay notes
 
 - Finding 2 is the icebreaker: small, provably real, flattering to fix, and only visible to a
@@ -82,5 +106,11 @@ periodic full plate-discovery sweeps. Finding 2's fix removes a slice of both.
 
 ## Status
 
-HELD. Next: prove ledger utility through ordinary play (profiles accumulating across
-dungeons, a regear compare with real deltas). Engage when there's something to show.
+HELD — but the hold's premise changed 2026-08-08 (see Finding 3's reproduction note).
+The hold existed because Battlewrath was new to their community and did not want to arrive
+with a razor edge on UX. That reasoning covers Findings 1 and 2 (design/UX critique). It
+does NOT obviously cover Finding 3: a pure profiler measurement, no design opinion, of a
+symptom a SECOND user has now reported and the author is actively asking diagnostic
+questions about. Relay decision remains Battlewrath's.
+
+Next (unchanged): prove ledger utility through ordinary play.
