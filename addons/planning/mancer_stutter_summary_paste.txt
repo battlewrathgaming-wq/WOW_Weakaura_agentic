@@ -1,4 +1,4 @@
-**Method:** 131-second sample standing in a capital, one sample per second, using the client's own CPU profiler (`/console scriptProfile 1` + reload). The numbers are the engine's per-addon accounting — I only sampled it and wrote it down.
+**Method:** 131-second sample in a capital, one sample per second, using the client's own CPU profiler (`/console scriptProfile 1` + reload). The numbers are the engine's per-addon accounting — I only sampled it.
 
 **Totals over the window:**
 ```
@@ -28,6 +28,6 @@ Every other addon read 0.0 ms in those same seconds. For scale, at ~90 fps one f
 
 **Limits, so it isn't over-read:** this identifies the addon and the second — not the function, and not individual frames. `GetAddOnCPUUsage` attributes per addon, and my sampler runs at 1 Hz. The nameplate path I flagged earlier came from reading the source, not from these numbers — separate evidence, worth checking separately.
 
-Raw per-second data attached: 130 rows, framerate plus CPU for all four watched addons. Plot it yourself rather than taking my summary.
+Raw per-second data attached: 130 rows, framerate plus CPU for all four watched addons — plot it yourself rather than taking my summary.
 
-You can reproduce the whole thing without my tooling: `/console scriptProfile 1`, reload, play a minute in a city, then run `/run UpdateAddOnCPUUsage() print(GetAddOnCPUUsage("LibellusLeti"))` twice about sixty seconds apart — the difference is milliseconds of CPU in that minute. `/console scriptProfile 0` and reload to turn it back off.
+Reproducible without my tooling: `/console scriptProfile 1`, reload, play a minute in a city, then run `/run UpdateAddOnCPUUsage() print(GetAddOnCPUUsage("LibellusLeti"))` twice sixty seconds apart — the difference is CPU ms in that minute. `/console scriptProfile 0` + reload turns it off.
