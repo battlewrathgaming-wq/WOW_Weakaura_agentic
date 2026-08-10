@@ -145,6 +145,54 @@ turns the plates off; the addon carries on hunting for them.
 Not measured — this is a source walk; it explains where continuous cost could come from in a
 capital, it does not prove the cost split.
 
+## Finding 5 — the ~7.8s periodicity is REAL, and matches nothing in their source
+
+_Prompted by anticipating the obvious objection ("your 8s cadence matches none of my
+timers"). Re-analysed record `20260731_152651_494` properly rather than by eyeballing
+threshold crossings._
+
+**Autocorrelation of the per-second CPU series** (n=130, mean 23.9 ms/s, sd 18.1):
+
+```
+   lag  7   r = +0.200
+   lag  8   r = +0.562   <- peak
+   lag 15   r = +0.572   <- harmonic
+   lag 23   r = +0.552   <- harmonic
+   all other lags 1-24: r between -0.16 and +0.13
+```
+
+Peaks at 8 / 15 / 23 with everything else near zero is a single period showing its
+harmonics. Actual sampler period measured at **1.0087 s**, so the true period is
+**≈ 7.7 samples ≈ 7.8 seconds**. This is a strong, genuine repeating structure — not noise
+and not an artifact of the >40ms threshold I originally used.
+
+**No interval constant in the addon matches it.** Full scan found nothing between 4–12s
+except two 5.0s values (MinionSheet REFRESH, GUARDIAN_SEED); no modulo/every-Nth-call
+throttles exist anywhere in the source.
+
+**Three candidate explanations, none distinguishable at 1 Hz (all LABELLED, none claimed):**
+1. **Aliasing** — a faster loop beating against our 1.0087s sampler.
+2. **GC cycles driven by the scan's allocation rate.** The scan path allocates heavily:
+   `ScanAndApplyNamesOnly` creates `local keep = {}` per call, and calls
+   `CollectFramesForUnit` **once per unit across `nameplate1..40`** — and that function
+   allocates TWO tables per call (`local list = {}`, `local seen = {}`) plus a closure.
+   That is ~80+ table allocations per scan, twice a second, ~160/sec sustained. Lua's
+   incremental collector attributes step time to whoever is executing, so a periodic GC
+   would land largely on the allocating addon.
+3. **Compound coincidence** of several timers, or environmental (plate population cycling).
+
+**We CANNOT distinguish these**, and the record can't help: **the memory columns are all
+zero** — `GetAddOnMemoryUsage` returned nothing on this fork, so the GC hypothesis is
+untestable from this capture. That is a second gap in our own instrument (alongside the
+missing CVar state), not a finding about theirs.
+
+**What would resolve it:** frame-time sampling plus working memory tracking. Naming the gap,
+not proposing the build.
+
+★ Presented correctly this is the most *collegial* finding in the bank: a real, measured,
+unexplained periodicity in his addon's CPU that we explicitly cannot account for from his
+source — a question for the author, not an accusation.
+
 ## Relay notes
 
 - Finding 2 is the icebreaker: small, provably real, flattering to fix, and only visible to a
