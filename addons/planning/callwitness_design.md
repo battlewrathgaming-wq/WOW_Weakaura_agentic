@@ -25,7 +25,7 @@ Each is currently open, and each has been explicitly refused as a guess in the f
 ## 2. What must therefore be captured
 
 - **Per named function, time-resolved (≤1 s buckets):** call count · total ms · **max single
-  call ms**. (Q1, Q3, Q4)
+  call ms** — for the driver's functions **and our own** (AC13). (Q1, Q3, Q4)
 - **Per-call outlier events:** any single call over a threshold, with its own timestamp and
   duration. (Q4 — gives millisecond "what and when" without logging the 99% that is noise.)
 - **Context on the same timeline:** framerate · engine-attributed addon CPU (the independent
@@ -56,9 +56,11 @@ reference to notes, memory, or this conversation.
 6. **AC6 — Arm self-identifying.** The header states the nameplate CVars, the mute setting,
    the names-only/display options and the zone, at start AND end. Two records from different
    arms can never be mistaken for each other.
-7. **AC7 — Observer cost stated.** The record carries a measured estimate of the wrapper's own
-   overhead, not an assumption. A calibration run (same conditions, wrapping disabled) is part
-   of the test protocol.
+7. **AC7 — Observer cost MEASURED, three ways.** Not an assumption and not only a difference:
+   (a) a **wrapped no-op probe** called a known number of times at task start, giving
+   per-call wrapper cost directly; (b) that cost × observed call counts, giving total
+   instrumentation overhead for the run; (c) the calibration arm (arm D) as an independent
+   cross-check. If (b) and (c) disagree materially, the record must show both.
 8. **AC8 — Cross-check present.** Wrapper-summed milliseconds and the engine's addon-level CPU
    appear side by side. Large divergence means we are missing call paths, and the record must
    make that visible rather than hide it.
@@ -74,6 +76,14 @@ reference to notes, memory, or this conversation.
 12. **AC12 — Build identified by content.** The driver's files are hashed into the header.
     Version strings are not trusted (this project ships a tag whose code is 0.9.434, an asset
     labelled 0.9.554 whose toc says 0.9.563, and a drop saying 0.9.553 carrying 554 features).
+13. **AC13 — The witness witnesses ITSELF (Battlewrath, 2026-08-08).** COA_DevDump's own
+    capture functions are wrapped on exactly the same footing as the driver's and appear in
+    the same per-function table — not in a separate "overhead" note. Two reasons: it
+    **self-accounts its contribution**, so "how much of this load is your profiler?" is
+    answered from the record rather than asserted; and it **gives context for the sample**,
+    since our sampler competes for the same frame budget the framerate column reports.
+    A record in which our functions are absent, or measured by a different method than
+    theirs, fails this criterion.
 
 ## 4. Design constraints
 
@@ -84,6 +94,9 @@ reference to notes, memory, or this conversation.
   per-call log still yields totals (supports AC9).
 - **Safety:** wrap only insecure UI functions; preserve `self`; never wrap anything the client
   treats as secure. Restore-if-still-ours on stop.
+- **No self-recursion:** wrapping our own functions (AC13) must not instrument the counter
+  path itself — the accumulator and the outlier writer stay unwrapped, or the witness measures
+  its own measuring and the numbers become meaningless.
 - **Guardrail:** instrumenting, never reproducing. No file of theirs is modified or copied
   into our products.
 
