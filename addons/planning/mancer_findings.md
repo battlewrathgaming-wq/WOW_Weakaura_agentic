@@ -101,6 +101,50 @@ init (no shown-state gate) — same pattern as the HUD ticker. Other cadences: C
 0.30 · CLOAK_SCAN/HUD REFRESH 0.50 · SPELL_CD_SYNC 0.25 · ALERT_REFRESH 0.35 ·
 NAMEPLATE_SYNC 1.25 · UNIT_SCAN 3.0 · MinionSheet REFRESH 5.0 · GUARDIAN_SEED 5.0.
 
+## Finding 4 — plate-servicing work runs while the plate features are OFF (source-walked)
+
+_Walked in the CURRENT build (`refs_libellus/LibellusLeti-0.9.554-release/MinionHpHud.lua`,
+byte-identical to the measured 553). Every step quoted from source; nothing inferred._
+
+The chain, in order:
+
+1. **The HUD ticker never stops by design.** Its `OnUpdate` is installed at init; their own
+   comment: _"Always-running ticker: the list frame hides when no minions are up, and a
+   hidden frame's OnUpdate stops — resummons would never refresh until Display opens."_
+2. Every `REFRESH_INTERVAL` (0.5s) it calls `Refresh()`.
+3. **`Refresh()` calls `SyncNameplateSupport()` BEFORE its own feature gate:**
+   ```lua
+   function MinionHpHud:Refresh(forceSync)
+       self:EnsureFrames()
+       self:ApplyLayout()
+       self:SyncNameplateSupport(forceSync)
+       if not FeatureEnabled() then      -- <- gate is AFTER the plate work
+   ```
+   `FeatureEnabled()` = `MancerDB.showMinionHpList == true`. So **turning the Minion HP list
+   off does not stop the nameplate work.**
+4. On the throttled path `SyncNameplateSupport` calls `UpdateCloakDriver()` whenever
+   `ShouldApplyNamesOnly()`; at its tail it applies/clears the visual hide on the same test.
+5. **`ShouldApplyNamesOnly()` is TRUE BY DEFAULT** — it reduces to
+   `MancerDB.hideMinionHpNameplateVisuals ~= false`, i.e. **on when the key is absent**
+   (opt-out-by-absence, the same pattern as Finding 1's capital mute). A user who never
+   touched that option has it enabled.
+6. The cloak driver frame is then Shown, and its `OnUpdate` runs **every frame**, driving:
+   `ReassertNamesOnly()` every 0.30s and `ScanAndApplyNamesOnly()` every 0.50s.
+7. **`ScanAndApplyNamesOnly()` enumerates plates THREE WAYS per call:** a 40-iteration
+   `nameplate1..40` loop (each unit running `ShouldNamesOnlyUnit` + `CollectFramesForUnit`),
+   then `C_NamePlate.GetNamePlates()`, then a frame-first `WorldFrame` pool sweep (their
+   comment: _"catch pool / WorldFrame plates whose unit token we would otherwise miss"_).
+
+**★ The consequence: the driver's only gate is the hide-visuals option — it never checks
+whether any plates exist or are enabled.** So the scan keeps running twice a second while
+plates are muted, INCLUDING by the addon's own capital-city mute. The FPS-saving feature
+turns the plates off; the addon carries on hunting for them.
+
+**Fix shape (same family as Finding 2):** gate the driver on plates actually being enabled
+(and/or on owning any minions), and hook plate `OnShow` at discovery instead of re-scanning.
+Not measured — this is a source walk; it explains where continuous cost could come from in a
+capital, it does not prove the cost split.
+
 ## Relay notes
 
 - Finding 2 is the icebreaker: small, provably real, flattering to fix, and only visible to a
