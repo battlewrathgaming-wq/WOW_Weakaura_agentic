@@ -63,6 +63,17 @@ TurboPlates off → still hitching with Mancer alone. Then scriptProfile attribu
 deliberately unconditional, their comment explains why) + suppression cadence; the bursts =
 periodic full plate-discovery sweeps. Finding 2's fix removes a slice of both.
 
+**★ THE NARROWING (source-traced, re-verified 2026-08-08 on Battlewrath's prompt):** the
+report/aggregation layer is **PULL-MODEL and clean** — every caller of `GetDpsEstimates` /
+`AggregateSessionStats` / `AggregateFightStats` resolves to an INVOKED path, never a timer:
+`ResolveDpsFight` (Hub DPS view render) · `PrintComboRecommendation` (command) ·
+`AugmentTooltip`+`GetCalibratedUnitDps` (hover, gated by tooltipEnabled) · `PrintInspect`
+(command) · `PaperMath:PrintReport` (command). Panes closed = zero aggregation cost.
+**Therefore the measured cost is NOT the data product — it is the always-on scaffolding**
+(unconditionally-installed OnUpdate handlers: RegenTracker 0.05s, two icon-pulse 0.05s
+loops, the HUD ticker) plus population-scaled plate work. This both credits their
+architecture and narrows the search — the strongest form of the lead.
+
 **Supporting:** earlier unattributed runs `20260731_151539` (min 28 / avg 83) and
 `20260731_152232` (min 30 / avg 94) — same trough shape, three independent captures.
 

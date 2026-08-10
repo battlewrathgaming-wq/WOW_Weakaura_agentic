@@ -18,6 +18,9 @@ what the profiler recorded, what it can't tell you, and where I'd look first._
 - **Conditions:** standing in a capital city. Before this run I isolated by elimination —
   disabling my other addons one at a time — and the stutter persisted with Libellus Leti
   alone, which is why the profiled run was made.
+- **Settings:** [Battlewrath — state your active display options here; most of mine were
+  off, which is what makes the continuous cost notable, but you should say so from your own
+  config rather than my inference.]
 - Two earlier runs (`20260731_151539`, `20260731_152232`) show the same framerate trough
   shape; the third run is the attributed one quoted here.
 
@@ -67,29 +70,45 @@ like.
 - **It is one machine, one session, in a capital city.** The framerate impact elsewhere may
   differ; the CPU figure is the durable part.
 
-## Diagnostic lead (a hypothesis, not a finding)
+## Diagnostic lead — the cost is NOT in the part that looks expensive
 
-Reading the published source for cadences that could match: several timers are installed
-unconditionally at init rather than being gated on whether their display is shown, and a few
-run very frequently — `RegenTracker.POLL_INTERVAL = 0.05` and two `ICON_PULSE_INTERVAL = 0.05`
-loops (20/sec each), alongside `CLOAK_REASSERT 0.30`, `CLOAK_SCAN 0.50`, `SPELL_CD_SYNC 0.25`,
-`ALERT_REFRESH 0.35`, `NAMEPLATE_SYNC 1.25`, `UNIT_SCAN 3.0`, and 5.0s sheet/seed refreshes.
+The first thing I checked in the published source was the obvious suspect: the fight
+parsing and DPS aggregation. **It's clean.** Every caller of `GetDpsEstimates`,
+`AggregateSessionStats` and `AggregateFightStats` resolves to an invoked path, never a
+timer:
 
-Two observations worth checking against your own knowledge of the code:
+| call site | reached from |
+|---|---|
+| `MinionDps:ResolveDpsFight` | Hub DPS view render |
+| `MinionDps:PrintComboRecommendation` | user command |
+| `MinionTooltip:AugmentTooltip` / `GetCalibratedUnitDps` | tooltip hover (and gated by `tooltipEnabled`) |
+| `MinionInspect:PrintInspect` | user command |
+| `PaperMath:PrintReport` | user command |
 
-1. The other reporter's stated 1–2 second rhythm coincides with
-   `RegenTracker.DISPLAY_INTERVAL = 1.95`, `REGEN_TICK_SECONDS = 2` and
-   `ADVISOR_POLL_INTERVAL = 2.0`. RegenTracker's `OnUpdate` is installed at init with no
-   shown-state gate, so it runs whether or not anything is displayed.
-2. My measured bursts land on a ~8 second cadence, which doesn't match any single interval
-   above — so it may be a compound (several timers coinciding), or work whose *size* varies
-   with the plate/unit population rather than its frequency. The capital-city setting would
-   fit a population-scaled explanation.
+So the report layer is pull-model and costs nothing with the panes closed — the design is
+right. **Which means the 23.7 ms/sec I measured is not the data product. It is the
+always-on scaffolding around it**, and that's where I'd look.
 
-If it helps, the periodic full plate-discovery sweep is the kind of work that scales with
-what's on screen, and hooking each plate's `OnShow` once at discovery would let the reassert
-cadence drop a long way — but that's your call and your codebase; I'm offering the
-measurement, not prescribing the fix.
+What stands out reading for cadence: several `OnUpdate` handlers are installed
+unconditionally at init rather than gated on whether their display is shown —
+`RegenTracker` is one (`POLL_INTERVAL = 0.05`, i.e. 20×/sec), alongside two
+`ICON_PULSE_INTERVAL = 0.05` loops, and the minion HP ticker whose comment explains it is
+deliberately always-running so a hidden list stays fresh. Then the cadence set:
+`SPELL_CD_SYNC 0.25`, `CLOAK_REASSERT 0.30`, `ALERT_REFRESH 0.35`, `CLOAK_SCAN 0.50`,
+`HUD REFRESH 0.50`, `NAMEPLATE_SYNC 1.25`, `RegenTracker.DISPLAY 1.95`, `ADVISOR_POLL 2.0`,
+`UNIT_SCAN 3.0`, sheet/seed refreshes at 5.0.
+
+Two things to weigh against your own knowledge of the code:
+
+1. **The other reporter's 1–2 second rhythm** coincides with `DISPLAY_INTERVAL = 1.95`,
+   `REGEN_TICK_SECONDS = 2` and `ADVISOR_POLL_INTERVAL = 2.0`.
+2. **My bursts land on a ~8 second cadence**, matching no single interval above — so likely
+   a compound (several timers coinciding), or work whose *size* scales with the plate/unit
+   population rather than its frequency. A capital city would fit the population
+   explanation, and the periodic full plate-discovery sweep is exactly that shape of work.
+
+I'm offering the measurement and where it points, not prescribing a fix — it's your
+codebase and you'll know which of those loops is doing real work.
 
 ## Raw data
 
