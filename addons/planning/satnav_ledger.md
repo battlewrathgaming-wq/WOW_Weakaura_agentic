@@ -49,6 +49,9 @@ unused.
 | F9 | **`C_WorldMap.GetWorldPosition` returns nil inside instances** | probed; Astrolabe uses it for outdoor zones only |
 | F10 | **World units are YARDS** | a beacon-measured **50-yard** leg computed to **49.7** |
 | F11 | **`GetMapInfo`'s 668/768 are TEXTURE dims, not world extent** | they contradict the measured extent (below); 668 is the standard map-frame width |
+| F12 | **The beacon renders its own DISTANCE READOUT in yards** — we do not build one | incidental, from Battlewrath's *illustrative* screenshots (taken to show the community the vision, NOT part of the structured probe series): a diamond marker captioned "76 yds" / "54 yds". Corroborates F10. Consequence: notes can stay purely semantic, since navigation is already on screen |
+| F13 | **The beacon reads correctly ACROSS ELEVATION** — visible up a ramp, then on the same plane while closing on it | the point Battlewrath was demonstrating with those screenshots. The 3D projection behaves for the navigation case, not just at a fixed height |
+| F14 | **The 233 cull is the MINIMAP POI's, not the world beacon's** | beacon visible and captioned at 76 yds. Beacon max range still UNKNOWN |
 
 ## 4. ★ The map↔world transform — SOLVED, exact
 
@@ -132,8 +135,30 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
   coords against live ones, same function, same space by construction). Left alone
   deliberately.
 
-## 8. Build state
+## 8. ★ GATE — put to the community BEFORE building (Battlewrath, 2026-08-08)
 
-**Nothing built.** Fact basis established; design laws set; no code, no addon folder, no
-acceptance criteria written yet. Next step when resumed is a design/AC document in the shape
-of `callwitness_design.md` — criteria before build — not implementation.
+Posted to the PvE and tanking discussions, framed as a tank question but scoped to all roles.
+**Two explicit checks named up front, and either can stop or reshape the build:**
+
+1. **A tool may already exist for CoA** — if so, the move is the consumer-contract pattern
+   ([[consumer-contract-pattern]]), not a duplicate: adopt or extend, characterise its data
+   before inventing uses. Same posture as MancerLedger over Mancer.
+2. **It may be over-engineering** — accept a scope-down or a drop on that answer.
+
+The pitch as posted, which sharpens two things this ledger should carry:
+- **"All self-authored content rather than me trying to map every dungeon."** THE scoping
+  insight — we ship the tool, users author routes. No dungeon database to build or maintain,
+  and no obligation to cover content we don't play. This is what keeps it a "dumb Mythic
+  Dungeon Tools" rather than a data project.
+- **"Notes for yourself" is the premise** — the community sharing string is a
+  consequence, not the purpose. Do not let import/export pull the design toward
+  authored-for-others.
+- Skips and jumps are a **double-tap** on the widget; ordinary pull points still come free
+  from combat enter/exit on the first run.
+
+## 9. Build state
+
+**Nothing built, and now gated on the community answer (§8).** Fact basis established; design
+laws set; no code, no addon folder, no acceptance criteria written. If the gate clears, the
+next step is a design/AC document in the shape of `callwitness_design.md` — criteria before
+build — not implementation.
