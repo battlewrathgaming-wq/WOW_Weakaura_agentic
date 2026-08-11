@@ -4,6 +4,44 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
+## ▶ ACTIVE — dungeon sat-nav ("pick a map, pick a role, place a point + note")
+
+**Want (Battlewrath, 2026-08-08):** a LIGHT in-dungeon route pointer. Not Mythic Dungeon
+Tools (too feature-rich). Pick a map · pick a role · place a point with a note · the system
+knows when you reach it and advances to the next. All hand-authored, nothing smart. Possible
+import/export string so the community converges on shared routes.
+
+**★ THE SCOPE-CHANGING FINDING (source-read + LIVE-PROVEN in a dungeon, mapID 389):
+the sat-nav ALREADY EXISTS in the client. We feed it; we do not build a pointer.**
+
+The matched pair (getter and setter take the same four values — designed as one):
+- `GetCurrentPlayerPosition()` -> `x, y, z, mapID`. The client's own bug-report frame and
+  the devs' tutorial files use it (`/run local x,y,_,m = GetCurrentPlayerPosition()`).
+- `C_SuperTrack.SetSuperTrackedPosition(x, y, z, mapID)` — via
+  `SuperTrackerUtil.SetSuperTrackedPosition`, which also runs a priority system
+  (corpse > position > quest) and is gated by CVar `showInGameNavigation`.
+- Render is ENGINE-SIDE: `GetSuperTrackedPosition()` returns SCREEN coords for a beacon
+  projected into the world; `Minimap_UpdateSuperTrackPOI` draws a minimap POI, **2D distance
+  only, culled at 233 units**.
+
+**LIVE TEST (in-dungeon, all five green):** position returns real values INDOORS (the classic
+3.3.5 blocker does not apply here) · all three axes live, **z tracks elevation** (walked an
+incline: z -21.9 -> -16) · mapID stable across movement · setter accepted ·
+`IsSuperTrackingAnything()` true · beacon VISIBLE. Scale looks like yards (~25 units for a
+~25yd walk), so "arrived" radius ≈ 5-10 units and the 233 cull ≈ 233 yards.
+
+**What this leaves us to build:** storage + sequencing only — an ordered list of
+`{x,y,z,mapID,note,role}` per map, feed the current one to the supertracker, watch distance,
+advance on arrival, serialise for sharing. The engine renders. **The beacon does NOT clear on
+approach — that absence IS our mechanism**, not a defect.
+
+**Open / deferred:** does mapID change across dungeon FLOORS (decides whether floor is a
+data-model concept or just a z value) · 3D vs 2D proximity (engine's own POI logic is 2D;
+inclination is 3D for advancing, 2D for display) · `GetSuperTrackedWorldPosition` returned
+four values not obviously matching the set position — coordinate space UNESTABLISHED, but we
+never need it (proximity compares our stored coords against live ones, same function, same
+space by construction).
+
 ## ◼ AT REST — the call-witness test series (parked 2026-08-08; COLD PICKUP)
 
 **Status: instrument BUILT, DEPLOYED, smoke-green. Four capture arms never run.** Battlewrath
