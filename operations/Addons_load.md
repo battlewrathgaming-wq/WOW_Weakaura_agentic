@@ -4,6 +4,35 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
+## ▶ ACTIVE — the call-witness test series (2026-08-08, PAUSED mid-arc, resume here)
+
+**State: BUILT and DEPLOYED, awaiting Battlewrath's four capture arms.** He paused to work
+elsewhere; nothing is blocked on the agent.
+
+- **What it is:** `COA_DevDump/task_callwitness.lua` — wraps Libellus Leti's functions in
+  place (and OUR OWN, same footing, AC13) to produce per-function call counts and timings.
+  Built because the driver has no self-reporting: *"a witness we do not have."*
+- **Spec + 13 acceptance criteria (the build satisfied all, smoke-asserted):**
+  `addons/planning/callwitness_design.md`.
+- **Execution card:** `addons/planning/callwitness_runsheet.md` — pre-flight (FULL RESTART
+  for the new file; `/console scriptProfile 1` + reload, else the cross-check columns are
+  meaningless zeros), the four arms, per-arm summary-line checks.
+- **The arms:** A worst (packed capital, plates on, names-only ticked, mute OFF) · B best
+  (quiet area, same settings) · C mute ON — **the one that converts Finding 4 from source
+  read to measurement** · D calibration (runs `task_perf` UNWRAPPED, not callwitness).
+- **On the records landing:** analyse per `callwitness_design.md` §1 — Q1 which function,
+  Q2 does the scan run with plates off, Q3 is the ~7.8s pulse in CALLS or COST (calls flat +
+  cost pulsing ⇒ garbage collection), Q4 one-slow-call vs many-fast, Q5 population scaling.
+- **Watch for:** observer cost printing `0ms` ⇒ `debugprofilestop` not advancing, distrust
+  timing columns (call counts stay valid). `unwrap N/N` unequal ⇒ client left instrumented.
+- **The Discord thread** is live and the author is engaged and receptive — he asked for the
+  numbers, got them, and accepted the always-on-scan finding as "something I can look at."
+  Shareables already delivered: `mancer_stutter_report.md` ·
+  `mancer_stutter_summary_paste.txt` (Discord-sized) · `mancer_stutter_data.csv`.
+  Findings 1-5 + relay ordering: `addons/planning/mancer_findings.md`.
+- **Deferred, banked:** the witness-satellite split (separate addons, own SV files, one
+  command via a shared registry) — build when two witness scopes need to run concurrently.
+
 ## Investigation (2026-08-01): the PvE/PvP Power login bug - client-side readout IMPOSSIBLE
 
 Community bug (~30% damage loss on login for many specs; fix = a mode-switch/naked/die/quit
