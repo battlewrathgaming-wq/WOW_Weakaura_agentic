@@ -224,6 +224,18 @@ map, question it. It is the standing answer to "should this be cleverer?"
     - Worth considering: route markers need not be pictorial. **Numbered or lettered pins**
       carry ordering information a symbol cannot, which suits a sequence better — and sits
       closer to the pen-and-paper metaphor than a borrowed skull would.
+    - **★ REFINEMENT (Battlewrath, 2026-08-11): the bar is NOT "no client art" — it is "no art
+      that already owns a meaning HERE".** Generic or unused assets are fair game: a flag
+      pole, a plain banner, an unclaimed arrow or dot. Something generic enough that **meaning
+      is inferred from our usage without us owning the symbol**.
+      **The test:** does a player already know what this icon means *in this game*? Crossed
+      swords and the skull fail it; a plain flag passes.
+      **How to establish it cheaply:** the art survey is already a banked bench task (the
+      gothic Necro/Reaper UI arc has `extract_interface.py --all-types` over `patch-A.MPQ` as
+      its designed first step), so the inventory comes out mechanically rather than by
+      eyeballing. The audit's valuable half remains the NEGATIVE one — catalogue what the
+      client's own POI, minimap and quest systems have already spoken for, and the safe set
+      is what is left.
 
 ## 6. Accepted with a gate
 
