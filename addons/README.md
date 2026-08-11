@@ -72,5 +72,9 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
   sightings) · 736 events (213 custom-registered) · the stock-3.3.5 baseline (from the client's own
   APIDocumentation addon) · `runtime/` = the three-witness reduction off the live `census` task's
   51,855-global _G walk (284 runtime-only members = uncalled API). Start: `census.routes.md`.
+- `maps/atlas/` — the **art** fact basis, the counterpart to `maps/census/`'s API one: the
+  client's 4,503 named atlas entries classified by CLAIM OF USE (1,359 claimed / 3,144 free),
+  so "which icon may we use" is read, not re-decided by eye per project. Start: its `README.md`.
 - `tools/` — the deterministic emitters: `extract_interface.py` (patch-B.MPQ → study copy) ·
-  `baseline_extract.lua` (run APIDocumentation under lua51) · `emit_census.py` · `reduce_census.py`.
+  `baseline_extract.lua` (run APIDocumentation under lua51) · `emit_census.py` ·
+  `reduce_census.py` · `emit_atlas_census.py` · `read_spell_dbc.py`.
