@@ -68,6 +68,8 @@ unused.
 | F12 | **The beacon renders its own DISTANCE READOUT in yards** — we do not build one | incidental, from Battlewrath's *illustrative* screenshots (taken to show the community the vision, NOT part of the structured probe series): a diamond marker captioned "76 yds" / "54 yds". Corroborates F10. Consequence: notes can stay purely semantic, since navigation is already on screen |
 | F13 | **The beacon reads correctly ACROSS ELEVATION** — visible up a ramp, then on the same plane while closing on it | the point Battlewrath was demonstrating with those screenshots. The 3D projection behaves for the navigation case, not just at a fixed height |
 | F14 | **The 233 cull is the MINIMAP POI's, not the world beacon's** | beacon visible and captioned at 76 yds. Beacon max range still UNKNOWN |
+| F15 | **The world-map PIN infrastructure is addon-reusable — we do not build map markers either** | source read of `Ascension_POI/MapPoiPin.lua` + `WorldMapPOIMixin.lua`. Pins parent to **`WorldMapButton`** and position via `SetPoint("CENTER", WorldMapButton, "TOPLEFT", x, y)` (pixel offsets — our map fraction × frame size lands directly) · icons come free from **`Interface\Minimap\POIIcons`** via `WorldMap_GetPOITextureCoords` · hover text uses **`WorldMapTooltip`** (owner/AddLine), which is exactly the surface for the note readouts · `MapPoiPinMixin` supports a per-pin **`OnClickFunction`**, so click interaction on pins is normal here (promote a node, open a note) |
+| F16 | **The death markers themselves are NOT reusable** — `WorldMapChallengeFailPOIMixin`, server-fed challenge/hardcore failure records (killer, level, ruleset, timestamps) | same source read. Boundary is clean: **the pin machinery is ours to reuse, the death DATA is not** |
 
 ## 4. ★ The map↔world transform — SOLVED, exact
 
@@ -119,7 +121,14 @@ map, question it. It is the standing answer to "should this be cleverer?"
    **Consequence worth keeping: every marker in every shared route is provably reachable,
    because someone physically stood on it.** A click-to-place editor cannot promise that.
 2. **The editor never creates or relocates arbitrarily.** It orders, annotates, assigns,
-   prunes, and **nudges within a limited range**. A nudge updates BOTH representations (§4
+   prunes, and **nudges within a limited range**.
+   **★ WHY NUDGING EXISTS (Battlewrath, 2026-08-11): the nudge is the gap between EXECUTION
+   and INTENT.** Real-time play does not match planning, and routes need optimising. Capture
+   records where you *did* fight; the route should encode where you *should*. Worked example:
+   a bad pull entered from the left, when the correct approach is from the right using a LOS
+   point — so the node drags to the right and matches the better visual map feature. This is
+   also why the **range limit is principled rather than arbitrary**: you are correcting an
+   approach within the same room, never relocating the fight. A nudge updates BOTH representations (§4
    makes this possible) and keeps the captured **z**, so it stays on one plane. Arrival is a
    **radius/sphere**, which absorbs the residual error — this is why an approximate
    conversion is good enough.
