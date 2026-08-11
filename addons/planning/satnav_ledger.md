@@ -17,6 +17,22 @@ feature-rich. Reference points: pfQuest (installed), TomTom (not on this client 
 All hand-authored, nothing smart. Possible import/export string so the community converges on
 shared routes.
 
+**★ WHY — the two value propositions (Battlewrath, 2026-08-11). Keep both in view; several
+design laws only make sense against them:**
+
+1. **Team cohesion.** Routing matters, and being able to communicate *a series of markers the
+   team is following* — one person's design, or a community pool if people work toward that —
+   means a group runs one plan instead of five assumptions. This is why the **export** exists
+   and why **team notes are role-agnostic** (law 6).
+2. **Personal notebooking.** For solo use it gives people a way to *note-book their way
+   through content they have done* — learn lessons, set reminders. This is why the **bin
+   persists** (law 8), why **boilerplate** is worth shipping, and why the personal layer must
+   **outlive any particular route**.
+
+Note that (2) retroactively justifies law 7's wipe: if the personal value is a notebook, the
+notebook has to survive route replacement — and it does, because notes live on the map
+(law 9), not in the route.
+
 ## 2. ★ The scope-changing finding: the sat-nav ALREADY EXISTS
 
 **We do not build a pointer. We feed the client's own.** Getter and setter are a matched
