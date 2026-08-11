@@ -145,6 +145,22 @@ map, question it. It is the standing answer to "should this be cleverer?"
    that personal notes on a replaced route are lost, and that cost is the user's to manage by
    choosing when to import.
    Keeps the system simple, and keeps authority where it belongs.
+7b. **★ EXPORTS CARRY A MODE: DISPOSABLE vs SACRED (Battlewrath, 2026-08-11).**
+   *"Follow this tank's route"* is disposable — one run, then discard. A **sacred** route is
+   one you keep; sacredness comes from **a community pool or the sharer's preference**.
+   - **It is metadata, not logic.** The source asserts it, the addon reports it, the user
+     decides. Consistent with law 7: give identity, never arbitrate.
+   - **★ STRUCTURAL CONSEQUENCE — this modifies law 7.** If import wipes and there is only
+     one active route, a pug tank's disposable link destroys a route kept for weeks. So
+     routes are a **NAMED COLLECTION per map**, and the wipe **scopes to the entry being
+     imported into**, not to everything. Still simple — "you have several routes and they
+     have names" — but it is what makes the distinction meaningful rather than decorative.
+     (Notes survive regardless, being map-scoped per law 9; it is the *path* that needs
+     somewhere safe to sit.)
+   - Maps onto the two propositions: **disposable serves team cohesion** (one run, one
+     leader's plan), **sacred serves notebooking** (the route you refine and keep). One
+     mechanism, two lifecycles.
+
 8. **★ SELF NOTES LIVE IN A BIN, not in the route (Battlewrath, 2026-08-08).** A personal,
    persistent library. Notes are **dragged from the bin onto a point** to attach.
    - **This is what makes law 7 cheap.** A wipe replaces the route; the bin is untouched, so
