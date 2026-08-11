@@ -41,6 +41,28 @@ Two honest limits, stated so nobody over-reads the output:
   committing to a *free* entry that sits inside an obviously patterned family, eyeball the
   family in `atlas.routes.md`.
 
+## ★ `claimed` is a FILTER, not a verdict
+
+This census measures a **code binding** — who references this name. The rule it serves is
+about the **meaning a player reads**. Those are not the same thing, and where they come apart,
+the player wins.
+
+Worked example (Battlewrath's ruling, 2026-08-12, on the supertrack beacon): its binding is a
+*quest* supertrack. Its read is **"go here"**. No player ever learns the binding, so nothing is
+corrupted by reusing it — and matching what they already follow is a gain.
+
+**So a CLAIMED entry may still be fair use — when the meaning it owns is:**
+
+1. **generic** — navigation, position, "here", a plain container; **and**
+2. **the same as yours.**
+
+Both, not either. Crossed swords are claimed by a meaning that is specific *and* different —
+they stay out. `Waypoint-MapPin-Tracked` is claimed by a meaning that is generic *and*
+identical — it's in.
+
+Use `claimed` to shrink the field and to see **what a symbol already says here**. Then make the
+call on the read, not the reference count.
+
 ## Reading the sizes
 
 `w`/`h` are the registry's declared render dimensions. They are **not** always integers, and

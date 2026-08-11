@@ -230,7 +230,7 @@ map, question it. It is the standing answer to "should this be cleverer?"
       widget's button = `Waypoint-MapPin-ButtonToggle` · and `Waypoint-MapPin-ChatIcon` if
       routes are ever shared as chat links.
       **The one genuine gap is the LANDMARK symbol**, which must read as distinct from a
-      route waypoint — one symbol to choose, from 4,425, with a mechanical claim-test (F18)
+      route waypoint — one symbol to choose, from 4,503, with a mechanical claim-test (F18)
       to prove it free.
     - **Audit the atlas rather than mine it** — knowing which shapes are TAKEN is the more
       valuable half, because it tells us what to avoid.
@@ -243,6 +243,24 @@ map, question it. It is the standing answer to "should this be cleverer?"
       is inferred from our usage without us owning the symbol**.
       **The test:** does a player already know what this icon means *in this game*? Crossed
       swords and the skull fail it; a plain flag passes.
+    - **★★ REFINEMENT 2 — CLAIMED IS A FILTER, NOT A VERDICT (Battlewrath, 2026-08-12).**
+      Ruling, verbatim: *"the supertrack, the diamond seen, is fit for purpose. People know it
+      as 'Go here' not the technical 'This is attached to a quest', so that's fair use."*
+      This separates two things the census cannot tell apart. The census measures a **code
+      binding** — who references this name. Law 10's bar is the **meaning a player reads**.
+      They come apart exactly here: the beacon's binding is a quest supertrack, its read is
+      "go here". A player never learns the binding, so nothing is corrupted by our using it —
+      and consistency with what they already follow is a *gain*, not a cost.
+      **The exemption, stated tightly so it stays one:** a CLAIMED entry is still fair use
+      when the meaning it owns is (a) **generic** — navigation, position, "here" — and
+      (b) **the same as ours**. Both conditions. Crossed swords are claimed by a meaning that
+      is specific *and* different; they stay out. `Waypoint-MapPin-Tracked` (the family's one
+      claim, `SuperTracker.lua:131`) is claimed by a meaning that is generic *and* identical;
+      it is in.
+      **Consequence for the build:** the *world* beacon is engine-drawn — never our choice
+      and now explicitly endorsed. The **map** side is where our art decisions actually live,
+      and the **3,144 free entries are that supply**. So the whole waypoint family is
+      available to us, claim included.
       **How to establish it cheaply:** the art survey is already a banked bench task (the
       gothic Necro/Reaper UI arc has `extract_interface.py --all-types` over `patch-A.MPQ` as
       its designed first step), so the inventory comes out mechanically rather than by
