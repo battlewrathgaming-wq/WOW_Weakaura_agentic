@@ -89,6 +89,12 @@ before relying on it.
 
 ## 5. Design laws (decided)
 
+**★ THE GOVERNING METAPHOR (Battlewrath, 2026-08-08): "We're not trying to be smart. This is
+pen and paper in digital form."** Sticky notes on a map · a drawn path with numbered stops ·
+a note near a stop is about that stop · draw a line when you need to be explicit. Use this to
+arbitrate scope: if a proposed feature is something you could not do with pen, paper and a
+map, question it. It is the standing answer to "should this be cleverer?"
+
 1. **A marker can only be born where a player stood.** Three capture sources, all ground
    truth: **combat start**, **combat end**, and a **widget tap**. Rationale (Battlewrath): a
    2D map image cannot supply height, so a spawned point would need an invented z — which
@@ -138,9 +144,28 @@ before relying on it.
      when relevant. **If taken, this likely RESOLVES the role question** — role/spec belongs
      on the NOTE, not on the route, leaving the shared route one role-agnostic path exactly
      as the export already assumes.
-   - **Residual cost, accepted:** attachments are route-scoped, so a wipe loses *which note
-     sat on which point* even though the notes persist. Auto-reattaching by proximity is
-     merge logic in disguise — left out unless re-dragging proves painful in use.
+9. **★ NOTES LIVE ON THE MAP, NOT ON THE ROUTE — the pairing is DERIVED, not stored
+   (Battlewrath, 2026-08-08).** Notes are placed on the map and are map-scoped constants. At
+   display time the system pairs note↔route-point **by proximity on the map**. No attachment
+   is stored, so there is nothing to lose on a wipe and nothing to reattach — **this
+   supersedes the residual cost noted under law 8; it drops to zero.**
+   - **Nudging's real purpose is now clear:** it is how the user TUNES a pairing, not
+     cosmetic tidying. Move note or point until the association matches intent.
+   - **Pre-flight green dot per relationship.** A derived relationship is invisible by
+     nature; without a readout the user would only discover a mispairing mid-pull. Showing
+     the pairing before the run makes the derivation inspectable — the same instinct as
+     every other emitter on this bench.
+   - **★ CLICK LINK as an explicit override.** Where proximity is ambiguous — notably the
+     3D case, since pairing is judged on the 2D map while arrival is a 3D sphere, so a note
+     above or below a point on a stacked map could pair visually while being elsewhere — the
+     user **draws the link**. Explicit beats derived.
+     Links are **route-scoped and die with the route** on a wipe; they are deliberately NOT
+     assumed to survive layout swaps. Notes persist; the drawn relationship does not.
+     Consequence: notes need local identity for a link to reference — trivially safe, since
+     notes are never imported, never merged and never leave the user's own data.
+   - Ambiguity still needs a defined default where no link is drawn (nearest-wins is the
+     obvious one), and the green dot should show WHICH point it chose, not merely that it
+     matched. **Undecided.**
 
 ## 6. Accepted with a gate
 
