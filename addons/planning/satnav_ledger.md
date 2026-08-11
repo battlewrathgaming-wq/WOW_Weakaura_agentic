@@ -70,6 +70,9 @@ unused.
 | F14 | **The 233 cull is the MINIMAP POI's, not the world beacon's** | beacon visible and captioned at 76 yds. Beacon max range still UNKNOWN |
 | F15 | **The world-map PIN MECHANISM is addon-reusable — we do not build map markers either** | source read of `Ascension_POI/MapPoiPin.lua` + `WorldMapPOIMixin.lua`. Pins parent to **`WorldMapButton`** and position via `SetPoint("CENTER", WorldMapButton, "TOPLEFT", x, y)` (pixel offsets — our map fraction × frame size lands directly) · hover text uses **`WorldMapTooltip`** (owner/AddLine), exactly the surface for the note readouts · `MapPoiPinMixin` supports a per-pin **`OnClickFunction`**, so click interaction is normal here (promote a node, open a note). **The ART is explicitly NOT reusable — see law 10.** |
 | F16 | **The death markers themselves are NOT reusable** — `WorldMapChallengeFailPOIMixin`, server-fed challenge/hardcore failure records (killer, level, ruleset, timestamps) | same source read. Boundary is clean: **the pin machinery is ours to reuse, the death DATA is not** |
+| F17 | **★ A PURPOSE-BUILT WAYPOINT ICON FAMILY EXISTS AND IS ALL BUT UNUSED** — and it satisfies law 10 outright | `SharedXML/AtlasInfo.lua` (4,425 named atlas entries; name → texture + size + tex-coords). The family lives at `interface\waypoint\waypoinmappinui` (Blizzard's own path typo): **Tracked · Untracked · Highlight** (30×30) · **ChatIcon** (13×13) · **ButtonToggle** (38×38), plus `waypoint-mappin-minimap-tracked/untracked` (32×32) on `objecticonsatlas`. Cross-referenced against 1,130 client source files: **7 of 8 referenced ZERO times.** The one claim is `SuperTracker.lua:131` — `[Enum.SuperTrackingType.Position] = "Waypoint-MapPin-Tracked"` — i.e. the client uses it for a POSITION supertrack, **exactly our use case**. Not a conflict: it is the client naming the correct symbol for us, and it is already what the live beacon renders |
+| F18 | **The claim-of-use test is MECHANICAL and proven** | grep an atlas name across the extracted source tree, excluding `AtlasInfo.lua` itself; zero references = unclaimed. Ran ad-hoc over 1,130 files to produce F17. **This is the emitter's whole algorithm** |
+| F19 | **The client ships an in-game ATLAS BROWSER** | `AddOns/Ascension_UIDevelopmentTools/AtlasBrowser/` in patch-B (not present in the user's AddOns folder — it lives in the MPQ). Untested whether `LoadAddOn` will open it; if it does, visual classification needs no tool from us at all |
 
 ## 4. ★ The map↔world transform — SOLVED, exact
 
@@ -219,6 +222,15 @@ map, question it. It is the standing answer to "should this be cleverer?"
       client uses for its own signals, and internally consistent so a route reads as one
       language.
     - It needs very little: **waypoint · landmark · current target**. Three or four symbols.
+      **★ AND F17 SUPPLIES NEARLY ALL OF THEM**, semantically named and unclaimed:
+      current target = `Waypoint-MapPin-Tracked` (already what the beacon renders — we
+      inherit consistency for free) · other route points = `Waypoint-MapPin-Untracked` ·
+      hover = `Waypoint-MapPin-Highlight` · minimap = the two minimap variants · the capture
+      widget's button = `Waypoint-MapPin-ButtonToggle` · and `Waypoint-MapPin-ChatIcon` if
+      routes are ever shared as chat links.
+      **The one genuine gap is the LANDMARK symbol**, which must read as distinct from a
+      route waypoint — one symbol to choose, from 4,425, with a mechanical claim-test (F18)
+      to prove it free.
     - **Audit the atlas rather than mine it** — knowing which shapes are TAKEN is the more
       valuable half, because it tells us what to avoid.
     - Worth considering: route markers need not be pictorial. **Numbered or lettered pins**
