@@ -20,6 +20,18 @@ elsewhere; nothing is blocked on the agent.
 - **The arms:** A worst (packed capital, plates on, names-only ticked, mute OFF) · B best
   (quiet area, same settings) · C mute ON — **the one that converts Finding 4 from source
   read to measurement** · D calibration (runs `task_perf` UNWRAPPED, not callwitness).
+- **▶ FIRST TASK ON RESUMING (Battlewrath, 2026-08-08 — do this BEFORE the records land, and
+  BEFORE writing anything new): INSPECT WHETHER WE ALREADY HAVE THE UTILITY.** The analysis
+  this needs is defined-I/O over a known payload — it must be a GEAR, not hand-derivation in
+  conversation (that is how this session computed the autocorrelation and trough alignment,
+  ad-hoc, surviving only in a transcript). But check the shelf first: the record-reading
+  tooling used on the MancerLedger/driver work, `addons/landing/pull.py`, the emitters in
+  `addons/tools/` (`read_spell_dbc.py`, `reduce_census.py`, `emit_census.py`), and
+  `Class_design/Necromancer/tests/parse_combatlog.py` — his read is that the log-inspection
+  parser already exists in some form and should be EXTENDED, not duplicated. Only if nothing
+  fits: build `read_callwitness.py` answering design §1's Q1-Q5 plus an AC health check
+  (unwrap complete, truncation flag, observer cost, wrapper-vs-engine divergence) and an
+  arm-diff mode. **Gate: `Build!` — not authorised yet.**
 - **On the records landing:** analyse per `callwitness_design.md` §1 — Q1 which function,
   Q2 does the scan run with plates off, Q3 is the ~7.8s pulse in CALLS or COST (calls flat +
   cost pulsing ⇒ garbage collection), Q4 one-slow-call vs many-fast, Q5 population scaling.
