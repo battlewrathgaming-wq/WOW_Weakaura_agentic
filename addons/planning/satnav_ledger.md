@@ -68,7 +68,7 @@ unused.
 | F12 | **The beacon renders its own DISTANCE READOUT in yards** — we do not build one | incidental, from Battlewrath's *illustrative* screenshots (taken to show the community the vision, NOT part of the structured probe series): a diamond marker captioned "76 yds" / "54 yds". Corroborates F10. Consequence: notes can stay purely semantic, since navigation is already on screen |
 | F13 | **The beacon reads correctly ACROSS ELEVATION** — visible up a ramp, then on the same plane while closing on it | the point Battlewrath was demonstrating with those screenshots. The 3D projection behaves for the navigation case, not just at a fixed height |
 | F14 | **The 233 cull is the MINIMAP POI's, not the world beacon's** | beacon visible and captioned at 76 yds. Beacon max range still UNKNOWN |
-| F15 | **The world-map PIN infrastructure is addon-reusable — we do not build map markers either** | source read of `Ascension_POI/MapPoiPin.lua` + `WorldMapPOIMixin.lua`. Pins parent to **`WorldMapButton`** and position via `SetPoint("CENTER", WorldMapButton, "TOPLEFT", x, y)` (pixel offsets — our map fraction × frame size lands directly) · icons come free from **`Interface\Minimap\POIIcons`** via `WorldMap_GetPOITextureCoords` · hover text uses **`WorldMapTooltip`** (owner/AddLine), which is exactly the surface for the note readouts · `MapPoiPinMixin` supports a per-pin **`OnClickFunction`**, so click interaction on pins is normal here (promote a node, open a note) |
+| F15 | **The world-map PIN MECHANISM is addon-reusable — we do not build map markers either** | source read of `Ascension_POI/MapPoiPin.lua` + `WorldMapPOIMixin.lua`. Pins parent to **`WorldMapButton`** and position via `SetPoint("CENTER", WorldMapButton, "TOPLEFT", x, y)` (pixel offsets — our map fraction × frame size lands directly) · hover text uses **`WorldMapTooltip`** (owner/AddLine), exactly the surface for the note readouts · `MapPoiPinMixin` supports a per-pin **`OnClickFunction`**, so click interaction is normal here (promote a node, open a note). **The ART is explicitly NOT reusable — see law 10.** |
 | F16 | **The death markers themselves are NOT reusable** — `WorldMapChallengeFailPOIMixin`, server-fed challenge/hardcore failure records (killer, level, ruleset, timestamps) | same source read. Boundary is clean: **the pin machinery is ours to reuse, the death DATA is not** |
 
 ## 4. ★ The map↔world transform — SOLVED, exact
@@ -208,6 +208,22 @@ map, question it. It is the standing answer to "should this be cleverer?"
    the 3D ambiguity case · the pre-flight green dot that existed to make a derivation
    inspectable. **Nothing is derived any more** — a personal note sits on a landmark because
    the user put it there. Nudging reverts to plain placement.
+
+10. **★ ICONS CARRY LANGUAGE — DO NOT REUSE IN-USE ART (Battlewrath, 2026-08-11).**
+    The client's POI atlas symbols already mean things here (skull, crossed swords, taxi
+    node, teleport). **Borrowing a symbol borrows its sentence.** Reuse would both mis-state
+    our own signal AND corrupt the client's: a player seeing crossed swords could no longer
+    tell a hardcore death from a route pull-point.
+    - So F15's reuse is the **MECHANISM ONLY** — parenting, positioning, tooltip, click.
+      The **iconography needs its own vocabulary**, visually distinct from anything the
+      client uses for its own signals, and internally consistent so a route reads as one
+      language.
+    - It needs very little: **waypoint · landmark · current target**. Three or four symbols.
+    - **Audit the atlas rather than mine it** — knowing which shapes are TAKEN is the more
+      valuable half, because it tells us what to avoid.
+    - Worth considering: route markers need not be pictorial. **Numbered or lettered pins**
+      carry ordering information a symbol cannot, which suits a sequence better — and sits
+      closer to the pen-and-paper metaphor than a borrowed skull would.
 
 ## 6. Accepted with a gate
 
