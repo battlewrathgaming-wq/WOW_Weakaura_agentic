@@ -162,10 +162,11 @@ map, question it. It is the standing answer to "should this be cleverer?"
      mechanism, two lifecycles.
 
 8. **★ SELF NOTES LIVE IN A BIN, not in the route (Battlewrath, 2026-08-08).** A personal,
-   persistent library. Notes are **dragged from the bin onto a point** to attach.
-   - **This is what makes law 7 cheap.** A wipe replaces the route; the bin is untouched, so
-     personal notes SURVIVE across different routes and across re-imports. Structure solves
-     what merge machinery would otherwise have to.
+   persistent library. Notes are **dragged from the bin onto a LANDMARK** to anchor
+   (see law 9 — the target is a promoted node, not a route waypoint).
+   - **This is what makes law 7 cheap.** A wipe replaces the route; the bin and the landmarks
+     are untouched, so personal notes SURVIVE across different routes and across re-imports.
+     Structure solves what merge machinery would otherwise have to.
    - **Reuse:** one note ("pull back to the corner for LOS") serves many points across many
      dungeons instead of being retyped.
    - **Boilerplate:** ships with a few generic starters so a new user can drag something on
@@ -176,28 +177,28 @@ map, question it. It is the standing answer to "should this be cleverer?"
      when relevant. **If taken, this likely RESOLVES the role question** — role/spec belongs
      on the NOTE, not on the route, leaving the shared route one role-agnostic path exactly
      as the export already assumes.
-9. **★ NOTES LIVE ON THE MAP, NOT ON THE ROUTE — the pairing is DERIVED, not stored
-   (Battlewrath, 2026-08-08).** Notes are placed on the map and are map-scoped constants. At
-   display time the system pairs note↔route-point **by proximity on the map**. No attachment
-   is stored, so there is nothing to lose on a wipe and nothing to reattach — **this
-   supersedes the residual cost noted under law 8; it drops to zero.**
-   - **Nudging's real purpose is now clear:** it is how the user TUNES a pairing, not
-     cosmetic tidying. Move note or point until the association matches intent.
-   - **Pre-flight green dot per relationship.** A derived relationship is invisible by
-     nature; without a readout the user would only discover a mispairing mid-pull. Showing
-     the pairing before the run makes the derivation inspectable — the same instinct as
-     every other emitter on this bench.
-   - **★ CLICK LINK as an explicit override.** Where proximity is ambiguous — notably the
-     3D case, since pairing is judged on the 2D map while arrival is a 3D sphere, so a note
-     above or below a point on a stacked map could pair visually while being elsewhere — the
-     user **draws the link**. Explicit beats derived.
-     Links are **route-scoped and die with the route** on a wipe; they are deliberately NOT
-     assumed to survive layout swaps. Notes persist; the drawn relationship does not.
-     Consequence: notes need local identity for a link to reference — trivially safe, since
-     notes are never imported, never merged and never leave the user's own data.
-   - Ambiguity still needs a defined default where no link is drawn (nearest-wins is the
-     obvious one), and the green dot should show WHICH point it chose, not merely that it
-     matched. **Undecided.**
+9. **★ THE CLEAN CUT — TWO OBJECT KINDS, SEPARATED BY LIFECYCLE (Battlewrath, 2026-08-11).
+   This SUPERSEDES the earlier proximity-pairing model; see "retired" below.**
+
+   - **WAYPOINTS *are* the route.** Ordered, carrying **team notes**, exported together,
+     disposable or sacred, wiped on import. Role-agnostic.
+   - **PROMOTED NODES are personal LANDMARKS.** A captured position can be **promoted to a
+     stable fixture** for that map/content. Map-scoped, they outlive every route.
+     **Personal notes ANCHOR to them** — explicitly, by the user.
+   - **Two optional note readouts: Personal · Team.** Independently toggleable.
+
+   **Two independent display triggers, not one entangled one:**
+   - **Route progression** drives the beacon and team notes.
+   - **Player proximity to a landmark** drives personal notes — regardless of route position,
+     or of whether a route is loaded at all. This is exactly right for the notebooking
+     proposition: your landmarks and lessons exist in that dungeon whether or not you are
+     following anyone's plan today.
+
+   **★ RETIRED by this cut** (recorded so nobody rebuilds it): derived note↔point pairing by
+   proximity · a nearest-wins default for ambiguous pairings · the click-link override for
+   the 3D ambiguity case · the pre-flight green dot that existed to make a derivation
+   inspectable. **Nothing is derived any more** — a personal note sits on a landmark because
+   the user put it there. Nudging reverts to plain placement.
 
 ## 6. Accepted with a gate
 
