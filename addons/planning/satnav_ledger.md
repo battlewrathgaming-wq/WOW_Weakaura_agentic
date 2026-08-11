@@ -123,6 +123,24 @@ before relying on it.
    that personal notes on a replaced route are lost, and that cost is the user's to manage by
    choosing when to import.
    Keeps the system simple, and keeps authority where it belongs.
+8. **★ SELF NOTES LIVE IN A BIN, not in the route (Battlewrath, 2026-08-08).** A personal,
+   persistent library. Notes are **dragged from the bin onto a point** to attach.
+   - **This is what makes law 7 cheap.** A wipe replaces the route; the bin is untouched, so
+     personal notes SURVIVE across different routes and across re-imports. Structure solves
+     what merge machinery would otherwise have to.
+   - **Reuse:** one note ("pull back to the corner for LOS") serves many points across many
+     dungeons instead of being retyped.
+   - **Boilerplate:** ships with a few generic starters so a new user can drag something on
+     day one. **Keep this set TINY and generic** (interrupt · avoid frontal · wait for patrol
+     · LOS pull) — it is UI furniture, and must not drift toward the dungeon database we
+     explicitly refused to build (§8 scoping insight).
+   - **Spec linking (TENTATIVE — "maybe", his word):** a note may carry a spec, so it shows
+     when relevant. **If taken, this likely RESOLVES the role question** — role/spec belongs
+     on the NOTE, not on the route, leaving the shared route one role-agnostic path exactly
+     as the export already assumes.
+   - **Residual cost, accepted:** attachments are route-scoped, so a wipe loses *which note
+     sat on which point* even though the notes persist. Auto-reattaching by proximity is
+     merge logic in disguise — left out unless re-dragging proves painful in use.
 
 ## 6. Accepted with a gate
 
@@ -143,12 +161,11 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
 - **Does the 3:2 map aspect generalise?** (§4.)
 - **How dungeon map textures are addressed** for display — tiled from the base name in this
   era, but unverified on this fork.
-- **★ Does "pick a role" survive at all?** The opening framing had role as a selector (pick a
-  map, pick a role), but law 6 makes team notes **role-agnostic**. If the shared route is one
-  path with role-neutral notes, then role-specific guidance is precisely what SELF notes are
-  for — which would drop a whole dimension from the shared data model. The alternative is
-  role surviving as a purely local filter that export strips. **Undecided; Battlewrath's
-  call, and it materially changes the schema.**
+- **Does "pick a role" survive at all?** Opening framing had role as a selector (pick a map,
+  pick a role), but law 6 makes team notes role-agnostic and law 8's **spec linking on the
+  NOTE** would carry role guidance instead — leaving the route one role-agnostic path and
+  dropping a dimension from the shared schema. **Leaning: role lives on the note, not the
+  route.** Not yet confirmed, because spec linking is itself still tentative.
 - `GetSuperTrackedWorldPosition` returned four values not obviously matching the set position
   — coordinate space **unestablished**. We never need it (proximity compares our stored
   coords against live ones, same function, same space by construction). Left alone
