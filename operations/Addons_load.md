@@ -4,10 +4,39 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — the call-witness test series (2026-08-08, PAUSED mid-arc, resume here)
+## ◼ AT REST — the call-witness test series (parked 2026-08-08; COLD PICKUP)
 
-**State: BUILT and DEPLOYED, awaiting Battlewrath's four capture arms.** He paused to work
-elsewhere; nothing is blocked on the agent.
+**Status: instrument BUILT, DEPLOYED, smoke-green. Four capture arms never run.** Battlewrath
+parked this to explore a different addon; this is not a paused session but a **cold pickup** —
+assume no carried context, assume time has passed, and verify the staleness list below before
+trusting anything in this block.
+
+**Cold-pickup read order:** this block → `addons/planning/callwitness_design.md` (why it
+exists, the 5 questions, the 13 acceptance criteria) → `addons/planning/callwitness_runsheet.md`
+(how to execute) → `addons/planning/mancer_findings.md` (Findings 1-5 + **Thread state**, which
+carries the tone and the beats of the Discord conversation).
+
+**STALENESS CHECKS before acting — this arc's subject matter churns fast:**
+1. **Their build may have moved.** The driver shipped 0.9.553 → 0.9.563 within days, and its
+   version surfaces disagree (a git tag holding 0.9.434 code, an asset labelled 0.9.554 whose
+   toc reads 0.9.563). Re-pull and re-diff against `refs_libellus/LibellusLeti-0.9.554-release/`
+   before quoting any source claim. **Identify builds by CONTENT hash, never by label.**
+   If `MinionHpHud.lua` has changed, Findings 2/4/5 need re-walking.
+2. **The Discord thread has probably moved on.** Everything in "Thread state" is a snapshot;
+   re-read the channel before relaying. He may have already fixed some of this.
+3. **His addon config may differ** from the arms' requirements — the run sheet's per-arm
+   settings are the authority, not whatever is currently set.
+4. **Client-side leftovers:** `task_callwitness.lua` is deployed and inert until invoked
+   (harmless). Verify `scriptProfile` — if it was left at 1 it is quietly taxing frames;
+   `/console scriptProfile 0` + reload if so. It must be back at 1 before any arm.
+5. Re-run `addons/tools/smoke/smoke_callwitness.lua` under lua51 — it asserts all 13 ACs and
+   proves the instrument still satisfies its spec without reading a word of history.
+
+**Resuming is optional and cheap to abandon.** Nothing downstream depends on it: MancerLedger
+is unaffected, the Discord findings are already delivered, and the deliverables that exist
+(`mancer_stutter_report.md`, `mancer_stutter_summary_paste.txt`, `mancer_stutter_data.csv`)
+stand on their own. If the thread has resolved, close this block rather than running the arms
+out of momentum.
 
 - **What it is:** `COA_DevDump/task_callwitness.lua` — wraps Libellus Leti's functions in
   place (and OUR OWN, same footing, AC13) to produce per-function call counts and timings.
