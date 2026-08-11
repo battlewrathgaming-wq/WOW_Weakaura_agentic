@@ -193,6 +193,38 @@ not proposing the build.
 unexplained periodicity in his addon's CPU that we explicitly cannot account for from his
 source — a question for the author, not an accusation.
 
+## Thread state (2026-08-08) — how the conversation actually moved
+
+Recorded because tone on resumption depends on it, and the beats are not obvious from the
+findings alone. The author is **LtGenZombie** (addon "Mancer"/Libellus Leti).
+
+1. **A second user reported the stutter independently** (TruxXx: "stutters continuously,
+   like every second or two you feel a flicker"), no TurboPlates involved, and the author
+   asked for diagnostics — version, other addons, settings. That is what re-opened the hold.
+2. **Pushback came as methodology, not as claim-checking:** *"Are you using AI to compare the
+   code?"* and *"I've only seen 3-4 people have FPS issues."* Battlewrath answered by naming
+   deterministic instruments (git diffs, emitters, the in-game CPU profiler) and handing back
+   the burden: *"you don't have to take my word for any of it — inspect the claims."* That
+   worked. **Do not defend conclusions; name instruments and offer reproduction.**
+3. **He engaged on the mechanism once it was concrete:** *"Ok, that's something I can look
+   at... it has to loop through 40 nameplates and children of those nameplates... you can't
+   change how many the base game shows, it's always 40."* The forty is real and worth
+   conceding; it is orthogonal to whether you walk them twice a second **while muted**, and
+   to what each iteration allocates.
+4. **He asked for the actual numbers** and got them, with the attribution limit volunteered
+   unprompted (addon-level, not function-level; 1 Hz, not per-frame). Volunteering limits is
+   what has kept this cordial.
+5. **He supplied the test conditions himself** — worst: packed capital at peak, plates on,
+   every text-only option ticked, mute off; best: quiet area, same settings. Quote them back
+   as his. Arm C (mute on) is OURS and is the one he has not yet been shown.
+6. Battlewrath offered the wrapper instrumentation and he was open to it. The framing that
+   landed: the addon does not report its calls per second — *"not stating it should, but it
+   is a witness we do not have."*
+
+**Standing posture:** collegial, instrument-first, limits volunteered. The parsing
+architecture is genuinely good (pull-model) and saying so is both true and disarming — the
+cost is in the always-on scaffolding, not the data product.
+
 ## Relay notes
 
 - Finding 2 is the icebreaker: small, provably real, flattering to fix, and only visible to a
