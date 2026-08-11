@@ -108,6 +108,21 @@ before relying on it.
    ("through this door", "wait for the patrol") that combat can't signal.
 5. **Store both coordinate spaces at capture.** We're standing there, both are ground truth,
    and it removes conversion from the common path entirely.
+6. **Notes come in two flavours (Battlewrath, 2026-08-08): SELF and TEAM — and they layer.**
+   The **export carries locations + TEAM notes only, role-agnostic**. A consumer imports that
+   layout and then adds their **own personal notes on top**. The shared artifact stays the
+   ROUTE; nobody inherits anyone else's idiosyncrasies. This is what lets "notes for yourself"
+   stay the premise while sharing remains a clean consequence.
+7. **★ IMPORT WIPES — version control belongs to the USER (Battlewrath, 2026-08-08).**
+   An import REPLACES the route; it does not merge. The load carries an **identity** (name /
+   author / version stamp) so a user can tell one load from another, but deciding what to
+   keep, replace or discard is theirs — not something the addon arbitrates.
+   **This deliberately declines a problem rather than solving it.** Merging would demand
+   stable per-point IDs, reattachment logic for republished routes, and conflict handling
+   when a shared point moves under a personal note. Wiping removes all of it. The cost is
+   that personal notes on a replaced route are lost, and that cost is the user's to manage by
+   choosing when to import.
+   Keeps the system simple, and keeps authority where it belongs.
 
 ## 6. Accepted with a gate
 
@@ -128,8 +143,12 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
 - **Does the 3:2 map aspect generalise?** (§4.)
 - **How dungeon map textures are addressed** for display — tiled from the base name in this
   era, but unverified on this fork.
-- **Role model:** separate lists per role, or one shared ordered path with role-gated points
-  and per-role notes? Undecided.
+- **★ Does "pick a role" survive at all?** The opening framing had role as a selector (pick a
+  map, pick a role), but law 6 makes team notes **role-agnostic**. If the shared route is one
+  path with role-neutral notes, then role-specific guidance is precisely what SELF notes are
+  for — which would drop a whole dimension from the shared data model. The alternative is
+  role surviving as a purely local filter that export strips. **Undecided; Battlewrath's
+  call, and it materially changes the schema.**
 - `GetSuperTrackedWorldPosition` returned four values not obviously matching the set position
   — coordinate space **unestablished**. We never need it (proximity compares our stored
   coords against live ones, same function, same space by construction). Left alone
