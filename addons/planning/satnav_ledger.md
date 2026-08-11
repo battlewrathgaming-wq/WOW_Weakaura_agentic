@@ -261,6 +261,32 @@ map, question it. It is the standing answer to "should this be cleverer?"
       and now explicitly endorsed. The **map** side is where our art decisions actually live,
       and the **3,144 free entries are that supply**. So the whole waypoint family is
       available to us, claim included.
+    - **★★★ REFINEMENT 3 — THE SAFEST SUPPLY IS ART FROM FEATURES THIS FORK DOESN'T SHIP
+      (Battlewrath, 2026-08-12).** His read: *"mainly the warfronts. I think their content from
+      the back porting that isn't included in the current content offering."*
+      This out-ranks "unclaimed". Unclaimed only says *the code doesn't reference it yet*.
+      Art belonging to a **feature the fork never shipped** can never collide in-game, because
+      nothing will ever render it in its original sense and **no player of THIS game has an
+      association to overwrite**. It is a parts bin by construction.
+      **CORROBORATED — and the fork's own devs got there first.** Warfronts art is repurposed
+      by this client in **three** separate places, each time for something unrelated:
+      `WorldMapPOIMixin.lua:143` uses `warfronts-basemapicons-empty-barracks-minimap` as the
+      **hardcore/challenge DEATH marker** · `MapPOI.lua:92` maps `warfront-neutralhero` /
+      `-hordehero` to **WorldBoss** POIs · `CharacterSelect.lua:460` uses
+      `alliance/hordewarfrontmapbanner` as **faction badges**. They picked *contentless*
+      warfronts icons and let usage supply the meaning — refinement 1's rule, executed by the
+      people who own the client. The census flagged all five as CLAIMED, which validates it.
+      **★ THE CATCH, AND IT IS A REAL ONE: the claim test is per-NAME, confusion is per-LOOK.**
+      That death marker sits on **the same world map we are building on**, and our candidate
+      `warfronts-fieldmapicons-empty-banner-minimap` is its sibling — *free in code, possibly
+      near-identical in the eye*. A route node that reads as "someone died here" is precisely
+      the failure law 10 exists to prevent. So: **within any family the fork has already mined,
+      a visual check in the AtlasBrowser is MANDATORY before a pick, not optional.** Free is a
+      shortlist, never a clearance.
+      **Cleanest candidate on this test: `poi-lighthouse-neutral`** — "lighthouse" appears in
+      **zero** client Lua/XML outside the registry, the feature is absent, and a lighthouse
+      reads as *a fixed landmark you navigate by*, which is the meaning we actually want.
+      Same zero-reference result for `embercourt`, `elementalstorm`, `scrapper`.
       **How to establish it cheaply:** the art survey is already a banked bench task (the
       gothic Necro/Reaper UI arc has `extract_interface.py --all-types` over `patch-A.MPQ` as
       its designed first step), so the inventory comes out mechanically rather than by

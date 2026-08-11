@@ -63,6 +63,32 @@ identical — it's in.
 Use `claimed` to shrink the field and to see **what a symbol already says here**. Then make the
 call on the read, not the reference count.
 
+## ★ The safest supply: features this fork doesn't ship
+
+Ranked by how safe a pick is, strongest first:
+
+1. **Art from a backported feature the server doesn't offer** — warfronts, embercourt,
+   elementalstorm, torghast, covenants, islands, evoker essence. Nothing will ever render it in
+   its original sense, and no player of *this* game has an association to overwrite. A parts
+   bin by construction. Cheap corroboration: grep the feature word across the client's Lua/XML
+   excluding `AtlasInfo.lua` — a zero or near-zero count means it isn't wired.
+2. **Unclaimed art from a feature that does exist** — safe today, but could be wired up later.
+3. **Claimed art whose owned meaning is generic AND identical to yours** — the beacon
+   exemption above.
+
+The fork's own devs already work this way: `WorldMapPOIMixin.lua:143` uses
+`warfronts-basemapicons-empty-barracks-minimap` as the **death marker**, `MapPOI.lua:92` maps
+`warfront-neutralhero` to **WorldBoss**, and `CharacterSelect.lua:460` uses the warfront map
+banners as **faction badges** — contentless icons, meaning supplied by usage.
+
+### The catch: the claim test is per-NAME, confusion is per-LOOK
+
+Because the fork mines these families too, a *free* sibling of an icon they already use may be
+visually near-identical to it — and would then carry that borrowed meaning to a player's eye
+regardless of what the census says. **Within any family the client has already drawn from, look
+at the candidate in the AtlasBrowser before committing.** `free` is a shortlist, never a
+clearance.
+
 ## Reading the sizes
 
 `w`/`h` are the registry's declared render dimensions. They are **not** always integers, and
