@@ -547,3 +547,82 @@ was ruled on by Battlewrath between 2026-08-12 and the close of the design pass.
 **Two criteria carry the sharpest risk and must be asserted directly in the smoke (AC-45):
 AC-24** (arrival requires a valid state, because a refusal reports `sd = 0.00`) **and AC-26**
 (debounce before acting on `Invalid`). Both fail *silently in the field*.
+
+---
+
+## 12. v1 BUILD SCOPE (Battlewrath, 2026-08-12)
+
+**Audience: him.** *"Build it for me. If we later get adoption and improvement. Great."* So v1
+is not a release — it is the thing we use to find out whether the design is right. That lowers
+the bar on polish and **raises it on honesty**: a v1 that misbehaves teaches us about the
+misbehaviour, not about the design.
+
+**Three systems, his words:**
+
+1. **The widget**
+2. **A manifest / system to handle each landmark**
+3. **A basic in-map click landmark edit option**
+
+**All per character, with scalability into per account in mind.**
+
+### In scope
+
+| Block | Criteria |
+|---|---|
+| **The manifest** — record, storage, add/remove/lookup | AC-1, 2, 3, 4, 4a, 4b, 5† |
+| **Capture** | AC-6, 7, 8, 9, 9a |
+| **The widget** | AC-10, 11, 12, 13, 14, 14a, 14b, 15, 16 |
+| **Beacon control** — the slot discipline | AC-17, 18, 19, 20, 20a, 21 |
+| **Arrival** | AC-22, 23, **24**, 25, **26**, 27, 28, 29, 30 |
+| **Map pins + click-to-edit** | AC-31, 32, 33, 34, 35, 36, 36a, 40a, 42 |
+| **Notes** | AC-37, 41 |
+| **Standing rules** | AC-38c, 40b, 43, **45** |
+
+† **AC-5 in v1 means the `scope` FIELD, not the toggle.** Per character now; the field and the
+storage shape carry account-level from day one, because adding a field later means migrating
+someone's landmarks. *"Scalability into per account in mind."*
+
+**★ Arrival is in scope even though he did not name it** — it follows from what he did name: the
+edit form (system 3) carries `Beacon hide` (AC-40a), which is meaningless without arrival
+detection, and law 14 says arrival always wipes. Without it the beacon never clears itself and
+F6's engine behaviour stands unopposed. **Flagged rather than assumed silently.**
+
+**★ Why the whole slot discipline is in v1 despite being invisible when correct:** its wrongness
+**corrupts the feedback**. An addon that steals the quest arrow, or fires *arrived* on zoning
+into a dungeon, generates reports about the bug and teaches us nothing about the design.
+**AC-24 and AC-26 fail silently** — a v1 without them looks fine and quietly teaches us wrong
+things. They are the two that must be asserted directly in the smoke (AC-45).
+
+### Deferred to the A:B loop
+
+| | Why it is safe to hold |
+|---|---|
+| **AC-5's promotion toggle** | the field ships; the UI waits until we know anyone wants account scope |
+| **AC-38, 38a, 38b, 39** — the icon **palette** | law 19 made icons pure data, so this is the **cheapest thing in the design to iterate**. v1 ships the **default icon only**; the edit form gains an icon row when the palette does |
+| **AC-44** — the CVar-off tick | rare path, now measured, lands whenever |
+
+**Nothing else is deferred.** `[Map]` (AC-14) and the dynamic `Zone` line (AC-41) are each a few
+lines — tracking them as deferred work would cost more than building them.
+
+### ★ THE GAP THIS EXPOSED — v1 must choose a DEFAULT TIER
+
+Capture asks nothing (AC-7), so **every new landmark is created with a `Beacon hide` value, and
+the brief never says which.** Found by the 2026-08-12 audit.
+
+**Proposed: `Interact with` (5 yd).** The two failure modes are not symmetric — **a beacon that
+lingers slightly too long is invisible; a beacon that vanishes early reads as broken.** Err
+toward not-vanishing. It is also the cheapest thing to learn from: the first tier he changes,
+and what he changes it to, hands us the real default.
+
+### What v1 is FOR — the questions it answers by being used
+
+Named before building, because they decide what is worth watching:
+
+- **Does `Why` get filled in, or only `What`?** Tests law 18's central premise directly.
+- **Which tier gets set most?** Hands us the default above, from evidence.
+- **Does he rename, or live with `Everlook 7`?** Tests AC-4.
+- **How many landmarks accumulate?** Decides whether retrieval ever needs more than the map —
+  §9 delta 2's *find* problem is currently theoretical.
+- **★ Does the beacon-vs-quest contention actually occur?** Law 17's *"different modes take
+  turns"* is reasoning, not evidence, and **AC-21's accept-it rests on it**. v1 makes it
+  evidence.
