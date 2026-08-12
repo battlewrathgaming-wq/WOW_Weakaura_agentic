@@ -30,6 +30,16 @@ never looked. Both AC-24 and AC-26 are re-mutation-tested and still bite.
 already-live slot. Two candidate causes and the one-run test that separates them are in §15 —
 do not guess at it in `beacon.lua`, which is where the silent-failure criteria live.
 
+**★ THE ARC HAS A NEXT STEP — `addons/planning/dungeonrun_poc.md` (2026-08-13, DESIGNED, NOT
+BUILT).** Battlewrath's fork: *"Do we develop the Landmark addon so Dungeon_run has more basis
+for refactoring, or bring Dungeon_run up to parity?"* — **chose Dungeon_run**, because the
+transfer from landmarks is COLLECTED and Landmark structurally cannot exercise what is left
+unproven (**many-pins, many-updates**). A route **emitted from play**: combat start/end are the
+markers, captured on `PLAYER_REGEN_DISABLED`/`ENABLED` with the state re-read from
+`UnitAffectingCombat` (verified against the installed WeakAuras fork). **The stale-target bug
+moves from polish to PREREQUISITE** — a route re-pins constantly, which is the failing case —
+but capture does not depend on it, so capture lands first. **Gate: `Build!`, not authorised.**
+
 **NEXT ACTION: nothing to build. v1 exists to be USED** — §12's A:B questions need play, not
 code. Do not add features to it unprompted; §11's two-readings rule governs how any feedback
 gets read.
