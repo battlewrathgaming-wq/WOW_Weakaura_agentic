@@ -568,6 +568,19 @@ seen both in the browser and we have not.
     implies it** (vendor → interact, farm → zone area), which would encode the rule and remove
     a decision — but is inference, and inference makes plausible wrongs. His call.
 
+15. **★ OUR SURFACES ARE THE BEACON AND THE WORLD-MAP PIN. THE MINIMAP IS OUT OF SCOPE
+    (Battlewrath, 2026-08-12).** *"So far we've only shown interest in the beacon and a
+    co-ordinate. The mini-map is noisy and we'd be adding to the noise."*
+
+    **It also follows from law 12.** The beacon shows **one** target the user deliberately
+    chose, and retires itself on arrival (law 14). A minimap layer would show **every** landmark
+    passively, all the time — an ambient push channel, which is exactly what law 12 rules out.
+    Not merely taste: the same principle.
+
+    **Consequence:** `Minimap_UpdateSuperTrackPOI` and its 233-unit cull (§2, F14) stay
+    *background facts about the client*, not inputs to our design. Do not reach for them as
+    corroboration.
+
 ## 6. Accepted with a gate
 
 **"What was killed in this pull"** — during an open fight, note identities so the editor can
@@ -801,9 +814,9 @@ until the probe reports, because the answer changes how much UI is needed at all
 **5 · The fence — the product thesis. Now law 11:** notes of meaning, not what-where.
 
 **What this walk did NOT reach** (honest gap, not an omission): editing and deleting a
-landmark, what a note actually is (length, plain text vs structured), how many stickers ship,
-and whether landmarks appear on the **minimap** as well as the world map. Those belong to a
-second walk — probably *"three weeks later I revisit and the note is wrong"*.
+landmark, what a note actually is (length, plain text vs structured), and how many stickers
+ship. ~~Whether landmarks appear on the minimap~~ — **CLOSED by law 15: they do not.** The rest
+belong to a second walk — probably *"three weeks later I revisit and the note is wrong"*.
 
 No separate ledger yet — recorded here because it sets *this* build's ordering. It earns its
 own file when it is taken up.
