@@ -85,6 +85,14 @@ unused.
 
 | F27 | **★ THE SUPERTRACKER IS READABLE, AND ITS "1 yd FLOOR" IS COSMETIC** | Battlewrath observed the readout flooring at 1 when stood on the point. **Cause: `math.ceil` in `GetDistanceString` (`SuperTracker.lua:109`) — the DISPLAY path only.** The raw value is a float below 1 (you are never at exactly 0), so **our tiers are not floored by it**. Three read paths, ranked: ① **`C_SuperTrack.GetSuperTrackedPosition()` third return** — the raw float, use this · ② **`SuperTracker.distance`** — the client's own cache of the same float, updated each `OnUpdate`; the frame **is globally named** (`SuperTracker.xml:5`, parented to `WorldFrame`), so the beacon is inspectable at runtime and the probes are cheaper than assumed · ③ `SuperTracker.DistanceText:GetText()` — avoid, it is ceilinged, formatted and localised |
 
+| F28 | **★ `distance` IS 3D — settled, and law 14's 5 yd tier is SAFE** | Probe run `20260812_111102_857__satnav`, Orgrimmar, **945 samples**. Fitting the engine's `sd` against separation computed from raw player-vs-pin coordinates: **vs 3D, mean error 0.000010 yd, worst 0.000155** · vs 2D, mean 0.215, worst 1.470. Not a judgement call — an exact fit against one and a visibly wrong one against the other. **Vertical separation is counted**, so a vendor on the floor above does *not* read as arrived. Settled without the upstairs manoeuvre ever being run: Orgrimmar's own terrain supplied ~1.5 yd of vertical variation, and because the fit is exact rather than approximate, that was enough |
+| F29 | **★ `distance` SURVIVES the target going off-screen — arrival polling is safe** | Same run: **573 screen-invalid samples, all 573 kept a distance**, and **zero** of 945 samples returned no distance at all. Law 14's arrival-wipe works regardless of where the camera points, which was the failure mode that would have broken it silently. ★ Also learned: **`sx`/`sy` are normalised FRACTIONS, not pixels**, and go negative off-screen (observed `sx −2.397 .. 1.289`, `sy −1.732 .. 0.506`). `HasValidScreenPosition`'s `x > 0 and y > 0` is therefore a **loose** test — a point at `sx = 1.29` passes it while sitting off the right edge. We do not use it; recorded so nobody adopts it as a proximity signal |
+| F30 | **★★ `mapID` IS THE CONTINENT/INSTANCE MAP, NOT THE ZONE — so cross-zone was never the problem** | Same run: **1,291 yards travelled**, out of Orgrimmar into open terrain (`x 520..1780`, `y −3994..−3706`), and **mapID stayed 1 for all 945 samples**. Kalimdor is one continuous coordinate space; a zone border is not a map change. Corroborated live by Battlewrath before the file was read: *"the beacon persists cross map… useful across zones so long as in the region map (Kalimdor) vs Eastern kingdoms, or other (instance)."* **This REFINES F3** (which read mapID stability as a within-level property; Ragefire's 389 is an *instance* map, same rule). **★ THE DESIGN CONSEQUENCE IS LARGE: retrieval is a DISTANCE problem, not a zone problem.** §9 walk stop 3 was framed around zones; the real boundary is range, and then continent/instance |
+| F31 | **★ THE ENGINE'S OWN ARRIVAL RADIUS IS ~5.5 yd — and law 14's `Interact with` tier landed on it independently** | Same run, bracketed from 945 samples: `InRadius` spans `sd 0.00 .. 5.37`, `InRange` starts at `5.73`. **The boundary sits between 5.37 and 5.73 yd.** Battlewrath chose **5 yd** for the tightest tier before this number existed, so the tier is not merely safe (F28) — it is **the engine's own opinion of "you are here"**. Note it remains *unsettable*, so law 14's per-landmark tiers still come from `distance` (not from `InRadius`); this is corroboration, not a mechanism |
+| F32 | **★ THE ENGINE REPORTS `InRange` AT 1,291 yd — the 727/1500 thresholds are PURELY the client's, and OUR readout is UNCAPPED** | Same run: **no `Occluded` and no `Invalid` state was ever returned**, at any distance up to 1,290.86 yd. Confirms F22 empirically — `727` and `1500` live in `SuperTracker.lua`'s alpha function, not in the engine. **The consequence is the answer to "surface the zone needed":** `GetSuperTrackedPosition()` hands us **true distance regardless of whether the beacon renders**, so past 1,500 yd we can still say *"Winterspring — 4,200 yd"* in our own UI while the client declines to draw a beacon. We are not blind out there, only un-beaconed |
+| F33 | **`distance` can be exactly 0 — corrects F27's framing** | 15 samples read `sd = 0.00` while stood on the pin (`hd = 0`, `vd = 0`). The observed "1 yd floor" is `math.ceil` rounding `(0, 1]` up to 1; an exact 0 displays as `0`. The raw value has no floor |
+| F34 | **F24's slot behaviour is stable in practice** | Same run: `gp = 1` and `tr = true` for **every** sample across 3 minutes and 1,291 yards — the client held our position in `SUPER_TRACKED_POSITION` throughout, through zone-text changes and normal play. The single-slot hazard is real (F24) but the hold itself does not drift |
+
 ## 4. ★ The map↔world transform — SOLVED, exact
 
 F9 said the engine won't convert map→world indoors. **We derive it ourselves**, and it is
@@ -551,7 +559,14 @@ seen both in the browser and we have not.
     stored tier. Mechanical, no invention. `InRadius` remains what it was — the engine's fade
     signal — and stays out of our logic.
 
-    **★ THIS PROMOTES §7'S 3D-vs-2D QUESTION FROM ACADEMIC TO LOAD-BEARING.** At 300 yd the
+    **★ RESOLVED BY THE PROBE (2026-08-12): the tiers are SAFE.** F28 — `distance` is **3D**, so
+    vertical separation counts and a floor above does not read as arrived. F31 — the engine's
+    own arrival radius brackets to **5.37–5.73 yd**, so the `Interact with` tier he picked at
+    5 yd is the engine's own opinion of *you are here*. F29 — distance survives the target going
+    off-screen, so the wipe fires regardless of camera. The paragraph below is kept because it
+    is why the probe was run.
+
+    **★ THIS PROMOTED §7'S 3D-vs-2D QUESTION FROM ACADEMIC TO LOAD-BEARING.** At 300 yd the
     difference is noise. **At 5 yd it decides correctness**: a 2D distance says *arrived* when
     the vendor is on the floor above you; a 3D distance says *not yet* when you are standing
     next to them and the stored z was slightly off. The `Interact with` tier cannot be trusted
@@ -594,39 +609,28 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
 
 ## 7. Open questions
 
-- **★ TOP OF THE LIST — DOES THE ENGINE SUPERTRACK CROSS-ZONE?** (§9 walk stop 3.) Gates the
-  whole retrieval design: if the engine points you toward another zone, retrieval is mostly
-  *pick it from a list and let the beacon work*; if it declines, we must **surface the zone
-  needed** ourselves and the UI grows.
-  **The exact test, three lines, no addon required beyond a dump task:**
-  1. Stand in a known zone. `C_SuperTrack.SetSuperTrackedPosition(x, y, z, mapID)` using a
-     **stored landmark from a DIFFERENT mapID**.
-  2. Read `C_SuperTrack.GetTargetState()` → `Invalid` (0) means the engine declines;
-     `InRange` (2) or `Occluded` (1) means it handles it.
-  3. Read `C_SuperTrack.GetSuperTrackedPosition()` → a **sane distance** corroborates; nil or
-     nonsense refutes. Cross-check `SuperTrackerUtil.HasValidScreenPosition()`.
-  **Read the state BEFORE trusting the beacon's appearance** — F22 says >1500 yd is forced to
-  `Invalid` regardless, so an invisible beacon at long range proves nothing on its own. Pick a
-  near neighbouring zone for the first run.
-- **★ NEW — DOES `distance` SURVIVE THE TARGET BEING OFF-SCREEN?** `GetSuperTrackedPosition()`
-  returns **screen** x/y, and `HasValidScreenPosition()` gates on `x > 0 and y > 0`; the beacon
-  hides when that fails. **If the third return dies with the screen position, arrival polling
-  breaks exactly when it matters** — you reach a vendor, turn to face them, the point goes
-  behind the camera, distance goes nil, arrival never fires and the beacon never wipes (law 14).
-  **Test:** supertrack a point, stand on it, spin the camera, read the third return. Pairs with
-  the 3D-vs-2D test above — both are *stand near a point and read numbers*, one in-game pass.
-- ~~Beacon max range~~ — **ANSWERED by F22**: full to 727 yd, dimmed to 1500, cut beyond;
-  both thresholds Lua-side convention rather than engine limits.
+- **★ TOP OF THE LIST — WHAT HAPPENS PAST 1,500 YARDS?** This *replaces* the cross-zone
+  question, which F30 dissolved: mapID is the **continent**, so a zone border is not a boundary
+  and cross-zone always worked. The real limit is **range**. F32 shows the engine still reports
+  `InRange` at 1,291 yd and still returns a true distance, while `SuperTracker.lua` forces the
+  *beacon* to `Invalid` past 1,500. **Unknown: does the engine keep returning a usable distance
+  at 4,000+ yd, or does it give up?** That decides whether "Winterspring — 4,200 yd" is a
+  readout we can actually offer, or whether long-range retrieval needs something else entirely.
+  **Test:** Battlewrath's own plan — pin, then fly to the far end of Kalimdor, `/coadump sp`.
+  Read with `py addons/tools/read_satnav_probe.py`. Note this tests **range, not the map
+  boundary**.
+- **★ WHAT HAPPENS ACROSS A CONTINENT / INSTANCE BOUNDARY?** The boundary F30 says actually
+  exists. A long flight does **not** test it — Kalimdor stays mapID 1 throughout. Needs
+  **Eastern Kingdoms, or stepping into a dungeon**, with a pin left behind on the other map.
+  Expect `gp` to answer *whose* fault any failure is: `1` = the client still holds our position
+  and the engine declined; `-1` = the client dropped our intent.
+- ~~Does the engine supertrack cross-zone?~~ — **DISSOLVED by F30.** There is no zone boundary
+  in this coordinate space.
+- ~~3D vs 2D proximity~~ — **ANSWERED by F28: 3D**, mean error 0.00001 yd over 945 samples.
+- ~~Does distance survive off-screen?~~ — **ANSWERED by F29: yes**, 573 of 573.
 - **Does mapID change across dungeon FLOORS?** Decides whether a floor is a data-model concept
   or just a z value. One dump at the top and bottom of a staircase settles it. Ragefire is
   single-level so this is still untested.
-- **★ PROMOTED — 3D vs 2D proximity.** Was academic; **law 14's 5 yd `Interact with` tier makes
-  it decide correctness** (2D says *arrived* when the vendor is on the floor above; 3D says
-  *not yet* when you are beside them and the stored z drifted). The engine's own POI logic is
-  2D; inclination is 3D for advancing and 2D for display, but the numbers should decide.
-  **Test:** stand a known vertical offset from a supertracked point with near-zero horizontal
-  separation and read the third return of `C_SuperTrack.GetSuperTrackedPosition()` — near zero
-  means 2D, near the vertical offset means 3D. A stairwell or any upstairs vendor does it.
 - **Does the 3:2 map aspect generalise?** (§4.)
 - **How dungeon map textures are addressed** for display — tiled from the base name in this
   era, but unverified on this fork.
