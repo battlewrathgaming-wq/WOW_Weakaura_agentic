@@ -360,8 +360,21 @@ position. The map may edit meaning; it may never edit place.
 
 **AC-43 [bench standard]** — no silent truncation anywhere. If a limit is hit, it is reported.
 
-**AC-44** — if `showInGameNavigation` is off, the beacon cannot render. The widget must say so
-**behaviourally** [L18] rather than failing quietly — *(shape [P])*.
+**AC-44 [O — HELD, NOT DESIGNED]** — behaviour when `showInGameNavigation` is off.
+
+**Basis only, per Battlewrath (2026-08-12): *"Record the basis not the proposition."*** The
+facts, and nothing built on them:
+
+- The CVar is the **master switch for the entire supertrack system**, tested above the priority
+  ladder — so the quest arrow and corpse arrow go with it [F40]. It is a user-facing checkbox in
+  the Display options panel.
+- Turning it off makes the client **clear the supertracker**, which nils `SUPER_TRACKED_POSITION`
+  [F24 ②] — **read in source, never observed.**
+- **The off path is unmeasured** [F41]: all three probe runs ran with it on. `NavigationState`
+  values `Occluded` (1) and `Disabled` (3) have never been seen in 1,758 samples.
+
+**No criterion is written here until the probe runs** (§7 of the ledger carries the exact test).
+Designing for an unobserved path is how a plausible wrong gets built.
 
 **AC-45 [bench standard]** — an offline smoke under `lua51` asserting every mechanical criterion
 above, in `addons/tools/smoke/`, green before any deploy. **AC-24 and AC-26 must both be
@@ -392,4 +405,5 @@ directly asserted** — they are the two that fail silently in the field.
 | **AC-40 [O]** | where the arrival tier is set |
 | **AC-41 [O]** | `Zone` vs `Zone — Subzone` on the widget line |
 | **AC-21 [O]** | the `QUEST_TURNED_IN` yield |
-| **AC-16, AC-44 [P]** | widget movability; what happens when `showInGameNavigation` is off |
+| **AC-16 [P]** | widget movability |
+| **AC-44 [O]** | CVar-off behaviour — **held pending measurement**, basis recorded, nothing designed |

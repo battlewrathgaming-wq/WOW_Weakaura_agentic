@@ -100,6 +100,9 @@ unused.
 | F38 | **★★★ THE ENGINE DECLINES ACROSS A MAP BOUNDARY — AND RETURNS `sd = 0.00`, NOT NIL. THIS IS A SHIPPING-GRADE TRAP.** | Third probe run `20260812_113949_493__satnav`: pin outside Ragefire in Orgrimmar (mapID 1), then in through the portal (mapID **389**). Battlewrath live: *"Set marker/beacon outside of the instance — visible. Move into the instance — not visible / no guidance."* The record says exactly why, and says something worse. **Inside, across all 57 samples: `NavigationState.Invalid` · `sd = 0.00` · `IsSuperTrackingAnything()` STILL TRUE · `gp = 1`.** So the client **held our pin faithfully** and the **engine refused** — the discrimination `gp` was built for, working. **★ THE TRAP: a refusal is reported as ZERO DISTANCE.** Law 14 compares distance against a tier; **zero satisfies every tier**, so a naive implementation fires *arrived*, wipes the beacon and calls the errand complete **the instant the player zones into any instance**. Neither obvious guard catches it — tracking is still true and a distance *is* returned. Only the **state** distinguishes refusal from arrival |
 | F39 | **`distance` is 3D — third independent confirmation, and the cleanest yet** | Same run, restricted to the pin's own map and excluding declined rows: **mean error 0.000000 yd, worst 0.000001** vs 3D; 0.008765 / 0.046056 vs 2D. Three runs, three zones, 1,758 usable samples. Not revisitable |
 
+| F40 | **`showInGameNavigation` is the MASTER SWITCH for the whole supertrack system — not a position-only toggle** | Source: `SuperTrackerUtil.CanSuperTrack()` returns the CVar, and it is tested at the **top** of `SetToBestSuperTrackingType`, *before* the priority ladder — `if not CanSuperTrack() then C_SuperTrack.ClearSuperTracker(); return end`. So turning it off takes the **quest arrow and the corpse arrow** with it, not just position waypoints. §2's *"the plumbing exists unused"* is true of **position** waypoints only; the CVar itself is in active use. It is **user-facing**: a checkbox in the **Display** panel of Interface Options (`InterfaceOptionsPanels.lua:721`, `Settings/InterfaceOptions.lua:354`, string `SHOW_IN_GAME_NAVIGATION`), whose `setFunc` re-runs `SetToBestSuperTrackingType` |
+| F41 | **The CVar-OFF path is UNOBSERVED — we have no data on it** | All three probe runs recorded `showInGameNavigation = true`, so nothing in the capture exercised the off case. Two consequences are read from source but **never watched happen**: that `ClearSuperTracker`'s `hooksecurefunc` nils `SUPER_TRACKED_POSITION` (F24 ②), and whatever `GetTargetState()` returns while disabled. **Observed states across 1,758 samples: `Invalid` (0), `InRange` (2), `InRadius` (4). Never `Occluded` (1). Never `Disabled` (3).** *(That `Disabled` is the CVar-off state is a plausible reading of the enum's own naming — recorded as an **inference, not a finding**, and untested.)* |
+
 ## 4. ★ The map↔world transform — SOLVED, exact
 
 F9 said the engine won't convert map→world indoors. **We derive it ourselves**, and it is
@@ -795,6 +798,12 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
   in this coordinate space.
 - ~~3D vs 2D proximity~~ — **ANSWERED by F28: 3D**, mean error 0.00001 yd over 945 samples.
 - ~~Does distance survive off-screen?~~ — **ANSWERED by F29: yes**, 573 of 573.
+- **★ WHAT DOES THE CVar-OFF PATH ACTUALLY DO?** (F40, F41.) Unobserved. **Test, ~2 minutes:**
+  `/console showInGameNavigation 0` → `/coadump st satnav` → stand still → `/coadump sp`.
+  Reads out three things at once: what `GetTargetState()` returns while disabled (is it
+  `Disabled` (3)?), whether `SUPER_TRACKED_POSITION` is really nilled (`gp` → `-1`), and whether
+  a distance is still returned. **Held deliberately: no behaviour is designed for this until it
+  is measured** (Battlewrath, 2026-08-12: *"Record the basis not the proposition."*).
 - **Does mapID change across dungeon FLOORS?** Decides whether a floor is a data-model concept
   or just a z value. One dump at the top and bottom of a staircase settles it. Ragefire is
   single-level so this is still untested.
