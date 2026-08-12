@@ -765,6 +765,18 @@ seen both in the browser and we have not.
     | What happens on arrival | *do they need telling they got where they walked to?* | No — arriving is silent (law 12) |
     | Entering an instance | *is their attention still on the landmark?* | No — so preserve nothing (below) |
 
+    **★ EVIDENCED BY USE, 2026-08-12 — it is no longer reasoning.** Battlewrath, after playing
+    with v0.1.3: *"If I'm digging into my quest log, that's on my mind. And re-pin makes it
+    cheap to re-anchor if I was just being curious."*
+
+    **The pairing is the point: the yield can be EAGER precisely because RECOVERY IS ONE
+    CLICK.** Neither half works alone — an eager yield with expensive recovery would grate, and
+    a reluctant yield would block the player's quest arrow indefinitely (F24). Law 13 stated
+    this from the contention side (*"an over-write, not a race"*); this is the same thing from
+    the player's side, and it is why AC-11's widget must keep holding the landmark after the
+    beacon is gone. **That criterion is not convenience — it is what buys the yield its
+    licence.**
+
     **The instance ruling (his words):** *"If I'm entering an instance, my attention is not on
     the landmark any more. And if something inside the instance needs the marker (like our
     later addon), it'll over-write. Then the user re-pins when it has their attention again."*
