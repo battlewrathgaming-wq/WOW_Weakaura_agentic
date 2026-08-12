@@ -669,11 +669,9 @@ seen both in the browser and we have not.
       label on a widget you are only looking at because you care. The distinction is stated so
       the two laws do not read as contradictory.
 
-    **RECOMMENDED, his call: make it a BUTTON that opens the world map to that landmark's
-    zone.** It costs nothing extra — it is one click on the instrument law 16 already names,
-    at the exact moment the player wants it — and a red label that does nothing invites the
-    question *"so what do I do about it?"* which the button answers. The alternative, a plain
-    red label, is also coherent if the widget should stay purely informational.
+    **DECIDED (Battlewrath): it is a BUTTON that opens the world map to that landmark's zone.**
+    One click on the instrument law 16 already names, at the exact moment the player wants it.
+    His reason generalises past this button — see **law 18**.
 
     **Small note on the colour:** red in this client's language means *unavailable*, which is
     accurate here — the beacon genuinely is. Recorded because law 10 governs colour as well as
@@ -722,6 +720,36 @@ seen both in the browser and we have not.
     contends for the slot exactly like a quest does — last explicit user action wins (law 13).
     Our own later product gets no privileged access to our own pin. That is the correct
     outcome and it needs no coordination layer between them.
+
+18. **★★ BEHAVIOURAL, NOT INSTRUCTIONAL — and what is actually lost (Battlewrath,
+    2026-08-12).** *"Drives the fix to be behavioural rather than instructional. Players know
+    how to get to places. It's just the meaning and why and exactly where that gets lost."*
+
+    **The test, applicable to any feature we ever propose: does it DO the thing, or does it
+    TELL the player to do the thing?** `[Map]` opens the map. A red label reading *"different
+    continent — check your map"* would be instructional, and worse: it spends the player's
+    attention to hand them a chore.
+
+    **★ AND IT NAMES WHAT THE PRODUCT ACTUALLY RESTORES.** Four things are in play when
+    someone wants to get back to a place they know. **We own three of them, and the fourth is
+    not our problem:**
+
+    | What is lost | Our instrument |
+    |---|---|
+    | **Meaning — why this place matters** | the note, pulled on hover (law 12) |
+    | **Exactly where** | the beacon, inside 1,500 yd (F35) |
+    | **Which zone, roughly where** | the map pin, and the widget's `Zone` line |
+    | ~~How to travel there~~ | **not ours — players already know.** This is why law 16 works: we are not a travel aid |
+
+    That accounting is complete, and it is why the design keeps coming out small. It also
+    restates law 11 from the other side: *notes of meaning, not what-where* said what we
+    **make**; this says what the player has actually **lost**, which is the same boundary
+    approached from the player rather than from the market.
+
+    **Retroactively it explains choices already made** — capture asks nothing rather than
+    prompting you (law 4) · arriving is silent rather than announcing (law 12) · every widget
+    control performs an act rather than describing one · and there is no tutorial text anywhere
+    in the design.
 
 ## 6. Accepted with a gate
 
