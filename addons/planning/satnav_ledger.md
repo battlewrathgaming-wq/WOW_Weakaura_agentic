@@ -93,6 +93,10 @@ unused.
 | F33 | **`distance` can be exactly 0 — corrects F27's framing** | 15 samples read `sd = 0.00` while stood on the pin (`hd = 0`, `vd = 0`). The observed "1 yd floor" is `math.ceil` rounding `(0, 1]` up to 1; an exact 0 displays as `0`. The raw value has no floor |
 | F34 | **F24's slot behaviour is stable in practice** | Same run: `gp = 1` and `tr = true` for **every** sample across 3 minutes and 1,291 yards — the client held our position in `SUPER_TRACKED_POSITION` throughout, through zone-text changes and normal play. The single-slot hazard is real (F24) but the hold itself does not drift |
 
+| F35 | **★★ THE LONG-RANGE READOUT IS REAL — distance stays live to at least 3,742 yd, long after the beacon goes dark** | Second probe run `20260812_112152_164__satnav`, **The Barrens, 727 samples, max 3,741.99 yd**. The engine returned **`InRange` the entire way** — never `Invalid`, never `Occluded` — and **zero** samples came back without a distance. Battlewrath live: *"It stopped displaying at 1.5k"*, which is F22's Lua-side cut behaving exactly as read from source. **So past 1,500 yd we are un-beaconed, not blind.** This ANSWERS §7's top question and settles the *"surface the zone needed"* problem as a **presentation** choice rather than a data gap — we can state *"Winterspring — 3,700 yd"* at any range tested. **★ THE GAP IT EXPOSES:** between 1,500 yd and arrival the player has **no on-screen feedback at all** unless we supply it. This is the one place §2's *"we do not build a pointer, we feed the client's own"* stops covering us — the client simply declines to draw out there |
+| F36 | **F30 CONFIRMED BY AN ACTUAL ZONE CROSSING, not inference** | Same run: Battlewrath travelled **from The Barrens into another zone** and **mapID stayed 1 for all 727 samples**. Run 1 inferred the continent-space model from range alone; this crossed a real border and nothing changed. `gp = 1` and `tr = true` throughout 3,742 yd and a zone transition — the client held our position the whole way (F34 again, harder) |
+| F37 | **The engine's arrival radius narrows to 5.46–5.59 yd — almost certainly 5.5** | Two independent runs bracket it: run 1 `(5.37, 5.73)`, run 2 `(5.46, 5.59)`; the intersection is **`(5.46, 5.59)`**. Tightens F31. Law 14's `Interact with` tier at **5 yd** sits just inside the engine's own notion of *you are here*, which is the correct side to be on — our tier fires marginally later than the engine would, never earlier |
+
 ## 4. ★ The map↔world transform — SOLVED, exact
 
 F9 said the engine won't convert map→world indoors. **We derive it ourselves**, and it is
@@ -609,16 +613,10 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
 
 ## 7. Open questions
 
-- **★ TOP OF THE LIST — WHAT HAPPENS PAST 1,500 YARDS?** This *replaces* the cross-zone
-  question, which F30 dissolved: mapID is the **continent**, so a zone border is not a boundary
-  and cross-zone always worked. The real limit is **range**. F32 shows the engine still reports
-  `InRange` at 1,291 yd and still returns a true distance, while `SuperTracker.lua` forces the
-  *beacon* to `Invalid` past 1,500. **Unknown: does the engine keep returning a usable distance
-  at 4,000+ yd, or does it give up?** That decides whether "Winterspring — 4,200 yd" is a
-  readout we can actually offer, or whether long-range retrieval needs something else entirely.
-  **Test:** Battlewrath's own plan — pin, then fly to the far end of Kalimdor, `/coadump sp`.
-  Read with `py addons/tools/read_satnav_probe.py`. Note this tests **range, not the map
-  boundary**.
+- ~~What happens past 1,500 yards?~~ — **ANSWERED by F35: nothing breaks.** Distance stays
+  live to at least 3,742 yd; only the beacon stops drawing. Left open only as a **design**
+  question, not a capability one: *what, if anything, do we show between 1,500 yd and arrival,
+  now that the client shows nothing?*
 - **★ WHAT HAPPENS ACROSS A CONTINENT / INSTANCE BOUNDARY?** The boundary F30 says actually
   exists. A long flight does **not** test it — Kalimdor stays mapID 1 throughout. Needs
   **Eastern Kingdoms, or stepping into a dungeon**, with a pin left behind on the other map.
