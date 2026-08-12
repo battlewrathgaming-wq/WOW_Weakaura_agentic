@@ -75,6 +75,10 @@ unused.
 | F19 | **The client ships an in-game ATLAS BROWSER** | `AddOns/Ascension_UIDevelopmentTools/AtlasBrowser/` in patch-B (not present in the user's AddOns folder — it lives in the MPQ). Untested whether `LoadAddOn` will open it; if it does, visual classification needs no tool from us at all |
 | F20 | **★ The census is EMITTED, and the fork's own art was the part that kept going missing** | `addons/tools/emit_atlas_census.py` → `addons/maps/atlas/` (census.json + routes.md + free.md). **4,503 entries · 1,359 claimed · 3,144 free.** Three format variants had to be calibrated in, and **all three were CoA's custom art, not Blizzard's**: (a) fractional sizes `179.2, 69.3`, (b) names beginning `!` (a sort prefix, 96 of them), (c) **Lua arithmetic as a size** — `85*0.24`, `(151+151)/512`. Each was a *silent* drop under a stricter pattern. First flawed run emitted 4,302 and looked perfectly healthy. **CoAResource entries went 39 → 102** once all three landed, including all 7 `ReaperAtlas` class-resource pieces. Lesson, general: *the bespoke rows are the ones a pattern tuned on the common rows drops — and they are exactly the rows we care about.* Guarded by a completeness self-check that compares parsed names against entry-shaped names and **refuses to write** on a shortfall; it fired twice and earned itself. Guard note: it compares NAME SETS, not line counts — the registry genuinely repeats 18 keys (Lua last-wins, so those earlier definitions are dead art), reported not hidden |
 
+| F21 | **★ THE ENGINE PUBLISHES A NAVIGATION STATE — and it ALREADY IMPLEMENTS "arriving is silent"** | `Enum.NavigationState = { Invalid=0, Occluded=1, InRange=2, Disabled=3, InRadius=4 }` (`SharedXML/Enum.lua:1938`), read live via **`C_SuperTrack.GetTargetState()`**. `SuperTracker.lua:55` maps state → beacon alpha: Invalid **0.0** · Occluded **0.6** · InRange **1.0** · Disabled **0.0** · **InRadius 0.1**. So when you reach the target the beacon fades to near-nothing **on its own**. Battlewrath's ruling (§9 walk, stop 4) is not something we build — **we inherit it.** ★ Note the client's own convention, because it is a distinction not a contradiction: `WatchFrame.lua:179` uses that same `InRadius` to *flash a small tracker icon*. The client goes **quiet in the WORLD and acknowledges in the UI** |
+| F22 | **Beacon range is BOUNDED, and the numbers are now known — this CLOSES F14's "max range UNKNOWN"** | `SuperTracker.lua:65-72`: `distance > 1500` is forced to `Invalid` (alpha 0, *"dont show too far"*); `distance > 727` downgrades InRange → Occluded (their comment: *"727 = mediumish farclip value"*). **Full strength to 727 yd · dimmed to 1500 yd · gone beyond.** Both thresholds are **Lua-side in FrameXML**, so they are the client's *convention*, not an engine limit — worth knowing, not worth fighting |
+| F23 | **Cross-zone supertracking is an ENGINE question, and the probe is now a one-liner** | `FrameXML/SuperTracker.lua` is 140 lines with **zero mapID handling** — it reads `x, y, distance` from `GetSuperTrackedPosition()` and nothing else. So whether a *different-mapID* target works is decided engine-side, and **`GetTargetState()` reports the verdict directly**: `Invalid` = engine declines, `InRange`/`Occluded` **plus a sane distance** = engine handles it. Second signal: `SuperTrackerUtil.HasValidScreenPosition()`. See §7 for the exact test |
+
 ## 4. ★ The map↔world transform — SOLVED, exact
 
 F9 said the engine won't convert map→world indoors. **We derive it ourselves**, and it is
@@ -428,6 +432,51 @@ seen both in the browser and we have not.
 
 </details>
 
+11. **★★ THE PRODUCT THESIS — NOTES OF MEANING, NOT WHAT-WHERE (Battlewrath, 2026-08-12).**
+    Verbatim: *"Gather-mate exists. PFquest exists. They all show per-entity spawn locations and
+    drop locations. We might step into the same lookup, if we have the data to consume. But
+    what we create is **notes of meaning, not what-where**."*
+
+    **This is the sharpest scope fence in the ledger and it is product-defining, not a detail.**
+    The existing addons answer *where does thing X spawn* — an entity→location database,
+    exhaustive, impersonal, and already built by people who did it well. We answer *why does
+    this place matter **to you***. Those are different products that happen to share a map.
+
+    **Two distinct claims, and keeping them distinct is the whole point:**
+    - **We never AUTHOR a what-where database.** Not a node list, not a spawn table, not a
+      drop index. This is what "indicators, not per-entity nodes" was already protecting, now
+      stated as the reason rather than the rule.
+    - **We MAY CONSUME one** — *"if we have the data to consume"*. That is the
+      [[consumer-contract-pattern]] again, the same move as MancerLedger over its driver:
+      let the people who own that data own it, read it under a contract, and add the layer
+      they do not provide. **A door left open, not a plan.**
+
+    **Why it matters beyond scoping:** it answers the §8 gate's second stopper
+    (*"it may be over-engineering"*) before it is asked. We are not competing with GatherMate;
+    we are not duplicating pfQuest. Nobody is building the meaning layer.
+
+12. **★ ARRIVING IS SILENT (Battlewrath, 2026-08-12).** Verbatim: *"Arriving should be silent.
+    They've actively moved towards there. They don't need telling what they've pursued the
+    journey to perform."*
+
+    **Notes are PULLED, never PUSHED** — in the open world. You read a note by hovering its
+    pin (F15's `WorldMapTooltip`), because you asked. Nothing announces itself on approach.
+
+    **★ AND THE CLIENT ALREADY DOES THIS — see F21.** `NavigationState.InRadius` maps to beacon
+    alpha **0.1**: reach the target and the beacon fades itself to near-nothing. We inherit the
+    behaviour rather than implement it, which is the third time this arc has found the client
+    already holding the answer.
+
+    **Scope, stated so it does not over-reach:** this governs the **open world**. Law 9's
+    proximity-drives-personal-notes was written for **in-dungeon** notebooking, where you did
+    *not* come deliberately — you are following someone's route and the note is a warning you
+    could not have asked for. Same split as the icons: context decides. Not a contradiction.
+
+    **Left open, small:** the client's own convention (F21) is quiet-in-the-world **plus** a
+    small UI acknowledgement (`WatchFrame.lua:179` flashes a tracker icon on `InRadius`).
+    Whether we want that quiet acknowledgement is a separate question from whether arrival
+    shouts. Not decided.
+
 ## 6. Accepted with a gate
 
 **"What was killed in this pull"** — during an open fight, note identities so the editor can
@@ -439,6 +488,22 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
 
 ## 7. Open questions
 
+- **★ TOP OF THE LIST — DOES THE ENGINE SUPERTRACK CROSS-ZONE?** (§9 walk stop 3.) Gates the
+  whole retrieval design: if the engine points you toward another zone, retrieval is mostly
+  *pick it from a list and let the beacon work*; if it declines, we must **surface the zone
+  needed** ourselves and the UI grows.
+  **The exact test, three lines, no addon required beyond a dump task:**
+  1. Stand in a known zone. `C_SuperTrack.SetSuperTrackedPosition(x, y, z, mapID)` using a
+     **stored landmark from a DIFFERENT mapID**.
+  2. Read `C_SuperTrack.GetTargetState()` → `Invalid` (0) means the engine declines;
+     `InRange` (2) or `Occluded` (1) means it handles it.
+  3. Read `C_SuperTrack.GetSuperTrackedPosition()` → a **sane distance** corroborates; nil or
+     nonsense refutes. Cross-check `SuperTrackerUtil.HasValidScreenPosition()`.
+  **Read the state BEFORE trusting the beacon's appearance** — F22 says >1500 yd is forced to
+  `Invalid` regardless, so an invisible beacon at long range proves nothing on its own. Pick a
+  near neighbouring zone for the first run.
+- ~~Beacon max range~~ — **ANSWERED by F22**: full to 727 yd, dimmed to 1500, cut beyond;
+  both thresholds Lua-side convention rather than engine limits.
 - **Does mapID change across dungeon FLOORS?** Decides whether a floor is a data-model concept
   or just a z value. One dump at the top and bottom of a staircase settles it. Ragefire is
   single-level so this is still untested.
@@ -601,6 +666,48 @@ worth *noting*. It is not worth *committing to* before either thing exists.
 **★ AND IT UNBLOCKS THE ARC.** §8 gates the *routing* proposition on a community answer. The
 landmark feature is not that proposition, so **it is not behind that gate.** The arc goes from
 "waiting on other people" to "has an ungated first deliverable" on this decision alone.
+
+### ★ DESIGN WALK 1 — open world, end to end (Battlewrath, 2026-08-12)
+
+Method: walk one story and let decisions surface where they are *met*, rather than listing them
+abstractly ([[user-story-walks-as-verification]] — walks prove the joins). The story:
+**you are in Winterspring, you find a herbing circuit worth keeping, you mark it; three weeks
+later you are in Orgrimmar and want to go back.**
+
+**1 · Marking it — SETTLED, and it asks you NOTHING.** Law 1 (born only where you stood) plus
+law 3 (the map orients, it does not author) already fix capture as an in-world act, never a
+map click. Confirmed: capture takes **no note, no sticker, no dialog** — it drops a landmark
+and gets out of the way, per law 4 (*the session drafts, the human curates*).
+**Three affordances, user's choice — not one blessed path:**
+- a **widget** that can live on the UI
+- a **right-click on the minimap element**
+- a **user-authored macro**, something short like `/<addon_abbrev> here`
+
+This is [[design-for-the-everyman-custom-earns-its-place]]: out-of-the-box paths for people who
+want one, a text command for people who would rather build their own button.
+
+**2 · Where it lives — BOTH, defaulting to character.** *"Default to character, easy to promote
+to account, easy to make character specific again."* So the record carries a **scope** that
+moves in **both directions**, cheaply, after the fact. A herb circuit is account knowledge; a
+favoured vendor may not be. **Noting a pattern in his design vocabulary rather than proposing
+anything: PROMOTION recurs** — capture → promote to fixture (law 9), character → promote to
+account. Worth watching in case it wants to be one mechanism.
+
+**3 · Getting back to it — a PROBE, not a decision yet.** His steer: *"We can test this. I know
+on retail, it can point towards the main connectors. 'Go to Stormwind' — also, if not in zone,
+surface the zone needed."* Two behaviours to establish before designing any retrieval UI: does
+the engine point **cross-zone**, and if it cannot, do we **name the zone** instead of failing
+silently. **F23 collapses this to a cheap, exact test — see §7.** Retrieval UI stays unspecified
+until the probe reports, because the answer changes how much UI is needed at all.
+
+**4 · Arriving — SILENT. Now law 12**, and F21 shows the client already implements it.
+
+**5 · The fence — the product thesis. Now law 11:** notes of meaning, not what-where.
+
+**What this walk did NOT reach** (honest gap, not an omission): editing and deleting a
+landmark, what a note actually is (length, plain text vs structured), how many stickers ship,
+and whether landmarks appear on the **minimap** as well as the world map. Those belong to a
+second walk — probably *"three weeks later I revisit and the note is wrong"*.
 
 No separate ledger yet — recorded here because it sets *this* build's ordering. It earns its
 own file when it is taken up.
