@@ -41,6 +41,23 @@ py addons/tools/emit_addon_census.py
 that emitted a partial census over a whole one would leave a file that lies about the bench,
 and this exists to be trusted at a glance.
 
+## Is it stale?
+
+Every page carries a **source fingerprint** — a content hash of every `.lua` it scanned,
+**deliberately not a timestamp**. A timestamp would churn these files in git on every run and
+would date the census rather than tie it to the code; the bench rule is already *identify by
+content hash, never by label*. Re-running with no source change produces byte-identical files.
+
+```bash
+py addons/tools/emit_addon_census.py --check
+```
+
+Exits **0 CURRENT** or **1 STALE**, printing both fingerprints. It writes nothing.
+
+**It is wired into the bench so it cannot quietly rot:** `menu.bat`'s *Deploy check* runs
+`--check` (read-only, alongside the repo-vs-client check), and an actual **deploy re-emits it**
+— deploying is the moment addon code changed, so it is the moment this would go stale.
+
 The resident list comes from **`deploy.py`'s MANIFEST** — the one authority on who lives here.
 A second hand-kept list drifts, and `menu.bat`'s did (twice, silently).
 

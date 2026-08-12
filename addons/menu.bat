@@ -59,6 +59,10 @@ goto MAIN
 cls
 py "%BENCH%deploy.py"
 echo.
+REM  Read-only, like the deploy check above it: says whether the addon census
+REM  still matches the code, and writes nothing either way.
+py "%BENCH%tools\emit_addon_census.py" --check
+echo.
 pause
 goto MAIN
 
@@ -105,6 +109,11 @@ choice /c YN /n /m "   Deploy !TARGET! (game closed)?  [Y]es  [N]o: "
 if errorlevel 2 endlocal & goto DEPLOY
 cls
 py "%BENCH%deploy.py" !TARGET!
+echo.
+REM  Deploying is the moment addon code changed, so it is the moment the census
+REM  would go stale. Re-emitting here costs milliseconds and means the frame-cost
+REM  pages can never trail what is actually on the client.
+py "%BENCH%tools\emit_addon_census.py"
 echo.
 pause
 endlocal

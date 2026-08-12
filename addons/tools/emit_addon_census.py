@@ -37,6 +37,7 @@ Usage:
     py addons\\tools\\emit_addon_census.py --addon COA_Landmarks   # print filter
 """
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -82,6 +83,35 @@ PULL = re.compile(
     r'|C_CVar\.Get\w+|GetCVar|AtlasInfo|GetLocale)\b')
 
 STRIP_COMMENT = re.compile(r'^\s*--')
+
+
+def fingerprint(census_sources):
+    """A CONTENT hash of everything scanned - deliberately not a timestamp.
+
+    A timestamp would make every run churn the emitted files in git even when
+    nothing changed, and it would date the census rather than tie it to the
+    code. The bench rule is already "identify builds by CONTENT hash, never by
+    label" (the 0.9.554 tag that held 0.9.434 code); this is the same rule
+    applied to our own output. Re-running with no source change produces
+    byte-identical files."""
+    h = hashlib.sha256()
+    for rel, text in sorted(census_sources):
+        h.update(rel.encode()); h.update(hashlib.sha256(text.encode()).digest())
+    return h.hexdigest()[:12]
+
+
+def sources():
+    """(relpath, text) for every lua file the census covers."""
+    out = []
+    for name in MANIFEST:
+        folder = ADDONS / name
+        if folder.is_dir():
+            for lua in sorted(folder.glob("*.lua")):
+                out.append((f"{name}/{lua.name}",
+                            lua.read_text(encoding="utf-8", errors="replace")))
+    return out
+
+FP = ["(unstamped)"]   # filled in by main() before any page is built
 
 LEGEND = [
     "**Lifetime is arithmetic: `installs − clears`.** **transient** = every handler is torn "
@@ -196,7 +226,10 @@ def frame_cost(scope, wide, title):
         rows = ["| " + " | ".join(["—"] * (6 if wide else 5)) + " |"]
 
     L = [f"# {title}", "",
-         "_Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._", "",
+         "_Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._",
+         f"_Source fingerprint `{FP[0]}` — run "
+         "`py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._",
+         "",
          "**Read the OnUpdate table first.** It is the only kind of entry that runs *every "
          "frame*; everything below it fires when something happens.", ""] + LEGEND
     L += ["## ★ OnUpdate — runs every frame", "", head] + rows
@@ -219,7 +252,8 @@ def routes(name, files):
     L = [f"# {name} — what it defines, and what it touches", "",
          "_Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._", "",
          f"_{len(files)} file(s) · {nf} function(s) · **{pers} persistent OnUpdate "
-         f"handler(s)** — see `frame_cost.md` beside this file._", ""]
+         f"handler(s)** — see `frame_cost.md` beside this file._",
+         f"_Source fingerprint `{FP[0]}`._", ""]
     for fn, d in files.items():
         bits = []
         if d["onupdate"]:
@@ -246,7 +280,26 @@ def routes(name, files):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--addon", help="print only this resident (everything is still written)")
+    ap.add_argument("--check", action="store_true",
+                    help="report whether the emitted census is stale; write nothing")
     a = ap.parse_args()
+
+    src = sources()
+    fp = fingerprint(src)
+
+    if a.check:
+        stamped = None
+        j = OUT / "addons.census.json"
+        if j.exists():
+            stamped = json.loads(j.read_text(encoding="utf-8")).get("_fingerprint")
+        if stamped == fp:
+            print(f"addon census is CURRENT (fingerprint {fp})")
+            sys.exit(0)
+        print(f"addon census is STALE - emitted for {stamped}, sources are now {fp}")
+        print("  re-run: py addons/tools/emit_addon_census.py")
+        sys.exit(1)
+
+    FP[0] = fp
     if a.addon and a.addon not in MANIFEST:
         sys.exit(f"'{a.addon}' is not a resident. Residents: {', '.join(MANIFEST)}")
 
@@ -257,7 +310,8 @@ def main():
             census[name] = {lua.name: scan(lua) for lua in sorted(folder.glob("*.lua"))}
 
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "addons.census.json").write_text(json.dumps(census, indent=1), encoding="utf-8")
+    (OUT / "addons.census.json").write_text(
+        json.dumps({"_fingerprint": fp, "addons": census}, indent=1), encoding="utf-8")
     (OUT / "frame_cost.md").write_text(
         frame_cost(census, True, "Frame cost — the whole bench"), encoding="utf-8")
 
