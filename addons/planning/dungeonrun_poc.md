@@ -191,13 +191,19 @@ exactly the part we said stays unclaimed, and replay is the thing that claims th
 **And it is irreversible in the same way the timestamp is:** a run captured without the legs can
 never be replayed later. Runs already banked stay skeletons forever.
 
-**The cheap version, recommended for the POC — record the path, do not draw it:**
+**★ IN THE POC — DECIDED (Battlewrath, 2026-08-13):** *"That fills the dotted line between
+capture points a consistent story."* Record the path, do not draw it:
 
 - Sample player position on a **slow fixed tick (~1/s)**, **only while OUT of combat and inside
   an instance**. In combat the marker pair already covers it; outside an instance there is no run.
 - A 20-minute run is **~1,200 points**. Trivial as data, and it *is* the path.
 - Frame cost is effectively nil and it **self-clears when the run ends** — the same lifecycle
   discipline `beacon.lua` now holds, and `emit_addon_census.py` will witness it either way.
+
+**★ AND IT CHANGES WHAT A RUN *IS*.** Markers alone are a list of events; markers plus legs are
+a **continuous record** — which means a captured run is legible **without the beacon at all.**
+Replay becomes a product of CAPTURE rather than of routing, and it stays useful even if the
+§8 gate never opens on shipping a route pointer.
 
 **This is record-all-filter-offline again** (§5): recording the legs is cheap, drawing them is
 deferred, and the decision only has to be right *before the first run*.
@@ -219,8 +225,8 @@ disk log as a second witness, or to anything else.
 inside the window already and there is nothing to join. The stamps are for the **bench
 cross-check**, not the mechanism.)*
 
-**2. The travel legs, if replay is ever wanted** (§6b). A ~1/s out-of-combat position sample.
-Cheap to include, impossible to backfill.
+**2. The travel legs** (§6b) — **decided IN.** A ~1/s out-of-combat position sample. Cheap to
+include, impossible to backfill.
 
 ---
 
@@ -250,7 +256,8 @@ which is precisely the failing case.
    `/coadump st dungeonrun "Ragefire clockwise"` would land records **today** with zero build,
    the run name as an arg. The widget is friendlier mid-play, and naming a run by slash command
    mid-pull is genuinely worse. **Proceeding on the widget** unless he says otherwise.
-2. **Friendly deaths** — record-but-exclude, or do not record (§6).
+2. **Friendly deaths** — record-but-exclude from the route model, or do not record (§6).
+   **Does not block:** deaths are out of the POC entirely.
 
 **Gate: `Build!` — not authorised.**
 
