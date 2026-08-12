@@ -642,12 +642,42 @@ seen both in the browser and we have not.
 
     ```
     Landmark name
-    Zone
+    Zone                 [Map]   <- red; shown ONLY when the maps differ
     [repin] [clear]
     [make marker]
     ```
 
-    Two lines and three buttons. **Name and zone, not coordinates and not distance** — "this
+    Two lines and three buttons — plus one conditional indicator.
+
+    **★ THE `[Map]` INDICATOR (Battlewrath, 2026-08-12) — the last hole in the widget's
+    honesty.** *"The only edge case I can foresee is when I want to go to a marker that's in
+    Eastern Kingdoms, and I'm in Kalimdor. We have the widget and the zone. We could add
+    `[Map]` in red when it doesn't match. Hides when it does."*
+
+    Without it the widget **lies by omission**: you click `repin`, nothing happens, and nothing
+    explains why. F38 says the refusal is exactly a **mapID mismatch**, and we already hold both
+    values — so the condition is one comparison against state we have, with nothing new stored.
+
+    - **Self-hiding.** Present only when it is saying something; invisible the rest of the time.
+      Zero noise by construction.
+    - **It is law 16's HANDOFF, not an exception to it.** `[Map]` says *the beacon cannot carry
+      this one — the map can*, which is the same sentence law 16 already speaks, delivered at
+      the moment it becomes relevant.
+    - **It covers the instance case for free** (law 17). Walk into Ragefire with a Kalimdor
+      landmark held and the maps differ, so the indicator appears. No extra logic.
+    - **It is not a warning, and law 17 still holds.** A warning is pushed at you; this is a
+      label on a widget you are only looking at because you care. The distinction is stated so
+      the two laws do not read as contradictory.
+
+    **RECOMMENDED, his call: make it a BUTTON that opens the world map to that landmark's
+    zone.** It costs nothing extra — it is one click on the instrument law 16 already names,
+    at the exact moment the player wants it — and a red label that does nothing invites the
+    question *"so what do I do about it?"* which the button answers. The alternative, a plain
+    red label, is also coherent if the widget should stay purely informational.
+
+    **Small note on the colour:** red in this client's language means *unavailable*, which is
+    accurate here — the beacon genuinely is. Recorded because law 10 governs colour as well as
+    shape, and this passes. **Name and zone, not coordinates and not distance** — "this
     zone, this area", the same sentence the map pin speaks.
 
     - **`make marker`** is walk stop 1's widget affordance: captures where you stand, asks
