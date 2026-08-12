@@ -110,6 +110,22 @@ assert(#t == 3 and t[1] == "Vendor" and t[3] == "winterspring", "split+trim on R
 local sugg = Store.SuggestTags("ven")
 assert(#sugg == 1 and sugg[1] == "Vendor", "AC-54a: offered exactly as typed")
 
+-- AC-54a REGRESSION (Battlewrath, live): "recommends what you type as you type,
+-- not what is stored already only". Because tags save on EVERY keystroke, the
+-- half-word in the box is already stored - so the record being EDITED must be
+-- excluded, or the suggestion is the user's own typing handed straight back.
+assert(#Store.SuggestTags("ven", id) == 0,
+       "AC-54a FAILED: suggested a tag from the record being edited")
+P.sub = "Ironforge Gate"
+local other = Store.Create()
+Store.Set(other, "tags", "vendor")
+assert(#Store.SuggestTags("ven", id) == 1,
+       "a tag from ANOTHER landmark must still suggest")
+assert(#Store.SuggestTags("vendor", other) == 0,
+       "never offer back exactly what is already typed")
+Store.Delete(other)
+P.sub = "Everlook"
+
 -- AC-48: refuse a version we do not know, and CHANGE NOTHING
 COA_LandmarksDB.schemaVersion = 99
 Store.locked = nil

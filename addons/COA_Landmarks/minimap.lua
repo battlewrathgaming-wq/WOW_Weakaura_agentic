@@ -38,9 +38,12 @@ function Minimap_:Init()
     icon:SetPoint("CENTER", 0, 1)
     -- The same symbol the map pins use, so the button and the pins speak with
     -- one voice (L10: context sets the default).
-    if icon.SetAtlas then
-        pcall(icon.SetAtlas, icon, Store.DEFAULT_ICON,
-              _G.Const and Const.TextureKit and Const.TextureKit.IgnoreAtlasSize or nil)
+    -- Same explicit path as the pins (see pins.lua setIcon) - texture plus
+    -- tex-coords, no dependency on SetAtlas or a constant we cannot verify.
+    local info = _G.AtlasInfo and AtlasInfo[Store.DEFAULT_ICON]
+    if info then
+        icon:SetTexture(info[1])
+        icon:SetTexCoord(info[4], info[5], info[6], info[7])
     end
 
     local border = b:CreateTexture(nil, "OVERLAY")

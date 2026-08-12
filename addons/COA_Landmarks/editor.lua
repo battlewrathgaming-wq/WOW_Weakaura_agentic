@@ -60,7 +60,7 @@ end
 function Editor:RefreshSuggestions()
     for _, b in ipairs(f.sugg) do b:Hide() end
     if not currentId then return end
-    local hits = Store.SuggestTags(partialTag(f.tags:GetText()))
+    local hits = Store.SuggestTags(partialTag(f.tags:GetText()), currentId)
     for i = 1, math.min(#hits, 4) do
         local b = f.sugg[i]
         b:SetText(hits[i])

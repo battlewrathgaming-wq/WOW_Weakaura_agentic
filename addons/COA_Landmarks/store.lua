@@ -267,9 +267,16 @@ end
 
 -- AC-54a: autocomplete's source. We own NO vocabulary - this is a mirror of
 -- what the user has already typed, offered back. Never a managed list.
-function Store.KnownTags()
+--
+-- `exclude` is the landmark being EDITED, and it is not optional in practice.
+-- We save on every keystroke (AC-54: as typed), so the half-word in the box is
+-- already stored - and without this the suggestion is your own typing handed
+-- back. Excluding the edited record also stops us offering a tag it already
+-- carries, which would only ever produce a duplicate.
+function Store.KnownTags(exclude)
     local seen, out = {}, {}
     for _, e in ipairs(Store.Visible()) do
+      if e.id ~= exclude then
         for _, tag in ipairs(Store.SplitTags(e.lm.tags)) do
             local k = tag:lower()             -- de-dup the OFFER only; never the DATA
             if not seen[k] then
@@ -277,17 +284,21 @@ function Store.KnownTags()
                 out[#out + 1] = tag           -- offered exactly as they typed it
             end
         end
+      end
     end
     table.sort(out, function(a, b) return a:lower() < b:lower() end)
     return out
 end
 
-function Store.SuggestTags(prefix)
+function Store.SuggestTags(prefix, exclude)
     prefix = tostring(prefix or ""):lower()
     if prefix == "" then return {} end
     local out = {}
-    for _, tag in ipairs(Store.KnownTags()) do
-        if tag:lower():find(prefix, 1, true) == 1 then out[#out + 1] = tag end
+    for _, tag in ipairs(Store.KnownTags(exclude)) do
+        -- prefix match, and never offer back exactly what is already typed
+        if tag:lower() ~= prefix and tag:lower():find(prefix, 1, true) == 1 then
+            out[#out + 1] = tag
+        end
     end
     return out
 end

@@ -24,15 +24,28 @@ local pins = {}
 
 -- ---------------------------------------------------------------------
 
+-- Read the atlas registry DIRECTLY rather than going through SetAtlas.
+--   AtlasInfo[name] = { texture, w, h, left, right, top, bottom, flipH, flipV }
+-- SetAtlas also applies the atlas's NATIVE size unless passed a flag whose
+-- constant lives somewhere we cannot see from here - and a pcall around it
+-- fails silently, which is exactly how a pin ends up wrong-sized or blank with
+-- nothing said. Texture + tex-coords is deterministic and needs no API we have
+-- not verified. AC-32: one size for every pin, whatever the entry declares.
 local function setIcon(tex, atlas)
-    -- The client renders atlases at their declared size unless told otherwise;
-    -- IgnoreAtlasSize is its own mechanism for exactly this (used by
-    -- WorldMapPOIMixin and the AtlasBrowser). Native size is a hint (AC-32).
-    if tex.SetAtlas and _G.Const and Const.TextureKit then
-        local ok = pcall(tex.SetAtlas, tex, atlas, Const.TextureKit.IgnoreAtlasSize)
-        if ok then return end
+    local info = _G.AtlasInfo and AtlasInfo[atlas]
+    if info then
+        tex:SetTexture(info[1])
+        tex:SetTexCoord(info[4], info[5], info[6], info[7])
+        return true
     end
-    if tex.SetAtlas then pcall(tex.SetAtlas, tex, atlas) end
+    -- AC-43: no silent anything. If the registry has no such entry we say so
+    -- once, rather than drawing nothing and leaving it to be noticed.
+    if not NS.warnedAtlas then
+        NS.warnedAtlas = true
+        NS.Print(("|cffff4444atlas '%s' is not in AtlasInfo|r - pins will not draw"):format(
+            tostring(atlas)))
+    end
+    return false
 end
 
 local function showNote(self)
