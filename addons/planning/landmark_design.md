@@ -21,8 +21,10 @@ thing must do and how we will know it does it, and contains **no implementation*
 Nothing here invents on top of a settled law. Where I had to reach past the laws, it says **[P]**
 and says so loudly, per the ADR (`adr-inventiveness-confined-to-contained-spaces`).
 
-Reading order for anyone arriving cold: `satnav_ledger.md` §5 laws 1–18 and §3 F21–F39 →
-`satnav_prior_art.md` → this.
+**Reading order for anyone arriving cold: THIS FILE FIRST — it is the spec.** Reach for
+`satnav_ledger.md` (19 laws, F1–F41) only when a criterion's *why* is in question; every
+criterion cites it by `[Ln]`/`[Fn]`. `satnav_prior_art.md` covers the three addons inspected.
+**§12 is what we are actually building now.**
 
 ---
 
