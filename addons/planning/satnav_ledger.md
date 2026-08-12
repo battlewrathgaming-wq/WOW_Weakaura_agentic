@@ -83,6 +83,8 @@ unused.
 | F25 | **★ JOURNEY OBSERVABILITY IS A TWO-CHANNEL MODEL — event for TRANSITIONS, poll for STAGES.** Direct answer to *"are there scripts we can get state behaviour per journey stage?"* | **`SUPER_TRACKING_CHANGED`** is a real event (`SuperTracker.lua:10`), fired when the *target* changes; the client uses it only to show/hide the beacon — that is the **journey started / ended** signal. **Per-stage state has NO event**: `GetTargetState()` is **polled** in `OnUpdate` every frame, and returns the `NavigationState` ladder from F21. So arrival, occlusion and range are **read**, not announced — if we want stage behaviour we detect the transition ourselves from a throttled poll. One value, cheap |
 | F26 | **★ THE GUARD USES A DIFFERENT SYSTEM — map LANDMARKS, not supertrack** | `WorldMapFrame.lua:489` — `GetNumMapLandmarks()` / `GetMapLandmarkInfo(i)` → `name, description, textureIndex, x, y, **mapLinkID**`. This is the classic 3.3.5 POI channel and it is **server-fed and read-only** — there is no `SetMapLandmark`, so we cannot write into it. **Two things follow.** ① **An in-game guard inspection observes THIS channel, not the beacon** — worth doing, but the two must not be conflated, and a conclusion drawn from the guard does not transfer to `C_SuperTrack` by default. ② `mapLinkID` is a **map-to-map link carried on a POI** — the closest thing in the client to *"if not in zone, surface the zone needed"*, and therefore worth reading properly when the cross-zone probe (§7) runs. Upside: it is a **second, independent marker channel that does not contend for the single supertrack slot** (F24) |
 
+| F27 | **★ THE SUPERTRACKER IS READABLE, AND ITS "1 yd FLOOR" IS COSMETIC** | Battlewrath observed the readout flooring at 1 when stood on the point. **Cause: `math.ceil` in `GetDistanceString` (`SuperTracker.lua:109`) — the DISPLAY path only.** The raw value is a float below 1 (you are never at exactly 0), so **our tiers are not floored by it**. Three read paths, ranked: ① **`C_SuperTrack.GetSuperTrackedPosition()` third return** — the raw float, use this · ② **`SuperTracker.distance`** — the client's own cache of the same float, updated each `OnUpdate`; the frame **is globally named** (`SuperTracker.xml:5`, parented to `WorldFrame`), so the beacon is inspectable at runtime and the probes are cheaper than assumed · ③ `SuperTracker.DistanceText:GetText()` — avoid, it is ceilinged, formatted and localised |
+
 ## 4. ★ The map↔world transform — SOLVED, exact
 
 F9 said the engine won't convert map→world indoors. **We derive it ourselves**, and it is
@@ -606,6 +608,13 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
   **Read the state BEFORE trusting the beacon's appearance** — F22 says >1500 yd is forced to
   `Invalid` regardless, so an invisible beacon at long range proves nothing on its own. Pick a
   near neighbouring zone for the first run.
+- **★ NEW — DOES `distance` SURVIVE THE TARGET BEING OFF-SCREEN?** `GetSuperTrackedPosition()`
+  returns **screen** x/y, and `HasValidScreenPosition()` gates on `x > 0 and y > 0`; the beacon
+  hides when that fails. **If the third return dies with the screen position, arrival polling
+  breaks exactly when it matters** — you reach a vendor, turn to face them, the point goes
+  behind the camera, distance goes nil, arrival never fires and the beacon never wipes (law 14).
+  **Test:** supertrack a point, stand on it, spin the camera, read the third return. Pairs with
+  the 3D-vs-2D test above — both are *stand near a point and read numbers*, one in-game pass.
 - ~~Beacon max range~~ — **ANSWERED by F22**: full to 727 yd, dimmed to 1500, cut beyond;
   both thresholds Lua-side convention rather than engine limits.
 - **Does mapID change across dungeon FLOORS?** Decides whether a floor is a data-model concept
