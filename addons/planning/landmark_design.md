@@ -611,10 +611,24 @@ lines — tracking them as deferred work would cost more than building them.
 Capture asks nothing (AC-7), so **every new landmark is created with a `Beacon hide` value, and
 the brief never says which.** Found by the 2026-08-12 audit.
 
-**Proposed: `Interact with` (5 yd).** The two failure modes are not symmetric — **a beacon that
-lingers slightly too long is invisible; a beacon that vanishes early reads as broken.** Err
-toward not-vanishing. It is also the cheapest thing to learn from: the first tier he changes,
-and what he changes it to, hands us the real default.
+**DECIDED (Battlewrath, 2026-08-12): `Interact with`. *"Baseline, match the game. Within 6-5
+yards."*** The default is not a tuning choice — it is **the game's own interaction range**, so a
+landmark behaves like everything else you walk up to and use.
+
+**★ THREE INDEPENDENT THINGS AGREE ON ~5 yd, and they were arrived at separately:**
+1. **The game's interact range** — his reason, and the one that matters, because it is the
+   distance a player's hands already know.
+2. **Law 14's tier**, chosen on taste **before any of it was measured**.
+3. **The engine's own arrival radius — 5.46–5.59 yd**, bracketed from 1,857 samples across two
+   runs (F31, F37).
+
+Our 5 sits just **inside** the engine's boundary, which is the correct side: we fire marginally
+**later** than the engine would, never earlier.
+
+Supporting reason for erring tight, kept because it generalises: **the failure modes are not
+symmetric — a beacon that lingers slightly too long is invisible, while one that vanishes early
+reads as broken.** And it is the cheapest thing to learn from, since the first tier he changes
+hands us the real answer.
 
 ### What v1 is FOR — the questions it answers by being used
 
