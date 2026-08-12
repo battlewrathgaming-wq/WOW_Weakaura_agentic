@@ -368,6 +368,18 @@ points at a landmark whose position you are looking at in a form.
 **AC-37 [L11, refined by Battlewrath 2026-08-12] — the note is TWO FIELDS, not one blob:
 `What:` and `Why:`.** Both free text, both optional [L4].
 
+**★ `What` is a LINE; `Why` is a PAGE.** `What` is a short label — *"Bank + reagent vendor"*.
+`Why` is a **multi-line free area**, and it is therefore the free-hand section: prompted with
+the question that matters, but not rationed once you are writing. That is both halves of the
+governing metaphor at once — law 18 says *why* is the thing that gets lost, so it earns the
+prompt; *"a page doesn't really know what you've drawn"* says the space should not be measured
+out.
+
+**No third field in v1.** Two are a *prompt*, not a schema; a third labelled box people do not
+need turns the form into paperwork, and empty boxes invite guilt. If use shows otherwise,
+adding a field is a `schemaVersion` bump — **which is exactly what AC-48 was built for**, so
+this is a decision we need to be able to *change*, not to get right now.
+
 **★ Why two and not one:** law 18 says what a player loses is *the meaning and why*. A single
 box invites a **label**; two boxes invite a **reason**. `Why:` is the product's core field — it
 is the thing no other addon stores and the thing the player cannot reconstruct later.
@@ -649,6 +661,29 @@ Named before building, because they decide what is worth watching:
 - **★ Does the beacon-vs-quest contention actually occur?** Law 17's *"different modes take
   turns"* is reasoning, not evidence, and **AC-21's accept-it rests on it**. v1 makes it
   evidence.
+
+### ★ HOW TO READ THE SIGNAL — a usage pattern has TWO readings (Battlewrath, 2026-08-12)
+
+*"Or evidence they need to use another addon. We can't compete in that problem. The questing
+addon has a whole data base. So does gathermate (can be imported.) and I'm not interested in
+competing. This is the gap of personal knowledge and style."*
+
+**This is the rule that keeps an A:B loop from eating the product.** Every observation above can
+be read two ways, and the second reading is the one that is easy to miss:
+
+| Observed | Reading 1 | ★ Reading 2 |
+|---|---|---|
+| `Why` fills with route hints | we need a third field | **they want a routing addon** — ours later, or pfQuest now |
+| landmarks pile up per-node | retrieval needs search | **they want GatherMate**, which has the database and *can be imported* |
+| people log what spawns where | add structure for it | **that is `what exists`, not `how I play`** [L11] |
+
+**Default to reading 2 when the pattern is DATA-SHAPED.** pfQuest ships a full quest and unit
+database; GatherMate ships a node database and an import path. Those are real answers already
+built by people with far bigger records. **The honest response to a user reaching for one of
+them is to name the addon, not to grow toward it.**
+
+Growing toward it would also cost us the thing we have: *this is the gap of **personal knowledge
+and style***, and that gap only stays visible while we refuse the data problem next to it.
 
 ---
 
