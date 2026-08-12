@@ -97,6 +97,9 @@ unused.
 | F36 | **F30 CONFIRMED BY AN ACTUAL ZONE CROSSING, not inference** | Same run: Battlewrath travelled **from The Barrens into another zone** and **mapID stayed 1 for all 727 samples**. Run 1 inferred the continent-space model from range alone; this crossed a real border and nothing changed. `gp = 1` and `tr = true` throughout 3,742 yd and a zone transition — the client held our position the whole way (F34 again, harder) |
 | F37 | **The engine's arrival radius narrows to 5.46–5.59 yd — almost certainly 5.5** | Two independent runs bracket it: run 1 `(5.37, 5.73)`, run 2 `(5.46, 5.59)`; the intersection is **`(5.46, 5.59)`**. Tightens F31. Law 14's `Interact with` tier at **5 yd** sits just inside the engine's own notion of *you are here*, which is the correct side to be on — our tier fires marginally later than the engine would, never earlier |
 
+| F38 | **★★★ THE ENGINE DECLINES ACROSS A MAP BOUNDARY — AND RETURNS `sd = 0.00`, NOT NIL. THIS IS A SHIPPING-GRADE TRAP.** | Third probe run `20260812_113949_493__satnav`: pin outside Ragefire in Orgrimmar (mapID 1), then in through the portal (mapID **389**). Battlewrath live: *"Set marker/beacon outside of the instance — visible. Move into the instance — not visible / no guidance."* The record says exactly why, and says something worse. **Inside, across all 57 samples: `NavigationState.Invalid` · `sd = 0.00` · `IsSuperTrackingAnything()` STILL TRUE · `gp = 1`.** So the client **held our pin faithfully** and the **engine refused** — the discrimination `gp` was built for, working. **★ THE TRAP: a refusal is reported as ZERO DISTANCE.** Law 14 compares distance against a tier; **zero satisfies every tier**, so a naive implementation fires *arrived*, wipes the beacon and calls the errand complete **the instant the player zones into any instance**. Neither obvious guard catches it — tracking is still true and a distance *is* returned. Only the **state** distinguishes refusal from arrival |
+| F39 | **`distance` is 3D — third independent confirmation, and the cleanest yet** | Same run, restricted to the pin's own map and excluding declined rows: **mean error 0.000000 yd, worst 0.000001** vs 3D; 0.008765 / 0.046056 vs 2D. Three runs, three zones, 1,758 usable samples. Not revisitable |
+
 ## 4. ★ The map↔world transform — SOLVED, exact
 
 F9 said the engine won't convert map→world indoors. **We derive it ourselves**, and it is
@@ -563,6 +566,17 @@ seen both in the browser and we have not.
     stored tier. Mechanical, no invention. `InRadius` remains what it was — the engine's fade
     signal — and stays out of our logic.
 
+    **★★ MANDATORY GUARD — ARRIVAL IS GATED ON *STATE*, NOT DISTANCE (F38).** The engine
+    reports a refusal as **`sd = 0.00` with `NavigationState.Invalid`**, while still claiming to
+    track. Distance alone therefore fires *arrived* the moment a player zones into any instance.
+    **Acceptance criterion for the AC document, not an implementation note:**
+
+    > Arrival requires `C_SuperTrack.GetTargetState() ~= Enum.NavigationState.Invalid`
+    > **and** the tier comparison. A zero distance without a valid state is a REFUSAL.
+
+    A natural second invariant, cheap and meaningful in its own right: **the player's current
+    mapID must equal the landmark's** — you cannot have arrived at a landmark on another map.
+
     **★ RESOLVED BY THE PROBE (2026-08-12): the tiers are SAFE.** F28 — `distance` is **3D**, so
     vertical separation counts and a floor above does not read as arrived. F31 — the engine's
     own arrival radius brackets to **5.37–5.73 yd**, so the `Interact with` tier he picked at
@@ -664,11 +678,14 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
 - ~~What happens past 1,500 yards?~~ — **ANSWERED by F35** (distance stays live to at least
   3,742 yd; only the beacon stops drawing) **and CLOSED by law 16** (we show nothing out there
   — the map is the instrument).
-- **★ WHAT HAPPENS ACROSS A CONTINENT / INSTANCE BOUNDARY?** The boundary F30 says actually
-  exists. A long flight does **not** test it — Kalimdor stays mapID 1 throughout. Needs
-  **Eastern Kingdoms, or stepping into a dungeon**, with a pin left behind on the other map.
-  Expect `gp` to answer *whose* fault any failure is: `1` = the client still holds our position
-  and the engine declined; `-1` = the client dropped our intent.
+- ~~What happens across a continent / instance boundary?~~ — **ANSWERED by F38: the engine
+  declines**, returning `Invalid` and `sd = 0.00` while the client keeps holding our pin
+  (`gp = 1`, tracking still true). Behaviourally this needs no work — law 16 already says the
+  map is the instrument at that scale, and an instance you have walked into is somewhere you
+  are already standing. **What it DOES need is the state guard**, now an acceptance criterion
+  on law 14.
+  **★ With this, every CAPABILITY question is answered.** What remains in this section is
+  design detail and the dungeon-floor question, which belongs to the route half.
 - ~~Does the engine supertrack cross-zone?~~ — **DISSOLVED by F30.** There is no zone boundary
   in this coordinate space.
 - ~~3D vs 2D proximity~~ — **ANSWERED by F28: 3D**, mean error 0.00001 yd over 945 samples.

@@ -44,7 +44,15 @@ def main():
         sys.exit(f"record aborted: {p['abort']}")
 
     pin = p["pin"]
-    rows = [r for r in p["rows"] if r.get("sd") is not None and r.get("px") is not None]
+    # Rows from a DIFFERENT map are in a different coordinate space entirely, so
+    # player-vs-pin separation is meaningless there - and rows the engine declined
+    # report sd = 0.00 (not nil), which would poison every fit and count below.
+    # The task guards its own hd/vd the same way; the reader must match it.
+    rows = [r for r in p["rows"]
+            if r.get("sd") is not None and r.get("px") is not None
+            and r.get("pm") == pin["mapID"] and r.get("ts") != 0]
+    offmap = sum(1 for r in p["rows"] if r.get("pm") != pin["mapID"])
+    declined = sum(1 for r in p["rows"] if r.get("ts") == 0)
     print(f"=== {path.name} ===")
     print(f"{h['startedAt']} -> {h['completedAt']}  ·  {h['char']} @ {pin.get('zone')}")
     print(f"pin mapID {pin['mapID']}  ·  {p['samples']} samples"
@@ -53,9 +61,13 @@ def main():
         print(f"!! tick_errors: {p['tick_errors']} - rows may be incomplete")
     if "FALLBACK" in (p.get("setterUsed") or ""):
         print(f"!! {p['setterUsed']} - run is SUSPECT (F24)")
+    if offmap:
+        print(f"note: {offmap} row(s) on another map - excluded from the distance fit "
+              f"(different coordinate space)")
+    if declined:
+        print(f"!! {declined} row(s) where the engine returned NavigationState.Invalid AND "
+              f"sd = 0.00 - excluded from the fit. A zero here is a REFUSAL, not an arrival.")
     usable = len(rows)
-    if usable != p["samples"]:
-        print(f"note: {p['samples'] - usable} row(s) lacked sd or position and are excluded")
     if not rows:
         sys.exit("no usable rows")
 
@@ -77,7 +89,8 @@ def main():
              else "UNSAFE as specified - a floor above reads as arrived."))
 
     # -- B: off-screen survival -------------------------------------------
-    inval = [r for r in p["rows"] if r.get("vs") is False]
+    # only count samples the engine was actually answering for
+    inval = [r for r in p["rows"] if r.get("vs") is False and r.get("ts") != 0]
     kept = sum(1 for r in inval if r.get("sd") is not None)
     nil_d = sum(1 for r in p["rows"] if r.get("sd") is None)
     print(f"\n(B) DOES DISTANCE SURVIVE OFF-SCREEN  ->  "
