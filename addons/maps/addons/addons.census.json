@@ -1,5 +1,5 @@
 {
- "_fingerprint": "705ec1406486",
+ "_fingerprint": "9661f06c1690",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -290,6 +290,36 @@
      "GetCVar",
      "GetTime"
     ]
+   },
+   "task_dump.lua": {
+    "functions": [
+     {
+      "name": "scalar",
+      "kind": "local",
+      "line": 40
+     },
+     {
+      "name": "keyFor",
+      "kind": "local",
+      "line": 51
+     },
+     {
+      "name": "serialise",
+      "kind": "local",
+      "line": 57
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
    },
    "task_frames.lua": {
     "functions": [],

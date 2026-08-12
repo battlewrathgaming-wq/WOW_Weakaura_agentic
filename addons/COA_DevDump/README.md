@@ -43,6 +43,15 @@ One envelope at a time: a one-shot won't run while a session is open.
 ## Installed tasks (refreshed 2026-07-31)
 
 One-shots (`/coadump r <task>`):
+- **★ `dump <expression>`** — **`/dump`, but it lands on DISK.** Same evaluation as the
+  client's own (`ChatFrame.lua:2696` → `DevTools_DumpCommand` → `loadstring("return "..msg)`),
+  so anything you would type into `/dump` goes in unchanged, function calls included. Built
+  because the alternative was Battlewrath **hand-transcribing values off the screen** — slow,
+  and it corrupts the one thing we were reading for. Serialises deeply with **no silent caps**:
+  cycles, depth, width and non-string keys each leave a note in `payload.notes`, and functions
+  /userdata are kept as type TAGS rather than dropped (a missing key implies the field was not
+  there). A compile or runtime error lands **nothing** — a record of our own syntax error would
+  read as evidence about the game.
 - **`probe <FrameName> [fields]`** — recursive walk of any named frame in `_G`,
   reading plain Lua table fields off every widget (found `spellID`/`rank`/
   `maxRank` on the talent buttons). NOT for stock API-backed frames: their data
