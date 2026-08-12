@@ -1,0 +1,2653 @@
+{
+ "COA_DevDump": {
+  "core.lua": {
+   "functions": [
+    {
+     "name": "D.Print",
+     "kind": "function",
+     "line": 37
+    },
+    {
+     "name": "trim",
+     "kind": "local",
+     "line": 42
+    },
+    {
+     "name": "D.ParseFieldList",
+     "kind": "function",
+     "line": 47
+    },
+    {
+     "name": "D.Commit",
+     "kind": "function",
+     "line": 83
+    },
+    {
+     "name": "D.RegisterTask",
+     "kind": "function",
+     "line": 104
+    },
+    {
+     "name": "D.DescribeWidget",
+     "kind": "function",
+     "line": 122
+    },
+    {
+     "name": "walk",
+     "kind": "local",
+     "line": 139
+    },
+    {
+     "name": "D.WalkFrameTree",
+     "kind": "function",
+     "line": 161
+    },
+    {
+     "name": "D.NewCollector",
+     "kind": "function",
+     "line": 171
+    },
+    {
+     "name": "c:Start",
+     "kind": "function",
+     "line": 180
+    },
+    {
+     "name": "c:Stop",
+     "kind": "function",
+     "line": 185
+    },
+    {
+     "name": "D.Cycle",
+     "kind": "function",
+     "line": 195
+    },
+    {
+     "name": "taskNames",
+     "kind": "local",
+     "line": 219
+    },
+    {
+     "name": "D.Begin",
+     "kind": "function",
+     "line": 284
+    }
+   ],
+   "onupdate": 1,
+   "onupdate_clears": 1,
+   "onupdate_persistent": 0,
+   "onupdate_transient": true,
+   "throttle_pattern": false,
+   "scripts": [
+    "OnEvent",
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "GetAddOnMetadata",
+    "GetRealmName",
+    "UnitClass",
+    "UnitName"
+   ]
+  },
+  "payload_macros.lua": {
+   "functions": [
+    {
+     "name": "ask",
+     "kind": "local",
+     "line": 37
+    },
+    {
+     "name": "askPair",
+     "kind": "local",
+     "line": 45
+    },
+    {
+     "name": "askTarget",
+     "kind": "local",
+     "line": 61
+    },
+    {
+     "name": "contextStamp",
+     "kind": "local",
+     "line": 76
+    },
+    {
+     "name": "try",
+     "kind": "local",
+     "line": 78
+    },
+    {
+     "name": "controlRow",
+     "kind": "local",
+     "line": 151
+    },
+    {
+     "name": "run",
+     "kind": "local",
+     "line": 264
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "GetTime",
+    "UnitClass",
+    "UnitName"
+   ]
+  },
+  "payload_tooltipids.lua": {
+   "functions": [],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  },
+  "task_callwitness.lua": {
+   "functions": [
+    {
+     "name": "makeTimer",
+     "kind": "local",
+     "line": 81
+    },
+    {
+     "name": "wrapCount",
+     "kind": "local",
+     "line": 91
+    },
+    {
+     "name": "wrapVoid",
+     "kind": "local",
+     "line": 98
+    },
+    {
+     "name": "resolvePath",
+     "kind": "local",
+     "line": 117
+    },
+    {
+     "name": "addTarget",
+     "kind": "local",
+     "line": 127
+    },
+    {
+     "name": "Self:ContextTick",
+     "kind": "function",
+     "line": 142
+    },
+    {
+     "name": "Self:FlushBuckets",
+     "kind": "function",
+     "line": 158
+    },
+    {
+     "name": "snapshotEnv",
+     "kind": "local",
+     "line": 191
+    },
+    {
+     "name": "structuralFingerprint",
+     "kind": "local",
+     "line": 235
+    },
+    {
+     "name": "noop",
+     "kind": "local",
+     "line": 316
+    }
+   ],
+   "onupdate": 1,
+   "onupdate_clears": 1,
+   "onupdate_persistent": 0,
+   "onupdate_transient": true,
+   "throttle_pattern": true,
+   "scripts": [
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "GetAddOnMetadata",
+    "GetCVar",
+    "GetRealZoneText",
+    "GetSubZoneText",
+    "GetTime"
+   ]
+  },
+  "task_census.lua": {
+   "functions": [
+    {
+     "name": "kindOf",
+     "kind": "local",
+     "line": 13
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  },
+  "task_cvarlog.lua": {
+   "functions": [
+    {
+     "name": "readAll",
+     "kind": "local",
+     "line": 26
+    },
+    {
+     "name": "copyShallow",
+     "kind": "local",
+     "line": 35
+    },
+    {
+     "name": "mancerBackups",
+     "kind": "local",
+     "line": 42
+    }
+   ],
+   "onupdate": 1,
+   "onupdate_clears": 1,
+   "onupdate_persistent": 0,
+   "onupdate_transient": true,
+   "throttle_pattern": true,
+   "scripts": [
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "GetCVar",
+    "GetTime"
+   ]
+  },
+  "task_frames.lua": {
+   "functions": [],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  },
+  "task_macros.lua": {
+   "functions": [],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  },
+  "task_perf.lua": {
+   "functions": [],
+   "onupdate": 1,
+   "onupdate_clears": 1,
+   "onupdate_persistent": 0,
+   "onupdate_transient": true,
+   "throttle_pattern": true,
+   "scripts": [
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "GetCVar",
+    "GetTime"
+   ]
+  },
+  "task_petlog.lua": {
+   "functions": [
+    {
+     "name": "bandOk",
+     "kind": "local",
+     "line": 31
+    },
+    {
+     "name": "petFlags",
+     "kind": "local",
+     "line": 36
+    },
+    {
+     "name": "readCleu",
+     "kind": "local",
+     "line": 40
+    },
+    {
+     "name": "onCleu",
+     "kind": "local",
+     "line": 49
+    },
+    {
+     "name": "snapshotTick",
+     "kind": "local",
+     "line": 100
+    }
+   ],
+   "onupdate": 1,
+   "onupdate_clears": 1,
+   "onupdate_persistent": 0,
+   "onupdate_transient": true,
+   "throttle_pattern": true,
+   "scripts": [
+    "OnEvent",
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [
+    "COMBAT_LOG_EVENT_UNFILTERED"
+   ],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "GetTime"
+   ]
+  },
+  "task_plates.lua": {
+   "functions": [],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "UnitName"
+   ]
+  },
+  "task_probe.lua": {
+   "functions": [],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  },
+  "task_satnav.lua": {
+   "functions": [
+    {
+     "name": "try",
+     "kind": "local",
+     "line": 33
+    },
+    {
+     "name": "globalPinState",
+     "kind": "local",
+     "line": 42
+    },
+    {
+     "name": "sample",
+     "kind": "local",
+     "line": 49
+    }
+   ],
+   "onupdate": 1,
+   "onupdate_clears": 1,
+   "onupdate_persistent": 0,
+   "onupdate_transient": true,
+   "throttle_pattern": true,
+   "scripts": [
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [
+    "C_SuperTrack.GetSuperTrackedPosition",
+    "C_SuperTrack.GetTargetState",
+    "C_SuperTrack.IsSuperTrackingAnything",
+    "C_SuperTrack.SetSuperTrackedPosition",
+    "SuperTrackerUtil.ClearSuperTrackedPosition",
+    "SuperTrackerUtil.HasValidScreenPosition",
+    "SuperTrackerUtil.SetSuperTrackedPosition"
+   ],
+   "pull": [
+    "C_CVar.GetBool",
+    "GetCurrentPlayerPosition",
+    "GetRealZoneText",
+    "GetSubZoneText",
+    "GetTime"
+   ]
+  },
+  "task_spec.lua": {
+   "functions": [
+    {
+     "name": "try",
+     "kind": "local",
+     "line": 19
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  },
+  "task_talents.lua": {
+   "functions": [
+    {
+     "name": "shallow",
+     "kind": "local",
+     "line": 22
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "UnitClass"
+   ]
+  },
+  "task_tooltip.lua": {
+   "functions": [
+    {
+     "name": "renderLines",
+     "kind": "local",
+     "line": 16
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  }
+ },
+ "COA_GuardianPlates": {
+  "AggroPlates.lua": {
+   "functions": [
+    {
+     "name": "GetConfig",
+     "kind": "local",
+     "line": 33
+    },
+    {
+     "name": "Color",
+     "kind": "local",
+     "line": 44
+    },
+    {
+     "name": "CurrentPalette",
+     "kind": "local",
+     "line": 69
+    },
+    {
+     "name": "Apply",
+     "kind": "local",
+     "line": 77
+    },
+    {
+     "name": "ApplyAll",
+     "kind": "local",
+     "line": 101
+    },
+    {
+     "name": "ClearAll",
+     "kind": "local",
+     "line": 110
+    },
+    {
+     "name": "Aggro.OnUnitAdded",
+     "kind": "function",
+     "line": 127
+    },
+    {
+     "name": "Aggro.OnUnitRemoved",
+     "kind": "function",
+     "line": 132
+    },
+    {
+     "name": "Aggro.OnReclassify",
+     "kind": "function",
+     "line": 138
+    },
+    {
+     "name": "Aggro.HandleCommand",
+     "kind": "function",
+     "line": 173
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  },
+  "Core.lua": {
+   "functions": [
+    {
+     "name": "Print",
+     "kind": "local",
+     "line": 106
+    },
+    {
+     "name": "ns.IndexUnit",
+     "kind": "function",
+     "line": 155
+    },
+    {
+     "name": "ns.GetIndexedPlate",
+     "kind": "function",
+     "line": 164
+    },
+    {
+     "name": "ns.GetUnitGUID",
+     "kind": "function",
+     "line": 169
+    },
+    {
+     "name": "ns.ResolvePlateForRemoval",
+     "kind": "function",
+     "line": 180
+    },
+    {
+     "name": "ns.IsFriendlyPlayer",
+     "kind": "function",
+     "line": 196
+    },
+    {
+     "name": "ns.IsFriendlyNonPlayer",
+     "kind": "function",
+     "line": 207
+    },
+    {
+     "name": "ns.IsFriendlyPetOrGuardian",
+     "kind": "function",
+     "line": 222
+    },
+    {
+     "name": "ns.IsFriendlyNPC",
+     "kind": "function",
+     "line": 228
+    },
+    {
+     "name": "ns.IsGroupOrRaidFriendlyPlayer",
+     "kind": "function",
+     "line": 237
+    },
+    {
+     "name": "ns.IsHostileUnit",
+     "kind": "function",
+     "line": 258
+    },
+    {
+     "name": "ns.IsPotentialThreatUnit",
+     "kind": "function",
+     "line": 283
+    },
+    {
+     "name": "RefreshPlayerRole",
+     "kind": "local",
+     "line": 343
+    },
+    {
+     "name": "ns.GetPlayerRole",
+     "kind": "function",
+     "line": 354
+    },
+    {
+     "name": "RefreshGroupRoster",
+     "kind": "local",
+     "line": 389
+    },
+    {
+     "name": "ns.GetGroupUnits",
+     "kind": "function",
+     "line": 439
+    },
+    {
+     "name": "DoRefresh",
+     "kind": "local",
+     "line": 443
+    },
+    {
+     "name": "ns.GetHealthBar",
+     "kind": "function",
+     "line": 530
+    },
+    {
+     "name": "GetSiblings",
+     "kind": "local",
+     "line": 582
+    },
+    {
+     "name": "ns.RefreshPlateSiblings",
+     "kind": "function",
+     "line": 589
+    },
+    {
+     "name": "ns.SetSuppressed",
+     "kind": "function",
+     "line": 601
+    },
+    {
+     "name": "ns.SetPartialReveal",
+     "kind": "function",
+     "line": 618
+    },
+    {
+     "name": "ns.SetHealthBarColor",
+     "kind": "function",
+     "line": 642
+    },
+    {
+     "name": "ns.ClearHealthBarColor",
+     "kind": "function",
+     "line": 674
+    },
+    {
+     "name": "ns.HasHealthBarColorOverride",
+     "kind": "function",
+     "line": 700
+    },
+    {
+     "name": "ns.SetNameColor",
+     "kind": "function",
+     "line": 712
+    },
+    {
+     "name": "ns.ClearNameColor",
+     "kind": "function",
+     "line": 724
+    },
+    {
+     "name": "ns.HasNameColorOverride",
+     "kind": "function",
+     "line": 736
+    },
+    {
+     "name": "GetOrCreateGlowFrame",
+     "kind": "local",
+     "line": 753
+    },
+    {
+     "name": "GetOrCreateFallbackBorder",
+     "kind": "local",
+     "line": 769
+    },
+    {
+     "name": "StopGlowStyle",
+     "kind": "local",
+     "line": 952
+    },
+    {
+     "name": "BoostSaturation",
+     "kind": "local",
+     "line": 968
+    },
+    {
+     "name": "ns.SetGlow",
+     "kind": "function",
+     "line": 1008
+    },
+    {
+     "name": "ns.ClearGlow",
+     "kind": "function",
+     "line": 1083
+    },
+    {
+     "name": "ns.EnsureSteerableOptions",
+     "kind": "function",
+     "line": 1195
+    },
+    {
+     "name": "ns.SetPlateOption",
+     "kind": "function",
+     "line": 1208
+    },
+    {
+     "name": "ns.RefreshPlateColor",
+     "kind": "function",
+     "line": 1218
+    },
+    {
+     "name": "ns.RefreshPlateBorder",
+     "kind": "function",
+     "line": 1223
+    },
+    {
+     "name": "ns.SetPlateColorOverride",
+     "kind": "function",
+     "line": 1230
+    },
+    {
+     "name": "ns.SetNativeAggro",
+     "kind": "function",
+     "line": 1241
+    },
+    {
+     "name": "ns.GetNativeAggroHighlightFrame",
+     "kind": "function",
+     "line": 1251
+    },
+    {
+     "name": "ns.GetNativeAggroHighlightTexture",
+     "kind": "function",
+     "line": 1276
+    },
+    {
+     "name": "EnsureAggroRecolorHook",
+     "kind": "local",
+     "line": 1336
+    },
+    {
+     "name": "ns.SetNativeAggroHighlightColor",
+     "kind": "function",
+     "line": 1354
+    },
+    {
+     "name": "ns.ClearNativeAggroHighlightColor",
+     "kind": "function",
+     "line": 1374
+    },
+    {
+     "name": "EnsureAggroSuppressHook",
+     "kind": "local",
+     "line": 1409
+    },
+    {
+     "name": "ns.SuppressNativeAggroHighlight",
+     "kind": "function",
+     "line": 1425
+    },
+    {
+     "name": "ns.ClearNativeAggroHighlightSuppress",
+     "kind": "function",
+     "line": 1443
+    },
+    {
+     "name": "LogAggroStackHook",
+     "kind": "local",
+     "line": 1478
+    },
+    {
+     "name": "ns.WatchNativeAggroHighlight",
+     "kind": "function",
+     "line": 1487
+    },
+    {
+     "name": "ns.ForceShowNativeAggroHighlight",
+     "kind": "function",
+     "line": 1518
+    },
+    {
+     "name": "ns.ClearForcedNativeAggroHighlight",
+     "kind": "function",
+     "line": 1541
+    },
+    {
+     "name": "ns.ScanGlobalsForPattern",
+     "kind": "function",
+     "line": 1583
+    },
+    {
+     "name": "ns.ScanGlobalTablesForPattern",
+     "kind": "function",
+     "line": 1613
+    },
+    {
+     "name": "ns.DumpFunctionUpvalues",
+     "kind": "function",
+     "line": 1638
+    },
+    {
+     "name": "ns.GetSpeculativeAggroHookStatus",
+     "kind": "function",
+     "line": 1724
+    },
+    {
+     "name": "GetOrCreateHandRolledGlow",
+     "kind": "local",
+     "line": 1801
+    },
+    {
+     "name": "ns.SetHandRolledGlow",
+     "kind": "function",
+     "line": 1813
+    },
+    {
+     "name": "ns.ClearHandRolledGlow",
+     "kind": "function",
+     "line": 1831
+    },
+    {
+     "name": "LogRemovedRestore",
+     "kind": "local",
+     "line": 1845
+    },
+    {
+     "name": "ns.ClearUnitState",
+     "kind": "function",
+     "line": 1865
+    },
+    {
+     "name": "ns.IsReclassifyOverloaded",
+     "kind": "function",
+     "line": 2008
+    },
+    {
+     "name": "ns.ScanNow",
+     "kind": "function",
+     "line": 2064
+    },
+    {
+     "name": "DescribeRegion",
+     "kind": "local",
+     "line": 2113
+    },
+    {
+     "name": "WalkProbeTree",
+     "kind": "local",
+     "line": 2148
+    },
+    {
+     "name": "BuildProbeDump",
+     "kind": "local",
+     "line": 2181
+    },
+    {
+     "name": "ns.ProbeNow",
+     "kind": "function",
+     "line": 2201
+    },
+    {
+     "name": "FormatRegionLine",
+     "kind": "local",
+     "line": 2242
+    },
+    {
+     "name": "DumpSectionLines",
+     "kind": "local",
+     "line": 2260
+    },
+    {
+     "name": "ns.ProbeUnit",
+     "kind": "function",
+     "line": 2280
+    },
+    {
+     "name": "ns.SetLogStoreFilter",
+     "kind": "function",
+     "line": 2351
+    },
+    {
+     "name": "ns.GetLogStoreFilter",
+     "kind": "function",
+     "line": 2355
+    },
+    {
+     "name": "ns.IsLogging",
+     "kind": "function",
+     "line": 2359
+    },
+    {
+     "name": "ns.Log",
+     "kind": "function",
+     "line": 2365
+    },
+    {
+     "name": "ShortGUID",
+     "kind": "local",
+     "line": 2399
+    },
+    {
+     "name": "ns.DescribeUnit",
+     "kind": "function",
+     "line": 2405
+    },
+    {
+     "name": "ns.PerfStart",
+     "kind": "function",
+     "line": 2414
+    },
+    {
+     "name": "ns.PerfEnd",
+     "kind": "function",
+     "line": 2419
+    },
+    {
+     "name": "SetLogging",
+     "kind": "local",
+     "line": 2425
+    },
+    {
+     "name": "MatchesFilter",
+     "kind": "local",
+     "line": 2442
+    },
+    {
+     "name": "DumpLog",
+     "kind": "local",
+     "line": 2447
+    },
+    {
+     "name": "GetOrCreateCopyFrame",
+     "kind": "local",
+     "line": 2497
+    },
+    {
+     "name": "ns.ShowCopyableText",
+     "kind": "function",
+     "line": 2553
+    },
+    {
+     "name": "CopyLog",
+     "kind": "local",
+     "line": 2568
+    },
+    {
+     "name": "ns.RegisterRenderTest",
+     "kind": "function",
+     "line": 2618
+    },
+    {
+     "name": "RunRenderTestCycle",
+     "kind": "local",
+     "line": 2634
+    },
+    {
+     "name": "RunStep",
+     "kind": "local",
+     "line": 2651
+    },
+    {
+     "name": "ns.GetNameRegion",
+     "kind": "function",
+     "line": 2879
+    },
+    {
+     "name": "ns.GetUnitFrame",
+     "kind": "function",
+     "line": 2879
+    },
+    {
+     "name": "RefreshSiblingsCache",
+     "kind": "local",
+     "line": 2879
+    }
+   ],
+   "onupdate": 1,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 1,
+   "onupdate_transient": false,
+   "throttle_pattern": true,
+   "scripts": [
+    "OnClick",
+    "OnDragStart",
+    "OnDragStop",
+    "OnEscapePressed",
+    "OnEvent",
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [
+    "GROUP_ROSTER_UPDATE",
+    "NAME_PLATE_UNIT_ADDED",
+    "NAME_PLATE_UNIT_REMOVED",
+    "PLAYER_ENTERING_WORLD",
+    "PLAYER_ROLES_ASSIGNED",
+    "ROLE_CHANGED_INFORM",
+    "UNIT_HEALTH",
+    "UNIT_MAXHEALTH",
+    "UNIT_THREAT_LIST_UPDATE",
+    "UNIT_THREAT_SITUATION_UPDATE"
+   ],
+   "securehooks": [
+    "frame",
+    "texture"
+   ],
+   "timers": [
+    "C_Timer.After"
+   ],
+   "push": [],
+   "pull": [
+    "GetTime",
+    "UnitName"
+   ]
+  },
+  "EnemyPlates.lua": {
+   "functions": [
+    {
+     "name": "SeedThreatColorDefault",
+     "kind": "local",
+     "line": 237
+    },
+    {
+     "name": "GetConfiguredThreatColor",
+     "kind": "local",
+     "line": 264
+    },
+    {
+     "name": "IsEffectivelyTanking",
+     "kind": "local",
+     "line": 331
+    },
+    {
+     "name": "IsAnotherMemberApproachingAggro",
+     "kind": "local",
+     "line": 392
+    },
+    {
+     "name": "HasAnyGroupThreatEntry",
+     "kind": "local",
+     "line": 449
+    },
+    {
+     "name": "GetThreatColorForUnit",
+     "kind": "local",
+     "line": 535
+    },
+    {
+     "name": "StatesMatch",
+     "kind": "local",
+     "line": 637
+    },
+    {
+     "name": "ClearAppliedState",
+     "kind": "local",
+     "line": 644
+    },
+    {
+     "name": "ApplyThreatColorForUnit",
+     "kind": "local",
+     "line": 684
+    },
+    {
+     "name": "DisarmThreatColors",
+     "kind": "local",
+     "line": 788
+    },
+    {
+     "name": "SetThreatMode",
+     "kind": "local",
+     "line": 805
+    },
+    {
+     "name": "ApplyThreatColorToAllActive",
+     "kind": "local",
+     "line": 816
+    },
+    {
+     "name": "Attached",
+     "kind": "local",
+     "line": 847
+    },
+    {
+     "name": "ns.Enemy.OnUnitAdded",
+     "kind": "function",
+     "line": 852
+    },
+    {
+     "name": "ns.Enemy.OnReclassify",
+     "kind": "function",
+     "line": 866
+    },
+    {
+     "name": "ns.Enemy.OnThreatEvent",
+     "kind": "function",
+     "line": 872
+    },
+    {
+     "name": "ns.Enemy.OnUnitRemoved",
+     "kind": "function",
+     "line": 883
+    },
+    {
+     "name": "RenderTestAggroBroadcast",
+     "kind": "local",
+     "line": 1051
+    },
+    {
+     "name": "RenderTestHandRolledGlow",
+     "kind": "local",
+     "line": 1108
+    },
+    {
+     "name": "RenderTestNativeAggroColor",
+     "kind": "local",
+     "line": 1157
+    },
+    {
+     "name": "ns.Enemy.RenderTestApply",
+     "kind": "function",
+     "line": 1299
+    },
+    {
+     "name": "IsInstanceFillZone",
+     "kind": "local",
+     "line": 1299
+    },
+    {
+     "name": "TryApply",
+     "kind": "local",
+     "line": 1299
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "UnitName"
+   ]
+  },
+  "FriendlyPlates.lua": {
+   "functions": [
+    {
+     "name": "NPCColorStatesMatch",
+     "kind": "local",
+     "line": 233
+    },
+    {
+     "name": "ApplyNPCColorForUnit",
+     "kind": "local",
+     "line": 241
+    },
+    {
+     "name": "UpdatePlateForUnit",
+     "kind": "local",
+     "line": 272
+    },
+    {
+     "name": "UpdateHealAlertForUnit",
+     "kind": "local",
+     "line": 310
+    },
+    {
+     "name": "SweepHealAlertExpirations",
+     "kind": "local",
+     "line": 338
+    },
+    {
+     "name": "DisarmNPCColors",
+     "kind": "local",
+     "line": 369
+    },
+    {
+     "name": "SetEnabled",
+     "kind": "local",
+     "line": 382
+    },
+    {
+     "name": "SetHealerModeEnabled",
+     "kind": "local",
+     "line": 401
+    },
+    {
+     "name": "ns.Friendly.OnUnitAdded",
+     "kind": "function",
+     "line": 430
+    },
+    {
+     "name": "ns.Friendly.OnReclassify",
+     "kind": "function",
+     "line": 439
+    },
+    {
+     "name": "ns.Friendly.OnThrottledTick",
+     "kind": "function",
+     "line": 444
+    },
+    {
+     "name": "ns.Friendly.OnHealthEvent",
+     "kind": "function",
+     "line": 449
+    },
+    {
+     "name": "ns.Friendly.IsSuppressed",
+     "kind": "function",
+     "line": 456
+    },
+    {
+     "name": "ns.Friendly.OnUnitRemoved",
+     "kind": "function",
+     "line": 463
+    },
+    {
+     "name": "ReapplySuppressed",
+     "kind": "local",
+     "line": 505
+    },
+    {
+     "name": "Attached",
+     "kind": "local",
+     "line": 632
+    },
+    {
+     "name": "ApplyNPCColorToAllActive",
+     "kind": "local",
+     "line": 632
+    }
+   ],
+   "onupdate": 1,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 1,
+   "onupdate_transient": false,
+   "throttle_pattern": true,
+   "scripts": [
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "GetTime"
+   ]
+  }
+ },
+ "COA_StatePlates_Aggro": {
+  "Options.lua": {
+   "functions": [
+    {
+     "name": "API",
+     "kind": "local",
+     "line": 14
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [
+    "OnClick",
+    "OnEvent",
+    "OnShow"
+   ],
+   "hookscripts": [],
+   "events": [
+    "ADDON_LOADED"
+   ],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  }
+ },
+ "COA_StatePlates_Friendly": {
+  "Options.lua": {
+   "functions": [
+    {
+     "name": "API",
+     "kind": "local",
+     "line": 14
+    },
+    {
+     "name": "CreateColorRow",
+     "kind": "local",
+     "line": 51
+    },
+    {
+     "name": "Refresh",
+     "kind": "local",
+     "line": 70
+    },
+    {
+     "name": "SetColor",
+     "kind": "local",
+     "line": 75
+    },
+    {
+     "name": "ClearColor",
+     "kind": "local",
+     "line": 79
+    },
+    {
+     "name": "ColorPickerFrame.func",
+     "kind": "assigned",
+     "line": 88
+    },
+    {
+     "name": "ColorPickerFrame.cancelFunc",
+     "kind": "assigned",
+     "line": 92
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [
+    "OnClick",
+    "OnEvent",
+    "OnShow"
+   ],
+   "hookscripts": [],
+   "events": [
+    "ADDON_LOADED"
+   ],
+   "securehooks": [],
+   "timers": [],
+   "push": [
+    "ShowUIPanel"
+   ],
+   "pull": []
+  }
+ },
+ "COA_StatePlates_Enemy": {
+  "Options.lua": {
+   "functions": [
+    {
+     "name": "API",
+     "kind": "local",
+     "line": 13
+    },
+    {
+     "name": "CreateThreatColorRow",
+     "kind": "local",
+     "line": 49
+    },
+    {
+     "name": "Default",
+     "kind": "local",
+     "line": 68
+    },
+    {
+     "name": "Refresh",
+     "kind": "local",
+     "line": 70
+    },
+    {
+     "name": "SetColor",
+     "kind": "local",
+     "line": 74
+    },
+    {
+     "name": "ResetColor",
+     "kind": "local",
+     "line": 78
+    },
+    {
+     "name": "ColorPickerFrame.func",
+     "kind": "assigned",
+     "line": 87
+    },
+    {
+     "name": "ColorPickerFrame.cancelFunc",
+     "kind": "assigned",
+     "line": 91
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [
+    "OnClick",
+    "OnEvent",
+    "OnShow"
+   ],
+   "hookscripts": [],
+   "events": [
+    "ADDON_LOADED"
+   ],
+   "securehooks": [],
+   "timers": [],
+   "push": [
+    "ShowUIPanel"
+   ],
+   "pull": []
+  }
+ },
+ "COA_PetGrid": {
+  "core.lua": {
+   "functions": [
+    {
+     "name": "saveTopAnchor",
+     "kind": "local",
+     "line": 61
+    },
+    {
+     "name": "pinTopLeft",
+     "kind": "local",
+     "line": 68
+    },
+    {
+     "name": "applyChrome",
+     "kind": "local",
+     "line": 93
+    },
+    {
+     "name": "newRow",
+     "kind": "local",
+     "line": 112
+    },
+    {
+     "name": "acquireRow",
+     "kind": "local",
+     "line": 147
+    },
+    {
+     "name": "releaseRows",
+     "kind": "local",
+     "line": 154
+    },
+    {
+     "name": "newHeader",
+     "kind": "local",
+     "line": 168
+    },
+    {
+     "name": "acquireHeader",
+     "kind": "local",
+     "line": 190
+    },
+    {
+     "name": "releaseHeaders",
+     "kind": "local",
+     "line": 201
+    },
+    {
+     "name": "NS.layout",
+     "kind": "function",
+     "line": 213
+    },
+    {
+     "name": "place",
+     "kind": "local",
+     "line": 218
+    },
+    {
+     "name": "NS.writeRows",
+     "kind": "function",
+     "line": 247
+    },
+    {
+     "name": "NS.SetMode",
+     "kind": "function",
+     "line": 286
+    }
+   ],
+   "onupdate": 2,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 2,
+   "onupdate_transient": false,
+   "throttle_pattern": true,
+   "scripts": [
+    "OnDragStart",
+    "OnDragStop",
+    "OnEvent",
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [
+    "ADDON_LOADED"
+   ],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  },
+  "feed_demo.lua": {
+   "functions": [
+    {
+     "name": "tickDemo",
+     "kind": "local",
+     "line": 19
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": true,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  },
+  "feed_live.lua": {
+   "functions": [
+    {
+     "name": "newAcc",
+     "kind": "local",
+     "line": 62
+    },
+    {
+     "name": "newRec",
+     "kind": "local",
+     "line": 67
+    },
+    {
+     "name": "close",
+     "kind": "local",
+     "line": 91
+    },
+    {
+     "name": "bump",
+     "kind": "local",
+     "line": 109
+    },
+    {
+     "name": "missField",
+     "kind": "local",
+     "line": 115
+    },
+    {
+     "name": "onCleu",
+     "kind": "local",
+     "line": 121
+    },
+    {
+     "name": "sweepBuffs",
+     "kind": "local",
+     "line": 176
+    },
+    {
+     "name": "scanPlates",
+     "kind": "local",
+     "line": 187
+    },
+    {
+     "name": "reconcile",
+     "kind": "local",
+     "line": 207
+    },
+    {
+     "name": "fmtPct",
+     "kind": "local",
+     "line": 248
+    },
+    {
+     "name": "fmtDmg",
+     "kind": "local",
+     "line": 253
+    },
+    {
+     "name": "rates",
+     "kind": "local",
+     "line": 259
+    },
+    {
+     "name": "buildRows",
+     "kind": "local",
+     "line": 269
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": true,
+   "scripts": [
+    "OnEvent"
+   ],
+   "hookscripts": [],
+   "events": [
+    "COMBAT_LOG_EVENT_UNFILTERED",
+    "PLAYER_REGEN_DISABLED",
+    "PLAYER_REGEN_ENABLED"
+   ],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "GetTime"
+   ]
+  }
+ },
+ "COA_Landmarks": {
+  "beacon.lua": {
+   "functions": [
+    {
+     "name": "Beacon.PinnedId",
+     "kind": "function",
+     "line": 55
+    },
+    {
+     "name": "Beacon.Clear",
+     "kind": "function",
+     "line": 83
+    },
+    {
+     "name": "Beacon.CannotGuide",
+     "kind": "function",
+     "line": 92
+    },
+    {
+     "name": "arrivalConditionMet",
+     "kind": "local",
+     "line": 116
+    },
+    {
+     "name": "poll",
+     "kind": "local",
+     "line": 139
+    },
+    {
+     "name": "onUpdate",
+     "kind": "local",
+     "line": 163
+    },
+    {
+     "name": "Beacon.Init",
+     "kind": "function",
+     "line": 176
+    },
+    {
+     "name": "Beacon.OwnsSlot",
+     "kind": "function",
+     "line": 200
+    },
+    {
+     "name": "Beacon.Pin",
+     "kind": "function",
+     "line": 200
+    }
+   ],
+   "onupdate": 1,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 1,
+   "onupdate_transient": false,
+   "throttle_pattern": true,
+   "scripts": [
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [
+    "SelectQuestLogEntry"
+   ],
+   "timers": [],
+   "push": [
+    "C_SuperTrack.GetSuperTrackedPosition",
+    "C_SuperTrack.GetTargetState",
+    "SuperTrackerUtil.ClearSuperTrackedPosition",
+    "SuperTrackerUtil.SetSuperTrackedPosition"
+   ],
+   "pull": [
+    "GetCurrentPlayerPosition",
+    "GetTime"
+   ]
+  },
+  "core.lua": {
+   "functions": [
+    {
+     "name": "NS.Print",
+     "kind": "function",
+     "line": 22
+    },
+    {
+     "name": "lockedComplaint",
+     "kind": "local",
+     "line": 29
+    },
+    {
+     "name": "NS.CaptureHere",
+     "kind": "function",
+     "line": 40
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [
+    "OnEvent"
+   ],
+   "hookscripts": [],
+   "events": [
+    "ADDON_LOADED",
+    "PLAYER_ENTERING_WORLD"
+   ],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "GetAddOnMetadata"
+   ]
+  },
+  "editor.lua": {
+   "functions": [
+    {
+     "name": "label",
+     "kind": "local",
+     "line": 25
+    },
+    {
+     "name": "line",
+     "kind": "local",
+     "line": 36
+    },
+    {
+     "name": "tryComplete",
+     "kind": "local",
+     "line": 67
+    },
+    {
+     "name": "Editor:Build",
+     "kind": "function",
+     "line": 86
+    },
+    {
+     "name": "accept",
+     "kind": "local",
+     "line": 196
+    },
+    {
+     "name": "info.func",
+     "kind": "assigned",
+     "line": 246
+    },
+    {
+     "name": "info.func",
+     "kind": "assigned",
+     "line": 246
+    },
+    {
+     "name": "doTransfer",
+     "kind": "local",
+     "line": 279
+    },
+    {
+     "name": "Editor:RefreshGhost",
+     "kind": "function",
+     "line": 328
+    },
+    {
+     "name": "Editor:RefreshTransfer",
+     "kind": "function",
+     "line": 333
+    },
+    {
+     "name": "info.func",
+     "kind": "assigned",
+     "line": 348
+    },
+    {
+     "name": "Editor:RefreshOwner",
+     "kind": "function",
+     "line": 358
+    },
+    {
+     "name": "Editor:RefreshTiers",
+     "kind": "function",
+     "line": 366
+    },
+    {
+     "name": "Editor:Open",
+     "kind": "function",
+     "line": 373
+    },
+    {
+     "name": "Editor:Close",
+     "kind": "function",
+     "line": 398
+    },
+    {
+     "name": "splitAtCursor",
+     "kind": "local",
+     "line": 407
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [
+    "OnClick",
+    "OnDragStart",
+    "OnDragStop",
+    "OnEnterPressed",
+    "OnEscapePressed",
+    "OnTabPressed",
+    "OnTextChanged"
+   ],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [
+    "StaticPopup_Show"
+   ],
+   "pull": [
+    "UnitName"
+   ]
+  },
+  "minimap.lua": {
+   "functions": [
+    {
+     "name": "place",
+     "kind": "local",
+     "line": 18
+    },
+    {
+     "name": "Minimap_:Init",
+     "kind": "function",
+     "line": 24
+    }
+   ],
+   "onupdate": 1,
+   "onupdate_clears": 1,
+   "onupdate_persistent": 0,
+   "onupdate_transient": true,
+   "throttle_pattern": false,
+   "scripts": [
+    "OnClick",
+    "OnDragStart",
+    "OnDragStop",
+    "OnEnter",
+    "OnLeave",
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "AtlasInfo"
+   ]
+  },
+  "pins.lua": {
+   "functions": [
+    {
+     "name": "showNote",
+     "kind": "local",
+     "line": 50
+    },
+    {
+     "name": "onClick",
+     "kind": "local",
+     "line": 79
+    },
+    {
+     "name": "acquire",
+     "kind": "local",
+     "line": 98
+    },
+    {
+     "name": "Pins:Refresh",
+     "kind": "function",
+     "line": 115
+    },
+    {
+     "name": "Pins:Init",
+     "kind": "function",
+     "line": 148
+    },
+    {
+     "name": "setIcon",
+     "kind": "local",
+     "line": 161
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [
+    "OnClick",
+    "OnEnter",
+    "OnEvent",
+    "OnLeave"
+   ],
+   "hookscripts": [
+    "OnShow"
+   ],
+   "events": [
+    "WORLD_MAP_UPDATE"
+   ],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "AtlasInfo",
+    "GetCurrentMapContinent",
+    "GetCurrentMapZone"
+   ]
+  },
+  "store.lua": {
+   "functions": [
+    {
+     "name": "Store.TierYards",
+     "kind": "function",
+     "line": 47
+    },
+    {
+     "name": "Store.TierLabel",
+     "kind": "function",
+     "line": 54
+    },
+    {
+     "name": "Store.Load",
+     "kind": "function",
+     "line": 67
+    },
+    {
+     "name": "db",
+     "kind": "local",
+     "line": 89
+    },
+    {
+     "name": "Store.GetUI",
+     "kind": "function",
+     "line": 99
+    },
+    {
+     "name": "Store.SetUI",
+     "kind": "function",
+     "line": 109
+    },
+    {
+     "name": "composeAlias",
+     "kind": "local",
+     "line": 129
+    },
+    {
+     "name": "Store.Create",
+     "kind": "function",
+     "line": 160
+    },
+    {
+     "name": "Store.Backfill",
+     "kind": "function",
+     "line": 191
+    },
+    {
+     "name": "Store.Get",
+     "kind": "function",
+     "line": 217
+    },
+    {
+     "name": "visibleToMe",
+     "kind": "local",
+     "line": 236
+    },
+    {
+     "name": "Store.IsMine",
+     "kind": "function",
+     "line": 243
+    },
+    {
+     "name": "Store.Visible",
+     "kind": "function",
+     "line": 248
+    },
+    {
+     "name": "Store.ForMap",
+     "kind": "function",
+     "line": 259
+    },
+    {
+     "name": "Store.Count",
+     "kind": "function",
+     "line": 267
+    },
+    {
+     "name": "Store.SplitTags",
+     "kind": "function",
+     "line": 276
+    },
+    {
+     "name": "Store.KnownTags",
+     "kind": "function",
+     "line": 294
+    },
+    {
+     "name": "Store.SuggestTags",
+     "kind": "function",
+     "line": 311
+    },
+    {
+     "name": "Store.KnownOwners",
+     "kind": "function",
+     "line": 329
+    },
+    {
+     "name": "Store.TransferOwner",
+     "kind": "function",
+     "line": 349
+    },
+    {
+     "name": "Store.Set",
+     "kind": "function",
+     "line": 369
+    },
+    {
+     "name": "Store.SetOwner",
+     "kind": "function",
+     "line": 383
+    },
+    {
+     "name": "Store.Delete",
+     "kind": "function",
+     "line": 389
+    },
+    {
+     "name": "composeId",
+     "kind": "local",
+     "line": 397
+    },
+    {
+     "name": "mapFraction",
+     "kind": "local",
+     "line": 397
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [
+    "SetMapToCurrentZone"
+   ],
+   "pull": [
+    "GetCurrentMapContinent",
+    "GetCurrentMapZone",
+    "GetCurrentPlayerPosition",
+    "GetPlayerMapPosition",
+    "GetRealZoneText",
+    "GetSubZoneText",
+    "UnitName"
+   ]
+  },
+  "widget.lua": {
+   "functions": [
+    {
+     "name": "btn",
+     "kind": "local",
+     "line": 21
+    },
+    {
+     "name": "Widget:Init",
+     "kind": "function",
+     "line": 30
+    },
+    {
+     "name": "Widget:BeginRename",
+     "kind": "function",
+     "line": 129
+    },
+    {
+     "name": "Widget:Hold",
+     "kind": "function",
+     "line": 139
+    },
+    {
+     "name": "Widget:Held",
+     "kind": "function",
+     "line": 144
+    },
+    {
+     "name": "zoneLine",
+     "kind": "local",
+     "line": 148
+    },
+    {
+     "name": "Widget:Refresh",
+     "kind": "function",
+     "line": 155
+    },
+    {
+     "name": "Widget:Show",
+     "kind": "function",
+     "line": 174
+    },
+    {
+     "name": "Widget:Hide",
+     "kind": "function",
+     "line": 179
+    },
+    {
+     "name": "Widget:Toggle",
+     "kind": "function",
+     "line": 186
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [
+    "OnClick",
+    "OnDragStart",
+    "OnDragStop",
+    "OnEnter",
+    "OnEnterPressed",
+    "OnEscapePressed",
+    "OnLeave"
+   ],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [
+    "SetMapByID",
+    "ShowUIPanel"
+   ],
+   "pull": [
+    "GetRealZoneText",
+    "GetSubZoneText"
+   ]
+  }
+ },
+ "MancerLedger": {
+  "core.lua": {
+   "functions": [
+    {
+     "name": "pushHistory",
+     "kind": "local",
+     "line": 49
+    },
+    {
+     "name": "chat",
+     "kind": "local",
+     "line": 57
+    },
+    {
+     "name": "say",
+     "kind": "local",
+     "line": 64
+    },
+    {
+     "name": "sayOnce",
+     "kind": "local",
+     "line": 69
+    },
+    {
+     "name": "consumerVersion",
+     "kind": "local",
+     "line": 79
+    },
+    {
+     "name": "driverDb",
+     "kind": "local",
+     "line": 88
+    },
+    {
+     "name": "driverVersion",
+     "kind": "local",
+     "line": 92
+    },
+    {
+     "name": "fingerprint",
+     "kind": "local",
+     "line": 103
+    },
+    {
+     "name": "captureState",
+     "kind": "local",
+     "line": 113
+    },
+    {
+     "name": "stateLine",
+     "kind": "local",
+     "line": 132
+    },
+    {
+     "name": "getProfile",
+     "kind": "local",
+     "line": 140
+    },
+    {
+     "name": "activeProfile",
+     "kind": "local",
+     "line": 144
+    },
+    {
+     "name": "validFight",
+     "kind": "local",
+     "line": 156
+    },
+    {
+     "name": "foldFight",
+     "kind": "local",
+     "line": 170
+    },
+    {
+     "name": "rebuildSeen",
+     "kind": "local",
+     "line": 234
+    },
+    {
+     "name": "markSeen",
+     "kind": "local",
+     "line": 238
+    },
+    {
+     "name": "harvest",
+     "kind": "local",
+     "line": 253
+    },
+    {
+     "name": "fmtN",
+     "kind": "local",
+     "line": 310
+    },
+    {
+     "name": "prettyId",
+     "kind": "local",
+     "line": 317
+    },
+    {
+     "name": "missPct",
+     "kind": "local",
+     "line": 324
+    },
+    {
+     "name": "missBreakdown",
+     "kind": "local",
+     "line": 329
+    },
+    {
+     "name": "cadence",
+     "kind": "local",
+     "line": 344
+    },
+    {
+     "name": "statsFor",
+     "kind": "local",
+     "line": 351
+    },
+    {
+     "name": "compare",
+     "kind": "local",
+     "line": 392
+    },
+    {
+     "name": "cadS",
+     "kind": "local",
+     "line": 407
+    },
+    {
+     "name": "sumS",
+     "kind": "local",
+     "line": 411
+    },
+    {
+     "name": "timeS",
+     "kind": "local",
+     "line": 414
+    },
+    {
+     "name": "profileNew",
+     "kind": "local",
+     "line": 460
+    },
+    {
+     "name": "profileUse",
+     "kind": "local",
+     "line": 475
+    },
+    {
+     "name": "profileDelete",
+     "kind": "local",
+     "line": 483
+    },
+    {
+     "name": "profileResetLog",
+     "kind": "local",
+     "line": 491
+    },
+    {
+     "name": "profileOff",
+     "kind": "local",
+     "line": 499
+    },
+    {
+     "name": "profileRename",
+     "kind": "local",
+     "line": 507
+    },
+    {
+     "name": "NS.GetDb",
+     "kind": "assigned",
+     "line": 522
+    },
+    {
+     "name": "NS.locked",
+     "kind": "assigned",
+     "line": 532
+    },
+    {
+     "name": "HandleSlash",
+     "kind": "function",
+     "line": 554
+    }
+   ],
+   "onupdate": 1,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 1,
+   "onupdate_transient": false,
+   "throttle_pattern": true,
+   "scripts": [
+    "OnEvent",
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [
+    "ADDON_LOADED",
+    "PLAYER_ENTERING_WORLD",
+    "PLAYER_REGEN_ENABLED"
+   ],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": [
+    "GetAddOnMetadata"
+   ]
+  },
+  "minimap.lua": {
+   "functions": [
+    {
+     "name": "stateColor",
+     "kind": "local",
+     "line": 42
+    },
+    {
+     "name": "paint",
+     "kind": "local",
+     "line": 50
+    },
+    {
+     "name": "NS.onFold",
+     "kind": "assigned",
+     "line": 67
+    },
+    {
+     "name": "place",
+     "kind": "local",
+     "line": 76
+    },
+    {
+     "name": "dragTick",
+     "kind": "local",
+     "line": 84
+    },
+    {
+     "name": "popEntry",
+     "kind": "local",
+     "line": 123
+    },
+    {
+     "name": "hidePopout",
+     "kind": "local",
+     "line": 140
+    },
+    {
+     "name": "showPopout",
+     "kind": "local",
+     "line": 144
+    }
+   ],
+   "onupdate": 3,
+   "onupdate_clears": 1,
+   "onupdate_persistent": 2,
+   "onupdate_transient": true,
+   "throttle_pattern": true,
+   "scripts": [
+    "OnClick",
+    "OnDragStart",
+    "OnDragStop",
+    "OnEnter",
+    "OnLeave",
+    "OnUpdate"
+   ],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  },
+  "ui.lua": {
+   "functions": [
+    {
+     "name": "cells",
+     "kind": "local",
+     "line": 35
+    },
+    {
+     "name": "dInt",
+     "kind": "local",
+     "line": 51
+    },
+    {
+     "name": "fmtCells",
+     "kind": "local",
+     "line": 100
+    },
+    {
+     "name": "fmtDelta",
+     "kind": "local",
+     "line": 106
+    },
+    {
+     "name": "divider",
+     "kind": "local",
+     "line": 150
+    },
+    {
+     "name": "sortedProfileNames",
+     "kind": "local",
+     "line": 166
+    },
+    {
+     "name": "makeDropdown",
+     "kind": "local",
+     "line": 179
+    },
+    {
+     "name": "info.func",
+     "kind": "assigned",
+     "line": 189
+    },
+    {
+     "name": "makeButton",
+     "kind": "local",
+     "line": 219
+    },
+    {
+     "name": "applyColLayout",
+     "kind": "local",
+     "line": 295
+    },
+    {
+     "name": "acquireContentRow",
+     "kind": "local",
+     "line": 312
+    },
+    {
+     "name": "releaseContentRows",
+     "kind": "local",
+     "line": 343
+    },
+    {
+     "name": "writeRow",
+     "kind": "local",
+     "line": 351
+    },
+    {
+     "name": "writeWideRow",
+     "kind": "local",
+     "line": 368
+    },
+    {
+     "name": "placeRow",
+     "kind": "local",
+     "line": 379
+    },
+    {
+     "name": "headerTexts",
+     "kind": "local",
+     "line": 383
+    },
+    {
+     "name": "renderStats",
+     "kind": "local",
+     "line": 389
+    },
+    {
+     "name": "renderCompare",
+     "kind": "local",
+     "line": 426
+    },
+    {
+     "name": "renderHistory",
+     "kind": "local",
+     "line": 492
+    },
+    {
+     "name": "repaintToken",
+     "kind": "local",
+     "line": 598
+    },
+    {
+     "name": "NS.ui.Show",
+     "kind": "function",
+     "line": 669
+    },
+    {
+     "name": "NS.ui.Toggle",
+     "kind": "function",
+     "line": 683
+    },
+    {
+     "name": "NS.ui.RefreshIfShown",
+     "kind": "function",
+     "line": 687
+    },
+    {
+     "name": "NS.ui.SelectProfile",
+     "kind": "function",
+     "line": 691
+    }
+   ],
+   "onupdate": 0,
+   "onupdate_clears": 0,
+   "onupdate_persistent": 0,
+   "onupdate_transient": false,
+   "throttle_pattern": false,
+   "scripts": [
+    "OnClick",
+    "OnDragStart",
+    "OnDragStop",
+    "OnEnterPressed",
+    "OnEscapePressed"
+   ],
+   "hookscripts": [],
+   "events": [],
+   "securehooks": [],
+   "timers": [],
+   "push": [],
+   "pull": []
+  }
+ }
+}

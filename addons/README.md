@@ -79,6 +79,11 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
 - `maps/atlas/` — the **art** fact basis, the counterpart to `maps/census/`'s API one: the
   client's 4,503 named atlas entries classified by CLAIM OF USE (1,359 claimed / 3,144 free),
   so "which icon may we use" is read, not re-decided by eye per project. Start: its `README.md`.
+- `maps/addons/` — **our OWN code held to the standard we hold theirs to**: every function we
+  define, every OnUpdate/timer/event/hook (what runs without the user asking), and what each
+  addon pulls from and pushes to the client. `frame_cost.md` is the half that matters — the
+  page `task_callwitness` had to be built to produce for somebody else's addon. Start: its
+  `README.md`.
 - `tools/` — the deterministic emitters: `extract_interface.py` (patch-B.MPQ → study copy) ·
   `baseline_extract.lua` (run APIDocumentation under lua51) · `emit_census.py` ·
-  `reduce_census.py` · `emit_atlas_census.py` · `read_spell_dbc.py`.
+  `reduce_census.py` · `emit_atlas_census.py` · `emit_addon_census.py` · `read_spell_dbc.py`.

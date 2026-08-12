@@ -1,0 +1,61 @@
+# Frame cost — every point our code runs without being asked
+
+_Emitted by `addons/tools/emit_addon_census.py`._
+
+**Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens. If one of our addons is ever suspected of a stutter, this is the first page — the answer that `task_callwitness` had to be built to get for somebody else's code.
+
+## ★ OnUpdate — runs every frame
+
+**Lifetime is arithmetic: `installs - clears`.** **transient** = every handler is torn down again, so it runs only while something is happening (a drag, a running session task). **PERSISTENT** = none are, so they run for as long as the addon is loaded — that is where a cost would live. **MIXED** = both, in one file, which a boolean would have hidden.
+
+**throttle?** is a LEAD, not a verdict — it reports whether the file contains an accumulator pattern at all. `no` means go and look; it does not mean the handler is unthrottled.
+
+| Addon | File | Installs | Clears | Lifetime | throttle? |
+|---|---|---|---|---|---|
+| COA_DevDump | `core.lua` | 1 | 1 | transient | **no — look** |
+| COA_DevDump | `task_callwitness.lua` | 1 | 1 | transient | yes |
+| COA_DevDump | `task_cvarlog.lua` | 1 | 1 | transient | yes |
+| COA_DevDump | `task_perf.lua` | 1 | 1 | transient | yes |
+| COA_DevDump | `task_petlog.lua` | 1 | 1 | transient | yes |
+| COA_DevDump | `task_satnav.lua` | 1 | 1 | transient | yes |
+| COA_GuardianPlates | `Core.lua` | 1 | 0 | **PERSISTENT** | yes |
+| COA_GuardianPlates | `FriendlyPlates.lua` | 1 | 0 | **PERSISTENT** | yes |
+| COA_PetGrid | `core.lua` | 2 | 0 | **PERSISTENT** | yes |
+| COA_Landmarks | `beacon.lua` | 1 | 0 | **PERSISTENT** | yes |
+| COA_Landmarks | `minimap.lua` | 1 | 1 | transient | **no — look** |
+| MancerLedger | `core.lua` | 1 | 0 | **PERSISTENT** | yes |
+| MancerLedger | `minimap.lua` | 3 | 1 | **MIXED** — 2 persistent | yes |
+
+**16 handler(s) installed across the bench; 8 PERSISTENT.** The persistent ones are the whole point of this page.
+
+## Timers
+
+| Addon | File | Timers |
+|---|---|---|
+| COA_GuardianPlates | `Core.lua` | C_Timer.After |
+
+## Events we listen for
+
+| Addon | File | Events |
+|---|---|---|
+| COA_DevDump | `task_petlog.lua` | COMBAT_LOG_EVENT_UNFILTERED |
+| COA_GuardianPlates | `Core.lua` | GROUP_ROSTER_UPDATE, NAME_PLATE_UNIT_ADDED, NAME_PLATE_UNIT_REMOVED, PLAYER_ENTERING_WORLD, PLAYER_ROLES_ASSIGNED, ROLE_CHANGED_INFORM, UNIT_HEALTH, UNIT_MAXHEALTH, UNIT_THREAT_LIST_UPDATE, UNIT_THREAT_SITUATION_UPDATE |
+| COA_StatePlates_Aggro | `Options.lua` | ADDON_LOADED |
+| COA_StatePlates_Friendly | `Options.lua` | ADDON_LOADED |
+| COA_StatePlates_Enemy | `Options.lua` | ADDON_LOADED |
+| COA_PetGrid | `core.lua` | ADDON_LOADED |
+| COA_PetGrid | `feed_live.lua` | COMBAT_LOG_EVENT_UNFILTERED, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED |
+| COA_Landmarks | `core.lua` | ADDON_LOADED, PLAYER_ENTERING_WORLD |
+| COA_Landmarks | `pins.lua` | WORLD_MAP_UPDATE |
+| MancerLedger | `core.lua` | ADDON_LOADED, PLAYER_ENTERING_WORLD, PLAYER_REGEN_ENABLED |
+
+## ★ Hooks — where we attach to code we do not own
+
+_The highest-risk column. A hook runs inside someone else's flow, and a hook on a frame we did not create can be clobbered by anyone else who does the same._
+
+| Addon | File | Kind | Target |
+|---|---|---|---|
+| COA_GuardianPlates | `Core.lua` | hooksecurefunc | `frame` |
+| COA_GuardianPlates | `Core.lua` | hooksecurefunc | `texture` |
+| COA_Landmarks | `beacon.lua` | hooksecurefunc | `SelectQuestLogEntry` |
+| COA_Landmarks | `pins.lua` | HookScript | `OnShow` |
