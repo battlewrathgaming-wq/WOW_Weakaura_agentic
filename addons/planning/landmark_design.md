@@ -70,11 +70,12 @@ identity, captured together at creation:
 | `mapID` | same call. **This is the CONTINENT/INSTANCE map, not the zone** [F30] |
 | `mapX, mapY` | `GetPlayerMapPosition("player")` — map fraction, for pin placement |
 | `zone`, `subZone` | `GetRealZoneText()`, `GetSubZoneText()` |
-| `name` | see AC-4 |
+| `id` | **bespoke, unique, immutable** — `zone-subzone-int` (AC-47) |
+| `alias` | the **display** name, user-editable — defaults to `subzone int` (AC-4) |
 | `what`, `why` | two free-text fields, either may be empty [L4, AC-37] |
 | `icon` | user-chosen from a palette; defaults by context [AC-38] |
 | `arrivalTier` | one of three [L14] |
-| `scope` | `character` or `account` [§9 walk stop 2] |
+| `owner` | **one field, two forms**: `"global"` or a character name (AC-46) |
 
 **AC-2 [L1, L2]** — position is captured **where the player stood** and is **never rewritten**.
 No edit path may relocate a landmark. Renaming, re-noting, changing the icon and re-tiering are all
@@ -83,11 +84,16 @@ permitted; moving is not.
 **AC-3** — `mapID` is stored but **must never be treated as a zone**. Any code comparing
 "same place" uses `mapID` for *map identity* and `zone` only for *display* [F30].
 
-**AC-4 [RESOLVED — Battlewrath, 2026-08-12] — landmarks are AUTO-NAMED at capture, and the
-name carries ONLY WHAT WE KNOW.** Capture asks nothing [L4] but the widget shows a name, so one
-must exist without a prompt.
+**AC-4 [RESOLVED — Battlewrath, 2026-08-12] — the ALIAS is auto-generated at capture, and it
+carries ONLY WHAT WE KNOW.** Capture asks nothing [L4] but the widget shows a name, so one must
+exist without a prompt.
 
-**Format: `<subzone> <n>`** — *"Everlook 7"*. Subzone when present, **else the zone**.
+**Alias format: `<subzone> <n>`** — *"Everlook 7"*. Subzone when present, **else the zone**.
+
+> **★ THE ALIAS IS NOT THE IDENTITY (Battlewrath):** *"We bespoke a unique name.
+> Zone-subzone-int. We present an alias of subzone-int, and it's that alias that can be renamed,
+> the unique identity survives."* The user renames the **alias**; the `id` (AC-47) never
+> changes. Everything below governs the alias.
 
 > **★ THE RULE UNDERNEATH IT (his words): *"Freshness is the int count, but devoid of meaning
 > because we don't know it. That's user curated."*** We name from the two things we actually
@@ -113,9 +119,10 @@ or **edit from the map pin**. Renaming in flight is therefore already available 
 surface, because capture selects what it captured (AC-9a) — which answers the real want behind
 an in-flight box: *the meaning is freshest at capture*.
 
-**AC-5 [§9 walk stop 2]** — `scope` defaults to `character`, and moves **both ways** cheaply
-after the fact: promote to `account`, demote back to `character`. Neither direction may lose the
-note, icon or tier.
+**AC-5 [§9 walk stop 2, mechanised by AC-46]** — `owner` defaults to the **capturing character**
+and moves **both ways** by rewriting that one field: promote by setting it to `"global"`, demote
+by setting it back to a character name. Neither direction touches anything else, so neither can
+lose the note, icon or tier.
 
 ---
 
@@ -666,31 +673,64 @@ section says how they live.
 ## SavedVariables: COA_LandmarksDB
 ```
 
-**Not** `SavedVariablesPerCharacter`. Character-scoped landmarks live in the **same file** and
-are filtered on read by `owner`.
+**Not** `SavedVariablesPerCharacter`. Everything lives in the **same file**; visibility is a
+read-time filter on `owner`.
 
-**Why this is the decision that matters:** AC-5 says scope moves **both ways** between character
-and account. If character data lived in a per-character file, promotion would be a **migration
-between two files** — read from one, write to the other, and be correct about failure halfway
-through. With one file it is **a field flip**. Same behaviour, no moving parts.
+**★ `owner` is ONE FIELD WITH TWO FORMS (Battlewrath), not a `scope` plus an `owner`:**
+
+| `owner` | Meaning |
+|---|---|
+| `"global"` | visible to every character on the account |
+| `"Gravekeeper"` | visible to that character only |
+
+Promotion and demotion are **the same operation** — write the field. Demotion assigns the
+**current** character.
+
+**Why this is the decision that matters (his words):** *"it's that what we change, instead of
+file movement where it can deform."* If character data lived in a per-character file, promotion
+would be a **migration between two files** — read from one, write to the other, and be correct
+about failing halfway through. **A half-completed migration deforms the data; a half-completed
+field write cannot happen.**
 
 Cost of the choice, stated: every character loads every character's landmarks. At tens of
 records this is nothing, and if it ever is not, the fix is a read-time index rather than a
 change of shape.
 
-### AC-47 [P!] — IDENTITY is the monotonic counter, and it is NOT the name
+### AC-47 [P!] — IDENTITY is a bespoke `zone-subzone-int`, and the ALIAS is what gets renamed
 
-AC-4's `n` — account-wide, monotonic, **never reused after a deletion** — **is the landmark's
-id**. One mechanism, two uses: it identifies the record and it seeds the default name.
+**`id` = `zone-subzone-int`** — e.g. `Winterspring-Everlook-7`. Composed once at capture,
+**immutable for the life of the record**. Uniqueness comes from the `int` (AC-4's account-wide
+monotonic counter, never reused — AC-51); the `zone-subzone` prefix is there to make the stored
+file **legible to a human reading it**, which is AC-49's whole point.
 
-**The name can never be an identity.** The user renames (AC-4b), so a name is display only.
-**Position can never be an identity either** — it is frozen (AC-2) but two landmarks may sit on
-the same spot, and comparing floats for equality is a bug waiting to happen.
+**`alias` = `subzone int`** — *"Everlook 7"* — is what the widget and the pin show, and **the
+only thing a rename touches** (AC-4b). *"The unique identity survives."*
+
+**★ THE ID IS OPAQUE TO CODE.** Nothing may parse it to recover a zone, a subzone or an index —
+its legibility is **for humans reading the file, not for us**. Same rule as AC-3 (`mapID` is
+never treated as a zone), and for the same reason: the moment something parses it, the fallback
+case (no subzone → `zone-int`, two parts not three) becomes a crash.
+
+**Two things that can never be identity:** the **alias**, because the user renames it; and the
+**position**, because it is frozen (AC-2) but not unique — two landmarks may share a spot, and
+comparing floats for equality is a bug waiting to happen.
 
 ### AC-48 [P!] — a `schemaVersion` on the DB, from the first line of code
 
 ```lua
-COA_LandmarksDB = { schemaVersion = 1, nextId = 1, landmarks = { ... } }
+COA_LandmarksDB = {
+  schemaVersion = 1,
+  nextId        = 8,
+  landmarks     = {
+    ["Winterspring-Everlook-7"] = {
+      alias = "Everlook 7", owner = "Gravekeeper",
+      what = "", why = "", icon = "questbonusobjective-supertracked",
+      arrivalTier = "interact",
+      x = ..., y = ..., z = ..., mapID = 1, mapX = ..., mapY = ...,
+      zone = "Winterspring", subZone = "Everlook",
+    },
+  },
+}
 ```
 
 **This is what makes "willingness to re-write" mechanically possible rather than aspirational.**
