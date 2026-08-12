@@ -30,8 +30,14 @@ never looked. Both AC-24 and AC-26 are re-mutation-tested and still bite.
 already-live slot. Two candidate causes and the one-run test that separates them are in §15 —
 do not guess at it in `beacon.lua`, which is where the silent-failure criteria live.
 
-**★ THE ARC HAS A NEXT STEP — `addons/planning/dungeonrun_poc.md` (2026-08-13, DESIGNED, NOT
-BUILT).** Battlewrath's fork: *"Do we develop the Landmark addon so Dungeon_run has more basis
+**★ THE ARC MOVED — `COA_DungeonRun` v0.1.0 is BUILT** (2026-08-13; spec
+`addons/planning/dungeonrun_poc.md`, build log §11). Capture only: no beacon, editor, display or
+CLEU. 4 files, **0 persistent OnUpdate**, smoke-green, **ten mutation tests all biting on their
+own assertions**. In the MANIFEST, **not deployed** — he deploys at test time. **NEXT: his TWO
+RUNS**, and run 2 is deliberately messy (wipes, re-pulls, corpse runs) — **that run is a FIXTURE:
+do not discard it or re-capture it clean.** Read both against §10's five questions.
+
+**The design, as agreed before it was built:** Battlewrath's fork: *"Do we develop the Landmark addon so Dungeon_run has more basis
 for refactoring, or bring Dungeon_run up to parity?"* — **chose Dungeon_run**, because the
 transfer from landmarks is COLLECTED and Landmark structurally cannot exercise what is left
 unproven (**many-pins, many-updates**). A route **emitted from play**: combat start/end are the

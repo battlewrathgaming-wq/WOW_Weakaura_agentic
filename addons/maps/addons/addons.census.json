@@ -1,5 +1,5 @@
 {
- "_fingerprint": "e34829bd1bb8",
+ "_fingerprint": "705ec1406486",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1666,6 +1666,274 @@
     "pull": [
      "GetTime"
     ]
+   }
+  },
+  "COA_DungeonRun": {
+   "capture.lua": {
+    "functions": [
+     {
+      "name": "inInstance",
+      "kind": "local",
+      "line": 48
+     },
+     {
+      "name": "onUpdate",
+      "kind": "function",
+      "line": 71
+     },
+     {
+      "name": "Capture.Stop",
+      "kind": "function",
+      "line": 115
+     },
+     {
+      "name": "Capture.RunId",
+      "kind": "function",
+      "line": 126
+     },
+     {
+      "name": "Capture.Pulls",
+      "kind": "function",
+      "line": 128
+     },
+     {
+      "name": "onCombatStart",
+      "kind": "local",
+      "line": 132
+     },
+     {
+      "name": "onCombatEnd",
+      "kind": "local",
+      "line": 141
+     },
+     {
+      "name": "onEnteringWorld",
+      "kind": "local",
+      "line": 151
+     },
+     {
+      "name": "Capture.Init",
+      "kind": "function",
+      "line": 157
+     },
+     {
+      "name": "Capture.Arm",
+      "kind": "function",
+      "line": 176
+     }
+    ],
+    "onupdate": 1,
+    "onupdate_clears": 1,
+    "onupdate_persistent": 0,
+    "throttle_pattern": true,
+    "scripts": [
+     "OnEvent",
+     "OnUpdate"
+    ],
+    "hookscripts": [],
+    "events": [
+     "PLAYER_ENTERING_WORLD",
+     "PLAYER_REGEN_DISABLED",
+     "PLAYER_REGEN_ENABLED",
+     "ZONE_CHANGED_NEW_AREA"
+    ],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": [
+     "UnitIsGhost"
+    ]
+   },
+   "core.lua": {
+    "functions": [
+     {
+      "name": "NS.Say",
+      "kind": "function",
+      "line": 4
+     },
+     {
+      "name": "status",
+      "kind": "local",
+      "line": 8
+     },
+     {
+      "name": "list",
+      "kind": "local",
+      "line": 23
+     },
+     {
+      "name": "slash",
+      "kind": "local",
+      "line": 36
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [
+     "OnEvent"
+    ],
+    "hookscripts": [],
+    "events": [
+     "ADDON_LOADED"
+    ],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
+   },
+   "store.lua": {
+    "functions": [
+     {
+      "name": "Store.Load",
+      "kind": "function",
+      "line": 45
+     },
+     {
+      "name": "db",
+      "kind": "local",
+      "line": 66
+     },
+     {
+      "name": "Store.Point",
+      "kind": "function",
+      "line": 95
+     },
+     {
+      "name": "Store.Open",
+      "kind": "function",
+      "line": 122
+     },
+     {
+      "name": "Store.Get",
+      "kind": "function",
+      "line": 141
+     },
+     {
+      "name": "Store.Close",
+      "kind": "function",
+      "line": 146
+     },
+     {
+      "name": "Store.Delete",
+      "kind": "function",
+      "line": 152
+     },
+     {
+      "name": "Store.Ids",
+      "kind": "function",
+      "line": 157
+     },
+     {
+      "name": "Store.AddMarker",
+      "kind": "function",
+      "line": 171
+     },
+     {
+      "name": "Store.AddLeg",
+      "kind": "function",
+      "line": 185
+     },
+     {
+      "name": "Store.SetOutside",
+      "kind": "function",
+      "line": 193
+     },
+     {
+      "name": "Store.SetArrival",
+      "kind": "function",
+      "line": 199
+     },
+     {
+      "name": "Store.Counts",
+      "kind": "function",
+      "line": 208
+     },
+     {
+      "name": "Store.GetUI",
+      "kind": "function",
+      "line": 220
+     },
+     {
+      "name": "Store.SetUI",
+      "kind": "function",
+      "line": 229
+     },
+     {
+      "name": "mapFraction",
+      "kind": "local",
+      "line": 233
+     },
+     {
+      "name": "composeId",
+      "kind": "local",
+      "line": 233
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [],
+    "hookscripts": [],
+    "events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [
+     "SetMapToCurrentZone"
+    ],
+    "pull": [
+     "GetCurrentMapContinent",
+     "GetCurrentMapZone",
+     "GetCurrentPlayerPosition",
+     "GetPlayerMapPosition",
+     "GetRealZoneText",
+     "GetSubZoneText",
+     "GetTime",
+     "UnitName"
+    ]
+   },
+   "widget.lua": {
+    "functions": [
+     {
+      "name": "refresh",
+      "kind": "local",
+      "line": 21
+     },
+     {
+      "name": "toggleArm",
+      "kind": "local",
+      "line": 39
+     },
+     {
+      "name": "Widget.Init",
+      "kind": "function",
+      "line": 54
+     },
+     {
+      "name": "Widget.Toggle",
+      "kind": "function",
+      "line": 110
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [
+     "OnClick",
+     "OnDragStart",
+     "OnDragStop",
+     "OnEnterPressed",
+     "OnEscapePressed"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
    }
   },
   "COA_Landmarks": {

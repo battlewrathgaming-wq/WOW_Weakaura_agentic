@@ -1,4 +1,4 @@
-# Frame cost — COA_Landmarks
+# Frame cost — COA_DungeonRun
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 _Source fingerprint `705ec1406486` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
@@ -13,10 +13,9 @@ _Source fingerprint `705ec1406486` — run `py addons/tools/emit_addon_census.py
 
 | File | Installs | Clears | Lifetime | throttle? |
 |---|---|---|---|---|
-| `beacon.lua` | 1 | 2 | transient | yes |
-| `minimap.lua` | 1 | 1 | transient | **no — look** |
+| `capture.lua` | 1 | 1 | transient | yes |
 
-**2 handler(s) installed; 0 PERSISTENT.** The persistent ones are the whole point of this page.
+**1 handler(s) installed; 0 PERSISTENT.** The persistent ones are the whole point of this page.
 
 ## Timers
 
@@ -28,8 +27,8 @@ _Source fingerprint `705ec1406486` — run `py addons/tools/emit_addon_census.py
 
 | File | Detail |
 |---|---|
-| `core.lua` | ADDON_LOADED, PLAYER_ENTERING_WORLD |
-| `pins.lua` | WORLD_MAP_UPDATE |
+| `capture.lua` | PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA |
+| `core.lua` | ADDON_LOADED |
 
 ## ★ Hooks — hooksecurefunc
 
@@ -37,7 +36,7 @@ _The highest-risk column: a hook runs inside someone else's flow._
 
 | File | Detail |
 |---|---|
-| `beacon.lua` | `SelectQuestLogEntry` |
+| — | — |
 
 ## ★ Hooks — HookScript on frames we do not own
 
@@ -45,4 +44,4 @@ _Anyone else doing the same can clobber ours, and silently._
 
 | File | Detail |
 |---|---|
-| `pins.lua` | `OnShow` |
+| — | — |

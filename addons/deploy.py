@@ -52,6 +52,10 @@ MANIFEST = {
         "client_name": "COA_PetGrid",
         "exclude_dirs": set(),
     },
+    "COA_DungeonRun": {
+        "client_name": "COA_DungeonRun",
+        "exclude_dirs": set(),
+    },
     "COA_Landmarks": {
         "client_name": "COA_Landmarks",
         "exclude_dirs": set(),

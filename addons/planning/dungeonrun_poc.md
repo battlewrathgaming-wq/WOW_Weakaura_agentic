@@ -275,7 +275,7 @@ which is precisely the failing case.
    mid-pull is genuinely worse. **Proceeding on the widget** unless he says otherwise.
 2. ~~Friendly deaths~~ — **answered 2026-08-13: record all, model only the enemy ones** (§6).
 
-**Gate: `Build!` — not authorised.**
+~~Gate: `Build!` — not authorised.~~ **`Build!` given 2026-08-13 — see §11.**
 
 ---
 
@@ -348,3 +348,55 @@ Written down now so the run is read against a question rather than admired:
 **★ THE §8 COMMUNITY GATE IS ABOUT SHIPPING ROUTING, NOT ABOUT LEARNING WHETHER IT WORKS.**
 Establishing mechanics is not competing with anyone — it is finding out what we would be
 deciding about. Gate stays closed on the product question, open on the probe.
+
+---
+
+## 11. BUILD LOG — v0.1.0 (2026-08-13)
+
+**`addons/COA_DungeonRun/`** — 4 files, 35 functions, **0 persistent OnUpdate**, no hooks.
+Registered in `deploy.py`'s MANIFEST (the one authority on residents) and in the bench index.
+**Not deployed** — Battlewrath deploys at test time.
+
+| File | Owns |
+|---|---|
+| `store.lua` | **the only file touching `COA_DungeonRunDB`** — a rewrite replaces it, not a search |
+| `capture.lua` | the regen edges, the arrival guard, the 1/s sampler |
+| `widget.lua` | name box, arm/stop, live count. Deliberately small |
+| `core.lua` | init + `/dr` |
+
+**Everything in §2-§6b implemented as specified — no design drift.** Two carried lessons applied
+without being re-learned: the EditBox is **named** (`InputBoxTemplate`'s `$parentMiddle` anchors
+`relativeTo` `$parentLeft`/`$parentRight` BY NAME, so a nameless box renders as two floating
+end-caps), and the sampler's throttle sits **before** the work, not after.
+
+### ★ Ten mutation tests, and every one bit on its OWN assertion
+
+A green suite proves nothing by itself — AC-26 taught us that when its step fell below a changed
+poll floor and it began passing because the code never looked. So each guard was broken
+deliberately and the failure message checked:
+
+| Mutation | The assertion that caught it |
+|---|---|
+| drop the `UnitAffectingCombat` re-read | *DR-1 FAILED: a regen edge was trusted without re-reading UnitAffectingCombat* |
+| drop the in-combat gate | *DR-3 FAILED: sampled a leg while IN COMBAT* |
+| drop the in-instance gate | *DR-3 FAILED: sampled a leg while OUTSIDE an instance* |
+| drop the throttle | *DR-3 FAILED: sampled below the throttle interval* |
+| never stamp `dead` | *DR-13 FAILED: a wipe is not distinguishable from a clean finish* |
+| never stamp `ghost` | *DR-13: corpse-run legs carry the ghost flag* |
+| leave the sampler installed at Stop | *LIFECYCLE FAILED: the sampler outlived the run* |
+| drop `local onUpdate` | *LEAKED GLOBAL: onUpdate* |
+| make arrival last-wins | *DR-7: arrival is write-once, not last-wins* |
+| drop the wall-clock stamp | *DR-4: wall-clock time() stamped* |
+
+The throttle test **exceeds** the interval on purpose, with the reason written into the smoke:
+a smaller step would not sample at all, and it would pass because the code never looked.
+
+**★ A PROCESS NOTE, because the harness failed usefully:** it crashed mid-run on a relative exe
+path and **left the DR-1 guard stripped from live source.** Caught only because the next thing
+run was the smoke rather than a commit. **Mutation testing edits real files — the restore belongs
+in a `finally`**, and the harness has one now.
+
+### Still not done, deliberately
+
+No beacon work (the stale-target bug is a prerequisite for **routing**, not for capture), no
+editor, no display, no CLEU. **The next move is his two runs**, read against §10.

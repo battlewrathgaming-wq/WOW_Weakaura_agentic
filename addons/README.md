@@ -23,7 +23,7 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
 - `operations/Addons_load.md` — **this bench's mental-load ledger** (open threads, banked refinements, arcs)
 - `creator/ingredients/custody.md` — how the aura side works (this bench's biggest consumer)
 
-## The residents (refreshed 2026-07-31)
+## The residents (refreshed 2026-08-13)
 
 **Products (deployed via `deploy.py`; each has its own README):**
 - `COA_DevDump/` — the capture spine (task registry + SV mailbox; the task SHELF is the point)
@@ -33,6 +33,11 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
   that matters, write why, get back to it later. Feeds the client's own supertrack beacon rather
   than drawing a pointer. *"How I play, not what exists"* — deliberately not a gathering
   database. Spec: `addons/planning/landmark_design.md`; facts: `satnav_ledger.md`. `/lm`
+- `COA_DungeonRun/` — **the dungeon-route capture POC**: a route IS a sequence of pulls, so it
+  records the pulls. Combat start/end are the markers (regen EDGES, state re-read from
+  `UnitAffectingCombat`), the path between is sampled 1/s out of combat, both entrances captured.
+  Records everything and filters nothing. **Capture only — no beacon, editor or display.**
+  Spec: `addons/planning/dungeonrun_poc.md`. `/dr`
 - `COA_PetGrid/` — the Necromancer pet micro-grid (personal tooling; capture lane pending the
   two-witness retirement decision)
 - `COA_GuardianPlates/` + `COA_StatePlates_Aggro/Friendly/Enemy` — the State Plates family
