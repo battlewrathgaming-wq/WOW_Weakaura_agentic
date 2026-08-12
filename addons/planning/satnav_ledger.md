@@ -493,6 +493,13 @@ seen both in the browser and we have not.
     drop locations. We might step into the same lookup, if we have the data to consume. But
     what we create is **notes of meaning, not what-where**."*
 
+    **★ SHARPENED TO FIVE WORDS (Battlewrath, 2026-08-12): *"This is 'How I play', not what
+    exists."*** That is the whole boundary, and it is better than the paragraph below it. *What
+    exists* is a database question — per-entity spawn locations, drop tables, node coordinates —
+    already answered by addons with far bigger records than we will ever hold. *How I play* is
+    nobody's dataset. It is also why the store stays light: **regions of activity, not per-node
+    tracking.**
+
     **This is the sharpest scope fence in the ledger and it is product-defining, not a detail.**
     The existing addons answer *where does thing X spawn* — an entity→location database,
     exhaustive, impersonal, and already built by people who did it well. We answer *why does

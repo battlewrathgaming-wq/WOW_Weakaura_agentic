@@ -706,10 +706,16 @@ file **legible to a human reading it**, which is AC-49's whole point.
 **`alias` = `subzone int`** — *"Everlook 7"* — is what the widget and the pin show, and **the
 only thing a rename touches** (AC-4b). *"The unique identity survives."*
 
-**★ THE ID IS OPAQUE TO CODE.** Nothing may parse it to recover a zone, a subzone or an index —
-its legibility is **for humans reading the file, not for us**. Same rule as AC-3 (`mapID` is
-never treated as a zone), and for the same reason: the moment something parses it, the fallback
-case (no subzone → `zone-int`, two parts not three) becomes a crash.
+**★ THE ID IS OPAQUE TO CODE; THE FIELDS ARE THE LOOKUP (Battlewrath).** *"It should still
+hold, as you do, MapID, zone and sub-zone as the look up records."* The composed id exists for
+**uniqueness and legibility** — *"to keep the names more unique than not. Less chance of a wrong
+read."* **Every lookup reads the stored `mapID` / `zone` / `subZone` fields**, never a substring
+of the id.
+
+Same rule as AC-3 (`mapID` is never treated as a zone), and for the same reason: the moment
+something parses the id, the fallback case (no subzone → `zone-int`, two parts not three)
+becomes a crash. **This is also why those fields are stored separately rather than derived** —
+they are not duplication of the id, they are the index.
 
 **Two things that can never be identity:** the **alias**, because the user renames it; and the
 **position**, because it is frozen (AC-2) but not unique — two landmarks may share a spot, and
@@ -752,8 +758,14 @@ persists as a name and nothing more.
 
 ### AC-50 [P] — NO index. Iterate the flat list.
 
-Rendering pins for the displayed map (AC-34) means "landmarks where `mapID` matches". At tens
-of records that is a loop. **A `mapID`-keyed index would be a second structure to keep
+Rendering pins for the displayed map (AC-34) means "landmarks where the **`mapID` field**
+matches" (AC-47 — the field, never the id). At tens of records that is a loop.
+
+**★ The scale is bounded by the product, not by optimism (Battlewrath):** *"This is regions of
+activity, not per-node tracking... the total pool and data store will never be that heavy."*
+A per-entity spawn database would be tens of thousands of rows and would need real indexing;
+**that is explicitly other addons' work** [L11]. Ours is the handful of places one player
+cares about. **A `mapID`-keyed index would be a second structure to keep
 consistent with the first**, and consistency bugs outlive the performance they buy.
 
 Same reasoning as the pooling decision (§2): do not import a solution to a problem we do not
