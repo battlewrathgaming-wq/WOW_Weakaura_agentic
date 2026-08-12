@@ -980,8 +980,20 @@ keeping as the method.
 | Reported | Cause | Fix |
 |---|---|---|
 | *"recommends what you type as you type"* | **our own AC-54 decision**: tags save on every keystroke, so the half-word was already stored and got suggested back | exclude the record being edited from the scan |
-| *"No mid texture, Name: field has it correct"* | `InputBoxTemplate`'s `$parentMiddle` anchors to its siblings **BY NAME**; every box was created nameless, so the anchors failed and only the 8px end caps drew | name every `InputBoxTemplate` box |
-| *"Doesn't auto-complete on tab or enter"* | no handlers — the proposal sat there uncommitted | Tab accepts and opens the next tag; Enter accepts and drops focus |
+| *"No mid texture, Name: field has it correct"* | `InputBoxTemplate`'s `$parentMiddle` anchors to its siblings **BY NAME**; every box was created nameless, so the anchors failed and only the 8px end caps drew | name every `InputBoxTemplate` box — **confirmed fixed** |
+| *"Doesn't auto-complete on tab or enter"* | no handlers — the proposal sat there uncommitted | Tab accepts and opens the next tag; Enter accepts and drops focus — **confirmed working** |
+
+**All four closed.** Battlewrath: *"A clear yes on the visual element. The auto-complete
+works."*
+
+**Open, trivial, and it touches AC-54 so it is HIS call:** Tab ends the value with `", "` and
+Enter does not — deliberate (Tab means *next tag*, Enter means *done*), but **Tab-then-Enter
+leaves a dangling `", "` in the stored string**. Reading is unaffected (`SplitTags` drops
+empties); it is only scruffy in a file we made legible on purpose. Stripping it on the *done*
+path would tidy it, but **AC-54 says we never alter or clean up tags** — the argument for
+allowing it is that a trailing separator is not content, it is **our own scaffolding from the
+Tab affordance**, and removing what we put there is not touching what the user wrote. A real
+reading of the law rather than an obvious one, so it is not taken unilaterally.
 | map pins | — | **worked**; the explicit tex-coord path (v0.1.2) stands |
 
 ### ★ The lesson, and it is a bench one: ABSENCE OF ERROR IS NOT SUCCESS
