@@ -399,9 +399,59 @@ The pitch as posted, which sharpens two things this ledger should carry:
 - Skips and jumps are a **double-tap** on the widget; ordinary pull points still come free
   from combat enter/exit on the first run.
 
-## 9. Build state
+## 9. ★ THE BLUEPRINT GENERALISES — the world-map scrapbook (Battlewrath, 2026-08-12)
 
-**Nothing built, and now gated on the community answer (§8).** Fact basis established; design
-laws set; no code, no addon folder, no acceptance criteria written. If the gate clears, the
-next step is a design/AC document in the shape of `callwitness_design.md` — criteria before
-build — not implementation.
+His recognition: *"this is the same blue print to another addon I wanted. Basically a scrap
+book for the world map. Farm locations. Vendors you prefer to use. Basically land mark
+navigation that is self authored."*
+
+**Sharper than "same blueprint": it is LAW 9'S LANDMARK HALF, already specified, with the
+route half removed.** Read law 9 with the waypoint bullet covered — promoted nodes are
+personal landmarks, map-scoped, outliving every route; personal notes anchor to them by hand;
+and **proximity to a landmark drives personal notes regardless of whether a route is loaded at
+all**. That last clause was written for the notebooking proposition inside a dungeon. It is,
+unchanged, the scrapbook.
+
+**★ THE ARCHITECTURAL CONSEQUENCE, and the reason this is worth deciding NOW rather than
+retrofitting: build the LANDMARK + NOTE layer as the foundation and the ROUTE layer on top of
+it.** Route-first with landmarks bolted on makes the scrapbook a second implementation of the
+same thing. Landmark-first makes the scrapbook *the foundation shipped alone*, plus retrieval.
+Same total work, one codebase instead of two — but only if the order is chosen deliberately.
+
+**Second consequence, and it partly de-risks §8: the foundation's value does not depend on the
+community answer.** The gate asks whether the *routing* proposition is wanted. Self-authored
+landmarks are personal utility either way. So a "no" on §8 scopes the build down rather than
+killing it.
+
+### What the scrapbook genuinely needs that law 9 does not yet cover
+
+Stated as deltas, not designed — nothing here is decided.
+
+1. **Whole-world scope.** A dungeon is effectively one mapID; the scrapbook spans zones and
+   continents. Needs a per-zone index and cross-zone retrieval that law 9 never required.
+2. **★ The primary VERB changes — from *follow* to *find*.** Sat-nav's interaction is
+   traversal; the scrapbook's is lookup ("where is my Winterspring herb spot" asked from
+   Orgrimmar). Proximity display alone cannot answer that. So search / filter is the main
+   surface, not an ordered list — a different UI over the same data.
+3. **Categories.** Farm · vendor · node · rare. Law 9 has exactly one landmark kind. **The
+   icon supply already carries the taxonomy, in the family we just chose:** `vignetteloot`
+   (+`-locked`) reads as gather/farm, `vignetteevent` as event, `vignettekillelite` /
+   `vignettekillboss` as rare — all free, all `objecticonsatlas`, so they read as one system
+   with the waypoint/landmark pair rather than as imports.
+4. **Sharing pressure is lower.** Law 7's *import wipes* and law 9's sacred-vs-disposable
+   split exist for a shared route artefact. A personal scrapbook may want neither.
+5. **★ Outdoor position may be EASIER, not harder — and this is a PROBE, not a claim.** F9
+   found `C_WorldMap.GetWorldPosition` returns nil *inside instances*, which implies it works
+   outdoors. If it does, the map↔world transform §4 derives by hand for dungeons is supplied
+   by the engine outdoors. **Untested. Do not plan on it until dumped.**
+
+No separate ledger yet — this is recorded here because it changes *this* build's ordering.
+It earns its own file when it is actually taken up.
+
+## 10. Build state
+
+**Nothing built, and the ROUTE half is gated on the community answer (§8).** Fact basis
+established; design laws set; icons chosen; no code, no addon folder, no acceptance criteria
+written. If the gate clears, the next step is a design/AC document in the shape of
+`callwitness_design.md` — criteria before build — not implementation. **Per §9, that document
+should specify the landmark + note layer first and the route layer as a consumer of it.**
