@@ -772,6 +772,31 @@ seen both in the browser and we have not.
     control performs an act rather than describing one · and there is no tutorial text anywhere
     in the design.
 
+19. **★ WE PROVIDE THE DEFAULT; THEY PICK FROM A PALETTE WE CURATE — AND THE ICON IS
+    PRESENTATION ONLY (Battlewrath, 2026-08-12).** *"We provide the default. They can pick from
+    a selection of alternatives we've curated (non-conflicting with already formed norms /
+    signal use). Then it's just a change on what is rendered."*
+
+    **Three parts, and the third is the one that protects the design:**
+    1. **Context sets the default** — law 10's split, which is what you get without choosing.
+    2. **We curate the alternatives.** The palette is *our* responsibility, and every entry
+       passes law 10's claim test against `addons/maps/atlas/` before it ships. The user picks
+       from a safe set; they are never asked to judge whether an icon is free.
+    3. **★ NOTHING KEYS OFF THE ICON.** Changing it changes **only what is drawn**. No
+       behaviour, no filtering, no defaulting, no sorting may depend on which icon a landmark
+       carries — the `Beacon hide` tier is already explicitly *not* implied by it, and that is
+       the general rule rather than a one-off.
+
+    **Why (3) is worth stating as law:** *"farm icons should set the farm tier"* and *"group the
+    map by icon"* both sound like helpfulness and are both inference [see
+    `pipeline-emits-class-knowledge-curates`]. An icon the user chose for how it **looks** would
+    start deciding how the addon **behaves**, and a wrong-looking pick would silently become a
+    wrong-acting one.
+
+    **Scope:** this build ships the **open-world** palette only. The in-dungeon icons are left
+    alone for now (they belong to the route half) — **but the principle applies there
+    unchanged.**
+
 ## 6. Accepted with a gate
 
 **"What was killed in this pull"** — during an open fight, note identities so the editor can

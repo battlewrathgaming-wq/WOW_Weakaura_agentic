@@ -354,6 +354,15 @@ without choosing. Picking a palette icon replaces that default for that landmark
 **AC-38b [§9 delta 3]** — the palette stays **indicators, not per-entity nodes**. A farming icon
 says *this area is a farm spot*, never *this herb spawns here* [L11].
 
+**AC-38c [L19] — THE ICON IS PRESENTATION ONLY. Nothing keys off it.** No behaviour, filtering,
+defaulting or sorting may depend on which icon a landmark carries. The `Beacon hide` tier is
+already explicitly not implied by it (AC-40); **that is the general rule, not an exception**.
+Changing a landmark's icon changes only what is drawn.
+
+> Stated as a criterion because the violations sound helpful: *"a farm icon should set the farm
+> tier"*, *"group the map by icon"*. Both are inference, and an icon chosen for how it **looks**
+> would start deciding how the addon **behaves**.
+
 **AC-39** — the palette ships with three entries, all census-verified free and all on
 `objecticonsatlas`:
 
@@ -363,8 +372,12 @@ says *this area is a farm spot*, never *this herb spawns here* [L11].
 | farming | `vehicle-trap-gold` | `:296` |
 | favoured vendor | `housing-decor-vendor_32` | `:697` |
 
-Adding a palette entry is a one-line change plus a claim check against
-`addons/maps/atlas/` [L10].
+**We curate; the user picks** [L19]. Every palette entry passes law 10's claim test against
+`addons/maps/atlas/` **before it ships** — the user is never asked to judge whether an icon is
+free. Adding one is a line of data plus that check.
+
+**In-dungeon icons are out of scope for this build** (Battlewrath) — they belong to the route
+half. Law 19 applies there unchanged when it comes.
 
 **AC-40 [RESOLVED — Battlewrath, 2026-08-12] — the tier is a PROPERTY OF THE LANDMARK, set in
 its edit form.** Not implied by the icon (that would have been inference, and inference makes
