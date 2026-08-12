@@ -965,3 +965,42 @@ to the map itself.
    authored **as a category**, explicitly so that filtering can key off it. Different jobs, and
    the distinction is what keeps both rules intact. Do not let "nothing keys off the icon"
    quietly become "nothing keys off anything".
+
+---
+
+## 15. v1 IS LIVE — build log and what the live test taught (2026-08-12)
+
+**`COA_Landmarks` v0.1.3 is deployed and working.** Capture, widget, map pins, the note
+readout, beacon control and the edit form all confirmed in the wild by Battlewrath.
+
+He reported bugs by **writing them into the fields they relate to**, which made the
+SavedVariables the bug report — `py`-readable, in place, with no separate channel. Worth
+keeping as the method.
+
+| Reported | Cause | Fix |
+|---|---|---|
+| *"recommends what you type as you type"* | **our own AC-54 decision**: tags save on every keystroke, so the half-word was already stored and got suggested back | exclude the record being edited from the scan |
+| *"No mid texture, Name: field has it correct"* | `InputBoxTemplate`'s `$parentMiddle` anchors to its siblings **BY NAME**; every box was created nameless, so the anchors failed and only the 8px end caps drew | name every `InputBoxTemplate` box |
+| *"Doesn't auto-complete on tab or enter"* | no handlers — the proposal sat there uncommitted | Tab accepts and opens the next tag; Enter accepts and drops focus |
+| map pins | — | **worked**; the explicit tex-coord path (v0.1.2) stands |
+
+### ★ The lesson, and it is a bench one: ABSENCE OF ERROR IS NOT SUCCESS
+
+**Two of the three failed SILENTLY, in the same shape** — they drew nothing and said nothing:
+
+- a **`pcall`** around `SetAtlas` with a constant (`Const.TextureKit`) that is **not defined
+  anywhere in the extracted SharedXML**. It swallowed its own failure.
+- a **template anchor** resolving `$parentLeft` against a nameless frame. No error is raised;
+  the texture simply never positions.
+
+Both were found by a human looking at a screen, not by any check we had. **The countermeasure
+is not more `pcall` — it is fewer:** wrap only what you expect to fail, and say something when
+it does (AC-43). `pins.lua` now reports a missing atlas once, loudly, rather than drawing
+nothing.
+
+### Still open — the A:B questions §12 named
+
+None of these are bugs; they are what v1 exists to answer, and they need **use**, not a fix:
+does `Why` get filled in or only `What` · which tier gets set most · rename or live with
+`Everlook 7` · how many landmarks accumulate · **does the beacon-vs-quest contention actually
+occur** (L17's reasoning is still reasoning).

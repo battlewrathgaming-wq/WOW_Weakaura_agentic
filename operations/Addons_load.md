@@ -6,9 +6,13 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## ▶ ACTIVE — `COA_Landmarks` → **brief: `addons/planning/landmark_design.md`**
 
-**NEXT ACTION: IMPLEMENT IT. The design pass is CLOSED** (2026-08-12) — 45 acceptance criteria,
-**nothing marked open**, every one traced to a law/fact or ruled on by Battlewrath. There is
-nothing left to decide before code. **Gated on the build word.**
+**STATUS: BUILT AND LIVE — v0.1.3 deployed and working** (2026-08-12). Capture, widget, map
+pins, note readout, beacon control and the edit form all confirmed in the wild. Four bugs from
+his live test are closed (`landmark_design.md` §15 has the log).
+
+**NEXT ACTION: nothing to build. v1 exists to be USED** — §12's A:B questions need play, not
+code. Do not add features to it unprompted; §11's two-readings rule governs how any feedback
+gets read.
 
 **Read order on arrival:** this block → **`landmark_design.md`** (the brief IS the spec) →
 `satnav_ledger.md` only when a criterion's *why* is in question — it is the fact basis, and the
