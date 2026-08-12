@@ -98,16 +98,39 @@ def main():
     if len(maps) == 1:
         print("    only one mapID - no map boundary was crossed in this run.")
 
+    # NOTE: iterate ALL rows here, not the sd-filtered set. On a boundary test the
+    # engine may return NO distance, and those are precisely the samples that carry
+    # the answer - filtering them out would report an empty instance as "no data".
     byst = {}
-    for r in rows:
+    for r in p["rows"]:
         byst.setdefault(r.get("ts"), []).append(r)
     print("    engine state vs actual distance:")
-    for s in sorted(byst, key=lambda x: (x is None, x)):
-        sd = [r["sd"] for r in byst[s]]
-        print(f"      {STATE.get(s, '?'):<9} ({s})  n={len(sd):<5} sd {min(sd):8.2f} .. {max(sd):8.2f}")
-    if 4 in byst and 2 in byst:
-        print(f"    -> engine InRadius/InRange boundary between "
-              f"{max(r['sd'] for r in byst[4]):.2f} and {min(r['sd'] for r in byst[2]):.2f} yd")
+    for st in sorted(byst, key=lambda x: (x is None, x)):
+        sd = [r["sd"] for r in byst[st] if r.get("sd") is not None]
+        span = f"sd {min(sd):8.2f} .. {max(sd):8.2f}" if sd else "sd NONE RETURNED"
+        nils = len(byst[st]) - len(sd)
+        print(f"      {STATE.get(st, '?'):<9} ({st})  n={len(byst[st]):<5} {span}"
+              + (f"   [{nils} with no distance]" if nils else ""))
+    if byst.get(4) and byst.get(2):
+        lo = [r["sd"] for r in byst[4] if r.get("sd") is not None]
+        hi = [r["sd"] for r in byst[2] if r.get("sd") is not None]
+        if lo and hi:
+            print(f"    -> engine InRadius/InRange boundary between {max(lo):.2f} and {min(hi):.2f} yd")
+
+    # per-map breakdown: the whole point of a boundary run is what changed WHERE.
+    if len(maps) > 1:
+        print("    per-map behaviour (the boundary test):")
+        for m in sorted(maps, key=lambda x: (x is None, x)):
+            sub = [r for r in p["rows"] if r.get("pm") == m]
+            sts = sorted({r.get("ts") for r in sub}, key=lambda x: (x is None, x))
+            gps = sorted({r.get("gp") for r in sub}, key=lambda x: (x is None, x))
+            trs = sorted({str(r.get("tr")) for r in sub})
+            withd = sum(1 for r in sub if r.get("sd") is not None)
+            tag = "  <- the PIN's map" if m == pin["mapID"] else ""
+            print(f"      mapID {m}: n={len(sub)}  states={[STATE.get(x, x) for x in sts]}  "
+                  f"tracking={trs}  gp={gps}  rows-with-distance={withd}/{len(sub)}{tag}")
+        print("      gp: 1 = client still holds OUR pin (so a failure is the ENGINE declining)")
+        print("          -1 = client dropped our intent entirely  ·  0 = it holds something else")
 
     # -- held-intent + screen coords --------------------------------------
     gp = sorted({r.get("gp") for r in p["rows"]}, key=lambda x: (x is None, x))
