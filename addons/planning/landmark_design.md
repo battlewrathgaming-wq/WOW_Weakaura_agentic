@@ -998,6 +998,31 @@ is not more `pcall` — it is fewer:** wrap only what you expect to fail, and sa
 it does (AC-43). `pins.lua` now reports a missing atlas once, loudly, rather than drawing
 nothing.
 
+### KNOWN ISSUE — the beacon holds a stale target on re-pin (Battlewrath, 2026-08-12)
+
+*"I tested just the beacon. It does update. If already selected and changed, it holds the stale
+value. But reselecting it updates. That is more a polish concern… not to be over-considered.
+The dungeon work will do a lot of work on the beacon behaviour I imagine."*
+
+**Parked on his instruction. Recorded, not chased.**
+
+Observed: pinning a landmark works. Pinning a **different** one while a pin is already live
+leaves the beacon on the old target; pinning again takes.
+
+**Where I would start, so the next person does not begin from nothing** — none of this is
+verified, and it is written as candidates rather than a diagnosis:
+- **A `SetSuperTrackedPosition` onto an ALREADY-OCCUPIED slot may be a no-op engine-side.** The
+  standard remedy is clear-then-set. One line in `Beacon.Pin`, but it briefly hands the slot to
+  the ladder (a quest could take it for a frame), so it wants proving rather than assuming.
+- **It may be RENDER staleness, not data staleness.** `SuperTracker` shows/hides on
+  `SUPER_TRACKING_CHANGED`; if that event does not fire when a position replaces a position,
+  the beacon keeps projecting the old point while `GetSuperTrackedPosition` already returns the
+  new one. **`task_satnav` distinguishes these in one run** — pin A, pin B, and read whether the
+  distance jumps to B while the beacon still draws at A.
+
+**Deliberately NOT fixed speculatively.** `beacon.lua` is where the two silent-failure criteria
+live (AC-24, AC-26); an unverified change there is the one place guessing is most expensive.
+
 ### Still open — the A:B questions §12 named
 
 None of these are bugs; they are what v1 exists to answer, and they need **use**, not a fix:
