@@ -388,7 +388,24 @@ owed. And if a *current-target* emphasis is ever wanted on top of that, **`vigne
 and `vignettekillboss` are two further complete four-state sets, also entirely free** — so the
 supply is not tight and this decision does not corner a later one.
 
-### ★ OPEN ITEM ON THE OPEN-WORLD PICK — his call, not ours
+### ~~OPEN ITEM~~ → **CLOSED, ACCEPTED (Battlewrath, 2026-08-12)**
+
+He opened the actual surface — the **Trials** and **Challenges** tabs — and ruled: *"I don't
+think there would be user confusion from the asset use."* **`questbonusobjective-supertracked`
+stands as the open-world landmark.**
+
+The basis, from what those panels show: the claimed art appears as a **tiny inline glyph in a
+row of condition markers** inside a scrolling list — alongside diamonds, stars, skulls, hearts.
+Our use is a **64×64 pin on the world map**. Different size, different surface, different act.
+Nothing carries across.
+
+**★ WORTH RECORDING FOR ITSELF: the look-check has now fired in BOTH directions.** It *raised*
+a risk the name-check missed (the warfronts death marker, same map surface) and it *cleared*
+one the name-check flagged (this). That is what keeps `claimed` a filter rather than hardening
+into a superstition — the census narrows the field, **eyes decide**, and eyes are allowed to
+say yes.
+
+<details><summary>The finding as originally raised (kept for the record)</summary>
 
 `questbonusobjective-supertracked` is **free**, and his tex-coords match `AtlasInfo.lua:657`
 exactly. But **the BASE of that set is CLAIMED**, and by something meaningful:
@@ -408,6 +425,8 @@ meets the shape in a challenge list, never while navigating. The death-marker co
 avoided was on *the same map*. What remains true is that the shape now carries a faint **"PvE"**
 association in this client. **Recorded so the decision is informed, not to reverse it** — he has
 seen both in the browser and we have not.
+
+</details>
 
 ## 6. Accepted with a gate
 
