@@ -39,35 +39,44 @@ local function line(parent, x, y, w)
 end
 
 -- ---------------------------------------------------------------------
--- Tag autocomplete. AC-54a: it OFFERS, it never CORRECTS.
+-- Tag autocomplete - INLINE, the way the client's own Add Friend and mailbox
+-- "To:" boxes do it (Battlewrath): type "ven", the box becomes "vendor" with
+-- "dor" highlighted; keep typing and the proposal is replaced; leave it and it
+-- is accepted. No chips, no dropdown, no extra surface.
+--
+-- The stock mechanism (AutoComplete_Update / GetAutoCompleteResults) cannot be
+-- reused - it is a C API that only returns PLAYER NAMES. So the behaviour is
+-- replicated, not borrowed.
+--
+-- AC-54a: it still OFFERS and never CORRECTS. The highlighted tail is a
+-- proposal living in the box; typing over it removes it, and nothing is ever
+-- rewritten behind the user's back.
 -- ---------------------------------------------------------------------
 
 -- The partial tag is whatever follows the last comma - people type
--- "vendor, alt|" and expect the suggestion to be about "alt".
-local function partialTag(s)
-    return (tostring(s or ""):match("([^,]*)$") or ""):match("^%s*(.-)%s*$")
+-- "vendor, alt|" and expect the completion to be about "alt".
+local function splitAtCursor(text)
+    local head, partial = text:match("^(.*,)%s*([^,]*)$")
+    if not head then return "", text end
+    return head .. " ", partial
 end
 
-local function applySuggestion(tag)
-    local s = f.tags:GetText() or ""
-    local head = s:match("^(.*,)%s*[^,]*$")
-    f.tags:SetText((head and (head .. " ") or "") .. tag .. ", ")
-    f.tags:SetCursorPosition(#f.tags:GetText())
-    Store.Set(currentId, "tags", f.tags:GetText())
-    Editor:RefreshSuggestions()
-end
-
-function Editor:RefreshSuggestions()
-    for _, b in ipairs(f.sugg) do b:Hide() end
+local function tryComplete(box)
     if not currentId then return end
-    local hits = Store.SuggestTags(partialTag(f.tags:GetText()), currentId)
-    for i = 1, math.min(#hits, 4) do
-        local b = f.sugg[i]
-        b:SetText(hits[i])
-        b:SetWidth(b:GetFontString():GetStringWidth() + 16)
-        b.tag = hits[i]
-        b:Show()
-    end
+    local text = box:GetText() or ""
+    local prefix, partial = splitAtCursor(text)
+    if partial == "" then return end
+
+    local hits = Store.SuggestTags(partial, currentId)
+    if #hits == 0 then return end
+
+    local full = prefix .. hits[1]
+    box.suppress = true
+    box:SetText(full)
+    -- highlight ONLY the part we added, so the next keystroke replaces it
+    box:HighlightText(#prefix + #partial, #full)
+    box.suppress = false
+    Store.Set(currentId, "tags", full)
 end
 
 -- ---------------------------------------------------------------------
@@ -76,7 +85,7 @@ function Editor:Build()
     if f then return end
 
     f = CreateFrame("Frame", "COA_LandmarksEditor", UIParent)
-    f:SetWidth(320); f:SetHeight(330)
+    f:SetWidth(320); f:SetHeight(316)
     f:SetPoint("CENTER", 200, 0)
     f:SetBackdrop({
         bgFile   = "Interface\\DialogFrame\\UI-DialogBox-Background",
@@ -150,22 +159,19 @@ function Editor:Build()
 
     label(f, "Tags:", 18, -262)
     f.tags = line(f, 60, -260, 240)
-    f.tags:SetScript("OnTextChanged", function(s)
+    f.tags:SetScript("OnTextChanged", function(s, userInput)
         -- AC-54: stored EXACTLY as typed. No trimming, no case-folding, no
         -- merging. Splitting happens on READ, never here.
-        if currentId then Store.Set(currentId, "tags", s:GetText()) end
-        Editor:RefreshSuggestions()
-    end)
+        if s.suppress then return end
+        local text = s:GetText() or ""
+        if currentId then Store.Set(currentId, "tags", text) end
 
-    f.sugg = {}
-    for i = 1, 4 do
-        local b = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-        b:SetHeight(16)
-        b:SetPoint("TOPLEFT", 58 + (i - 1) * 62, -282)
-        b:SetScript("OnClick", function(self) applySuggestion(self.tag) end)
-        b:Hide()
-        f.sugg[i] = b
-    end
+        -- Complete only when the user ADDED characters. Completing on a delete
+        -- makes the box fight you: backspace, get the letter back, forever.
+        local grew = #text > (s.lastLen or 0)
+        s.lastLen = #text
+        if userInput and grew then tryComplete(s) end
+    end)
 
     f.delete = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     f.delete:SetWidth(80); f.delete:SetHeight(20)
@@ -214,9 +220,11 @@ function Editor:Open(id)
     f.alias:SetText(lm.alias or "")
     f.what:SetText(lm.what or "")
     f.why:SetText(lm.why or "")
+    f.tags.suppress = true
     f.tags:SetText(lm.tags or "")
+    f.tags.suppress = false
     self:RefreshTiers()
-    self:RefreshSuggestions()
+    f.tags.lastLen = #(lm.tags or "")
     f:Show()
 end
 

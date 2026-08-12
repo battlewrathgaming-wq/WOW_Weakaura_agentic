@@ -465,6 +465,21 @@ enforcement**, and it answers the case-and-duplicates question better than a rul
 
 - **It OFFERS; it never CORRECTS.** Decline the suggestion and type something new and nothing
   argues. It never rewrites what you typed and never merges `Vendor` into `vendor`.
+- **★ THE METHOD IS INLINE COMPLETION WITH A HIGHLIGHT (Battlewrath, 2026-08-12, after using
+  v0.1.0):** *"Both the add friend, and mail-box create - add name, used in-line text suggestion
+  with a highlight and match fine."* Type `ven`, the box reads `vendor` with `dor` highlighted;
+  keep typing and the proposal is replaced; leave it and it is accepted. **No chips, no
+  dropdown, no extra surface** — the box completes itself rather than offering something to
+  click, which is L18 applied to an input.
+  - The client's own mechanism cannot be reused: `AutoComplete_Update` /
+    `GetAutoCompleteResults` is a C API that returns **player names only**, and this fork's
+    `AutoCompleteInputMixin` is a **dropdown list** (the Bug Report search box), not this. The
+    behaviour is **replicated, not borrowed**.
+  - **Complete only when the user ADDED characters.** Completing on a delete makes the box
+    fight you — backspace, get the letter handed back, forever.
+  - **Exclude the record being EDITED from the scan.** Tags save on every keystroke (stored as
+    typed), so without this the half-word in the box is already stored and the suggestion is
+    the user's own typing handed back. Found live in v0.1.0; now a smoke regression.
 - **Same mechanism as the filter (AC-54), pointed at input instead of output:** scan the
   records, offer back what is there. **We still own no vocabulary.**
 - **★ It ships WITH the tag input, in v1** — not with the V2 filter. The two halves of this
