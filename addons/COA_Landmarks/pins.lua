@@ -67,6 +67,10 @@ local function showNote(self)
     end
     if lm.owner == Store.GLOBAL then
         WorldMapTooltip:AddLine("all characters", 0.5, 0.5, 0.5)
+    elseif not Store.IsMine(lm) then
+        -- only visible in the show-all recovery view; say WHOSE it is, since
+        -- that is the whole reason you are looking at it.
+        WorldMapTooltip:AddLine(tostring(lm.owner), 1, 0.53, 0)
     end
     WorldMapTooltip:AddLine(" ")
     WorldMapTooltip:AddLine("Click to go  ·  Right-click to edit", 0, 1, 0)

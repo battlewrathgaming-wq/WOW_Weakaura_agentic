@@ -95,6 +95,7 @@ local USAGE = {
     "|cffffd100/lm|r            show or hide the widget",
     "|cffffd100/lm here|r       mark where you are standing (macro-safe)",
     "|cffffd100/lm list|r       list what this character can see",
+    "|cffffd100/lm all|r        show EVERY character's landmarks (recovery; off at login)",
     "|cffffd100/lm help|r       this",
 }
 
@@ -111,13 +112,35 @@ SlashCmdList["COALANDMARKS"] = function(msg)
             NS.Print("no landmarks yet - stand somewhere that matters and /lm here")
             return
         end
-        NS.Print(("%d landmark(s):"):format(#all))
+        NS.Print(("%d landmark(s)%s:"):format(#all,
+            NS.Store.showAll and " |cffff8800[showing ALL characters]|r" or ""))
         for _, e in ipairs(all) do
             local where = e.lm.subZone ~= "" and e.lm.subZone or e.lm.zone
-            NS.Print(("  |cffffd100%s|r  %s%s"):format(
-                e.lm.alias, where,
-                e.lm.owner == NS.Store.GLOBAL and "  |cff888888(all characters)|r" or ""))
+            local tag = ""
+            if e.lm.owner == NS.Store.GLOBAL then
+                tag = "  |cff888888(all characters)|r"
+            elseif not NS.Store.IsMine(e.lm) then
+                -- only reachable in show-all: name the owner so an orphan is
+                -- recognisable as one.
+                tag = ("  |cffff8800(%s)|r"):format(tostring(e.lm.owner))
+            end
+            NS.Print(("  |cffffd100%s|r  %s%s"):format(e.lm.alias, where, tag))
         end
+
+    elseif cmd == "all" then
+        if lockedComplaint() then return end
+        NS.Store.showAll = not NS.Store.showAll
+        local n = #NS.Store.Visible()
+        if NS.Store.showAll then
+            NS.Print(("showing |cffff8800ALL|r characters' landmarks - %d visible. "
+                .. "To rescue one from a deleted character, edit it and set "
+                .. "|cffffd100Visible to|r."):format(n))
+            NS.Print("This is a recovery view and resets at login. |cffffd100/lm all|r again to leave it.")
+        else
+            NS.Print(("back to this character's view - %d visible."):format(n))
+        end
+        if NS.Pins then NS.Pins:Refresh() end
+        NS.Widget:Refresh()
 
     elseif cmd == "help" then
         for _, line in ipairs(USAGE) do NS.Print(line) end

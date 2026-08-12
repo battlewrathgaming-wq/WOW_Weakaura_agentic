@@ -221,10 +221,29 @@ function Store.Get(id)
     return db().landmarks[id]
 end
 
+-- ★ SHOW-ALL: the recovery path for ORPHANED records.
+--
+-- Delete a character and its landmarks remain in the file with an `owner` no
+-- one will ever match again - present, unreachable, and unrecoverable. We
+-- cannot detect this: holding no roster is deliberate (AC-5a), so we never
+-- learn a character is gone. The answer is therefore NOT detection, it is a
+-- way to STOP FILTERING and let the user see what is there.
+--
+-- SESSION-ONLY, deliberately: this is a recovery mode, not a view preference.
+-- It should be off every login, because "everything on the account" is not the
+-- normal way to look at your own landmarks.
+Store.showAll = false
+
 local function visibleToMe(lm)
+    if Store.showAll then return true end
     return lm.owner == Store.GLOBAL or lm.owner == UnitName("player")
 end
 Store.VisibleToMe = visibleToMe
+
+-- Is this record reachable in the NORMAL view? Used to mark orphans plainly.
+function Store.IsMine(lm)
+    return lm.owner == Store.GLOBAL or lm.owner == UnitName("player")
+end
 
 -- Sorted by id so the order is stable between calls (the UI must not shuffle).
 function Store.Visible()

@@ -150,6 +150,28 @@ end
 Store.Delete(ghostLm)
 P.sub = "Everlook"
 
+-- AC-5b: ORPHAN RECOVERY. A deleted character's landmarks keep an `owner` no
+-- one will ever match again - present in the file, unreachable, unrecoverable.
+-- We cannot detect it (no roster, by design), so the answer is a way to stop
+-- filtering. Asserted because "invisible forever" is the failure it prevents.
+P.sub = "Orphan Ridge"
+local orphan = Store.Create()
+Store.Set(orphan, "owner", "DeletedAlt")
+local mine = 0
+for _, e in ipairs(Store.Visible()) do if e.id == orphan then mine = mine + 1 end end
+assert(mine == 0, "an orphan must NOT show in the normal view")
+assert(not Store.IsMine(Store.Get(orphan)), "IsMine marks it as not ours")
+
+Store.showAll = true
+local seen = 0
+for _, e in ipairs(Store.Visible()) do if e.id == orphan then seen = seen + 1 end end
+assert(seen == 1, "AC-5b FAILED: show-all did not surface the orphan")
+Store.showAll = false
+assert(select(1, Store.SetOwner(orphan, false)), "and it can be CLAIMED back")
+assert(Store.IsMine(Store.Get(orphan)), "claiming makes it visible again")
+Store.Delete(orphan)
+P.sub = "Everlook"
+
 -- AC-48: refuse a version we do not know, and CHANGE NOTHING
 COA_LandmarksDB.schemaVersion = 99
 Store.locked = nil

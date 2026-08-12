@@ -161,6 +161,33 @@ is a second, stronger one:
 > `UnitName("player")` is always current and always correct. The addon never learns who your
 > alts are, and therefore can never be wrong about them.
 
+**★★ AC-5b — ORPHANED RECORDS, and the recovery path (Battlewrath, 2026-08-12).** *"When you
+delete a character. The items still exist, just no one has the ID to see them. So on the map
+editor UI, we probably need a admin tick, and a way to load all."*
+
+**A real defect, and the exact price of holding no roster.** Delete a character and its
+landmarks keep an `owner` nothing will ever match again — present in the file, unreachable,
+unrecoverable. **We cannot detect this**: not knowing your characters is the deliberate choice
+that keeps us from owning a list that rots (AC-5a). So the answer is **not detection, it is a
+way to STOP FILTERING**.
+
+**v1 ships `/lm all`** — a toggle that unfilters. Orphans appear, the pin tooltip and `/lm list`
+**name the owner** (that being the whole reason you are looking), and the edit form's
+`Visible to` claims one back. **Session-only, off at every login:** it is a recovery mode, not
+a view preference, and "everything on the account" is not how you look at your own landmarks.
+
+**The admin tick belongs in V2's editor** (§14) where there is a surface for it; the slash
+toggle is the v1-sized version of the same thing.
+
+> **★ Why this is the RIGHT shape rather than a workaround:** it needs no roster, no detection,
+> no cleanup pass and no stored state. It does not learn that a character is gone — it just
+> stops hiding things, and lets the person who knows do the deciding. Every alternative
+> (prune orphans, track characters, warn on deletion) requires us to know something we
+> deliberately do not.
+
+Asserted in the smoke: an orphan is invisible normally, surfaced by show-all, and claimable.
+Mutation-tested — removing the unfilter fails with *"show-all did not surface the orphan"*.
+
 **★ One consequence made VISIBLE rather than left to be discovered:** demoting a global
 **claims it for whoever is standing there** (AC-46: "demotion assigns the current character").
 So the dropdown reads **"Only Gravekeeper"**, not "this character" — the label states the
