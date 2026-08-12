@@ -481,6 +481,44 @@ seen both in the browser and we have not.
     Whether we want that quiet acknowledgement is a separate question from whether arrival
     shouts. Not decided.
 
+13. **★★ WE DO NOT COMPETE FOR THE BEACON — LAST EXPLICIT USER ACTION WINS (Battlewrath,
+    2026-08-12).** Verbatim: *"We expect to be over-written and do not compete. They select a
+    quest, quest wins. They select a marker they made for them self, that wins. The widget can
+    carry the last selected location to re-pin, but that's an over-write, not a race."*
+
+    **★ HONOURING THIS TAKES ACTIVE WORK, because the client implements the OPPOSITE.** F24's
+    ladder is **fixed precedence by type, not recency**, and `SUPER_TRACKED_POSITION` is tested
+    *above* quest selection. So once our position is set it wins **every** re-evaluation: the
+    user selects a quest, the existing `SelectQuestLogEntry` hook re-runs the ladder, our
+    position is still set, **Position wins again** and their selection has no effect. Nothing
+    in normal play clears that global. **Passivity does not make us lose gracefully — it makes
+    us win, silently and indefinitely.**
+
+    **So the mechanism is to YIELD:** clear `SUPER_TRACKED_POSITION` when the user picks a
+    quest and let the ladder fall through to Quest. Deliberate, and the opposite of the
+    set-it-and-leave-it instinct.
+
+    **No re-assert, ever.** The widget holds the last pinned location so re-pinning is one
+    click — *"an over-write, not a race"*. Re-pinning is always a user act; we never reclaim
+    the slot on our own.
+
+    **★ SESSION SCOPE — the beacon does NOT persist across login (Battlewrath):** *"dropping it
+    on log-in is fine. Last session's goals doesn't mean the player is still pursuing that."*
+    **This DELETES work rather than adding it** and supersedes F24's consequence ③: there is no
+    restore logic, because there is nothing to restore. The widget's remembered location does
+    persist — the *beacon* does not. It also disarms the login trap outright: the client's
+    programmatic `SelectQuestLogEntry` on `PLAYER_ENTERING_WORLD` has no pin to drop.
+
+    **OPEN, small, and the only survivor of that trap — `QUEST_TURNED_IN`.** `QuestFrame.lua:27`
+    runs `SuperTrackerUtil.UpdateSelectedQuest` on turn-in, which calls `SelectQuestLogEntry`
+    **unconditionally** (re-selecting the same quest still calls it). So a naive yield-hook
+    drops the user's pin **every time they hand in a quest**, which no user performed as a
+    choice. Quest *accept* needs no special case — taking a quest reads as an explicit act of
+    pursuing it, so yielding there is correct. Two ways to settle turn-in, his call in the AC
+    document: **(a) accept it** — turn-in is quest-flow activity, zero mechanism; or **(b) yield
+    only when the selected questID actually CHANGED** — change detection, not intent detection,
+    so it stays mechanical and invents nothing.
+
 ## 6. Accepted with a gate
 
 **"What was killed in this pull"** — during an open fight, note identities so the editor can
