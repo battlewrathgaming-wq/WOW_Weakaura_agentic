@@ -74,6 +74,7 @@ identity, captured together at creation:
 | `alias` | the **display** name, user-editable — defaults to `subzone int` (AC-4) |
 | `what`, `why` | two free-text fields, either may be empty [L4, AC-37] |
 | `icon` | user-chosen from a palette; defaults by context [AC-38] |
+| `tags` | a plain comma-separated string, **as typed** (AC-54) |
 | `arrivalTier` | one of three [L14] |
 | `owner` | **one field, two forms**: `"global"` or a character name (AC-46) |
 
@@ -432,6 +433,33 @@ free. Adding one is a line of data plus that check.
 **In-dungeon icons are out of scope for this build** (Battlewrath) — they belong to the route
 half. Law 19 applies there unchanged when it comes.
 
+**AC-54 [Battlewrath, 2026-08-12] — `tags`: a plain comma-separated string, stored AS TYPED,
+with NO tag registry.** *"I'd have tags as markdown… Tags:<string>,<string>,<string>, and the
+filter can detect strings and offer them."*
+
+- **Stored raw — exactly the characters the user typed.** We never normalise on write, never
+  reorder, never de-duplicate. Splitting on `,` and trimming happens **at read time**. That is
+  AC-49 (readable without our code) and the inert principle: *a page doesn't know what you
+  drew*.
+- **★ NO TAG REGISTRY, and this is the load-bearing part.** There is no managed vocabulary, no
+  "edit your tags" screen, no predefined set. **The filter discovers tags by scanning the
+  records and offers back what it finds.** We never own the list — the user's typing *is* the
+  list.
+- **The FIELD ships in v1; the FILTER is V2** (§14). Same pattern as AC-5's `owner`: adding a
+  field later means migrating someone's landmarks, adding it now costs a line. And a v1 that
+  accepts tags **tells us whether anyone tags at all**, which is the evidence that decides
+  whether V2's filter is worth building.
+- **Case and duplicate handling are deliberately UNDECIDED.** If someone types `Vendor` and
+  `vendor` the filter will offer both, and that is V2's problem to have an opinion about —
+  deciding it now would be designing ahead of the filter that consumes it.
+
+> **⚠ This is NOT the third note field rejected in AC-37.** That was a third place to write
+> **prose**, and it was refused because two labelled boxes are a prompt while three are
+> paperwork. **A tag is not prose — it is a label for retrieval.** Different job, and it is the
+> legitimate exception to law 19 flagged in §14: nothing keys off the **icon** because an icon
+> is chosen for how it *looks*; tags exist **to be keyed off**, because the user authored them
+> as categories.
+
 **AC-40 [RESOLVED — Battlewrath, 2026-08-12] — the tier is a PROPERTY OF THE LANDMARK, set in
 its edit form.** Not implied by the icon (that would have been inference, and inference makes
 plausible wrongs), and not chosen at capture [L4, AC-7].
@@ -454,6 +482,8 @@ Beacon hide:
   ( ) Interact with      5 yd
 
 Icon:  [landmark] [farming] [vendor]
+
+Tags:  [vendor, winterspring, alt        ]
 ```
 
 **AC-40b — NO custom radius.** Considered and rejected:
@@ -596,7 +626,7 @@ misbehaviour, not about the design.
 | **Beacon control** — the slot discipline | AC-17, 18, 19, 20, 20a, 21 |
 | **Arrival** | AC-22, 23, **24**, 25, **26**, 27, 28, 29, 30 |
 | **Map pins + click-to-edit** | AC-31, 32, 33, 34, 35, 36, 36a, 40a, 42 |
-| **Notes** | AC-37, 41 |
+| **Notes** | AC-37, 41, **54** (the `tags` FIELD and its input line — the filter is V2) |
 | **Standing rules** | AC-38c, 40b, 43, **45** |
 
 † **AC-5 in v1 means the `owner` FIELD, not the promote/demote UI.** Per character now; the field and the
@@ -867,6 +897,8 @@ His sketch, verbatim in shape:
 
 > **Light tagging.** *"But that is V2. When we get into the editor UI."*
 >
+> **— REVISED same day: the `tags` FIELD lands in v1 (AC-54); only the FILTER is V2.**
+>
 > A **bespoke interface** — summons maps **free of noise**, shows **just our items**. With a
 > panel of:
 > ```
@@ -890,9 +922,10 @@ to the map itself.
    is not a coincidence: *"MapID, zone and sub-zone as the look up records."* **The v1 storage
    shape already supports V2's browser with no change**, which is the storage design paying for
    itself before V2 exists.
-2. **Tagging is a new field, which is precisely what `schemaVersion` (AC-48) was built for.**
-   V2 is the first real test of the rewrite contract (AC-53) — and if it is a version bump that
-   reads v1 data cleanly, the contract worked.
+2. ~~Tagging is a new field, which is precisely what `schemaVersion` was built for.~~
+   **Overtaken by AC-54: the field ships in v1**, so V2's filter needs no migration at all —
+   it reads data v1 has been collecting. `schemaVersion` (AC-48) still stands as the insurance;
+   this simply spends less of it.
 3. **⚠ Caution — tags are NOT icons, and law 19 must not be read as forbidding them.** Law 19
    says nothing keys off the **icon**, because an icon is chosen for **how it looks**. A tag is
    authored **as a category**, explicitly so that filtering can key off it. Different jobs, and
