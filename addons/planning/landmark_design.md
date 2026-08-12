@@ -199,9 +199,10 @@ likely to be skipped and most damaging if it is.**
 Calling `C_SuperTrack.SetSuperTrackedPosition` directly bypasses the client's priority ladder;
 it appears to work and is then silently overwritten by the next re-evaluation.
 
-**AC-18 [F24]** — we keep **our own copy** of the pinned landmark. `SUPER_TRACKED_POSITION` is
-the client's global and it **nils it** whenever `showInGameNavigation` is off. Our intent must
-survive that.
+**AC-18 [F24, CONFIRMED BY OBSERVATION F41]** — we keep **our own copy** of the pinned
+landmark. `SUPER_TRACKED_POSITION` is the client's global and it **nils it** whenever
+`showInGameNavigation` is off — read in source, and now **watched happening**: 99 of 99 samples
+in the CVar-off run reported `gp = -1`. Our intent must survive that.
 
 **AC-19 [L13]** — **we never re-assert.** Once the slot is lost — to a quest, to a corpse, to
 anything — we do not take it back. Only the user does, via `repin`.
@@ -360,21 +361,22 @@ position. The map may edit meaning; it may never edit place.
 
 **AC-43 [bench standard]** — no silent truncation anywhere. If a limit is hit, it is reported.
 
-**AC-44 [O — HELD, NOT DESIGNED]** — behaviour when `showInGameNavigation` is off.
+**AC-44 [RESOLVED — Battlewrath, 2026-08-12, after measuring it]** — when
+`showInGameNavigation` is off, **the map editor surfaces an easy tick to switch it on.**
 
-**Basis only, per Battlewrath (2026-08-12): *"Record the basis not the proposition."*** The
-facts, and nothing built on them:
+**Detection is a direct CVar read** — `C_CVar.GetBool("showInGameNavigation")` — not an
+inference from state. (F41 records the runtime signature for understanding: `Invalid`, tracking
+**false**, `gp = -1`, **nil** distance — distinguishable from a map-boundary refusal, which keeps
+tracking true, `gp = 1` and returns `0.00`.)
 
-- The CVar is the **master switch for the entire supertrack system**, tested above the priority
-  ladder — so the quest arrow and corpse arrow go with it [F40]. It is a user-facing checkbox in
-  the Display options panel.
-- Turning it off makes the client **clear the supertracker**, which nils `SUPER_TRACKED_POSITION`
-  [F24 ②] — **read in source, never observed.**
-- **The off path is unmeasured** [F41]: all three probe runs ran with it on. `NavigationState`
-  values `Occluded` (1) and `Disabled` (3) have never been seen in 1,758 samples.
-
-**No criterion is written here until the probe runs** (§7 of the ledger carries the exact test).
-Designing for an unobserved path is how a plausible wrong gets built.
+- **We never flip it silently.** The tick is a control the user clicks; the addon changes no
+  setting on its own.
+- **It lives in the map editor** — a surface the user deliberately opened while thinking about
+  landmarks — not as a popup or a chat line. Behavioural, not instructional [L18].
+- **Why this is proportionate:** the CVar is the master switch for the whole supertrack system
+  [F40], so a player who turned it off also gave up their quest arrow and corpse arrow. They
+  are not confused; they are configured. A tick where they are already working respects that,
+  while a nag would not.
 
 **AC-45 [bench standard]** — an offline smoke under `lua51` asserting every mechanical criterion
 above, in `addons/tools/smoke/`, green before any deploy. **AC-24 and AC-26 must both be
@@ -406,4 +408,4 @@ directly asserted** — they are the two that fail silently in the field.
 | **AC-41 [O]** | `Zone` vs `Zone — Subzone` on the widget line |
 | **AC-21 [O]** | the `QUEST_TURNED_IN` yield |
 | **AC-16 [P]** | widget movability |
-| **AC-44 [O]** | CVar-off behaviour — **held pending measurement**, basis recorded, nothing designed |
+| ~~AC-44~~ | **RESOLVED** — map editor surfaces a tick to enable Game Navigation |

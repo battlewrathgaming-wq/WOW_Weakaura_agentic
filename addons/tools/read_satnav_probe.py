@@ -45,8 +45,9 @@ def main():
 
     pin = p["pin"]
     # Rows from a DIFFERENT map are in a different coordinate space entirely, so
-    # player-vs-pin separation is meaningless there - and rows the engine declined
-    # report sd = 0.00 (not nil), which would poison every fit and count below.
+    # player-vs-pin separation is meaningless there. Rows the engine declined are
+    # excluded too: across a map boundary it returns sd = 0.00 (F38), and with the
+    # CVar off it returns nil (F41) - both would poison the fit, differently.
     # The task guards its own hd/vd the same way; the reader must match it.
     rows = [r for r in p["rows"]
             if r.get("sd") is not None and r.get("px") is not None
@@ -65,8 +66,22 @@ def main():
         print(f"note: {offmap} row(s) on another map - excluded from the distance fit "
               f"(different coordinate space)")
     if declined:
-        print(f"!! {declined} row(s) where the engine returned NavigationState.Invalid AND "
-              f"sd = 0.00 - excluded from the fit. A zero here is a REFUSAL, not an arrival.")
+        zeros = sum(1 for r in p["rows"] if r.get("ts") == 0 and r.get("sd") == 0)
+        print(f"!! {declined} row(s) with NavigationState.Invalid - excluded from the fit"
+              + (f"; {zeros} of them reported sd = 0.00, and a zero there is a REFUSAL, "
+                 f"not an arrival" if zeros else "; distance was nil, not zero") + ".")
+    # A CVar-off run is a VALID record with zero usable rows - report its signature
+    # rather than dying with "no usable rows", which reads like a broken capture.
+    if p["env"].get("showInGameNavigation") is False:
+        print("")
+        print("*** showInGameNavigation was OFF for this run ***")
+        allr = p["rows"]
+        sig = lambda f: sorted({str(r.get(f)) for r in allr})
+        print(f"    samples {len(allr)}  ·  state {sig('ts')}  ·  tracking {sig('tr')}  "
+              f"·  gp {sig('gp')}  ·  distance {sig('sd')}")
+        print("    Signature to compare against a MAP-BOUNDARY refusal (F38), which also")
+        print("    reports Invalid but keeps tracking=true, gp=1 and a distance of 0.00.")
+        return
     usable = len(rows)
     if not rows:
         sys.exit("no usable rows")
