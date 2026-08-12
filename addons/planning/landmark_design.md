@@ -642,3 +642,107 @@ Named before building, because they decide what is worth watching:
 - **★ Does the beacon-vs-quest contention actually occur?** Law 17's *"different modes take
   turns"* is reasoning, not evidence, and **AC-21's accept-it rests on it**. v1 makes it
   evidence.
+
+---
+
+## 13. STORAGE — the mechanical spine (Battlewrath, 2026-08-12)
+
+*"My main interest is the storage over the UI feel. We can tinker with the feel, but the
+mechanical systems should be well developed / defined. Or a willingness to re-write when we
+need to. Rather than building on patches."*
+
+**★ THE PRINCIPLE THAT FALLS OUT: what is expensive to change is what is PERSISTED.** UI is
+free — a widget can be redrawn on a whim and nobody loses anything. A stored shape carries
+someone's landmarks, so getting it wrong means either a migration or a loss. **§3 is a field
+list; this is the design.** §3's `AC-1` remains the authority on *which* fields exist; this
+section says how they live.
+
+**Nothing in §13 is derived from a law** — no law covers storage. Every decision below is marked
+**[P]**, and the two marked **[P!]** are the ones that are **hard to reverse**.
+
+### AC-46 [P!] — ONE account-wide SavedVariables, with `scope` and `owner` ON THE RECORD
+
+```
+## SavedVariables: COA_LandmarksDB
+```
+
+**Not** `SavedVariablesPerCharacter`. Character-scoped landmarks live in the **same file** and
+are filtered on read by `owner`.
+
+**Why this is the decision that matters:** AC-5 says scope moves **both ways** between character
+and account. If character data lived in a per-character file, promotion would be a **migration
+between two files** — read from one, write to the other, and be correct about failure halfway
+through. With one file it is **a field flip**. Same behaviour, no moving parts.
+
+Cost of the choice, stated: every character loads every character's landmarks. At tens of
+records this is nothing, and if it ever is not, the fix is a read-time index rather than a
+change of shape.
+
+### AC-47 [P!] — IDENTITY is the monotonic counter, and it is NOT the name
+
+AC-4's `n` — account-wide, monotonic, **never reused after a deletion** — **is the landmark's
+id**. One mechanism, two uses: it identifies the record and it seeds the default name.
+
+**The name can never be an identity.** The user renames (AC-4b), so a name is display only.
+**Position can never be an identity either** — it is frozen (AC-2) but two landmarks may sit on
+the same spot, and comparing floats for equality is a bug waiting to happen.
+
+### AC-48 [P!] — a `schemaVersion` on the DB, from the first line of code
+
+```lua
+COA_LandmarksDB = { schemaVersion = 1, nextId = 1, landmarks = { ... } }
+```
+
+**This is what makes "willingness to re-write" mechanically possible rather than aspirational.**
+A rewrite is only cheap if the new code can *recognise* and *read* the old data. Without a
+version stamp, the choice at rewrite time is guess-the-shape or discard-the-user's-work — which
+is precisely the patching-on-patches he is refusing.
+
+**Rule: the loader reads any version it knows and refuses cleanly on one it does not** (AC-43:
+no silent anything). It must never *guess* at an unversioned or future shape.
+
+### AC-49 [P] — the persisted record is DATA ONLY
+
+No functions, no frames, no derived values, no caches. A landmark is a flat table of the AC-1
+fields plus its `id`. **Nothing in the file may require code to interpret it** — that is what
+lets a future version read it, and what lets us read it with `py` from a landed record.
+
+Corollary of law 19: **the `icon` is a plain atlas-name string.** Nothing keys off it, so it
+persists as a name and nothing more.
+
+### AC-50 [P] — NO index. Iterate the flat list.
+
+Rendering pins for the displayed map (AC-34) means "landmarks where `mapID` matches". At tens
+of records that is a loop. **A `mapID`-keyed index would be a second structure to keep
+consistent with the first**, and consistency bugs outlive the performance they buy.
+
+Same reasoning as the pooling decision (§2): do not import a solution to a problem we do not
+have. If the loop ever costs anything measurable, `task_perf` measures it and we revisit with
+numbers.
+
+### AC-51 [P] — deletion is a hard delete; the counter never rewinds
+
+Remove the record. **No tombstones** — nothing in v1 syncs or shares, so nothing needs to know a
+record once existed. `nextId` **never** decreases, so a deleted landmark's id is never handed
+to a different one, and AC-4's freshness ordering survives deletion.
+
+### AC-52 [P] — what is NEVER persisted
+
+The held landmark, the beacon state, pin frames, the supertrack slot, anything read from the
+client at runtime. **Session state dies with the session** — AC-15 and law 13 already require
+this for the beacon; AC-52 generalises it so nothing else quietly acquires persistence.
+
+### ★ AC-53 [P] — THE REWRITE CONTRACT
+
+His stance — *rewrite rather than patch* — is only affordable if three things hold, so they are
+criteria rather than good intentions:
+
+1. **The persisted shape is versioned** (AC-48) and **readable without our code** (AC-49).
+2. **Storage is reachable through one module.** Everything else — widget, pins, beacon, capture
+   — goes through it and never touches `COA_LandmarksDB` directly. A rewrite then replaces one
+   file, not a search across the addon.
+3. **The smoke asserts the STORED SHAPE, not just behaviour** (AC-45). A test that only checks
+   "the widget shows the right name" passes happily while the file rots underneath it.
+
+**Read together: we may throw the UI away at any time, and we may throw the storage away
+deliberately — but never accidentally, and never without being able to read what was there.**
