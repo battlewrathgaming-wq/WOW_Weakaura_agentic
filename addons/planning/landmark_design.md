@@ -1259,6 +1259,43 @@ frame budget. The floor check also moved **above** the API call.
 
 The census now reports `COA_Landmarks` at **0 persistent OnUpdate handlers**.
 
+### ★ AND THEN THE CADENCE ITSELF — AC-29 revised (Battlewrath, same conversation)
+
+*"That 60x sec polling when live. What does that buy? … the yard calc is performed for us for
+free. So where is the benefit to the polling cadence as stands?"*
+
+**None.** Two facts kill the old two-tier throttle (0.05 s moving / 1 s idle):
+
+1. **AC-26 requires the condition to hold a FULL SECOND** before we act — so 20 samples per
+   debounce window discards 19 of them. We were buying resolution we then deliberately threw
+   away.
+2. **A late arrival costs nothing.** Arriving is silent [L12] and the engine already fades its
+   own beacon at `InRadius` [F21], so noticing a second late is **invisible**. We were paying
+   20 Hz for precision on an event with no deadline.
+
+**AC-29 now paces on DISTANCE**, which is the thing the engine gives us for free [F28]: at
+distance *D* and tier *T*, arrival cannot happen sooner than `(D − T) / speed`.
+
+| | |
+|---|---|
+| `MAX_CLOSING_SPEED` | **30 yd/s** — ~29 is a 310% flying mount, so this has headroom |
+| `POLL_MIN` | **0.20 s** — 5 samples per debounce window, ample |
+| `POLL_MAX` | **2.00 s** — worst case, arrival noticed 2 s late, invisibly |
+
+At 800 yards that is one check every 2 s instead of 20 a second, to catch something that
+**cannot happen for 26 seconds**.
+
+**The one assumption, and why it is safe:** being wrong about `MAX_CLOSING_SPEED` only ever
+makes an arrival **late, never missed** — the next poll still sees a distance inside the tier,
+because you *stopped* there. That is why the ceiling can be loose and the floor tight. It is
+also **simpler than what it replaced**: `lastPos` tracking is gone entirely.
+
+**⚠ A test went vacuous and had to be caught:** AC-26's step was `0.10 s`, below the new
+`0.20 s` floor — so it stopped polling at all, and the assertion passed because the code
+*never looked* rather than because the debounce held. Raised above the floor, with the reason
+written into the smoke. **A guard's test has to be re-checked when the thing around it changes
+pace**; both AC-24 and AC-26 were re-mutation-tested afterwards and both still bite.
+
 **★ Two things this exposed, both recorded where they will be met again:**
 - **The census can see that a throttle EXISTS, not WHERE IT SITS.** `throttle? yes` was true and
   useless here. Noted in `addons/maps/addons/README.md`.

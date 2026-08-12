@@ -239,11 +239,16 @@ assert(Beacon.PinnedId() == id, "AC-25 FAILED: arrived while on a different map"
 P.mapID = 1
 
 -- ---- AC-26: the guard must judge a SUSTAINED state ----
--- One frame of a valid-looking arrival is not an arrival.
+-- One poll of a valid-looking arrival is not an arrival.
+--
+-- The step MUST exceed the poll floor (POLL_MIN, 0.20s) or this asserts nothing:
+-- a smaller step simply would not poll, and the test would pass because the code
+-- never looked rather than because the debounce held. Caught when distance
+-- pacing replaced the old 0.05s floor.
 S.state, S.dist = 2, 1.0
-step(0.10)
+step(0.30)
 assert(Beacon.PinnedId() == id,
-       "AC-26 FAILED: a single frame was enough to fire arrival")
+       "AC-26 FAILED: a single poll was enough to fire arrival")
 
 -- ---- and a real arrival, once it has held ----
 step(1.0)

@@ -31,13 +31,36 @@ NS.Beacon = Beacon
 -- that when it does, this is the one place to change.
 local CLIENT_BEACON_CUTOFF = 1500
 
-local POLL_IDLE      = 1.00   -- AC-29: cheap when the player has not moved
-local POLL_MOVING    = 0.05   -- AC-29: responsive when they have
 local ARRIVAL_HOLD   = 1.00   -- AC-26: how long the arrival condition must hold
+
+-- ★ AC-29 REVISED (Battlewrath, 2026-08-12): pace on DISTANCE, not on movement.
+--
+-- The old shape was a two-tier throttle - 0.05s while moving, 1s standing still.
+-- His challenge: "where is the benefit to the polling cadence as stands?" There
+-- is none. Two facts kill it:
+--   * AC-26 requires the arrival condition to hold a FULL SECOND before we act,
+--     so 20 samples per debounce window discards 19 of them.
+--   * A late arrival costs NOTHING. Arriving is silent (L12) and the engine
+--     already fades its own beacon at InRadius (F21), so noticing a second late
+--     is invisible. We were paying 20Hz for precision on an event with no
+--     deadline.
+--
+-- The engine hands us YARDS for free (F28), so we can pace on how soon arrival
+-- is even POSSIBLE: at distance D and tier T, no sooner than (D-T)/speed.
+--
+-- MAX_CLOSING_SPEED is the one assumption here, and it is deliberately generous:
+-- ~29 yd/s is a 310% flying mount, so 30 leaves headroom. Being WRONG about it
+-- only ever makes an arrival LATE, never missed - the next poll still sees a
+-- distance inside the tier, because you stopped there. That is why the ceiling
+-- can be loose and the floor tight.
+local MAX_CLOSING_SPEED = 30    -- yards/second, generous
+local POLL_MIN          = 0.20  -- 5 samples per debounce window: ample
+local POLL_MAX          = 2.00  -- worst case: arrival noticed 2s late, invisibly
 
 -- AC-52: all of this is SESSION state and is never persisted.
 local pinnedId, pinnedLM = nil, nil
-local arrivalSince, lastPos, acc, tick = nil, nil, 0, nil
+local arrivalSince, acc, tick = nil, 0, nil
+local nextIn = POLL_MIN     -- seconds until the next check; set from distance
 
 -- FORWARD DECLARATION. Beacon.Pin installs this handler but is defined ABOVE it,
 -- and this line is what keeps that working WITHOUT leaking a global.
@@ -86,7 +109,7 @@ function Beacon.Pin(id)
     -- AC-18: we keep our OWN copy. The client nils its global whenever
     -- showInGameNavigation goes off (F41), so its global is not our storage.
     pinnedId, pinnedLM = id, lm
-    arrivalSince, acc, lastPos = nil, 0, nil
+    arrivalSince, acc, nextIn = nil, 0, POLL_MIN
 
     -- ★ The poll EXISTS ONLY WHILE WE HOLD A PIN. Not a micro-optimisation -
     -- it is the design: scrapbook use is episodic and errand-driven (§9, L17),
@@ -167,6 +190,16 @@ local function poll(elapsed)
         return
     end
 
+    -- Pace the NEXT check from the distance we can see now. Cheap: this is the
+    -- same read arrivalConditionMet() makes, and it costs one division.
+    local _, _, dist = C_SuperTrack.GetSuperTrackedPosition()
+    if dist and pinnedLM then
+        local slack = (dist - Store.TierYards(pinnedLM.tier)) / MAX_CLOSING_SPEED
+        nextIn = math.max(POLL_MIN, math.min(POLL_MAX, slack))
+    else
+        nextIn = POLL_MIN
+    end
+
     if arrivalConditionMet() then
         -- AC-26: judge a SUSTAINED state. A single frame during a loading
         -- screen is not an arrival.
@@ -180,20 +213,18 @@ local function poll(elapsed)
     end
 end
 
--- AC-29: two-tier throttle - ~1s standing still, 0.05s floor while moving.
+-- AC-29: the interval is set by the LAST KNOWN distance - how soon arrival could
+-- even happen. Nothing else is read per frame; `nextIn` is just a number.
 --
--- ★ The FLOOR CHECK COMES FIRST, before GetCurrentPlayerPosition(). The
--- original read the position every frame and threw the result away 59 times a
+-- ★ The interval check comes FIRST, before any API call. The original read
+-- GetCurrentPlayerPosition() every frame and threw the result away 59 times a
 -- second: the throttle was real but sat AFTER the work it was throttling. The
 -- addon census reported "throttle? yes" and was right about the wrong thing -
 -- it can see that a throttle exists, not where it sits.
 function onUpdate(_, elapsed)                   -- assigns the forward-declared local
     acc = acc + elapsed
-    if acc < POLL_MOVING then return end        -- cheapest possible early-out
-    local x, y = GetCurrentPlayerPosition()
-    local pos = x and (x + y) or 0
-    if pos == lastPos and acc < POLL_IDLE then return end
-    acc, lastPos = 0, pos
+    if acc < nextIn then return end             -- a float compare, nothing more
+    acc = 0
     poll(elapsed)
 end
 

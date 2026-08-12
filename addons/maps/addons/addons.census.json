@@ -1,5 +1,5 @@
 {
- "_fingerprint": "03fe9999f9ca",
+ "_fingerprint": "e34829bd1bb8",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1674,47 +1674,47 @@
      {
       "name": "Beacon.PinnedId",
       "kind": "function",
-      "line": 67
+      "line": 90
      },
      {
       "name": "Beacon.Clear",
       "kind": "function",
-      "line": 101
+      "line": 124
      },
      {
       "name": "Beacon.CannotGuide",
       "kind": "function",
-      "line": 111
+      "line": 134
      },
      {
       "name": "arrivalConditionMet",
       "kind": "local",
-      "line": 135
+      "line": 158
      },
      {
       "name": "poll",
       "kind": "local",
-      "line": 158
+      "line": 181
      },
      {
       "name": "onUpdate",
       "kind": "function",
-      "line": 189
+      "line": 223
      },
      {
       "name": "Beacon.Init",
       "kind": "function",
-      "line": 202
+      "line": 233
      },
      {
       "name": "Beacon.OwnsSlot",
       "kind": "function",
-      "line": 227
+      "line": 258
      },
      {
       "name": "Beacon.Pin",
       "kind": "function",
-      "line": 227
+      "line": 258
      }
     ],
     "onupdate": 1,
