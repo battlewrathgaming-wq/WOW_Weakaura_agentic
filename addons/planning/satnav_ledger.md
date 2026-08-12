@@ -519,6 +519,55 @@ seen both in the browser and we have not.
     only when the selected questID actually CHANGED** — change detection, not intent detection,
     so it stays mechanical and invents nothing.
 
+14. **★★ ARRIVAL IS PER-LANDMARK AND USER-DEFINED, AND ARRIVAL ALWAYS WIPES (Battlewrath,
+    2026-08-12).** *"Maybe we can let that be user defined, per landmark… Then we always wipe.
+    And the widget gives them an easy re-click to re-find, as it holds the last selected
+    landmark per session."*
+
+    | Tier | Radius | Means |
+    |---|---|---|
+    | **Zone area** | **300 yd** | you are in the right part of the zone |
+    | **Within sight** *(he flagged this as misnamed — "within approach"?)* | **100 yd** | you are closing on it |
+    | **Interact with** | **5 yd** | you are at it |
+
+    **Why per-landmark rather than one global rule:** "arrived" is not one distance. A farm
+    circuit is *somewhere around here*; a vendor is *at the NPC*. A single threshold would be
+    wrong for one of them by design.
+
+    **This completes the slot discipline** begun in law 13: **occupy on an explicit pin ·
+    release on arrival · never reclaim.** We hold the supertrack only for the duration of a
+    deliberate errand and hand it straight back — a stronger form of *do not compete* than
+    yielding, because we are rarely still holding it when a quest selection happens. It also
+    composes with law 12: the beacon quietly retiring itself **is** the silence.
+
+    **★ MECHANISM CORRECTION — use `distance`, NOT `InRadius`.** I had proposed detecting
+    arrival from `NavigationState.InRadius` (F21). Wrong for this: `InRadius` is the **engine's
+    own** notion of proximity and its radius is not ours to set, so it cannot carry a
+    per-landmark tier. The right source is the **third return of
+    `C_SuperTrack.GetSuperTrackedPosition()` — an engine-computed distance in yards** (F10
+    verified the unit: a 50 yd leg computed 49.7). Poll it, compare against the landmark's
+    stored tier. Mechanical, no invention. `InRadius` remains what it was — the engine's fade
+    signal — and stays out of our logic.
+
+    **★ THIS PROMOTES §7'S 3D-vs-2D QUESTION FROM ACADEMIC TO LOAD-BEARING.** At 300 yd the
+    difference is noise. **At 5 yd it decides correctness**: a 2D distance says *arrived* when
+    the vendor is on the floor above you; a 3D distance says *not yet* when you are standing
+    next to them and the stored z was slightly off. The `Interact with` tier cannot be trusted
+    until we know which we are getting — so that probe is now a prerequisite for the tightest
+    tier, not a curiosity.
+
+    **Session scope, consistent with law 13:** the widget holds the **last selected landmark
+    per session** for one-click re-pin. Persists within the session, gone at login.
+
+    **No mechanism needed for "never arrives":** abandon the errand and the beacon simply
+    stays until the user pins something else, selects a quest, or logs out. Nothing to build.
+
+    **OPEN — where the tier gets SET.** Walk stop 1 fixed capture as asking *nothing*, so a
+    tier cannot be chosen at capture. It therefore needs a **default** plus an edit in
+    curation. Two candidates, undecided: a fixed default (middle tier), or **the sticker
+    implies it** (vendor → interact, farm → zone area), which would encode the rule and remove
+    a decision — but is inference, and inference makes plausible wrongs. His call.
+
 ## 6. Accepted with a gate
 
 **"What was killed in this pull"** — during an open fight, note identities so the editor can
@@ -549,8 +598,13 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
 - **Does mapID change across dungeon FLOORS?** Decides whether a floor is a data-model concept
   or just a z value. One dump at the top and bottom of a staircase settles it. Ragefire is
   single-level so this is still untested.
-- **3D vs 2D proximity for advancing.** The engine's own POI logic is 2D; inclination is 3D
-  for advancing and 2D for display, but the numbers should decide.
+- **★ PROMOTED — 3D vs 2D proximity.** Was academic; **law 14's 5 yd `Interact with` tier makes
+  it decide correctness** (2D says *arrived* when the vendor is on the floor above; 3D says
+  *not yet* when you are beside them and the stored z drifted). The engine's own POI logic is
+  2D; inclination is 3D for advancing and 2D for display, but the numbers should decide.
+  **Test:** stand a known vertical offset from a supertracked point with near-zero horizontal
+  separation and read the third return of `C_SuperTrack.GetSuperTrackedPosition()` — near zero
+  means 2D, near the vertical offset means 3D. A stairwell or any upstairs vendor does it.
 - **Does the 3:2 map aspect generalise?** (§4.)
 - **How dungeon map textures are addressed** for display — tiled from the base name in this
   era, but unverified on this fork.
