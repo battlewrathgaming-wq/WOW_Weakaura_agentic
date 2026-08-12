@@ -587,7 +587,7 @@ misbehaviour, not about the design.
 | **Notes** | AC-37, 41 |
 | **Standing rules** | AC-38c, 40b, 43, **45** |
 
-† **AC-5 in v1 means the `scope` FIELD, not the toggle.** Per character now; the field and the
+† **AC-5 in v1 means the `owner` FIELD, not the promote/demote UI.** Per character now; the field and the
 storage shape carry account-level from day one, because adding a field later means migrating
 someone's landmarks. *"Scalability into per account in mind."*
 
@@ -667,7 +667,7 @@ section says how they live.
 **Nothing in §13 is derived from a law** — no law covers storage. Every decision below is marked
 **[P]**, and the two marked **[P!]** are the ones that are **hard to reverse**.
 
-### AC-46 [P!] — ONE account-wide SavedVariables, with `scope` and `owner` ON THE RECORD
+### AC-46 [P!] — ONE account-wide SavedVariables, with `owner` ON THE RECORD
 
 ```
 ## SavedVariables: COA_LandmarksDB
