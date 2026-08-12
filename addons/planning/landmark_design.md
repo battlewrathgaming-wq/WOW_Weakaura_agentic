@@ -185,8 +185,18 @@ a comment**, because a fork update can move it and a bare literal would rot sile
 certainly does not [L13]. *(Whether the widget's held selection is session-only or persists is
 settled: session-only — "holds the last selected landmark **per session**" [L14].)*
 
-**AC-16 [P]** — the widget must be **movable and hideable**, and its position must persist.
-Standard for any always-visible frame; not covered by a law.
+**AC-16 [RESOLVED — Battlewrath, 2026-08-12]** — the widget is **movable and hideable**, and
+its position persists **per character**.
+
+**The minimap button carries both gestures:**
+
+| Gesture | Effect |
+|---|---|
+| **left-click** | **spawns the widget in its last known state** — position, and the landmark it was holding |
+| **right-click** | **capture here** — a *zone–subzone–unique-int grab* (AC-4, AC-8) |
+
+A slash command is also required as a fallback, since some UI replacements hide minimap buttons
+entirely.
 
 ---
 
@@ -236,11 +246,18 @@ We are the first occupant of a high-priority slot nobody expected to be occupied
 - **Do not leave our position set "just in case".** Passivity is not neutrality here: it wins
   indefinitely and silently blocks the player's quest arrow [F24].
 
-**AC-21 [O]** — `QUEST_TURNED_IN` calls `SelectQuestLogEntry` **unconditionally**, so a naive
-yield-hook drops the pin on every hand-in. Two settled options: **(a)** accept it — turn-in is
-quest-flow activity; **(b)** yield only when the selected questID actually *changed* — change
-detection, not intent detection. **Battlewrath leaned (a)** on the grounds that questing and
-scrapbook use are different modes that take turns [L17]. Recorded as [O] pending a final word.
+**AC-21 [RESOLVED — Battlewrath, 2026-08-12: accept it]** — `QUEST_TURNED_IN` calls
+`SelectQuestLogEntry` **unconditionally**, so the yield-hook fires on every hand-in and drops
+the pin. **We accept that.** *"We don't want to get in the way of user flow."* Zero mechanism;
+the cost is one `repin` click in a rare overlap, and the widget still holds the landmark [L17].
+
+> **⚠ DO NOT READ "accept it" AS "no yield needed".** The question was raised as *"I thought
+> the quest clears it in its own call"* — **it does not**, and this is the single most
+> counterintuitive fact in the whole slot discipline. `SetToBestSuperTrackingType` runs the
+> ladder, finds `SUPER_TRACKED_POSITION` **still set**, and **Position wins again**; nothing in
+> the client's flow nils it. **AC-20 is therefore mandatory** — without an active clear we do
+> not lose gracefully, we win permanently and the player's quest arrow never comes back [F24].
+> AC-21 only decides *which* selections count as intent, not *whether* we yield.
 
 ### Arrival
 
@@ -316,9 +333,24 @@ never pushed** [L12].
 map is hidden**, and rebuilds **on event, not on a timer**. No per-frame reposition loop.
 *(Pooling is explicitly NOT required — out of bounds.)*
 
-**AC-36 [P]** — **clicking a pin sets it as the widget's held landmark and pins the beacon.**
-`MapPoiPinMixin` supports a per-pin `OnClickFunction` [F15], and this is the natural retrieval
-gesture — *find on the map, click, go*. **Proposed, not derived from a law.**
+**AC-36 [RESOLVED — Battlewrath, 2026-08-12] — CLICK = GO, EDIT = I'M EDITING, NO GO.**
+
+| Gesture | Effect |
+|---|---|
+| **hover** a pin | the note readout — inspection needs no click (AC-33) |
+| **click** a pin | **sets the destination**: holds it in the widget and pins the beacon |
+| **edit** a pin | opens the edit form (AC-40a) **and CLEARS live tracking** |
+
+*"A simple click sets the destination, in line with how quests work."* `MapPoiPinMixin`
+supports a per-pin `OnClickFunction` [F15].
+
+**★ Why clicking may take the slot without breaching law 13:** hover already covers reading, so
+**a click is a commitment gesture, not a browsing one**. Read by hovering, go by clicking.
+
+**★ AC-36a — entering the edit form CLEARS the beacon.** You cannot be travelling to something
+you are organising — those are different modes [L17], and the clear is a user act because
+*opening the edit form* is one [L13]. It also removes an incoherent state where the beacon
+points at a landmark whose position you are looking at in a form.
 
 ---
 
@@ -419,8 +451,25 @@ keeps the setting a choice between meanings.
 **AC-40c [RESOLVED by AC-38]** — the icon is chosen **in this form**, because it is a landmark
 property rather than a separate thing laid over one.
 
-**AC-41 [O]** — the widget's `Zone` line: zone, or subzone when one exists
-(*"Winterspring — Everlook"*)? One line, real effect on a vendor pin.
+**AC-41 [RESOLVED — Battlewrath, 2026-08-12] — the `Zone` line shows the RESOLUTION THAT IS
+STILL USEFUL, and it is dynamic.** *"Resolution has utility. Out of zone? Show zone. Out of
+sub-zone? Show sub-zone."*
+
+| Where you are | Line 2 shows |
+|---|---|
+| a different zone | **the zone** — *"Winterspring"* |
+| the right zone, wrong subzone | **the subzone** — *"Everlook"* |
+| the right subzone | the subzone; you are there and the beacon has it |
+
+**★ Same principle as `[Map]` (AC-14): say the thing that is actionable NOW, not a static
+fact.** "Winterspring" is useless once you are standing in Winterspring; "Everlook" is what you
+then need.
+
+**On the apparent duplication with the name:** an un-renamed landmark reads *"Everlook 7"* /
+*"Everlook"* once you are in the zone. That overlap is **transient and self-correcting** — the
+name is **user-owned** and gets renamed (*"Bank alt"*), while line 2 is **system-owned** and
+always accurate. The duplication only survives for landmarks the user never cared enough about
+to name.
 
 **AC-42 [RESOLVED — Battlewrath, 2026-08-12]** — note, icon, tier and name are edited in
 **curation, never at capture** [L4]. **Two surfaces, both already in the design:**
@@ -479,14 +528,22 @@ directly asserted** — they are the two that fail silently in the field.
 
 ## 11. What needs a ruling before build
 
-| | |
+**Nothing.** Every criterion in this document is either traced to a law or a proven fact, or
+was ruled on by Battlewrath between 2026-08-12 and the close of the design pass.
+
+| Closed in this pass | |
 |---|---|
-| ~~AC-4~~ | **RESOLVED** — `<subzone> <n>`, monotonic counter, rename in widget or from the pin |
-| ~~AC-42~~ | **RESOLVED** — curation happens in the widget and on the map pin; no separate panel |
-| ~~the addon's name~~ | **RESOLVED** — `COA_Landmarks` |
-| **AC-36 [P]** | pin click → hold + pin the beacon |
-| ~~AC-40~~ | **RESOLVED** — a property of the landmark, set in its edit form; labelled "Beacon hide"; no custom radius |
-| **AC-41 [O]** | `Zone` vs `Zone — Subzone` on the widget line |
-| **AC-21 [O]** | the `QUEST_TURNED_IN` yield |
-| **AC-16 [P]** | widget movability |
-| ~~AC-44~~ | **RESOLVED** — map editor surfaces a tick to enable Game Navigation |
+| the addon's name | `COA_Landmarks` |
+| **AC-4** | auto-naming: `<subzone> <n>`, monotonic counter |
+| **AC-16** | widget frame; minimap-button left = show, right = capture |
+| **AC-21** | `QUEST_TURNED_IN` — accept the drop *(but AC-20 remains mandatory)* |
+| **AC-36** | click = go, edit = no go |
+| **AC-38** | “stickers” collapse into the landmark's icon |
+| **AC-40** | tier is a landmark property, labelled *Beacon hide*, no custom radius |
+| **AC-41** | `Zone` line shows the resolution still useful |
+| **AC-42** | curation happens in the widget and on the pin |
+| **AC-44** | CVar-off surfaces a tick in the map editor |
+
+**Two criteria carry the sharpest risk and must be asserted directly in the smoke (AC-45):
+AC-24** (arrival requires a valid state, because a refusal reports `sd = 0.00`) **and AC-26**
+(debounce before acting on `Invalid`). Both fail *silently in the field*.
