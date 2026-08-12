@@ -170,9 +170,34 @@ survive that.
 **AC-19 [L13]** — **we never re-assert.** Once the slot is lost — to a quest, to a corpse, to
 anything — we do not take it back. Only the user does, via `repin`.
 
-**AC-20 [L13, F24]** — **we yield.** The client's ladder tests our position *above* quest
-selection, so passivity makes us win indefinitely and silently block the player's quest arrow.
-On user quest selection we **clear our position** and let the ladder fall through to Quest.
+**AC-20 [L13, F24]** — **we yield, and yielding IS the same-level mechanism** — not a
+workaround for one.
+
+**We already enter where the quest system enters.** `SuperTrackerUtil.SetSuperTrackedPosition`
+is the client's designated door for the `Position` type, exactly as `SelectQuestLogEntry` →
+`SetSuperTrackedQuestID` is the door for `Quest`. There is no lower or more polite entry point
+to find: **the engine has ONE supertrack slot**, so contention is structural, and the only
+question a design can answer is *who wins when*.
+
+The contention is not us versus quests — it is **the client's own fixed precedence**, which
+ranks `Position` **above** `Quest` and then never creates one (§2: the plumbing exists unused).
+We are the first occupant of a high-priority slot nobody expected to be occupied.
+
+**So the two directions are symmetric, both through the client's own API:**
+
+| User action | Our call | Ladder resolves to |
+|---|---|---|
+| picks our landmark | `SuperTrackerUtil.SetSuperTrackedPosition` | **Position** |
+| picks a quest | `SuperTrackerUtil.ClearSuperTrackedPosition` | **Quest** |
+
+**AC-20a — what we must NOT do**, recorded because each is a plausible-looking shortcut:
+- **Do not hook or reorder `GetHighestPrioritySuperTrackingType`.** Mutating a frame or function
+  we do not own is the exact pattern the prior-art pass flagged as a warning
+  (`satnav_prior_art.md` §3), and it would change behaviour for every other addon too.
+- **Do not call `SetSuperTrackedQuestID`.** We have no questID, and borrowing one would
+  misrepresent a landmark as a quest inside the client's own quest UI.
+- **Do not leave our position set "just in case".** Passivity is not neutrality here: it wins
+  indefinitely and silently blocks the player's quest arrow [F24].
 
 **AC-21 [O]** — `QUEST_TURNED_IN` calls `SelectQuestLogEntry` **unconditionally**, so a naive
 yield-hook drops the pin on every hand-in. Two settled options: **(a)** accept it — turn-in is
