@@ -125,9 +125,25 @@ re-pins automatically, ever.
 **AC-13 [L14]** — `clear` releases the supertrack slot deliberately, the same release arrival
 performs.
 
-**AC-14 [L16, L18]** — `[Map]` is shown **only when the held landmark's `mapID` differs from the
-player's current `mapID`**, in red, and is a **button that opens the world map to that
-landmark's zone**. It is behavioural, not instructional [L18].
+**AC-14 [L16, L18]** — `[Map]` is shown **whenever the beacon cannot guide the player**, in red,
+and is a **button that opens the world map to that landmark's zone**. Behavioural, not
+instructional [L18]. **Two triggers:**
+
+1. the held landmark's `mapID` differs from the player's — the engine **refuses** [F38];
+2. same `mapID` but **`distance > 1500`** — the client's own alpha cut [F22], where the engine
+   is still tracking and still returning a true distance [F35].
+
+**Both are "beyond beacon range", which is exactly what law 16 governs.** Keying this to the
+mapID mismatch alone was narrower than the law and left a real hole: in-zone at 4,000 yd the
+beacon is dark and nothing would have explained why.
+
+**AC-14a** — the two cases are **not** distinguished to the user; the action is the same. But
+note internally that **case 2 is temporary and self-resolving**: the pin is live, and the beacon
+appears on its own once inside 1,500 yd. `[Map]` there means *not visible **yet***.
+
+**AC-14b [F22]** — the `1500` threshold is **the client's Lua-side convention, not an engine
+limit**, and lives in `SuperTracker.lua`. It must be a **named constant with that provenance in
+a comment**, because a fork update can move it and a bare literal would rot silently.
 
 **AC-15 [L13]** — nothing about the widget's held landmark survives **logout**. The beacon
 certainly does not [L13]. *(Whether the widget's held selection is session-only or persists is
@@ -208,8 +224,10 @@ clear the slot, do not warn, do not restore. Attention has moved; the beacon is 
 player has not moved, with a floor of ~0.05 s when they have. Cheap when static, responsive
 when moving.
 
-**AC-30 [L16]** — distance is polled **for arrival only, never for display.** The widest tier
-is 300 yd; beyond that it is a comparison nobody sees.
+**AC-30 [L16]** — distance is **never displayed** [L16]. It is polled for two internal
+decisions only: **arrival** (AC-22–AC-24) and **`[Map]` visibility** (AC-14 trigger 2). No yard
+count reaches the player anywhere in our UI — the beacon renders its own inside its own range
+[F12], and beyond that the map is the instrument.
 
 ---
 

@@ -642,7 +642,7 @@ seen both in the browser and we have not.
 
     ```
     Landmark name
-    Zone                 [Map]   <- red; shown ONLY when the maps differ
+    Zone                 [Map]   <- red; shown when the BEACON CANNOT GUIDE
     [repin] [clear]
     [make marker]
     ```
@@ -655,8 +655,26 @@ seen both in the browser and we have not.
     `[Map]` in red when it doesn't match. Hides when it does."*
 
     Without it the widget **lies by omission**: you click `repin`, nothing happens, and nothing
-    explains why. F38 says the refusal is exactly a **mapID mismatch**, and we already hold both
-    values — so the condition is one comparison against state we have, with nothing new stored.
+    explains why.
+
+    **★ THE CONDITION IS "THE BEACON CANNOT GUIDE", NOT "THE MAPS DIFFER" (Battlewrath,
+    2026-08-12):** *"Being in-zone, but beyond 1.5k yards is possible. So a quick heading check
+    is useful."* A first draft keyed it to the mapID mismatch alone, which was **narrower than
+    this law** — *beyond beacon range* plainly includes **same map, past 1,500 yd**. **Two
+    triggers, one handoff:**
+
+    | Trigger | Cause | `repin` still worth doing? |
+    |---|---|---|
+    | landmark's `mapID` ≠ player's | the engine **refuses** (F38) | **No** — nothing will happen |
+    | same map, `distance > 1500` | the **client's own alpha cut** (F22, F35: the engine is still tracking and still returning true distance) | **Yes** — and the beacon lights up by itself on approach |
+
+    **★ The second case is TEMPORARY AND SELF-RESOLVING, and that is a behaviour we get for
+    free:** pin it, travel, and the beacon appears once you are inside 1,500 yd. `[Map]` there
+    means *you cannot see the beacon **yet***, not *this will not work*. Recorded so nobody
+    later "fixes" the disappearing button.
+
+    Both cases are read from state we already hold — the landmark's `mapID`, the player's, and
+    the distance we poll anyway. Nothing new is stored.
 
     - **Self-hiding.** Present only when it is saying something; invisible the rest of the time.
       Zero noise by construction.
