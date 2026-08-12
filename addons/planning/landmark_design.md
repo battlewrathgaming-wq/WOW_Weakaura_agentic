@@ -108,7 +108,7 @@ choice. It records and returns control immediately.
 
 ```
 Landmark name
-Zone                 [Map]   <- red; shown ONLY when maps differ
+Zone                 [Map]   <- red; shown when the BEACON CANNOT GUIDE (AC-14)
 [repin] [clear]
 [make marker]
 ```
