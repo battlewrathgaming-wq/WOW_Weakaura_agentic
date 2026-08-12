@@ -145,6 +145,27 @@ a note near a stop is about that stop · draw a line when you need to be explici
 arbitrate scope: if a proposed feature is something you could not do with pen, paper and a
 map, question it. It is the standing answer to "should this be cleverer?"
 
+**★ AND ITS ARCHITECTURAL HALF (Battlewrath, 2026-08-12): *"A page doesn't really know what
+you've drawn. It just persists. We provide defaults but the user has choice."*** The metaphor
+above arbitrates **features**; this arbitrates **mechanism**. **The system is INERT with
+respect to user content** — it holds what you put on it and reads none of it. The note is never
+parsed, the icon never interpreted, the name never analysed, the `what`/`why` fields never
+mined.
+
+This is not a new rule; it is the **name of a pattern already running through the design**, and
+having the name makes the next violation easy to spot:
+
+| Law | Is the same statement about |
+|---|---|
+| **L4** — the session drafts, the human curates | we do not **prompt** |
+| **L11** — notes of meaning, not what-where | we do not **author** meaning |
+| **L18** — behavioural, not instructional | we do not **explain** |
+| **L19** — the icon is presentation only | we do not **read** meaning |
+| **AC-4** — name only what we know | we do not **guess** |
+
+A page has lines and the pen has a colour — **we provide defaults** — but nothing on the page
+changes what the page does.
+
 1. **A marker can only be born where a player stood.** Three capture sources, all ground
    truth: **combat start**, **combat end**, and a **widget tap**. Rationale (Battlewrath): a
    2D map image cannot supply height, so a spawned point would need an invented z — which
