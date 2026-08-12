@@ -11,6 +11,18 @@ beacon control and the edit form all confirmed in play. Since v0.1.3 it also gai
 completion with ghost text, the `owner` control (character / all), `/lm all` orphan recovery,
 and bulk transfer. Four live bugs closed; `landmark_design.md` §15 has the log.
 
+**⚠ THE CLIENT IS BEHIND THE REPO.** Everything after the last deploy — the OnUpdate lifecycle,
+the forward-declaration fix, and the AC-29 cadence revision — is repo-only. `py addons\deploy.py
+COA_Landmarks`, game closed.
+
+**Runtime cost, settled 2026-08-12 (§15):** zero when idle, and **AC-29 now paces the beacon
+poll on DISTANCE** — `clamp((dist − tier) / 30, 0.20, 2.00)` — replacing a two-tier movement
+throttle that bought nothing, because AC-26's one-second debounce discarded 19 of every 20
+samples and a late arrival is invisible. `lastPos` tracking is gone. **The lesson that
+generalises: a guard's test has to be re-checked when the thing around it changes pace** —
+AC-26's smoke step fell below the new poll floor and went vacuous, passing because the code
+never looked. Both AC-24 and AC-26 are re-mutation-tested and still bite.
+
 **One known issue, parked on his call:** the beacon holds a stale target when re-pinned onto an
 already-live slot. Two candidate causes and the one-run test that separates them are in §15 —
 do not guess at it in `beacon.lua`, which is where the silent-failure criteria live.
@@ -67,7 +79,18 @@ stickers, every one verified against `AtlasInfo.lua` rather than against a brows
 author-owned markers share a store, which is an open implementation choice, and it belongs in
 the brief as an acceptance criterion if that choice is made.
 
-**Bench tool landed this session:** `addons/tools/emit_atlas_census.py` → `addons/maps/atlas/`
+**★ BENCH TOOL, 2026-08-12 — the SELF-witness:** `addons/tools/emit_addon_census.py` →
+`addons/maps/addons/`. *"We should hold ourself to the same standard"* (Battlewrath) — we built
+`task_callwitness.lua` because Libellus had no self-reporting, then had none for our own code
+either. Emits a bench roll-up plus **a folder per resident** (`<Addon>/frame_cost.md` +
+`routes.md`) so inspecting one addon is never a trip through all of them. Resident list comes
+from `deploy.py`'s MANIFEST — the one authority. **Read `addons/maps/addons/README.md` before
+trusting a cell**: `throttle? yes` does not mean throttled *well* (it cannot see WHERE the
+throttle sits), and the census **goes stale on EDIT, not on deploy** — it reads REPO source, so
+the stale window is edit→deploy. `--check` is the safeguard (exit 0 CURRENT / 1 STALE, writes
+nothing) and `menu.bat`'s Deploy check runs it.
+
+**Bench tool landed 2026-08-11:** `addons/tools/emit_atlas_census.py` → `addons/maps/atlas/`
 — the client's 4,503 named atlas entries classified by claim of use (1,359 claimed / 3,144
 free). Read its README before picking any icon for anything; it carries three rules that cost
 real work to learn. Practical: the in-game AtlasBrowser's **search is broken** (one
