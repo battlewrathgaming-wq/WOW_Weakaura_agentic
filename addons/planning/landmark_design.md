@@ -986,6 +986,21 @@ keeping as the method.
 **All four closed.** Battlewrath: *"A clear yes on the visual element. The auto-complete
 works."*
 
+**RESOLVED (Battlewrath): BOTH keys end in `", "`.** *"So the user can't be caught out. We
+have to assume they don't know how tags work. And it should be — type away, not learn our
+system."*
+
+**★ That last clause is the test, and it generalises: a difference between two keys is a rule
+that exists only inside our addon, and the user has to LEARN it to avoid being surprised.**
+Consistency beats tidiness — the dangling separator is harmless (`SplitTags` drops empties),
+whereas an inconsistency is a thing to memorise. L18 applied to an input.
+
+Tab and Enter now do the same thing; the only difference is that Enter drops focus, which is
+what Enter means everywhere else. The AC-54 tension below evaporated with it — nothing is
+stripped, so nothing is altered.
+
+<details><summary>The question as originally raised</summary>
+
 **Open, trivial, and it touches AC-54 so it is HIS call:** Tab ends the value with `", "` and
 Enter does not — deliberate (Tab means *next tag*, Enter means *done*), but **Tab-then-Enter
 leaves a dangling `", "` in the stored string**. Reading is unaffected (`SplitTags` drops
@@ -994,6 +1009,8 @@ path would tidy it, but **AC-54 says we never alter or clean up tags** — the a
 allowing it is that a trailing separator is not content, it is **our own scaffolding from the
 Tab affordance**, and removing what we put there is not touching what the user wrote. A real
 reading of the law rather than an obvious one, so it is not taken unilaterally.
+
+</details>
 | map pins | — | **worked**; the explicit tex-coord path (v0.1.2) stands |
 
 ### ★ The lesson, and it is a bench one: ABSENCE OF ERROR IS NOT SUCCESS

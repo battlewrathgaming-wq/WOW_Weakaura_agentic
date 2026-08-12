@@ -163,34 +163,33 @@ function Editor:Build()
 
     label(f, "Tags:", 18, -262)
     f.tags = line(f, "COA_LandmarksEditorTags", 60, -260, 240)
-    -- AC-54a: Tab and Enter ACCEPT the proposal. Without them the highlighted
-    -- tail just sits there and the box looks like it is only showing you what
-    -- it knows. (Found live.)
-    local function acceptCompletion(box)
+    -- AC-54a: Tab and Enter ACCEPT the proposal, and BOTH leave a trailing
+    -- separator. Battlewrath: "both end in , - so the user can't be caught out.
+    -- We have to assume they don't know how tags work. And it should be - type
+    -- away, not learn our system."
+    --
+    -- That is the rule, and it is why the two keys do the SAME thing here: a
+    -- difference between them would be a rule that exists only inside this
+    -- addon, and the user would have to learn it to avoid being surprised. The
+    -- only thing Enter adds is dropping focus, which is what Enter means
+    -- everywhere else. (L18 applied to an input.)
+    local function accept(box, keepFocus)
+        box:HighlightText(0, 0)                  -- the proposal becomes plain text
         local text = box:GetText() or ""
-        box:HighlightText(0, 0)               -- the proposal is now plain text
+        if text ~= "" and not text:match(",%s*$") then
+            box.suppress = true
+            box:SetText(text .. ", ")
+            box.suppress = false
+            text = box:GetText()
+        end
         box:SetCursorPosition(#text)
-        if currentId then Store.Set(currentId, "tags", text) end
         box.lastLen = #text
-        return text
+        if currentId then Store.Set(currentId, "tags", text) end
+        if not keepFocus then box:ClearFocus() end
     end
 
-    f.tags:SetScript("OnTabPressed", function(s)
-        -- accept, then open the next tag so you can keep typing
-        local text = acceptCompletion(s)
-        if text ~= "" and not text:match(",%s*$") then
-            s.suppress = true
-            s:SetText(text .. ", ")
-            s.suppress = false
-            s:SetCursorPosition(#s:GetText())
-            if currentId then Store.Set(currentId, "tags", s:GetText()) end
-            s.lastLen = #s:GetText()
-        end
-    end)
-    f.tags:SetScript("OnEnterPressed", function(s)
-        acceptCompletion(s)
-        s:ClearFocus()
-    end)
+    f.tags:SetScript("OnTabPressed",   function(s) accept(s, true)  end)
+    f.tags:SetScript("OnEnterPressed", function(s) accept(s, false) end)
 
     f.tags:SetScript("OnTextChanged", function(s, userInput)
         -- AC-54: stored EXACTLY as typed. No trimming, no case-folding, no
