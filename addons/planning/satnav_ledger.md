@@ -312,13 +312,36 @@ map, question it. It is the standing answer to "should this be cleverer?"
 
 He ran the mandatory visual check refinement 3 demands, and picked. **This closes law 10.**
 
-| Role | Atlas | His description |
-|---|---|---|
-| **Route waypoint** | `vignettekill` | brown with silver |
-| **Landmark** | `vignettekill-supertracked` | gold |
+**★ THE RULE — SPLIT BY CONTEXT, NOT BY ACTIVITY (Battlewrath, 2026-08-12).** *"I'd keep
+landmarks stable. For the open world, they're the destination, not the activity. For the
+dungeon use, they're stable notes of consideration for the waypoint. It might be tricky mobs.
+The split is to avoid confusion."*
 
-Both `interface\minimap\objecticonsatlas`, both **64×64**. Tex-coords, verified identical to
-the registry (`AtlasInfo.lua:264` and `:651`):
+A landmark means a **different thing** in each context, so it gets a different symbol — and
+within a context it never varies. Open world: *this is a place I am going to*. In dungeon:
+*this is something to know about, attached to the route* — a caster pack, a patrol, a bad
+pull. Same word, two jobs; one symbol each so neither borrows the other's meaning.
+
+**This SUPERSEDES the icon-per-category idea** (§9 delta 3, mine): activity does not belong in
+the marker symbol at all. It belongs in the sticker layer below, and the *meaning* belongs in
+the note. Three marker symbols total, and the user never picks between them — context does.
+
+| Context | Role | Atlas | His description | Registry |
+|---|---|---|---|---|
+| **Open world** (scrapbook) | landmark | `questbonusobjective-supertracked` | — | `AtlasInfo.lua:657` |
+| **In dungeon** | landmark | `vignettekill-supertracked` | gold | `:651` |
+| **In dungeon** | route waypoint | `vignettekill` | brown with silver | `:264` |
+
+All three `interface\minimap\objecticonsatlas`, all **64×64**, all **free** in the census.
+Tex-coords verified identical to the registry:
+
+```xml
+<!-- Open-world landmark -->
+<Texture file="interface\minimap\objecticonsatlas">
+    <Size x="64" y="64"/>
+    <TexCoords left="0.77832" right="0.84082" top="0.12793" bottom="0.19043"/>
+</Texture>
+```
 
 ```xml
 <!-- Route waypoint -->
@@ -364,6 +387,27 @@ All four free, all 64×64, all on one sheet row (`top 0.192383 · bottom 0.25488
 owed. And if a *current-target* emphasis is ever wanted on top of that, **`vignettekillelite`
 and `vignettekillboss` are two further complete four-state sets, also entirely free** — so the
 supply is not tight and this decision does not corner a later one.
+
+### ★ OPEN ITEM ON THE OPEN-WORLD PICK — his call, not ours
+
+`questbonusobjective-supertracked` is **free**, and his tex-coords match `AtlasInfo.lua:657`
+exactly. But **the BASE of that set is CLAIMED**, and by something meaningful:
+
+- `Ascension_ChallengesUI/.../ChallengeExtendedInfoMixin.lua:111` —
+  `isPvE and "questbonusobjective" or "crossedflags"`, i.e. it is this client's **PvE
+  indicator**
+- `Ascension_ChallengesUI/.../ChallengeItemMixin.lua:463` — `SetNormalAtlas("questbonusobjective")`
+
+Same sheet row as his pick (`top 0.127930 · bottom 0.190430`), so it is the **same artwork in
+a different state** — refinement 3's *claim is per-NAME, confusion is per-LOOK* firing for the
+second time.
+
+**Assessed honestly, the risk here is LOW, and materially lower than the warfronts case:** that
+claim lives in the **Challenges UI panel**, a different surface from the world map. A player
+meets the shape in a challenge list, never while navigating. The death-marker collision we
+avoided was on *the same map*. What remains true is that the shape now carries a faint **"PvE"**
+association in this client. **Recorded so the decision is informed, not to reverse it** — he has
+seen both in the browser and we have not.
 
 ## 6. Accepted with a gate
 
@@ -461,11 +505,30 @@ Stated as deltas, not designed — nothing here is decided.
    traversal; the scrapbook's is lookup ("where is my Winterspring herb spot" asked from
    Orgrimmar). Proximity display alone cannot answer that. So search / filter is the main
    surface, not an ordered list — a different UI over the same data.
-3. **Categories.** Farm · vendor · node · rare. Law 9 has exactly one landmark kind. **The
-   icon supply already carries the taxonomy, in the family we just chose:** `vignetteloot`
-   (+`-locked`) reads as gather/farm, `vignetteevent` as event, `vignettekillelite` /
-   `vignettekillboss` as rare — all free, all `objecticonsatlas`, so they read as one system
-   with the waypoint/landmark pair rather than as imports.
+3. ~~**Categories** — one icon per activity kind.~~ **PROPOSED BY ME, REJECTED, AND REPLACED
+   WITH SOMETHING BETTER (Battlewrath, 2026-08-12): a STICKER PALETTE + a TOOLTIP NOTE
+   DISPLAY.** Activity is a **layer on** the landmark, not a variant **of** it. The marker
+   vocabulary stays at three stable symbols; the variety lives where it cannot dilute them.
+   - **★ "Not exactly per-entity nodes but INDICATORS."** This is the load-bearing constraint,
+     and it is what keeps the addon from becoming a gathering database. A farming sticker says
+     *this area is a farm spot*, **not** *this exact herb spawns here*. Pen and paper, again:
+     you circle a region, you do not survey it.
+   - **Stickers are USER-CHOSEN from a palette**, unlike the marker symbol which context
+     decides. That is the right place to spend a user decision — it annotates rather than
+     classifies, so a wrong pick costs nothing.
+   - Named so far, both **free**, both `objecticonsatlas`, both **32×32** — half the marker
+     size, which reads correctly as *annotation on a thing* rather than *a thing*:
+
+     | Sticker | Atlas | Registry | His read |
+     |---|---|---|---|
+     | **farming** | `vehicle-trap-gold` | `AtlasInfo.lua:296` | "it's a trap" |
+     | **favoured vendor** | `housing-decor-vendor_32` | `:697` | "a distinct gold pouch / bag, different from banker bags" |
+
+     Zero client code touches `vehicle-trap*` or `housing-decor*` anywhere. Supply note, not a
+     proposal: `vehicle-trap-grey` and `vehicle-trap-red` are free siblings on the same row, so
+     the trap exists as a three-colour set if a state is ever wanted.
+   - The **tooltip note display** is the readout surface, and F15 already established the
+     mechanism — `WorldMapTooltip` via the pin's hover, no new machinery.
 4. **Sharing pressure is lower.** Law 7's *import wipes* and law 9's sacred-vs-disposable
    split exist for a shared route artefact. A personal scrapbook may want neither.
 5. **★ Outdoor position may be EASIER, not harder — and this is a PROBE, not a claim.** F9
