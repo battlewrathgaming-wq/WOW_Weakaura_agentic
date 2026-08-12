@@ -227,6 +227,69 @@ deferred, and the decision only has to be right *before the first run*.
 
 ---
 
+## 6c. ★ A STRONGER DEATH SIGNAL — the client already computes it (Battlewrath, 2026-08-13)
+
+> *"There is a stronger death signal. I can capture the frame or we can read it. On death there
+> is a 'what killed me' page, with a readout of events surrounding it."*
+
+**It exists, and it is better than either option in §6** — read from the extracted client, not
+recalled: `Interface/AddOns/AscensionUI/DeathRecap/`.
+
+**What it actually is** (the mechanism matters, because "a page the client shows you" implies
+something it is not): a **CoA-authored addon that listens to `COMBAT_LOG_EVENT_UNFILTERED`
+itself** and keeps a rolling buffer of the last **14** damage/heal events taken by the player.
+
+| Fact | Where |
+|---|---|
+| reachable global — `AscensionUI = Addon`, and `Addon.DeathRecap = Recap` | `AscensionUI.lua:3` · `DeathRecap.lua:12` |
+| the buffer: `Recap.Events[Recap.CurrentRecap]`, capped at **14** entries | `DeathRecap.lua:154-157` |
+| per entry: `eventTime · spell · attacker · isPlayer · damage · school · periodic · crit` **+ `healthPercent`** | `DeathRecap.lua:142-152` |
+| folds 8 CLEU types: SPELL/SPELL_PERIODIC/SWING/RANGE/DAMAGE_SPLIT/ENVIRONMENTAL damage **and SPELL_HEAL / SPELL_PERIODIC_HEAL** | `DeathRecap.lua:172-221` |
+| `CurrentRecap` increments on `PLAYER_UNGHOST` **and** `PLAYER_ENTERING_WORLD` | `DeathRecap.lua:258-268` |
+| on `PLAYER_DEAD` it emits `\|Hdeath:<player>:<id>\|h[You died.]\|h` | `DeathRecap.lua:127, 264` |
+| an addon-comm protocol shares recaps: `ASC_RECAP_REQ/SEND/ERR`, serialize → deflate → encode | `DeathRecap.lua:8-10, 23-60` |
+
+**★ `healthPercent` IS THE PART CLEU CANNOT GIVE US.** It is sampled live at the moment of each
+event. A raw combat log tells you what damage landed; this tells you **what your health was
+doing while it landed** — which is the difference between "a 4k hit" and "a 4k hit at 12%".
+And because it folds heals too, it records what nearly saved you.
+
+**It corrects the §6 framing rather than adding to it.** I had said deaths mean *the addon
+listening live to CLEU*. They do not: **a client-shipped addon already does that work**, so we
+read a computed result instead of running a second CLEU listener. And unlike `/combatlog` this
+**is** a product path — `AscensionUI` ships with the client; nothing is asked of the user.
+
+### What it would take, and what it costs
+
+**Read `AscensionUI.DeathRecap.Events[CurrentRecap]` on `PLAYER_DEAD`** and shallow-copy it into
+the run's marker. `PLAYER_DEAD` is the correct moment: `CurrentRecap` has not rolled yet — it
+increments on UNGHOST and on ENTERING_WORLD, so reading later reads an empty buffer.
+
+Cost: **one extra event registration and a copy of ≤14 small tables, on an event that fires
+rarely.** By §6's own boundary that is *not* free (it needs its own registration), so it is
+argued rather than assumed — and the argument is that the payload is already computed by
+someone else and we are only carrying it.
+
+### Two disciplines this triggers
+
+1. **★ IT IS A CONSUMER RELATIONSHIP, so it gets a DRIVER_CONTRACT** — the same rule
+   `MancerLedger/DRIVER_CONTRACT.md` follows: characterise every consumed field from THEIR
+   source before inventing a use for it, and fail LOUD on shape drift rather than silently
+   recording nothing. We would be reading another addon's internals; they owe us nothing.
+2. **★ VERIFY LIVE BEFORE BUILDING.** Every line above is patch-B **as extracted 2026-08-12**,
+   and this fork ships changes in days. `/dump AscensionUI.DeathRecap.CurrentRecap` and a look
+   at the buffer after one death settles it in a minute.
+
+### Where it lands in the model
+
+**This is the PLAYER's death, so it enriches the WIPE case** — exactly run 2's fixture material
+(§9b), and exactly the *"it might be tricky mobs"* note material the in-dungeon landmark half
+exists for. **It does not touch the enemy-death lane** (§6), which stays as scoped.
+
+**Gate: `Build!` — not authorised. Not in v0.1.0.**
+
+---
+
 ## 7. The things the POC must not get wrong
 
 Both are **irreversible**: everything else in this note can be added later, but these two cannot
