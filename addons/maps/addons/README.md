@@ -3,7 +3,7 @@
 **Emitted, never hand-edited.** Regenerate with:
 
 ```bash
-py addons\tools\emit_addon_census.py
+py addons/tools/emit_addon_census.py
 ```
 
 ## Why it exists
@@ -33,7 +33,7 @@ maps/addons/
 **Start with the console line.** It answers *which addon do I even open?*:
 
 ```
-py addons	ools\emit_addon_census.py
+py addons/tools/emit_addon_census.py
   COA_Landmarks    7 file(s)   71 fn  1 persistent OnUpdate   <- unthrottled-looking handler, look
 ```
 
