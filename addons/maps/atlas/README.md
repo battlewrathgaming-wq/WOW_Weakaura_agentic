@@ -103,9 +103,16 @@ pattern only knows backslashes. Exactly one sheet in the registry uses **forward
 returns `nil` and `:88` errors on `text:lower()`. (`AtlasBrowserListItem.lua:22` guards the
 same value with `or ""`; the other call site does not.)
 
-The error aborts the filter loop, so a search yields a **silently truncated** list — and since
-scan order comes from `pairs(AtlasInfo)`, it truncates at a *different point each session*.
-With an empty search box the check is short-circuited and the list is complete.
+The error aborts the filter loop, so when it fires a search yields a **silently truncated**
+list — and since scan order comes from `pairs(AtlasInfo)`, the truncation point is not stable
+between sessions. With an empty search box the check is short-circuited entirely.
+
+**Provenance, stated so nobody over-reads it:** the root cause is **derived from source** and
+corroborated by **one captured stack** (`text = nil`, `searchText = "objecticonsatlas"`). The
+truncation *behaviour* follows from the code but has **not been systematically observed** —
+and the error frame is sticky, so a visible error may be a holdover from earlier in the
+session rather than the action in front of you. **Verified working:** reloading and scrolling
+the unfiltered list, which is the recommendation regardless.
 
 **Consequence for how to use these two together:** this census is the authority on **what
 exists**; the browser answers **what it looks like**. Verify a pick's name, size and tex-coords
