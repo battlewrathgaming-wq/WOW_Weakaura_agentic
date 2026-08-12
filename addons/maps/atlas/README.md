@@ -89,6 +89,28 @@ regardless of what the census says. **Within any family the client has already d
 at the candidate in the AtlasBrowser before committing.** `free` is a shortlist, never a
 clearance.
 
+## ★ Using the in-game AtlasBrowser alongside this — and its SEARCH IS BROKEN
+
+Open it with `/devconsole` → `ab`. It lists **texture sheets**; picking one renders the real
+`.blp` with every atlas region hoverable (tooltip gives name, size, tex-coords; **click copies
+the name to clipboard**).
+
+**Do not trust its search box. Scroll the unfiltered list instead.**
+
+`AtlasBrowser.lua:67` passes `texture:match("\\([^\\]*)$")` into `MatchesSearch`, and that
+pattern only knows backslashes. Exactly one sheet in the registry uses **forward** slashes —
+`interface/glues/characterselect/uicharacterselectglues.blp`, 118 entries — so the match
+returns `nil` and `:88` errors on `text:lower()`. (`AtlasBrowserListItem.lua:22` guards the
+same value with `or ""`; the other call site does not.)
+
+The error aborts the filter loop, so a search yields a **silently truncated** list — and since
+scan order comes from `pairs(AtlasInfo)`, it truncates at a *different point each session*.
+With an empty search box the check is short-circuited and the list is complete.
+
+**Consequence for how to use these two together:** this census is the authority on **what
+exists**; the browser answers **what it looks like**. Verify a pick's name, size and tex-coords
+against `AtlasInfo.lua` — never against what the browser's search happened to list.
+
 ## Reading the sizes
 
 `w`/`h` are the registry's declared render dimensions. They are **not** always integers, and
