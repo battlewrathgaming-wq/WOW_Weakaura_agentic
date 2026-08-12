@@ -487,6 +487,26 @@ enforcement**, and it answers the case-and-duplicates question better than a rul
   the drift and none of the cure, and it would pollute the very A:B signal the field exists to
   produce. The scan is a loop over tens of records (AC-50).
 
+**AC-54c — GHOST TEXT on the tags field: `separate with ,  or press enter / tab`**
+(Battlewrath, 2026-08-12). Shown only while the field is **empty** — including while focused,
+which is exactly when someone about to type needs the format. Erases itself on the first
+keystroke.
+
+**The failure it prevents is SILENT:** *"I can see a case where users write `vendors pvp get
+50k honor` and not know how to use the tags."* That becomes **one long tag**, the filter never
+groups anything, and nothing ever says why. His fix, and his reasoning for the form: *"Seeing
+this across land marks will engrain it."*
+
+> **★ THIS IS THE BOUNDARY OF LAW 18, AND IT IS WORTH KNOWING WHERE IT IS.** L18 asks whether
+> we can **DO** the thing instead of **TELLING** — and here **we cannot**. Inserting commas at
+> spaces would be altering the user's input, which AC-54 forbids outright. **With no
+> behavioural fix available and a silent failure on the other side, a label at the point of use
+> is the honest answer.**
+>
+> The bar it must clear, and does: **in situ · self-erasing · zero persistent noise · taught by
+> repetition, not by a tutorial.** It is a field label, not a lesson — nobody reads a form's
+> placeholder as instruction. Anything that fails those tests is back on the wrong side of L18.
+
 > **⚠ This is NOT the third note field rejected in AC-37.** That was a third place to write
 > **prose**, and it was refused because two labelled boxes are a prompt while three are
 > paperwork. **A tag is not prose — it is a label for retrieval.** Different job, and it is the

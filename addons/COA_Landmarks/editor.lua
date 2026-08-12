@@ -163,6 +163,26 @@ function Editor:Build()
 
     label(f, "Tags:", 18, -262)
     f.tags = line(f, "COA_LandmarksEditorTags", 60, -260, 240)
+
+    -- GHOST TEXT (Battlewrath): "I can see a case where users write `vendors pvp
+    -- get 50k honor` and not know how to use the tags… Maybe as ghost text on
+    -- the tag field until they input content. Seeing this across land marks will
+    -- engrain it."
+    --
+    -- ★ This is the ONE place instruction is right, and the boundary is worth
+    -- stating: L18 asks whether we can DO the thing instead of TELLING - and here
+    -- we cannot. Inserting commas at spaces would be altering their input, which
+    -- AC-54 forbids outright. With no behavioural fix available and a SILENT
+    -- failure on the other side (one long tag, a filter that never groups, and
+    -- nothing ever saying why), a label at the point of use is the honest answer.
+    --
+    -- The bar it has to clear, and does: in situ, self-erasing on first keystroke,
+    -- zero persistent noise, and taught by repetition rather than by a tutorial.
+    -- It is a field label, not a lesson.
+    f.tagsGhost = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
+    f.tagsGhost:SetPoint("LEFT", f.tags, "LEFT", 2, 0)
+    f.tagsGhost:SetText("separate with ,  or press enter / tab")
+    f.tagsGhost:SetJustifyH("LEFT")
     -- AC-54a: Tab and Enter ACCEPT the proposal, and BOTH leave a trailing
     -- separator. Battlewrath: "both end in , - so the user can't be caught out.
     -- We have to assume they don't know how tags work. And it should be - type
@@ -185,6 +205,7 @@ function Editor:Build()
         box:SetCursorPosition(#text)
         box.lastLen = #text
         if currentId then Store.Set(currentId, "tags", text) end
+        Editor:RefreshGhost()
         if not keepFocus then box:ClearFocus() end
     end
 
@@ -197,6 +218,7 @@ function Editor:Build()
         if s.suppress then return end
         local text = s:GetText() or ""
         if currentId then Store.Set(currentId, "tags", text) end
+        Editor:RefreshGhost()
 
         -- Complete only when the user ADDED characters. Completing on a delete
         -- makes the box fight you: backspace, get the letter back, forever.
@@ -231,6 +253,13 @@ function Editor:Build()
     f.close:SetScript("OnClick", function() Editor:Close() end)
 end
 
+-- Shown only while the field is EMPTY - including while focused, which is
+-- exactly when someone about to type needs to see the format.
+function Editor:RefreshGhost()
+    if not f then return end
+    if (f.tags:GetText() or "") == "" then f.tagsGhost:Show() else f.tagsGhost:Hide() end
+end
+
 function Editor:RefreshTiers()
     local lm = currentId and Store.Get(currentId)
     for _, r in ipairs(f.tiers) do
@@ -256,6 +285,7 @@ function Editor:Open(id)
     f.tags:SetText(lm.tags or "")
     f.tags.suppress = false
     self:RefreshTiers()
+    self:RefreshGhost()
     f.tags.lastLen = #(lm.tags or "")
     f:Show()
 end
