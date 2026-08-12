@@ -70,12 +70,12 @@ identity, captured together at creation:
 | `zone`, `subZone` | `GetRealZoneText()`, `GetSubZoneText()` |
 | `name` | see AC-4 |
 | `what`, `why` | two free-text fields, either may be empty [L4, AC-37] |
-| `sticker` | user-chosen, may be empty |
+| `icon` | user-chosen from a palette; defaults by context [AC-38] |
 | `arrivalTier` | one of three [L14] |
 | `scope` | `character` or `account` [§9 walk stop 2] |
 
 **AC-2 [L1, L2]** — position is captured **where the player stood** and is **never rewritten**.
-No edit path may relocate a landmark. Renaming, re-noting, re-stickering and re-tiering are all
+No edit path may relocate a landmark. Renaming, re-noting, changing the icon and re-tiering are all
 permitted; moving is not.
 
 **AC-3** — `mapID` is stored but **must never be treated as a zone**. Any code comparing
@@ -113,7 +113,7 @@ an in-flight box: *the meaning is freshest at capture*.
 
 **AC-5 [§9 walk stop 2]** — `scope` defaults to `character`, and moves **both ways** cheaply
 after the fact: promote to `account`, demote back to `character`. Neither direction may lose the
-note, sticker or tier.
+note, icon or tier.
 
 ---
 
@@ -122,7 +122,7 @@ note, sticker or tier.
 **AC-6 [L1, L3]** — a landmark can only be born **where the player is standing**. There is no
 path that creates one by clicking the map.
 
-**AC-7 [L4]** — capture **asks nothing**. No dialog, no note prompt, no sticker picker, no tier
+**AC-7 [L4]** — capture **asks nothing**. No dialog, no note prompt, no icon picker, no tier
 choice. It records and returns control immediately.
 
 **AC-8 [§9 walk stop 1]** — **three affordances, none privileged**:
@@ -299,10 +299,13 @@ count reaches the player anywhere in our UI — the beacon renders its own insid
 `SetPoint("CENTER", WorldMapButton, "TOPLEFT", x, y)` in pixel offsets — our stored map fraction
 × frame size lands directly.
 
-**AC-32 [L10, and the icon census]** — the open-world landmark icon is
-**`questbonusobjective-supertracked`**, 64×64, `interface\minimap\objecticonsatlas`
-(`AtlasInfo.lua:657`). Stickers are **32×32** — half size, so they read as annotation *on* a
-thing rather than *a* thing.
+**AC-32 [L10, and the icon census]** — the **default** open-world landmark icon is
+**`questbonusobjective-supertracked`** (`AtlasInfo.lua:657`,
+`interface\minimap\objecticonsatlas`).
+
+**All landmark pins render at ONE consistent size**, regardless of an atlas entry's native
+dimensions — `Const.TextureKit.IgnoreAtlasSize` is the client's own mechanism for exactly this,
+used by `WorldMapPOIMixin` and the AtlasBrowser. Native size is a hint, not a constraint.
 
 **AC-33 [L11]** — hover shows the note via **`WorldMapTooltip`** [F15]. The note is **pulled,
 never pushed** [L12].
@@ -319,7 +322,7 @@ gesture — *find on the map, click, go*. **Proposed, not derived from a law.**
 
 ---
 
-## 8. Notes and stickers
+## 8. Notes and icons
 
 **AC-37 [L11, refined by Battlewrath 2026-08-12] — the note is TWO FIELDS, not one blob:
 `What:` and `Why:`.** Both free text, both optional [L4].
@@ -331,16 +334,40 @@ is the thing no other addon stores and the thing the player cannot reconstruct l
 The product stores no entity data, no spawn tables, no drop indices. We may one day *consume*
 such data from those who own it [consumer-contract pattern]; we never author it.
 
-**AC-38 [§9 delta 3]** — stickers are a **palette the user chooses from**, unlike the marker
-symbol which context decides. They are **indicators, not per-entity nodes** — a farming sticker
-says *this area is a farm spot*, not *this herb spawns here*.
+**AC-38 [SIMPLIFIED — Battlewrath, 2026-08-12] — “stickers” are just LANDMARKS WITH A
+DIFFERENT ICON.** There is no sticker layer. A landmark has **one icon**, chosen from a small
+palette, and that is the whole of it.
 
-**AC-39** — two stickers ship, both free, both 32×32 `objecticonsatlas`:
-`vehicle-trap-gold` (farming, `AtlasInfo.lua:296`) · `housing-decor-vendor_32` (favoured vendor,
-`:697`).
+**★ What this deletes:** the separate `sticker` field, the 32×32 overlay-on-a-64×64-marker idea,
+and the open question of where a sticker gets chosen — the icon is a landmark property like
+`what`, `why` and `Beacon hide`, so it lives in the same edit form (AC-40a). One concept fewer.
+
+**AC-38a — CONTEXT sets the DEFAULT; the user may override it.** Law 10's context split
+(open-world landmark · in-dungeon landmark · in-dungeon waypoint) still decides what you get
+without choosing. Picking a palette icon replaces that default for that landmark.
+
+> **Consequence, stated rather than assumed:** where a user overrides, the icon no longer
+> carries the open-world / in-dungeon distinction. That is acceptable — **the map you are
+> looking at already carries it.** The context split earns its keep on the *default*, which is
+> precisely the case where nothing else distinguishes them.
+
+**AC-38b [§9 delta 3]** — the palette stays **indicators, not per-entity nodes**. A farming icon
+says *this area is a farm spot*, never *this herb spawns here* [L11].
+
+**AC-39** — the palette ships with three entries, all census-verified free and all on
+`objecticonsatlas`:
+
+| Icon | Atlas | Registry |
+|---|---|---|
+| landmark *(default)* | `questbonusobjective-supertracked` | `:657` |
+| farming | `vehicle-trap-gold` | `:296` |
+| favoured vendor | `housing-decor-vendor_32` | `:697` |
+
+Adding a palette entry is a one-line change plus a claim check against
+`addons/maps/atlas/` [L10].
 
 **AC-40 [RESOLVED — Battlewrath, 2026-08-12] — the tier is a PROPERTY OF THE LANDMARK, set in
-its edit form.** Not implied by the sticker (that would have been inference, and inference makes
+its edit form.** Not implied by the icon (that would have been inference, and inference makes
 plausible wrongs), and not chosen at capture [L4, AC-7].
 
 **★ The user-facing label is "Beacon hide", not "arrival tier"** — his wording, and better than
@@ -359,6 +386,8 @@ Beacon hide:
   ( ) Zone area        300 yd
   ( ) Within approach  100 yd
   ( ) Interact with      5 yd
+
+Icon:  [landmark] [farming] [vendor]
 ```
 
 **AC-40b — NO custom radius.** Considered and rejected:
@@ -374,14 +403,13 @@ Beacon hide:
 **Escape hatch if a real case appears: add a FOURTH NAMED TIER, never a number field.** That
 keeps the setting a choice between meanings.
 
-**AC-40c [O]** — the sticker's place in this form is **unstated**: his sketch shows Name, What,
-Why and Beacon hide, but not the sticker palette. Either it belongs in the same form, or
-stickering happens from the pin. Not assumed.
+**AC-40c [RESOLVED by AC-38]** — the icon is chosen **in this form**, because it is a landmark
+property rather than a separate thing laid over one.
 
 **AC-41 [O]** — the widget's `Zone` line: zone, or subzone when one exists
 (*"Winterspring — Everlook"*)? One line, real effect on a vendor pin.
 
-**AC-42 [RESOLVED — Battlewrath, 2026-08-12]** — note, sticker, tier and name are edited in
+**AC-42 [RESOLVED — Battlewrath, 2026-08-12]** — note, icon, tier and name are edited in
 **curation, never at capture** [L4]. **Two surfaces, both already in the design:**
 1. **the widget** — click the name to rename the held landmark;
 2. **the map pin** — edit a landmark from its pin.
@@ -445,7 +473,6 @@ directly asserted** — they are the two that fail silently in the field.
 | ~~the addon's name~~ | **RESOLVED** — `COA_Landmarks` |
 | **AC-36 [P]** | pin click → hold + pin the beacon |
 | ~~AC-40~~ | **RESOLVED** — a property of the landmark, set in its edit form; labelled "Beacon hide"; no custom radius |
-| **AC-40c [O]** | where the sticker is chosen — the edit form, or the pin? |
 | **AC-41 [O]** | `Zone` vs `Zone — Subzone` on the widget line |
 | **AC-21 [O]** | the `QUEST_TURNED_IN` yield |
 | **AC-16 [P]** | widget movability |
