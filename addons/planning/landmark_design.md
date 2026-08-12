@@ -1,4 +1,11 @@
-# Landmark / world-map scrapbook — design brief
+# COA Landmarks — design brief
+
+**Named (Battlewrath, 2026-08-12): `COA_Landmarks`, title "COA Landmarks".** It is the word the
+laws already speak — law 9's *promoted nodes are personal **landmarks***, and laws 14–18
+throughout — so the addon carries the design's own vocabulary with no translation layer. The
+`COA_` prefix matches the bench (`COA_DevDump`, `COA_PetGrid`) and, for a community release,
+truthfully says *this is for Conquest of Azeroth* — which it is, since it depends on this fork's
+supertrack. It also leaves the route half its own name.
 
 **Criteria before build.** In the shape of `callwitness_design.md`: this document says what the
 thing must do and how we will know it does it, and contains **no implementation**.
@@ -74,10 +81,35 @@ permitted; moving is not.
 **AC-3** — `mapID` is stored but **must never be treated as a zone**. Any code comparing
 "same place" uses `mapID` for *map identity* and `zone` only for *display* [F30].
 
-**AC-4 [P] — landmarks are AUTO-NAMED at capture, because capture asks nothing** [L4]. The
-widget shows a name, so one must exist without a prompt. **Proposed:** the subzone if present,
-else the zone, disambiguated by a counter — *"Everlook"*, *"Everlook (2)"*. Renameable later in
-curation. **This is a genuine gap in the laws and needs a ruling.**
+**AC-4 [RESOLVED — Battlewrath, 2026-08-12] — landmarks are AUTO-NAMED at capture, and the
+name carries ONLY WHAT WE KNOW.** Capture asks nothing [L4] but the widget shows a name, so one
+must exist without a prompt.
+
+**Format: `<subzone> <n>`** — *"Everlook 7"*. Subzone when present, **else the zone**.
+
+> **★ THE RULE UNDERNEATH IT (his words): *"Freshness is the int count, but devoid of meaning
+> because we don't know it. That's user curated."*** We name from the two things we actually
+> possess — **where it is** and **when it was made relative to the others** — and we never guess
+> at the third. This is law 11 turned on our own defaults: we do not author meaning, not even a
+> plausible-sounding one.
+
+- **`n` is a monotonic, account-wide counter**, never reused after a deletion, so comparing two
+  names tells you which came first. That is the *freshness* the int carries.
+- **Falls back to the zone, not to a bare "Landmark 7"**, because **the name travels where the
+  widget's `Zone` line does not** — the map-pin tooltip, and any future list. The name must be
+  self-sufficient. The mild repetition when zone and subzone coincide is cosmetic and cheaper
+  than a name that says nothing.
+
+**AC-4a — NO text box at capture.** Rejected on two grounds: it is a prompt, which AC-7 and
+[L4] exclude; and an `EditBox` taking keyboard focus **eats movement keys** — auto-focus it
+mid-run and the player stops moving and types `wwww`, the exact opposite of *returns control
+immediately*. Not auto-focusing it is worse still: a box you must click is more friction than
+renaming later.
+
+**AC-4b — two rename surfaces, both existing** (Battlewrath): **click the name in the widget**,
+or **edit from the map pin**. Renaming in flight is therefore already available with no new
+surface, because capture selects what it captured (AC-9a) — which answers the real want behind
+an in-flight box: *the meaning is freshest at capture*.
 
 **AC-5 [§9 walk stop 2]** — `scope` defaults to `character`, and moves **both ways** cheaply
 after the fact: promote to `account`, demote back to `character`. Neither direction may lose the
@@ -99,6 +131,10 @@ choice. It records and returns control immediately.
 - a slash command the user can bind into their own macro, short: `/<abbrev> here`
 
 **AC-9** — capture must be safe to invoke from a macro in combat: no protected calls, no taint.
+
+**AC-9a** — **capture sets the new landmark as the widget's held landmark.** You just made it;
+it is the obvious focus. This makes `repin` immediately meaningful and makes renaming-in-flight
+free (AC-4b), with no prompt and no new surface.
 
 ---
 
@@ -304,8 +340,19 @@ inference makes plausible wrongs.
 **AC-41 [O]** — the widget's `Zone` line: zone, or subzone when one exists
 (*"Winterspring — Everlook"*)? One line, real effect on a vendor pin.
 
-**AC-42 [P]** — note and sticker are edited in **curation, not at capture**. Some editing
-surface is required; its shape is not specified here.
+**AC-42 [RESOLVED — Battlewrath, 2026-08-12]** — note, sticker, tier and name are edited in
+**curation, never at capture** [L4]. **Two surfaces, both already in the design:**
+1. **the widget** — click the name to rename the held landmark;
+2. **the map pin** — edit a landmark from its pin.
+
+**No separate management panel is required.** You are already looking at the map when you think
+about your landmarks; that is where they are edited.
+
+**★ This does NOT breach law 3** (*the map is an orientation surface, not an authoring
+surface*), and the distinction is stated because it will otherwise read as a contradiction:
+**law 3 forbids the map CREATING or RELOCATING a landmark** — position comes only from where the
+player stood [L1, AC-2, AC-6]. Annotating something that already exists is not authoring a
+position. The map may edit meaning; it may never edit place.
 
 ---
 
@@ -338,10 +385,11 @@ directly asserted** — they are the two that fail silently in the field.
 
 | | |
 |---|---|
-| **AC-4 [P]** | auto-naming at capture — the one real gap in the laws |
+| ~~AC-4~~ | **RESOLVED** — `<subzone> <n>`, monotonic counter, rename in widget or from the pin |
+| ~~AC-42~~ | **RESOLVED** — curation happens in the widget and on the map pin; no separate panel |
+| ~~the addon's name~~ | **RESOLVED** — `COA_Landmarks` |
 | **AC-36 [P]** | pin click → hold + pin the beacon |
 | **AC-40 [O]** | where the arrival tier is set |
-| **AC-41 [O]** | `Zone` vs `Zone — Subzone` |
+| **AC-41 [O]** | `Zone` vs `Zone — Subzone` on the widget line |
 | **AC-21 [O]** | the `QUEST_TURNED_IN` yield |
-| **AC-16, AC-42, AC-44 [P]** | widget movability, the curation surface, the CVar-off behaviour |
-| **the addon's name** | not proposed here |
+| **AC-16, AC-44 [P]** | widget movability; what happens when `showInGameNavigation` is off |
