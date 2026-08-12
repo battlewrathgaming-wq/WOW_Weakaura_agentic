@@ -39,6 +39,18 @@ local ARRIVAL_HOLD   = 1.00   -- AC-26: how long the arrival condition must hold
 local pinnedId, pinnedLM = nil, nil
 local arrivalSince, lastPos, acc, tick = nil, nil, 0, nil
 
+-- FORWARD DECLARATION. Beacon.Pin installs this handler but is defined ABOVE it,
+-- and this line is what keeps that working WITHOUT leaking a global.
+--
+-- The original was `local function onUpdate` declared after Pin: Pin's reference
+-- resolved to a nil GLOBAL, and SetScript("OnUpdate", nil) is perfectly legal -
+-- so the beacon simply never polled, silently. The smoke caught it immediately.
+--
+-- Dropping this line would still WORK, because `function onUpdate` would then
+-- define a global that Pin finds at call time - and that is the trap: it leaks
+-- `onUpdate` into _G where any addon can clobber it. Asserted in the smoke.
+local onUpdate
+
 -- ---------------------------------------------------------------------
 -- Ownership
 -- ---------------------------------------------------------------------
@@ -74,7 +86,13 @@ function Beacon.Pin(id)
     -- AC-18: we keep our OWN copy. The client nils its global whenever
     -- showInGameNavigation goes off (F41), so its global is not our storage.
     pinnedId, pinnedLM = id, lm
-    arrivalSince = nil
+    arrivalSince, acc, lastPos = nil, 0, nil
+
+    -- ★ The poll EXISTS ONLY WHILE WE HOLD A PIN. Not a micro-optimisation -
+    -- it is the design: scrapbook use is episodic and errand-driven (§9, L17),
+    -- so a permanently-installed poll contradicts the product's own model as
+    -- well as its frame budget. Idle cost is now exactly zero.
+    if tick then tick:SetScript("OnUpdate", onUpdate) end
 
     SuperTrackerUtil.SetSuperTrackedPosition(lm.x, lm.y, lm.z, lm.mapID)
     return true
@@ -83,6 +101,7 @@ end
 -- AC-13 / AC-27: the same release arrival performs. Silent (L12).
 function Beacon.Clear()
     pinnedId, pinnedLM, arrivalSince = nil, nil, nil
+    if tick then tick:SetScript("OnUpdate", nil) end   -- back to zero idle cost
     if _G.SuperTrackerUtil then SuperTrackerUtil.ClearSuperTrackedPosition() end
 end
 
@@ -144,6 +163,7 @@ local function poll(elapsed)
     -- The widget keeps holding the landmark so `repin` is one click (AC-11).
     if not Beacon.OwnsSlot() then
         pinnedId, pinnedLM, arrivalSince = nil, nil, nil
+        if tick then tick:SetScript("OnUpdate", nil) end
         return
     end
 
@@ -161,12 +181,18 @@ local function poll(elapsed)
 end
 
 -- AC-29: two-tier throttle - ~1s standing still, 0.05s floor while moving.
-local function onUpdate(_, elapsed)
+--
+-- ★ The FLOOR CHECK COMES FIRST, before GetCurrentPlayerPosition(). The
+-- original read the position every frame and threw the result away 59 times a
+-- second: the throttle was real but sat AFTER the work it was throttling. The
+-- addon census reported "throttle? yes" and was right about the wrong thing -
+-- it can see that a throttle exists, not where it sits.
+function onUpdate(_, elapsed)                   -- assigns the forward-declared local
     acc = acc + elapsed
+    if acc < POLL_MOVING then return end        -- cheapest possible early-out
     local x, y = GetCurrentPlayerPosition()
     local pos = x and (x + y) or 0
-    local interval = (pos == lastPos) and POLL_IDLE or POLL_MOVING
-    if acc < interval then return end
+    if pos == lastPos and acc < POLL_IDLE then return end
     acc, lastPos = 0, pos
     poll(elapsed)
 end
@@ -176,8 +202,9 @@ end
 -- ---------------------------------------------------------------------
 
 function Beacon.Init()
+    -- Created here, but left WITHOUT a script: the frame costs nothing while
+    -- idle, and creating it up front means no allocation mid-errand.
     tick = CreateFrame("Frame")
-    tick:SetScript("OnUpdate", onUpdate)
 
     -- The client hooks this same function for the same purpose. We are entering
     -- where the quest system enters; we simply step OUT of the ladder so it

@@ -1,7 +1,7 @@
 # Frame cost — COA_Landmarks
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
-_Source fingerprint `e3804950121a` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
+_Source fingerprint `03fe9999f9ca` — run `py addons/tools/emit_addon_census.py --check` to find out if this has gone stale._
 
 **Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
 
@@ -13,10 +13,10 @@ _Source fingerprint `e3804950121a` — run `py addons/tools/emit_addon_census.py
 
 | File | Installs | Clears | Lifetime | throttle? |
 |---|---|---|---|---|
-| `beacon.lua` | 1 | 0 | **PERSISTENT** | yes |
+| `beacon.lua` | 1 | 2 | transient | yes |
 | `minimap.lua` | 1 | 1 | transient | **no — look** |
 
-**2 handler(s) installed; 1 PERSISTENT.** The persistent ones are the whole point of this page.
+**2 handler(s) installed; 0 PERSISTENT.** The persistent ones are the whole point of this page.
 
 ## Timers
 

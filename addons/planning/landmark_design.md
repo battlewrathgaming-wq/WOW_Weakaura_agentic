@@ -1241,6 +1241,33 @@ law 17** (opening your quest log is a mode switch) and the cost is one `repin` c
 recorded rather than changed. If it ever grates, it is the same question AC-21 answered: which
 selections count as intent.
 
+### ★ RUNTIME COST — asked and answered by the addon census (Battlewrath, 2026-08-12)
+
+*"We have the emitter now to say how Landmark works. Are we happy with its expected runtime
+cost?"* Read rather than assumed — which is what the census is for — and the answer was **no**.
+
+`beacon.lua` held a **persistent** OnUpdate that called `GetCurrentPlayerPosition()` **every
+frame for the whole session**, discarding the result ~59 times a second. The throttle was real
+but sat **after** the work. Worse, it ran **whether or not anything was pinned** — permanent
+cost for a feature that is live only during a deliberate errand.
+
+**Fixed by making the code match the design, not by tuning it:** the poll now **exists only
+while a pin is held** — installed on `Pin`, cleared on `Clear`, on arrival, and on losing the
+slot. Idle cost is **exactly zero**. §9 and L17 already said scrapbook use is episodic and
+errand-driven; a permanently-installed poll contradicted the product's own model as much as its
+frame budget. The floor check also moved **above** the API call.
+
+The census now reports `COA_Landmarks` at **0 persistent OnUpdate handlers**.
+
+**★ Two things this exposed, both recorded where they will be met again:**
+- **The census can see that a throttle EXISTS, not WHERE IT SITS.** `throttle? yes` was true and
+  useless here. Noted in `addons/maps/addons/README.md`.
+- **A silent Lua scoping bug, caught by the smoke on its first run.** `Beacon.Pin` installs the
+  handler but is defined *above* it, so `local function onUpdate` resolved to a **nil global** —
+  and `SetScript("OnUpdate", nil)` is legal, so the beacon simply never polled. Forward-declared
+  now, with a smoke assertion that **no globals leak**, because the version without the
+  declaration also "works" — by defining a global any addon could clobber.
+
 ### Still open — the A:B questions §12 named
 
 None of these are bugs; they are what v1 exists to answer, and they need **use**, not a fix:

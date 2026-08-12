@@ -62,6 +62,13 @@ load("store.lua")
 load("beacon.lua")
 local Store, Beacon = NS.Store, NS.Beacon
 
+-- No globals leaked. `onUpdate` is the live case: Beacon.Pin installs it but is
+-- defined above it, so it MUST be forward-declared as a local - drop that line
+-- and it still works, by silently defining a global any addon could clobber.
+for _, leaked in ipairs({"onUpdate", "poll", "scan", "tryComplete", "accept"}) do
+    assert(_G[leaked] == nil, "LEAKED GLOBAL: " .. leaked)
+end
+
 -- =====================================================================
 -- STORED SHAPE (AC-53.3)
 -- =====================================================================

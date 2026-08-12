@@ -89,6 +89,12 @@ A second hand-kept list drifts, and `menu.bat`'s did (twice, silently).
 **`throttle?` is a LEAD, not a verdict.** It reports whether the file contains an accumulator
 pattern at all. **`no` means go and look** — it does not mean the handler is unthrottled.
 
+> **★ And `yes` does not mean it is throttled WELL.** The tool can see that a throttle exists;
+> it cannot see **where it sits**. `COA_Landmarks/beacon.lua` reported `yes` while calling
+> `GetCurrentPlayerPosition()` **every frame, for the whole session**, and throwing the result
+> away 59 times a second — the throttle was real and sat *after* the work it was throttling.
+> **A `yes` still needs eyes on the first few lines of the handler.**
+
 ## Calibration — what the first run found
 
 Worth knowing before you trust a red cell, because **all three flags were correct-by-design**:

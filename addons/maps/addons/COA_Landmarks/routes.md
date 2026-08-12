@@ -2,23 +2,23 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_7 file(s) · 71 function(s) · **1 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `e3804950121a`._
+_7 file(s) · 71 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `03fe9999f9ca`._
 
-## `beacon.lua`  —  **OnUpdate ×1** (1 persistent) · hooks: SelectQuestLogEntry
+## `beacon.lua`  —  **OnUpdate ×1** (0 persistent) · hooks: SelectQuestLogEntry
 
 **pulls:** `GetCurrentPlayerPosition`, `GetTime`
 **pushes:** `C_SuperTrack.GetSuperTrackedPosition`, `C_SuperTrack.GetTargetState`, `SuperTrackerUtil.ClearSuperTrackedPosition`, `SuperTrackerUtil.SetSuperTrackedPosition`
 
-- `Beacon.PinnedId` *(:55, function)*
-- `Beacon.Clear` *(:83, function)*
-- `Beacon.CannotGuide` *(:92, function)*
-- `arrivalConditionMet` *(:116, local)*
-- `poll` *(:139, local)*
-- `onUpdate` *(:163, local)*
-- `Beacon.Init` *(:176, function)*
-- `Beacon.OwnsSlot` *(:200, function)*
-- `Beacon.Pin` *(:200, function)*
+- `Beacon.PinnedId` *(:67, function)*
+- `Beacon.Clear` *(:101, function)*
+- `Beacon.CannotGuide` *(:111, function)*
+- `arrivalConditionMet` *(:135, local)*
+- `poll` *(:158, local)*
+- `onUpdate` *(:189, function)*
+- `Beacon.Init` *(:202, function)*
+- `Beacon.OwnsSlot` *(:227, function)*
+- `Beacon.Pin` *(:227, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED, PLAYER_ENTERING_WORLD
 

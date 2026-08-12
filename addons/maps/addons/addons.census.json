@@ -1,5 +1,5 @@
 {
- "_fingerprint": "e3804950121a",
+ "_fingerprint": "03fe9999f9ca",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1674,52 +1674,52 @@
      {
       "name": "Beacon.PinnedId",
       "kind": "function",
-      "line": 55
+      "line": 67
      },
      {
       "name": "Beacon.Clear",
       "kind": "function",
-      "line": 83
+      "line": 101
      },
      {
       "name": "Beacon.CannotGuide",
       "kind": "function",
-      "line": 92
+      "line": 111
      },
      {
       "name": "arrivalConditionMet",
       "kind": "local",
-      "line": 116
+      "line": 135
      },
      {
       "name": "poll",
       "kind": "local",
-      "line": 139
+      "line": 158
      },
      {
       "name": "onUpdate",
-      "kind": "local",
-      "line": 163
+      "kind": "function",
+      "line": 189
      },
      {
       "name": "Beacon.Init",
       "kind": "function",
-      "line": 176
+      "line": 202
      },
      {
       "name": "Beacon.OwnsSlot",
       "kind": "function",
-      "line": 200
+      "line": 227
      },
      {
       "name": "Beacon.Pin",
       "kind": "function",
-      "line": 200
+      "line": 227
      }
     ],
     "onupdate": 1,
-    "onupdate_clears": 0,
-    "onupdate_persistent": 1,
+    "onupdate_clears": 2,
+    "onupdate_persistent": 0,
     "throttle_pattern": true,
     "scripts": [
      "OnUpdate"
