@@ -213,6 +213,20 @@ map, question it. It is the standing answer to "should this be cleverer?"
    inspectable. **Nothing is derived any more** — a personal note sits on a landmark because
    the user put it there. Nudging reverts to plain placement.
 
+   **★ REFINED, NOT RETIRED, BY §9 (Battlewrath, 2026-08-12): "the routing becomes either a
+   LOAD or SHARE operation of the same architecture."** The cut above stands — but it is a cut
+   in **lifecycle and provenance**, not in record type. There is **one marker architecture**:
+   a position (both spaces), notes, a category, an icon. What makes something "a route" is
+   that the collection was **loaded or shared** and carries an **order**; what makes something
+   a landmark is that *you authored it* and it persists. Law 9's rules then attach to **where
+   the collection came from**, not to what kind of thing it is.
+   **★ THE HAZARD THIS CREATES, and the invariant any design must satisfy:** law 7 says
+   **import WIPES**. The moment loaded and personal markers share an architecture, that wipe
+   has a boundary it must never cross. **Constraint: a wipe is scoped to the loaded collection
+   and can never reach author-owned landmarks — enforced structurally, not by care.** This is
+   the single place where "same architecture" could destroy user data, so it is named here
+   rather than discovered later. No solution proposed; that belongs in the AC document.
+
 10. **★ ICONS CARRY LANGUAGE — DO NOT REUSE IN-USE ART (Battlewrath, 2026-08-11).**
     The client's POI atlas symbols already mean things here (skull, crossed swords, taxi
     node, teleport). **Borrowing a symbol borrows its sentence.** Reuse would both mis-state
@@ -445,13 +459,47 @@ Stated as deltas, not designed — nothing here is decided.
    outdoors. If it does, the map↔world transform §4 derives by hand for dungeons is supplied
    by the engine outdoors. **Untested. Do not plan on it until dumped.**
 
-No separate ledger yet — this is recorded here because it changes *this* build's ordering.
-It earns its own file when it is actually taken up.
+### ★ ORDER DECIDED (Battlewrath, 2026-08-12)
+
+*"We can do the scrap book / land mark feature first. That has broader use, easily tested. And
+can be packaged separately as different addons for different use cases later. Then the routing
+becomes either a load or share operation of the same architecture."*
+
+Three reasons, his, and each is independently sufficient:
+
+1. **Broader use.** It serves every player outside a dungeon, not only people running routes.
+2. **★ EASILY TESTED — and this is the one that matters most to us.** The route half needs a
+   group, a dungeon and a plan to exercise. The landmark half is testable by **one player
+   standing somewhere**, which is the capture loop this bench already runs daily. It is the
+   difference between a feature we can prove and a feature we can only demo.
+3. **Separable packaging later.** Different use cases can ship as different addons over the
+   same core.
+
+**Consequence — the shape is CORE + SHELLS, which this bench has precedent for** (State Plates
+core + satellites; MancerLedger over a driver contract). Core carries the marker record, both
+coordinate spaces, notes, categories, the zone index, proximity and pin rendering. Shells carry
+a *verb*: the scrapbook's is **find**, the route follower's is **follow**, and per law 9's
+refinement the follower is a **load/share + order** over the same records.
+
+**★ AND IT UNBLOCKS THE ARC.** §8 gates the *routing* proposition on a community answer. The
+landmark feature is not that proposition, so **it is not behind that gate.** The arc goes from
+"waiting on other people" to "has an ungated first deliverable" on this decision alone.
+
+No separate ledger yet — recorded here because it sets *this* build's ordering. It earns its
+own file when it is taken up.
 
 ## 10. Build state
 
-**Nothing built, and the ROUTE half is gated on the community answer (§8).** Fact basis
-established; design laws set; icons chosen; no code, no addon folder, no acceptance criteria
-written. If the gate clears, the next step is a design/AC document in the shape of
-`callwitness_design.md` — criteria before build — not implementation. **Per §9, that document
-should specify the landmark + note layer first and the route layer as a consumer of it.**
+**Nothing built. Icons chosen; fact basis established; design laws set — no code, no addon
+folder, no acceptance criteria written.**
+
+- **Landmark / scrapbook layer — NEXT, and NOT gated.** §9 moved it ahead of routing and out
+  from behind §8.
+- **Route layer — still gated on the community answer (§8)**, and per law 9's refinement it is
+  a load/share consumer of the layer above rather than a parallel build.
+
+**Next step is the design/AC document in the shape of `callwitness_design.md` — criteria
+before build, not implementation** (per the ADR: findings and criteria carry zero invention;
+inventiveness is confined to the contained design space). It must specify the core first, the
+scrapbook shell as its first consumer, and it must carry law 9's **wipe-boundary invariant**
+as an acceptance criterion rather than an aspiration. **Awaiting the build word.**
