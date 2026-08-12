@@ -1,8 +1,8 @@
 ## Interface: 30300
 ## Title: COA Landmarks
-## Notes: v0.1.0 - a self-authored scrapbook of places on the world map. Mark somewhere that matters, write why, get back to it later. Restores meaning (the note), exactly where (the beacon) and roughly where (the map pin); how to travel there is not ours - players already know. "How I play, not what exists" - it is not a gathering database, a quest helper or a routing tool. Never competes for the beacon: last explicit user action wins. /lm
+## Notes: v0.1.9 - a self-authored scrapbook of places on the world map. Mark somewhere that matters, write why, get back to it later. Restores meaning (the note), exactly where (the beacon) and roughly where (the map pin); how to travel there is not ours - players already know. "How I play, not what exists" - it is not a gathering database, a quest helper or a routing tool. Never competes for the beacon: last explicit user action wins. /lm - recovery view: /lm all
 ## Author: Battlewrath
-## Version: 0.1.0
+## Version: 0.1.9
 ## SavedVariables: COA_LandmarksDB
 
 store.lua

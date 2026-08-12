@@ -6,9 +6,14 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## ▶ ACTIVE — `COA_Landmarks` → **brief: `addons/planning/landmark_design.md`**
 
-**STATUS: BUILT AND LIVE — v0.1.3 deployed and working** (2026-08-12). Capture, widget, map
-pins, note readout, beacon control and the edit form all confirmed in the wild. Four bugs from
-his live test are closed (`landmark_design.md` §15 has the log).
+**STATUS: BUILT AND LIVE — v0.1.9** (2026-08-12). Capture, widget, map pins, note readout,
+beacon control and the edit form all confirmed in play. Since v0.1.3 it also gained: inline tag
+completion with ghost text, the `owner` control (character / all), `/lm all` orphan recovery,
+and bulk transfer. Four live bugs closed; `landmark_design.md` §15 has the log.
+
+**One known issue, parked on his call:** the beacon holds a stale target when re-pinned onto an
+already-live slot. Two candidate causes and the one-run test that separates them are in §15 —
+do not guess at it in `beacon.lua`, which is where the silent-failure criteria live.
 
 **NEXT ACTION: nothing to build. v1 exists to be USED** — §12's A:B questions need play, not
 code. Do not add features to it unprompted; §11's two-readings rule governs how any feedback

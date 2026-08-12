@@ -70,13 +70,17 @@ identity, captured together at creation:
 | `mapID` | same call. **This is the CONTINENT/INSTANCE map, not the zone** [F30] |
 | `mapX, mapY` | `GetPlayerMapPosition("player")` — map fraction, for pin placement |
 | `zone`, `subZone` | `GetRealZoneText()`, `GetSubZoneText()` |
-| `id` | **bespoke, unique, immutable** — `zone-subzone-int` (AC-47) |
+| `mapC`, `mapZ` | `GetCurrentMapContinent/Zone()` — **which map the fraction belongs to.** `mapID` is the continent (F30), not the zone the world map draws, so without these every landmark on a continent would render on every zone map in it (AC-34) |
 | `alias` | the **display** name, user-editable — defaults to `subzone int` (AC-4) |
 | `what`, `why` | two free-text fields, either may be empty [L4, AC-37] |
 | `icon` | user-chosen from a palette; defaults by context [AC-38] |
 | `tags` | a plain comma-separated string, **as typed** (AC-54) |
-| `arrivalTier` | one of three [L14] |
+| `tier` | one of three [L14]. *(Stored as `tier`; the UI calls it "Beacon hide" — AC-40.)* |
 | `owner` | **one field, two forms**: `"global"` or a character name (AC-46) |
+
+**★ `id` is the TABLE KEY, not a field in the record.** `landmarks["Winterspring-Everlook-7"]`
+— it is not stored inside, because a key and a copy of the key can disagree. AC-47 governs its
+form.
 
 **AC-2 [L1, L2]** — position is captured **where the player stood** and is **never rewritten**.
 No edit path may relocate a landmark. Renaming, re-noting, changing the icon and re-tiering are all
