@@ -126,6 +126,24 @@ assert(#Store.SuggestTags("vendor", other) == 0,
 Store.Delete(other)
 P.sub = "Everlook"
 
+-- AC-54c: the GHOST TEXT must never become a tag. It is a FontString overlaid
+-- on the box, not text inside it, so GetText never sees it and nothing stores
+-- it - but the invariant that would CATCH a leak is this: a landmark with an
+-- empty tags field contributes NOTHING to the suggestion pool. If the ghost
+-- ever reached storage, that landmark's tags would be non-empty and it would
+-- start offering itself back as a tag.
+P.sub = "Ghost Check"
+local ghostLm = Store.Create()
+assert(Store.Get(ghostLm).tags == "", "a new landmark starts with NO tags")
+assert(#Store.SplitTags(Store.Get(ghostLm).tags) == 0, "an empty field splits to nothing")
+local before = #Store.KnownTags()
+assert(#Store.KnownTags() == before, "an empty-tagged landmark adds no suggestions")
+for _, t in ipairs(Store.KnownTags()) do
+    assert(not t:find("separate with", 1, true), "AC-54c FAILED: ghost text reached the tag pool")
+end
+Store.Delete(ghostLm)
+P.sub = "Everlook"
+
 -- AC-48: refuse a version we do not know, and CHANGE NOTHING
 COA_LandmarksDB.schemaVersion = 99
 Store.locked = nil
