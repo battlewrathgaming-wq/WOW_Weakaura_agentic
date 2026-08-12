@@ -4,16 +4,28 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — landmark/scrapbook → **project ledger: `addons/planning/satnav_ledger.md`**
+## ▶ ACTIVE — `COA_Landmarks` → **brief: `addons/planning/landmark_design.md`**
 
-**NEXT ACTION, agreed with Battlewrath 2026-08-12 before he signed off: write the DESIGN BRIEF
-for the landmark feature.** He said *"then we'll do a design brief"* — so arrive expecting to
-draft it, but it is still gated on the build word. Criteria before code, in the shape of
-`callwitness_design.md`.
+**NEXT ACTION: IMPLEMENT IT. The design pass is CLOSED** (2026-08-12) — 45 acceptance criteria,
+**nothing marked open**, every one traced to a law/fact or ruled on by Battlewrath. There is
+nothing left to decide before code. **Gated on the build word.**
 
-**Read order on arrival:** this block → `addons/planning/satnav_ledger.md` §5 laws 9–10, §9,
-§10 → `addons/maps/atlas/README.md` if the brief touches art. **Do not duplicate the project
-ledger's detail here** — it is scoped to its own file at Battlewrath's instruction.
+**Read order on arrival:** this block → **`landmark_design.md`** (the brief IS the spec) →
+`satnav_ledger.md` only when a criterion's *why* is in question — it is the fact basis, and the
+brief cites it by `[Ln]`/`[Fn]`. `addons/maps/atlas/README.md` if you touch art. **Do not
+duplicate the project files' detail here.**
+
+**★ Two criteria fail SILENTLY in the field and must be asserted directly in the smoke:**
+**AC-24** — arrival requires `GetTargetState() ~= Invalid` **and** the tier, because a
+map-boundary refusal reports `sd = 0.00`, and zero satisfies every tier (walk into any instance
+and a naive build fires *arrived*). **AC-26** — debounce before acting on `Invalid`, so a
+loading screen is not judged as the real state. Everything else fails loudly.
+
+**★ STALENESS:** every fact was read from patch-B as extracted 2026-08-12 or captured live that
+day; this fork ships changes in days. The probe is re-runnable in three minutes
+(`satnav_probe_runsheet.md`, read with `py addons/tools/read_satnav_probe.py`). Re-check
+anything with a **number** in it first — F22's 727/1500 and F31/F37's 5.46–5.59 are the
+client's own constants and can move.
 
 **★ THE ARC TURNED on 2026-08-12 — read this before assuming the old framing.** It began as a
 dungeon route pointer. It is now **landmark-first**:

@@ -1,10 +1,21 @@
-# Dungeon sat-nav — project ledger
+# Landmarks & sat-nav — project ledger
 
-_Scoped context for the in-dungeon route pointer. Everything here is either LIVE-PROVEN (with
-the capture that proves it) or explicitly marked as assumption. Bench-level state lives in
+_The **fact basis and design laws** for two related builds. Everything here is either LIVE-PROVEN
+(with the capture that proves it) or explicitly marked as assumption. Bench-level state lives in
 `operations/Addons_load.md`, which points here; this file is the project's own memory._
 
-Opened 2026-08-08.
+**★ READ THIS FIRST — the arc TURNED on 2026-08-12 (§9) and the title above changed with it.**
+It opened as an in-dungeon route pointer. It is now **two builds, landmark-first**:
+
+| | Status |
+|---|---|
+| **`COA_Landmarks`** — the world-map scrapbook | **design closed** → `addons/planning/landmark_design.md` (45 criteria, nothing open). Not behind the §8 gate |
+| **the route half** — the in-dungeon pointer | still behind the §8 community gate; a load-or-share consumer of the same understanding |
+
+§1–§8 were written for the route half and are kept as-is: the facts are shared, and the
+value propositions still hold. **Where a §7 question belongs only to the route half, it says so.**
+
+Opened 2026-08-08. Last audited 2026-08-12 (cross-references clean, staleness swept).
 
 ## 1. The want (Battlewrath, verbatim intent)
 
@@ -67,12 +78,12 @@ unused.
 | F11 | **`GetMapInfo`'s 668/768 are TEXTURE dims, not world extent** | they contradict the measured extent (below); 668 is the standard map-frame width |
 | F12 | **The beacon renders its own DISTANCE READOUT in yards** — we do not build one | incidental, from Battlewrath's *illustrative* screenshots (taken to show the community the vision, NOT part of the structured probe series): a diamond marker captioned "76 yds" / "54 yds". Corroborates F10. Consequence: notes can stay purely semantic, since navigation is already on screen |
 | F13 | **The beacon reads correctly ACROSS ELEVATION** — visible up a ramp, then on the same plane while closing on it | the point Battlewrath was demonstrating with those screenshots. The 3D projection behaves for the navigation case, not just at a fixed height |
-| F14 | **The 233 cull is the MINIMAP POI's, not the world beacon's** | beacon visible and captioned at 76 yds. Beacon max range still UNKNOWN |
+| F14 | **The 233 cull is the MINIMAP POI's, not the world beacon's** | beacon visible and captioned at 76 yds. ~~Beacon max range still UNKNOWN~~ — **answered by F22/F35: full to 727 yd, dimmed to 1,500, and the ENGINE keeps returning true distance to at least 3,742** |
 | F15 | **The world-map PIN MECHANISM is addon-reusable — we do not build map markers either** | source read of `Ascension_POI/MapPoiPin.lua` + `WorldMapPOIMixin.lua`. Pins parent to **`WorldMapButton`** and position via `SetPoint("CENTER", WorldMapButton, "TOPLEFT", x, y)` (pixel offsets — our map fraction × frame size lands directly) · hover text uses **`WorldMapTooltip`** (owner/AddLine), exactly the surface for the note readouts · `MapPoiPinMixin` supports a per-pin **`OnClickFunction`**, so click interaction is normal here (promote a node, open a note). **The ART is explicitly NOT reusable — see law 10.** |
 | F16 | **The death markers themselves are NOT reusable** — `WorldMapChallengeFailPOIMixin`, server-fed challenge/hardcore failure records (killer, level, ruleset, timestamps) | same source read. Boundary is clean: **the pin machinery is ours to reuse, the death DATA is not** |
 | F17 | **★ A PURPOSE-BUILT WAYPOINT ICON FAMILY EXISTS AND IS ALL BUT UNUSED** — and it satisfies law 10 outright | `SharedXML/AtlasInfo.lua` (**4,503** named atlas entries — the authoritative count from the emitter, F20; the 4,425 first quoted here was an ad-hoc undercount). The family lives at `interface\waypoint\waypoinmappinui` (Blizzard's own path typo): **Tracked · Untracked · Highlight** (30×30) · **ChatIcon** (13×13) · **ButtonToggle** (38×38), plus `waypoint-mappin-minimap-tracked/untracked` (32×32) on `objecticonsatlas`. Cross-referenced against 1,130 client source files: **7 of 8 referenced ZERO times.** The one claim is `SuperTracker.lua:131` — `[Enum.SuperTrackingType.Position] = "Waypoint-MapPin-Tracked"` — i.e. the client uses it for a POSITION supertrack, **exactly our use case**. Not a conflict: it is the client naming the correct symbol for us, and it is already what the live beacon renders |
 | F18 | **The claim-of-use test is MECHANICAL and proven** | grep an atlas name across the extracted source tree, excluding `AtlasInfo.lua` itself; zero references = unclaimed. Ran ad-hoc over 1,130 files to produce F17. **This is the emitter's whole algorithm** |
-| F19 | **The client ships an in-game ATLAS BROWSER** | `AddOns/Ascension_UIDevelopmentTools/AtlasBrowser/` in patch-B (not present in the user's AddOns folder — it lives in the MPQ). Untested whether `LoadAddOn` will open it; if it does, visual classification needs no tool from us at all |
+| F19 | **The client ships an in-game ATLAS BROWSER** | `AddOns/Ascension_UIDevelopmentTools/AtlasBrowser/` in patch-B (not present in the user's AddOns folder — it lives in the MPQ). ~~Untested whether `LoadAddOn` will open it~~ — **PROVEN IN USE**: opened via `/devconsole` → `ab`, and **every icon in law 10's decision was picked through it**. Visual classification needed no tool from us. Caveat: its **search is broken** — scroll the unfiltered list (`addons/maps/atlas/README.md`) |
 | F20 | **★ The census is EMITTED, and the fork's own art was the part that kept going missing** | `addons/tools/emit_atlas_census.py` → `addons/maps/atlas/` (census.json + routes.md + free.md). **4,503 entries · 1,359 claimed · 3,144 free.** Three format variants had to be calibrated in, and **all three were CoA's custom art, not Blizzard's**: (a) fractional sizes `179.2, 69.3`, (b) names beginning `!` (a sort prefix, 96 of them), (c) **Lua arithmetic as a size** — `85*0.24`, `(151+151)/512`. Each was a *silent* drop under a stricter pattern. First flawed run emitted 4,302 and looked perfectly healthy. **CoAResource entries went 39 → 102** once all three landed, including all 7 `ReaperAtlas` class-resource pieces. Lesson, general: *the bespoke rows are the ones a pattern tuned on the common rows drops — and they are exactly the rows we care about.* Guarded by a completeness self-check that compares parsed names against entry-shaped names and **refuses to write** on a shortfall; it fired twice and earned itself. Guard note: it compares NAME SETS, not line counts — the registry genuinely repeats 18 keys (Lua last-wins, so those earlier definitions are dead art), reported not hidden |
 
 | F21 | **★ THE ENGINE PUBLISHES A NAVIGATION STATE — and it ALREADY IMPLEMENTS "arriving is silent"** | `Enum.NavigationState = { Invalid=0, Occluded=1, InRange=2, Disabled=3, InRadius=4 }` (`SharedXML/Enum.lua:1938`), read live via **`C_SuperTrack.GetTargetState()`**. `SuperTracker.lua:55` maps state → beacon alpha: Invalid **0.0** · Occluded **0.6** · InRange **1.0** · Disabled **0.0** · **InRadius 0.1**. So when you reach the target the beacon fades to near-nothing **on its own**. Battlewrath's ruling (§9 walk, stop 4) is not something we build — **we inherit it.** ★ Note the client's own convention, because it is a distinction not a contradiction: `WatchFrame.lua:179` uses that same `InRadius` to *flash a small tracker icon*. The client goes **quiet in the WORLD and acknowledges in the UI** |
@@ -133,7 +144,7 @@ Consistency checks that make this trustworthy rather than fitted:
   standard 1002×668 map frame. The two independently-measured scales confirm each other.
 
 **Calibration cost per dungeon:** two captured points with decent map separation — which a
-route's first run produces naturally. **ASSUMPTION (untested):** that the 3:2 aspect holds for
+route's first run produces naturally. **ASSUMPTION (corroborated, not proven):** pfQuest hardcodes a single `* 1.5` x-correction for **every zone** in a mature addon with a full zone database (`satnav_prior_art.md` §2) — strong third-party evidence, from people who would have noticed variation. Still an assumption here: that the 3:2 aspect holds for
 all dungeon maps; if so one well-separated leg gives both scales. Verify on a second dungeon
 before relying on it.
 
@@ -846,6 +857,9 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
 - ~~Does distance survive off-screen?~~ — **ANSWERED by F29: yes**, 573 of 573.
 - ~~What does the CVar-off path actually do?~~ — **ANSWERED by F41**: `Invalid`, tracking false,
   global nilled, no distance. Distinguishable from a boundary refusal by `tr` and `gp`.
+**★ Everything below belongs to the ROUTE HALF.** `COA_Landmarks` has no open capability
+questions — see `landmark_design.md` §11.
+
 - **Does mapID change across dungeon FLOORS?** Decides whether a floor is a data-model concept
   or just a z value. One dump at the top and bottom of a staircase settles it. Ragefire is
   single-level so this is still untested.
@@ -958,7 +972,7 @@ Stated as deltas, not designed — nothing here is decided.
 5. **★ Outdoor position may be EASIER, not harder — and this is a PROBE, not a claim.** F9
    found `C_WorldMap.GetWorldPosition` returns nil *inside instances*, which implies it works
    outdoors. If it does, the map↔world transform §4 derives by hand for dungeons is supplied
-   by the engine outdoors. **Untested. Do not plan on it until dumped.**
+   by the engine outdoors. **Still untested — and now MOOT for `COA_Landmarks`**: F30 showed `mapID` is the continent, and pins are placed from `GetPlayerMapPosition` map fractions (F8, AC-1), so we never need the conversion. Left here for the route half.
 
 ### ★ ORDER DECIDED (Battlewrath, 2026-08-12)
 
@@ -990,7 +1004,7 @@ including where it does *not* help:
 | **Does the 3:2 map aspect generalise?** | **Answered more broadly than routing could** — across many zone maps rather than one dungeon |
 | **Does "pick a role" survive?** | **Answered directly**, if spec linking ships on landmark notes. That is where the question actually lives |
 | `GetSuperTrackedWorldPosition` space | Exercised outdoors, where the setter/getter loop is easiest to read |
-| **Beacon max range** (F14, unknown) | Trivially measurable outdoors, where distances are large. Indoors could never settle it |
+| ~~Beacon max range~~ | **ANSWERED** — F22 (thresholds) and F35 (distance stays live to 3,742 yd) |
 | **Does mapID change across FLOORS?** | **Partial only** — landmarks settle whether mapID is a sufficient storage key; the dungeon-floor case still needs a dungeon |
 | **How dungeon map textures are addressed** | **Barely** — outdoor world maps are a different rendering path. Do not expect this one to come free |
 
@@ -1054,19 +1068,21 @@ own file when it is taken up.
 
 ## 10. Build state
 
-**Nothing built. Icons chosen; fact basis established; design laws set — no code, no addon
-folder, no acceptance criteria written.**
+**`COA_Landmarks` — DESIGN CLOSED, no code.** `addons/planning/landmark_design.md` carries 45
+acceptance criteria with **nothing marked open**; every one is traced to a law or fact here, or
+was ruled on 2026-08-12. Prior art inspected (`satnav_prior_art.md`). Fact basis: F1–F41 across
+four probe runs, 1,857 samples. **Next step is implementation, on the build word.**
 
-- **Landmark / scrapbook layer — NEXT, and NOT gated.** §9 moved it ahead of routing and out
-  from behind §8.
-- **Route layer — still gated on the community answer (§8)**, and per law 9's refinement it is
-  a load/share consumer of the layer above rather than a parallel build.
+**The route half — still gated on the community answer (§8)**, and per §9 it is a load-or-share
+consumer of the same *understanding*, **not necessarily the same code**.
 
-**Next step is the design/AC document in the shape of `callwitness_design.md` — criteria
-before build, not implementation** (per the ADR: findings and criteria carry zero invention;
-inventiveness is confined to the contained design space). **Scoped to the landmark feature
-alone** — it is not the place to specify a shared architecture for a thing that does not exist
-yet (§9). Where a routing question can be part-answered *for free* by a capture the landmark
-feature already needs, the criteria should say so and take it; where it cannot, it is left
-open rather than designed for. Law 9's wipe-boundary constraint applies **only if** a shared
-store is chosen. **Awaiting the build word.**
+**Instruments that exist:** `COA_DevDump/task_satnav.lua` (the probe) ·
+`addons/tools/read_satnav_probe.py` (the reader) · `addons/tools/smoke/smoke_satnav.lua` ·
+`addons/planning/satnav_probe_runsheet.md`. Re-runnable if the client moves.
+
+**★ STALENESS NOTE for whoever builds this.** Every fact here was read from **patch-B as
+extracted on 2026-08-12**, or captured live the same day. This fork ships changes in days. Before
+trusting a source-read claim, re-check it; before trusting a captured one, re-run the probe —
+it takes three minutes and the reader answers all three questions at once. The facts most worth
+re-checking are the ones with **numbers** in them: F22's 727/1500 thresholds and F31/F37's
+5.46–5.59 arrival radius are the client's own constants and can move.
