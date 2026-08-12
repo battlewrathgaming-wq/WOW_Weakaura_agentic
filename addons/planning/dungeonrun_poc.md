@@ -175,9 +175,41 @@ landmark half exists for. It would never enter the route model. His call, deferr
 
 ---
 
-## 7. The one thing the POC must not get wrong
+## 6b. Banked — RUN REPLAY (Battlewrath, 2026-08-13)
 
-**Wall-clock timestamps on every marker.** Everything else in this note can be added later. A
+> *"Something like a run-replay might be worth it. Not what we're building right now. But I can
+> see use as an analysis / replay, drawn on a map."*
+
+**Not built. But it is not purely a display feature — it is a CAPTURE-SHAPE decision, which is
+why it appears here and not only in a V2 list.**
+
+**★ ENDPOINTS ALONE CANNOT BE REPLAYED.** Combat start/end gives a **skeleton**: where each
+engagement began and ended. Drawing that on a map yields **straight lines between pulls**, which
+is wrong in any dungeon with a corridor — the line goes through walls. The travel legs (§4) are
+exactly the part we said stays unclaimed, and replay is the thing that claims them.
+
+**And it is irreversible in the same way the timestamp is:** a run captured without the legs can
+never be replayed later. Runs already banked stay skeletons forever.
+
+**The cheap version, recommended for the POC — record the path, do not draw it:**
+
+- Sample player position on a **slow fixed tick (~1/s)**, **only while OUT of combat and inside
+  an instance**. In combat the marker pair already covers it; outside an instance there is no run.
+- A 20-minute run is **~1,200 points**. Trivial as data, and it *is* the path.
+- Frame cost is effectively nil and it **self-clears when the run ends** — the same lifecycle
+  discipline `beacon.lua` now holds, and `emit_addon_census.py` will witness it either way.
+
+**This is record-all-filter-offline again** (§5): recording the legs is cheap, drawing them is
+deferred, and the decision only has to be right *before the first run*.
+
+---
+
+## 7. The things the POC must not get wrong
+
+Both are **irreversible**: everything else in this note can be added later, but these two cannot
+be applied retroactively to runs already captured.
+
+**1. Wall-clock timestamps on every marker.** Everything else in this note can be added later. A
 run captured without a joinable time reference **can never be joined retroactively** — to the
 disk log as a second witness, or to anything else.
 
@@ -186,6 +218,9 @@ disk log as a second witness, or to anything else.
 *(Weaker justification than I first gave it: if the addon listens live, the death events arrive
 inside the window already and there is nothing to join. The stamps are for the **bench
 cross-check**, not the mechanism.)*
+
+**2. The travel legs, if replay is ever wanted** (§6b). A ~1/s out-of-combat position sample.
+Cheap to include, impossible to backfill.
 
 ---
 
@@ -232,6 +267,7 @@ Written down now so the run is read against a question rather than admired:
 | How many markers does a normal run produce? | The **density** number the whole pin-layer question rests on. |
 | Do chain pulls collapse the run to too few markers? | His taste read on whether the pair is the right unit. |
 | Is the start↔end **drift** large enough to matter? | Decides whether the waypoint is the start point or something derived. |
+| How many **travel-leg samples** does a run produce, and does the path look right drawn? | Whether §6b's 1/s tick is the correct rate — and the first evidence that replay is worth building. |
 
 **★ THE §8 COMMUNITY GATE IS ABOUT SHIPPING ROUTING, NOT ABOUT LEARNING WHETHER IT WORKS.**
 Establishing mechanics is not competing with anyone — it is finding out what we would be
