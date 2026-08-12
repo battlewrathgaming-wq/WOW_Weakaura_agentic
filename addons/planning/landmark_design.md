@@ -128,6 +128,19 @@ an in-flight box: *the meaning is freshest at capture*.
 | **2. The user cannot set global or character specific** | **Correct — that was the gap.** §12 deferred the *control*, never the field. `Store.SetOwner` has worked since v0.1.0; there was simply no way to reach it. **Now shipped as a dropdown**, the same stock `UIDropDownMenu` the client's own bug-report selector uses (`BugReportFrameMixin.lua:69`) |
 | **3. Do they render in line with that? Global when global. Character when character + global** | **Already built, and it is the only visibility rule in the addon.** `Store.VisibleToMe` → `owner == "global" or owner == me`. Every surface reads it — pins, `/lm list`, the minimap count, and the tag pool — so there is one definition and nothing can drift from it |
 
+**★ WHY A BINARY AND NOT A PER-CHARACTER LIST (Battlewrath):** *"cuts the noise from 'every
+character I have' (10 max) to 'is it specific to this character or not'."*
+
+A visibility **list** would be a ten-checkbox matrix on every landmark. The binary is not a
+simplification of that — **it is the question the player actually asks**: *is this mine, or
+everyone's?* Nobody holds "this is for my rogue and my mage but not my priest" in their head,
+and a UI that offers it invites them to invent a taxonomy they do not have. **That is the
+cataloguing failure mode again** (§11's exhaustiveness test), arriving through a settings
+screen instead of through the data.
+
+**Do not turn this into a multi-select.** If a real case ever appears it is one landmark
+duplicated, not a matrix on all of them.
+
 **★ One consequence made VISIBLE rather than left to be discovered:** demoting a global
 **claims it for whoever is standing there** (AC-46: "demotion assigns the current character").
 So the dropdown reads **"Only Gravekeeper"**, not "this character" — the label states the
