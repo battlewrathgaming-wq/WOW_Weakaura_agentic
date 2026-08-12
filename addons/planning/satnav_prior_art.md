@@ -168,8 +168,13 @@ Recorded only so nobody re-derives it as a gap.
    - the **two-tier throttle** on the arrival poll;
    - a **debounce before acting on `Invalid`**, so F38's guard judges a sustained state and not
      a single frame across a loading screen.
-2. **One from GatherMate:** world-map pins must **pool**, and must do nothing while the map is
-   hidden.
+2. ~~**One from GatherMate:** world-map pins must **pool**.~~ **DROPPED (Battlewrath,
+   2026-08-12): frame lifecycle machinery is out of our bounds.** *"We're driving a widget
+   that's stateful, and directing the in-game beacon when we own it."* Pooling is GatherMate's
+   answer to hundreds of churning pins; we have tens of static ones. **What survives is the
+   cheap half: do nothing while the world map is hidden, and rebuild on event rather than on a
+   timer.** The pool itself would be us importing a solution to a problem we do not have.
+   (World-map pins remain a surface — law 15. It is the *minimap* that is out of scope.)
 3. **One thing confirmed rather than changed:** law 5's both-spaces storage and law 2's
    frozen-at-creation position are what a mature addon in this space also does.
 4. **One open question softened:** the 3:2 aspect (§7) has third-party corroboration.
