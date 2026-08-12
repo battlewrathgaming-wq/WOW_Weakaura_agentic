@@ -855,3 +855,46 @@ criteria rather than good intentions:
 
 **Read together: we may throw the UI away at any time, and we may throw the storage away
 deliberately — but never accidentally, and never without being able to read what was there.**
+
+---
+
+## 14. V2 SKETCH — the editor UI (Battlewrath, 2026-08-12) — NOT DESIGNED
+
+**Parked deliberately. Nothing here is a criterion and nothing here is built in v1.** Recorded
+so it is not lost and, more importantly, so nobody builds *toward* it while building v1.
+
+His sketch, verbatim in shape:
+
+> **Light tagging.** *"But that is V2. When we get into the editor UI."*
+>
+> A **bespoke interface** — summons maps **free of noise**, shows **just our items**. With a
+> panel of:
+> ```
+> [Search]
+> [Filter]
+> Map
+>   zone
+>     Subzone
+>       - items
+> ```
+
+**What it is:** the **retrieval** surface. §9 delta 2 said the primary verb changes from *follow*
+to *find*; v1 answers *find* with the game's own world map and our pins on it, which is enough
+to learn from. V2 gives *find* a purpose-built room — and a map showing **only** our landmarks,
+free of quest POIs, flight points and every other addon's pins, is the calm-UI instinct applied
+to the map itself.
+
+### ★ Two things this validates about v1, and one caution
+
+1. **The panel's tree — Map → zone → subzone → items — is EXACTLY AC-47's lookup fields.** That
+   is not a coincidence: *"MapID, zone and sub-zone as the look up records."* **The v1 storage
+   shape already supports V2's browser with no change**, which is the storage design paying for
+   itself before V2 exists.
+2. **Tagging is a new field, which is precisely what `schemaVersion` (AC-48) was built for.**
+   V2 is the first real test of the rewrite contract (AC-53) — and if it is a version bump that
+   reads v1 data cleanly, the contract worked.
+3. **⚠ Caution — tags are NOT icons, and law 19 must not be read as forbidding them.** Law 19
+   says nothing keys off the **icon**, because an icon is chosen for **how it looks**. A tag is
+   authored **as a category**, explicitly so that filtering can key off it. Different jobs, and
+   the distinction is what keeps both rules intact. Do not let "nothing keys off the icon"
+   quietly become "nothing keys off anything".
