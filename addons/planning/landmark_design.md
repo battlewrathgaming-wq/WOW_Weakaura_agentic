@@ -69,7 +69,7 @@ identity, captured together at creation:
 | `mapX, mapY` | `GetPlayerMapPosition("player")` — map fraction, for pin placement |
 | `zone`, `subZone` | `GetRealZoneText()`, `GetSubZoneText()` |
 | `name` | see AC-4 |
-| `note` | user text, may be empty [L4] |
+| `what`, `why` | two free-text fields, either may be empty [L4, AC-37] |
 | `sticker` | user-chosen, may be empty |
 | `arrivalTier` | one of three [L14] |
 | `scope` | `character` or `account` [§9 walk stop 2] |
@@ -321,9 +321,15 @@ gesture — *find on the map, click, go*. **Proposed, not derived from a law.**
 
 ## 8. Notes and stickers
 
-**AC-37 [L11]** — a note is **free text about meaning**. The product stores no entity data, no
-spawn tables, no drop indices. We may one day *consume* such data from those who own it
-[consumer-contract pattern]; we never author it.
+**AC-37 [L11, refined by Battlewrath 2026-08-12] — the note is TWO FIELDS, not one blob:
+`What:` and `Why:`.** Both free text, both optional [L4].
+
+**★ Why two and not one:** law 18 says what a player loses is *the meaning and why*. A single
+box invites a **label**; two boxes invite a **reason**. `Why:` is the product's core field — it
+is the thing no other addon stores and the thing the player cannot reconstruct later.
+
+The product stores no entity data, no spawn tables, no drop indices. We may one day *consume*
+such data from those who own it [consumer-contract pattern]; we never author it.
 
 **AC-38 [§9 delta 3]** — stickers are a **palette the user chooses from**, unlike the marker
 symbol which context decides. They are **indicators, not per-entity nodes** — a farming sticker
@@ -333,10 +339,44 @@ says *this area is a farm spot*, not *this herb spawns here*.
 `vehicle-trap-gold` (farming, `AtlasInfo.lua:296`) · `housing-decor-vendor_32` (favoured vendor,
 `:697`).
 
-**AC-40 [O]** — **where the arrival tier is set.** Capture asks nothing [L4], so it needs a
-default plus an edit. Undecided between a **fixed default** and **the sticker implying it**
-(vendor → interact, farm → zone area). The latter removes a decision but is inference, and
-inference makes plausible wrongs.
+**AC-40 [RESOLVED — Battlewrath, 2026-08-12] — the tier is a PROPERTY OF THE LANDMARK, set in
+its edit form.** Not implied by the sticker (that would have been inference, and inference makes
+plausible wrongs), and not chosen at capture [L4, AC-7].
+
+**★ The user-facing label is "Beacon hide", not "arrival tier"** — his wording, and better than
+mine: it names **the visible effect** rather than our internal concept. The player sees a beacon
+disappear; they never see an "arrival event". Law 18 applied to the label itself. *Code may keep
+calling it arrival; the UI says Beacon hide.*
+
+**AC-40a — the landmark edit form** (his sketch):
+
+```
+Name
+What:
+Why:
+
+Beacon hide:
+  ( ) Zone area        300 yd
+  ( ) Within approach  100 yd
+  ( ) Interact with      5 yd
+```
+
+**AC-40b — NO custom radius.** Considered and rejected:
+- Each named tier carries a **meaning** — *the area* · *closing on it* · *at it*. A number carries
+  none, and the user has to invent one.
+- **The failure modes are asymmetric.** Without custom, someone who wanted 50 yd picks
+  *Within approach* and the beacon hides slightly early — barely perceptible. With custom,
+  **every** user meets a number field they must have an opinion about. That is the opposite of
+  flattening decisions.
+- There is a **floor** anyway: F31 brackets the engine's own arrival radius at **5.46–5.59 yd**,
+  so anything under our 5 is inside the noise.
+
+**Escape hatch if a real case appears: add a FOURTH NAMED TIER, never a number field.** That
+keeps the setting a choice between meanings.
+
+**AC-40c [O]** — the sticker's place in this form is **unstated**: his sketch shows Name, What,
+Why and Beacon hide, but not the sticker palette. Either it belongs in the same form, or
+stickering happens from the pin. Not assumed.
 
 **AC-41 [O]** — the widget's `Zone` line: zone, or subzone when one exists
 (*"Winterspring — Everlook"*)? One line, real effect on a vendor pin.
@@ -404,7 +444,8 @@ directly asserted** — they are the two that fail silently in the field.
 | ~~AC-42~~ | **RESOLVED** — curation happens in the widget and on the map pin; no separate panel |
 | ~~the addon's name~~ | **RESOLVED** — `COA_Landmarks` |
 | **AC-36 [P]** | pin click → hold + pin the beacon |
-| **AC-40 [O]** | where the arrival tier is set |
+| ~~AC-40~~ | **RESOLVED** — a property of the landmark, set in its edit form; labelled "Beacon hide"; no custom radius |
+| **AC-40c [O]** | where the sticker is chosen — the edit form, or the pin? |
 | **AC-41 [O]** | `Zone` vs `Zone — Subzone` on the widget line |
 | **AC-21 [O]** | the `QUEST_TURNED_IN` yield |
 | **AC-16 [P]** | widget movability |
