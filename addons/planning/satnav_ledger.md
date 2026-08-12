@@ -1089,10 +1089,11 @@ own file when it is taken up.
 
 ## 10. Build state
 
-**`COA_Landmarks` — DESIGN CLOSED, no code.** `addons/planning/landmark_design.md` carries 45
-acceptance criteria with **nothing marked open**; every one is traced to a law or fact here, or
-was ruled on 2026-08-12. Prior art inspected (`satnav_prior_art.md`). Fact basis: F1–F41 across
-four probe runs, 1,857 samples. **Next step is implementation, on the build word.**
+**`COA_Landmarks` — BUILT, DEPLOYED AND VALIDATED IN PLAY (v0.1.9, 2026-08-12).**
+`addons/planning/landmark_design.md` is the spec and is current; `addons/COA_Landmarks/README.md`
+is the user-facing half. Prior art inspected (`satnav_prior_art.md`). Fact basis: F1–F42 across
+four probe runs, 1,857 samples. **Nothing left to build** — §12's remaining questions need play,
+not code. One known issue parked (beacon staleness on re-pin; §15 of the brief).
 
 **The route half — still gated on the community answer (§8)**, and per §9 it is a load-or-share
 consumer of the same *understanding*, **not necessarily the same code**.

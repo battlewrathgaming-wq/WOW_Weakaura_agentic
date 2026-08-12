@@ -29,6 +29,10 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
 - `COA_DevDump/` — the capture spine (task registry + SV mailbox; the task SHELF is the point)
 - `MancerLedger/` — long-term minion averages over Mancer's per-fight data (profiles, calm
   window, flight-recorder token; READ `DRIVER_CONTRACT.md` before touching the fold)
+- `COA_Landmarks/` — **a self-authored scrapbook of places on the world map**: mark somewhere
+  that matters, write why, get back to it later. Feeds the client's own supertrack beacon rather
+  than drawing a pointer. *"How I play, not what exists"* — deliberately not a gathering
+  database. Spec: `addons/planning/landmark_design.md`; facts: `satnav_ledger.md`. `/lm`
 - `COA_PetGrid/` — the Necromancer pet micro-grid (personal tooling; capture lane pending the
   two-witness retirement decision)
 - `COA_GuardianPlates/` + `COA_StatePlates_Aggro/Friendly/Enemy` — the State Plates family

@@ -1135,8 +1135,10 @@ to the map itself.
 
 ## 15. v1 IS LIVE — build log and what the live test taught (2026-08-12)
 
-**`COA_Landmarks` v0.1.3 is deployed and working.** Capture, widget, map pins, the note
-readout, beacon control and the edit form all confirmed in the wild by Battlewrath.
+**`COA_Landmarks` v0.1.9 is deployed and working.** Capture, widget, map pins, the note
+readout, beacon control and the edit form all confirmed in play by Battlewrath. Shipped after
+the first live pass: inline tag completion with ghost text (AC-54a/c), the `owner` control
+(AC-5a), orphan recovery (AC-5b) and bulk transfer (AC-5c).
 
 He reported bugs by **writing them into the fields they relate to**, which made the
 SavedVariables the bug report — `py`-readable, in place, with no separate channel. Worth
