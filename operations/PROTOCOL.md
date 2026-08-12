@@ -33,9 +33,51 @@ it was another bench. The apparatus could not self-correct; one sentence from th
 
 ## 2. Boot & orientation — your shelf, not a shared warm-start
 
-- **Each bench's SHELF is its own arrival note + durable index** (in agent memory). Boot order: the
-  MEMORY.md spine (shared principles/facts) → **YOUR shelf** → **operations/<your-lane>** for current
-  state → **HELM.md** before any commit.
+### ★ Boot is EXECUTED, not remembered (added 2026-08-12)
+
+```
+py operations/boot.py --lane <YOUR lane>
+```
+
+**Run it first, every session.** Battlewrath: *"harden the boot sequence, so it's doing the work
+instead of regret of missing it."* This protocol already carries the law — *discipline rules
+against filling a field fail slowly; a field that does not exist cannot fail* — and **a
+remembered sequence fails the same slow way**. Proven 2026-08-12: an entire multi-commit build
+arc ran without the helm ever being read, and nothing surfaced it until a manual look hours
+later.
+
+The sequence is **anchored on your ROLE**, not on status:
+
+| | |
+|---|---|
+| **1** | You carry your role → `--lane`, asserted by you. **The tool never guesses it** — §1 makes the human the authority on identity, so a tool that inferred it would be claiming an authority it does not have. |
+| **2** | Does **your role** hold the helm? |
+| **3** | If not, **clarify the CONDITION, not the fact.** "Locked" is a wall; *why* is a diagnosis — it prints days held, commits since HELM.md last changed, and the newest commit. |
+| **4** | **If the condition is a close-out or communication failure, THAT is the work** — address it rather than treating it as an obstacle. |
+| **5** | **Why the trunk moved** — an area roll-up plus recent commits since your lane last wrote its file. This is the part that serves a **different bench** arriving cold. |
+
+It also carries the **merge guard** (`origin` ahead of you → pull first) and **mechanises the
+challenge rule**: the stub check is counted rather than glanced at, including the two drifts
+hardened against historically — a `since:` carrying a parenthetical, and `heading`/`runway` left
+set at release.
+
+**Exit 0** clear · **1** conditions raised. Three design rules, each load-bearing:
+
+- **It never TAKES the helm.** A lock you acquire by *looking* at it is worse than one you
+  forget; taking stays a deliberate act with a stated heading.
+- **It emits evidence and raises QUESTIONS — it does not classify.** Nothing on disk separates
+  a live hold from a session that died holding one, so it names the question and the reader
+  decides.
+- **It stores nothing** (computed at invocation, so it cannot rest stale) and **carries only
+  cross-bench content** — bench-specific staleness stays in that bench's own tooling, per the
+  sharedness law below.
+
+Then read your shelf and your lane file: that is where the *reading* half of boot lives, and no
+tool can do it for you.
+
+- **Each bench's SHELF is its own arrival note + durable index** (in agent memory). Boot order:
+  **`boot.py` (above)** → the MEMORY.md spine (shared principles/facts) → **YOUR shelf** →
+  **operations/<your-lane>** for current state → **HELM.md** before any commit.
 - **A file's sharedness must match its content's sharedness.** Shared files carry ONLY cross-bench
   content; per-bench content lives in per-bench files. The old single shared warm-start bundled every
   bench's arrival note into one file — which manufactured the "I might be X, I'll read their
@@ -78,7 +120,8 @@ at a time; other benches stay out of the trunk until it reads RELEASED.
 - **THE CHALLENGE RULE (Battlewrath, 2026-07-31):** when directed into motion, CHECK THE TRUNK
   first. Outstanding content — a held helm, a dirty or unpushed tree, or a HELM.md that has grown
   beyond the stub form — means STOP and surface to Battlewrath before any commit. The stub makes
-  the check a glance: any extra line is by definition outstanding. Being directed into motion is
+  the check a glance: any extra line is by definition outstanding — and since 2026-08-12
+  `boot.py` COUNTS them for you, so the check no longer depends on noticing. Being directed into motion is
   not clearance; the trunk's state is.
 - **Boot:** read HELM.md before your first commit. `RELEASED` (or your own name) → take it: set
   holder/since/heading, commit. Another bench's name → locked out — repo-read-only work, or
