@@ -202,6 +202,42 @@ answer — and the third one arrived without needing anything built for it.
 Asserted in the smoke: an orphan is invisible normally, surfaced by show-all, and claimable.
 Mutation-tested — removing the unfilter fails with *"show-all did not surface the orphan"*.
 
+**★★ AC-5c — THE TRANSFER CONTROL, and why the identity format is LEFT ALONE (Battlewrath,
+2026-08-12).** On same-name-different-realm collision: *"cross realm is very niche whilst
+predictable. And lives in the editor as a transfer option."* Shape given:
+`[Old name with autocomplete](Built from record instead of construction)[Me]`
+
+**`owner` stays a bare character name.** Switching to `name-realm` would orphan every existing
+record to fix something rare and, when it happens, obvious. **An escape hatch beats a
+migration.**
+
+- **The source list is BUILT FROM THE RECORD** — `Store.KnownOwners()` returns the distinct
+  owners actually present, excluding `global` and yourself (neither is a transfer *source*).
+  **The same rule the tag pool follows (AC-54a): mirror the data, assemble nothing.** We still
+  never learn who your characters are — only who owns something *here*, a smaller claim.
+- **Bulk, not per-landmark.** A deleted character may have left thirty. One click, not thirty.
+- **Shown ONLY in the show-all recovery view** (AC-5b). It is an admin tool; the normal edit
+  form never carries it.
+- **Built as a SELECTOR, not free-text-with-autocomplete** — judgment call, stated. The set is
+  small and known from the records, and a typo in a bulk reassign is worse than a click.
+
+**★ TARGET IS ME **OR** GLOBAL, which wraps two jobs into one control (Battlewrath):** *"maybe
+the new owner is Me or Global. Then it wraps up both transfer and delete recovery."* `[to me]`
+`[to all]` — **the same two forms `owner` has always had (AC-46)**, so no third state was
+needed. Recovering a deleted character's landmarks *for everyone* is one click rather than a
+claim followed by promoting each.
+
+*(A button reads "me" where the dropdown above reads "Only Gravekeeper". Not an inconsistency:
+the dropdown **displays stored state** about a record that may not be yours, so it must resolve
+the name; a button you are pressing has an unambiguous actor.)*
+
+**★ AND THE CROSS-REALM CONCERN RETIRES rather than defers (Battlewrath):** *"same-name cross
+server has no place, as we capture name not server so it will work out the box."* A collision
+makes two characters **share** — nothing is lost and nothing is orphaned. It is an unusual
+outcome, not a failure mode. And if the sharing is unwanted, **the transfer control is already
+the valve.** No `name-realm` migration, and no follow-up owed.
+
+
 **★ One consequence made VISIBLE rather than left to be discovered:** demoting a global
 **claims it for whoever is standing there** (AC-46: "demotion assigns the current character").
 So the dropdown reads **"Only Gravekeeper"**, not "this character" — the label states the
