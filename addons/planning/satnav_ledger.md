@@ -220,12 +220,14 @@ map, question it. It is the standing answer to "should this be cleverer?"
    that the collection was **loaded or shared** and carries an **order**; what makes something
    a landmark is that *you authored it* and it persists. Law 9's rules then attach to **where
    the collection came from**, not to what kind of thing it is.
-   **★ THE HAZARD THIS CREATES, and the invariant any design must satisfy:** law 7 says
-   **import WIPES**. The moment loaded and personal markers share an architecture, that wipe
-   has a boundary it must never cross. **Constraint: a wipe is scoped to the loaded collection
-   and can never reach author-owned landmarks — enforced structurally, not by care.** This is
-   the single place where "same architecture" could destroy user data, so it is named here
-   rather than discovered later. No solution proposed; that belongs in the AC document.
+   **★ THE HAZARD THIS CREATES — CONDITIONAL, and worth carrying anyway:** law 7 says
+   **import WIPES**. *If* loaded and author-owned markers ever share a store, that wipe has a
+   boundary it must never cross. **Constraint in that case: a wipe is scoped to the loaded
+   collection and can never reach author-owned landmarks — enforced structurally, not by
+   care.** Whether they share a store is an open implementation choice, not a given (§9), so
+   this is a **condition on a design decision, not a standing law**. Carried because it is the
+   one place a shared store could destroy someone's own work, and it is cheaper to know the
+   constraint before choosing than to discover it after. No solution proposed.
 
 10. **★ ICONS CARRY LANGUAGE — DO NOT REUSE IN-USE ART (Battlewrath, 2026-08-11).**
     The client's POI atlas symbols already mean things here (skull, crossed swords, taxi
@@ -426,11 +428,23 @@ and **proximity to a landmark drives personal notes regardless of whether a rout
 all**. That last clause was written for the notebooking proposition inside a dungeon. It is,
 unchanged, the scrapbook.
 
-**★ THE ARCHITECTURAL CONSEQUENCE, and the reason this is worth deciding NOW rather than
-retrofitting: build the LANDMARK + NOTE layer as the foundation and the ROUTE layer on top of
-it.** Route-first with landmarks bolted on makes the scrapbook a second implementation of the
-same thing. Landmark-first makes the scrapbook *the foundation shipped alone*, plus retrieval.
-Same total work, one codebase instead of two — but only if the order is chosen deliberately.
+**★ WHAT "ARCHITECTURE" MEANS HERE — CORRECTED (Battlewrath, 2026-08-12).** Verbatim:
+*"Architecture in the way we are developing and understanding the system. And making it
+repeatable. The implementation may differ. We don't have to codify them explicitly."*
+
+The shared thing is the **method and the understanding** — how we develop against this client
+and how we come to know it — **not a committed code structure.** An earlier draft of this
+section claimed "same total work, one codebase instead of two"; that was an implementation
+promise nobody made, and it is withdrawn. **The two may share a great deal of code or almost
+none, and that is decided when it is built, against what is then known — not now, on paper.**
+
+This is [[adr-inventiveness-confined-to-contained-spaces]] applied to ourselves: **do not
+codify the abstraction ahead of need.** A shared core is a *candidate* shape, not a decision.
+Writing it into law before either thing exists would be inventing structure to fit a
+prediction, which is the failure mode this ledger exists to avoid.
+
+**What IS decided is the ORDER, and the reason is knowledge, not reuse** — see the next
+subsection.
 
 **Second consequence, and it partly de-risks §8: the foundation's value does not depend on the
 community answer.** The gate asks whether the *routing* proposition is wanted. Self-authored
@@ -475,11 +489,32 @@ Three reasons, his, and each is independently sufficient:
 3. **Separable packaging later.** Different use cases can ship as different addons over the
    same core.
 
-**Consequence — the shape is CORE + SHELLS, which this bench has precedent for** (State Plates
-core + satellites; MancerLedger over a driver contract). Core carries the marker record, both
-coordinate spaces, notes, categories, the zone index, proximity and pin rendering. Shells carry
-a *verb*: the scrapbook's is **find**, the route follower's is **follow**, and per law 9's
-refinement the follower is a **load/share + order** over the same records.
+**★ AND THE REAL PAYOFF IS KNOWLEDGE, NOT REUSE (Battlewrath, 2026-08-12):** *"once we have
+the landmark feature in, the questions that routing has will be part answered."*
+
+That is the argument for the order, and it stands whatever the code ends up looking like.
+Routing's unknowns are mostly **shared mechanics**, and landmarks exercise them under far
+easier test conditions — one player, outdoors, no group, no plan. Mapped against §7, honestly,
+including where it does *not* help:
+
+| §7 open question | What shipping landmarks does to it |
+|---|---|
+| **3D vs 2D proximity for advancing** | **Fully exercised.** Landmark proximity drives personal notes — the identical mechanic, with real numbers from real use instead of a judgement call |
+| **Does the 3:2 map aspect generalise?** | **Answered more broadly than routing could** — across many zone maps rather than one dungeon |
+| **Does "pick a role" survive?** | **Answered directly**, if spec linking ships on landmark notes. That is where the question actually lives |
+| `GetSuperTrackedWorldPosition` space | Exercised outdoors, where the setter/getter loop is easiest to read |
+| **Beacon max range** (F14, unknown) | Trivially measurable outdoors, where distances are large. Indoors could never settle it |
+| **Does mapID change across FLOORS?** | **Partial only** — landmarks settle whether mapID is a sufficient storage key; the dungeon-floor case still needs a dungeon |
+| **How dungeon map textures are addressed** | **Barely** — outdoor world maps are a different rendering path. Do not expect this one to come free |
+
+It also answers questions §7 never listed because routing hadn't reached them: the
+serialisation shape, whether pins render correctly at world-map scale, and how the note
+readouts actually feel to use.
+
+**Candidate shape, NOT a decision** (per the correction above): a shared core with per-verb
+shells — scrapbook's verb is **find**, a follower's is **follow**. This bench has precedent for
+it (State Plates core + satellites; MancerLedger over a driver contract), which is why it is
+worth *noting*. It is not worth *committing to* before either thing exists.
 
 **★ AND IT UNBLOCKS THE ARC.** §8 gates the *routing* proposition on a community answer. The
 landmark feature is not that proposition, so **it is not behind that gate.** The arc goes from
@@ -500,6 +535,9 @@ folder, no acceptance criteria written.**
 
 **Next step is the design/AC document in the shape of `callwitness_design.md` — criteria
 before build, not implementation** (per the ADR: findings and criteria carry zero invention;
-inventiveness is confined to the contained design space). It must specify the core first, the
-scrapbook shell as its first consumer, and it must carry law 9's **wipe-boundary invariant**
-as an acceptance criterion rather than an aspiration. **Awaiting the build word.**
+inventiveness is confined to the contained design space). **Scoped to the landmark feature
+alone** — it is not the place to specify a shared architecture for a thing that does not exist
+yet (§9). Where a routing question can be part-answered *for free* by a capture the landmark
+feature already needs, the criteria should say so and take it; where it cannot, it is left
+open rather than designed for. Law 9's wipe-boundary constraint applies **only if** a shared
+store is chosen. **Awaiting the build word.**
