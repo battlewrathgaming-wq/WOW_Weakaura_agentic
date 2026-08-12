@@ -664,6 +664,35 @@ seen both in the browser and we have not.
     subzone when one exists (*"Winterspring — Everlook"*), is a one-line choice with real
     effect on a vendor pin.
 
+17. **★★ ATTENTION IS THE ARBITER — the question that keeps producing the simplest answer
+    (Battlewrath, across 2026-08-12).** Not a new rule so much as the one underneath laws 12,
+    13, 14 and 16, named because it has now settled three separate problems and each time the
+    answer was **do less**:
+
+    | Problem | The question | The answer it produced |
+    |---|---|---|
+    | Beacon slot contention with quests | *is someone mid-quest also hunting their vendor?* | No — different modes, they take turns. The contention window barely exists (law 13) |
+    | What happens on arrival | *do they need telling they got where they walked to?* | No — arriving is silent (law 12) |
+    | Entering an instance | *is their attention still on the landmark?* | No — so preserve nothing (below) |
+
+    **The instance ruling (his words):** *"If I'm entering an instance, my attention is not on
+    the landmark any more. And if something inside the instance needs the marker (like our
+    later addon), it'll over-write. Then the user re-pins when it has their attention again."*
+
+    **★ So on a map-boundary REFUSAL (F38), we do NOTHING.** Not a mechanism — the deliberate
+    absence of three:
+    - **Do not fire arrival.** That is the F38 state guard on law 14, and the only code this
+      case needs.
+    - **Do not clear the slot.** A refusal is not an errand completed. Clearing would be us
+      deciding on the player's behalf that they are done.
+    - **Do not warn, restore, or re-pin.** The beacon is simply dark, the widget still holds
+      the landmark, and one click brings it back when attention returns.
+
+    **★ AND IT SPECIFIES THE TWO ADDONS' RELATIONSHIP, which is: none.** The route follower
+    contends for the slot exactly like a quest does — last explicit user action wins (law 13).
+    Our own later product gets no privileged access to our own pin. That is the correct
+    outcome and it needs no coordination layer between them.
+
 ## 6. Accepted with a gate
 
 **"What was killed in this pull"** — during an open fight, note identities so the editor can
