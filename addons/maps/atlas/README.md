@@ -111,8 +111,11 @@ between sessions. With an empty search box the check is short-circuited entirely
 corroborated by **one captured stack** (`text = nil`, `searchText = "objecticonsatlas"`). The
 truncation *behaviour* follows from the code but has **not been systematically observed** —
 and the error frame is sticky, so a visible error may be a holdover from earlier in the
-session rather than the action in front of you. **Verified working:** reloading and scrolling
-the unfiltered list, which is the recommendation regardless.
+session rather than the action in front of you. **The unfiltered-list path is not a proposed
+workaround — it is how the marker and sticker picks were actually made:** every `<Texture>`
+block in `satnav_ledger.md` §5 came off this browser by scrolling and reading tooltips, and
+each one matched `AtlasInfo.lua` exactly on re-check. That is the evidence, and it predates
+the search bug being noticed.
 
 **Consequence for how to use these two together:** this census is the authority on **what
 exists**; the browser answers **what it looks like**. Verify a pick's name, size and tex-coords
