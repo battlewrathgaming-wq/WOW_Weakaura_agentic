@@ -279,6 +279,59 @@ which is precisely the failing case.
 
 ---
 
+## 9b. ★ THE TEST PLAN IS TWO RUNS, AND THE SECOND IS DELIBERATELY MESSY
+
+Battlewrath, 2026-08-13, matching the build to the intention:
+
+> *"A route is formed through a first capture, and we're doing that in our construction. This
+> data might be messy. And I'll make test 2 messy to simulate wipes in the data set. And that
+> puts pressure on the editor later."*
+
+| | |
+|---|---|
+| **Run 1** | a clean pass of a simple dungeon. Answers §10's questions about the mechanism. |
+| **Run 2** | **deliberately messy — wipes, re-pulls, corpse runs.** Answers what the EDITOR must survive. |
+
+**★ RUN 2 IS A FIXTURE, NOT A FAILED TEST. Do not discard it and do not re-capture it clean.**
+It is the highest-value record this arc will produce, because it is the only one that exercises
+the messy case, and a messy run cannot be manufactured honestly after the fact. Keep it, name it
+as the adversarial fixture, and test every later editor behaviour against it.
+
+**What "messy" produces, mechanically** — and each is a distinct pressure:
+
+- **Near-duplicate markers** — re-pulling the same pack writes a second start marker metres from
+  the first. The editor must **merge or trim**, and it needs to be able to tell them apart.
+- **Combat ends that are DEATHS, not disengages** — the run stops mid-route.
+- **Corpse-run legs** — travel samples from a graveyard back to the instance, possibly across a
+  map boundary `[F38]`, drawn by a naive replay as a bizarre excursion.
+
+### ★ TWO FREE FIELDS THAT MAKE MESSY DATA *LEGIBLE* RATHER THAN MERELY PRESENT
+
+This is §6's breadth law biting on its very next application — *you cannot find a fault in a
+field you did not collect.* **Without these two, a wipe and a clean finish are INDISTINGUISHABLE
+in the record**, and no later editor can ever offer the trim:
+
+| Field | When | Why it is free |
+|---|---|---|
+| **player dead/alive at combat end** | on the end marker | one API read on an event we already handle |
+| **ghost flag on a travel sample** | on each sample | one API read on a tick we are already running |
+
+Intended mechanism: `UnitIsDead` / `UnitIsGhost` (or `UnitIsDeadOrGhost`) — bedrock 3.3.5, but
+**confirm consumption on this fork at build time rather than assuming it**, per the bench rule
+that a stored field is not a live one.
+
+Both clear the free bar exactly as §6 defines it: a read on an event or tick already in hand, not
+a new registration or poll.
+
+### And it settles a question left open in §1
+
+The pressure run 2 applies is **trim / merge / reorder within one map**. The Landmark V2 editor
+is **search / filter across the world**. Different jobs, and this is the second independent
+reason to expect **the route editor is NOT the Landmark editor** — which is exactly why building
+the V2 editor would not have bought this arc anything.
+
+---
+
 ## 10. What the first captured run should answer
 
 Written down now so the run is read against a question rather than admired:
