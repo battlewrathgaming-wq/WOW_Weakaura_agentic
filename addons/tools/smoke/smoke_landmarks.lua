@@ -170,6 +170,8 @@ Store.showAll = false
 assert(select(1, Store.SetOwner(orphan, false)), "and it can be CLAIMED back")
 assert(Store.IsMine(Store.Get(orphan)), "claiming makes it visible again")
 -- AC-5c: the owner list is BUILT FROM THE RECORD, and transfer is bulk.
+-- (the AC-5b block above claimed `orphan` back, so re-orphan it for this test)
+Store.Set(orphan, "owner", "DeletedAlt")
 local owners = Store.KnownOwners()
 assert(#owners == 1 and owners[1] == "DeletedAlt", "owners come from the data")
 P.sub = "Orphan Ridge Two"
