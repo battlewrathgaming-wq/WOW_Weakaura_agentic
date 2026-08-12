@@ -677,6 +677,28 @@ be read two ways, and the second reading is the one that is easy to miss:
 | landmarks pile up per-node | retrieval needs search | **they want GatherMate**, which has the database and *can be imported* |
 | people log what spawns where | add structure for it | **that is `what exists`, not `how I play`** [L11] |
 
+### ★ THE TEST IS EXHAUSTIVENESS, NOT SUBJECT (Battlewrath, 2026-08-12)
+
+*"The line I'm fine with walking is rare spawns and the like. But that's in the personal
+interest scope. So that fits. If it's all rare spawns. That's another addon."*
+
+**No subject is out of bounds. Completeness is.**
+
+| | |
+|---|---|
+| a rare you camp, marked because you care | **how I play** — fits, and always did |
+| **every** rare in the zone, marked systematically | **what exists** — a catalogue, and someone else's |
+
+Same subject, different mode. **You can only be exhaustive about things that exist
+independently of you** — which is why completeness, not topic, is the signature of *what
+exists*. It is also a kinder rule: it forbids nothing a player might care about, and only
+names the point at which they have started cataloguing rather than playing.
+
+**⚠ This governs how WE read feedback — NOT how the addon behaves.** The addon never inspects
+content, counts categories, or notices patterns; it stays inert (see the governing metaphor's
+architectural half). We would only ever learn this by **talking to a user**, and the response is
+to name a better-suited addon — never to detect it in code and say something.
+
 **Default to reading 2 when the pattern is DATA-SHAPED.** pfQuest ships a full quest and unit
 database; GatherMate ships a node database and an import path. Those are real answers already
 built by people with far bigger records. **The honest response to a user reaching for one of
