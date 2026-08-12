@@ -449,9 +449,28 @@ filter can detect strings and offer them."*
   field later means migrating someone's landmarks, adding it now costs a line. And a v1 that
   accepts tags **tells us whether anyone tags at all**, which is the evidence that decides
   whether V2's filter is worth building.
-- **Case and duplicate handling are deliberately UNDECIDED.** If someone types `Vendor` and
-  `vendor` the filter will offer both, and that is V2's problem to have an opinion about —
-  deciding it now would be designing ahead of the filter that consumes it.
+- **★ WE NEVER ALTER OR CLEAN UP TAGS (Battlewrath):** *"I wouldn't alter or clean up tags…
+  it's their tagging. They can use it how they wish."* No trimming on write, no case-folding,
+  no merging near-duplicates, no rejecting odd ones. If someone uses tags as a to-do list, a
+  rating, or something we would not have thought of, that is the point — *a page doesn't know
+  what you've drawn*.
+
+**AC-54a — AUTOCOMPLETE from tags the user has already made, and it is the OTHER HALF of not
+normalising.** *"We can offer auto complete once they've made a tag else where."*
+
+**Without it, "we never clean up" means tags drift into uselessness. With it, they converge on
+their own.** Type `vendor` once and you are offered `vendor` next time and will probably take
+it — so duplicates fall away **without us ever policing them. The fix is affordance, not
+enforcement**, and it answers the case-and-duplicates question better than a rule would.
+
+- **It OFFERS; it never CORRECTS.** Decline the suggestion and type something new and nothing
+  argues. It never rewrites what you typed and never merges `Vendor` into `vendor`.
+- **Same mechanism as the filter (AC-54), pointed at input instead of output:** scan the
+  records, offer back what is there. **We still own no vocabulary.**
+- **★ It ships WITH the tag input, in v1** — not with the V2 filter. The two halves of this
+  decision have to land together: shipping "never normalise" without autocomplete is shipping
+  the drift and none of the cure, and it would pollute the very A:B signal the field exists to
+  produce. The scan is a loop over tens of records (AC-50).
 
 > **⚠ This is NOT the third note field rejected in AC-37.** That was a third place to write
 > **prose**, and it was refused because two labelled boxes are a prompt while three are
@@ -626,7 +645,7 @@ misbehaviour, not about the design.
 | **Beacon control** — the slot discipline | AC-17, 18, 19, 20, 20a, 21 |
 | **Arrival** | AC-22, 23, **24**, 25, **26**, 27, 28, 29, 30 |
 | **Map pins + click-to-edit** | AC-31, 32, 33, 34, 35, 36, 36a, 40a, 42 |
-| **Notes** | AC-37, 41, **54** (the `tags` FIELD and its input line — the filter is V2) |
+| **Notes** | AC-37, 41, **54, 54a** (the `tags` field, its input line and autocomplete — the FILTER is V2) |
 | **Standing rules** | AC-38c, 40b, 43, **45** |
 
 † **AC-5 in v1 means the `owner` FIELD, not the promote/demote UI.** Per character now; the field and the
