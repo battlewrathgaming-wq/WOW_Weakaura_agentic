@@ -110,9 +110,11 @@ if errorlevel 2 endlocal & goto DEPLOY
 cls
 py "%BENCH%deploy.py" !TARGET!
 echo.
-REM  Deploying is the moment addon code changed, so it is the moment the census
-REM  would go stale. Re-emitting here costs milliseconds and means the frame-cost
-REM  pages can never trail what is actually on the client.
+REM  NOT because deploying makes it stale - deploy is repo->client, and the
+REM  census reads REPO source, so it went stale when the .lua was EDITED,
+REM  possibly hours ago. This is opportunistic: you are already at the bench and
+REM  it costs milliseconds. --check on option [3] is the actual safeguard,
+REM  because editing without ever deploying would never reach this line.
 py "%BENCH%tools\emit_addon_census.py"
 echo.
 pause

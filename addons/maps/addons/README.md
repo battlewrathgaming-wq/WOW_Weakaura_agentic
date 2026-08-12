@@ -54,9 +54,23 @@ py addons/tools/emit_addon_census.py --check
 
 Exits **0 CURRENT** or **1 STALE**, printing both fingerprints. It writes nothing.
 
-**It is wired into the bench so it cannot quietly rot:** `menu.bat`'s *Deploy check* runs
-`--check` (read-only, alongside the repo-vs-client check), and an actual **deploy re-emits it**
-— deploying is the moment addon code changed, so it is the moment this would go stale.
+### ★ It goes stale on EDIT, not on deploy
+
+Worth being exact about, because the obvious reading is wrong. **Deploy is repo → client, and
+this census reads REPO source** — so a deploy changes nothing it measures. It went stale when
+the `.lua` was **edited**, which may have been hours earlier, or may never be followed by a
+deploy at all if the work was planning.
+
+Two things follow:
+
+- **The stale window is edit → deploy**, and that is exactly when you might be reading these
+  pages — investigating cost *before* deciding to ship.
+- **Editing without ever deploying never refreshes it.**
+
+So: `menu.bat`'s *Deploy check* runs `--check` (read-only, beside the repo-vs-client check) and
+an actual **deploy re-emits it** — but that second one is **opportunistic, not a guarantee**.
+You are already at the bench and it costs milliseconds. **`--check` is the safeguard**; the
+deploy refresh is just a convenient place to have already done it.
 
 The resident list comes from **`deploy.py`'s MANIFEST** — the one authority on who lives here.
 A second hand-kept list drifts, and `menu.bat`'s did (twice, silently).
