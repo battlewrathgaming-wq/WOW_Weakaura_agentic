@@ -11,9 +11,12 @@ beacon control and the edit form all confirmed in play. Since v0.1.3 it also gai
 completion with ghost text, the `owner` control (character / all), `/lm all` orphan recovery,
 and bulk transfer. Four live bugs closed; `landmark_design.md` §15 has the log.
 
-**⚠ THE CLIENT IS BEHIND THE REPO.** Everything after the last deploy — the OnUpdate lifecycle,
-the forward-declaration fix, and the AC-29 cadence revision — is repo-only. `py addons\deploy.py
-COA_Landmarks`, game closed.
+**⚠ THE CLIENT IS BEHIND THE REPO — by exactly ONE FILE, `beacon.lua`.** All three unshipped
+changes live in it: the OnUpdate lifecycle, the forward-declaration fix, and the AC-29 cadence
+revision. **Battlewrath deploys at test time, not on a schedule** (his call, 2026-08-12) — so
+this flag is expected to sit true between sessions and is NOT a chore to clear.
+`py addons/deploy.py status` reports the drift read-only; `py addons/deploy.py COA_Landmarks`
+ships it, game closed.
 
 **Runtime cost, settled 2026-08-12 (§15):** zero when idle, and **AC-29 now paces the beacon
 poll on DISTANCE** — `clamp((dist − tier) / 30, 0.20, 2.00)` — replacing a two-tier movement
