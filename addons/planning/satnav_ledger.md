@@ -602,6 +602,54 @@ seen both in the browser and we have not.
     *background facts about the client*, not inputs to our design. Do not reach for them as
     corroboration.
 
+16. **★★ BEYOND BEACON RANGE, THE MAP IS THE INSTRUMENT — WE ADD NOTHING (Battlewrath,
+    2026-08-12).** *"Outside of 1.5k is back to pen and paper. They can see it on the map.
+    They've been there before."*
+
+    **The two instruments carry different sentences, and neither needs helping:**
+    - **The beacon** says *"it is exactly HERE"* — and only inside 1,500 yd, where that claim
+      is worth making.
+    - **The map landmark** says *"this zone, this area"* — which is the whole of what long
+      range needs, because **the player has been there before**. That is the premise of a
+      scrapbook: you are not being guided somewhere new, you are being reminded of somewhere
+      known.
+
+    **★ THIS CLOSES F35'S GAP BY DECLINING TO FILL IT, and DELETES three things** we had
+    reason to build: the long-range distance readout, "surface the zone needed" logic, and any
+    cross-zone fallback UI. F35 proved we *could* state *"Winterspring — 3,700 yd"*. Law 16
+    says we should not — capability is not a reason.
+
+    **Consequence for the machinery:** distance is polled for **arrival only** (law 14), never
+    for display. Since the widest tier is 300 yd, everything beyond that is a cheap comparison
+    against a number nobody sees. The beacon renders its own readout inside its own range
+    (F12); we still build no pointer and now no readout either.
+
+    ### The widget — first concrete UI, specified in full
+
+    ```
+    Landmark name
+    Zone
+    [repin] [clear]
+    [make marker]
+    ```
+
+    Two lines and three buttons. **Name and zone, not coordinates and not distance** — "this
+    zone, this area", the same sentence the map pin speaks.
+
+    - **`make marker`** is walk stop 1's widget affordance: captures where you stand, asks
+      nothing (law 4).
+    - **`repin`** re-applies the landmark the widget is holding. This is law 13's *"an
+      over-write, not a race"* — always a user act, never a reclaim.
+    - **`clear`** hands the slot back deliberately, the same release arrival performs (law 14).
+    - The widget keeps showing its landmark **after** the beacon is gone — whether arrival
+      wiped it or a quest selection took the slot — which is exactly what makes one-click
+      re-pinning the answer to contention rather than priority-fighting.
+
+    **Detail for the AC document, not decided:** we capture both `GetRealZoneText` and
+    `GetSubZoneText` (the probe records both). Whether the `Zone` line shows the zone, or the
+    subzone when one exists (*"Winterspring — Everlook"*), is a one-line choice with real
+    effect on a vendor pin.
+
 ## 6. Accepted with a gate
 
 **"What was killed in this pull"** — during an open fight, note identities so the editor can
@@ -613,10 +661,9 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
 
 ## 7. Open questions
 
-- ~~What happens past 1,500 yards?~~ — **ANSWERED by F35: nothing breaks.** Distance stays
-  live to at least 3,742 yd; only the beacon stops drawing. Left open only as a **design**
-  question, not a capability one: *what, if anything, do we show between 1,500 yd and arrival,
-  now that the client shows nothing?*
+- ~~What happens past 1,500 yards?~~ — **ANSWERED by F35** (distance stays live to at least
+  3,742 yd; only the beacon stops drawing) **and CLOSED by law 16** (we show nothing out there
+  — the map is the instrument).
 - **★ WHAT HAPPENS ACROSS A CONTINENT / INSTANCE BOUNDARY?** The boundary F30 says actually
   exists. A long flight does **not** test it — Kalimdor stays mapID 1 throughout. Needs
   **Eastern Kingdoms, or stepping into a dungeon**, with a pin left behind on the other map.
