@@ -76,7 +76,6 @@
    "onupdate": 1,
    "onupdate_clears": 1,
    "onupdate_persistent": 0,
-   "onupdate_transient": true,
    "throttle_pattern": false,
    "scripts": [
     "OnEvent",
@@ -135,7 +134,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -154,7 +152,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -220,7 +217,6 @@
    "onupdate": 1,
    "onupdate_clears": 1,
    "onupdate_persistent": 0,
-   "onupdate_transient": true,
    "throttle_pattern": true,
    "scripts": [
     "OnUpdate"
@@ -249,7 +245,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -280,7 +275,6 @@
    "onupdate": 1,
    "onupdate_clears": 1,
    "onupdate_persistent": 0,
-   "onupdate_transient": true,
    "throttle_pattern": true,
    "scripts": [
     "OnUpdate"
@@ -300,7 +294,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -315,7 +308,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -330,7 +322,6 @@
    "onupdate": 1,
    "onupdate_clears": 1,
    "onupdate_persistent": 0,
-   "onupdate_transient": true,
    "throttle_pattern": true,
    "scripts": [
     "OnUpdate"
@@ -376,7 +367,6 @@
    "onupdate": 1,
    "onupdate_clears": 1,
    "onupdate_persistent": 0,
-   "onupdate_transient": true,
    "throttle_pattern": true,
    "scripts": [
     "OnEvent",
@@ -398,7 +388,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -415,7 +404,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -446,7 +434,6 @@
    "onupdate": 1,
    "onupdate_clears": 1,
    "onupdate_persistent": 0,
-   "onupdate_transient": true,
    "throttle_pattern": true,
    "scripts": [
     "OnUpdate"
@@ -483,7 +470,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -504,7 +490,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -527,7 +512,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -595,7 +579,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -1061,7 +1044,6 @@
    "onupdate": 1,
    "onupdate_clears": 0,
    "onupdate_persistent": 1,
-   "onupdate_transient": false,
    "throttle_pattern": true,
    "scripts": [
     "OnClick",
@@ -1218,7 +1200,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -1321,7 +1302,6 @@
    "onupdate": 1,
    "onupdate_clears": 0,
    "onupdate_persistent": 1,
-   "onupdate_transient": false,
    "throttle_pattern": true,
    "scripts": [
     "OnUpdate"
@@ -1348,7 +1328,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [
     "OnClick",
@@ -1407,7 +1386,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [
     "OnClick",
@@ -1473,7 +1451,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [
     "OnClick",
@@ -1564,7 +1541,6 @@
    "onupdate": 2,
    "onupdate_clears": 0,
    "onupdate_persistent": 2,
-   "onupdate_transient": false,
    "throttle_pattern": true,
    "scripts": [
     "OnDragStart",
@@ -1592,7 +1568,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": true,
    "scripts": [],
    "hookscripts": [],
@@ -1673,7 +1648,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": true,
    "scripts": [
     "OnEvent"
@@ -1744,7 +1718,6 @@
    "onupdate": 1,
    "onupdate_clears": 0,
    "onupdate_persistent": 1,
-   "onupdate_transient": false,
    "throttle_pattern": true,
    "scripts": [
     "OnUpdate"
@@ -1787,7 +1760,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [
     "OnEvent"
@@ -1890,7 +1862,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [
     "OnClick",
@@ -1928,7 +1899,6 @@
    "onupdate": 1,
    "onupdate_clears": 1,
    "onupdate_persistent": 0,
-   "onupdate_transient": true,
    "throttle_pattern": false,
    "scripts": [
     "OnClick",
@@ -1983,7 +1953,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [
     "OnClick",
@@ -2137,7 +2106,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [],
    "hookscripts": [],
@@ -2213,7 +2181,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [
     "OnClick",
@@ -2425,7 +2392,6 @@
    "onupdate": 1,
    "onupdate_clears": 0,
    "onupdate_persistent": 1,
-   "onupdate_transient": false,
    "throttle_pattern": true,
    "scripts": [
     "OnEvent",
@@ -2490,7 +2456,6 @@
    "onupdate": 3,
    "onupdate_clears": 1,
    "onupdate_persistent": 2,
-   "onupdate_transient": true,
    "throttle_pattern": true,
    "scripts": [
     "OnClick",
@@ -2633,7 +2598,6 @@
    "onupdate": 0,
    "onupdate_clears": 0,
    "onupdate_persistent": 0,
-   "onupdate_transient": false,
    "throttle_pattern": false,
    "scripts": [
     "OnClick",

@@ -1,14 +1,14 @@
-# Frame cost — every point our code runs without being asked
+# Frame cost — the whole bench
 
-_Emitted by `addons/tools/emit_addon_census.py`._
+_Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-**Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens. If one of our addons is ever suspected of a stutter, this is the first page — the answer that `task_callwitness` had to be built to get for somebody else's code.
+**Read the OnUpdate table first.** It is the only kind of entry that runs *every frame*; everything below it fires when something happens.
+
+**Lifetime is arithmetic: `installs − clears`.** **transient** = every handler is torn down again, so it runs only while something is happening (a drag, a running session task). **PERSISTENT** = none are, so they run for as long as the addon is loaded — that is where a cost would live. **MIXED** = both in one file, which a boolean hid on the first pass.
+
+**`throttle?` is a LEAD, not a verdict.** It reports whether the file contains an accumulator pattern at all. **`no` means go and look** — it does not mean the handler is unthrottled. The parent `README.md` records what the first run flagged and why every one of it was correct-by-design.
 
 ## ★ OnUpdate — runs every frame
-
-**Lifetime is arithmetic: `installs - clears`.** **transient** = every handler is torn down again, so it runs only while something is happening (a drag, a running session task). **PERSISTENT** = none are, so they run for as long as the addon is loaded — that is where a cost would live. **MIXED** = both, in one file, which a boolean would have hidden.
-
-**throttle?** is a LEAD, not a verdict — it reports whether the file contains an accumulator pattern at all. `no` means go and look; it does not mean the handler is unthrottled.
 
 | Addon | File | Installs | Clears | Lifetime | throttle? |
 |---|---|---|---|---|---|
@@ -26,17 +26,17 @@ _Emitted by `addons/tools/emit_addon_census.py`._
 | MancerLedger | `core.lua` | 1 | 0 | **PERSISTENT** | yes |
 | MancerLedger | `minimap.lua` | 3 | 1 | **MIXED** — 2 persistent | yes |
 
-**16 handler(s) installed across the bench; 8 PERSISTENT.** The persistent ones are the whole point of this page.
+**16 handler(s) installed; 8 PERSISTENT.** The persistent ones are the whole point of this page.
 
 ## Timers
 
-| Addon | File | Timers |
+| Addon | File | Detail |
 |---|---|---|
 | COA_GuardianPlates | `Core.lua` | C_Timer.After |
 
 ## Events we listen for
 
-| Addon | File | Events |
+| Addon | File | Detail |
 |---|---|---|
 | COA_DevDump | `task_petlog.lua` | COMBAT_LOG_EVENT_UNFILTERED |
 | COA_GuardianPlates | `Core.lua` | GROUP_ROSTER_UPDATE, NAME_PLATE_UNIT_ADDED, NAME_PLATE_UNIT_REMOVED, PLAYER_ENTERING_WORLD, PLAYER_ROLES_ASSIGNED, ROLE_CHANGED_INFORM, UNIT_HEALTH, UNIT_MAXHEALTH, UNIT_THREAT_LIST_UPDATE, UNIT_THREAT_SITUATION_UPDATE |
@@ -49,13 +49,19 @@ _Emitted by `addons/tools/emit_addon_census.py`._
 | COA_Landmarks | `pins.lua` | WORLD_MAP_UPDATE |
 | MancerLedger | `core.lua` | ADDON_LOADED, PLAYER_ENTERING_WORLD, PLAYER_REGEN_ENABLED |
 
-## ★ Hooks — where we attach to code we do not own
+## ★ Hooks — hooksecurefunc
 
-_The highest-risk column. A hook runs inside someone else's flow, and a hook on a frame we did not create can be clobbered by anyone else who does the same._
+_The highest-risk column: a hook runs inside someone else's flow._
 
-| Addon | File | Kind | Target |
-|---|---|---|---|
-| COA_GuardianPlates | `Core.lua` | hooksecurefunc | `frame` |
-| COA_GuardianPlates | `Core.lua` | hooksecurefunc | `texture` |
-| COA_Landmarks | `beacon.lua` | hooksecurefunc | `SelectQuestLogEntry` |
-| COA_Landmarks | `pins.lua` | HookScript | `OnShow` |
+| Addon | File | Detail |
+|---|---|---|
+| COA_GuardianPlates | `Core.lua` | `frame`, `texture` |
+| COA_Landmarks | `beacon.lua` | `SelectQuestLogEntry` |
+
+## ★ Hooks — HookScript on frames we do not own
+
+_Anyone else doing the same can clobber ours, and silently._
+
+| Addon | File | Detail |
+|---|---|---|
+| COA_Landmarks | `pins.lua` | `OnShow` |

@@ -15,13 +15,31 @@ addon took a purpose-built instrument, four capture arms and a run sheet.
 We then had no witness for our own code either. This is it, and it is a **file you read**
 rather than an instrument you run.
 
-## The files
+## The files — per addon AND a roll-up
 
-| File | |
-|---|---|
-| `frame_cost.md` | **read this one.** Every point our code runs without the user asking |
-| `addons.routes.md` | per addon and file: functions defined, what it pulls from the client, what it pushes |
-| `addons.census.json` | the machine copy |
+**Inspecting one addon is never a trip through all of them** (Battlewrath): each resident has
+its own folder, and every page stands alone with its own legend.
+
+```
+maps/addons/
+  frame_cost.md            ← the bench roll-up: is ANYTHING costing frames?
+  addons.census.json         machine copy, all residents
+  COA_Landmarks/
+    frame_cost.md          ← this addon alone
+    routes.md                its functions, and what it pulls from / pushes to the client
+  COA_DevDump/ …
+```
+
+**Start with the console line.** It answers *which addon do I even open?*:
+
+```
+py addons	ools\emit_addon_census.py
+  COA_Landmarks    7 file(s)   71 fn  1 persistent OnUpdate   <- unthrottled-looking handler, look
+```
+
+`--addon <name>` filters what is **printed**. It never changes what is **written** — a flag
+that emitted a partial census over a whole one would leave a file that lies about the bench,
+and this exists to be trusted at a glance.
 
 The resident list comes from **`deploy.py`'s MANIFEST** — the one authority on who lives here.
 A second hand-kept list drifts, and `menu.bat`'s did (twice, silently).
