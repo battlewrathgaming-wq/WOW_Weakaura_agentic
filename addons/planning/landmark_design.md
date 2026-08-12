@@ -120,6 +120,19 @@ or **edit from the map pin**. Renaming in flight is therefore already available 
 surface, because capture selects what it captured (AC-9a) — which answers the real want behind
 an in-flight box: *the meaning is freshest at capture*.
 
+**AC-5a [Battlewrath, 2026-08-12 — the three scope questions, answered]**
+
+| His question | Answer |
+|---|---|
+| **1. Are they global stored or character specific?** | **Both, and it is not a contradiction.** ONE account-wide file (AC-46), with `owner` on each record. **Stored** globally; **scoped** per character by the field. Default is the capturing character |
+| **2. The user cannot set global or character specific** | **Correct — that was the gap.** §12 deferred the *control*, never the field. `Store.SetOwner` has worked since v0.1.0; there was simply no way to reach it. **Now shipped as a dropdown**, the same stock `UIDropDownMenu` the client's own bug-report selector uses (`BugReportFrameMixin.lua:69`) |
+| **3. Do they render in line with that? Global when global. Character when character + global** | **Already built, and it is the only visibility rule in the addon.** `Store.VisibleToMe` → `owner == "global" or owner == me`. Every surface reads it — pins, `/lm list`, the minimap count, and the tag pool — so there is one definition and nothing can drift from it |
+
+**★ One consequence made VISIBLE rather than left to be discovered:** demoting a global
+**claims it for whoever is standing there** (AC-46: "demotion assigns the current character").
+So the dropdown reads **"Only Gravekeeper"**, not "this character" — the label states the
+outcome. L18: show what will happen, do not explain it afterwards.
+
 **AC-5 [§9 walk stop 2, mechanised by AC-46]** — `owner` defaults to the **capturing character**
 and moves **both ways** by rewriting that one field: promote by setting it to `"global"`, demote
 by setting it back to a character name. Neither direction touches anything else, so neither can
@@ -720,7 +733,7 @@ things. They are the two that must be asserted directly in the smoke (AC-45).
 
 | | Why it is safe to hold |
 |---|---|
-| **AC-5's promotion toggle** | the field ships; the UI waits until we know anyone wants account scope |
+| ~~AC-5's promotion toggle~~ | **SHIPPED v0.1.6** — he asked for it directly, which answers the "does anyone want account scope?" question the deferral was waiting on (AC-5a) |
 | **AC-38, 38a, 38b, 39** — the icon **palette** | law 19 made icons pure data, so this is the **cheapest thing in the design to iterate**. v1 ships the **default icon only**; the edit form gains an icon row when the palette does |
 | **AC-44** — the CVar-off tick | rare path, now measured, lands whenever |
 

@@ -89,7 +89,7 @@ function Editor:Build()
     if f then return end
 
     f = CreateFrame("Frame", "COA_LandmarksEditor", UIParent)
-    f:SetWidth(320); f:SetHeight(316)
+    f:SetWidth(320); f:SetHeight(348)
     f:SetPoint("CENTER", 200, 0)
     f:SetBackdrop({
         bgFile   = "Interface\\DialogFrame\\UI-DialogBox-Background",
@@ -227,6 +227,42 @@ function Editor:Build()
         if userInput and grew then tryComplete(s) end
     end)
 
+    -- AC-5 / AC-46: the OWNER control. Promotion and demotion are the same
+    -- operation - write one field - so this is a two-option dropdown and
+    -- nothing more. Same stock UIDropDownMenu the client's own bug-report
+    -- selector uses (BugReportFrameMixin.lua:69).
+    label(f, "Visible to:", 18, -290)
+    f.owner = CreateFrame("Frame", "COA_LandmarksEditorOwner", f, "UIDropDownMenuTemplate")
+    f.owner:SetPoint("TOPLEFT", 68, -286)
+    UIDropDownMenu_SetWidth(f.owner, 180)
+    UIDropDownMenu_Initialize(f.owner, function()
+        local lm = currentId and Store.Get(currentId)
+        local me = UnitName("player")
+
+        local info = UIDropDownMenu_CreateInfo()
+        info.text = "All characters"
+        info.value = Store.GLOBAL
+        info.checked = lm and lm.owner == Store.GLOBAL
+        info.func = function()
+            Store.SetOwner(currentId, true)
+            Editor:RefreshOwner(); NS.Pins:Refresh()
+        end
+        UIDropDownMenu_AddButton(info)
+
+        -- Named, not "this character": demoting a global CLAIMS it for whoever
+        -- is standing here (AC-46), and the label should say so rather than
+        -- leave it to be discovered.
+        info = UIDropDownMenu_CreateInfo()
+        info.text = "Only " .. me
+        info.value = me
+        info.checked = lm and lm.owner ~= Store.GLOBAL
+        info.func = function()
+            Store.SetOwner(currentId, false)
+            Editor:RefreshOwner(); NS.Pins:Refresh()
+        end
+        UIDropDownMenu_AddButton(info)
+    end)
+
     f.delete = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     f.delete:SetWidth(80); f.delete:SetHeight(20)
     f.delete:SetPoint("BOTTOMLEFT", 16, 14)
@@ -260,6 +296,14 @@ function Editor:RefreshGhost()
     if (f.tags:GetText() or "") == "" then f.tagsGhost:Show() else f.tagsGhost:Hide() end
 end
 
+function Editor:RefreshOwner()
+    local lm = currentId and Store.Get(currentId)
+    if not lm then return end
+    UIDropDownMenu_SetText(f.owner,
+        lm.owner == Store.GLOBAL and "All characters" or ("Only " .. tostring(lm.owner)))
+    UIDropDownMenu_SetSelectedValue(f.owner, lm.owner)
+end
+
 function Editor:RefreshTiers()
     local lm = currentId and Store.Get(currentId)
     for _, r in ipairs(f.tiers) do
@@ -285,6 +329,7 @@ function Editor:Open(id)
     f.tags:SetText(lm.tags or "")
     f.tags.suppress = false
     self:RefreshTiers()
+    self:RefreshOwner()
     self:RefreshGhost()
     f.tags.lastLen = #(lm.tags or "")
     f:Show()
