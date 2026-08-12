@@ -1023,9 +1023,31 @@ verified, and it is written as candidates rather than a diagnosis:
 **Deliberately NOT fixed speculatively.** `beacon.lua` is where the two silent-failure criteria
 live (AC-24, AC-26); an unverified change there is the one place guessing is most expensive.
 
+### ★ BEACON vs QUEST — the contention question, ANSWERED BY USE (Battlewrath, 2026-08-12)
+
+§12 named this as the one that would turn law 17's *reasoning* into *evidence*. It has.
+
+| Observed | Verdict |
+|---|---|
+| *"Opening the journal flips the beacon to the current active quest"* | **our AC-20 yield working.** The client auto-selects on open → our `SelectQuestLogEntry` hook fires → we clear → the ladder resolves to Quest |
+| *"Pressing show on the quest / selecting a quest repeats this"* | same path, same yield |
+| *"Accepting a quest doesn't auto-flip"* | **stock, and conditional.** `QuestLogFrame.lua:274` only calls `SelectQuestLogEntry` when the log is **closed AND nothing is selected** — with a quest already selected, neither branch fires, so nothing disturbs us |
+| the quest it flipped to was out of map, so no beacon drew | stock; nothing to do with us |
+
+**★ AND THE SIGNAL WORRY IS GONE (F42):** the engine draws a **different icon per tracking
+type** — tapered diamond for a quest, square for a position. Sharing the slot never risked the
+player mistaking a landmark for a quest.
+
+**One thing worth carrying, same class as AC-21:** the yield fires on **opening the journal**,
+not only on deliberately picking a quest — because the client selects for you on open. That is
+more eager than AC-20's wording ("on user quest selection") suggests. It stays **consistent with
+law 17** (opening your quest log is a mode switch) and the cost is one `repin` click, so it is
+recorded rather than changed. If it ever grates, it is the same question AC-21 answered: which
+selections count as intent.
+
 ### Still open — the A:B questions §12 named
 
 None of these are bugs; they are what v1 exists to answer, and they need **use**, not a fix:
 does `Why` get filled in or only `What` · which tier gets set most · rename or live with
-`Everlook 7` · how many landmarks accumulate · **does the beacon-vs-quest contention actually
-occur** (L17's reasoning is still reasoning).
+`Everlook 7` · how many landmarks accumulate. ~~Does the beacon-vs-quest contention occur?~~ —
+**ANSWERED above.**
