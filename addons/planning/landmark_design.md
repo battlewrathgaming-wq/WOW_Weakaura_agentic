@@ -185,6 +185,20 @@ toggle is the v1-sized version of the same thing.
 > (prune orphans, track characters, warn on deletion) requires us to know something we
 > deliberately do not.
 
+**★ AND THE FIX COST A FILTER, NOT A FEATURE (Battlewrath):** *"the same global or me gets to
+be re-used for free."* Recovery needed only **visibility** — the *claim* was already there.
+`owner` now does three jobs with **one field write and no new verb**:
+
+| Job | Mechanism |
+|---|---|
+| who can see it | `owner == "global" or owner == me` |
+| handing it to an alt | promote → log in → demote, which claims it |
+| rescuing an orphan | show-all → demote, which claims it |
+
+**This is AC-46's "one field, two forms" paying off later than it was decided.** Collapsing
+`scope` and `owner` into a single value meant every scope-shaped problem since has had the same
+answer — and the third one arrived without needing anything built for it.
+
 Asserted in the smoke: an orphan is invisible normally, surfaced by show-all, and claimable.
 Mutation-tested — removing the unfilter fails with *"show-all did not surface the orphan"*.
 
