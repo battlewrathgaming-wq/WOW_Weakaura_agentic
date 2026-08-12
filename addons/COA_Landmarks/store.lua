@@ -322,6 +322,40 @@ function Store.SuggestTags(prefix, exclude)
     return out
 end
 
+-- ★ AC-5c: owners BUILT FROM THE RECORD, never constructed (Battlewrath).
+-- Exactly the rule the tag pool follows (AC-54a): we mirror what is in the data
+-- and assemble no list of our own. We still never learn who your characters are
+-- - only who OWNS something here, which is a different and smaller claim.
+-- Excludes "global" and the current character: neither is a transfer SOURCE.
+function Store.KnownOwners()
+    local me, seen, out = UnitName("player"), {}, {}
+    for _, lm in pairs(Store.locked and {} or db().landmarks) do
+        local o = lm.owner
+        if o and o ~= Store.GLOBAL and o ~= me and not seen[o] then
+            seen[o] = true
+            out[#out + 1] = o
+        end
+    end
+    table.sort(out)
+    return out
+end
+
+-- Reassign EVERY landmark owned by `from` to the current character. The target
+-- is always "me" - you can only claim for whoever is logged in, which is the
+-- same reason demotion works without a roster (AC-5a).
+function Store.TransferOwner(from)
+    if Store.locked then return 0, Store.locked end
+    if not from or from == "" or from == Store.GLOBAL then return 0, "no source" end
+    local me, n = UnitName("player"), 0
+    for _, lm in pairs(db().landmarks) do
+        if lm.owner == from then
+            lm.owner = me
+            n = n + 1
+        end
+    end
+    return n
+end
+
 -- ---------------------------------------------------------------------
 -- Write. AC-2: everything is editable EXCEPT the position and the id.
 -- ---------------------------------------------------------------------

@@ -169,6 +169,22 @@ assert(seen == 1, "AC-5b FAILED: show-all did not surface the orphan")
 Store.showAll = false
 assert(select(1, Store.SetOwner(orphan, false)), "and it can be CLAIMED back")
 assert(Store.IsMine(Store.Get(orphan)), "claiming makes it visible again")
+-- AC-5c: the owner list is BUILT FROM THE RECORD, and transfer is bulk.
+local owners = Store.KnownOwners()
+assert(#owners == 1 and owners[1] == "DeletedAlt", "owners come from the data")
+P.sub = "Orphan Ridge Two"
+local orphan2 = Store.Create()
+Store.Set(orphan2, "owner", "DeletedAlt")
+assert(#Store.KnownOwners() == 1, "a second landmark from the same owner is not listed twice")
+assert(Store.TransferOwner("DeletedAlt") == 2, "AC-5c: transfer moves ALL of that owner's")
+assert(Store.IsMine(Store.Get(orphan)) and Store.IsMine(Store.Get(orphan2)), "both are ours now")
+assert(#Store.KnownOwners() == 0, "the source owner is gone from the list once emptied")
+-- never a transfer source: yourself, or global
+Store.SetOwner(orphan2, true)
+for _, o in ipairs(Store.KnownOwners()) do
+    assert(o ~= "global" and o ~= "Gravekeeper", "AC-5c: global and self are not sources")
+end
+Store.Delete(orphan2)
 Store.Delete(orphan)
 P.sub = "Everlook"
 

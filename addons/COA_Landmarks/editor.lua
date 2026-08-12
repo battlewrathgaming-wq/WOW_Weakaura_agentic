@@ -263,6 +263,27 @@ function Editor:Build()
         UIDropDownMenu_AddButton(info)
     end)
 
+    -- ★ AC-5c: the TRANSFER row. Shown ONLY in the show-all recovery view
+    -- (AC-5b) - it is an admin tool, and the normal form should never carry it.
+    -- Cross-realm name collision is "niche whilst predictable" (Battlewrath),
+    -- so the identity format is left alone and this is the escape hatch instead.
+    f.xferLabel = label(f, "Transfer all from:", 18, -318)
+    f.xfer = CreateFrame("Frame", "COA_LandmarksEditorTransfer", f, "UIDropDownMenuTemplate")
+    f.xfer:SetPoint("TOPLEFT", 108, -314)
+    UIDropDownMenu_SetWidth(f.xfer, 100)
+    f.xferTo = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    f.xferTo:SetWidth(56); f.xferTo:SetHeight(20)
+    f.xferTo:SetPoint("TOPLEFT", 244, -317)
+    f.xferTo:SetText("to me")
+    f.xferTo:SetScript("OnClick", function()
+        local from = UIDropDownMenu_GetSelectedValue(f.xfer)
+        if not from then return end
+        local n = Store.TransferOwner(from)
+        NS.Print(("moved |cffffd100%d|r landmark(s) from %s to you."):format(n, from))
+        Editor:RefreshOwner(); Editor:RefreshTransfer()
+        NS.Pins:Refresh(); NS.Widget:Refresh()
+    end)
+
     f.delete = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     f.delete:SetWidth(80); f.delete:SetHeight(20)
     f.delete:SetPoint("BOTTOMLEFT", 16, 14)
@@ -294,6 +315,31 @@ end
 function Editor:RefreshGhost()
     if not f then return end
     if (f.tags:GetText() or "") == "" then f.tagsGhost:Show() else f.tagsGhost:Hide() end
+end
+
+function Editor:RefreshTransfer()
+    local on = Store.showAll
+    local owners = on and Store.KnownOwners() or {}
+    if not on or #owners == 0 then
+        f.xferLabel:Hide(); f.xfer:Hide(); f.xferTo:Hide()
+        f:SetHeight(348)
+        return
+    end
+    f.xferLabel:Show(); f.xfer:Show(); f.xferTo:Show()
+    f:SetHeight(382)
+    UIDropDownMenu_Initialize(f.xfer, function()
+        for _, o in ipairs(owners) do
+            local info = UIDropDownMenu_CreateInfo()
+            info.text, info.value = o, o
+            info.func = function()
+                UIDropDownMenu_SetSelectedValue(f.xfer, o)
+                UIDropDownMenu_SetText(f.xfer, o)
+            end
+            UIDropDownMenu_AddButton(info)
+        end
+    end)
+    UIDropDownMenu_SetSelectedValue(f.xfer, owners[1])
+    UIDropDownMenu_SetText(f.xfer, owners[1])
 end
 
 function Editor:RefreshOwner()
@@ -330,6 +376,7 @@ function Editor:Open(id)
     f.tags.suppress = false
     self:RefreshTiers()
     self:RefreshOwner()
+    self:RefreshTransfer()
     self:RefreshGhost()
     f.tags.lastLen = #(lm.tags or "")
     f:Show()
