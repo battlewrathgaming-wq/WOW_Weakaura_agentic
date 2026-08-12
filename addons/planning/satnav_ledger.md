@@ -229,9 +229,7 @@ map, question it. It is the standing answer to "should this be cleverer?"
       hover = `Waypoint-MapPin-Highlight` · minimap = the two minimap variants · the capture
       widget's button = `Waypoint-MapPin-ButtonToggle` · and `Waypoint-MapPin-ChatIcon` if
       routes are ever shared as chat links.
-      **The one genuine gap is the LANDMARK symbol**, which must read as distinct from a
-      route waypoint — one symbol to choose, from 4,503, with a mechanical claim-test (F18)
-      to prove it free.
+      ~~The one genuine gap is the LANDMARK symbol~~ — **CLOSED, see the decision below.**
     - **Audit the atlas rather than mine it** — knowing which shapes are TAKEN is the more
       valuable half, because it tells us what to avoid.
     - Worth considering: route markers need not be pictorial. **Numbered or lettered pins**
@@ -293,6 +291,63 @@ map, question it. It is the standing answer to "should this be cleverer?"
       eyeballing. The audit's valuable half remains the NEGATIVE one — catalogue what the
       client's own POI, minimap and quest systems have already spoken for, and the safe set
       is what is left.
+
+### ★ ICONS — DECIDED (Battlewrath, 2026-08-12, after inspecting them in the AtlasBrowser)
+
+He ran the mandatory visual check refinement 3 demands, and picked. **This closes law 10.**
+
+| Role | Atlas | His description |
+|---|---|---|
+| **Route waypoint** | `vignettekill` | brown with silver |
+| **Landmark** | `vignettekill-supertracked` | gold |
+
+Both `interface\minimap\objecticonsatlas`, both **64×64**. Tex-coords, verified identical to
+the registry (`AtlasInfo.lua:264` and `:651`):
+
+```xml
+<!-- Route waypoint -->
+<Texture file="interface\minimap\objecticonsatlas">
+    <Size x="64" y="64"/>
+    <TexCoords left="0.262695" right="0.325195" top="0.192383" bottom="0.254883"/>
+</Texture>
+<!-- Landmark -->
+<Texture file="interface\minimap\objecticonsatlas">
+    <Size x="64" y="64"/>
+    <TexCoords left="0.456055" right="0.518555" top="0.192383" bottom="0.254883"/>
+</Texture>
+```
+
+**The art is a compass rose in a ring** — it reads as *navigation* before anything is
+explained, which is the ideal case for law 10: meaning inferred from the shape and our usage,
+with nothing borrowed. Shape is shared between the two, **colour carries the role** — so the
+pair reads as one system with two ranks, not two unrelated symbols. That is the calm-UI
+principle applied to iconography.
+
+**Why it is safe — three independent legs:**
+1. **Mechanical.** All 21 entries of the `vignette*` family are unclaimed in the census.
+2. **Feature-absent** (refinement 3). The only `vignette` strings in the entire client outside
+   the registry are two **`SoundKit.lua` constants** — sound IDs, not wired to this art. The
+   vignette system is absent wholesale, not merely unreferenced.
+3. **Negative visual evidence.** Battlewrath captured the quest iconography this
+   classic-leaning client *actually* uses (Azshara · W. Plaguelands · Tirisfal · Undercity ·
+   Kalimdor): yellow `!`, numbered quest circles, X objective marks, skulls, portal swirls,
+   dungeon-entrance chests, profession glyphs. **No vignette art appears anywhere in it.** The
+   in-use language was established by looking, not assumed.
+
+**★ THE BONUS — the pick lands a complete 2×2 rather than spending a state axis.** The family
+ships in four-state sets (`base` · `-pressed` · `-supertracked` · `-pressed-supertracked`).
+Reading `-supertracked` as *colour* rather than *state* splits one set cleanly into two roles,
+each keeping its own press state:
+
+| | resting | pressed |
+|---|---|---|
+| **waypoint** | `vignettekill` | `vignettekill-pressed` |
+| **landmark** | `vignettekill-supertracked` | `vignettekill-pressed-supertracked` |
+
+All four free, all 64×64, all on one sheet row (`top 0.192383 · bottom 0.254883`). Nothing is
+owed. And if a *current-target* emphasis is ever wanted on top of that, **`vignettekillelite`
+and `vignettekillboss` are two further complete four-state sets, also entirely free** — so the
+supply is not tight and this decision does not corner a later one.
 
 ## 6. Accepted with a gate
 
