@@ -141,6 +141,13 @@ def main():
         names = list(MANIFEST)
     elif arg in MANIFEST:
         names = [arg]
+    elif arg == "names":
+        # Plain one-per-line list, for menu.bat to build its deploy menu from.
+        # The MANIFEST is the ONE authority on who the residents are - anything
+        # that keeps its own copy will drift, and has.
+        for n in MANIFEST:
+            print(n)
+        sys.exit(0)
     elif arg in ("", "list", "status"):
         # No-arg = read-only sync check of every resident (nothing written).
         print("Residents (check only - `deploy.py <addon>` or `deploy.py all` to copy):")
