@@ -4,19 +4,53 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — dungeon sat-nav → **project ledger: `addons/planning/satnav_ledger.md`**
+## ▶ ACTIVE — landmark/scrapbook → **project ledger: `addons/planning/satnav_ledger.md`**
 
-A light in-dungeon route pointer (not Mythic Dungeon Tools). **Scoped to its own ledger at
-Battlewrath's instruction so context stays exact** — that file carries the want, the
-live-proven fact basis, the design laws and the open questions. Do not duplicate its detail
-here.
+**NEXT ACTION, agreed with Battlewrath 2026-08-12 before he signed off: write the DESIGN BRIEF
+for the landmark feature.** He said *"then we'll do a design brief"* — so arrive expecting to
+draft it, but it is still gated on the build word. Criteria before code, in the shape of
+`callwitness_design.md`.
 
-Headline for orientation only: **the sat-nav already exists in the client** —
-`GetCurrentPlayerPosition()` and `C_SuperTrack.SetSuperTrackedPosition()` are a matched
-four-value pair and the engine renders the beacon and minimap POI itself, so the build is
-storage + sequencing, not a pointer. Proven live in-dungeon (position works INDOORS, z tracks
-elevation, beacon renders), and the map↔world transform is solved exactly from four captures.
-**Nothing built yet** — next step is a design/AC document, criteria before code.
+**Read order on arrival:** this block → `addons/planning/satnav_ledger.md` §5 laws 9–10, §9,
+§10 → `addons/maps/atlas/README.md` if the brief touches art. **Do not duplicate the project
+ledger's detail here** — it is scoped to its own file at Battlewrath's instruction.
+
+**★ THE ARC TURNED on 2026-08-12 — read this before assuming the old framing.** It began as a
+dungeon route pointer. It is now **landmark-first**:
+
+- **Landmark / world-map scrapbook is the FIRST build, and it is NOT gated.** Farm spots,
+  favoured vendors, self-authored places. It turned out to be **law 9's landmark half, already
+  specified** — not a new design.
+- **Routing is SECOND and still behind the §8 community gate** — and per law 9's refinement it
+  is *a load-or-share operation with an order over the same architecture*, not a parallel
+  build.
+- **Why this order (his reason, and it is the one that matters):** *"once we have the landmark
+  feature in, the questions that routing has will be part answered."* Routing's unknowns are
+  mostly shared mechanics, and landmarks exercise them with **one player, outdoors, no group,
+  no plan**. §9 carries the honest map of which §7 questions that answers and which it does
+  not.
+
+**★ TWO TRAPS FOR THE ARRIVING AGENT — both are corrections he had to make to me:**
+1. **"Architecture" here means the way we develop and understand the system, made repeatable —
+   NOT a committed code structure.** The implementation may differ; *"we don't have to codify
+   them explicitly."* A shared core is a **candidate** shape, never a decision. Do not write
+   an abstraction into the brief for a thing that does not exist.
+2. **Scope the brief to the landmark feature ALONE.** Where a routing question is part-answered
+   *for free* by a capture landmarks already need, take it; where it is not, leave it open
+   rather than design for it.
+
+**Settled and needing no rework:** the fact basis (F1–F20), the map↔world transform (exact),
+laws 1–10, and **the whole icon set** — three context-chosen markers plus two user-chosen
+stickers, every one verified against `AtlasInfo.lua` rather than against a browser listing.
+**Carry forward:** law 9's wipe-boundary *condition* — it applies only **if** loaded and
+author-owned markers share a store, which is an open implementation choice, and it belongs in
+the brief as an acceptance criterion if that choice is made.
+
+**Bench tool landed this session:** `addons/tools/emit_atlas_census.py` → `addons/maps/atlas/`
+— the client's 4,503 named atlas entries classified by claim of use (1,359 claimed / 3,144
+free). Read its README before picking any icon for anything; it carries three rules that cost
+real work to learn. Practical: the in-game AtlasBrowser's **search is broken** (one
+forward-slash texture path nils a match) — reload and scroll the unfiltered list.
 
 ## ◼ AT REST — the call-witness test series (parked 2026-08-08; COLD PICKUP)
 
