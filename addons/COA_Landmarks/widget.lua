@@ -68,7 +68,9 @@ function Widget:Init()
 
     -- the rename box. NOT shown at capture (AC-4a) - only when explicitly asked,
     -- where taking keyboard focus is what the user just requested.
-    f.rename = CreateFrame("EditBox", nil, f, "InputBoxTemplate")
+    -- NAMED: InputBoxTemplate's middle texture anchors to $parentLeft/$parentRight
+    -- by name, so a nameless box loses it (see editor.lua).
+    f.rename = CreateFrame("EditBox", "COA_LandmarksWidgetRename", f, "InputBoxTemplate")
     f.rename:SetPoint("TOPLEFT", 16, -10); f.rename:SetWidth(170); f.rename:SetHeight(18)
     f.rename:SetAutoFocus(false)
     f.rename:Hide()

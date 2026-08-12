@@ -30,8 +30,12 @@ local function label(parent, text, x, y)
     return fs
 end
 
-local function line(parent, x, y, w)
-    local e = CreateFrame("EditBox", nil, parent, "InputBoxTemplate")
+-- InputBoxTemplate's MIDDLE texture is anchored `relativeTo="$parentLeft"` and
+-- `"$parentRight"` - BY NAME. A nameless EditBox cannot resolve $parent, those
+-- anchors fail, and only the two 8px end caps draw. Every box here must have a
+-- name. (Found live: "No mid texture".)
+local function line(parent, name, x, y, w)
+    local e = CreateFrame("EditBox", name, parent, "InputBoxTemplate")
     e:SetPoint("TOPLEFT", x, y); e:SetWidth(w); e:SetHeight(18)
     e:SetAutoFocus(false)
     e:SetScript("OnEscapePressed", function(self) self:ClearFocus() end)
@@ -108,7 +112,7 @@ function Editor:Build()
     f.id:SetPoint("TOP", 0, -30)
 
     label(f, "Name", 18, -50)
-    f.alias = line(f, 60, -48, 240)
+    f.alias = line(f, "COA_LandmarksEditorAlias", 60, -48, 240)
     f.alias:SetScript("OnTextChanged", function(s)
         if currentId then Store.Set(currentId, "alias", s:GetText()) end
         f.title:SetText(s:GetText() or "")
@@ -116,7 +120,7 @@ function Editor:Build()
     end)
 
     label(f, "What:", 18, -76)
-    f.what = line(f, 60, -74, 240)
+    f.what = line(f, "COA_LandmarksEditorWhat", 60, -74, 240)
     f.what:SetScript("OnTextChanged", function(s)
         if currentId then Store.Set(currentId, "what", s:GetText()) end
     end)
@@ -158,7 +162,36 @@ function Editor:Build()
     end
 
     label(f, "Tags:", 18, -262)
-    f.tags = line(f, 60, -260, 240)
+    f.tags = line(f, "COA_LandmarksEditorTags", 60, -260, 240)
+    -- AC-54a: Tab and Enter ACCEPT the proposal. Without them the highlighted
+    -- tail just sits there and the box looks like it is only showing you what
+    -- it knows. (Found live.)
+    local function acceptCompletion(box)
+        local text = box:GetText() or ""
+        box:HighlightText(0, 0)               -- the proposal is now plain text
+        box:SetCursorPosition(#text)
+        if currentId then Store.Set(currentId, "tags", text) end
+        box.lastLen = #text
+        return text
+    end
+
+    f.tags:SetScript("OnTabPressed", function(s)
+        -- accept, then open the next tag so you can keep typing
+        local text = acceptCompletion(s)
+        if text ~= "" and not text:match(",%s*$") then
+            s.suppress = true
+            s:SetText(text .. ", ")
+            s.suppress = false
+            s:SetCursorPosition(#s:GetText())
+            if currentId then Store.Set(currentId, "tags", s:GetText()) end
+            s.lastLen = #s:GetText()
+        end
+    end)
+    f.tags:SetScript("OnEnterPressed", function(s)
+        acceptCompletion(s)
+        s:ClearFocus()
+    end)
+
     f.tags:SetScript("OnTextChanged", function(s, userInput)
         -- AC-54: stored EXACTLY as typed. No trimming, no case-folding, no
         -- merging. Splitting happens on READ, never here.
