@@ -340,16 +340,20 @@ function Store.KnownOwners()
     return out
 end
 
--- Reassign EVERY landmark owned by `from` to the current character. The target
--- is always "me" - you can only claim for whoever is logged in, which is the
--- same reason demotion works without a roster (AC-5a).
-function Store.TransferOwner(from)
+-- Reassign EVERY landmark owned by `from`. The target is ME or GLOBAL - the
+-- same two forms `owner` has always had (AC-46), so this control wraps up BOTH
+-- transfer and delete-recovery without inventing a third state.
+--
+-- You can only claim for whoever is logged in, or for everyone; there is no
+-- "give it to that other character", because that would need the roster we
+-- deliberately do not keep (AC-5a).
+function Store.TransferOwner(from, toGlobal)
     if Store.locked then return 0, Store.locked end
     if not from or from == "" or from == Store.GLOBAL then return 0, "no source" end
-    local me, n = UnitName("player"), 0
+    local to, n = toGlobal and Store.GLOBAL or UnitName("player"), 0
     for _, lm in pairs(db().landmarks) do
         if lm.owner == from then
-            lm.owner = me
+            lm.owner = to
             n = n + 1
         end
     end

@@ -271,18 +271,32 @@ function Editor:Build()
     f.xfer = CreateFrame("Frame", "COA_LandmarksEditorTransfer", f, "UIDropDownMenuTemplate")
     f.xfer:SetPoint("TOPLEFT", 108, -314)
     UIDropDownMenu_SetWidth(f.xfer, 100)
-    f.xferTo = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
-    f.xferTo:SetWidth(56); f.xferTo:SetHeight(20)
-    f.xferTo:SetPoint("TOPLEFT", 244, -317)
-    f.xferTo:SetText("to me")
-    f.xferTo:SetScript("OnClick", function()
+    -- Two targets, the same two forms `owner` has always had. A button says
+    -- "me" where the dropdown above says "Only Gravekeeper" - and that is not
+    -- an inconsistency: the dropdown DISPLAYS STORED STATE about a record that
+    -- may not be yours, so it must resolve the name; a button you are pressing
+    -- has an unambiguous actor.
+    local function doTransfer(toGlobal)
         local from = UIDropDownMenu_GetSelectedValue(f.xfer)
         if not from then return end
-        local n = Store.TransferOwner(from)
-        NS.Print(("moved |cffffd100%d|r landmark(s) from %s to you."):format(n, from))
+        local n = Store.TransferOwner(from, toGlobal)
+        NS.Print(("moved |cffffd100%d|r landmark(s) from %s to %s."):format(
+            n, from, toGlobal and "all characters" or "you"))
         Editor:RefreshOwner(); Editor:RefreshTransfer()
         NS.Pins:Refresh(); NS.Widget:Refresh()
-    end)
+    end
+
+    f.xferTo = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    f.xferTo:SetWidth(48); f.xferTo:SetHeight(20)
+    f.xferTo:SetPoint("TOPLEFT", 232, -317)
+    f.xferTo:SetText("to me")
+    f.xferTo:SetScript("OnClick", function() doTransfer(false) end)
+
+    f.xferAll = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    f.xferAll:SetWidth(48); f.xferAll:SetHeight(20)
+    f.xferAll:SetPoint("TOPLEFT", 264, -317)
+    f.xferAll:SetText("to all")
+    f.xferAll:SetScript("OnClick", function() doTransfer(true) end)
 
     f.delete = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     f.delete:SetWidth(80); f.delete:SetHeight(20)
@@ -321,11 +335,11 @@ function Editor:RefreshTransfer()
     local on = Store.showAll
     local owners = on and Store.KnownOwners() or {}
     if not on or #owners == 0 then
-        f.xferLabel:Hide(); f.xfer:Hide(); f.xferTo:Hide()
+        f.xferLabel:Hide(); f.xfer:Hide(); f.xferTo:Hide(); f.xferAll:Hide()
         f:SetHeight(348)
         return
     end
-    f.xferLabel:Show(); f.xfer:Show(); f.xferTo:Show()
+    f.xferLabel:Show(); f.xfer:Show(); f.xferTo:Show(); f.xferAll:Show()
     f:SetHeight(382)
     UIDropDownMenu_Initialize(f.xfer, function()
         for _, o in ipairs(owners) do

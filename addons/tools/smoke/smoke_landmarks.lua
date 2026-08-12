@@ -178,7 +178,10 @@ P.sub = "Orphan Ridge Two"
 local orphan2 = Store.Create()
 Store.Set(orphan2, "owner", "DeletedAlt")
 assert(#Store.KnownOwners() == 1, "a second landmark from the same owner is not listed twice")
-assert(Store.TransferOwner("DeletedAlt") == 2, "AC-5c: transfer moves ALL of that owner's")
+assert(Store.TransferOwner("DeletedAlt", true) == 2, "AC-5c: transfer to GLOBAL moves all")
+assert(Store.Get(orphan).owner == Store.GLOBAL, "target global lands as global")
+Store.Set(orphan, "owner", "DeletedAlt"); Store.Set(orphan2, "owner", "DeletedAlt")
+assert(Store.TransferOwner("DeletedAlt") == 2, "AC-5c: transfer to ME moves all")
 assert(Store.IsMine(Store.Get(orphan)) and Store.IsMine(Store.Get(orphan2)), "both are ours now")
 assert(#Store.KnownOwners() == 0, "the source owner is gone from the list once emptied")
 -- never a transfer source: yourself, or global
