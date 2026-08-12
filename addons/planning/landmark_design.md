@@ -141,6 +141,26 @@ screen instead of through the data.
 **Do not turn this into a multi-select.** If a real case ever appears it is one landmark
 duplicated, not a matrix on all of them.
 
+**★ HANDING A LANDMARK TO ANOTHER CHARACTER — the detour, and why it is ACCEPTED
+(Battlewrath, 2026-08-12):** *"I found this spot for my druid to herb at, so I make it global,
+log my druid, make it specific. But I think in a way that fits. This is a process of curation.
+Not mapping the world."*
+
+Three steps: promote to global · log in as the other character · demote, which claims it
+(AC-46). **Accepted, and recorded as accepted so it is not later "fixed".**
+
+His reason is proportionality — curation is a considered act, not a bulk operation — and there
+is a second, stronger one:
+
+> **★ THE ALTERNATIVE WOULD REQUIRE US TO KNOW YOUR CHARACTERS.** A "give this to…" picker
+> needs a **roster**: a stored list of your alts that goes stale on deletes, renames and
+> transfers, that nothing prunes, and that **we would own**. That is the tag-registry problem
+> (AC-54d) wearing different clothes.
+>
+> **The detour needs no roster at all.** The character **claims itself by being logged in** —
+> `UnitName("player")` is always current and always correct. The addon never learns who your
+> alts are, and therefore can never be wrong about them.
+
 **★ One consequence made VISIBLE rather than left to be discovered:** demoting a global
 **claims it for whoever is standing there** (AC-46: "demotion assigns the current character").
 So the dropdown reads **"Only Gravekeeper"**, not "this character" — the label states the
