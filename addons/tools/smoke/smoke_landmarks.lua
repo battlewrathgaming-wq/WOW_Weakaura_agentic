@@ -123,7 +123,13 @@ assert(#Store.SuggestTags("ven", id) == 1,
        "a tag from ANOTHER landmark must still suggest")
 assert(#Store.SuggestTags("vendor", other) == 0,
        "never offer back exactly what is already typed")
+-- AC-54d: a tag lives exactly as long as something CARRIES it. Deleting the
+-- last landmark holding one removes it from the pool - no registry, because we
+-- own no vocabulary. Asserted so nobody "fixes" this by adding one.
+assert(#Store.SuggestTags("vend", id) == 1, "the other landmark's tag is offered")
 Store.Delete(other)
+assert(#Store.SuggestTags("vend", id) == 0,
+       "AC-54d FAILED: a tag outlived its last carrier - is there a registry?")
 P.sub = "Everlook"
 
 -- AC-54c: the GHOST TEXT must never become a tag. It is a FontString overlaid

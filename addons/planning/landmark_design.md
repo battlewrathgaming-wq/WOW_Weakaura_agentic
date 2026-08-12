@@ -487,6 +487,24 @@ enforcement**, and it answers the case-and-duplicates question better than a rul
   the drift and none of the cure, and it would pollute the very A:B signal the field exists to
   produce. The scan is a loop over tens of records (AC-50).
 
+**AC-54d — A TAG EXISTS ONLY WHILE SOMETHING CARRIES IT. Deleting the last landmark holding a
+tag removes it from the pool.** Observed by Battlewrath, 2026-08-12: *"I made a tag, then
+deleted the item, then tried to call that tag else where, and it wasn't found."*
+
+**Working as designed, and the design is AC-54's own:** there is no registry, because we own no
+vocabulary — the user's typing *is* the list. `KnownTags()` scans the landmarks. No carrier, no
+tag.
+
+> **★ RECORDED BECAUSE IT LOOKS LIKE A BUG AND IS NOT.** The obvious "fix" is a table of
+> previously-seen tags. That is **a vocabulary we own** — precisely what AC-54 refuses — and it
+> brings everything that follows: it outlives the data, it rots, nothing ever prunes it, and it
+> offers words for things that no longer exist. It also fails the governing metaphor outright:
+> tear out the page and the word does not persist somewhere else. **Do not add a tag registry.**
+
+The cost is real but small: delete a landmark and immediately re-tag another the same way, and
+you type the word again. Weighed against a store that quietly accumulates dead vocabulary, that
+is the better side.
+
 **AC-54c — GHOST TEXT on the tags field: `separate with ,  or press enter / tab`**
 (Battlewrath, 2026-08-12). Shown only while the field is **empty** — including while focused,
 which is exactly when someone about to type needs the format. Erases itself on the first
