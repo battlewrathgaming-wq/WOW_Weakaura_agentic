@@ -169,9 +169,26 @@ Mechanically that is `UNIT_DIED` with `destFlags` carrying `COMBATLOG_OBJECT_REA
   *pets*, so it may not apply to enemies at all — but it means the death lane gets **verified,
   not assumed.**
 
-**Open and cheap, flagged not argued:** recording a *friendly* death costs nothing and answers a
-different question — *"it might be tricky mobs"* is exactly the note material the in-dungeon
-landmark half exists for. It would never enter the route model. His call, deferred either way.
+**★ DECIDED — RECORD ALL DEATHS, MODEL ONLY THE ENEMY ONES (Battlewrath, 2026-08-13):**
+
+> *"Record if it's free. Then we can later trim. **Better to be rich and find faults, than lean
+> and never find bounds.**"*
+
+The second sentence is the general law and it is worth carrying past this note: **lean capture
+does not merely lose data — it never reveals the BOUNDARIES of what you are measuring.** You
+cannot find a fault in a field you did not collect, and you cannot tell whether a filter is
+correct if you only ever kept what the filter let through.
+
+**Friendly deaths ARE free here, and that is verified rather than assumed:** it is the same
+`UNIT_DIED` event on the same listener, so "record all" is one branch NOT taken — no extra
+registration, no extra event, no added cost. They simply never enter the route model.
+Separately they answer a different question: *"it might be tricky mobs"* is exactly the note
+material the in-dungeon landmark half exists for.
+
+**★ WHERE "FREE" STOPS, so this is not over-applied:** free means *already in hand* — a field on
+an event we are receiving anyway, a branch we decline to take. It does **not** extend to
+anything needing its own event registration, its own poll, or its own scan. Those are captures
+in their own right and get argued on their own merits.
 
 ---
 
@@ -249,15 +266,14 @@ which is precisely the failing case.
 
 ---
 
-## 9. Still his
+## 9. Still his — nothing open
 
 1. **Widget or the task spine?** He asked for a widget (*"a widget that is all about capture"*)
    with a name field — taken as answered. Noting the alternative only because it is free:
    `/coadump st dungeonrun "Ragefire clockwise"` would land records **today** with zero build,
    the run name as an arg. The widget is friendlier mid-play, and naming a run by slash command
    mid-pull is genuinely worse. **Proceeding on the widget** unless he says otherwise.
-2. **Friendly deaths** — record-but-exclude from the route model, or do not record (§6).
-   **Does not block:** deaths are out of the POC entirely.
+2. ~~Friendly deaths~~ — **answered 2026-08-13: record all, model only the enemy ones** (§6).
 
 **Gate: `Build!` — not authorised.**
 
