@@ -14,10 +14,11 @@
 local chat = {}
 DEFAULT_CHAT_FRAME = { AddMessage = function(_, m) chat[#chat + 1] = m end }
 
-local W = { mapID = 33, floor = 6 }
+local W = { mapID = 33, floor = 6, here = "ShadowfangKeep" }
 function UnitName() return "Gravekeeper" end
 function GetCurrentPlayerPosition() return 1, 2, 3, W.mapID end
 function GetCurrentMapDungeonLevel() return W.floor end
+function GetMapInfo() return W.here, 668, 768 end
 function GetRealZoneText() return "Shadowfang Keep" end
 function GetSubZoneText() return "" end
 function time() return 1786600000 end
@@ -156,6 +157,42 @@ assert(#Map.RunsFor(nil) == 0,
 for _, id in ipairs(Map.RunsFor(33)) do
     assert(nameOf(id) ~= "stub", "an empty run must not be offered for a real map")
 end
+
+-- =====================================================================
+-- ★ Map.ArtFor - the IN-ZONE FALLBACK, and the identity guard on it
+--
+-- The first live draw produced correct dots on an EMPTY canvas: all three
+-- exemplars predate DR-34, so they carry no mapFile. §22 promised those runs
+-- would still draw IN ZONE, and stage one did not implement it.
+-- =====================================================================
+-- The fixture carries stored art, so it must be CLEARED to reach the fallback at
+-- all. (The first version of this block did not, so every assertion passed
+-- through the stored-art branch and the mutation harness reported the fallback's
+-- removal as SILENT - the test could not tell the two paths apart.)
+local stored = sfk.mapFile
+sfk.mapFile = nil
+assert(Map.ArtFor(sfk, 33, "ShadowfangKeep") == "ShadowfangKeep",
+       "FALLBACK MISSING: no stored art + standing on that map -> ask the client")
+
+sfk.mapFile = "StoredName"
+assert(Map.ArtFor(sfk, 33, "SomewhereElse") == "StoredName",
+       "STORED ART WINS: a DR-34 run must not be overridden by where you happen to stand")
+sfk.mapFile = nil
+
+-- ★ THE GUARD. Without it, opening a pre-DR-34 Shadowfang run while standing in
+-- Ragefire draws Shadowfang's route onto RAGEFIRE'S ART - a picture that looks
+-- entirely plausible and is completely wrong.
+assert(Map.ArtFor(sfk, 389, "Ragefire") == nil,
+       "WRONG-MAP ART: the fallback must be guarded on identity, not just presence")
+assert(Map.ArtFor(sfk, nil, "Ragefire") == nil, "no current map -> no fallback")
+assert(Map.ArtFor(sfk, 33, nil) == nil, "no client answer -> no art, not a guess")
+assert(Map.ArtFor(nil, 33, "ShadowfangKeep") == nil, "no run -> no art")
+
+-- Map.MapIDOf - instance first, then the run's own points
+assert(Map.MapIDOf(sfk) == 33, "instance.mapID when present")
+assert(Map.MapIDOf(rfc) == 389, "otherwise the mapID the points carry")
+assert(Map.MapIDOf(stub) == nil, "an empty run has no map at all")
+sfk.mapFile = stored
 
 -- =====================================================================
 -- Show: location seeds the view, and paint() actually ran

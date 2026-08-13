@@ -1548,3 +1548,58 @@ fallback, the nil-mapID guard, and the empty-map message.
 Read against §21's five questions, in zone, using `SFK_Run2_Legs` for the first three and
 `RFC_Run2_Messy` for the last two. **Needs a deploy** — `capture.lua` (DR-34), `map.lua`, the
 widget button, the toc.
+
+---
+
+## 24. ★ THE FIRST DRAW (2026-08-13) — positions right, and a promise found unkept
+
+> *"It lacks map textures. But the positions seem right."*
+
+### ✅ What it proved
+
+Seven floors paged in turn: **148 / 12 / 33 / 20 / 25 / 24 / 55 points** — an **exact match for
+the record's own counts.** That verifies the whole pipeline end to end: capture → floor filter →
+fraction → draw. **The trail follows the corridor, and paging puts the right trail on the right
+level.** §21's first three questions: answered.
+
+### ⚠ What it exposed — and no smoke could have
+
+**The canvas was empty**, and not because the drawing was wrong. **All three pinned exemplars
+predate DR-34**, so they carry no `mapFile`; `TilePath` returns nil and `SetTexture(nil)` draws
+nothing. Positions were unaffected, because they only need the fraction.
+
+**But §22 promised those runs would be *"displayable IN ZONE ONLY"* — and he WAS in Shadowfang.**
+`GetMapInfo()` answers for the map you are standing on. **The fallback was specified and simply
+not implemented.**
+
+**★ A gap between the spec and the build, where BOTH were internally consistent.** The smoke
+asserted what the build does; the note asserted what it should do; neither could see the other.
+**Only the draw could.** That is the argument for §21's ordering, made by the thing itself.
+
+### The fix, and the guard that is the whole point
+
+`Map.ArtFor(run, hereMapID, hereFile)` — stored art first, else the client's answer for where you
+stand. **Guarded on IDENTITY**: without it, opening a pre-DR-34 Shadowfang run while standing in
+Ragefire would draw **Shadowfang's route onto RAGEFIRE'S ART** — a picture that looks entirely
+plausible and is completely wrong. **Nothing else in the display can produce that failure.**
+
+`Map.MapIDOf` was extracted so `RunsFor` and `ArtFor` share **one** definition of which map a run
+belongs to, rather than two that could drift.
+
+And the readout now says **why** a canvas is empty — *"no map art (pre-DR-34 run, and not in its
+zone)"* — rather than presenting a blank one. **A known limitation should not be left to be
+guessed at.**
+
+### ★ The harness found my test a THIRD time
+
+The fallback's mutation came back **SILENT**: the fixture already carried stored art, so every
+assertion passed through the stored-art branch and the two paths were indistinguishable. Clearing
+it first makes the branch reachable, and it bites.
+
+Same class as the nil-mapID guard an hour earlier, and now worth stating as a rule:
+**A GUARD WHOSE FAILURE CASE THE FIXTURES CANNOT REACH IS UNTESTED, NOT SAFE.**
+
+### Still open from §21
+
+Questions 4 and 5 — **markers on the trail**, and whether **the 6-px re-pull cluster reads as a
+cluster** — need `RFC_Run2_Messy`, in Ragefire.

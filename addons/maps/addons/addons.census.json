@@ -1,5 +1,5 @@
 {
- "_fingerprint": "cf52e28a7318",
+ "_fingerprint": "2795674a28f0",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1850,64 +1850,74 @@
    "map.lua": {
     "functions": [
      {
+      "name": "Map.RunsFor",
+      "kind": "function",
+      "line": 68
+     },
+     {
+      "name": "Map.ArtFor",
+      "kind": "function",
+      "line": 88
+     },
+     {
       "name": "Map.PointsOn",
-      "kind": "function",
-      "line": 81
-     },
-     {
-      "name": "Map.Offset",
-      "kind": "function",
-      "line": 98
-     },
-     {
-      "name": "Map.TilePath",
       "kind": "function",
       "line": 104
      },
      {
+      "name": "Map.Offset",
+      "kind": "function",
+      "line": 121
+     },
+     {
+      "name": "Map.TilePath",
+      "kind": "function",
+      "line": 127
+     },
+     {
       "name": "ensureDots",
       "kind": "local",
-      "line": 114
+      "line": 137
      },
      {
       "name": "clearDots",
       "kind": "local",
-      "line": 131
+      "line": 154
      },
      {
       "name": "paint",
       "kind": "local",
-      "line": 135
+      "line": 158
      },
      {
       "name": "context",
       "kind": "local",
-      "line": 161
+      "line": 190
      },
      {
       "name": "Map.Show",
       "kind": "function",
-      "line": 167
+      "line": 196
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 187
+      "line": 216
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 192
+      "line": 221
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 199
+      "line": 228
      },
      {
-      "name": "Map.RunsFor",
+      "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 248
+      "line": 277
      }
     ],
     "onupdate": 0,
@@ -1925,7 +1935,8 @@
     "timers": [],
     "push": [],
     "pull": [
-     "GetCurrentPlayerPosition"
+     "GetCurrentPlayerPosition",
+     "GetMapInfo"
     ]
    },
    "store.lua": {

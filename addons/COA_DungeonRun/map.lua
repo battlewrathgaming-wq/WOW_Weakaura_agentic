@@ -57,19 +57,42 @@ local shownRunId, shownFloor
 -- (M8 - the client's own code subtracts it) AND it indexes WorldMapArea rows,
 -- which is a different id space from the one our points carry. Two ways to be
 -- wrong, for no gain.
+-- Which map a run belongs to. `instance.mapID` is DR-30's 8th return; runs from
+-- before it fall back to the mapID their own points carry.
+function Map.MapIDOf(run)
+    if not run then return nil end
+    if run.instance and run.instance.mapID then return run.instance.mapID end
+    local first = (run.markers and run.markers[1]) or (run.legs and run.legs[1]) or run.arrival
+    return first and first.mapID or nil
+end
+
 function Map.RunsFor(mapID)
     local out = {}
     if not mapID then return out end
     for _, id in ipairs(Store.Ids()) do
-        local r = Store.Get(id)
-        local m = r and (r.instance and r.instance.mapID)
-        if not m and r then
-            local first = (r.markers and r.markers[1]) or (r.legs and r.legs[1]) or r.arrival
-            m = first and first.mapID
-        end
-        if m == mapID then out[#out + 1] = id end
+        if Map.MapIDOf(Store.Get(id)) == mapID then out[#out + 1] = id end
     end
     return out
+end
+
+-- ★ The tile art for a run, with the IN-ZONE FALLBACK §22 promised.
+--
+-- DR-34 stores `mapFile` at capture, which is what makes a run drawable from
+-- anywhere. Runs captured BEFORE it carry none - and the first draw showed the
+-- consequence plainly: correct dots on an empty canvas. In zone we can still ask
+-- the client, because GetMapInfo() answers for the map you are standing on.
+--
+-- ★ GUARDED ON IDENTITY, and that guard is the whole point: without it, opening a
+-- pre-DR-34 Shadowfang run while standing in Ragefire would draw Shadowfang's
+-- route onto RAGEFIRE'S ART - a picture that looks entirely plausible and is
+-- completely wrong. Nothing else in the display can produce that failure.
+function Map.ArtFor(run, hereMapID, hereFile)
+    if run and run.mapFile and run.mapFile ~= "" then return run.mapFile end
+    if run and hereFile and hereFile ~= "" and hereMapID
+       and Map.MapIDOf(run) == hereMapID then
+        return hereFile
+    end
+    return nil
 end
 
 -- Every point of a run that sits on one floor.
@@ -134,7 +157,9 @@ local function clearDots()
 end
 
 local function paint(run, floor)
-    local mapFile = run and run.mapFile
+    local _, _, _, hereMapID = GetCurrentPlayerPosition()
+    local hereFile = GetMapInfo and GetMapInfo() or nil
+    local mapFile = Map.ArtFor(run, hereMapID, hereFile)
     for i = 1, TILE_COLS * TILE_ROWS do
         local path = Map.TilePath(mapFile, floor, i)
         tiles[i]:SetTexture(path)
@@ -151,8 +176,12 @@ local function paint(run, floor)
         d:Show()
     end
 
-    floorText:SetText(("floor %s  |  %d point%s")
-        :format(tostring(floor), #pts, #pts == 1 and "" or "s"))
+    -- Say WHY the canvas is empty rather than presenting a blank one. A run with
+    -- no art and no in-zone fallback is a KNOWN limitation (pre-DR-34), not a
+    -- fault, and the readout should not leave that to be guessed at.
+    floorText:SetText(("floor %s  |  %d point%s%s")
+        :format(tostring(floor), #pts, #pts == 1 and "" or "s",
+                mapFile and "" or "  |  no map art (pre-DR-34 run, and not in its zone)"))
     title:SetText(run and run.name or "no run")
 end
 
