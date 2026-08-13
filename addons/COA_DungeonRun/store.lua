@@ -24,6 +24,7 @@
 --
 --   <point>  = x,y,z,mapID · mapX,mapY,mapC,mapZ · floor · zone,subZone · t,gt
 --   <marker> = <point> + kind="start"|"end" + n=<pull index> [+ dead=true]
+--   <leg>    = <point> [+ ghost=true] [+ combat=true + n=<pull index>]   -- DR-35
 --
 -- Laws in force here (addons/planning/dungeonrun_poc.md):
 --   DR-4   BOTH clocks on every point: t=time() joins, gt=GetTime() measures
@@ -211,10 +212,17 @@ function Store.AddMarker(id, point, kind, n, dead, killedBy, unavailable)
     return point
 end
 
-function Store.AddLeg(id, point, ghost)
+-- DR-35: `pullIndex` non-nil means the sample was taken DURING that pull.
+--
+-- Both fields are written, and neither is redundant: `combat` is the qualifier the
+-- display keys off (exactly as `ghost` is), and `n` says WHICH pull - the join that
+-- lets curation isolate one pull's movement later. The pull index is free, because
+-- capture is already counting it.
+function Store.AddLeg(id, point, ghost, pullIndex)
     local r = Store.Get(id)
     if not r or not point then return nil end
     if ghost then point.ghost = true end       -- corpse runs stay legible (DR-13)
+    if pullIndex then point.combat, point.n = true, pullIndex end
     r.legs[#r.legs + 1] = point
     return point
 end

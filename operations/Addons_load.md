@@ -4,13 +4,13 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (44 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (47 sections)**
 
-**STATUS: v0.9.2 — CAPTURE PROVEN, DISPLAY PROVEN, RUNS SELECTABLE** (2026-08-13). Six files,
-81 fn, **0 persistent OnUpdate**, smoke-green, **27 mutations bite on their own message**.
+**STATUS: v0.10.0 — CAPTURE PROVEN, DISPLAY PROVEN, RUNS SELECTABLE** (2026-08-13). Six files,
+85 fn, **0 persistent OnUpdate**, smoke-green, **37 mutations bite on their own message**, now across four files.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
-§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§44 the promotion model + curation. **§29 is the
+§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§47 the promotion model + curation. **§29 is the
 architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into lanes.**
 
 **★ THE LAWS THAT GOVERN ANYTHING BUILT NEXT** — each cost a correction to learn:
@@ -21,6 +21,8 @@ architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into
 | **§29** | **capture is the only spawn.** No free-hand placement in any lane, ever — a custom marker "dropped" is still a capture. Promote *for me* (map-anchored, outlives routes) or *for a run* (ordered, exportable) |
 | **§25.2** | **promotion copies the base; Z is INHERITED, never computed.** Self-enforcing: if an offset needs a different z, promote a nearer node |
 | **§36** | **location sorts the list; it never chooses the view.** Map art may follow you. Run data NEVER auto-loads — **enforced since v0.9.0**, not just intended |
+| **DR-35** | **sample IN COMBAT too.** The legs used to stop where the fighting started, so every long pull lost its routing entirely — and it got WORSE the better the group was. Tagged `combat = true` + `n` = the pull; costs nothing, the tick already ran |
+| **§46** | **colour = combat state, shape = what kind.** Red in combat, blue out of it, everywhere; dot = sample, swords = event, cross = terminal. Two orthogonal channels, so the route reads its own combat rhythm without reading a marker |
 | **§38** | **enter over exit.** Enter is a fact about the ENCOUNTER (aggro geometry the dungeon owns); exit is a fact about YOU. Ladder `dead > start > done > leg`, and it decides the CLICK as well as the draw. Enters are §29's waypoint candidates; exits are evidence |
 | **§43** | **THREE SURFACES, THREE QUESTIONS.** map = *what IS this?* (picture + hover facts) · curation = *what am I LOOKING at?* (trim, filter, replay, isolate, present) · promotion = *what does this BECOME?* (§29's lanes). **Curation edits the VIEW, never the capture** — which is what reconciles DR-9 with an editor that trims, and makes curation state PER-VIEW, never part of the record |
 | **§34** | the map IS the editor's map (detail-rich is correct); the **companion is separate for BUILD HYGIENE** — a bug in one cannot break the other. **Selection flows map→pane, loading flows pane→map; both are the PANE depending on the map's API.** The map holds no reference to the pane, and that is asserted |

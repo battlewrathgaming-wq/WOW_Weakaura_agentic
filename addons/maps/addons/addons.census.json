@@ -1,5 +1,5 @@
 {
- "_fingerprint": "39e639b8f929",
+ "_fingerprint": "8c2f40d82afa",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1724,62 +1724,62 @@
      {
       "name": "onUpdate",
       "kind": "function",
-      "line": 140
+      "line": 156
      },
      {
       "name": "Capture.Stop",
       "kind": "function",
-      "line": 189
+      "line": 207
      },
      {
       "name": "Capture.RunId",
       "kind": "function",
-      "line": 204
+      "line": 222
      },
      {
       "name": "Capture.Pulls",
       "kind": "function",
-      "line": 206
+      "line": 224
      },
      {
       "name": "onCombatStart",
       "kind": "local",
-      "line": 210
+      "line": 228
      },
      {
       "name": "onCombatEnd",
       "kind": "local",
-      "line": 219
+      "line": 237
      },
      {
       "name": "onPlayerDead",
       "kind": "local",
-      "line": 236
+      "line": 254
      },
      {
       "name": "onEncounterEngage",
       "kind": "local",
-      "line": 243
+      "line": 261
      },
      {
       "name": "captureOrigin",
       "kind": "function",
-      "line": 257
+      "line": 275
      },
      {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 316
+      "line": 334
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 320
+      "line": 338
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 345
+      "line": 363
      }
     ],
     "onupdate": 1,
@@ -1852,32 +1852,32 @@
      {
       "name": "refresh",
       "kind": "local",
-      "line": 57
+      "line": 69
      },
      {
       "name": "initDropdown",
       "kind": "local",
-      "line": 81
+      "line": 99
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 89
+      "line": 107
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 113
+      "line": 131
      },
      {
       "name": "Editor.Init",
       "kind": "function",
-      "line": 117
+      "line": 135
      },
      {
       "name": "Editor.Toggle",
       "kind": "function",
-      "line": 177
+      "line": 217
      }
     ],
     "onupdate": 0,
@@ -1903,167 +1903,182 @@
      {
       "name": "Map.ArtSize",
       "kind": "function",
-      "line": 103
+      "line": 124
      },
      {
       "name": "Map.TileGrid",
       "kind": "function",
-      "line": 105
+      "line": 126
      },
      {
       "name": "Map.RunsFor",
       "kind": "function",
-      "line": 145
+      "line": 167
      },
      {
       "name": "Map.ArtFor",
       "kind": "function",
-      "line": 165
+      "line": 187
      },
      {
       "name": "Map.PointsOn",
       "kind": "function",
-      "line": 181
+      "line": 203
+     },
+     {
+      "name": "Map.VisibleOn",
+      "kind": "function",
+      "line": 219
+     },
+     {
+      "name": "Map.Hidden",
+      "kind": "function",
+      "line": 238
+     },
+     {
+      "name": "Map.SetHidden",
+      "kind": "function",
+      "line": 241
      },
      {
       "name": "Map.ArtKey",
       "kind": "function",
-      "line": 200
+      "line": 253
      },
      {
       "name": "Map.Rank",
       "kind": "function",
-      "line": 211
+      "line": 267
      },
      {
       "name": "Map.ArtForPoint",
       "kind": "function",
-      "line": 215
+      "line": 271
      },
      {
       "name": "Map.SetOnSelect",
       "kind": "function",
-      "line": 232
+      "line": 288
      },
      {
       "name": "Map.Selected",
       "kind": "function",
-      "line": 235
+      "line": 291
      },
      {
       "name": "Map.Select",
       "kind": "function",
-      "line": 236
+      "line": 292
      },
      {
       "name": "Map.Describe",
       "kind": "function",
-      "line": 246
+      "line": 302
      },
      {
       "name": "add",
       "kind": "local",
-      "line": 255
+      "line": 312
      },
      {
       "name": "Map.FillTooltip",
       "kind": "function",
-      "line": 297
+      "line": 355
      },
      {
       "name": "Map.Offset",
       "kind": "function",
-      "line": 312
+      "line": 370
      },
      {
       "name": "Map.TilePath",
       "kind": "function",
-      "line": 318
+      "line": 376
      },
      {
       "name": "Map.TileRect",
       "kind": "function",
-      "line": 339
+      "line": 397
      },
      {
       "name": "byName",
       "kind": "local",
-      "line": 372
+      "line": 430
      },
      {
       "name": "Map.SeedFloor",
       "kind": "function",
-      "line": 385
+      "line": 443
      },
      {
       "name": "Map.Caption",
       "kind": "function",
-      "line": 407
+      "line": 465
      },
      {
       "name": "ensureDots",
       "kind": "local",
-      "line": 422
+      "line": 480
      },
      {
       "name": "styleDot",
       "kind": "local",
-      "line": 449
+      "line": 507
      },
      {
       "name": "clearDots",
       "kind": "local",
-      "line": 462
+      "line": 520
      },
      {
       "name": "paint",
       "kind": "function",
-      "line": 468
+      "line": 526
      },
      {
       "name": "context",
       "kind": "local",
-      "line": 514
+      "line": 572
      },
      {
       "name": "Map.LoadedId",
       "kind": "function",
-      "line": 520
+      "line": 578
      },
      {
       "name": "Map.ShownArt",
       "kind": "function",
-      "line": 525
+      "line": 583
      },
      {
       "name": "Map.Show",
       "kind": "function",
-      "line": 532
+      "line": 590
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 555
+      "line": 613
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 561
+      "line": 619
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 577
+      "line": 635
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 654
+      "line": 712
      },
      {
       "name": "Map.RunList",
       "kind": "function",
-      "line": 654
+      "line": 712
      }
     ],
     "onupdate": 0,
@@ -2092,102 +2107,102 @@
      {
       "name": "Store.Load",
       "kind": "function",
-      "line": 46
+      "line": 47
      },
      {
       "name": "db",
       "kind": "local",
-      "line": 67
+      "line": 68
      },
      {
       "name": "Store.Point",
       "kind": "function",
-      "line": 112
+      "line": 113
      },
      {
       "name": "Store.Open",
       "kind": "function",
-      "line": 143
+      "line": 144
      },
      {
       "name": "Store.Get",
       "kind": "function",
-      "line": 162
+      "line": 163
      },
      {
       "name": "Store.Close",
       "kind": "function",
-      "line": 167
+      "line": 168
      },
      {
       "name": "Store.Delete",
       "kind": "function",
-      "line": 173
+      "line": 174
      },
      {
       "name": "Store.Ids",
       "kind": "function",
-      "line": 178
+      "line": 179
      },
      {
       "name": "Store.AddLeg",
       "kind": "function",
-      "line": 213
+      "line": 220
      },
      {
       "name": "Store.SetOutside",
       "kind": "function",
-      "line": 221
+      "line": 229
      },
      {
       "name": "Store.SetArrival",
       "kind": "function",
-      "line": 227
+      "line": 235
      },
      {
       "name": "Store.SetInstance",
       "kind": "function",
-      "line": 240
+      "line": 248
      },
      {
       "name": "Store.SetMapArt",
       "kind": "function",
-      "line": 249
+      "line": 257
      },
      {
       "name": "Store.AddBoss",
       "kind": "function",
-      "line": 264
+      "line": 272
      },
      {
       "name": "Store.Counts",
       "kind": "function",
-      "line": 276
+      "line": 284
      },
      {
       "name": "Store.GetUI",
       "kind": "function",
-      "line": 288
+      "line": 296
      },
      {
       "name": "Store.SetUI",
       "kind": "function",
-      "line": 297
+      "line": 305
      },
      {
       "name": "Store.AddMarker",
       "kind": "function",
-      "line": 301
+      "line": 309
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 301
+      "line": 309
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 301
+      "line": 309
      }
     ],
     "onupdate": 0,

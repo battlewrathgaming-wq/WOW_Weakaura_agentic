@@ -794,6 +794,7 @@ built, plus **difficulty**, which he added.
 |---|---|
 | **DR-30** | instance identity + **difficulty** at arrival, **write-once**. Signature read from `RaidProfiles.lua:540`, not assumed |
 | **DR-31** | boss **engagements** — `INSTANCE_ENCOUNTER_ENGAGE_UNIT` → `boss1..boss5` names, recorded per engagement, never deduped at capture |
+| **DR-35** | **sample IN COMBAT too**, tagged `combat = true` + `n` = the pull. The out-of-combat-only gate held for short pulls and lost all routing on long ones — §45 |
 | **DR-32** | `killedBy` on a **terminal stop** — distinct attackers from `AscensionUI.DeathRecap`, read at `PLAYER_DEAD`, spent at the end marker, **and only when `dead`** |
 
 **No CLEU listener anywhere.** DR-31 and DR-32 are one rare event each, and DR-32 consumes work
@@ -2535,3 +2536,110 @@ That is the same family as the list-based spy that could not observe `Select(nil
 permissive stub makes "is this wired?" assertions vacuous by construction.**
 
 **27 mutations bite on their own message.** v0.9.2.
+
+---
+
+## 45. ★★ DR-35 — THE LEGS STOP WHERE THE FIGHTING STARTS (Battlewrath, 2026-08-13)
+
+He put the fourth draw up as a puzzle — *"just to see if you can reason the problem, I already have
+the answer"* — and the answer is in the picture: **continuous dot chains down the corridors where he
+WALKED, and bare floor between markers in the western rooms where he FOUGHT.**
+
+Sampling was gated out-of-combat, so **every pull is a jump from the red marker to the blue one with
+nothing recorded between.** His confirmation:
+
+> *"On short pulls the absence is clarity. On long pulls / big packs, all routing gets lost."*
+
+### Why it is not cosmetic
+
+The part of a route a guide most wants to speak about — **where you pull them back to, where you
+fight this pack from** — is precisely the part we did not hold. We had where it started and where it
+ended, and the shape between them was invented by whoever read the map.
+
+**And it degrades as the group gets BETTER.** A chain-pulling run records almost no path at all.
+
+### The fix, and what it costs
+
+Nothing. The tick already ran at 1/s and simply **returned** in combat; now it writes. The original
+comment — *"in combat the marker pair already covers it"* — was the reasoning that was wrong, and it
+is corrected in place rather than deleted, because the wrong version explains the gap.
+
+In-combat samples carry:
+
+- **`combat = true`** — the qualifier, exactly as `ghost` already is. The display keys off it.
+- **`n` = the pull index** — free, because capture is already counting it, and it is **the join**
+  that lets curation isolate one pull's movement later.
+
+⚠ `n` is deliberately **not** what identifies a combat leg: markers carry an `n` too, so keying on it
+would draw every pull start as a dot. `combat` is the discriminator and the smoke asserts both ways.
+
+### The ladder gets one more rung
+
+`dead > start > done > leg > combatleg`. Same reasoning as §38 one level down: **the out-of-combat
+path IS the route; in-pull movement is the mess around it.** Where they overlap, the deterministic
+one reads.
+
+---
+
+## 46. ★★ RED VS BLUE — colour becomes one axis (Battlewrath, 2026-08-13)
+
+His offer, and he left it open: *"If we want to make legs blue to copy the blue combat exit. Then the
+conversation is red vs blue. Not a must. Depends if you think useful or not."*
+
+**Taken**, because it makes the encoding orthogonal:
+
+| channel | meaning |
+|---|---|
+| **colour** | **combat state.** Red in combat, blue out of it — everywhere |
+| **shape** | **what kind.** Dot = sample · crossed swords = event · cross = terminal |
+
+The leg was yellow-centred, which made colour a *third* thing meaning "sample" — redundantly with
+shape, since a dot already says that.
+
+**The payoff is that the route now reads its own combat rhythm at a glance:** blue stretches are
+travel, red clumps are where the fighting happened, and you do not have to read a single marker to
+see it. That is exactly what the fourth draw could not tell you.
+
+| | atlas crop | reads as |
+|---|---|---|
+| leg | `artifactquest` | white ring, **blue** centre |
+| combat leg | `playerenemy` | white ring, **red** centre |
+| combat enter | warfronts…horde…barracks | crossed swords, **red** |
+| combat exit | warfronts…alliance…barracks | crossed swords, **blue** |
+| terminal stop | `islands-markedarea` | a **red** cross |
+
+All five are crops on **one sheet** (`Interface\Minimap\ObjectIconsAtlas`), so the whole display is
+still a single texture load.
+
+---
+
+## 47. BUILD — DR-35, the colour axis, and curation's first control, v0.10.0 (2026-08-13)
+
+§45 and §46, plus the filter §43 said curation owns.
+
+### The filter is a VIEW filter, and that is the whole point
+
+`Map.SetHidden(key, on)` / `Map.VisibleOn(run, floor)`. **Nothing is removed from the record**, and
+the state is deliberately **not stored on the run** — §43 makes curation state per-view, so it never
+enters the data and never has to survive an import (ledger law 7).
+
+Kept as a **separate function from `PointsOn`** on purpose: the floor filter is a *fact about the
+run*, the view filter is a *choice about the view*, and conflating them is how one silently becomes
+the other.
+
+The pane's box reads **checked = shown**, so it says what it does, and it **reads its state from the
+map** rather than its own memory — same rule as the selector: a control that disagrees with the
+picture is worse than no control.
+
+### 37 mutations, now across four files
+
+The harness reached `capture.lua` and `store.lua` for the first time, running each file against
+*its* smoke. Two SILENT results it caught while this was being built, both the same shape — **a pure
+function tested, and its USE untested**:
+
+1. Swapping `VisibleOn` back to `PointsOn` in `paint()` passed. The filter worked perfectly and
+   changed nothing on screen. Fixed by counting the **drawn** dots either side of a toggle.
+2. `rawget` again — `o.point` is truthy on *every* frame the stub ever made, so a "count the dots"
+   loop silently counted the map frame too.
+
+**6 files, 85 functions, 0 persistent OnUpdate.** v0.10.0.

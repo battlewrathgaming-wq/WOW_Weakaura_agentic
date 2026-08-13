@@ -156,14 +156,31 @@ assert(run.arrival == firstArrival, "DR-7: arrival is write-once, not last-wins"
 W.x = 100
 
 -- =====================================================================
--- DR-3: in-instance, OUT of combat -> a leg. In combat -> nothing.
+-- DR-3 / ★ DR-35: in-instance sampling, in combat AND out.
+--
+-- The original gate ("in combat the marker pair already covers it") held only for
+-- SHORT pulls. Battlewrath, reading the third draw: "On short pulls the absence is
+-- clarity. On long pulls / big packs, all routing gets lost." The picture showed
+-- continuous dots down the corridors where he WALKED and bare floor between markers
+-- in the rooms where he FOUGHT - and it degrades as the group gets BETTER, because
+-- a chain-pulling run records almost no path at all.
+--
+-- Cost is unchanged: the tick already ran at 1/s and simply returned.
 -- =====================================================================
 tick()
 assert(#run.legs == 1, "DR-3: out of combat inside an instance samples the path")
+assert(run.legs[1].combat == nil, "an out-of-combat leg carries no combat flag")
 
 W.combat = true
 tick(); tick()
-assert(#run.legs == 1, "DR-3 FAILED: sampled a leg while IN COMBAT")
+assert(#run.legs == 3,
+       "DR-35 FAILED: in-combat samples must be RECORDED - the gap in the picture "
+       .. "was every long pull, got " .. #run.legs)
+local cleg = run.legs[#run.legs]
+assert(cleg.combat == true,
+       "TAGGED, or the display cannot tell in-pull movement from travel")
+assert(cleg.n ~= nil,
+       "and JOINED to its pull - the key curation needs to isolate one pull")
 W.combat = false
 
 -- The throttle: a step below SAMPLE_EVERY must not sample. The step has to

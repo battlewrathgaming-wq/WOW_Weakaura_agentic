@@ -55,10 +55,26 @@ local MARK_PX = 16                                 -- an EVENT reads larger than
 -- atlas census, and all four on ONE texture - so the whole display is a single
 -- texture load with four crops).
 --
---   leg          playerneutral                     white ring, yellow centre
+--   leg          artifactquest                     white ring, BLUE centre  (DR-35)
+--   combat leg   playerenemy                       white ring, RED centre   (DR-35)
 --   start        warfronts...horde-...barracks     crossed swords, RED
 --   end (alive)  warfronts...alliance-...barracks  crossed swords, BLUE
 --   end (dead)   islands-markedarea                a red CROSS
+--
+-- ★★ TWO ORTHOGONAL CHANNELS, and DR-35 is what made it worth doing.
+--
+--     COLOUR = combat state.   red in combat, blue out of it. Everywhere.
+--     SHAPE  = what kind.      dot = sample, swords = event, cross = terminal.
+--
+-- The leg was YELLOW-centred, which made colour a third thing meaning "sample" -
+-- redundantly with shape. Battlewrath: *"If we want to make legs blue to copy the
+-- blue combat exit, then the conversation is red vs blue."* Taken, because with
+-- both leg kinds drawn you can now read the route's COMBAT RHYTHM at a glance -
+-- blue stretches are travel, red clumps are where the fighting happened - without
+-- reading a single marker. That is exactly what the third draw could not tell you.
+--
+-- All five are 32x32 or 37x35 cells on ONE sheet, so the whole display is still a
+-- single texture load with five crops.
 --
 -- His colour language: **red danger, blue safe.** Start is where it began, end is
 -- where it was over - and a TERMINAL STOP is neither, so it gets its own mark
@@ -69,10 +85,11 @@ local MARK_PX = 16                                 -- an EVENT reads larger than
 -- Draw size preserves that ratio - a squashed glyph reads as a different icon.
 local ATLAS = "Interface\\Minimap\\ObjectIconsAtlas"
 local ART = {
-    leg   = { 0.475586, 0.506836, 0.637695, 0.668945, 32, 32, DOT_PX  },
-    start = { 0.299805, 0.335938, 0.585938, 0.620117, 37, 35, MARK_PX },
-    done  = { 0.605469, 0.641602, 0.293945, 0.328125, 37, 35, MARK_PX },
-    dead  = { 0.541992, 0.573242, 0.438477, 0.469727, 32, 32, MARK_PX },
+    leg       = { 0.375977, 0.407227, 0.604492, 0.635742, 32, 32, DOT_PX  },
+    combatleg = { 0.475586, 0.506836, 0.571289, 0.602539, 32, 32, DOT_PX  },
+    start     = { 0.299805, 0.335938, 0.585938, 0.620117, 37, 35, MARK_PX },
+    done      = { 0.605469, 0.641602, 0.293945, 0.328125, 37, 35, MARK_PX },
+    dead      = { 0.541992, 0.573242, 0.438477, 0.469727, 32, 32, MARK_PX },
 }
 
 -- ★ THE PRECEDENCE LADDER, and it is NOT a display preference.
@@ -98,7 +115,11 @@ local ART = {
 -- Before it, every marker sat at one level and ties fell to list order - which puts
 -- the exit LAST, i.e. on top. In a 7 px re-pull cluster you would both draw and
 -- click the least meaningful marker of the group.
-local RANK = { dead = 4, start = 3, done = 2, leg = 1 }
+--
+-- ★ DR-35 puts the COMBAT leg at the bottom, below the travel leg. Same reasoning
+-- one level down: the out-of-combat path is the route, in-pull movement is the
+-- mess around it. Where they overlap, the deterministic one reads.
+local RANK = { dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }
 
 -- Exposed so the smoke can assert the two are not conflated again.
 function Map.ArtSize() return ART_W, ART_H end
@@ -117,6 +138,7 @@ local shownRunId, shownFloor, shownArt
 -- four of these. Same fix as capture.lua's captureOrigin.
 local paint
 local selected, onSelect          -- §34's ONE coupling point; see Map.Select
+local hidden = {}                 -- §43's view filter; art key -> true
 
 -- ---------------------------------------------------------------------
 -- PURE SELECTION + PLACEMENT. Deliberately free of frames so the smoke can
@@ -192,6 +214,37 @@ function Map.PointsOn(run, floor)
     return out
 end
 
+-- What actually DRAWS: PointsOn minus whatever curation has hidden. Kept separate
+-- from PointsOn so the floor filter (a fact about the run) and the view filter (a
+-- choice about the view) never get confused for each other.
+function Map.VisibleOn(run, floor)
+    local out = {}
+    for _, p in ipairs(Map.PointsOn(run, floor)) do
+        if not hidden[Map.ArtKey(p)] then out[#out + 1] = p end
+    end
+    return out
+end
+
+-- ---------------------------------------------------------------------
+-- ★ §43: CURATION EDITS THE VIEW, NEVER THE CAPTURE.
+--
+-- Hiding an art key is a DISPLAY filter and nothing else. Nothing is removed from
+-- the record, nothing is written back, and the state is deliberately NOT stored on
+-- the run - curation state is per-view (§43), so it does not belong in the data at
+-- all and never has to survive an import (ledger law 7).
+--
+-- The first control §43 named, and DR-35 is what makes it necessary: in-pull
+-- movement is genuinely messy, so the truthful view needs a way to be quietened.
+-- ---------------------------------------------------------------------
+
+function Map.Hidden(key) return hidden[key] and true or false end
+
+function Map.SetHidden(key, on)
+    hidden[key] = on and true or nil
+    if frame and frame:IsShown() then paint(Store.Get(shownRunId), shownFloor) end
+    return Map.Hidden(key)
+end
+
 -- ★ Which art a point draws with. Pure, because getting it wrong is SILENT:
 -- every wrong answer still renders a legible marker in the right place, and only
 -- someone reading the route can tell it lied about what happened there.
@@ -199,7 +252,10 @@ end
 -- A terminal stop is an END that is `dead` - checked FIRST, because it is the
 -- more specific claim and the one that carries meaning.
 function Map.ArtKey(point)
-    if not point or not point.kind then return "leg" end
+    if not point then return "leg" end
+    -- DR-35: a sample taken during a pull. Checked before `kind` so a marker is
+    -- never mistaken for one - markers carry `n` too, and only legs carry `combat`.
+    if not point.kind then return point.combat and "combatleg" or "leg" end
     if point.kind == "end" then
         return point.dead and "dead" or "done"
     end
@@ -248,7 +304,8 @@ function Map.Describe(point)
     if not point then return "nothing selected", {} end
 
     local key = Map.ArtKey(point)
-    local label = ({ leg = "travel sample", start = "combat START",
+    local label = ({ leg = "travel sample", combatleg = "combat travel sample",
+                     start = "combat START",
                      done = "combat end", dead = "TERMINAL STOP" })[key]
 
     local rows = {}
@@ -286,10 +343,11 @@ end
 -- the distinguishing between a start and a terminal stop, rather than a fourth
 -- invented colour.
 local TIP_COLOR = {
-    leg   = { 0.7, 0.7, 0.7 },
-    start = { 1.0, 0.4, 0.3 },
-    done  = { 0.4, 0.7, 1.0 },
-    dead  = { 1.0, 0.2, 0.2 },
+    leg       = { 0.5, 0.75, 1.0 },
+    combatleg = { 1.0, 0.6, 0.5 },
+    start     = { 1.0, 0.4, 0.3 },
+    done      = { 0.4, 0.7, 1.0 },
+    dead      = { 1.0, 0.2, 0.2 },
 }
 
 -- Fills any tooltip-shaped object. Split out from the handler so it is testable
@@ -487,7 +545,7 @@ function paint(run, floor)
         if u then tiles[i]:SetTexCoord(0, u, 0, v) end
     end
 
-    local pts = Map.PointsOn(run, floor)
+    local pts = Map.VisibleOn(run, floor)     -- §43: minus whatever curation hid
     clearDots()
     ensureDots(#pts)
     for i, p in ipairs(pts) do

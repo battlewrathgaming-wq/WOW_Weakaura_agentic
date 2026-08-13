@@ -129,10 +129,26 @@ end
 -- consistent story"). Endpoints drawn on a map are straight lines between
 -- pulls, which go through walls in any dungeon with a corridor.
 --
--- Two gates, and both matter:
---   OUT OF COMBAT - in combat the marker pair already covers it, and sampling
---                   there would be paying for what we already have.
+-- ★ DR-35: WE NOW SAMPLE IN COMBAT TOO, and the reasoning above it was wrong.
+--
+-- "In combat the marker pair already covers it" holds only for SHORT pulls.
+-- Battlewrath, 2026-08-13, reading the third draw: *"On short pulls the absence is
+-- clarity. On long pulls / big packs, all routing gets lost."*
+--
+-- The picture showed it plainly: continuous dot chains down the corridors where
+-- you WALKED, and bare floor between markers in the western rooms where you
+-- FOUGHT. And it is worst exactly where a guide has most to say - where you pull
+-- them back to, where you fight a pack from. It also degrades as the group gets
+-- BETTER: a chain-pulling run records almost no path at all.
+--
+-- Cost is unchanged. The tick already ran at 1/s and simply RETURNED in combat;
+-- now it writes. The gate that remains is the one that was always load-bearing:
+--
 --   IN AN INSTANCE - outside one there is no run to draw.
+--
+-- In-combat samples carry `combat = true` (the qualifier, exactly as `ghost` does)
+-- and `n` = the pull they belong to. The pull index is free here - we are already
+-- counting it - and it is the JOIN that lets curation isolate a single pull later.
 --
 -- The throttle sits BEFORE the work, not after. The addon census caught
 -- COA_Landmarks calling GetCurrentPlayerPosition() 59 times a second and
@@ -145,14 +161,16 @@ function onUpdate(_, elapsed)
     acc = 0
 
     if not runId then return end
-    if UnitAffectingCombat("player") then return end
     if not inInstance() then return end
 
     -- DR-13: the ghost flag is one API read on a tick we are already running.
     -- A corpse run would otherwise draw as a bizarre excursion with nothing in
     -- the record to say why.
     local ghost = UnitIsGhost and UnitIsGhost("player") and true or false
-    Store.AddLeg(runId, Store.Point(), ghost)
+    -- DR-1 again: read the STATE, do not infer it. The tick is not an event, so
+    -- there is nothing here to infer from in the first place.
+    local pull = UnitAffectingCombat("player") and pulls or nil
+    Store.AddLeg(runId, Store.Point(), ghost, pull)
 end
 
 -- ---------------------------------------------------------------------

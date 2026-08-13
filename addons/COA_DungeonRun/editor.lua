@@ -51,9 +51,21 @@ local Editor = {}
 NS.Editor = Editor
 
 local Map, Store
-local f, title, dd, hint
+local f, title, dd, hint, filters
 
 local NO_RUN = "- no run -"
+
+-- ★ §43's FILTERING, and the four it will grow into. Each row is an art key the
+-- map can hide - a VIEW filter, never a change to the record.
+--
+-- DR-35 is what makes the first one necessary rather than nice: sampling in combat
+-- fills the gap the third draw exposed, and in-pull movement is genuinely messy.
+-- Battlewrath: *"combat movement is very messy when in-pull."* The truthful view
+-- needs a way to be quietened, not a decision at capture time about what to keep.
+local FILTERS = {
+    { key = "combatleg", label = "combat legs" },
+    { key = "leg",       label = "travel legs" },
+}
 
 local function refresh()
     if not f then return end
@@ -63,10 +75,16 @@ local function refresh()
     -- quietly disagrees with the picture is worse than no selector.
     if dd then UIDropDownMenu_SetText(dd, Map.LoadedId() or NO_RUN) end
 
+    -- The boxes read from the MAP, for the same reason the selector does: a
+    -- control that disagrees with the picture is worse than no control.
+    for _, cb in ipairs(filters or {}) do
+        cb:SetChecked(not Map.Hidden(cb.filterKey))
+    end
+
     if not Map.LoadedId() then
         hint:SetText("pick a run above")
     else
-        hint:SetText("trimming, filtering, replay and isolation land here")
+        hint:SetText("trimming, replay and isolation land here")
     end
 end
 Editor.Refresh = refresh
@@ -119,7 +137,7 @@ function Editor.Init()
     Map, Store = NS.Map, NS.Store
 
     f = CreateFrame("Frame", "COA_DungeonRunEditor", UIParent)
-    f:SetWidth(280); f:SetHeight(130)
+    f:SetWidth(280); f:SetHeight(190)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 0)
     -- ★ DIALOG - one strata ABOVE the map. The pane annotates the map, so it must
     -- never be buried under it; and both now sit above the action bars, which is
@@ -152,8 +170,30 @@ function Editor.Init()
     UIDropDownMenu_JustifyText(dd, "LEFT")
     UIDropDownMenu_SetText(dd, NO_RUN)
 
+    local show = f:CreateFontString(nil, "OVERLAY", "GameFontNormalSmall")
+    show:SetPoint("TOPLEFT", 18, -68)
+    show:SetText("show")
+
+    filters = {}
+    for i, spec in ipairs(FILTERS) do
+        local name = "COA_DungeonRunFilter" .. spec.key
+        local cb = CreateFrame("CheckButton", name, f, "UICheckButtonTemplate")
+        cb:SetWidth(22); cb:SetHeight(22)
+        cb:SetPoint("TOPLEFT", 16, -84 - (i - 1) * 24)
+        -- The template's label is $parentText. Built from the name we already
+        -- hold rather than asking the frame for it back.
+        local txt = _G and _G[name .. "Text"]
+        if txt then txt:SetText(spec.label) end
+        cb.filterKey = spec.key
+        cb:SetScript("OnClick", function(self)
+            -- CHECKED means SHOWN, so the box reads as the thing it does.
+            Map.SetHidden(self.filterKey, not self:GetChecked())
+        end)
+        filters[i] = cb
+    end
+
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    hint:SetPoint("TOPLEFT", 18, -72)
+    hint:SetPoint("TOPLEFT", 18, -84 - #FILTERS * 24)
     hint:SetWidth(244); hint:SetJustifyH("LEFT")
 
     local closeBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")

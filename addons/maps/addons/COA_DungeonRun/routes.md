@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_6 file(s) · 82 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `39e639b8f929`._
+_6 file(s) · 85 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `8c2f40d82afa`._
 
 ## `capture.lua`  —  **OnUpdate ×1** (0 persistent) · events: INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA
 
@@ -12,18 +12,18 @@ _Source fingerprint `39e639b8f929`._
 - `recapAttackers` *(:66, local)*
 - `engagedBosses` *(:105, local)*
 - `inInstance` *(:117, local)*
-- `onUpdate` *(:140, function)*
-- `Capture.Stop` *(:189, function)*
-- `Capture.RunId` *(:204, function)*
-- `Capture.Pulls` *(:206, function)*
-- `onCombatStart` *(:210, local)*
-- `onCombatEnd` *(:219, local)*
-- `onPlayerDead` *(:236, local)*
-- `onEncounterEngage` *(:243, local)*
-- `captureOrigin` *(:257, function)*
-- `onEnteringWorld` *(:316, local)*
-- `Capture.Init` *(:320, function)*
-- `Capture.Arm` *(:345, function)*
+- `onUpdate` *(:156, function)*
+- `Capture.Stop` *(:207, function)*
+- `Capture.RunId` *(:222, function)*
+- `Capture.Pulls` *(:224, function)*
+- `onCombatStart` *(:228, local)*
+- `onCombatEnd` *(:237, local)*
+- `onPlayerDead` *(:254, local)*
+- `onEncounterEngage` *(:261, local)*
+- `captureOrigin` *(:275, function)*
+- `onEnteringWorld` *(:334, local)*
+- `Capture.Init` *(:338, function)*
+- `Capture.Arm` *(:363, function)*
 
 ## `core.lua`  —  events: ADDON_LOADED
 
@@ -36,76 +36,79 @@ _Source fingerprint `39e639b8f929`._
 
 **pulls:** `GetCurrentPlayerPosition`
 
-- `refresh` *(:57, local)*
-- `initDropdown` *(:81, local)*
-- `info.func` *(:89, assigned)*
-- `b.func` *(:113, assigned)*
-- `Editor.Init` *(:117, function)*
-- `Editor.Toggle` *(:177, function)*
+- `refresh` *(:69, local)*
+- `initDropdown` *(:99, local)*
+- `info.func` *(:107, assigned)*
+- `b.func` *(:131, assigned)*
+- `Editor.Init` *(:135, function)*
+- `Editor.Toggle` *(:217, function)*
 
 ## `map.lua`
 
 **pulls:** `GetCurrentPlayerPosition`, `GetMapInfo`
 
-- `Map.ArtSize` *(:103, function)*
-- `Map.TileGrid` *(:105, function)*
-- `Map.RunsFor` *(:145, function)*
-- `Map.ArtFor` *(:165, function)*
-- `Map.PointsOn` *(:181, function)*
-- `Map.ArtKey` *(:200, function)*
-- `Map.Rank` *(:211, function)*
-- `Map.ArtForPoint` *(:215, function)*
-- `Map.SetOnSelect` *(:232, function)*
-- `Map.Selected` *(:235, function)*
-- `Map.Select` *(:236, function)*
-- `Map.Describe` *(:246, function)*
-- `add` *(:255, local)*
-- `Map.FillTooltip` *(:297, function)*
-- `Map.Offset` *(:312, function)*
-- `Map.TilePath` *(:318, function)*
-- `Map.TileRect` *(:339, function)*
-- `byName` *(:372, local)*
-- `Map.SeedFloor` *(:385, function)*
-- `Map.Caption` *(:407, function)*
-- `ensureDots` *(:422, local)*
-- `styleDot` *(:449, local)*
-- `clearDots` *(:462, local)*
-- `paint` *(:468, function)*
-- `context` *(:514, local)*
-- `Map.LoadedId` *(:520, function)*
-- `Map.ShownArt` *(:525, function)*
-- `Map.Show` *(:532, function)*
-- `Map.Toggle` *(:555, function)*
-- `step` *(:561, local)*
-- `Map.Init` *(:577, function)*
-- `Map.MapIDOf` *(:654, function)*
-- `Map.RunList` *(:654, function)*
+- `Map.ArtSize` *(:124, function)*
+- `Map.TileGrid` *(:126, function)*
+- `Map.RunsFor` *(:167, function)*
+- `Map.ArtFor` *(:187, function)*
+- `Map.PointsOn` *(:203, function)*
+- `Map.VisibleOn` *(:219, function)*
+- `Map.Hidden` *(:238, function)*
+- `Map.SetHidden` *(:241, function)*
+- `Map.ArtKey` *(:253, function)*
+- `Map.Rank` *(:267, function)*
+- `Map.ArtForPoint` *(:271, function)*
+- `Map.SetOnSelect` *(:288, function)*
+- `Map.Selected` *(:291, function)*
+- `Map.Select` *(:292, function)*
+- `Map.Describe` *(:302, function)*
+- `add` *(:312, local)*
+- `Map.FillTooltip` *(:355, function)*
+- `Map.Offset` *(:370, function)*
+- `Map.TilePath` *(:376, function)*
+- `Map.TileRect` *(:397, function)*
+- `byName` *(:430, local)*
+- `Map.SeedFloor` *(:443, function)*
+- `Map.Caption` *(:465, function)*
+- `ensureDots` *(:480, local)*
+- `styleDot` *(:507, local)*
+- `clearDots` *(:520, local)*
+- `paint` *(:526, function)*
+- `context` *(:572, local)*
+- `Map.LoadedId` *(:578, function)*
+- `Map.ShownArt` *(:583, function)*
+- `Map.Show` *(:590, function)*
+- `Map.Toggle` *(:613, function)*
+- `step` *(:619, local)*
+- `Map.Init` *(:635, function)*
+- `Map.MapIDOf` *(:712, function)*
+- `Map.RunList` *(:712, function)*
 
 ## `store.lua`
 
 **pulls:** `GetCurrentMapContinent`, `GetCurrentMapZone`, `GetCurrentPlayerPosition`, `GetPlayerMapPosition`, `GetRealZoneText`, `GetSubZoneText`, `GetTime`, `UnitName`
 **pushes:** `SetMapToCurrentZone`
 
-- `Store.Load` *(:46, function)*
-- `db` *(:67, local)*
-- `Store.Point` *(:112, function)*
-- `Store.Open` *(:143, function)*
-- `Store.Get` *(:162, function)*
-- `Store.Close` *(:167, function)*
-- `Store.Delete` *(:173, function)*
-- `Store.Ids` *(:178, function)*
-- `Store.AddLeg` *(:213, function)*
-- `Store.SetOutside` *(:221, function)*
-- `Store.SetArrival` *(:227, function)*
-- `Store.SetInstance` *(:240, function)*
-- `Store.SetMapArt` *(:249, function)*
-- `Store.AddBoss` *(:264, function)*
-- `Store.Counts` *(:276, function)*
-- `Store.GetUI` *(:288, function)*
-- `Store.SetUI` *(:297, function)*
-- `Store.AddMarker` *(:301, function)*
-- `mapFraction` *(:301, local)*
-- `composeId` *(:301, local)*
+- `Store.Load` *(:47, function)*
+- `db` *(:68, local)*
+- `Store.Point` *(:113, function)*
+- `Store.Open` *(:144, function)*
+- `Store.Get` *(:163, function)*
+- `Store.Close` *(:168, function)*
+- `Store.Delete` *(:174, function)*
+- `Store.Ids` *(:179, function)*
+- `Store.AddLeg` *(:220, function)*
+- `Store.SetOutside` *(:229, function)*
+- `Store.SetArrival` *(:235, function)*
+- `Store.SetInstance` *(:248, function)*
+- `Store.SetMapArt` *(:257, function)*
+- `Store.AddBoss` *(:272, function)*
+- `Store.Counts` *(:284, function)*
+- `Store.GetUI` *(:296, function)*
+- `Store.SetUI` *(:305, function)*
+- `Store.AddMarker` *(:309, function)*
+- `mapFraction` *(:309, local)*
+- `composeId` *(:309, local)*
 
 ## `widget.lua`
 

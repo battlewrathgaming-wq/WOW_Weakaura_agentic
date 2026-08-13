@@ -49,6 +49,8 @@ local function stub()
     -- and the failure would look like a bug in styleDot rather than in the stub.
     function o:GetFrameLevel() return self._level or 1 end
     function o:SetFrameLevel(n) self._level = n end
+    function o:SetChecked(v) self._checked = v and true or false end
+    function o:GetChecked() return self._checked end
     function o:SetText(t) self._text = t end
     function o:GetText() return self._text end
     -- ★ The real SetTexture RESETS TexCoord (§19's trap, which has already cost us
@@ -125,6 +127,12 @@ assert(gw ~= aw and gh ~= ah,
 -- a legible marker in the right PLACE, and only someone reading the route can
 -- tell it lied about what happened there.
 -- =====================================================================
+-- ★ DR-35. The combat leg is checked off `combat`, NOT off `n` - markers carry an
+-- `n` too, and confusing them would draw every pull start as a dot.
+assert(Map.ArtKey({ combat = true, n = 3 }) == "combatleg", "a sample taken during a pull")
+assert(Map.ArtKey({ n = 3 }) == "leg", "an `n` alone is not a combat leg")
+assert(Map.ArtKey({ kind = "start", n = 3, combat = true }) == "start",
+       "KIND WINS: a marker is a marker even if something set combat on it")
 assert(Map.ArtKey({ kind = "start" }) == "start", "a pull start")
 assert(Map.ArtKey({ kind = "end" }) == "done", "combat ended and we walked away")
 assert(Map.ArtKey({ kind = "end", dead = true }) == "dead",
@@ -137,8 +145,9 @@ assert(Map.ArtKey({ kind = "start", dead = true }) == "start",
 -- The four crops must be DISTINCT, or two states render identically and the
 -- display lies quietly.
 local seen = {}
-for _, k in ipairs({ "leg", "start", "end-alive", "end-dead" }) do
-    local pt = ({ leg = {}, start = { kind = "start" },
+for _, k in ipairs({ "leg", "combatleg", "start", "end-alive", "end-dead" }) do
+    local pt = ({ leg = {}, combatleg = { combat = true },
+                  start = { kind = "start" },
                   ["end-alive"] = { kind = "end" },
                   ["end-dead"] = { kind = "end", dead = true } })[k]
     local l, r, t, b, dw, dh = Map.ArtForPoint(pt)
@@ -164,8 +173,12 @@ assert(Map.Rank({ kind = "start" }) > Map.Rank({ kind = "end" }),
        "ENTER OVER EXIT: enter is a fact about the ENCOUNTER, exit is a fact about you")
 assert(Map.Rank({ kind = "end" }) > Map.Rank({}),
        "any marker outranks a travel sample")
+-- DR-35, one level down and the same reasoning: the out-of-combat path IS the
+-- route; in-pull movement is the mess around it.
+assert(Map.Rank({}) > Map.Rank({ combat = true }),
+       "a TRAVEL leg reads above a COMBAT leg where they overlap")
 -- Every art key must have a rank, or a point silently draws at level nil.
-for _, pt in ipairs({ {}, { kind = "start" }, { kind = "end" },
+for _, pt in ipairs({ {}, { combat = true }, { kind = "start" }, { kind = "end" },
                       { kind = "end", dead = true } }) do
     assert(type(Map.Rank(pt)) == "number", "every art key needs a rank")
 end
@@ -250,6 +263,27 @@ end
 assert(#Map.PointsOn(rfc, 0) == 1, "a floorless legacy point still draws")
 assert(#Map.PointsOn(rfc, 3) == 1, "and it is not floor-filtered away")
 assert(#Map.PointsOn(nil, 1) == 0, "no run -> no points, not an error")
+
+-- =====================================================================
+-- ★ §43's VIEW FILTER, and DR-35 is its first use.
+--
+-- Asserted against a captured BASELINE rather than absolute counts, so inserting a
+-- fixture above does not turn this into a test that gets renumbered and edited
+-- rather than believed.
+-- =====================================================================
+local baseVisible = #Map.VisibleOn(sfk, 6)
+assert(baseVisible == #Map.PointsOn(sfk, 6), "nothing is hidden by default")
+assert(not Map.Hidden("combatleg"), "and Hidden says so")
+
+sfk.legs[#sfk.legs + 1] = { mapX = 0.6, mapY = 0.6, floor = 6, combat = true, n = 2 }
+assert(#Map.VisibleOn(sfk, 6) == baseVisible + 1, "a combat leg draws like any point")
+
+assert(Map.SetHidden("combatleg", true) == true, "SetHidden reports the new state")
+assert(#Map.VisibleOn(sfk, 6) == baseVisible, "hiding drops it from the VIEW")
+assert(#Map.PointsOn(sfk, 6) == baseVisible + 1,
+       "★ CURATION EDITS THE VIEW, NEVER THE CAPTURE: the record must be untouched")
+Map.SetHidden("combatleg", false)
+assert(#Map.VisibleOn(sfk, 6) == baseVisible + 1, "and unhiding brings it back")
 
 -- =====================================================================
 -- Map.RunsFor - identity, and the FALLBACK for runs with no instance block
@@ -354,6 +388,8 @@ assert(Map.Describe({ kind = "end", n = 3 }) == "combat end", "an end we walked 
 assert(Map.Describe({ kind = "end", dead = true }) == "TERMINAL STOP",
        "a death is NOT 'combat end' - it is the one carrying route meaning")
 assert(Map.Describe({}) == "travel sample", "a leg is a sample")
+assert(Map.Describe({ combat = true, n = 4 }) == "combat travel sample",
+       "DR-35: an in-pull sample says so - it is not the same evidence as travel")
 
 local _, r = Map.Describe({ kind = "end", dead = true, n = 7, x = 1, y = 2, z = 3,
                             mapX = 0.5, mapY = 0.25, floor = 2, zone = "Ragefire Chasm",
@@ -512,6 +548,24 @@ assert(dotFor(mk)._level > levelBefore,
        :format(tostring(dotFor(mk)._level), tostring(levelBefore)))
 Map.Select(nil)
 
+-- ★ THE FILTER, AS PAINTED. VisibleOn being right is worth nothing if paint()
+-- calls PointsOn - the filter would work perfectly and change nothing on screen.
+-- (rawget: the stub answers any unset field with a function, so `o.point` is
+-- truthy on every frame ever created.)
+local function shownDots()
+    local n = 0
+    for _, o in ipairs(made) do if rawget(o, "point") and o._shown then n = n + 1 end end
+    return n
+end
+local drawnAll = shownDots()
+assert(drawnAll > 0, "the fixture draws something to filter")
+Map.SetHidden("combatleg", true)
+assert(shownDots() < drawnAll,
+       "FILTER NOT PAINTED: hiding a kind must change what is DRAWN, not only what "
+       .. "VisibleOn returns")
+Map.SetHidden("combatleg", false)
+assert(shownDots() == drawnAll, "and unhiding redraws it")
+
 -- ★ THE TOOLTIP IS WIRED. FillTooltip being correct is worth nothing if no dot
 -- ever calls it - and a pin with no OnEnter looks identical to one whose tooltip
 -- is empty.
@@ -621,6 +675,25 @@ assert(order[1] == sfkId, "the run for where you stand is first, got " .. order[
 menu[2 + 1].func()          -- skip the "in this dungeon" title
 assert(Map.LoadedId() == sfkId, "the menu entry must actually load the run")
 assert(ddText == sfkId, "and the selector must show what the MAP has, got " .. tostring(ddText))
+
+-- ★ CURATION'S FIRST CONTROL. The box reads CHECKED = SHOWN, so it says what it
+-- does; inverting it would be the kind of thing that looks like a broken filter.
+local cb
+for _, o in ipairs(made) do if o.filterKey == "combatleg" then cb = o end end
+assert(cb, "the combat-leg filter exists - DR-35's messiness needs a way to be quietened")
+assert(rawget(cb, "OnClick"), "and it is WIRED (rawget: the stub fakes any method)")
+cb:SetChecked(false)
+cb.OnClick(cb)
+assert(Map.Hidden("combatleg"), "CHECKED MEANS SHOWN: unchecking must hide")
+cb:SetChecked(true)
+cb.OnClick(cb)
+assert(not Map.Hidden("combatleg"), "and re-checking must show")
+
+-- The pane reads its state from the MAP, not from its own memory.
+Map.SetHidden("combatleg", true)
+Editor.Refresh()
+assert(cb._checked == false, "STALE CONTROL: the box must follow the map")
+Map.SetHidden("combatleg", false)
 
 -- The empty case says so rather than presenting a menu with one dead entry.
 local realIds = Store.Ids()
