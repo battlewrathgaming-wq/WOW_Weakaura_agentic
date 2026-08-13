@@ -1767,3 +1767,74 @@ made visible.** A screenshot doing what 317 zero-residual points could only asse
 
 **Stage one is proven.** What remains is one art decision, and it is the only thing standing
 between here and §21's last two questions.
+
+---
+
+## 28. ★ FIRST COMMUNITY SIGNAL — and a note model that was not written down (2026-08-13)
+
+Discord, Battlewrath + **Vicke**, on seeing the two rings. Recorded because **three things in it
+are new input rather than confirmation of what we already hold.**
+
+### 28.1 ★ A use case we did not design for, from someone who is not us
+
+> **Vicke:** *"What I would use it for is exact coordinates for where I need to stand when I
+> press battle horn."*
+
+**That is not a route.** It is a **single precise standing spot**, wanted for a mechanical reason
+we never considered — and it lands squarely on the **custom marker** (§25.1's third promotion
+source), which until now had only *"denoting skips"* as its justification.
+
+**It validates custom markers INDEPENDENTLY of routing**, which matters: the feature had been
+riding along inside the route model, and it turns out to stand on its own. First evidence that
+someone else's need reaches the same primitive by a different road.
+
+### 28.2 ★★ TWO LAYERS OF NOTES — the genuinely new design element
+
+> **Battlewrath:** *"An export or group sync function, then it loads the beacons. And notes the
+> user feels is agnostic enough. **There will be a second layer of marks and notes that persist
+> for the user. And that's for their own use based on their role.**"*
+
+**This is not in any note yet.** Two distinct kinds of annotation:
+
+| layer | scope | example |
+|---|---|---|
+| **shared** | travels with an exported route — *"agnostic enough"* to be useful to anyone | *"pull this pack from the left"* |
+| **personal** | **persists for the user**, keyed to how THEY play | *"stand here for battle horn"* — Vicke's case, and it is role-specific |
+
+**★ The personal layer must survive an import.** If someone hands you a new version of a route,
+your own role notes are not theirs to overwrite — which makes this **the same shape as
+`COA_Landmarks`'s `owner` field** (global vs character), one layer up: *shared with the party* vs
+*mine, by role*.
+
+And it is the scrapbook's thesis reappearing on the route side: **"how I play, not what exists."**
+A shared route is *what exists*; the personal layer is *how I play it*.
+
+### 28.3 The §8 community gate — first evidence, and it cuts toward building
+
+> **Vicke:** *"Imagine like retail dungeon tool, you can share your own string with a route to
+> the party."*
+
+§8 gated routing on whether it competes with what already exists. **The first unprompted community
+reaction reached for the MDT comparison by itself, as a WANT rather than an objection** — and
+followed it with *"as a tool it has so many possibilities."*
+
+**One data point, and it is one.** But it is the first external signal the gate has ever had, and
+it points at *share the route you actually ran* rather than *author a route from a database* —
+which is the half we are built for and MDT is not.
+
+### 28.4 Confirmation, not new — but worth noting that it EXPLAINS
+
+Battlewrath described the promotion model to a third party, unprompted and correctly: *"one of
+these nodes can be promoted as the positional parent — establishes X, Y, Z. X and Y can be
+dragged around, but **Z is a constant once spawned**. Then it's that which can become a beacon."*
+
+**§25.2 verbatim, to someone who had not seen it.** A design that survives being explained cold
+is a design that is actually settled rather than merely written down.
+
+And the architectural thesis, stated plainly:
+
+> *"Eh. A bunch of small projects really. Most of this uses what WoW gives us for free."*
+
+**True of everything built today** — the stock `Mixin`, the stock `ColorPickerFrame`, the client's
+own tile art, its own DeathRecap, its own map fractions. *Don't own what the user already owns*
+is not only a principle about scope; **it is what keeps the scope tractable.**
