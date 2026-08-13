@@ -1,5 +1,5 @@
 {
- "_fingerprint": "9661f06c1690",
+ "_fingerprint": "a129b0bc21d8",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -307,6 +307,11 @@
       "name": "serialise",
       "kind": "local",
       "line": 57
+     },
+     {
+      "name": "collect",
+      "kind": "local",
+      "line": 116
      }
     ],
     "onupdate": 0,

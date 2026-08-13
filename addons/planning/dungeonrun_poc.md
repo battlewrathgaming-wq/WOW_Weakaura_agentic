@@ -415,6 +415,54 @@ consumer of this table, ours or another bench's, should not pay for them twice.)
 STOPS.** That is route structure, not decoration — and run 2, the deliberately messy fixture
 (§9b), will be full of them. It is also the first thing an editor will need to trim or keep.
 
+### ★ BOSS DEATH — record `20260813_012626_775__dump.json` (Taragaman the Hungerer)
+
+**The route-meaningful signal, confirmed.** 14 entries, all one attacker:
+
+| | |
+|---|---|
+| `attacker` | **`"Taragaman the Hungerer"` 14/14** — the boss names itself |
+| `spell` | **four distinct ability ids** — `975011`, `2102513`, `2102515`, `2102516` — plus `-1` melee ×7 |
+| the killing blow | **spell `2102515`, `-12022`, taken at 67.6% health** — logged **twice** at the same `healthPercent`, so health had not re-read between them |
+| `crit` | still absent 14/14 |
+
+**This is the difference the boss made.** The trash death was `spell = -1` on everything, which
+looked like the field held nothing. On a boss it identifies **the mechanic that stops people
+here** — *"Taragaman's 2102515 takes you from 68% to dead"* is route meaning, and it is not
+damage analysis. **That is the case for `spell` re-entering scope as an ABILITY IDENTITY** (a
+name to look up), never as a damage number.
+
+### ⚠ TWO FAULTS IN THE SURVEY, AND ONLY ONE WAS A BUG
+
+**1. A defect in `task_dump` — eight values requested, TWO recorded, silently.**
+`{ pcall(func) }` plus `#results` is a trap: a nil anywhere makes the table a sequence **with
+holes**, and `#` on that is undefined. Fixed with `select("#", ...)`, which reports how many
+values were RETURNED, holes included; a returned nil is now stored as the `"<nil>"` tag rather
+than left as a hole, because *"the call returned nil"* is itself a fact. **This was rule 1
+("no silent caps") being violated by the tool that declares it** — caught on its second real use.
+
+**2. ★ THE SURVEY ASKED FOR STATE THAT CANNOT EXIST AT THAT MOMENT (Battlewrath):**
+
+> *"Some of it assumes those states are active when dead. Like unit name (requires target, death
+> drops target). I wasn't in a group."*
+
+**Death drops your target**, so `UnitClassification("target")` and any boss-token read are nil
+**by construction** at `PLAYER_DEAD`. I asked for a reading at the one moment the reading is
+invalid — the same error shape as AC-24, where a map-boundary refusal returns a number that
+satisfies every tier.
+
+**★ THE RULE THAT FALLS OUT, and it is the important part:
+ANYTHING ABOUT *WHAT YOU WERE FIGHTING* MUST BE CAPTURED DURING COMBAT, NOT AT DEATH.**
+
+Which is precisely why DeathRecap works at all: **it buffers during the fight and survives the
+death.** So boss identity for a terminal stop comes from the buffer's `attacker` — exactly the
+one field §6c already scoped us to. The narrowing was right for a second reason we had not seen.
+
+**Consequence if boss-vs-trash tagging is ever wanted:** sample `UnitExists("boss1")` at the
+**combat-START marker** or on `INSTANCE_ENCOUNTER_ENGAGE_UNIT` (present on this fork — event
+census, and `TargetFrame.lua:985` registers it; `C_Instance.lua:83` reads `boss1` directly).
+Never at death.
+
 **Gate: `Build!` — not authorised. Not in v0.1.0.**
 
 ---

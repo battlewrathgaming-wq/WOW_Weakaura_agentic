@@ -1,0 +1,180 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-08-13T01:26:32",
+    "pulled_at": "2026-08-13T01:26:34",
+    "sha256": "aabed70083c066cc0158f9cdf6251d9306366f27e3ca606ad2e09ae229162a8d",
+    "raw_clone": "addons\\landing\\raw\\20260813_012626_775__dump.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "dump 'AscensionUI.DeathRecap.Events[AscensionUI.DeathRecap.CurrentRecap], GetInstanceInfo(), UnitExists(\"boss1\"), UnitName(\"boss1\"), UnitClassification(\"target\"), GetNumPartyMembers(), GetRealZoneText(), GetSubZoneText()': 2 value(s)",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "NECROMANCER",
+    "runId": "20260813_012626_775",
+    "startedAt": "2026-08-13 01:26:26",
+    "char": "Gravekeeper",
+    "completedAt": "2026-08-13 01:26:26",
+    "version": "2.2.0",
+    "args": "AscensionUI.DeathRecap.Events[AscensionUI.DeathRecap.CurrentRecap], GetInstanceInfo(), UnitExists(\"boss1\"), UnitName(\"boss1\"), UnitClassification(\"target\"), GetNumPartyMembers(), GetRealZoneText(), GetSubZoneText()",
+    "status": "complete",
+    "task": "dump",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "notes": {},
+    "values": [
+      [
+        {
+          "isPlayer": false,
+          "spell": 2102516,
+          "healthPercent": 0.8864590622813157,
+          "damage": -505,
+          "school": 4,
+          "eventTime": 1786580774.076,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": 975011,
+          "healthPercent": 0.798110566829951,
+          "damage": -64,
+          "school": 1,
+          "eventTime": 1786580775.561,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": -1,
+          "healthPercent": 0.7869139258222533,
+          "damage": -70,
+          "school": 1,
+          "eventTime": 1786580777.262,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": -1,
+          "healthPercent": 0.7746675997200839,
+          "damage": -62,
+          "school": 1,
+          "eventTime": 1786580782.268,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": 975011,
+          "healthPercent": 0.7638208537438769,
+          "damage": -65,
+          "school": 1,
+          "eventTime": 1786580783.879,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": -1,
+          "healthPercent": 0.7524492652204339,
+          "damage": -73,
+          "school": 1,
+          "eventTime": 1786580787.207,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": -1,
+          "healthPercent": 0.7396780965710287,
+          "damage": -80,
+          "school": 1,
+          "eventTime": 1786580788.92,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": -1,
+          "healthPercent": 0.7256822953114066,
+          "damage": -68,
+          "school": 1,
+          "eventTime": 1786580790.534,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": 975011,
+          "healthPercent": 0.7137858642407278,
+          "damage": -68,
+          "school": 1,
+          "eventTime": 1786580792.192,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": 2102513,
+          "healthPercent": 0.701889433170049,
+          "damage": -20,
+          "school": 1,
+          "eventTime": 1786580794.071,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": -1,
+          "healthPercent": 0.6983904828551435,
+          "damage": -68,
+          "school": 1,
+          "eventTime": 1786580795.635,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": -1,
+          "healthPercent": 0.6864940517844647,
+          "damage": -59,
+          "school": 1,
+          "eventTime": 1786580797.241,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": 2102515,
+          "healthPercent": 0.6761721483554933,
+          "damage": -12022,
+          "school": 1,
+          "eventTime": 1786580799.054,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        },
+        {
+          "isPlayer": false,
+          "spell": 2102515,
+          "healthPercent": 0.6761721483554933,
+          "damage": -12022,
+          "school": 1,
+          "eventTime": 1786580799.054,
+          "attacker": "Taragaman the Hungerer",
+          "periodic": false
+        }
+      ],
+      "Ragefire Chasm"
+    ],
+    "truncated": false,
+    "returnCount": 2,
+    "limits": {
+      "maxDepth": 8,
+      "maxKeys": 200
+    },
+    "expression": "AscensionUI.DeathRecap.Events[AscensionUI.DeathRecap.CurrentRecap], GetInstanceInfo(), UnitExists(\"boss1\"), UnitName(\"boss1\"), UnitClassification(\"target\"), GetNumPartyMembers(), GetRealZoneText(), GetSubZoneText()"
+  }
+}

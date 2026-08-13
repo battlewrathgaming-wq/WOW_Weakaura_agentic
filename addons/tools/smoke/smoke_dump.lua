@@ -58,6 +58,41 @@ p = COA_DevDumpDB.payload
 assert(p.returnCount == 2, "all return values captured, got " .. tostring(p.returnCount))
 assert(p.values[1] == 7 and p.values[2] == "seven", "multiple returns land in order")
 
+-- ★ NILS IN THE MIDDLE. This is the case that shipped broken: `{ pcall(f) }` plus
+-- `#results` on a sequence WITH HOLES is undefined, and Lua stopped at the first
+-- hole - eight requested values landed as two, silently. A survey that reports
+-- two of eight and says nothing is exactly the lying record rule 1 forbids.
+function EightWithNils() return "a", nil, false, nil, nil, 6, nil, "h" end
+dump("EightWithNils()")
+p = COA_DevDumpDB.payload
+assert(p.returnCount == 8,
+       "NIL-HOLE FAILED: returnCount was " .. tostring(p.returnCount) .. ", expected 8")
+assert(p.values[1] == "a" and p.values[3] == false and p.values[6] == 6 and p.values[8] == "h",
+       "values on both sides of the holes survive")
+assert(p.values[2] == "<nil>" and p.values[7] == "<nil>",
+       "a returned nil is TAGGED, not left as a hole - 'it returned nil' is a fact")
+
+-- ★ TRAILING nil is the case that separates the COUNT from the LOOP BOUND. With a
+-- hole in the middle Lua's `#` often still returns the full length, so a loop
+-- bounded by #results passes by luck. A TRAILING nil makes `#` genuinely short:
+-- { "a", nil } has #==1 while select("#") is 2, so value2 vanishes.
+-- (Found by mutation testing - the first version of this file could not tell the
+-- two bugs apart, and reported the loop-bound regression as SILENT.)
+function TrailingNil() return "a", nil end
+dump("TrailingNil()")
+p = COA_DevDumpDB.payload
+assert(p.returnCount == 2, "a trailing nil still counts")
+assert(p.values[2] == "<nil>",
+       "LOOP BOUND FAILED: iterated to #results, so the trailing nil was never serialised")
+
+-- The real shape that caught it: a table first, then calls that may return nil.
+function NoBoss() return nil end
+Recap2 = { { damage = -12022 } }
+dump("Recap2, NoBoss(), NoBoss()")
+p = COA_DevDumpDB.payload
+assert(p.returnCount == 3, "a table followed by nil-returning calls keeps its count")
+assert(p.values[1][1].damage == -12022, "the leading table is intact")
+
 -- A dotted path into a nested table - the DeathRecap case.
 Nested = { DeathRecap = { CurrentRecap = 3, Events = { [3] = { { damage = 4000, healthPercent = 0.12 } } } } }
 dump("Nested.DeathRecap")

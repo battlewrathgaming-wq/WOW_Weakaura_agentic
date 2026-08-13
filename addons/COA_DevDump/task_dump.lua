@@ -106,8 +106,16 @@ D.RegisterTask{
             return
         end
 
-        local results = { pcall(func) }
-        local okCall = table.remove(results, 1)
+        -- ★ `{ pcall(func) }` + `#results` IS A TRAP, and it bit on the second real
+        -- use: eight values were asked for and TWO were recorded. A nil anywhere in
+        -- the list (UnitExists("boss1") with no boss engaged) makes the table a
+        -- sequence WITH HOLES, and `#` on that is undefined - Lua is free to stop at
+        -- the first hole. The survey was silently truncated, which is precisely the
+        -- lying record rule 1 exists to prevent.
+        -- select("#", ...) is the only honest count: it reports how many values were
+        -- RETURNED, holes included.
+        local function collect(ok, ...) return ok, select("#", ...), { ... } end
+        local okCall, count, results = collect(pcall(func))
         if not okCall then
             D.Print("|cffff5555dump: error while evaluating|r: " .. tostring(results[1]))
             return
@@ -115,11 +123,14 @@ D.RegisterTask{
 
         local payload = D.Begin("dump", expr)
         payload.expression = expr
-        payload.returnCount = #results
+        payload.returnCount = count
         payload.notes = {}
         payload.values = {}
 
-        for i = 1, #results do
+        -- Iterate to COUNT, not to #results. And a returned nil is stored as the
+        -- "<nil>" tag rather than left as a hole - a hole would re-introduce the same
+        -- ambiguity downstream, and "the call returned nil" is a FACT worth keeping.
+        for i = 1, count do
             payload.values[i] = serialise(results[i], 0, {}, payload.notes,
                                           ("value%d"):format(i))
         end
@@ -129,7 +140,7 @@ D.RegisterTask{
         payload.truncated = (#payload.notes > 0)
 
         D.Commit(("dump '%s': %d value(s)%s"):format(
-            expr, #results,
+            expr, count,
             payload.truncated and (", " .. #payload.notes .. " NOTE(S) - read payload.notes") or ""))
     end,
 }
