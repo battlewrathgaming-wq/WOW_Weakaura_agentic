@@ -1711,10 +1711,14 @@ cannot invert — and has nothing to edit anyway), and **z is read from the base
 
 ### 25.5 Promotion must NOT mutate the capture
 
-A waypoint is a **new authored record** carrying its own values plus the back-reference — never a
-flag written onto a leg. **Captured records stay immutable, which is the property that makes them
-evidence at all**, and it means re-reading or trimming a run can never silently invalidate a
-route. Same split as `owner` vs the record in Landmarks, and chrome vs data for the B colour.
+A waypoint is a **new authored record** carrying its own values — never a flag written onto a leg.
+**Captured records stay immutable, which is the property that makes them evidence at all**, and it
+means re-reading or trimming a run can never silently invalidate a route.
+
+✅ It used to say *"its own values plus the back-reference"*. With the back-reference **dropped**
+(25.2), the independence this section describes is now total rather than nearly so: a promoted record
+shares **nothing** with the capture it came from, so §60's *a route does not know about Runs* holds
+without exception. Same split as `owner` vs the record in Landmarks, and chrome vs data for the B colour.
 
 ---
 
