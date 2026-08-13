@@ -1645,7 +1645,7 @@ combat marker. Different claim — *"combat started here"* is not *"go here"*.
 | world **x, y** | copied, and **may be offset** — triangulated from near captured points, so the nudge is bounded by local sample geometry |
 | world **z** | **COPIED, NEVER COMPUTED** |
 | `mapID` · `floor` · fraction | copied (the fraction re-derives if x,y move — see 25.4) |
-| back-reference | which node it was promoted from. ⚠ **See the tension flagged below — §60 says a route does not know about Runs** |
+| ~~back-reference~~ | **DROPPED 2026-08-13** — see below |
 
 **★ Z-inherited is an ADMISSION the design makes out loud:** *this waypoint is on the same plane
 as the node it came from.* We do not know the height between samples, so we do not pretend to —
@@ -1662,13 +1662,24 @@ drag *visible*: move it far from its source and it sits at the wrong height on s
 shows you that you went too far instead of stopping you, which is the whole of *"we give them tools
 to do it well. But we don't gate them."*
 
-⚠ **AND A TENSION THIS DOC PASS FOUND, unresolved on purpose.** The table above keeps a
-**back-reference to the node a waypoint was promoted from**, while §60 records that **a route does not
-know about Runs — it copies rather than references**, which is what lets a route survive its source
-run being deleted. Those are not fatally opposed: a back-reference is *provenance*, and it can dangle
-without the route breaking. But it is the kind of thing that decides itself badly if nobody decides
-it — either the back-reference is allowed to go stale and is treated as a hint, or it is dropped and
-promotion keeps no trail home. **Battlewrath's call, not one to infer.**
+✅ **THE BACK-REFERENCE IS DROPPED (Battlewrath, 2026-08-13).** The doc pass surfaced it as a
+tension with §60 — a route that *copies rather than references* is what lets it survive its source run
+being deleted — and his ruling resolves it by removing the field rather than reconciling it:
+
+> *"We just decouple the back reference. It doesn't buy us anything. **Beacons will always want to be
+> updated as new methods are found.** And then we're just carrying dead weight. Provenance buys
+> little on the export side, as **we have nothing to authenticate**. And if we did — **we're not
+> running arbitrary code within the route. It's a plot table.**"*
+
+Three reasons, and the second and third are the load-bearing ones:
+
+- **A beacon is EXPECTED to drift from its origin.** Routes get better as methods are found, so the
+  link to the node it started from goes stale by design. A field that is wrong by design is worse
+  than absent.
+- **There is nothing to authenticate.** Provenance implies a claim that can be checked; an author
+  name anyone can type is a label, not provenance, and should not be dressed as one.
+- **★ A route is DATA, not code — a plot table.** There is no execution surface, so the worst a bad
+  route does is put a beacon somewhere wrong. That is a quality problem, not a trust one.
 
 ### 25.3 The trail is the EDITABLE SURFACE
 
@@ -2799,9 +2810,19 @@ A creator handed a **capture** can inspect it: every sample, every timestamp, th
 trail is present, and a bad one costs them an afternoon. A consumer handed a **route** can check
 nothing — a wrong beacon walks them into a pack.
 
-**So the route format will need provenance and self-consistency that the capture format does not,
-precisely BECAUSE it threw the evidence away.** Recorded here so the lean format is not designed as
-"the capture with fields removed".
+**So the route format is not simply "the capture with fields removed"** — it is read by someone who
+cannot check it, and that has to shape what it carries.
+
+⚠ **CORRECTED 2026-08-13: the asymmetry stands, but PROVENANCE was the wrong remedy.** This
+originally said the route format *"will need provenance and self-consistency"*. Battlewrath: *"we have
+nothing to authenticate. And if we did — we're not running arbitrary code within the route. It's a
+plot table."*
+
+**A route is DATA, not code.** There is no execution surface, so the failure mode is a beacon in a bad
+place — a **quality** problem, and provenance would not have fixed it. And an author field anyone can
+type is a label, not a claim that can be checked. What survives of this section is the observation
+that the consumer cannot verify anything; what does not survive is my inference about what to do
+about it.
 
 It also settles two economies that had been implicit:
 
@@ -3511,8 +3532,9 @@ Written down because it was worked out in conversation and would otherwise be lo
 what travels. Which means **what you run is exactly what you share**: no packing step, no separate
 export format, no chance of the shipped thing differing from the tested one.
 
-So route-level facts live on the **family**, not on beacons — name, mapID, description, and whatever
-provenance the trust asymmetry (§48) ends up requiring. Beacons stay cheap, which matters when they
+So route-level facts live on the **family**, not on beacons — name, mapID, description.
+(⚠ An earlier draft said *"and whatever provenance the trust asymmetry requires"*. **Dropped** — a
+route is a plot table with nothing to authenticate; see §25.2.) Beacons stay cheap, which matters when they
 are the thing read mid-fight.
 
 ⚠ Structurally it is the Run's shape at a different weight: an envelope of identity plus an array.
