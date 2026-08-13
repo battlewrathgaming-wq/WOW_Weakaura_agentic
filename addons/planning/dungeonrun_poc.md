@@ -2095,3 +2095,53 @@ Everything read off that screenshot was **read against `RFC_run1_clean`**, which
 cluster and no terminal stops. **The cluster and both red crosses have never actually been
 drawn.** The pixel positions in §32's follow-up were computed from `RFC_Run2_Messy` and are
 correct — they were simply not what was on screen.
+
+---
+
+## 34. ★ THE MAP IS THE EDITOR'S MAP — and the editor is a COMPANION (2026-08-13)
+
+> *"What we have right now is the editor version of the map. It's not fit for purpose to run
+> in-session. So this is the editing / curation space. **It can effort to be detail rich and have
+> edit options.**"*
+
+**A constraint lifted.** §22 already separated the review surface from the live one; this states
+the consequence — **the map frame has no in-session duty**, so it does not need trimming against
+a use it will never have. Detail-rich is *correct* here.
+
+**The live surface is a different build and probably not a map at all** — most likely the beacon
+plus a small readout (`< [Current] >`, §30). Nothing about this frame should be shaped by it.
+
+### The companion, and the reason that beats mine
+
+> *"But I still favor companion. **Isolates the bug fixing / edits.**"*
+
+I argued screen space and reading-vs-editing. **His reason is build hygiene, and it is the better
+one:** a bug in the editor cannot break the map, and either can be worked on without touching the
+other. **Same discipline as `store.lua` owning the DB alone and the smokes testing modules
+separately** — separation for diagnosability, not tidiness.
+
+It also means **the companion can be rebuilt or discarded without risking the surface that is now
+proven working** (§27, §32).
+
+### The split
+
+| | |
+|---|---|
+| **map frame** | which run · which floor · the plot. **Reading and curation context.** |
+| **companion** | the selected point · its lane · its note · promote. **Authoring.** |
+
+**The run dropdown belongs on the MAP** — *"which run am I looking at"* is a reading question, and
+§22 placed it top-right. The companion appears only when doing something *to* a run.
+
+**★ One coupling point, and it is the only one: SELECTION STATE.** Which point is currently
+picked. `Map` owns it, the companion reads it, clicking a dot sets it. Worth deciding
+deliberately, because it is the single thing the two frames share and the thing that would tangle
+them if it lived in the wrong place.
+
+### Order
+
+1. **the run dropdown** — nothing else can be tested deliberately until a run is selectable (§33)
+2. the `isPlayer` filter on `killedBy` (§35)
+3. the companion
+
+**Gate: `Build!`**
