@@ -1850,3 +1850,60 @@ And the architectural thesis, stated plainly:
 **True of everything built today** — the stock `Mixin`, the stock `ColorPickerFrame`, the client's
 own tile art, its own DeathRecap, its own map fractions. *Don't own what the user already owns*
 is not only a principle about scope; **it is what keeps the scope tractable.**
+
+---
+
+## 29. ★★ THE UNIFIED MODEL — capture is the only spawn (Battlewrath, 2026-08-13)
+
+> *"This all lives in the promotion side. The only basis we have to spawn is to capture. So we
+> capture. Then promote into their lanes. **"For me"** — persistent to the map. **"For a run"** —
+> stored as a sequence of beacons and notes."*
+
+**This is the architecture in one line, and it collapses several things that were being held
+apart.**
+
+### 29.1 One entry point
+
+**CAPTURE IS THE ONLY SPAWN.** Nothing is created from nothing:
+
+| how a point enters | |
+|---|---|
+| **passively** | travel legs (1/s), combat start/end |
+| **deliberately** | a **custom marker dropped where you stand** — still a capture, because you are standing there when you drop it |
+
+**So every point in the system came from someone actually BEING somewhere.** That is §14's
+refusal — *a derived point is a position nobody ever stood at* — generalised from a single ruling
+into the whole model. **There is no free-hand placement anywhere, in any lane, ever.**
+
+### 29.2 Two lanes, chosen at promotion
+
+| lane | lives | shape | lifecycle |
+|---|---|---|---|
+| **"for me"** | **on the MAP** (ledger law 9) | a persistent personal marker + note | **outlives every route.** Route replacement cannot touch it |
+| **"for a run"** | in the ROUTE | an **ordered sequence** of beacons + notes | exportable; **replaced wholesale on import** (law 7) |
+
+**★ The lane is the answer to questions that were being asked separately:**
+
+- *Vicke's "stand here for battle horn"* — **for me**. Map-anchored, so it survives any route he
+  ever imports. His case was already served by a law written before he asked.
+- *A waypoint on a route* — **for a run**. Ordered, exportable, and law 6's SELF/TEAM split then
+  decides which of its notes ride the export.
+- *"Denoting skips"* — whichever he means it as. **The user picks the lane; we do not infer it.**
+
+**Law 6 is not replaced, it sits INSIDE the run lane.** The lane decides *where a thing lives*;
+law 6 decides *what travels* when a route is shared.
+
+### 29.3 What this settles
+
+**The editor's whole job becomes: choose a captured point, choose a lane, add meaning.** Not
+placement — **selection**. Which is why:
+
+- **§25.2's z-inherited rule holds in both lanes** — a promoted point's height is the base node's
+  in either case, because there is no other honest source.
+- **The trail is the editable surface (§25.3)** applies to *everything*, not just routes. You
+  cannot make a personal marker in a room you never entered either.
+- **Nothing needs a per-dungeon anything** (§17), because promotion never invents a position — it
+  copies one the client already gave us.
+
+**And it explains why capture had to come first.** Not merely as build order: **the promotion
+model has no other source.** Without a capture there is nothing to promote, in either lane.
