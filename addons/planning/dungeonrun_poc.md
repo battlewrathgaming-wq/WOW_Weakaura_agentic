@@ -920,9 +920,37 @@ numbers, no schools and no health curve to say it. One consumed field, and it is
 ### ★ Drift is worse than run 1, and settles the waypoint question
 
 `27.8 · 2.0 · `**`133.8`**` · 99.3 · 30.6 · 0.8 · 87.2 · 68.0 · 3.6 · 7.7 · 18.6 · 7.4 · 30.0 · 7.5`
-— **max 133.8 yd, median 27.8.** Across both runs the answer is unambiguous: **the waypoint must
-be DERIVED, not taken as the combat-start point.** How to derive it is a later design question;
-that it must be is now a fact.
+— **max 133.8 yd, median 27.8.**
+
+**★ AND THE CONCLUSION I DREW FROM IT WAS WRONG (Battlewrath, 2026-08-13).** I wrote *"the
+waypoint must be DERIVED, not taken as the combat-start point."* His counter:
+
+> *"I would counter. Capture in a stable form. The map editor will be the curation. **Deriving
+> means inventing meaning we don't know in the wild.**"*
+
+**Correct, and it is the ADR line: invention belongs only in contained spaces, and the capture
+is not one.** A derived waypoint means US choosing a rule — midpoint? start-biased? weighted by
+duration? — about what a pull's "true" location is, with no idea what that means across content
+we have never seen. That is the pipeline authoring meaning instead of emitting facts.
+
+**★ AND THE SHARPER REASON: a derived point is a position NOBODY EVER STOOD AT.** Every value in
+this record is somewhere the player actually was. Synthesising a third point breaks that
+property for the whole file — and once written it would be **indistinguishable from an observed
+one**, which is the same class of harm as a silently truncated record.
+
+**So the drift number is a FINDING, not an instruction.** What it actually settles:
+
+- **§4's decision to capture BOTH ends was right**, and now demonstrated rather than argued —
+  at 133 yards apart, a single marker would have been the wrong marker most of the time.
+- **The editor must SHOW both**, because with drift this large the pair is the honest picture.
+- **The choice between them is CURATION** — the user's, in the editor. They know what the pull
+  means; we do not.
+
+We capture in a stable form and stop there.
+
+*(Second time today an observation got promoted to a mechanism on my side — the beacon throttle
+was the first. The tell is the same both times: a number I measured turning into a rule I
+invented, with no source for the rule.)*
 
 ### Sampler behaviour, characterised
 
