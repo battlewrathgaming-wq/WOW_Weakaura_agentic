@@ -1241,3 +1241,45 @@ ever needs floors and density together, that is the run to ask for.
 **All three live in `addons/landing/records/` and are permanent.** The `dungeonrun` landing
 source stays at `testing`, so routine runs land to gitignored `staging/` and only exemplars are
 pinned — they are **design input**, not archive.
+
+---
+
+## 19. DISPLAY ART — the leg dot (Battlewrath, 2026-08-13)
+
+**`playerneutral`** — *"a white ring with a yellow centre. So high contrast for whatever the map
+art is."* His call; the contrast reasoning is the point, since dungeon map art ranges from pale
+stone to near-black.
+
+```xml
+<Texture file="interface\minimap\objecticonsatlas">
+    <Size x="32" y="32"/>
+    <TexCoords left="0.475586" right="0.506836" top="0.637695" bottom="0.668945"/>
+</Texture>
+```
+
+**Verified before use, both ways:**
+- **`claimed: false` in the atlas census** — nothing else on this client uses it, so we are not
+  borrowing a meaning players already read as something else.
+- **The crop is exact.** Both spans are `0.03125` = **1/32**, i.e. a 1024×1024 sheet of 32 px
+  cells. The coordinates are a clean cell, not a hand-eyeballed rectangle.
+
+### ⚠ THE SIZE IS A DISPLAY PARAMETER, NOT 32
+
+`<Size x="32" y="32"/>` is the **cell** size, and drawing at it would smear the trail. From the
+SFK exemplar:
+
+| | |
+|---|---|
+| floor 1's box | 352.4 yards across |
+| tile art | 12 tiles, ~1024 px wide |
+| **scale** | **~2.9 px per yard** |
+| legs while walking | ~7 yd apart → **~20 px apart** |
+
+**At 32 px, adjacent legs overlap by a third and the trail becomes one continuous blob** — the
+ring-and-centre detail that makes it high-contrast is exactly what gets lost. **Around 8 px reads
+as a trail with visible spacing**; the individual samples stay legible, which matters because a
+leg is a *sample*, not a line segment we drew.
+
+**So the dot size scales with zoom rather than being baked.** Same conclusion the 6-pixel re-pull
+cluster reached from the other direction (§"the number that should shape the design"): **overlap
+handling is the display problem, and art choice sits downstream of it.**
