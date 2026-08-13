@@ -2013,3 +2013,38 @@ specific claim wins) and that **`dead` only qualifies an END** (a start is a sta
 
 **Ten mutations bite**, including *"DUPLICATE ART: end-dead shares a crop with end-alive"* — the
 check that two states never render identically.
+
+---
+
+## 32. ✅ §21 QUESTION 4 ANSWERED — and the picture matches the record (2026-08-13)
+
+> *"Very clean."*
+
+SFK floor 1, 148 points, the one combat pair standing clear of the trail. **Cross-checked against
+the record rather than eyeballed:**
+
+| | |
+|---|---|
+| recorded drift | **15.8 yards** (start `-222.2, 2188.0` → end `-208.4, 2180.4`) |
+| predicted separation at 1002×668 | **45 px**, `dx +22 / dy −39` — up and to the right |
+| on screen | the blue icon sits up-and-right of the red, about that far |
+
+**`end.dead` is nil, so it drew the BLUE "walked away" icon** — correct, because he survived that
+pull. The **terminal-stop art is untested by definition**: nothing in that run calls for it.
+
+**★ That the on-screen geometry can be PREDICTED from the record is the real result.** Placement,
+scale, floor filter and art selection all agreed with the data at once — a single number
+disagreeing would have named which one was wrong.
+
+### §21's scoreboard
+
+| | |
+|---|---|
+| trail follows corridors | ✅ |
+| paging puts the right trail on the right level | ✅ |
+| a single trail is legible | ✅ |
+| **markers sit sensibly on the trail** | ✅ — events read as events, and the pair reads as a pair |
+| the 6-px re-pull cluster reads as a cluster | **pending** — `RFC_Run2_Messy`, in Ragefire |
+
+**One question left, and it is the one that tests the art under pressure**: two terminal stops,
+a re-pull cluster 6–10 yards wide, and 133 yards of drift.
