@@ -4,24 +4,54 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_Landmarks` → **brief: `addons/planning/landmark_design.md`**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (37 sections)**
 
-**STATUS: BUILT AND LIVE — v0.1.9** (2026-08-12). Capture, widget, map pins, note readout,
-beacon control and the edit form all confirmed in play. Since v0.1.3 it also gained: inline tag
-completion with ghost text, the `owner` control (character / all), `/lm all` orphan recovery,
-and bulk transfer. Four live bugs closed; `landmark_design.md` §15 has the log.
+**STATUS: v0.8.0 — CAPTURE PROVEN, DISPLAY PROVEN, CURATION STARTED** (2026-08-13). Six files,
+70 fn, **0 persistent OnUpdate**, smoke-green, every guard mutation-tested.
 
-**☑ DEPLOY LEDGER (checked 2026-08-13, `py addons/deploy.py status`).** Battlewrath deploys at
-test time, not on a schedule, and **batches**: *"We can roll that into a more developed
-redeploy."* So a pending line here is EXPECTED to sit true, and is **not a chore to clear.**
+**The brief is long because the DESIGN is most of the value.** Read it in three passes:
+§1-§16 capture · §17-§27 display · §29-§37 the promotion model + curation. **§29 is the
+architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into lanes.**
+
+**★ FIVE LAWS THAT GOVERN ANYTHING BUILT NEXT** — each cost a correction to learn:
+
+| | |
+|---|---|
+| **§17** | **the addon NEVER learns dungeons.** Placement is `(mapX, mapY) + floor + mapFile`, all client-given. No box, no DBC, no shipped table. `maps/worldmap/` is desk-side VERIFICATION and nothing in the addon reads it |
+| **§29** | **capture is the only spawn.** No free-hand placement in any lane, ever — a custom marker "dropped" is still a capture. Promote *for me* (map-anchored, outlives routes) or *for a run* (ordered, exportable) |
+| **§25.2** | **promotion copies the base; Z is INHERITED, never computed.** Self-enforcing: if an offset needs a different z, promote a nearer node |
+| **§36** | **location sorts the list; it never chooses the view.** Map art may follow you. Run data NEVER auto-loads |
+| **§34** | the map IS the editor's map (detail-rich is correct); the **companion is separate for BUILD HYGIENE** — a bug in one cannot break the other. **Selection is their only coupling, and it is one-way** |
+
+**NEXT: the load selector, at the TOP of the companion** (his order, deliberately — building it
+on the map first would mean moving it). It also **retires the auto-pick**, which currently
+selects alphabetically and shows the wrong run (§33).
+
+**★ ONE QUESTION STILL OPEN, and it needs the selector first:** does the 6-px re-pull cluster
+read as a cluster? `RFC_Run3_Messy-5` has it at **5.2 yd = 7.0 px with 16 px markers**, plus
+**three terminal stops**. It cannot be viewed until a run is selectable.
+
+**FOUR PINNED EXEMPLARS** in `addons/landing/records/` — they are **DESIGN INPUT, not archive**
+(§18 says which proves what; do not test floors against Ragefire or marker density against SFK).
+The `dungeonrun` landing source stays at **`testing`**, so routine runs land to gitignored
+`staging/` and only exemplars are pinned. **`RFC_Run3_Messy-5` is the complete one** — it carries
+`mapFile`, floor and the instance block the older three lack.
+
+**☑ DEPLOY LEDGER (checked 2026-08-13).** He deploys at test time and batches, so a pending line
+is EXPECTED to sit true and is **not a chore to clear**. `py addons/deploy.py status` is the truth;
+this is a snapshot.
 
 | Resident | Pending |
 |---|---|
-| `COA_DungeonRun` | **`capture.lua`** — DR-30's difficulty resolution (`GetDifficultyInfo` when the raw name is empty) + the 8th `GetInstanceInfo` return (mapID). Runs recorded before this deploy carry `difficultyName = ""` and no `instance.mapID`; that is a **known, dated gap in those records**, not a defect |
-| everything else | **at parity** — 8 residents zero-delta, `COA_Landmarks` included (its `beacon.lua` shipped) |
+| `COA_DungeonRun` | **5 files** — `editor.lua` (new), `capture.lua`, `core.lua`, `map.lua`, the toc |
+| everything else | at parity |
 
-`py addons/deploy.py status` is the read-only truth at any moment; this table is a snapshot and
-**the command wins.**
+## ◼ SHIPPED — `COA_Landmarks` v0.1.9, at rest
+
+Capture, widget, map pins, note readout, beacon control and the edit form all confirmed in play;
+inline tag completion, the `owner` control, `/lm all` orphan recovery and bulk transfer since
+v0.1.3. Four live bugs closed; `landmark_design.md` §15 has the log. **Nothing to build** — §12's
+A:B questions need play, not code.
 
 **Runtime cost, settled 2026-08-12 (§15):** zero when idle, and **AC-29 now paces the beacon
 poll on DISTANCE** — `clamp((dist − tier) / 30, 0.20, 2.00)` — replacing a two-tier movement
