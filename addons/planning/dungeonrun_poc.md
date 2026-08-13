@@ -546,6 +546,40 @@ one line (and it will now record all three values, since the nil-hole truncation
 **Requires a redeploy of `COA_DevDump` first.** If `boss1` exists mid-fight, the surface is real
 and §6d is buildable. If it does not, this closes for a good reason rather than a guessed one.
 
+### ★★ GATE PASSED — record `20260813_014009_176__dump.json`, mid-fight vs Taragaman
+
+```
+UnitExists("boss1"), UnitName("boss1"), UnitName("boss2")   ->   1, "Taragaman the Hungerer", <nil>, <nil>
+```
+
+**The server DOES populate encounter data for a vanilla dungeon on this fork.** `boss1` exists
+and is named during the fight. §6d is real, not a retail leftover.
+
+Three facts worth keeping:
+
+- **`UnitExists` returns `1`, not `true`** — a 3.3.5-ism. `== true` would fail.
+- **`boss2` is nil**, so Taragaman is a single-boss encounter. The token set is sparse; iterate
+  `boss1..boss5` and stop caring about gaps.
+- **Four values from three expressions is CORRECT Lua** — only the LAST call expands, and
+  `UnitName` returns `name, realm`. **The nil-hole fix validated itself in the field on its first
+  use:** both trailing nils were recorded instead of vanishing.
+
+**Verified vs inferred, labelled honestly:** the TOKEN is live-verified. The **event firing** is
+inferred — it is what drives the client's own boss frames, and the token cannot populate without
+it — but we polled here rather than observing the event. Confirm on build; it is one listener.
+
+### ★ AND "SKIPPED" IS A COMPARISON, NOT A LOOKUP — the no-database law holds
+
+His value case is *"some bosses are skipped in runs."* **We can only record what was ENGAGED.**
+Knowing what was *skipped* would need the dungeon's full boss roster — **a per-dungeon database,
+which this project has refused from the start**: *"all self-authored content rather than me
+trying to map every dungeon."* Same law as no tag registry and no character roster.
+
+**It costs nothing, because skipped is visible by COMPARISON:** route A engaged four, route B
+engaged two, and the difference is right there in the two records. **The user sees the skip
+without us ever owning a roster** — and it stays correct when the fork adds or changes a boss,
+which a shipped roster would not.
+
 **Noted, not designed:** he also flags it as **displayable live** ("an event we can display") —
 a boss-engaged indicator. That is V2 surface, out of the POC.
 

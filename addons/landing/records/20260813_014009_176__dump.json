@@ -1,0 +1,41 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-08-13T01:40:51",
+    "pulled_at": "2026-08-13T01:40:53",
+    "sha256": "70c83ce6faf5267e46cddfe0d9b5fcca635d8e0c444f3f779e88f85483516bbc",
+    "raw_clone": "addons\\landing\\raw\\20260813_014009_176__dump.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "dump 'UnitExists(\"boss1\"), UnitName(\"boss1\"), UnitName(\"boss2\")': 4 value(s)",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "NECROMANCER",
+    "runId": "20260813_014009_176",
+    "startedAt": "2026-08-13 01:40:09",
+    "char": "Gravekeeper",
+    "completedAt": "2026-08-13 01:40:09",
+    "version": "2.2.0",
+    "args": "UnitExists(\"boss1\"), UnitName(\"boss1\"), UnitName(\"boss2\")",
+    "status": "complete",
+    "task": "dump",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "notes": {},
+    "values": [
+      1,
+      "Taragaman the Hungerer",
+      "<nil>",
+      "<nil>"
+    ],
+    "truncated": false,
+    "returnCount": 4,
+    "limits": {
+      "maxDepth": 8,
+      "maxKeys": 200
+    },
+    "expression": "UnitExists(\"boss1\"), UnitName(\"boss1\"), UnitName(\"boss2\")"
+  }
+}
