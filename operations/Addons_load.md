@@ -23,13 +23,6 @@ redeploy."* So a pending line here is EXPECTED to sit true, and is **not a chore
 `py addons/deploy.py status` is the read-only truth at any moment; this table is a snapshot and
 **the command wins.**
 
-**~~⚠ THE CLIENT IS BEHIND THE REPO — by exactly ONE FILE, `beacon.lua`.~~ (SHIPPED)** All three unshipped
-changes live in it: the OnUpdate lifecycle, the forward-declaration fix, and the AC-29 cadence
-revision. **Battlewrath deploys at test time, not on a schedule** (his call, 2026-08-12) — so
-this flag is expected to sit true between sessions and is NOT a chore to clear.
-`py addons/deploy.py status` reports the drift read-only; `py addons/deploy.py COA_Landmarks`
-ships it, game closed.
-
 **Runtime cost, settled 2026-08-12 (§15):** zero when idle, and **AC-29 now paces the beacon
 poll on DISTANCE** — `clamp((dist − tier) / 30, 0.20, 2.00)` — replacing a two-tier movement
 throttle that bought nothing, because AC-26's one-second debounce discarded 19 of every 20
@@ -42,17 +35,23 @@ never looked. Both AC-24 and AC-26 are re-mutation-tested and still bite.
 already-live slot. Two candidate causes and the one-run test that separates them are in §15 —
 do not guess at it in `beacon.lua`, which is where the silent-failure criteria live.
 
-**★ THE ARC MOVED — `COA_DungeonRun` v0.2.0 is BUILT** (v0.2.0 adds DR-30 difficulty,
-DR-31 boss engagements, DR-32 `killedBy` on terminal stops — all consuming events or another
-addon's work, **no CLEU listener**; `DRIVER_CONTRACT.md` covers the one field we read from
-`AscensionUI.DeathRecap`). Earlier note below still applies:
+**★ `COA_DungeonRun` v0.2.0 — BUILT, DEPLOYED AND PROVEN ON TWO REAL RUNS** (2026-08-13; spec
+`addons/planning/dungeonrun_poc.md`, build logs §11-§12, run findings §13-§14). Capture only: no
+beacon, editor or display, and **no CLEU listener** — DR-31 and DR-32 are one rare event each,
+and DR-32 consumes the client's own DeathRecap (`DRIVER_CONTRACT.md` covers the single field).
+4 files, **0 persistent OnUpdate**, smoke-green, **every guard mutation-tested**.
 
-**`COA_DungeonRun` v0.1.0 was BUILT** (2026-08-13; spec
-`addons/planning/dungeonrun_poc.md`, build log §11). Capture only: no beacon, editor, display or
-CLEU. 4 files, **0 persistent OnUpdate**, smoke-green, **ten mutation tests all biting on their
-own assertions**. In the MANIFEST, **not deployed** — he deploys at test time. **NEXT: his TWO
-RUNS**, and run 2 is deliberately messy (wipes, re-pulls, corpse runs) — **that run is a FIXTURE:
-do not discard it or re-capture it clean.** Read both against §10's five questions.
+**Two PINNED EXEMPLARS in `addons/landing/records/`** — `RFC_run1_clean-1` (clean: 15 pulls,
+99 legs) and `RFC_Run2_Messy-2` (the adversarial fixture: 2 deaths, a re-pull cluster, a
+wipe-and-retry, 133 yd drift). **They are DESIGN INPUT for the display/editor stage**, not
+archived proof — his framing. The `dungeonrun` landing source stays at **`testing`**, so routine
+runs land to gitignored `staging/` and only exemplars are pinned.
+
+**★ THE STANDING DESIGN RULING from those runs: CAPTURE IN A STABLE FORM, THE EDITOR CURATES.**
+Drift reaches 133 yards, and the answer is **not** to derive a waypoint — *"deriving means
+inventing meaning we don't know in the wild"*, and a derived point is a position **nobody ever
+stood at**. The legs already show a story the eye intuits; a synthesised midpoint would replace
+it with a number. Do not re-open this by re-reading the drift table.
 
 **The design, as agreed before it was built:** Battlewrath's fork: *"Do we develop the Landmark addon so Dungeon_run has more basis
 for refactoring, or bring Dungeon_run up to parity?"* — **chose Dungeon_run**, because the
@@ -63,9 +62,10 @@ markers, captured on `PLAYER_REGEN_DISABLED`/`ENABLED` with the state re-read fr
 moves from polish to PREREQUISITE** — a route re-pins constantly, which is the failing case —
 but capture does not depend on it, so capture lands first. **Gate: `Build!`, not authorised.**
 
-**NEXT ACTION: nothing to build. v1 exists to be USED** — §12's A:B questions need play, not
-code. Do not add features to it unprompted; §11's two-readings rule governs how any feedback
-gets read.
+**NEXT ACTION for COA_LANDMARKS: nothing to build. v1 exists to be USED** — `landmark_design.md`
+§12's A:B questions need play, not code. Do not add features to it unprompted; §11's
+two-readings rule governs how any feedback gets read. *(This governs Landmarks only —
+Dungeon_run's next step is the display/editor stage, gated on `Build!`.)*
 
 **Read order on arrival:** this block → **`landmark_design.md`** (the brief IS the spec) →
 `satnav_ledger.md` only when a criterion's *why* is in question — it is the fact basis, and the
