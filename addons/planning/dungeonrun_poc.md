@@ -2643,3 +2643,123 @@ function tested, and its USE untested**:
    loop silently counted the map frame too.
 
 **6 files, 85 functions, 0 persistent OnUpdate.** v0.10.0.
+
+---
+
+## 48. ★★ THE CURATION PANE — design, agreed in chat (Battlewrath, 2026-08-13)
+
+**DESIGN ONLY. Nothing here is built.** Recorded because it was worked out in conversation and the
+reasoning is most of it. The open questions are listed at the bottom **on purpose** — this note
+nearly carried three decisions that were mine rather than his, and the correction was *"you're
+overstating on design decisions we've not discussed yet."*
+
+### The shape
+
+```
+[ run selector          ▾ ]
+Rename ·  Comment
+[Delete]   [Export?]
+─────────────────────────────────
+show:  ☑ travel legs  ☑ combat legs
+       (trim / replay / isolate)
+─────────────────────────────────
+[------------|||-----------]      the time bar: envelope, and the window inside it
+[-]  time  [+]     min / sec      the window WIDTH
+[Play]                            becomes Pause
+[<] [Skip] [>]
+```
+
+### ★★ THE LAW
+
+> **Curation changes VISIBILITY and AVAILABILITY. It never changes PRESENCE.**
+> **Promotion is the extraction — not deleting individual content.**
+
+So the only destructive verb in the pane is **delete the whole run**, as a unit, deliberately. There
+is no operation anywhere that removes a single point. If a point matters you promote a copy of it
+out (§29); if it does not, you hide it.
+
+*"The sample collected is its own source of truth and not governed bar limited management."* Rename,
+comment, delete, export — that is the whole of the management, and it is all run-level.
+
+- **Rename is already safe.** `id` and `name` were separated at capture (`name` as typed, `id` =
+  `name-n`, uniqueness from `n` alone), so renaming moves the label and no handle.
+- **Comment is a short post-activity descriptor**, limited field. His example — *"bad run but good
+  pull around 178"* — references a pull **in prose**, which tells us the field needs no structure,
+  no linking and no per-point attachment. Distinct from the satnav ledger's two-tier point notes
+  (laws 6, 9): run-level says *what this capture was*; point-level says *what happens here*.
+
+### ★ THE LADDER — three rungs, each only narrowing
+
+| | rung | governs |
+|---|---|---|
+| 1 | **tick shows** | which **kinds** are in play. A standing choice |
+| 2 | **time filter** | which **span** of those is in play. Envelope, then window |
+| 3 | **time controls** | **where** within it you are. Scroll, play, skip |
+
+**A lower rung can never reintroduce what an upper rung removed** — play cannot jump you to a combat
+leg you unticked. The pane reads top-to-bottom in the same order the data flows.
+
+**The peek** (*"clear filter on / press / filter off"*) is **momentary, not a toggle** — a toggle is
+a state you can sit in without noticing, and then the map is lying about what you framed. It
+releases **one rung**: back to the tick-filtered whole run, so you can see where you are against it
+without changing what you are inspecting.
+
+### ★ TRIM IS TIME, NOT NODES
+
+Node isolation would be **all or nothing**. The envelope is the trim.
+
+**Three separate time quantities, and conflating them is how this gets built wrong:**
+
+1. **envelope** — min/max on the bar. Starts as the whole run; shrinks and grows.
+2. **window width** — `[-] time [+]`, min/sec. How much is on screen at once.
+3. **position** — where the window sits inside the envelope. Scrolled, or advanced by Play.
+
+**★ One second is the floor, and it is a FACT not a preference.** Points carry `t` (wall clock, whole
+seconds) and `gt` (sub-second, meaningless across sessions), so playback is `t - armedAt` in integer
+seconds — and capture samples at 1/s anyway. `RFC_Run3_Messy` spans 800 s, which is why min/sec is
+the right unit pair.
+
+**Skip is derived, not another decision:** **`window ÷ 10`, floored at 1 second.** Ten presses always
+crosses whatever you have framed — a pull or a three-minute corpse run — and at the fine end one step
+is one sample. A curve was considered and dropped: it trades a learnable invariant for tuning that
+`[-] time [+]` already does explicitly.
+
+### ★★ WHY TIME IS THE AXIS
+
+Battlewrath: *"it reduces the 3D pathing into 'what directions was relevant to me in this time
+window'."* **A route is 1-dimensional in time even when it is 3-dimensional in space**, and time is
+the only filter that exploits that.
+
+- **Captured, not derived.** Every point carries `t` from the client. Nothing infers it.
+- **Continuous, where the obvious rival is not.** Pull index `n` cannot represent the walk from pull
+  6 to pull 7, so slicing by it drops exactly the travel a route is made of. `n` makes a good
+  **bookmark** for jumping the window; a bad filter for defining it.
+- **It untangles a self-crossing path** — which these runs have (rings on two levels). Spatially a
+  knot with no order in it; constrain time and it is trivially a sequence.
+- **★ It de-duplicates repeat traversals.** His case: *"6 overlapping tracks, 1 min apart, all get
+  hidden per-run by time."* Without it the corridor you ran six times draws six times as heavy, so
+  an untimed route silently becomes a **frequency map** — asserting the run-back corridor is the most
+  important thing in the dungeon. **A route is a sequence; a heatmap is a census.** The time window
+  is precisely what stops one run from becoming an accidental heatmap, which is his own line about
+  not trying to win by force.
+- **Dead time is not a cost.** It is information, the bar's density shows it, and skip crosses it.
+
+**Two boundaries, forward-looking:**
+
+1. **Comparison is probably not time.** Two runs' clocks do not align — A's minute 4 is B's minute 6.
+   What lines up across runs is **pull index**. Not a contradiction: `t` reads one run, `n` compares.
+2. **Consumption is not time either.** In-run a user experiences **position** — "what is next from
+   where I am standing." **Time is the AUTHORING axis**, and that line is worth holding so the time
+   control does not leak into the in-run widget, which answers a different question.
+
+### ⚠ NOT DECIDED — do not build past these
+
+- **Does the envelope persist with the run?** *Filter views explicitly do not* — Battlewrath:
+  *"saving filter views means a new management on something that is transient... like returning to a
+  page, then folding it up to see different drawing."* That generalises to a rule worth keeping:
+  **do not create management for something transient.** Whether the ENVELOPE is in that class, or is
+  instead the durable trim, is **open**.
+- **Export placement.** His own `[Export?]` carries the question mark. The satnav ledger owns
+  export/import (laws 7, 7b, 8, including that an import wipes); a button here would commit the
+  shape before that is settled.
+- **The comment field's length.** "Limited" is his word; the number is not agreed.
