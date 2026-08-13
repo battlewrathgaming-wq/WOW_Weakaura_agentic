@@ -374,6 +374,47 @@ SOURCE-DERIVED rather than chasing them:** `crit == true`, `isPlayer == true` (P
 survived — **one dump per reload.** It cost nothing here (the narrower one held the gap data),
 but the whole-table view is the better default since `Events` is self-accumulating.
 
+### ★★ SCOPED — WE TAKE ONE FIELD. THE REST IS SOMEONE ELSE'S LANE (Battlewrath, 2026-08-13)
+
+> *"People can run combat parsers. And they already handle damage taken. That's not our lane.
+> **Route forming is.** And if we get into it, **terminal stops** on that route."*
+
+**This is the §8 gate applied to the death lane, and it lands the same way landmarks did:** we
+do not compete on what already exists well. `damage`, `school`, `healthPercent`, the crit
+flag — that is damage analysis, and Recount, Mancer and Libellus all do it properly.
+
+**★ SO THE STRONGEST THING ABOUT DEATHRECAP IS IN A LANE WE ARE NOT ENTERING.** `healthPercent`
+was my whole architectural argument for consuming over capturing — and it is a *damage-analysis*
+field. Correct fact, wrong lane. What route-forming wants from a death is far smaller:
+
+> **A TERMINAL STOP: the route ended here, and this is what stopped it.**
+
+**We already hold most of it.** `dead = true` on the end marker plus its position IS the terminal
+stop (DR-13). DeathRecap adds exactly one thing worth having: **WHO**. `"Molten Elemental ×7"`
+turns *"a wipe happened here"* into *"this pull is where runs die"* — which is route meaning, and
+exactly the note material the in-dungeon landmark half exists for.
+
+**★ AND THE DEPENDENCY SHRINKS WITH THE SCOPE, which is the real prize.** Consuming distinct
+`attacker` names means we depend on **`Events` · `CurrentRecap` · `attacker`** and nothing else:
+
+| Trap we found live | Now |
+|---|---|
+| `crit` is `nil \| true \| string` | **moot** — not consumed |
+| `damage` sign is the heal discriminator | **moot** |
+| `spell` `-1` = melee, `0` = environmental | **moot** |
+| `absorbed` folded into `damage` | **moot** |
+
+**Every contract-critical trap we uncovered evaporates**, because a field you do not read cannot
+drift under you. The contract goes from a field table to a paragraph, and this fork's
+days-long churn stops being a standing risk.
+
+*(The traps stay recorded above anyway — they cost two live captures to find, and the next
+consumer of this table, ours or another bench's, should not pay for them twice.)*
+
+**Design consequence for the model:** a route has markers, and **some markers are TERMINAL
+STOPS.** That is route structure, not decoration — and run 2, the deliberately messy fixture
+(§9b), will be full of them. It is also the first thing an editor will need to trim or keep.
+
 **Gate: `Build!` — not authorised. Not in v0.1.0.**
 
 ---
