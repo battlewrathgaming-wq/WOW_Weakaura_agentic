@@ -1907,3 +1907,70 @@ placement — **selection**. Which is why:
 
 **And it explains why capture had to come first.** Not merely as build order: **the promotion
 model has no other source.** Without a capture there is nothing to promote, in either lane.
+
+---
+
+## 30. ★ THE LANE CONFLICT, RESOLVED (Battlewrath, 2026-08-13) — design only
+
+§29 gave two lanes; **they collide on one hardware fact.**
+
+### 30.1 The conflict is forced by the client, not by us
+
+**The beacon is a SINGLE SLOT.** `SUPER_TRACKED_POSITION` is one global with a fixed precedence
+ladder. A personal marker and a route waypoint **cannot both be it.** Something must yield, and no
+design choice of ours can avoid that.
+
+**And it only bites at the IMPORT boundary.** While one person authors both lanes it is latent —
+you would not place a personal marker that fights your own route. It becomes live when the route
+came from someone who could not know your markers. §8 territory, not today's.
+
+### 30.2 Override, then ROLL FORWARD
+
+> *"We can override until the beacon despawns, then roll-back to the sequence. And if that
+> updated because personal spot 1 and sequence 2 overlapped, we just load sequence 2 because 1
+> was satisfied. And if they reach the new beacon approach, that takes over — **they already did
+> the thing so it's not a fail condition**."*
+
+**★ THE SEQUENCE ADVANCES ON SATISFACTION, NOT ON POSITION-IN-THE-LIST.** That single choice
+removes the expensive part: there is no *"where was I"* to restore, only *"which steps are
+done"* — so an override **cannot desync it**. An overlap stops being a conflict and becomes a
+step that was quietly satisfied.
+
+- personal marker **overrides** until its own tier is satisfied and it despawns;
+- the sequence **rolls FORWARD to the first unsatisfied step** — not back to the interruption;
+- **overlaps are satisfactions, not failures.** Same temperament as *arriving is silent* [L12] and
+  *wrong isn't failure*: the design does not punish a player for doing the thing early.
+
+### 30.3 It needs no new machinery — with one guard
+
+> *"The position is to the marker. And we know that by player position and marker position."*
+
+**Satisfaction does not require holding the beacon.** `GetSuperTrackedPosition`'s distance was
+convenient, never necessary — distance is arithmetic on two positions we already hold. So while a
+personal marker owns the slot, sequence steps are still evaluated and silently satisfied.
+
+**⚠ THE GUARD:** our own arithmetic has **no map-boundary refusal.** The engine's `sd = 0.00`
+across a boundary was a *feature* — it told us the engine had declined [F38, AC-24]. Computing
+directly we would happily produce a meaningless number across a boundary or between floors.
+**So satisfaction is evaluated ONLY for steps on the current `mapID` and `floor`** — both of
+which every point now carries (DR-33).
+
+### 30.4 ★ `< [Current] >` — and why it makes the rest affordable
+
+> *"I do plan for the in-run widget to have a < > arrow to drive current sequence state also.
+> Could be `< [Current] >` and that gives users recovery built in."*
+
+**MANUAL RECOVERY LETS THE AUTOMATIC PATH BE ALLOWED TO BE IMPERFECT.** Every edge case the
+satisfaction model would otherwise have to solve — two steps satisfying at once, a shortcut
+skipping three, a satisfaction firing wrongly, a route whose author walked a different line — has
+one answer: **press an arrow.** No merge logic, no conflict resolution, no confirm dialog.
+
+**Same decision as law 7's import-wipes: decline the problem, hand authority to the user**, rather
+than arbitrate it. And it is the Landmarks widget's re-pin button one layer up — *cheap manual
+correction instead of expensive automatic correctness.*
+
+It also answers something the beacon alone cannot: **where am I in the sequence?** The readout and
+the control are the same widget.
+
+**Gate: `Build!` — not authorised. Nothing here is built, and the route sequence does not exist
+yet.**
