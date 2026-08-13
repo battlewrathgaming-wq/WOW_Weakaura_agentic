@@ -332,8 +332,47 @@ deaths are in that single record.
 - `isPlayer` ever true, `periodic` ever true
 - **heals appearing as POSITIVE `damage`** — the sign rule's other half
 
-**One more capture closes it: die to a MOB, then `/coadump r dump AscensionUI.DeathRecap`.**
-Casual, anywhere — it does not need a dungeon.
+### ★ THE GAP CLOSED — record `20260813_011150_203__dump.json` (mob death, Ragefire)
+
+`Events[CurrentRecap]` at death, 14 entries. **The buffer was FULL.**
+
+| | |
+|---|---|
+| `attacker` | **real mob names** — Molten Elemental ×7, Ragefire Trogg ×3, Searing Blade Cultist ×2, Searing Blade Enforcer, Earthborer |
+| `spell` | **`-1` for melee, 10/14**; real ids for the rest — `2101733`, `2101739`, `2101747`, `975011` (CoA-range) |
+| `damage` | 14/14 **negative**, as the sign rule says |
+| `healthPercent` | **0.0882 → 0.0111**, a clean death curve. This is the readout the whole thing exists for |
+
+**★★ AND THE FINDING THAT MATTERS MOST: `crit` WAS ABSENT ENTIRELY.** Not false — **the key
+does not exist** on any of the 14 entries. `AddEvent` stores `e.crit = critical`, and CLEU
+passes **nil** for a non-crit, so the key vanishes from the table. Combined with the
+environmental record, `crit` has **THREE states**:
+
+| State | When | Seen |
+|---|---|---|
+| **absent (nil)** | a non-crit hit from a unit | **live, 14/14** |
+| a damage-type **STRING** (`"LAVA"`, `"FALLING"`) | environmental | **live, 16/16** |
+| boolean `true` | an actual crit | source only — not yet observed |
+
+**A consumer must treat `crit` as `nil | true | string`, and must not index it blind.** Found on
+the first two live reads, which is precisely the job a DRIVER_CONTRACT does.
+
+**★ A SCOPING FACT WITH DESIGN CONSEQUENCE: 14 entries covered ~3 SECONDS.** He entered the
+buffer already at 8.8% health. **This is not a fight summary — it is the last breath.** It tells
+you *what finished you*, not *what the pull was like*. That is still the right size for a route
+marker ("a wipe happened here, to these mobs"), but nothing broader should be expected of it.
+
+**Still unobserved, and all LOW RISK — source is unambiguous, so the contract labels them
+SOURCE-DERIVED rather than chasing them:** `crit == true`, `isPlayer == true` (PvP only),
+`periodic == true` (DoTs), and heals landing as **positive** `damage`
+(`AddEvent(..., heal, ...)` is unnegated at `DeathRecap.lua:214-225`).
+
+**★ The contract can be written now**, with every field labelled **live-verified** or
+**source-derived**. That split is the point of the pattern.
+
+**Workflow note:** both commands were run before one `/reload`, so only the second envelope
+survived — **one dump per reload.** It cost nothing here (the narrower one held the gap data),
+but the whole-table view is the better default since `Events` is self-accumulating.
 
 **Gate: `Build!` — not authorised. Not in v0.1.0.**
 
