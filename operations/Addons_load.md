@@ -27,7 +27,7 @@ connection had to be found twice.
 
 **⚠ READ §57's ANTI-STATEMENTS BEFORE ADDING TO THE BRIEF.** Every correction on 2026-08-13 had one
 shape — something TRUE, extended a step past the evidence. It sounds like insight because that is the
-shape insight has. The tell: **when a framing is rejected the right next output is SHORTER, not
+shape insight has. **★ It is SCOPE, not suppression** — he wants the instinct, so offer the thought and LABEL ITS STATUS rather than withholding it. The tell: **when a framing is rejected the right next output is SHORTER, not
 different.** Also `memory/dont-extend-past-the-evidence.md`.
 
 **★ THE STANDING DESIGN RULING from those runs: CAPTURE IN A STABLE FORM, THE EDITOR CURATES.**
