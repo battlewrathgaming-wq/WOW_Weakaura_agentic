@@ -145,10 +145,19 @@ Consistency checks that make this trustworthy rather than fitted:
 - Measured world extent **739 × 492.6 yards** = ratio **1.5003**, exactly the 3:2 of the
   standard 1002×668 map frame. The two independently-measured scales confirm each other.
 
-**Calibration cost per dungeon:** two captured points with decent map separation — which a
-route's first run produces naturally. **ASSUMPTION (corroborated, not proven):** pfQuest hardcodes a single `* 1.5` x-correction for **every zone** in a mature addon with a full zone database (`satnav_prior_art.md` §2) — strong third-party evidence, from people who would have noticed variation. Still an assumption here: that the 3:2 aspect holds for
-all dungeon maps; if so one well-separated leg gives both scales. Verify on a second dungeon
-before relying on it.
+**~~Calibration cost per dungeon~~ — RETIRED 2026-08-13.** It was *"two captured points with
+decent map separation"*. **The transform is a LOOKUP**, read from the client's own
+`DungeonMap.dbc`: `mapX = (maxX - worldY)/(maxX - minX)`, `mapY = (maxY - worldX)/(maxY - minY)`,
+**per floor**. Verified zero-residual against 389 captured points from the two pinned runs, and
+the emitter re-runs that proof on every emit. It is correct on the **first** visit to a dungeon
+nobody has run. Fact basis: `addons/maps/worldmap/README.md` (M3, M4 — and note M4, the fields
+named X bound world **Y**).
+
+_Superseded text, kept for the reasoning it carried:_
+> **Calibration cost per dungeon:** two captured points with decent map separation — which a
+> route's first run produces naturally. **ASSUMPTION (corroborated, not proven):** pfQuest hardcodes a single `* 1.5` x-correction for **every zone** in a mature addon with a full zone database (`satnav_prior_art.md` §2) — strong third-party evidence, from people who would have noticed variation. Still an assumption here: that the 3:2 aspect holds for
+> all dungeon maps; if so one well-separated leg gives both scales. Verify on a second dungeon
+> before relying on it.
 
 ## 5. Design laws (decided)
 
@@ -881,7 +890,12 @@ exists** — `task_callwitness` / `task_perf` can measure our own addon.
 **★ Everything below belongs to the ROUTE HALF.** `COA_Landmarks` has no open capability
 questions — see `landmark_design.md` §11.
 
-- **Does mapID change across dungeon FLOORS?** Decides whether a floor is a data-model concept
+- ~~**Does mapID change across dungeon FLOORS?**~~ **ANSWERED 2026-08-13: NO — and that is the
+  problem.** One `mapID` bundles many floors: **43 of 73 mapped dungeons are multi-floor**,
+  deepest **17** (Karazhan, mapID 532). Each floor has its **own bounding box and own tile
+  art**, so **a world position is NOT placeable from `mapID` alone** — floor IS a data-model
+  concept. `addons/maps/worldmap/dungeon_floors.md` has every box. Original wording:
+  *Decides whether a floor is a data-model concept*
   or just a z value. One dump at the top and bottom of a staircase settles it. Ragefire is
   single-level so this is still untested.
 - **Does the 3:2 map aspect generalise?** (§4.)
@@ -1027,7 +1041,7 @@ including where it does *not* help:
 | `GetSuperTrackedWorldPosition` space | Exercised outdoors, where the setter/getter loop is easiest to read |
 | ~~Beacon max range~~ | **ANSWERED** — F22 (thresholds) and F35 (distance stays live to 3,742 yd) |
 | **Does mapID change across FLOORS?** | **Partial only** — landmarks settle whether mapID is a sufficient storage key; the dungeon-floor case still needs a dungeon |
-| **How dungeon map textures are addressed** | **Barely** — outdoor world maps are a different rendering path. Do not expect this one to come free |
+| ~~**How dungeon map textures are addressed**~~ | **ANSWERED 2026-08-13** — `Interface\WorldMap\<file>\<file>[<floor>_]<1..12>`, twelve tiles, `<file>` being what `GetMapInfo()` returns. `WorldMapArea.dbc` holds the name; the floor suffix appears only when the level is > 0, and `DungeonUsesTerrainMap()` shifts that index by one. It DID come free — from the client's own `WorldMapFrame.lua:463-476`, not from a rendering experiment |
 
 It also answers questions §7 never listed because routing hadn't reached them: the
 serialisation shape, whether pins render correctly at world-map scale, and how the note

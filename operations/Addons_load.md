@@ -126,6 +126,24 @@ throttle sits), and the census **goes stale on EDIT, not on deploy** — it read
 the stale window is edit→deploy. `--check` is the safeguard (exit 0 CURRENT / 1 STALE, writes
 nothing) and `menu.bat`'s Deploy check runs it.
 
+**★ BENCH TOOL, 2026-08-13 — the WORLD MAP fact basis:** `addons/tools/emit_worldmap_census.py`
+→ `addons/maps/worldmap/`. Decoded from the client's own DBCs in `patch-M.MPQ`
+(`DungeonMap` · `WorldMapArea` · `Map` · `WorldMapContinent`), scoped as a **bench asset keyed by
+mapID**, not a Dungeon_run extract — his framing: *"could have things for Maps, outside of our
+use. Enrich the whole."*
+
+**★ IT RETIRED A STANDING COST.** `satnav_ledger.md` carried *"calibration cost per dungeon: two
+captured points with decent map separation"*. **The transform is a LOOKUP** — correct on the
+first visit to a dungeon nobody has run, **verified zero-residual against 389 captured points**,
+and the emitter re-runs that proof on every emit.
+
+**Read `addons/maps/worldmap/README.md` before touching map maths.** Four traps in it, and all
+four are silent: **M4** the fields named X bound world **Y** (and both axes run backwards),
+**M6** 43 of 73 dungeons are multi-floor so `mapID` alone does not place a point, **M8**
+`GetCurrentMapAreaID()` is off by one from the internal id, **M9** indoors the
+continent/zone pair is `(-1, 0)` for **every** dungeon — a sentinel, so a `COA_Landmarks`-style
+map match would draw one dungeon's pins on another's map.
+
 **Bench tool landed 2026-08-11:** `addons/tools/emit_atlas_census.py` → `addons/maps/atlas/`
 — the client's 4,503 named atlas entries classified by claim of use (1,359 claimed / 3,144
 free). Read its README before picking any icon for anything; it carries three rules that cost

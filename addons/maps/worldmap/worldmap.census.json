@@ -1,0 +1,4582 @@
+{
+  "_fingerprint": "1a44ffe7f036",
+  "_source": {
+    "DungeonMap": "patch-M.MPQ",
+    "WorldMapArea": "patch-M.MPQ",
+    "Map": "patch-M.MPQ",
+    "WorldMapContinent": "patch-M.MPQ",
+    "continents": 4
+  },
+  "maps": {
+    "0": {
+      "mapID": 0,
+      "areaID": 0,
+      "tileFile": "Azeroth",
+      "worldMapAreaID": 14,
+      "areaBox": {
+        "left": 18171.0,
+        "right": -22569.0,
+        "top": 11176.0,
+        "bottom": -15973.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Azeroth",
+      "instanceType": 0
+    },
+    "1": {
+      "mapID": 1,
+      "areaID": 0,
+      "tileFile": "Kalimdor",
+      "worldMapAreaID": 13,
+      "areaBox": {
+        "left": 17066.0,
+        "right": -19733.0,
+        "top": 12799.0,
+        "bottom": -11733.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Kalimdor",
+      "instanceType": 0
+    },
+    "30": {
+      "mapID": 30,
+      "areaID": 2597,
+      "tileFile": "AlteracValley",
+      "worldMapAreaID": 401,
+      "areaBox": {
+        "left": 1781.0,
+        "right": -2456.0,
+        "top": 1085.0,
+        "bottom": -1739.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "PVPZone01",
+      "instanceType": 3
+    },
+    "33": {
+      "mapID": 33,
+      "areaID": 209,
+      "tileFile": "ShadowfangKeep",
+      "worldMapAreaID": 764,
+      "areaBox": {
+        "left": 4500.0,
+        "right": 300.0,
+        "top": 1133.0,
+        "bottom": -1666.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 5,
+          "floor": 1,
+          "minX": 2003.77001953125,
+          "maxX": 2356.199951171875,
+          "minY": -319.88299560546875,
+          "maxY": -84.92960357666016,
+          "parentWorldMapID": 21
+        },
+        {
+          "dungeonMapID": 6,
+          "floor": 2,
+          "minX": 2147.56005859375,
+          "maxX": 2359.97998046875,
+          "minY": -303.2149963378906,
+          "maxY": -161.5970001220703,
+          "parentWorldMapID": 21
+        },
+        {
+          "dungeonMapID": 7,
+          "floor": 3,
+          "minX": 2103.77001953125,
+          "maxX": 2256.199951171875,
+          "minY": -193.21600341796875,
+          "maxY": -91.59609985351562,
+          "parentWorldMapID": 21
+        },
+        {
+          "dungeonMapID": 8,
+          "floor": 4,
+          "minX": 2103.77001953125,
+          "maxX": 2256.199951171875,
+          "minY": -193.21499633789062,
+          "maxY": -91.59030151367188,
+          "parentWorldMapID": 21
+        },
+        {
+          "dungeonMapID": 9,
+          "floor": 5,
+          "minX": 2103.77001953125,
+          "maxX": 2256.199951171875,
+          "minY": -193.21499633789062,
+          "maxY": -91.59030151367188,
+          "parentWorldMapID": 21
+        },
+        {
+          "dungeonMapID": 10,
+          "floor": 6,
+          "minX": 2080.77001953125,
+          "maxX": 2279.199951171875,
+          "minY": -182.54600524902344,
+          "maxY": -50.2593994140625,
+          "parentWorldMapID": 21
+        },
+        {
+          "dungeonMapID": 11,
+          "floor": 7,
+          "minX": 2023.77001953125,
+          "maxX": 2296.199951171875,
+          "minY": -278.21600341796875,
+          "maxY": -96.59609985351562,
+          "parentWorldMapID": 21
+        }
+      ],
+      "directory": "Shadowfang",
+      "instanceType": 1
+    },
+    "34": {
+      "mapID": 34,
+      "areaID": 717,
+      "tileFile": "TheStockade",
+      "worldMapAreaID": 690,
+      "areaBox": {
+        "left": 189.0,
+        "right": -186.0,
+        "top": 220.0,
+        "bottom": -31.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 12,
+          "floor": 1,
+          "minX": -188.33099365234375,
+          "maxX": 189.82200622558594,
+          "minY": -31.469499588012695,
+          "maxY": 220.63299560546875,
+          "parentWorldMapID": 301
+        }
+      ],
+      "directory": "StormwindJail",
+      "instanceType": 1
+    },
+    "36": {
+      "mapID": 36,
+      "areaID": 1581,
+      "tileFile": "TheDeadmines",
+      "worldMapAreaID": 756,
+      "areaBox": {
+        "left": -517.3499755859375,
+        "right": -1016.6099853515625,
+        "top": 65.33000183105469,
+        "bottom": -267.5
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 13,
+          "floor": 1,
+          "minX": -796.6220092773438,
+          "maxX": -237.35800170898438,
+          "minY": -337.5090026855469,
+          "maxY": 35.333499908447266,
+          "parentWorldMapID": 39
+        },
+        {
+          "dungeonMapID": 14,
+          "floor": 2,
+          "minX": -1016.6199951171875,
+          "maxX": -517.3569946289062,
+          "minY": -267.5090026855469,
+          "maxY": 65.33329772949219,
+          "parentWorldMapID": 39
+        }
+      ],
+      "directory": "DeadminesInstance",
+      "instanceType": 1
+    },
+    "43": {
+      "mapID": 43,
+      "areaID": 718,
+      "tileFile": "WailingCaverns",
+      "worldMapAreaID": 749,
+      "areaBox": {
+        "left": 561.0,
+        "right": -376.0,
+        "top": 214.0,
+        "bottom": -410.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 15,
+          "floor": 1,
+          "minX": -375.9460144042969,
+          "maxX": 560.5289916992188,
+          "minY": -410.14599609375,
+          "maxY": 214.1699981689453,
+          "parentWorldMapID": 11
+        }
+      ],
+      "directory": "WailingCaverns",
+      "instanceType": 1
+    },
+    "47": {
+      "mapID": 47,
+      "areaID": 491,
+      "tileFile": "RazorfenKraul",
+      "worldMapAreaID": 761,
+      "areaBox": {
+        "left": 2059.0,
+        "right": 1322.0,
+        "top": 2350.0,
+        "bottom": 1859.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 16,
+          "floor": 1,
+          "minX": 1322.469970703125,
+          "maxX": 2058.919921875,
+          "minY": 1858.6800537109375,
+          "maxY": 2349.639892578125,
+          "parentWorldMapID": 11
+        }
+      ],
+      "directory": "RazorfenKraulInstance",
+      "instanceType": 1
+    },
+    "48": {
+      "mapID": 48,
+      "areaID": 719,
+      "tileFile": "BlackfathomDeeps",
+      "worldMapAreaID": 688,
+      "areaBox": {
+        "left": 503.0,
+        "right": -581.0,
+        "top": -88.0,
+        "bottom": -927.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 17,
+          "floor": 1,
+          "minX": -381.2959899902344,
+          "maxX": 502.92401123046875,
+          "minY": -677.14697265625,
+          "maxY": -87.66699981689453,
+          "parentWorldMapID": 43
+        },
+        {
+          "dungeonMapID": 18,
+          "floor": 2,
+          "minX": -581.2960205078125,
+          "maxX": 302.92401123046875,
+          "minY": -927.14697265625,
+          "maxY": -337.6669921875,
+          "parentWorldMapID": 43
+        },
+        {
+          "dungeonMapID": 19,
+          "floor": 3,
+          "minX": -281.2980041503906,
+          "maxX": 2.9260001182556152,
+          "minY": -877.1480102539062,
+          "maxY": -687.666015625,
+          "parentWorldMapID": 43
+        }
+      ],
+      "directory": "Blackfathom",
+      "instanceType": 1
+    },
+    "70": {
+      "mapID": 70,
+      "areaID": 1337,
+      "tileFile": "Uldaman",
+      "worldMapAreaID": 692,
+      "areaBox": {
+        "left": 645.0,
+        "right": -249.0,
+        "top": 271.0,
+        "bottom": -391.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 20,
+          "floor": 1,
+          "minX": -248.5489959716797,
+          "maxX": 645.1190185546875,
+          "minY": -391.4729919433594,
+          "maxY": 204.30599975585938,
+          "parentWorldMapID": 17
+        },
+        {
+          "dungeonMapID": 21,
+          "floor": 2,
+          "minX": 52.54859924316406,
+          "maxX": 545.1190185546875,
+          "minY": -57.77349853515625,
+          "maxY": 270.60699462890625,
+          "parentWorldMapID": 17
+        }
+      ],
+      "directory": "Uldaman",
+      "instanceType": 1
+    },
+    "90": {
+      "mapID": 90,
+      "areaID": 721,
+      "tileFile": "Gnomeregan",
+      "worldMapAreaID": 691,
+      "areaBox": {
+        "left": 943.0,
+        "right": -278.0,
+        "top": -181.0,
+        "bottom": -967.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 22,
+          "floor": 1,
+          "minX": -277.7720031738281,
+          "maxX": 491.89599609375,
+          "minY": -694.0,
+          "maxY": -180.88800048828125,
+          "parentWorldMapID": 27
+        },
+        {
+          "dungeonMapID": 23,
+          "floor": 2,
+          "minX": -77.77200317382812,
+          "maxX": 691.89599609375,
+          "minY": -714.0,
+          "maxY": -200.88800048828125,
+          "parentWorldMapID": 27
+        },
+        {
+          "dungeonMapID": 24,
+          "floor": 3,
+          "minX": -127.77200317382812,
+          "maxX": 741.89599609375,
+          "minY": -967.3330078125,
+          "maxY": -387.55499267578125,
+          "parentWorldMapID": 27
+        },
+        {
+          "dungeonMapID": 25,
+          "floor": 4,
+          "minX": 72.99929809570312,
+          "maxX": 942.6690063476562,
+          "minY": -937.333984375,
+          "maxY": -357.5539855957031,
+          "parentWorldMapID": 27
+        }
+      ],
+      "directory": "GnomeragonInstance",
+      "instanceType": 1
+    },
+    "109": {
+      "mapID": 109,
+      "areaID": 1477,
+      "tileFile": "thetempleofatalhakkar",
+      "worldMapAreaID": 2021,
+      "areaBox": {
+        "left": 366.6700134277344,
+        "right": -133.33999633789062,
+        "top": -233.2969970703125,
+        "bottom": -566.64599609375
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 26,
+          "floor": 1,
+          "minX": -133.33999633789062,
+          "maxX": 366.6700134277344,
+          "minY": -566.64599609375,
+          "maxY": -233.2969970703125,
+          "parentWorldMapID": 0
+        },
+        {
+          "dungeonMapID": 27,
+          "floor": 2,
+          "minX": -200.0,
+          "maxX": 400.0,
+          "minY": -666.6699829101562,
+          "maxY": -266.6700134277344,
+          "parentWorldMapID": 0
+        },
+        {
+          "dungeonMapID": 28,
+          "floor": 3,
+          "minX": -47.36000061035156,
+          "maxX": 251.3419952392578,
+          "minY": -433.3399963378906,
+          "maxY": -233.32000732421875,
+          "parentWorldMapID": 0
+        },
+        {
+          "dungeonMapID": 29,
+          "floor": 4,
+          "minX": -299.989990234375,
+          "maxX": 500.0,
+          "minY": -733.3300170898438,
+          "maxY": -199.97000122070312,
+          "parentWorldMapID": 0
+        },
+        {
+          "dungeonMapID": 30,
+          "floor": 5,
+          "minX": -299.989990234375,
+          "maxX": 500.0,
+          "minY": -733.3300170898438,
+          "maxY": -199.97000122070312,
+          "parentWorldMapID": 0
+        }
+      ],
+      "directory": "SunkenTemple",
+      "instanceType": 1
+    },
+    "129": {
+      "mapID": 129,
+      "areaID": 722,
+      "tileFile": "RazorfenDowns",
+      "worldMapAreaID": 760,
+      "areaBox": {
+        "left": 1280.0,
+        "right": 571.0,
+        "top": 2683.0,
+        "bottom": 2210.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 31,
+          "floor": 1,
+          "minX": 570.8909912109375,
+          "maxX": 1279.93994140625,
+          "minY": 2209.85009765625,
+          "maxY": 2682.550048828125,
+          "parentWorldMapID": 61
+        }
+      ],
+      "directory": "RazorfenDowns",
+      "instanceType": 1
+    },
+    "189": {
+      "mapID": 189,
+      "areaID": 796,
+      "tileFile": "ScarletMonastery",
+      "worldMapAreaID": 762,
+      "areaBox": {
+        "left": 1744.0,
+        "right": -562.0,
+        "top": 2030.0,
+        "bottom": 94.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 32,
+          "floor": 1,
+          "minX": 947.9860229492188,
+          "maxX": 1567.969970703125,
+          "minY": 1616.8599853515625,
+          "maxY": 2030.1800537109375,
+          "parentWorldMapID": 20
+        },
+        {
+          "dungeonMapID": 33,
+          "floor": 2,
+          "minX": -482.4639892578125,
+          "maxX": -162.2729949951172,
+          "minY": 93.90550231933594,
+          "maxY": 307.3659973144531,
+          "parentWorldMapID": 20
+        },
+        {
+          "dungeonMapID": 34,
+          "floor": 3,
+          "minX": -562.4240112304688,
+          "maxX": 50.27259826660156,
+          "minY": 1600.6400146484375,
+          "maxY": 2009.0999755859375,
+          "parentWorldMapID": 20
+        },
+        {
+          "dungeonMapID": 35,
+          "floor": 4,
+          "minX": 1040.68994140625,
+          "maxX": 1743.989990234375,
+          "minY": 812.4240112304688,
+          "maxY": 1281.2900390625,
+          "parentWorldMapID": 20
+        }
+      ],
+      "directory": "MonasteryInstances",
+      "instanceType": 1
+    },
+    "209": {
+      "mapID": 209,
+      "areaID": 1176,
+      "tileFile": "ZulFarrak",
+      "worldMapAreaID": 686,
+      "areaBox": {
+        "left": 1625.0,
+        "right": 241.0,
+        "top": 2052.0,
+        "bottom": 1129.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 161,
+      "floors": [],
+      "directory": "TanarisInstance",
+      "instanceType": 1
+    },
+    "229": {
+      "mapID": 229,
+      "areaID": 1583,
+      "tileFile": "BlackrockSpire",
+      "worldMapAreaID": 721,
+      "areaBox": {
+        "left": 11.0,
+        "right": -876.0,
+        "top": 304.0,
+        "bottom": -289.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 36,
+          "floor": 1,
+          "minX": -876.2520141601562,
+          "maxX": 10.586999893188477,
+          "minY": -286.8280029296875,
+          "maxY": 304.39801025390625,
+          "parentWorldMapID": 29
+        },
+        {
+          "dungeonMapID": 37,
+          "floor": 2,
+          "minX": -876.2520141601562,
+          "maxX": 10.586999893188477,
+          "minY": -286.8280029296875,
+          "maxY": 304.39801025390625,
+          "parentWorldMapID": 29
+        },
+        {
+          "dungeonMapID": 38,
+          "floor": 3,
+          "minX": -876.2520141601562,
+          "maxX": 10.586999893188477,
+          "minY": -286.8280029296875,
+          "maxY": 304.39801025390625,
+          "parentWorldMapID": 29
+        },
+        {
+          "dungeonMapID": 39,
+          "floor": 4,
+          "minX": -876.2520141601562,
+          "maxX": 10.586999893188477,
+          "minY": -286.8280029296875,
+          "maxY": 304.39801025390625,
+          "parentWorldMapID": 29
+        },
+        {
+          "dungeonMapID": 40,
+          "floor": 5,
+          "minX": -876.2520141601562,
+          "maxX": 10.586999893188477,
+          "minY": -286.8280029296875,
+          "maxY": 304.39801025390625,
+          "parentWorldMapID": 29
+        },
+        {
+          "dungeonMapID": 41,
+          "floor": 6,
+          "minX": -876.2520141601562,
+          "maxX": 10.586999893188477,
+          "minY": -286.8280029296875,
+          "maxY": 304.39801025390625,
+          "parentWorldMapID": 29
+        },
+        {
+          "dungeonMapID": 42,
+          "floor": 7,
+          "minX": -876.2520141601562,
+          "maxX": 10.586999893188477,
+          "minY": -286.8280029296875,
+          "maxY": 304.39801025390625,
+          "parentWorldMapID": 29
+        }
+      ],
+      "directory": "BlackRockSpire",
+      "instanceType": 1
+    },
+    "230": {
+      "mapID": 230,
+      "areaID": 1584,
+      "tileFile": "BlackrockDepths",
+      "worldMapAreaID": 704,
+      "areaBox": {
+        "left": 572.0,
+        "right": -935.0,
+        "top": 1500.0,
+        "bottom": 259.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 43,
+          "floor": 1,
+          "minX": -884.7239990234375,
+          "maxX": 522.3369750976562,
+          "minY": 248.63999938964844,
+          "maxY": 1186.6800537109375,
+          "parentWorldMapID": 28
+        },
+        {
+          "dungeonMapID": 44,
+          "floor": 2,
+          "minX": -934.7239990234375,
+          "maxX": 572.3369750976562,
+          "minY": 495.3030090332031,
+          "maxY": 1500.010009765625,
+          "parentWorldMapID": 28
+        }
+      ],
+      "directory": "BlackrockDepths",
+      "instanceType": 1
+    },
+    "249": {
+      "mapID": 249,
+      "areaID": 2159,
+      "tileFile": "OnyxiasLair",
+      "worldMapAreaID": 718,
+      "areaBox": {
+        "left": 336.5740051269531,
+        "right": -444.2969970703125,
+        "top": 119.1969985961914,
+        "bottom": -401.3800048828125
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 45,
+          "floor": 1,
+          "minX": -444.2969970703125,
+          "maxX": 336.5740051269531,
+          "minY": -401.3800048828125,
+          "maxY": 119.1969985961914,
+          "parentWorldMapID": 141
+        }
+      ],
+      "directory": "OnyxiaLairInstance",
+      "instanceType": 2
+    },
+    "269": {
+      "mapID": 269,
+      "areaID": 2366,
+      "tileFile": "CoTTheBlackMorass",
+      "worldMapAreaID": 733,
+      "areaBox": {
+        "left": 7650.0,
+        "right": 6562.0,
+        "top": -1500.0,
+        "bottom": -2225.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "CavernsOfTime",
+      "instanceType": 1
+    },
+    "289": {
+      "mapID": 289,
+      "areaID": 2057,
+      "tileFile": "Scholomance",
+      "worldMapAreaID": 763,
+      "areaBox": {
+        "left": 633.0,
+        "right": -1166.0,
+        "top": 600.0,
+        "bottom": -600.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 46,
+          "floor": 1,
+          "minX": -68.63890075683594,
+          "maxX": 251.41000366210938,
+          "minY": 104.33300018310547,
+          "maxY": 317.697998046875,
+          "parentWorldMapID": 22
+        },
+        {
+          "dungeonMapID": 47,
+          "floor": 2,
+          "minX": -128.63900756835938,
+          "maxX": 311.4100036621094,
+          "minY": 44.33259963989258,
+          "maxY": 337.6990051269531,
+          "parentWorldMapID": 22
+        },
+        {
+          "dungeonMapID": 48,
+          "floor": 3,
+          "minX": -113.63899993896484,
+          "maxX": 296.4389953613281,
+          "minY": 34.32120132446289,
+          "maxY": 307.7070007324219,
+          "parentWorldMapID": 22
+        },
+        {
+          "dungeonMapID": 49,
+          "floor": 4,
+          "minX": -174.1219940185547,
+          "maxX": 356.9200134277344,
+          "minY": -66.32119750976562,
+          "maxY": 287.7070007324219,
+          "parentWorldMapID": 22
+        }
+      ],
+      "directory": "SchoolofNecromancy",
+      "instanceType": 1
+    },
+    "309": {
+      "mapID": 309,
+      "areaID": 1977,
+      "tileFile": "ZulGurub",
+      "worldMapAreaID": 697,
+      "areaBox": {
+        "left": -611.0,
+        "right": -2732.0,
+        "top": -11227.0,
+        "bottom": -12631.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Zul'Gurub",
+      "instanceType": 2
+    },
+    "329": {
+      "mapID": 329,
+      "areaID": 2017,
+      "tileFile": "Stratholme",
+      "worldMapAreaID": 765,
+      "areaBox": {
+        "left": -1766.0,
+        "right": -5166.0,
+        "top": 4333.0,
+        "bottom": 2066.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 50,
+          "floor": 1,
+          "minX": -3617.679931640625,
+          "maxX": -2911.9599609375,
+          "minY": 3338.969970703125,
+          "maxY": 3809.449951171875,
+          "parentWorldMapID": 23
+        },
+        {
+          "dungeonMapID": 51,
+          "floor": 2,
+          "minX": -3967.679931640625,
+          "maxX": -2961.9599609375,
+          "minY": 3498.969970703125,
+          "maxY": 4169.4501953125,
+          "parentWorldMapID": 23
+        }
+      ],
+      "directory": "Stratholme",
+      "instanceType": 1
+    },
+    "349": {
+      "mapID": 349,
+      "areaID": 2100,
+      "tileFile": "Maraudon",
+      "worldMapAreaID": 750,
+      "areaBox": {
+        "left": 479.0,
+        "right": -1159.0,
+        "top": 1214.0,
+        "bottom": -208.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 52,
+          "floor": 1,
+          "minX": -824.0800170898438,
+          "maxX": 146.54200744628906,
+          "minY": 544.9650268554688,
+          "maxY": 1214.18994140625,
+          "parentWorldMapID": 101
+        },
+        {
+          "dungeonMapID": 53,
+          "floor": 2,
+          "minX": -1158.75,
+          "maxX": 478.75,
+          "minY": -208.33299255371094,
+          "maxY": 883.3330078125,
+          "parentWorldMapID": 101
+        }
+      ],
+      "directory": "Mauradon",
+      "instanceType": 1
+    },
+    "369": {
+      "mapID": 369,
+      "areaID": 2257,
+      "tileFile": "deepruntram",
+      "worldMapAreaID": 2023,
+      "areaBox": {
+        "left": 2623.5,
+        "right": 2311.5,
+        "top": 95.5,
+        "bottom": -112.5
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 2510,
+          "floor": 1,
+          "minX": 2311.5,
+          "maxX": 2623.5,
+          "minY": -112.5,
+          "maxY": 95.5,
+          "parentWorldMapID": 0
+        },
+        {
+          "dungeonMapID": 2511,
+          "floor": 2,
+          "minX": 2408.5,
+          "maxX": 2593.5,
+          "minY": -172.95799255371094,
+          "maxY": -49.624698638916016,
+          "parentWorldMapID": 0
+        }
+      ],
+      "directory": "DeeprunTram",
+      "instanceType": 0
+    },
+    "389": {
+      "mapID": 389,
+      "areaID": 2437,
+      "tileFile": "Ragefire",
+      "worldMapAreaID": 680,
+      "areaBox": {
+        "left": 453.0,
+        "right": -286.0,
+        "top": 40.0,
+        "bottom": -453.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 54,
+          "floor": 1,
+          "minX": -285.9930114746094,
+          "maxX": 452.8710021972656,
+          "minY": -452.9530029296875,
+          "maxY": 39.623199462890625,
+          "parentWorldMapID": 321
+        }
+      ],
+      "directory": "OrgrimmarInstance",
+      "instanceType": 1
+    },
+    "400": {
+      "mapID": 400,
+      "areaID": 14000,
+      "tileFile": "Silithus",
+      "worldMapAreaID": 500,
+      "areaBox": {
+        "left": 2537.0,
+        "right": -945.0,
+        "top": -5958.0,
+        "bottom": -8281.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "SilithusTest",
+      "instanceType": 0
+    },
+    "409": {
+      "mapID": 409,
+      "areaID": 2717,
+      "tileFile": "MoltenCore",
+      "worldMapAreaID": 696,
+      "areaBox": {
+        "left": -131.0,
+        "right": -1396.0,
+        "top": 1303.0,
+        "bottom": 460.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 55,
+          "floor": 1,
+          "minX": -1395.56005859375,
+          "maxX": -130.75999450683594,
+          "minY": 459.8609924316406,
+          "maxY": 1303.06005859375,
+          "parentWorldMapID": 29
+        }
+      ],
+      "directory": "MoltenCore",
+      "instanceType": 2
+    },
+    "429": {
+      "mapID": 429,
+      "areaID": 2557,
+      "tileFile": "DireMaul",
+      "worldMapAreaID": 699,
+      "areaBox": {
+        "left": 1075.0,
+        "right": -900.0,
+        "top": 1050.0,
+        "bottom": -282.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 56,
+          "floor": 1,
+          "minX": -387.5,
+          "maxX": 887.5,
+          "minY": 200.0,
+          "maxY": 1050.0,
+          "parentWorldMapID": 121
+        },
+        {
+          "dungeonMapID": 57,
+          "floor": 2,
+          "minX": 125.0,
+          "maxX": 650.0,
+          "minY": -150.0,
+          "maxY": 200.0,
+          "parentWorldMapID": 121
+        },
+        {
+          "dungeonMapID": 58,
+          "floor": 3,
+          "minX": 231.25,
+          "maxX": 718.75,
+          "minY": -150.0,
+          "maxY": 175.0,
+          "parentWorldMapID": 121
+        },
+        {
+          "dungeonMapID": 59,
+          "floor": 4,
+          "minX": 325.0,
+          "maxX": 1075.0,
+          "minY": -250.0,
+          "maxY": 250.0,
+          "parentWorldMapID": 121
+        },
+        {
+          "dungeonMapID": 60,
+          "floor": 5,
+          "minX": -900.0,
+          "maxX": -99.99919891357422,
+          "minY": -281.6669921875,
+          "maxY": 251.66700744628906,
+          "parentWorldMapID": 121
+        },
+        {
+          "dungeonMapID": 61,
+          "floor": 6,
+          "minX": -862.5,
+          "maxX": 112.5,
+          "minY": -200.0,
+          "maxY": 450.0,
+          "parentWorldMapID": 121
+        }
+      ],
+      "directory": "DireMaul",
+      "instanceType": 1
+    },
+    "469": {
+      "mapID": 469,
+      "areaID": 2677,
+      "tileFile": "BlackwingLair",
+      "worldMapAreaID": 755,
+      "areaBox": {
+        "left": 633.0,
+        "right": -2766.0,
+        "top": -6333.0,
+        "bottom": -8600.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 1007,
+          "floor": 1,
+          "minX": -1344.050048828125,
+          "maxX": -844.6220092773438,
+          "minY": -7727.06982421875,
+          "maxY": -7394.1201171875,
+          "parentWorldMapID": 29
+        },
+        {
+          "dungeonMapID": 1008,
+          "floor": 2,
+          "minX": -1379.050048828125,
+          "maxX": -729.6229858398438,
+          "minY": -7777.06982421875,
+          "maxY": -7344.1201171875,
+          "parentWorldMapID": 29
+        },
+        {
+          "dungeonMapID": 1009,
+          "floor": 3,
+          "minX": -1369.050048828125,
+          "maxX": -719.6229858398438,
+          "minY": -7757.06982421875,
+          "maxY": -7324.1201171875,
+          "parentWorldMapID": 29
+        },
+        {
+          "dungeonMapID": 1010,
+          "floor": 4,
+          "minX": -1419.050048828125,
+          "maxX": -769.6229858398438,
+          "minY": -7637.06982421875,
+          "maxY": -7204.1201171875,
+          "parentWorldMapID": 29
+        },
+        {
+          "dungeonMapID": 1011,
+          "floor": 5,
+          "minX": -1001.25,
+          "maxX": -388.15399169921875,
+          "minY": -7432.3798828125,
+          "maxY": -7023.64990234375,
+          "parentWorldMapID": 29
+        },
+        {
+          "dungeonMapID": 1012,
+          "floor": 6,
+          "minX": -842.3980102539062,
+          "maxX": -229.30599975585938,
+          "minY": -7134.6201171875,
+          "maxY": -6725.89013671875,
+          "parentWorldMapID": 29
+        }
+      ],
+      "directory": "BlackwingLair",
+      "instanceType": 2
+    },
+    "489": {
+      "mapID": 489,
+      "areaID": 3277,
+      "tileFile": "WarsongGulch",
+      "worldMapAreaID": 443,
+      "areaBox": {
+        "left": 2041.0,
+        "right": 895.0,
+        "top": 1627.0,
+        "bottom": 862.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "PVPZone03",
+      "instanceType": 3
+    },
+    "509": {
+      "mapID": 509,
+      "areaID": 3429,
+      "tileFile": "RuinsofAhnQiraj",
+      "worldMapAreaID": 717,
+      "areaBox": {
+        "left": 3035.0,
+        "right": 522.0,
+        "top": -8233.0,
+        "bottom": -9908.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "AhnQiraj",
+      "instanceType": 2
+    },
+    "529": {
+      "mapID": 529,
+      "areaID": 3358,
+      "tileFile": "ArathiBasin",
+      "worldMapAreaID": 461,
+      "areaBox": {
+        "left": 1858.0,
+        "right": 102.0,
+        "top": 1508.0,
+        "bottom": 337.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "PVPZone04",
+      "instanceType": 3
+    },
+    "530": {
+      "mapID": 530,
+      "areaID": 0,
+      "tileFile": "Expansion01",
+      "worldMapAreaID": 466,
+      "areaBox": {
+        "left": 12996.0,
+        "right": -4468.0,
+        "top": 5821.0,
+        "bottom": -5821.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Expansion01",
+      "instanceType": 0
+    },
+    "531": {
+      "mapID": 531,
+      "areaID": 3428,
+      "tileFile": "AhnQiraj",
+      "worldMapAreaID": 766,
+      "areaBox": {
+        "left": 2493.0,
+        "right": 1554.0,
+        "top": -8051.0,
+        "bottom": -8704.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 66,
+          "floor": 1,
+          "minX": 138.0760040283203,
+          "maxX": 2915.6201171875,
+          "minY": -9510.98046875,
+          "maxY": -7659.2900390625,
+          "parentWorldMapID": 261
+        },
+        {
+          "dungeonMapID": 67,
+          "floor": 2,
+          "minX": 1538.0699462890625,
+          "maxX": 2515.6298828125,
+          "minY": -8703.5,
+          "maxY": -8051.7998046875,
+          "parentWorldMapID": 261
+        },
+        {
+          "dungeonMapID": 68,
+          "floor": 3,
+          "minX": 1738.0699462890625,
+          "maxX": 2315.6298828125,
+          "minY": -8720.169921875,
+          "maxY": -8335.1298828125,
+          "parentWorldMapID": 261
+        }
+      ],
+      "directory": "AhnQirajTemple",
+      "instanceType": 2
+    },
+    "532": {
+      "mapID": 532,
+      "areaID": 3457,
+      "tileFile": "Karazhan",
+      "worldMapAreaID": 799,
+      "areaBox": {
+        "left": -1434.0,
+        "right": -2270.0,
+        "top": -10773.0,
+        "bottom": -11460.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 69,
+          "floor": 1,
+          "minX": -2225.02001953125,
+          "maxX": -1674.97998046875,
+          "minY": -11189.599609375,
+          "maxY": -10822.900390625,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 70,
+          "floor": 2,
+          "minX": -2081.419921875,
+          "maxX": -1823.56005859375,
+          "minY": -11189.0,
+          "maxY": -11017.099609375,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 71,
+          "floor": 3,
+          "minX": -2132.570068359375,
+          "maxX": -1787.4300537109375,
+          "minY": -11066.2998046875,
+          "maxY": -10836.2001953125,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 72,
+          "floor": 4,
+          "minX": -2190.02001953125,
+          "maxX": -1669.97998046875,
+          "minY": -11119.599609375,
+          "maxY": -10772.900390625,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 73,
+          "floor": 5,
+          "minX": -1932.5799560546875,
+          "maxX": -1698.4300537109375,
+          "minY": -10969.2998046875,
+          "maxY": -10813.2001953125,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 74,
+          "floor": 6,
+          "minX": -2205.77001953125,
+          "maxX": -1624.22998046875,
+          "minY": -11190.599609375,
+          "maxY": -10802.900390625,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 75,
+          "floor": 7,
+          "minX": -2066.77001953125,
+          "maxX": -1875.22998046875,
+          "minY": -11115.599609375,
+          "maxY": -10987.900390625,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 76,
+          "floor": 8,
+          "minX": -2037.6800537109375,
+          "maxX": -1898.3299560546875,
+          "minY": -11105.2001953125,
+          "maxY": -11012.2998046875,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 77,
+          "floor": 9,
+          "minX": -2270.02001953125,
+          "maxX": -1509.97998046875,
+          "minY": -11459.599609375,
+          "maxY": -10952.900390625,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 78,
+          "floor": 10,
+          "minX": -2040.1300048828125,
+          "maxX": -1589.8800048828125,
+          "minY": -11386.2998046875,
+          "maxY": -11086.2001953125,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 79,
+          "floor": 11,
+          "minX": -1825.530029296875,
+          "maxX": -1554.47998046875,
+          "minY": -11285.099609375,
+          "maxY": -11104.400390625,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 80,
+          "floor": 12,
+          "minX": -2182.52001953125,
+          "maxX": -1587.47998046875,
+          "minY": -11444.599609375,
+          "maxY": -11047.900390625,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 81,
+          "floor": 13,
+          "minX": -1963.02001953125,
+          "maxX": -1433.97998046875,
+          "minY": -11339.099609375,
+          "maxY": -10986.400390625,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 82,
+          "floor": 14,
+          "minX": -2032.6300048828125,
+          "maxX": -1787.3800048828125,
+          "minY": -11143.0,
+          "maxY": -10979.5,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 83,
+          "floor": 15,
+          "minX": -2025.0799560546875,
+          "maxX": -1813.9300537109375,
+          "minY": -11113.599609375,
+          "maxY": -10972.900390625,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 84,
+          "floor": 16,
+          "minX": -2020.1300048828125,
+          "maxX": -1918.8800048828125,
+          "minY": -11097.0,
+          "maxY": -11029.5,
+          "parentWorldMapID": 32
+        },
+        {
+          "dungeonMapID": 85,
+          "floor": 17,
+          "minX": -2155.1298828125,
+          "maxX": -1813.8800048828125,
+          "minY": -11102.0,
+          "maxY": -10874.5,
+          "parentWorldMapID": 32
+        }
+      ],
+      "directory": "Karazahn",
+      "instanceType": 2
+    },
+    "533": {
+      "mapID": 533,
+      "areaID": 3456,
+      "tileFile": "Naxxramas",
+      "worldMapAreaID": 535,
+      "areaBox": {
+        "left": -2520.0,
+        "right": -4377.0,
+        "top": 3597.0,
+        "bottom": 2360.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 86,
+          "floor": 1,
+          "minX": -3734.10009765625,
+          "maxX": -2640.27001953125,
+          "minY": 2886.610107421875,
+          "maxY": 3615.830078125,
+          "parentWorldMapID": 23
+        },
+        {
+          "dungeonMapID": 87,
+          "floor": 2,
+          "minX": -4234.10009765625,
+          "maxX": -3140.27001953125,
+          "minY": 2886.610107421875,
+          "maxY": 3615.830078125,
+          "parentWorldMapID": 23
+        },
+        {
+          "dungeonMapID": 88,
+          "floor": 3,
+          "minX": -3787.0,
+          "maxX": -2587.0,
+          "minY": 2336.0,
+          "maxY": 3136.0,
+          "parentWorldMapID": 23
+        },
+        {
+          "dungeonMapID": 89,
+          "floor": 4,
+          "minX": -4287.35009765625,
+          "maxX": -3087.02001953125,
+          "minY": 2336.610107421875,
+          "maxY": 3136.830078125,
+          "parentWorldMapID": 23
+        },
+        {
+          "dungeonMapID": 90,
+          "floor": 5,
+          "minX": -4400.08984375,
+          "maxX": -2330.280029296875,
+          "minY": 2311.340087890625,
+          "maxY": 3691.219970703125,
+          "parentWorldMapID": 23
+        },
+        {
+          "dungeonMapID": 91,
+          "floor": 6,
+          "minX": -5522.2900390625,
+          "maxX": -4866.35009765625,
+          "minY": 3379.25,
+          "maxY": 3816.5400390625,
+          "parentWorldMapID": 23
+        }
+      ],
+      "directory": "Stratholme Raid",
+      "instanceType": 2
+    },
+    "534": {
+      "mapID": 534,
+      "areaID": 3606,
+      "tileFile": "CoTMountHyjal",
+      "worldMapAreaID": 775,
+      "areaBox": {
+        "left": -1525.0,
+        "right": -4025.0,
+        "top": 6145.0,
+        "bottom": 4479.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "HyjalPast",
+      "instanceType": 2
+    },
+    "535": {
+      "mapID": 535,
+      "areaID": 3458,
+      "tileFile": "Naxxramas",
+      "worldMapAreaID": 537,
+      "areaBox": {
+        "left": -2520.0,
+        "right": -4377.0,
+        "top": 3597.0,
+        "bottom": 2360.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 173,
+          "floor": 1,
+          "minX": -3734.10009765625,
+          "maxX": -2640.27001953125,
+          "minY": 2886.610107421875,
+          "maxY": 3615.830078125,
+          "parentWorldMapID": 23
+        },
+        {
+          "dungeonMapID": 174,
+          "floor": 2,
+          "minX": -4234.10009765625,
+          "maxX": -3140.27001953125,
+          "minY": 2886.610107421875,
+          "maxY": 3615.830078125,
+          "parentWorldMapID": 23
+        },
+        {
+          "dungeonMapID": 175,
+          "floor": 3,
+          "minX": -3787.0,
+          "maxX": -2587.0,
+          "minY": 2336.0,
+          "maxY": 3136.0,
+          "parentWorldMapID": 23
+        },
+        {
+          "dungeonMapID": 176,
+          "floor": 4,
+          "minX": -4287.35009765625,
+          "maxX": -3087.02001953125,
+          "minY": 2336.610107421875,
+          "maxY": 3136.830078125,
+          "parentWorldMapID": 23
+        },
+        {
+          "dungeonMapID": 177,
+          "floor": 5,
+          "minX": -4400.08984375,
+          "maxX": -2330.280029296875,
+          "minY": 2311.340087890625,
+          "maxY": 3691.219970703125,
+          "parentWorldMapID": 23
+        },
+        {
+          "dungeonMapID": 178,
+          "floor": 6,
+          "minX": -5522.2900390625,
+          "maxX": -4866.35009765625,
+          "minY": 3379.25,
+          "maxY": 3816.5400390625,
+          "parentWorldMapID": 23
+        }
+      ],
+      "directory": "Stratholmeraidlk",
+      "instanceType": 2
+    },
+    "540": {
+      "mapID": 540,
+      "areaID": 3714,
+      "tileFile": "TheShatteredHalls",
+      "worldMapAreaID": 710,
+      "areaBox": {
+        "left": 631.0,
+        "right": -433.0,
+        "top": 617.0,
+        "bottom": -92.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 92,
+          "floor": 1,
+          "minX": -432.6390075683594,
+          "maxX": 631.1079711914062,
+          "minY": -91.74800109863281,
+          "maxY": 617.4169921875,
+          "parentWorldMapID": 465
+        }
+      ],
+      "directory": "HellfireMilitary",
+      "instanceType": 1
+    },
+    "542": {
+      "mapID": 542,
+      "areaID": 3713,
+      "tileFile": "TheBloodFurnace",
+      "worldMapAreaID": 725,
+      "areaBox": {
+        "left": 499.0,
+        "right": -505.0,
+        "top": 603.0,
+        "bottom": -66.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 93,
+          "floor": 1,
+          "minX": -504.5299987792969,
+          "maxX": 498.989013671875,
+          "minY": -65.87670135498047,
+          "maxY": 603.135986328125,
+          "parentWorldMapID": 465
+        }
+      ],
+      "directory": "HellfireDemon",
+      "instanceType": 1
+    },
+    "543": {
+      "mapID": 543,
+      "areaID": 3562,
+      "tileFile": "HellfireRamparts",
+      "worldMapAreaID": 797,
+      "areaBox": {
+        "left": 1989.0,
+        "right": 1295.0,
+        "top": -1029.0,
+        "bottom": -1492.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 465,
+      "floors": [
+        {
+          "dungeonMapID": 94,
+          "floor": 1,
+          "minX": 1294.719970703125,
+          "maxX": 1989.280029296875,
+          "minY": -1492.47998046875,
+          "maxY": -1029.43994140625,
+          "parentWorldMapID": 465
+        }
+      ],
+      "directory": "HellfireRampart",
+      "instanceType": 1
+    },
+    "544": {
+      "mapID": 544,
+      "areaID": 3836,
+      "tileFile": "MagtheridonsLair",
+      "worldMapAreaID": 779,
+      "areaBox": {
+        "left": 386.0,
+        "right": -171.0,
+        "top": 255.0,
+        "bottom": -115.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 95,
+          "floor": 1,
+          "minX": -170.5,
+          "maxX": 385.5,
+          "minY": -115.33300018310547,
+          "maxY": 255.33299255371094,
+          "parentWorldMapID": 465
+        }
+      ],
+      "directory": "HellfireRaid",
+      "instanceType": 2
+    },
+    "545": {
+      "mapID": 545,
+      "areaID": 3715,
+      "tileFile": "TheSteamvault",
+      "worldMapAreaID": 727,
+      "areaBox": {
+        "left": 160.0,
+        "right": -717.0,
+        "top": 159.0,
+        "bottom": -426.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 96,
+          "floor": 1,
+          "minX": -716.7420043945312,
+          "maxX": 160.02200317382812,
+          "minY": -425.9419860839844,
+          "maxY": 158.56700134277344,
+          "parentWorldMapID": 467
+        },
+        {
+          "dungeonMapID": 97,
+          "floor": 2,
+          "minX": -716.7420043945312,
+          "maxX": 160.02200317382812,
+          "minY": -425.9419860839844,
+          "maxY": 158.56700134277344,
+          "parentWorldMapID": 467
+        }
+      ],
+      "directory": "CoilfangPumping",
+      "instanceType": 1
+    },
+    "546": {
+      "mapID": 546,
+      "areaID": 3716,
+      "tileFile": "TheUnderbog",
+      "worldMapAreaID": 726,
+      "areaBox": {
+        "left": 241.0,
+        "right": -654.0,
+        "top": 424.0,
+        "bottom": -173.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 98,
+          "floor": 1,
+          "minX": -653.9429931640625,
+          "maxX": 240.9770050048828,
+          "minY": -172.8780059814453,
+          "maxY": 423.7349853515625,
+          "parentWorldMapID": 467
+        }
+      ],
+      "directory": "CoilfangMarsh",
+      "instanceType": 1
+    },
+    "547": {
+      "mapID": 547,
+      "areaID": 3717,
+      "tileFile": "TheSlavePens",
+      "worldMapAreaID": 728,
+      "areaBox": {
+        "left": 54.0,
+        "right": -836.0,
+        "top": 202.0,
+        "bottom": -392.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 99,
+          "floor": 1,
+          "minX": -836.1240234375,
+          "maxX": 53.93410110473633,
+          "minY": -391.6520080566406,
+          "maxY": 201.72000122070312,
+          "parentWorldMapID": 467
+        }
+      ],
+      "directory": "CoilfangDraenei",
+      "instanceType": 1
+    },
+    "548": {
+      "mapID": 548,
+      "areaID": 3607,
+      "tileFile": "CoilfangReservoir",
+      "worldMapAreaID": 780,
+      "areaBox": {
+        "left": 213.0,
+        "right": -1363.0,
+        "top": 650.0,
+        "bottom": -400.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 100,
+          "floor": 1,
+          "minX": -1362.5,
+          "maxX": 212.5030059814453,
+          "minY": -400.0,
+          "maxY": 650.0020141601562,
+          "parentWorldMapID": 467
+        }
+      ],
+      "directory": "CoilfangRaid",
+      "instanceType": 2
+    },
+    "550": {
+      "mapID": 550,
+      "areaID": 3845,
+      "tileFile": "TempestKeep",
+      "worldMapAreaID": 782,
+      "areaBox": {
+        "left": 788.0,
+        "right": -788.0,
+        "top": 950.0,
+        "bottom": -100.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 101,
+          "floor": 1,
+          "minX": -787.5,
+          "maxX": 787.5,
+          "minY": -100.0,
+          "maxY": 950.0,
+          "parentWorldMapID": 479
+        }
+      ],
+      "directory": "TempestKeepRaid",
+      "instanceType": 2
+    },
+    "552": {
+      "mapID": 552,
+      "areaID": 3848,
+      "tileFile": "TheArcatraz",
+      "worldMapAreaID": 731,
+      "areaBox": {
+        "left": 301.0,
+        "right": -423.0,
+        "top": 575.0,
+        "bottom": -75.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 102,
+          "floor": 1,
+          "minX": -405.1050109863281,
+          "maxX": 284.5790100097656,
+          "minY": -75.42430114746094,
+          "maxY": 384.364990234375,
+          "parentWorldMapID": 479
+        },
+        {
+          "dungeonMapID": 103,
+          "floor": 2,
+          "minX": -245.28700256347656,
+          "maxX": 300.760986328125,
+          "minY": 44.0,
+          "maxY": 408.0320129394531,
+          "parentWorldMapID": 479
+        },
+        {
+          "dungeonMapID": 104,
+          "floor": 3,
+          "minX": -422.6050109863281,
+          "maxX": 214.07899475097656,
+          "minY": 150.83299255371094,
+          "maxY": 575.2890014648438,
+          "parentWorldMapID": 479
+        }
+      ],
+      "directory": "TempestKeepArcane",
+      "instanceType": 1
+    },
+    "553": {
+      "mapID": 553,
+      "areaID": 3847,
+      "tileFile": "TheBotanica",
+      "worldMapAreaID": 729,
+      "areaBox": {
+        "left": 650.0,
+        "right": -108.0,
+        "top": 248.0,
+        "bottom": -257.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 105,
+          "floor": 1,
+          "minX": -107.64900207519531,
+          "maxX": 649.7529907226562,
+          "minY": -256.9100036621094,
+          "maxY": 248.02499389648438,
+          "parentWorldMapID": 479
+        }
+      ],
+      "directory": "TempestKeepAtrium",
+      "instanceType": 1
+    },
+    "554": {
+      "mapID": 554,
+      "areaID": 3849,
+      "tileFile": "TheMechanar",
+      "worldMapAreaID": 730,
+      "areaBox": {
+        "left": 334.0,
+        "right": -342.0,
+        "top": 413.0,
+        "bottom": -101.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 106,
+          "floor": 1,
+          "minX": -341.7799987792969,
+          "maxX": 334.4580078125,
+          "minY": -100.83899688720703,
+          "maxY": 349.9859924316406,
+          "parentWorldMapID": 479
+        },
+        {
+          "dungeonMapID": 107,
+          "floor": 2,
+          "minX": -341.7799987792969,
+          "maxX": 334.4580078125,
+          "minY": -37.839298248291016,
+          "maxY": 412.9859924316406,
+          "parentWorldMapID": 479
+        }
+      ],
+      "directory": "TempestKeepFactory",
+      "instanceType": 1
+    },
+    "555": {
+      "mapID": 555,
+      "areaID": 3789,
+      "tileFile": "ShadowLabyrinth",
+      "worldMapAreaID": 724,
+      "areaBox": {
+        "left": 185.0,
+        "right": -656.0,
+        "top": 63.0,
+        "bottom": -498.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 108,
+          "floor": 1,
+          "minX": -656.4429931640625,
+          "maxX": 185.07899475097656,
+          "minY": -498.2179870605469,
+          "maxY": 62.79690170288086,
+          "parentWorldMapID": 478
+        }
+      ],
+      "directory": "AuchindounShadow",
+      "instanceType": 1
+    },
+    "556": {
+      "mapID": 556,
+      "areaID": 3791,
+      "tileFile": "SethekkHalls",
+      "worldMapAreaID": 723,
+      "areaBox": {
+        "left": 516.0,
+        "right": -188.0,
+        "top": 174.0,
+        "bottom": -295.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 109,
+          "floor": 1,
+          "minX": -187.697998046875,
+          "maxX": 515.7969970703125,
+          "minY": -295.3429870605469,
+          "maxY": 173.6540069580078,
+          "parentWorldMapID": 478
+        },
+        {
+          "dungeonMapID": 110,
+          "floor": 2,
+          "minX": -187.697998046875,
+          "maxX": 515.7969970703125,
+          "minY": -295.3429870605469,
+          "maxY": 173.6540069580078,
+          "parentWorldMapID": 478
+        }
+      ],
+      "directory": "AuchindounDemon",
+      "instanceType": 1
+    },
+    "557": {
+      "mapID": 557,
+      "areaID": 3792,
+      "tileFile": "ManaTombs",
+      "worldMapAreaID": 732,
+      "areaBox": {
+        "left": 277.0,
+        "right": -546.0,
+        "top": 90.0,
+        "bottom": -459.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 111,
+          "floor": 1,
+          "minX": -546.3510131835938,
+          "maxX": 276.9339904785156,
+          "minY": -458.7860107421875,
+          "maxY": 90.07080078125,
+          "parentWorldMapID": 478
+        }
+      ],
+      "directory": "AuchindounEthereal",
+      "instanceType": 1
+    },
+    "558": {
+      "mapID": 558,
+      "areaID": 3790,
+      "tileFile": "AuchenaiCrypts",
+      "worldMapAreaID": 722,
+      "areaBox": {
+        "left": 328.0,
+        "right": -602.0,
+        "top": 355.0,
+        "bottom": -210.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 112,
+          "floor": 1,
+          "minX": -414.9830017089844,
+          "maxX": 327.5570068359375,
+          "minY": -140.0760040283203,
+          "maxY": 354.95098876953125,
+          "parentWorldMapID": 478
+        },
+        {
+          "dungeonMapID": 113,
+          "floor": 2,
+          "minX": -602.4829711914062,
+          "maxX": 215.0570068359375,
+          "minY": -210.0760040283203,
+          "maxY": 334.95098876953125,
+          "parentWorldMapID": 478
+        }
+      ],
+      "directory": "AuchindounDraenei",
+      "instanceType": 1
+    },
+    "560": {
+      "mapID": 560,
+      "areaID": 2367,
+      "tileFile": "CoTHillsbradFoothills",
+      "worldMapAreaID": 734,
+      "areaBox": {
+        "left": 1854.0,
+        "right": -477.0,
+        "top": 3127.0,
+        "bottom": 1572.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "HillsbradPast",
+      "instanceType": 1
+    },
+    "564": {
+      "mapID": 564,
+      "areaID": 3959,
+      "tileFile": "BlackTemple",
+      "worldMapAreaID": 796,
+      "areaBox": {
+        "left": 1150.0,
+        "right": 366.0,
+        "top": 949.0,
+        "bottom": 427.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 114,
+          "floor": 1,
+          "minX": 23.870500564575195,
+          "maxX": 1276.1199951171875,
+          "minY": -240.0,
+          "maxY": 594.8330078125,
+          "parentWorldMapID": 473
+        },
+        {
+          "dungeonMapID": 115,
+          "floor": 2,
+          "minX": -176.0,
+          "maxX": 799.0,
+          "minY": 380.0,
+          "maxY": 1030.0,
+          "parentWorldMapID": 473
+        },
+        {
+          "dungeonMapID": 116,
+          "floor": 3,
+          "minX": -191.0,
+          "maxX": 814.0,
+          "minY": 400.0,
+          "maxY": 1070.0,
+          "parentWorldMapID": 473
+        },
+        {
+          "dungeonMapID": 117,
+          "floor": 4,
+          "minX": 134.99899291992188,
+          "maxX": 575.0,
+          "minY": 343.3330078125,
+          "maxY": 636.6669921875,
+          "parentWorldMapID": 473
+        },
+        {
+          "dungeonMapID": 118,
+          "floor": 5,
+          "minX": -70.0,
+          "maxX": 600.0,
+          "minY": 664.1640014648438,
+          "maxY": 1110.8299560546875,
+          "parentWorldMapID": 473
+        },
+        {
+          "dungeonMapID": 119,
+          "floor": 6,
+          "minX": -67.5,
+          "maxX": 637.5,
+          "minY": 450.0,
+          "maxY": 920.0,
+          "parentWorldMapID": 473
+        },
+        {
+          "dungeonMapID": 120,
+          "floor": 7,
+          "minX": 137.5,
+          "maxX": 492.5,
+          "minY": 606.6669921875,
+          "maxY": 843.3330078125,
+          "parentWorldMapID": 473
+        }
+      ],
+      "directory": "BlackTemple",
+      "instanceType": 2
+    },
+    "565": {
+      "mapID": 565,
+      "areaID": 3923,
+      "tileFile": "GruulsLair",
+      "worldMapAreaID": 776,
+      "areaBox": {
+        "left": 475.0,
+        "right": -50.0,
+        "top": 338.0,
+        "bottom": -13.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 121,
+          "floor": 1,
+          "minX": -50.0,
+          "maxX": 475.0,
+          "minY": -12.5,
+          "maxY": 337.5,
+          "parentWorldMapID": 475
+        }
+      ],
+      "directory": "GruulsLair",
+      "instanceType": 2
+    },
+    "566": {
+      "mapID": 566,
+      "areaID": 3820,
+      "tileFile": "NetherstormArena",
+      "worldMapAreaID": 482,
+      "areaBox": {
+        "left": 2660.0,
+        "right": 389.0,
+        "top": 2918.0,
+        "bottom": 1404.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "NetherstormBG",
+      "instanceType": 3
+    },
+    "568": {
+      "mapID": 568,
+      "areaID": 3805,
+      "tileFile": "ZulAman",
+      "worldMapAreaID": 781,
+      "areaBox": {
+        "left": 1852.0,
+        "right": 583.0,
+        "top": 568.0,
+        "bottom": -277.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 463,
+      "floors": [],
+      "directory": "ZulAman",
+      "instanceType": 2
+    },
+    "571": {
+      "mapID": 571,
+      "areaID": 0,
+      "tileFile": "Northrend",
+      "worldMapAreaID": 485,
+      "areaBox": {
+        "left": 9762.5,
+        "right": -9077.080078125,
+        "top": 11106.2001953125,
+        "bottom": -1454.1700439453125
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 122,
+          "floor": 1,
+          "minX": 221.9219970703125,
+          "maxX": 1052.72998046875,
+          "minY": 5544.81982421875,
+          "maxY": 6040.18017578125,
+          "parentWorldMapID": 510
+        },
+        {
+          "dungeonMapID": 123,
+          "floor": 2,
+          "minX": 336.0090026855469,
+          "maxX": 933.5759887695312,
+          "minY": 5602.2099609375,
+          "maxY": 5973.35986328125,
+          "parentWorldMapID": 510
+        }
+      ],
+      "directory": "Northrend",
+      "instanceType": 0
+    },
+    "574": {
+      "mapID": 574,
+      "areaID": 206,
+      "tileFile": "UtgardeKeep",
+      "worldMapAreaID": 523,
+      "areaBox": {
+        "left": 0.0,
+        "right": 0.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 124,
+          "floor": 1,
+          "minX": -310.406005859375,
+          "maxX": 424.17498779296875,
+          "minY": 25.666500091552734,
+          "maxY": 515.3880004882812,
+          "parentWorldMapID": 491
+        },
+        {
+          "dungeonMapID": 125,
+          "floor": 2,
+          "minX": -238.156005859375,
+          "maxX": 242.9250030517578,
+          "minY": -16.33329963684082,
+          "maxY": 304.3869934082031,
+          "parentWorldMapID": 491
+        },
+        {
+          "dungeonMapID": 126,
+          "floor": 3,
+          "minX": -510.906005859375,
+          "maxX": 225.6750030517578,
+          "minY": -75.33350372314453,
+          "maxY": 415.72100830078125,
+          "parentWorldMapID": 491
+        }
+      ],
+      "directory": "Valgarde70",
+      "instanceType": 1
+    },
+    "575": {
+      "mapID": 575,
+      "areaID": 1196,
+      "tileFile": "UtgardePinnacle",
+      "worldMapAreaID": 524,
+      "areaBox": {
+        "left": 3275.0,
+        "right": -3275.0,
+        "top": 2166.0,
+        "bottom": -2200.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 127,
+          "floor": 1,
+          "minX": -697.5590209960938,
+          "maxX": -148.6230010986328,
+          "minY": 186.9199981689453,
+          "maxY": 552.8770141601562,
+          "parentWorldMapID": 491
+        },
+        {
+          "dungeonMapID": 128,
+          "floor": 2,
+          "minX": -747.5579833984375,
+          "maxX": 8.621959686279297,
+          "minY": 157.83900451660156,
+          "maxY": 661.9580078125,
+          "parentWorldMapID": 491
+        }
+      ],
+      "directory": "UtgardePinnacle",
+      "instanceType": 1
+    },
+    "576": {
+      "mapID": 576,
+      "areaID": 4265,
+      "tileFile": "TheNexus",
+      "worldMapAreaID": 520,
+      "areaBox": {
+        "left": 0.0,
+        "right": 0.0,
+        "top": 0.0,
+        "bottom": 0.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 129,
+          "floor": 1,
+          "minX": -708.0689697265625,
+          "maxX": 393.2120056152344,
+          "minY": 64.07550048828125,
+          "maxY": 798.2630004882812,
+          "parentWorldMapID": 486
+        }
+      ],
+      "directory": "Nexus70",
+      "instanceType": 1
+    },
+    "578": {
+      "mapID": 578,
+      "areaID": 4228,
+      "tileFile": "Nexus80",
+      "worldMapAreaID": 528,
+      "areaBox": {
+        "left": 2337.0,
+        "right": -262.0,
+        "top": 1956.0,
+        "bottom": 222.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 130,
+          "floor": 1,
+          "minX": 787.2529907226562,
+          "maxX": 1301.9599609375,
+          "minY": 877.0709838867188,
+          "maxY": 1220.2099609375,
+          "parentWorldMapID": 486
+        },
+        {
+          "dungeonMapID": 131,
+          "floor": 2,
+          "minX": 712.2529907226562,
+          "maxX": 1376.9599609375,
+          "minY": 927.0709838867188,
+          "maxY": 1370.2099609375,
+          "parentWorldMapID": 486
+        },
+        {
+          "dungeonMapID": 132,
+          "floor": 3,
+          "minX": 787.2529907226562,
+          "maxX": 1301.9599609375,
+          "minY": 927.0709838867188,
+          "maxY": 1270.2099609375,
+          "parentWorldMapID": 486
+        },
+        {
+          "dungeonMapID": 133,
+          "floor": 4,
+          "minX": 897.2589721679688,
+          "maxX": 1191.9599609375,
+          "minY": 990.406005859375,
+          "maxY": 1186.8699951171875,
+          "parentWorldMapID": 486
+        }
+      ],
+      "directory": "Nexus80",
+      "instanceType": 1
+    },
+    "580": {
+      "mapID": 580,
+      "areaID": 4075,
+      "tileFile": "SunwellPlateau",
+      "worldMapAreaID": 789,
+      "areaBox": {
+        "left": 1206.0,
+        "right": 300.0,
+        "top": 2012.0,
+        "bottom": 1408.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 134,
+          "floor": 1,
+          "minX": 377.5,
+          "maxX": 842.5,
+          "minY": 1580.0,
+          "maxY": 1890.0,
+          "parentWorldMapID": 499
+        }
+      ],
+      "directory": "SunwellPlateau",
+      "instanceType": 2
+    },
+    "585": {
+      "mapID": 585,
+      "areaID": 4131,
+      "tileFile": "MagistersTerrace",
+      "worldMapAreaID": 798,
+      "areaBox": {
+        "left": 226.0,
+        "right": -304.0,
+        "top": 326.0,
+        "bottom": -28.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 499,
+      "floors": [
+        {
+          "dungeonMapID": 135,
+          "floor": 1,
+          "minX": -304.22601318359375,
+          "maxX": 226.10800170898438,
+          "minY": -27.795799255371094,
+          "maxY": 325.760009765625,
+          "parentWorldMapID": 499
+        },
+        {
+          "dungeonMapID": 136,
+          "floor": 2,
+          "minX": -304.22601318359375,
+          "maxX": 226.10800170898438,
+          "minY": -27.795900344848633,
+          "maxY": 325.760009765625,
+          "parentWorldMapID": 499
+        }
+      ],
+      "directory": "Sunwell5ManFix",
+      "instanceType": 1
+    },
+    "595": {
+      "mapID": 595,
+      "areaID": 4100,
+      "tileFile": "CoTStratholme",
+      "worldMapAreaID": 521,
+      "areaBox": {
+        "left": 2152.0,
+        "right": 327.0,
+        "top": 2297.0,
+        "bottom": 1081.0
+      },
+      "defaultDungeonFloor": -1,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 137,
+          "floor": 1,
+          "minX": 731.0599975585938,
+          "maxX": 1891.760009765625,
+          "minY": 1856.3599853515625,
+          "maxY": 2641.9599609375,
+          "parentWorldMapID": 161
+        }
+      ],
+      "directory": "StratholmeCOT",
+      "instanceType": 1
+    },
+    "599": {
+      "mapID": 599,
+      "areaID": 4264,
+      "tileFile": "Ulduar77",
+      "worldMapAreaID": 526,
+      "areaBox": {
+        "left": 2766.0,
+        "right": -633.0,
+        "top": 2200.0,
+        "bottom": -66.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 138,
+          "floor": 1,
+          "minX": 206.32400512695312,
+          "maxX": 1126.5,
+          "minY": 762.4439697265625,
+          "maxY": 1375.9100341796875,
+          "parentWorldMapID": 495
+        }
+      ],
+      "directory": "Ulduar70",
+      "instanceType": 1
+    },
+    "600": {
+      "mapID": 600,
+      "areaID": 4196,
+      "tileFile": "DrakTharonKeep",
+      "worldMapAreaID": 534,
+      "areaBox": {
+        "left": -377.0,
+        "right": -1004.0,
+        "top": -168.0,
+        "bottom": -587.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 139,
+          "floor": 1,
+          "minX": -927.010009765625,
+          "maxX": -307.0690002441406,
+          "minY": -595.8599853515625,
+          "maxY": -182.5659942626953,
+          "parentWorldMapID": 496
+        },
+        {
+          "dungeonMapID": 140,
+          "floor": 2,
+          "minX": -1002.010009765625,
+          "maxX": -382.0690002441406,
+          "minY": -595.8599853515625,
+          "maxY": -182.5659942626953,
+          "parentWorldMapID": 496
+        }
+      ],
+      "directory": "DrakTheronKeep",
+      "instanceType": 1
+    },
+    "601": {
+      "mapID": 601,
+      "areaID": 4277,
+      "tileFile": "AzjolNerub",
+      "worldMapAreaID": 533,
+      "areaBox": {
+        "left": 1020.0,
+        "right": -52.0,
+        "top": 872.0,
+        "bottom": 158.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 141,
+          "floor": 1,
+          "minX": -30.0,
+          "maxX": 722.9739990234375,
+          "minY": 292.1419982910156,
+          "maxY": 794.125,
+          "parentWorldMapID": 488
+        },
+        {
+          "dungeonMapID": 142,
+          "floor": 2,
+          "minX": 400.0,
+          "maxX": 692.9739990234375,
+          "minY": 452.4739990234375,
+          "maxY": 645.7899780273438,
+          "parentWorldMapID": 488
+        },
+        {
+          "dungeonMapID": 143,
+          "floor": 3,
+          "minX": 462.125,
+          "maxX": 829.625,
+          "minY": 395.0,
+          "maxY": 640.0,
+          "parentWorldMapID": 488
+        }
+      ],
+      "directory": "Azjol_Uppercity",
+      "instanceType": 1
+    },
+    "602": {
+      "mapID": 602,
+      "areaID": 4272,
+      "tileFile": "HallsofLightning",
+      "worldMapAreaID": 525,
+      "areaBox": {
+        "left": 2500.0,
+        "right": -899.0,
+        "top": 2200.0,
+        "bottom": -66.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 144,
+          "floor": 1,
+          "minX": -282.54901123046875,
+          "maxX": 283.6860046386719,
+          "minY": 1157.050048828125,
+          "maxY": 1534.5400390625,
+          "parentWorldMapID": 495
+        },
+        {
+          "dungeonMapID": 145,
+          "floor": 2,
+          "minX": -538.5490112304688,
+          "maxX": 169.68800354003906,
+          "minY": 959.719970703125,
+          "maxY": 1431.8800048828125,
+          "parentWorldMapID": 495
+        }
+      ],
+      "directory": "Ulduar80",
+      "instanceType": 1
+    },
+    "603": {
+      "mapID": 603,
+      "areaID": 4273,
+      "tileFile": "Ulduar",
+      "worldMapAreaID": 529,
+      "areaBox": {
+        "left": 1583.0,
+        "right": -1704.0,
+        "top": 1168.0,
+        "bottom": -1022.0
+      },
+      "defaultDungeonFloor": -1,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 146,
+          "floor": 1,
+          "minX": -445.2349853515625,
+          "maxX": 224.21600341796875,
+          "minY": 1392.7099609375,
+          "maxY": 1839.010009765625,
+          "parentWorldMapID": 495
+        },
+        {
+          "dungeonMapID": 147,
+          "floor": 2,
+          "minX": -674.739990234375,
+          "maxX": 653.7210083007812,
+          "minY": 1679.0400390625,
+          "maxY": 2564.679931640625,
+          "parentWorldMapID": 495
+        },
+        {
+          "dungeonMapID": 148,
+          "floor": 3,
+          "minX": -315.75,
+          "maxX": 594.75,
+          "minY": 1612.0,
+          "maxY": 2219.0,
+          "parentWorldMapID": 495
+        },
+        {
+          "dungeonMapID": 149,
+          "floor": 4,
+          "minX": 1684.989990234375,
+          "maxX": 3254.449951171875,
+          "minY": 2122.530029296875,
+          "maxY": 3168.830078125,
+          "parentWorldMapID": 495
+        },
+        {
+          "dungeonMapID": 150,
+          "floor": 5,
+          "minX": -310.0140075683594,
+          "maxX": 309.4549865722656,
+          "minY": 1834.77001953125,
+          "maxY": 2247.75,
+          "parentWorldMapID": 495
+        }
+      ],
+      "directory": "UlduarRaid",
+      "instanceType": 2
+    },
+    "604": {
+      "mapID": 604,
+      "areaID": 4416,
+      "tileFile": "Gundrak",
+      "worldMapAreaID": 530,
+      "areaBox": {
+        "left": 1168.0,
+        "right": 255.0,
+        "top": 2054.0,
+        "bottom": 1473.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 151,
+          "floor": 1,
+          "minX": 255.0,
+          "maxX": 1168.0,
+          "minY": 1473.0,
+          "maxY": 2054.0,
+          "parentWorldMapID": 496
+        }
+      ],
+      "directory": "GunDrak",
+      "instanceType": 1
+    },
+    "607": {
+      "mapID": 607,
+      "areaID": 4384,
+      "tileFile": "StrandoftheAncients",
+      "worldMapAreaID": 512,
+      "areaBox": {
+        "left": 787.0,
+        "right": -956.0,
+        "top": 1883.0,
+        "bottom": 720.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "NorthrendBG",
+      "instanceType": 3
+    },
+    "608": {
+      "mapID": 608,
+      "areaID": 4415,
+      "tileFile": "VioletHold",
+      "worldMapAreaID": 536,
+      "areaBox": {
+        "left": 983.0,
+        "right": 600.0,
+        "top": 2006.0,
+        "bottom": 1750.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 152,
+          "floor": 1,
+          "minX": 665.3469848632812,
+          "maxX": 921.5759887695312,
+          "minY": 1813.3499755859375,
+          "maxY": 1984.1700439453125,
+          "parentWorldMapID": 504
+        }
+      ],
+      "directory": "DalaranPrison",
+      "instanceType": 1
+    },
+    "609": {
+      "mapID": 609,
+      "areaID": 4298,
+      "tileFile": "ScarletEnclave",
+      "worldMapAreaID": 502,
+      "areaBox": {
+        "left": -4047.0,
+        "right": -7210.0,
+        "top": 3087.0,
+        "bottom": 979.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "DeathKnightStart",
+      "instanceType": 0
+    },
+    "615": {
+      "mapID": 615,
+      "areaID": 4493,
+      "tileFile": "TheObsidianSanctum",
+      "worldMapAreaID": 531,
+      "areaBox": {
+        "left": 1133.0,
+        "right": -29.0,
+        "top": 3616.0,
+        "bottom": 2841.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 488,
+      "floors": [],
+      "directory": "ChamberOfAspectsBlack",
+      "instanceType": 2
+    },
+    "616": {
+      "mapID": 616,
+      "areaID": 4500,
+      "tileFile": "TheEyeofEternity",
+      "worldMapAreaID": 527,
+      "areaBox": {
+        "left": 2766.0,
+        "right": -633.0,
+        "top": 2200.0,
+        "bottom": -66.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 153,
+          "floor": 1,
+          "minX": 1036.7099609375,
+          "maxX": 1466.780029296875,
+          "minY": 611.1279907226562,
+          "maxY": 897.8410034179688,
+          "parentWorldMapID": 486
+        }
+      ],
+      "directory": "NexusRaid",
+      "instanceType": 2
+    },
+    "619": {
+      "mapID": 619,
+      "areaID": 4494,
+      "tileFile": "Ahnkahet",
+      "worldMapAreaID": 522,
+      "areaBox": {
+        "left": -233.0,
+        "right": -1206.0,
+        "top": 849.0,
+        "bottom": 202.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 154,
+          "floor": 1,
+          "minX": -1205.719970703125,
+          "maxX": -233.302001953125,
+          "minY": 200.40499877929688,
+          "maxY": 848.6840209960938,
+          "parentWorldMapID": 488
+        }
+      ],
+      "directory": "Azjol_LowerCity",
+      "instanceType": 1
+    },
+    "624": {
+      "mapID": 624,
+      "areaID": 4603,
+      "tileFile": "VaultofArchavon",
+      "worldMapAreaID": 532,
+      "areaBox": {
+        "left": 1033.0,
+        "right": -1566.0,
+        "top": 600.0,
+        "bottom": -1133.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 155,
+          "floor": 1,
+          "minX": -812.5189819335938,
+          "maxX": 585.7360229492188,
+          "minY": -634.0800170898438,
+          "maxY": 298.0899963378906,
+          "parentWorldMapID": 501
+        }
+      ],
+      "directory": "WintergraspRaid",
+      "instanceType": 2
+    },
+    "628": {
+      "mapID": 628,
+      "areaID": 4710,
+      "tileFile": "IsleofConquest",
+      "worldMapAreaID": 540,
+      "areaBox": {
+        "left": 525.0,
+        "right": -2125.0,
+        "top": 1708.0,
+        "bottom": -58.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "IsleofConquest",
+      "instanceType": 3
+    },
+    "631": {
+      "mapID": 631,
+      "areaID": 4812,
+      "tileFile": "IcecrownCitadel",
+      "worldMapAreaID": 604,
+      "areaBox": {
+        "left": 6366.0,
+        "right": -5833.0,
+        "top": 5933.0,
+        "bottom": -2200.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 156,
+          "floor": 1,
+          "minX": 1384.3299560546875,
+          "maxX": 2739.800048828125,
+          "minY": -764.8400268554688,
+          "maxY": 138.8070068359375,
+          "parentWorldMapID": 492
+        },
+        {
+          "dungeonMapID": 157,
+          "floor": 2,
+          "minX": 1631.0,
+          "maxX": 2698.0,
+          "minY": -754.6669921875,
+          "maxY": -43.33330154418945,
+          "parentWorldMapID": 492
+        },
+        {
+          "dungeonMapID": 158,
+          "floor": 3,
+          "minX": 2116.330078125,
+          "maxX": 2311.800048828125,
+          "minY": -580.31298828125,
+          "maxY": -449.99798583984375,
+          "parentWorldMapID": 492
+        },
+        {
+          "dungeonMapID": 159,
+          "floor": 4,
+          "minX": 1993.5699462890625,
+          "maxX": 2767.280029296875,
+          "minY": 4012.409912109375,
+          "maxY": 4528.22021484375,
+          "parentWorldMapID": 492
+        },
+        {
+          "dungeonMapID": 160,
+          "floor": 5,
+          "minX": 2216.06005859375,
+          "maxX": 3364.800048828125,
+          "minY": 4002.409912109375,
+          "maxY": 4768.22998046875,
+          "parentWorldMapID": 492
+        },
+        {
+          "dungeonMapID": 161,
+          "floor": 6,
+          "minX": 2586.570068359375,
+          "maxX": 2960.280029296875,
+          "minY": 4455.75,
+          "maxY": 4704.8798828125,
+          "parentWorldMapID": 492
+        },
+        {
+          "dungeonMapID": 162,
+          "floor": 7,
+          "minX": -2271.550048828125,
+          "maxX": -1978.2900390625,
+          "minY": 410.2919921875,
+          "maxY": 605.7990112304688,
+          "parentWorldMapID": 492
+        },
+        {
+          "dungeonMapID": 163,
+          "floor": 8,
+          "minX": -2648.260009765625,
+          "maxX": -2400.330078125,
+          "minY": 414.1080017089844,
+          "maxY": 579.39599609375,
+          "parentWorldMapID": 492
+        }
+      ],
+      "directory": "IcecrownCitadel",
+      "instanceType": 2
+    },
+    "632": {
+      "mapID": 632,
+      "areaID": 4809,
+      "tileFile": "TheForgeofSouls",
+      "worldMapAreaID": 601,
+      "areaBox": {
+        "left": 7033.0,
+        "right": -4366.0,
+        "top": 6466.0,
+        "bottom": -1133.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 164,
+          "floor": 1,
+          "minX": 1686.030029296875,
+          "maxX": 3134.1298828125,
+          "minY": 4814.52978515625,
+          "maxY": 5779.93017578125,
+          "parentWorldMapID": 492
+        }
+      ],
+      "directory": "IcecrownCitadel5Man",
+      "instanceType": 1
+    },
+    "645": {
+      "mapID": 645,
+      "areaID": 4926,
+      "tileFile": "BlackrockCaverns",
+      "worldMapAreaID": 753,
+      "areaBox": {
+        "left": 2100.0,
+        "right": -499.989990234375,
+        "top": 1133.3299560546875,
+        "bottom": -600.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 165,
+          "floor": 1,
+          "minX": 438.9320068359375,
+          "maxX": 1459.43994140625,
+          "minY": 6.666669845581055,
+          "maxY": 686.3389892578125,
+          "parentWorldMapID": 29
+        },
+        {
+          "dungeonMapID": 166,
+          "floor": 2,
+          "minX": 239.9320068359375,
+          "maxX": 1259.43994140625,
+          "minY": 6.666669845581055,
+          "maxY": 686.3389892578125,
+          "parentWorldMapID": 29
+        }
+      ],
+      "directory": "BlackRockSpire_4_0",
+      "instanceType": 1
+    },
+    "649": {
+      "mapID": 649,
+      "areaID": 4722,
+      "tileFile": "TheArgentColiseum",
+      "worldMapAreaID": 543,
+      "areaBox": {
+        "left": 2100.0,
+        "right": -500.0,
+        "top": 2200.0,
+        "bottom": 466.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 167,
+          "floor": 1,
+          "minX": -41.25519943237305,
+          "maxX": 328.7309875488281,
+          "minY": 446.3609924316406,
+          "maxY": 693.0189819335938,
+          "parentWorldMapID": 492
+        },
+        {
+          "dungeonMapID": 168,
+          "floor": 1,
+          "minX": -41.25519943237305,
+          "maxX": 328.7309875488281,
+          "minY": 446.3609924316406,
+          "maxY": 693.0189819335938,
+          "parentWorldMapID": 492
+        },
+        {
+          "dungeonMapID": 169,
+          "floor": 2,
+          "minX": -211.25999450683594,
+          "maxX": 528.7360229492188,
+          "minY": 433.02398681640625,
+          "maxY": 926.35400390625,
+          "parentWorldMapID": 492
+        }
+      ],
+      "directory": "ArgentTournamentRaid",
+      "instanceType": 2
+    },
+    "650": {
+      "mapID": 650,
+      "areaID": 4723,
+      "tileFile": "TheArgentColiseum",
+      "worldMapAreaID": 542,
+      "areaBox": {
+        "left": 2100.0,
+        "right": -500.0,
+        "top": 2200.0,
+        "bottom": 466.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 170,
+          "floor": 1,
+          "minX": 437.42401123046875,
+          "maxX": 807.4099731445312,
+          "minY": 629.447998046875,
+          "maxY": 876.1060180664062,
+          "parentWorldMapID": 492
+        },
+        {
+          "dungeonMapID": 171,
+          "floor": 1,
+          "minX": 437.42401123046875,
+          "maxX": 807.4099731445312,
+          "minY": 629.447998046875,
+          "maxY": 876.1060180664062,
+          "parentWorldMapID": 492
+        }
+      ],
+      "directory": "ArgentTournamentDungeon",
+      "instanceType": 1
+    },
+    "658": {
+      "mapID": 658,
+      "areaID": 4813,
+      "tileFile": "PitofSaron",
+      "worldMapAreaID": 602,
+      "areaBox": {
+        "left": 839.0,
+        "right": -693.0,
+        "top": 1256.0,
+        "bottom": 233.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 492,
+      "floors": [],
+      "directory": "QuarryofTears",
+      "instanceType": 1
+    },
+    "666": {
+      "mapID": 666,
+      "areaID": 209,
+      "tileFile": "ShadowfangKeep",
+      "worldMapAreaID": 666,
+      "areaBox": {
+        "left": 4500.0,
+        "right": 300.0,
+        "top": 1133.0,
+        "bottom": -1666.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 1000,
+          "floor": 1,
+          "minX": 2003.77001953125,
+          "maxX": 2356.199951171875,
+          "minY": -319.88299560546875,
+          "maxY": -84.92960357666016,
+          "parentWorldMapID": 21
+        },
+        {
+          "dungeonMapID": 1001,
+          "floor": 2,
+          "minX": 2147.56005859375,
+          "maxX": 2359.97998046875,
+          "minY": -303.2149963378906,
+          "maxY": -161.5970001220703,
+          "parentWorldMapID": 21
+        },
+        {
+          "dungeonMapID": 1002,
+          "floor": 3,
+          "minX": 2103.77001953125,
+          "maxX": 2256.199951171875,
+          "minY": -193.21600341796875,
+          "maxY": -91.59609985351562,
+          "parentWorldMapID": 21
+        },
+        {
+          "dungeonMapID": 1003,
+          "floor": 4,
+          "minX": 2103.77001953125,
+          "maxX": 2256.199951171875,
+          "minY": -193.21499633789062,
+          "maxY": -91.59030151367188,
+          "parentWorldMapID": 21
+        },
+        {
+          "dungeonMapID": 1004,
+          "floor": 5,
+          "minX": 2103.77001953125,
+          "maxX": 2256.199951171875,
+          "minY": -193.21499633789062,
+          "maxY": -91.59030151367188,
+          "parentWorldMapID": 21
+        },
+        {
+          "dungeonMapID": 1005,
+          "floor": 6,
+          "minX": 2080.77001953125,
+          "maxX": 2279.199951171875,
+          "minY": -182.54600524902344,
+          "maxY": -50.2593994140625,
+          "parentWorldMapID": 21
+        },
+        {
+          "dungeonMapID": 1006,
+          "floor": 7,
+          "minX": 2023.77001953125,
+          "maxX": 2296.199951171875,
+          "minY": -278.21600341796875,
+          "maxY": -96.59609985351562,
+          "parentWorldMapID": 21
+        }
+      ],
+      "directory": "Shadowfang",
+      "instanceType": 1
+    },
+    "668": {
+      "mapID": 668,
+      "areaID": 4820,
+      "tileFile": "HallsofReflection",
+      "worldMapAreaID": 603,
+      "areaBox": {
+        "left": 7033.0,
+        "right": -5966.0,
+        "top": 6466.0,
+        "bottom": -2200.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 172,
+          "floor": 1,
+          "minX": 1469.989990234375,
+          "maxX": 2349.010009765625,
+          "minY": 5126.990234375,
+          "maxY": 5713.009765625,
+          "parentWorldMapID": 492
+        }
+      ],
+      "directory": "HallsOfReflection",
+      "instanceType": 1
+    },
+    "724": {
+      "mapID": 724,
+      "areaID": 4987,
+      "tileFile": "TheRubySanctum",
+      "worldMapAreaID": 609,
+      "areaBox": {
+        "left": 902.0,
+        "right": 150.0,
+        "top": 3429.0,
+        "bottom": 2927.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "ChamberofAspectsRed",
+      "instanceType": 2
+    },
+    "726": {
+      "mapID": 726,
+      "areaID": 5031,
+      "tileFile": "TwinPeaks",
+      "worldMapAreaID": 626,
+      "areaBox": {
+        "left": 931.0,
+        "right": -283.0,
+        "top": 2266.0,
+        "bottom": 1456.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "CataclysmCTF",
+      "instanceType": 3
+    },
+    "729": {
+      "mapID": 729,
+      "areaID": -1,
+      "tileFile": "osrs4",
+      "worldMapAreaID": 2005,
+      "areaBox": {
+        "left": 15099.900390625,
+        "right": 8678.6796875,
+        "top": 17066.69921875,
+        "bottom": 12786.7998046875
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": []
+    },
+    "806": {
+      "mapID": 806,
+      "areaID": 4999,
+      "tileFile": "TwistingNetherMap",
+      "worldMapAreaID": 625,
+      "areaBox": {
+        "left": 1064.0,
+        "right": -1014.0,
+        "top": 857.0,
+        "bottom": -527.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "TwistingNether",
+      "instanceType": 0
+    },
+    "808": {
+      "mapID": 808,
+      "areaID": 5004,
+      "tileFile": "TwistingNetherMap",
+      "worldMapAreaID": 1141,
+      "areaBox": {
+        "left": 1064.0,
+        "right": -1014.0,
+        "top": 857.0,
+        "bottom": -527.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "TwistingNetherPVP",
+      "instanceType": 0
+    },
+    "820": {
+      "mapID": 820,
+      "areaID": 10104,
+      "tileFile": "TirisFortress",
+      "worldMapAreaID": 2007,
+      "areaBox": {
+        "left": -5363.18994140625,
+        "right": -5826.0,
+        "top": -6504.330078125,
+        "bottom": -6815.39990234375
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 571,
+      "floors": [
+        {
+          "dungeonMapID": 2000,
+          "floor": 1,
+          "minX": -5826.919921875,
+          "maxX": -5361.97998046875,
+          "minY": -6816.4599609375,
+          "maxY": -6507.2900390625,
+          "parentWorldMapID": 571
+        },
+        {
+          "dungeonMapID": 2001,
+          "floor": 2,
+          "minX": -5826.919921875,
+          "maxX": -5361.97998046875,
+          "minY": -6816.4599609375,
+          "maxY": -6507.2900390625,
+          "parentWorldMapID": 571
+        },
+        {
+          "dungeonMapID": 2002,
+          "floor": 3,
+          "minX": -5826.919921875,
+          "maxX": -5361.97998046875,
+          "minY": -6816.4599609375,
+          "maxY": -6507.2900390625,
+          "parentWorldMapID": 571
+        }
+      ],
+      "directory": "TirisFortress",
+      "instanceType": 1
+    },
+    "821": {
+      "mapID": 821,
+      "areaID": -1,
+      "tileFile": "zamasucombat",
+      "worldMapAreaID": 2008,
+      "areaBox": {
+        "left": 2593.5,
+        "right": 2408.5,
+        "top": -49.624698638916016,
+        "bottom": -172.95799255371094
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "TinketechShowdown",
+      "instanceType": 1
+    },
+    "859": {
+      "mapID": 859,
+      "areaID": 1977,
+      "tileFile": "ZulGurub",
+      "worldMapAreaID": 793,
+      "areaBox": {
+        "left": -612.0,
+        "right": -2733.0,
+        "top": -11225.0,
+        "bottom": -12639.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 37,
+      "floors": [],
+      "directory": "Troll raid",
+      "instanceType": 0
+    },
+    "880": {
+      "mapID": 880,
+      "areaID": 10235,
+      "tileFile": "Silithusboss",
+      "worldMapAreaID": 2034,
+      "areaBox": {
+        "left": 2537.0,
+        "right": -945.0,
+        "top": -5958.0,
+        "bottom": -8281.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "setisbossmap",
+      "instanceType": 2
+    },
+    "881": {
+      "mapID": 881,
+      "areaID": 10236,
+      "tileFile": "Aszharaboss",
+      "worldMapAreaID": 2035,
+      "areaBox": {
+        "left": -3277.0,
+        "right": -8347.0,
+        "top": 5341.0,
+        "bottom": 1960.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "azuregosbossmap",
+      "instanceType": 2
+    },
+    "882": {
+      "mapID": 882,
+      "areaID": 10237,
+      "tileFile": "kazzakbossmap",
+      "worldMapAreaID": 2036,
+      "areaBox": {
+        "left": -2011.2900390625,
+        "right": -2613.679931640625,
+        "top": -12413.5,
+        "bottom": -12815.099609375
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "kazzakbossmap",
+      "instanceType": 2
+    },
+    "883": {
+      "mapID": 883,
+      "areaID": 10238,
+      "tileFile": "soggothbossmap",
+      "worldMapAreaID": 2037,
+      "areaBox": {
+        "left": 480.0409851074219,
+        "right": 20.86910057067871,
+        "top": 4683.66015625,
+        "bottom": 4377.5400390625
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "soggothbossmap",
+      "instanceType": 2
+    },
+    "884": {
+      "mapID": 884,
+      "areaID": 10240,
+      "tileFile": "DepthbreakerHollow",
+      "worldMapAreaID": 2038,
+      "areaBox": {
+        "left": 2795.239990234375,
+        "right": 2051.949951171875,
+        "top": -4408.89013671875,
+        "bottom": -4904.419921875
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Feralasbossmap",
+      "instanceType": 0
+    },
+    "885": {
+      "mapID": 885,
+      "areaID": 10271,
+      "tileFile": "Emerissbossmap",
+      "worldMapAreaID": 2040,
+      "areaBox": {
+        "left": 1700.0,
+        "right": -4066.0,
+        "top": 4672.0,
+        "bottom": 829.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Emerissbossmap",
+      "instanceType": 2
+    },
+    "886": {
+      "mapID": 886,
+      "areaID": 10272,
+      "tileFile": "Taerarbossmap",
+      "worldMapAreaID": 2041,
+      "areaBox": {
+        "left": 5441.0,
+        "right": -1508.0,
+        "top": -2366.0,
+        "bottom": -7000.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Taerarbossmap",
+      "instanceType": 2
+    },
+    "887": {
+      "mapID": 887,
+      "areaID": 10273,
+      "tileFile": "Ysondrebossmap",
+      "worldMapAreaID": 2042,
+      "areaBox": {
+        "left": -1575.0,
+        "right": -5425.0,
+        "top": 1466.0,
+        "bottom": -1100.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Ysondrebossmap",
+      "instanceType": 2
+    },
+    "888": {
+      "mapID": 888,
+      "areaID": 10274,
+      "tileFile": "Lethonbossmap",
+      "worldMapAreaID": 2043,
+      "areaBox": {
+        "left": 833.0,
+        "right": -1866.0,
+        "top": -9716.0,
+        "bottom": -11516.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Lethonbossmap",
+      "instanceType": 2
+    },
+    "889": {
+      "mapID": 889,
+      "areaID": 10280,
+      "tileFile": "Frostgiantnbossmap",
+      "worldMapAreaID": 2060,
+      "areaBox": {
+        "left": -4595.56005859375,
+        "right": -5113.97021484375,
+        "top": 4909.7099609375,
+        "bottom": 4564.10986328125
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Frostgiantnbossmap",
+      "instanceType": 2
+    },
+    "890": {
+      "mapID": 890,
+      "areaID": 10281,
+      "tileFile": "EasternPlaguelandsboss",
+      "worldMapAreaID": 2061,
+      "areaBox": {
+        "left": -2287.0,
+        "right": -6318.0,
+        "top": 3704.0,
+        "bottom": 1016.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Atalzulbossmap",
+      "instanceType": 2
+    },
+    "891": {
+      "mapID": 891,
+      "areaID": 10239,
+      "tileFile": "DepthbreakerHollow",
+      "worldMapAreaID": 3039,
+      "areaBox": {
+        "left": 2795.239990234375,
+        "right": 2051.949951171875,
+        "top": -4408.89013671875,
+        "bottom": -4904.419921875
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Kaldrosbossmap",
+      "instanceType": 2
+    },
+    "900": {
+      "mapID": 900,
+      "areaID": 0,
+      "tileFile": "Northrend2",
+      "worldMapAreaID": 2022,
+      "areaBox": {
+        "left": 9762.5,
+        "right": -9077.080078125,
+        "top": 11106.2001953125,
+        "bottom": -1454.1700439453125
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Shialannd",
+      "instanceType": 0
+    },
+    "903": {
+      "mapID": 903,
+      "areaID": -1,
+      "tileFile": "StormwindSewers",
+      "worldMapAreaID": 2004,
+      "areaBox": {
+        "left": 4846.10986328125,
+        "right": 4199.97998046875,
+        "top": -533.280029296875,
+        "bottom": -966.6699829101562
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 2505,
+          "floor": 1,
+          "minX": 4199.97998046875,
+          "maxX": 4846.10986328125,
+          "minY": -966.6699829101562,
+          "maxY": -533.280029296875,
+          "parentWorldMapID": 301
+        },
+        {
+          "dungeonMapID": 2506,
+          "floor": 2,
+          "minX": 4199.97998046875,
+          "maxX": 4846.10986328125,
+          "minY": -966.6699829101562,
+          "maxY": -533.280029296875,
+          "parentWorldMapID": 301
+        },
+        {
+          "dungeonMapID": 2507,
+          "floor": 3,
+          "minX": 4466.66015625,
+          "maxX": 4816.3798828125,
+          "minY": -800.0,
+          "maxY": -566.6300048828125,
+          "parentWorldMapID": 301
+        }
+      ],
+      "directory": "stormwindsewer",
+      "instanceType": 0
+    },
+    "904": {
+      "mapID": 904,
+      "areaID": 10012,
+      "tileFile": "OrgrimmarDepths",
+      "worldMapAreaID": 2020,
+      "areaBox": {
+        "left": -4066.669921875,
+        "right": -4966.669921875,
+        "top": 2300.0,
+        "bottom": 1700.0
+      },
+      "defaultDungeonFloor": -1,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 2500,
+          "floor": 1,
+          "minX": -5333.669921875,
+          "maxX": -4535.669921875,
+          "minY": 1500.6700439453125,
+          "maxY": 2032.6700439453125,
+          "parentWorldMapID": 321
+        },
+        {
+          "dungeonMapID": 2501,
+          "floor": 2,
+          "minX": -5333.669921875,
+          "maxX": -4535.669921875,
+          "minY": 1500.6700439453125,
+          "maxY": 2032.6700439453125,
+          "parentWorldMapID": 321
+        },
+        {
+          "dungeonMapID": 2502,
+          "floor": 3,
+          "minX": -5333.669921875,
+          "maxX": -4535.669921875,
+          "minY": 1500.6700439453125,
+          "maxY": 2032.6700439453125,
+          "parentWorldMapID": 321
+        },
+        {
+          "dungeonMapID": 2503,
+          "floor": 4,
+          "minX": -5242.31005859375,
+          "maxX": -4594.75,
+          "minY": 1600.0,
+          "maxY": 2033.3299560546875,
+          "parentWorldMapID": 321
+        },
+        {
+          "dungeonMapID": 2504,
+          "floor": 5,
+          "minX": -5400.0,
+          "maxX": -4530.0,
+          "minY": 1766.6600341796875,
+          "maxY": 2345.0,
+          "parentWorldMapID": 321
+        }
+      ],
+      "directory": "orgrimmardepths",
+      "instanceType": 0
+    },
+    "907": {
+      "mapID": 907,
+      "areaID": 10163,
+      "tileFile": "FadingIsland",
+      "worldMapAreaID": 2065,
+      "areaBox": {
+        "left": 165.62100219726562,
+        "right": -7142.31005859375,
+        "top": 4183.81005859375,
+        "bottom": -688.1430053710938
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "AzzarArchipelago",
+      "instanceType": 0
+    },
+    "908": {
+      "mapID": 908,
+      "areaID": 10023,
+      "tileFile": "AlvaEncounter",
+      "worldMapAreaID": 2001,
+      "areaBox": {
+        "left": 2566.0,
+        "right": 1666.0,
+        "top": 2433.0,
+        "bottom": 1833.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Alvaencounter",
+      "instanceType": 1
+    },
+    "909": {
+      "mapID": 909,
+      "areaID": 10078,
+      "tileFile": "AzzarFaire",
+      "worldMapAreaID": 2009,
+      "areaBox": {
+        "left": -10166.7001953125,
+        "right": -13864.7001953125,
+        "top": -466.6820068359375,
+        "bottom": -2935.6201171875
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Azzarfaire",
+      "instanceType": 0
+    },
+    "920": {
+      "mapID": 920,
+      "areaID": 10007,
+      "tileFile": "SpellDevMap",
+      "worldMapAreaID": 2000,
+      "areaBox": {
+        "left": 533.3319702148438,
+        "right": -3466.669921875,
+        "top": 11733.2998046875,
+        "bottom": 9066.6298828125
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "SpellDevMap",
+      "instanceType": 0
+    },
+    "929": {
+      "mapID": 929,
+      "areaID": 10156,
+      "tileFile": "AdtDevMap",
+      "worldMapAreaID": 2064,
+      "areaBox": {
+        "left": 533.3319702148438,
+        "right": -3466.669921875,
+        "top": 11733.2998046875,
+        "bottom": 9066.6298828125
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "AdtDevMap",
+      "instanceType": 0
+    },
+    "930": {
+      "mapID": 930,
+      "areaID": 0,
+      "tileFile": "Underworld",
+      "worldMapAreaID": 2068,
+      "areaBox": {
+        "left": -6200.0,
+        "right": -8033.330078125,
+        "top": 9800.0,
+        "bottom": 8600.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Underworld",
+      "instanceType": 0
+    },
+    "933": {
+      "mapID": 933,
+      "areaID": 10060,
+      "tileFile": "dreamlikedungeon",
+      "worldMapAreaID": 2072,
+      "areaBox": {
+        "left": -2465.0400390625,
+        "right": -3726.81005859375,
+        "top": -11209.2998046875,
+        "bottom": -12050.5
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "dreamlikedungeon",
+      "instanceType": 1
+    },
+    "936": {
+      "mapID": 936,
+      "areaID": 10218,
+      "tileFile": "DeepInquisitorialVaults",
+      "worldMapAreaID": 2032,
+      "areaBox": {
+        "left": -5333.330078125,
+        "right": -6333.330078125,
+        "top": -6333.330078125,
+        "bottom": -7000.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 2028,
+      "floors": [],
+      "directory": "InquisitorialDungeon",
+      "instanceType": 1
+    },
+    "937": {
+      "mapID": 937,
+      "areaID": 10219,
+      "tileFile": "VoodooRoadToDeOtherSide",
+      "worldMapAreaID": 2033,
+      "areaBox": {
+        "left": 466.6600036621094,
+        "right": -733.3300170898438,
+        "top": 666.6599731445312,
+        "bottom": -133.3300018310547
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 2029,
+      "floors": [],
+      "directory": "SinisterLairDungeon",
+      "instanceType": 1
+    },
+    "960": {
+      "mapID": 960,
+      "areaID": 0,
+      "tileFile": "Minigamesmap",
+      "worldMapAreaID": 2044,
+      "areaBox": {
+        "left": -4388.39990234375,
+        "right": -5397.02978515625,
+        "top": -1092.47998046875,
+        "bottom": -1764.8900146484375
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "MiniGames",
+      "instanceType": 1
+    },
+    "967": {
+      "mapID": 967,
+      "areaID": 10022,
+      "tileFile": "dreamlikedream",
+      "worldMapAreaID": 2071,
+      "areaBox": {
+        "left": -1892.1300048828125,
+        "right": -4115.990234375,
+        "top": -10840.599609375,
+        "bottom": -12323.2001953125
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "dreamlikedream",
+      "instanceType": 0
+    },
+    "971": {
+      "mapID": 971,
+      "areaID": -1,
+      "tileFile": "StormwindSewersShade",
+      "worldMapAreaID": 2026,
+      "areaBox": {
+        "left": 4846.10986328125,
+        "right": 4199.97998046875,
+        "top": -533.280029296875,
+        "bottom": -966.6699829101562
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "stormwindsewerroom",
+      "instanceType": 1
+    },
+    "972": {
+      "mapID": 972,
+      "areaID": 10162,
+      "tileFile": "OrgrimmarDepthsUnderroof",
+      "worldMapAreaID": 2025,
+      "areaBox": {
+        "left": -4535.669921875,
+        "right": -5333.669921875,
+        "top": 2032.6700439453125,
+        "bottom": 1500.6700439453125
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "orgrimmardepthsunderroof",
+      "instanceType": 1
+    },
+    "987": {
+      "mapID": 987,
+      "areaID": 3277,
+      "tileFile": "warsonggulchupdate",
+      "worldMapAreaID": 2002,
+      "areaBox": {
+        "left": 2041.0,
+        "right": 895.0,
+        "top": 1627.0,
+        "bottom": 862.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "PVPZone03HD",
+      "instanceType": 3
+    },
+    "988": {
+      "mapID": 988,
+      "areaID": 10043,
+      "tileFile": "arathibasinupdate",
+      "worldMapAreaID": 2003,
+      "areaBox": {
+        "left": 1858.0,
+        "right": 102.0,
+        "top": 1508.0,
+        "bottom": 337.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "PVPZone04HD",
+      "instanceType": 3
+    },
+    "998": {
+      "mapID": 998,
+      "areaID": 6051,
+      "tileFile": "TempleofKotmogu",
+      "worldMapAreaID": 856,
+      "areaBox": {
+        "left": 1743.75,
+        "right": 904.1669921875,
+        "top": 2083.330078125,
+        "bottom": 1522.9200439453125
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "ValleyOfPower",
+      "instanceType": 3
+    },
+    "1010": {
+      "mapID": 1010,
+      "areaID": 15010,
+      "tileFile": "CoaSpellVisuals",
+      "worldMapAreaID": 3040,
+      "areaBox": {
+        "left": 533.3319702148438,
+        "right": -3466.669921875,
+        "top": 11733.2998046875,
+        "bottom": 9066.6298828125
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "CoaSpellVisuals",
+      "instanceType": 0
+    },
+    "1178": {
+      "mapID": 1178,
+      "areaID": 11220,
+      "tileFile": "Stormwind",
+      "worldMapAreaID": 800,
+      "areaBox": {
+        "left": 1722.0,
+        "right": -14.0,
+        "top": -7995.0,
+        "bottom": -9154.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": []
+    },
+    "1181": {
+      "mapID": 1181,
+      "areaID": 11221,
+      "tileFile": "Ogrimmar",
+      "worldMapAreaID": 801,
+      "areaBox": {
+        "left": -3680.0,
+        "right": -5083.0,
+        "top": 2273.0,
+        "bottom": 1338.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": []
+    },
+    "1280": {
+      "mapID": 1280,
+      "areaID": 7107,
+      "tileFile": "HillsbradFoothillsBG",
+      "worldMapAreaID": 820,
+      "areaBox": {
+        "left": 1995.0,
+        "right": -172.0,
+        "top": 2977.0,
+        "bottom": 1531.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "TrollRaid2",
+      "instanceType": 3
+    },
+    "1383": {
+      "mapID": 1383,
+      "areaID": 5034,
+      "tileFile": "Uldum",
+      "worldMapAreaID": 720,
+      "areaBox": {
+        "left": 2441.669921875,
+        "right": -3752.080078125,
+        "top": -8029.169921875,
+        "bottom": -12158.2998046875
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "UldumNew",
+      "instanceType": 0
+    },
+    "1681": {
+      "mapID": 1681,
+      "areaID": 3358,
+      "tileFile": "ArathiBasinWinter",
+      "worldMapAreaID": 1139,
+      "areaBox": {
+        "left": 1858.3299560546875,
+        "right": 102.08399963378906,
+        "top": 1508.3299560546875,
+        "bottom": 337.5
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "ABWinter",
+      "instanceType": 3
+    },
+    "1682": {
+      "mapID": 1682,
+      "areaID": 3277,
+      "tileFile": "WarsongGulchWinter",
+      "worldMapAreaID": 1140,
+      "areaBox": {
+        "left": 2041.0,
+        "right": 895.0,
+        "top": 1627.0,
+        "bottom": 862.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "WSGWinter",
+      "instanceType": 3
+    },
+    "1760": {
+      "mapID": 1760,
+      "areaID": -1,
+      "tileFile": "RedridgeMountainsManastorm",
+      "worldMapAreaID": 1000,
+      "areaBox": {
+        "left": -1570.0,
+        "right": -3741.0,
+        "top": -8575.0,
+        "bottom": -10022.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "RedridgeMountains",
+      "instanceType": 1
+    },
+    "1761": {
+      "mapID": 1761,
+      "areaID": -1,
+      "tileFile": "AlteracMountainsManastorm",
+      "worldMapAreaID": 1001,
+      "areaBox": {
+        "left": 783.0,
+        "right": -2016.0,
+        "top": 1500.0,
+        "bottom": -366.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "AlteracMountains",
+      "instanceType": 1
+    },
+    "1762": {
+      "mapID": 1762,
+      "areaID": -1,
+      "tileFile": "BlastedLandsManastorm",
+      "worldMapAreaID": 1002,
+      "areaBox": {
+        "left": -1241.0,
+        "right": -4591.0,
+        "top": -10566.0,
+        "bottom": -12800.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "BlastedLands",
+      "instanceType": 1
+    },
+    "1763": {
+      "mapID": 1763,
+      "areaID": -1,
+      "tileFile": "EasternPlaguelandsManastorm",
+      "worldMapAreaID": 1003,
+      "areaBox": {
+        "left": -2287.0,
+        "right": -6318.0,
+        "top": 3704.0,
+        "bottom": 1016.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "EasternPlaguelands",
+      "instanceType": 1
+    },
+    "1764": {
+      "mapID": 1764,
+      "areaID": -1,
+      "tileFile": "FeralasManastorm",
+      "worldMapAreaID": 1004,
+      "areaBox": {
+        "left": 5441.0,
+        "right": -1508.0,
+        "top": -2366.0,
+        "bottom": -7000.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Feralas",
+      "instanceType": 1
+    },
+    "1765": {
+      "mapID": 1765,
+      "areaID": -1,
+      "tileFile": "HillsbradFoothillsManastorm",
+      "worldMapAreaID": 1005,
+      "areaBox": {
+        "left": 1066.0,
+        "right": -2133.0,
+        "top": 400.0,
+        "bottom": -1733.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "HillsbradFoothills",
+      "instanceType": 1
+    },
+    "1766": {
+      "mapID": 1766,
+      "areaID": -1,
+      "tileFile": "SilverpineForestManastorm",
+      "worldMapAreaID": 1006,
+      "areaBox": {
+        "left": 3450.0,
+        "right": -750.0,
+        "top": 1666.0,
+        "bottom": -1133.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "SilverpineForest",
+      "instanceType": 1
+    },
+    "1767": {
+      "mapID": 1767,
+      "areaID": -1,
+      "tileFile": "TanarisManastorm",
+      "worldMapAreaID": 1007,
+      "areaBox": {
+        "left": -218.0,
+        "right": -7118.0,
+        "top": -5875.0,
+        "bottom": -10475.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Tanaris",
+      "instanceType": 1
+    },
+    "1768": {
+      "mapID": 1768,
+      "areaID": -1,
+      "tileFile": "WesternPlaguelandsManastorm",
+      "worldMapAreaID": 1008,
+      "areaBox": {
+        "left": 416.0,
+        "right": -3883.0,
+        "top": 3366.0,
+        "bottom": 500.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "WesternPlaguelands",
+      "instanceType": 1
+    },
+    "1769": {
+      "mapID": 1769,
+      "areaID": -1,
+      "tileFile": "WestfallManastorm",
+      "worldMapAreaID": 1009,
+      "areaBox": {
+        "left": 3016.0,
+        "right": -483.0,
+        "top": -9400.0,
+        "bottom": -11733.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Westfall",
+      "instanceType": 1
+    },
+    "1770": {
+      "mapID": 1770,
+      "areaID": -1,
+      "tileFile": "WinterSpringManastorm",
+      "worldMapAreaID": 1010,
+      "areaBox": {
+        "left": -316.0,
+        "right": -7416.0,
+        "top": 8533.0,
+        "bottom": 3800.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Winterspring",
+      "instanceType": 1
+    },
+    "1781": {
+      "mapID": 1781,
+      "areaID": 11430,
+      "tileFile": "ForgottenMine",
+      "worldMapAreaID": 1144,
+      "areaBox": {
+        "left": 1733.3399658203125,
+        "right": 1233.3299560546875,
+        "top": 2000.0999755859375,
+        "bottom": 1666.6700439453125
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "ForgottenMine",
+      "instanceType": 1
+    },
+    "1787": {
+      "mapID": 1787,
+      "areaID": -1,
+      "tileFile": "tolbarad",
+      "worldMapAreaID": 2011,
+      "areaBox": {
+        "left": 2010.4200439453125,
+        "right": -4.166669845581055,
+        "top": -560.4169921875,
+        "bottom": -1904.1700439453125
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "BaradinHoldArena",
+      "instanceType": 1
+    },
+    "1794": {
+      "mapID": 1794,
+      "areaID": -1,
+      "tileFile": "TwistingNetherMap",
+      "worldMapAreaID": 2013,
+      "areaBox": {
+        "left": 1064.0,
+        "right": -1014.0,
+        "top": 857.0,
+        "bottom": -527.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "TwistingNether",
+      "instanceType": 1
+    },
+    "1795": {
+      "mapID": 1795,
+      "areaID": -1,
+      "tileFile": "BloodmystIsleManastorm",
+      "worldMapAreaID": 2014,
+      "areaBox": {
+        "left": -10075.0,
+        "right": -13337.0,
+        "top": -758.0,
+        "bottom": -2933.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "AzuremystIsle",
+      "instanceType": 1
+    },
+    "1799": {
+      "mapID": 1799,
+      "areaID": -1,
+      "tileFile": "GhostlandsManastorm",
+      "worldMapAreaID": 2015,
+      "areaBox": {
+        "left": -5283.0,
+        "right": -8583.0,
+        "top": 8266.0,
+        "bottom": 6066.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Ghostlands",
+      "instanceType": 1
+    },
+    "1800": {
+      "mapID": 1800,
+      "areaID": -1,
+      "tileFile": "HellfirePeninsulaManastorm",
+      "worldMapAreaID": 2016,
+      "areaBox": {
+        "left": 5539.0,
+        "right": 375.0,
+        "top": 1481.0,
+        "bottom": -1962.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "HellfirePeninsula",
+      "instanceType": 1
+    },
+    "1801": {
+      "mapID": 1801,
+      "areaID": -1,
+      "tileFile": "NagrandManastorm",
+      "worldMapAreaID": 2017,
+      "areaBox": {
+        "left": 10295.0,
+        "right": 4770.0,
+        "top": 41.0,
+        "bottom": -3641.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Nagrand",
+      "instanceType": 1
+    },
+    "1804": {
+      "mapID": 1804,
+      "areaID": -1,
+      "tileFile": "ShadowmoonValleyManastorm",
+      "worldMapAreaID": 2018,
+      "areaBox": {
+        "left": 4225.0,
+        "right": -1275.0,
+        "top": -1947.0,
+        "bottom": -5614.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "ShadowmoonValley",
+      "instanceType": 1
+    },
+    "1806": {
+      "mapID": 1806,
+      "areaID": -1,
+      "tileFile": "ZangarmarshManastorm",
+      "worldMapAreaID": 2019,
+      "areaBox": {
+        "left": 9475.0,
+        "right": 4447.0,
+        "top": 1935.0,
+        "bottom": -1416.0
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "Zangarmarsh",
+      "instanceType": 1
+    },
+    "1807": {
+      "mapID": 1807,
+      "areaID": -1,
+      "tileFile": "KarazhanCrypts",
+      "worldMapAreaID": 2012,
+      "areaBox": {
+        "left": -1933.3399658203125,
+        "right": -1266.72998046875,
+        "top": -11366.7001953125,
+        "bottom": -10927.5
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [
+        {
+          "dungeonMapID": 3000,
+          "floor": 1,
+          "minX": -1968.6199951171875,
+          "maxX": -1305.97998046875,
+          "minY": -11294.5,
+          "maxY": -10845.2998046875,
+          "parentWorldMapID": 0
+        },
+        {
+          "dungeonMapID": 3001,
+          "floor": 2,
+          "minX": -1933.3399658203125,
+          "maxX": -1266.72998046875,
+          "minY": -11366.7001953125,
+          "maxY": -10927.5,
+          "parentWorldMapID": 0
+        },
+        {
+          "dungeonMapID": 3002,
+          "floor": 3,
+          "minX": -1899.9300537109375,
+          "maxX": -1595.77001953125,
+          "minY": -11299.7998046875,
+          "maxY": -11096.5,
+          "parentWorldMapID": 0
+        },
+        {
+          "dungeonMapID": 3003,
+          "floor": 4,
+          "minX": -2033.3299560546875,
+          "maxX": -1366.530029296875,
+          "minY": -11366.7001953125,
+          "maxY": -10929.0,
+          "parentWorldMapID": 0
+        }
+      ],
+      "directory": "Karazhan_Crypts",
+      "instanceType": 1
+    },
+    "1908": {
+      "mapID": 1908,
+      "areaID": 15011,
+      "tileFile": "Zanzasisle",
+      "worldMapAreaID": 3041,
+      "areaBox": {
+        "left": 1793.18994140625,
+        "right": 874.822021484375,
+        "top": 2999.989990234375,
+        "bottom": 2387.75
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "ppl5_troll_bg",
+      "instanceType": 3
+    },
+    "1911": {
+      "mapID": 1911,
+      "areaID": 15015,
+      "tileFile": "Akhen City Ruins",
+      "worldMapAreaID": 3042,
+      "areaBox": {
+        "left": 4473.1201171875,
+        "right": 2187.179931640625,
+        "top": 3911.699951171875,
+        "bottom": 1344.239990234375
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 0,
+      "floors": [],
+      "directory": "ppl5_uldum_bg",
+      "instanceType": 3
+    },
+    "1912": {
+      "mapID": 1912,
+      "areaID": -1,
+      "tileFile": "TorWatha",
+      "worldMapAreaID": 2024,
+      "areaBox": {
+        "left": -8300.0,
+        "right": -9100.0,
+        "top": 8800.0,
+        "bottom": 8266.66015625
+      },
+      "defaultDungeonFloor": 0,
+      "parentWorldMapID": 463,
+      "floors": [],
+      "directory": "TorWatha",
+      "instanceType": 1
+    }
+  }
+}
