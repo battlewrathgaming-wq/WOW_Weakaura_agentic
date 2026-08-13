@@ -23,7 +23,7 @@ local W = {
     x = 100, y = 200, z = 30, mapID = 389,
     zone = "Ragefire Chasm", sub = "The Molten Span",
     combat = false, instance = false, ghost = false, dead = false, bosses = {},
-    inst = { name = "Ragefire Chasm", di = 2, dn = "Heroic" },
+    inst = { name = "Ragefire Chasm", di = 2, dn = "Heroic" }, floor = 3,
     clock = 1700000000, gt = 500.0,
 }
 
@@ -47,6 +47,7 @@ function UnitExists(u) return W.bosses[u] and 1 or nil end
 AscensionUI = nil   -- the driver; tests install and remove it deliberately
 function GetCurrentMapContinent() return 1 end
 function GetCurrentMapZone() return 17 end
+function GetCurrentMapDungeonLevel() return W.floor end
 function SetMapToCurrentZone() end
 WorldMapFrame = { IsShown = function() return false end }
 
@@ -104,12 +105,31 @@ assert(run.outside ~= nil, "DR-7: armed outdoors, so the outside point is captur
 assert(run.arrival == nil, "DR-7: arrival is not faked from the outdoor point")
 assert(run.character == "Gravekeeper", "the run records who ran it")
 
+-- ★ DR-33: the FLOOR. 42 of the 43 multi-floor dungeons stack their floors over
+-- the same footprint, so this cannot be recovered from x/y afterwards - a run
+-- captured without it is PERMANENTLY unplaceable on those maps.
+assert(run.outside.floor == 3, "DR-33 FAILED: no dungeon floor captured on the point")
+
 -- DR-4: BOTH clocks on every point, and this is the irreversible one - a run
 -- captured without wall-clock time can never be joined to the disk combat log.
 assert(run.outside.t == 1700000000, "DR-4: wall-clock time() stamped")
 assert(run.outside.gt ~= nil, "DR-4: monotonic GetTime() stamped")
 assert(run.outside.mapC == 1 and run.outside.mapZ == 17,
        "the map fraction carries the map it belongs to")
+
+-- ★ The floor rides the SAME trust boundary as the fraction. GetCurrentMapDungeonLevel
+-- reports what the MAP is showing, and that only equals the player's floor after
+-- SetMapToCurrentZone - which we skip while the user has the map open. So when the
+-- fraction is untrustworthy the floor is too, and BOTH go nil rather than one of
+-- them landing a plausible wrong number.
+local realGPMP = GetPlayerMapPosition
+GetPlayerMapPosition = function() return 0, 0 end        -- map showing another zone
+local pt = Store.Point()
+assert(pt.mapX == nil, "no fraction when the map shows elsewhere")
+assert(pt.floor == nil,
+       "DR-33 FAILED: an UNTRUSTED floor was recorded - worse than none, it looks real")
+assert(pt.x ~= nil, "world coords are unaffected - they are always the truth")
+GetPlayerMapPosition = realGPMP
 
 -- Arming twice is refused rather than silently opening a second run.
 assert(Capture.Arm("second") == nil, "arming while armed is refused")

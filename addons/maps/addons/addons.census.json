@@ -1,5 +1,5 @@
 {
- "_fingerprint": "c7da2bbba53f",
+ "_fingerprint": "b28e7cadf9dd",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1861,87 +1861,87 @@
      {
       "name": "Store.Point",
       "kind": "function",
-      "line": 95
+      "line": 111
      },
      {
       "name": "Store.Open",
       "kind": "function",
-      "line": 122
+      "line": 142
      },
      {
       "name": "Store.Get",
       "kind": "function",
-      "line": 141
+      "line": 161
      },
      {
       "name": "Store.Close",
       "kind": "function",
-      "line": 146
+      "line": 166
      },
      {
       "name": "Store.Delete",
       "kind": "function",
-      "line": 152
+      "line": 172
      },
      {
       "name": "Store.Ids",
       "kind": "function",
-      "line": 157
+      "line": 177
      },
      {
       "name": "Store.AddLeg",
       "kind": "function",
-      "line": 192
+      "line": 212
      },
      {
       "name": "Store.SetOutside",
       "kind": "function",
-      "line": 200
+      "line": 220
      },
      {
       "name": "Store.SetArrival",
       "kind": "function",
-      "line": 206
+      "line": 226
      },
      {
       "name": "Store.SetInstance",
       "kind": "function",
-      "line": 219
+      "line": 239
      },
      {
       "name": "Store.AddBoss",
       "kind": "function",
-      "line": 233
+      "line": 253
      },
      {
       "name": "Store.Counts",
       "kind": "function",
-      "line": 245
+      "line": 265
      },
      {
       "name": "Store.GetUI",
       "kind": "function",
-      "line": 257
+      "line": 277
      },
      {
       "name": "Store.SetUI",
       "kind": "function",
-      "line": 266
+      "line": 286
      },
      {
       "name": "Store.AddMarker",
       "kind": "function",
-      "line": 270
+      "line": 290
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 270
+      "line": 290
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 270
+      "line": 290
      }
     ],
     "onupdate": 0,

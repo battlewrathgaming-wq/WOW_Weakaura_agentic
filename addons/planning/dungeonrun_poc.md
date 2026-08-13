@@ -1050,3 +1050,35 @@ run tells you what the happy path looks like; the fixture tells you what the UI 
 *Mechanically this needed nothing new: `pull.py`'s already-landed check spans **both**
 destinations, so a testing-stage source cannot re-land a pinned record as a duplicate. Verified
 after pinning — `dungeonrun: already: 2 entr(ies), none new`.*
+
+---
+
+## 15. DR-33 — the FLOOR, and the third irreversible field (2026-08-13)
+
+**§7 said there were two things the POC must not get wrong. There were three.**
+
+Drawing a marker needs `mapID` → tile art → **the right floor's box** → the M3 transform. We had
+everything but the floor — and the world-map fact basis showed it is **not recoverable**:
+
+| Multi-floor maps (43) | Floor derivable from world x/y? |
+|---|---|
+| **6** — one identical box on every floor | **impossible** |
+| **36** — overlapping boxes | **ambiguous** in the overlap |
+| **1** — Scarlet Monastery, disjoint wings | yes |
+
+**42 of 43 stack their floors over the same footprint**, which is what makes them multi-floor at
+all. And **`z` cannot rescue it**: `DungeonMap.dbc` carries no z bounds, so inferring floor from
+height would be inventing a rule for a mapping we have never seen — the thing ruled out in §14.
+
+**We only got away with it because both runs were Ragefire, which has one floor.** The exemplars
+are fine by luck, not design. Worth recording so a future reader does not assume floor was
+considered and rejected.
+
+**★ The floor rides the SAME TRUST BOUNDARY as the map fraction, deliberately.**
+`GetCurrentMapDungeonLevel()` reports what the **map is showing**, which equals the player's
+floor only after `SetMapToCurrentZone` — and we refuse to call that while the user has the map
+open (we do not fight their view). So an untrusted fraction and an untrusted floor arrive
+together, and **both go nil rather than one of them landing a plausible wrong number.**
+
+Three mutations bite: the field's absence, an untrusted floor being recorded, and reading it
+before the snap instead of after.

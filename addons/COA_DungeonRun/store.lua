@@ -21,7 +21,7 @@
 --     },
 --   }
 --
---   <point>  = x,y,z,mapID · mapX,mapY,mapC,mapZ · zone,subZone · t,gt
+--   <point>  = x,y,z,mapID · mapX,mapY,mapC,mapZ · floor · zone,subZone · t,gt
 --   <marker> = <point> + kind="start"|"end" + n=<pull index> [+ dead=true]
 --
 -- Laws in force here (addons/planning/dungeonrun_poc.md):
@@ -74,16 +74,32 @@ local function db() return COA_DungeonRunDB end
 -- world map is showing a DIFFERENT zone. With the map closed we snap it
 -- invisibly; with it open we do not fight the user's view and store nil.
 -- World coords are the truth either way - the fraction is for drawing.
+-- ★ DR-33: the FLOOR comes back from here too, and it is captured under the SAME
+-- trust boundary as the fraction, deliberately.
+--
+-- `GetCurrentMapDungeonLevel()` reports the level the WORLD MAP IS SHOWING, not
+-- the one the player stands on. Those agree only after SetMapToCurrentZone, which
+-- we call when the map is closed and refuse to call when it is open (we do not
+-- fight the user's view). So an untrusted fraction and an untrusted floor arrive
+-- together, and both are recorded as nil rather than as a plausible wrong number.
+--
+-- WHY IT MUST BE CAPTURED AT ALL: 42 of the 43 multi-floor dungeons stack their
+-- floors over the same footprint - 6 share one identical box across every floor,
+-- 36 overlap - so **the floor cannot be recovered from world x/y afterwards**
+-- (addons/maps/worldmap/README.md M6). And `z` cannot rescue it either:
+-- DungeonMap.dbc carries no z bounds, so inferring floor from height would be
+-- inventing a rule for a mapping we have never seen.
 local function mapFraction()
     local shown = WorldMapFrame and WorldMapFrame:IsShown()
     if not shown and SetMapToCurrentZone then
         pcall(SetMapToCurrentZone)
     end
     local mx, my = GetPlayerMapPosition("player")
-    if not mx or (mx == 0 and my == 0) then return nil, nil, nil, nil end
+    if not mx or (mx == 0 and my == 0) then return nil, nil, nil, nil, nil end
     local c = GetCurrentMapContinent and GetCurrentMapContinent() or nil
     local z = GetCurrentMapZone and GetCurrentMapZone() or nil
-    return mx, my, c, z
+    local floor = GetCurrentMapDungeonLevel and GetCurrentMapDungeonLevel() or nil
+    return mx, my, c, z, floor
 end
 
 -- DR-4: BOTH clocks, and they are not redundant.
@@ -97,10 +113,14 @@ function Store.Point()
     local x, y, z, mapID = GetCurrentPlayerPosition()
     if not x then return nil end
 
-    local mx, my, mc, mz = mapFraction()
+    local mx, my, mc, mz, floor = mapFraction()
     return {
         x = x, y = y, z = z, mapID = mapID,
         mapX = mx, mapY = my, mapC = mc, mapZ = mz,
+        -- DR-33. Without it a multi-floor run is PERMANENTLY unplaceable, which
+        -- puts it in the same class as the wall-clock stamp and the travel legs:
+        -- addable later only for runs not yet captured.
+        floor = floor,
         zone = GetRealZoneText() or "Unknown",
         subZone = GetSubZoneText() or "",
         t = time(), gt = GetTime(),
