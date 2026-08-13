@@ -757,7 +757,7 @@ deliberately and the failure message checked:
 | Mutation | The assertion that caught it |
 |---|---|
 | drop the `UnitAffectingCombat` re-read | *DR-1 FAILED: a regen edge was trusted without re-reading UnitAffectingCombat* |
-| drop the in-combat gate | *DR-3 FAILED: sampled a leg while IN COMBAT* |
+| ~~drop the in-combat gate~~ | ~~*DR-3 FAILED: sampled a leg while IN COMBAT**~~ — **SUPERSEDED by DR-35 (§45): that gate was removed and the assertion inverted.** Kept struck rather than deleted, because this table is the v0.2.0 build's record |
 | drop the in-instance gate | *DR-3 FAILED: sampled a leg while OUTSIDE an instance* |
 | drop the throttle | *DR-3 FAILED: sampled below the throttle interval* |
 | never stamp `dead` | *DR-13 FAILED: a wipe is not distinguishable from a clean finish* |

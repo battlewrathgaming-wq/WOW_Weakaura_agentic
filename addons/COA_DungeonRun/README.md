@@ -1,7 +1,7 @@
-# COA_DungeonRun — the capture POC
+# COA_DungeonRun — capture, display and curation
 
-_v0.8.0, built 2026-08-13. **Capture + display stage one.** No beacon, no editor, no comparison.
-Spec: `addons/planning/dungeonrun_poc.md`. Facts: `addons/planning/satnav_ledger.md`._
+_v0.11.0, 2026-08-13. **Capture + the map + the curation pane.** No beacon, no promotion, no comparison.
+Spec: `addons/planning/dungeonrun_poc.md` (50 sections). Facts: `addons/planning/satnav_ledger.md`._
 
 ## What it is
 
@@ -28,7 +28,8 @@ job is to write an honest file.
 | | |
 |---|---|
 | **DR-1** | `PLAYER_REGEN_DISABLED/ENABLED` are **edges**; the state is re-read from `UnitAffectingCombat("player")` |
-| **DR-3** | travel legs sampled at **1/s, out of combat, inside an instance only** |
+| **DR-3** | travel legs sampled at **1/s, inside an instance** |
+| **★ DR-35** | **in combat too**, tagged `combat` + the pull `n`. The out-of-combat-only gate held for short pulls and **lost all routing on long ones** — and got worse the better the group was |
 | **DR-4** | **both clocks** on every point — `time()` joins, `GetTime()` measures |
 | **DR-6** | **record every combat.** No filter, no dedupe, no merge, ever |
 | **DR-7** | both entrances: the outdoor point at arm time, the in-instance arrival on zone-in |
@@ -43,8 +44,9 @@ job is to write an honest file.
 
 Run `.tools/lua51/lua5.1.exe addons/tools/smoke/smoke_dungeonrun.lua` — and if you change
 anything here, **mutation-test it**: break the guard and confirm the smoke fails on *its own*
-assertion. **All twenty guards were verified that way** — and the harness earned its keep:
-it found three cases where MY TEST was too weak to tell two bugs apart, not the code.
+assertion. **54 mutations across four files** are verified that way — and the harness has earned
+its keep several times over: it has now found **five weak TESTS and one live bug**, against zero
+weak guards that the smoke had already passed. See `memory/mutation-tests-find-weak-tests.md`.
 
 1. **Trusting the regen edge.** `PLAYER_REGEN_ENABLED` also fires when lockdown lifts for
    reasons that are not a pull ending. A build that trusts it writes phantom markers, and the
@@ -52,8 +54,9 @@ it found three cases where MY TEST was too weak to tell two bugs apart, not the 
    recalled — `WeakAuras.lua:1700-1701` registers both events on `loadFrame`, and `:1570`
    recomputes `UnitAffectingCombat("player")` on every scan. The most load-sensitive addon on
    this client never infers combat state from the event that woke it.
-2. **An ungated sampler.** Without the out-of-combat and in-instance gates it silently doubles
-   the record and fills it with the open world — which reads as *data*, not as a bug.
+2. **An ungated sampler.** Without the in-instance gate it silently fills the record with the
+   open world — which reads as *data*, not as a bug. (The out-of-combat gate was **removed** by
+   DR-35: it was costing us every long pull's routing. The tick already ran; it simply returned.)
 3. **A missing `dead`/`ghost` flag.** *You cannot find a fault in a field you did not collect.*
    Both are one API read on an event or tick already in hand.
 
@@ -88,8 +91,11 @@ poll, or scan.
 
 ## Frame cost
 
-**Zero when not recording.** The `OnUpdate` is installed by `Capture.Arm` and cleared by
-`Capture.Stop`, so `emit_addon_census.py` reports **no persistent OnUpdate** — the standard we
+**Zero when not recording, and zero when not playing.** Every `OnUpdate` in the addon is
+installed when its work starts and cleared when it stops — the sampler by `Capture.Arm`/`Stop`,
+the replay ticker by Play/Pause, the envelope drag by drag-start/stop. `emit_addon_census.py`
+reports **no persistent OnUpdate**, and the smoke now asserts it too (*no frame may carry an
+`OnUpdate` after Init*) after the census caught the drag handler shipping as a permanent one — the standard we
 hold other addons to. While recording it is one accumulator compare per frame, and the throttle
 sits **before** the work (the census once caught `COA_Landmarks` calling
 `GetCurrentPlayerPosition()` 59 times a second and discarding it — the throttle was real and sat
@@ -102,8 +108,8 @@ in the wrong place).
 | `store.lua` | **the only file that touches `COA_DungeonRunDB`.** A rewrite replaces this file, not a search |
 | `DRIVER_CONTRACT.md` | what we consume from `AscensionUI.DeathRecap`, and the traps in the fields we deliberately do NOT read |
 | `capture.lua` | the events and the sampler |
-| `editor.lua` | the curation **companion** — a separate frame on purpose, so a bug in it cannot break the map |
-| `map.lua` | display stage one — our own map frame, floor paging, placement from the captured fraction, and the four-state marker art |
+| `editor.lua` | the **curation pane** — load, rename, comment, delete, filter by kind, and slice by TIME (envelope, window, play, skip, peek). A separate frame on purpose, so a bug in it cannot break the map. **It only ever changes what you SEE** |
+| `map.lua` | our own map frame — floor paging, placement from the captured fraction, the five-state marker art, point facts on hover, and the view filters. **Never learns a dungeon** (§17) |
 | `widget.lua` | name, arm/stop, live count. Deliberately small |
 | `core.lua` | init and the slash surface |
 

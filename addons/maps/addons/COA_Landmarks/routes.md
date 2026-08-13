@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _7 file(s) · 71 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `2f9581a55811`._
+_Source fingerprint `f854bbab7fc5`._
 
 ## `beacon.lua`  —  **OnUpdate ×1** (0 persistent) · hooks: SelectQuestLogEntry
 

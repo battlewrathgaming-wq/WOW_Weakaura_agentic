@@ -6,7 +6,7 @@ mind. Pruned when items resolve — an empty section is a healthy section. Est. 
 
 ## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (50 sections)**
 
-**STATUS: v0.11.0 — CAPTURE PROVEN, DISPLAY PROVEN, RUNS SELECTABLE** (2026-08-13). Six files,
+**STATUS: v0.11.0 — CAPTURE PROVEN, DISPLAY PROVEN, CURATION BUILT** (2026-08-13). Six files,
 112 fn, **0 persistent OnUpdate**, smoke-green, **54 mutations bite on their own message**, across four files.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
@@ -27,6 +27,12 @@ architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into
 | **§49** | **availability follows visibility EXACTLY** — if it is not drawn it is not there: no tooltip, no click, no select. **Filtering HIDES, it never fades** — `SetAlpha(0)` leaves hit testing on, and the time filter is where that will be tempting. Guarded in the smoke |
 | **§43** | **THREE SURFACES, THREE QUESTIONS.** map = *what IS this?* (picture + hover facts) · curation = *what am I LOOKING at?* (trim, filter, replay, isolate, present) · promotion = *what does this BECOME?* (§29's lanes). **Curation edits the VIEW, never the capture** — which is what reconciles DR-9 with an editor that trims, and makes curation state PER-VIEW, never part of the record |
 | **§34** | the map IS the editor's map (detail-rich is correct); the **companion is separate for BUILD HYGIENE** — a bug in one cannot break the other. **Selection flows map→pane, loading flows pane→map; both are the PANE depending on the map's API.** The map holds no reference to the pane, and that is asserted |
+
+**★ THE STANDING DESIGN RULING from those runs: CAPTURE IN A STABLE FORM, THE EDITOR CURATES.**
+Drift reaches 133 yards, and the answer is **not** to derive a waypoint — *"deriving means
+inventing meaning we don't know in the wild"*, and a derived point is a position **nobody ever
+stood at**. The legs already show a story the eye intuits; a synthesised midpoint would replace
+it with a number. Do not re-open this by re-reading the drift table.
 
 **★ THE OPEN QUESTION IS NOW REACHABLE — and it wants an eye, not code.** §21 question 5: does
 the 6-px re-pull cluster read as a cluster? `RFC_Run3_Messy-5` carries it at **5.2 yd = 7.0 px
@@ -51,8 +57,22 @@ this is a snapshot.
 
 | Resident | Pending |
 |---|---|
-| `COA_DungeonRun` | **3 files** — `map.lua`, `editor.lua`, the toc |
+| `COA_DungeonRun` | **5 files** — `capture.lua`, `map.lua`, `store.lua`, `editor.lua`, the toc |
 | everything else | at parity |
+
+**☑ DOC PASS 2026-08-13** — README head/DR-table/files, `addons/README.md`, map.lua's header, the
+shelf arrival note and this file all reconciled to v0.11.0. **Pruned from here:** a superseded
+`COA_DungeonRun v0.2.0` block that still read *"capture only: no beacon, editor or display"* and a
+pre-build paragraph still saying *"Gate: Build!, not authorised"* — both in the section a cold agent
+reads. The one thing worth keeping out of them (**capture in a stable form, the editor curates**)
+was moved into ACTIVE rather than pruned with them. `§45` also struck a now-inverted row in §12's
+mutation table rather than deleting it, because that table is the v0.2.0 build's own record.
+
+**⚠ BANKED: a full RECONCILE, as a bounded run.** His framing. Today was the addon lane only. A
+reconcile walks EVERY doc against the code it claims to describe — the other product lines, the
+planning notes, `maps/`, and the memory shelf's durable half. The lesson from today's pass is what
+makes it worth scheduling: **staleness collects in the SHIPPED sections**, where nobody looks
+because the work is done.
 
 **⚠ BANKED TOOLING DEBT: the mutation harness is written ad-hoc every time.** Twice now, in
 scratchpad, from scratch — which is the shape [[machines-do-the-mechanical-work]] names (defined
@@ -79,37 +99,10 @@ never looked. Both AC-24 and AC-26 are re-mutation-tested and still bite.
 already-live slot. Two candidate causes and the one-run test that separates them are in §15 —
 do not guess at it in `beacon.lua`, which is where the silent-failure criteria live.
 
-**★ `COA_DungeonRun` v0.2.0 — BUILT, DEPLOYED AND PROVEN ON TWO REAL RUNS** (2026-08-13; spec
-`addons/planning/dungeonrun_poc.md`, build logs §11-§12, run findings §13-§14). Capture only: no
-beacon, editor or display, and **no CLEU listener** — DR-31 and DR-32 are one rare event each,
-and DR-32 consumes the client's own DeathRecap (`DRIVER_CONTRACT.md` covers the single field).
-4 files, **0 persistent OnUpdate**, smoke-green, **every guard mutation-tested**.
-
-**Two PINNED EXEMPLARS in `addons/landing/records/`** — `RFC_run1_clean-1` (clean: 15 pulls,
-99 legs) and `RFC_Run2_Messy-2` (the adversarial fixture: 2 deaths, a re-pull cluster, a
-wipe-and-retry, 133 yd drift). **They are DESIGN INPUT for the display/editor stage**, not
-archived proof — his framing. The `dungeonrun` landing source stays at **`testing`**, so routine
-runs land to gitignored `staging/` and only exemplars are pinned.
-
-**★ THE STANDING DESIGN RULING from those runs: CAPTURE IN A STABLE FORM, THE EDITOR CURATES.**
-Drift reaches 133 yards, and the answer is **not** to derive a waypoint — *"deriving means
-inventing meaning we don't know in the wild"*, and a derived point is a position **nobody ever
-stood at**. The legs already show a story the eye intuits; a synthesised midpoint would replace
-it with a number. Do not re-open this by re-reading the drift table.
-
-**The design, as agreed before it was built:** Battlewrath's fork: *"Do we develop the Landmark addon so Dungeon_run has more basis
-for refactoring, or bring Dungeon_run up to parity?"* — **chose Dungeon_run**, because the
-transfer from landmarks is COLLECTED and Landmark structurally cannot exercise what is left
-unproven (**many-pins, many-updates**). A route **emitted from play**: combat start/end are the
-markers, captured on `PLAYER_REGEN_DISABLED`/`ENABLED` with the state re-read from
-`UnitAffectingCombat` (verified against the installed WeakAuras fork). **The stale-target bug
-moves from polish to PREREQUISITE** — a route re-pins constantly, which is the failing case —
-but capture does not depend on it, so capture lands first. **Gate: `Build!`, not authorised.**
-
 **NEXT ACTION for COA_LANDMARKS: nothing to build. v1 exists to be USED** — `landmark_design.md`
 §12's A:B questions need play, not code. Do not add features to it unprompted; §11's
 two-readings rule governs how any feedback gets read. *(This governs Landmarks only —
-Dungeon_run's next step is the display/editor stage, gated on `Build!`.)*
+Dungeon_run's state is the ACTIVE block at the top.)*
 
 **Read order on arrival:** this block → **`landmark_design.md`** (the brief IS the spec) →
 `satnav_ledger.md` only when a criterion's *why* is in question — it is the fact basis, and the

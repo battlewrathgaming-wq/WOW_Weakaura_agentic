@@ -33,10 +33,12 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
   that matters, write why, get back to it later. Feeds the client's own supertrack beacon rather
   than drawing a pointer. *"How I play, not what exists"* — deliberately not a gathering
   database. Spec: `addons/planning/landmark_design.md`; facts: `satnav_ledger.md`. `/lm`
-- `COA_DungeonRun/` — **the dungeon-route capture POC**: a route IS a sequence of pulls, so it
-  records the pulls. Combat start/end are the markers (regen EDGES, state re-read from
-  `UnitAffectingCombat`), the path between is sampled 1/s out of combat, both entrances captured.
-  Records everything and filters nothing. **Capture only — no beacon, editor or display.**
+- `COA_DungeonRun/` — **dungeon routes: capture, display and curation.** A route IS a sequence
+  of pulls, so it records the pulls. Combat start/end are the markers (regen EDGES, state re-read
+  from `UnitAffectingCombat`), the path between is sampled 1/s **in combat and out** (DR-35), both
+  entrances captured. Records everything and filters nothing. Draws a run back onto the client's
+  own tiles and **never learns a dungeon**; the curation pane slices it by TIME and **only ever
+  changes what you see.** No beacon and no promotion yet.
   Spec: `addons/planning/dungeonrun_poc.md`. `/dr`
 - `COA_PetGrid/` — the Necromancer pet micro-grid (personal tooling; capture lane pending the
   two-witness retirement decision)
