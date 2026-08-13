@@ -3798,8 +3798,25 @@ own source inverts the ladder's logic — and since the ladder decides the **cli
 (§38), a beacon you cannot select because a leg sits on top of it would be the same fault in a worse
 place.
 
-⚠ Colour is still awkward and unruled: the axis means combat state (§46) and a promoted object has
-none, so they may sit **off the axis** the way the pin's checkered flag does.
+✅ **And colour is RULED, by being the wrong question.** *"Just iconography of the item. It has
+meaning."*
+
+**The two object classes use different visual languages, because they answer different questions:**
+
+| | |
+|---|---|
+| **capture points** | **colour = combat state, shape = kind** (§46). Facts about what happened |
+| **promoted objects** | **iconography carries the MEANING** — what the beacon asks of you |
+
+That is the right axis for an authored thing: a beacon is not reporting a state, it is an
+**instruction**. His two examples are already two different words — a kill/pull vignette (*"brown with
+a silver cross"*, his description, atlas entry to be resolved when the set is chosen), and one for
+*"stop, there's a jump, a thing, not just movement."* **Movement versus action** is a distinction
+colour could not carry and an icon can.
+
+★ **Which raises what `Icon pick` is.** In a curated set, **each icon is a word in the vocabulary** —
+so adding one is a design act rather than a convenience, and the set stays small for the same reason a
+language does.
 
 ### ✅ The promoter takes the SAME none-option
 
