@@ -2752,6 +2752,47 @@ the only filter that exploits that.
    where I am standing." **Time is the AUTHORING axis**, and that line is worth holding so the time
    control does not leak into the in-run widget, which answers a different question.
 
+### ★ EXPORT IS TWO THINGS — three weights, two audiences (Battlewrath, 2026-08-13)
+
+*"We haven't split them yet. Because we haven't needed to."*
+
+| | weight | audience |
+|---|---|---|
+| **capture** | heavy — the full positional basis | **creators**. Involved; it takes consideration to jump in and use |
+| **personal notes** | heavy — the "for me" lane (§29) | you |
+| **route** | lean — beacon markers, agnostic light notes on priority | **consumers**. Drop in and run |
+
+All three are **born from promotion** except the capture itself, which is the only thing capture
+produces.
+
+**So the two exports defer for DIFFERENT reasons, and filing them together would hide that:**
+
+- **Route export is BLOCKED.** The object does not exist until promotion does.
+- **Capture export is DEFERRED BY PRIORITY.** Nothing technical blocks it — the audience is just
+  small. But small is not unimportant: *"having data sets to share is useful. It makes 1 dungeon run
+  something 10 people can use."* A shared capture MULTIPLIES in a way a route does not.
+
+### ★★ THE TRUST ASYMMETRY — the leaner the artefact, the more trust it demands
+
+A creator handed a **capture** can inspect it: every sample, every timestamp, the whole evidence
+trail is present, and a bad one costs them an afternoon. A consumer handed a **route** can check
+nothing — a wrong beacon walks them into a pack.
+
+**So the route format will need provenance and self-consistency that the capture format does not,
+precisely BECAUSE it threw the evidence away.** Recorded here so the lean format is not designed as
+"the capture with fields removed".
+
+It also settles two economies that had been implicit:
+
+- **Capture stays rich.** *"Better to be rich and find faults, than lean and never find bounds"*
+  holds because the capture never has to leave your disk to be useful.
+- **The route goes on a diet.** It is the thing that gets shared, so weight is a real constraint on
+  it rather than a preference.
+
+⚠ Consequence to VERIFY before asserting: the satnav ledger's export/import laws (7, 7b, 8,
+including that an import wipes) were written about **routes**. Whether they were meant to cover a
+shared capture as well has not been re-read this session.
+
 ### ⚠ NOT DECIDED — do not build past these
 
 - **Does the envelope persist with the run?** *Filter views explicitly do not* — Battlewrath:
@@ -2759,7 +2800,8 @@ the only filter that exploits that.
   page, then folding it up to see different drawing."* That generalises to a rule worth keeping:
   **do not create management for something transient.** Whether the ENVELOPE is in that class, or is
   instead the durable trim, is **open**.
-- **Export placement.** His own `[Export?]` carries the question mark. The satnav ledger owns
-  export/import (laws 7, 7b, 8, including that an import wipes); a button here would commit the
-  shape before that is settled.
+- **Export.** Reclassified rather than scheduled — see ★ EXPORT IS TWO THINGS above. Route export
+  is **blocked** (the object does not exist until promotion does). Capture export is **deferred by
+  priority**, not by dependency. Neither is a placement question, which is what the `[Export?]`
+  question mark was standing in for.
 - **The comment field's length.** "Limited" is his word; the number is not agreed.
