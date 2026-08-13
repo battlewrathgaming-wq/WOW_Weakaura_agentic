@@ -5,7 +5,7 @@ built.** This is the design as talked out, with the facts it rests on and the ca
 still his. Companion to `landmark_design.md` (the shipped landmark half) and `satnav_ledger.md`
 (the fact basis, cited here as `[Fn]`).
 
-**★ THIS NOTE COVERS CAPTURE AND DISPLAY ONLY.** Notes, export, import and sharing are already governed by `satnav_ledger.md` **laws 6, 7, 7b, 8 and 9** (SELF vs TEAM notes, import-wipes, disposable-vs-sacred, the persistent bin, notes-live-on-the-map). **Start there before designing anything in that space** — §28.2 records what happened when this note did not._
+**★ THIS NOTE COVERS CAPTURE AND DISPLAY ONLY.** Notes, export, import and sharing are already governed by `satnav_ledger.md` **laws 6, 7, 7b, 8 and 9** (SELF vs TEAM notes, import-wipes, disposable-vs-sacred, the persistent bin, notes-live-on-the-map). **Start there before designing anything in that space** — §28.2 has the summary._
 
 ---
 
@@ -1790,46 +1790,36 @@ source), which until now had only *"denoting skips"* as its justification.
 riding along inside the route model, and it turns out to stand on its own. First evidence that
 someone else's need reaches the same primitive by a different road.
 
-### 28.2 ⚠ TWO LAYERS OF NOTES — **NOT NEW. I RE-DERIVED IT, AND GOT IT WRONG.**
+### 28.2 TWO LAYERS OF NOTES — already explored, and the ledger holds it
 
-I recorded this as a *"genuinely new design element"*. It is **law 6 in `satnav_ledger.md`,
-dated 2026-08-08** — five days old:
+I first recorded this as a new design element. It is not: **`satnav_ledger.md` law 6, 2026-08-08.**
 
 > **Law 6.** *"Notes come in two flavours: SELF and TEAM — and they layer. The **export carries
 > locations + TEAM notes only, role-agnostic**. A consumer imports that layout and then adds
 > their **own personal notes on top**. The shared artifact stays the ROUTE; nobody inherits
 > anyone else's idiosyncrasies."*
 
-**★ And the part I invented is CONTRADICTED by the design that already existed.** I wrote *"the
-personal layer must survive an import"*. Law 7 declines that deliberately:
+Two more that sit with it and had not been connected here:
 
-> **Law 7 — IMPORT WIPES.** *"An import REPLACES the route; it does not merge … Merging would
-> demand stable per-point IDs, reattachment logic for republished routes, and conflict handling
-> when a shared point moves under a personal note. Wiping removes all of it. **The cost is that
-> personal notes on a replaced route are lost, and that cost is the user's to manage** by
-> choosing when to import."*
+| | |
+|---|---|
+| **Law 7 — import WIPES** | an import replaces the route rather than merging. **Declines the merge problem deliberately**: no stable per-point IDs, no reattachment logic, no conflict handling. The named cost is that personal notes *on a replaced route* are lost, and that is the user's to manage by choosing when to import |
+| **Law 7b — exports carry a MODE** | **disposable vs sacred**. *"Follow this tank's route"* is one run then discard; a sacred route is one you keep. **Metadata, not logic** |
 
-**The real resolution is subtler than the one I reached for:** the personal notebook survives
-**because it lives on the MAP (law 9), not in the route** — so route replacement cannot touch it.
-Personal notes attached to a *route* are lost on import, knowingly, in exchange for declining the
-whole merge problem.
+**★ And the distinction that resolves Vicke's case cleanly:** law 9 puts notes **on the map, not
+in the route.** A *"stand here for battle horn"* marker is map-anchored, so **route replacement
+never touches it** — which is why (2) in the ledger's value propositions says the notebook has to
+outlive any particular route, *and it does.* The lost-on-import cost applies to notes attached to
+a **route**, not to the personal notebook.
 
-**Also already there and not connected until now:** law 7b — **exports carry a MODE, disposable
-vs sacred**. *"Follow this tank's route"* is one run then discard; a sacred route is one you keep,
-and sacredness comes from a community pool or the sharer's preference. **Metadata, not logic.**
+**Nothing here is locked.** These are decisions taken five days ago in a design still forming,
+and Battlewrath has been carrying the feature set in his head faster than the record has caught
+up — *"we're still building the layers."* Recorded so the two documents point at each other, not
+because either is settled.
 
-### ★ The lesson, and it is not "read more carefully"
-
-**A design that exists but is not findable FROM WHERE YOU ARE WORKING will be reinvented — and
-the reinvention will not match.** This note never cited the ledger's laws, so when the topic
-resurfaced five days later I treated it as new *and produced a requirement the original had
-explicitly refused*. Re-derivation is not merely wasteful; **it manufactures contradictions
-between two documents that are each internally consistent** — the same failure shape as §24's
-spec-vs-build gap, one layer up.
-
-**The structural fix is the cross-reference, not the correction.** `dungeonrun_poc.md` covers
-capture and display; **`satnav_ledger.md` laws 6, 7, 7b, 8 and 9 already govern notes, export and
-import**, and anything touching those must start there.
+**The useful repair is the cross-reference**, which is now in this note's header:
+`dungeonrun_poc.md` covers **capture and display**; **notes, export, import and sharing live in
+`satnav_ledger.md` laws 6, 7, 7b, 8, 9.**
 
 ### 28.3 The §8 community gate — first evidence, and it cuts toward building
 
