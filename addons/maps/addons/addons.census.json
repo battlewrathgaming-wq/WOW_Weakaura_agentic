@@ -1,5 +1,5 @@
 {
- "_fingerprint": "193354ce63f0",
+ "_fingerprint": "c1e9f84e61de",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1913,152 +1913,152 @@
      {
       "name": "Map.RunsFor",
       "kind": "function",
-      "line": 135
+      "line": 145
      },
      {
       "name": "Map.ArtFor",
       "kind": "function",
-      "line": 155
+      "line": 165
      },
      {
       "name": "Map.PointsOn",
       "kind": "function",
-      "line": 171
+      "line": 181
      },
      {
       "name": "Map.ArtKey",
       "kind": "function",
-      "line": 190
+      "line": 200
      },
      {
       "name": "Map.Rank",
       "kind": "function",
-      "line": 201
+      "line": 211
      },
      {
       "name": "Map.ArtForPoint",
       "kind": "function",
-      "line": 205
+      "line": 215
      },
      {
       "name": "Map.SetOnSelect",
       "kind": "function",
-      "line": 222
+      "line": 232
      },
      {
       "name": "Map.Selected",
       "kind": "function",
-      "line": 225
+      "line": 235
      },
      {
       "name": "Map.Select",
       "kind": "function",
-      "line": 226
+      "line": 236
      },
      {
       "name": "Map.Describe",
       "kind": "function",
-      "line": 236
+      "line": 246
      },
      {
       "name": "add",
       "kind": "local",
-      "line": 245
+      "line": 255
      },
      {
       "name": "Map.Offset",
       "kind": "function",
-      "line": 262
+      "line": 272
      },
      {
       "name": "Map.TilePath",
       "kind": "function",
-      "line": 268
+      "line": 278
      },
      {
       "name": "Map.TileRect",
       "kind": "function",
-      "line": 289
+      "line": 299
      },
      {
       "name": "byName",
       "kind": "local",
-      "line": 322
+      "line": 332
      },
      {
       "name": "Map.SeedFloor",
       "kind": "function",
-      "line": 335
+      "line": 345
      },
      {
       "name": "Map.Caption",
       "kind": "function",
-      "line": 357
+      "line": 367
      },
      {
       "name": "ensureDots",
       "kind": "local",
-      "line": 372
+      "line": 382
      },
      {
       "name": "styleDot",
       "kind": "local",
-      "line": 392
+      "line": 402
      },
      {
       "name": "clearDots",
       "kind": "local",
-      "line": 405
+      "line": 415
      },
      {
       "name": "paint",
-      "kind": "local",
-      "line": 409
+      "kind": "function",
+      "line": 421
      },
      {
       "name": "context",
       "kind": "local",
-      "line": 455
+      "line": 467
      },
      {
       "name": "Map.LoadedId",
       "kind": "function",
-      "line": 461
+      "line": 473
      },
      {
       "name": "Map.ShownArt",
       "kind": "function",
-      "line": 466
+      "line": 478
      },
      {
       "name": "Map.Show",
       "kind": "function",
-      "line": 473
+      "line": 485
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 496
+      "line": 508
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 502
+      "line": 514
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 518
+      "line": 530
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 595
+      "line": 607
      },
      {
       "name": "Map.RunList",
       "kind": "function",
-      "line": 595
+      "line": 607
      }
     ],
     "onupdate": 0,

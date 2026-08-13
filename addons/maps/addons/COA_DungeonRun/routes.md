@@ -3,7 +3,7 @@
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
 _6 file(s) · 81 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `193354ce63f0`._
+_Source fingerprint `c1e9f84e61de`._
 
 ## `capture.lua`  —  **OnUpdate ×1** (0 persistent) · events: INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA
 
@@ -49,36 +49,36 @@ _Source fingerprint `193354ce63f0`._
 
 - `Map.ArtSize` *(:103, function)*
 - `Map.TileGrid` *(:105, function)*
-- `Map.RunsFor` *(:135, function)*
-- `Map.ArtFor` *(:155, function)*
-- `Map.PointsOn` *(:171, function)*
-- `Map.ArtKey` *(:190, function)*
-- `Map.Rank` *(:201, function)*
-- `Map.ArtForPoint` *(:205, function)*
-- `Map.SetOnSelect` *(:222, function)*
-- `Map.Selected` *(:225, function)*
-- `Map.Select` *(:226, function)*
-- `Map.Describe` *(:236, function)*
-- `add` *(:245, local)*
-- `Map.Offset` *(:262, function)*
-- `Map.TilePath` *(:268, function)*
-- `Map.TileRect` *(:289, function)*
-- `byName` *(:322, local)*
-- `Map.SeedFloor` *(:335, function)*
-- `Map.Caption` *(:357, function)*
-- `ensureDots` *(:372, local)*
-- `styleDot` *(:392, local)*
-- `clearDots` *(:405, local)*
-- `paint` *(:409, local)*
-- `context` *(:455, local)*
-- `Map.LoadedId` *(:461, function)*
-- `Map.ShownArt` *(:466, function)*
-- `Map.Show` *(:473, function)*
-- `Map.Toggle` *(:496, function)*
-- `step` *(:502, local)*
-- `Map.Init` *(:518, function)*
-- `Map.MapIDOf` *(:595, function)*
-- `Map.RunList` *(:595, function)*
+- `Map.RunsFor` *(:145, function)*
+- `Map.ArtFor` *(:165, function)*
+- `Map.PointsOn` *(:181, function)*
+- `Map.ArtKey` *(:200, function)*
+- `Map.Rank` *(:211, function)*
+- `Map.ArtForPoint` *(:215, function)*
+- `Map.SetOnSelect` *(:232, function)*
+- `Map.Selected` *(:235, function)*
+- `Map.Select` *(:236, function)*
+- `Map.Describe` *(:246, function)*
+- `add` *(:255, local)*
+- `Map.Offset` *(:272, function)*
+- `Map.TilePath` *(:278, function)*
+- `Map.TileRect` *(:299, function)*
+- `byName` *(:332, local)*
+- `Map.SeedFloor` *(:345, function)*
+- `Map.Caption` *(:367, function)*
+- `ensureDots` *(:382, local)*
+- `styleDot` *(:402, local)*
+- `clearDots` *(:415, local)*
+- `paint` *(:421, function)*
+- `context` *(:467, local)*
+- `Map.LoadedId` *(:473, function)*
+- `Map.ShownArt` *(:478, function)*
+- `Map.Show` *(:485, function)*
+- `Map.Toggle` *(:508, function)*
+- `step` *(:514, local)*
+- `Map.Init` *(:530, function)*
+- `Map.MapIDOf` *(:607, function)*
+- `Map.RunList` *(:607, function)*
 
 ## `store.lua`
 

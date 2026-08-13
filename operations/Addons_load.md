@@ -4,13 +4,13 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (41 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (42 sections)**
 
-**STATUS: v0.9.0 — CAPTURE PROVEN, DISPLAY PROVEN, RUNS SELECTABLE** (2026-08-13). Six files,
-81 fn, **0 persistent OnUpdate**, smoke-green, **21 mutations bite on their own message**.
+**STATUS: v0.9.1 — CAPTURE PROVEN, DISPLAY PROVEN, RUNS SELECTABLE** (2026-08-13). Six files,
+81 fn, **0 persistent OnUpdate**, smoke-green, **23 mutations bite on their own message**.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
-§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41 the promotion model + curation. **§29 is the
+§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§42 the promotion model + curation. **§29 is the
 architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into lanes.**
 
 **★ FIVE LAWS THAT GOVERN ANYTHING BUILT NEXT** — each cost a correction to learn:

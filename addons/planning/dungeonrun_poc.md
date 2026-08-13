@@ -2430,3 +2430,41 @@ would fall through to the local art whenever `ArtFor` **refused** — precisely 
 identity guard exists to stop. Written as a branch, and mutation-tested as one.
 
 **6 files, 81 functions, 0 persistent OnUpdate.**
+
+---
+
+## 42. ⚠ LIVE DEFECT — `paint` was a forward reference, and the fixtures could not reach it (2026-08-13)
+
+First click on a dot with a run loaded:
+
+```
+map.lua:229: attempt to call global 'paint' (a nil value)
+map.lua:229: in function `Select'
+```
+
+`Map.Select` is defined **above** `paint` and calls it, so the name resolved as a **global** and was
+nil. Fixed by forward-declaring `local paint` with the other file-locals and assigning with
+`function paint(...)` — the same shape `capture.lua` already uses for `captureOrigin`.
+
+### ★ Why the smoke did not catch it, and that is the real lesson
+
+The call sits behind `if shownRunId`. **Every `Map.Select` in the fixtures ran while no run was
+loaded**, so the branch was never taken. A guard whose failure case the fixtures cannot REACH is
+untested, not safe — the fourth of that exact kind on this addon, and the reason it keeps recurring
+is that the *fixtures* look complete while the *paths* are not.
+
+The test added asserts the dot's **frame level rises** rather than merely that nothing errored, so it
+also proves the repaint happened — without it the 1.6× highlight never appears and the pane's readout
+is the only evidence of what you clicked.
+
+Two mutations now guard it: dropping the declaration (bites as `LEAKED GLOBAL: paint`) and
+**shadowing** it with `local function` (bites as `attempt to call upvalue 'paint'`). The second
+matters — re-adding `local` in front of the definition is the natural-looking edit that puts the bug
+straight back, so the source says so at the definition.
+
+### The whole bench was swept for the same shape
+
+Every `addons/*/*.lua` checked for a call preceding its own `local function` definition, comments
+stripped so prose mentions do not count: **clean**, this was the only one.
+
+**23 mutations bite on their own message.** v0.9.1.

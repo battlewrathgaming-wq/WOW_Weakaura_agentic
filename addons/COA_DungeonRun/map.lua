@@ -106,6 +106,16 @@ function Map.TileGrid() return TILE_COLS * TILE_PX, TILE_ROWS * TILE_PX end
 
 local frame, canvas, tiles, dots, title, ref, floorText, prevBtn, nextBtn
 local shownRunId, shownFloor, shownArt
+
+-- ★ FORWARD DECLARED. Map.Select is defined ABOVE paint and calls it, so without
+-- this the name resolves as a GLOBAL at call time and is nil - "attempt to call
+-- global 'paint'", live, on the first click of a dot with a run loaded.
+--
+-- It survived the smoke because every Select in the fixtures ran while no run was
+-- loaded, and the call sits behind `if shownRunId`. A guard whose failure case the
+-- fixtures cannot REACH is untested, not safe - the same law that has now caught
+-- four of these. Same fix as capture.lua's captureOrigin.
+local paint
 local selected, onSelect          -- §34's ONE coupling point; see Map.Select
 
 -- ---------------------------------------------------------------------
@@ -407,7 +417,9 @@ local function clearDots()
     for _, d in ipairs(dots) do d:Hide() end
 end
 
-local function paint(run, floor)
+-- Assigns the forward-declared local above; NOT `local function`, which would
+-- shadow it and put the bug straight back.
+function paint(run, floor)
     local _, _, _, hereMapID = GetCurrentPlayerPosition()
     local hereFile = GetMapInfo and GetMapInfo() or nil
 

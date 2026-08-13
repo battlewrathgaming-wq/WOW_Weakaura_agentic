@@ -468,6 +468,29 @@ assert(marker._level > leg._level,
        ("BURIED: a marker must paint ABOVE a travel sample, got %d vs %d")
        :format(marker._level, leg._level))
 
+-- ★ SELECTING WHILE A RUN IS LOADED - the case every earlier fixture missed.
+--
+-- Map.Select is defined ABOVE paint and calls it, and the call sits behind
+-- `if shownRunId`. Every Select in the old fixtures ran with NO run loaded, so the
+-- branch was never taken and a forward-reference bug shipped: "attempt to call
+-- global 'paint'", live, on the first click of a dot. A guard whose failure case
+-- the fixtures cannot REACH is untested, not safe.
+--
+-- Asserted on the LEVEL rather than on not-erroring, so it also proves the repaint
+-- actually happened - without it the 1.6x highlight never appears and the pane's
+-- readout is the only evidence of what you clicked.
+local function dotFor(pt)
+    for _, o in ipairs(made) do if o.point == pt then return o end end
+end
+local mk = sfk.markers[1]
+local levelBefore = dotFor(mk)._level
+Map.Select(mk)
+assert(Map.Selected() == mk, "selecting a point while a run is loaded")
+assert(dotFor(mk)._level > levelBefore,
+       ("NO REPAINT: selection must redraw - got level %s, was %s")
+       :format(tostring(dotFor(mk)._level), tostring(levelBefore)))
+Map.Select(nil)
+
 -- ★ THE CROP, AS PAINTED. §19's trap: SetTexture RESETS TexCoord, so a crop
 -- applied once at Init is silently undone by the first repaint - and the art
 -- quietly goes back to overhanging the coordinate space.
