@@ -1603,3 +1603,87 @@ Same class as the nil-mapID guard an hour earlier, and now worth stating as a ru
 
 Questions 4 and 5 — **markers on the trail**, and whether **the 6-px re-pull cluster reads as a
 cluster** — need `RFC_Run2_Messy`, in Ragefire.
+
+---
+
+## 25. ★ THE EDITOR FOUNDATION — a waypoint is a PROMOTION (2026-08-13)
+
+**Design only. Nothing built.** Recorded now because the reasoning is intact and it is the kind
+that gets re-derived badly from a transcript.
+
+### 25.1 Waypoints are AUTHORED, not captured
+
+> *"Waypoint is a promotion of a leg or a combat marker, or the custom marker we add (denoting
+> skips or whatever else the user wants to capture)."*
+
+| | |
+|---|---|
+| **captured** | legs · combat markers — **facts about what happened** |
+| **authored** | **waypoints** — promoted from a leg, a combat marker, or a custom point |
+
+**A combat marker is not a waypoint.** It is evidence that a waypoint *could* go there. The route
+is the set of promotions the user makes from the evidence.
+
+**★ So the route is authored FROM EVIDENCE rather than onto a blank map.** You are not placing
+pins where you think you went — you are selecting from where you demonstrably were. That is the
+scrapbook's *"notes of meaning, not what-where"*, and **the promotion model only exists because
+the capture came first.**
+
+**Consequence for display art:** do not spend `vignettekill` (chosen for *route waypoint*) on a
+combat marker. Different claim — *"combat started here"* is not *"go here"*.
+
+### 25.2 ★ Promotion COPIES the base, and Z is inherited
+
+> *"Promotion is copying the base's values. We can offset the X,Y as a function of triangulation
+> of near points. And Z (height) is constant to the base node."*
+
+| field | on promotion |
+|---|---|
+| world **x, y** | copied, and **may be offset** — triangulated from near captured points, so the nudge is bounded by local sample geometry |
+| world **z** | **COPIED, NEVER COMPUTED** |
+| `mapID` · `floor` · fraction | copied (the fraction re-derives if x,y move — see 25.4) |
+| back-reference | which node it was promoted from |
+
+**★ Z-inherited is an ADMISSION the design makes out loud:** *this waypoint is on the same plane
+as the node it came from.* We do not know the height between samples, so we do not pretend to —
+the same refusal as §14's *deriving means inventing meaning we don't know in the wild*.
+
+**★ AND IT IS SELF-ENFORCING, which is the part worth keeping.** If an offset would need a
+different z, you have moved off the base node's plane — and the answer is **promote a nearer
+node**, not guess a height. **The constraint tells you when you have overreached**, instead of
+silently producing a waypoint hanging in the air or buried under a floor.
+
+### 25.3 The trail is the EDITABLE SURFACE
+
+A map is 2D; a waypoint that drives the beacon needs **x, y AND z**. Free-handing on a map cannot
+supply the third. **The surrounding capture can** — approaching legs, the combat pair, continuing
+legs, all carrying `z`.
+
+So: **you cannot place a waypoint in a room you never entered**, because there is no terrain data
+there. That is **correct rather than restrictive** — you do not know it is reachable. The
+*we-don't-map-the-dungeon* law showing up as an affordance instead of a rule we impose.
+
+It also stays inside §14: **deriving a waypoint from start+end is US inventing meaning; the user
+dragging one, bracketed by observed points, is AUTHORING.** The difference is who decides, and
+whether evidence brackets the result.
+
+### 25.4 ★ The run carries its own inverse
+
+A drag produces a new `(mapX, mapY)`; the beacon needs **world** coordinates. Inverting normally
+needs the DBC bounding box — **which §17 forbids the addon from carrying.**
+
+**The run already contains the inversion.** Every captured point is a `(world, fraction)` pair,
+and that relationship is exactly linear — proven at residual `0.000000` across 706 points. So a
+run **fits its own inverse, per floor, from its own points**: no box, no table, no per-dungeon
+knowledge. **The run's capture is its calibration**, and it works on the first visit to a dungeon
+nobody has run, because the run *is* the visit.
+
+Two honest bounds: it needs **two well-separated points on that floor** (a floor with one point
+cannot invert — and has nothing to edit anyway), and **z is read from the base node, never fitted.**
+
+### 25.5 Promotion must NOT mutate the capture
+
+A waypoint is a **new authored record** carrying its own values plus the back-reference — never a
+flag written onto a leg. **Captured records stay immutable, which is the property that makes them
+evidence at all**, and it means re-reading or trimming a run can never silently invalidate a
+route. Same split as `owner` vs the record in Landmarks, and chrome vs data for the B colour.
