@@ -463,6 +463,37 @@ one field §6c already scoped us to. The narrowing was right for a second reason
 census, and `TargetFrame.lua:985` registers it; `C_Instance.lua:83` reads `boss1` directly).
 Never at death.
 
+### ★★ CLOSED — WE ALREADY HAVE IT, AND THE REST WOULD COST CONTINUOUS LOGGING
+
+> *"We have that in the death recap, no? And to capture the outside events, we have to log for
+> them all the time. Which becomes computational weight."* — Battlewrath, 2026-08-13
+
+**Both halves are right, and together they close the attribution question for good.**
+
+`attacker` already names the boss, per death, at zero cost to us — **somebody else's listener
+paid for it.** Anything the recap does *not* hold means attribution for pulls we **survived**,
+and that requires a CLEU listener running through **every pull of every run**. That is the
+computational weight, and it is also the combat-parser lane we deliberately left (§6c).
+
+**★ SO THE ASYMMETRY IS NOT A GAP — IT IS THE CORRECT SHAPE:**
+
+| | Attribution | Cost |
+|---|---|---|
+| a pull you **died** to | the recap names it | **free** — already computed |
+| a pull you **survived** | none | would need continuous logging |
+
+**And that is exactly the right way round.** A successful pull is route *geometry* — position,
+order, timing, which we already capture in full. **A terminal stop is route *meaning*, and it is
+the only place attribution changes what a route tells you.** We get the information precisely
+where it matters and pay nothing precisely where it does not.
+
+*One correction to my own suggestion above, so it is not over-read: registering
+`INSTANCE_ENCOUNTER_ENGAGE_UNIT` would be **one rare event, not continuous logging** — the cost
+objection does not apply to it. But by the asymmetry above we do not want it either: a boss pull
+you survived is just a pull, and a boss pull you died to already names itself.*
+
+**Nothing further is designed for attribution. This section is closed.**
+
 **Gate: `Build!` — not authorised. Not in v0.1.0.**
 
 ---
