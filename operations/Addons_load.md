@@ -77,6 +77,20 @@ reads. The one thing worth keeping out of them (**capture in a stable form, the 
 was moved into ACTIVE rather than pruned with them. `§45` also struck a now-inverted row in §12's
 mutation table rather than deleting it, because that table is the v0.2.0 build's own record.
 
+**⚠ BANKED: the census OVER-REPORTS persistence.** `frame_cost.md` counts `installs - clears`, and
+it **cannot see `self:Hide()` as a teardown**. Live example: `COA_PetGrid/core.lua:86` — a `pinner`
+that hides itself on its first frame is reported **PERSISTENT** when it runs once. Add it as a
+**LEAD, not arithmetic** (a `Show()` elsewhere could revive it), worded like the `throttle?` column
+already is. It matters because that page exists for exactly one number and is currently inflating it.
+
+**⚠ BANKED: COA_PetGrid has never been MEASURED.** Battlewrath, 2026-08-13: *"part of this work was
+to optimise. As I have concerns that we didn't add enough work into that addon."* What is known by
+READING: its two "persistent" handlers are a self-hiding one-shot and a **0.5s-throttled** ticker, and
+its CLEU listener is transient (registered in `start`, `UnregisterAllEvents` in `stop`) with
+`pcall(onCleu, ...)` per event — more than the shape the 178.8 kb/s figure was measured on. **None of
+that is a measurement.** The instrument is `task_callwitness`, built and parked with **four arms
+unrun**, and it exists precisely because that page had to be produced for somebody else's addon.
+
 **⚠ BANKED: a full RECONCILE, as a bounded run.** His framing. Today was the addon lane only. A
 reconcile walks EVERY doc against the code it claims to describe — the other product lines, the
 planning notes, `maps/`, and the memory shelf's durable half. The lesson from today's pass is what
