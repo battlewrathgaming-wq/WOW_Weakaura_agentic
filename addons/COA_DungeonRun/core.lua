@@ -56,6 +56,10 @@ local function slash(msg)
         -- there is no run to name. Keybinding stays the user's, through the normal
         -- macro path; we do not own their bindings.
         NS.Map.Toggle()
+    elseif cmd == "edit" then
+        -- §34: the COMPANION. Separate frame on purpose - a bug in it cannot break
+        -- the map, and either can be worked on without touching the other.
+        NS.Editor.Toggle()
     elseif cmd == "list" then
         list()
     elseif cmd == "status" then
@@ -68,7 +72,7 @@ local function slash(msg)
             NS.Say(("no run named |cffffd100%s|r - /dr list"):format(tostring(rest)))
         end
     else
-        NS.Say("/dr - widget  |  map  |  arm <name>  |  stop  |  list  |  status  |  delete <id>")
+        NS.Say("/dr - widget  |  map  |  edit  |  arm <name>  |  stop  |  list  |  status  |  delete <id>")
     end
 end
 
@@ -87,6 +91,7 @@ boot:SetScript("OnEvent", function(self, _, which)
 
     NS.Capture.Init()
     NS.Map.Init()
+    NS.Editor.Init()
     NS.Widget.Init()
 
     SLASH_COADUNGEONRUN1 = "/dr"

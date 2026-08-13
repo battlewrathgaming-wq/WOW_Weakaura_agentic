@@ -1,5 +1,5 @@
 {
- "_fingerprint": "e01aaf304350",
+ "_fingerprint": "b2031147db18",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1847,6 +1847,40 @@
     "push": [],
     "pull": []
    },
+   "editor.lua": {
+    "functions": [
+     {
+      "name": "refresh",
+      "kind": "local",
+      "line": 35
+     },
+     {
+      "name": "Editor.Init",
+      "kind": "function",
+      "line": 64
+     },
+     {
+      "name": "Editor.Toggle",
+      "kind": "function",
+      "line": 125
+     }
+    ],
+    "onupdate": 0,
+    "onupdate_clears": 0,
+    "onupdate_persistent": 0,
+    "throttle_pattern": false,
+    "scripts": [
+     "OnClick",
+     "OnDragStart",
+     "OnDragStop"
+    ],
+    "hookscripts": [],
+    "events": [],
+    "securehooks": [],
+    "timers": [],
+    "push": [],
+    "pull": []
+   },
    "map.lua": {
     "functions": [
      {
@@ -1862,87 +1896,112 @@
      {
       "name": "Map.RunsFor",
       "kind": "function",
-      "line": 109
+      "line": 110
      },
      {
       "name": "Map.ArtFor",
       "kind": "function",
-      "line": 129
+      "line": 130
      },
      {
       "name": "Map.PointsOn",
       "kind": "function",
-      "line": 145
+      "line": 146
      },
      {
       "name": "Map.ArtKey",
       "kind": "function",
-      "line": 164
+      "line": 165
      },
      {
       "name": "Map.ArtForPoint",
       "kind": "function",
-      "line": 175
+      "line": 176
      },
      {
-      "name": "Map.Offset",
-      "kind": "function",
-      "line": 187
-     },
-     {
-      "name": "Map.TilePath",
+      "name": "Map.SetOnSelect",
       "kind": "function",
       "line": 193
      },
      {
+      "name": "Map.Selected",
+      "kind": "function",
+      "line": 196
+     },
+     {
+      "name": "Map.Select",
+      "kind": "function",
+      "line": 197
+     },
+     {
+      "name": "Map.Describe",
+      "kind": "function",
+      "line": 207
+     },
+     {
+      "name": "add",
+      "kind": "local",
+      "line": 216
+     },
+     {
+      "name": "Map.Offset",
+      "kind": "function",
+      "line": 233
+     },
+     {
+      "name": "Map.TilePath",
+      "kind": "function",
+      "line": 239
+     },
+     {
       "name": "ensureDots",
       "kind": "local",
-      "line": 203
+      "line": 249
      },
      {
       "name": "styleDot",
       "kind": "local",
-      "line": 221
+      "line": 269
      },
      {
       "name": "clearDots",
       "kind": "local",
-      "line": 228
+      "line": 280
      },
      {
       "name": "paint",
       "kind": "local",
-      "line": 232
+      "line": 284
      },
      {
       "name": "context",
       "kind": "local",
-      "line": 265
+      "line": 318
      },
      {
       "name": "Map.Show",
       "kind": "function",
-      "line": 271
+      "line": 324
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 291
+      "line": 344
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 296
+      "line": 349
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 303
+      "line": 356
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 356
+      "line": 416
      }
     ],
     "onupdate": 0,

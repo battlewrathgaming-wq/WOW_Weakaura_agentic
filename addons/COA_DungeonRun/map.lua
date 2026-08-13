@@ -81,6 +81,7 @@ function Map.TileGrid() return TILE_COLS * TILE_PX, TILE_ROWS * TILE_PX end
 
 local frame, canvas, tiles, dots, title, floorText, prevBtn, nextBtn
 local shownRunId, shownFloor
+local selected, onSelect          -- §34's ONE coupling point; see Map.Select
 
 -- ---------------------------------------------------------------------
 -- PURE SELECTION + PLACEMENT. Deliberately free of frames so the smoke can
@@ -181,6 +182,51 @@ function Map.ArtForPoint(point)
     return a[1], a[2], a[3], a[4], dw, dh
 end
 
+-- ---------------------------------------------------------------------
+-- ★ SELECTION - §34's single coupling point between the two frames.
+--
+-- Map OWNS it; the companion READS it. Map deliberately holds no reference to
+-- the editor - it fires one optional callback and knows nothing about who
+-- listens. That is the isolation the companion exists for (Battlewrath: "isolates
+-- the bug fixing / edits"): a broken editor cannot break the map, because the map
+-- does not know it is there.
+-- ---------------------------------------------------------------------
+
+function Map.SetOnSelect(fn) onSelect = fn end
+function Map.Selected() return selected end
+
+function Map.Select(point)
+    selected = point
+    if shownRunId then paint(Store.Get(shownRunId), shownFloor) end
+    if onSelect then onSelect(point) end
+    return selected
+end
+
+-- ★ What a point IS, in words. PURE, because it is the whole readout: a wrong
+-- answer here mislabels captured evidence, and the pane has no other source.
+-- Returns a label plus an ordered list of {field, value} for display.
+function Map.Describe(point)
+    if not point then return "nothing selected", {} end
+
+    local key = Map.ArtKey(point)
+    local label = ({ leg = "travel sample", start = "combat START",
+                     done = "combat end", dead = "TERMINAL STOP" })[key]
+
+    local rows = {}
+    local function add(k, v) if v ~= nil and v ~= "" then rows[#rows + 1] = { k, v } end end
+    if point.n then add("pull", tostring(point.n)) end
+    add("floor", point.floor and tostring(point.floor) or "-")
+    add("world", ("%.1f, %.1f, %.1f"):format(point.x or 0, point.y or 0, point.z or 0))
+    if point.mapX then add("map", ("%.4f, %.4f"):format(point.mapX, point.mapY)) end
+    add("zone", point.subZone ~= "" and point.subZone or point.zone)
+    -- Both clocks, because they answer different questions (DR-4).
+    add("t", point.t and tostring(point.t) or nil)
+    if point.killedBy then add("killed by", table.concat(point.killedBy, ", ")) end
+    if point.killedByUnavailable then add("attribution", point.killedByUnavailable) end
+    if point.ghost then add("ghost", "yes") end
+    return label, rows
+end
+
 -- Fraction -> pixel offset from the canvas TOPLEFT.
 --
 -- mapY runs DOWNWARD (fraction 0 is the top edge), which is why y is negated:
@@ -212,6 +258,8 @@ local function ensureDots(n)
         -- crop is set per point in paint(), which is after it in every path.
         t:SetTexture(ATLAS)
         d.tex = t
+        d:RegisterForClicks("LeftButtonUp")
+        d:SetScript("OnClick", function(self) Map.Select(self.point) end)
         dots[i] = d
     end
 end
@@ -221,9 +269,13 @@ end
 -- which puts legs last.
 local function styleDot(d, point)
     local l, r, t, b, dw, dh = Map.ArtForPoint(point)
+    -- The selected point draws larger. Without SOME feedback you cannot tell what
+    -- you clicked, and the pane's readout would be the only evidence - which is
+    -- exactly the kind of thing that reads as a bug when it is working.
+    if point == selected then dw, dh = dw * 1.6, dh * 1.6 end
     d:SetWidth(dw); d:SetHeight(dh)
     d.tex:SetTexCoord(l, r, t, b)
-    d:SetFrameLevel(canvas:GetFrameLevel() + (point.kind and 2 or 1))
+    d:SetFrameLevel(canvas:GetFrameLevel() + (point == selected and 3 or (point.kind and 2 or 1)))
 end
 
 local function clearDots()
@@ -245,6 +297,7 @@ local function paint(run, floor)
     for i, p in ipairs(pts) do
         local dx, dy = Map.Offset(p, ART_W, ART_H)
         local d = dots[i]
+        d.point = p
         styleDot(d, p)
         d:ClearAllPoints()
         d:SetPoint("CENTER", canvas, "TOPLEFT", dx, dy)
@@ -338,6 +391,13 @@ function Map.Init()
         t:SetPoint("TOPLEFT", canvas, "TOPLEFT", col * TILE_PX, -row * TILE_PX)
         tiles[i] = t
     end
+
+    -- Opens the companion. The map does not otherwise know it exists (§34).
+    local editBtn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
+    editBtn:SetWidth(52); editBtn:SetHeight(20)
+    editBtn:SetPoint("BOTTOMLEFT", 16, 14)
+    editBtn:SetText("Curate")
+    editBtn:SetScript("OnClick", function() if NS.Editor then NS.Editor.Toggle() end end)
 
     prevBtn = CreateFrame("Button", nil, frame, "UIPanelButtonTemplate")
     prevBtn:SetWidth(52); prevBtn:SetHeight(20)

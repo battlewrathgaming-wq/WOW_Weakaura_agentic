@@ -2,8 +2,8 @@
 
 _Emitted by `addons/tools/emit_addon_census.py`. Never hand-edited._
 
-_5 file(s) · 62 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
-_Source fingerprint `e01aaf304350`._
+_6 file(s) · 70 function(s) · **0 persistent OnUpdate handler(s)** — see `frame_cost.md` beside this file._
+_Source fingerprint `b2031147db18`._
 
 ## `capture.lua`  —  **OnUpdate ×1** (0 persistent) · events: INSTANCE_ENCOUNTER_ENGAGE_UNIT, PLAYER_DEAD, PLAYER_ENTERING_WORLD, PLAYER_REGEN_DISABLED, PLAYER_REGEN_ENABLED, ZONE_CHANGED_NEW_AREA
 
@@ -32,29 +32,40 @@ _Source fingerprint `e01aaf304350`._
 - `list` *(:23, local)*
 - `slash` *(:36, local)*
 
+## `editor.lua`
+
+- `refresh` *(:35, local)*
+- `Editor.Init` *(:64, function)*
+- `Editor.Toggle` *(:125, function)*
+
 ## `map.lua`
 
 **pulls:** `GetCurrentPlayerPosition`, `GetMapInfo`
 
 - `Map.ArtSize` *(:78, function)*
 - `Map.TileGrid` *(:80, function)*
-- `Map.RunsFor` *(:109, function)*
-- `Map.ArtFor` *(:129, function)*
-- `Map.PointsOn` *(:145, function)*
-- `Map.ArtKey` *(:164, function)*
-- `Map.ArtForPoint` *(:175, function)*
-- `Map.Offset` *(:187, function)*
-- `Map.TilePath` *(:193, function)*
-- `ensureDots` *(:203, local)*
-- `styleDot` *(:221, local)*
-- `clearDots` *(:228, local)*
-- `paint` *(:232, local)*
-- `context` *(:265, local)*
-- `Map.Show` *(:271, function)*
-- `Map.Toggle` *(:291, function)*
-- `step` *(:296, local)*
-- `Map.Init` *(:303, function)*
-- `Map.MapIDOf` *(:356, function)*
+- `Map.RunsFor` *(:110, function)*
+- `Map.ArtFor` *(:130, function)*
+- `Map.PointsOn` *(:146, function)*
+- `Map.ArtKey` *(:165, function)*
+- `Map.ArtForPoint` *(:176, function)*
+- `Map.SetOnSelect` *(:193, function)*
+- `Map.Selected` *(:196, function)*
+- `Map.Select` *(:197, function)*
+- `Map.Describe` *(:207, function)*
+- `add` *(:216, local)*
+- `Map.Offset` *(:233, function)*
+- `Map.TilePath` *(:239, function)*
+- `ensureDots` *(:249, local)*
+- `styleDot` *(:269, local)*
+- `clearDots` *(:280, local)*
+- `paint` *(:284, local)*
+- `context` *(:318, local)*
+- `Map.Show` *(:324, function)*
+- `Map.Toggle` *(:344, function)*
+- `step` *(:349, local)*
+- `Map.Init` *(:356, function)*
+- `Map.MapIDOf` *(:416, function)*
 
 ## `store.lua`
 

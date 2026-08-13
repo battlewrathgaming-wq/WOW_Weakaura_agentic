@@ -258,6 +258,66 @@ assert(Map.MapIDOf(stub) == nil, "an empty run has no map at all")
 sfk.mapFile = stored
 
 -- =====================================================================
+-- ★ SELECTION - §34's ONE coupling point, and the isolation that justifies it
+-- =====================================================================
+-- A COUNTER, not a list: appending nil to a table is a no-op, so a list-based spy
+-- cannot observe the clear-selection call at all - and clearing is exactly the
+-- case that would leave a stale point on the pane.
+local heard, lastHeard = 0, nil
+local function spy(pt) heard = heard + 1; lastHeard = pt end
+Map.SetOnSelect(spy)
+
+local target = sfk.markers[1]
+assert(Map.Select(target) == target, "Select returns what it selected")
+assert(Map.Selected() == target, "and Selected reports it")
+assert(heard == 1 and lastHeard == target,
+       "CALLBACK NOT FIRED: the companion has no other way to know")
+
+assert(Map.Select(nil) == nil, "selecting nothing is legal - it is how you clear")
+assert(Map.Selected() == nil, "and it clears")
+assert(heard == 2 and lastHeard == nil,
+       "clearing must NOTIFY too, or the pane keeps showing a stale point")
+
+-- ★ Map must hold NO reference to the editor. The callback is the whole contract:
+-- with none registered, selecting still works. A map that needed the companion
+-- would defeat the isolation the companion exists for.
+Map.SetOnSelect(nil)
+assert(Map.Select(target) == target, "selection works with NOTHING listening")
+Map.SetOnSelect(spy)
+
+-- =====================================================================
+-- ★ Map.Describe - the pane's ENTIRE readout, so a wrong answer here mislabels
+-- captured evidence and nothing else would catch it.
+-- =====================================================================
+local lbl, list = Map.Describe(nil)
+assert(lbl == "nothing selected" and #list == 0, "no point -> no rows, not an error")
+
+lbl = Map.Describe({ kind = "start", n = 3, x = 1, y = 2, z = 3 })
+assert(lbl == "combat START", "a start says so, got " .. lbl)
+assert(Map.Describe({ kind = "end", n = 3 }) == "combat end", "an end we walked away from")
+assert(Map.Describe({ kind = "end", dead = true }) == "TERMINAL STOP",
+       "a death is NOT 'combat end' - it is the one carrying route meaning")
+assert(Map.Describe({}) == "travel sample", "a leg is a sample")
+
+local _, r = Map.Describe({ kind = "end", dead = true, n = 7, x = 1, y = 2, z = 3,
+                            mapX = 0.5, mapY = 0.25, floor = 2, zone = "Ragefire Chasm",
+                            subZone = "", t = 1786595378,
+                            killedBy = { "Molten Elemental", "Ragefire Trogg" } })
+local got = {}
+for _, kv in ipairs(r) do got[kv[1]] = kv[2] end
+assert(got["pull"] == "7", "the pull index")
+assert(got["floor"] == "2", "the floor")
+assert(got["killed by"] == "Molten Elemental, Ragefire Trogg",
+       "KILLED BY MISSING: it is the only route MEANING a marker carries")
+assert(got["zone"] == "Ragefire Chasm", "subZone is empty, so the zone is shown")
+assert(got["t"] == "1786595378", "the wall clock, DR-4")
+
+local _, r2 = Map.Describe({ killedByUnavailable = "AscensionUI.DeathRecap absent" })
+local seen2 = false
+for _, kv in ipairs(r2) do if kv[1] == "attribution" then seen2 = true end end
+assert(seen2, "a drift REASON must surface - a silent absence reads as 'nothing killed us'")
+
+-- =====================================================================
 -- Show: location seeds the view, and paint() actually ran
 -- =====================================================================
 W.mapID, W.floor = 33, 6

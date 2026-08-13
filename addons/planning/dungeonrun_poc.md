@@ -2238,3 +2238,44 @@ path as standing in Shadowfang.
 
 **An empty canvas over real art is HONEST** — it says *"this is where you are, and you have not
 asked for anything yet."* The auto-pick said *"here is a run"*, and was wrong about which.
+
+---
+
+## 37. BUILD — the companion editor pane, v0.8.0 (2026-08-13)
+
+**First slice: the frame, the selection readout, nothing else.** Not here yet: the load selector
+(next, at the **top of this pane** — §34's correction), promotion into lanes (§29), notes, or any
+editing at all. **The pane is an INSPECTOR first; authoring lands on top of it.**
+
+### ★ The coupling is one-way, and it is the only one
+
+`Map` owns selection, exposes `Select` / `Selected`, and fires **one optional callback**. **Map
+holds no reference to the editor and does not know whether anything is listening** — asserted
+directly: *selection still works with nothing registered.* **A map that needed the companion would
+defeat the isolation the companion exists for.**
+
+### `Map.Describe` is pure
+
+Because it is **the pane's entire readout** — a wrong answer mislabels captured evidence and
+nothing else would catch it. It reports the kind in words (**a death is a TERMINAL STOP, never
+"combat end"**), the pull, floor, world and map coordinates, zone, the wall clock,
+`killedBy`, and **`killedByUnavailable`** — the drift reason, because a silent absence reads as
+*"nothing killed us"*.
+
+The pane also **says when its readout is truncated** rather than showing a short list that looks
+complete — `task_dump`'s no-silent-caps rule, applied to a UI.
+
+### Feedback
+
+Clicking a dot selects it; the selected point draws **1.6× larger at a higher frame level**.
+Without some feedback you cannot tell what you clicked, and the readout would be the only
+evidence — **exactly the kind of thing that reads as a bug while working correctly.**
+
+### ⚠ The spy had to be fixed before the test meant anything
+
+A list-based spy **cannot observe `Map.Select(nil)`**, because appending nil to a table is a
+no-op — and clearing is precisely the case that would leave a stale point on the pane. Changed to
+a counter plus a last-value, and the mutation then bites.
+
+**Ten mutations bite.** `/dr edit` and a **Curate** button on the map. 6 files, 70 functions,
+**0 persistent OnUpdate**.
