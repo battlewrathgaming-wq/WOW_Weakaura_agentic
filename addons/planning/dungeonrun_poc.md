@@ -1736,3 +1736,34 @@ The outer frame sizes to the tile grid so no visible art is clipped.
 
 `Map.ArtSize()` and `Map.TileGrid()` are exposed so the smoke asserts the two are not conflated
 again — **including an assertion that they DIFFER: if they ever match, one of them is wrong.**
+
+---
+
+## 27. ✅ STAGE ONE CONFIRMED (2026-08-13)
+
+> *"Amazing. And 2 pictures show me running rings on both levels, separately."*
+
+With the scale corrected, the trail sits **on** the corridors across all seven floors.
+
+### ★ The two rings are the strongest proof in the set
+
+Floors **3, 4 and 5 share one identical bounding box** (§16) — the exact ambiguity DR-33 exists
+for. Floors 4 and 5 are the tower's two circular levels: **same shape, same footprint, different
+level.**
+
+**Without the floor field those two rings would draw superimposed on one map** and read as a
+single messy loop. Seeing them **separately, each on its own level, is the ambiguity resolving —
+made visible.** A screenshot doing what 317 zero-residual points could only assert.
+
+### §21's questions
+
+| | |
+|---|---|
+| does the trail follow corridors, or cut through walls? | **✅ follows them** |
+| does paging floors put the right trail on the right level? | **✅ yes** — and the shared-box floors prove it |
+| is a single trail legible at a readable dot size? | **✅ yes** at 8 px — so §20.3's A:B has a foundation to stand on |
+| do the markers sit sensibly on the trail? | **pending** — they draw, but as leg dots. Needs the combat-event art |
+| does the 6-px cluster read as a cluster? | **pending** — needs `RFC_Run2_Messy` in Ragefire |
+
+**Stage one is proven.** What remains is one art decision, and it is the only thing standing
+between here and §21's last two questions.
