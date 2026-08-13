@@ -1687,3 +1687,52 @@ A waypoint is a **new authored record** carrying its own values plus the back-re
 flag written onto a leg. **Captured records stay immutable, which is the property that makes them
 evidence at all**, and it means re-reading or trimming a run can never silently invalidate a
 route. Same split as `owner` vs the record in Landmarks, and chrome vs data for the B colour.
+
+---
+
+## 26. ★ THE SECOND DRAW — art lands, and a constant scale error (2026-08-13)
+
+> *"There is some displacement as a constant across them."*
+
+**The art draws.** Seven floors of Shadowfang under the trail, from a freshly captured run
+carrying DR-34's `mapFile` — no fallback needed. §21's first two questions confirmed a second
+time, now with the map underneath.
+
+### The bug: two sizes, and I used the wrong one
+
+| `WorldMapFrame.xml` | | |
+|---|---|---|
+| **:528** | `WorldMapDetailFrame` | **1002 × 668** — *the coordinate space* |
+| **:541** | `WorldMapDetailTile` | 256 × 256, laid 4×3 = **1024 × 768** — *the art grid* |
+
+The tile grid is **power-of-two art with dead padding**; the map's coordinate space is the detail
+frame. Placing across the tile grid stretches everything by **+2.2% horizontally and +15%
+vertically** — worst furthest from the origin, which is why floor 7's trail ran off the bottom.
+
+### ★ Why it looked plausible, and why that is the lesson
+
+**A uniform stretch preserves SHAPE.** The trail still followed corridors, still turned where it
+should, still sat inside rooms. It was simply wrong everywhere. **Nothing in the picture said
+"scale error"** — only a human looking at art he already knows could see it.
+
+And §21's first three questions are all *shape* questions, answerable at a glance. **This error
+hid behind exactly the checks that were meant to catch problems**, because it did not deform the
+thing those checks look at.
+
+### What it says about the two draws
+
+| draw | what it found | a test could not, because… |
+|---|---|---|
+| **first** | the missing in-zone art fallback | the gap was between the **spec and the build**, each internally consistent |
+| **second** | the placement scale | the gap was between the **build and the CLIENT** — my `4×3×256` was an assumption, recorded at the time as *"testable on first draw"*, and it was wrong |
+
+**Both argue the same way for §21's ordering.** Neither was reachable from the desk.
+
+### The fix, and the guard
+
+Canvas = the coordinate space (1002×668); tiles anchored to its TOPLEFT and **overhanging right
+and bottom**, exactly as the stock detail frame does — the overhang is padding, not map content.
+The outer frame sizes to the tile grid so no visible art is clipped.
+
+`Map.ArtSize()` and `Map.TileGrid()` are exposed so the smoke asserts the two are not conflated
+again — **including an assertion that they DIFFER: if they ever match, one of them is wrong.**

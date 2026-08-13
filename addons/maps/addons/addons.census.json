@@ -1,5 +1,5 @@
 {
- "_fingerprint": "2795674a28f0",
+ "_fingerprint": "ae307eac165a",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1850,74 +1850,84 @@
    "map.lua": {
     "functions": [
      {
+      "name": "Map.ArtSize",
+      "kind": "function",
+      "line": 53
+     },
+     {
+      "name": "Map.TileGrid",
+      "kind": "function",
+      "line": 55
+     },
+     {
       "name": "Map.RunsFor",
       "kind": "function",
-      "line": 68
+      "line": 84
      },
      {
       "name": "Map.ArtFor",
       "kind": "function",
-      "line": 88
+      "line": 104
      },
      {
       "name": "Map.PointsOn",
       "kind": "function",
-      "line": 104
+      "line": 120
      },
      {
       "name": "Map.Offset",
       "kind": "function",
-      "line": 121
+      "line": 137
      },
      {
       "name": "Map.TilePath",
       "kind": "function",
-      "line": 127
+      "line": 143
      },
      {
       "name": "ensureDots",
       "kind": "local",
-      "line": 137
+      "line": 153
      },
      {
       "name": "clearDots",
       "kind": "local",
-      "line": 154
+      "line": 170
      },
      {
       "name": "paint",
       "kind": "local",
-      "line": 158
+      "line": 174
      },
      {
       "name": "context",
       "kind": "local",
-      "line": 190
+      "line": 206
      },
      {
       "name": "Map.Show",
       "kind": "function",
-      "line": 196
+      "line": 212
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 216
+      "line": 232
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 221
+      "line": 237
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 228
+      "line": 244
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 277
+      "line": 297
      }
     ],
     "onupdate": 0,

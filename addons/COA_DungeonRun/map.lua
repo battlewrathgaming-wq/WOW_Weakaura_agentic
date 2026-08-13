@@ -34,9 +34,25 @@ NS.Map = Map
 
 local Store
 
-local TILE_COLS, TILE_ROWS, TILE_PX = 4, 3, 256    -- stock layout: 12 tiles, 4x3
-local ART_W, ART_H = TILE_COLS * TILE_PX, TILE_ROWS * TILE_PX
+-- ★ TWO DIFFERENT SIZES, AND CONFUSING THEM IS A SILENT SCALE ERROR.
+--
+-- The stock layout (WorldMapFrame.xml:528-548):
+--     WorldMapDetailFrame   1002 x 668   <- the fraction 0..1 maps across THIS
+--     WorldMapDetailTile    256 x 256, laid 4x3 = 1024 x 768  <- OVERHANGS it
+--
+-- The tile grid is power-of-two art with dead padding; the map's coordinate space
+-- is the DETAIL FRAME. Placing across the tile grid instead stretches everything
+-- by +2.2% horizontally and +15% VERTICALLY - which draws a trail that still
+-- follows corridors and is wrong everywhere, worst furthest from the origin.
+-- Caught by eye on the first art-bearing draw: "there is some displacement as a
+-- constant across them."
+local TILE_COLS, TILE_ROWS, TILE_PX = 4, 3, 256    -- the ART grid
+local ART_W, ART_H = 1002, 668                     -- the COORDINATE space
 local DOT_PX = 8                                   -- §19: 32 is the CELL size, not the draw size
+
+-- Exposed so the smoke can assert the two are not conflated again.
+function Map.ArtSize() return ART_W, ART_H end
+function Map.TileGrid() return TILE_COLS * TILE_PX, TILE_ROWS * TILE_PX end
 
 local frame, canvas, tiles, dots, title, floorText, prevBtn, nextBtn
 local shownRunId, shownFloor
@@ -231,7 +247,8 @@ function Map.Init()
     tiles, dots = {}, {}
 
     frame = CreateFrame("Frame", "COA_DungeonRunMap", UIParent)
-    frame:SetWidth(ART_W + 32); frame:SetHeight(ART_H + 72)
+    local gw, gh = Map.TileGrid()
+    frame:SetWidth(gw + 32); frame:SetHeight(gh + 72)
     frame:SetPoint("CENTER")
     frame:SetMovable(true); frame:EnableMouse(true); frame:RegisterForDrag("LeftButton")
     frame:SetScript("OnDragStart", function(self) self:StartMoving() end)
@@ -249,6 +266,9 @@ function Map.Init()
     floorText = frame:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
     floorText:SetPoint("BOTTOMLEFT", 18, 16)
 
+    -- The canvas IS the coordinate space (1002x668). The tiles are anchored to its
+    -- TOPLEFT and overhang to the right and bottom, which is exactly what the stock
+    -- detail frame does - the overhang is the art's padding, not map content.
     canvas = CreateFrame("Frame", nil, frame)
     canvas:SetWidth(ART_W); canvas:SetHeight(ART_H)
     canvas:SetPoint("TOPLEFT", 16, -40)

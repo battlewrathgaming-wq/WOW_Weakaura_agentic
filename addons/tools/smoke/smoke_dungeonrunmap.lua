@@ -91,6 +91,24 @@ assert(Map.Offset({ x = 1, y = 2 }, 1024, 768) == nil,
        "a point with no fraction is not placeable and must return nil, not 0")
 
 -- =====================================================================
+-- ★ THE TWO SIZES. Conflating them is a SILENT scale error: the trail still
+-- follows corridors, and is wrong everywhere - worst furthest from the origin.
+--
+-- WorldMapFrame.xml:528  WorldMapDetailFrame  1002 x 668  <- the coordinate space
+-- WorldMapFrame.xml:541  WorldMapDetailTile   256 x 256, 4x3 = 1024 x 768 (art)
+--
+-- Caught by eye on the first art-bearing draw, not by any test - which is why
+-- there is now a test.
+-- =====================================================================
+local aw, ah = Map.ArtSize()
+assert(aw == 1002 and ah == 668,
+       ("SCALE: fractions map across the DETAIL FRAME 1002x668, got %sx%s"):format(aw, ah))
+local gw, gh = Map.TileGrid()
+assert(gw == 1024 and gh == 768, "the ART grid is 4x3 tiles of 256")
+assert(gw ~= aw and gh ~= ah,
+       "the two sizes are DIFFERENT - if they ever match, one of them is wrong")
+
+-- =====================================================================
 -- Store fixtures
 -- =====================================================================
 assert(Store.Load())
