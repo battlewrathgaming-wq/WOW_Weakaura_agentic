@@ -1680,6 +1680,16 @@ Three reasons, and the second and third are the load-bearing ones:
   name anyone can type is a label, not provenance, and should not be dressed as one.
 - **★ A route is DATA, not code — a plot table.** There is no execution surface, so the worst a bad
   route does is put a beacon somewhere wrong. That is a quality problem, not a trust one.
+- **★★ AND THE DECISIVE ONE, added after the drop:** *"the in-route consumer is reading and reacting,
+  rather than referencing to up-stream data it never had access to across users."* **For the person a
+  route is FOR, the reference could never resolve.** They ran nobody's capture; the node it pointed at
+  does not exist on their machine. So it was not merely dead weight — it was **structurally
+  unresolvable for the primary reader**, and would have been a field that is null for almost everyone
+  who ever loads a route.
+
+★ **What that leaves is two independent data forms sharing one space.** Runs and routes both live on
+the map and neither depends on the other, so the map shows both without a mode switch. **Promotion is
+the only bridge, and it is one-way and one-time** — copy at promotion, independent forever.
 
 ### 25.3 The trail is the EDITABLE SURFACE
 
