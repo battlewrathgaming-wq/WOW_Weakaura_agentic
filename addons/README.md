@@ -70,6 +70,13 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
   leave-it-running half.
 - `tools/smoke/` — the offline smoke harnesses (lua51-driven, stubbed frame API): one per
   product; run the relevant one after ANY addon change, before deploy.
+- `tools/mutate.py` + `tools/mutations/<addon>.json` — **breaks each guard on purpose and
+  confirms the smoke bites on THAT guard's own assertion.** `py addons/tools/mutate.py
+  dungeonrun`, `--only <text>` for a subset, `--list` for specs. **Its yield is weak TESTS,
+  not weak code** — six bad tests and one live bug so far, against zero bad guards the smoke
+  had already passed. It baselines first, restores, then **verifies the restore** (the
+  scratchpad version left a mutation on disk twice). Add a spec entry whenever you add a
+  guard; the spec is data, so that is a JSON entry rather than a script edit.
 - **The third witness lane (2026-07-31): `/combatlog`** — the client's own CLEU-to-disk
   stream (`Logs/<datetime> WoWCombatLog.txt`), parseable by
   `Class_design/Necromancer/tests/parse_combatlog.py`. The cheapest

@@ -4,13 +4,13 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (52 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (53 sections)**
 
 **STATUS: v0.12.0 — CAPTURE PROVEN, DISPLAY PROVEN, CURATION BUILT** (2026-08-13). Six files,
 114 fn, **0 persistent OnUpdate**, smoke-green, **61 mutations bite on their own message**, across five files.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
-§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§52 the promotion model + curation. **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
+§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§53 the promotion model + curation. **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
 architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into lanes.**
 
 **★ THE LAWS THAT GOVERN ANYTHING BUILT NEXT** — each cost a correction to learn:
@@ -75,11 +75,14 @@ planning notes, `maps/`, and the memory shelf's durable half. The lesson from to
 makes it worth scheduling: **staleness collects in the SHIPPED sections**, where nobody looks
 because the work is done.
 
-**⚠ BANKED TOOLING DEBT: the mutation harness is written ad-hoc every time.** Twice now, in
-scratchpad, from scratch — which is the shape [[machines-do-the-mechanical-work]] names (defined
-I/O = a build-once tool). It wants to be `addons/tools/mutate.py` reading a per-addon spec of
-`(file, anchor, mutation, expected message)`. **Not built — his call**, and it is worth doing
-before the next module gets one.
+**☑ PAID (2026-08-13): `addons/tools/mutate.py`** + a spec per addon under
+`addons/tools/mutations/`. `py addons/tools/mutate.py dungeonrun` — 61 mutations, `--only <text>`
+to run a subset, `--list` to see specs. **It baselines before mutating** (mutating on a red suite
+makes every result meaningless), **restores and then VERIFIES the restore**, and re-runs the suite
+at the end. That guard is not theoretical: the scratchpad version left a mutation on disk twice,
+and both times it was caught only because the next command happened to be the smoke.
+**Add a spec entry whenever you add a guard** — an untested guard is the thing this tool exists to
+make visible.
 
 ## ◼ SHIPPED — `COA_Landmarks` v0.1.9, at rest
 

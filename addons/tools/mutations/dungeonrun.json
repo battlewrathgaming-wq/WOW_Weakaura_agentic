@@ -1,0 +1,501 @@
+{
+  "addon": "COA_DungeonRun",
+  "note": "Each entry BREAKS one guard and names the assertion that must catch it. The yield is weak TESTS far more than weak code - see memory/mutation-tests-find-weak-tests.md. Add an entry whenever you add a guard.",
+  "files": {
+    "map": "addons/COA_DungeonRun/map.lua",
+    "capture": "addons/COA_DungeonRun/capture.lua",
+    "store": "addons/COA_DungeonRun/store.lua",
+    "editor": "addons/COA_DungeonRun/editor.lua",
+    "widget": "addons/COA_DungeonRun/widget.lua"
+  },
+  "mutations": [
+    {
+      "file": "map",
+      "what": "paint's forward decl is not SHADOWED",
+      "find": "function paint(run, floor)",
+      "replace": "local function paint(run, floor)",
+      "expect": "'paint'",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "paint is forward-declared at all (the LIVE bug)",
+      "find": "local paint",
+      "replace": "",
+      "expect": "LEAKED GLOBAL: paint",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the ladder: enter must beat exit",
+      "find": "local RANK = { pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }",
+      "replace": "local RANK = { pin = 6, dead = 5, start = 3, done = 4, leg = 2, combatleg = 1 }",
+      "expect": "ENTER OVER EXIT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the ladder: terminal must beat enter",
+      "find": "local RANK = { pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }",
+      "replace": "local RANK = { pin = 6, dead = 4, start = 5, done = 3, leg = 2, combatleg = 1 }",
+      "expect": "TERMINAL STOP outranks",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "paint must USE the ladder",
+      "find": "(point == selected and 10 or Map.Rank(point))",
+      "replace": "(point == selected and 10 or 1)",
+      "expect": "BURIED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "tiles cropped horizontally",
+      "find": "    local w = math.min(TILE_PX, ART_W - x)",
+      "replace": "    local w = TILE_PX",
+      "expect": "cropped columns must sum",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "tiles cropped vertically",
+      "find": "    local h = math.min(TILE_PX, ART_H - y)",
+      "replace": "    local h = TILE_PX",
+      "expect": "cropped rows must sum",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the crop is re-applied after every SetTexture",
+      "find": "        if u then tiles[i]:SetTexCoord(0, u, 0, v) end",
+      "replace": "",
+      "expect": "TEXCOORD RESET",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the art fallback must not use the and/or idiom",
+      "find": "    if run then mapFile = Map.ArtFor(run, hereMapID, hereFile) else mapFile = hereFile end",
+      "replace": "    mapFile = run and Map.ArtFor(run, hereMapID, hereFile) or hereFile",
+      "expect": "WRONG-MAP ART",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "no auto-pick",
+      "find": "    local run = nil\n    if runId then",
+      "replace": "    local run = nil\n    runId = runId or Store.Ids()[1]\n    if runId then",
+      "expect": "AUTO-PICK",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "a load clears the old selection",
+      "find": "    selected = nil\n",
+      "replace": "",
+      "expect": "STALE POINT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "a load notifies the pane",
+      "find": "    if onSelect then onSelect(nil) end\n    frame:Show()",
+      "replace": "    frame:Show()",
+      "expect": "the clear must NOTIFY",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "SeedFloor is guarded on identity",
+      "find": "    if run and hereMapID and Map.MapIDOf(run) == hereMapID and hereFloor then",
+      "replace": "    if run and hereFloor then",
+      "expect": "LOADED FROM ELSEWHERE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "location sorts the list",
+      "find": "        table.insert(e.here and here or other, e)",
+      "replace": "        table.insert(other, e)",
+      "expect": "STANDING IN come first",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the no-run caption still names its art",
+      "find": "        return \"no run loaded\", place .. \"  -  Curate to pick one\"",
+      "replace": "        return \"no run loaded\", \"Curate to pick one\"",
+      "expect": "still names the art",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "reopening keeps the loaded run",
+      "find": "    if frame:IsShown() then frame:Hide() else Map.Show(shownRunId) end",
+      "replace": "    if frame:IsShown() then frame:Hide() else Map.Show() end",
+      "expect": "reopening KEEPS",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "a bad id refuses instead of unloading",
+      "find": "        if not run then NS.Say((\"no run named |cffffd100%s|r\"):format(tostring(runId))) return end",
+      "replace": "        if not run then NS.Say(\"no run named\") end",
+      "expect": "must not unload",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "unloading actually clears",
+      "find": "    shownRunId = run and runId or nil",
+      "replace": "    shownRunId = runId or shownRunId",
+      "expect": "has to actually clear it",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the map names what it drew",
+      "find": "    shownArt = mapFile",
+      "replace": "",
+      "expect": "a run with stored art draws on it",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the tooltip is wired to the dots",
+      "find": "        d:SetScript(\"OnEnter\", function(self)\n            if not self.point then return end\n            GameTooltip:SetOwner(self, \"ANCHOR_RIGHT\")\n            Map.FillTooltip(GameTooltip, self.point)\n            GameTooltip:Show()\n        end)\n",
+      "replace": "",
+      "expect": "NO TOOLTIP HANDLER",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "leaving hides the tooltip",
+      "find": "        d:SetScript(\"OnLeave\", function() GameTooltip:Hide() end)",
+      "replace": "        d:SetScript(\"OnLeave\", function() end)",
+      "expect": "STICKY TOOLTIP",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "every Describe row reaches the tooltip",
+      "find": "    for _, kv in ipairs(rows) do\n        tip:AddDoubleLine(kv[1], kv[2], 0.7, 0.7, 0.7, 1, 1, 1)\n    end\n",
+      "replace": "",
+      "expect": "EVERY Describe row must reach",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "hovering nothing draws nothing",
+      "find": "    if not tip or not point then return false end",
+      "replace": "    if not tip then return false end",
+      "expect": "must not draw an empty tooltip",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the combat leg keys off `combat`, not `n`",
+      "find": "if not point.kind then return point.combat and \"combatleg\" or \"leg\" end",
+      "replace": "if not point.kind then return point.n and \"combatleg\" or \"leg\" end",
+      "expect": "an `n` alone is not a combat leg",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "travel legs read above combat legs",
+      "find": "local RANK = { pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }",
+      "replace": "local RANK = { pin = 6, dead = 5, start = 4, done = 3, leg = 1, combatleg = 2 }",
+      "expect": "TRAVEL leg reads above a COMBAT leg",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the view filter is applied when painting",
+      "find": "    local pts = Map.VisibleOn(run, floor)",
+      "replace": "    local pts = Map.PointsOn(run, floor)",
+      "expect": "SHOWN BUT FILTERED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "VisibleOn actually filters",
+      "find": "        if not hidden[Map.ArtKey(p)] and Map.InWindow(p, t0) then out[#out + 1] = p end",
+      "replace": "        out[#out + 1] = p",
+      "expect": "hiding drops it from the VIEW",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "hiding never touches the record",
+      "find": "        if not hidden[Map.ArtKey(p)] and Map.InWindow(p, t0) then out[#out + 1] = p end",
+      "replace": "        if not hidden[Map.ArtKey(p)] and Map.InWindow(p, t0) then out[#out + 1] = p else p.mapX = nil end",
+      "expect": "NEVER THE CAPTURE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "editor",
+      "what": "checked means SHOWN",
+      "find": "            Map.SetHidden(self.filterKey, not self:GetChecked())",
+      "replace": "            Map.SetHidden(self.filterKey, self:GetChecked())",
+      "expect": "CHECKED MEANS SHOWN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "editor",
+      "what": "the filter box follows the map",
+      "find": "        cb:SetChecked(not Map.Hidden(cb.filterKey))",
+      "replace": "        cb:SetChecked(true)",
+      "expect": "STALE CONTROL",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "capture",
+      "what": "in-combat samples are recorded",
+      "find": "local pull = UnitAffectingCombat(\"player\") and pulls or nil",
+      "replace": "if UnitAffectingCombat(\"player\") then return end local pull = nil",
+      "expect": "in-combat samples must be RECORDED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+    },
+    {
+      "file": "store",
+      "what": "combat legs are tagged",
+      "find": "    if pullIndex then point.combat, point.n = true, pullIndex end",
+      "replace": "    if pullIndex then point.n = pullIndex end",
+      "expect": "TAGGED, or the display",
+      "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+    },
+    {
+      "file": "store",
+      "what": "combat legs carry their pull",
+      "find": "    if pullIndex then point.combat, point.n = true, pullIndex end",
+      "replace": "    if pullIndex then point.combat = true end",
+      "expect": "JOINED to its pull",
+      "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+    },
+    {
+      "file": "map",
+      "what": "the window floor is one second",
+      "find": "local MIN_WIDTH = 1",
+      "replace": "local MIN_WIDTH = 0",
+      "expect": "ONE SECOND IS THE FLOOR",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "a window cannot exceed its envelope",
+      "find": "    width = math.max(MIN_WIDTH, math.min(width or span, math.max(span, MIN_WIDTH)))",
+      "replace": "    width = math.max(MIN_WIDTH, width or span)",
+      "expect": "cannot be wider than its envelope",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the window is clamped inside the envelope",
+      "find": "    pos = math.max(lo, math.min(pos or lo, math.max(lo, hi - width)))",
+      "replace": "    pos = pos or lo",
+      "expect": "OFF THE END",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "skip is window over ten",
+      "find": "    return math.max(MIN_WIDTH, math.floor((winWidth or MIN_WIDTH) / 10))",
+      "replace": "    return math.max(MIN_WIDTH, math.floor((winWidth or MIN_WIDTH) / 4))",
+      "expect": "skip is window/10",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the time filter is applied at all",
+      "find": "        if not hidden[Map.ArtKey(p)] and Map.InWindow(p, t0) then out[#out + 1] = p end",
+      "replace": "        if not hidden[Map.ArtKey(p)] then out[#out + 1] = p end",
+      "expect": "TIME FILTER INERT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the peek lifts the TIME rung only",
+      "find": "        if not hidden[Map.ArtKey(p)] and Map.InWindow(p, t0) then out[#out + 1] = p end",
+      "replace": "        if (peeking or not hidden[Map.ArtKey(p)]) and Map.InWindow(p, t0) then out[#out + 1] = p end",
+      "expect": "PEEK LIFTED THE WRONG RUNG",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "a load resets the envelope",
+      "find": "    Map.ResetTime(run)",
+      "replace": "    if not envFull then Map.ResetTime(run) end",
+      "expect": "RESET: the envelope cannot survive",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "a load clears the peek",
+      "find": "    peeking = nil",
+      "replace": "",
+      "expect": "cannot leave you peeking",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the envelope re-clamps its window",
+      "find": "    winPos, winWidth = Map.ClampWindow(winPos, winWidth, envLo, envHi)\n    repaintIfShown()\n    return envLo, envHi",
+      "replace": "    repaintIfShown()\n    return envLo, envHi",
+      "expect": "WINDOW ESCAPED ITS ENVELOPE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "store",
+      "what": "rename does not move the handle",
+      "find": "    r.name = name:match(\"^%s*(.-)%s*$\")",
+      "replace": "    r.name = name:match(\"^%s*(.-)%s*$\"); db().runs[id] = nil",
+      "expect": "HANDLE MOVED",
+      "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+    },
+    {
+      "file": "store",
+      "what": "the comment is capped",
+      "find": "    if #text > Store.COMMENT_MAX then text = text:sub(1, Store.COMMENT_MAX) end",
+      "replace": "",
+      "expect": "CAPPED: a descriptor",
+      "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+    },
+    {
+      "file": "editor",
+      "what": "the peek is a hold",
+      "find": "peekBtn:SetScript(\"OnMouseDown\", function() peekHeld = true; Editor.SyncPeek() end)",
+      "replace": "peekBtn:SetScript(\"OnMouseD0wn\", function() peekHeld = true; Editor.SyncPeek() end)",
+      "expect": "the peek is a HOLD",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "editor",
+      "what": "peeking is held OR latched",
+      "find": "    Map.SetPeek(peekHeld or peekLatched)",
+      "replace": "    Map.SetPeek(peekHeld)",
+      "expect": "LATCH: you must be able to ACT",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "editor",
+      "what": "pause clears the ticker",
+      "find": "    if f then f:SetScript(\"OnUpdate\", nil) end",
+      "replace": "    if f then end",
+      "expect": "LEAKED TIMER",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "editor",
+      "what": "the comment commits on enter",
+      "find": "        if id then Store.SetComment(id, self:GetText()) end",
+      "replace": "",
+      "expect": "the comment lands on the RUN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "editor",
+      "what": "delete unloads the run",
+      "find": "            if id then Store.Delete(id) end\n            Map.Show(nil)",
+      "replace": "            if id then Store.Delete(id) end",
+      "expect": "unloads it rather than leaving a ghost",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "editor",
+      "what": "the drag ticker is not persistent",
+      "find": "h:SetScript(\"OnDragStart\", function(self) self:SetScript(\"OnUpdate\", drag) end)",
+      "replace": "h:SetScript(\"OnUpdate\", drag)",
+      "expect": "PERSISTENT OnUpdate",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the pin tops the ladder",
+      "find": "local RANK = { pin = 6, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }",
+      "replace": "local RANK = { pin = 4, dead = 5, start = 4, done = 3, leg = 2, combatleg = 1 }",
+      "expect": "A PIN OUTRANKS EVERYTHING",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "the pin has its own art key",
+      "find": "    if point.kind == \"pin\" then return \"pin\" end",
+      "replace": "",
+      "expect": "DR-36: a custom pin",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "capture",
+      "what": "a pin needs a run",
+      "find": "    if not runId then return nil, \"not recording\" end",
+      "replace": "",
+      "expect": "a pin needs a run",
+      "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+    },
+    {
+      "file": "capture",
+      "what": "the pin joins its pull",
+      "find": "    return Store.AddMarker(runId, Store.Point(), \"pin\", pulls)",
+      "replace": "    return Store.AddMarker(runId, Store.Point(), \"pin\", 0)",
+      "expect": "it joins the pull it happened in",
+      "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+    },
+    {
+      "file": "capture",
+      "what": "a pin is a pin, not a start",
+      "find": "    return Store.AddMarker(runId, Store.Point(), \"pin\", pulls)",
+      "replace": "    return Store.AddMarker(runId, Store.Point(), \"start\", pulls)",
+      "expect": "it is a marker of kind pin",
+      "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+    },
+    {
+      "file": "store",
+      "what": "pins are counted, and are not pulls",
+      "find": "        elseif m.kind == \"pin\" then pins = pins + 1 end",
+      "replace": "        elseif m.kind == \"pin\" then pulls = pulls + 1 end",
+      "expect": "a pin is not a pull",
+      "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+    },
+    {
+      "file": "widget",
+      "what": "the pin button disables when unarmed",
+      "find": "        pinBtn:Disable()",
+      "replace": "",
+      "expect": "UNARMED PIN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrun.lua"
+    },
+    {
+      "file": "editor",
+      "what": "the unload entry is always offered",
+      "find": "    local info = UIDropDownMenu_CreateInfo()\n    info.text = NO_RUN\n    info.notCheckable = 1\n    info.func = function() Map.Show(nil); refresh() end\n    UIDropDownMenu_AddButton(info)\n",
+      "replace": "",
+      "expect": "UNLOADING must be as reachable",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "editor",
+      "what": "the grouping is drawn",
+      "find": "        if g ~= group then",
+      "replace": "        if false then",
+      "expect": "the grouping is DRAWN",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "editor",
+      "what": "the selector tracks the map",
+      "find": "    if dd then UIDropDownMenu_SetText(dd, Map.LoadedId() or NO_RUN) end",
+      "replace": "    if dd then UIDropDownMenu_SetText(dd, NO_RUN) end",
+      "expect": "must show what the MAP has",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "editor",
+      "what": "an empty list says so",
+      "find": "        local h = UIDropDownMenu_CreateInfo()\n        h.text = \"no runs recorded\"; h.isTitle = 1; h.notCheckable = 1\n        UIDropDownMenu_AddButton(h)\n        return\n",
+      "replace": "        return\n",
+      "expect": "must SAY it is empty",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    }
+  ]
+}

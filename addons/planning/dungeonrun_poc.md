@@ -3012,3 +3012,35 @@ so the time filter, the tooltip, the ladder and the flip book all work on it wit
    harness now **verifies its own restore** and names any file it failed to put back.
 
 **6 files, 114 functions, 0 persistent OnUpdate. 61 mutations bite on their own message.** v0.12.0.
+
+---
+
+## 53. ✅ THE MUTATION HARNESS IS A TOOL NOW (2026-08-13)
+
+`addons/tools/mutate.py` + `addons/tools/mutations/dungeonrun.json`.
+
+```bash
+py addons/tools/mutate.py dungeonrun
+py addons/tools/mutate.py dungeonrun --only "the pin"
+```
+
+It had been hand-written into scratchpad **three times**, which is exactly the shape
+`machines-do-the-mechanical-work` names: defined I/O, so build the tool once. The spec is **data**
+(`file · what · find · replace · expect · smoke`), so adding a guard means adding an entry, not
+editing a script.
+
+**Three guards it gained on promotion, each from something that actually happened:**
+
+1. **Baseline before mutating.** Mutating on top of a red suite makes every result meaningless, and
+   the failure reads as the harness rather than the tree.
+2. **Restore, then VERIFY the restore.** The scratchpad version left a mutation on disk **twice** —
+   once in `editor.lua` — and both times it was caught only because the next command happened to be
+   the smoke. Every file is read back and compared; anything that did not go back is named and fails
+   the run.
+3. **Re-run the suite after.** Belt to the braces.
+
+⚠ Honest note on the cause: the second incident came with an `OSError: Invalid argument` reading a
+**repo** file, not a scratchpad one, so the temp volume is **not** established as the culprit. The
+cause is unknown. What promotion fixes is that the tool is versioned and the restore-check survives.
+
+**61 mutations, five files, two smokes.**

@@ -44,9 +44,16 @@ job is to write an honest file.
 
 Run `.tools/lua51/lua5.1.exe addons/tools/smoke/smoke_dungeonrun.lua` — and if you change
 anything here, **mutation-test it**: break the guard and confirm the smoke fails on *its own*
-assertion. **54 mutations across four files** are verified that way — and the harness has earned
-its keep several times over: it has now found **five weak TESTS and one live bug**, against zero
-weak guards that the smoke had already passed. See `memory/mutation-tests-find-weak-tests.md`.
+assertion — and that is a TOOL now, not a habit:
+
+```bash
+py addons/tools/mutate.py dungeonrun
+```
+
+**61 mutations across five files.** The harness has earned its keep several times over: it has found
+**six weak TESTS and one live bug**, against zero weak guards the smoke had already passed. See
+`memory/mutation-tests-find-weak-tests.md`. **Add a spec entry when you add a guard** —
+`addons/tools/mutations/dungeonrun.json`.
 
 1. **Trusting the regen edge.** `PLAYER_REGEN_ENABLED` also fires when lockdown lifts for
    reasons that are not a pull ending. A build that trusts it writes phantom markers, and the
