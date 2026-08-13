@@ -31,8 +31,39 @@ REPO = LANDING.parent.parent
 sys.path.insert(0, str(REPO / "Weak Auras"))
 from lua_table import parse_file, LuaParseError  # noqa: E402  (codec-proven parser, reused not re-derived)
 
-SV_FILE = Path(r"F:\games\Ascension_wow\resources\ascension-live\WTF\Account"
-               r"\BATTLEWRATH\SavedVariables\COA_DevDump.lua")
+SV_DIR = Path(r"F:\games\Ascension_wow\resources\ascension-live\WTF\Account"
+              r"\BATTLEWRATH\SavedVariables")
+
+# ★ THE SOURCE TABLE - the one authority on WHO LANDS.
+#
+# Battlewrath, 2026-08-13, choosing between hardcoding a second path and this:
+# "2 sounds better. More dynamic." Hardcoding makes the THIRD addon a third
+# special case; a table makes it a row.
+#
+# deploy.py's MANIFEST stays the one authority on who EXISTS. This is the one
+# authority on who LANDS. An addon joins by adding a row here.
+#
+# `kind` exists because the shapes genuinely differ, and flattening them would
+# put a mode flag inside one function:
+#   envelope    ONE {header, payload} at a time, replaced every run - dedupe by
+#               header.runId. This is COA_DevDump's mailbox.
+#   collection  a KEYED table that ACCUMULATES across runs. The file only grows,
+#               so dedupe is PER KEY, and "already landed" is the normal answer
+#               for most keys on every flush.
+SOURCES = {
+    "devdump": {
+        "sv": SV_DIR / "COA_DevDump.lua",
+        "global": "COA_DevDumpDB",
+        "kind": "envelope",
+    },
+    "dungeonrun": {
+        "sv": SV_DIR / "COA_DungeonRun.lua",
+        "global": "COA_DungeonRunDB",
+        "kind": "collection",
+        "collection": "runs",
+        "stamp": "armedAt",
+    },
+}
 RAW = LANDING / "raw"          # verbatim clones (local receipts, gitignored)
 RECORDS = LANDING / "records"  # parsed records (tracked)
 
@@ -47,34 +78,20 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def land(sv_path: Path):
-    """Try to land the mailbox. Returns (status, detail) - status one of
-    landed / already / empty / parse-error / missing."""
-    if not sv_path.is_file():
-        return "missing", f"no SavedVariables file at {sv_path}"
-    try:
-        db = parse_file(str(sv_path)).get("COA_DevDumpDB")
-    except LuaParseError as e:
-        return "parse-error", str(e)
-    if not isinstance(db, dict) or not isinstance(db.get("header"), dict):
-        return "empty", "no v2 envelope in the mailbox (empty, cleared, or pre-v2 data)"
+def safe(text) -> str:
+    return re.sub(r"[^A-Za-z0-9_-]", "_", str(text))
 
-    header = db["header"]
-    run_id = header.get("runId")
-    task = re.sub(r"[^A-Za-z0-9_-]", "_", str(header.get("task", "unknown")))
-    if not run_id:
-        return "parse-error", "envelope has no runId - header malformed"
 
-    name = f"{run_id}__{task}"
-    record_path = RECORDS / f"{name}.json"
-    if record_path.exists():
-        return "already", name
+def _write(record_path: Path, sv_path: Path, raw_name: str, header, payload):
+    """Clone the source verbatim, then write the parsed record beside it.
 
+    The raw clone is the receipt: every record can be re-derived from the bytes
+    it came from, and the sha proves nothing moved underneath.
+    """
     RAW.mkdir(exist_ok=True)
     RECORDS.mkdir(exist_ok=True)
-    raw_path = RAW / f"{name}.lua"
+    raw_path = RAW / f"{raw_name}.lua"
     shutil.copy2(sv_path, raw_path)
-
     record = {
         "_provenance": {
             "source": str(sv_path),
@@ -85,60 +102,146 @@ def land(sv_path: Path):
             "envelope_status": header.get("status"),
         },
         "header": header,
-        "payload": db.get("payload"),
+        "payload": payload,
     }
     with open(record_path, "w", encoding="utf-8") as f:
         json.dump(record, f, indent=2, ensure_ascii=False)
+
+
+def land_collection(name: str, src: dict, db: dict):
+    """An ACCUMULATING keyed table: land each key once, leave the rest alone."""
+    items = db.get(src["collection"])
+    if not isinstance(items, dict) or not items:
+        return "empty", f"{src['global']}.{src['collection']} is empty"
+
+    sv_path, landed, skipped = src["sv"], [], 0
+    for key, entry in sorted(items.items()):
+        if not isinstance(entry, dict):
+            continue
+        try:
+            stamp = datetime.fromtimestamp(float(entry.get(src.get("stamp")))).strftime("%Y%m%d_%H%M%S")
+        except (TypeError, ValueError):
+            # No usable timestamp is a FACT about the entry, not a reason to drop
+            # it. Name it so it still lands, and sorts first rather than vanishing.
+            stamp = "00000000_000000"
+        rec_name = f"{stamp}__{safe(key)}__{name}"
+        record_path = RECORDS / f"{rec_name}.json"
+        if record_path.exists():
+            skipped += 1
+            continue
+        header = {
+            "tool": src["global"],
+            "kind": "collection",
+            "collection": src["collection"],
+            "key": key,
+            "status": "complete" if entry.get("closedAt") else "open",
+        }
+        _write(record_path, sv_path, rec_name, header, entry)
+        landed.append(str(record_path.relative_to(REPO)))
+
+    if not landed:
+        return "already", f"{skipped} entr(ies), none new"
+    return "landed", " | ".join(landed) + (f"  ({skipped} already)" if skipped else "")
+
+
+def land(name: str = "devdump"):
+    """Land ONE source. Returns (status, detail) - status one of
+    landed / already / empty / parse-error / missing."""
+    src = SOURCES[name]
+    sv_path = src["sv"]
+    if not sv_path.is_file():
+        return "missing", f"no SavedVariables file at {sv_path}"
+    try:
+        db = parse_file(str(sv_path)).get(src["global"])
+    except LuaParseError as e:
+        return "parse-error", str(e)
+    if not isinstance(db, dict):
+        return "empty", f"no {src['global']} in {sv_path.name}"
+
+    if src["kind"] == "collection":
+        return land_collection(name, src, db)
+
+    if not isinstance(db.get("header"), dict):
+        return "empty", "no v2 envelope in the mailbox (empty, cleared, or pre-v2 data)"
+
+    header = db["header"]
+    run_id = header.get("runId")
+    task = safe(header.get("task", "unknown"))
+    if not run_id:
+        return "parse-error", "envelope has no runId - header malformed"
+
+    rec_name = f"{run_id}__{task}"
+    record_path = RECORDS / f"{rec_name}.json"
+    if record_path.exists():
+        return "already", rec_name
+
+    _write(record_path, sv_path, rec_name, header, db.get("payload"))
 
     note = "" if header.get("status") == "complete" else \
         f" [WARNING: envelope status='{header.get('status')}' - flushed mid-session?]"
     return "landed", f"{record_path.relative_to(REPO)}{note}"
 
 
-def watch(sv_path: Path):
-    print(f"Watching {sv_path}")
+def watch(names):
+    """Watch every named source. One /reload flushes them all, so watching one
+    file and calling it "the watcher" was exactly the gap that lost run 1."""
+    for n in names:
+        print(f"Watching {SOURCES[n]['sv'].name}  ({SOURCES[n]['kind']})")
     print(f"Landing into {RECORDS.relative_to(REPO)} (raw receipts in {RAW.relative_to(REPO)}). Ctrl-C to stop.")
-    last_sig = None
+    last = {n: None for n in names}
     while True:
-        try:
-            st = sv_path.stat()
-            sig = (st.st_mtime_ns, st.st_size)
-        except OSError:
-            sig = None
-        if sig is not None and sig != last_sig:
-            if last_sig is not None:      # a fresh flush, not startup
+        for n in names:
+            try:
+                st = SOURCES[n]["sv"].stat()
+                sig = (st.st_mtime_ns, st.st_size)
+            except OSError:
+                sig = None
+            if sig is None or sig == last[n]:
+                continue
+            if last[n] is not None:       # a fresh flush, not startup
                 time.sleep(1.0)           # let the client finish writing
-            status, detail = land(sv_path)
+            status, detail = land(n)
             stamp = datetime.now().strftime("%H:%M:%S")
             if status == "landed":
                 print(f"[{stamp}] LANDED {detail}")
             elif status in ("parse-error", "missing"):
-                print(f"[{stamp}] {status.upper()}: {detail}")
-            elif status == "empty" and last_sig is not None:
-                print(f"[{stamp}] flush seen, {detail}")
-            # "already" = ordinary /reload with an unchanged mailbox: silent
-            last_sig = sig if sig is not None else last_sig
+                print(f"[{stamp}] {n} {status.upper()}: {detail}")
+            elif status == "empty" and last[n] is not None:
+                print(f"[{stamp}] {n} flush seen, {detail}")
+            # "already" = an ordinary /reload with nothing new: silent
+            last[n] = sig
         time.sleep(POLL_SECONDS)
 
 
 def main():
     args = sys.argv[1:]
-    sv_path = SV_FILE
-    if "--file" in args:
-        i = args.index("--file")
-        sv_path = Path(args[i + 1])
+    names = list(SOURCES)                 # default: ALL of them
+    if "--source" in args:
+        i = args.index("--source")
+        want = args[i + 1]
         del args[i:i + 2]
+        if want not in SOURCES:
+            print(f"Unknown source {want!r}. Known: {', '.join(SOURCES)}")
+            sys.exit(2)
+        names = [want]
     mode = args[0] if args else "once"
 
     if mode == "watch":
         try:
-            watch(sv_path)
+            watch(names)
         except KeyboardInterrupt:
             print("\nWatcher stopped.")
     elif mode == "once":
-        status, detail = land(sv_path)
-        print(f"{status}: {detail}")
-        sys.exit(0 if status in ("landed", "already") else 1)
+        worst = 0
+        for n in names:
+            status, detail = land(n)
+            print(f"{n}: {status}: {detail}")
+            if status not in ("landed", "already", "empty"):
+                worst = 1
+        sys.exit(worst)
+    elif mode == "sources":
+        for n, src in SOURCES.items():
+            print(f"{n:12} {src['kind']:11} {src['global']:20} {src['sv']}")
     else:
         print(__doc__)
         sys.exit(2)

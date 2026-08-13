@@ -46,6 +46,11 @@ local frame                -- created once; the OnUpdate is installed/cleared
 -- that any addon could clobber, and the smoke asserts against exactly that.
 local onUpdate
 
+-- FORWARD DECLARATION. Capture.Arm calls this but it is defined in the events
+-- section below, and without this line the call resolves to a nil global -
+-- exactly the silent scoping failure that shipped once in COA_Landmarks.
+local captureOrigin
+
 local pendingKilledBy, pendingWhy   -- set at PLAYER_DEAD, spent at combat end
 
 local MAX_BOSS = 5   -- Boss1..5TargetFrame; the token set is SPARSE, gaps are normal
@@ -158,7 +163,12 @@ function Capture.Arm(name)
 
     runId, pulls, acc = id, 0, 0
 
-    if not inInstance() then
+    if inInstance() then
+        -- Armed INSIDE: here IS the origin, and the zone-in event is long gone.
+        captureOrigin()
+    else
+        -- Armed OUTSIDE: this is the world-side entrance. The in-instance origin
+        -- lands on zone-in. F38 - they are different maps and cannot be one record.
         Store.SetOutside(id, Store.Point())
     end
 
@@ -226,12 +236,17 @@ local function onEncounterEngage()
     if #names > 0 then Store.AddBoss(runId, names, pulls) end
 end
 
--- DR-7: the in-instance arrival point - the route's origin. Guarded three ways
--- because PLAYER_ENTERING_WORLD also fires on login and on every /reload.
-local function onEnteringWorld()
-    if not runId then return end
-    if not inInstance() then return end
-    Store.SetArrival(runId, Store.Point())     -- Store.SetArrival is write-once
+-- DR-7 arrival + DR-30 instance identity. Both are write-once in the store, so
+-- this is safe to call from either path.
+--
+-- ★ IT MUST BE CALLABLE FROM ARM, and run 1 is why. The original only ran on
+-- PLAYER_ENTERING_WORLD, which meant a run armed INSIDE the dungeon - the natural
+-- thing to do, since you zone in and then start recording - captured NO arrival
+-- and NO difficulty. Record RFC_run1_clean-1: 15 pulls, 99 legs, boss engagement,
+-- and `instance = nil`. The event had already fired before the run existed.
+function captureOrigin()
+    if not runId or not inInstance() then return end
+    Store.SetArrival(runId, Store.Point())     -- write-once
 
     -- DR-30: difficulty is route IDENTITY. Signature per RaidProfiles.lua:540.
     if GetInstanceInfo then
@@ -242,6 +257,12 @@ local function onEnteringWorld()
             maxPlayers = maxPlayers,
         })
     end
+end
+
+-- PLAYER_ENTERING_WORLD also fires on login and on every /reload, so the guards
+-- above (armed, and actually inside) carry the whole weight.
+local function onEnteringWorld()
+    captureOrigin()
 end
 
 function Capture.Init()

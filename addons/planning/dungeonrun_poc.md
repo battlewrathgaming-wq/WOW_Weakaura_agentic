@@ -836,3 +836,58 @@ confirm — do that before designing on it, same as §6d.
 ### Still not built
 
 No beacon work, no editor, no display, no CLEU. **The next move is his two runs.**
+
+---
+
+## 13. RUN 1 — `RFC_run1_clean-1` (2026-08-13), read against §10
+
+Record: `addons/landing/records/20260813_020119__RFC_run1_clean-1__dungeonrun.json`.
+**15 pulls (30 markers) · 99 travel legs · 332 s · mapID 389 throughout · zero deaths.**
+
+| §10's question | What run 1 says |
+|---|---|
+| **Density** | **15 pulls, 30 markers, 99 legs.** Manageable — no pressure on a pin layer at this size |
+| **★ start↔end DRIFT** | **0.1 → 82.6 yards**, with five pulls over 50: `0.1 2.2 2.5 7.5 8.2 10.6 22.0 22.2 26.0 38.9 51.7 52.3 55.7 58.0 82.6`. **Large and variable — the waypoint should be DERIVED, not taken as the start point** |
+| Chain pulls | 15 markers for RFC reads as fine rather than collapsed. His taste call |
+| **Floors** | **UNANSWERED** — Ragefire is single-level. Needs a multi-floor dungeon |
+| Legs draw a path | 99 samples over 332 s; shape unreviewed until something draws it |
+
+Boss engagement worked: **Taragaman the Hungerer, recorded twice** — two engage events for one
+fight, exactly as DR-31 intends (record every engagement, fold offline).
+
+### ⚠ THE DEFECT IT EXPOSED — arming INSIDE captured no origin
+
+`arrival`, `instance` and difficulty were **all nil**. `captureOrigin` only ran on
+`PLAYER_ENTERING_WORLD`, so **arming inside the dungeon — the natural workflow, since you zone in
+and then start recording — got none of them.** The event had fired before the run existed.
+
+**Fixed:** the origin capture is callable from `Capture.Arm` too. Armed inside takes the origin
+there; armed outside takes the world-side entrance and the origin lands on zone-in. Both are
+write-once in the store, so the paths cannot fight. `captureOrigin` is **forward-declared** — Arm
+calls it and it is defined below, the same silent scoping failure that shipped once in
+COA_Landmarks. Three mutations bite, including `LEAKED GLOBAL: captureOrigin`.
+
+### ⚠ AND A GAP IN THE LANDING LANE, which was mine
+
+**`pull.py` was hardcoded to `COA_DevDump.lua`.** I built an addon that writes its own
+SavedVariables and never extended the lane, so the loop this bench documents — *SV →
+`pull.py watch` → records* — did not cover it. Nothing would have landed however long he waited.
+
+**Fixed with a SOURCE TABLE** (his call: *"2 sounds better. More dynamic"*). `deploy.py`'s
+MANIFEST stays the one authority on who **exists**; this is the one authority on who **lands**,
+and an addon joins by adding a row. Two `kind`s, because the shapes genuinely differ:
+
+| kind | shape | dedupe |
+|---|---|---|
+| `envelope` | ONE `{header, payload}`, replaced every run | by `header.runId` |
+| `collection` | a KEYED table that **accumulates** — the file only grows | **per key**; "already" is the normal answer |
+
+`watch()` now watches **every** source — one `/reload` flushes them all, and watching a single
+file while calling it *the watcher* is exactly what lost run 1. `once` runs every source,
+`--source` picks one, `sources` prints the table.
+
+Collection records carry a synthetic header (`tool` · `kind` · `collection` · `key` · `status`
+derived from `closedAt`, so an **open** run says so) and keep full provenance. An entry with no
+usable timestamp still lands under a `00000000_000000` stamp — **no timestamp is a FACT about the
+entry, not a reason to drop it.** Idempotency verified: a second pass reports *"1 entr(ies), none
+new"*.

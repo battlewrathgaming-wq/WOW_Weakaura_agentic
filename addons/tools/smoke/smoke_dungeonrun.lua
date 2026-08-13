@@ -69,7 +69,8 @@ local Store, Capture = NS.Store, NS.Capture
 -- This exact bug shipped once in COA_Landmarks and passed its first mutation
 -- test because of it.
 for _, leaked in ipairs({"onUpdate", "inInstance", "onCombatStart", "onCombatEnd",
-                         "onEnteringWorld", "mapFraction", "composeId", "db"}) do
+                         "onEnteringWorld", "captureOrigin", "mapFraction",
+                         "composeId", "db"}) do
     assert(_G[leaked] == nil, "LEAKED GLOBAL: " .. leaked)
 end
 
@@ -350,6 +351,40 @@ local m = #run.markers
 W.combat = true; frame:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
 assert(#run.markers == m, "disarmed: combat writes nothing")
 W.combat = false
+
+-- =====================================================================
+-- ★ ARMED INSIDE THE DUNGEON - the case run 1 exposed.
+--
+-- Zoning in and THEN starting to record is the natural workflow, and the
+-- original build captured no arrival and no difficulty for it: the zone-in
+-- event had already fired before the run existed. Record RFC_run1_clean-1 had
+-- 15 pulls, 99 legs and a boss engagement, with `instance = nil`.
+--
+-- No PLAYER_ENTERING_WORLD is fired here ON PURPOSE - that is the whole point.
+-- =====================================================================
+W.instance = true
+W.inst = { name = "Wailing Caverns", di = 1, dn = "Normal" }
+local id3 = assert(Capture.Arm("armed inside"), "arms while already in an instance")
+local run3 = Store.Get(id3)
+assert(run3.arrival ~= nil,
+       "ARM-INSIDE FAILED: no arrival captured, so the run has no origin")
+assert(run3.instance and run3.instance.difficultyName == "Normal",
+       "ARM-INSIDE FAILED: no instance identity, so the run has no difficulty")
+assert(run3.outside == nil, "armed inside, so there is no world-side entrance to fake")
+Capture.Stop()
+
+-- And armed OUTSIDE still takes the world-side point and no origin yet.
+W.instance = false
+local id4 = assert(Capture.Arm("armed outside"), "arms outdoors")
+local run4 = Store.Get(id4)
+assert(run4.outside ~= nil, "armed outdoors captures the world-side entrance")
+assert(run4.arrival == nil and run4.instance == nil,
+       "the in-instance origin is NOT faked from outside - different maps (F38)")
+W.instance = true
+frame:Fire("OnEvent", "PLAYER_ENTERING_WORLD")
+assert(run4.arrival ~= nil and run4.instance ~= nil,
+       "zoning in then lands the origin")
+Capture.Stop()
 
 -- =====================================================================
 -- DR-21: refuse data we do not understand, rather than guessing at it
