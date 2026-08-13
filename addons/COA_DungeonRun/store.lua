@@ -170,10 +170,17 @@ end
 -- bounds" (Battlewrath).
 -- ---------------------------------------------------------------------
 
-function Store.AddMarker(id, point, kind, n, dead)
+-- DR-32: `killedBy` - the distinct attackers from the client's own death recap,
+-- attached to a TERMINAL STOP. One consumed field; see DRIVER_CONTRACT.md.
+--
+-- `unavailable` carries the REASON when attribution could not be read, rather than
+-- leaving a silent absence. A missing key would imply nothing killed us.
+function Store.AddMarker(id, point, kind, n, dead, killedBy, unavailable)
     local r = Store.Get(id)
     if not r or not point then return nil end
     point.kind, point.n = kind, n
+    if killedBy then point.killedBy = killedBy end
+    if unavailable then point.killedByUnavailable = unavailable end
     -- Only stamped when TRUE. A `dead` key present on a marker means the pull
     -- ended with the player dead; absent means it did not. Without this field a
     -- wipe and a clean finish are INDISTINGUISHABLE in the record and no later
@@ -201,6 +208,36 @@ function Store.SetArrival(id, point)
     local r = Store.Get(id)
     if r and not r.arrival then r.arrival = point end
     return r and r.arrival
+end
+
+-- DR-30: the instance identity, write-once at arrival. A normal and a heroic pass
+-- through the same dungeon are DIFFERENT ROUTES, so difficulty is route identity
+-- rather than decoration.
+--
+-- Signature read from the client, not assumed - `RaidProfiles.lua:540` unpacks all
+-- seven: name, instanceType, difficultyIndex, difficultyName, maxPlayers,
+-- dynamicDifficulty, isDynamic.
+function Store.SetInstance(id, info)
+    local r = Store.Get(id)
+    if r and not r.instance then r.instance = info end
+    return r and r.instance
+end
+
+-- DR-31: boss engagements. Every engagement is recorded, NOT a distinct set -
+-- "better to be rich and find faults, than lean and never find bounds". A boss
+-- engaged twice (wipe, then re-pull) is two records, and the distinct set is a
+-- one-line fold offline.
+--
+-- We record only what this route ENGAGED. Never a roster, never a fraction:
+-- "2 of 4 bosses" needs a denominator that is CONTENT, and content lives out of
+-- our data. The user supplies it - they know the dungeon.
+function Store.AddBoss(id, names, pullIndex)
+    local r = Store.Get(id)
+    if not r or not names or #names == 0 then return nil end
+    r.bosses = r.bosses or {}
+    local e = { names = names, n = pullIndex, t = time(), gt = GetTime() }
+    r.bosses[#r.bosses + 1] = e
+    return e
 end
 
 -- ---------------------------------------------------------------------

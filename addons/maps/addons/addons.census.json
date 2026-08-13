@@ -1,5 +1,5 @@
 {
- "_fingerprint": "a129b0bc21d8",
+ "_fingerprint": "3faca18b3bdf",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1707,54 +1707,74 @@
    "capture.lua": {
     "functions": [
      {
+      "name": "recapAttackers",
+      "kind": "local",
+      "line": 61
+     },
+     {
+      "name": "engagedBosses",
+      "kind": "local",
+      "line": 89
+     },
+     {
       "name": "inInstance",
       "kind": "local",
-      "line": 48
+      "line": 101
      },
      {
       "name": "onUpdate",
       "kind": "function",
-      "line": 71
+      "line": 124
      },
      {
       "name": "Capture.Stop",
       "kind": "function",
-      "line": 115
+      "line": 168
      },
      {
       "name": "Capture.RunId",
       "kind": "function",
-      "line": 126
+      "line": 183
      },
      {
       "name": "Capture.Pulls",
       "kind": "function",
-      "line": 128
+      "line": 185
      },
      {
       "name": "onCombatStart",
       "kind": "local",
-      "line": 132
+      "line": 189
      },
      {
       "name": "onCombatEnd",
       "kind": "local",
-      "line": 141
+      "line": 198
+     },
+     {
+      "name": "onPlayerDead",
+      "kind": "local",
+      "line": 215
+     },
+     {
+      "name": "onEncounterEngage",
+      "kind": "local",
+      "line": 222
      },
      {
       "name": "onEnteringWorld",
       "kind": "local",
-      "line": 151
+      "line": 230
      },
      {
       "name": "Capture.Init",
       "kind": "function",
-      "line": 157
+      "line": 246
      },
      {
       "name": "Capture.Arm",
       "kind": "function",
-      "line": 176
+      "line": 271
      }
     ],
     "onupdate": 1,
@@ -1767,6 +1787,8 @@
     ],
     "hookscripts": [],
     "events": [
+     "INSTANCE_ENCOUNTER_ENGAGE_UNIT",
+     "PLAYER_DEAD",
      "PLAYER_ENTERING_WORLD",
      "PLAYER_REGEN_DISABLED",
      "PLAYER_REGEN_ENABLED",
@@ -1776,7 +1798,8 @@
     "timers": [],
     "push": [],
     "pull": [
-     "UnitIsGhost"
+     "UnitIsGhost",
+     "UnitName"
     ]
    },
    "core.lua": {
@@ -1861,49 +1884,59 @@
       "line": 157
      },
      {
-      "name": "Store.AddMarker",
-      "kind": "function",
-      "line": 171
-     },
-     {
       "name": "Store.AddLeg",
       "kind": "function",
-      "line": 185
+      "line": 192
      },
      {
       "name": "Store.SetOutside",
       "kind": "function",
-      "line": 193
+      "line": 200
      },
      {
       "name": "Store.SetArrival",
       "kind": "function",
-      "line": 199
+      "line": 206
+     },
+     {
+      "name": "Store.SetInstance",
+      "kind": "function",
+      "line": 219
+     },
+     {
+      "name": "Store.AddBoss",
+      "kind": "function",
+      "line": 233
      },
      {
       "name": "Store.Counts",
       "kind": "function",
-      "line": 208
+      "line": 245
      },
      {
       "name": "Store.GetUI",
       "kind": "function",
-      "line": 220
+      "line": 257
      },
      {
       "name": "Store.SetUI",
       "kind": "function",
-      "line": 229
+      "line": 266
+     },
+     {
+      "name": "Store.AddMarker",
+      "kind": "function",
+      "line": 270
      },
      {
       "name": "mapFraction",
       "kind": "local",
-      "line": 233
+      "line": 270
      },
      {
       "name": "composeId",
       "kind": "local",
-      "line": 233
+      "line": 270
      }
     ],
     "onupdate": 0,

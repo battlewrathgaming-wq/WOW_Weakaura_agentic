@@ -777,3 +777,62 @@ in a `finally`**, and the harness has one now.
 
 No beacon work (the stale-target bug is a prerequisite for **routing**, not for capture), no
 editor, no display, no CLEU. **The next move is his two runs**, read against §10.
+
+---
+
+## 12. BUILD LOG — v0.2.0 (2026-08-13): the three captures he named
+
+> *"Does the run builder need upgrading to capture the events we've determined of value?"*
+> — combat markers · per-second position · map start · death recap · boss encounter.
+
+**Three of the five were already in v0.1.0** (DR-1, DR-3, DR-7). The two that were not are now
+built, plus **difficulty**, which he added.
+
+| | |
+|---|---|
+| **DR-30** | instance identity + **difficulty** at arrival, **write-once**. Signature read from `RaidProfiles.lua:540`, not assumed |
+| **DR-31** | boss **engagements** — `INSTANCE_ENCOUNTER_ENGAGE_UNIT` → `boss1..boss5` names, recorded per engagement, never deduped at capture |
+| **DR-32** | `killedBy` on a **terminal stop** — distinct attackers from `AscensionUI.DeathRecap`, read at `PLAYER_DEAD`, spent at the end marker, **and only when `dead`** |
+
+**No CLEU listener anywhere.** DR-31 and DR-32 are one rare event each, and DR-32 consumes work
+somebody else already paid for. Census: **4 files, 41 fn, 0 persistent OnUpdate.**
+
+**`DRIVER_CONTRACT.md` written** — one consumed field, the read timing, the traps in the fields
+we deliberately do NOT read, and a **live-verified vs source-derived** split.
+
+**Drift fails LOUD, in the record:** `killedByUnavailable` carries the REASON when attribution
+cannot be read. A silent absence would say *"nothing killed us."*
+
+### ★ THE MUTATION HARNESS FOUND MY TESTS THREE TIMES, NOT THE CODE
+
+The most useful part of the session, and it generalises:
+
+1. **A masked guard.** *"Attribution only on a terminal stop"* went **SILENT** — my test set
+   `dead = false` on a *later* pull, by which point the pending value had already been spent.
+   Replaced with a **battle rez** (die, get resurrected, combat then drops), which is not a
+   contrivance — it is what happens in a dungeon.
+2. **Two guards masking each other.** `pendingKilledBy` was cleared at combat-start *and* at
+   Stop, so neither could be tested. **Arm refuses while a run is live**, which makes the extra
+   clear unreachable. Collapsed to ONE, at the run's end, symmetric with the OnUpdate teardown.
+   *(An untestable line is a line I cannot defend — the same reason a combat-start clear was
+   deleted a step earlier.)*
+3. **A constant hiding an overwrite.** `GetInstanceInfo` returned fixed values in the stub, so
+   write-once could not be distinguished from last-wins. Driven from test state instead.
+
+**The rule: two guards for one hazard means neither is tested.** And a stub that returns
+constants cannot observe an overwrite.
+
+**A fourth, on a downstream test:** an absolute `pulls == 4` broke the moment tests were inserted
+above it. Made relative. **A brittle test gets edited rather than believed.**
+
+### Banked for later — mythic + level (his ask)
+
+Surface **located, not built**: **`C_Keystones`** exists (12 functions incl.
+`GetKeystoneInInventory`, `GetDungeonBest`, `GetCurrentSetString`), `C_ChallengeMode.GetCompletionInfo`
+exists, and `Ascension_MythicPlus/MythicPlusObjectiveTracker.lua:51` reads
+**`activeKeystone.keystoneLevel`**. The live accessor for `activeKeystone` needs one dump to
+confirm — do that before designing on it, same as §6d.
+
+### Still not built
+
+No beacon work, no editor, no display, no CLEU. **The next move is his two runs.**

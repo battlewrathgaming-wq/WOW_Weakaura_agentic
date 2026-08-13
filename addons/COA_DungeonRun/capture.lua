@@ -46,6 +46,59 @@ local frame                -- created once; the OnUpdate is installed/cleared
 -- that any addon could clobber, and the smoke asserts against exactly that.
 local onUpdate
 
+local pendingKilledBy, pendingWhy   -- set at PLAYER_DEAD, spent at combat end
+
+local MAX_BOSS = 5   -- Boss1..5TargetFrame; the token set is SPARSE, gaps are normal
+
+-- ---------------------------------------------------------------------
+-- DR-32: the TERMINAL STOP's attribution, consumed from the client's own
+-- DeathRecap. ONE field - `attacker`. See DRIVER_CONTRACT.md for why the rest of
+-- that table (damage, school, healthPercent, crit) is deliberately NOT read:
+-- it is damage analysis, which is a lane combat parsers already serve well.
+--
+-- Returns (names, nil) or (nil, reason). The REASON matters: a silent absence
+-- would read as "nothing killed us", so the caller records it.
+-- ---------------------------------------------------------------------
+local function recapAttackers()
+    local R = AscensionUI and AscensionUI.DeathRecap
+    if type(R) ~= "table" then return nil, "AscensionUI.DeathRecap absent" end
+
+    local id = R.CurrentRecap
+    local buf = type(R.Events) == "table" and id and R.Events[id]
+    if type(buf) ~= "table" then return nil, "recap buffer absent or not a table" end
+
+    local seen, out = {}, {}
+    for _, e in ipairs(buf) do
+        local a = type(e) == "table" and e.attacker or nil
+        if type(a) == "string" and not seen[a] then
+            seen[a] = true
+            out[#out + 1] = a          -- first-seen order; dedupe is offline's job
+        end
+    end
+    if #out == 0 then return nil, "recap buffer held no named attacker" end
+    return out, nil
+end
+
+-- ---------------------------------------------------------------------
+-- DR-31: which bosses this route ENGAGED. Route identity - a run that kills two
+-- of the bosses is a different route from one that kills four.
+--
+-- Live-verified 2026-08-13 (record 20260813_014009_176): `boss1` exists and is
+-- NAMED mid-fight in a vanilla dungeon on this fork. Note UnitExists returns 1,
+-- not true - a 3.3.5-ism, so never compare against `true`.
+-- ---------------------------------------------------------------------
+local function engagedBosses()
+    local out = {}
+    for i = 1, MAX_BOSS do
+        local unit = "boss" .. i
+        if UnitExists(unit) then
+            local n = UnitName(unit)
+            if type(n) == "string" and n ~= "" then out[#out + 1] = n end
+        end
+    end
+    return out
+end
+
 local function inInstance()
     if not IsInInstance then return false end
     local ok = IsInInstance()
@@ -118,6 +171,10 @@ function Capture.Stop()
     local id = runId
     Store.Close(id)
     runId, pulls, acc = nil, 0, 0
+    -- Run-scoped: a death captured near the end of one run must not ride onto the
+    -- first terminal stop of the NEXT. This is the ONLY clear besides spending it
+    -- at combat end - a second one elsewhere would mask this one from testing.
+    pendingKilledBy, pendingWhy = nil, nil
     -- The handler exists ONLY while recording: zero persistent OnUpdate, which
     -- is what emit_addon_census.py will report and what we hold others to.
     if frame then frame:SetScript("OnUpdate", nil) end
@@ -144,7 +201,29 @@ local function onCombatEnd()
     -- DR-13: dead/alive is one API read on an event we already handle, and
     -- without it a WIPE AND A CLEAN FINISH ARE IDENTICAL in the record.
     local dead = UnitIsDeadOrGhost and UnitIsDeadOrGhost("player") and true or false
-    Store.AddMarker(runId, Store.Point(), "end", pulls, dead)
+    -- Attribution rides ONLY on a terminal stop. If we walked away alive there is
+    -- nothing to attribute, and attaching a stale attacker list would be a lie.
+    local by, why
+    if dead then by, why = pendingKilledBy, pendingWhy end
+    Store.AddMarker(runId, Store.Point(), "end", pulls, dead, by, why)
+    pendingKilledBy, pendingWhy = nil, nil
+end
+
+-- PLAYER_DEAD is the ONLY moment the recap is readable: CurrentRecap rolls on
+-- PLAYER_UNGHOST and PLAYER_ENTERING_WORLD, so a later read finds an empty
+-- buffer. Combat may not drop for several seconds, so we hold it until the end
+-- marker is written.
+local function onPlayerDead()
+    if not runId then return end
+    pendingKilledBy, pendingWhy = recapAttackers()
+end
+
+-- DR-31. One rare event, not continuous logging - the cost objection that rules
+-- out a CLEU listener does not apply here.
+local function onEncounterEngage()
+    if not runId then return end
+    local names = engagedBosses()
+    if #names > 0 then Store.AddBoss(runId, names, pulls) end
 end
 
 -- DR-7: the in-instance arrival point - the route's origin. Guarded three ways
@@ -153,6 +232,16 @@ local function onEnteringWorld()
     if not runId then return end
     if not inInstance() then return end
     Store.SetArrival(runId, Store.Point())     -- Store.SetArrival is write-once
+
+    -- DR-30: difficulty is route IDENTITY. Signature per RaidProfiles.lua:540.
+    if GetInstanceInfo then
+        local name, iType, diffIndex, diffName, maxPlayers = GetInstanceInfo()
+        Store.SetInstance(runId, {
+            name = name, type = iType,
+            difficultyIndex = diffIndex, difficultyName = diffName,
+            maxPlayers = maxPlayers,
+        })
+    end
 end
 
 function Capture.Init()
@@ -162,11 +251,17 @@ function Capture.Init()
     frame:RegisterEvent("PLAYER_REGEN_ENABLED")
     frame:RegisterEvent("PLAYER_ENTERING_WORLD")
     frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
+    frame:RegisterEvent("PLAYER_DEAD")
+    frame:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
     frame:SetScript("OnEvent", function(_, event)
         if event == "PLAYER_REGEN_DISABLED" then
             onCombatStart()
         elseif event == "PLAYER_REGEN_ENABLED" then
             onCombatEnd()
+        elseif event == "PLAYER_DEAD" then
+            onPlayerDead()
+        elseif event == "INSTANCE_ENCOUNTER_ENGAGE_UNIT" then
+            onEncounterEngage()
         else
             onEnteringWorld()
         end

@@ -22,13 +22,14 @@ DEFAULT_CHAT_FRAME = { AddMessage = function(_, m) chat[#chat + 1] = m end }
 local W = {
     x = 100, y = 200, z = 30, mapID = 389,
     zone = "Ragefire Chasm", sub = "The Molten Span",
-    combat = false, instance = false, ghost = false, dead = false,
+    combat = false, instance = false, ghost = false, dead = false, bosses = {},
+    inst = { name = "Ragefire Chasm", di = 2, dn = "Heroic" },
     clock = 1700000000, gt = 500.0,
 }
 
 function time() return W.clock end
 function GetTime() return W.gt end
-function UnitName() return "Gravekeeper" end
+function UnitName(u) if u and W.bosses[u] then return W.bosses[u] end return "Gravekeeper" end
 function UnitAffectingCombat() return W.combat end
 function UnitIsGhost() return W.ghost end
 function UnitIsDeadOrGhost() return W.dead or W.ghost end
@@ -37,6 +38,10 @@ function GetCurrentPlayerPosition() return W.x, W.y, W.z, W.mapID end
 function GetRealZoneText() return W.zone end
 function GetSubZoneText() return W.sub end
 function GetPlayerMapPosition() return 0.42, 0.61 end
+function GetInstanceInfo() return W.inst.name, "party", W.inst.di, W.inst.dn, 5, 0, false end
+-- boss tokens: UnitExists returns 1 (a 3.3.5-ism), NOT true - live-verified
+function UnitExists(u) return W.bosses[u] and 1 or nil end
+AscensionUI = nil   -- the driver; tests install and remove it deliberately
 function GetCurrentMapContinent() return 1 end
 function GetCurrentMapZone() return 17 end
 function SetMapToCurrentZone() end
@@ -189,9 +194,134 @@ assert(run.legs[#run.legs].ghost == true, "DR-13: corpse-run legs carry the ghos
 W.ghost, W.dead = false, false
 
 -- =====================================================================
+-- DR-30: instance identity, captured at arrival. Difficulty is route IDENTITY -
+-- a normal and a heroic pass through the same dungeon are different routes.
+-- =====================================================================
+assert(run.instance, "DR-30 FAILED: no instance identity captured at arrival")
+assert(run.instance.difficultyName == "Heroic" and run.instance.difficultyIndex == 2,
+       "DR-30: difficulty recorded, per RaidProfiles.lua:540's signature")
+assert(run.instance.name == "Ragefire Chasm" and run.instance.maxPlayers == 5, "and the rest of it")
+
+-- WRITE-ONCE. PLAYER_ENTERING_WORLD fires again on every /reload, and a run that
+-- silently re-stamps its identity mid-way would report the LAST zone-in rather
+-- than the one it started in.
+W.inst = { name = "Wailing Caverns", di = 1, dn = "Normal" }
+frame:Fire("OnEvent", "PLAYER_ENTERING_WORLD")
+assert(run.instance.name == "Ragefire Chasm" and run.instance.difficultyName == "Heroic",
+       "DR-30 FAILED: instance identity is last-wins, not write-once")
+W.inst = { name = "Ragefire Chasm", di = 2, dn = "Heroic" }
+
+-- =====================================================================
+-- DR-31: boss engagements - ROUTE IDENTITY, and we record ENGAGED only
+-- =====================================================================
+W.bosses = {}
+frame:Fire("OnEvent", "INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+assert(run.bosses == nil, "no tokens live -> nothing recorded")
+
+W.bosses = { boss1 = "Taragaman the Hungerer" }
+frame:Fire("OnEvent", "INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+assert(run.bosses and #run.bosses == 1, "DR-31 FAILED: an engagement was not recorded")
+assert(run.bosses[1].names[1] == "Taragaman the Hungerer", "the boss names itself")
+assert(#run.bosses[1].names == 1, "the token set is SPARSE - boss2..5 absent is normal")
+
+-- Every engagement, not a distinct set: a wipe-then-retry is TWO records, and the
+-- distinct set is a one-line fold offline. "Better to be rich and find faults."
+frame:Fire("OnEvent", "INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+assert(#run.bosses == 2, "DR-31 FAILED: engagements were deduped at capture time")
+W.bosses = {}
+
+-- =====================================================================
+-- DR-32: the TERMINAL STOP's attribution, consumed from DeathRecap
+-- =====================================================================
+AscensionUI = { DeathRecap = { CurrentRecap = 2, Events = { {}, {
+    { attacker = "Molten Elemental", damage = -68 },
+    { attacker = "Ragefire Trogg",   damage = -505 },
+    { attacker = "Molten Elemental", damage = -12022 },
+} } } }
+
+W.combat = true;  frame:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
+W.dead = true;    frame:Fire("OnEvent", "PLAYER_DEAD")
+W.combat = false; frame:Fire("OnEvent", "PLAYER_REGEN_ENABLED")
+local stop = run.markers[#run.markers]
+assert(stop.dead == true, "it is a terminal stop")
+assert(stop.killedBy and #stop.killedBy == 2,
+       "DR-32 FAILED: attackers not attached, or not deduped to DISTINCT names")
+assert(stop.killedBy[1] == "Molten Elemental" and stop.killedBy[2] == "Ragefire Trogg",
+       "distinct, in FIRST-SEEN order")
+assert(stop.killedByUnavailable == nil, "no failure reason when it worked")
+
+-- ★ DIED, THEN RESURRECTED BEFORE COMBAT DROPPED. Not a contrivance - that is a
+-- battle rez, which is exactly what happens in a dungeon. Attribution must NOT
+-- attach: we walked away from that pull, so it is not a terminal stop.
+-- (The first version of this test set dead=false only for a LATER pull, by which
+-- point the pending value had already been spent - so the guard's mutation went
+-- SILENT. The mutation harness found the test, not the code.)
+W.combat = true;  frame:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
+W.dead = true;    frame:Fire("OnEvent", "PLAYER_DEAD")
+W.dead = false                                  -- battle rez
+W.combat = false; frame:Fire("OnEvent", "PLAYER_REGEN_ENABLED")
+local rezzed = run.markers[#run.markers]
+assert(rezzed.dead == nil, "rezzed before combat dropped, so not a terminal stop")
+assert(rezzed.killedBy == nil,
+       "ATTRIBUTION LEAKED: a pull we survived carries a killedBy")
+
+-- And an ordinary survived pull attaches nothing either.
+W.combat = true;  frame:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
+W.combat = false; frame:Fire("OnEvent", "PLAYER_REGEN_ENABLED")
+local alive = run.markers[#run.markers]
+assert(alive.dead == nil and alive.killedBy == nil,
+       "ATTRIBUTION LEAKED: a survived pull carries a killedBy")
+
+-- Pending is RUN-scoped: a death near the end of one run must not ride onto the
+-- next one's first terminal stop.
+W.combat = true;  frame:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
+W.dead = true;    frame:Fire("OnEvent", "PLAYER_DEAD")
+Capture.Stop()
+local id2 = assert(Capture.Arm("second run"), "a second run arms")
+local run2 = Store.Get(id2)
+W.combat = false; frame:Fire("OnEvent", "PLAYER_REGEN_ENABLED")
+if #run2.markers > 0 then
+    assert(run2.markers[1].killedBy == nil,
+           "RUN LEAK: attribution from the previous run rode into this one")
+end
+Capture.Stop()
+assert(Capture.Arm("resumed") ~= nil, "re-arm for the remaining tests")
+id = Capture.RunId(); run = Store.Get(id)
+W.instance = true
+frame:Fire("OnEvent", "PLAYER_ENTERING_WORLD")
+W.dead = false
+
+-- Driver drift fails LOUD, IN THE RECORD. A silent absence would read as
+-- "nothing killed us".
+AscensionUI = nil
+W.combat = true;  frame:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
+W.dead = true;    frame:Fire("OnEvent", "PLAYER_DEAD")
+W.combat = false; frame:Fire("OnEvent", "PLAYER_REGEN_ENABLED")
+local drift = run.markers[#run.markers]
+assert(drift.killedBy == nil, "no attribution when the driver is gone")
+assert(drift.killedByUnavailable and drift.killedByUnavailable:find("absent"),
+       "DRIFT SILENT: the record must say WHY attribution is missing")
+W.dead = false
+
+-- Shape drift on their side, not absence - same requirement.
+AscensionUI = { DeathRecap = { CurrentRecap = 1, Events = "not a table" } }
+W.combat = true;  frame:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
+W.dead = true;    frame:Fire("OnEvent", "PLAYER_DEAD")
+W.combat = false; frame:Fire("OnEvent", "PLAYER_REGEN_ENABLED")
+assert(run.markers[#run.markers].killedByUnavailable,
+       "DRIFT SILENT: a changed Events shape must be recorded as a reason")
+AscensionUI = nil
+W.dead = false
+
+-- =====================================================================
 -- DR-6: record EVERY combat. No dedupe, even at an identical position.
 -- =====================================================================
+-- Counted RELATIVE to where we are, not against a literal. An absolute count here
+-- breaks the moment a test is inserted above it - which it did, on the first run
+-- after DR-30/31/32 landed. A brittle test is a test that gets edited rather than
+-- believed.
 local n0 = #run.markers
+local p0 = Store.Counts(id)
 for _ = 1, 2 do
     W.combat = true;  frame:Fire("OnEvent", "PLAYER_REGEN_DISABLED")
     W.combat = false; frame:Fire("OnEvent", "PLAYER_REGEN_ENABLED")
@@ -200,7 +330,8 @@ assert(#run.markers == n0 + 4,
        "DR-6 FAILED: something filtered or deduped at capture time")
 
 local pulls, legs = Store.Counts(id)
-assert(pulls == 4, "Counts reports pulls by START markers, got " .. tostring(pulls))
+assert(pulls == p0 + 2,
+       ("Counts reports pulls by START markers, expected %d got %d"):format(p0 + 2, pulls))
 assert(legs == #run.legs, "Counts reports legs")
 
 -- =====================================================================

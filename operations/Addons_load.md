@@ -30,7 +30,12 @@ never looked. Both AC-24 and AC-26 are re-mutation-tested and still bite.
 already-live slot. Two candidate causes and the one-run test that separates them are in §15 —
 do not guess at it in `beacon.lua`, which is where the silent-failure criteria live.
 
-**★ THE ARC MOVED — `COA_DungeonRun` v0.1.0 is BUILT** (2026-08-13; spec
+**★ THE ARC MOVED — `COA_DungeonRun` v0.2.0 is BUILT** (v0.2.0 adds DR-30 difficulty,
+DR-31 boss engagements, DR-32 `killedBy` on terminal stops — all consuming events or another
+addon's work, **no CLEU listener**; `DRIVER_CONTRACT.md` covers the one field we read from
+`AscensionUI.DeathRecap`). Earlier note below still applies:
+
+**`COA_DungeonRun` v0.1.0 was BUILT** (2026-08-13; spec
 `addons/planning/dungeonrun_poc.md`, build log §11). Capture only: no beacon, editor, display or
 CLEU. 4 files, **0 persistent OnUpdate**, smoke-green, **ten mutation tests all biting on their
 own assertions**. In the MANIFEST, **not deployed** — he deploys at test time. **NEXT: his TWO

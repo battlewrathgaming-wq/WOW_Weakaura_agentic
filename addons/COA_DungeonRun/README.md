@@ -1,6 +1,6 @@
 # COA_DungeonRun — the capture POC
 
-_v0.1.0, built 2026-08-13. **Capture only.** No beacon, no editor, no display.
+_v0.2.0, built 2026-08-13. **Capture only.** No beacon, no editor, no display.
 Spec: `addons/planning/dungeonrun_poc.md`. Facts: `addons/planning/satnav_ledger.md`._
 
 ## What it is
@@ -31,12 +31,16 @@ job is to write an honest file.
 | **DR-6** | **record every combat.** No filter, no dedupe, no merge, ever |
 | **DR-7** | both entrances: the outdoor point at arm time, the in-instance arrival on zone-in |
 | **DR-13** | `dead` on end markers, `ghost` on legs — **without these a wipe and a clean finish are identical** |
+| **DR-30** | the instance identity **and difficulty** at arrival, **write-once** — a normal and a heroic pass are different routes |
+| **DR-31** | which bosses the route **ENGAGED** — every engagement, never deduped at capture |
+| **DR-32** | `killedBy` on a terminal stop — distinct attackers from the client's own DeathRecap. **One consumed field**; see `DRIVER_CONTRACT.md` |
 
 ## ★ Three things that would fail SILENTLY, and are asserted in the smoke
 
 Run `.tools/lua51/lua5.1.exe addons/tools/smoke/smoke_dungeonrun.lua` — and if you change
 anything here, **mutation-test it**: break the guard and confirm the smoke fails on *its own*
-assertion. All ten guards were verified that way at build time.
+assertion. **All twenty guards were verified that way** — and the harness earned its keep:
+it found three cases where MY TEST was too weak to tell two bugs apart, not the code.
 
 1. **Trusting the regen edge.** `PLAYER_REGEN_ENABLED` also fires when lockdown lifts for
    reasons that are not a pull ending. A build that trusts it writes phantom markers, and the
@@ -48,6 +52,23 @@ assertion. All ten guards were verified that way at build time.
    the record and fills it with the open world — which reads as *data*, not as a bug.
 3. **A missing `dead`/`ghost` flag.** *You cannot find a fault in a field you did not collect.*
    Both are one API read on an event or tick already in hand.
+
+## ★ What we do NOT record, and why
+
+**No boss roster, so no fraction and no missing list.** A route reports *"engaged: Taragaman the
+Hungerer"* — never *"2 of 4 bosses"* or *"skipped: Bazzalan"*. Both need a **denominator**, which
+is dungeon CONTENT, and content lives out of our data: *"We're not trying to map what exists.
+Just what this route dictates."* **Skipped is visible by COMPARING two routes** — the user
+supplies the denominator, because they know the dungeon.
+
+**No damage analysis.** `damage`, `school`, `healthPercent` and the crit flag all sit in the
+DeathRecap table we read, and we take none of them. Combat parsers serve that lane well. **A
+field you do not consume cannot drift under you** — and on this fork, things drift in days.
+
+**No attribution for pulls you SURVIVED.** That would need a combat-log listener running through
+every pull of every run. The asymmetry is correct: a survived pull is route *geometry*, which we
+already capture in full; a terminal stop is route *meaning*, and that is the only place
+attribution changes what the route tells you.
 
 ## Why it records so much
 
@@ -75,6 +96,7 @@ in the wrong place).
 | | |
 |---|---|
 | `store.lua` | **the only file that touches `COA_DungeonRunDB`.** A rewrite replaces this file, not a search |
+| `DRIVER_CONTRACT.md` | what we consume from `AscensionUI.DeathRecap`, and the traps in the fields we deliberately do NOT read |
 | `capture.lua` | the events and the sampler |
 | `widget.lua` | name, arm/stop, live count. Deliberately small |
 | `core.lua` | init and the slash surface |
