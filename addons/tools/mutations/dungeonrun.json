@@ -404,7 +404,7 @@
     {
       "file": "editor",
       "what": "the drag ticker is not persistent",
-      "find": "h:SetScript(\"OnDragStart\", function(self) self:SetScript(\"OnUpdate\", drag) end)",
+      "find": "h:SetScript(\"OnMouseDown\", function(self) self:SetScript(\"OnUpdate\", drag) end)",
       "replace": "h:SetScript(\"OnUpdate\", drag)",
       "expect": "PERSISTENT OnUpdate",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
@@ -495,6 +495,62 @@
       "find": "        local h = UIDropDownMenu_CreateInfo()\n        h.text = \"no runs recorded\"; h.isTitle = 1; h.notCheckable = 1\n        UIDropDownMenu_AddButton(h)\n        return\n",
       "replace": "        return\n",
       "expect": "must SAY it is empty",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "tracking pages the floor",
+      "find": "    if tracking then\n        local f = Map.FloorAt(Store.Get(shownRunId), winPos + winWidth)\n        if f then shownFloor = f end\n    end\n",
+      "replace": "",
+      "expect": "TRACKING DID NOT PAGE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "FloorAt takes the last point AT OR BEFORE",
+      "find": "and (p.t - t0) <= atRel and (not bestT or p.t > bestT) then",
+      "replace": "and (p.t - t0) == atRel and (not bestT or p.t > bestT) then",
+      "expect": "AT OR BEFORE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "paging by hand turns tracking off",
+      "find": "    tracking = nil\n    paint(Store.Get(shownRunId), shownFloor)",
+      "replace": "    paint(Store.Get(shownRunId), shownFloor)",
+      "expect": "MANUAL PAGING must turn tracking OFF",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "coincident handles are separated",
+      "find": "    if x2 - x1 >= MIN_SEP then return x1, x2 end",
+      "replace": "    if x2 - x1 >= 0 then return x1, x2 end",
+      "expect": "COINCIDENT HANDLES",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "separation stays on the track",
+      "find": "    if b > w then a, b = w - MIN_SEP, w end",
+      "replace": "",
+      "expect": "at the RIGHT end",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "reset restores the whole envelope",
+      "find": "    Map.ResetTime(Store.Get(shownRunId))\n",
+      "replace": "",
+      "expect": "RESET INCOMPLETE",
+      "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
+    },
+    {
+      "file": "map",
+      "what": "FloorAt takes the LAST, not the first",
+      "find": "and (p.t - t0) <= atRel and (not bestT or p.t > bestT) then",
+      "replace": "and (p.t - t0) <= atRel and (not bestT or p.t < bestT) then",
+      "expect": "TRACKING DID NOT PAGE",
       "smoke": "addons/tools/smoke/smoke_dungeonrunmap.lua"
     }
   ]

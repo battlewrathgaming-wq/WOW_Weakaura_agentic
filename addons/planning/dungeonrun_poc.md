@@ -3179,3 +3179,64 @@ from thinking harder:
 
 Expect a fifth. The thing that would move it is the same thing that moved the others: a run that does
 something the model has no room for.
+
+---
+
+## 56. BUILD — two tightens on the curator, v0.13.0 (2026-08-13)
+
+### ⚠ The envelope handles: three input bugs, no arithmetic bugs
+
+His report: *"when they're set right against the time scale in the envelope, they get stuck and stop
+responding. When in that mode they're good for trimming the time-scale more granular than the -/+."*
+
+Nothing was wrong with `SetEnvelope`. All three causes were in the **input path**:
+
+1. **`RegisterForDrag` has a movement threshold.** A small precise nudge — which is exactly what the
+   handles are *for* — never starts a drag at all. **Press-to-grab has no threshold.**
+2. **The bar underneath takes a click as "move the window".** Miss an 8 px handle by a pixel and
+   something else happens, which reads as the handle ignoring you rather than as a miss. The handles
+   now sit **above** the bar and swallow their own clicks.
+3. **At the extremes the cursor maps past the track**, `SetEnvelope` pins it, and the handle sits
+   still while you keep dragging — *"stuck at the ends"*. The drag is now clamped to the track.
+
+Plus one that had not bitten yet: **two handles on the same second overlap exactly**, so one hides
+the other and whichever is on top takes every press. `Map.SeparateHandles` nudges the **draw** apart
+by 8 px while leaving the envelope untouched, so the numbers stay honest.
+
+A 16 px invisible grab area over a 4 px visual, and `OnHide` clears the ticker — a grab that ends off
+the button would otherwise leave it stuck to the cursor, which is the same symptom again.
+
+### ★★ Track the most recent node
+
+**SFK_Run4 is why:** floor index is not route order (1 → 2 → back to 1 → **7** → 3 → 4 → 5 → 6), so
+scrubbing across a transition empties the map with nothing on screen to say where the route went.
+You end up hunting floors by hand to follow a route the record already knows the order of.
+
+`Map.FloorAt(run, atRel)` — the floor of the **last point at or before** the window's end, across
+every floor. **At or before, not inside**: a window in a quiet stretch still shows where you *are*,
+because the run has not left a floor just because nothing was sampled in the last few seconds.
+
+**Paging by hand turns tracking OFF** rather than fighting it. Otherwise the pager looks broken: you
+press it, the floor changes, and the next scrub silently puts it back.
+
+**One control surface, on the curator** — his call over a second floating widget on the map.
+
+### Reset
+
+A narrowed envelope had no way back except reloading the run, which also threw the selection away.
+`Reset` sits under the controls it resets, and is **time only** — the tick filters are a separate
+rung and it must not reach across them.
+
+### ⚠ Two weak tests, both the same shape: BORROWED STATE
+
+1. The tracking block relied on `Map.Show` resetting the envelope — which is exactly what another
+   mutation removes, so it **stole that guard's bite**. Made self-contained with an explicit
+   `ResetView()`.
+2. The load-reset test then went **SILENT**, because the new Reset test left the envelope already at
+   the full run — so the load had nothing to throw away and the assertion passed either way.
+   Narrowed deliberately first.
+
+**A test that borrows another guard's behaviour weakens both.** That is a fourth form to add to the
+three in `memory/mutation-tests-find-weak-tests.md`.
+
+**6 files, 120 functions, 0 persistent OnUpdate. 68 mutations bite on their own message.** v0.13.0.

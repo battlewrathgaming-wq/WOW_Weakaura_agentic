@@ -592,7 +592,77 @@ assert(wpos >= 30 and wpos + wwid <= 90,
        ("WINDOW ESCAPED ITS ENVELOPE: %s + %s is outside %s-%s")
        :format(wpos, wwid, elo, ehi))
 
--- ...and a load throws all of it away. PEEK IS SET FIRST ON PURPOSE: without it
+-- =====================================================================
+-- ★★ TRACK THE MOST RECENT NODE. SFK_Run4 is why: floor index is NOT route order
+-- (1 -> 2 -> back to 1 -> 7 -> 3 -> 4 -> 5 -> 6), so scrubbing across a transition
+-- empties the map with nothing on screen to say where the route went.
+-- =====================================================================
+-- The fixture spans 120s: floor 6 legs at 0/30/60/90, one floor 5 leg at 30.
+assert(Map.FloorAt(sfk, 0) == 6, "the first sample's floor")
+assert(Map.FloorAt(sfk, 120) == 6, "the last point on this run is on floor 6")
+assert(Map.FloorAt(nil, 10) == nil, "no run -> no floor, not an error")
+assert(Map.FloorAt(sfk, nil) == nil, "no position -> no floor")
+
+-- ★ AT OR BEFORE, not INSIDE. A window sitting in a quiet stretch must still show
+-- where you ARE - the run has not left a floor just because nothing was sampled in
+-- the last few seconds.
+local quiet = { legs = { { mapX = 0.1, mapY = 0.1, floor = 4, t = 1000 } }, markers = {} }
+assert(Map.FloorAt(quiet, 900) == 4,
+       "AT OR BEFORE: a gap after the last sample must not blank the floor")
+
+Map.Show(sfkId)
+-- Explicit, NOT relying on Show() to have reset the envelope: an earlier block
+-- narrows it to 30-90, and depending on the load-reset here stole that guard's own
+-- mutation. A test that borrows another guard's behaviour weakens both.
+Map.ResetView()
+assert(not Map.TrackingFloor(), "tracking is off until asked for")
+assert(Map.SetTrackFloor(true) == true, "SetTrackFloor reports the new state")
+-- ★ The window ends at rel 30, where the fixture's ONE floor-5 point sits. Chosen
+-- deliberately: the view was already on floor 6, so a window that also answered 6
+-- would pass whether or not tracking did anything.
+assert(Map.Floor() == 6, "the view starts on floor 6")
+Map.SetWindow(0, 30)
+assert(Map.Floor() == 5,
+       "TRACKING DID NOT PAGE: scrubbing must follow the route's floor, got " .. tostring(Map.Floor()))
+
+-- ★ PAGING BY HAND WINS. Otherwise the pager looks broken: you press it, the floor
+-- changes, and the next scrub silently puts it back.
+Map.StepFloor(-1)
+assert(not Map.TrackingFloor(),
+       "MANUAL PAGING must turn tracking OFF rather than fight it")
+Map.SetTrackFloor(false)
+
+-- =====================================================================
+-- ★ THE HANDLES. Two on the same pixel HIDE each other, and whichever is on top
+-- takes every press - which is what "they get stuck and stop responding" was.
+-- =====================================================================
+local h1, h2 = Map.SeparateHandles(10, 200, 244)
+assert(h1 == 10 and h2 == 200, "handles far apart are left alone")
+h1, h2 = Map.SeparateHandles(100, 100, 244)
+assert(h2 - h1 >= 8, "COINCIDENT HANDLES: one would hide the other, got " .. (h2 - h1))
+h1, h2 = Map.SeparateHandles(0, 0, 244)
+assert(h1 >= 0 and h2 <= 244 and h2 - h1 >= 8, "and separating at the LEFT end stays on the track")
+h1, h2 = Map.SeparateHandles(244, 244, 244)
+assert(h1 >= 0 and h2 <= 244 and h2 - h1 >= 8, "and at the RIGHT end")
+
+-- =====================================================================
+-- ★ RESET. A narrowed envelope had no way back except reloading the run, which
+-- also threw the selection away.
+-- =====================================================================
+Map.SetEnvelope(30, 90); Map.SetWindow(40, 10)
+local rlo, rhi = Map.ResetView()
+assert(rlo == 0 and rhi == 120,
+       ("RESET INCOMPLETE: the envelope must come back to the whole run, got %s-%s")
+       :format(tostring(rlo), tostring(rhi)))
+local rp, rw = Map.Window()
+assert(rp == 0 and rw == 120, "and the window with it, got " .. tostring(rp) .. "+" .. tostring(rw))
+
+-- ...and a load throws all of it away. NARROWED FIRST ON PURPOSE: the Reset test
+-- above leaves the envelope back at the full run, so without this the load has
+-- nothing to throw away and the assertion passes whether or not it reset - the
+-- harness reported exactly that as SILENT.
+Map.SetEnvelope(30, 90)
+-- PEEK IS SET FIRST ON PURPOSE: without it
 -- the "not peeking" assertion below is vacuous - peeking was already false, so it
 -- passed whether or not the load cleared anything. Caught by the harness.
 Map.SetPeek(true)

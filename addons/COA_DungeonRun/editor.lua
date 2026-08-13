@@ -54,11 +54,13 @@ local Map, Store
 local f, title, dd, hint, filters
 local commentBox, delBtn, renameBtn
 local bar, envFill, winFill, envL, envR, widthText, playBtn, skipText, peekBtn, latchBtn
+local trackBtn
 local playing, peekHeld, peekLatched
 
 local NO_RUN = "- no run -"
 
 local BAR_W = 244             -- the time bar's track, in pixels
+local GRAB_PX = 16            -- the handles' invisible grab area (the visual is 4)
 
 -- mm:ss. The unit pair is min/sec because that is the scale runs live at -
 -- RFC_Run3_Messy spans 800 seconds.
@@ -123,8 +125,12 @@ local function refresh()
         envFill:ClearAllPoints()
         envFill:SetPoint("LEFT", bar, "LEFT", x1, 0)
         envFill:SetWidth(math.max(1, x2 - x1))
-        envL:ClearAllPoints(); envL:SetPoint("CENTER", bar, "LEFT", x1, 0)
-        envR:ClearAllPoints(); envR:SetPoint("CENTER", bar, "LEFT", x2, 0)
+        -- ★ Never let the two sit on the same pixel: one would hide the other and
+        -- whichever is on top takes every press. Purely a DRAW nudge - the envelope
+        -- itself is untouched, so the numbers stay honest.
+        local hx1, hx2 = Map.SeparateHandles(x1, x2, BAR_W)
+        envL:ClearAllPoints(); envL:SetPoint("CENTER", bar, "LEFT", hx1, 0)
+        envR:ClearAllPoints(); envR:SetPoint("CENTER", bar, "LEFT", hx2, 0)
 
         local w1, w2 = toPx(pos, span), toPx(pos + width, span)
         winFill:ClearAllPoints()
@@ -141,6 +147,9 @@ local function refresh()
     -- ★ The peek button reads from the MAP too, so a latch left on is visible
     -- rather than something you are silently sitting inside.
     latchBtn:SetChecked(peekLatched)
+    -- Reads from the MAP, like every other control here: paging floors by hand
+    -- turns tracking off, and the box has to show that rather than lie about it.
+    trackBtn:SetChecked(Map.TrackingFloor())
     playBtn:SetText(playing and "Pause" or "Play")
 
     if not id then
@@ -238,7 +247,7 @@ function Editor.Init()
     Map, Store = NS.Map, NS.Store
 
     f = CreateFrame("Frame", "COA_DungeonRunEditor", UIParent)
-    f:SetWidth(280); f:SetHeight(310)
+    f:SetWidth(280); f:SetHeight(336)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 0)
     -- ★ DIALOG - one strata ABOVE the map. The pane annotates the map, so it must
     -- never be buried under it; and both now sit above the action bars, which is
@@ -364,11 +373,33 @@ function Editor.Init()
         refresh()
     end)
 
+    -- ★★ THE HANDLES, REWORKED (his report: "when they're set right against the
+    -- time scale in the envelope, they get stuck and stop responding").
+    --
+    -- Three causes, all of them in the input path rather than the arithmetic:
+    --
+    --   1. RegisterForDrag has a MOVEMENT THRESHOLD. A small precise nudge - which
+    --      is exactly what the handles are for, "more granular than the -/+" - never
+    --      starts a drag at all. Press-to-grab has no threshold.
+    --   2. The bar UNDERNEATH takes a click as "move the window". Miss the 8 px
+    --      handle by a pixel and something else happens, which reads as the handle
+    --      ignoring you rather than as a miss. Now the handles sit ABOVE the bar and
+    --      swallow their own clicks.
+    --   3. At the extremes half the handle hangs off the track, and two handles at
+    --      the same second overlap EXACTLY - so one hides the other and whichever is
+    --      on top takes every press.
+    --
+    -- So: a 16 px invisible grab area over a 4 px visual, a higher frame level, and
+    -- a minimum pixel separation enforced at draw time.
     local function handle(which)
         local h = CreateFrame("Button", nil, f)
-        h:SetWidth(8); h:SetHeight(18)
+        h:SetWidth(GRAB_PX); h:SetHeight(20)
+        h:SetFrameLevel(bar:GetFrameLevel() + 5)
+        h:RegisterForClicks("LeftButtonDown", "LeftButtonUp")
         local t = h:CreateTexture(nil, "OVERLAY")
-        t:SetAllPoints(h); t:SetTexture(1, 0.82, 0, 1)
+        t:SetWidth(4); t:SetHeight(18)
+        t:SetPoint("CENTER", h, "CENTER", 0, 0)
+        t:SetTexture(1, 0.82, 0, 1)
         -- ★ The drag ticker is INSTALLED ON DRAG START AND CLEARED ON STOP.
         --
         -- The first version left it registered permanently with a `if not dragging
@@ -380,15 +411,24 @@ function Editor.Init()
         local function drag(self)
             local span = Map.Span()
             if not span then return end
+            -- Clamped to the TRACK. Without it a cursor past either end maps to a
+            -- second outside the run, the clamp in SetEnvelope pins it, and the
+            -- handle sits still while you keep dragging - which is what "stuck at
+            -- the ends" felt like.
             local x = (GetCursorPosition() / self:GetEffectiveScale()) - bar:GetLeft()
+            x = math.max(0, math.min(BAR_W, x))
             local lo, hi = Map.Envelope()
             if which == "lo" then Map.SetEnvelope(toSec(x, span), hi)
             else Map.SetEnvelope(lo, toSec(x, span)) end
             refresh()
         end
-        h:RegisterForDrag("LeftButton")
-        h:SetScript("OnDragStart", function(self) self:SetScript("OnUpdate", drag) end)
-        h:SetScript("OnDragStop", function(self) self:SetScript("OnUpdate", nil) end)
+        -- Press to grab, release to let go. No threshold, so a one-pixel nudge lands.
+        -- Still installed-on-demand, so the census stays at zero persistent OnUpdate.
+        h:SetScript("OnMouseDown", function(self) self:SetScript("OnUpdate", drag) end)
+        h:SetScript("OnMouseUp", function(self) self:SetScript("OnUpdate", nil) end)
+        -- A grab that ends off the button would otherwise leave it stuck to the
+        -- cursor - the exact "stops responding" this is fixing.
+        h:SetScript("OnHide", function(self) self:SetScript("OnUpdate", nil) end)
         return h
     end
     envL, envR = handle("lo"), handle("hi")
@@ -466,8 +506,30 @@ function Editor.Init()
         Editor.SyncPeek()
     end)
 
+    -- ★ RESET, under the controls it resets. A narrowed envelope had no way back
+    -- except reloading the run - which also threw the selection away. Time only:
+    -- the tick filters are a separate rung and this must not reach across.
+    local resetBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
+    resetBtn:SetWidth(60); resetBtn:SetHeight(20)
+    resetBtn:SetPoint("TOPLEFT", 110, -252)
+    resetBtn:SetText("Reset")
+    resetBtn:SetScript("OnClick", function() Map.ResetView(); refresh() end)
+
+    -- ★★ TRACK THE MOST RECENT NODE. SFK_Run4 is why: floor index is not route
+    -- order, so scrubbing across a transition empties the map with nothing on
+    -- screen to say where the route went.
+    trackBtn = CreateFrame("CheckButton", "COA_DungeonRunTrack", f, "UICheckButtonTemplate")
+    trackBtn:SetWidth(20); trackBtn:SetHeight(20)
+    trackBtn:SetPoint("TOPLEFT", 16, -276)
+    local trackTxt = _G and _G["COA_DungeonRunTrackText"]
+    if trackTxt then trackTxt:SetText("track most recent node") end
+    trackBtn:SetScript("OnClick", function(self)
+        Map.SetTrackFloor(self:GetChecked())
+        refresh()
+    end)
+
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    hint:SetPoint("TOPLEFT", 18, -278)
+    hint:SetPoint("TOPLEFT", 18, -302)
     hint:SetWidth(244); hint:SetJustifyH("LEFT")
 
     local closeBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")

@@ -164,6 +164,7 @@ local envFull                     -- the run's whole span, in seconds
 local envLo, envHi                -- the ENVELOPE: where the window may go
 local winPos, winWidth            -- the WINDOW: what is on screen
 local peeking                     -- §48's peek; held OR latched, one state
+local tracking                    -- follow the route's floor while scrubbing
 
 -- ---------------------------------------------------------------------
 -- PURE SELECTION + PLACEMENT. Deliberately free of frames so the smoke can
@@ -326,9 +327,76 @@ function Map.SetEnvelope(lo, hi)
     return envLo, envHi
 end
 
+-- ★★ TRACK THE MOST RECENT NODE.
+--
+-- SFK_Run4 is why: **floor index is not route order** (1 → 2 → back to 1 → 7 → 3 → 4 → 5 → 6),
+-- so scrubbing across a transition empties the map with nothing on screen to say
+-- which floor the route went to. You end up hunting floors by hand to follow a
+-- route the record already knows the order of.
+--
+-- Which floor: the LAST point at or before the window's end, across every floor.
+-- "At or before" rather than "inside", so a window sitting in a quiet stretch
+-- still shows where you ARE rather than going blank - the run has not left that
+-- floor just because nothing was sampled in the last few seconds.
+--
+-- Pure, because a wrong answer here silently pages you to a floor the route was
+-- not on, and the map would look entirely reasonable.
+function Map.FloorAt(run, atRel)
+    local t0 = Map.TimeSpan(run)
+    if not t0 or not atRel then return nil end
+    local bestT, bestFloor
+    for _, list in ipairs({ (run or {}).legs or {}, (run or {}).markers or {} }) do
+        for _, p in ipairs(list) do
+            if p.t and p.floor and (p.t - t0) <= atRel and (not bestT or p.t > bestT) then
+                bestT, bestFloor = p.t, p.floor
+            end
+        end
+    end
+    return bestFloor
+end
+
+-- Two handles on the same pixel hide each other, and whichever is on top takes
+-- every press - so the DRAW is nudged apart while the envelope itself is untouched.
+-- Pure: it is arithmetic that decides whether a control can be grabbed at all.
+local MIN_SEP = 8
+
+function Map.SeparateHandles(x1, x2, w)
+    if x2 - x1 >= MIN_SEP then return x1, x2 end
+    local mid = (x1 + x2) / 2
+    local a, b = mid - MIN_SEP / 2, mid + MIN_SEP / 2
+    if a < 0 then a, b = 0, MIN_SEP end
+    if b > w then a, b = w - MIN_SEP, w end
+    return a, b
+end
+
+-- Back to the whole run: envelope, window and position together. There was no way
+-- back from a narrowed envelope except reloading the run, which also threw the
+-- selection away. Deliberately leaves the TICK filters and the peek alone - it is
+-- the time controls' reset, and it sits under them.
+function Map.ResetView()
+    Map.ResetTime(Store.Get(shownRunId))
+    repaintIfShown()
+    return Map.Envelope()
+end
+
+function Map.TrackingFloor() return tracking and true or false end
+
+function Map.SetTrackFloor(on)
+    tracking = on and true or nil
+    if tracking and winPos then Map.SetWindow(winPos, winWidth) end
+    return Map.TrackingFloor()
+end
+
 function Map.SetWindow(pos, width)
     if not envLo then return end
     winPos, winWidth = Map.ClampWindow(pos, width, envLo, envHi)
+    -- The floor follows the DATA, before the repaint - otherwise the first frame
+    -- after a transition draws the old floor and corrects itself, which reads as a
+    -- flicker rather than as tracking.
+    if tracking then
+        local f = Map.FloorAt(Store.Get(shownRunId), winPos + winWidth)
+        if f then shownFloor = f end
+    end
     repaintIfShown()
     return winPos, winWidth
 end
@@ -773,11 +841,20 @@ function Map.Toggle()
 end
 
 -- Floor paging works with no run loaded: the art is the point of it.
+-- Paging by hand TURNS TRACKING OFF rather than fighting it. Otherwise the pager
+-- appears broken the moment the window next moves: you press it, the floor changes,
+-- and the next scrub silently puts it back.
 local function step(delta)
     shownFloor = (shownFloor or 0) + delta
     if shownFloor < 0 then shownFloor = 0 end
+    tracking = nil
     paint(Store.Get(shownRunId), shownFloor)
 end
+
+-- Exposed so the smoke can assert that tracking actually MOVED the view, and that
+-- paging by hand turned it off. Both are invisible from outside otherwise.
+function Map.Floor() return shownFloor end
+Map.StepFloor = step
 
 -- ★ THE COMMAND STRIP (his layout). One header row, and the bottom bar is gone:
 --

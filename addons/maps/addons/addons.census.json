@@ -1,5 +1,5 @@
 {
- "_fingerprint": "bda1c4afc22b",
+ "_fingerprint": "972cf8000f6b",
  "addons": {
   "COA_DevDump": {
    "core.lua": {
@@ -1857,96 +1857,96 @@
      {
       "name": "clock",
       "kind": "local",
-      "line": 64
+      "line": 66
      },
      {
       "name": "toPx",
       "kind": "local",
-      "line": 71
+      "line": 73
      },
      {
       "name": "toSec",
       "kind": "local",
-      "line": 76
+      "line": 78
      },
      {
       "name": "refresh",
       "kind": "local",
-      "line": 92
+      "line": 94
      },
      {
       "name": "initDropdown",
       "kind": "local",
-      "line": 163
+      "line": 172
      },
      {
       "name": "info.func",
       "kind": "assigned",
-      "line": 171
+      "line": 180
      },
      {
       "name": "b.func",
       "kind": "assigned",
-      "line": 195
+      "line": 204
      },
      {
       "name": "installPopups",
       "kind": "local",
-      "line": 205
+      "line": 214
      },
      {
       "name": "Editor.Init",
       "kind": "function",
-      "line": 236
+      "line": 245
      },
      {
       "name": "handle",
       "kind": "local",
-      "line": 366
+      "line": 393
      },
      {
       "name": "drag",
       "kind": "local",
-      "line": 380
+      "line": 411
      },
      {
       "name": "widthBtn",
       "kind": "local",
-      "line": 401
+      "line": 441
      },
      {
       "name": "stepBtn",
       "kind": "local",
-      "line": 417
+      "line": 457
      },
      {
       "name": "Editor.SyncPeek",
       "kind": "function",
-      "line": 494
+      "line": 556
      },
      {
       "name": "tick",
       "kind": "local",
-      "line": 508
+      "line": 570
      },
      {
       "name": "Editor.StopPlay",
       "kind": "function",
-      "line": 520
+      "line": 582
      },
      {
       "name": "Editor.TogglePlay",
       "kind": "function",
-      "line": 527
+      "line": 589
      },
      {
       "name": "Editor.Toggle",
       "kind": "function",
-      "line": 535
+      "line": 597
      }
     ],
     "onupdate": 2,
-    "onupdate_clears": 2,
+    "onupdate_clears": 3,
     "onupdate_persistent": 0,
     "throttle_pattern": true,
     "scripts": [
@@ -1955,6 +1955,7 @@
      "OnDragStop",
      "OnEnterPressed",
      "OnEscapePressed",
+     "OnHide",
      "OnMouseDown",
      "OnMouseUp",
      "OnUpdate"
@@ -1985,237 +1986,267 @@
      {
       "name": "Map.RunsFor",
       "kind": "function",
-      "line": 192
+      "line": 193
      },
      {
       "name": "Map.ArtFor",
       "kind": "function",
-      "line": 212
+      "line": 213
      },
      {
       "name": "Map.PointsOn",
       "kind": "function",
-      "line": 228
+      "line": 229
      },
      {
       "name": "Map.ClampWindow",
       "kind": "function",
-      "line": 280
+      "line": 281
      },
      {
       "name": "Map.SkipStep",
       "kind": "function",
-      "line": 292
+      "line": 293
      },
      {
       "name": "Map.Envelope",
       "kind": "function",
-      "line": 296
+      "line": 297
      },
      {
       "name": "Map.Window",
       "kind": "function",
-      "line": 298
+      "line": 299
      },
      {
       "name": "Map.Peeking",
       "kind": "function",
-      "line": 299
+      "line": 300
      },
      {
       "name": "repaintIfShown",
       "kind": "local",
-      "line": 300
+      "line": 301
      },
      {
       "name": "Map.ResetTime",
       "kind": "function",
-      "line": 306
+      "line": 307
      },
      {
       "name": "Map.Span",
       "kind": "function",
-      "line": 317
+      "line": 318
      },
      {
       "name": "Map.SetEnvelope",
       "kind": "function",
-      "line": 319
+      "line": 320
+     },
+     {
+      "name": "Map.FloorAt",
+      "kind": "function",
+      "line": 343
+     },
+     {
+      "name": "Map.SeparateHandles",
+      "kind": "function",
+      "line": 362
+     },
+     {
+      "name": "Map.ResetView",
+      "kind": "function",
+      "line": 375
+     },
+     {
+      "name": "Map.TrackingFloor",
+      "kind": "function",
+      "line": 381
+     },
+     {
+      "name": "Map.SetTrackFloor",
+      "kind": "function",
+      "line": 383
      },
      {
       "name": "Map.SetWindow",
       "kind": "function",
-      "line": 328
+      "line": 389
      },
      {
       "name": "Map.SetPeek",
       "kind": "function",
-      "line": 339
+      "line": 407
      },
      {
       "name": "Map.InWindow",
       "kind": "function",
-      "line": 347
+      "line": 415
      },
      {
       "name": "Map.VisibleOn",
       "kind": "function",
-      "line": 367
+      "line": 435
      },
      {
       "name": "Map.Hidden",
       "kind": "function",
-      "line": 387
+      "line": 455
      },
      {
       "name": "Map.SetHidden",
       "kind": "function",
-      "line": 390
+      "line": 458
      },
      {
       "name": "Map.ArtKey",
       "kind": "function",
-      "line": 402
+      "line": 470
      },
      {
       "name": "Map.Rank",
       "kind": "function",
-      "line": 417
+      "line": 485
      },
      {
       "name": "Map.ArtForPoint",
       "kind": "function",
-      "line": 421
+      "line": 489
      },
      {
       "name": "Map.SetOnSelect",
       "kind": "function",
-      "line": 438
+      "line": 506
      },
      {
       "name": "Map.Selected",
       "kind": "function",
-      "line": 441
+      "line": 509
      },
      {
       "name": "Map.Select",
       "kind": "function",
-      "line": 442
+      "line": 510
      },
      {
       "name": "Map.Describe",
       "kind": "function",
-      "line": 452
+      "line": 520
      },
      {
       "name": "add",
       "kind": "local",
-      "line": 462
+      "line": 530
      },
      {
       "name": "Map.FillTooltip",
       "kind": "function",
-      "line": 507
+      "line": 575
      },
      {
       "name": "Map.Offset",
       "kind": "function",
-      "line": 522
+      "line": 590
      },
      {
       "name": "Map.TilePath",
       "kind": "function",
-      "line": 528
+      "line": 596
      },
      {
       "name": "Map.TileRect",
       "kind": "function",
-      "line": 549
+      "line": 617
      },
      {
       "name": "byName",
       "kind": "local",
-      "line": 582
+      "line": 650
      },
      {
       "name": "Map.SeedFloor",
       "kind": "function",
-      "line": 595
+      "line": 663
      },
      {
       "name": "Map.Caption",
       "kind": "function",
-      "line": 617
+      "line": 685
      },
      {
       "name": "ensureDots",
       "kind": "local",
-      "line": 632
+      "line": 700
      },
      {
       "name": "styleDot",
       "kind": "local",
-      "line": 659
+      "line": 727
      },
      {
       "name": "clearDots",
       "kind": "local",
-      "line": 672
+      "line": 740
      },
      {
       "name": "paint",
       "kind": "function",
-      "line": 678
+      "line": 746
      },
      {
       "name": "context",
       "kind": "local",
-      "line": 724
+      "line": 792
      },
      {
       "name": "Map.LoadedId",
       "kind": "function",
-      "line": 730
+      "line": 798
      },
      {
       "name": "Map.ShownArt",
       "kind": "function",
-      "line": 735
+      "line": 803
      },
      {
       "name": "Map.Show",
       "kind": "function",
-      "line": 742
+      "line": 810
      },
      {
       "name": "Map.Toggle",
       "kind": "function",
-      "line": 769
+      "line": 837
      },
      {
       "name": "step",
       "kind": "local",
-      "line": 775
+      "line": 846
+     },
+     {
+      "name": "Map.Floor",
+      "kind": "function",
+      "line": 855
      },
      {
       "name": "Map.Init",
       "kind": "function",
-      "line": 791
+      "line": 868
      },
      {
       "name": "Map.MapIDOf",
       "kind": "function",
-      "line": 868
+      "line": 945
      },
      {
       "name": "Map.TimeSpan",
       "kind": "function",
-      "line": 868
+      "line": 945
      },
      {
       "name": "Map.RunList",
       "kind": "function",
-      "line": 868
+      "line": 945
      }
     ],
     "onupdate": 0,
