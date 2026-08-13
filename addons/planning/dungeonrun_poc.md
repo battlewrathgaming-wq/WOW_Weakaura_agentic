@@ -1209,3 +1209,35 @@ roster, a calibration, a supported-dungeons list — it is the wrong step.** Eve
 either on the point or comes from a live client call (`GetMapInfo`, `GetNumDungeonMapLevels`,
 `GetCurrentMapDungeonLevel`). This is the same law as no tag registry, no character roster and no
 boss roster: **don't acquire the knowledge, provide the path.**
+
+---
+
+## 18. THE THREE PINNED EXEMPLARS — what each one proves
+
+> *"I think evidence that last leg run. And it becomes our basis for building on."* — Battlewrath
+
+`SFK_Run2_Legs_capture-4` is the basis. The other two are not superseded by it — **they prove
+different things, and no single run covers all of it.** Test against the one that carries the
+case, not the nearest one to hand.
+
+| Exemplar | What it is the evidence FOR | What it CANNOT test |
+|---|---|---|
+| **`SFK_Run2_Legs_capture-4`** ★ | **the geometry basis.** 7 floors, 7 transitions, 315 legs of continuous path, the lookup at zero residual on every floor, and **floors 3/4/5 sharing one box** — the ambiguity DR-33 exists for | marker density: it has **2** markers |
+| **`RFC_Run2_Messy-2`** | **the pressure basis.** The re-pull cluster at 6–10 yards, two terminal stops (one `[Taragaman, Environment]`), a wipe-and-retry, 133 yd drift | floors — Ragefire has one, and it predates DR-33 (**no `floor` field at all**) |
+| **`RFC_run1_clean-1`** | **the happy path.** 15 clean pulls, 99 legs, one boss engagement, zero deaths — what a good route looks like with nothing to forgive | floors; anything adversarial |
+
+**⚠ Two traps this table exists to prevent:**
+
+1. **Do not test floor logic against a Ragefire run.** Both predate DR-33 and Ragefire is
+   single-floor — it will pass by having nothing to get wrong.
+2. **Do not test marker rendering or cluster-merge against the SFK run.** Two markers, both on
+   floor 1. It will look correct because there is nothing to overlap.
+
+**The one combination we have never captured: a multi-floor run WITH a full marker set** — he
+cleared Shadowfang before tracing it, deliberately, to get a clean footprint. **Nothing is
+blocked by that** (SFK's two markers do prove a marker carries its floor), but if the display
+ever needs floors and density together, that is the run to ask for.
+
+**All three live in `addons/landing/records/` and are permanent.** The `dungeonrun` landing
+source stays at `testing`, so routine runs land to gitignored `staging/` and only exemplars are
+pinned — they are **design input**, not archive.
