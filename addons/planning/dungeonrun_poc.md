@@ -3386,3 +3386,85 @@ tags are what flew out.**
 ⚠ Consequence for the display: if this is ever surfaced it must be labelled per-pull as tagged units,
 not as a boss list or a count. **The record is right; only the word was wrong** — which is why this
 is a wording fix and not a capture change.
+
+---
+
+## 59. ★★ THE NEED — pull COMPOSITION, and the assessment stays human (Battlewrath, 2026-08-13)
+
+**DESIGN ONLY. Nothing built.** This closes the step his own ordering left open: study → best-fit →
+**then** cadence and consumption need. Cost was retired by measurement (`cleu_on_this_fork.md`); this
+is the *why*.
+
+### The need, in his words
+
+> *"Routes, and in M+, per unit carries a value to complete the dungeon. So knowing what pulls what
+> mobs leads into — is this the optimal unit size. Could 2 pulls be merged. **We don't try to know
+> the values. That's the runner of the addon deciding this in combat. Then having an inspectable
+> surface after to optimise.**"*
+
+So the question a route designer is actually asking is **was that the right pull**, and answering it
+needs to know **which mobs were in it**. That is pull COMPOSITION.
+
+### ★ It is the first need that genuinely requires CLEU
+
+Everything else this addon holds arrives from events the client hands us for free — regen edges, the
+death recap, boss tags. **Composition cannot come from any of them**: DeathRecap is only *your* death,
+and boss tags are only tagged units. `UNIT_DIED` is the one thing that answers it.
+
+**And it joins on `n`.** Markers and combat legs already carry the pull index, so a death stamped
+with `n` slots into the existing structure — same join, one more kind of thing hanging off it. No new
+concept.
+
+### ★★ WE DO NOT TOUCH THE ASSESSMENT
+
+> *"We don't touch the assessment. That's curation. We just provide the record. And it's the route
+> designer's eye and assessment. Pen and paper."*
+
+Not just the M+ values — **the reasoning itself.** A first draft of this note offered that distance
+and time between pull starts are computable from records we already hold, which is the assessment's
+arithmetic done on the designer's behalf. It is out.
+
+**⚠ The consequence lands on the DISPLAY, not only the logic.** A surface that sorts pulls by size,
+or highlights close pairs, is assessment wearing UI. Pulls get presented **neutrally** — this is what
+pull 6 was, this is what pull 7 was — and the comparing belongs to the designer.
+
+**The precedent is the flip book (§54).** It did not answer the cluster question; it made the thing
+visible and the question dissolved. Same move: **make the record legible, do not reason over it.**
+
+And it sharpens why the record must be rich. If we are deliberately not helping, the record has to be
+complete enough to reason from unaided — **the designer does not yet know which mob will turn out to
+matter.** Same argument as §55, arriving from the other side.
+
+### Where it attaches
+
+**The combat START marker carries the composition** (his call). Consistent with §38: enter is the
+deterministic point, the fact about the encounter, so what the encounter *was* belongs to it. The
+deaths are known by combat end and written back to the pull they belonged to.
+
+### ★ The end markers do two different jobs, and one of them is empty
+
+**"Combat exit competes with terminal stop. Which does a different job."** Both are `kind = "end"`
+today, separated by `dead`. But they answer different questions:
+
+| | reports |
+|---|---|
+| **terminal stop** | *you died, and here is why* — `killedBy` already does this (DR-32) |
+| **combat exit** | *you survived — by this much* — **nothing today** |
+
+His idea: **grab player HP at combat exit.** One API read on an event we already handle, which is
+exactly DR-13's shape — *"one API read on an event we already handle, and without it a wipe and a
+clean finish are identical in the record."*
+
+It is a captured fact, not a judgement: *that pull left me at 8%* is route information the designer
+reads and acts on. We never say the pull was dangerous.
+
+⚠ Mine, not his, and correct me: capture **current and max** rather than a percentage. A percentage
+alone loses the raw numbers and picks a normalisation on the reader's behalf; both is free.
+
+### ⚠ Not decided
+
+- **Nothing here is built**, and nothing above says what the surface looks like beyond *neutral*.
+- **M+ keystone level and affixes remain an accepted gap** — no access to probe (`cleu_on_this_fork.md`).
+  Composition does not depend on them; it is useful in any dungeon and merely matters most in M+.
+- The listener itself is unwritten. The shape is settled (`push with a lean mask`), the cost is
+  measured, and **the need is now on record** — which is the last thing that was missing.

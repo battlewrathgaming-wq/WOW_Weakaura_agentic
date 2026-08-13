@@ -203,5 +203,8 @@ not generalise.
   the arms were not the same errand. It measures allocation rather than time, for the reason this note
   records: the profiled cost here is GC pressure, and timing a near-empty handler measures the timer.
   The control is his: *"I can pull from the start of SFK to the boss. Kill them all. Repeat."*
-  **What is still open is NEED, not cost** — nobody has yet said what *what died in a pull* buys a
-  route, or whether it is instrument or drift into damage analysis.
+  **✅ NEED IS NOW ON RECORD TOO** — `dungeonrun_poc.md` §59: **pull COMPOSITION**, because in M+ each
+  unit carries a value toward completing the dungeon, so *was that the right pull* and *could two
+  merge* both need to know which mobs were in it. It is the first need that genuinely requires CLEU —
+  DeathRecap is only your death, boss tags are only tagged units. **And the assessment stays human:**
+  *"we don't touch the assessment... it's the route designer's eye. Pen and paper."*
