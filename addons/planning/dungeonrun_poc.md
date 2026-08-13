@@ -3558,7 +3558,7 @@ The storage pattern therefore already exists rather than needing inventing (DR-2
 
 ```
 Name:
-Type:           Personal Note | Beacon
+Type:           Personal Note | Beacon    ⚠ SUPERSEDED by §61 - it is the BUTTON you pressed
 Stage:          (beacon only — unique within the family)
 Cue:            (beacon only)
 Note:
@@ -3701,3 +3701,110 @@ Held as an observation, not adopted.
 - **Whether the stepper is the fallback or the primary.** Automatic advance with manual recovery, or
   the user driving and the addon confirming. Play answers that in ten minutes; argument does not
   answer it at all.
+
+---
+
+## 61. THE PROMOTER — scoping, captured intent (Battlewrath, 2026-08-13)
+
+**★ CAPTURED INTENT, NOT LAW.** Same treatment as §60. Nothing built, and the open parts are left
+open rather than filled in.
+
+§43's third surface: **what does this become.** A separate frame for the same build-hygiene reason the
+curator is separate, acting on the map's selection, which stays map-owned and one-way (§34).
+
+### His layout
+
+```
+[Personal note]                     <-- ALWAYS available
+------------------------------------
+[Select route  v]                   (selection loads that route's existing beacons)
+[Name]                              (populated by selection, or typed to create)
+Node selected;
+What information will carry over from the node
+
+[create beacon]
+```
+
+*"Everything from there is then in-field of the new node."*
+
+### ★ Three things that layout settles
+
+**1. `Type` is the BUTTON YOU PRESSED, not a field.** §60 recorded `Type: Personal Note | Beacon` as
+part of the form. This supersedes it: personal note above the divider, create beacon below, and the
+route selector between them **because it only gates the second one**. One less decision, and the
+structure explains itself.
+
+**2. CREATE THEN EDIT — and it is the house pattern's third appearance.** The beacon exists the moment
+you press create, carrying only what it inherited; everything after is edited in-field. Capture then
+promote · pin then meaning · mint then author. **The mechanical part is immediate and the meaning
+waits**, which is also why none of the three needs a dialog.
+
+**3. `+ create new` belongs IN the dropdown**, as its first entry. That makes the mode a *selection*
+rather than something inferred from how you typed — and it is the pattern the curator's run selector
+already set tonight, where `- no run -` is a real entry because unloading must be as reachable as
+loading. **The separate `[create route]` button falls out**: one control instead of two, and no state
+where the name field's contents mean different things depending on what you did before.
+
+### Renaming follows the RUN's method
+
+His ruling on the one inconsistency: *"follow the current form / discipline. So follow the run's
+method. The user can expect the same in both surfaces."* So a route is renamed by a **button with the
+client's own confirm**, exactly as a run is — which costs nothing to build (already wired) and nothing
+to learn (already known).
+
+**Consequence: the name field stops being dual-purpose.** Text entry when `+ create new` is selected,
+because you must type something; a **label with a Rename button** when an existing route is selected.
+The field never distinguishes modes, because the dropdown already declared which.
+
+### "What information will carry over from the node"
+
+Doing more work than it looks. It makes the **inheritance visible before commit** — the same move as
+the map strip naming the tile file, a borrow shown rather than assumed. It also pre-empts the z
+question: you *saw* z come from the node, so when you drag the beacon later and it sits at the wrong
+height, that reads as the design telling you something (§25.2's teacher) rather than as a bug.
+
+### The two halves
+
+| | |
+|---|---|
+| **Create** | a selected node becomes an object. Name · Cue · Note · Stage · Radius listen · Radius close · Icon — all edited in-field after minting |
+| **Manage** | a family's beacons listed: edit, renumber, drag, delete, and the **pre-flight walk** (step the sequence, each node big in turn). That belongs here because it reads a ROUTE, not a record |
+
+### ★★ THE STRUCTURAL CONSEQUENCE — the map must hold TWO things at once
+
+*"Selection loads existing beacons."* So the working state is a run's nodes **and** a route's beacons
+on screen together — you promote *from* one *into* the other.
+
+**The map today holds exactly one loaded thing (`shownRunId`)**, and everything around it assumes
+that: the caption, the floor seed, the time envelope, the reset-on-load. **This is the largest single
+implication of the promoter, and it lands on the MAP rather than on the promoter.**
+
+It also implies **a second tick row** — run nodes and route beacons want independent visibility,
+because half the time you are checking placement against the trail and half the time you want the
+trail out of the way.
+
+### Display, inferred rather than ruled
+
+A beacon is not a capture point, so it needs its own art and its own rung. **Probably above the pin**
+— the pin is the most deliberate *capture*, but a beacon is the *authored* thing, and burying the
+product under its raw material inverts the ladder's own logic. Colour is the awkward part: the axis
+means combat state (§46) and a beacon has none, so beacons may sit **off the axis** the way the pin's
+checkered flag does.
+
+⚠ Mine, not his.
+
+### What it refuses
+
+**No creation from nothing** — it needs a selected node, and that is a constraint from the data rather
+than a rule: nothing there yet means go and run it. **No assessment** — no sorting by size, no
+suggesting merges, no scoring. The pre-flight **shows**; it does not judge.
+
+### ⚠ Open
+
+- **Does the promoter create families, or does that live elsewhere?** The dropdown answers it for now.
+- **Is dragging in the promoter or the curator?** It edits a promoted object (promoter) but happens on
+  the map (neither).
+- **What happens to Stage when a beacon is deleted?** Renumber and the gate keys shift under any route
+  in flight; leave gaps and *"19 needs 18"* needs a rule for a missing 18.
+- **One pane or two.** Create and Manage may not want the same frame, and five minutes of use will say
+  more than any amount of argument.
