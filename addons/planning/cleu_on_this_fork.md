@@ -127,48 +127,67 @@ Not because it is the only option — because the alternatives measured worse **
 | `CombatLogAddFilter` | a live shared singleton — it is the user's combat log |
 | logging-gated anything | costs the user disk I/O and an unbounded file to save us a call |
 
-## ★★ THE FIRST LIVE RUN (2026-08-13) — voided as a comparison, decisive as a RATE
+## ✅✅ MEASURED (2026-08-13) — THE COST OBJECTION IS RETIRED
 
-`20260813_192057_270__cleu`. **The harness refused it**: pull counts 2 / 0 / 1, so the arms were not
-the same errand and the summary line said `NOT COMPARABLE` rather than handing over a figure. His
-own read: *"my activation on the middle test was a bit late."*
+Two runs of his control segment: *"pull from the start of SFK to the boss. Kill them all. Repeat."*
 
-**But a RATE does not need the errands to match, only the arm to have been live** — and that is what
-answered the question:
+| | `none` (no listener) | `count` | `masked` |
+|---|---|---|---|
+| **run 1** `20260813_192057_270` | **194.3 kb/s** | 204.4 kb/s | **190.5 kb/s** |
+| **run 2** `20260813_194657_186` | **178.8 kb/s** | 180.3 kb/s | **178.8 kb/s** |
+| lines/s median · p90 · **peak** | — | 4 · 23 · **57** | 4 · 29 · **82** |
 
-| arm | median | p90 | **peak** | allocation |
-|---|---|---|---|---|
-| `none` (no listener) | — | — | — | **194.3 kb/s** |
-| `count` | 4/s | 20/s | **49/s** | **204.4 kb/s** |
-| `masked` | 10/s | 34/s | **65/s** | **190.5 kb/s** |
+**Run 2 is within 0.8% across all three arms**, and in both runs the *masked* arm sits at or below
+the arm with no listener at all. The client and the user's other addons churn ~180-200 kb/s
+regardless; **a lean handler does not register against it.**
 
-### ★ The premise does not survive dungeon scale
+### ★ And the premise it was built on does not survive dungeon scale
 
-ALC's *"thousands of events/sec"* is **raid** combat, 25 players. A dungeon here peaks at **~65
-lines/second** — two orders of magnitude below the number the cost objection was built on.
+ALC's *"thousands of events/sec"* is **raid** combat, 25 players. A dungeon here peaks at **57-82
+lines/second** across two runs — two orders of magnitude below the number the objection assumed.
 
-### ★ And allocation is indistinguishable across the arms
+> **TL;DR (his): our use is nothing compared to the general runtime, and we can move freely. We just
+> keep a test on WHY we need it.**
 
-**The arm with no listener at all allocates at the same rate as the masked one** — and masked is the
-*lowest* of the three. The client and the user's other addons churn ~190 kb/s regardless; a lean
-handler does not register against it. That is the answer to *"is a CLEU listener expensive here"*:
-**relative to what is already running, no.**
+⚠ **Cost stopped being the gate; PURPOSE still is.** Cheap is what makes things easy to add, and
+§55's line does not move: a listener that drifts into damage analysis is out of lane whatever it
+costs. The burden moved from *can we afford it* to *why do we need it* — his original ordering
+arriving, with **consumption need still the unanswered step.**
 
-**Mask yield: 16 hits / 1615 lines = 0.99%.** One line in a hundred reaches the flag test.
+### ⚠ What these runs do NOT establish
 
-### ⚠ Two faults in the instrument, both mine
+- **Mask yield (~1%: 16/1615 and 15/1099) is CONDITION-SPECIFIC.** Deaths arrived clustered at pull
+  end in these segments, and that is a property of *this control*, not of pulls — Battlewrath: *"real
+  pulls can be a big burst or a trickle."* The allocation and line-rate figures do not have that
+  problem; those are continuous.
+- **Neither run was COMPARABLE by the harness's own check.** Run 1 voided on pull counts (2/0/1, a
+  late arm switch), run 2 on segment durations. **A rate does not need the errands to match, only the
+  arm to have been live**, which is why the answer stands — but the TOTALS in these records must not
+  be read as a comparison.
+
+### ⚠ Three faults in the instrument, all mine, the last one left in on purpose
 
 1. **`kbDelta` was broken as designed.** `collectgarbage("count")` is heap IN USE, so a GC cycle
-   inside a segment makes end-minus-start negative regardless of what was allocated — the record
-   reported `count = -13248kb`. Fixed to the **sum of positive per-second rises**, with collections
-   counted separately rather than subtracted, and reported as a **rate**.
-2. **Per-event timing was ruled out on a raid-scale assumption.** At 65/s peak with
-   `debugprofilestop` measured here at **0.094 µs a call**, timing would have been affordable. It is
-   still not folded into the existing arms — that would stop them being the shape under test — but it
-   is a fourth arm whenever it is wanted, not an impossibility.
+   inside a segment makes end-minus-start negative regardless of what was allocated — run 1 duly
+   reported `count = -13248kb`. Now the **sum of positive per-second rises**, collections counted
+   rather than subtracted, reported as a rate.
+2. **Per-event timing was ruled out on a raid-scale assumption.** At 82/s with `debugprofilestop`
+   measured here at **0.094 µs a call**, it was affordable throughout. Not folded into the existing
+   arms — that would stop them being the shape under test — but available as a fourth arm.
+3. **⚠ KNOWN-WRONG AND LEFT IN: the 25% duration guard.** It voided run 2, whose arms matched on
+   pull count and whose rates agreed to 0.8%. The threshold predates the summary reporting **rates**,
+   and a rate is already duration-normalised. The right rule is **sample sufficiency, not duration
+   matching** — pull count stays strict, because that genuinely is the errand. Left as a note because
+   the instrument's job is done and a guard nobody is using is not worth a build.
+   **Fix it before the next run, not after.**
 
-⚠ **One run, voided as a comparison.** The rates stand; a clean run with the arms switched OUT of
-combat is what would let the *totals* be read too.
+### A claim I made and had to withdraw
+
+That deaths clustering at pull end meant combat-end catches the whole burst. **That was our test
+condition, not a fact about pulls.** The useful half survives on a better justification: **combat-end
+is after every death that belonged to that combat BY DEFINITION**, which holds for a trickle as well
+as a burst. The observation was doing work it did not need to do, and that was the part that could
+not generalise.
 
 ## What is parked, and what would overturn this
 
@@ -178,10 +197,11 @@ combat is what would let the *totals* be read too.
 - **The offline `/combatlog` join stays alive as OPPORTUNISTIC ONLY.** For someone already logging it
   is zero *marginal* cost, because they are paying it anyway. Never a requirement, never the primary
   path. This finding does not touch it — that reads the disk file, which logging definitely writes.
-- **⚠ What would overturn the decision: a measurement, not an argument** — and **the instrument now
-  exists**: `/coadump st cleu`. Three arms (`none` / `count` / `masked`) switched in-session, per-second
+- **✅ The measurement HAPPENED** — see above; the cost objection is retired. The instrument is
+  `/coadump st cleu`. Three arms (`none` / `count` / `masked`) switched in-session, per-second
   line counts and `collectgarbage("count")`, and a comparability check that **voids its own result** if
   the arms were not the same errand. It measures allocation rather than time, for the reason this note
   records: the profiled cost here is GC pressure, and timing a near-empty handler measures the timer.
   The control is his: *"I can pull from the start of SFK to the boss. Kill them all. Repeat."*
-  **Nothing has been run yet** — the decision above still stands on the probes and the prior art.
+  **What is still open is NEED, not cost** — nobody has yet said what *what died in a pull* buys a
+  route, or whether it is instrument or drift into damage analysis.
