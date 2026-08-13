@@ -2200,3 +2200,41 @@ Both mutations bite with their own messages. **v0.7.0.**
 1. ~~the `isPlayer` filter~~ — **done**
 2. **the companion editor pane**
 3. **the load selection**, at the top
+
+---
+
+## 36. ★ LOCATION SORTS THE LIST; IT NEVER CHOOSES THE VIEW (Battlewrath, 2026-08-13)
+
+> *"It can load the map you're in. If you're in one. **It can not auto-load a run data set.** It
+> can offer runs of that dungeon first in the selector, and then resort to naming alphabetical
+> when not in an instance."*
+
+**The line, stated once:**
+
+| | |
+|---|---|
+| **map art** | **may** follow you — it is just *where you are* |
+| **run data** | **never** auto-loads — it is a claim about what you are looking at, and that is yours |
+| **the selector's ORDER** | location-aware: **runs of this dungeon first**, then alphabetical by name |
+| **outside an instance** | alphabetical, full stop — no cleverness |
+
+**★ Location informs the ORDER of the list. It never chooses the CONTENTS of the view.** Sorting is
+a convenience; selecting is a decision. That resolves the tension between §20.2 (*listens to
+where you are*) and §33 (*runs are a data set, selectable*) — both were right, about different
+things.
+
+### What it makes wrong in the current build
+
+**`Map.Show` auto-picks a run** (and picks the wrong one, §33). Under this ruling it should not
+pick at all:
+
+- **open the frame** → the dungeon you are standing in, **and no run** — an empty canvas over real
+  art;
+- **choose a run** → it supplies its **own** `mapFile` (DR-34) and its points.
+
+Which is precisely what DR-34 was built for: **the selector works from anywhere**, because a run
+carries the art it needs. Standing in Orgrimmar and loading a Shadowfang route is the same code
+path as standing in Shadowfang.
+
+**An empty canvas over real art is HONEST** — it says *"this is where you are, and you have not
+asked for anything yet."* The auto-pick said *"here is a run"*, and was wrong about which.
