@@ -77,6 +77,10 @@ them (`Weak Auras/ingest/inbox/` for aura captures; `Outputs/` for data dumps), 
   had already passed. It baselines first, restores, then **verifies the restore** (the
   scratchpad version left a mutation on disk twice). Add a spec entry whenever you add a
   guard; the spec is data, so that is a JSON entry rather than a script edit.
+- `planning/cleu_on_this_fork.md` — **the CLEU study and its decision: PUSH with a lean mask.** The
+  fork declares a full retained-buffer API and it is **empty when read** (five probes, four
+  conditions); `CombatLogAddFilter` is a **live shared singleton**; and ALC's profiling says the cost
+  here is **allocation, not call count**. Read it before adding any combat-log listener.
 - **The third witness lane (2026-07-31): `/combatlog`** — the client's own CLEU-to-disk
   stream (`Logs/<datetime> WoWCombatLog.txt`), parseable by
   `Class_design/Necromancer/tests/parse_combatlog.py`. The cheapest

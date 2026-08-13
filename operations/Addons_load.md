@@ -62,6 +62,9 @@ this is a snapshot.
 | `COA_DungeonRun` | **6 files** — `capture.lua`, `core.lua`, `map.lua`, `store.lua`, `widget.lua`, the toc |
 | everything else | at parity |
 
+**✅ THE CLEU QUESTION IS SETTLED — `addons/planning/cleu_on_this_fork.md`.** The "no CLEU" rule was a
+COST CLAIM, so it was tested rather than argued. The fork declares a full retained-buffer API (`CombatLogGetNumEntries`, `AdvanceEntry`, `AddFilter`, `Object_IsA`...) and **all six functions exist** — but the buffer reads **50 · 5 · 0 · 0** across five probes in four conditions, including in combat and with logging on. **It is not a history**, so walking it would be lossy and silently so. `CombatLogAddFilter` is a **live shared singleton** (50 total vs 18 filtered = someone already set one) — same shape as `SetMapByID`. And **logging-gated routes cost the USER disk I/O**, which inverts the comparison. **Decision: push with a lean mask**, where lean has a target from ALC's own profiling — **the cost here is ALLOCATION, not call count.** ⚠ What would overturn it is a MEASUREMENT: nobody has counted lines/sec in a real pull here. The call-witness harness is built and parked for exactly that.
+
 **☑ DOC PASS 2026-08-13** — README head/DR-table/files, `addons/README.md`, map.lua's header, the
 shelf arrival note and this file all reconciled to v0.11.0. **Pruned from here:** a superseded
 `COA_DungeonRun v0.2.0` block that still read *"capture only: no beacon, editor or display"* and a

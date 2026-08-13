@@ -1,0 +1,39 @@
+{
+  "_provenance": {
+    "source": "F:\\games\\Ascension_wow\\resources\\ascension-live\\WTF\\Account\\BATTLEWRATH\\SavedVariables\\COA_DevDump.lua",
+    "source_mtime": "2026-08-13T18:38:35",
+    "pulled_at": "2026-08-13T18:38:38",
+    "sha256": "169b6e9234196e845ff3c6bd2266cf2845748234a84a15a25ec170874c5036e0",
+    "raw_clone": "addons\\landing\\raw\\20260813_183832_400__dump.lua",
+    "envelope_status": "complete"
+  },
+  "header": {
+    "summary": "dump 'LoggingCombat(), CombatLogGetNumEntries(true)': 2 value(s)",
+    "realm": "Vol'jin - Conquest of Azeroth",
+    "class": "NECROMANCER",
+    "runId": "20260813_183832_400",
+    "startedAt": "2026-08-13 18:38:32",
+    "char": "Gravekeeper",
+    "completedAt": "2026-08-13 18:38:32",
+    "version": "2.2.0",
+    "args": "LoggingCombat(), CombatLogGetNumEntries(true)",
+    "status": "complete",
+    "task": "dump",
+    "tool": "COA_DevDump",
+    "interface": 30300
+  },
+  "payload": {
+    "notes": {},
+    "values": [
+      "<nil>",
+      0
+    ],
+    "truncated": false,
+    "returnCount": 2,
+    "limits": {
+      "maxDepth": 8,
+      "maxKeys": 200
+    },
+    "expression": "LoggingCombat(), CombatLogGetNumEntries(true)"
+  }
+}
