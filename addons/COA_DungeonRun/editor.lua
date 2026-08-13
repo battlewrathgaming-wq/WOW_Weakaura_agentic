@@ -22,12 +22,28 @@
 -- open us.)
 -- ---------------------------------------------------------------------------
 --
--- THIS SLICE adds §36's LOAD SELECTOR, at the top - his ordering, deliberately:
--- "it's why I pushed that order, instead of putting it on the map and then taking
--- it out and putting it into the editing suite."
+-- ★ WHAT THIS PANE IS FOR (Battlewrath, 2026-08-13) - three surfaces, three
+-- questions:
 --
--- NOT here yet: promotion into lanes (§29), notes, or any editing of a point. The
--- pane is an INSPECTOR plus a loader; authoring lands on top of it.
+--     map         what IS this?          the picture, and point facts on hover
+--     curation    what am I LOOKING at?  trimming, filtering, replay selection,
+--                                        isolation - configuring presentation
+--     promotion   what does this BECOME? §29's lanes, offsets, z-inheritance
+--                                        (a SEPARATE pane, not built)
+--
+-- ★ AND IT SETTLES DR-9. "A point is written as captured; we never clean, merge or
+-- dedupe" was in apparent tension with an editor that trims. It is not, under this
+-- split: **CURATION EDITS THE VIEW, NEVER THE CAPTURE.** A trimmed wipe is hidden,
+-- not deleted; an isolated pull is a filter, not a subset written back. Promotion
+-- is the only thing that produces durable objects, and §29 already says it COPIES.
+-- Two panes, two verbs, and neither can damage the record.
+--
+-- Consequence worth stating: curation state is PER-VIEW. It does not belong in the
+-- record at all.
+--
+-- THIS SLICE is the loader only. The readout that used to live here moved to the
+-- map's tooltip, where the facts belong. The four controls are designed but not
+-- built - and the pane SAYS that rather than looking broken while it is empty.
 
 local ADDON, NS = ...
 
@@ -35,43 +51,22 @@ local Editor = {}
 NS.Editor = Editor
 
 local Map, Store
-local f, title, dd, kindText, rows, hint
+local f, title, dd, hint
 
-local MAX_ROWS = 10          -- Describe never returns more; the surplus would be silent
 local NO_RUN = "- no run -"
 
 local function refresh()
     if not f then return end
-    local point = Map.Selected()
-    local label, list = Map.Describe(point)
 
     -- Track what the MAP actually has loaded rather than what we last clicked.
     -- The two can only diverge through another entry point, and a selector that
     -- quietly disagrees with the picture is worse than no selector.
     if dd then UIDropDownMenu_SetText(dd, Map.LoadedId() or NO_RUN) end
 
-    kindText:SetText(label)
-    for i = 1, MAX_ROWS do
-        local r = rows[i]
-        local entry = list[i]
-        if entry then
-            r.k:SetText(entry[1])
-            r.v:SetText(entry[2])
-            r.k:Show(); r.v:Show()
-        else
-            r.k:Hide(); r.v:Hide()
-        end
-    end
-    -- ★ Say when the readout is TRUNCATED rather than showing a short list that
-    -- looks complete - the same rule task_dump holds about silent caps.
-    if #list > MAX_ROWS then
-        hint:SetText(("... +%d more field(s) than this pane shows"):format(#list - MAX_ROWS))
-    elseif not Map.LoadedId() then
+    if not Map.LoadedId() then
         hint:SetText("pick a run above")
-    elseif not point then
-        hint:SetText("click a point on the map")
     else
-        hint:SetText("")
+        hint:SetText("trimming, filtering, replay and isolation land here")
     end
 end
 Editor.Refresh = refresh
@@ -124,7 +119,7 @@ function Editor.Init()
     Map, Store = NS.Map, NS.Store
 
     f = CreateFrame("Frame", "COA_DungeonRunEditor", UIParent)
-    f:SetWidth(280); f:SetHeight(330)
+    f:SetWidth(280); f:SetHeight(130)
     f:SetPoint("CENTER", UIParent, "CENTER", 560, 0)
     -- ★ DIALOG - one strata ABOVE the map. The pane annotates the map, so it must
     -- never be buried under it; and both now sit above the action bars, which is
@@ -157,22 +152,9 @@ function Editor.Init()
     UIDropDownMenu_JustifyText(dd, "LEFT")
     UIDropDownMenu_SetText(dd, NO_RUN)
 
-    kindText = f:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
-    kindText:SetPoint("TOPLEFT", 18, -76)
-
-    rows = {}
-    for i = 1, MAX_ROWS do
-        local k = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-        k:SetPoint("TOPLEFT", 18, -98 - (i - 1) * 15)
-        k:SetWidth(70); k:SetJustifyH("LEFT")
-        local v = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
-        v:SetPoint("TOPLEFT", 92, -98 - (i - 1) * 15)
-        v:SetWidth(170); v:SetJustifyH("LEFT")
-        rows[i] = { k = k, v = v }
-    end
-
     hint = f:CreateFontString(nil, "OVERLAY", "GameFontDisableSmall")
-    hint:SetPoint("BOTTOMLEFT", 18, 18)
+    hint:SetPoint("TOPLEFT", 18, -72)
+    hint:SetWidth(244); hint:SetJustifyH("LEFT")
 
     local closeBtn = CreateFrame("Button", nil, f, "UIPanelButtonTemplate")
     closeBtn:SetWidth(60); closeBtn:SetHeight(20)

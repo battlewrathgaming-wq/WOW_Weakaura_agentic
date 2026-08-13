@@ -266,6 +266,46 @@ function Map.Describe(point)
     return label, rows
 end
 
+-- ★ THE MAP ANSWERS "WHAT IS THIS?" (Battlewrath, 2026-08-13)
+--
+-- *"Map information I think should live on the map. As the curator suite is going
+-- to pack a lot of content itself."*
+--
+-- So the point readout is a TOOLTIP here rather than ten rows in the companion:
+-- native pin idiom, zero screen space, works on all 434 points without the pane
+-- ever growing. It frees the companion for what it is actually for - trimming,
+-- filtering, replay selection, isolation.
+--
+-- HOVER READS, CLICK TARGETS. Worth having on its own: you can inspect the whole
+-- route without changing what you are about to act on.
+--
+-- Map.Describe is unchanged - it was already the tested readout and it simply has
+-- a different consumer now.
+--
+-- Colours follow the art's own language (red danger, blue safe); the LABEL does
+-- the distinguishing between a start and a terminal stop, rather than a fourth
+-- invented colour.
+local TIP_COLOR = {
+    leg   = { 0.7, 0.7, 0.7 },
+    start = { 1.0, 0.4, 0.3 },
+    done  = { 0.4, 0.7, 1.0 },
+    dead  = { 1.0, 0.2, 0.2 },
+}
+
+-- Fills any tooltip-shaped object. Split out from the handler so it is testable
+-- without a frame: an empty tooltip is the map answering "what is this?" with
+-- silence, and nothing else would catch it.
+function Map.FillTooltip(tip, point)
+    if not tip or not point then return false end
+    local label, rows = Map.Describe(point)
+    local c = TIP_COLOR[Map.ArtKey(point)]
+    tip:AddLine(label, c[1], c[2], c[3])
+    for _, kv in ipairs(rows) do
+        tip:AddDoubleLine(kv[1], kv[2], 0.7, 0.7, 0.7, 1, 1, 1)
+    end
+    return true
+end
+
 -- Fraction -> pixel offset from the canvas TOPLEFT.
 --
 -- mapY runs DOWNWARD (fraction 0 is the top edge), which is why y is negated:
@@ -393,6 +433,13 @@ local function ensureDots(n)
         d.tex = t
         d:RegisterForClicks("LeftButtonUp")
         d:SetScript("OnClick", function(self) Map.Select(self.point) end)
+        d:SetScript("OnEnter", function(self)
+            if not self.point then return end
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+            Map.FillTooltip(GameTooltip, self.point)
+            GameTooltip:Show()
+        end)
+        d:SetScript("OnLeave", function() GameTooltip:Hide() end)
         dots[i] = d
     end
 end

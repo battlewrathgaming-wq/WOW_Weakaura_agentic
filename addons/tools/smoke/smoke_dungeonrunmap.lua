@@ -368,6 +368,27 @@ assert(got["killed by"] == "Molten Elemental, Ragefire Trogg",
 assert(got["zone"] == "Ragefire Chasm", "subZone is empty, so the zone is shown")
 assert(got["t"] == "1786595378", "the wall clock, DR-4")
 
+-- ★ Map.FillTooltip - the readout's new home. "Map information should live on the
+-- map. As the curator suite is going to pack a lot of content itself."
+-- An empty tooltip is the map answering "what is this?" with SILENCE, and nothing
+-- else on screen would catch it.
+local tip = { head = {}, kv = {} }
+function tip:AddLine(t) self.head[#self.head + 1] = t end
+function tip:AddDoubleLine(k, v) self.kv[#self.kv + 1] = { k, v } end
+
+assert(Map.FillTooltip(tip, { kind = "end", dead = true, n = 7, floor = 2,
+                              zone = "Ragefire Chasm", subZone = "", t = 1786595378,
+                              killedBy = { "Molten Elemental" } }),
+       "a real point fills the tooltip")
+assert(tip.head[1] == "TERMINAL STOP", "the label leads, got " .. tostring(tip.head[1]))
+local tipHas = {}
+for _, kv in ipairs(tip.kv) do tipHas[kv[1]] = kv[2] end
+assert(tipHas["killed by"] == "Molten Elemental",
+       "EVERY Describe row must reach the tooltip - it is the only readout now")
+assert(tipHas["pull"] == "7" and tipHas["floor"] == "2", "and the rest of them")
+assert(Map.FillTooltip(tip, nil) == false, "hovering nothing must not draw an empty tooltip")
+assert(Map.FillTooltip(nil, { kind = "start" }) == false, "no tooltip -> nothing to fill")
+
 local _, r2 = Map.Describe({ killedByUnavailable = "AscensionUI.DeathRecap absent" })
 local seen2 = false
 for _, kv in ipairs(r2) do if kv[1] == "attribution" then seen2 = true end end
@@ -490,6 +511,29 @@ assert(dotFor(mk)._level > levelBefore,
        ("NO REPAINT: selection must redraw - got level %s, was %s")
        :format(tostring(dotFor(mk)._level), tostring(levelBefore)))
 Map.Select(nil)
+
+-- ★ THE TOOLTIP IS WIRED. FillTooltip being correct is worth nothing if no dot
+-- ever calls it - and a pin with no OnEnter looks identical to one whose tooltip
+-- is empty.
+GameTooltip = { head = {}, kv = {}, _shown = false }
+function GameTooltip:SetOwner() self.head, self.kv = {}, {} end
+function GameTooltip:AddLine(t) self.head[#self.head + 1] = t end
+function GameTooltip:AddDoubleLine(k, v) self.kv[#self.kv + 1] = { k, v } end
+function GameTooltip:Show() self._shown = true end
+function GameTooltip:Hide() self._shown = false end
+
+local hovered = dotFor(mk)
+-- ★ rawget, NOT hovered.OnEnter. The stub's __index hands back a no-op function
+-- for any unset method, so `hovered.OnEnter` is truthy whether or not the script
+-- was ever registered - the assertion would be VACUOUS. Caught by the harness:
+-- deleting the handler bit on the next line's message instead of this one.
+assert(rawget(hovered, "OnEnter"), "NO TOOLTIP HANDLER: the map cannot say what a point is")
+hovered.OnEnter(hovered)
+assert(GameTooltip._shown, "hovering shows it")
+assert(GameTooltip.head[1] == "combat START",
+       "and it carries the point's own label, got " .. tostring(GameTooltip.head[1]))
+hovered.OnLeave(hovered)
+assert(not GameTooltip._shown, "STICKY TOOLTIP: leaving must hide it")
 
 -- ★ THE CROP, AS PAINTED. §19's trap: SetTexture RESETS TexCoord, so a crop
 -- applied once at Init is silently undone by the first repaint - and the art

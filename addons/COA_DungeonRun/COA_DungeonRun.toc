@@ -1,8 +1,8 @@
 ## Interface: 30300
 ## Title: COA Dungeon Run
-## Notes: v0.9.1 - capture, display and the start of curation. A dungeon route IS a sequence of pulls, so record the pulls: combat start and end are the markers, the path between them is sampled once a second out of combat, and both entrances are captured automatically. Records everything and filters nothing - judgement happens offline against the whole set. Also records the instance identity and DIFFICULTY at arrival, which bosses the route ENGAGED (never a roster, never a fraction), and who killed you at a terminal stop - read from the client's own DeathRecap rather than a second combat-log listener. The map draws a run back onto the client's own tiles and never learns a dungeon; the companion pane inspects a point and LOADS a run - location sorts that list, it never chooses for you. /dr
+## Notes: v0.9.2 - capture, display and the start of curation. A dungeon route IS a sequence of pulls, so record the pulls: combat start and end are the markers, the path between them is sampled once a second out of combat, and both entrances are captured automatically. Records everything and filters nothing - judgement happens offline against the whole set. Also records the instance identity and DIFFICULTY at arrival, which bosses the route ENGAGED (never a roster, never a fraction), and who killed you at a terminal stop - read from the client's own DeathRecap rather than a second combat-log listener. The map draws a run back onto the client's own tiles and never learns a dungeon; the companion pane inspects a point and LOADS a run - location sorts that list, it never chooses for you. /dr
 ## Author: Battlewrath
-## Version: 0.9.1
+## Version: 0.9.2
 ## SavedVariables: COA_DungeonRunDB
 
 store.lua

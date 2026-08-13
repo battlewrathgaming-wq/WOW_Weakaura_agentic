@@ -2468,3 +2468,70 @@ Every `addons/*/*.lua` checked for a call preceding its own `local function` def
 stripped so prose mentions do not count: **clean**, this was the only one.
 
 **23 mutations bite on their own message.** v0.9.1.
+
+---
+
+## 43. ★★ THREE SURFACES, THREE QUESTIONS (Battlewrath, 2026-08-13)
+
+> *"Map information I think should live on the map. As the curator suite is going to pack a lot of
+> content itself."*
+>
+> *"That lives separate. Another pane. That's all about promotion. Curation is trimming / filtering
+> / replay selection and isolation. Configuring how the information is presented."*
+
+| surface | question | owns |
+|---|---|---|
+| **map** | *what IS this?* | the picture, and point facts on hover |
+| **curation** | *what am I LOOKING at?* | trimming · filtering · replay selection · isolation · presentation |
+| **promotion** | *what does this BECOME?* | §29's lanes, the selected point, offsets, z-inheritance |
+
+§34's build-hygiene argument extends to all three: each pane isolated, each depending on the map's
+API rather than on each other.
+
+### ★★ AND IT SETTLES DR-9
+
+**DR-9** — *a point is written as captured; we never clean, merge or dedupe* — was in apparent
+tension with an editor that trims. Under this split it is not:
+
+> **CURATION EDITS THE VIEW, NEVER THE CAPTURE.**
+
+A trimmed wipe is **hidden**, not deleted. An isolated pull is a **filter**, not a subset written
+back. Promotion is the only thing that produces durable objects, and §29 already says it **copies**.
+Two panes, two verbs, and neither can damage the record.
+
+**Consequence:** curation state is **per-view**. It does not belong in the record at all — which
+also means it never has to survive an import (ledger law 7).
+
+---
+
+## 44. BUILD — the map answers "what is this?", v0.9.2 (2026-08-13)
+
+The map side only; the rest of §43 is held for design.
+
+**The point readout is a tooltip.** Native pin idiom, zero screen space, works on all 434 points
+without the pane ever growing. **`Map.Describe` is unchanged** — it was already the tested readout
+and simply has a different consumer. Colours follow the art's own language (red danger, blue safe);
+the **label** distinguishes a start from a terminal stop rather than a fourth invented colour.
+
+**HOVER READS, CLICK TARGETS.** Worth having on its own: you can inspect the whole route without
+changing what you are about to act on.
+
+**The pane sheds the ten readout rows** and keeps the loader — 130 px tall now instead of 330. It
+**says** what is coming (*"trimming, filtering, replay and isolation land here"*) rather than
+presenting a blank box that reads as broken.
+
+`Map.FillTooltip(tip, point)` is split out from the handler so it is testable without a frame: an
+empty tooltip is the map answering *"what is this?"* with **silence**, and nothing else on screen
+would catch it.
+
+### ⚠ A vacuous assertion the harness caught immediately
+
+`assert(dot.OnEnter, "NO TOOLTIP HANDLER")` **can never fail** — the smoke's frame stub hands back a
+no-op function for any unset method, so the name is truthy whether or not the script was ever
+registered. Deleting the handler bit on the *next* assertion's message. Fixed with `rawget`, and the
+reason is written at the assertion so it is not re-introduced.
+
+That is the same family as the list-based spy that could not observe `Select(nil)` (§37): **a
+permissive stub makes "is this wired?" assertions vacuous by construction.**
+
+**27 mutations bite on their own message.** v0.9.2.
