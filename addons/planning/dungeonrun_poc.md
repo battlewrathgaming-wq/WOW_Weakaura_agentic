@@ -2130,8 +2130,20 @@ proven working** (§27, §32).
 | **map frame** | which run · which floor · the plot. **Reading and curation context.** |
 | **companion** | the selected point · its lane · its note · promote. **Authoring.** |
 
-**The run dropdown belongs on the MAP** — *"which run am I looking at"* is a reading question, and
-§22 placed it top-right. The companion appears only when doing something *to* a run.
+**⚠ CORRECTED (Battlewrath, same day): the load selector goes at the TOP OF THE COMPANION.**
+
+> *"It's why I pushed that order, instead of putting it on the map and then taking it out and
+> putting it into the editing suite."*
+
+I had placed it on the map because *"which run am I looking at"* reads as a reading question.
+**But loading a specific run is an act of CURATION, not of reading your surroundings.** The map
+stays purely location-driven (§20.2); the companion overrides it when you are working. Cleaner
+than the split I wrote, and it means **the map needs no selector at all.**
+
+**★ And the ordering principle stands on its own: sequence the work so nothing gets built in the
+wrong place first.** He ordered companion-before-selection specifically to avoid building the
+dropdown on the map and then moving it — rework spotted *before* it happened. Same instinct as
+*build first, capture once with better information* (§21).
 
 **★ One coupling point, and it is the only one: SELECTION STATE.** Which point is currently
 picked. `Map` owns it, the companion reads it, clicking a dot sets it. Worth deciding
@@ -2140,9 +2152,9 @@ them if it lived in the wrong place.
 
 ### Order
 
-1. **the run dropdown** — nothing else can be tested deliberately until a run is selectable (§33)
-2. the `isPlayer` filter on `killedBy` (§35)
-3. the companion
+1. ~~the `isPlayer` filter~~ — **done, §35**
+2. **the companion editor pane**
+3. **the load selector**, at the top OF THE COMPANION
 
 **Gate: `Build!`**
 
