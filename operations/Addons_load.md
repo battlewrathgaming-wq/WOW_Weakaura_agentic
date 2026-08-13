@@ -11,7 +11,19 @@ beacon control and the edit form all confirmed in play. Since v0.1.3 it also gai
 completion with ghost text, the `owner` control (character / all), `/lm all` orphan recovery,
 and bulk transfer. Four live bugs closed; `landmark_design.md` §15 has the log.
 
-**⚠ THE CLIENT IS BEHIND THE REPO — by exactly ONE FILE, `beacon.lua`.** All three unshipped
+**☑ DEPLOY LEDGER (checked 2026-08-13, `py addons/deploy.py status`).** Battlewrath deploys at
+test time, not on a schedule, and **batches**: *"We can roll that into a more developed
+redeploy."* So a pending line here is EXPECTED to sit true, and is **not a chore to clear.**
+
+| Resident | Pending |
+|---|---|
+| `COA_DungeonRun` | **`capture.lua`** — DR-30's difficulty resolution (`GetDifficultyInfo` when the raw name is empty) + the 8th `GetInstanceInfo` return (mapID). Runs recorded before this deploy carry `difficultyName = ""` and no `instance.mapID`; that is a **known, dated gap in those records**, not a defect |
+| everything else | **at parity** — 8 residents zero-delta, `COA_Landmarks` included (its `beacon.lua` shipped) |
+
+`py addons/deploy.py status` is the read-only truth at any moment; this table is a snapshot and
+**the command wins.**
+
+**~~⚠ THE CLIENT IS BEHIND THE REPO — by exactly ONE FILE, `beacon.lua`.~~ (SHIPPED)** All three unshipped
 changes live in it: the OnUpdate lifecycle, the forward-declaration fix, and the AC-29 cadence
 revision. **Battlewrath deploys at test time, not on a schedule** (his call, 2026-08-12) — so
 this flag is expected to sit true between sessions and is NOT a chore to clear.
