@@ -2818,3 +2818,45 @@ we now know there are **two**. They most likely hold for routes and want re-read
 
 **3. The comment field is 40 characters.** His own example is the proof the cap works: *"bad run but
 good pull around 178"* is 32. Eight to spare, and no room for it to grow into a log.
+
+---
+
+## 49. ★★ AVAILABILITY FOLLOWS VISIBILITY EXACTLY (Battlewrath, 2026-08-13)
+
+> *"Availability is — I can't see it. And mousing over items I can't see and getting a pop-up is
+> sloppy. So a general layer of in-view by filter = true = tooltip."*
+
+**If it is not drawn, it is not there.** No tooltip, no click, no selection.
+
+That collapses §48's two words into **one gate**. Availability is never checked separately and never
+stored — the dot is either painted or it is not, and that single fact answers both questions. It is
+also the last piece of the simplification §48 closed on: with all curation state transient and
+availability derived from what is painted, **curation has no state of its own anywhere.**
+
+### ⚠ THE TRAP THIS EXISTS TO CATCH — and it is in front of us, not behind
+
+Today's code already obeys the rule, but **by luck of implementation rather than by rule**: `paint`
+builds from `VisibleOn`, `clearDots` hides every dot before showing the survivors, and a hidden frame
+receives no mouse events. Unticking combat legs already kills their tooltips.
+
+**The time filter is where it breaks.** The natural way to implement a window is to FADE what falls
+outside it — and **`SetAlpha(0)` leaves hit testing fully on.** You get an invisible point that still
+pops a tooltip, which reads as a *ghost* rather than as a bug, and it is exactly the sloppiness he
+named.
+
+> **FILTERING HIDES. IT NEVER FADES.** Anything that wants to be dimmed rather than removed must give
+> up its mouse explicitly.
+
+### The guard
+
+One assertion, in `smoke_dungeonrunmap.lua`: **no shown dot may carry a filtered-off kind.** An
+alpha-based implementation fails it the moment it is written, because the dot is still `Show()`n.
+
+⚠ Two count assertions beside it are labelled **BACKSTOPS** in the source: no single-edit mutation
+reaches them, because the §49 check and the `SetHidden` reports-its-state check both fire first. They
+are kept for two-part failures those cannot see. **Labelled rather than assumed** — an unreached
+assertion that says so is honest; one that is presented as proven is the vacuous kind this brief has
+now caught three times.
+
+**37 mutations still bite on their own message**, and the paint-skips-the-filter mutation now bites
+on §49's message rather than on the count — the more precise cause, fired first.

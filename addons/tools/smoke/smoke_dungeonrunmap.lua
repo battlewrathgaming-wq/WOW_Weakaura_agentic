@@ -560,6 +560,29 @@ end
 local drawnAll = shownDots()
 assert(drawnAll > 0, "the fixture draws something to filter")
 Map.SetHidden("combatleg", true)
+
+-- ★ §49: AVAILABILITY FOLLOWS VISIBILITY EXACTLY. Battlewrath: *"availability is -
+-- I can't see it. And mousing over items I can't see and getting a pop-up is
+-- sloppy."* If it is not drawn it is not there: no tooltip, no click, no select.
+--
+-- This assertion exists mostly as a TRIPWIRE FOR THE TIME FILTER. The natural way
+-- to implement a time window is to FADE what falls outside it - and SetAlpha(0)
+-- leaves hit testing fully on, so you get an invisible point that still pops a
+-- tooltip. That reads as a ghost rather than as a bug. Filtering HIDES; it never
+-- fades. Anything that ever wants to be dimmed must give up its mouse explicitly.
+for _, o in ipairs(made) do
+    if rawget(o, "point") and o._shown then
+        assert(not Map.Hidden(Map.ArtKey(o.point)),
+               "SHOWN BUT FILTERED: a point whose kind is hidden is still on screen, "
+               .. "so it is still HITTABLE - filtering must hide, never fade")
+    end
+end
+
+-- BACKSTOPS, and named as such: no single-edit mutation reaches these two, because
+-- the §49 check above and the SetHidden-reports check earlier both fire first. They
+-- are kept for the two-part failures those cannot see (a lying Map.Hidden), NOT
+-- because they have been proven to bite. An unreached assertion that is labelled is
+-- honest; one that is assumed is the vacuous kind.
 assert(shownDots() < drawnAll,
        "FILTER NOT PAINTED: hiding a kind must change what is DRAWN, not only what "
        .. "VisibleOn returns")
