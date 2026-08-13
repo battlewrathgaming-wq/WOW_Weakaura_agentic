@@ -1645,7 +1645,7 @@ combat marker. Different claim — *"combat started here"* is not *"go here"*.
 | world **x, y** | copied, and **may be offset** — triangulated from near captured points, so the nudge is bounded by local sample geometry |
 | world **z** | **COPIED, NEVER COMPUTED** |
 | `mapID` · `floor` · fraction | copied (the fraction re-derives if x,y move — see 25.4) |
-| back-reference | which node it was promoted from |
+| back-reference | which node it was promoted from. ⚠ **See the tension flagged below — §60 says a route does not know about Runs** |
 
 **★ Z-inherited is an ADMISSION the design makes out loud:** *this waypoint is on the same plane
 as the node it came from.* We do not know the height between samples, so we do not pretend to —
@@ -1655,6 +1655,20 @@ the same refusal as §14's *deriving means inventing meaning we don't know in th
 different z, you have moved off the base node's plane — and the answer is **promote a nearer
 node**, not guess a height. **The constraint tells you when you have overreached**, instead of
 silently producing a waypoint hanging in the air or buried under a floor.
+
+⚠ **SOFTENED 2026-08-13 (§60): under EDITING this is a TEACHER, not a gate.** Routes are editable and
+**dragging a beacon is the user's choice** — improper, and allowed. Inherited z is what makes a bad
+drag *visible*: move it far from its source and it sits at the wrong height on screen. The design
+shows you that you went too far instead of stopping you, which is the whole of *"we give them tools
+to do it well. But we don't gate them."*
+
+⚠ **AND A TENSION THIS DOC PASS FOUND, unresolved on purpose.** The table above keeps a
+**back-reference to the node a waypoint was promoted from**, while §60 records that **a route does not
+know about Runs — it copies rather than references**, which is what lets a route survive its source
+run being deleted. Those are not fatally opposed: a back-reference is *provenance*, and it can dangle
+without the route breaking. But it is the kind of thing that decides itself badly if nobody decides
+it — either the back-reference is allowed to go stale and is treated as a hint, or it is dropped and
+promotion keeps no trail home. **Battlewrath's call, not one to infer.**
 
 ### 25.3 The trail is the EDITABLE SURFACE
 
@@ -1874,7 +1888,14 @@ apart.**
 
 **So every point in the system came from someone actually BEING somewhere.** That is §14's
 refusal — *a derived point is a position nobody ever stood at* — generalised from a single ruling
-into the whole model. **There is no free-hand placement anywhere, in any lane, ever.**
+into the whole model. **Nothing can be SPAWNED from nothing.**
+
+⚠ **SOFTENED 2026-08-13 (§60). The gate is on ORIGIN, not on POSITION.** This clause used to read
+*"there is no free-hand placement anywhere, in any lane, ever"*, which claimed more than was meant and
+would have banned dragging a beacon during route editing. Battlewrath: *"users dragging beacons
+everywhere is improper - but user choice. We give them tools to do it well. But we don't gate them."*
+So: a beacon must come from a capture; where the user moves it afterwards is theirs. The wording was
+the fault, not the law — same treatment §58 gave DR-31's *"bosses"*.
 
 ### 29.2 Two lanes, chosen at promotion
 
@@ -3271,10 +3292,10 @@ helpfulness on the way over.**
 
 | | |
 |---|---|
-| §29 | **capture is the only spawn** — no free-hand placement in any lane, ever |
+| §29 | **capture is the only spawn** — nothing is created from nothing. ⚠ The gate is on ORIGIN, **not on position**: dragging a promoted beacon is the user's choice (§60) |
 | DR-36 | where the client emits nothing, **the player is the sensor** — and the pin carries no meaning until promote |
 | DR-35 | **sample in combat too** — don't decide at capture what will matter, because the learner doesn't know yet either |
-| §25.2 | promotion **copies the base; z is inherited, never computed** |
+| §25.2 | promotion **copies the base; z is inherited, never computed** — ⚠ under EDITING that is a **teacher, not a gate**: drag far from the source and the beacon sits at the wrong height, visibly (§60) |
 | §56 | the **sequence integers ride free from source** — order is inherited, not authored |
 
 **One law: nothing downstream INVENTS what capture already holds.** Every violation looks like a
@@ -3468,3 +3489,179 @@ alone loses the raw numbers and picks a normalisation on the reader's behalf; bo
   Composition does not depend on them; it is useful in any dungeon and merely matters most in M+.
 - The listener itself is unwritten. The shape is settled (`push with a lean mask`), the cost is
   measured, and **the need is now on record** — which is the last thing that was missing.
+
+---
+
+## 60. THE ROUTE OBJECT AND THE IN-ROUTE SURFACE — captured intent (Battlewrath, 2026-08-13)
+
+**★ THIS IS CAPTURED INTENT, NOT LAW.** His instruction on recording it. Nothing here is built,
+nothing is settled, and the parts he called undefined are left undefined rather than filled in.
+Written down because it was worked out in conversation and would otherwise be lost.
+
+### The objects
+
+| | |
+|---|---|
+| **Run** | the product of **capture**. Heavy. The record |
+| **Route family** | the **envelope / table / transportable data set** that wraps the beacons — *"what the route selector and the run-time run against"*. Lean. The deliverable |
+| **Beacon** | a node inside a route family, carrying a **Stage** and a **Cue** |
+| **Personal note** | map-anchored, and **escapes route membership** entirely |
+
+**The family is one object doing three jobs** — what the selector lists, what the runtime runs, and
+what travels. Which means **what you run is exactly what you share**: no packing step, no separate
+export format, no chance of the shipped thing differing from the tested one.
+
+So route-level facts live on the **family**, not on beacons — name, mapID, description, and whatever
+provenance the trust asymmetry (§48) ends up requiring. Beacons stay cheap, which matters when they
+are the thing read mid-fight.
+
+⚠ Structurally it is the Run's shape at a different weight: an envelope of identity plus an array.
+The storage pattern therefore already exists rather than needing inventing (DR-20).
+
+### The promotion form — his fields
+
+```
+Name:
+Type:           Personal Note | Beacon
+Stage:          (beacon only — unique within the family)
+Cue:            (beacon only)
+Note:
+Radius listen:
+Radius close:
+Icon pick:
+```
+
+*"Both have a projection and satisfy space."* Three of those already have a fact basis rather than
+needing invention:
+
+- **`Radius listen` / `Radius close`** sit on characterised ground — the client gives distance, and
+  the Landmark arc mapped the tiers including the 5-yard *Interact with* boundary.
+- **`Icon pick`** has `maps/atlas/` behind it: 4,503 named entries classified by **claim of use**
+  (1,359 claimed, 3,144 free), so a picker can offer what is genuinely unused.
+- **`Stage`** is the sequence integer that *"rides free from source"* materialising — inherited as a
+  default and **editable**, which is the overwrite §48 called for.
+
+⚠ Mine, not his: `Type` being a **field** rather than two object kinds means one record shape with a
+discriminator. That may be what §29's "two sinks" was always describing — one object, two
+destinations — and would also explain why *a note that also needs a beacon* feels like an awkward
+third rather than a natural one.
+
+### ★★ A ROUTE DOES NOT KNOW ABOUT RUNS
+
+> *"Start new route. It doesn't know about Runs, it just knows nodes are on the map to child from /
+> copy from. But they exist in the table of that route."*
+
+**It copies; it does not reference.** That single decision reconciles four things already on record,
+from a direction none of them anticipated:
+
+- **A route survives its source run being deleted** — which matters because delete-the-whole-run is
+  the only destructive verb we have (§48), and a referencing design would have made it capable of
+  orphaning routes, forcing us to weaken it.
+- **A route can be built from more than one run** with nothing added for it. Nodes from two captures
+  are just nodes on the map.
+- **It is why §25.2's "promotion copies the base" mattered** — recorded as a z rule without seeing
+  the larger reason: copying is what makes the route independent.
+- **It is what lets a route travel.** §48's trust asymmetry required a shared route to stand alone,
+  because the consumer gets no evidence trail.
+
+⚠ **A route is a SNAPSHOT, and divergence is expected rather than a fault.** Re-curate the run
+afterwards and the route does not move. Correct, but the kind of correct that reads as a bug the
+first time someone meets it.
+
+⚠ And *"nodes on the map"* means a route's contents are a function of **what the map was showing when
+you promoted** — which is exactly where §48's aggregate-view trap lands. The overwrite is the
+mitigation; the pre-flight walk (each node big in turn) is what makes a wrong pick visible.
+
+### Validity is by mapID, NOT difficulty
+
+> *"The object is what tells the selector that the route is valid for the dungeon that you're in. By
+> MapID, not difficulty. That is user choice based on description, we just surface the designers
+> intent/meaning."*
+
+**Gate on facts, surface meaning.** MapID is structurally true; whether a heroic route still applies
+on normal is a judgement, and judgement is the user's with the designer's words in front of them.
+
+⚠ **This looks like it contradicts DR-30 and does not.** DR-30 says a normal and a heroic pass are
+different routes *so difficulty is route identity* — that is about **capture**, where difficulty is
+an unrecoverable fact about what happened. This is about the **selector**, which does not enforce the
+match, because deciding a route invalid for a bracket would be us judging content.
+
+**Consequence: the description becomes load-bearing rather than decorative.** It is the only channel
+a designer has to say *"this is a +15 route, the normal pulls are bigger"* — so it cannot be buried
+behind a hover or truncated in the selector. It carries the weight our refusal put down.
+
+And it keeps route count low: one route serves every bracket unless the designer chooses otherwise.
+*"A route may hold useful from mythic to mythic +5. Breakpoint is for the tank and the designer to
+negotiate — and for the tank to fail and seek otherwise. Or make their own run and route on what
+they learned."*
+
+**★ That closes a loop: the route's failure mode IS the learning event**, and the thing that teaches
+it produces the next capture.
+
+### Editing, and where the gate actually is
+
+> *"A route can be edited. But it needs run data / nodes populated to spawn new events. And users
+> dragging beacons everywhere is improper — but user choice. We give them tools to do it well. But we
+> don't gate them."*
+
+**ORIGIN is gated; POSITION is not.** A beacon must come from a capture. Where the user drags it
+afterwards is theirs — improper, and allowed. See the §29 wording correction below.
+
+**Editing a route is more promotion, not a different verb**, so a route can only grow where captures
+exist. That is a constraint *from the data* rather than a rule imposed on behaviour: the user is not
+told no, they are told there is nothing there yet, and the fix is to go and run it.
+
+**And the "tools to do it well without gating" property is already built.** §25.2's inherited z stops
+being a prohibition and becomes a **teacher**: drag a beacon far from its source and it sits at the
+wrong height, visibly. The design shows you that you went too far instead of stopping you.
+
+### The in-route surface — his vision
+
+- **A heading view that always frames you, the current beacon and the next one.** The in-game
+  minimap is poorly implemented; this is *"broader context on heading"*. ⚠ Note: this is `map.lua`'s
+  projection with a **computed viewport** rather than the whole dungeon at fixed bounds — same
+  arithmetic. Which means it inherits the floor problem: a next beacon on another floor has to be
+  *said*, not silently omitted.
+- **Two note planes at fixed positions** — personal above, route below. **Collapse when empty rather
+  than appear**: *"appearing or moving around is attention cost."*
+- **Beacons progress automatically**, with a **display range** and a **satisfied range**, biased to
+  **show EARLY**: *"you mostly want the information before you are about to engage, rather than as
+  you do."*
+- **In combat suppresses the next beacon** — *"it's mental load when you need to focus."*
+- **A progress count gates overlapping beacons.** Player at 3/20; beacon 19 needs state 18.
+  ★ This is the same move as the time window arriving from the other end: **authoring de-duplicates a
+  self-crossing route by TIME, consumption de-duplicates it by SEQUENCE STATE.**
+- **Correction via `< [current] >` is POST-FIGHT.** *"The user shouldn't be trying to fix position
+  whilst fighting."*
+- **On a terminal stop, re-pin the last state.** ⚠ Already supported by the record: the terminal
+  marker carries the pull index it died on.
+- **Maybe a hide-all** — hides notes, suppresses beacons, **keeps tracking**. Un-hiding is a
+  **resume of current state, not a backlog**: *"you've already resolved the challenge the information
+  was to help."* ★ Stale guidance has no value, which is the opposite of stale capture.
+- **Cue text anchored above the beacon** — *"LOS", "Kick X"* — so the highlight is readable without
+  reading the note. ⚠ Feasibility: `C_SuperTrack.GetSuperTrackedPosition()` returns **screen x/y**
+  plus validity, so a fontstring can be anchored there. The satnav probe's finding B is the thing to
+  design around — **screen position goes invalid off-screen while the distance survives**, so
+  "beacon is behind you" needs an explicit answer.
+
+### ⚠ The law it might be, once there is something to test it against
+
+**The route never asks for attention during a fight.** In-combat suppression, post-fight correction,
+cues instead of notes, show-early rather than show-on-arrival and no in-route configuration all fall
+out of it. If it holds, it is also the test: anything the design wants to add gets asked whether it
+costs attention at the wrong moment.
+
+Held as an observation, not adopted.
+
+### ⚠ Undefined — left undefined on purpose
+
+- **A note that also needs a beacon for a specific pull.** *"Might be a self inject option. But
+  that's down the road."*
+- **Whether `Cue` is capped.** It is the field read mid-combat, so "LOS" and a sentence are different
+  products — the same argument as the comment's 40 characters.
+- **Whether `listen` must be ≥ `close`.** Probably a validation rather than a choice.
+- **Whether the in-route surface is one thing or two** — running someone else's route is not obviously
+  the same as running your own while still forming it.
+- **Whether the stepper is the fallback or the primary.** Automatic advance with manual recovery, or
+  the user driving and the addon confirming. Play answers that in ten minutes; argument does not
+  answer it at all.

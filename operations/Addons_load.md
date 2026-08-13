@@ -4,13 +4,13 @@ _What I'm carrying between sessions that no other file owns: open threads, banke
 small debts, and walls-with-context. STATE.md says where the machine is; this says what's on my
 mind. Pruned when items resolve — an empty section is a healthy section. Est. 2026-07-15._
 
-## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (59 sections)**
+## ▶ ACTIVE — `COA_DungeonRun` → **brief: `addons/planning/dungeonrun_poc.md` (60 sections)**
 
 **STATUS: v0.13.0 — CAPTURE PROVEN, DISPLAY PROVEN, CURATION BUILT** (2026-08-13). Six files,
 120 fn, **0 persistent OnUpdate**, smoke-green, **68 mutations bite on their own message**, across five files.
 
 **The brief is long because the DESIGN is most of the value.** Read it in three passes:
-§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§56 the promotion model + curation · **§57 the LAW AUDIT + anti-statements · §58 DR-31 is boss TAGS, not bosses · **§59 the NEED: pull COMPOSITION, and the assessment stays human.** **§55 is the statement of purpose — *we build the instrument, not the expertise* — and it is explicitly HELD LIGHTLY, not a law.** **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
+§1-§16 capture · §17-§27 + §38-§40 display · §29-§37 + §41-§56 the promotion model + curation · **§57 the LAW AUDIT + anti-statements · §58 DR-31 is boss TAGS, not bosses · **§59 the NEED: pull COMPOSITION · **§60 the ROUTE OBJECT + in-route surface — CAPTURED INTENT, NOT LAW.** ⚠ It also surfaced one **unresolved tension**: §25.2 keeps a back-reference to the node a waypoint came from, while §60 has a route **copy rather than reference** so it survives its source run being deleted. Provenance vs independence — his call, flagged in §25.2 rather than inferred. **§55 is the statement of purpose — *we build the instrument, not the expertise* — and it is explicitly HELD LIGHTLY, not a law.** **§48 is the curation pane's design and §50 is it BUILT.** Its load-bearing result: **all curation state is transient, with no exceptions**, so curation has nowhere to write and §43's law is structural rather than a discipline. **One thread banked there:** the satnav ledger's export/import laws (7, 7b, 8) were written *in the spirit of exporting* before we knew there were TWO export objects — they likely hold for routes and want re-reading for captures. **§29 is the
 architecture in one line: CAPTURE IS THE ONLY SPAWN; promotion sorts points into lanes.**
 
 **★ THE LAWS, IN FIVE FAMILIES** — §57 audits them and says why they are five and not eleven:
@@ -20,7 +20,7 @@ connection had to be found twice.
 | | |
 |---|---|
 | **A · we hold WHAT HAPPENED** | not what the world is (§17 never learn dungeons), not what it meant (§54 type·source·state·when·where, **nothing more**; §14 never derive; DR-9 as captured). **§17 and §55 are the same sentence** — one refuses facts about the dungeon, the other refuses facts about how to play it |
-| **B · capture is the only entrance; downstream INHERITS** | §29 the only spawn · DR-36 the player as sensor where the client is silent · DR-35 don't decide at capture what will matter · §25.2 z inherited never computed · §56 the sequence integers ride free. **Every violation looks like a feature and replaces a fact with a guess** |
+| **B · capture is the only entrance; downstream INHERITS** | §29 the only spawn (**origin is gated, position is NOT** — §60) · DR-36 the player as sensor where the client is silent · DR-35 don't decide at capture what will matter · §25.2 z inherited never computed (a TEACHER under editing, not a gate) · §56 the sequence integers ride free. **Every violation looks like a feature and replaces a fact with a guess** |
 | **C · the view is a LENS with nowhere to write** | §43 curation edits the view never the capture · §49 availability follows visibility (**filtering hides, never fades**) · §36 location sorts but never chooses · §48 all curation state transient. Structural, not a discipline |
 | **D · the display grammar — HIS taste** | §46 colour = combat state, shape = kind · §38 enter over exit · the ladder `pin > dead > start > done > leg > combatleg`, which decides the CLICK too. ⚠ **Do not re-derive these** — they came from his eye on real draws |
 | **E · build hygiene** | §34 separate frames · **zero persistent OnUpdate**, asserted in the smoke not just the census · every guard gets a `mutate.py` entry |
