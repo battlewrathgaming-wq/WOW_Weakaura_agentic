@@ -3,7 +3,9 @@
 _Developed in chat with Battlewrath 2026-08-13, written up before any build. **Nothing is
 built.** This is the design as talked out, with the facts it rests on and the calls that are
 still his. Companion to `landmark_design.md` (the shipped landmark half) and `satnav_ledger.md`
-(the fact basis, cited here as `[Fn]`)._
+(the fact basis, cited here as `[Fn]`).
+
+**★ THIS NOTE COVERS CAPTURE AND DISPLAY ONLY.** Notes, export, import and sharing are already governed by `satnav_ledger.md` **laws 6, 7, 7b, 8 and 9** (SELF vs TEAM notes, import-wipes, disposable-vs-sacred, the persistent bin, notes-live-on-the-map). **Start there before designing anything in that space** — §28.2 records what happened when this note did not._
 
 ---
 
@@ -1788,26 +1790,46 @@ source), which until now had only *"denoting skips"* as its justification.
 riding along inside the route model, and it turns out to stand on its own. First evidence that
 someone else's need reaches the same primitive by a different road.
 
-### 28.2 ★★ TWO LAYERS OF NOTES — the genuinely new design element
+### 28.2 ⚠ TWO LAYERS OF NOTES — **NOT NEW. I RE-DERIVED IT, AND GOT IT WRONG.**
 
-> **Battlewrath:** *"An export or group sync function, then it loads the beacons. And notes the
-> user feels is agnostic enough. **There will be a second layer of marks and notes that persist
-> for the user. And that's for their own use based on their role.**"*
+I recorded this as a *"genuinely new design element"*. It is **law 6 in `satnav_ledger.md`,
+dated 2026-08-08** — five days old:
 
-**This is not in any note yet.** Two distinct kinds of annotation:
+> **Law 6.** *"Notes come in two flavours: SELF and TEAM — and they layer. The **export carries
+> locations + TEAM notes only, role-agnostic**. A consumer imports that layout and then adds
+> their **own personal notes on top**. The shared artifact stays the ROUTE; nobody inherits
+> anyone else's idiosyncrasies."*
 
-| layer | scope | example |
-|---|---|---|
-| **shared** | travels with an exported route — *"agnostic enough"* to be useful to anyone | *"pull this pack from the left"* |
-| **personal** | **persists for the user**, keyed to how THEY play | *"stand here for battle horn"* — Vicke's case, and it is role-specific |
+**★ And the part I invented is CONTRADICTED by the design that already existed.** I wrote *"the
+personal layer must survive an import"*. Law 7 declines that deliberately:
 
-**★ The personal layer must survive an import.** If someone hands you a new version of a route,
-your own role notes are not theirs to overwrite — which makes this **the same shape as
-`COA_Landmarks`'s `owner` field** (global vs character), one layer up: *shared with the party* vs
-*mine, by role*.
+> **Law 7 — IMPORT WIPES.** *"An import REPLACES the route; it does not merge … Merging would
+> demand stable per-point IDs, reattachment logic for republished routes, and conflict handling
+> when a shared point moves under a personal note. Wiping removes all of it. **The cost is that
+> personal notes on a replaced route are lost, and that cost is the user's to manage** by
+> choosing when to import."*
 
-And it is the scrapbook's thesis reappearing on the route side: **"how I play, not what exists."**
-A shared route is *what exists*; the personal layer is *how I play it*.
+**The real resolution is subtler than the one I reached for:** the personal notebook survives
+**because it lives on the MAP (law 9), not in the route** — so route replacement cannot touch it.
+Personal notes attached to a *route* are lost on import, knowingly, in exchange for declining the
+whole merge problem.
+
+**Also already there and not connected until now:** law 7b — **exports carry a MODE, disposable
+vs sacred**. *"Follow this tank's route"* is one run then discard; a sacred route is one you keep,
+and sacredness comes from a community pool or the sharer's preference. **Metadata, not logic.**
+
+### ★ The lesson, and it is not "read more carefully"
+
+**A design that exists but is not findable FROM WHERE YOU ARE WORKING will be reinvented — and
+the reinvention will not match.** This note never cited the ledger's laws, so when the topic
+resurfaced five days later I treated it as new *and produced a requirement the original had
+explicitly refused*. Re-derivation is not merely wasteful; **it manufactures contradictions
+between two documents that are each internally consistent** — the same failure shape as §24's
+spec-vs-build gap, one layer up.
+
+**The structural fix is the cross-reference, not the correction.** `dungeonrun_poc.md` covers
+capture and display; **`satnav_ledger.md` laws 6, 7, 7b, 8 and 9 already govern notes, export and
+import**, and anything touching those must start there.
 
 ### 28.3 The §8 community gate — first evidence, and it cuts toward building
 
